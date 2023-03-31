@@ -1,0 +1,28 @@
+name: Create a release branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref_branch:
+        description: branch that contains changes to be released
+        default: develop
+        required: true
+      version:
+        description: semver correct version
+        default: 0.0.0
+        required: true
+
+jobs:
+  create_release_branch:
+    name: Create release branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.ref_branch }}
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+      - name: Create release branch
+        run: |
+          git checkout -b release/${{ github.event.inputs.version }}
+          git push origin release/${{ github.event.inputs.version }}

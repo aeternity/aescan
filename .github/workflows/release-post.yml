@@ -1,0 +1,39 @@
+name: Merge release to develop
+
+on: 
+  push:
+    branches: [main]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.BOT_GITHUB_TOKEN }}
+    - name: merge release to main branch
+      id: merge
+      continue-on-error: true
+      uses: devmasx/merge-branch@master
+      with:
+        type: now
+        target_branch: develop
+        github_token: ${{ secrets.BOT_GITHUB_TOKEN }}  
+    - name: Create release branch
+      if: steps.merge.outcome != 'success'
+      run: |
+        git checkout -b port/${{ env.GITHUB_SHA }}
+        git push origin port/${{ env.GITHUB_SHA }}
+    - name: create pull request
+      if: steps.merge.outcome != 'success'
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: port/${{ github.sha }}
+        destination_branch: "develop"
+        pr_title: "Port recent release from main to develop"
+        pr_label: "conflicts"
+        github_token: ${{ secrets.BOT_GITHUB_TOKEN }}

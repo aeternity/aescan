@@ -1,0 +1,60 @@
+<template>
+  <router-link
+    v-if="isLocalLink(to)"
+    :to="to"
+    :class="['link', {'link--primary': variant === 'primary'}]"
+    active-class="link--active"
+    exact-active-class="link--exact-active"><slot/></router-link>
+  <a
+    v-else
+    :rel="isOpenedInNewTab ? 'noopener noreferrer' : false"
+    :target="target"
+    :href="to"
+    :class="['link', {'link--primary': variant === 'primary'}]"><slot/></a>
+</template>
+
+<script>
+export default {
+  name: 'AppLink',
+  props: {
+    to: {
+      type: String,
+      required: true,
+    },
+    target: {
+      type: String,
+      default: '_blank',
+    },
+    variant: {
+      type: String,
+      default: null,
+      validator: val => ['primary'].includes(val),
+    },
+  },
+
+  computed: {
+    isOpenedInNewTab() {
+      return this.target === '_blank'
+    },
+  },
+  methods: {
+    isLocalLink(url) {
+      return typeof url === 'object' ||
+        url.charAt(0) === '/'
+    },
+  },
+}
+</script>
+
+<style scoped>
+.link {
+  &--primary {
+    color: var(--color-fire);
+  }
+
+  &--active {
+    color: var(--color-fire) !important;
+  }
+}
+
+</style>

@@ -1,0 +1,37 @@
+name: Handle release process
+
+on:
+  push:
+    branches: ['release/*']
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ inputs.target_branch || github.head_ref || github.ref_name }}
+    outputs:
+      release_created: ${{ steps.release-please.outputs.release_created }}
+    steps:
+      - name: Establish release version
+        run: echo "RELEASE_VERSION=${BRANCH_NAME##*/}" >> $GITHUB_ENV
+      - uses: google-github-actions/release-please-action@v3
+        id: release-please
+        with:
+          release-type: node
+          package-name: release-please-action
+          release-as: ${{ env.RELEASE_VERSION }}
+          default-branch: ${{ env.BRANCH_NAME }}
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          include-v-in-tag: false
+
+  merge_release-main:
+    needs: release-please
+    if: needs.release-please.outputs.release_created
+    runs-on: ubuntu-latest
+    steps: 
+      - name: merge release to main branch
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: main
+          github_token: ${{ secrets.BOT_GITHUB_TOKEN }}

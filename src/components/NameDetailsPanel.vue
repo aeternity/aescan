@@ -1,0 +1,201 @@
+<template>
+  <app-panel
+    v-if="name"
+    class="name-details-panel">
+    <header class="name-details-panel__header">
+      <h3 class="name-details-panel__heading">
+        DETAILS
+      </h3>
+      <copy-chip
+        class="name-details-panel__name"
+        :label="name.name"/>
+    </header>
+    <table>
+      <tbody>
+        <tr
+          v-if="name.status !== 'auction'"
+          class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            Owner
+          </th>
+          <td class="name-details-panel__data">
+            <app-link :to="`/accounts/${name.owner}`">
+              <span class="name-details-panel__link-text">
+                {{ name.owner }}
+              </span>
+              <span class="name-details-panel__link-text-ellipse">{{
+                formatEllipseHash(name.owner)
+              }}</span>
+            </app-link>
+          </td>
+        </tr>
+        <tr
+          v-if="name.bidder"
+          class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            Bidder
+          </th>
+          <td class="name-details-panel__data">
+            <app-link :to="`/accounts/${name.bidder}`">
+              <span class="name-details-panel__link-text">{{ name.bidder }}</span>
+              <span class="name-details-panel__link-text-ellipse">{{
+                formatEllipseHash(name.bidder)
+              }}</span>
+            </app-link>
+          </td>
+        </tr>
+        <tr
+          v-if="name.bid"
+          class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            Bid amount
+          </th>
+          <td class="name-details-panel__data">
+            {{ formatAePrice(name.bid) }}
+          </td>
+        </tr>
+        <tr
+          v-if="isNameActive"
+          class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            Owned since
+          </th>
+          <td class="name-details-panel__data">
+            <datetime-label :datetime="name.activated"/>
+          </td>
+        </tr>
+        <tr class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            {{ isNameExpired ? "Expired" : "Expires" }}
+          </th>
+          <td class="name-details-panel__data">
+            <span>
+              {{ name.expirationHeight }}
+            </span>
+            (
+            <datetime-label :datetime="name.expiration"/>
+            )
+          </td>
+        </tr>
+        <tr class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            Status
+          </th>
+          <td class="name-details-panel__data">
+            <app-chip :variant="labelVariant">
+              {{ nameStatusText }}
+            </app-chip>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </app-panel>
+</template>
+
+<script>
+import { mapState } from 'pinia'
+import AppPanel from '@/components/AppPanel'
+import AppLink from '@/components/AppLink'
+import AppChip from '@/components/AppChip'
+import CopyChip from '@/components/CopyChip'
+import { useNameDetailsStore } from '@/stores/nameDetails'
+import { formatAePrice, formatEllipseHash } from '@/utils/format'
+import DatetimeLabel from '@/components/DatetimeLabel'
+
+export default {
+  name: 'NameDetailPanel',
+  components: {
+    DatetimeLabel,
+    AppPanel,
+    AppLink,
+    AppChip,
+    CopyChip,
+  },
+  computed: {
+    ...mapState(useNameDetailsStore, ['name']),
+    labelVariant() {
+      return this.name.active ? 'success' : 'error'
+    },
+    nameStatusText() {
+      if (this.name.status === 'auction') {
+        return 'In auction'
+      }
+
+      return this.name.active ? 'Active' : 'Expired'
+    },
+    isNameExpired() {
+      return this.name.status === 'name' && !this.name.active
+    },
+    isNameActive() {
+      return this.name.active && this.name.activated
+    },
+  },
+  methods: {
+    formatAePrice,
+    formatEllipseHash,
+  },
+}
+</script>
+
+<style scoped>
+.name-details-panel {
+  padding: var(--space-4) var(--space-1) var(--space-3);
+  @media (--desktop) {
+    padding: var(--space-4) var(--space-4) var(--space-3);
+  }
+
+  &__heading {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-3);
+    @media (--desktop) {
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__header {
+    @media (--desktop) {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__name {
+    overflow-wrap: anywhere;
+    margin-bottom: var(--space-1);
+    @media (--desktop) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__data {
+    text-align: right;
+  }
+
+  &__link-text {
+    display: none;
+    @media (--desktop) {
+      display: revert;
+    }
+  }
+
+  &__link-text-ellipse {
+    @media (--desktop) {
+      display: none;
+    }
+  }
+
+  &__table-header {
+    border-bottom: 1px solid var(--color-midnight-15);
+  }
+
+  &__row:last-of-type &__table-header {
+    border-bottom: 0;
+  }
+}
+</style>

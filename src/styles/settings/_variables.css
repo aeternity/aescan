@@ -1,0 +1,23 @@
+:root {
+  --color-fire: #f5274e;
+  --color-blue: #003dff;
+  --color-success: #66e773;
+  --color-error: #dc0000;
+  --color-white: #ffffff;
+  --color-snow: #f7f7f7;
+  --color-midnight-15: #dedede;
+  --color-midnight-35: #b2b2b2;
+  --color-midnight: #242424;
+  --color-gray: #757581;
+  --space-0: 4px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 40px;
+  --space-7: 60px;
+  --font-primary: ClashDisplay, Arial, sans-serif;
+  --font-monospaced: 'Roboto Mono', monospaced, sans-serif;
+  --container-width: 1200px;
+}

@@ -1,0 +1,172 @@
+<template>
+  <vue-multiselect
+    v-model="selectedValue"
+    :options="options"
+    :show-labels="false"
+    :label="label"
+    :track-by="trackBy"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :searchable="searchable"
+    :hide-selected="hideSelected">
+    <template
+      v-for="(_, slot) of $slots"
+      #[slot]="scope">
+      <slot
+        :name="slot"
+        v-bind="scope"/>
+    </template>
+    <template #caret>
+      <div class="multiselect__select">
+        <app-icon name="caret-down"/>
+      </div>
+    </template>
+  </vue-multiselect>
+</template>
+
+<script>
+import VueMultiselect from 'vue-multiselect'
+import AppIcon from '@/components/AppIcon'
+
+export default {
+  name: 'AppSelect',
+  components: { AppIcon, VueMultiselect },
+  props: {
+    placeholder: {
+      type: String,
+      default: null,
+    },
+    label: {
+      type: String,
+      default: null,
+    },
+    trackBy: {
+      type: String,
+      default: null,
+    },
+    options: {
+      type: Array,
+      required: true,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    hideSelected: {
+      type: Boolean,
+      default: false,
+    },
+    searchable: {
+      type: Boolean,
+      default: true,
+    },
+    modelValue: undefined,
+  },
+  emits: ['update:modelValue'],
+  computed: {
+    selectedValue: {
+      get() {
+        return this.modelValue
+      },
+      set(value) {
+        this.$emit('update:modelValue', value)
+      },
+    },
+  },
+}
+</script>
+
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+<style>
+.multiselect {
+  width: 100%;
+  font-family: var(--font-monospaced);
+
+  @media (--desktop) {
+    width: 320px;
+    margin: 0;
+  }
+
+  &__tags {
+    border-radius: 8px;
+    border-color: var(--color-midnight);
+    font-size: 12px;
+    cursor: pointer;
+    @media (--desktop) {
+      font-size: 14px;
+    }
+  }
+
+  &__single {
+    line-height: 20px;
+    color: var(--color-midnight);
+    font-size: 12px;
+    @media (--desktop) {
+      font-size: 14px;
+    }
+  }
+
+  &__content-wrapper {
+    box-shadow: 2px 2px 14px 5px rgba(78, 78, 86, 0.2);
+    border-radius: 8px;
+  }
+
+  &__option {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    border: solid var(--color-midnight-35);
+    border-width: 1px 0;
+    color: solid var(--color-midnight);
+    font-size: 12px;
+    @media (--desktop) {
+      font-size: 14px;
+    }
+
+    &:last-child {
+      border-width: 1px 0 0;
+    }
+
+    &--selected {
+      font-weight: 400;
+      background: var(--color-midnight-35);
+    }
+
+    &--highlight {
+      font-weight: 400;
+      background: var(--color-midnight-15);
+    }
+
+    &--selected&--highlight {
+      background: var(--color-midnight-35);
+      color: var(--color-midnight);
+    }
+  }
+
+  &__select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:before {
+      border: 0;
+    }
+  }
+
+  &--active {
+    .multiselect__tags {
+      box-shadow: 2px 2px 14px 5px rgba(78, 78, 86, 0.2);
+      border-radius: 8px;
+    }
+  }
+
+  &--disabled {
+    background: transparent;
+    opacity: 0.5;
+
+    .multiselect__select {
+      background: transparent;
+    }
+  }
+}
+</style>

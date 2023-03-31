@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "__comment__": "this file helps navigate IDE across components in Vite project",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}

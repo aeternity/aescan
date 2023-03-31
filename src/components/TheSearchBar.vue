@@ -1,0 +1,129 @@
+<template>
+  <div class="search-bar">
+    <input
+      v-model="userQuery"
+      class="search-bar__input"
+      placeholder="Search accounts, transactions, names, contracts..."
+      type="search"
+      autofocus
+      @keyup.enter="search">
+
+    <button
+      class="search-bar__submit"
+      @click="search">
+      <app-icon
+        name="magnifying-glass"
+        :size="21"/>
+    </button>
+  </div>
+</template>
+<script>
+import { isAddressValid } from '@aeternity/aepp-sdk'
+import { mapActions } from 'pinia'
+import AppIcon from '@/components/AppIcon'
+import { useNameDetailsStore } from '@/stores/nameDetails'
+
+export default {
+  name: 'TheSearchBar',
+  components: { AppIcon },
+  data() {
+    return {
+      userQuery: '',
+    }
+  },
+  computed: {
+    query() {
+      const trimmedQuery = this.userQuery.trim()
+      return trimmedQuery.endsWith('.chain')
+        ? trimmedQuery.slice(0, -6)
+        : trimmedQuery
+    },
+  },
+  methods: {
+    ...mapActions(useNameDetailsStore, ['isNameAvailable']),
+    async search() {
+      if (!this.query) {
+        return
+      }
+
+      if (this.isAccountAddress(this.query)) {
+        this.$router.push(`/accounts/${this.query}`)
+      } else if (this.isTransactionHash(this.query)) {
+        this.$router.push(`/transactions/${this.query}`)
+      } else if (this.isContractId(this.query)) {
+        this.$router.push(`/contracts/${this.query}`)
+      } else if (await this.isAccountName(this.query)) {
+        this.$router.push(`/names/${this.query}.chain`)
+      } else {
+        this.$router.push(`/error/${this.userQuery}`)
+      }
+      this.userQuery = ''
+    },
+    isAccountAddress(query) {
+      return isAddressValid(query) && query.startsWith('ak_')
+    },
+    isTransactionHash(query) {
+      return isAddressValid(query) && query.startsWith('th_')
+    },
+    isContractId(query) {
+      return isAddressValid(query) && query.startsWith('ct_')
+    },
+    async isAccountName(query) {
+      return await this.isNameAvailable(query)
+    },
+  },
+}
+</script>
+
+<style scoped>
+.search-bar {
+  padding: var(--space-1) 10px var(--space-1) var(--space-3);
+  display: flex;
+  align-items: center;
+
+  height: 40px;
+  background: var(--color-white);
+  border: 1px solid var(--color-midnight);
+  border-radius: 8px;
+
+  &__submit {
+    margin: auto;
+    padding: 0;
+    border: none;
+    background: inherit;
+    cursor: pointer;
+    color: var(--color-midnight);
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    background-color: var(--color-white);
+    margin-right: var(--space-1);
+    font-size: 11px;
+    appearance: none;
+    font-family: var(--font-monospaced);
+
+    @media (--desktop) {
+      font-size: 14px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+      color: var(--color-midnight-35);
+    }
+
+    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: var(--color-midnight-35);
+      opacity: 1;
+    }
+
+    &::placeholder { /* Most modern browsers support this now. */
+      color: var(--color-midnight-35);
+    }
+  }
+}
+</style>

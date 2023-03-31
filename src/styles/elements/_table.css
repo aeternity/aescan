@@ -1,0 +1,50 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  vertical-align: initial;
+  padding: var(--space-1) 0;
+
+  @media (--desktop) {
+    font-size: 16px;
+    line-height: 24px;
+    padding: var(--space-2) 0 var(--space-1);
+  }
+}
+
+td {
+  border-bottom: 1px solid var(--color-midnight-15);
+  vertical-align: middle;
+  text-align: left;
+  font-family: var(--font-monospaced);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  padding: var(--space-1) 0;
+
+  @media (--desktop) {
+    font-size: 14px;
+    line-height: 20px;
+    padding: var(--space-1) var(--space-0);
+  }
+}
+
+td:first-of-type {
+  padding-left: 0;
+}
+
+td:last-of-type {
+  padding-right: 0;
+}
+
+tr:last-of-type td {
+  border-bottom: 0;
+}
+

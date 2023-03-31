@@ -1,0 +1,18 @@
+/* structured according to ITCSS */
+@import "settings/_variables.css";
+
+@import "generic/_animations.css";
+@import "generic/_fonts.css";
+@import "generic/_reset.css";
+
+@import "elements/_a.css";
+@import "elements/_body.css";
+@import "elements/_h.css";
+@import "elements/_hr.css";
+@import "elements/_html.css";
+@import "elements/_table.css";
+
+@import "utilities/_ellipsis.css";
+
+/* 3rd party components */
+@import 'floating-vue/dist/style.css';

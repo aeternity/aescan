@@ -320,3 +320,10 @@ export function adaptContractEvents(events, blockHeight) {
     prev: events.prev,
   }
 }
+
+export function adaptTokenDetails(rawContractDetails, rawContractBalance) {
+  return {
+    ...rawContractDetails,
+    ...rawContractBalance,
+  }
+}

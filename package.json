@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@aeternity/aepp-sdk": "^v13.0.0-beta.0",
+    "@download/blockies": "^1.0.3",
     "@sentry/tracing": "^7.25.0",
     "@sentry/vue": "^7.25.0",
     "@vueuse/core": "^9.13.0",

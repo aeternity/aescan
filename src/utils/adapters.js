@@ -320,3 +320,22 @@ export function adaptContractEvents(events, blockHeight) {
     prev: events.prev,
   }
 }
+
+export function adaptTokens(tokens) {
+  const formattedData = tokens.data
+    .map(event => {
+      return {
+        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        createdHeightDiff: formatBlocksRelative(blockHeight - event.height),
+        eventName: event.event_name,
+        args: event.args,
+        data: event.data,
+        callTxHash: event.call_tx_hash,
+      }
+    })
+  return {
+    next: tokens.next,
+    data: formattedData,
+    prev: tokens.prev,
+  }
+}

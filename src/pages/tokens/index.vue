@@ -12,14 +12,18 @@
   </div>
 </template>
 
-<script>
-import tokensPanel from '@/components/tokensPanel'
+<script setup>
+// todo layout
 import PageHeader from '@/components/PageHeader'
+import { isDesktop } from '~/utils/screen'
+import { useTokensStore } from '@/stores/tokens'
 
-export default {
-  name: 'TransactionsView',
-  components: { PageHeader, tokensPanel },
+const { fetchTokens } = useTokensStore()
+if (process.client) {
+  const limit = isDesktop() ? null : 3
+  fetchTokens({ limit })
 }
+
 </script>
 
 <style scoped>

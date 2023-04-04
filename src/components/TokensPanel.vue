@@ -1,14 +1,18 @@
 <template>
   <app-panel class="tokens-panel">
-    <table>
-      <tr>
-        <th>a</th>
-      </tr>
-    </table>
+    <tokens-table :tokens="tokens"/>
   </app-panel>
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
+import { useTokensStore } from '~/stores/tokens'
+import TokensTable from '~/components/TokensTable.vue'
+
+const tokensStore = useTokensStore()
+const {
+  tokens,
+} = storeToRefs(tokensStore)
 
 </script>
 

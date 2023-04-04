@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-// todo layout
 import PageHeader from '@/components/PageHeader'
 import { isDesktop } from '~/utils/screen'
 import { useTokensStore } from '@/stores/tokens'
@@ -28,20 +27,20 @@ if (process.client) {
 
 <style scoped>
 .tokens {
-    background-image: url("@/assets/background.svg");
-    background-color: var(--color-midnight-35);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("@/assets/background.svg");
+  background-color: var(--color-midnight-35);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-    &__parallax {
-        padding: 120px var(--space-1) var(--space-6);
-        max-width: var(--container-width);
-        margin: 0 auto;
-        @media (--desktop) {
-            padding: 120px 0;
-        }
+  &__parallax {
+    padding: 120px var(--space-1) var(--space-6);
+    max-width: var(--container-width);
+    margin: 0 auto;
+    @media (--desktop) {
+      padding: 120px 0;
     }
+  }
 }
 </style>

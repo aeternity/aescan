@@ -4,11 +4,11 @@
       <token-select v-model="selectedTokensName"/>
     </header>
     <tokens-table
-      v-if="selectedTokensName"
+      v-if="selectedTokens"
       class="tokens-panel__table"
       :tokens="selectedTokens"/>
     <tokens-table-condensed
-      v-if="selectedTokensName"
+      v-if="selectedTokens"
       class="tokens-panel__table-condensed"
       :tokens="selectedTokens"/>
   </app-panel>

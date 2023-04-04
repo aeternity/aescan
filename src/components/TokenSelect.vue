@@ -8,12 +8,10 @@
       {label:'Unlisted', val: 'unlistedTokens'}
     ]"/>
 </template>
+
 <script>
 export default {
   name: 'TokenSelect',
-  props: {
-    modelValue: undefined,
-  },
   emits: ['update:modelValue'],
   computed: {
     selectedTokens: {

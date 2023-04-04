@@ -25,7 +25,6 @@ function render() {
     identicon.value,
   )
 }
-
 </script>
 
 <style scoped>

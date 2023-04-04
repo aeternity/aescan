@@ -2,6 +2,7 @@
   <app-panel class="tokens-panel">
     <header class="tokens-panel__header">
       <token-select v-model="selectedTokensName"/>
+      <!--  todo counter?-->
     </header>
     <tokens-table
       v-if="selectedTokens"

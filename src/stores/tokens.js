@@ -7,7 +7,6 @@ export const useTokensStore = defineStore('tokens', {
     tokens: null,
   }),
   getters: {
-
     listedTokens: state => {
       return state.tokens?.filter(token =>
         LISTED_TOKENS_ADDRESSES.includes(token.contract_id),
@@ -20,14 +19,11 @@ export const useTokensStore = defineStore('tokens', {
     },
   },
   actions: {
-    async fetchTokens({ queryParameters } = {}) {
+    async fetchTokens() {
       const { data } = await axios.get(
         `${useRuntimeConfig().public.MIDDLEWARE_URL}/aex9/by_name`,
       )
       this.tokens = data
-    },
-    async fetchBalance() {
-      return null
     },
   },
 })

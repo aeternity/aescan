@@ -1,25 +1,28 @@
 <template>
-  <table>
-    <th>Image</th>
-    <th>Name</th>
-    <th>Amount</th>
-    <th>Hash (contract)</th>
+  <table class="tokens-table__table">
     <th>Symbol</th>
+    <th>Name</th>
+    <th>Hash</th>
+    <th>Amount</th>
     <tr
       v-for="token in tokens"
       :key="token.contract_id">
       <td>
-        <app-identicon :id="token.contract_id"/>
+        <div class="tokens-table__container">
+          <app-identicon
+            :id="token.contract_id"
+            class="tokens-table__identicon"/>
+          {{ token.symbol }}
+        </div>
       </td>
       <td>{{ token.name }}</td>
-      <td>{{ token.contract_txi }}</td>
       <td>
         <app-link
           :to="`/contracts/${token.contract_id}`">
           {{ token.contract_id }}
         </app-link>
       </td>
-      <td>{{ token.symbol }}</td>
+      <td>99999</td>
     </tr>
   </table>
 </template>
@@ -35,3 +38,20 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.tokens-table {
+  &__table {
+    margin-bottom: var(--space-2);
+  }
+
+  &__identicon {
+    margin-right: var(--space-1);
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+}
+</style>

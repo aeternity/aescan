@@ -1,8 +1,15 @@
 <template>
-  <app-panel class-name="tokens-panel">
-    <token-select v-model="selectedTokensName"/>
+  <app-panel class="tokens-panel">
+    <header class="tokens-panel__header">
+      <token-select v-model="selectedTokensName"/>
+    </header>
     <tokens-table
       v-if="selectedTokensName"
+      class="tokens-panel__table"
+      :tokens="selectedTokens"/>
+    <tokens-table-condensed
+      v-if="selectedTokensName"
+      class="tokens-panel__table-condensed"
       :tokens="selectedTokens"/>
   </app-panel>
 </template>
@@ -11,6 +18,7 @@
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useTokensStore } from '~/stores/tokens'
+import TokensTableCondensed from '~/components/TokensTableCondensed.vue'
 
 const tokensStore = useTokensStore()
 const {
@@ -26,6 +34,11 @@ const selectedTokens = computed(() => selectedTokensName.value.val === 'listedTo
 <style scoped>
 .tokens-panel {
   padding: var(--space-4) var(--space-1);
+
+  &__header {
+    display: flex;
+    justify-content: flex-end;
+  }
 
   @media (--desktop) {
     padding: var(--space-4);

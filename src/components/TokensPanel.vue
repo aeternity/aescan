@@ -27,8 +27,8 @@ const {
   unlistedTokens,
 } = storeToRefs(tokensStore)
 
-const selectedTokensName = ref({ label: 'Listed', val: 'listedTokens' })
-const selectedTokens = computed(() => selectedTokensName.value.val === 'listedTokens' ? listedTokens.value : unlistedTokens.value)
+const selectedTokensName = ref({ label: 'Listed', key: 'listedTokens' })
+const selectedTokens = computed(() => selectedTokensName.value.key === 'listedTokens' ? listedTokens.value : unlistedTokens.value)
 
 </script>
 

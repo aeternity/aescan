@@ -1,28 +1,26 @@
 <template>
   <app-select
     v-model="selectedTokens"
-    track-by="val"
+    track-by="key"
     label="label"
-    :options="[
-      {label:'Listed', val: 'listedTokens'},
-      {label:'Unlisted', val: 'unlistedTokens'}
-    ]"/>
+    :options="tokensTypes"/>
 </template>
 
-<script>
-export default {
-  name: 'TokenSelect',
-  emits: ['update:modelValue'],
-  computed: {
-    selectedTokens: {
-      // todo simplify and convert to composition
-      get() {
-        return this.modelValue
-      },
-      set(value) {
-        this.$emit('update:modelValue', value)
-      },
-    },
+<script setup>
+const emit = defineEmits(['update:modelValue'])
+
+const tokensTypes = [
+  { label: 'Listed', key: 'listedTokens' },
+  { label: 'Unlisted', key: 'unlistedTokens' },
+]
+
+const selectedTokens = computed({
+  get() {
+    return this.modelValue
   },
-}
+  set(value) {
+    emit('update:modelValue', value)
+  },
+})
+
 </script>

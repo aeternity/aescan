@@ -36,14 +36,12 @@
         </coming-soon-tooltip>
       </li>
       <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            Tokens
-          </app-link>
-        </coming-soon-tooltip>
+        <app-link
+          class="navigation__link"
+          target="_self"
+          to="/tokens">
+          Tokens
+        </app-link>
       </li>
       <li class="navigation__item">
         <coming-soon-tooltip>

@@ -4,11 +4,19 @@ import { useRuntimeConfig } from 'nuxt/app'
 
 export const useTokensStore = defineStore('tokens', {
   state: () => ({
-    rawTokens: null,
+    tokens: null,
   }),
   getters: {
-    tokens: state => {
-      return state.rawTokens
+
+    listedTokens: state => {
+      return state.tokens?.filter(token =>
+        LISTED_TOKENS_ADDRESSES.includes(token.contract_id),
+      )
+    },
+    unlistedTokens: state => {
+      return state.tokens?.filter(token =>
+        !LISTED_TOKENS_ADDRESSES.includes(token.contract_id),
+      )
     },
   },
   actions: {
@@ -16,7 +24,7 @@ export const useTokensStore = defineStore('tokens', {
       const { data } = await axios.get(
         `${useRuntimeConfig().public.MIDDLEWARE_URL}/aex9/by_name`,
       )
-      this.rawTokens = data
+      this.tokens = data
     },
     async fetchBalance() {
       return null

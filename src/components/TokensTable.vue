@@ -14,13 +14,17 @@
       <td>{{ token.name }}</td>
       <td>{{ token.contract_txi }}</td>
       <td>
-        {{ token.contract_id }}
+        <app-link
+          :to="`/contracts/${token.contract_id}`">
+          {{ token.contract_id }}
+        </app-link>
       </td>
       <td>{{ token.symbol }}</td>
     </tr>
   </table>
 </template>
 <script>
+
 export default {
   name: 'TokensTable',
   props: {

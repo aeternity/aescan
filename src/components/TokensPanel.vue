@@ -34,15 +34,22 @@ const {
   listedTokens,
   allTokens,
 } = storeToRefs(tokensStore)
-const { fetchAllTokens, fetchListedTokens } = useTokensStore()
+const { fetchAllTokens, getListedTokens } = useTokensStore()
 
 const selectedTokensName = ref({ label: 'Listed', key: 'listedTokens' })
 const selectedTokens = ref(null)
 const limit = computed(() => process.client && isDesktop() ? 10 : 3) // todo unify
 const pageIndex = ref(1)
 
-const loadPrevTokens = () => fetchAllTokens(selectedTokens.value.prev)
-const loadNextTokens = () => fetchAllTokens(selectedTokens.value.next)
+async function loadPrevTokens() {
+  await fetchAllTokens(selectedTokens.value.prev)
+  selectedTokens.value = allTokens.value
+}
+
+async function loadNextTokens() {
+  await fetchAllTokens(selectedTokens.value.next)
+  selectedTokens.value = allTokens.value
+}
 
 watch(selectedTokensName, () => {
   loadTokens(selectedTokensName.value?.key)
@@ -52,13 +59,14 @@ onMounted(() => {
   loadTokens(selectedTokensName.value?.key)
 })
 
-function loadTokens(selectedTokensName) {
+async function loadTokens(selectedTokensName) {
   // todo move to store
   if (selectedTokensName === 'listedTokens') {
-    fetchListedTokens()
+    getListedTokens()
     selectedTokens.value = listedTokens.value
   } else {
-    fetchAllTokens(`/v2/aex9?limit=${limit.value}`)
+    await fetchAllTokens(`/v2/aex9/by_name?limit=${limit.value}`)
+    console.log('component allTokens.value', allTokens.value)
     selectedTokens.value = allTokens.value
   }
 }

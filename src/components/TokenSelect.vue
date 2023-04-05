@@ -10,10 +10,6 @@
 import AppSelect from '~/components/AppSelect.vue'
 // todo check imports
 
-// defineProps({
-//   modelValue: undefined,
-//
-// })
 const emit = defineEmits(['update:modelValue'])
 
 const tokensTypes = [

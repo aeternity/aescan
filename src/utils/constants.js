@@ -44,8 +44,24 @@ export const APP_TITLE = 'æScan - æternity Blockchain Explorer'
 export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platform, and decentralized Smart Contract navigation platform based on æternity'
 export const APP_URL = 'https://aescan.io'
 export const APP_CREATOR = '@aeternity'
-export const LISTED_TOKENS_ADDRESSES = [
-  'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
-  'ct_KeTvHnhU85vuuQMMZocaiYkPL9tkoavDRT3Jsy47LK2YqLHYb',
-  'ct_7UfopTwsRuLGFEcsScbYgQ6YnySXuyMxQWhw6fjycnzS5Nyzq',
+
+export const LISTED_TOKENS = [
+  {
+    contract_id: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
+    name: 'AE',
+    symbol: 'AE',
+  },
+  {
+    contract_id: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
+    symbol: 'WAE',
+    name: 'Wrapped Aeternity',
+  }, {
+    contract_id: 'ct_KeTvHnhU85vuuQMMZocaiYkPL9tkoavDRT3Jsy47LK2YqLHYb',
+    symbol: 'WTT',
+    name: 'WeTrue Token',
+  }, {
+    contract_id: 'ct_7UfopTwsRuLGFEcsScbYgQ6YnySXuyMxQWhw6fjycnzS5Nyzq',
+    symbol: 'ABC',
+    name: 'ABC',
+  },
 ]

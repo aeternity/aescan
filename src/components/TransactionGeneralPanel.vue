@@ -158,7 +158,7 @@ export default {
   }),
   computed: {
     transactionNodeUrl() {
-      return `${this.$config.public.NODE_URL}/transactions/${this.transactionDetails.hash}`
+      return `${this.$config.public.NODE_URL}/v3/transactions/${this.transactionDetails.hash}`
     },
     transactionMiddlewareUrl() {
       return `${this.$config.public.MIDDLEWARE_URL}/v2/txs/${this.transactionDetails.hash}`

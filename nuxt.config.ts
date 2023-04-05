@@ -31,6 +31,7 @@ export default defineNuxtConfig({
       NETWORK_NAME: process.env.NETWORK_NAME,
       ALTERNATIVE_NETWORK_URL: process.env.ALTERNATIVE_NETWORK_URL,
       ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,
+      AE_TOKEN_ID: process.env.AE_TOKEN_ID,
     },
   },
   postcss: {

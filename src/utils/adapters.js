@@ -321,9 +321,19 @@ export function adaptContractEvents(events, blockHeight) {
   }
 }
 
-export function adaptTokenDetails(rawContractDetails, rawContractBalance) {
-  return {
-    ...rawContractDetails,
-    ...rawContractBalance,
+export function adaptTokenDetails(tokenInformation, rawTotalSupply = null, price = null) {
+  const tokenDetails = {
+    ...tokenInformation,
+    ...(price && { price }),
   }
+
+  if (tokenInformation && rawTotalSupply) {
+    tokenDetails.totalSupply = Number(rawTotalSupply / BigInt(10 ** tokenInformation.decimals))
+  }
+
+  if (tokenDetails.totalSupply && price) {
+    tokenDetails.marketCap = tokenDetails.totalSupply * price
+  }
+
+  return tokenDetails
 }

@@ -35,7 +35,7 @@
             {{ token.contract_id }}
           </app-link>
         </td>
-        <td>99999</td>
+        <td>{{ token.balance }}</td>
       </tr>
     </tbody>
   </table>

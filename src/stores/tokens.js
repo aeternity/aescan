@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { LISTED_TOKENS } from '~/utils/constants'
 
 export const useTokensStore = defineStore('tokens', {
   state: () => ({
@@ -11,17 +10,31 @@ export const useTokensStore = defineStore('tokens', {
 
   actions: {
     async fetchAllTokens(queryParameters = null) {
+      // todo order
       this.allTokens = null
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/aex9/by_name'}`)
-
-      this.allTokens = data
+      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/aex9'}`)
+      this.allTokens = {
+        next: data.next,
+        prev: data.prev,
+        data: await Promise.all(data.data.map(token => this.appendBalance(token))),
+      }
     },
-    getListedTokens() {
+    async fetchListedTokens() {
       this.listedTokens = {
         next: null,
         prev: null,
-        data: LISTED_TOKENS,
+        data: await Promise.all(LISTED_TOKENS.map(token => this.appendBalance(token))),
       }
+    },
+    async fetchBalancesSum(contractId) {
+      // todo v2
+      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/aex9/balances/${contractId}`)
+      const amountsArray = Object.values(data.amounts)
+      return amountsArray.reduce((sum, increment) => sum + increment, 0)
+    },
+    async appendBalance(token) {
+      const balance = await this.fetchBalancesSum(token.contract_id)
+      return { ...token, balance }
     },
   },
 })

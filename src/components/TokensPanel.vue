@@ -28,13 +28,14 @@ import TokensTableCondensed from '~/components/TokensTableCondensed.vue'
 import TokensTable from '~/components/TokensTable.vue'
 import TokenSelect from '~/components/TokenSelect.vue'
 import PaginatedContent from '~/components/PaginatedContent.vue'
+import { isDesktop } from '@/utils/screen'
 
 const tokensStore = useTokensStore()
 const {
   listedTokens,
   allTokens,
 } = storeToRefs(tokensStore)
-const { fetchAllTokens, getListedTokens } = useTokensStore()
+const { fetchAllTokens, fetchListedTokens } = useTokensStore()
 
 const selectedTokensName = ref({ label: 'Listed', key: 'listedTokens' })
 const selectedTokens = ref(null)
@@ -62,11 +63,10 @@ onMounted(() => {
 async function loadTokens(selectedTokensName) {
   // todo move to store
   if (selectedTokensName === 'listedTokens') {
-    getListedTokens()
+    await fetchListedTokens()
     selectedTokens.value = listedTokens.value
   } else {
-    await fetchAllTokens(`/v2/aex9/by_name?limit=${limit.value}`)
-    console.log('component allTokens.value', allTokens.value)
+    await fetchAllTokens(`/v2/aex9?limit=${limit.value}`)
     selectedTokens.value = allTokens.value
   }
 }

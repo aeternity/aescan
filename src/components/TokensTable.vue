@@ -1,5 +1,6 @@
 <template>
   <table class="tokens-table__table">
+    <!--      todo markup-->
     <th>Symbol</th>
     <th>Name</th>
     <th>Hash</th>
@@ -9,9 +10,15 @@
       :key="token.contract_id">
       <td>
         <div class="tokens-table__container">
+          <img
+            v-if="token.isAe"
+            alt="æ token"
+            src="@/assets/ae-token.svg"
+            class="tokens-table__icon">
           <app-identicon
+            v-else
             :id="token.contract_id"
-            class="tokens-table__identicon"/>
+            class="tokens-table__icon"/>
           {{ token.symbol }}
         </div>
       </td>
@@ -45,7 +52,9 @@ export default {
     margin-bottom: var(--space-2);
   }
 
-  &__identicon {
+  &__icon {
+    width: 24px;
+    height: 24px;
     margin-right: var(--space-1);
   }
 

@@ -8,7 +8,6 @@
 
 <script setup>
 import AppSelect from '~/components/AppSelect.vue'
-// todo check imports
 
 const emit = defineEmits(['update:modelValue'])
 

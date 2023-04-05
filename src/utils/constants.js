@@ -50,11 +50,13 @@ export const LISTED_TOKENS = [
     contract_id: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
     name: 'AE',
     symbol: 'AE',
+    isAe: true,
   },
   {
     contract_id: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
     symbol: 'WAE',
     name: 'Wrapped Aeternity',
+    isAe: true,
   }, {
     contract_id: 'ct_KeTvHnhU85vuuQMMZocaiYkPL9tkoavDRT3Jsy47LK2YqLHYb',
     symbol: 'WTT',

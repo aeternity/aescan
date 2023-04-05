@@ -1,5 +1,6 @@
 <template>
   <div class="tokens-table-condensed">
+    <!--      todo check styles-->
     <table
       v-for="token in tokens.data"
       :key="token.contract_id"
@@ -11,9 +12,15 @@
           </th>
           <td class="tokens-table-condensed__data">
             <div class="tokens-table-condensed__container">
+              <img
+                v-if="token.isAe"
+                alt="æ token"
+                src="@/assets/ae-token.svg"
+                class="tokens-table__icon">
               <app-identicon
+                v-else
                 :id="token.contract_id"
-                class="tokens-table-condensed__identicon"/>
+                class="tokens-table__icon"/>
               {{ token.symbol }}
             </div>
           </td>
@@ -83,8 +90,14 @@ export default {
     border-bottom: 0;
   }
 
-  &__identicon {
+  &__icon {
+    width: 20px;
+    height: 20px;
     margin-right: var(--space-1);
+    @media (--desktop) {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   &__container {

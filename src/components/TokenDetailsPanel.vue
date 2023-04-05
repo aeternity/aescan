@@ -73,7 +73,7 @@
           <th class="token-details-panel__table-header">
             Extensions
           </th>
-          <td class="token-details-panel__data">
+          <td class="token-details-panel__data token-details-panel__data--extensions">
             <app-chip
               v-for="extension in tokenDetails.extensions"
               :key="extension"
@@ -186,6 +186,13 @@ const tokenDexUrl = computed(() =>
   &__data {
     text-align: right;
     font-family: var(--font-monospaced);
+
+    &--extensions {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: var(--space-1);
+      justify-content: flex-end;
+    }
   }
 
   &__row:last-of-type &__table-header {
@@ -199,6 +206,7 @@ const tokenDexUrl = computed(() =>
 
   &__extension-chip {
     margin-left: var(--space-1);
+    display: inline-flex;
   }
 
   &__hash {

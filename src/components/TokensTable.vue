@@ -9,7 +9,9 @@
       v-for="token in tokens.data"
       :key="token.contract_id">
       <td>
-        <div class="tokens-table__container">
+        <app-link
+          :to="`/tokens/${token.contract_id}`"
+          class="tokens-table__link">
           <img
             v-if="token.isAe"
             alt="æ token"
@@ -20,7 +22,7 @@
             :id="token.contract_id"
             class="tokens-table__icon"/>
           {{ token.symbol }}
-        </div>
+        </app-link>
       </td>
       <td>{{ token.name }}</td>
       <td>
@@ -58,7 +60,7 @@ export default {
     margin-right: var(--space-1);
   }
 
-  &__container {
+  &__link {
     display: flex;
     align-items: center;
   }

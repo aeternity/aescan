@@ -11,7 +11,9 @@
             Symbol
           </th>
           <td class="tokens-table-condensed__data">
-            <div class="tokens-table-condensed__container">
+            <app-link
+              :to="`/tokens/${token.contract_id}`"
+              class="tokens-table__link">
               <img
                 v-if="token.isAe"
                 alt="æ token"
@@ -22,7 +24,7 @@
                 :id="token.contract_id"
                 class="tokens-table__icon"/>
               {{ token.symbol }}
-            </div>
+            </app-link>
           </td>
         </tr>
 
@@ -100,7 +102,7 @@ export default {
     }
   }
 
-  &__container {
+  &__link {
     display: flex;
     align-items: center;
   }

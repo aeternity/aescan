@@ -38,7 +38,7 @@
         </tr>
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
-            Hash
+            Contract ID
           </th>
           <td class="tokens-table-condensed__data">
             <app-link

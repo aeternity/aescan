@@ -1,7 +1,7 @@
 <template>
   <div class="tokens-table-condensed">
     <table
-      v-for="token in tokens"
+      v-for="token in tokens.data"
       :key="token.contract_id"
       class="tokens-table-condensed__table">
       <tbody>
@@ -55,7 +55,7 @@ export default {
   name: 'TokensTableCondensed',
   props: {
     tokens: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },

@@ -7,11 +7,18 @@
 </template>
 
 <script setup>
+import AppSelect from '~/components/AppSelect.vue'
+// todo check imports
+
+// defineProps({
+//   modelValue: undefined,
+//
+// })
 const emit = defineEmits(['update:modelValue'])
 
 const tokensTypes = [
   { label: 'Listed', key: 'listedTokens' },
-  { label: 'Unlisted', key: 'unlistedTokens' },
+  { label: 'All Tokens', key: 'allTokens' },
 ]
 
 const selectedTokens = computed({

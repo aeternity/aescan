@@ -2,33 +2,66 @@
   <app-panel class="tokens-panel">
     <header class="tokens-panel__header">
       <token-select v-model="selectedTokensName"/>
-      <!--  todo counter?-->
     </header>
-    <tokens-table
-      v-if="selectedTokens"
-      class="tokens-panel__table"
-      :tokens="selectedTokens"/>
-    <tokens-table-condensed
-      v-if="selectedTokens"
-      class="tokens-panel__table-condensed"
-      :tokens="selectedTokens"/>
+    <paginated-content
+      v-model:page-index="pageIndex"
+      :entities="selectedTokens"
+      @prev-clicked="loadPrevTokens"
+      @next-clicked="loadNextTokens">
+      <tokens-table
+        v-if="selectedTokens"
+        class="tokens-panel__table"
+        :tokens="selectedTokens"/>
+      <tokens-table-condensed
+        v-if="selectedTokens"
+        class="tokens-panel__table-condensed"
+        :tokens="selectedTokens"/>
+    </paginated-content>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useTokensStore } from '~/stores/tokens'
 import TokensTableCondensed from '~/components/TokensTableCondensed.vue'
+import TokensTable from '~/components/TokensTable.vue'
+import TokenSelect from '~/components/TokenSelect.vue'
+import PaginatedContent from '~/components/PaginatedContent.vue'
 
 const tokensStore = useTokensStore()
 const {
   listedTokens,
-  unlistedTokens,
+  allTokens,
 } = storeToRefs(tokensStore)
+const { fetchAllTokens, fetchListedTokens } = useTokensStore()
 
 const selectedTokensName = ref({ label: 'Listed', key: 'listedTokens' })
-const selectedTokens = computed(() => selectedTokensName.value.key === 'listedTokens' ? listedTokens.value : unlistedTokens.value)
+const selectedTokens = ref(null)
+const limit = computed(() => process.client && isDesktop() ? 10 : 3) // todo unify
+const pageIndex = ref(1)
+
+const loadPrevTokens = () => fetchAllTokens(selectedTokens.value.prev)
+const loadNextTokens = () => fetchAllTokens(selectedTokens.value.next)
+
+watch(selectedTokensName, () => {
+  loadTokens(selectedTokensName.value?.key)
+})
+
+onMounted(() => {
+  loadTokens(selectedTokensName.value?.key)
+})
+
+function loadTokens(selectedTokensName) {
+  // todo move to store
+  if (selectedTokensName === 'listedTokens') {
+    fetchListedTokens()
+    selectedTokens.value = listedTokens.value
+  } else {
+    fetchAllTokens(`/v2/aex9?limit=${limit.value}`)
+    selectedTokens.value = allTokens.value
+  }
+}
 
 </script>
 

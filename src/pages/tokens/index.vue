@@ -17,10 +17,12 @@ import PageHeader from '@/components/PageHeader'
 import { isDesktop } from '~/utils/screen'
 import { useTokensStore } from '@/stores/tokens'
 
-const { fetchTokens } = useTokensStore()
+const { fetchAllTokens, fetchListedTokens } = useTokensStore()
 if (process.client) {
-  const limit = isDesktop() ? null : 3
-  fetchTokens({ limit })
+  const limit = isDesktop() ? 10 : 3
+  fetchAllTokens(`/v2/aex9?limit=${limit}`)
+  fetchListedTokens()
+  // todo is it neccessary?
 }
 
 </script>

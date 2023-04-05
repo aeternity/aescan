@@ -5,7 +5,7 @@
     <th>Hash</th>
     <th>Amount</th>
     <tr
-      v-for="token in tokens"
+      v-for="token in tokens.data"
       :key="token.contract_id">
       <td>
         <div class="tokens-table__container">
@@ -32,7 +32,7 @@ export default {
   name: 'TokensTable',
   props: {
     tokens: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },

@@ -38,11 +38,6 @@
           <div class="dashboard__subtitle">
             The æternity blockchain supports protocol-level .chain names via the
             æternity naming system (AENS).
-            <app-link
-              class="dashboard__link"
-              to="https://aeternity.com/aens">
-              Learn more
-            </app-link>
           </div>
           <client-only>
             <names-panel/>

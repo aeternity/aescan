@@ -12,27 +12,14 @@ export const useTokensStore = defineStore('tokens', {
     async fetchAllTokens(queryParameters = null) {
       this.allTokens = null
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/aex9?by=name&direction=forward'}`)
-      this.allTokens = {
-        next: data.next,
-        prev: data.prev,
-        data: await Promise.all(data.data.map(token => this.appendBalance(token))),
-      }
+      this.allTokens = data
     },
-    async fetchListedTokens() {
+    getListedTokens() {
       this.listedTokens = {
         next: null,
         prev: null,
-        data: await Promise.all(LISTED_TOKENS.map(token => this.appendBalance(token))),
+        data: LISTED_TOKENS,
       }
-    },
-    async fetchBalancesSum(contractId) {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/aex9/balances/${contractId}`)
-      const amountsArray = Object.values(data.amounts)
-      return amountsArray.reduce((sum, increment) => sum + increment, 0)
-    },
-    async appendBalance(token) {
-      const balance = await this.fetchBalancesSum(token.contract_id)
-      return { ...token, balance }
     },
   },
 })

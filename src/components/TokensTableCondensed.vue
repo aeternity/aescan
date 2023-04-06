@@ -45,20 +45,11 @@
               :hash="token.contract_id"/>
           </td>
         </tr>
-        <tr class="tokens-table-condensed__row">
-          <th class="tokens-table-condensed__header">
-            Amount
-          </th>
-          <td class="tokens-table-condensed__data">
-            {{ token.balance }}
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>
 </template>
 <script>
-import { formatEllipseHash } from '@/utils/format'
 
 export default {
   name: 'TokensTableCondensed',
@@ -67,9 +58,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  methods: {
-    formatEllipseHash,
   },
 }
 </script>

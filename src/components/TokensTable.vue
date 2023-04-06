@@ -5,7 +5,6 @@
         <th>Symbol</th>
         <th>Name</th>
         <th>Contract ID</th>
-        <th>Amount</th>
       </tr>
     </thead>
     <tbody>
@@ -35,7 +34,6 @@
             {{ token.contract_id }}
           </app-link>
         </td>
-        <td>{{ token.balance }}</td>
       </tr>
     </tbody>
   </table>

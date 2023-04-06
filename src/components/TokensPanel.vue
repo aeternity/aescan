@@ -34,11 +34,10 @@ const {
   listedTokens,
   allTokens,
 } = storeToRefs(tokensStore)
-const { fetchAllTokens, fetchListedTokens } = useTokensStore()
+const { fetchAllTokens, getListedTokens } = useTokensStore()
 
 const selectedTokensName = ref({ label: 'Listed', key: 'listedTokens' })
 const selectedTokens = ref(null)
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevTokens() {
   await fetchAllTokens(selectedTokens.value.prev)
@@ -60,7 +59,7 @@ onMounted(() => {
 
 async function loadTokens(selectedTokensName) {
   if (selectedTokensName === 'listedTokens') {
-    await fetchListedTokens()
+    await getListedTokens()
     selectedTokens.value = listedTokens.value
   } else {
     await fetchAllTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)

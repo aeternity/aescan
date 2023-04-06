@@ -10,7 +10,6 @@ export const useTokensStore = defineStore('tokens', {
 
   actions: {
     async fetchAllTokens(queryParameters = null) {
-      // todo order
       this.allTokens = null
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/aex9'}`)
       this.allTokens = {

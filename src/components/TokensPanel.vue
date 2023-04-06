@@ -4,17 +4,16 @@
       <token-select v-model="selectedTokensName"/>
     </header>
     <paginated-content
-      v-model:page-index="pageIndex"
       :entities="selectedTokens"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <tokens-table
         v-if="selectedTokens"
-        class="tokens-panel__table"
+        class="tokens-panel__tokens-table"
         :tokens="selectedTokens"/>
       <tokens-table-condensed
         v-if="selectedTokens"
-        class="tokens-panel__table-condensed"
+        class="tokens-panel__tokens-table-condensed"
         :tokens="selectedTokens"/>
     </paginated-content>
   </app-panel>
@@ -39,8 +38,7 @@ const { fetchAllTokens, fetchListedTokens } = useTokensStore()
 
 const selectedTokensName = ref({ label: 'Listed', key: 'listedTokens' })
 const selectedTokens = ref(null)
-const limit = computed(() => process.client && isDesktop() ? 10 : 3) // todo unify
-const pageIndex = ref(1)
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevTokens() {
   await fetchAllTokens(selectedTokens.value.prev)
@@ -61,7 +59,6 @@ onMounted(() => {
 })
 
 async function loadTokens(selectedTokensName) {
-  // todo move to store
   if (selectedTokensName === 'listedTokens') {
     await fetchListedTokens()
     selectedTokens.value = listedTokens.value
@@ -86,14 +83,14 @@ async function loadTokens(selectedTokensName) {
     padding: var(--space-4);
   }
 
-  &__table {
+  &__tokens-table {
     display: none;
     @media (--desktop) {
       display: revert;
     }
   }
 
-  &__table-condensed {
+  &__tokens-table-condensed {
     @media (--desktop) {
       display: none;
     }

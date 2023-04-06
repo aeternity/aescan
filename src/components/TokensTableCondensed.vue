@@ -1,6 +1,5 @@
 <template>
   <div class="tokens-table-condensed">
-    <!--      todo check styles-->
     <table
       v-for="token in tokens.data"
       :key="token.contract_id"
@@ -100,10 +99,6 @@ export default {
     width: 20px;
     height: 20px;
     margin-right: var(--space-1);
-    @media (--desktop) {
-      width: 24px;
-      height: 24px;
-    }
   }
 
   &__link {

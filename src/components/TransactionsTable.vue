@@ -1,5 +1,4 @@
 <template>
-  <!--    todo fix mismatch-->
   <table class="transactions-table__table">
     <thead>
       <tr>

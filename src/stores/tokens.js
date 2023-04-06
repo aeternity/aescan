@@ -11,7 +11,7 @@ export const useTokensStore = defineStore('tokens', {
   actions: {
     async fetchAllTokens(queryParameters = null) {
       this.allTokens = null
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/aex9'}`)
+      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/aex9?by=name&direction=forward'}`)
       this.allTokens = {
         next: data.next,
         prev: data.prev,
@@ -26,7 +26,6 @@ export const useTokensStore = defineStore('tokens', {
       }
     },
     async fetchBalancesSum(contractId) {
-      // todo v2
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/aex9/balances/${contractId}`)
       const amountsArray = Object.values(data.amounts)
       return amountsArray.reduce((sum, increment) => sum + increment, 0)

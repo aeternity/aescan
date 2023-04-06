@@ -63,7 +63,7 @@ async function loadTokens(selectedTokensName) {
     await fetchListedTokens()
     selectedTokens.value = listedTokens.value
   } else {
-    await fetchAllTokens(`/v2/aex9?limit=${limit.value}`)
+    await fetchAllTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
     selectedTokens.value = allTokens.value
   }
 }

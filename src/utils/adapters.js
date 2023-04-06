@@ -320,4 +320,3 @@ export function adaptContractEvents(events, blockHeight) {
     prev: events.prev,
   }
 }
-

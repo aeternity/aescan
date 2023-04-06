@@ -4,13 +4,13 @@
       <Title>{{ APP_TITLE_SHORT }} | Token Details</Title>
     </Head>
     <div
-      v-if="tokenDetails"
       class="token-details__parallax">
       <page-header>
         Token Details
       </page-header>
 
       <token-details-panel
+        v-if="tokenDetails"
         class="token-details__panel"
         :token-details="tokenDetails"/>
     </div>
@@ -50,11 +50,7 @@ await fetchTokenDetails(route.params.id)
     }
 
     &__panel {
-      margin-bottom: var(--space-6);
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
+      margin-bottom: 0;
     }
   }
   </style>

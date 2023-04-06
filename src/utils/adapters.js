@@ -321,14 +321,14 @@ export function adaptContractEvents(events, blockHeight) {
   }
 }
 
-export function adaptTokenDetails(tokenInformation, rawTotalSupply = null, price = null) {
+export function adaptTokenDetails(tokenBaseData, totalSupplyData = null, price = null) {
   const tokenDetails = {
-    ...tokenInformation,
+    ...tokenBaseData,
     ...(price && { price }),
   }
 
-  if (tokenInformation && rawTotalSupply) {
-    tokenDetails.totalSupply = Number(rawTotalSupply / BigInt(10 ** tokenInformation.decimals))
+  if (tokenBaseData && totalSupplyData) {
+    tokenDetails.totalSupply = Number(totalSupplyData / BigInt(10 ** tokenBaseData.decimals))
   }
 
   if (tokenDetails.totalSupply && price) {

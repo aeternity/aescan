@@ -52,9 +52,9 @@
           </th>
           <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contract_id}`">
-              <span class="token-details-panel__hash">{{
-                tokenDetails.contract_id
-              }}</span>
+              <span class="token-details-panel__hash">
+                {{ tokenDetails.contract_id }}
+              </span>
               <span class="token-details-panel__hash-ellipse">{{
                 formatEllipseHash(tokenDetails.contract_id)
               }}</span>
@@ -78,7 +78,7 @@
               v-for="extension in tokenDetails.extensions"
               :key="extension"
               size="sm"
-              class="token-details-panel__extension-chip">
+              class="token-details-panel__chip">
               {{ extension }}
             </app-chip>
           </td>
@@ -126,8 +126,8 @@ const props = defineProps({
   },
 })
 
-const tokenMiddlewareUrl = computed(
-  () => `${config.MIDDLEWARE_URL}/v2/aex9/${props.tokenDetails.contract_id}`,
+const tokenMiddlewareUrl = computed(() =>
+  `${config.MIDDLEWARE_URL}/v2/aex9/${props.tokenDetails.contract_id}`,
 )
 
 const tokenDexUrl = computed(() =>
@@ -159,7 +159,9 @@ const tokenDexUrl = computed(() =>
   }
 
   &__header {
+    margin-bottom: var(--space-2);
     @media (--desktop) {
+      margin-bottom: 0;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -204,7 +206,7 @@ const tokenDexUrl = computed(() =>
     align-items: center;
   }
 
-  &__extension-chip {
+  &__chip {
     margin-left: var(--space-1);
     display: inline-flex;
   }

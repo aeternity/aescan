@@ -1,43 +1,36 @@
-import { defineStore } from 'pinia'
+import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { Node, AeSdk } from '@aeternity/aepp-sdk'
 import { adaptTokenDetails } from '@/utils/adapters'
 import { formatTokenPairRouteAsRatio } from '@/utils/format'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
+import { useAesdk } from '@/stores/aesdk'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const { AE_TOKEN_ID, DEX_BACKEND_URL } = useRuntimeConfig().public
+  const { aeSdk } = storeToRefs(useAesdk())
 
   const tokenId = ref(null)
-  const tokenInformation = ref(null)
+  const baseData = ref(null)
   const rawTotalSupply = ref(null)
   const price = ref(null)
 
   const fetchTokenDetails = id => {
     tokenId.value = id
     return Promise.allSettled([
-      fetchInformation(),
+      fetchBaseData(),
       fetchTotalSupply(),
       fetchPrice(),
     ])
   }
 
-  const fetchInformation = async() => {
+  const fetchBaseData = async() => {
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/aex9/${tokenId.value}`)
-    tokenInformation.value = data
+    baseData.value = data
   }
 
   const fetchTotalSupply = async() => {
-    const node = new Node(useRuntimeConfig().public.NODE_URL)
-    const aeSdk = new AeSdk({
-      nodes: [
-        { name: 'mainnet', instance: node },
-      ],
-      compilerUrl: 'https://compiler.aepps.com',
-    })
-
-    const contractInstance = await aeSdk.initializeContract({
+    const contractInstance = await aeSdk.value.initializeContract({
       aci: TOKEN_SUPPLY_ACI,
       address: tokenId.value,
     })
@@ -61,9 +54,9 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     price.value = formatTokenPairRouteAsRatio(data[0])
   }
 
-  const tokenDetails = computed(() => tokenInformation.value
+  const tokenDetails = computed(() => baseData.value
     ? adaptTokenDetails(
-      tokenInformation.value,
+      baseData.value,
       rawTotalSupply.value,
       price.value,
     )

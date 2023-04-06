@@ -13,16 +13,16 @@
           <td class="tokens-table-condensed__data">
             <app-link
               :to="`/tokens/${token.contract_id}`"
-              class="tokens-table__link">
+              class="tokens-table-condensed__link">
               <img
                 v-if="token.isAe"
                 alt="æ token"
                 src="@/assets/ae-token.svg"
-                class="tokens-table__icon">
+                class="tokens-table-condensed__icon">
               <app-identicon
                 v-else
                 :id="token.contract_id"
-                class="tokens-table__icon"/>
+                class="tokens-table-condensed__icon"/>
               {{ token.symbol }}
             </app-link>
           </td>
@@ -41,10 +41,9 @@
             Contract ID
           </th>
           <td class="tokens-table-condensed__data">
-            <app-link
-              :to="`/contracts/${token.contract_id}`">
-              {{ token.contract_id }}
-            </app-link>
+            <value-hash-ellipsed
+              :link-to="`/contracts/${token.contract_id}`"
+              :hash="token.contract_id"/>
           </td>
         </tr>
         <tr class="tokens-table-condensed__row">
@@ -52,7 +51,7 @@
             Amount
           </th>
           <td class="tokens-table-condensed__data">
-            9999
+            {{ token.balance }}
           </td>
         </tr>
       </tbody>
@@ -60,6 +59,8 @@
   </div>
 </template>
 <script>
+import { formatEllipseHash } from '@/utils/format'
+
 export default {
   name: 'TokensTableCondensed',
   props: {
@@ -67,6 +68,9 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  methods: {
+    formatEllipseHash,
   },
 }
 </script>
@@ -103,8 +107,15 @@ export default {
   }
 
   &__link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+  }
+
+  &__data {
+    text-align: right;
+    font-family: var(--font-monospaced);
+    font-size: 12px;
+    line-height: 20px;
   }
 }
 </style>

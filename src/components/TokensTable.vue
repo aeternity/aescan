@@ -66,7 +66,7 @@ export default {
   }
 
   &__link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
   }
 }

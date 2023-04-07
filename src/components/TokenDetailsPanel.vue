@@ -25,7 +25,9 @@
             Price
           </th>
           <td class="token-details-panel__data">
-            {{ formatAePrice(tokenDetails.price) }}
+            <client-only>
+              {{ fiatPrice }} @ {{ formatAePrice(tokenDetails.price) }}
+            </client-only>
           </td>
         </tr>
         <tr
@@ -35,7 +37,9 @@
             Market cap
           </th>
           <td class="token-details-panel__data">
-            {{ formatAePrice(tokenDetails.marketCap) }}
+            <client-only>
+              {{ marketCap }}
+            </client-only>
           </td>
         </tr>
         <tr class="token-details-panel__row">
@@ -43,7 +47,7 @@
             Total supply
           </th>
           <td class="token-details-panel__data">
-            {{ formatNumber(tokenDetails.totalSupply) }}
+            {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}
           </td>
         </tr>
         <tr class="token-details-panel__row">
@@ -115,9 +119,12 @@
 </template>
 
 <script setup>
-import { formatAePrice, formatNumber } from '@/utils/format'
+import { storeToRefs } from 'pinia'
+import { useMarketStatsStore } from '@/stores/marketStats'
+import { formatAePrice, formatNumber, formatNullable } from '@/utils/format'
 
 const config = useRuntimeConfig().public
+const { price } = storeToRefs(useMarketStatsStore())
 
 const props = defineProps({
   tokenDetails: {
@@ -134,6 +141,18 @@ const tokenDexUrl = computed(() =>
   props.tokenDetails.price
     ? `${config.DEX_BACKEND_URL}/tokens/by-address/${props.tokenDetails.contract_id}`
     : null,
+)
+
+const fiatPrice = computed(() =>
+  props.tokenDetails.price && price.value
+    ? `$${formatNullable(formatNumber(props.tokenDetails.price * price.value, 0, 2))}`
+    : '---',
+)
+
+const marketCap = computed(() =>
+  props.tokenDetails.marketCap && price.value
+    ? `$${formatNullable(formatNumber(props.tokenDetails.marketCap * price.value, 0, 2))}`
+    : '---',
 )
 </script>
 

@@ -1,14 +1,14 @@
 <template>
-  <table v-if="events">
+  <table v-if="tokenEvents">
     <tr>
       <th>Hash</th>
       <th>Name</th>
-      <th>Dates</th>
+      <th>Date</th>
       <th>Arguments</th>
       <th>Data</th>
     </tr>
     <tr
-      v-for="event in events.data"
+      v-for="event in tokenEvents.data"
       :key="event.hash">
       <td class="tokens-event-table__hash">
         <hash-symbol>th</hash-symbol>
@@ -41,7 +41,7 @@ import { formatEllipseHash } from '~/utils/format'
 export default {
   name: 'TokenEventsTable',
   props: {
-    events: {
+    tokenEvents: {
       type: Object,
       required: true,
     },
@@ -55,7 +55,7 @@ export default {
 }
 </script>
 <style scoped>
-.token-events-panel {
+.token-events-table {
   &__hash {
     white-space: nowrap;
   }

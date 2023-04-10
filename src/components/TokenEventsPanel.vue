@@ -1,6 +1,19 @@
 <template>
   <app-panel class="token-events-panel">
-    <token-events-table :events="tokenEvents"/>
+    <paginated-content
+      :entities="tokenEvents"
+      pagination-style="history"
+      @prev-clicked="loadPrevEvents"
+      @next-clicked="loadNextEvents">
+      <token-events-table
+        v-if="tokenEvents"
+        :token-events="tokenEvents"
+        class="token-events-panel__table"/>
+      <token-events-table-condensed
+        v-if="tokenEvents"
+        :token-events="tokenEvents"
+        class="token-events-panel__table-condensed"/>
+    </paginated-content>
   </app-panel>
 </template>
 
@@ -8,12 +21,23 @@
 import { mapState } from 'pinia'
 import { useTokenDetailsStore } from '~/stores/tokenDetails'
 import TokenEventsTable from '~/components/TokenEventsTable.vue'
+import TokenEventsTableCondensed from '~/components/TokenEventsTableCondensed.vue'
 
 export default {
   name: 'TokenEventsPanel',
-  components: { TokenEventsTable },
+  components: { TokenEventsTableCondensed, TokenEventsTable },
   computed: {
     ...mapState(useTokenDetailsStore, ['tokenEvents']),
+  },
+  methods: {
+    loadPrevEvents() {
+      return null
+      // this.fetchContractEvents({ queryParameters: this.contractEvents.prev })
+    },
+    loadNextEvents() {
+      // this.fetchContractEvents({ queryParameters: this.contractEvents.next })
+      return null
+    },
   },
 }
 </script>

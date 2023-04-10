@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptTokenDetails } from '@/utils/adapters'
+import { adaptTokenDetails, adaptTokenEvents } from '@/utils/adapters'
 import { formatTokenPairRouteAsRatio } from '@/utils/format'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
 import { useAesdk } from '@/stores/aesdk'
@@ -14,7 +14,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const baseData = ref(null)
   const rawTotalSupply = ref(null)
   const price = ref(null)
-  const tokenEvents = ref(null)
+  const rawTokenEvents = ref(null)
 
   const tokenDetails = computed(() => baseData.value
     ? adaptTokenDetails(
@@ -22,6 +22,11 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
       rawTotalSupply.value,
       price.value,
     )
+    : null,
+  )
+
+  const tokenEvents = computed(() => rawTokenEvents.value
+    ? adaptTokenEvents(rawTokenEvents.value)
     : null,
   )
 
@@ -66,7 +71,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenEvents(contractId) {
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/accounts/${contractId}/activities`)
-    tokenEvents.value = data
+    rawTokenEvents.value = data
   }
 
   return {

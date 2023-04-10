@@ -10,25 +10,28 @@
       </tr>
       <tr
         v-for="event in tokenEvents.data"
-        :key="event.block_hash">
-        <td>
+        :key="event.hash">
+        <td class="tokens-event-panel__hash">
           <hash-symbol>th</hash-symbol>
-          {{ event.tx }}
           <value-hash-ellipsed
-            :hash="event.payload.hash"
-            :link-to="`/transactions/${event.payload.hash}`"/>
+            :hash="event.hash"
+            :link-to="`/transactions/${event.hash}`"/>
         </td>
         <td>
           NAME
         </td>
         <td>
-          {{ event.payload.micro_time }}
+          <datetime-label :datetime="event.created"/>
         </td>
         <td>
-          {{ event.payload.tx.args }}
+          <copy-chip
+            v-if="event.args"
+            class="contract-events-panel__copy-chip"
+            :clipboard-text="event.args"
+            :label="formatEllipseHash(event.args)"/>
         </td>
-        <td>
-          {{ event.payload.tx.call_data }}
+        <td class="token-events-table__event-data">
+          {{ event.data }}
         </td>
       </tr>
     </table>
@@ -38,11 +41,34 @@
 <script>
 import { mapState } from 'pinia'
 import { useTokenDetailsStore } from '~/stores/tokenDetails'
+import { formatEllipseHash } from '~/utils/format'
 
 export default {
   name: 'TokenEventsPanel',
   computed: {
     ...mapState(useTokenDetailsStore, ['tokenEvents']),
   },
+  methods: {
+    removeLineBreaks(str) {
+      return str.toString().replaceAll('\n', '')
+    },
+    formatEllipseHash,
+  },
 }
 </script>
+<style scoped>
+.token-events-table {
+  &__hash {
+    white-space: nowrap;
+  }
+
+  &__time {
+    white-space: nowrap;
+  }
+
+  &__event-data {
+    word-wrap: anywhere;
+    max-width: 450px;
+  }
+}
+</style>

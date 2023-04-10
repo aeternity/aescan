@@ -338,6 +338,24 @@ export function adaptTokenDetails(tokenBaseData, totalSupplyData = null, price =
   return tokenDetails
 }
 
-export function adaptTokensEvent() {
-  return null
+export function adaptTokenEvents(events) {
+  console.log('events', events)
+  const formattedData = events.data
+    .map(event => {
+      return {
+        hash: event.payload.hash,
+        name: 'NAME',
+        created: DateTime.fromMillis(event.payload.micro_time),
+        args: event.payload.tx.args,
+        data: event.payload.tx.call_data,
+      }
+    })
+
+  console.log('formattedData', formattedData)
+
+  return {
+    next: events.next,
+    data: formattedData,
+    prev: events.prev,
+  }
 }

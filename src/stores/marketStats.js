@@ -26,12 +26,14 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null,
   )
 
-  const fetchMarketStats = () => Promise.all([
-    fetchPrice(),
-    fetchCoinStats(),
-  ])
+  function fetchMarketStats() {
+    return Promise.all([
+      fetchPrice(),
+      fetchCoinStats(),
+    ])
+  }
 
-  const fetchPrice = async() => {
+  async function fetchPrice() {
     let cachedAeternityPriceData = cache.get(CACHE_KEY_PRICE_DATA)
 
     if (!cachedAeternityPriceData) {
@@ -44,7 +46,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     priceChange.value = cachedAeternityPriceData.usd_24h_change.toFixed(2)
   }
 
-  const fetchCoinStats = async() => {
+  async function fetchCoinStats() {
     let cachedAeternityMarketData = cache.get(CACHE_KEY_MARKET_DATA)
 
     if (!cachedAeternityMarketData) {

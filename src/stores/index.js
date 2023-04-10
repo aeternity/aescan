@@ -11,11 +11,16 @@ export async function initializeStores() {
   const { fetchStatus } = useStatus()
   const { fetchMarketStats } = useMarketStatsStore()
 
-  await Promise.all([
-    fetchKeyblocks(),
-    fetchStatus(),
-    fetchMarketStats(),
-  ])
+  try {
+    await Promise.all([
+      fetchKeyblocks(),
+      fetchStatus(),
+      fetchMarketStats(),
+    ])
+  } catch (error) {
+    console.error(error)
+    return undefined
+  }
 
   return true
 }

@@ -1,74 +1,43 @@
 <template>
-  <app-panel>
-    <table v-if="tokenEvents">
-      <tr>
-        <th>Hash</th>
-        <th>Name</th>
-        <th>Dates</th>
-        <th>Arguments</th>
-        <th>Data</th>
-      </tr>
-      <tr
-        v-for="event in tokenEvents.data"
-        :key="event.hash">
-        <td class="tokens-event-panel__hash">
-          <hash-symbol>th</hash-symbol>
-          <value-hash-ellipsed
-            :hash="event.hash"
-            :link-to="`/transactions/${event.hash}`"/>
-        </td>
-        <td>
-          NAME
-        </td>
-        <td>
-          <datetime-label :datetime="event.created"/>
-        </td>
-        <td>
-          <copy-chip
-            v-if="event.args"
-            class="contract-events-panel__copy-chip"
-            :clipboard-text="event.args"
-            :label="formatEllipseHash(event.args)"/>
-        </td>
-        <td class="token-events-table__event-data">
-          {{ event.data }}
-        </td>
-      </tr>
-    </table>
+  <app-panel class="token-events-panel">
+    <token-events-table :events="tokenEvents"/>
   </app-panel>
 </template>
 
 <script>
 import { mapState } from 'pinia'
 import { useTokenDetailsStore } from '~/stores/tokenDetails'
-import { formatEllipseHash } from '~/utils/format'
+import TokenEventsTable from '~/components/TokenEventsTable.vue'
 
 export default {
   name: 'TokenEventsPanel',
+  components: { TokenEventsTable },
   computed: {
     ...mapState(useTokenDetailsStore, ['tokenEvents']),
-  },
-  methods: {
-    removeLineBreaks(str) {
-      return str.toString().replaceAll('\n', '')
-    },
-    formatEllipseHash,
   },
 }
 </script>
 <style scoped>
-.token-events-table {
-  &__hash {
-    white-space: nowrap;
+.token-events-panel {
+
+  padding: var(--space-3) var(--space-1) var(--space-4);
+  margin-top: var(--space-2);
+
+  @media (--desktop) {
+    padding: var(--space-2) var(--space-4) var(--space-4);
   }
 
-  &__time {
-    white-space: nowrap;
+  &__table {
+    display: none;
+    @media (--desktop) {
+      display: revert;
+    }
   }
 
-  &__event-data {
-    word-wrap: anywhere;
-    max-width: 450px;
+  &__table-condensed {
+    @media (--desktop) {
+      display: none;
+    }
   }
 }
 </style>

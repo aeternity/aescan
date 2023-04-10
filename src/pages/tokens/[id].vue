@@ -61,7 +61,11 @@ await fetchTokenEvents(route.params.id)
   }
 
   &__panel {
-    margin-bottom: 0;
+    margin-bottom: var(--space-6);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 }
 </style>

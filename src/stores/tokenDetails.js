@@ -14,6 +14,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const baseData = ref(null)
   const rawTotalSupply = ref(null)
   const price = ref(null)
+  const tokenEvents = ref(null)
 
   const tokenDetails = computed(() => baseData.value
     ? adaptTokenDetails(
@@ -63,8 +64,15 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     price.value = formatTokenPairRouteAsRatio(data[0])
   }
 
+  async function fetchTokenEvents(contractId) {
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/accounts/${contractId}/activities`)
+    tokenEvents.value = data
+  }
+
   return {
+    fetchTokenEvents,
     fetchTokenDetails,
     tokenDetails,
+    tokenEvents,
   }
 })

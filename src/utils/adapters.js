@@ -337,3 +337,7 @@ export function adaptTokenDetails(tokenBaseData, totalSupplyData = null, price =
 
   return tokenDetails
 }
+
+export function adaptTokensEvent() {
+  return null
+}

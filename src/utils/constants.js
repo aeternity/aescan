@@ -44,3 +44,6 @@ export const APP_TITLE = 'æScan - æternity Blockchain Explorer'
 export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platform, and decentralized Smart Contract navigation platform based on æternity'
 export const APP_URL = 'https://aescan.io'
 export const APP_CREATOR = '@aeternity'
+export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
+export const CACHE_KEY_MARKET_DATA = 'aeternity-market-data'
+export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'

@@ -1,39 +1,69 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { MARKET_STATS_ADDRESS, MAX_AE_DISTRIBUTION } from '@/utils/constants'
+import cache from 'memory-cache'
+import {
+  MARKET_STATS_ADDRESS,
+  MAX_AE_DISTRIBUTION,
+  MARKET_STATS_CACHE_TTL,
+  CACHE_KEY_MARKET_DATA,
+  CACHE_KEY_PRICE_DATA,
+} from '@/utils/constants'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 
-export const useMarketStatsStore = defineStore('marketStats', {
-  state: () => ({
-    price: null,
-    priceChange: null,
-    marketCap: null,
-    circulatingSupply: null,
-  }),
-  getters: {
-    distribution(state) {
-      const { burnedCount } = useBlockchainStatsStore()
+export const useMarketStatsStore = defineStore('marketStats', () => {
+  const price = ref(null)
+  const priceChange = ref(null)
+  const marketCap = ref(null)
+  const circulatingSupply = ref(null)
 
-      return state.circulatingSupply && burnedCount ? state.circulatingSupply + Number(burnedCount) : null
-    },
-    distributionPercentage() {
-      return this.distribution ? (this.distribution / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null
-    },
-  },
-  actions: {
-    fetchMarketStats() {
-      this.fetchPrice()
-      this.fetchCoinStats()
-    },
-    async fetchPrice() {
+  const blockchainStatsStore = useBlockchainStatsStore()
+
+  const distribution = computed(() =>
+    circulatingSupply.value && blockchainStatsStore.burnedCount ? circulatingSupply.value + Number(blockchainStatsStore.burnedCount) : null,
+  )
+
+  const distributionPercentage = computed(() =>
+    distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null,
+  )
+
+  const fetchMarketStats = () => Promise.all([
+    fetchPrice(),
+    fetchCoinStats(),
+  ])
+
+  const fetchPrice = async() => {
+    let cachedAeternityPriceData = cache.get(CACHE_KEY_PRICE_DATA)
+
+    if (!cachedAeternityPriceData) {
       const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/simple/price?ids=aeternity&vs_currencies=usd&include_24hr_change=true`)
-      this.price = data.aeternity.usd
-      this.priceChange = data.aeternity.usd_24h_change.toFixed(2)
-    },
-    async fetchCoinStats() {
+      cache.put(CACHE_KEY_PRICE_DATA, data.aeternity, MARKET_STATS_CACHE_TTL)
+      cachedAeternityPriceData = data.aeternity
+    }
+
+    price.value = cachedAeternityPriceData.usd
+    priceChange.value = cachedAeternityPriceData.usd_24h_change.toFixed(2)
+  }
+
+  const fetchCoinStats = async() => {
+    let cachedAeternityMarketData = cache.get(CACHE_KEY_MARKET_DATA)
+
+    if (!cachedAeternityMarketData) {
       const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/coins/aeternity`)
-      this.marketCap = data.market_data.market_cap.usd
-      this.circulatingSupply = data.market_data.circulating_supply
-    },
-  },
+      cache.put(CACHE_KEY_MARKET_DATA, data.market_data, MARKET_STATS_CACHE_TTL)
+      cachedAeternityMarketData = data.market_data
+    }
+
+    marketCap.value = cachedAeternityMarketData.market_cap.usd
+    circulatingSupply.value = cachedAeternityMarketData.circulating_supply
+  }
+
+  return {
+    fetchMarketStats,
+    price,
+    priceChange,
+    marketCap,
+    circulatingSupply,
+    distribution,
+    distributionPercentage,
+  }
 })

@@ -75,12 +75,14 @@
 import { useHead } from '@vueuse/head'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
-import { initializeStores } from '@/stores'
+import { initializeStores, initializeWebSocket } from '@/stores'
 import { APP_CREATOR, APP_DESCRIPTION, APP_TITLE, APP_URL } from '@/utils/constants'
 
-useAsyncData(async() => {
-  await initializeStores()
-})
+await useAsyncData(() => initializeStores())
+
+if (process.client) {
+  initializeWebSocket()
+}
 
 if (import.meta.env.MODE !== 'production') {
   useHead({

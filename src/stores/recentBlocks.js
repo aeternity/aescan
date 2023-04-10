@@ -90,6 +90,10 @@ export const useRecentBlocksStore = defineStore('recentBlocks', {
       this.keyblocks = data.data
     },
     async fetchSelectedMicroblocksInfo() {
+      if (!this.keyblocks?.[0].hash) {
+        return
+      }
+
       await this.fetchSelectedKeyblockMicroblocks(this.keyblocks[0].hash)
       await this.fetchSelectedMicroblockTransactions()
     },

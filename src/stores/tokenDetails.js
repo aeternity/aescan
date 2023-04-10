@@ -15,6 +15,15 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const rawTotalSupply = ref(null)
   const price = ref(null)
 
+  const tokenDetails = computed(() => baseData.value
+    ? adaptTokenDetails(
+      baseData.value,
+      rawTotalSupply.value,
+      price.value,
+    )
+    : null,
+  )
+
   const fetchTokenDetails = id => {
     tokenId.value = id
     return Promise.allSettled([
@@ -24,12 +33,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     ])
   }
 
-  const fetchBaseData = async() => {
+  async function fetchBaseData() {
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/aex9/${tokenId.value}`)
     baseData.value = data
   }
 
-  const fetchTotalSupply = async() => {
+  async function fetchTotalSupply() {
     const contractInstance = await aeSdk.value.initializeContract({
       aci: TOKEN_SUPPLY_ACI,
       address: tokenId.value,
@@ -38,7 +47,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     rawTotalSupply.value = contractCallResult?.decodedResult
   }
 
-  const fetchPrice = async() => {
+  async function fetchPrice() {
     if (tokenId.value === AE_TOKEN_ID) {
       price.value = 1
       return
@@ -53,15 +62,6 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
     price.value = formatTokenPairRouteAsRatio(data[0])
   }
-
-  const tokenDetails = computed(() => baseData.value
-    ? adaptTokenDetails(
-      baseData.value,
-      rawTotalSupply.value,
-      price.value,
-    )
-    : null,
-  )
 
   return {
     fetchTokenDetails,

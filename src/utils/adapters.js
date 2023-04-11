@@ -339,7 +339,6 @@ export function adaptTokenDetails(tokenBaseData, totalSupplyData = null, price =
 }
 
 export function adaptTokenEvents(events) {
-  console.log('events', events)
   const formattedData = events.data
     .map(event => {
       return {
@@ -350,8 +349,6 @@ export function adaptTokenEvents(events) {
         data: event.payload.tx.call_data,
       }
     })
-
-  console.log('formattedData', formattedData)
 
   return {
     next: events.next,

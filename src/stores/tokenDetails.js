@@ -73,7 +73,6 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     rawTokenEvents.value = null
     const defaultParameters = `/v2/accounts/${contractId}/activities`
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    console.log('data', data)
     rawTokenEvents.value = data
   }
 

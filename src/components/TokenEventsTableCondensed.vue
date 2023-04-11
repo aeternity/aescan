@@ -8,9 +8,7 @@
         <th class="token-events-table-condensed__header">
           Hash
         </th>
-
-        <td class="tokens-event-table__hash">
-          <hash-symbol>th</hash-symbol>
+        <td class="token-events-table-condensed__data">
           <value-hash-ellipsed
             :hash="event.hash"
             :link-to="`/transactions/${event.hash}`"/>
@@ -48,7 +46,7 @@
         <th class="token-events-table-condensed__header">
           Data
         </th>
-        <td class="token-events-table-condensed__data">
+        <td class="token-events-table-condensed__data token-events-table-condensed__event-data">
           {{ event.data }}
         </td>
       </tr>
@@ -111,6 +109,10 @@ export default {
   &__cell {
     flex-wrap: wrap;
     gap: var(--space-1);
+  }
+
+  &__event-data {
+    word-wrap: anywhere;
   }
 }
 </style>

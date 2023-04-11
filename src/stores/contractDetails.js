@@ -26,7 +26,7 @@ export const useContractDetailsStore = defineStore('contractDetails', {
     },
     async fetchContractInformation() {
       this.rawContractInformation = null
-      const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/contracts/${this.contractId}`)
+      const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/v3/contracts/${this.contractId}`)
       this.rawContractInformation = data
     },
     async fetchContractCallsCount() {

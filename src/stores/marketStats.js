@@ -34,27 +34,23 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   }
 
   async function fetchPrice() {
-    let cachedAeternityPriceData = cache.get(CACHE_KEY_PRICE_DATA)
-
-    if (!cachedAeternityPriceData) {
+    if (!cache.get(CACHE_KEY_PRICE_DATA)) {
       const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/simple/price?ids=aeternity&vs_currencies=usd&include_24hr_change=true`)
       cache.put(CACHE_KEY_PRICE_DATA, data.aeternity, MARKET_STATS_CACHE_TTL)
-      cachedAeternityPriceData = data.aeternity
     }
 
+    const cachedAeternityPriceData = cache.get(CACHE_KEY_PRICE_DATA)
     price.value = cachedAeternityPriceData.usd
     priceChange.value = cachedAeternityPriceData.usd_24h_change.toFixed(2)
   }
 
   async function fetchCoinStats() {
-    let cachedAeternityMarketData = cache.get(CACHE_KEY_MARKET_DATA)
-
-    if (!cachedAeternityMarketData) {
+    if (!cache.get(CACHE_KEY_MARKET_DATA)) {
       const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/coins/aeternity`)
       cache.put(CACHE_KEY_MARKET_DATA, data.market_data, MARKET_STATS_CACHE_TTL)
-      cachedAeternityMarketData = data.market_data
     }
 
+    const cachedAeternityMarketData = cache.get(CACHE_KEY_MARKET_DATA)
     marketCap.value = cachedAeternityMarketData.market_cap.usd
     circulatingSupply.value = cachedAeternityMarketData.circulating_supply
   }

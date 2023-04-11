@@ -1,5 +1,5 @@
 <template>
-  <table v-if="tokenEvents">
+  <table>
     <tr>
       <th>Hash</th>
       <th>Name</th>
@@ -25,7 +25,6 @@
       <td>
         <copy-chip
           v-if="event.args"
-          class="contract-events-table__copy-chip"
           :clipboard-text="event.args"
           :label="formatEllipseHash"/>
       </td>
@@ -54,13 +53,10 @@ export default {
   },
 }
 </script>
+
 <style scoped>
 .token-events-table {
   &__hash {
-    white-space: nowrap;
-  }
-
-  &__time {
     white-space: nowrap;
   }
 
@@ -69,5 +65,4 @@ export default {
     max-width: 450px;
   }
 }
-
 </style>

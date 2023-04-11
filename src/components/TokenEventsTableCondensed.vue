@@ -8,7 +8,7 @@
         <th class="token-events-table-condensed__header">
           Hash
         </th>
-        <td class="token-events-table-condensed__data"/>
+
         <td class="tokens-event-table__hash">
           <hash-symbol>th</hash-symbol>
           <value-hash-ellipsed
@@ -18,7 +18,7 @@
       </tr>
       <tr class="token-events-table-condensed__row">
         <th class="token-events-table-condensed__header">
-          NAME
+          Name
         </th>
         <td class="token-events-table-condensed__data">
           NAME

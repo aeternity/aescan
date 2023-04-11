@@ -69,8 +69,11 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     price.value = formatTokenPairRouteAsRatio(data[0])
   }
 
-  async function fetchTokenEvents(contractId) {
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/accounts/${contractId}/activities`)
+  async function fetchTokenEvents({ contractId = null, queryParameters = null }) {
+    rawTokenEvents.value = null
+    const defaultParameters = `/v2/accounts/${contractId}/activities`
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    console.log('data', data)
     rawTokenEvents.value = data
   }
 

@@ -31,15 +31,22 @@ import { useTokenDetailsStore } from '@/stores/tokenDetails'
 import AppTabs from '~/components/AppTabs.vue'
 import AppTab from '~/components/AppTab.vue'
 import TokenEventsPanel from '~/components/TokenEventsPanel.vue'
+import { isDesktop } from '~/utils/screen'
+
+const route = useRoute()
 
 const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails, fetchTokenEvents } = tokenDetailsStore
 
-const route = useRoute()
-
 await fetchTokenDetails(route.params.id)
-await fetchTokenEvents(route.params.id)
+
+if (process.client) {
+  const limit = isDesktop() ? 10 : 3
+  await fetchTokenEvents({
+    queryParameters: `/v2/accounts/${route.params.id}/activities?limit=${limit}`,
+  })
+}
 </script>
 
 <style scoped>

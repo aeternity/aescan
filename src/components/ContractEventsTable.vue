@@ -24,7 +24,6 @@
       </td>
       <td>
         <copy-chip
-          class="contract-events-panel__copy-chip"
           :clipboard-text="removeLineBreaks(event.args)"
           :label="formatEllipseHash(removeLineBreaks(event.args))"/>
       </td>

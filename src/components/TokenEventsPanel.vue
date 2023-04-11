@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useTokenDetailsStore } from '~/stores/tokenDetails'
 import TokenEventsTable from '~/components/TokenEventsTable.vue'
 import TokenEventsTableCondensed from '~/components/TokenEventsTableCondensed.vue'
@@ -30,20 +30,18 @@ export default {
     ...mapState(useTokenDetailsStore, ['tokenEvents']),
   },
   methods: {
+    ...mapActions(useTokenDetailsStore, ['fetchTokenEvents']),
     loadPrevEvents() {
-      return null
-      // this.fetchContractEvents({ queryParameters: this.contractEvents.prev })
+      this.fetchTokenEvents({ queryParameters: this.tokenEvents.prev })
     },
     loadNextEvents() {
-      // this.fetchContractEvents({ queryParameters: this.contractEvents.next })
-      return null
+      this.fetchTokenEvents({ queryParameters: this.tokenEvents.next })
     },
   },
 }
 </script>
 <style scoped>
 .token-events-panel {
-
   padding: var(--space-3) var(--space-1) var(--space-4);
   margin-top: var(--space-2);
 

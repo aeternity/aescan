@@ -320,3 +320,20 @@ export function adaptContractEvents(events, blockHeight) {
     prev: events.prev,
   }
 }
+
+export function adaptTokenDetails(token, totalSupply = null, price = null) {
+  const tokenDetails = {
+    ...token,
+    ...(price && { price }),
+  }
+
+  if (token && totalSupply) {
+    tokenDetails.totalSupply = Number(totalSupply / BigInt(10 ** token.decimals))
+  }
+
+  if (tokenDetails.totalSupply && price) {
+    tokenDetails.marketCap = tokenDetails.totalSupply * price
+  }
+
+  return tokenDetails
+}

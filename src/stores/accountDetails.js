@@ -53,7 +53,7 @@ export const useAccountStore = defineStore('account', {
     },
     async fetchAccountDetails(accountId) {
       try {
-        const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/accounts/${accountId}`)
+        const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/v3/accounts/${accountId}`)
         this.rawAccountDetails = data
       } catch (e) {
         if (e.response.status === 404) {

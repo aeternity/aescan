@@ -45,6 +45,7 @@ export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platf
 export const APP_URL = 'https://aescan.io'
 export const APP_CREATOR = '@aeternity'
 
+
 export const LISTED_TOKENS = [
   {
     contract_id: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
@@ -65,5 +66,20 @@ export const LISTED_TOKENS = [
     contract_id: 'ct_7UfopTwsRuLGFEcsScbYgQ6YnySXuyMxQWhw6fjycnzS5Nyzq',
     symbol: 'ABC',
     name: 'ABC',
+
+export const TOKEN_SUPPLY_ACI = [
+  {
+    contract: {
+      functions: [
+        {
+          arguments: [],
+          name: 'total_supply',
+          payable: false,
+          returns: 'int',
+          stateful: false,
+        },
+      ],
+      payable: false,
+    },
   },
 ]

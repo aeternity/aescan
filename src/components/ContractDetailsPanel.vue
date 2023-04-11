@@ -149,7 +149,7 @@ export default {
   },
   computed: {
     contractNodeUrl() {
-      return `${this.$config.public.NODE_URL}/contracts/${this.contractDetails.id}`
+      return `${this.$config.public.NODE_URL}/v3/contracts/${this.contractDetails.id}`
     },
   },
   methods: {

@@ -22,7 +22,7 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
 
   async function fetchTransactionDetails(transactionId) {
     clearTransactionDetails()
-    const { data: transaction } = await axios.get(`${NODE_URL}/transactions/${transactionId}`)
+    const { data: transaction } = await axios.get(`${NODE_URL}/v3/transactions/${transactionId}`)
     const isMined = transaction.block_height > -1
 
     const time = isMined ? await fetchTimeByBlockHash(transaction.block_hash) : null
@@ -55,12 +55,12 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
   }
 
   async function fetchTimeByBlockHash(blockHash) {
-    const { data } = await axios.get(`${NODE_URL}/micro-blocks/hash/${blockHash}/header`)
+    const { data } = await axios.get(`${NODE_URL}/v3/micro-blocks/hash/${blockHash}/header`)
     return data.time
   }
 
   async function fetchContractIdByAccountId(accountId) {
-    const { data } = await axios.get(`${NODE_URL}/accounts/${accountId}`)
+    const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
     contractId.value = data.contract_id
   }
 

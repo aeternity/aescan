@@ -7,6 +7,7 @@
 </template>
 
 <script setup>
+import { useVModel } from '@vueuse/core'
 import AppSelect from '~/components/AppSelect.vue'
 
 const emit = defineEmits(['update:modelValue'])
@@ -16,13 +17,12 @@ const tokensTypes = [
   { label: 'All Tokens', key: 'allTokens' },
 ]
 
-const selectedTokens = computed({
-  get() {
-    return this.modelValue
-  },
-  set(value) {
-    emit('update:modelValue', value)
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    default: null,
   },
 })
 
+const selectedTokens = useVModel(props, 'modelValue', emit)
 </script>

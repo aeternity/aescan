@@ -36,7 +36,7 @@ const {
 } = storeToRefs(tokensStore)
 const { fetchAllTokens, getListedTokens } = useTokensStore()
 
-const selectedTokensName = ref({ label: 'Listed', key: 'listedTokens' })
+const selectedTokensName = ref(null)
 const selectedTokens = ref(null)
 
 async function loadPrevTokens() {

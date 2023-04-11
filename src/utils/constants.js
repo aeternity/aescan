@@ -27,6 +27,10 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const TOKEN_TYPES_OPTIONS = [
+  { label: 'Listed', key: 'listedTokens' },
+  { label: 'All Tokens', key: 'allTokens' },
+]
 export const MAX_AE_DISTRIBUTION = 536306702.49932
 export const SPECIAL_POINTERS_PRESET_KEYS = ['account_pubkey', 'oracle_pubkey', 'contract_pubkey', 'channel']
 export const DATETIME_UNITS = [

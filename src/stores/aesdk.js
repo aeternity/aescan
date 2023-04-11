@@ -1,0 +1,19 @@
+import { defineStore } from 'pinia'
+import { useRuntimeConfig } from 'nuxt/app'
+import { Node, AeSdk } from '@aeternity/aepp-sdk'
+
+export const useAesdk = defineStore('aesdk', () => {
+  const { NODE_URL } = useRuntimeConfig().public
+
+  const node = new Node(NODE_URL)
+  const aeSdk = new AeSdk({
+    nodes: [
+      { name: 'mainnet', instance: node },
+    ],
+    compilerUrl: 'https://compiler.aepps.com',
+  })
+
+  return {
+    aeSdk: computed(() => aeSdk),
+  }
+})

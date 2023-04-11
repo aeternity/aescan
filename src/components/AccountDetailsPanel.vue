@@ -108,7 +108,7 @@ export default {
   computed: {
     ...mapState(useMarketStatsStore, ['price']),
     accountNodeUrl() {
-      return `${this.$config.public.NODE_URL}/accounts/${this.accountDetails.id}`
+      return `${this.$config.public.NODE_URL}/v3/accounts/${this.accountDetails.id}`
     },
     sanitizedPrice() {
       return this.price

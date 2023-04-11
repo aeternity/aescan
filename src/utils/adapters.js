@@ -327,6 +327,14 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
     ...(price && { price }),
   }
 
+  const listedToken = LISTED_TOKENS.find(token =>
+    tokenDetails.contract_id === token.contract_id,
+  )
+
+  if (listedToken?.isAe) {
+    tokenDetails.isAe = true
+  }
+
   if (token && totalSupply) {
     tokenDetails.totalSupply = Number(totalSupply / BigInt(10 ** token.decimals))
   }

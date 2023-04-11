@@ -38,17 +38,16 @@
     </tbody>
   </table>
 </template>
-<script>
+<script setup>
 
-export default {
-  name: 'TokensTable',
-  props: {
-    tokens: {
-      type: Object,
-      required: true,
-    },
+import AppIdenticon from '~/components/AppIdenticon.vue'
+
+defineProps({
+  tokens: {
+    type: Object,
+    required: true,
   },
-}
+})
 </script>
 
 <style scoped>

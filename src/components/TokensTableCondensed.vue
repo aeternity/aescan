@@ -49,17 +49,15 @@
     </table>
   </div>
 </template>
-<script>
+<script setup>
+import AppIdenticon from '~/components/AppIdenticon.vue'
 
-export default {
-  name: 'TokensTableCondensed',
-  props: {
-    tokens: {
-      type: Object,
-      required: true,
-    },
+defineProps({
+  tokens: {
+    type: Object,
+    required: true,
   },
-}
+})
 </script>
 
 <style scoped>

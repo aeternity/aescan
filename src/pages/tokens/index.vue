@@ -14,6 +14,7 @@
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
+import TokensPanel from '@/components/TokensPanel'
 </script>
 
 <style scoped>

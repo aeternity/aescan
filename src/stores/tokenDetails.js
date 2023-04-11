@@ -10,15 +10,15 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const { AE_TOKEN_ID, DEX_BACKEND_URL } = useRuntimeConfig().public
   const { aeSdk } = storeToRefs(useAesdk())
 
+  const rawToken = ref(null)
   const tokenId = ref(null)
-  const baseData = ref(null)
   const rawTotalSupply = ref(null)
   const price = ref(null)
   const rawTokenEvents = ref(null)
 
-  const tokenDetails = computed(() => baseData.value
+  const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
-      baseData.value,
+      rawToken.value,
       rawTotalSupply.value,
       price.value,
     )
@@ -32,16 +32,17 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   const fetchTokenDetails = id => {
     tokenId.value = id
+
     return Promise.allSettled([
-      fetchBaseData(),
+      fetchToken(),
       fetchTotalSupply(),
       fetchPrice(),
     ])
   }
 
-  async function fetchBaseData() {
+  async function fetchToken() {
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/aex9/${tokenId.value}`)
-    baseData.value = data
+    rawToken.value = data
   }
 
   async function fetchTotalSupply() {

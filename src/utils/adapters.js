@@ -337,3 +337,17 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
 
   return tokenDetails
 }
+
+export function adaptTokenHolders(tokenHolders, tokenDetails) {
+  const formattedData = tokenHolders.data.map(holder => ({
+    address: holder.account_id,
+    amount: holder.amount / (10 ** tokenDetails.decimals),
+    percentage: (holder.amount / (10 ** (tokenDetails.decimals - 2))) / tokenDetails.totalSupply,
+  }))
+
+  return {
+    next: tokenHolders.next,
+    data: formattedData,
+    prev: tokenHolders.prev,
+  }
+}

@@ -21,12 +21,13 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useTokensStore } from '~/stores/tokens'
 import TokensTableCondensed from '~/components/TokensTableCondensed.vue'
 import TokensTable from '~/components/TokensTable.vue'
 import TokenSelect from '~/components/TokenSelect.vue'
 import PaginatedContent from '~/components/PaginatedContent.vue'
+import { isDesktop } from '~/utils/screen'
 
 const tokensStore = useTokensStore()
 const {
@@ -55,6 +56,8 @@ watch(selectedTokensName, () => {
 onMounted(() => {
   loadTokens(selectedTokensName.value?.key)
 })
+
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadTokens(selectedTokensName) {
   if (selectedTokensName === 'listedTokens') {

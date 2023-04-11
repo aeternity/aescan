@@ -53,28 +53,18 @@
     </table>
   </div>
 </template>
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatEllipseHash } from '@/utils/format'
 import CopyChip from '@/components/CopyChip'
 
-export default {
-  name: 'TokenEventTableCondensed',
-  components: { CopyChip, DatetimeLabel, ValueHashEllipsed },
-  props: {
-    tokenEvents: {
-      type: Object,
-      required: true,
-    },
+defineProps({
+  tokenEvents: {
+    type: Object,
+    required: true,
   },
-  methods: {
-    removeLineBreaks(str) {
-      return str.toString().replaceAll('\n', '')
-    },
-    formatEllipseHash,
-  },
-}
+})
 </script>
 
 <style scoped>

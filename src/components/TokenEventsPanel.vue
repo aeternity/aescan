@@ -17,34 +17,29 @@
   </app-panel>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import { useTokenDetailsStore } from '~/stores/tokenDetails'
 import TokenEventsTable from '~/components/TokenEventsTable.vue'
 import TokenEventsTableCondensed from '~/components/TokenEventsTableCondensed.vue'
 
-export default {
-  name: 'TokenEventsPanel',
-  components: { TokenEventsTableCondensed, TokenEventsTable },
-  computed: {
-    ...mapState(useTokenDetailsStore, ['tokenEvents']),
-  },
-  methods: {
-    ...mapActions(useTokenDetailsStore, ['fetchTokenEvents']),
-    loadPrevEvents() {
-      this.fetchTokenEvents({ queryParameters: this.tokenEvents.prev })
-    },
-    loadNextEvents() {
-      this.fetchTokenEvents({ queryParameters: this.tokenEvents.next })
-    },
-  },
+const { tokenEvents } = storeToRefs(useTokenDetailsStore())
+const { fetchTokenEvents } = useTokenDetailsStore()
+
+function loadPrevEvents() {
+  fetchTokenEvents({ queryParameters: tokenEvents.value.prev })
 }
+
+function loadNextEvents() {
+  fetchTokenEvents({ queryParameters: tokenEvents.value.next })
+}
+
 </script>
+
 <style scoped>
 .token-events-panel {
   padding: var(--space-3) var(--space-1) var(--space-4);
   margin-top: var(--space-2);
-
   @media (--desktop) {
     padding: var(--space-2) var(--space-4) var(--space-4);
   }

@@ -34,24 +34,14 @@
     </tr>
   </table>
 </template>
-<script>
-import { formatEllipseHash } from '~/utils/format'
 
-export default {
-  name: 'TokenEventsTable',
-  props: {
-    tokenEvents: {
-      type: Object,
-      required: true,
-    },
+<script setup>
+defineProps({
+  tokenEvents: {
+    type: Object,
+    required: true,
   },
-  methods: {
-    removeLineBreaks(str) {
-      return str.toString().replaceAll('\n', '')
-    },
-    formatEllipseHash,
-  },
-}
+})
 </script>
 
 <style scoped>

@@ -8,35 +8,47 @@
 </p>
 
 ## Table of contents
+
 - [Introduction](#Introduction)
 - [Getting started](#Getting-started)
 - [Deployment stages](#Deployment-stages)
+- [Browser compatibility](#Browser-compatibility)
 - [Contribution](#Contribution)
 - [Stay in touch](#Stay-in-touch)
 - [Resources](#Resources)
 
 ## Introduction
-With æScan you can easily navigate between different features and live statistics of æternity blockchain: keyblocks, microblocks, accounts, transactions and names.
 
-Blockchain data is retrieved from [æternity middleware](https://github.com/aeternity/ae_mdw) and [æternity node](https://github.com/aeternity/aeternity).
+With æScan you can easily navigate between different features and live statistics of æternity blockchain: keyblocks,
+microblocks, accounts, transactions and names.
+
+Blockchain data is retrieved from [æternity middleware](https://github.com/aeternity/ae_mdw)
+and [æternity node](https://github.com/aeternity/aeternity).
 
 Vue.js and Vite provide the foundation for this project, enabling us to create a seamless and intuitive user experience.
 
 ## Getting started
-First, download an install [Node.js](https://nodejs.org/en/download). Version 14.18 or higher is required.
+
+First, download an install [Node.js](https://nodejs.org/en/download). Version 16.10 or higher is required.
 
 Clone æScan repository
+
 ```
 git clone https://github.com/aeternity/aescan.git
 ```
+
 Install required dependencies with yarn
+
 ```
 yarn install
 ```
+
 Run æScan in development mode with hot reload
+
 ```
 yarn dev
 ```
+
 A local instance of æScan will be available at http://localhost:8080.
 
 ### Other commands
@@ -48,12 +60,14 @@ yarn build
 ```
 
 Lint js and css files
+
 ```
 yarn lint
 ```
 
 ### Build docker image
-Docker is used to run æScan in different deployment stages with Nginx as reverse proxy. 
+
+Docker is used to run æScan in different deployment stages with Nginx as reverse proxy.
 
 To build a docker image of æScan [Docker](https://www.docker.com) is required.
 
@@ -64,6 +78,7 @@ docker run -p 80:80 aescan
 ```
 
 ## Deployment Stages
+
 Three different deployment stages are available to test or use æScan:
 
 <table>
@@ -89,14 +104,27 @@ Three different deployment stages are available to test or use æScan:
     </tr>
 </table>
 
+## Browser compatibility
+
+Supports [evergreen](https://nuxt.com/blog/v3#the-browser-and-nodejs-support) browsers only.
+
+The core browser set targets the 2 most recent major versions of Chrome, Firefox, and Edge on a monthly basis and Safari
+on a yearly basis.
+
 ## Tooling
+
 This project uses [Applitools Visual AI](https://applitools.com/) as part of its automated testing.
 
 ## Contribution
-We welcome contributions to our repository! If you have an idea for a new feature or a fix for a bug, please feel free to open an issue and/or a pull request. We encourage you to read the full [Contribution Guidelines](./CONTRIBUTING.md) to learn more about the project structure, good practices and rules to follow. 
+
+We welcome contributions to our repository! If you have an idea for a new feature or a fix for a bug, please feel free
+to open an issue and/or a pull request. We encourage you to read the full [Contribution Guidelines](./CONTRIBUTING.md)
+to learn more about the project structure, good practices and rules to follow.
 
 ## Stay in touch
-Join [æternity forum](https://forum.aeternity.com) and participate in discussions. Share your ideas, ask questions, and get involved!
+
+Join [æternity forum](https://forum.aeternity.com) and participate in discussions. Share your ideas, ask questions, and
+get involved!
 
 Stay up-to-date on the latest developments in the æternity ecosystem by following us on social media.
 
@@ -107,9 +135,10 @@ Stay up-to-date on the latest developments in the æternity ecosystem by followi
 - [Linkedin](https://www.linkedin.com/company/aeternity)
 - [Telegram](https://telegram.me/aeternity)
 
-
 ## Resources
-Want to learn more about æternity and how it's revolutionizing the world of blockchain technology? Check out our website, Github repositories and blog for more information.
+
+Want to learn more about æternity and how it's revolutionizing the world of blockchain technology? Check out our
+website, Github repositories and blog for more information.
 
 - [æternity homepage](https://www.aeternity.com)
 - [æternity blog](https://blog.aeternity.com)

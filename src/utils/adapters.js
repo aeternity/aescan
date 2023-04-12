@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { formatAettosToAe, formatBlockDiffAsDatetime, formatBlocksRelative, formatDecodeBase64 } from '@/utils/format'
-import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
+import { AE_TOKEN_CONTRACT_ID, MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(chainName) {
   const auctionLength = 13
@@ -344,4 +344,22 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   }
 
   return tokenDetails
+}
+
+export function adaptListedTokens(tokens) {
+  const formattedData = tokens
+    .filter(token => token.listed === true)
+    .map(token => {
+      return {
+        contract_id: token.address,
+        name: token.name,
+        symbol: token.symbol,
+        isAe: token.address === AE_TOKEN_CONTRACT_ID,
+      }
+    })
+  return {
+    next: null,
+    data: formattedData,
+    prev: null,
+  }
 }

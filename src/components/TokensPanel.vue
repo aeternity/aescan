@@ -34,7 +34,7 @@ const {
   listedTokens,
   allTokens,
 } = storeToRefs(tokensStore)
-const { fetchAllTokens, getListedTokens } = useTokensStore()
+const { fetchAllTokens, fetchListedTokens } = useTokensStore()
 
 const selectedTokensName = ref(null)
 const selectedTokens = ref(null)
@@ -61,7 +61,7 @@ const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadTokens(selectedTokensName) {
   if (selectedTokensName === 'listedTokens') {
-    await getListedTokens()
+    await fetchListedTokens()
     selectedTokens.value = listedTokens.value
   } else {
     await fetchAllTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)

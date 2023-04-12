@@ -42,13 +42,13 @@ const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
 
-await fetchContractDetails(route.params.id)
+await useAsyncData(() => fetchContractDetails(route.params.id))
 
 if (process.client) {
   const limit = isDesktop() ? 10 : 3
-  await fetchContractEvents({
+  await useAsyncData(() => fetchContractEvents({
     queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}`,
-  })
+  }))
 }
 </script>
 

@@ -9,28 +9,23 @@ import { useStatus } from '@/stores/status'
 export async function initializeStores() {
   const { fetchKeyblocks } = useRecentBlocksStore()
   const { fetchStatus } = useStatus()
+  const { fetchMarketStats } = useMarketStatsStore()
 
-  if (process.client) {
-    const { fetchMarketStats } = useMarketStatsStore()
-
+  try {
     await Promise.all([
       fetchKeyblocks(),
       fetchStatus(),
-      // execute client-side only due to api rate limit
       fetchMarketStats(),
     ])
-
-    // no use for live updates on server-side
-    initWebSocket()
-  } else {
-    await Promise.all([
-      fetchKeyblocks(),
-      fetchStatus(),
-    ])
+  } catch (error) {
+    console.error(error)
+    return undefined
   }
+
+  return true
 }
 
-function initWebSocket() {
+export function initializeWebSocket() {
   const webSocket = new WebSocket(useRuntimeConfig().public.WEBSOCKET_URL)
 
   webSocket.onopen = () => {
@@ -38,7 +33,7 @@ function initWebSocket() {
   }
   webSocket.onclose = () => {
     setTimeout(() => {
-      initWebSocket()
+      initializeWebSocket()
     }, 1000)
   }
 }

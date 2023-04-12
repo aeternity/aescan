@@ -1,5 +1,5 @@
 <template>
-  <table class="tokens-table__table">
+  <table class="tokens-table">
     <thead>
       <tr>
         <th>Symbol</th>
@@ -51,9 +51,7 @@ defineProps({
 
 <style scoped>
 .tokens-table {
-  &__table {
-    margin-bottom: var(--space-2);
-  }
+  margin-bottom: var(--space-2);
 
   &__icon {
     width: 24px;

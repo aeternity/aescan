@@ -10,9 +10,7 @@ export const useTokensStore = defineStore('tokens', () => {
 
   const listedTokens = computed(() =>
     rawListedTokens.value
-      ? adaptListedTokens(
-        rawListedTokens.value,
-      )
+      ? adaptListedTokens(rawListedTokens.value)
       : null,
   )
 

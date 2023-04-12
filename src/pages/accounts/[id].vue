@@ -43,8 +43,11 @@ const route = useRoute()
 
 if (process.client) {
   const limit = isDesktop() ? null : 3
-  await fetchAccount(route.params.id, { limit })
-  await fetchTotalAccountTransactionsCount(route.params.id)
+  await useAsyncData(async() => {
+    await fetchAccount(route.params.id, { limit })
+    await fetchTotalAccountTransactionsCount(route.params.id)
+    return true
+  })
 }
 </script>
 

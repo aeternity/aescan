@@ -99,14 +99,14 @@ if (process.client) {
   const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 
   // fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
-  await Promise.all([
+  await useAsyncData(() => Promise.all([
     fetchStateChannels(),
     fetchInAuctionNames(),
     fetchRecentlyActivatedNames(),
     fetchSelectedMicroblocksInfo(),
     fetchBlockchainStats(),
     fetchDeltaStats(),
-  ])
+  ]))
 }
 </script>
 

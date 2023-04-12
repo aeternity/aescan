@@ -29,10 +29,9 @@
         </td>
         <td>{{ token.name }}</td>
         <td>
-          <app-link
-            :to="`/contracts/${token.contract_id}`">
-            {{ token.contract_id }}
-          </app-link>
+          <value-hash-ellipsed
+            :link-to="`/contracts/${token.contract_id}`"
+            :hash="token.contract_id "/>
         </td>
       </tr>
     </tbody>

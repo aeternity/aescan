@@ -1,7 +1,7 @@
 <template>
   <app-panel class="tokens-panel">
     <header class="tokens-panel__header">
-      <token-select v-model="selectedTokensName"/>
+      <token-select v-model="selectedTokenName"/>
     </header>
     <paginated-content
       :entities="selectedTokens"
@@ -21,7 +21,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useTokensStore } from '~/stores/tokens'
 import TokensTableCondensed from '~/components/TokensTableCondensed.vue'
 import TokensTable from '~/components/TokensTable.vue'
@@ -30,43 +30,21 @@ import PaginatedContent from '~/components/PaginatedContent.vue'
 import { isDesktop } from '~/utils/screen'
 
 const tokensStore = useTokensStore()
-const {
-  listedTokens,
-  allTokens,
-} = storeToRefs(tokensStore)
-const { fetchAllTokens, fetchListedTokens } = useTokensStore()
-
-const selectedTokensName = ref(null)
-const selectedTokens = ref(null)
+const { selectedTokens, selectedTokenName } = storeToRefs(tokensStore)
+const { fetchTokens } = useTokensStore()
 
 async function loadPrevTokens() {
-  await fetchAllTokens(selectedTokens.value.prev)
-  selectedTokens.value = allTokens.value
+  await fetchTokens(selectedTokens.value.prev)
 }
 
 async function loadNextTokens() {
-  await fetchAllTokens(selectedTokens.value.next)
-  selectedTokens.value = allTokens.value
+  await fetchTokens(selectedTokens.value.next)
 }
-
-watch(selectedTokensName, () => {
-  loadTokens(selectedTokensName.value?.key)
-})
-
-onMounted(() => {
-  loadTokens(selectedTokensName.value?.key)
-})
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-async function loadTokens(selectedTokensName) {
-  if (selectedTokensName === 'listedTokens') {
-    await fetchListedTokens()
-    selectedTokens.value = listedTokens.value
-  } else {
-    await fetchAllTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
-    selectedTokens.value = allTokens.value
-  }
+if (process.client) {
+  await fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
 }
 
 </script>

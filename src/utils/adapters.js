@@ -327,11 +327,7 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
     ...(price && { price }),
   }
 
-  const listedToken = LISTED_TOKENS.find(token =>
-    tokenDetails.contract_id === token.contract_id,
-  )
-
-  if (listedToken?.isAe) {
+  if (tokenDetails.contract_id === AE_TOKEN_CONTRACT_ID) {
     tokenDetails.isAe = true
   }
 

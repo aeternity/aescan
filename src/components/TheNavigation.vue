@@ -28,8 +28,8 @@
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          target="_self"
-          to="/tokens">
+          to="/tokens"
+          @click="$emit('link-clicked')">
           Tokens
         </app-link>
       </li>

@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
@@ -7,12 +7,24 @@ import { adaptListedTokens } from '~/utils/adapters'
 export const useTokensStore = defineStore('tokens', () => {
   const rawListedTokens = ref(null)
   const allTokens = ref(null)
+  const selectedTokenName = ref(null)
+
+  const selectedTokens = computed(() => {
+    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value : allTokens.value
+  })
 
   const listedTokens = computed(() =>
     rawListedTokens.value
       ? adaptListedTokens(rawListedTokens.value)
       : null,
   )
+
+  function fetchTokens(queryParameters) {
+    return Promise.allSettled([
+      fetchAllTokens(queryParameters),
+      fetchListedTokens(),
+    ])
+  }
 
   async function fetchAllTokens(queryParameters = null) {
     allTokens.value = null
@@ -27,9 +39,8 @@ export const useTokensStore = defineStore('tokens', () => {
   }
 
   return {
-    listedTokens,
-    allTokens,
-    fetchAllTokens,
-    fetchListedTokens,
+    selectedTokens,
+    selectedTokenName,
+    fetchTokens,
   }
 })

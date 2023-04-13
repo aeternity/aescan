@@ -4,13 +4,14 @@
     track-by="key"
     label="label"
     preselect-first
+    :searchable="false"
     :options="TOKEN_TYPES_OPTIONS"/>
 </template>
 
 <script setup>
 import { useVModel } from '@vueuse/core'
-import AppSelect from '~/components/AppSelect.vue'
-import { TOKEN_TYPES_OPTIONS } from '~/utils/constants'
+import AppSelect from '@/components/AppSelect'
+import { TOKEN_TYPES_OPTIONS } from '@/utils/constants'
 
 const emit = defineEmits(['update:modelValue'])
 

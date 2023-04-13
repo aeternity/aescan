@@ -72,9 +72,5 @@ export default {
   &__data {
     vertical-align: top;
   }
-
-  &__blocks-ago {
-    margin-left: var(--space-5);
-  }
 }
 </style>

@@ -57,9 +57,5 @@ export default {
     display: inline-block;
     margin: 0 var(--space-0) var(--space-0) 0;
   }
-
-  &__blocks-ago {
-    margin-left: var(--space-5);
-  }
 }
 </style>

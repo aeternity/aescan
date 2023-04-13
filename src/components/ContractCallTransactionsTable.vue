@@ -56,10 +56,6 @@ defineProps({
 
 <style scoped>
 .contract-call-transactions-table {
-  &__blocks-ago {
-    margin-left: var(--space-5);
-  }
-
   &__column {
     width: 180px;
   }

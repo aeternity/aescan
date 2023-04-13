@@ -56,11 +56,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-.account-transactions-table {
-  &__blocks-ago {
-    margin-left: var(--space-5);
-  }
-}
-</style>

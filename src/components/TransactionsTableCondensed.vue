@@ -67,7 +67,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .transactions-table-condensed {
   &__table {
     background: var(--color-white);

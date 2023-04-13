@@ -27,6 +27,10 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const TOKEN_TYPES_OPTIONS = [
+  { label: 'Listed', key: 'listedTokens' },
+  { label: 'All Tokens', key: 'allTokens' },
+]
 export const MAX_AE_DISTRIBUTION = 536306702.49932
 export const SPECIAL_POINTERS_PRESET_KEYS = ['account_pubkey', 'oracle_pubkey', 'contract_pubkey', 'channel']
 export const DATETIME_UNITS = [
@@ -47,6 +51,7 @@ export const APP_CREATOR = '@aeternity'
 export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
 export const CACHE_KEY_MARKET_DATA = 'aeternity-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
+
 export const TOKEN_SUPPLY_ACI = [
   {
     contract: {

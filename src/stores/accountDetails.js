@@ -20,7 +20,6 @@ export const useAccountStore = defineStore('account', {
   }),
   getters: {
     accountDetails(state) {
-      console.log('state.rawAccountDetails', state.rawAccountDetails)
       return state.rawAccountDetails
         ? {
           ...state.rawAccountDetails,

@@ -2,9 +2,10 @@
 # yarn lockfile v1
 
 
-"@aeternity/aepp-calldata@github:aeternity/aepp-calldata-js#3320455210221e59bff1198389ccfd5851598513":
-  version "1.3.0"
-  resolved "https://codeload.github.com/aeternity/aepp-calldata-js/tar.gz/3320455210221e59bff1198389ccfd5851598513"
+"@aeternity/aepp-calldata@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@aeternity/aepp-calldata/-/aepp-calldata-1.4.0.tgz#7d38ea8586630cad3a15c8bb66587c238a3e4da6"
+  integrity sha512-hDhLALqIaoFp20jXK2SBgUqfEkqlBDXdThdnGw47C0EQdNjaawb0vUeHnB4Y7cWXFKHaH5qkJwL2bYmmXg3AtA==
   dependencies:
     blakejs "^1.2.1"
     bs58 "^5.0.0"
@@ -12,12 +13,12 @@
     safe-buffer "^5.2.1"
     sha.js "^2.4.11"
 
-"@aeternity/aepp-sdk@^v13.0.0-beta.0":
-  version "13.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@aeternity/aepp-sdk/-/aepp-sdk-13.0.0-beta.0.tgz#8af99afd1022e8a6a38dbc41ee84840680824067"
-  integrity sha512-eCXPqInoLLc2/ji0/JStHJpT9Ddym06Cu5mLrGWh6fFdunkBFmffhdjVVMZbCSRlwogX0jQWYO8ranlxZkuZiQ==
+"@aeternity/aepp-sdk@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@aeternity/aepp-sdk/-/aepp-sdk-13.0.0.tgz#a8f032bdc26e22c48ef7af54f433cb1970e14245"
+  integrity sha512-OV8vj/rMwrqkNElRBds+61kk/tbhDYRjB/9B5Dr3cO25DetXuGq0+BqoX4aQohqwIegIdbQCEUIh1HObqJWZ6g==
   dependencies:
-    "@aeternity/aepp-calldata" "github:aeternity/aepp-calldata-js#3320455210221e59bff1198389ccfd5851598513"
+    "@aeternity/aepp-calldata" "^1.4.0"
     "@aeternity/argon2" "^0.0.1"
     "@aeternity/uuid" "^0.0.1"
     "@azure/core-client" "1.6.0"

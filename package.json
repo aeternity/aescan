@@ -26,7 +26,7 @@
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install"
   },
   "dependencies": {
-    "@aeternity/aepp-sdk": "^v13.0.0-beta.0",
+    "@aeternity/aepp-sdk": "^13.0.0",
     "@download/blockies": "^1.0.3",
     "@sentry/tracing": "^7.25.0",
     "@sentry/vue": "^7.25.0",

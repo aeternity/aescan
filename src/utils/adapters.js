@@ -32,11 +32,11 @@ export function adaptSelectedMicroblockTransactions(transactions) {
   }
 }
 
-export function adaptTransactions(transactions, blockHeight) {
+export function adaptTransactions(transactions) {
   const formattedData = transactions.data.map(transaction => {
     return {
       hash: transaction.hash,
-      createdHeightDiff: blockHeight - transaction.block_height,
+      heightCreated: transaction.block_height,
       created: DateTime.fromMillis(transaction.micro_time),
       type: transaction.tx.type,
       data: transaction.tx,
@@ -49,14 +49,13 @@ export function adaptTransactions(transactions, blockHeight) {
   }
 }
 
-export function adaptContracts(contracts, blockHeight) {
+export function adaptContracts(contracts) {
+  console.log('contracts', contracts)
   const formattedData = contracts.data.map(contract => {
     return {
       contractId: contract.tx.contract_id,
-      created: formatBlockDiffAsDatetime(
-        contract.block_height,
-        blockHeight,
-      ),
+      created: DateTime.fromMillis(contract.micro_time),
+      createdHeight: contract.block_height,
       hash: contract.hash,
       createdBy: contract.tx.caller_id,
     }

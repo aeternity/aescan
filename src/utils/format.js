@@ -77,6 +77,7 @@ export function formatNullable(value) {
   return value || '---'
 }
 
+// todo remove
 export function formatBlocksRelative(count) {
   if (count === 0) {
     return 'Current keyblock'

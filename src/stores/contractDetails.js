@@ -117,9 +117,8 @@ export const useContractDetailsStore = defineStore('contractDetails', {
       )
     },
     contractCallTransactions(state) {
-      const store = useRecentBlocksStore()
       return state.rawContractCallTransactions
-        ? adaptTransactions(state.rawContractCallTransactions, store.blockHeight)
+        ? adaptTransactions(state.rawContractCallTransactions)
         : null
     },
   },

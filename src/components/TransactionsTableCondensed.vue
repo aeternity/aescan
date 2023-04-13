@@ -20,6 +20,9 @@
             Time
           </th>
           <td class="transactions-table-condensed__data">
+            <div>
+              {{ transaction.heightCreated }}
+            </div>
             <datetime-label :datetime="transaction.created"/>
           </td>
         </tr>

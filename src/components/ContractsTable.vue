@@ -18,6 +18,9 @@
             :hash="contract.contractId"/>
         </td>
         <td class="contracts-table__data">
+          <div>
+            {{ contract.createdHeight }}
+          </div>
           <datetime-label :datetime="contract.created"/>
         </td>
         <td class="contracts-table__data">

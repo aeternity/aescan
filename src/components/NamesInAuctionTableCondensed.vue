@@ -23,7 +23,9 @@
             Expires
           </th>
           <td class="names-in-auction-table-condensed__data">
-            {{ name.expirationHeight }} -
+            <div>
+              {{ name.expirationHeight }}
+            </div>
             <datetime-label :datetime="name.expiration"/>
           </td>
         </tr>
@@ -34,7 +36,8 @@
           <td class="names-in-auction-table-condensed__data">
             <value-hash-ellipsed
               :hash="name.highestBidder"
-              :link-to="`/accounts/${name.highestBidder}`"/>
+              :link-to="`/accounts/${name.highestBidder}`"
+              class="names-in-auction-table-condensed__highest-bid"/>
             <app-chip variant="secondary">
               {{ formatAePrice(name.bid) }}
             </app-chip>
@@ -108,12 +111,11 @@ export default {
   }
 
   &__data {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: var(--space-0) var(--space-2);
-    flex-wrap: wrap;
-    font-family: var(--font-monospaced);
+    text-align: right;
+  }
+
+  &__highest-bid {
+    margin-right: var(--space-2);
   }
 }
 </style>

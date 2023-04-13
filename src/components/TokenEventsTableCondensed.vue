@@ -19,7 +19,7 @@
           Name
         </th>
         <td class="token-events-table-condensed__data">
-          NAME
+          {{ event.name }}
         </td>
       </tr>
       <tr class="token-events-table-condensed__row">
@@ -34,12 +34,8 @@
         <th class="token-events-table-condensed__header">
           Arguments
         </th>
-        <td class="token-events-table-condensed__data">
-          <copy-chip
-            v-if="event.args"
-            class="contract-events-table__copy-chip"
-            :clipboard-text="event.args"
-            :label="formatEllipseHash"/>
+        <td class="token-events-table-condensed__data  token-events-table-condensed__args">
+          {{ event.args }}
         </td>
       </tr>
       <tr class="token-events-table-condensed__row">
@@ -56,8 +52,6 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { formatEllipseHash } from '@/utils/format'
-import CopyChip from '@/components/CopyChip'
 
 defineProps({
   tokenEvents: {
@@ -101,7 +95,7 @@ defineProps({
     gap: var(--space-1);
   }
 
-  &__event-data {
+  &__args {
     word-wrap: anywhere;
   }
 }

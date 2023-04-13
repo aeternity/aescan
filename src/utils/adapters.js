@@ -338,15 +338,15 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   return tokenDetails
 }
 
-export function adaptTokenEvents(events) {
+export function adaptTokenEvents(events, blockHeight) {
   const formattedData = events.data
     .map(event => {
       return {
-        hash: event.payload.hash,
-        name: 'NAME',
-        created: DateTime.fromMillis(event.payload.micro_time),
-        args: event.payload.tx.args,
-        data: event.payload.tx.call_data,
+        hash: event.contract_tx_hash, // todo this or call_tx_hash,
+        name: event.event_name || 'N/A',
+        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        args: event.args.toString(),
+        data: event.data,
       }
     })
 

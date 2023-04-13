@@ -15,6 +15,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const rawTotalSupply = ref(null)
   const price = ref(null)
   const rawTokenEvents = ref(null)
+  const rawTokenLogs = ref(null)
 
   const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
@@ -25,10 +26,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     : null,
   )
 
-  const tokenEvents = computed(() => rawTokenEvents.value
-    ? adaptTokenEvents(rawTokenEvents.value)
-    : null,
-  )
+  const tokenEvents = computed(() => {
+    const store = useRecentBlocksStore()
+    return rawTokenEvents.value
+      ? adaptTokenEvents(rawTokenEvents.value, store.blockHeight)
+      : null
+  })
 
   const fetchTokenDetails = id => {
     tokenId.value = id
@@ -72,7 +75,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenEvents({ contractId = null, queryParameters = null }) {
     rawTokenEvents.value = null
-    const defaultParameters = `/v2/accounts/${contractId}/activities`
+    const defaultParameters = `/v2/contracts/logs?contract=${contractId}`
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenEvents.value = data
   }

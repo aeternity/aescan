@@ -5,7 +5,6 @@
       <th>Name</th>
       <th>Date</th>
       <th>Arguments</th>
-      <th>Data</th>
     </tr>
     <tr
       v-for="event in tokenEvents.data"
@@ -17,18 +16,15 @@
           :link-to="`/transactions/${event.hash}`"/>
       </td>
       <td>
-        NAME
+        {{ event.name }}
       </td>
       <td>
         <datetime-label :datetime="event.created"/>
       </td>
-      <td>
-        <copy-chip
-          v-if="event.args"
-          :clipboard-text="event.args"
-          :label="formatEllipseHash"/>
+      <td class="token-events-table__args">
+        {{ event.args }}
       </td>
-      <td class="token-events-table__event-data">
+      <td>
         {{ event.data }}
       </td>
     </tr>
@@ -50,7 +46,7 @@ defineProps({
     white-space: nowrap;
   }
 
-  &__event-data {
+  &__args {
     word-wrap: anywhere;
     max-width: 450px;
   }

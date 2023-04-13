@@ -44,7 +44,7 @@
   </div>
 </template>
 <script setup>
-import TokenSymbolIcon from '~/components/TokenSymbolIcon.vue'
+import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({
   tokens: {

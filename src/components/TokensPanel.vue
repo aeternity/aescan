@@ -22,12 +22,12 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { useTokensStore } from '~/stores/tokens'
-import TokensTableCondensed from '~/components/TokensTableCondensed.vue'
-import TokensTable from '~/components/TokensTable.vue'
-import TokenSelect from '~/components/TokenSelect.vue'
-import PaginatedContent from '~/components/PaginatedContent.vue'
-import { isDesktop } from '~/utils/screen'
+import { useTokensStore } from '@/stores/tokens'
+import TokensTableCondensed from '@/components/TokensTableCondensed'
+import TokensTable from '@/components/TokensTable'
+import TokenSelect from '@/components/TokenSelect'
+import PaginatedContent from '@/components/PaginatedContent'
+import { isDesktop } from '@/utils/screen'
 
 const tokensStore = useTokensStore()
 const { selectedTokens, selectedTokenName } = storeToRefs(tokensStore)

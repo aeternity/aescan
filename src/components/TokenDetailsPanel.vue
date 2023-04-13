@@ -125,7 +125,7 @@
 import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
-import TokenSymbolIcon from '~/components/TokenSymbolIcon.vue'
+import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())

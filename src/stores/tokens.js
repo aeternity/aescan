@@ -2,7 +2,7 @@ import { computed, ref } from 'vue'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
-import { adaptListedTokens } from '~/utils/adapters'
+import { adaptListedTokens } from '@/utils/adapters'
 
 export const useTokensStore = defineStore('tokens', () => {
   const rawListedTokens = ref(null)

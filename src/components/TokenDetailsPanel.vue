@@ -5,14 +5,8 @@
         DETAILS
       </h3>
       <div class="token-details-panel__container">
-        <img
-          v-if="tokenDetails.isAe"
-          alt="æ token"
-          src="@/assets/ae-token.svg"
-          class="token-details-panel__icon">
-        <app-identicon
-          v-else
-          :id="tokenDetails.contract_id"
+        <token-symbol-icon
+          :contract-id="tokenDetails.contract_id"
           class="token-details-panel__icon"/>
         <copy-chip :label="tokenDetails.symbol"/>
       </div>
@@ -131,7 +125,7 @@
 import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
-import AppIdenticon from '~/components/AppIdenticon.vue'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon.vue'
 
 const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())

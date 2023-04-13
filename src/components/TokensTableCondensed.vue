@@ -13,14 +13,8 @@
             <app-link
               :to="`/tokens/${token.contract_id}`"
               class="tokens-table-condensed__link">
-              <img
-                v-if="token.isAe"
-                alt="æ token"
-                src="@/assets/ae-token.svg"
-                class="tokens-table-condensed__icon">
-              <app-identicon
-                v-else
-                :id="token.contract_id"
+              <token-symbol-icon
+                :contract-id="token.contract_id"
                 class="tokens-table-condensed__icon"/>
               {{ token.symbol }}
             </app-link>
@@ -50,7 +44,7 @@
   </div>
 </template>
 <script setup>
-import AppIdenticon from '~/components/AppIdenticon.vue'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon.vue'
 
 defineProps({
   tokens: {

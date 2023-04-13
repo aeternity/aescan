@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { formatAettosToAe, formatBlockDiffAsDatetime, formatBlocksRelative, formatDecodeBase64 } from '@/utils/format'
-import { AE_TOKEN_CONTRACT_ID, MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
+import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(chainName) {
   const auctionLength = 13
@@ -327,10 +327,6 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
     ...(price && { price }),
   }
 
-  if (tokenDetails.contract_id === AE_TOKEN_CONTRACT_ID) {
-    tokenDetails.isAe = true
-  }
-
   if (token && totalSupply) {
     tokenDetails.totalSupply = Number(totalSupply / BigInt(10 ** token.decimals))
   }
@@ -350,7 +346,7 @@ export function adaptListedTokens(tokens) {
         contract_id: token.address,
         name: token.name,
         symbol: token.symbol,
-        isAe: token.address === AE_TOKEN_CONTRACT_ID,
+        isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
       }
     })
   return {

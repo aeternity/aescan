@@ -337,3 +337,21 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
 
   return tokenDetails
 }
+
+export function adaptListedTokens(tokens) {
+  const formattedData = tokens
+    .filter(token => token.listed === true)
+    .map(token => {
+      return {
+        contract_id: token.address,
+        name: token.name,
+        symbol: token.symbol,
+        isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
+      }
+    })
+  return {
+    next: null,
+    data: formattedData,
+    prev: null,
+  }
+}

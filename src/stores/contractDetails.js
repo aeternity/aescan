@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { adaptContractDetails, adaptContractEvents, adaptTransactions } from '@/utils/adapters'
-import { useRecentBlocksStore } from '~/stores/recentBlocks'
+import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useContractDetailsStore = defineStore('contractDetails', {
   state: () => ({

@@ -42,7 +42,6 @@
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import HashSymbol from '@/components/HashSymbol'
-import { formatBlocksRelative } from '@/utils/format'
 
 export default {
   name: 'ContractsTable',
@@ -52,9 +51,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  methods: {
-    formatBlocksRelative,
   },
 }
 </script>

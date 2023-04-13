@@ -21,7 +21,7 @@
           </th>
           <td class="transactions-table-condensed__data">
             <div>
-              {{ transaction.heightCreated }}
+              {{ transaction.createdHeight }}
             </div>
             <datetime-label :datetime="transaction.created"/>
           </td>

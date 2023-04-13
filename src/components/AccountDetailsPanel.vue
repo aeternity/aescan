@@ -4,13 +4,21 @@
       <h3 class="account-details-panel__heading">
         DETAILS
       </h3>
-      <copy-chip
-        :label="accountDetails.id"
-        class="account-details-panel__copy-chip"/>
-      <copy-chip
-        :label="formatEllipseHash(accountDetails.id)"
-        :clipboard-text="accountDetails.id"
-        class="account-details-panel__copy-chip-ellipse"/>
+      <div>
+        <app-chip
+          v-if="accountDetails.isGeneralized"
+          class="account-details-panel__chip">
+          Generalized
+        </app-chip>
+
+        <copy-chip
+          :label="accountDetails.id"
+          class="account-details-panel__copy-chip"/>
+        <copy-chip
+          :label="formatEllipseHash(accountDetails.id)"
+          :clipboard-text="accountDetails.id"
+          class="account-details-panel__copy-chip-ellipse"/>
+      </div>
     </header>
     <p
       v-if="accountDetails.notExistent"
@@ -156,6 +164,10 @@ export default {
       line-height: 28px;
       margin-bottom: 0;
     }
+  }
+
+  &__chip {
+    margin-right: var(--space-1);
   }
 
   &__copy-chip {

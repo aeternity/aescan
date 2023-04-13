@@ -27,6 +27,7 @@ export const useAccountStore = defineStore('account', {
           transactionsCount: state.accountTransactionsCount,
           totalTransactionsCount: state.totalAccountTransactionsCount,
           namesCount: state.accountNamesCount,
+          isGeneralized: state.rawAccountDetails.kind === 'generalized',
         }
         : null
     },

@@ -8,7 +8,8 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :searchable="searchable"
-    :hide-selected="hideSelected">
+    :hide-selected="hideSelected"
+    :preselect-first="preselectFirst">
     <template
       v-for="(_, slot) of $slots"
       #[slot]="scope">
@@ -59,6 +60,10 @@ export default {
     searchable: {
       type: Boolean,
       default: true,
+    },
+    preselectFirst: {
+      type: Boolean,
+      default: false,
     },
     modelValue: undefined,
   },

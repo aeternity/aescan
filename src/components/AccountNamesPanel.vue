@@ -2,7 +2,6 @@
   <app-panel class="account-names-panel">
     <paginated-content
       :entities="accountNames"
-      pagination-style="history"
       @prev-clicked="loadPrevAccountNames"
       @next-clicked="loadNextAccountNames">
       <account-names-table

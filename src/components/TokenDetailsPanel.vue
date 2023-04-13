@@ -5,6 +5,9 @@
         DETAILS
       </h3>
       <div class="token-details-panel__container">
+        <token-symbol-icon
+          :contract-id="tokenDetails.contract_id"
+          class="token-details-panel__icon"/>
         <copy-chip :label="tokenDetails.symbol"/>
       </div>
     </header>
@@ -121,7 +124,8 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { formatAePrice, formatNumber, formatNullable } from '@/utils/format'
+import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
+import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())
@@ -218,6 +222,15 @@ const marketCap = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    @media (--desktop) {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__link {

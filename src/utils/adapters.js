@@ -368,7 +368,7 @@ export function adaptListedTokens(tokens) {
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
       }
     })
-    
+
   return {
     next: null,
     data: formattedData,

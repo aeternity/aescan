@@ -25,9 +25,8 @@ microblocks, accounts, transactions, smart contracts, names and tokens.
 Blockchain data is retrieved from [æternity middleware](https://github.com/aeternity/ae_mdw)
 and [æternity node](https://github.com/aeternity/aeternity).
 
-Vue.js and Vite provide the foundation for this project, enabling us to create a seamless and intuitive user experience.
-
-We are using Nuxt 3 and that the app is benefiting from Server-Side rendering.
+Nuxt 3, Vue.js, Vite and Pinia provide the foundation for the project, enabling us to create a seamless and intuitive
+user experience with Server Side Rendering enabled.
 
 ## Getting started
 

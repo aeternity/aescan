@@ -49,14 +49,11 @@ export function adaptTransactions(transactions, blockHeight) {
   }
 }
 
-export function adaptContracts(contracts, blockHeight) {
+export function adaptContracts(contracts) {
   const formattedData = contracts.data.map(contract => {
     return {
       contractId: contract.tx.contract_id,
-      created: formatBlockDiffAsDatetime(
-        contract.block_height,
-        blockHeight,
-      ),
+      created: DateTime.fromMillis(contract.micro_time),
       hash: contract.hash,
       createdBy: contract.tx.caller_id,
     }
@@ -245,7 +242,7 @@ export function adaptName(name, blockHeight, blockTime) {
   return formattedName
 }
 
-export function adaptNameActions(transactions, blockHeight) {
+export function adaptNameActions(transactions) {
   const formattedData = transactions.data
     .map(transaction => {
       const actionBlockHeight = transaction.payload.block_height || transaction.height
@@ -254,7 +251,7 @@ export function adaptNameActions(transactions, blockHeight) {
         createdHeightDiff: blockHeight - actionBlockHeight,
         type: transaction.type,
         hash: transaction.payload.source_tx_hash || transaction.payload.call_tx_hash || transaction.payload.hash,
-        created: formatBlockDiffAsDatetime(transaction.height, blockHeight),
+        created: DateTime.fromMillis(transaction.payload.micro_time),
       }
     })
 
@@ -266,6 +263,7 @@ export function adaptNameActions(transactions, blockHeight) {
 }
 
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
+  console.log('transactionDetails', transactionDetails)
   const created = transactionDetails.time ? DateTime.fromMillis(transactionDetails.time) : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.block_height : 0
   const blockHash = transactionDetails.block_hash !== 'none' ? transactionDetails.block_hash : null
@@ -303,6 +301,7 @@ export function adaptContractDetails(
 }
 
 export function adaptContractEvents(events, blockHeight) {
+  console.log('events', events)
   const formattedData = events.data
     .map(event => {
       return {

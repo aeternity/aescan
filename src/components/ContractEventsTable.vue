@@ -1,9 +1,9 @@
 <template>
   <table>
     <tr>
-      <th>Call transaction</th>
+      <th>Call Transaction</th>
       <th>Created</th>
-      <th>Event name</th>
+      <th>Event Name</th>
       <th>Arguments</th>
       <th>Data</th>
     </tr>

@@ -4,9 +4,9 @@
       <tr>
         <th>Participants</th>
         <th>Channel ID</th>
-        <th>On-chain updates</th>
+        <th>On-chain Updates</th>
         <th>Locked</th>
-        <th>Last updated</th>
+        <th>Last Updated</th>
         <th>Last TX type</th>
       </tr>
     </thead>

@@ -19,7 +19,7 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Expiration height
+            Expiration Height
           </th>
           <td class="account-names-table-condensed__data">
             {{ name.expirationHeight }}
@@ -27,7 +27,7 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Expires in
+            Expires In
           </th>
           <td class="account-names-table-condensed__data">
             <datetime-label :datetime="name.expires"/>
@@ -35,7 +35,7 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Points to
+            Points To
           </th>
           <td class="account-names-table-condensed__data">
             <template v-if="name.pointers.length">

@@ -35,7 +35,7 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            Created by
+            Created By
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed

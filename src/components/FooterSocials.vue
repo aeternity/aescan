@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .footer-socials {
   display: grid;
   grid-template-columns: repeat(4, 30px);

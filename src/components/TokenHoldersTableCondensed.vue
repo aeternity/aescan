@@ -33,6 +33,7 @@
           <template v-else>
             ~0
           </template>
+          %
         </td>
       </tr>
     </table>

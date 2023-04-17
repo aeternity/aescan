@@ -82,12 +82,14 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import NamesPanel from '@/components/NamesPanel'
 import AuctionsPanel from '@/components/AuctionsPanel'
 import BlockchainPanel from '@/components/BlockchainPanel'
 import StateChannelsPanel from '@/components/StateChannelsPanel'
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
+import { useWebSocket } from '@/stores/webSocket'
 
 if (process.client) {
   const {
@@ -97,6 +99,8 @@ if (process.client) {
   const { fetchBlockchainStats } = useBlockchainStatsStore()
   const { fetchStateChannels } = useStateChannelsStore()
   const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+  const webSocketStore = useWebSocket()
+  const { subscribeToKeyblockDetails } = storeToRefs(webSocketStore)
 
   // fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
   await useAsyncData(() => Promise.all([
@@ -107,6 +111,13 @@ if (process.client) {
     fetchBlockchainStats(),
     fetchDeltaStats(),
   ]))
+
+  onBeforeMount(() => {
+    subscribeToKeyblockDetails.value = true
+  })
+  onBeforeUnmount(() => {
+    subscribeToKeyblockDetails.value = false
+  })
 }
 </script>
 

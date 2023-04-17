@@ -14,6 +14,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', {
     rawSelectedMicroblockTransactions: null,
     rawSelectedKeyblock: null,
     rawSelectedMicroblock: null,
+    messageBuffer: [],
   }),
   getters: {
     selectedKeyblock: state => {
@@ -88,6 +89,145 @@ export const useRecentBlocksStore = defineStore('recentBlocks', {
     async fetchKeyblocks() {
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/key-blocks?&limit=18`)
       this.keyblocks = data.data
+    },
+    async processSocketMessage(message) {
+      console.debug('message received', message.subscription, message.payload)
+      this.messageBuffer.push(message)
+
+      if (this.messageBuffer.length > 30) {
+        await this.fetchKeyblocks()
+        await Promise.all([
+          this.fetchSelectedMicroblocksInfo(),
+          this.fetchDeltaStats(),
+        ])
+
+        console.debug('### BUFFER CLEARED ###')
+
+        this.messageBuffer = []
+        return
+      }
+
+      for (let i = this.messageBuffer.length - 1; i >= 0; i--) {
+        if (!this.consumeBufferMessage()) {
+          break
+        }
+      }
+
+      console.debug('remaining buffer:', this.messageBuffer.length, this.messageBuffer)
+    },
+    consumeBufferMessage() {
+      console.debug('buffer length', this.messageBuffer.length)
+      for (let i = 0; i < this.messageBuffer.length; i++) {
+        const message = this.messageBuffer[i]
+        let success = false
+
+        switch (message.subscription) {
+        case 'KeyBlocks':
+          success = this.processKeyblockUpdate(message.payload)
+          break
+        case 'MicroBlocks':
+          success = this.processMicroblockUpdate(message.payload)
+          break
+        default:
+          success = this.processTransactionUpdate(message.payload)
+          break
+        }
+
+        if (success) {
+          console.debug('success:', this.messageBuffer[i].subscription)
+          this.messageBuffer.splice(i, 1)
+          return true
+        }
+      }
+
+      return false
+    },
+    processKeyblockUpdate(keyblock) {
+      if (this.keyblocks?.[0].hash !== keyblock.prev_key_hash) {
+        return false
+      }
+
+      this.keyblocks.unshift({
+        transactions_count: 0,
+        micro_blocks_count: 0,
+        ...keyblock,
+      })
+
+      if (this.keyblocks.length > 18) {
+        this.keyblocks.pop()
+      }
+
+      if (this.isFirstKeyblockSelected) {
+        this.selectedKeyblockMicroblocks = []
+        this.rawSelectedMicroblock = null
+        this.rawSelectedMicroblockTransactions = null
+      }
+
+      Promise.all([
+        this.fetchKeyblocks(),
+        this.fetchDeltaStats(),
+        this.fetchBlockchainStats(),
+      ])
+
+      return true
+    },
+    processMicroblockUpdate(microblock) {
+      const parentKeyblock = this.keyblocks.find(keyblock => keyblock.height === microblock.height)
+
+      if (!parentKeyblock) {
+        return false
+      }
+
+      parentKeyblock.micro_blocks_count += 1
+
+      if (microblock.prev_key_hash === this.selectedKeyblock.hash) {
+        this.selectedKeyblockMicroblocks.unshift({
+          transactions_count: 0,
+          ...microblock,
+        })
+
+        if (this.selectedKeyblockMicroblocks.length > 30) {
+          if (this.selectedKeyblockMicroblocks.pop().hash === this.rawSelectedMicroblock?.hash) {
+            this.rawSelectedMicroblock = null
+          }
+        }
+
+        if (this.isFirstMicroblockSelected) {
+          this.rawSelectedMicroblockTransactions = { data: [] }
+        }
+      }
+
+      return true
+    },
+    processTransactionUpdate(transaction) {
+      const parentKeyblock = this.keyblocks.find(keyblock => keyblock.height === transaction.block_height)
+
+      if (!parentKeyblock) {
+        return false
+      }
+
+      parentKeyblock.transactions_count += 1
+
+      if (this.selectedKeyblock?.height !== transaction.block_height) {
+        return true
+      }
+
+      const parentMicroblock = this.selectedKeyblockMicroblocks.find(microblock => microblock.hash === transaction.block_hash)
+
+      if (!parentMicroblock) {
+        return false
+      }
+
+      parentMicroblock.transactions_count += 1
+
+      if (transaction.block_hash === this.selectedMicroblock?.hash) {
+        this.rawSelectedMicroblockTransactions.data.push({
+          micro_time: Date.now(),
+          ...transaction,
+        })
+      }
+
+      return true
     },
     async fetchSelectedMicroblocksInfo() {
       await this.fetchSelectedKeyblockMicroblocks(this.keyblocks[0].hash)

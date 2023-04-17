@@ -3,8 +3,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Expiration height</th>
-        <th>Expires in</th>
+        <th>Expires</th>
         <th>Points to</th>
       </tr>
     </thead>
@@ -17,8 +16,10 @@
             {{ name.name }}
           </app-link>
         </td>
-        <td>{{ name.expirationHeight }}</td>
         <td>
+          <div>
+            {{ name.expirationHeight }}
+          </div>
           <datetime-label :datetime="name.expires"/>
         </td>
         <td>

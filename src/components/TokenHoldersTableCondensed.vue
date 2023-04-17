@@ -19,7 +19,7 @@
           Amount
         </th>
         <td class="token-holders-table-condensed__data">
-          {{ formatNumber(holder.amount) }} {{ tokenDetails.symbol }}
+          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
         </td>
       </tr>
       <tr class="token-holders-table-condensed__row">
@@ -27,8 +27,8 @@
           Percentage
         </th>
         <td class="token-holders-table-condensed__data">
-          <template v-if="holder.percentage >= 0.00001">
-            {{ formatNumber(holder.percentage) }}
+          <template v-if="Math.abs(holder.percentage) >= 0.00001">
+            {{ formatNumber(Math.abs(holder.percentage)) }}
           </template>
           <template v-else>
             ~0
@@ -41,6 +41,8 @@
 </template>
 
 <script setup>
+import { formatNumber } from '@/utils/format'
+
 defineProps({
   tokenHolders: {
     type: Object,

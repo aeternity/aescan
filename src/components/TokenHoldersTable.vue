@@ -17,11 +17,11 @@
             :link-to="`/accounts/${holder.address}`"/>
         </td>
         <td>
-          {{ formatNumber(holder.amount) }} {{ tokenDetails.symbol }}
+          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
         </td>
         <td>
-          <template v-if="holder.percentage >= 0.00001">
-            {{ formatNumber(holder.percentage) }}
+          <template v-if="Math.abs(holder.percentage) >= 0.00001">
+            {{ formatNumber(Math.abs(holder.percentage)) }}
           </template>
           <template v-else>
             ~0
@@ -34,6 +34,8 @@
 </template>
 
 <script setup>
+import { formatNumber } from '@/utils/format'
+
 defineProps({
   tokenHolders: {
     type: Object,

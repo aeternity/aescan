@@ -263,7 +263,6 @@ export function adaptNameActions(transactions) {
 }
 
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
-  console.log('transactionDetails', transactionDetails)
   const created = transactionDetails.time ? DateTime.fromMillis(transactionDetails.time) : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.block_height : 0
   const blockHash = transactionDetails.block_hash !== 'none' ? transactionDetails.block_hash : null
@@ -301,7 +300,6 @@ export function adaptContractDetails(
 }
 
 export function adaptContractEvents(events, blockHeight) {
-  console.log('events', events)
   const formattedData = events.data
     .map(event => {
       return {

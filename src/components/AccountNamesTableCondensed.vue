@@ -19,7 +19,15 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Expires
+            Expiration Height
+          </th>
+          <td class="account-names-table-condensed__data">
+            {{ name.expirationHeight }}
+          </td>
+        </tr>
+        <tr class="account-names-table-condensed__row">
+          <th class="account-names-table-condensed__header">
+            Expires In
           </th>
           <td class="account-names-table-condensed__data">
             <div>
@@ -30,7 +38,7 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Points to
+            Points To
           </th>
           <td class="account-names-table-condensed__data">
             <template v-if="name.pointers.length">

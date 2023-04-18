@@ -5,7 +5,7 @@
         <th>Smart Contract ID</th>
         <th>Created</th>
         <th>Hash</th>
-        <th>Created by</th>
+        <th>Created By</th>
       </tr>
     </thead>
     <tbody>

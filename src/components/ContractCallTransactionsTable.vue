@@ -5,7 +5,7 @@
         <th>Hash</th>
         <th>Time</th>
         <th>Caller</th>
-        <th>Entry point</th>
+        <th>Entry Point</th>
       </tr>
     </thead>
     <tbody>

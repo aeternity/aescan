@@ -15,7 +15,7 @@
         :token-details="tokenDetails"/>
 
       <app-tabs>
-        <app-tab title="Token Holders">
+        <app-tab title="Holders">
           <token-holders-panel/>
         </app-tab>
       </app-tabs>

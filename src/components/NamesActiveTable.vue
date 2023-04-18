@@ -7,7 +7,7 @@
           <th>Expires</th>
           <th>Buyer</th>
           <th>Owner</th>
-          <th>Points to</th>
+          <th>Points To</th>
         </tr>
       </thead>
       <tbody>

@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th>Data</th>
-        <th>Highest bid</th>
+        <th>Highest Bid</th>
         <th>Expires</th>
       </tr>
     </thead>

@@ -3,9 +3,9 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Expiration height</th>
-        <th>Expires in</th>
-        <th>Points to</th>
+        <th>Expiration Height</th>
+        <th>Expires In</th>
+        <th>Points To</th>
       </tr>
     </thead>
     <tbody>

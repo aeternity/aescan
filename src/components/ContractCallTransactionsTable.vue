@@ -5,7 +5,7 @@
         <th>Hash</th>
         <th>Time</th>
         <th>Caller</th>
-        <th>Entry point</th>
+        <th>Entry Point</th>
       </tr>
     </thead>
     <tbody>
@@ -61,6 +61,7 @@ defineProps({
   &__blocks-ago {
     margin-left: var(--space-5);
   }
+
   &__column {
     width: 180px;
   }

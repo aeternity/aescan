@@ -4,8 +4,8 @@
       <tr>
         <th>Name</th>
         <th>Expired</th>
-        <th>Last buyer</th>
-        <th>Last owner</th>
+        <th>Last Buyer</th>
+        <th>Last Owner</th>
       </tr>
     </thead>
     <tbody>

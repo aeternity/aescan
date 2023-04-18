@@ -7,7 +7,7 @@
         <th>On-chain Updates</th>
         <th>Locked</th>
         <th>Last Updated</th>
-        <th>Last TX type</th>
+        <th>Last TX Type</th>
       </tr>
     </thead>
     <tbody>

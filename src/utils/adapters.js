@@ -339,11 +339,11 @@ export function adaptTokenEvents(events, blockHeight) {
   const formattedData = events.data
     .map(event => {
       return {
-        hash: event.contract_tx_hash, // todo this or call_tx_hash,
+        hash: event.contract_tx_hash,
         name: event.event_name || 'N/A',
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         args: event.args.toString(),
-        data: event.data,
+        data: event.data || 'N/A',
       }
     })
 

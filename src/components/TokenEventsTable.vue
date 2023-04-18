@@ -5,6 +5,7 @@
       <th>Name</th>
       <th>Date</th>
       <th>Arguments</th>
+      <th>Data</th>
     </tr>
     <tr
       v-for="event in tokenEvents.data"

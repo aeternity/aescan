@@ -1,9 +1,9 @@
 <template>
   <table>
     <tr>
-      <th>Call transaction</th>
+      <th>Call Transaction</th>
       <th>Created</th>
-      <th>Event name</th>
+      <th>Event Name</th>
       <th>Arguments</th>
       <th>Data</th>
     </tr>
@@ -17,6 +17,9 @@
           :link-to="`/transactions/${event.callTxHash}`"/>
       </td>
       <td class="contract-events-table__time">
+        <div>
+          {{ event.createdHeight }}
+        </div>
         <datetime-label :datetime="event.created"/>
       </td>
       <td>

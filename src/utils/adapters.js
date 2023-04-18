@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatBlocksRelative, formatDecodeBase64 } from '@/utils/format'
+import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(chainName) {
@@ -32,11 +32,11 @@ export function adaptSelectedMicroblockTransactions(transactions) {
   }
 }
 
-export function adaptTransactions(transactions, blockHeight) {
+export function adaptTransactions(transactions) {
   const formattedData = transactions.data.map(transaction => {
     return {
       hash: transaction.hash,
-      createdHeightDiff: blockHeight - transaction.block_height,
+      createdHeight: transaction.block_height,
       created: DateTime.fromMillis(transaction.micro_time),
       type: transaction.tx.type,
       data: transaction.tx,
@@ -242,15 +242,13 @@ export function adaptName(name, blockHeight, blockTime) {
   return formattedName
 }
 
-export function adaptNameActions(transactions, blockHeight) {
+export function adaptNameActions(transactions) {
   const formattedData = transactions.data
     .map(transaction => {
-      const actionBlockHeight = transaction.payload.block_height || transaction.height
-
       return {
-        createdHeightDiff: blockHeight - actionBlockHeight,
         type: transaction.type,
         hash: transaction.payload.source_tx_hash || transaction.payload.call_tx_hash || transaction.payload.hash,
+        createdHeight: transaction.payload.block_height || transaction.height,
         created: DateTime.fromMillis(transaction.payload.micro_time),
       }
     })
@@ -304,7 +302,7 @@ export function adaptContractEvents(events, blockHeight) {
     .map(event => {
       return {
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
-        createdHeightDiff: formatBlocksRelative(blockHeight - event.height),
+        createdHeight: event.height,
         eventName: event.event_name,
         args: event.args,
         data: event.data,
@@ -333,6 +331,20 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   }
 
   return tokenDetails
+}
+
+export function adaptTokenHolders(tokenHolders, tokenDetails) {
+  const formattedData = tokenHolders.data.map(holder => ({
+    address: holder.account_id,
+    amount: holder.amount / (10 ** tokenDetails.decimals),
+    percentage: (holder.amount / (10 ** (tokenDetails.decimals - 2))) / tokenDetails.totalSupply,
+  }))
+
+  return {
+    next: tokenHolders.next,
+    data: formattedData,
+    prev: tokenHolders.prev,
+  }
 }
 
 export function adaptListedTokens(tokens) {

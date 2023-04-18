@@ -22,8 +22,9 @@
             Expired
           </th>
           <td class="names-expired-table-condensed__data">
-            {{ name.expirationHeight }}
-            -
+            <div>
+              {{ name.expirationHeight }}
+            </div>
             <datetime-label :datetime="name.expiration"/>
           </td>
         </tr>
@@ -34,6 +35,7 @@
           <td class="names-expired-table-condensed__data">
             <value-hash-ellipsed
               v-if="name.lastBuyer"
+              class="names-expired-table-condensed__last-buyer"
               :hash="name.lastBuyer"
               :link-to="`/accounts/${name.lastBuyer}`"/>
             <app-chip variant="secondary">
@@ -111,12 +113,11 @@ export default {
   }
 
   &__data {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: var(--space-0) var(--space-2);
-    flex-wrap: wrap;
-    font-family: var(--font-monospaced);
+    text-align: right;
+  }
+
+  &__last-buyer {
+    margin-right: var(--space-2);
   }
 }
 </style>

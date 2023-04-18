@@ -17,9 +17,12 @@
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Time
+            Created
           </th>
           <td class="transactions-table-condensed__data">
+            <div>
+              {{ transaction.createdHeight }}
+            </div>
             <datetime-label :datetime="transaction.created"/>
           </td>
         </tr>

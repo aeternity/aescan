@@ -32,6 +32,7 @@ import TransactionsSelect from '@/components/TransactionsSelect'
 import { useTransactionsStore } from '@/stores/transactions'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 import PaginatedContent from '@/components/PaginatedContent'
+import { isDesktop } from '@/utils/screen'
 
 const transactionsStore = useTransactionsStore()
 const {

@@ -12,9 +12,6 @@
           <value-hash-ellipsed
             :hash="event.callTxHash"
             :link-to="`/transactions/${event.callTxHash}`"/>
-          <div>
-            {{ event.createdHeightDiff }}
-          </div>
         </td>
       </tr>
       <tr class="contract-events-table-condensed__row">
@@ -22,6 +19,9 @@
           Created
         </th>
         <td class="contract-events-table-condensed__data">
+          <div>
+            {{ event.createdHeight }}
+          </div>
           <datetime-label :datetime="event.created"/>
         </td>
       </tr>

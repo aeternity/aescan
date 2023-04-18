@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { adaptTransactions } from '@/utils/adapters'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useTransactionsStore = defineStore('transactions', {
   state: () => ({
@@ -11,9 +10,8 @@ export const useTransactionsStore = defineStore('transactions', {
   }),
   getters: {
     transactions: state => {
-      const store = useRecentBlocksStore()
       return state.rawTransactions
-        ? adaptTransactions(state.rawTransactions, store.blockHeight)
+        ? adaptTransactions(state.rawTransactions)
         : null
     },
   },

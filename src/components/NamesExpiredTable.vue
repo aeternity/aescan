@@ -4,8 +4,8 @@
       <tr>
         <th>Name</th>
         <th>Expired</th>
-        <th>Last buyer</th>
-        <th>Last owner</th>
+        <th>Last Buyer</th>
+        <th>Last Owner</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
           </app-link>
         </td>
         <td class="names-expired-table__column">
-          <div class="names-expired-table__value">
+          <div>
             {{ name.expirationHeight }}
           </div>
           <div>
@@ -79,10 +79,6 @@ export default {
 .names-expired-table {
   &__column {
     width: 210px;
-  }
-
-  &__value {
-    font-weight: 700;
   }
 
   &__price-label {

@@ -17,12 +17,11 @@
           <value-hash-ellipsed
             :link-to="`/transactions/${transaction.hash}`"
             :hash="transaction.hash"/>
-
-          <div class="transactions-table__blocks-ago">
-            {{ formatBlocksRelative(transaction.createdHeightDiff) }}
-          </div>
         </td>
         <td class="transactions-table__data">
+          <div>
+            {{ transaction.createdHeight }}
+          </div>
           <datetime-label :datetime="transaction.created"/>
         </td>
         <td class="transactions-table__data">
@@ -41,7 +40,6 @@
 import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { formatBlocksRelative } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 export default {
@@ -58,9 +56,6 @@ export default {
       required: true,
     },
   },
-  methods: {
-    formatBlocksRelative,
-  },
 }
 </script>
 
@@ -76,10 +71,6 @@ export default {
 
   &__data {
     vertical-align: top;
-  }
-
-  &__blocks-ago {
-    margin-left: var(--space-5);
   }
 }
 </style>

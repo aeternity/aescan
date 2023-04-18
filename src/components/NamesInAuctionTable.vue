@@ -18,7 +18,7 @@
           </app-link>
         </td>
         <td class="names-in-auction-table__column">
-          <div class="names-in-auction-table__value">
+          <div>
             {{ name.expirationHeight }}
           </div>
           <div>
@@ -76,10 +76,6 @@ export default {
 .names-in-auction-table {
   &__column {
     width: 210px;
-  }
-
-  &__value {
-    font-weight: 700;
   }
 
   &__price-label {

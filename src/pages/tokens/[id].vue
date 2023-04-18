@@ -15,9 +15,13 @@
         :token-details="tokenDetails"/>
 
       <app-tabs>
+        <app-tab title="Holders">
+          <token-holders-panel/>
+        </app-tab>
         <app-tab title="Events">
           <token-events-panel/>
         </app-tab>
+ 
       </app-tabs>
     </div>
   </div>
@@ -26,6 +30,9 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import TokenDetailsPanel from '@/components/TokenDetailsPanel'
+import TokenHoldersPanel from '@/components/TokenHoldersPanel'
+import AppTabs from '@/components/AppTabs'
+import AppTab from '@/components/AppTab'
 import PageHeader from '@/components/PageHeader'
 import { useTokenDetailsStore } from '@/stores/tokenDetails'
 import AppTabs from '~/components/AppTabs.vue'

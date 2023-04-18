@@ -48,7 +48,7 @@ await fetchTokenDetails(route.params.id)
 if (process.client) {
   const limit = isDesktop() ? 10 : 3
   await fetchTokenEvents({
-    queryParameters: `/v2/contracts/logs?contract=${route.params.id}&limit=${limit}`,
+    limit: limit.value,
   })
 }
 </script>

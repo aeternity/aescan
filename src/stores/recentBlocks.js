@@ -1,254 +1,282 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { adaptDeltaStats, adaptKeyblock, adaptSelectedMicroblockTransactions } from '@/utils/adapters'
 import { formatAettosToAe, formatNullable, formatNumber } from '@/utils/format'
 
 const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSequence?.[0].hash
 
-export const useRecentBlocksStore = defineStore('recentBlocks', {
-  state: () => ({
-    deltaStats: null,
-    keyblocks: null,
-    selectedKeyblockMicroblocks: null,
-    rawSelectedMicroblockTransactions: null,
-    rawSelectedKeyblock: null,
-    rawSelectedMicroblock: null,
-    messageBuffer: [],
-  }),
-  getters: {
-    selectedKeyblock: state => {
-      return adaptKeyblock(state.rawSelectedKeyblock || state.keyblocks?.[0])
-    },
-    isFirstKeyblockSelected: state => {
-      return isBlockFirstInSequence(state.selectedKeyblock, state.keyblocks)
-    },
-    isFirstMicroblockSelected: state => {
-      return !state.rawSelectedMicroblock || isBlockFirstInSequence(state.rawSelectedMicroblock, state.selectedKeyblockMicroblocks)
-    },
-    selectedMicroblock: state => {
-      return state.rawSelectedMicroblock || state.selectedKeyblockMicroblocks?.[0]
-    },
-    selectedKeyblockTransactionsCount() {
-      return this.selectedKeyblock ? formatNullable(formatNumber(this.selectedKeyblock?.transactions_count)) : ''
-    },
-    selectedMicroblockTransactions: state => {
-      return state.rawSelectedMicroblockTransactions
-        ? adaptSelectedMicroblockTransactions(state.rawSelectedMicroblockTransactions)
-        : null
-    },
-    selectedMicroblockTransactionsCount: state => {
-      return state.rawSelectedMicroblockTransactions?.data.length || 0
-    },
-    selectedDeltaStats: state => {
-      const selectedKeyblockHeight = state.selectedKeyblock?.height || state.blockHeight
-      return state.deltaStats ? adaptDeltaStats(state.deltaStats, selectedKeyblockHeight) : null
-    },
-    latestReward: state => {
-      return state.deltaStats ? formatAettosToAe(state.deltaStats[0].block_reward) : null
-    },
-    latestBri: state => {
-      return state.deltaStats ? formatAettosToAe(state.deltaStats[0].dev_reward) : null
-    },
-    latestKeyblockTransactionsCount(state) {
-      return state.keyblocks?.[0].transactions_count
-    },
-    blockHeight: state => {
-      return state.keyblocks?.[0].height
-    },
-  },
-  actions: {
-    async selectKeyblock(keyblock) {
-      if (isBlockFirstInSequence(keyblock, this.keyblocks)) {
-        this.rawSelectedKeyblock = null
-      } else {
-        this.rawSelectedKeyblock = keyblock
-      }
+export const useRecentBlocksStore = defineStore('recentBlocks', () => {
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { fetchBlockchainStats, increaseTotalTransactionsCounter } = useBlockchainStatsStore()
 
-      if (keyblock?.micro_blocks_count === 0) {
-        this.clearSelectedMicroblocksData()
-        return
-      }
+  const deltaStats = ref(null)
+  const keyblocks = ref(null)
+  const selectedKeyblockMicroblocks = ref(null)
+  const rawSelectedMicroblockTransactions = ref(null)
+  const rawSelectedKeyblock = ref(null)
+  const rawSelectedMicroblock = ref(null)
+  const messageBuffer = ref([])
 
-      await this.fetchSelectedKeyblockMicroblocks(keyblock.hash)
-      return this.selectMicroblock(this.selectedKeyblockMicroblocks[0])
-    },
-    selectMicroblock(microblock) {
-      if (isBlockFirstInSequence(microblock, this.selectedKeyblockMicroblocks)) {
-        this.rawSelectedMicroblock = null
-      } else {
-        this.rawSelectedMicroblock = microblock
-      }
+  const selectedKeyblock = computed(() => {
+    return adaptKeyblock(rawSelectedKeyblock.value || keyblocks.value?.[0])
+  })
+  const isFirstKeyblockSelected = computed(() => {
+    return isBlockFirstInSequence(selectedKeyblock.value, keyblocks.value)
+  })
+  const isFirstMicroblockSelected = computed(() => {
+    return !rawSelectedMicroblock.value || isBlockFirstInSequence(rawSelectedMicroblock.value, selectedKeyblockMicroblocks.value)
+  })
+  const selectedMicroblock = computed(() => {
+    return rawSelectedMicroblock.value || selectedKeyblockMicroblocks.value?.[0]
+  })
+  const selectedKeyblockTransactionsCount = computed(() => {
+    return selectedKeyblock.value ? formatNullable(formatNumber(selectedKeyblock.value?.transactions_count)) : ''
+  })
+  const selectedMicroblockTransactions = computed(() => {
+    return rawSelectedMicroblockTransactions.value
+      ? adaptSelectedMicroblockTransactions(rawSelectedMicroblockTransactions.value)
+      : null
+  })
+  const selectedMicroblockTransactionsCount = computed(() => {
+    return rawSelectedMicroblockTransactions.value?.data.length || 0
+  })
+  const selectedDeltaStats = computed(() => {
+    const selectedKeyblockHeight = selectedKeyblock.value?.height || blockHeight.value
+    return deltaStats.value ? adaptDeltaStats(deltaStats.value, selectedKeyblockHeight) : null
+  })
+  const latestReward = computed(() => {
+    return deltaStats.value ? formatAettosToAe(deltaStats.value[0].block_reward) : null
+  })
+  const latestBri = computed(() => {
+    return deltaStats.value ? formatAettosToAe(deltaStats.value[0].dev_reward) : null
+  })
+  const latestKeyblockTransactionsCount = computed(() => {
+    return keyblocks.value?.[0].transactions_count
+  })
+  const blockHeight = computed(() => {
+    return keyblocks.value?.[0].height
+  })
 
-      return this.fetchSelectedMicroblockTransactions()
-    },
-    clearSelectedMicroblocksData() {
-      this.selectedKeyblockMicroblocks = []
-      this.rawSelectedMicroblockTransactions = null
-    },
-    async fetchKeyblocks() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/key-blocks?&limit=18`)
-      this.keyblocks = data.data
-    },
-    async processSocketMessage(message) {
-      console.debug('message received', message.subscription, message.payload)
-      this.messageBuffer.push(message)
+  async function selectKeyblock(keyblock) {
+    if (isBlockFirstInSequence(keyblock, keyblocks.value)) {
+      rawSelectedKeyblock.value = null
+    } else {
+      rawSelectedKeyblock.value = keyblock
+    }
 
-      if (this.messageBuffer.length > 30) {
-        await this.fetchKeyblocks()
-        await Promise.all([
-          this.fetchSelectedMicroblocksInfo(),
-          this.fetchDeltaStats(),
-        ])
+    if (keyblock?.micro_blocks_count === 0) {
+      clearSelectedMicroblocksData()
+      return
+    }
 
-        console.debug('### BUFFER CLEARED ###')
+    await fetchSelectedKeyblockMicroblocks(keyblock.hash)
+    return selectMicroblock(selectedKeyblockMicroblocks.value[0])
+  }
 
-        this.messageBuffer = []
-        return
-      }
+  function selectMicroblock(microblock) {
+    if (isBlockFirstInSequence(microblock, selectedKeyblockMicroblocks.value)) {
+      rawSelectedMicroblock.value = null
+    } else {
+      rawSelectedMicroblock.value = microblock
+    }
 
-      for (let i = this.messageBuffer.length - 1; i >= 0; i--) {
-        if (!this.consumeBufferMessage()) {
-          break
-        }
-      }
+    return fetchSelectedMicroblockTransactions()
+  }
 
-      console.debug('remaining buffer:', this.messageBuffer.length, this.messageBuffer)
-    },
-    consumeBufferMessage() {
-      console.debug('buffer length', this.messageBuffer.length)
-      for (let i = 0; i < this.messageBuffer.length; i++) {
-        const message = this.messageBuffer[i]
-        let success = false
+  function clearSelectedMicroblocksData() {
+    selectedKeyblockMicroblocks.value = []
+    rawSelectedMicroblockTransactions.value = null
+  }
 
-        switch (message.subscription) {
-        case 'KeyBlocks':
-          success = this.processKeyblockUpdate(message.payload)
-          break
-        case 'MicroBlocks':
-          success = this.processMicroblockUpdate(message.payload)
-          break
-        default:
-          success = this.processTransactionUpdate(message.payload)
-          break
-        }
+  async function fetchKeyblocks() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=18`)
+    keyblocks.value = data.data
+  }
 
-        if (success) {
-          console.debug('success:', this.messageBuffer[i].subscription)
-          this.messageBuffer.splice(i, 1)
-          return true
-        }
-      }
+  async function processSocketMessage(message) {
+    messageBuffer.value.push(message)
 
-      return false
-    },
-    processKeyblockUpdate(keyblock) {
-      if (this.keyblocks?.[0].hash !== keyblock.prev_key_hash) {
-        return false
-      }
-
-      this.keyblocks.unshift({
-        transactions_count: 0,
-        micro_blocks_count: 0,
-        ...keyblock,
-      })
-
-      if (this.keyblocks.length > 18) {
-        this.keyblocks.pop()
-      }
-
-      if (this.isFirstKeyblockSelected) {
-        this.selectedKeyblockMicroblocks = []
-        this.rawSelectedMicroblock = null
-        this.rawSelectedMicroblockTransactions = null
-      }
-
-      Promise.all([
-        this.fetchKeyblocks(),
-        this.fetchDeltaStats(),
-        this.fetchBlockchainStats(),
+    if (messageBuffer.value.length > 30) {
+      await Promise.all([
+        fetchKeyblocks().then(fetchSelectedMicroblocksInfo()),
+        fetchDeltaStats(),
+        fetchBlockchainStats(),
       ])
 
-      return true
-    },
-    processMicroblockUpdate(microblock) {
-      const parentKeyblock = this.keyblocks.find(keyblock => keyblock.height === microblock.height)
+      messageBuffer.value = []
+      return
+    }
 
-      if (!parentKeyblock) {
-        return false
+    for (let i = messageBuffer.value.length - 1; i >= 0; i--) {
+      if (!consumeBufferMessage()) {
+        break
+      }
+    }
+  }
+
+  function consumeBufferMessage() {
+    for (let i = 0; i < messageBuffer.value.length; i++) {
+      const message = messageBuffer.value[i]
+      let success = false
+
+      switch (message.subscription) {
+      case 'KeyBlocks':
+        success = processKeyblockUpdate(message.payload)
+        break
+      case 'MicroBlocks':
+        success = processMicroblockUpdate(message.payload)
+        break
+      default:
+        success = processTransactionUpdate(message.payload)
+        break
       }
 
-      parentKeyblock.micro_blocks_count += 1
-
-      if (microblock.prev_key_hash === this.selectedKeyblock.hash) {
-        this.selectedKeyblockMicroblocks.unshift({
-          transactions_count: 0,
-          ...microblock,
-        })
-
-        if (this.selectedKeyblockMicroblocks.length > 30) {
-          if (this.selectedKeyblockMicroblocks.pop().hash === this.rawSelectedMicroblock?.hash) {
-            this.rawSelectedMicroblock = null
-          }
-        }
-
-        if (this.isFirstMicroblockSelected) {
-          this.rawSelectedMicroblockTransactions = { data: [] }
-        }
-      }
-
-      return true
-    },
-    processTransactionUpdate(transaction) {
-      const parentKeyblock = this.keyblocks.find(keyblock => keyblock.height === transaction.block_height)
-
-      if (!parentKeyblock) {
-        return false
-      }
-
-      parentKeyblock.transactions_count += 1
-
-      if (this.selectedKeyblock?.height !== transaction.block_height) {
+      if (success) {
+        messageBuffer.value.splice(i, 1)
         return true
       }
+    }
 
-      const parentMicroblock = this.selectedKeyblockMicroblocks.find(microblock => microblock.hash === transaction.block_hash)
+    return false
+  }
 
-      if (!parentMicroblock) {
-        return false
+  function processKeyblockUpdate(keyblock) {
+    if (keyblocks.value?.[0].hash !== keyblock.prev_key_hash) {
+      return false
+    }
+
+    keyblocks.value.unshift({
+      transactions_count: 0,
+      micro_blocks_count: 0,
+      ...keyblock,
+    })
+
+    if (keyblocks.value.length > 18) {
+      keyblocks.value.pop()
+    }
+
+    if (isFirstKeyblockSelected.value) {
+      selectedKeyblockMicroblocks.value = []
+      rawSelectedMicroblock.value = null
+      rawSelectedMicroblockTransactions.value = null
+    }
+
+    Promise.all([
+      fetchKeyblocks(),
+      fetchDeltaStats(),
+      fetchBlockchainStats(),
+    ])
+
+    return true
+  }
+
+  function processMicroblockUpdate(microblock) {
+    const parentKeyblock = keyblocks.value.find(keyblock => keyblock.height === microblock.height)
+
+    if (!parentKeyblock) {
+      return false
+    }
+
+    parentKeyblock.micro_blocks_count += 1
+
+    if (microblock.prev_key_hash === selectedKeyblock.value.hash) {
+      selectedKeyblockMicroblocks.value.unshift({
+        transactions_count: 0,
+        ...microblock,
+      })
+
+      if (selectedKeyblockMicroblocks.value.length > 30) {
+        if (selectedKeyblockMicroblocks.value.pop().hash === rawSelectedMicroblock.value?.hash) {
+          rawSelectedMicroblock.value = null
+        }
       }
 
-      parentMicroblock.transactions_count += 1
-
-      if (transaction.block_hash === this.selectedMicroblock?.hash) {
-        this.rawSelectedMicroblockTransactions.data.push({
-          micro_time: Date.now(),
-          ...transaction,
-        })
+      if (isFirstMicroblockSelected.value) {
+        rawSelectedMicroblockTransactions.value = { data: [] }
       }
+    }
 
+    return true
+  }
+
+  function processTransactionUpdate(transaction) {
+    const parentKeyblock = keyblocks.value.find(keyblock => keyblock.height === transaction.block_height)
+
+    if (!parentKeyblock) {
+      return false
+    }
+
+    parentKeyblock.transactions_count += 1
+    increaseTotalTransactionsCounter()
+
+    if (selectedKeyblock.value?.height !== transaction.block_height) {
       return true
-    },
-    async fetchSelectedMicroblocksInfo() {
-      await this.fetchSelectedKeyblockMicroblocks(this.keyblocks[0].hash)
-      await this.fetchSelectedMicroblockTransactions()
-    },
-    async fetchSelectedKeyblockMicroblocks(hash) {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/key-blocks/${hash}/micro-blocks?limit=30`)
-      this.selectedKeyblockMicroblocks = data.data
-    },
-    async fetchSelectedMicroblockTransactions(queryParameters = null) {
-      if (!this.selectedMicroblock) {
-        return
-      }
+    }
 
-      const defaultParameters = `/v2/micro-blocks/${this.selectedMicroblock.hash}/txs?limit=4`
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-      this.rawSelectedMicroblockTransactions = data
-    },
-    async fetchDeltaStats() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/deltastats?limit=20`)
-      this.deltaStats = data.data
-    },
-  },
+    const parentMicroblock = selectedKeyblockMicroblocks.value.find(microblock => microblock.hash === transaction.block_hash)
+
+    if (!parentMicroblock) {
+      return false
+    }
+
+    parentMicroblock.transactions_count += 1
+
+    if (transaction.block_hash === selectedMicroblock.value?.hash) {
+      rawSelectedMicroblockTransactions.value.data.push({
+        micro_time: Date.now(),
+        ...transaction,
+      })
+    }
+
+    return true
+  }
+
+  async function fetchSelectedMicroblocksInfo() {
+    await fetchSelectedKeyblockMicroblocks(keyblocks.value[0].hash)
+    await fetchSelectedMicroblockTransactions()
+  }
+
+  async function fetchSelectedKeyblockMicroblocks(hash) {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${hash}/micro-blocks?limit=30`)
+    selectedKeyblockMicroblocks.value = data.data
+  }
+
+  async function fetchSelectedMicroblockTransactions(queryParameters = null) {
+    if (!selectedMicroblock.value) {
+      return
+    }
+
+    const defaultParameters = `/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=4`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawSelectedMicroblockTransactions.value = data
+  }
+
+  async function fetchDeltaStats() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/deltastats?limit=20`)
+    deltaStats.value = data.data
+  }
+
+  return {
+    fetchDeltaStats,
+    fetchKeyblocks,
+    fetchSelectedMicroblocksInfo,
+    fetchSelectedMicroblockTransactions,
+    processSocketMessage,
+    selectKeyblock,
+    selectMicroblock,
+    blockHeight,
+    keyblocks,
+    latestKeyblockTransactionsCount,
+    latestReward,
+    latestBri,
+    selectedKeyblock,
+    selectedDeltaStats,
+    selectedKeyblockTransactionsCount,
+    selectedKeyblockMicroblocks,
+    selectedMicroblock,
+    selectedMicroblockTransactionsCount,
+    selectedMicroblockTransactions,
+  }
 })

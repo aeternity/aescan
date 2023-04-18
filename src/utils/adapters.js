@@ -242,7 +242,7 @@ export function adaptName(name, blockHeight, blockTime) {
   return formattedName
 }
 
-export function adaptNameActions(transactions) {
+export function adaptNameActions(transactions, blockHeight) {
   const formattedData = transactions.data
     .map(transaction => {
       const actionBlockHeight = transaction.payload.block_height || transaction.height

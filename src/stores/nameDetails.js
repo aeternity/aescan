@@ -18,7 +18,8 @@ export const useNameDetailsStore = defineStore('nameDetails', {
       return state.rawName?.hash || state.rawName?.info.last_bid.tx.name_id
     },
     nameActions(state) {
-      return state.rawNameActions ? adaptNameActions(state.rawNameActions) : null
+      const { blockHeight } = useRecentBlocksStore()
+      return state.rawNameActions ? adaptNameActions(state.rawNameActions, blockHeight) : null
     },
     hasNameHistory() {
       return !!this.nameHash

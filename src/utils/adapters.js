@@ -310,6 +310,7 @@ export function adaptContractEvents(events, blockHeight) {
         callTxHash: event.call_tx_hash,
       }
     })
+
   return {
     next: events.next,
     data: formattedData,
@@ -333,7 +334,6 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
 
   return tokenDetails
 }
-
 
 export function adaptTokenEvents(events, blockHeight) {
   const formattedData = events.data

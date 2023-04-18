@@ -20,6 +20,9 @@
             Time
           </th>
           <td class="name-history-table-condensed__data">
+            <div>
+              {{ action.createdHeight }}
+            </div>
             <datetime-label :datetime="action.created"/>
           </td>
         </tr>

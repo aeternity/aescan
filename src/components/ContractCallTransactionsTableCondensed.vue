@@ -12,10 +12,6 @@
           <value-hash-ellipsed
             :hash="transaction.hash"
             :link-to="`/transactions/${transaction.hash}`"/>
-
-          <div class="account-transactions-panel__blocks-ago">
-            {{ formatBlocksRelative(transaction.createdHeightDiff) }}
-          </div>
         </td>
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">
@@ -23,6 +19,9 @@
           Time
         </th>
         <td class="contract-call-transactions-table-condensed__data">
+          <div>
+            {{ transaction.createdHeight }}
+          </div>
           <datetime-label :datetime="transaction.created"/>
         </td>
       </tr>
@@ -51,7 +50,6 @@
 </template>
 
 <script setup>
-import { formatBlocksRelative } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'

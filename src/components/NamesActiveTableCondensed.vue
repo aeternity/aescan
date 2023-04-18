@@ -22,8 +22,9 @@
             Expires
           </th>
           <td class="names-active-table-condensed__data">
-            {{ name.expirationHeight }}
-            -
+            <div>
+              {{ name.expirationHeight }}
+            </div>
             <datetime-label :datetime="name.expiration"/>
           </td>
         </tr>
@@ -35,7 +36,8 @@
             <value-hash-ellipsed
               v-if="name.buyer"
               :hash="name.buyer"
-              :link-to="`/accounts/${name.buyer}`"/>
+              :link-to="`/accounts/${name.buyer}`"
+              class="names-active-table-condensed__buyer"/>
             <app-chip variant="secondary">
               {{ formatAePrice(name.fee) }}
             </app-chip>
@@ -133,12 +135,11 @@ export default {
   }
 
   &__data {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: var(--space-0) var(--space-2);
-    flex-wrap: wrap;
-    font-family: var(--font-monospaced);
+    text-align: right;
+  }
+
+  &__buyer {
+    margin-right: var(--space-2);
   }
 }
 </style>

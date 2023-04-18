@@ -20,6 +20,9 @@
             Created
           </th>
           <td class="contracts-table-condensed__data">
+            <div>
+              {{ contract.createdHeight }}
+            </div>
             <datetime-label :datetime="contract.created"/>
           </td>
         </tr>

@@ -18,12 +18,11 @@
           <value-hash-ellipsed
             :hash="transaction.hash"
             :link-to="`/transactions/${transaction.hash}`"/>
-
-          <div class="contract-call-transactions-table__blocks-ago">
-            {{ formatBlocksRelative(transaction.createdHeightDiff) }}
-          </div>
         </td>
         <td class="contract-call-transactions-table__column">
+          <div>
+            {{ transaction.createdHeight }}
+          </div>
           <datetime-label :datetime="transaction.created"/>
         </td>
         <td class="contract-call-transactions-table__column">
@@ -43,7 +42,6 @@
 
 <script setup>
 import HashSymbol from '@/components/HashSymbol'
-import { formatBlocksRelative } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'
@@ -58,10 +56,6 @@ defineProps({
 
 <style scoped>
 .contract-call-transactions-table {
-  &__blocks-ago {
-    margin-left: var(--space-5);
-  }
-
   &__column {
     width: 180px;
   }

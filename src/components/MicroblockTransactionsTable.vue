@@ -7,7 +7,7 @@
       <thead>
         <tr>
           <th>Hash</th>
-          <th>Age</th>
+          <th>Created</th>
           <th>Type</th>
           <th>Data</th>
         </tr>

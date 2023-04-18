@@ -12,12 +12,18 @@
             Account
           </th>
           <td class="transaction-pointers-panel__data">
-            <value-hash-ellipsed
+            <app-link
               v-if="pointers.account_pubkey"
-              :hash="pointers.account_pubkey"
-              :link-to="`/accounts/${pointers.account_pubkey}`"/>
+              :to="`/accounts/${pointers.account_pubkey}`">
+              <span class="transaction-pointers-panel__link-text">
+                {{ pointers.account_pubkey }}
+              </span>
+              <span class="transaction-pointers-panel__link-text-ellipse">{{
+                formatEllipseHash(pointers.account_pubkey)
+              }}</span>
+            </app-link>
             <template v-else>
-              {{ formatNullable(pointers.account_pubkey) }}
+              ---
             </template>
           </td>
         </tr>
@@ -33,13 +39,19 @@
           <th class="transaction-pointers-panel__table-header">
             Smart Contracts
           </th>
-          <td class="transaction-pointers-panel__data">
-            <value-hash-ellipsed
+          <td class="transaction-pointers-panel__data">            
+            <app-link
               v-if="pointers.contract_pubkey"
-              :hash="pointers.contract_pubkey"
-              :link-to="`/contracts/${pointers.contract_pubkey}`"/>
+              :to="`/contracts/${pointers.contract_pubkey}`">
+              <span class="transaction-pointers-panel__link-text">
+                {{ pointers.contract_pubkey }}
+              </span>
+              <span class="transaction-pointers-panel__link-text-ellipse">{{
+                formatEllipseHash(pointers.contract_pubkey)
+              }}</span>
+            </app-link>
             <template v-else>
-              {{ formatNullable(pointers.contract_pubkey) }}
+              ---
             </template>
           </td>
         </tr>
@@ -127,6 +139,19 @@ export default {
   &__data {
     word-wrap: break-word;
     text-align: right;
+  }
+
+  &__link-text {
+    display: none;
+    @media (--desktop) {
+      display: revert;
+    }
+  }
+
+  &__link-text-ellipse {
+    @media (--desktop) {
+      display: none;
+    }
   }
 
   &__row:last-of-type &__table-header {

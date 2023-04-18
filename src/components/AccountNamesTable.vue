@@ -3,8 +3,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Expiration Height</th>
-        <th>Expires In</th>
+        <th>Expires</th>
         <th>Points To</th>
       </tr>
     </thead>

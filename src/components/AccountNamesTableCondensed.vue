@@ -19,15 +19,7 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Expiration Height
-          </th>
-          <td class="account-names-table-condensed__data">
-            {{ name.expirationHeight }}
-          </td>
-        </tr>
-        <tr class="account-names-table-condensed__row">
-          <th class="account-names-table-condensed__header">
-            Expires In
+            Expires
           </th>
           <td class="account-names-table-condensed__data">
             <div>

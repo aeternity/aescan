@@ -5,12 +5,11 @@ table {
 
 th {
   text-align: left;
-  font-size: 14px;
-  line-height: 20px;
-  font-family: var(--font-primary);
   font-weight: 500;
   vertical-align: initial;
   padding: var(--space-1) 0;
+  letter-spacing: 0.03em;
+
 
   @media (--desktop) {
     font-size: 16px;
@@ -25,13 +24,9 @@ td {
   text-align: left;
   font-family: var(--font-monospaced);
   font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
   padding: var(--space-1) 0;
 
   @media (--desktop) {
-    font-size: 14px;
-    line-height: 20px;
     padding: var(--space-1) var(--space-0);
   }
 }

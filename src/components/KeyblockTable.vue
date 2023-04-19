@@ -110,7 +110,6 @@ export default {
       padding: var(--space-2) 0 var(--space-1);
       font-size: 16px;
       line-height: 24px;
-      letter-spacing: 0.03em;
     }
   }
 

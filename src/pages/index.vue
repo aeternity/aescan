@@ -151,7 +151,6 @@ if (process.client) {
   &__subtitle {
     margin: var(--space-3) var(--space-1) var(--space-4);
     font-family: var(--font-monospaced);
-    letter-spacing: -0.005em;
     font-size: 12px;
     line-height: 20px;
 

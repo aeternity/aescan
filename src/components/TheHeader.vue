@@ -181,6 +181,7 @@ export default {
   }
 
   &__button {
+    font-weight: 500;
     padding: var(--space-3) 91px;
 
     @media (--desktop) {

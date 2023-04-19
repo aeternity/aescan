@@ -161,7 +161,7 @@ function scrollToPaginatedContent() {
   }
 
   &__highlighted {
-    font-weight: 600;
+    font-weight: 700;
   }
 
   &__blank-state {

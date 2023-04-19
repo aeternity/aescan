@@ -74,7 +74,6 @@ export default {
 
     color: var(--color-white);
     font-family: var(--font-monospaced);
-    font-weight: 500;
     cursor: pointer;
 
     @media (--desktop) {

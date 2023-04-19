@@ -1,8 +1,8 @@
 <template>
   <app-panel class="name-pointers-custom-panel">
-    <h3 class="name-pointers-custom-panel__heading">
+    <h2 class="name-pointers-custom-panel__heading h3">
       CUSTOM POINTERS
-    </h3>
+    </h2>
     <table>
       <tbody>
         <tr>

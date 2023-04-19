@@ -1,9 +1,9 @@
 <template>
   <app-panel class="token-details-panel">
     <header class="token-details-panel__header">
-      <h3 class="token-details-panel__heading">
+      <h2 class="token-details-panel__heading h3">
         DETAILS
-      </h3>
+      </h2>
       <div class="token-details-panel__container">
         <token-symbol-icon
           :contract-id="tokenDetails.contract_id"

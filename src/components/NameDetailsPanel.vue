@@ -3,9 +3,9 @@
     v-if="name"
     class="name-details-panel">
     <header class="name-details-panel__header">
-      <h3 class="name-details-panel__heading">
+      <h2 class="name-details-panel__heading h3">
         DETAILS
-      </h3>
+      </h2>
       <copy-chip
         class="name-details-panel__name"
         :label="name.name"/>

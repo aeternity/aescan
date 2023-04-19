@@ -1,9 +1,9 @@
 <template>
   <app-panel class="account-details-panel">
     <header class="account-details-panel__header">
-      <h3 class="account-details-panel__heading">
+      <h2 class="account-details-panel__heading h3">
         DETAILS
-      </h3>
+      </h2>
       <div>
         <app-chip
           v-if="accountDetails.isGeneralized"

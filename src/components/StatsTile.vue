@@ -6,13 +6,12 @@
         :size="32"/>
     </app-badge>
     <div class="stats-tile__body">
-      <div class="stats-tile__title h4">
-        <!--          todo h4 or h5-->
+      <h3 class="stats-tile__title h4">
         {{ title }}
         <hint-tooltip class="stats-tile__tooltip">
           <slot name="tooltip"/>
         </hint-tooltip>
-      </div>
+      </h3>
       <slot/>
     </div>
   </div>

@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-type-panel">
     <header class="transaction-type-panel__header">
-      <h3 class="transaction-type-panel__heading">
+      <h2 class="transaction-type-panel__heading h3">
         {{ typeName }} DETAILS
-      </h3>
+      </h2>
       <div class="transaction-type-panel__container">
         <app-link
           v-if="transactionData.type === 'SpendTx' && transactionData.recipient?.account"

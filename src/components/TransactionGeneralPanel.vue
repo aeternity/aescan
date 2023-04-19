@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-general-panel">
     <header class="transaction-general-panel__header">
-      <h3 class="transaction-general-panel__heading">
+      <h2 class="transaction-general-panel__heading h3">
         GENERAL DETAILS
-      </h3>
+      </h2>
       <div class="transaction-general-panel__container">
         <div class="transaction-general-panel__link-text">
           <copy-chip :label="transactionDetails.hash"/>

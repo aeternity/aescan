@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-pointers-panel">
     <header class="transaction-pointers-panel__header">
-      <h3 class="transaction-pointers-panel__heading">
+      <h2 class="transaction-pointers-panel__heading h3">
         NAME POINTERS
-      </h3>
+      </h2>
     </header>
     <table class="transaction-pointers-panel__table">
       <tbody>
@@ -106,7 +106,6 @@ export default {
   }
 
   &__header {
-    margin-bottom: var(--space-5);
     @media (--desktop) {
       display: flex;
       justify-content: space-between;

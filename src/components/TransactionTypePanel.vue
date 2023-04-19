@@ -13,14 +13,13 @@
           </app-chip>
         </app-link>
         <template v-if="transactionData.type === 'PayingForTx'">
-          <div class="transaction-type-panel__link-text">
-            <copy-chip :label="transactionData.payer_id"/>
-          </div>
-          <div class="transaction-type-panel__link-text-ellipse">
-            <copy-chip
-              :label="formatEllipseHash(transactionData.payer_id)"
-              :clipboard-text="transactionData.payer_id"/>
-          </div>
+          <copy-chip
+            :label="transactionData.payer_id"
+            class="transaction-type-panel__copy-chip"/>
+          <copy-chip
+            :label="formatEllipseHash(transactionData.payer_id)"
+            :clipboard-text="transactionData.payer_id"
+            class="transaction-type-panel__copy-chip-ellipse"/>
           <app-chip variant="primary">
             {{ transactionData.tx.tx.type }}
           </app-chip>
@@ -142,14 +141,15 @@ export default {
     }
   }
 
-  &__link-text {
+  &__copy-chip {
     display: none;
+
     @media (--desktop) {
-      display: revert;
+      display: inline-flex;
     }
   }
 
-  &__link-text-ellipse {
+  &__copy-chip-ellipse {
     @media (--desktop) {
       display: none;
     }

@@ -14,10 +14,8 @@
           <the-search-bar class="hero__search-bar"/>
         </div>
       </div>
-      <client-only>
-        <market-stats class="hero__market-stats"/>
-        <stats-panel/>
-      </client-only>
+      <market-stats class="hero__market-stats"/>
+      <stats-panel/>
     </div>
   </div>
 </template>

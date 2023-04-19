@@ -1,7 +1,7 @@
 <template>
-  <h2 class="subtitle">
+  <h1 class="subtitle">
     <slot/>
-  </h2>
+  </h1>
 </template>
 <script>
 export default {
@@ -13,8 +13,5 @@ export default {
 .subtitle {
   color: var(--color-midnight);
   margin-bottom: var(--space-3);
-  font-size: 28px;
-  line-height: 36px;
-  letter-spacing: 0.03em;
 }
 </style>

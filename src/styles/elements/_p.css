@@ -1,0 +1,10 @@
+p {
+  font-family: var(--font-monospaced);
+
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  @media (--desktop) {
+    font-size: 14px;
+  }
+}

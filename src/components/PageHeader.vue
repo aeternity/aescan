@@ -33,12 +33,8 @@ export default {
   }
 
   &__subtitle {
-    font-size: 28px;
-    line-height: 36px;
     margin-bottom: var(--space-4);
     @media (--desktop) {
-      font-size: 40px;
-      line-height: 48px;
       margin-bottom: 0;
     }
   }

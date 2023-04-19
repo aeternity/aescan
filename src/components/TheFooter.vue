@@ -3,7 +3,7 @@
     <div class="footer__container">
       <div class="footer__body">
         <div class="footer__column">
-          <div class="footer__title">
+          <header class="footer__header">
             <app-tooltip>
               <app-link to="https://aeternity.com/">
                 <img
@@ -17,7 +17,7 @@
                 æternity blockchain
               </template>
             </app-tooltip>
-          </div>
+          </header>
           <p class="footer__paragraph">
             æScan is the Explorer for the æternity Blockchain.
           </p>
@@ -166,7 +166,7 @@ export default {
     margin-right: var(--space-2);
   }
 
-  &__title {
+  &__header {
     display: flex;
     align-items: center;
     margin-bottom: var(--space-3);

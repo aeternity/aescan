@@ -63,13 +63,8 @@ const selectedNetwork = ref(config.public.NETWORK_NAME.toLowerCase())
 
   &__heading {
     color: var(--color-white);
-    font-size: 28px;
-    line-height: 36px;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-2);
     @media (--desktop) {
-      font-size: 40px;
-      line-height: 48px;
       margin-bottom: var(--space-3);
     }
   }

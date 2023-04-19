@@ -9,12 +9,12 @@
     </app-badge>
     <div class="panel-header__body">
       <div class="panel-header__container">
-        <div class="panel-header__title">
+        <h2 class="panel-header__heading h3">
           {{ title }}
           <hint-tooltip v-if="$slots.tooltip">
             <slot name="tooltip"/>
           </hint-tooltip>
-        </div>
+        </h2>
         <slot name="header"/>
       </div>
 
@@ -87,6 +87,7 @@ export default {
   }
 
   &__link {
+    /*todo link*/
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
@@ -99,18 +100,10 @@ export default {
     }
   }
 
-  &__title {
+  &__heading {
     display: flex;
     gap: var(--space-0);
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.03em;
     font-style: normal;
-    font-weight: 500;
-    @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
-    }
   }
 }
 </style>

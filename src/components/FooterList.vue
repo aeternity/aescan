@@ -41,7 +41,6 @@ export default {
 .footer-list {
   &__heading {
     margin-bottom: var(--space-0);
-    font-weight: 500;
   }
 
   &__list {

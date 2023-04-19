@@ -49,6 +49,7 @@ if (process.client) {
   const limit = isDesktop() ? 10 : 3
   await fetchTokenEvents({
     limit: limit.value,
+    contractId: route.params.id,
   })
 }
 </script>

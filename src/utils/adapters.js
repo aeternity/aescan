@@ -54,6 +54,7 @@ export function adaptContracts(contracts) {
     return {
       contractId: contract.tx.contract_id,
       created: DateTime.fromMillis(contract.micro_time),
+      createdHeight: contract.block_height,
       hash: contract.hash,
       createdBy: contract.tx.caller_id,
     }

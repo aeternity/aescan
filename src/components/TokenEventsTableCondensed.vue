@@ -30,20 +30,16 @@
           <datetime-label :datetime="event.created"/>
         </td>
       </tr>
-      <tr class="token-events-table-condensed__row">
-        <th class="token-events-table-condensed__header">
-          Arguments
-        </th>
-        <td class="token-events-table-condensed__data  token-events-table-condensed__args">
-          {{ event.args }}
-        </td>
-      </tr>
+
       <tr class="token-events-table-condensed__row">
         <th class="token-events-table-condensed__header">
           Data
         </th>
         <td class="token-events-table-condensed__data token-events-table-condensed__event-data">
-          {{ event.data }}
+          <token-events-data-cell
+            :name="event.name"
+            :data="event.data"
+            :args="event.args"/>
         </td>
       </tr>
     </table>
@@ -52,6 +48,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import TokenEventsDataCell from '~/components/TokenEventsDataCell.vue'
 
 defineProps({
   tokenEvents: {

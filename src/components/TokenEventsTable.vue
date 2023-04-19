@@ -4,7 +4,6 @@
       <th>Hash</th>
       <th>Name</th>
       <th>Date</th>
-      <th>Arguments</th>
       <th>Data</th>
     </tr>
     <tr
@@ -22,17 +21,19 @@
       <td>
         <datetime-label :datetime="event.created"/>
       </td>
-      <td class="token-events-table__args">
-        {{ event.args }}
-      </td>
       <td>
-        {{ event.data }}
+        <token-events-data-cell
+          :name="event.name"
+          :data="event.data"
+          :args="event.args"/>
       </td>
     </tr>
   </table>
 </template>
 
 <script setup>
+import TokenEventsDataCell from '~/components/TokenEventsDataCell.vue'
+
 defineProps({
   tokenEvents: {
     type: Object,

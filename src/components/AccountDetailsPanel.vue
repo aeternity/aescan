@@ -154,14 +154,8 @@ export default {
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }
@@ -194,12 +188,6 @@ export default {
 
   &__data {
     text-align: right;
-    letter-spacing: -0.005em;
-    font-size: 12px;
-    line-height: 20px;
-    @media (--desktop) {
-      font-size: 14px;
-    }
   }
 
   &__container {

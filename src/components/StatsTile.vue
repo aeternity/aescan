@@ -7,6 +7,7 @@
     </app-badge>
     <div class="stats-tile__body">
       <div class="stats-tile__title h4">
+        <!--          todo h4 or h5-->
         {{ title }}
         <hint-tooltip class="stats-tile__tooltip">
           <slot name="tooltip"/>

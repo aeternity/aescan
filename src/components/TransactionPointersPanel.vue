@@ -39,7 +39,7 @@
           <th class="transaction-pointers-panel__table-header">
             Smart Contracts
           </th>
-          <td class="transaction-pointers-panel__data">            
+          <td class="transaction-pointers-panel__data">
             <app-link
               v-if="pointers.contract_pubkey"
               :to="`/contracts/${pointers.contract_pubkey}`">
@@ -70,14 +70,12 @@
 
 <script>
 import AppPanel from '@/components/AppPanel'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { formatNullable } from '@/utils/format'
 
 export default {
   name: 'TransactionPointersPanel',
   components: {
     AppPanel,
-    ValueHashEllipsed,
   },
   props: {
     transactionData: {

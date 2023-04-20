@@ -9,12 +9,14 @@
     </app-badge>
     <div class="panel-header__body">
       <div class="panel-header__container">
-        <h2 class="panel-header__heading h3">
+        <component
+          :is="level"
+          class="panel-header__heading h3">
           {{ title }}
           <hint-tooltip v-if="$slots.tooltip">
             <slot name="tooltip"/>
           </hint-tooltip>
-        </h2>
+        </component>
         <slot name="header"/>
       </div>
 
@@ -39,6 +41,11 @@ export default {
   name: 'PanelHeader',
   components: { AppLink, AppIcon, AppBadge, HintTooltip },
   props: {
+    level: {
+      type: String,
+      required: true,
+      validator: val => ['h2', 'h3', 'h4', 'h5'].includes(val),
+    },
     iconName: {
       type: String,
       default: null,

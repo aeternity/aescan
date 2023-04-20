@@ -2,6 +2,7 @@
   <app-panel class="dashboard-microblocks-panel">
     <div class="dashboard-microblocks-panel__container">
       <panel-header
+        level="h4"
         class="dashboard-microblocks-panel__panel-header"
         title="Microblocks"
         icon-name="microblocks">

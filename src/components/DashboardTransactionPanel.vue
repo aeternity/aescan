@@ -1,6 +1,7 @@
 <template>
   <app-panel class="dashboard-transactions-panel">
     <panel-header
+      level="h5"
       class="dashboard-transactions-panel__panel-header"
       title="Transactions"
       show-all-link="/transactions"

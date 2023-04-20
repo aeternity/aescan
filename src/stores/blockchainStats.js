@@ -44,7 +44,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', {
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs/count`)
       this.transactionsCount = data
     },
-    increaseTotalTransactionsCounter() {
+    increaseTransactionsCounter() {
       this.transactionsCount += 1
     },
   },

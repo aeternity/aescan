@@ -4,12 +4,13 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { adaptDeltaStats, adaptKeyblock, adaptSelectedMicroblockTransactions } from '@/utils/adapters'
 import { formatAettosToAe, formatNullable, formatNumber } from '@/utils/format'
+import { MESSAGE_BUFFER_SIZE_LIMIT, VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_MICROBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'
 
 const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSequence?.[0].hash
 
 export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const { fetchBlockchainStats, increaseTotalTransactionsCounter } = useBlockchainStatsStore()
+  const { fetchBlockchainStats, increaseTransactionsCounter } = useBlockchainStatsStore()
 
   const deltaStats = ref(null)
   const keyblocks = ref(null)
@@ -91,22 +92,25 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   async function fetchKeyblocks() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=18`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
     keyblocks.value = data.data
   }
 
-  async function processSocketMessage(message) {
+  async function resetMessageBuffer() {
+    messageBuffer.value = []
+
+    await Promise.all([
+      fetchKeyblocks().then(fetchSelectedMicroblocksInfo()),
+      fetchDeltaStats(),
+      fetchBlockchainStats(),
+    ])
+  }
+
+  function processSocketMessage(message) {
     messageBuffer.value.push(message)
 
-    if (messageBuffer.value.length > 30) {
-      await Promise.all([
-        fetchKeyblocks().then(fetchSelectedMicroblocksInfo()),
-        fetchDeltaStats(),
-        fetchBlockchainStats(),
-      ])
-
-      messageBuffer.value = []
-      return
+    if (messageBuffer.value.length > MESSAGE_BUFFER_SIZE_LIMIT) {
+      return resetMessageBuffer()
     }
 
     for (let i = messageBuffer.value.length - 1; i >= 0; i--) {
@@ -143,6 +147,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   function processKeyblockUpdate(keyblock) {
+    // ignore if current keyblock is not selected
     if (keyblocks.value?.[0].hash !== keyblock.prev_key_hash) {
       return false
     }
@@ -153,16 +158,18 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       ...keyblock,
     })
 
-    if (keyblocks.value.length > 18) {
+    if (keyblocks.value.length > VISIBLE_KEYBLOCKS_LIMIT) {
       keyblocks.value.pop()
     }
 
+    // switching to new keyblock - clear the data of the old one
     if (isFirstKeyblockSelected.value) {
       selectedKeyblockMicroblocks.value = []
       rawSelectedMicroblock.value = null
       rawSelectedMicroblockTransactions.value = null
     }
 
+    // fetch latest keyblock data to prevent stale data caused by microforks
     Promise.all([
       fetchKeyblocks(),
       fetchDeltaStats(),
@@ -187,7 +194,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
         ...microblock,
       })
 
-      if (selectedKeyblockMicroblocks.value.length > 30) {
+      if (selectedKeyblockMicroblocks.value.length > VISIBLE_MICROBLOCKS_LIMIT) {
         if (selectedKeyblockMicroblocks.value.pop().hash === rawSelectedMicroblock.value?.hash) {
           rawSelectedMicroblock.value = null
         }
@@ -209,7 +216,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     }
 
     parentKeyblock.transactions_count += 1
-    increaseTotalTransactionsCounter()
+    increaseTransactionsCounter()
 
     if (selectedKeyblock.value?.height !== transaction.block_height) {
       return true
@@ -224,10 +231,12 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     parentMicroblock.transactions_count += 1
 
     if (transaction.block_hash === selectedMicroblock.value?.hash) {
-      rawSelectedMicroblockTransactions.value.data.push({
-        micro_time: Date.now(),
-        ...transaction,
-      })
+      if (rawSelectedMicroblockTransactions.value.data.length < VISIBLE_TRANSACTIONS_LIMIT) {
+        rawSelectedMicroblockTransactions.value.data.push({
+          micro_time: Date.now(),
+          ...transaction,
+        })
+      }
     }
 
     return true
@@ -239,7 +248,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   async function fetchSelectedKeyblockMicroblocks(hash) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${hash}/micro-blocks?limit=30`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${hash}/micro-blocks?limit=${VISIBLE_MICROBLOCKS_LIMIT}`)
     selectedKeyblockMicroblocks.value = data.data
   }
 
@@ -248,7 +257,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       return
     }
 
-    const defaultParameters = `/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=4`
+    const defaultParameters = `/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=${VISIBLE_TRANSACTIONS_LIMIT}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawSelectedMicroblockTransactions.value = data
   }

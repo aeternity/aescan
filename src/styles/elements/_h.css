@@ -11,12 +11,9 @@ h1,
 .h1 {
   font-size: 28px;
   line-height: 36px;
-  /* is the margin right in here? */
-  margin-bottom: var(--space-2);
   @media (--desktop) {
     font-size: 40px;
     line-height: 48px;
-    margin-bottom: var(--space-3);
   }
 }
 

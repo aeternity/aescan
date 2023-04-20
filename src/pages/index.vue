@@ -12,12 +12,13 @@
           </h2>
         </div>
         <div class="dashboard__column">
-          <div class="dashboard__subtitle dashboard__subtitle--horizontal">
+          <div class="dashboard__paragraph dashboard__paragraph--horizontal p">
             Discover and navigate through the æternity blockchain mainnet,
             powered by Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
             <app-link
               class="dashboard__link"
-              to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b">
+              to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b"
+              is-text-link>
               Learn more
             </app-link>
             <p>Soon also with Hyperchains support!</p>
@@ -35,7 +36,7 @@
           <h2 class="dashboard__heading">
             .chain names
           </h2>
-          <div class="dashboard__subtitle">
+          <div class="dashboard__paragraph p">
             The æternity blockchain supports protocol-level .chain names via the
             æternity naming system (AENS).
           </div>
@@ -47,7 +48,7 @@
           <h2 class="dashboard__heading">
             .chain name auctions
           </h2>
-          <div class="dashboard__subtitle">
+          <div class="dashboard__paragraph p">
             .chain names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
           </div>
@@ -62,13 +63,14 @@
           <h2 class="dashboard__heading">
             State channels
           </h2>
-          <div class="dashboard__subtitle">
+          <div class="dashboard__paragraph p">
             State Channels allow the gas-free execution of smart contracts and
             transactions, privately and with the speed of light, while still
             being able to escalate on-chain in case of disagreement.
             <app-link
               class="dashboard__link"
-              to="https://aeternity.com/state-channels">
+              to="https://aeternity.com/state-channels"
+              is-text-link>
               Learn more
             </app-link>
           </div>
@@ -148,16 +150,10 @@ if (process.client) {
     }
   }
 
-  &__subtitle {
+  &__paragraph {
     margin: var(--space-3) var(--space-1) var(--space-4);
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
-
     @media (--desktop) {
       margin: var(--space-3) 0 var(--space-6);
-      font-size: 14px;
-      line-height: 20px;
     }
 
     &--horizontal {
@@ -173,7 +169,6 @@ if (process.client) {
   }
 
   &__link {
-    text-decoration: underline;
     font-weight: 500;
   }
 }

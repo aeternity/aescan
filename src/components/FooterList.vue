@@ -11,7 +11,8 @@
         class="footer-list__item">
         <app-link
           :to="link.url"
-          class="footer-list__link">
+          class="footer-list__link"
+          is-text-link>
           {{ link.label }}
         </app-link>
       </li>
@@ -58,12 +59,7 @@ export default {
   }
 
   &__link {
-    text-decoration: none;
     color: var(--color-midnight);
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   &__tooltip {

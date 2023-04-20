@@ -164,7 +164,6 @@ export default {
 
   &__link {
     display: none;
-    text-decoration: none;
     flex-basis: 100%;
     justify-content: center;
     margin-top: var(--space-2);

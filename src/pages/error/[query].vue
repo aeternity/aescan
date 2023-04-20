@@ -92,9 +92,6 @@ export default {
 
   &__button {
     width: 200px;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.015em;
     padding: var(--space-3) var(--space-5);
   }
 

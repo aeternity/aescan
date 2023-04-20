@@ -196,7 +196,6 @@ export default {
   }
 
   &__link {
-    font-weight: 400;
     display: inline-flex;
     align-items: center;
   }

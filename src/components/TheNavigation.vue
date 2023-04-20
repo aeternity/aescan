@@ -93,7 +93,6 @@ export default {
   }
 
   &__link {
-    text-decoration: none;
     color: var(--color-midnight);
     display: block;
     padding: var(--space-3) 0;

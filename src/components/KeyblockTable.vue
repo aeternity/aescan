@@ -108,8 +108,6 @@ export default {
     border-bottom: 1px solid var(--color-midnight-15);
     @media (--desktop) {
       padding: var(--space-2) 0 var(--space-1);
-      font-size: 16px;
-      line-height: 24px;
     }
   }
 

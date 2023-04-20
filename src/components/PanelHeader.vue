@@ -21,6 +21,7 @@
       <app-link
         v-if="showAllLink"
         :to="showAllLink"
+        is-text-link
         class="panel-header__link">
         Show all
       </app-link>
@@ -87,12 +88,10 @@ export default {
   }
 
   &__link {
-    /*todo link*/
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
     white-space: nowrap;
-    text-decoration: underline;
     @media (--desktop) {
       font-size: 16px;
       line-height: 24px;

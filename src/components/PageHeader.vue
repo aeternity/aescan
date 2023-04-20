@@ -1,20 +1,20 @@
 <template>
   <header class="page-header">
-    <app-subtitle class="page-header__subtitle">
+    <app-title>
       <slot/>
-    </app-subtitle>
+    </app-title>
     <the-search-bar class="page-header__search-bar"/>
   </header>
 </template>
 
 <script>
 import TheSearchBar from '@/components/TheSearchBar'
-import AppSubtitle from '@/components/AppSubtitle'
+import AppTitle from '~/components/AppTitle.vue'
 
 export default {
   name: 'PageHeader',
   components: {
-    AppSubtitle,
+    AppTitle,
     TheSearchBar,
   },
 }
@@ -30,13 +30,6 @@ export default {
 
   @media (--desktop) {
     margin: 0 0 var(--space-6);
-  }
-
-  &__subtitle {
-    margin-bottom: var(--space-4);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
   }
 
   &__search-bar {

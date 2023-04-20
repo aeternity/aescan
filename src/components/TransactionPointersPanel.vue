@@ -37,7 +37,7 @@
         </tr>
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">
-            Smart Contracts
+            Smart Contract
           </th>
           <td class="transaction-pointers-panel__data">
             <app-link

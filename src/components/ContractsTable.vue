@@ -5,7 +5,7 @@
         <th>Smart Contract ID</th>
         <th>Created</th>
         <th>Hash</th>
-        <th>Created by</th>
+        <th>Created By</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +18,9 @@
             :hash="contract.contractId"/>
         </td>
         <td class="contracts-table__data">
+          <div>
+            {{ contract.createdHeight }}
+          </div>
           <datetime-label :datetime="contract.created"/>
         </td>
         <td class="contracts-table__data">
@@ -39,7 +42,6 @@
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import HashSymbol from '@/components/HashSymbol'
-import { formatBlocksRelative } from '@/utils/format'
 
 export default {
   name: 'ContractsTable',
@@ -49,9 +51,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  methods: {
-    formatBlocksRelative,
   },
 }
 </script>

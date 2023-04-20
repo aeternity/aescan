@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptTokenDetails } from '@/utils/adapters'
+import { adaptTokenDetails, adaptTokenHolders } from '@/utils/adapters'
 import { formatTokenPairRouteAsRatio } from '@/utils/format'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
 import { useAesdk } from '@/stores/aesdk'
@@ -10,16 +10,25 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const { AE_TOKEN_ID, DEX_BACKEND_URL } = useRuntimeConfig().public
   const { aeSdk } = storeToRefs(useAesdk())
 
-  const rawToken = ref(null)
   const tokenId = ref(null)
-  const rawTotalSupply = ref(null)
   const price = ref(null)
+  const rawToken = ref(null)
+  const rawTotalSupply = ref(null)
+  const rawTokenHolders = ref(null)
 
   const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
       rawToken.value,
       rawTotalSupply.value,
       price.value,
+    )
+    : null,
+  )
+
+  const tokenHolders = computed(() => tokenDetails.value?.totalSupply && rawTokenHolders.value
+    ? adaptTokenHolders(
+      rawTokenHolders.value,
+      tokenDetails.value,
     )
     : null,
   )
@@ -64,8 +73,17 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     price.value = formatTokenPairRouteAsRatio(data[0])
   }
 
+  async function fetchTokenHolders({ queryParameters, limit } = {}) {
+    rawTokenHolders.value = null
+    const defaultParameters = `/v2/aex9/${tokenId.value}/balances?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawTokenHolders.value = data
+  }
+
   return {
     fetchTokenDetails,
+    fetchTokenHolders,
     tokenDetails,
+    tokenHolders,
   }
 })

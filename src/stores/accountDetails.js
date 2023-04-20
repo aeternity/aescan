@@ -32,9 +32,8 @@ export const useAccountStore = defineStore('account', {
         : null
     },
     accountTransactions(state) {
-      const store = useRecentBlocksStore()
       return state.rawAccountTransactions
-        ? adaptTransactions(state.rawAccountTransactions, store.blockHeight)
+        ? adaptTransactions(state.rawAccountTransactions)
         : null
     },
     accountNames(state) {

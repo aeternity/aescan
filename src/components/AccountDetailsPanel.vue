@@ -34,7 +34,7 @@
             Balance
           </th>
           <td class="account-details-panel__data">
-            {{ formatAePrice(accountDetails.balance) }}
+            {{ formatAePrice(accountDetails.balance, null) }}
           </td>
         </tr>
         <tr class="account-details-panel__row">

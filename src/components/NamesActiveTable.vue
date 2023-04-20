@@ -7,7 +7,7 @@
           <th>Expires</th>
           <th>Buyer</th>
           <th>Owner</th>
-          <th>Points to</th>
+          <th>Points To</th>
         </tr>
       </thead>
       <tbody>
@@ -20,7 +20,7 @@
             </app-link>
           </td>
           <td class="names-active-table__column">
-            <div class="names-active-table__expiration-height">
+            <div>
               {{ name.expirationHeight }}
             </div>
             <datetime-label :datetime="name.expiration"/>
@@ -96,10 +96,6 @@ export default {
 
   &__pointer {
     display: block;
-  }
-
-  &__expiration-height {
-    font-weight: 600;
   }
 }
 </style>

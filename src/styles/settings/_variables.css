@@ -20,9 +20,7 @@
   --font-primary: ClashDisplay, Arial, sans-serif;
   --font-monospaced: 'Roboto Mono', monospaced, sans-serif;
   --container-width: 1200px;
-
-  /* here just to help IDE with autocomplete and validating variable */
-  /* declaration which is actually working is in .postcssrc */
-  @custom-media --desktop (min-width: 1200px);
-  /*todo remove from config*/
 }
+
+@custom-media --desktop (min-width: 1200px);
+

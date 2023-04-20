@@ -14,11 +14,10 @@
           way.
         </p>
 
-        <p
-          class="
-          not-found-error__paragraph">
+        <p class="not-found-error__paragraph">
           Maybe the
-          <app-link to="https://forum.aeternity.com/">community
+          <app-link to="https://forum.aeternity.com/">
+            community
           </app-link>
           can help you.
         </p>

@@ -9,7 +9,7 @@
 
 <script>
 import TheSearchBar from '@/components/TheSearchBar'
-import AppTitle from '~/components/AppTitle.vue'
+import AppTitle from '@/components/AppTitle'
 
 export default {
   name: 'PageHeader',

@@ -11,21 +11,14 @@
       <app-panel class="search-error__panel">
         <p class="search-error__paragraph">
           Oops! We are sorry. The search string
-          <span
-            class="
-          search-error__query">
+          <span class="search-error__query">
             {{ $route.params.query }}</span>
           was not found.
         </p>
 
-        <p
-          class="search-error__paragraph">
+        <p class="search-error__paragraph">
           Ask for help in the
-          <app-link
-            to="
-          https:
-          forum.aeternity.com
-          ">
+          <app-link to="https://forum.aeternity.com&quot;">
             Forum
           </app-link>
           if the error persists.

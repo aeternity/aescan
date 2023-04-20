@@ -9,15 +9,23 @@
       </page-header>
 
       <app-panel class="search-error__panel">
-        <p class="search-error__paragraph p">
+        <p class="search-error__paragraph">
           Oops! We are sorry. The search string
-          <span class="search-error__query">{{ $route.params.query }}</span>
+          <span
+            class="
+          search-error__query">
+            {{ $route.params.query }}</span>
           was not found.
         </p>
 
-        <p class="search-error__paragraph p">
+        <p
+          class="search-error__paragraph">
           Ask for help in the
-          <app-link to="https://forum.aeternity.com/">
+          <app-link
+            to="
+          https:
+          forum.aeternity.com
+          ">
             Forum
           </app-link>
           if the error persists.
@@ -91,7 +99,7 @@ export default {
   }
 
   &__button {
-    width: 200px;
+    width: 215px;
     padding: var(--space-3) var(--space-5);
   }
 

@@ -98,6 +98,7 @@ export default {
     padding: var(--space-3) 0;
     font-size: 16px;
     line-height: 24px;
+    letter-spacing: 0.002em;
 
     @media (--desktop) {
       padding: 0;

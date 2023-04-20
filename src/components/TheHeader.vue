@@ -180,7 +180,6 @@ export default {
   }
 
   &__button {
-    font-weight: 500;
     padding: var(--space-3) 91px;
 
     @media (--desktop) {
@@ -198,6 +197,7 @@ export default {
     font-family: var(--font-monospaced);
     font-size: 11px;
     line-height: 16px;
+    letter-spacing: 0.0015em;
   }
 
   &__survey-link {

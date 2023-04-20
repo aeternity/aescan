@@ -74,6 +74,7 @@ const selectedNetwork = ref(config.public.NETWORK_NAME.toLowerCase())
     font-size: 14px;
     line-height: 20px;
     font-family: var(--font-monospaced);
+    letter-spacing: 0.0015em;
   }
 
   &__search-column {

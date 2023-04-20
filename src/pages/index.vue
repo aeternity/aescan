@@ -12,7 +12,7 @@
           </h2>
         </div>
         <div class="dashboard__column">
-          <div class="dashboard__paragraph dashboard__paragraph--horizontal p">
+          <p class="dashboard__paragraph dashboard__paragraph--horizontal">
             Discover and navigate through the æternity blockchain mainnet,
             powered by Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
             <app-link
@@ -21,8 +21,9 @@
               is-text-link>
               Learn more
             </app-link>
-            <p>Soon also with Hyperchains support!</p>
-          </div>
+            <br>
+            Soon also with Hyperchains support!
+          </p>
         </div>
       </div>
       <div class="dashboard__row">
@@ -36,10 +37,10 @@
           <h2 class="dashboard__heading">
             .chain names
           </h2>
-          <div class="dashboard__paragraph p">
+          <p class="dashboard__paragraph">
             The æternity blockchain supports protocol-level .chain names via the
             æternity naming system (AENS).
-          </div>
+          </p>
           <client-only>
             <names-panel/>
           </client-only>
@@ -48,36 +49,34 @@
           <h2 class="dashboard__heading">
             .chain name auctions
           </h2>
-          <div class="dashboard__paragraph p">
+          <p class="dashboard__paragraph">
             .chain names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
-          </div>
+          </p>
           <client-only>
             <auctions-panel>Auctions ending soon</auctions-panel>
           </client-only>
         </div>
       </div>
 
-      <div class="dashboard__row">
-        <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            State channels
-          </h2>
-          <div class="dashboard__paragraph p">
-            State Channels allow the gas-free execution of smart contracts and
-            transactions, privately and with the speed of light, while still
-            being able to escalate on-chain in case of disagreement.
-            <app-link
-              class="dashboard__link"
-              to="https://aeternity.com/state-channels"
-              is-text-link>
-              Learn more
-            </app-link>
-          </div>
-          <client-only>
-            <state-channels-panel class="dashboard__state-channels-panel"/>
-          </client-only>
-        </div>
+      <div class="dashboard__column">
+        <h2 class="dashboard__heading">
+          State channels
+        </h2>
+        <p class="dashboard__paragraph">
+          State Channels allow the gas-free execution of smart contracts and
+          transactions, privately and with the speed of light, while still
+          being able to escalate on-chain in case of disagreement.
+          <app-link
+            class="dashboard__link"
+            to="https://aeternity.com/state-channels"
+            is-text-link>
+            Learn more
+          </app-link>
+        </p>
+        <client-only>
+          <state-channels-panel class="dashboard__state-channels-panel"/>
+        </client-only>
       </div>
     </div>
   </div>
@@ -169,6 +168,10 @@ if (process.client) {
   }
 
   &__link {
+    font-size: 14px;
+    line-height: 20px;
+
+    font-family: var(--font-monospaced);
     font-weight: 500;
   }
 }

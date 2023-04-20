@@ -12,7 +12,7 @@
     :rel="isOpenedInNewTab ? 'noopener noreferrer' : false"
     :target="target"
     :href="to"
-    :class="['link', {'link--primary': variant === 'primary'}]">
+    :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]">
     <slot/>
   </a>
 </template>

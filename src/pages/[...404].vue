@@ -9,12 +9,14 @@
       </page-header>
 
       <app-panel class="not-found-error__panel">
-        <p class="not-found-error__paragraph p">
+        <p class="not-found-error__paragraph">
           Sorry, the page you requested was not found. Perhaps our Dashboard options will help you find the
           way.
         </p>
 
-        <p class="not-found-error__paragraph p">
+        <p
+          class="
+          not-found-error__paragraph">
           Maybe the
           <app-link to="https://forum.aeternity.com/">community
           </app-link>
@@ -90,7 +92,7 @@ export default {
   }
 
   &__button {
-    width: 200px;
+    width: 215px;
     padding: var(--space-3) var(--space-5);
   }
 

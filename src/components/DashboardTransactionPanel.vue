@@ -76,9 +76,11 @@ export default {
   }
 
   &__summary {
-    font-family: var(--font-monospaced);
     display: block;
     margin-bottom: var(--space-1);
+    font-family: var(--font-monospaced);
+    font-size: 14px;
+    line-height: 20px;
     @media (--desktop) {
       margin-bottom: 0;
       display: none;

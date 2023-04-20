@@ -18,10 +18,11 @@
               </template>
             </app-tooltip>
           </header>
-          <p class="footer__paragraph p">
+          <p class="footer__paragraph">
             æScan is the Explorer for the æternity Blockchain.
           </p>
-          <p class="footer__paragraph p">
+
+          <p class="footer__paragraph">
             Engineered to scale and last, æternity is an easily accessible
             blockchain platform for the global public. With numerous innovative
             functionalities and performance far ahead of earlier blockchains,
@@ -116,9 +117,10 @@ export default {
   }
 
   &__network {
-    margin: var(--space-4) 0;
     font-family: var(--font-monospaced);
+    font-size: 14px;
 
+    margin: var(--space-4) 0;
     @media (--desktop) {
       margin: 0 0 48px;
     }

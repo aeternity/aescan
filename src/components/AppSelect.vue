@@ -101,6 +101,8 @@ export default {
   &__single {
     line-height: 20px;
     color: var(--color-midnight);
+    font-size: 14px;
+    line-height: 20px;
   }
 
   &__content-wrapper {
@@ -115,6 +117,8 @@ export default {
     border: solid var(--color-midnight-35);
     border-width: 1px 0;
     color: solid var(--color-midnight);
+    font-size: 14px;
+    line-height: 20px;
 
     &:last-child {
       border-width: 1px 0 0;

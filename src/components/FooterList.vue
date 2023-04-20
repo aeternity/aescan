@@ -11,8 +11,7 @@
         class="footer-list__item">
         <app-link
           :to="link.url"
-          class="footer-list__link"
-          is-text-link>
+          class="footer-list__link">
           {{ link.label }}
         </app-link>
       </li>

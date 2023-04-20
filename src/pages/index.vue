@@ -170,9 +170,7 @@ if (process.client) {
   &__link {
     font-size: 14px;
     line-height: 20px;
-
     font-family: var(--font-monospaced);
-    font-weight: 500;
   }
 }
 </style>

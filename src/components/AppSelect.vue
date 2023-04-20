@@ -99,7 +99,6 @@ export default {
   }
 
   &__single {
-    line-height: 20px;
     color: var(--color-midnight);
     font-size: 14px;
     line-height: 20px;

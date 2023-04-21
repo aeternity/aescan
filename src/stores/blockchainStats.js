@@ -17,12 +17,14 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', {
     burnedCount: null,
   }),
   actions: {
-    fetchBlockchainStats() {
-      return Promise.all([
+    async fetchBlockchainStats() {
+      await Promise.all([
         this.fetchTotalStats(),
         this.fetchMaxTps(),
         this.fetchTotalTransactionsCount(),
       ])
+
+      return true
     },
     async fetchTotalStats() {
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/totalstats?limit=1`)

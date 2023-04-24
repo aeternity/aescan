@@ -52,6 +52,8 @@ export default {
         this.$router.push(`/transactions/${this.query}`)
       } else if (this.isContractId(this.query)) {
         this.$router.push(`/contracts/${this.query}`)
+      } else if (this.isOracleId(this.query)) {
+        this.$router.push(`/oracles/${this.query}`)
       } else if (this.isNameId(this.query)) {
         this.$router.push(`/names/${this.query}`)
       } else if (await this.isAccountName(this.query)) {
@@ -72,6 +74,9 @@ export default {
     },
     isContractId(query) {
       return isAddressValid(query) && query.startsWith('ct_')
+    },
+    isOracleId(query) {
+      return isAddressValid(query) && query.startsWith('ok_')
     },
     async isAccountName(query) {
       return await this.isNameAvailable(query)

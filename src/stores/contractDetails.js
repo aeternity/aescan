@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { adaptContractDetails, adaptContractEvents, adaptTransactions } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { DEX_TOKENS } from '@/utils/constants'
 
 export const useContractDetailsStore = defineStore('contractDetails', {
   state: () => ({
@@ -42,17 +43,7 @@ export const useContractDetailsStore = defineStore('contractDetails', {
       this.contractCreationTx = data?.data[0]
     },
     async fetchContractType() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.DEX_BACKEND_URL}/tokens/listed`)
-      const dexTokens = data.map(contract => contract.address)
-
-      // workaround for the fact that the middleware doesn't include AE contract
-      if (useRuntimeConfig().public.NETWORK_NAME === 'MAINNET') {
-        dexTokens.push('ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa')
-      } else {
-        dexTokens.push('ct_JDp175ruWd7mQggeHewSLS1PFXt9AzThCDaFedxon8mF8xTRF')
-      }
-
-      if (dexTokens.includes(this.contractId)) {
+      if (DEX_TOKENS.includes(this.contractId)) {
         this.contractType = 'DEX'
         return
       }

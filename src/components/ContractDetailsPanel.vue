@@ -43,7 +43,9 @@
             <datetime-label :datetime="contractDetails.creationDate"/>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
+        <tr
+          v-if="contractDetails.createdBy"
+          class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Created by
           </th>
@@ -58,7 +60,9 @@
             </app-link>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
+        <tr
+          v-if="contractDetails.bytecode"
+          class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Bytecode
           </th>

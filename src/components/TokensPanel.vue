@@ -44,7 +44,7 @@ async function loadNextTokens() {
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 if (process.client) {
-  await fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
+  fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
 }
 
 </script>

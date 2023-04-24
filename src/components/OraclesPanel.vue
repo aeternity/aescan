@@ -3,7 +3,6 @@
     <paginated-content
       v-if="oracles"
       :entities="oracles"
-      :total-count="oraclesCount"
       :limit="limit"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
@@ -23,7 +22,6 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useOraclesStore } from '@/stores/oracles'
-import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import OraclesTableCondensed from '@/components/OraclesTableCondensed'
 import OraclesTable from '@/components/OraclesTable'
 import PaginatedContent from '@/components/PaginatedContent'
@@ -32,10 +30,6 @@ import { isDesktop } from '@/utils/screen'
 const oraclesStore = useOraclesStore()
 const { fetchOracles } = oraclesStore
 const { oracles } = storeToRefs(oraclesStore)
-
-const blockchainStatsStore = useBlockchainStatsStore()
-const { fetchBlockchainStats } = blockchainStatsStore
-const { oraclesCount } = storeToRefs(blockchainStatsStore)
 
 const limit = computed(() => isDesktop() ? 10 : 3)
 
@@ -46,8 +40,6 @@ async function loadPrevOracles() {
 async function loadNextOracles() {
   await fetchOracles({ queryParameters: oracles.value.next })
 }
-
-await useAsyncData(() => fetchBlockchainStats())
 
 if (process.client) {
   fetchOracles({

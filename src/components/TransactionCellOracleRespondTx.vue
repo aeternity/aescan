@@ -1,7 +1,7 @@
 <template>
   <value-hash-ellipsed
     :hash="transactionData.oracle_id"
-    :link-to="`/accounts/${transactionData.oracle_id}`"/>
+    :link-to="`/oracle/${transactionData.oracle_id}`"/>
 
   <transaction-arrow-right-icon/>
 

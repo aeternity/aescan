@@ -5,7 +5,9 @@
 
   <transaction-arrow-right-icon/>
 
-  <value-hash-ellipsed :hash="transactionData.oracle_id"/>
+  <value-hash-ellipsed
+    :hash="transactionData.oracle_id"
+    :link-to="`/oracles/${transactionData.oracle_id}`"/>
 
   <app-chip
     size="sm"

@@ -1,4 +1,4 @@
-name: Production pipelines
+name: Production pipelines - mainnet
 
 on:
   push:
@@ -9,7 +9,7 @@ env:
   ENV: "prd"
   APP: "aescan"
 
-concurrency: aescan_production_environment
+concurrency: aescan_production_environment-${{ github.ref }}
 
 jobs:
   main:

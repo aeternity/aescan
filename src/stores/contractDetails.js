@@ -42,7 +42,7 @@ export const useContractDetailsStore = defineStore('contractDetails', {
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs?limit=1&contract=${this.contractId}&direction=forward`)
       this.contractCreationTx = data?.data[0]
     },
-    async fetchContractType() {
+    fetchContractType() {
       if (DEX_TOKENS.includes(this.contractId)) {
         this.contractType = 'DEX'
         return

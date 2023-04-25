@@ -13,8 +13,8 @@
         </div>
         <div class="dashboard__column">
           <p class="dashboard__paragraph dashboard__paragraph--horizontal">
-            Discover and navigate through the æternity blockchain mainnet,
-            powered by Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
+            Discover and navigate through the æternity blockchain mainnet, powered by
+            Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
             <app-link
               class="dashboard__link"
               to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b"
@@ -38,8 +38,8 @@
             .chain names
           </h2>
           <p class="dashboard__paragraph">
-            The æternity blockchain supports protocol-level .chain names via the
-            æternity naming system (AENS).
+            The æternity blockchain supports protocol-level .chain names via the æternity naming system
+            (AENS).
           </p>
           <client-only>
             <names-panel/>

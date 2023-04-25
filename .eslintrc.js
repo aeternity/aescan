@@ -82,6 +82,6 @@ module.exports = {
     camelcase: ['error', {
       properties: 'never',
     }],
-    'max-len': ['error', { code: 120 }],
+    'max-len': ['error', { code: 120, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true }],
   },
 }

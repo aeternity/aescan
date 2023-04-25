@@ -41,9 +41,7 @@
             The æternity blockchain supports protocol-level .chain names via the
             æternity naming system (AENS).
           </div>
-          <client-only>
-            <names-panel/>
-          </client-only>
+          <names-panel/>
         </div>
         <div class="dashboard__column">
           <h2 class="dashboard__heading">
@@ -53,9 +51,7 @@
             .chain names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
           </p>
-          <client-only>
-            <auctions-panel>Auctions ending soon</auctions-panel>
-          </client-only>
+          <auctions-panel>Auctions ending soon</auctions-panel>
         </div>
       </div>
 
@@ -74,9 +70,7 @@
               Learn more
             </app-link>
           </div>
-          <client-only>
-            <state-channels-panel class="dashboard__state-channels-panel"/>
-          </client-only>
+          <state-channels-panel class="dashboard__state-channels-panel"/>
         </div>
       </div>
     </div>

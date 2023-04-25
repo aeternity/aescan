@@ -8,10 +8,8 @@
         icon-name="microblocks">
         <template #tooltip>
           Microblocks can be created every 3 seconds by the current leader, are linked to a specific keyblock
-          and
-          include all types of on-chain transactions. The next leader is incentivized to keep the microblocks
-          in the
-          blockchain as he receives 40% of the fees of the transactions.
+          and include all types of on-chain transactions. The next leader is incentivized to keep the
+          microblocks in the blockchain as he receives 40% of the fees of the transactions.
         </template>
         <template #header>
           <div class="dashboard-microblocks-panel__summary dashboard-microblocks-panel__summary--desktop">

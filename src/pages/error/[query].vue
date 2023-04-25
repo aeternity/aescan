@@ -18,7 +18,7 @@
 
         <p class="search-error__paragraph">
           Ask for help in the
-          <app-link to="https://forum.aeternity.com&quot;">
+          <app-link to="https://forum.aeternity.com/">
             Forum
           </app-link>
           if the error persists.

@@ -5,14 +5,13 @@
         GENERAL DETAILS
       </h2>
       <div class="transaction-general-panel__container">
-        <div class="transaction-general-panel__link-text">
-          <copy-chip :label="transactionDetails.hash"/>
-        </div>
-        <div class="transaction-general-panel__link-text-ellipse">
-          <copy-chip
-            :label="formatEllipseHash(transactionDetails.hash)"
-            :clipboard-text="transactionDetails.hash"/>
-        </div>
+        <copy-chip
+          :label="transactionDetails.hash"
+          class="transaction-general-panel__hash"/>
+        <copy-chip
+          :label="formatEllipseHash(transactionDetails.hash)"
+          :clipboard-text="transactionDetails.hash"
+          class="transaction-general-panel__hash-ellipse"/>
         <app-chip variant="primary">
           {{ transactionDetails.type }}
         </app-chip>
@@ -229,15 +228,13 @@ export default {
     }
   }
 
-  &__link-text,
   &__hash {
     display: none;
     @media (--desktop) {
-      display: revert;
+      display: inline-flex;
     }
   }
 
-  &__link-text-ellipse,
   &__hash-ellipse {
     @media (--desktop) {
       display: none;

@@ -15,14 +15,16 @@ export const useContractDetailsStore = defineStore('contractDetails', {
     rawContractCallTransactions: null,
   }),
   actions: {
-    fetchContractDetails(contractId) {
+    async fetchContractDetails(contractId) {
       this.contractId = contractId
-      return Promise.allSettled([
+      await Promise.allSettled([
         this.fetchContractInformation(),
         this.fetchContractCallsCount(),
         this.fetchContractCreationTx(),
         this.fetchContractType(),
       ])
+
+      return true
     },
     async fetchContractInformation() {
       this.rawContractInformation = null

@@ -28,9 +28,7 @@
             Price
           </th>
           <td class="token-details-panel__data">
-            <client-only>
-              {{ fiatPrice }} ({{ formatAePrice(tokenDetails.price) }})
-            </client-only>
+            {{ fiatPrice }} ({{ formatAePrice(tokenDetails.price) }})
           </td>
         </tr>
         <tr
@@ -40,9 +38,7 @@
             Market cap
           </th>
           <td class="token-details-panel__data">
-            <client-only>
-              {{ marketCap }}
-            </client-only>
+            {{ marketCap }}
           </td>
         </tr>
         <tr class="token-details-panel__row">

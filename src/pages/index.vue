@@ -37,10 +37,10 @@
           <h2 class="dashboard__heading">
             .chain names
           </h2>
-          <p class="dashboard__paragraph">
-            The æternity blockchain supports protocol-level .chain names via the æternity naming system
-            (AENS).
-          </p>
+          <div class="dashboard__subtitle">
+            The æternity blockchain supports protocol-level .chain names via the
+            æternity naming system (AENS).
+          </div>
           <client-only>
             <names-panel/>
           </client-only>
@@ -52,31 +52,32 @@
           <p class="dashboard__paragraph">
             .chain names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
-          </p>
+          </div>
           <client-only>
             <auctions-panel>Auctions ending soon</auctions-panel>
           </client-only>
         </div>
       </div>
 
-      <div class="dashboard__column">
-        <h2 class="dashboard__heading">
-          State channels
-        </h2>
-        <p class="dashboard__paragraph">
-          State Channels allow the gas-free execution of smart contracts and
-          transactions, privately and with the speed of light, while still
-          being able to escalate on-chain in case of disagreement.
-          <app-link
-            class="dashboard__link"
-            to="https://aeternity.com/state-channels"
-            is-text-link>
-            Learn more
-          </app-link>
-        </p>
-        <client-only>
-          <state-channels-panel class="dashboard__state-channels-panel"/>
-        </client-only>
+      <div class="dashboard__row">
+        <div class="dashboard__column">
+          <h2 class="dashboard__heading">
+            State channels
+          </h2>
+          <div class="dashboard__subtitle">
+            State Channels allow the gas-free execution of smart contracts and
+            transactions, privately and with the speed of light, while still
+            being able to escalate on-chain in case of disagreement.
+            <app-link
+              class="dashboard__link"
+              to="https://aeternity.com/state-channels">
+              Learn more
+            </app-link>
+          </div>
+          <client-only>
+            <state-channels-panel class="dashboard__state-channels-panel"/>
+          </client-only>
+        </div>
       </div>
     </div>
   </div>
@@ -90,25 +91,32 @@ import StateChannelsPanel from '@/components/StateChannelsPanel'
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
 
-if (process.client) {
-  const {
-    fetchSelectedMicroblocksInfo,
-    fetchDeltaStats,
-  } = useRecentBlocksStore()
-  const { fetchBlockchainStats } = useBlockchainStatsStore()
-  const { fetchStateChannels } = useStateChannelsStore()
-  const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+const {
+  fetchSelectedMicroblocksInfo,
+  fetchDeltaStats,
+} = useRecentBlocksStore()
+const {
+  fetchTotalStats,
+  fetchMaxTps,
+  fetchTotalTransactionsCount,
+} = useBlockchainStatsStore()
+const { fetchStateChannels } = useStateChannelsStore()
+const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 
-  // fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
-  await useAsyncData(() => Promise.all([
-    fetchStateChannels(),
-    fetchInAuctionNames(),
-    fetchRecentlyActivatedNames(),
-    fetchSelectedMicroblocksInfo(),
-    fetchBlockchainStats(),
-    fetchDeltaStats(),
-  ]))
-}
+await useAsyncData(() => Promise.all([
+  fetchStateChannels(),
+  fetchInAuctionNames(),
+  fetchRecentlyActivatedNames(),
+  fetchTotalStats(),
+  fetchMaxTps(),
+]))
+
+// fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
+await useAsyncData(() => Promise.all([
+  fetchSelectedMicroblocksInfo(),
+  fetchTotalTransactionsCount(),
+  fetchDeltaStats(),
+]), { server: false })
 </script>
 
 <style scoped>

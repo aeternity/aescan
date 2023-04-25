@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { adaptContractDetails, adaptContractEvents, adaptTransactions } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
-import { DEX_TOKENS } from '@/utils/constants'
 
 export const useContractDetailsStore = defineStore('contractDetails', {
   state: () => ({
@@ -43,13 +42,6 @@ export const useContractDetailsStore = defineStore('contractDetails', {
       this.contractCreationTx = data?.data[0]
     },
     fetchContractType() {
-      if (DEX_TOKENS.includes(this.contractId)) {
-        this.contractType = 'DEX'
-        return
-      }
-
-      this.contractType = null
-
       return Promise.any([
         this.fetchIsContractAex9(this.contractId),
         this.fetchIsContractAex141(this.contractId),

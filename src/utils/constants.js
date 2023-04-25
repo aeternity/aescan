@@ -51,7 +51,6 @@ export const APP_CREATOR = '@aeternity'
 export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
 export const CACHE_KEY_MARKET_DATA = 'aeternity-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
-export const DEX_TOKENS = ['ct_7UfopTwsRuLGFEcsScbYgQ6YnySXuyMxQWhw6fjycnzS5Nyzq', 'ct_KeTvHnhU85vuuQMMZocaiYkPL9tkoavDRT3Jsy47LK2YqLHYb']
 
 export const TOKEN_SUPPLY_ACI = [
   {

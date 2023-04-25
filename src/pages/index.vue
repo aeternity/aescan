@@ -52,7 +52,7 @@
           <p class="dashboard__paragraph">
             .chain names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
-          </div>
+          </p>
           <client-only>
             <auctions-panel>Auctions ending soon</auctions-panel>
           </client-only>

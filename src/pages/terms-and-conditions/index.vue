@@ -82,6 +82,9 @@
 
   &__heading {
     margin-bottom: var(--space-6);
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: 0.03em;
   }
 
   &__subheading {
@@ -90,6 +93,7 @@
 
   &__paragraph {
     margin-bottom: var(--space-5);
+    font-family: var(--font-monospaced);
   }
 }
 </style>

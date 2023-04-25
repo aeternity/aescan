@@ -413,3 +413,32 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
 
   return oracleDetails
 }
+
+export function adaptOracleDetails(oracle, totalQueries, creationTx, lastExtendedTx, lastQueryTx, blockHeight) {
+  const oracleDetails = {
+    id: oracle.oracle,
+    fee: formatAettosToAe(oracle.query_fee),
+    expiration: formatBlockDiffAsDatetime(
+      oracle.expire_height,
+      blockHeight,
+    ),
+    expirationHeight: oracle.expire_height,
+    registered: oracle.active_from
+      ? formatBlockDiffAsDatetime(
+        oracle.active_from,
+        blockHeight,
+      )
+      : null,
+    registeredHeight: oracle.active_from,
+    queryFormat: oracle.format.query,
+    responseFormat: oracle.format.response,
+    totalQueries,
+    creator: creationTx?.tx.account_id,
+    lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.micro_time) : null,
+    lastExtendedHeight: lastExtendedTx?.block_height,
+    lastQuery: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
+    lastQueryHeight: lastQueryTx?.block_height,
+  }
+
+  return oracleDetails
+}

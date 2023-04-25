@@ -10,6 +10,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
 
   const oracleId = ref(null)
   const rawOracle = ref(null)
+  const totalQueries = ref(null)
   const creationTx = ref(null)
   const lastExtendedTx = ref(null)
   const lastQueryTx = ref(null)
@@ -17,6 +18,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const oracleDetails = computed(() => rawOracle.value
     ? adaptOracleDetails(
       rawOracle.value,
+      totalQueries.value,
       creationTx.value,
       lastExtendedTx.value,
       lastQueryTx.value,
@@ -32,6 +34,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
       fetchOracle().then(() => fetchCreationTx()),
       fetchLastQueryTx(),
       fetchLastExtendedTx(),
+      fetchTotalQueries(),
     ])
 
     return true
@@ -40,6 +43,11 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   async function fetchOracle() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/oracles/${oracleId.value}`)
     rawOracle.value = data
+  }
+
+  async function fetchTotalQueries() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count/${oracleId.value}`)
+    totalQueries.value = data?.oracle_query_tx?.oracle_id ?? 0
   }
 
   async function fetchCreationTx() {
@@ -62,6 +70,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     oracleDetails,
     oracleId,
     rawOracle,
+    totalQueries,
     creationTx,
     lastExtendedTx,
     lastQueryTx,

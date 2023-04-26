@@ -2,13 +2,14 @@
   <app-panel class="dashboard-microblocks-panel">
     <div class="dashboard-microblocks-panel__container">
       <panel-header
+        level="h4"
         class="dashboard-microblocks-panel__panel-header"
         title="Microblocks"
         icon-name="microblocks">
         <template #tooltip>
-          Microblocks can be created every 3 seconds by the current leader, are linked to a specific keyblock and
-          include all types of on-chain transactions. The next leader is incentivized to keep the microblocks in the
-          blockchain as he receives 40% of the fees of the transactions.
+          Microblocks can be created every 3 seconds by the current leader, are linked to a specific keyblock
+          and include all types of on-chain transactions. The next leader is incentivized to keep the
+          microblocks in the blockchain as he receives 40% of the fees of the transactions.
         </template>
         <template #header>
           <div class="dashboard-microblocks-panel__summary dashboard-microblocks-panel__summary--desktop">
@@ -79,9 +80,11 @@ export default {
   }
 
   &__summary {
-    font-family: var(--font-monospaced);
     display: block;
     margin-bottom: var(--space-4);
+    font-family: var(--font-monospaced);
+    font-size: 14px;
+    line-height: 20px;
     @media (--desktop) {
       margin-bottom: 0;
       display: none;

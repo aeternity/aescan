@@ -38,11 +38,7 @@ export default defineNuxtConfig({
     plugins: {
       autoprefixer: {},
       'postcss-custom-media': {
-        importFrom: [
-          {
-            customMedia: { '--desktop': '(min-width: 1200px)' },
-          },
-        ],
+        importFrom: 'src/styles/settings/_variables.css',
       },
       'postcss-import': {},
       'postcss-nested': {},

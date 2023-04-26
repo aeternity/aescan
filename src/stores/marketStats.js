@@ -2,11 +2,11 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import cache from 'memory-cache'
 import {
-  MARKET_STATS_ADDRESS,
-  MAX_AE_DISTRIBUTION,
-  MARKET_STATS_CACHE_TTL,
   CACHE_KEY_MARKET_DATA,
   CACHE_KEY_PRICE_DATA,
+  MARKET_STATS_ADDRESS,
+  MARKET_STATS_CACHE_TTL,
+  MAX_AE_DISTRIBUTION,
 } from '@/utils/constants'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 
@@ -19,7 +19,9 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   const blockchainStatsStore = useBlockchainStatsStore()
 
   const distribution = computed(() =>
-    circulatingSupply.value && blockchainStatsStore.burnedCount ? circulatingSupply.value + Number(blockchainStatsStore.burnedCount) : null,
+    circulatingSupply.value && blockchainStatsStore.burnedCount
+      ? circulatingSupply.value + Number(blockchainStatsStore.burnedCount)
+      : null,
   )
 
   const distributionPercentage = computed(() =>

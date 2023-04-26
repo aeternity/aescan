@@ -1,12 +1,13 @@
 <template>
   <app-panel class="names-panel">
     <panel-header
+      level="h3"
       title="NAMES RECENTLY ACTIVATED"
       icon-name="aens-name"
       show-all-link="/names/?type=active">
       <template #tooltip>
-        These ÆNS names have recently been activated directly by a claim (name length > 12) or implicitly through an
-        expired auction (name length &lt;= 12).
+        These ÆNS names have recently been activated directly by a claim (name length > 12) or implicitly
+        through an expired auction (name length &lt;= 12).
       </template>
     </panel-header>
     <names-table class="names-panel__table"/>

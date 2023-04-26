@@ -5,14 +5,16 @@
         :name="iconName"
         :size="32"/>
     </app-badge>
-    <div class="stats-tile__body">
-      <div class="stats-tile__title h4">
+    <div class="stats-tile__container">
+      <h3 class="stats-tile__title h4">
         {{ title }}
         <hint-tooltip class="stats-tile__tooltip">
           <slot name="tooltip"/>
         </hint-tooltip>
+      </h3>
+      <div class="stats-tile__slot">
+        <slot/>
       </div>
-      <slot/>
     </div>
   </div>
 </template>
@@ -37,23 +39,19 @@ export default {
 }
 </script>
 <style scoped>
+
 .stats-tile {
   display: flex;
   flex-direction: row;
   word-break: break-word;
 
-  &__body {
+  &__container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: -0.005em;
     margin-left: var(--space-3);
 
     @media (--desktop) {
-      font-size: 14px;
       margin-left: var(--space-2);
     }
   }
@@ -61,11 +59,6 @@ export default {
   &__title {
     display: flex;
     align-items: center;
-    font-family: var(--font-primary);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.03em;
     @media (--desktop) {
       margin-bottom: var(--space-0);
     }
@@ -74,6 +67,10 @@ export default {
   &__tooltip {
     margin-left: var(--space-0);
     height: 21px;
+  }
+
+  &__slot {
+    font-family: var(--font-monospaced);
   }
 }
 </style>

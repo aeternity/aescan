@@ -2,15 +2,19 @@
   <router-link
     v-if="isLocalLink(to)"
     :to="to"
-    :class="['link', {'link--primary': variant === 'primary'}]"
+    :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]"
     active-class="link--active"
-    exact-active-class="link--exact-active"><slot/></router-link>
+    exact-active-class="link--exact-active">
+    <slot/>
+  </router-link>
   <a
     v-else
     :rel="isOpenedInNewTab ? 'noopener noreferrer' : false"
     :target="target"
     :href="to"
-    :class="['link', {'link--primary': variant === 'primary'}]"><slot/></a>
+    :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]">
+    <slot/>
+  </a>
 </template>
 
 <script>
@@ -29,6 +33,10 @@ export default {
       type: String,
       default: null,
       validator: val => ['primary'].includes(val),
+    },
+    isTextLink: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -55,6 +63,9 @@ export default {
   &--active {
     color: var(--color-fire) !important;
   }
-}
 
+  &--text-link {
+    text-decoration: underline;
+  }
+}
 </style>

@@ -5,12 +5,13 @@ table {
 
 th {
   text-align: left;
-  font-size: 14px;
-  line-height: 20px;
-  font-family: var(--font-primary);
   font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+
   vertical-align: initial;
   padding: var(--space-1) 0;
+
 
   @media (--desktop) {
     font-size: 16px;
@@ -20,18 +21,14 @@ th {
 }
 
 td {
-  border-bottom: 1px solid var(--color-midnight-15);
-  vertical-align: middle;
-  text-align: left;
   font-family: var(--font-monospaced);
   font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
   padding: var(--space-1) 0;
+  text-align: left;
+  border-bottom: 1px solid var(--color-midnight-15);
+  vertical-align: middle;
 
   @media (--desktop) {
-    font-size: 14px;
-    line-height: 20px;
     padding: var(--space-1) var(--space-0);
   }
 }

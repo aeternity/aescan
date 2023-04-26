@@ -21,3 +21,6 @@
   --font-monospaced: 'Roboto Mono', monospaced, sans-serif;
   --container-width: 1200px;
 }
+
+@custom-media --desktop (min-width: 1200px);
+

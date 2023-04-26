@@ -12,7 +12,7 @@ env:
   ENV: "stg"
   APP: "aescan"
 
-concurrency: aescan_staging_environment
+concurrency: aescan_staging_environment-${{ github.ref }}
 
 jobs:
   main:

@@ -62,6 +62,7 @@ export default {
   font-weight: 500;
   padding: var(--space-3) var(--space-7);
   text-decoration: none;
+  letter-spacing: 0.015em;
 
   background: var(--color-fire);
   color: var(--color-white);

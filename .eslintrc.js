@@ -29,7 +29,7 @@ module.exports = {
         map: [
           ['@', './src'],
         ],
-        'extensions': ['.js','.vue']
+        extensions: ['.js', '.vue'],
       },
     },
   },
@@ -62,10 +62,10 @@ module.exports = {
       singleline: 'never',
       multiline: 'never',
     }],
-    'vue/multiline-html-element-content-newline': ["error", {
-      'ignoreWhenEmpty': true,
-      'ignores': ['pre', 'textarea', 'a', 'span', 'app-link', 'router-link'],
-      'allowEmptyLines': false
+    'vue/multiline-html-element-content-newline': ['error', {
+      ignoreWhenEmpty: true,
+      ignores: ['pre', 'textarea', 'a', 'span', 'app-link', 'router-link'],
+      allowEmptyLines: false,
     }],
     'vue/html-closing-bracket-spacing': ['error', {
       startTag: 'never',
@@ -82,5 +82,6 @@ module.exports = {
     camelcase: ['error', {
       properties: 'never',
     }],
+    'max-len': ['error', { code: 120, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true }],
   },
 }

@@ -1,9 +1,9 @@
 <template>
   <app-panel class="contract-details-panel">
     <header class="contract-details-panel__header">
-      <h3 class="contract-details-panel__heading">
+      <h2 class="contract-details-panel__heading h3">
         DETAILS
-      </h3>
+      </h2>
       <div class="contract-details-panel__container">
         <div class="contract-details-panel__hash">
           <copy-chip :label="contractDetails.id"/>
@@ -26,12 +26,12 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
-              <span class="contract-details-panel__hash">{{
-                contractDetails.createTransactionHash
-              }}</span>
-              <span class="contract-details-panel__hash-ellipse">{{
-                formatEllipseHash(contractDetails.createTransactionHash)
-              }}</span>
+              <span class="contract-details-panel__hash">
+                {{ contractDetails.createTransactionHash }}
+              </span>
+              <span class="contract-details-panel__hash-ellipse">
+                {{ formatEllipseHash(contractDetails.createTransactionHash) }}
+              </span>
             </app-link>
           </td>
         </tr>
@@ -51,12 +51,12 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
-              <span class="contract-details-panel__hash">{{
-                contractDetails.createdBy
-              }}</span>
-              <span class="contract-details-panel__hash-ellipse">{{
-                formatEllipseHash(contractDetails.createdBy)
-              }}</span>
+              <span class="contract-details-panel__hash">
+                {{ contractDetails.createdBy }}
+              </span>
+              <span class="contract-details-panel__hash-ellipse">
+                {{ formatEllipseHash(contractDetails.createdBy) }}
+              </span>
             </app-link>
           </td>
         </tr>
@@ -78,12 +78,12 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
-              <span class="contract-details-panel__hash">{{
-                contractDetails.contractAccount
-              }}</span>
-              <span class="contract-details-panel__hash-ellipse">{{
-                formatEllipseHash(contractDetails.contractAccount)
-              }}</span>
+              <span class="contract-details-panel__hash">
+                {{ contractDetails.contractAccount }}
+              </span>
+              <span class="contract-details-panel__hash-ellipse">
+                {{ formatEllipseHash(contractDetails.contractAccount) }}
+              </span>
             </app-link>
           </td>
         </tr>
@@ -173,14 +173,8 @@ export default {
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }
@@ -212,7 +206,6 @@ export default {
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
   }
 
   &__row:last-of-type &__table-header {

@@ -23,7 +23,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', {
       return isBlockFirstInSequence(state.selectedKeyblock, state.keyblocks)
     },
     isFirstMicroblockSelected: state => {
-      return !state.rawSelectedMicroblock || isBlockFirstInSequence(state.rawSelectedMicroblock, state.selectedKeyblockMicroblocks)
+      return !state.rawSelectedMicroblock ||
+        isBlockFirstInSequence(state.rawSelectedMicroblock, state.selectedKeyblockMicroblocks)
     },
     selectedMicroblock: state => {
       return state.rawSelectedMicroblock || state.selectedKeyblockMicroblocks?.[0]

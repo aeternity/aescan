@@ -1,9 +1,9 @@
 <template>
   <app-panel class="token-details-panel">
     <header class="token-details-panel__header">
-      <h3 class="token-details-panel__heading">
+      <h2 class="token-details-panel__heading h3">
         DETAILS
-      </h3>
+      </h2>
       <div class="token-details-panel__container">
         <token-symbol-icon
           :contract-id="tokenDetails.contract_id"
@@ -165,14 +165,8 @@ const marketCap = computed(() =>
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }
@@ -206,7 +200,6 @@ const marketCap = computed(() =>
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
 
     &--extensions {
       display: flex;

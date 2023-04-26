@@ -102,7 +102,7 @@ export default {
     color: var(--color-white);
     font-size: 16px;
     line-height: 20px;
-    font-weight: 600;
+    font-weight: 500;
 
     @media (--desktop) {
       gap: var(--space-3);

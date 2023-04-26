@@ -64,9 +64,10 @@ export const useContractDetailsStore = defineStore('contractDetails', {
         this.contractType = 'DEX'
         return
       }
+    }
 
+    fetchContractType() {
       this.contractType = null
-
       return Promise.any([
         this.fetchIsContractAex9(this.contractId),
         this.fetchIsContractAex141(this.contractId),

@@ -164,7 +164,6 @@ export default {
 
   &__link {
     display: none;
-    text-decoration: none;
     flex-basis: 100%;
     justify-content: center;
     margin-top: var(--space-2);
@@ -198,6 +197,7 @@ export default {
     font-family: var(--font-monospaced);
     font-size: 11px;
     line-height: 16px;
+    letter-spacing: 0.0015em;
   }
 
   &__survey-link {

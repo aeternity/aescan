@@ -284,6 +284,7 @@ export function adaptContractDetails(
   contractCallsCount,
   contractCreationTx,
   contractType,
+  contractAccountBalance,
 ) {
   return {
     id: rawContractInformation?.id,
@@ -292,7 +293,7 @@ export function adaptContractDetails(
     creationDate: DateTime.fromMillis(contractCreationTx?.micro_time),
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
-    accountBalance: rawContractInformation?.deposit,
+    contractAccountBalance,
     callsCount: contractCallsCount,
     contractType,
   }

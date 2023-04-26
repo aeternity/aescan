@@ -13,6 +13,7 @@ export const useContractDetailsStore = defineStore('contractDetails', {
     rawContractInformation: null,
     rawContractEvents: null,
     rawContractCallTransactions: null,
+    contractAccountBalance: null,
   }),
   actions: {
     async fetchContractDetails(contractId) {
@@ -22,6 +23,7 @@ export const useContractDetailsStore = defineStore('contractDetails', {
         this.fetchContractCallsCount(),
         this.fetchContractCreationTx(),
         this.fetchContractType(),
+        this.fetchBalance(),
       ])
 
       return true
@@ -41,6 +43,12 @@ export const useContractDetailsStore = defineStore('contractDetails', {
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs?limit=1&contract=${this.contractId}&direction=forward`)
       this.contractCreationTx = data?.data[0]
     },
+
+    async fetchBalance() {
+      const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/v3/accounts/${this.contractId.replace('ct_', 'ak_')}`)
+      this.contractAccountBalance = data.balance
+    },
+
     async fetchContractType() {
       const { data } = await axios.get(`${useRuntimeConfig().public.DEX_BACKEND_URL}/tokens/listed`)
       const dexTokens = data.map(contract => contract.address)
@@ -116,6 +124,7 @@ export const useContractDetailsStore = defineStore('contractDetails', {
         state.contractCallsCount,
         state.contractCreationTx,
         state.contractType,
+        state.contractAccountBalance,
       )
     },
     contractCallTransactions(state) {

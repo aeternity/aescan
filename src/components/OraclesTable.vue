@@ -1,9 +1,9 @@
 <template>
-  <table class="oracles-table__table">
+  <table class="oracles-table">
     <thead>
       <tr>
         <th>Oracle ID</th>
-        <th>Registered At</th>
+        <th>Registered</th>
         <th>Expiration</th>
         <th>Query Fee</th>
       </tr>
@@ -52,9 +52,7 @@ defineProps({
 
 <style scoped>
 .oracles-table {
-  &__table {
-    margin-bottom: var(--space-2);
-  }
+  margin-bottom: var(--space-2);
 
   &__data {
     vertical-align: top;

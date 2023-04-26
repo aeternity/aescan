@@ -32,10 +32,10 @@
         <div class="footer__column">
           <div class="footer__network">
             <div class="footer__version">
-              NODE VERSION V.{{ nodeVersion }}
+              NODE VERSION v{{ nodeVersion }}
             </div>
             <div>
-              MIDDLEWARE VERSION V.{{ middlewareVersion }}
+              MIDDLEWARE VERSION v{{ middlewareVersion }}
             </div>
           </div>
           <div class="footer__link-container">

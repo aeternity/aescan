@@ -17,7 +17,7 @@
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            Registered At
+            Registered
           </th>
           <td class="oracles-table-condensed__data">
             <div>

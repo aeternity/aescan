@@ -18,7 +18,7 @@ export const useOraclesStore = defineStore('oracles', () => {
   })
 
   async function fetchOracles({ queryParameters, limit } = {}) {
-    const defaultParameters = `/v2/oracles?limit=${limit || 10}`
+    const defaultParameters = `/v2/oracles?direction=backward&limit=${limit || 10}`
     const { data } = await axios.get(
       `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
     )

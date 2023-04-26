@@ -320,7 +320,7 @@ export function adaptContractEvents(events, blockHeight) {
 export function adaptTokenDetails(token, totalSupply = null, price = null) {
   const tokenDetails = {
     ...token,
-    ...(price && { price }),
+    price: 1 / parseFloat(price),
   }
 
   if (token && totalSupply) {

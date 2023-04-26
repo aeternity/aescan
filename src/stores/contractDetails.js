@@ -41,24 +41,8 @@ export const useContractDetailsStore = defineStore('contractDetails', {
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs?limit=1&contract=${this.contractId}&direction=forward`)
       this.contractCreationTx = data?.data[0]
     },
-    async fetchContractType() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.DEX_BACKEND_URL}/tokens/listed`)
-      const dexTokens = data.map(contract => contract.address)
-
-      // workaround for the fact that the middleware doesn't include AE contract
-      if (useRuntimeConfig().public.NETWORK_NAME === 'MAINNET') {
-        dexTokens.push('ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa')
-      } else {
-        dexTokens.push('ct_JDp175ruWd7mQggeHewSLS1PFXt9AzThCDaFedxon8mF8xTRF')
-      }
-
-      if (dexTokens.includes(this.contractId)) {
-        this.contractType = 'DEX'
-        return
-      }
-
+    fetchContractType() {
       this.contractType = null
-
       return Promise.any([
         this.fetchIsContractAex9(this.contractId),
         this.fetchIsContractAex141(this.contractId),

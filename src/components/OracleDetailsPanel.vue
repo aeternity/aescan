@@ -92,7 +92,7 @@
             Creator
           </th>
           <td class="oracle-details-panel__data">
-            <app-link :to="`/account/${oracleDetails.creator}`">
+            <app-link :to="`/accounts/${oracleDetails.creator}`">
               <span class="oracle-details-panel__hash">
                 {{ oracleDetails.creator }}
               </span>

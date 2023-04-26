@@ -37,10 +37,10 @@
           <h2 class="dashboard__heading">
             .chain names
           </h2>
-          <div class="dashboard__subtitle">
+          <p class="dashboard__paragraph">
             The æternity blockchain supports protocol-level .chain names via the
             æternity naming system (AENS).
-          </div>
+          </p>
           <names-panel/>
         </div>
         <div class="dashboard__column">
@@ -60,7 +60,7 @@
           <h2 class="dashboard__heading">
             State channels
           </h2>
-          <div class="dashboard__subtitle">
+          <p class="dashboard__paragraph">
             State Channels allow the gas-free execution of smart contracts and
             transactions, privately and with the speed of light, while still
             being able to escalate on-chain in case of disagreement.
@@ -69,7 +69,7 @@
               to="https://aeternity.com/state-channels">
               Learn more
             </app-link>
-          </div>
+          </p>
           <state-channels-panel class="dashboard__state-channels-panel"/>
         </div>
       </div>

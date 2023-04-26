@@ -61,6 +61,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     return keyblocks.value?.[0].height
   })
 
+  /* USER INTERACTION */
+
   async function selectKeyblock(keyblock) {
     if (isBlockFirstInSequence(keyblock, keyblocks.value)) {
       rawSelectedKeyblock.value = null
@@ -69,7 +71,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     }
 
     if (keyblock?.micro_blocks_count === 0) {
-      clearSelectedMicroblocksData()
+      clearSelectedMicroblocks()
       return
     }
 
@@ -87,15 +89,39 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     return fetchSelectedMicroblockTransactions()
   }
 
-  function clearSelectedMicroblocksData() {
-    selectedKeyblockMicroblocks.value = []
-    rawSelectedMicroblockTransactions.value = null
-  }
+  /* HANDLING COMMUNICATION OVER REST API */
 
   async function fetchKeyblocks() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
     keyblocks.value = data.data
   }
+
+  async function fetchSelectedMicroblocksInfo() {
+    await fetchSelectedKeyblockMicroblocks(keyblocks.value[0].hash)
+    await fetchSelectedMicroblockTransactions()
+  }
+
+  async function fetchSelectedKeyblockMicroblocks(hash) {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${hash}/micro-blocks?limit=${VISIBLE_MICROBLOCKS_LIMIT}`)
+    selectedKeyblockMicroblocks.value = data.data
+  }
+
+  async function fetchSelectedMicroblockTransactions(queryParameters = null) {
+    if (!selectedMicroblock.value) {
+      return
+    }
+
+    const defaultParameters = `/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=${VISIBLE_TRANSACTIONS_LIMIT}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawSelectedMicroblockTransactions.value = data
+  }
+
+  async function fetchDeltaStats() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/deltastats?limit=20`)
+    deltaStats.value = data.data
+  }
+
+  /* HANDLING COMMUNICATION OVER WEBSOCKET */
 
   async function resetMessageBuffer() {
     messageBuffer.value = []
@@ -148,29 +174,13 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   function processKeyblockUpdate(keyblock) {
-    // ignore if current keyblock is not selected
     if (keyblocks.value?.[0].hash !== keyblock.prev_key_hash) {
       return false
     }
 
-    keyblocks.value.unshift({
-      transactions_count: 0,
-      micro_blocks_count: 0,
-      ...keyblock,
-    })
+    prependKeyblock(keyblock)
 
-    if (keyblocks.value.length > VISIBLE_KEYBLOCKS_LIMIT) {
-      keyblocks.value.pop()
-    }
-
-    // switching to new keyblock - clear the data of the old one
-    if (isFirstKeyblockSelected.value) {
-      selectedKeyblockMicroblocks.value = []
-      rawSelectedMicroblock.value = null
-      rawSelectedMicroblockTransactions.value = null
-    }
-
-    // fetch latest keyblock data to prevent stale data caused by microforks
+    // fetch latest keyblock information to correct stale data caused by microforks
     Promise.all([
       fetchKeyblocks(),
       fetchDeltaStats(),
@@ -190,26 +200,14 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     parentKeyblock.micro_blocks_count += 1
 
     if (microblock.prev_key_hash === selectedKeyblock.value.hash) {
-      selectedKeyblockMicroblocks.value.unshift({
-        transactions_count: 0,
-        ...microblock,
-      })
-
-      if (selectedKeyblockMicroblocks.value.length > VISIBLE_MICROBLOCKS_LIMIT) {
-        if (selectedKeyblockMicroblocks.value.pop().hash === rawSelectedMicroblock.value?.hash) {
-          rawSelectedMicroblock.value = null
-        }
-      }
-
-      if (isFirstMicroblockSelected.value) {
-        rawSelectedMicroblockTransactions.value = { data: [] }
-      }
+      prependMicroblock(microblock)
     }
 
     return true
   }
 
   function processTransactionUpdate(transaction) {
+    // keyblock-related statistics
     const parentKeyblock = keyblocks.value.find(keyblock => keyblock.height === transaction.block_height)
 
     if (!parentKeyblock) {
@@ -223,6 +221,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       return true
     }
 
+    // microblock-related statistics
     const parentMicroblock = selectedKeyblockMicroblocks.value.find(
       microblock => microblock.hash === transaction.block_hash,
     )
@@ -233,41 +232,72 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
 
     parentMicroblock.transactions_count += 1
 
+    // currently displayed microblock transactions
     if (transaction.block_hash === selectedMicroblock.value?.hash) {
-      if (rawSelectedMicroblockTransactions.value.data.length < VISIBLE_TRANSACTIONS_LIMIT) {
-        rawSelectedMicroblockTransactions.value.data.push({
-          micro_time: Date.now(),
-          ...transaction,
-        })
-      }
+      appendTransactionToSelectedMicroblock(transaction)
     }
 
     return true
   }
 
-  async function fetchSelectedMicroblocksInfo() {
-    await fetchSelectedKeyblockMicroblocks(keyblocks.value[0].hash)
-    await fetchSelectedMicroblockTransactions()
-  }
+  /* DATA UPDATE UTILS */
 
-  async function fetchSelectedKeyblockMicroblocks(hash) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${hash}/micro-blocks?limit=${VISIBLE_MICROBLOCKS_LIMIT}`)
-    selectedKeyblockMicroblocks.value = data.data
-  }
+  function prependKeyblock(keyblock) {
+    keyblocks.value.unshift({
+      transactions_count: 0,
+      micro_blocks_count: 0,
+      ...keyblock,
+    })
 
-  async function fetchSelectedMicroblockTransactions(queryParameters = null) {
-    if (!selectedMicroblock.value) {
-      return
+    if (keyblocks.value.length > VISIBLE_KEYBLOCKS_LIMIT) {
+      keyblocks.value.pop()
     }
 
-    const defaultParameters = `/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=${VISIBLE_TRANSACTIONS_LIMIT}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawSelectedMicroblockTransactions.value = data
+    if (isFirstKeyblockSelected.value) {
+      clearSelectedMicroblocks()
+    }
   }
 
-  async function fetchDeltaStats() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/deltastats?limit=20`)
-    deltaStats.value = data.data
+  function prependMicroblock(microblock) {
+    selectedKeyblockMicroblocks.value.unshift({
+      transactions_count: 0,
+      ...microblock,
+    })
+
+    if (selectedKeyblockMicroblocks.value.length > VISIBLE_MICROBLOCKS_LIMIT) {
+      const lastMicroblock = selectedKeyblockMicroblocks.value.pop()
+
+      if (lastMicroblock.hash === rawSelectedMicroblock.value?.hash) {
+        deselectMicroblock()
+      }
+    }
+
+    if (isFirstMicroblockSelected.value) {
+      clearCurrentlySelectedMicroblock()
+    }
+  }
+
+  function clearSelectedMicroblocks() {
+    deselectMicroblock()
+    clearCurrentlySelectedMicroblock()
+    selectedKeyblockMicroblocks.value = []
+  }
+
+  function deselectMicroblock() {
+    rawSelectedMicroblock.value = null
+  }
+
+  function clearCurrentlySelectedMicroblock() {
+    rawSelectedMicroblockTransactions.value = { data: [] }
+  }
+
+  function appendTransactionToSelectedMicroblock(transaction) {
+    if (rawSelectedMicroblockTransactions.value.data.length < VISIBLE_TRANSACTIONS_LIMIT) {
+      rawSelectedMicroblockTransactions.value.data.push({
+        micro_time: Date.now(),
+        ...transaction,
+      })
+    }
   }
 
   return {

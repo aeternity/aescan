@@ -6,9 +6,9 @@ export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public
 
   const webSocket = shallowRef()
-  const subscribeToKeyblockDetails = ref(false)
+  const isSubscribedToKeyblockDetails = ref(false)
 
-  watch(subscribeToKeyblockDetails, newValue => {
+  watch(isSubscribedToKeyblockDetails, newValue => {
     if (!webSocket.value || webSocket.value.readyState !== WebSocket.OPEN) {
       return
     }
@@ -38,7 +38,7 @@ export const useWebSocket = defineStore('webSocket', () => {
   function openWebSocket() {
     webSocket.value.send('{"op":"Subscribe", "payload": "KeyBlocks"}')
 
-    if (subscribeToKeyblockDetails.value) {
+    if (isSubscribedToKeyblockDetails.value) {
       webSocket.value.send('{"op":"Subscribe", "payload": "MicroBlocks"}')
       webSocket.value.send('{"op":"Subscribe", "payload": "Transactions"}')
     }
@@ -59,7 +59,7 @@ export const useWebSocket = defineStore('webSocket', () => {
   }
 
   return {
-    subscribeToKeyblockDetails,
+    isSubscribedToKeyblockDetails,
     initializeWebSocket,
   }
 })

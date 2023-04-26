@@ -99,7 +99,7 @@ const {
 const { fetchStateChannels } = useStateChannelsStore()
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 const webSocketStore = useWebSocket()
-const { subscribeToKeyblockDetails } = storeToRefs(webSocketStore)
+const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)
 
 await useAsyncData(() => Promise.all([
   fetchStateChannels(),
@@ -117,10 +117,10 @@ await useAsyncData(() => Promise.all([
 ]), { server: false })
 
 onBeforeMount(() => {
-  subscribeToKeyblockDetails.value = true
+  isSubscribedToKeyblockDetails.value = true
 })
 onBeforeUnmount(() => {
-  subscribeToKeyblockDetails.value = false
+  isSubscribedToKeyblockDetails.value = false
 })
 
 </script>

@@ -65,10 +65,6 @@ export default {
     margin-bottom: var(--space-2);
   }
 
-  &__title {
-    margin-right: var(--space-0);
-  }
-
   &__data {
     vertical-align: top;
   }

@@ -80,7 +80,7 @@ export default {
 
     color: var(--color-white);
     font-family: var(--font-monospaced);
-    font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
 
     &--active {

@@ -1,13 +1,14 @@
 <template>
   <app-panel class="auctions-panel">
     <panel-header
+      level="h3"
       title="AUCTIONS ENDING SOON"
       icon-name="aens-name"
       show-all-link="/names/?type=in-auction">
       <template #tooltip>
-        These ÆNS names are currently in auction. If someone tries to claim an ÆNS name with a name length &lt;=12, an
-        auction is automatically triggered. The auction duration is currently dependent on the length of the name. The
-        shorter the name, the longer the auction lives.
+        These ÆNS names are currently in auction. If someone tries to claim an ÆNS name with a name length &lt;=12,
+        an auction is automatically triggered. The auction duration is currently dependent on the length of the
+        name. The shorter the name, the longer the auction lives.
       </template>
     </panel-header>
     <auctions-table class="auctions-panel__table"/>

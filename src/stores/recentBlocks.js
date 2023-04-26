@@ -27,7 +27,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     return isBlockFirstInSequence(selectedKeyblock.value, keyblocks.value)
   })
   const isFirstMicroblockSelected = computed(() => {
-    return !rawSelectedMicroblock.value || isBlockFirstInSequence(rawSelectedMicroblock.value, selectedKeyblockMicroblocks.value)
+    return !rawSelectedMicroblock.value ||
+      isBlockFirstInSequence(rawSelectedMicroblock.value, selectedKeyblockMicroblocks.value)
   })
   const selectedMicroblock = computed(() => {
     return rawSelectedMicroblock.value || selectedKeyblockMicroblocks.value?.[0]
@@ -222,7 +223,9 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       return true
     }
 
-    const parentMicroblock = selectedKeyblockMicroblocks.value.find(microblock => microblock.hash === transaction.block_hash)
+    const parentMicroblock = selectedKeyblockMicroblocks.value.find(
+      microblock => microblock.hash === transaction.block_hash,
+    )
 
     if (!parentMicroblock) {
       return false

@@ -1,6 +1,7 @@
 <template>
   <app-panel class="dashboard-transactions-panel">
     <panel-header
+      level="h5"
       class="dashboard-transactions-panel__panel-header"
       title="Transactions"
       show-all-link="/transactions"
@@ -76,9 +77,11 @@ export default {
   }
 
   &__summary {
-    font-family: var(--font-monospaced);
     display: block;
     margin-bottom: var(--space-1);
+    font-family: var(--font-monospaced);
+    font-size: 14px;
+    line-height: 20px;
     @media (--desktop) {
       margin-bottom: 0;
       display: none;

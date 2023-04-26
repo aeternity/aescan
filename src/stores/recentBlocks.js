@@ -10,7 +10,7 @@ const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSeq
 
 export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const { fetchBlockchainStats, increaseTransactionsCounter } = useBlockchainStatsStore()
+  const { fetchTotalTransactionsCount, increaseTransactionsCounter } = useBlockchainStatsStore()
 
   const deltaStats = ref(null)
   const keyblocks = ref(null)
@@ -123,16 +123,6 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
 
   /* HANDLING COMMUNICATION OVER WEBSOCKET */
 
-  async function resetMessageBuffer() {
-    messageBuffer.value = []
-
-    await Promise.all([
-      fetchKeyblocks().then(fetchSelectedMicroblocksInfo()),
-      fetchDeltaStats(),
-      fetchBlockchainStats(),
-    ])
-  }
-
   function processSocketMessage(message) {
     messageBuffer.value.push(message)
 
@@ -184,7 +174,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     Promise.all([
       fetchKeyblocks(),
       fetchDeltaStats(),
-      fetchBlockchainStats(),
+      fetchTotalTransactionsCount(),
     ])
 
     return true
@@ -238,6 +228,16 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     }
 
     return true
+  }
+
+  async function resetMessageBuffer() {
+    messageBuffer.value = []
+
+    await Promise.all([
+      fetchKeyblocks().then(fetchSelectedMicroblocksInfo()),
+      fetchDeltaStats(),
+      fetchTotalTransactionsCount(),
+    ])
   }
 
   /* DATA UPDATE UTILS */
@@ -306,6 +306,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     fetchSelectedMicroblocksInfo,
     fetchSelectedMicroblockTransactions,
     processSocketMessage,
+    resetMessageBuffer,
     selectKeyblock,
     selectMicroblock,
     blockHeight,

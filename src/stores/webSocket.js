@@ -4,6 +4,7 @@ import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public
+  const { processSocketMessage, resetMessageBuffer } = useRecentBlocksStore()
 
   const webSocket = shallowRef()
   const isSubscribedToKeyblockDetails = ref(false)
@@ -46,14 +47,14 @@ export const useWebSocket = defineStore('webSocket', () => {
     webSocket.value.onmessage = event => {
       processWebSocketData(event.data)
     }
+
+    resetMessageBuffer()
   }
 
   async function processWebSocketData(data) {
     if (!data.includes('payload')) {
       return
     }
-
-    const { processSocketMessage } = useRecentBlocksStore()
 
     await processSocketMessage(JSON.parse(data))
   }

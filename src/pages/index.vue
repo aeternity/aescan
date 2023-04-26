@@ -39,9 +39,7 @@
             The æternity blockchain supports protocol-level .chain names via the
             æternity naming system (AENS).
           </div>
-          <client-only>
-            <names-panel/>
-          </client-only>
+          <names-panel/>
         </div>
         <div class="dashboard__column">
           <h2 class="dashboard__heading">
@@ -51,9 +49,7 @@
             .chain names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
           </div>
-          <client-only>
-            <auctions-panel>Auctions ending soon</auctions-panel>
-          </client-only>
+          <auctions-panel>Auctions ending soon</auctions-panel>
         </div>
       </div>
 
@@ -72,9 +68,7 @@
               Learn more
             </app-link>
           </div>
-          <client-only>
-            <state-channels-panel class="dashboard__state-channels-panel"/>
-          </client-only>
+          <state-channels-panel class="dashboard__state-channels-panel"/>
         </div>
       </div>
     </div>
@@ -91,34 +85,42 @@ import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
 import { useWebSocket } from '@/stores/webSocket'
 
-if (process.client) {
-  const {
-    fetchSelectedMicroblocksInfo,
-    fetchDeltaStats,
-  } = useRecentBlocksStore()
-  const { fetchBlockchainStats } = useBlockchainStatsStore()
-  const { fetchStateChannels } = useStateChannelsStore()
-  const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
-  const webSocketStore = useWebSocket()
-  const { subscribeToKeyblockDetails } = storeToRefs(webSocketStore)
+const {
+  fetchSelectedMicroblocksInfo,
+  fetchDeltaStats,
+} = useRecentBlocksStore()
+const {
+  fetchTotalStats,
+  fetchMaxTps,
+  fetchTotalTransactionsCount,
+} = useBlockchainStatsStore()
+const { fetchStateChannels } = useStateChannelsStore()
+const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+const webSocketStore = useWebSocket()
+const { subscribeToKeyblockDetails } = storeToRefs(webSocketStore)
 
-  // fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
-  await useAsyncData(() => Promise.all([
-    fetchStateChannels(),
-    fetchInAuctionNames(),
-    fetchRecentlyActivatedNames(),
-    fetchSelectedMicroblocksInfo(),
-    fetchBlockchainStats(),
-    fetchDeltaStats(),
-  ]))
+await useAsyncData(() => Promise.all([
+  fetchStateChannels(),
+  fetchInAuctionNames(),
+  fetchRecentlyActivatedNames(),
+  fetchTotalStats(),
+  fetchMaxTps(),
+]))
 
-  onBeforeMount(() => {
-    subscribeToKeyblockDetails.value = true
-  })
-  onBeforeUnmount(() => {
-    subscribeToKeyblockDetails.value = false
-  })
-}
+// fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
+await useAsyncData(() => Promise.all([
+  fetchSelectedMicroblocksInfo(),
+  fetchTotalTransactionsCount(),
+  fetchDeltaStats(),
+]), { server: false })
+
+onBeforeMount(() => {
+  subscribeToKeyblockDetails.value = true
+})
+onBeforeUnmount(() => {
+  subscribeToKeyblockDetails.value = false
+})
+
 </script>
 
 <style scoped>

@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-type-panel">
     <header class="transaction-type-panel__header">
-      <h3 class="transaction-type-panel__heading">
+      <h2 class="transaction-type-panel__heading h3">
         {{ typeName }} DETAILS
-      </h3>
+      </h2>
       <div class="transaction-type-panel__container">
         <app-link
           v-if="transactionData.type === 'SpendTx' && transactionData.recipient?.account"
@@ -108,14 +108,8 @@ export default {
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-2);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }

@@ -10,12 +10,14 @@
 
       <app-panel class="not-found-error__panel">
         <p class="not-found-error__paragraph">
-          Sorry, the page you requested was not found. Perhaps our Dashboard options will help you find the way.
+          Sorry, the page you requested was not found. Perhaps our Dashboard options will help you find the
+          way.
         </p>
 
         <p class="not-found-error__paragraph">
           Maybe the
-          <app-link to="https://forum.aeternity.com/">community
+          <app-link to="https://forum.aeternity.com/">
+            community
           </app-link>
           can help you.
         </p>
@@ -80,13 +82,8 @@ export default {
   }
 
   &__paragraph {
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: -0.005em;
-    font-family: var(--font-monospaced);
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 14px;
       &:last-of-type {
         margin-bottom: var(--space-6);
       }
@@ -94,10 +91,7 @@ export default {
   }
 
   &__button {
-    width: 200px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.015em;
+    width: 215px;
     padding: var(--space-3) var(--space-5);
   }
 

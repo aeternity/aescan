@@ -147,21 +147,16 @@ function scrollToPaginatedContent() {
 
   &__counter {
     margin-bottom: var(--space-3);
-    letter-spacing: -0.005em;
     font-family: var(--font-monospaced);
     text-align: center;
-    font-size: 12px;
-    line-height: 20px;
     @media (--desktop) {
-      font-size: 14px;
-      line-height: 22px;
       margin-bottom: 0;
       text-align: left;
     }
   }
 
   &__highlighted {
-    font-weight: 600;
+    font-weight: 700;
   }
 
   &__blank-state {

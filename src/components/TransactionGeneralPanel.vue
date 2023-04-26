@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-general-panel">
     <header class="transaction-general-panel__header">
-      <h3 class="transaction-general-panel__heading">
+      <h2 class="transaction-general-panel__heading h3">
         GENERAL DETAILS
-      </h3>
+      </h2>
       <div class="transaction-general-panel__container">
         <copy-chip
           :label="transactionDetails.hash"
@@ -180,14 +180,8 @@ export default {
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }
@@ -219,7 +213,6 @@ export default {
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
   }
 
   &__row:last-of-type &__table-header {

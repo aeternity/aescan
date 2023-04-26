@@ -11,7 +11,8 @@
       <app-panel class="search-error__panel">
         <p class="search-error__paragraph">
           Oops! We are sorry. The search string
-          <span class="search-error__query">{{ $route.params.query }}</span>
+          <span class="search-error__query">
+            {{ $route.params.query }}</span>
           was not found.
         </p>
 
@@ -82,13 +83,8 @@ export default {
   }
 
   &__paragraph {
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: -0.005em;
-    font-family: var(--font-monospaced);
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 14px;
       &:last-of-type {
         margin-bottom: var(--space-6);
       }
@@ -96,10 +92,7 @@ export default {
   }
 
   &__button {
-    width: 200px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.015em;
+    width: 215px;
     padding: var(--space-3) var(--space-5);
   }
 

@@ -1,4 +1,4 @@
-name: Develop pipelines
+name: Develop pipelines - mainnet
 
 on:
   push:
@@ -9,7 +9,7 @@ env:
   ENV: "dev"
   APP: "aescan"
 
-concurrency: aescan_develop_environment
+concurrency: aescan_develop_environment-${{ github.ref }}
 
 jobs:
   main:

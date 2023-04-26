@@ -95,20 +95,13 @@ export default {
   &__tags {
     border-radius: 8px;
     border-color: var(--color-midnight);
-    font-size: 12px;
     cursor: pointer;
-    @media (--desktop) {
-      font-size: 14px;
-    }
   }
 
   &__single {
-    line-height: 20px;
     color: var(--color-midnight);
-    font-size: 12px;
-    @media (--desktop) {
-      font-size: 14px;
-    }
+    font-size: 14px;
+    line-height: 20px;
   }
 
   &__content-wrapper {
@@ -123,22 +116,18 @@ export default {
     border: solid var(--color-midnight-35);
     border-width: 1px 0;
     color: solid var(--color-midnight);
-    font-size: 12px;
-    @media (--desktop) {
-      font-size: 14px;
-    }
+    font-size: 14px;
+    line-height: 20px;
 
     &:last-child {
       border-width: 1px 0 0;
     }
 
     &--selected {
-      font-weight: 400;
       background: var(--color-midnight-35);
     }
 
     &--highlight {
-      font-weight: 400;
       background: var(--color-midnight-15);
     }
 

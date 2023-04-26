@@ -1,10 +1,12 @@
 <template>
   <app-panel class="state-channels-panel">
     <panel-header
+      level="h3"
       title="STATE CHANNELS"
       icon-name="state-channel">
       <template #tooltip>
-        Numbers are counting on-chain transactions only. There can be millions of transactions executed off-chain in
+        Numbers are counting on-chain transactions only. There can be millions of transactions executed
+        off-chain in
         <app-link
           variant="primary"
           to="https://aeternity.com/state-channels">

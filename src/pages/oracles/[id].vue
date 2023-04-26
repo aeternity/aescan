@@ -3,8 +3,7 @@
     <Head>
       <Title>{{ APP_TITLE_SHORT }} | Oracle Details</Title>
     </Head>
-    <div
-      class="oracle-details__parallax">
+    <div class="oracle-details__parallax">
       <page-header>
         Oracle Details
       </page-header>

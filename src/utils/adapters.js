@@ -394,3 +394,8 @@ export function adaptOracleDetails(oracle, totalQueries, creationTx, lastExtende
 
   return oracleDetails
 }
+
+export function adaptOracleEvents(oracle) {
+  console.log('adaptOracleEvents', oracle)
+  return oracle
+}

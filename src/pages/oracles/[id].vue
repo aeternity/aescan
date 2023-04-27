@@ -10,11 +10,11 @@
     v-if="oracleDetails"
     class="oracle-details__panel"
     :oracle-details="oracleDetails"/>
-    <app-tabs>
-      <app-tab title="Events">
-        <oracle-events-panel/>
-      </app-tab>
-    </app-tabs>
+      <app-tabs>
+        <app-tab title="Events">
+          <oracle-events-panel/>
+        </app-tab>
+      </app-tabs>
 </template>
 
 <script setup>

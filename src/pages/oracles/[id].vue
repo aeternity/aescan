@@ -5,7 +5,7 @@
     </Head>
     <div class="oracle-details__parallax">
       <page-header>
-        Oracle Details
+        Oracle
       </page-header>
 
       <oracle-details-panel

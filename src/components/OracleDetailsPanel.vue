@@ -102,14 +102,6 @@
             </app-link>
           </td>
         </tr>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Total queries
-          </th>
-          <td class="oracle-details-panel__data">
-            {{ formatNumber(oracleDetails.totalQueries) }}
-          </td>
-        </tr>
       </tbody>
     </table>
   </app-panel>

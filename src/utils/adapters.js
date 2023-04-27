@@ -366,7 +366,7 @@ export function adaptListedTokens(tokens) {
   }
 }
 
-export function adaptOracleDetails(oracle, totalQueries, creationTx, lastExtendedTx, lastQueryTx, blockHeight) {
+export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQueryTx, blockHeight) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.query_fee),
@@ -384,7 +384,6 @@ export function adaptOracleDetails(oracle, totalQueries, creationTx, lastExtende
     registeredHeight: oracle.active_from,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
-    totalQueries,
     creator: creationTx?.tx.account_id,
     lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.micro_time) : null,
     lastExtendedHeight: lastExtendedTx?.block_height,

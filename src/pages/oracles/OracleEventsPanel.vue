@@ -1,8 +1,12 @@
 <template>
   <app-panel class="oracle-events-panel">
+    <!--    todo pagination?-->
     <oracle-events-table
       :events="oracleEvents"
       class="oracle-events-panel__table"/>
+    <oracle-events-table-condensed
+      :events="oracleEvents"
+      class="oracle-events-panel__table-condensed"/>
   </app-panel>
 </template>
 <script setup>
@@ -10,6 +14,7 @@
 import { storeToRefs } from 'pinia'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsTable from '~/pages/oracles/OracleEventsTable'
+import OracleEventsTableCondensed from '~/pages/oracles/OracleEventsTableCondensed'
 
 const oracleDetailsStore = useOracleDetailsStore()
 

@@ -40,30 +40,30 @@ const route = useRoute()
 await fetchTokenDetails(route.params.id)
 </script>
 
-  <style scoped>
-  .token-details {
-    background-image: url("@/assets/background.svg");
-    background-color: var(--color-midnight-35);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+<style scoped>
+.token-details {
+  background-image: url("@/assets/background.svg");
+  background-color: var(--color-midnight-35);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-    &__parallax {
-      padding: 120px var(--space-1) var(--space-6);
-      max-width: var(--container-width);
-      margin: 0 auto;
-      @media (--desktop) {
-        padding: 120px 0;
-      }
-    }
-
-    &__panel {
-      margin-bottom: var(--space-6);
-
-      &:last-of-type {
-        margin-bottom: 0;
-      }
+  &__parallax {
+    padding: 120px var(--space-1) var(--space-6);
+    max-width: var(--container-width);
+    margin: 0 auto;
+    @media (--desktop) {
+      padding: 120px 0;
     }
   }
-  </style>
+
+  &__panel {
+    margin-bottom: var(--space-6);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+</style>

@@ -7,7 +7,7 @@ import { useRecentBlocksStore } from '@/stores/recentBlocks'
 export const useContractDetailsStore = defineStore('contractDetails', () => {
   const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
   const { blockHeight } = storeToRefs(useRecentBlocksStore())
-  
+
   const contractId = ref(null)
   const contractCallsCount = ref(null)
   const contractCreationTx = ref(null)

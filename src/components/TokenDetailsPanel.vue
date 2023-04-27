@@ -145,7 +145,7 @@ const tokenDexUrl = computed(() =>
 
 const fiatPrice = computed(() =>
   props.tokenDetails.price && price.value
-    ? `$${(price.value / props.tokenDetails.price)}`
+    ? `$${price.value / props.tokenDetails.price}`
     : '---',
 )
 

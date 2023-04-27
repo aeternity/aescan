@@ -108,7 +108,7 @@
 </template>
 
 <script setup>
-import { formatAePrice, formatNumber } from '@/utils/format'
+import { formatAePrice } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'

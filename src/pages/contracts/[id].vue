@@ -42,7 +42,7 @@ const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
 
-await useAsyncData(() => fetchContractDetails(route.params.id), { server: false })
+await useAsyncData(() => fetchContractDetails(route.params.id))
 if (process.client) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({

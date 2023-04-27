@@ -145,7 +145,7 @@ const tokenDexUrl = computed(() =>
 
 const fiatPrice = computed(() =>
   props.tokenDetails.price && price.value
-    ? `$${formatNullable(formatNumber(props.tokenDetails.price * price.value, 0, 2))}`
+    ? `$${(price.value / props.tokenDetails.price)}`
     : '---',
 )
 

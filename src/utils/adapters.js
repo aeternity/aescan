@@ -444,6 +444,15 @@ export function adaptOracleDetails(oracle, totalQueries, creationTx, lastExtende
 }
 
 export function adaptOracleEvents(oracle) {
-  console.log('adaptOracleEvents', oracle)
-  return oracle
+  return oracle.extends.map(event => {
+    return {
+      queryTx: oracle.register_tx_hash,
+      status: 'status',
+      queriedAtHeight: oracle.register.block_height,
+      queriedAtTime: DateTime.fromMillis(oracle.register.micro_time),
+      respondTx: event.hash,
+      respondedAtHeight: event.block_height,
+      respondedAtTime: DateTime.fromMillis(event.micro_time),
+    }
+  })
 }

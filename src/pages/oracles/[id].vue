@@ -12,7 +12,7 @@
     :oracle-details="oracleDetails"/>
     <app-tabs>
       <app-tab title="Events">
-        <oracle-events-panel :events="oracleEvents"/>
+        <oracle-events-panel/>
       </app-tab>
     </app-tabs>
 </template>
@@ -25,7 +25,7 @@ import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsPanel from '~/pages/oracles/OracleEventsPanel'
 
 const oracleDetailsStore = useOracleDetailsStore()
-const { oracleDetails, oracleEvents } = storeToRefs(oracleDetailsStore)
+const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
 

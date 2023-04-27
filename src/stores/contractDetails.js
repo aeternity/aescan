@@ -50,6 +50,10 @@ export const useContractDetailsStore = defineStore('contractDetails', {
         this.fetchIsContractAex141(this.contractId),
       ])
     },
+    async fetchBalance() {
+      const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/v3/accounts/${this.contractId.replace('ct_', 'ak_')}`)
+      this.contractAccountBalance = data.balance
+    },
     async fetchContractEvents({ contractId = null, queryParameters = null }) {
       this.rawContractEvents = null
       const defaultParameters = `/v2/contracts/logs?contract_id=${contractId}`

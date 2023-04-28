@@ -1,19 +1,16 @@
 <template>
-  <div class="oracle-details">
-    <Head>
-      <Title>{{ APP_TITLE_SHORT }} | Oracle Details</Title>
-    </Head>
-    <div class="oracle-details__parallax">
-      <page-header>
-        Oracle
-      </page-header>
+  <Head>
+    <Title>{{ APP_TITLE_SHORT }} | Oracle Details</Title>
+  </Head>
 
-      <oracle-details-panel
-        v-if="oracleDetails"
-        class="oracle-details__panel"
-        :oracle-details="oracleDetails"/>
-    </div>
-  </div>
+  <page-header>
+    Oracle
+  </page-header>
+
+  <oracle-details-panel
+    v-if="oracleDetails"
+    class="oracle-details__panel"
+    :oracle-details="oracleDetails"/>
 </template>
 
 <script setup>
@@ -31,25 +28,9 @@ await useAsyncData(() => fetchOracleDetails(route.params.id))
 </script>
 
 <style scoped>
-  .oracle-details {
-    background-image: url("@/assets/background.svg");
-    background-color: var(--color-midnight-35);
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    &__parallax {
-      padding: 120px var(--space-1) var(--space-6);
-      max-width: var(--container-width);
-      margin: 0 auto;
-      @media (--desktop) {
-        padding: 120px 0;
-      }
-    }
-
-    &__panel {
-      margin-bottom: var(--space-6);
-    }
+.oracle-details {
+  &__panel {
+    margin-bottom: var(--space-6);
   }
-  </style>
+}
+</style>

@@ -366,3 +366,50 @@ export function adaptListedTokens(tokens) {
     prev: null,
   }
 }
+
+export function adaptOracles(oracles, blockHeight) {
+  const formattedData = oracles.data.map(oracle => {
+    return {
+      id: oracle.oracle,
+      activeFromHeight: oracle.active_from,
+      activeFrom: formatBlockDiffAsDatetime(oracle.active_from, blockHeight),
+      expireHeight: oracle.expire_height,
+      expire: formatBlockDiffAsDatetime(oracle.expire_height, blockHeight),
+      queryFee: formatAettosToAe(oracle.query_fee),
+    }
+  })
+
+  return {
+    next: oracles.next,
+    data: formattedData,
+    prev: oracles.prev,
+  }
+}
+
+export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQueryTx, blockHeight) {
+  const oracleDetails = {
+    id: oracle.oracle,
+    fee: formatAettosToAe(oracle.query_fee),
+    expiration: formatBlockDiffAsDatetime(
+      oracle.expire_height,
+      blockHeight,
+    ),
+    expirationHeight: oracle.expire_height,
+    registered: oracle.active_from
+      ? formatBlockDiffAsDatetime(
+        oracle.active_from,
+        blockHeight,
+      )
+      : null,
+    registeredHeight: oracle.active_from,
+    queryFormat: oracle.format.query,
+    responseFormat: oracle.format.response,
+    creator: creationTx?.tx.account_id,
+    lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.micro_time) : null,
+    lastExtendedHeight: lastExtendedTx?.block_height,
+    lastQuery: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
+    lastQueryHeight: lastQueryTx?.block_height,
+  }
+
+  return oracleDetails
+}

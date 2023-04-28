@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/plausible',
+    'nuxt-simple-sitemap',
   ],
   imports: {
     dirs: ['./stores'],
@@ -19,6 +20,9 @@ export default defineNuxtConfig({
     domain: process.env.APP_DOMAIN ?? 'localhost:8080',
     apiHost: 'https://plausible.dev.service.aepps.com',
     trackLocalhost: false,
+  },
+  sitemap: {
+    siteUrl: process.env.APP_DOMAIN ?? 'localhost:8080',
   },
   runtimeConfig: {
     public: {

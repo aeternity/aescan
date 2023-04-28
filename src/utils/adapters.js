@@ -366,3 +366,21 @@ export function adaptListedTokens(tokens) {
     prev: null,
   }
 }
+
+export function adaptOracles(oracles, blockHeight) {
+  const formattedData = oracles.data.map(oracle => {
+    return {
+      id: oracle.oracle,
+      activeFromHeight: oracle.active_from,
+      activeFrom: formatBlockDiffAsDatetime(oracle.active_from, blockHeight),
+      expireHeight: oracle.expire_height,
+      expire: formatBlockDiffAsDatetime(oracle.expire_height, blockHeight),
+      queryFee: formatAettosToAe(oracle.query_fee),
+    }
+  })
+  return {
+    next: oracles.next,
+    data: formattedData,
+    prev: oracles.prev,
+  }
+}

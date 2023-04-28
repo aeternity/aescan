@@ -50,7 +50,6 @@ const loadNextTransactions = () => {
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
   fetchContractCallTransactions({
     limit: limit.value,
   })

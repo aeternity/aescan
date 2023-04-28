@@ -34,14 +34,12 @@
         </app-link>
       </li>
       <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            Oracles
-          </app-link>
-        </coming-soon-tooltip>
+        <app-link
+          class="navigation__link"
+          to="/oracles"
+          @click="$emit('link-clicked')">
+          Oracles
+        </app-link>
       </li>
       <li class="navigation__item">
         <coming-soon-tooltip>

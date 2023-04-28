@@ -284,6 +284,7 @@ export function adaptContractDetails(
   contractCallsCount,
   contractCreationTx,
   contractType,
+  contractAccountBalance,
 ) {
   return {
     id: rawContractInformation?.id,
@@ -292,7 +293,7 @@ export function adaptContractDetails(
     creationDate: DateTime.fromMillis(contractCreationTx?.micro_time),
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
-    accountBalance: rawContractInformation?.deposit,
+    contractAccountBalance,
     callsCount: contractCallsCount,
     contractType,
   }
@@ -363,6 +364,25 @@ export function adaptListedTokens(tokens) {
     next: null,
     data: formattedData,
     prev: null,
+  }
+}
+
+export function adaptOracles(oracles, blockHeight) {
+  const formattedData = oracles.data.map(oracle => {
+    return {
+      id: oracle.oracle,
+      activeFromHeight: oracle.active_from,
+      activeFrom: formatBlockDiffAsDatetime(oracle.active_from, blockHeight),
+      expireHeight: oracle.expire_height,
+      expire: formatBlockDiffAsDatetime(oracle.expire_height, blockHeight),
+      queryFee: formatAettosToAe(oracle.query_fee),
+    }
+  })
+
+  return {
+    next: oracles.next,
+    data: formattedData,
+    prev: oracles.prev,
   }
 }
 

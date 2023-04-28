@@ -92,7 +92,7 @@
             Smart Contract's account balance
           </th>
           <td class="contract-details-panel__data">
-            {{ formatAePrice(formatAettosToAe(contractDetails.accountBalance), null) }}
+            {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
           </td>
         </tr>
         <tr class="contract-details-panel__row">

@@ -28,7 +28,7 @@
             Price
           </th>
           <td class="token-details-panel__data">
-            {{ fiatPrice }} ({{ formatAePrice(tokenPrice) }})
+            {{ formatAePrice(tokenPrice) }} ({{ fiatPrice }})
           </td>
         </tr>
         <tr

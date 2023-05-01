@@ -12,16 +12,18 @@
           </h2>
         </div>
         <div class="dashboard__column">
-          <div class="dashboard__subtitle dashboard__subtitle--horizontal">
-            Discover and navigate through the æternity blockchain mainnet,
-            powered by Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
+          <p class="dashboard__paragraph dashboard__paragraph--horizontal">
+            Discover and navigate through the æternity blockchain mainnet, powered by
+            Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
             <app-link
               class="dashboard__link"
-              to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b">
+              to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b"
+              is-text-link>
               Learn more
             </app-link>
-            <p>Soon also with Hyperchains support!</p>
-          </div>
+            <br>
+            Soon also with Hyperchains support!
+          </p>
         </div>
       </div>
       <div class="dashboard__row">
@@ -35,25 +37,21 @@
           <h2 class="dashboard__heading">
             .chain names
           </h2>
-          <div class="dashboard__subtitle">
+          <p class="dashboard__paragraph">
             The æternity blockchain supports protocol-level .chain names via the
             æternity naming system (AENS).
-          </div>
-          <client-only>
-            <names-panel/>
-          </client-only>
+          </p>
+          <names-panel/>
         </div>
         <div class="dashboard__column">
           <h2 class="dashboard__heading">
             .chain name auctions
           </h2>
-          <div class="dashboard__subtitle">
+          <p class="dashboard__paragraph">
             .chain names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
-          </div>
-          <client-only>
-            <auctions-panel>Auctions ending soon</auctions-panel>
-          </client-only>
+          </p>
+          <auctions-panel>Auctions ending soon</auctions-panel>
         </div>
       </div>
 
@@ -62,7 +60,7 @@
           <h2 class="dashboard__heading">
             State channels
           </h2>
-          <div class="dashboard__subtitle">
+          <p class="dashboard__paragraph">
             State Channels allow the gas-free execution of smart contracts and
             transactions, privately and with the speed of light, while still
             being able to escalate on-chain in case of disagreement.
@@ -71,10 +69,8 @@
               to="https://aeternity.com/state-channels">
               Learn more
             </app-link>
-          </div>
-          <client-only>
-            <state-channels-panel class="dashboard__state-channels-panel"/>
-          </client-only>
+          </p>
+          <state-channels-panel class="dashboard__state-channels-panel"/>
         </div>
       </div>
     </div>
@@ -89,25 +85,36 @@ import StateChannelsPanel from '@/components/StateChannelsPanel'
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
 
-if (process.client) {
-  const {
-    fetchSelectedMicroblocksInfo,
-    fetchDeltaStats,
-  } = useRecentBlocksStore()
-  const { fetchBlockchainStats } = useBlockchainStatsStore()
-  const { fetchStateChannels } = useStateChannelsStore()
-  const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+const {
+  fetchSelectedMicroblocksInfo,
+  fetchDeltaStats,
+} = useRecentBlocksStore()
+const {
+  fetchTotalStats,
+  fetchMaxTps,
+  fetchTotalTransactionsCount,
+} = useBlockchainStatsStore()
+const { fetchStateChannels } = useStateChannelsStore()
+const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 
-  // fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
-  await useAsyncData(() => Promise.all([
-    fetchStateChannels(),
-    fetchInAuctionNames(),
-    fetchRecentlyActivatedNames(),
-    fetchSelectedMicroblocksInfo(),
-    fetchBlockchainStats(),
-    fetchDeltaStats(),
-  ]))
-}
+definePageMeta({
+  layout: 'empty',
+})
+
+await useAsyncData(() => Promise.all([
+  fetchStateChannels(),
+  fetchInAuctionNames(),
+  fetchRecentlyActivatedNames(),
+  fetchTotalStats(),
+  fetchMaxTps(),
+]))
+
+// fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
+await useAsyncData(() => Promise.all([
+  fetchSelectedMicroblocksInfo(),
+  fetchTotalTransactionsCount(),
+  fetchDeltaStats(),
+]), { server: false })
 </script>
 
 <style scoped>
@@ -148,17 +155,10 @@ if (process.client) {
     }
   }
 
-  &__subtitle {
+  &__paragraph {
     margin: var(--space-3) var(--space-1) var(--space-4);
-    font-family: var(--font-monospaced);
-    letter-spacing: -0.005em;
-    font-size: 12px;
-    line-height: 20px;
-
     @media (--desktop) {
       margin: var(--space-3) 0 var(--space-6);
-      font-size: 14px;
-      line-height: 20px;
     }
 
     &--horizontal {
@@ -174,8 +174,9 @@ if (process.client) {
   }
 
   &__link {
-    text-decoration: underline;
-    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: var(--font-monospaced);
   }
 }
 </style>

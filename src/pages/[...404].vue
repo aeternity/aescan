@@ -1,35 +1,34 @@
 <template>
-  <div class="not-found-error">
-    <Head>
-      <Title>{{ APP_TITLE_SHORT }} | Page not found</Title>
-    </Head>
-    <div class="not-found-error__parallax">
-      <page-header>
-        Page not found
-      </page-header>
+  <Head>
+    <Title>{{ APP_TITLE_SHORT }} | Page not found</Title>
+  </Head>
 
-      <app-panel class="not-found-error__panel">
-        <p class="not-found-error__paragraph">
-          Sorry, the page you requested was not found. Perhaps our Dashboard options will help you find the way.
-        </p>
+  <page-header>
+    Page not found
+  </page-header>
 
-        <p class="not-found-error__paragraph">
-          Maybe the
-          <app-link to="https://forum.aeternity.com/">community
-          </app-link>
-          can help you.
-        </p>
+  <app-panel class="not-found-error__panel">
+    <p class="not-found-error__paragraph">
+      Sorry, the page you requested was not found. Perhaps our Dashboard options will help you find the
+      way.
+    </p>
 
-        <div class="not-found-error__container">
-          <app-button
-            to="/"
-            class="not-found-error__button">
-            Back to Dashboard
-          </app-button>
-        </div>
-      </app-panel>
+    <p class="not-found-error__paragraph">
+      Maybe the
+      <app-link to="https://forum.aeternity.com/">
+        community
+      </app-link>
+      can help you.
+    </p>
+
+    <div class="not-found-error__container">
+      <app-button
+        to="/"
+        class="not-found-error__button">
+        Back to Dashboard
+      </app-button>
     </div>
-  </div>
+  </app-panel>
 </template>
 
 <script>
@@ -54,22 +53,6 @@ export default {
 
 <style scoped>
 .not-found-error {
-  background-image: url("@/assets/background.svg");
-  background-color: var(--color-midnight-35);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  &__parallax {
-    padding: 120px var(--space-1) var(--space-6);
-    max-width: var(--container-width);
-    margin: 0 auto;
-    @media (--desktop) {
-      padding: 120px 0;
-    }
-  }
-
   &__panel {
     margin-top: var(--space-4);
     padding: var(--space-4) var(--space-1);
@@ -80,13 +63,8 @@ export default {
   }
 
   &__paragraph {
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: -0.005em;
-    font-family: var(--font-monospaced);
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 14px;
       &:last-of-type {
         margin-bottom: var(--space-6);
       }
@@ -94,10 +72,7 @@ export default {
   }
 
   &__button {
-    width: 200px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.015em;
+    width: 215px;
     padding: var(--space-3) var(--space-5);
   }
 

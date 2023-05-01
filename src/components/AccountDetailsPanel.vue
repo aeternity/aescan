@@ -1,9 +1,9 @@
 <template>
   <app-panel class="account-details-panel">
     <header class="account-details-panel__header">
-      <h3 class="account-details-panel__heading">
+      <h2 class="account-details-panel__heading h3">
         DETAILS
-      </h3>
+      </h2>
       <div>
         <app-chip
           v-if="accountDetails.isGeneralized"
@@ -34,7 +34,7 @@
             Balance
           </th>
           <td class="account-details-panel__data">
-            {{ formatAePrice(accountDetails.balance) }}
+            {{ formatAePrice(accountDetails.balance, null) }}
           </td>
         </tr>
         <tr class="account-details-panel__row">
@@ -154,14 +154,8 @@ export default {
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }
@@ -194,12 +188,6 @@ export default {
 
   &__data {
     text-align: right;
-    letter-spacing: -0.005em;
-    font-size: 12px;
-    line-height: 20px;
-    @media (--desktop) {
-      font-size: 14px;
-    }
   }
 
   &__container {
@@ -208,7 +196,6 @@ export default {
   }
 
   &__link {
-    font-weight: 400;
     display: inline-flex;
     align-items: center;
   }

@@ -9,18 +9,21 @@
     </app-badge>
     <div class="panel-header__body">
       <div class="panel-header__container">
-        <div class="panel-header__title">
+        <component
+          :is="level"
+          class="panel-header__heading h3">
           {{ title }}
           <hint-tooltip v-if="$slots.tooltip">
             <slot name="tooltip"/>
           </hint-tooltip>
-        </div>
+        </component>
         <slot name="header"/>
       </div>
 
       <app-link
         v-if="showAllLink"
         :to="showAllLink"
+        is-text-link
         class="panel-header__link">
         Show all
       </app-link>
@@ -38,6 +41,11 @@ export default {
   name: 'PanelHeader',
   components: { AppLink, AppIcon, AppBadge, HintTooltip },
   props: {
+    level: {
+      type: String,
+      required: true,
+      validator: val => ['h2', 'h3', 'h4', 'h5'].includes(val),
+    },
     iconName: {
       type: String,
       default: null,
@@ -91,7 +99,6 @@ export default {
     line-height: 20px;
     font-weight: 500;
     white-space: nowrap;
-    text-decoration: underline;
     @media (--desktop) {
       font-size: 16px;
       line-height: 24px;
@@ -99,18 +106,10 @@ export default {
     }
   }
 
-  &__title {
+  &__heading {
     display: flex;
     gap: var(--space-0);
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.03em;
     font-style: normal;
-    font-weight: 500;
-    @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
-    }
   }
 }
 </style>

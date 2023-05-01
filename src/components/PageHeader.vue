@@ -1,20 +1,20 @@
 <template>
   <header class="page-header">
-    <app-subtitle class="page-header__subtitle">
+    <app-title>
       <slot/>
-    </app-subtitle>
+    </app-title>
     <the-search-bar class="page-header__search-bar"/>
   </header>
 </template>
 
 <script>
 import TheSearchBar from '@/components/TheSearchBar'
-import AppSubtitle from '@/components/AppSubtitle'
+import AppTitle from '@/components/AppTitle'
 
 export default {
   name: 'PageHeader',
   components: {
-    AppSubtitle,
+    AppTitle,
     TheSearchBar,
   },
 }
@@ -30,17 +30,6 @@ export default {
 
   @media (--desktop) {
     margin: 0 0 var(--space-6);
-  }
-
-  &__subtitle {
-    font-size: 28px;
-    line-height: 36px;
-    margin-bottom: var(--space-4);
-    @media (--desktop) {
-      font-size: 40px;
-      line-height: 48px;
-      margin-bottom: 0;
-    }
   }
 
   &__search-bar {

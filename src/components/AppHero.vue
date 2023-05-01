@@ -14,10 +14,8 @@
           <the-search-bar class="hero__search-bar"/>
         </div>
       </div>
-      <client-only>
-        <market-stats class="hero__market-stats"/>
-        <stats-panel/>
-      </client-only>
+      <market-stats class="hero__market-stats"/>
+      <stats-panel/>
     </div>
   </div>
 </template>
@@ -63,13 +61,8 @@ const selectedNetwork = ref(config.public.NETWORK_NAME.toLowerCase())
 
   &__heading {
     color: var(--color-white);
-    font-size: 28px;
-    line-height: 36px;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-2);
     @media (--desktop) {
-      font-size: 40px;
-      line-height: 48px;
       margin-bottom: var(--space-3);
     }
   }
@@ -79,6 +72,7 @@ const selectedNetwork = ref(config.public.NETWORK_NAME.toLowerCase())
     font-size: 14px;
     line-height: 20px;
     font-family: var(--font-monospaced);
+    letter-spacing: 0.0015em;
   }
 
   &__search-column {

@@ -34,14 +34,12 @@
         </app-link>
       </li>
       <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            Oracles
-          </app-link>
-        </coming-soon-tooltip>
+        <app-link
+          class="navigation__link"
+          to="/oracles"
+          @click="$emit('link-clicked')">
+          Oracles
+        </app-link>
       </li>
       <li class="navigation__item">
         <coming-soon-tooltip>
@@ -93,12 +91,12 @@ export default {
   }
 
   &__link {
-    text-decoration: none;
     color: var(--color-midnight);
     display: block;
     padding: var(--space-3) 0;
     font-size: 16px;
     line-height: 24px;
+    letter-spacing: 0.002em;
 
     @media (--desktop) {
       padding: 0;

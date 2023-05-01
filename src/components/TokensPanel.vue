@@ -1,12 +1,12 @@
 <template>
   <app-panel class="tokens-panel">
-    <header class="tokens-panel__header">
-      <token-select v-model="selectedTokenName"/>
-    </header>
     <paginated-content
       :entities="selectedTokens"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
+      <template #header>
+        <token-select v-model="selectedTokenName"/>
+      </template>
       <tokens-table
         v-if="selectedTokens"
         class="tokens-panel__tokens-table"
@@ -44,7 +44,7 @@ async function loadNextTokens() {
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 if (process.client) {
-  await fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
+  fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
 }
 
 </script>
@@ -52,11 +52,6 @@ if (process.client) {
 <style scoped>
 .tokens-panel {
   padding: var(--space-4) var(--space-1);
-
-  &__header {
-    display: flex;
-    justify-content: flex-end;
-  }
 
   @media (--desktop) {
     padding: var(--space-4);

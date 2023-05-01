@@ -79,9 +79,6 @@ defineProps({
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
   }
 }
 </style>

@@ -11,9 +11,13 @@
       {{ data }}
     </div>
     <div v-else-if="name === 'Transfer'">
-      {{ args[0] }}
+      <value-hash-ellipsed
+        :hash="args[0]"
+        :link-to="`/account/${args[0]}`"/>
       <transaction-arrow-right-icon/>
-      <app-chip>{{ args[1] }}</app-chip>
+      <value-hash-ellipsed
+        :hash="args[1]"
+        :link-to="`/account/${args[1]}`"/>
       {{ args[2] }}
     </div>
     <div v-else-if="name === 'Allowance'">

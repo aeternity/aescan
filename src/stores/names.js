@@ -68,10 +68,10 @@ export const useNamesStore = defineStore('names', () => {
   }
   
   return {
-    rawActiveNames: null,
-    rawInAuctionNames: null,
-    rawExpiredNames: null,
-    rawRecentlyActivatedNames: null,
+    rawActiveNames,
+    rawInAuctionNames,
+    rawExpiredNames,
+    rawRecentlyActivatedNames,
     activeNames,
     inAuctionNames,
     auctionsEndingSoon,

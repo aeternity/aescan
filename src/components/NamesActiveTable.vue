@@ -67,7 +67,7 @@ defineProps({
   names: {
     type: Object,
     required: true,
-  }
+  },
 })
 </script>
 

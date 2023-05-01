@@ -29,7 +29,6 @@ const namesStore = useNamesStore()
 const { fetchActiveNames } = namesStore
 const { activeNames } = storeToRefs(namesStore)
 
-
 function loadPrevNames() {
   return fetchActiveNames({ queryParameters: activeNames.value.prev })
 }

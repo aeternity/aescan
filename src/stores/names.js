@@ -34,7 +34,7 @@ export const useNamesStore = defineStore('names', () => {
       ? adaptChainNames(rawRecentlyActivatedNames.value, blockHeight.value)
       : null
   })
-  
+
   function fetchNamesDetails({ limit }) {
     return Promise.all([
       fetchActiveNames({ limit }),
@@ -66,7 +66,7 @@ export const useNamesStore = defineStore('names', () => {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names?state=active&by=activation&direction=backward&limit=4&expand=true&by=activation`)
     rawRecentlyActivatedNames.value = data.data
   }
-  
+
   return {
     rawActiveNames,
     rawInAuctionNames,

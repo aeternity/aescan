@@ -39,7 +39,7 @@ const props = defineProps({
 })
 
 const isOpenedInNewTab = computed(
-  () => props.target === '_blank'
+  () => props.target === '_blank',
 )
 
 function isLocalLink(url) {

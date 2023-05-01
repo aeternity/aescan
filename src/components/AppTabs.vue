@@ -28,7 +28,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:model-value'])
 
-const activeTabIndex = props.modelValue ? useVModel(props, 'modelValue', emit): ref(0)
+const activeTabIndex = props.modelValue ? useVModel(props, 'modelValue', emit) : ref(0)
 const tabs = ref([])
 
 provide('registerTab', tab => tabs.value.push(tab))

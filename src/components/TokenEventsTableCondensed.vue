@@ -86,14 +86,5 @@ defineProps({
     font-size: 12px;
     line-height: 20px;
   }
-
-  &__cell {
-    flex-wrap: wrap;
-    gap: var(--space-1);
-  }
-
-  &__args {
-    word-wrap: anywhere;
-  }
 }
 </style>

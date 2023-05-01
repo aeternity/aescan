@@ -15,7 +15,7 @@
         v-if="hasCustomPanel"
         class="name-details__panel"/>
       <app-tabs
-        v-if="hasNameHistory"
+        v-if="hasNameHistory && !!nameActions"
         class="name-details__tabs">
         <app-tab title="History">
           <name-history-panel class="name-details__history"/>
@@ -38,7 +38,7 @@ import NamePointersCustomPanel from '@/components/NamePointersCustomPanel'
 import { isDesktop } from '@/utils/screen'
 
 const nameDetailsStore = useNameDetailsStore()
-const { name, nameHash, hasNameHistory } = storeToRefs(nameDetailsStore)
+const { name, nameHash, hasNameHistory, nameActions } = storeToRefs(nameDetailsStore)
 const {
   fetchName,
   fetchNameActions,

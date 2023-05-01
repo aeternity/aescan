@@ -25,6 +25,7 @@ import TokenEventsTableCondensed from '~/components/TokenEventsTableCondensed.vu
 
 const { tokenEvents } = storeToRefs(useTokenDetailsStore())
 const { fetchTokenEvents } = useTokenDetailsStore()
+const route = useRoute()
 
 function loadPrevEvents() {
   fetchTokenEvents({ queryParameters: tokenEvents.value.prev })
@@ -34,6 +35,13 @@ function loadNextEvents() {
   fetchTokenEvents({ queryParameters: tokenEvents.value.next })
 }
 
+if (process.client) {
+  const limit = computed(() => isDesktop() ? 10 : 3)
+  await fetchTokenEvents({
+    limit: limit.value,
+    contractId: route.params.id,
+  })
+}
 </script>
 
 <style scoped>

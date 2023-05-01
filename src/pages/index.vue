@@ -97,6 +97,10 @@ const {
 const { fetchStateChannels } = useStateChannelsStore()
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 
+definePageMeta({
+  layout: 'empty',
+})
+
 await useAsyncData(() => Promise.all([
   fetchStateChannels(),
   fetchInAuctionNames(),

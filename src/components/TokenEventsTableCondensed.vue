@@ -35,7 +35,7 @@
         <th class="token-events-table-condensed__header">
           Data
         </th>
-        <td class="token-events-table-condensed__data token-events-table-condensed__event-data">
+        <td class="token-events-table-condensed__data">
           <token-events-data-cell
             :name="event.name"
             :data="event.data"

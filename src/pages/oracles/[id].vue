@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Oracle Details</Title>
+    <Title>{{ APP_TITLE_SHORT }} | Oracle</Title>
   </Head>
 
   <page-header>

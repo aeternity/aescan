@@ -17,34 +17,25 @@
   </app-panel>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import PaginatedContent from '@/components/PaginatedContent'
 import NamesActiveTable from '@/components/NamesActiveTable'
 import NamesActiveTableCondensed from '@/components/NamesActiveTableCondensed'
 import { useNamesStore } from '@/stores/names'
 
-export default {
-  name: 'NamesActivePanel',
-  components: {
-    NamesActiveTable,
-    NamesActiveTableCondensed,
-    AppPanel,
-    PaginatedContent,
-  },
-  computed: {
-    ...mapState(useNamesStore, ['activeNames']),
-  },
-  methods: {
-    ...mapActions(useNamesStore, ['fetchActiveNames']),
-    loadPrevNames() {
-      this.fetchActiveNames({ queryParameters: this.activeNames.prev })
-    },
-    loadNextNames() {
-      this.fetchActiveNames({ queryParameters: this.activeNames.next })
-    },
-  },
+const namesStore = useNamesStore()
+const { fetchActiveNames } = namesStore
+const { activeNames } = storeToRefs(namesStore)
+
+
+function loadPrevNames() {
+  return fetchActiveNames({ queryParameters: activeNames.value.prev })
+}
+
+function loadNextNames() {
+  return fetchActiveNames({ queryParameters: activeNames.value.next })
 }
 </script>
 

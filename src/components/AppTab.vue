@@ -6,23 +6,19 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AppTab',
-  inject: ['registerTab'],
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
   },
-  data() {
-    return {
-      isActive: false,
-    }
-  },
-  beforeMount() {
-    this.registerTab(this)
-  },
-}
+})
+
+const isActive = ref(false)
+const registerTab = inject('registerTab')
+
+registerTab({
+  title: props.title,
+  isActive,
+})
 </script>

@@ -4,12 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AppPanel',
-}
-</script>
-
 <style scoped>
 .panel {
   max-width: 100%;

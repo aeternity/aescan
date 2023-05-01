@@ -7,17 +7,9 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import TheSearchBar from '@/components/TheSearchBar'
 import AppTitle from '@/components/AppTitle'
-
-export default {
-  name: 'PageHeader',
-  components: {
-    AppTitle,
-    TheSearchBar,
-  },
-}
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@
     <input
       v-model="userQuery"
       class="search-bar__input"
-      placeholder="Search accounts, transactions, names, contracts..."
+      placeholder="Search accounts, transactions, names, contracts, oracles..."
       type="search"
       autofocus
       @keyup.enter="search">

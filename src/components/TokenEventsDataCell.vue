@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="name === 'Mint'">
+  <div class="token-events-data-cell">
+    <template v-if="name === 'Mint'">
       <value-hash-ellipsed
         :hash="args[0]"
         :link-to="`/account/${args[0]}`"/>
@@ -8,9 +8,9 @@
         {{ args[1] }}
       </app-chip>
       {{ data }}
-    </div>
+    </template>
 
-    <div v-else-if="name === 'Burn'">
+    <template v-else-if="name === 'Burn'">
       <value-hash-ellipsed
         :hash="args[0]"
         :link-to="`/account/${args[0]}`"/>
@@ -18,9 +18,9 @@
         {{ args[1] }}
       </app-chip>
       {{ data }}
-    </div>
+    </template>
 
-    <div v-else-if="name === 'Transfer'">
+    <template v-else-if="name === 'Transfer'">
       <value-hash-ellipsed
         :hash="args[0]"
         :link-to="`/account/${args[0]}`"/>
@@ -29,9 +29,9 @@
         :hash="args[1]"
         :link-to="`/account/${args[1]}`"/>
       {{ formatNumber(args[2], 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
-    </div>
+    </template>
 
-    <div v-else-if="name === 'Allowance'">
+    <template v-else-if="name === 'Allowance'">
       <value-hash-ellipsed
         :hash="args[0]"
         :link-to="`/account/${args[0]}`"/>
@@ -41,10 +41,10 @@
       </app-chip>
       {{ args[2] }}
       {{ data }}
-    </div>
-    <div v-else>
+    </template>
+    <template v-else>
       N/A
-    </div>
+    </template>
   </div>
 </template>
 
@@ -72,6 +72,9 @@ defineProps({
 
 <style scoped>
 .token-events-data-cell {
+  display: inline-flex;
+  align-items: center;
+
   &__transaction-arrow-right-icon {
     margin: 0 var(--space-1);
   }

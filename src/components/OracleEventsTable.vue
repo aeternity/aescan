@@ -17,9 +17,10 @@
             :link-to="`/transactions/${event.queryTx}`"/>
         </td>
         <td>
-          <div @click="toggle(index)">
-            {{ event.status }}
-          </div>
+          <response-button
+            :status="event.status"
+            :is-collapsed="!opened.includes(index)"
+            @click="toggle(index)"/>
         </td>
         <td>
           <div>
@@ -51,6 +52,7 @@
 <script setup>
 
 import OracleEventsQueryPanel from '~/components/OracleEventsQueryPanel'
+import ResponseButton from '~/components/ResponseButton'
 
 defineProps({
   events: {

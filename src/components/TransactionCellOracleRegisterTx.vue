@@ -1,7 +1,7 @@
 <template>
   <value-hash-ellipsed
     :hash="transactionData.oracle_id"
-    :link-to="`/accounts/${transactionData.oracle_id}`"/>
+    :link-to="`/oracles/${transactionData.oracle_id}`"/>
 
   <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionData.fee)) }} FEE

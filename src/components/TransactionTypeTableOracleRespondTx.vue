@@ -6,7 +6,9 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
-          {{ transactionData.oracle_id }}
+          <app-link :to="`/oracles/${transactionData.oracle_id}`">
+            {{ transactionData.oracle_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
@@ -40,11 +42,7 @@
 </template>
 
 <script>
-import {
-  formatAePrice,
-  formatAettosToAe,
-  formatDecodeByteArray,
-} from '@/utils/format'
+import { formatAePrice, formatAettosToAe, formatDecodeByteArray } from '@/utils/format'
 
 export default {
   name: 'TransactionTypeTableOracleRespondTx',

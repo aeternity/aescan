@@ -6,7 +6,9 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-extend-tx__data">
-          {{ transactionData.oracle_id }}
+          <app-link :to="`/oracles/${transactionData.oracle_id}`">
+            {{ transactionData.oracle_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-extend-tx__row">

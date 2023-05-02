@@ -37,9 +37,9 @@
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.channel }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.channel)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.channel) }}
+              </span>
             </app-link>
 
             <template v-else>
@@ -58,9 +58,9 @@
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.contract }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.contract)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.contract) }}
+              </span>
             </app-link>
             <template v-else>
               -
@@ -74,13 +74,13 @@
           <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.oracle"
-              :to="`/accounts/${name.specialPointers.oracle}`">
+              :to="`/oracles/${name.specialPointers.oracle}`">
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.oracle }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.oracle)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.oracle) }}
+              </span>
             </app-link>
 
             <template v-else>

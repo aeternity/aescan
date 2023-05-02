@@ -1,27 +1,25 @@
 <template>
-  <div class="names">
-    <Head>
-      <Title>{{ APP_TITLE_SHORT }} | Names</Title>
-    </Head>
-    <div class="names__parallax">
-      <page-header>
-        Names
-      </page-header>
-      <app-tabs
-        v-model="activeTabIndex"
-        class="names__tabs">
-        <app-tab title="Active">
-          <names-active-panel/>
-        </app-tab>
-        <app-tab title="In Auction">
-          <names-in-auction-panel/>
-        </app-tab>
-        <app-tab title="Expired">
-          <names-expired-panel/>
-        </app-tab>
-      </app-tabs>
-    </div>
-  </div>
+  <Head>
+    <Title>{{ APP_TITLE_SHORT }} | Names</Title>
+  </Head>
+
+  <page-header>
+    Names
+  </page-header>
+
+  <app-tabs
+    v-model="activeTabIndex"
+    class="names__tabs">
+    <app-tab title="Active">
+      <names-active-panel/>
+    </app-tab>
+    <app-tab title="In Auction">
+      <names-in-auction-panel/>
+    </app-tab>
+    <app-tab title="Expired">
+      <names-expired-panel/>
+    </app-tab>
+  </app-tabs>
 </template>
 
 <script setup>
@@ -70,22 +68,6 @@ if (process.client) {
 
 <style scoped>
 .names {
-  background-image: url("@/assets/background.svg");
-  background-color: var(--color-midnight-35);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  &__parallax {
-    padding: 120px var(--space-1) var(--space-6);
-    max-width: var(--container-width);
-    margin: 0 auto;
-    @media (--desktop) {
-      padding: 120px 0;
-    }
-  }
-
   &__tabs {
     padding-top: var(--space-4);
     @media (--desktop) {

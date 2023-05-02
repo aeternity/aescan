@@ -1,16 +1,16 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Tokens</Title>
+    <Title>{{ APP_TITLE_SHORT }} | Oracles</Title>
   </Head>
 
   <page-header>
-    Tokens
+    Oracles
   </page-header>
 
-  <tokens-panel/>
+  <oracles-panel/>
 </template>
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
-import TokensPanel from '@/components/TokensPanel'
+import OraclesPanel from '@/components/OraclesPanel'
 </script>

@@ -8,18 +8,18 @@
     </app-chip>
   </div>
 </template>
-<script>
-export default {
-  name: 'ResponseButton',
-  props: {
-    index: {},
-    status: {},
-    isCollapsed: {
-      type: Boolean,
-      default: true,
-    },
+
+<script setup>
+defineProps({
+  status: {
+    type: String,
+    required: true,
   },
-}
+  isCollapsed: {
+    type: Boolean,
+    default: true,
+  },
+})
 </script>
 
 <style scoped>

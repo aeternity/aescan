@@ -1,12 +1,19 @@
 <template>
   <app-panel class="oracle-events-panel">
-    <!--    todo pagination?-->
-    <oracle-events-table
-      :events="oracleEvents"
-      class="oracle-events-panel__table"/>
-    <oracle-events-table-condensed
-      :events="oracleEvents"
-      class="oracle-events-panel__table-condensed"/>
+    <paginated-content
+      :entities="oracleEvents"
+      @prev-clicked="loadPrevEvents"
+      @next-clicked="loadNextEvents">
+      <oracle-events-table
+        v-if="oracleEvents"
+        :events="oracleEvents"
+        class="oracle-events-panel__table"/>
+
+      <oracle-events-table-condensed
+        v-if="oracleEvents"
+        :events="oracleEvents"
+        class="oracle-events-panel__table-condensed"/>
+    </paginated-content>
   </app-panel>
 </template>
 <script setup>
@@ -21,13 +28,13 @@ const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)
 const { fetchOracleEvents } = oracleDetailsStore
 
-// function loadPrevHolders() {
-//   fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
-// }
-//
-// function loadNextHolders() {
-//   fetchTokenHolders({ queryParameters: tokenHolders.value.next })
-// }
+function loadPrevEvents() {
+  fetchOracleEvents({ queryParameters: oracleEvents.value.prev })
+}
+
+function loadNextEvents() {
+  fetchOracleEvents({ queryParameters: oracleEvents.value.next })
+}
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)

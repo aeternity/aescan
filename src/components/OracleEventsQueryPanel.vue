@@ -17,13 +17,13 @@
     </dl>
   </app-panel>
 </template>
-<script>
-export default {
-  name: 'OracleEventsQueryPanel',
-  props: {
-    event: {},
+<script setup>
+defineProps({
+  event: {
+    type: Object,
+    required: true,
   },
-}
+})
 </script>
 <style>
 .oracle-events-query-panel {
@@ -36,21 +36,6 @@ export default {
     font-weight: 700;
     letter-spacing: 0.015em;
     margin-bottom: var(--space-1)
-  }
-
-  dl {
-    display: grid;
-    grid-template-columns: max-content auto;
-    gap: var(--space-1) 0
-  }
-
-  dt {
-    width: 200px;
-    grid-column-start: 1;
-  }
-
-  dd {
-    grid-column-start: 2;
   }
 }
 </style>

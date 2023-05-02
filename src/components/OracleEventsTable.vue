@@ -8,7 +8,7 @@
       <th>Respond at</th>
     </tr>
     <template
-      v-for="(event, index) in events"
+      v-for="(event, index) in events.data"
       :key="event.respondTx">
       <tr>
         <td>
@@ -50,10 +50,6 @@
 </template>
 
 <script setup>
-
-import OracleEventsQueryPanel from '~/components/OracleEventsQueryPanel'
-import ResponseButton from '~/components/ResponseButton'
-
 defineProps({
   events: {
     type: Array,

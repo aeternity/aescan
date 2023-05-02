@@ -1,7 +1,8 @@
 <template>
   <div class="oracle-events-table-condensed">
+    {{ events }}
     <table
-      v-for="event in events"
+      v-for="event in events.data"
       :key="event.respondTx"
       class="oracle-events-table-condensed__table">
       <tr class="oracle-events-table-condensed__row">
@@ -19,7 +20,10 @@
           Status
         </th>
         <td class="oracle-events-table-condensed__data">
-          {{ event.status }}
+          <response-button
+            :status="event.status"
+            :is-collapsed="!opened.includes(index)"
+            @click="toggle(index)"/>
         </td>
       </tr>
       <tr class="oracle-events-table-condensed__row">

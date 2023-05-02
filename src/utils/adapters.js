@@ -415,8 +415,7 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
 }
 
 export function adaptOracleEvents(events) {
-  console.log('adaptOracleEvents', events)
-  const ev = events.data.map(event => {
+  const formattedData = events.data.map(event => {
     return {
       queryTx: event.hash,
       status: 'aaa',
@@ -431,5 +430,10 @@ export function adaptOracleEvents(events) {
       response: event.tx.response_ttl.value,
     }
   })
-  return ev
+  console.log('formattedData', formattedData)
+  return {
+    next: events.next,
+    data: formattedData,
+    prev: events.prev,
+  }
 }

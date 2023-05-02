@@ -74,7 +74,7 @@
           <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.oracle"
-              :to="`/oracle/${name.specialPointers.oracle}`">
+              :to="`/oracles/${name.specialPointers.oracle}`">
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.oracle }}
               </span>

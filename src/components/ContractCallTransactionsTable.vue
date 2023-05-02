@@ -1,5 +1,5 @@
 <template>
-  <table class="contract-call-transactions-table">
+  <table>
     <thead>
       <tr>
         <th>Hash</th>
@@ -12,20 +12,20 @@
       <tr
         v-for="transaction in contractCallTransactions.data"
         :key="transaction.hash">
-        <td class="contract-call-transactions-table__column">
+        <td>
           <hash-symbol>th</hash-symbol>
 
           <value-hash-ellipsed
             :hash="transaction.hash"
             :link-to="`/transactions/${transaction.hash}`"/>
         </td>
-        <td class="contract-call-transactions-table__column">
+        <td>
           <div>
             {{ transaction.createdHeight }}
           </div>
           <datetime-label :datetime="transaction.created"/>
         </td>
-        <td class="contract-call-transactions-table__column">
+        <td>
           <value-hash-ellipsed
             :hash="transaction.data.caller_id"
             :link-to="`/accounts/${transaction.data.caller_id}`"/>
@@ -53,11 +53,3 @@ defineProps({
   },
 })
 </script>
-
-<style scoped>
-.contract-call-transactions-table {
-  &__column {
-    width: 180px;
-  }
-}
-</style>

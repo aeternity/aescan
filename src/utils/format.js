@@ -13,7 +13,6 @@ export function formatNumber(number, minimumFractionDigits = 0, maximumFractionD
   if (isNaN(number) || number === null) {
     return number
   }
-
   return Intl.NumberFormat('en-US', {
     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
     maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,

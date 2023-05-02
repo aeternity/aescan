@@ -28,7 +28,10 @@
       <value-hash-ellipsed
         :hash="args[1]"
         :link-to="`/account/${args[1]}`"/>
-      {{ formatNumber(args[2], 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
+      <span class="token-events-data-cell__price">
+        {{ formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4) }}
+        {{ tokenDetails.symbol }}
+      </span>
     </template>
 
     <template v-else-if="name === 'Allowance'">
@@ -50,7 +53,6 @@
 
 <script setup>
 import { useTokenDetailsStore } from '~/stores/tokenDetails'
-import { formatNumber } from '~/utils/format'
 
 const { tokenDetails } = useTokenDetailsStore()
 
@@ -80,6 +82,10 @@ defineProps({
   }
 
   &__chip {
+    margin-left: var(--space-1);
+  }
+
+  &__price {
     margin-left: var(--space-1);
   }
 }

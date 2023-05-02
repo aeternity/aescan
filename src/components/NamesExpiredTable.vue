@@ -12,12 +12,12 @@
       <tr
         v-for="name in names?.data"
         :key="name.name">
-        <td class="names-expired-table__column">
+        <td>
           <app-link :to="`/names/${name.name}`">
             {{ name.name }}
           </app-link>
         </td>
-        <td class="names-expired-table__column">
+        <td>
           <div>
             {{ name.expirationHeight }}
           </div>
@@ -25,7 +25,7 @@
             <datetime-label :datetime="name.expiration"/>
           </div>
         </td>
-        <td class="names-expired-table__column">
+        <td>
           <div>
             <value-hash-ellipsed
               v-if="name.lastBuyer"
@@ -77,10 +77,6 @@ export default {
 
 <style scoped>
 .names-expired-table {
-  &__column {
-    width: 210px;
-  }
-
   &__price-label {
     font-weight: 700;
     margin-top: var(--space-0);

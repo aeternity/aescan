@@ -28,7 +28,7 @@
             Price
           </th>
           <td class="token-details-panel__data">
-            {{ fiatPrice }} ({{ formatAePrice(tokenDetails.price) }})
+            {{ formatAePrice(tokenPrice) }} ({{ fiatPrice }})
           </td>
         </tr>
         <tr
@@ -145,13 +145,19 @@ const tokenDexUrl = computed(() =>
 
 const fiatPrice = computed(() =>
   props.tokenDetails.price && price.value
-    ? `$${formatNullable(formatNumber(props.tokenDetails.price * price.value, 0, 2))}`
+    ? `$${price.value / props.tokenDetails.price}`
     : '---',
 )
 
 const marketCap = computed(() =>
   props.tokenDetails.marketCap && price.value
     ? `$${formatNullable(formatNumber(props.tokenDetails.marketCap * price.value, 0, 2))}`
+    : '---',
+)
+
+const tokenPrice = computed(() =>
+  props.tokenDetails.price
+    ? 1 / props.tokenDetails.price
     : '---',
 )
 </script>

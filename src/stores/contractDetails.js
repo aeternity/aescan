@@ -1,127 +1,134 @@
-import { defineStore } from 'pinia'
+import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { adaptContractDetails, adaptContractEvents, adaptTransactions } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-export const useContractDetailsStore = defineStore('contractDetails', {
-  state: () => ({
-    contractId: null,
-    contractCallsCount: null,
-    contractCreationTx: null,
-    contractType: null,
-    rawContractInformation: null,
-    rawContractEvents: null,
-    rawContractCallTransactions: null,
-  }),
-  actions: {
-    async fetchContractDetails(contractId) {
-      this.contractId = contractId
-      await Promise.allSettled([
-        this.fetchContractInformation(),
-        this.fetchContractCallsCount(),
-        this.fetchContractCreationTx(),
-        this.fetchContractType(),
-      ])
+export const useContractDetailsStore = defineStore('contractDetails', () => {
+  const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { blockHeight } = storeToRefs(useRecentBlocksStore())
 
-      return true
-    },
-    async fetchContractInformation() {
-      this.rawContractInformation = null
-      const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/v3/contracts/${this.contractId}`)
-      this.rawContractInformation = data
-    },
-    async fetchContractCallsCount() {
-      this.contractCallsCount = null
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs/count/${this.contractId}`)
-      this.contractCallsCount = Object.values(data?.contract_call_tx ?? {}).reduce((sum, value) => sum + value, 0)
-    },
-    async fetchContractCreationTx() {
-      this.contractCreationTx = null
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs?limit=1&contract=${this.contractId}&direction=forward`)
-      this.contractCreationTx = data?.data[0]
-    },
-    async fetchContractType() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.DEX_BACKEND_URL}/tokens/listed`)
-      const dexTokens = data.map(contract => contract.address)
+  const contractId = ref(null)
+  const contractCallsCount = ref(null)
+  const contractCreationTx = ref(null)
+  const contractType = ref('')
+  const rawContractInformation = ref(null)
+  const rawContractEvents = ref(null)
+  const rawContractCallTransactions = ref(null)
+  const contractAccountBalance = ref(null)
 
-      // workaround for the fact that the middleware doesn't include AE contract
-      if (useRuntimeConfig().public.NETWORK_NAME === 'MAINNET') {
-        dexTokens.push('ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa')
-      } else {
-        dexTokens.push('ct_JDp175ruWd7mQggeHewSLS1PFXt9AzThCDaFedxon8mF8xTRF')
-      }
+  const contractEvents = computed(() => {
+    return rawContractEvents.value
+      ? adaptContractEvents(rawContractEvents.value, blockHeight.value)
+      : null
+  })
 
-      if (dexTokens.includes(this.contractId)) {
-        this.contractType = 'DEX'
-        return
-      }
+  const contractDetails = computed(() => {
+    if (contractCallsCount.value === null || !contractCreationTx.value || !rawContractInformation.value) {
+      return null
+    }
 
-      this.contractType = null
+    return adaptContractDetails(
+      rawContractInformation.value,
+      contractCallsCount.value,
+      contractCreationTx.value,
+      contractType.value,
+      contractAccountBalance.value,
+    )
+  })
+  const contractCallTransactions = computed(() => {
+    return rawContractCallTransactions.value
+      ? adaptTransactions(rawContractCallTransactions.value)
+      : null
+  })
 
-      return Promise.any([
-        this.fetchIsContractAex9(this.contractId),
-        this.fetchIsContractAex141(this.contractId),
-      ])
-    },
-    async fetchContractEvents({ contractId = null, queryParameters = null }) {
-      this.rawContractEvents = null
-      const defaultParameters = `/v2/contracts/logs?contract_id=${contractId}`
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-      this.rawContractEvents = data
-    },
+  async function fetchContractDetails(id) {
+    contractId.value = id
+    await Promise.allSettled([
+      fetchContractInformation(),
+      fetchContractCallsCount(),
+      fetchContractCreationTx(),
+      fetchContractType(),
+      fetchBalance(),
+    ])
 
-    async fetchContractCallTransactions({ contractId, limit, queryParameters } = {}) {
-      this.rawContractCallTransactions = null
+    return true
+  }
+  async function fetchContractInformation() {
+    rawContractInformation.value = null
+    const { data } = await axios.get(`${NODE_URL}/v3/contracts/${contractId.value}`)
+    rawContractInformation.value = data
+  }
+  async function fetchContractCallsCount() {
+    contractCallsCount.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count/${contractId.value}`)
+    contractCallsCount.value = Object.values(data?.contract_call_tx ?? {}).reduce((sum, value) => sum + value, 0)
+  }
+  async function fetchContractCreationTx() {
+    contractCreationTx.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs?limit=1&contract=${contractId.value}&direction=forward`)
+    contractCreationTx.value = data?.data[0]
+  }
+  function fetchContractType() {
+    contractType.value = null
+    return Promise.any([
+      fetchIsContractAex9(),
+      fetchIsContractAex141(),
+    ])
+  }
+  async function fetchBalance() {
+    const { data } = await axios.get(`${NODE_URL}/v3/accounts/${contractId.value.replace('ct_', 'ak_')}`)
+    contractAccountBalance.value = data.balance
+  }
+  async function fetchContractEvents({ queryParameters = null }) {
+    rawContractEvents.value = null
+    const defaultParameters = `/v2/contracts/logs?contract_id=${contractId.value}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawContractEvents.value = data
+  }
 
-      if (queryParameters) {
-        const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters}`)
-        this.rawContractCallTransactions = data
-        return
-      }
+  async function fetchContractCallTransactions({ limit, queryParameters } = {}) {
+    rawContractCallTransactions.value = null
 
-      const transactionsUrl = new URL(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs`)
-      transactionsUrl.searchParams.append('direction', 'backward')
-      transactionsUrl.searchParams.append('limit', limit ?? 10)
-      transactionsUrl.searchParams.append('type', 'contract_call')
-      transactionsUrl.searchParams.append('contract', contractId ?? this.contractId)
+    if (queryParameters) {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
+      rawContractCallTransactions.value = data
+      return
+    }
 
-      const { data } = await axios.get(transactionsUrl.toString())
-      this.rawContractCallTransactions = data
-    },
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v2/txs`)
+    transactionsUrl.searchParams.append('direction', 'backward')
+    transactionsUrl.searchParams.append('limit', limit ?? 10)
+    transactionsUrl.searchParams.append('type', 'contract_call')
+    transactionsUrl.searchParams.append('contract', contractId.value)
 
-    async fetchIsContractAex9(contractId) {
-      await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/aex9/${contractId}`)
-      this.contractType = 'AEX-9'
-    },
-    async fetchIsContractAex141(contractId) {
-      await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/aex141/${contractId}`)
-      this.contractType = 'AEX-141'
-    },
-  },
-  getters: {
-    contractEvents(state) {
-      const store = useRecentBlocksStore()
-      return state.rawContractEvents
-        ? adaptContractEvents(state.rawContractEvents, store.blockHeight)
-        : null
-    },
-    contractDetails(state) {
-      if (state.contractCallsCount === null || !state.contractCreationTx || !state.rawContractInformation) {
-        return null
-      }
+    const { data } = await axios.get(transactionsUrl.toString())
+    rawContractCallTransactions.value = data
+  }
 
-      return adaptContractDetails(
-        state.rawContractInformation,
-        state.contractCallsCount,
-        state.contractCreationTx,
-        state.contractType,
-      )
-    },
-    contractCallTransactions(state) {
-      return state.rawContractCallTransactions
-        ? adaptTransactions(state.rawContractCallTransactions)
-        : null
-    },
-  },
+  async function fetchIsContractAex9() {
+    await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId.value}`)
+    contractType.value = 'AEX-9'
+  }
+  async function fetchIsContractAex141() {
+    await axios.get(`${MIDDLEWARE_URL}/v2/aex141/${contractId.value}`)
+    contractType.value = 'AEX-141'
+  }
+
+  return {
+    contractId,
+    contractCallsCount,
+    contractCreationTx,
+    contractType,
+    rawContractInformation,
+    rawContractEvents,
+    rawContractCallTransactions,
+    contractAccountBalance,
+    contractDetails,
+    contractEvents,
+    contractCallTransactions,
+    fetchContractDetails,
+    fetchContractEvents,
+    fetchContractCallTransactions,
+  }
 })

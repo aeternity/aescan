@@ -16,49 +16,39 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AppTabs',
-  provide() {
-    return {
-      registerTab: tab => this.tabs.push(tab),
-    }
-  },
-  props: {
-    modelValue: {
-      type: Number,
-      default: 0,
-    },
-  },
-  emits: ['update:modelValue'],
-  data() {
-    return {
-      tabs: [],
-      activeTabIndex: this.modelValue,
-    }
-  },
-  watch: {
-    modelValue: {
-      immediate: true,
-      handler(newValue) {
-        this.selectTab(newValue)
-      },
-    },
-  },
-  mounted() {
-    this.tabs[this.activeTabIndex].isActive = true
-  },
-  methods: {
-    selectTab(index) {
-      this.activeTabIndex = index
+<script setup>
+import { useVModel } from '@vueuse/core'
 
-      this.tabs.forEach((tab, index) => {
-        tab.isActive = index === this.activeTabIndex
-      })
-
-      this.$emit('update:modelValue', this.activeTabIndex)
-    },
+const props = defineProps({
+  modelValue: {
+    type: Number,
+    default: 0,
   },
+})
+
+const emit = defineEmits(['update:model-value'])
+
+const activeTabIndex = props.modelValue ? useVModel(props, 'modelValue', emit) : ref(0)
+const tabs = ref([])
+
+provide('registerTab', tab => tabs.value.push(tab))
+
+watch(
+  () => props.modelValue,
+  newTabIndex => selectTab(newTabIndex),
+  { immediate: true },
+)
+
+onMounted(() => {
+  tabs.value[activeTabIndex.value].isActive = true
+})
+
+function selectTab(index) {
+  activeTabIndex.value = index
+
+  tabs.value.forEach((tab, index) => {
+    tab.isActive = index === activeTabIndex.value
+  })
 }
 </script>
 

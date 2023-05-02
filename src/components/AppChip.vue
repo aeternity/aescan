@@ -9,23 +9,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AppChip',
-  props: {
-    variant: {
-      type: String,
-      default: 'primary',
-      validator: val =>
-        ['primary', 'secondary', 'success', 'error'].includes(val),
-    },
-    size: {
-      type: String,
-      default: null,
-      validator: val => ['sm'].includes(val),
-    },
+<script setup>
+defineProps({
+  variant: {
+    type: String,
+    default: 'primary',
+    validator: val =>
+      ['primary', 'secondary', 'success', 'error'].includes(val),
   },
-}
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['sm'].includes(val),
+  },
+})
 </script>
 
 <style scoped>

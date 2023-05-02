@@ -101,6 +101,10 @@ const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 const webSocketStore = useWebSocket()
 const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)
 
+definePageMeta({
+  layout: 'empty',
+})
+
 await useAsyncData(() => Promise.all([
   fetchStateChannels(),
   fetchInAuctionNames(),

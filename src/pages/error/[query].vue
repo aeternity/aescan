@@ -1,39 +1,36 @@
 <template>
-  <div class="search-error">
-    <Head>
-      <Title>{{ APP_TITLE_SHORT }} | Search not found</Title>
-    </Head>
-    <div class="search-error__parallax">
-      <page-header>
-        Search not found
-      </page-header>
+  <Head>
+    <Title>{{ APP_TITLE_SHORT }} | Search not found</Title>
+  </Head>
 
-      <app-panel class="search-error__panel">
-        <p class="search-error__paragraph">
-          Oops! We are sorry. The search string
-          <span class="search-error__query">
-            {{ $route.params.query }}</span>
-          was not found.
-        </p>
+  <page-header>
+    Search not found
+  </page-header>
 
-        <p class="search-error__paragraph">
-          Ask for help in the
-          <app-link to="https://forum.aeternity.com/">
-            Forum
-          </app-link>
-          if the error persists.
-        </p>
+  <app-panel class="search-error__panel">
+    <p class="search-error__paragraph">
+      Oops! We are sorry. The search string
+      <span class="search-error__query">
+        {{ $route.params.query }}</span>
+      was not found.
+    </p>
 
-        <div class="search-error__container">
-          <app-button
-            to="/"
-            class="search-error__button">
-            Back to Dashboard
-          </app-button>
-        </div>
-      </app-panel>
+    <p class="search-error__paragraph">
+      Ask for help in the
+      <app-link to="https://forum.aeternity.com/">
+        Forum
+      </app-link>
+      if the error persists.
+    </p>
+
+    <div class="search-error__container">
+      <app-button
+        to="/"
+        class="search-error__button">
+        Back to Dashboard
+      </app-button>
     </div>
-  </div>
+  </app-panel>
 </template>
 
 <script>
@@ -57,22 +54,6 @@ export default {
 
 <style scoped>
 .search-error {
-  background-image: url("@/assets/background.svg");
-  background-color: var(--color-midnight-35);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  &__parallax {
-    padding: 120px var(--space-1) var(--space-6);
-    max-width: var(--container-width);
-    margin: 0 auto;
-    @media (--desktop) {
-      padding: 120px 0;
-    }
-  }
-
   &__panel {
     margin-top: var(--space-4);
     padding: var(--space-4) var(--space-1);

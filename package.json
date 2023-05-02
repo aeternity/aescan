@@ -62,7 +62,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.8.0",
     "nuxt": "^3.4.2",
-    "nuxt-simple-sitemap": "2.4.11",
+    "nuxt-simple-sitemap": "2.4.18",
     "postcss": "^8.4.20",
     "postcss-custom-media": "^8.0.2",
     "postcss-html": "^1.5.0",

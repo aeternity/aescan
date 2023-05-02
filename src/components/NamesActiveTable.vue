@@ -56,31 +56,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'NamesActiveTable',
-  components: {
-    DatetimeLabel,
-    ValueHashEllipsed,
-    AppChip,
-    AppLink,
+defineProps({
+  names: {
+    type: Object,
+    required: true,
   },
-  props: {
-    names: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    formatAePrice,
-  },
-}
+})
 </script>
 
 <style scoped>

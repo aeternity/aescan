@@ -17,34 +17,24 @@
   </app-panel>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import PaginatedContent from '@/components/PaginatedContent'
 import NamesExpiredTable from '@/components/NamesExpiredTable'
 import NamesExpiredTableCondensed from '@/components/NamesExpiredTableCondensed'
 import { useNamesStore } from '@/stores/names'
 
-export default {
-  name: 'NamesExpiredPanel',
-  components: {
-    NamesExpiredTable,
-    NamesExpiredTableCondensed,
-    AppPanel,
-    PaginatedContent,
-  },
-  computed: {
-    ...mapState(useNamesStore, ['expiredNames']),
-  },
-  methods: {
-    ...mapActions(useNamesStore, ['fetchExpiredNames']),
-    loadPrevNames() {
-      this.fetchExpiredNames({ queryParameters: this.expiredNames.prev })
-    },
-    loadNextNames() {
-      this.fetchExpiredNames({ queryParameters: this.expiredNames.next })
-    },
-  },
+const namesStore = useNamesStore()
+const { fetchExpiredNames } = namesStore
+const { expiredNames } = storeToRefs(namesStore)
+
+function loadPrevNames() {
+  fetchExpiredNames({ queryParameters: expiredNames.value.prev })
+}
+
+function loadNextNames() {
+  fetchExpiredNames({ queryParameters: expiredNames.value.next })
 }
 </script>
 

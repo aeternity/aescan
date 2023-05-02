@@ -33,28 +33,21 @@
   </span>
 </template>
 
-<script>
+<script setup>
 import AppTooltip from '@/components/AppTooltip'
 import { formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'ValueHashEllipsed',
-  components: { AppLink, AppTooltip },
-  props: {
-    hash: {
-      type: String,
-      required: true,
-    },
-    linkTo: {
-      type: String,
-      default: null,
-    },
+defineProps({
+  hash: {
+    type: String,
+    required: true,
   },
-  methods: {
-    formatEllipseHash,
+  linkTo: {
+    type: String,
+    default: null,
   },
-}
+})
 </script>
 
 <style scoped>

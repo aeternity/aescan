@@ -99,9 +99,9 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   // correct transactions and microblock count in past keyblocks to account for microfork changes
   async function fetchPastKeyblocksStatistics() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
-    for (let index=1; index < data.data.length; index++) {
+    for (let index = 1; index < data.data.length; index++) {
       const keyblockToUpdate = keyblocks.value.find(block => block.height === data.data[index].height)
-      
+
       if (!keyblockToUpdate) {
         continue
       }

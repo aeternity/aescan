@@ -413,3 +413,23 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
 
   return oracleDetails
 }
+
+export function adaptOracleEvents(events) {
+  console.log('adaptOracleEvents', events)
+  const ev = events.data.map(event => {
+    return {
+      queryTx: event.hash,
+      status: 'aaa',
+      queriedAtHeight: event.block_height,
+      queriedAtTime: DateTime.fromMillis(event.micro_time),
+      respondTx: event.hash,
+      respondedAtHeight: event.block_height,
+      respondedAtTime: DateTime.fromMillis(event.micro_time),
+      queryId: event.tx.query_id,
+      queryFee: event.tx.query_fee,
+      responseTtl: event.tx.response_ttl.value,
+      response: event.tx.response_ttl.value,
+    }
+  })
+  return ev
+}

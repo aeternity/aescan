@@ -1,11 +1,14 @@
 <template>
   <app-chip
     ref="container"
-    :class="{'copy-chip--animated': isCopyAnimationActive}">
+    :variant="!isCopyAnimationActive ? 'primary' : 'success'"
+    class="copy-chip">
     <div class="copy-chip__text">
       {{ textToDisplay }}
     </div>
+
     <app-copy-button
+      v-show="!isCopyAnimationActive"
       :clipboard-text="clipboardText || label"
       variant="light"
       class="copy-chip__copy-button"
@@ -59,9 +62,7 @@ export default {
 
 <style scoped>
 .copy-chip {
-  &--animated {
-    background: var(--color-midnight);
-  }
+  min-width: 72px;
 
   &__text {
     margin-right: var(--space-1);

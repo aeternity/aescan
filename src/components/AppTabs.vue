@@ -35,7 +35,7 @@ provide('registerTab', tab => tabs.value.push(tab))
 
 watch(
   () => props.modelValue,
-  newValue => selectTab(newValue),
+  newTabIndex => selectTab(newTabIndex),
   { immediate: true },
 )
 

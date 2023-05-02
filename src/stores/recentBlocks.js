@@ -34,7 +34,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     return rawSelectedMicroblock.value || selectedKeyblockMicroblocks.value?.[0]
   })
   const selectedKeyblockTransactionsCount = computed(() => {
-    return selectedKeyblock.value ? formatNullable(formatNumber(selectedKeyblock.value?.transactions_count)) : ''
+    return selectedKeyblock.value ? formatNullable(formatNumber(selectedKeyblock.value.transactions_count)) : ''
   })
   const selectedMicroblockTransactions = computed(() => {
     return rawSelectedMicroblockTransactions.value
@@ -94,6 +94,21 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   async function fetchKeyblocks() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
     keyblocks.value = data.data
+  }
+
+  // correct transactions and microblock count in past keyblocks to account for microfork changes
+  async function fetchPastKeyblocksStatistics() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
+    for (let index=1; index < data.data.length; index++) {
+      const keyblockToUpdate = keyblocks.value.find(block => block.height === data.data[index].height)
+      
+      if (!keyblockToUpdate) {
+        continue
+      }
+
+      keyblockToUpdate.transactions_count = data.data[index].transactions_count
+      keyblockToUpdate.micro_blocks_count = data.data[index].micro_blocks_count
+    }
   }
 
   async function fetchSelectedMicroblocksInfo() {
@@ -170,9 +185,9 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
 
     prependKeyblock(keyblock)
 
-    // fetch latest keyblock information to correct stale data caused by microforks
+    // fetch latest blockchain information to correct stale statistics caused by microforks
     Promise.all([
-      fetchKeyblocks(),
+      fetchPastKeyblocksStatistics(),
       fetchDeltaStats(),
       fetchTotalTransactionsCount(),
     ])

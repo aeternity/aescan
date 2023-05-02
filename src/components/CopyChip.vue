@@ -3,11 +3,10 @@
     ref="container"
     :variant="!isCopyAnimationActive ? 'primary' : 'success'"
     class="copy-chip">
-    
     <div class="copy-chip__text">
       {{ textToDisplay }}
     </div>
-    
+
     <app-copy-button
       v-show="!isCopyAnimationActive"
       :clipboard-text="clipboardText || label"

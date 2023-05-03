@@ -12,6 +12,7 @@
       :key="event.respondTx">
       <tr>
         <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+          <hash-symbol>th</hash-symbol>
           <value-hash-ellipsed
             :hash="event.queryTx"
             :link-to="`/transactions/${event.queryTx}`"/>
@@ -67,7 +68,7 @@ function toggle(id) {
 }
 </script>
 
-<style>
+<style scoped>
 .oracle-events-table {
   &__opened {
     border-bottom: 0;

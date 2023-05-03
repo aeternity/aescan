@@ -39,7 +39,7 @@ defineProps({
 })
 </script>
 
-<style>
+<style scoped>
 .oracle-events-query-panel {
   padding: var(--space-3);
   background: var(--color-snow) !important;

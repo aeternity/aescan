@@ -23,16 +23,6 @@ module.exports = {
     '@nuxtjs/eslint-config-typescript',
   ],
   plugins: ['prettier'],
-  settings: {
-    'import/resolver': {
-      alias: {
-        map: [
-          ['@', './src'],
-        ],
-        extensions: ['.js', '.vue'],
-      },
-    },
-  },
   rules: {
     'no-console': 'off',
     quotes: ['error', 'single'],

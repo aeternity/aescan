@@ -160,23 +160,6 @@ export default {
     margin-left: var(--space-1);
   }
 
-  &__link {
-    display: none;
-    flex-basis: 100%;
-    justify-content: center;
-    margin-top: var(--space-2);
-
-    &--open {
-      display: flex;
-    }
-
-    @media (--desktop) {
-      display: flex;
-      flex-basis: auto;
-      margin-top: 0;
-    }
-  }
-
   &__button {
     display: none;
     flex-basis: 100%;

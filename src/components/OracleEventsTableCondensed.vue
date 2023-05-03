@@ -41,9 +41,7 @@
           Respond Tx
         </th>
         <td class="oracle-events-table-condensed__data">
-          <value-hash-ellipsed
-            :hash="event.respondTx"
-            :link-to="`/transactions/${event.respondTx}`"/>
+          N/A
         </td>
       </tr>
       <tr class="oracle-events-table-condensed__row">
@@ -57,10 +55,7 @@
           :class="[
             'oracle-events-table-condensed__data',
             {'oracle-events-table-condensed__data--opened': opened.includes(index)}]">
-          <div>
-            {{ event.respondedAtHeight }}
-          </div>
-          <datetime-label :datetime="event.respondedAtTime"/>
+          N/A
         </td>
       </tr>
       <tr
@@ -69,7 +64,7 @@
         <td colspan="5">
           <OracleEventsQueryPanel
             :event="event"
-            :is-response-available="false"/>
+            :is-response-available="true"/>
         </td>
       </tr>
     </table>

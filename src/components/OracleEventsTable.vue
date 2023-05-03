@@ -29,15 +29,10 @@
           <datetime-label :datetime="event.queriedAtTime"/>
         </td>
         <td :class="[{'oracle-events-table__opened': opened.includes(index)}]">
-          <value-hash-ellipsed
-            :hash="event.respondTx"
-            :link-to="`/transactions/${event.respondTx}`"/>
+          N/A
         </td>
         <td :class="[{'oracle-events-table__opened': opened.includes(index)}]">
-          <div>
-            {{ event.respondedAtHeight }}
-          </div>
-          <datetime-label :datetime="event.respondedAtTime"/>
+          N/A
         </td>
       </tr>
       <tr v-if="opened.includes(index)">
@@ -46,7 +41,7 @@
           class="oracle-events-table__query">
           <OracleEventsQueryPanel
             :event="event"
-            :is-response-available="false"/>
+            :is-response-available="true"/>
         </td>
       </tr>
     </template>

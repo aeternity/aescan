@@ -415,15 +415,16 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
 }
 
 export function adaptOracleEvents(events) {
+  console.log('events', events)
   const formattedData = events.data.map(event => {
     return {
       queryTx: event.hash,
-      status: 'aaa',
+      status: 'Response available',
       queriedAtHeight: event.block_height,
       queriedAtTime: DateTime.fromMillis(event.micro_time),
-      respondTx: event.hash,
-      respondedAtHeight: event.block_height,
-      respondedAtTime: DateTime.fromMillis(event.micro_time),
+      respondTx: 'N/A',
+      respondedAtHeight: 'N/A',
+      respondedAtTime: 'N/A',
       queryId: event.tx.query_id,
       queryFee: event.tx.query_fee,
       responseTtl: event.tx.response_ttl.value,

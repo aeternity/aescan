@@ -1,7 +1,7 @@
 dl {
   display: grid;
   grid-template-columns: max-content auto;
-  gap: var(--space-1) 0
+  gap: var(--space-1) 0;
 }
 
 dt {

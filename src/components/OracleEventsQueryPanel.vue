@@ -49,7 +49,7 @@ defineProps({
   &__heading {
     font-weight: 700;
     letter-spacing: 0.015em;
-    margin-bottom: var(--space-1)
+    margin-bottom: var(--space-1);
   }
 }
 </style>

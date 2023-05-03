@@ -47,17 +47,25 @@
         </td>
       </tr>
       <tr class="oracle-events-table-condensed__row">
-        <th class="oracle-events-table-condensed__header">
+        <th
+          :class="[
+            'oracle-events-table-condensed__header',
+            {'oracle-events-table-condensed__header--opened': opened.includes(index)}]">
           Respond at
         </th>
-        <td class="oracle-events-table-condensed__data">
+        <td
+          :class="[
+            'oracle-events-table-condensed__data',
+            {'oracle-events-table-condensed__data--opened': opened.includes(index)}]">
           <div>
             {{ event.respondedAtHeight }}
           </div>
           <datetime-label :datetime="event.respondedAtTime"/>
         </td>
       </tr>
-      <tr v-if="opened.includes(index)">
+      <tr
+        v-if="opened.includes(index)"
+        class="oracle-events-table-condensed__row">
         <td colspan="5">
           <OracleEventsQueryPanel
             :event="event"
@@ -104,19 +112,22 @@ function toggle(id) {
     vertical-align: top;
     border-bottom: 1px solid var(--color-midnight-15);
     padding-right: var(--space-4);
+
+    &--opened {
+      border-bottom: 0;
+    }
   }
 
   &__row:last-of-type &__header {
     border-bottom: 0;
   }
 
-  &__query ~ &__row {
-    background: red;
-  }
-
   &__data {
     text-align: right;
+
+    &--opened {
+      border-bottom: 0;
+    }
   }
 }
 </style>
-<!--todo check unused classes-->

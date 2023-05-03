@@ -28,6 +28,9 @@
             Date
           </th>
           <td class="token-events-table-condensed__data">
+            <div>
+              {{ event.createdHeight }}
+            </div>
             <datetime-label :datetime="event.created"/>
           </td>
         </tr>

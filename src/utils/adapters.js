@@ -343,6 +343,7 @@ export function adaptTokenEvents(events, blockHeight) {
         hash: event.contract_tx_hash,
         name: event.event_name || 'N/A',
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        createdHeight: event.height,
         args: event.args,
         data: event.data || 'N/A',
       }

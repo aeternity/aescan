@@ -22,6 +22,9 @@
           {{ event.name }}
         </td>
         <td>
+          <div>
+            {{ event.createdHeight }}
+          </div>
           <datetime-label :datetime="event.created"/>
         </td>
         <td>

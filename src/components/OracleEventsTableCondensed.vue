@@ -102,6 +102,10 @@ function toggle(id) {
     }
   }
 
+  &__row:last-of-type &__header {
+    border-bottom: 0;
+  }
+
   &__header {
     vertical-align: top;
     border-bottom: 1px solid var(--color-midnight-15);
@@ -110,10 +114,6 @@ function toggle(id) {
     &--opened {
       border-bottom: 0;
     }
-  }
-
-  &__row:last-of-type &__header {
-    border-bottom: 0;
   }
 
   &__data {

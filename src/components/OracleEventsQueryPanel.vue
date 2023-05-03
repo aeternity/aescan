@@ -7,12 +7,12 @@
       <dt>Query ID:</dt>
       <dd>{{ event.queryId }}</dd>
       <dt>Query Fee:</dt>
-      <dd>{{ event.queryFee }}</dd>
+      <dd>{{ formatAePrice(event.queryFee) }}</dd>
       <dt v-if="isResponseAvailable">
         Query:
       </dt>
       <dd v-if="isResponseAvailable">
-        {{ event.queryFee }}
+        {{ event.query }}
       </dd>
       <dt>Response TTL:</dt>
       <dd>{{ event.responseTtl }}</dd>
@@ -20,7 +20,7 @@
         Response:
       </dt>
       <dd v-if="isResponseAvailable">
-        {{ event.queryFee }}
+        {{ event.response }}
       </dd>
     </dl>
   </app-panel>

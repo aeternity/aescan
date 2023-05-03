@@ -425,9 +425,10 @@ export function adaptOracleEvents(events) {
       respondedAtHeight: 'N/A',
       respondedAtTime: 'N/A',
       queryId: event.tx.query_id,
-      queryFee: event.tx.query_fee,
+      queryFee: formatAettosToAe(event.tx.query_fee),
+      query: 'N/A',
       responseTtl: event.tx.response_ttl.value,
-      response: event.tx.response_ttl.value,
+      response: 'N/A',
     }
   })
   console.log('formattedData', formattedData)

@@ -1,7 +1,7 @@
 <template>
   <div class="oracle-events-table-condensed">
     <table
-      v-for="event in events.data"
+      v-for="event in oracleEvents.data"
       :key="event.respondTx"
       class="oracle-events-table-condensed__table">
       <tr class="oracle-events-table-condensed__row">
@@ -21,7 +21,7 @@
         <td class="oracle-events-table-condensed__data">
           <response-button
             :status="event.status"
-            :is-collapsed="!opened.includes(index)"
+            :is-collapsed="!isOpened.includes(index)"
             @click="toggle(index)"/>
         </td>
       </tr>
@@ -48,21 +48,21 @@
         <th
           :class="[
             'oracle-events-table-condensed__header',
-            {'oracle-events-table-condensed__header--opened': opened.includes(index)}]">
+            {'oracle-events-table-condensed__header--opened': isOpened.includes(index)}]">
           Respond at
         </th>
         <td
           :class="[
             'oracle-events-table-condensed__data',
-            {'oracle-events-table-condensed__data--opened': opened.includes(index)}]">
+            {'oracle-events-table-condensed__data--opened': isOpened.includes(index)}]">
           N/A
         </td>
       </tr>
       <tr
-        v-if="opened.includes(index)"
+        v-if="isOpened.includes(index)"
         class="oracle-events-table-condensed__row">
         <td colspan="5">
-          <OracleEventsQueryPanel
+          <oracle-events-query-panel
             :event="event"
             :is-response-available="true"/>
         </td>
@@ -72,21 +72,20 @@
 </template>
 
 <script setup>
-// todo unite prop name
 defineProps({
-  events: {
+  oracleEvents: {
     type: Array,
     required: true,
   },
 })
-const opened = ref([])
+const isOpened = ref([])
 
 function toggle(id) {
-  const index = opened.value.indexOf(id)
+  const index = isOpened.value.indexOf(id)
   if (index > -1) {
-    this.opened.splice(index, 1)
+    isOpened.value.splice(index, 1)
   } else {
-    this.opened.push(id)
+    isOpened.value.push(id)
   }
 }
 </script>

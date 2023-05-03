@@ -6,25 +6,23 @@
       @next-clicked="loadNextEvents">
       <oracle-events-table
         v-if="oracleEvents"
-        :events="oracleEvents"
+        :oracle-events="oracleEvents"
         class="oracle-events-panel__table"/>
 
       <oracle-events-table-condensed
         v-if="oracleEvents"
-        :events="oracleEvents"
+        :oracle-events="oracleEvents"
         class="oracle-events-panel__table-condensed"/>
     </paginated-content>
   </app-panel>
 </template>
 <script setup>
-// todo fix imports
 import { storeToRefs } from 'pinia'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsTable from '@/components/OracleEventsTable'
 import OracleEventsTableCondensed from '@/components/OracleEventsTableCondensed'
 
 const oracleDetailsStore = useOracleDetailsStore()
-
 const { oracleEvents } = storeToRefs(oracleDetailsStore)
 const { fetchOracleEvents } = oracleDetailsStore
 
@@ -42,7 +40,6 @@ if (process.client) {
     limit: limit.value,
   })
 }
-
 </script>
 
 <style scoped>

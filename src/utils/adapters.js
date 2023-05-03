@@ -415,7 +415,6 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
 }
 
 export function adaptOracleEvents(events) {
-  console.log('events', events)
   const formattedData = events.data.map(event => {
     return {
       queryTx: event.hash,

@@ -62,7 +62,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
 
   async function fetchOracleEvents() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs?oracle=${oracleId.value}&type=oracle_query`)
-    console.log('fetchOracleEvents data', data)
     rawEvents.value = data
   }
 

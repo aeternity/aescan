@@ -8,38 +8,38 @@
       <th>Respond at</th>
     </tr>
     <template
-      v-for="(event, index) in events.data"
+      v-for="(event, index) in oracleEvents.data"
       :key="event.respondTx">
       <tr>
-        <td :class="[{'oracle-events-table__opened': opened.includes(index)}]">
+        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
           <value-hash-ellipsed
             :hash="event.queryTx"
             :link-to="`/transactions/${event.queryTx}`"/>
         </td>
-        <td :class="[{'oracle-events-table__opened': opened.includes(index)}]">
+        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
           <response-button
             :status="event.status"
-            :is-collapsed="!opened.includes(index)"
+            :is-collapsed="!isOpened.includes(index)"
             @click="toggle(index)"/>
         </td>
-        <td :class="[{'oracle-events-table__opened': opened.includes(index)}]">
+        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
           <div>
             {{ event.queriedAtHeight }}
           </div>
           <datetime-label :datetime="event.queriedAtTime"/>
         </td>
-        <td :class="[{'oracle-events-table__opened': opened.includes(index)}]">
+        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
           N/A
         </td>
-        <td :class="[{'oracle-events-table__opened': opened.includes(index)}]">
+        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
           N/A
         </td>
       </tr>
-      <tr v-if="opened.includes(index)">
+      <tr v-if="isOpened.includes(index)">
         <td
           colspan="5"
           class="oracle-events-table__query">
-          <OracleEventsQueryPanel
+          <oracle-events-query-panel
             :event="event"
             :is-response-available="true"/>
         </td>
@@ -50,19 +50,19 @@
 
 <script setup>
 defineProps({
-  events: {
+  oracleEvents: {
     type: Array,
     required: true,
   },
 })
-const opened = ref([])
+const isOpened = ref([])
 
 function toggle(id) {
-  const index = opened.value.indexOf(id)
+  const index = isOpened.value.indexOf(id)
   if (index > -1) {
-    this.opened.splice(index, 1)
+    isOpened.value.splice(index, 1)
   } else {
-    this.opened.push(id)
+    isOpened.value.push(id)
   }
 }
 </script>

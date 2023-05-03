@@ -39,20 +39,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'NameHistoryTableCondensed',
-  components: { DatetimeLabel, ValueHashEllipsed },
-  props: {
-    actions: {
-      type: Object,
-      required: true,
-    },
+defineProps({
+  actions: {
+    type: Object,
+    required: true,
   },
-}
+})
 </script>
 
 <style scoped>

@@ -36,15 +36,13 @@
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
 
-      <app-link
-        to="https://github.com/aeternity/aescan"
+      <app-button
         :class="[
-          'header__link',
-          { 'header__link--open': isNavigationOpen }]">
-        <app-button class="header__button">
-          Contribute
-        </app-button>
-      </app-link>
+          'header__button',
+          { 'header__button--open': isNavigationOpen }]"
+        to="https://github.com/aeternity/aescan">
+        Contribute
+      </app-button>
     </div>
     <div class="header__survey">
       Help us improve aeScan.
@@ -180,9 +178,20 @@ export default {
   }
 
   &__button {
+    display: none;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-top: var(--space-2);
     padding: var(--space-3) 91px;
 
+    &--open {
+      display: flex;
+    }
+
     @media (--desktop) {
+      display: flex;
+      flex-basis: auto;
+      margin-top: 0;
       padding: var(--space-3) var(--space-5) !important;
     }
   }

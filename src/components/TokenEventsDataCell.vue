@@ -28,10 +28,10 @@
       <value-hash-ellipsed
         :hash="args[1]"
         :link-to="`/accounts/${args[1]}`"/>
-      <span class="token-events-data-cell__price">
+      <app-chip class="token-events-data-cell__chip">
         {{ formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4) }}
         {{ tokenDetails.symbol }}
-      </span>
+      </app-chip>
     </template>
 
     <template v-else-if="name === 'Allowance'">
@@ -39,10 +39,12 @@
         :hash="args[0]"
         :link-to="`/accounts/${args[0]}`"/>
       <transaction-arrow-right-icon class="token-events-data-cell__transaction-arrow-right-icon"/>
+      <value-hash-ellipsed
+        :hash="args[1]"
+        :link-to="`/accounts/${args[1]}`"/>
       <app-chip class="token-events-data-cell__chip">
-        {{ args[1] }}
+        {{ args[2] }}
       </app-chip>
-      {{ args[2] }}
       {{ data }}
     </template>
     <template v-else>
@@ -74,18 +76,16 @@ defineProps({
 
 <style scoped>
 .token-events-data-cell {
-  display: inline-flex;
+  width: 100%;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 
   &__transaction-arrow-right-icon {
     margin: 0 var(--space-1);
   }
 
   &__chip {
-    margin-left: var(--space-1);
-  }
-
-  &__price {
     margin-left: var(--space-1);
   }
 }

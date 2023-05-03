@@ -8,23 +8,37 @@
       <dd>{{ event.queryId }}</dd>
       <dt>Query Fee:</dt>
       <dd>{{ event.queryFee }}</dd>
-      <dt>Query:</dt>
-      <dd>{{ event.queryFee }}</dd>
+      <dt v-if="isResponseAvailable">
+        Query:
+      </dt>
+      <dd v-if="isResponseAvailable">
+        {{ event.queryFee }}
+      </dd>
       <dt>Response TTL:</dt>
       <dd>{{ event.responseTtl }}</dd>
-      <dt>Response:</dt>
-      <dd>{{ event.queryFee }}</dd>
+      <dt v-if="isResponseAvailable">
+        Response:
+      </dt>
+      <dd v-if="isResponseAvailable">
+        {{ event.queryFee }}
+      </dd>
     </dl>
   </app-panel>
 </template>
+
 <script setup>
 defineProps({
   event: {
     type: Object,
     required: true,
   },
+  isResponseAvailable: {
+    type: Boolean,
+    required: true,
+  },
 })
 </script>
+
 <style>
 .oracle-events-query-panel {
   padding: var(--space-3);

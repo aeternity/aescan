@@ -41,8 +41,12 @@
         </td>
       </tr>
       <tr v-if="opened.includes(index)">
-        <td colspan="5">
-          <OracleEventsQueryPanel :event="event"/>
+        <td
+          colspan="5"
+          class="oracle-events-table__query">
+          <OracleEventsQueryPanel
+            :event="event"
+            :is-response-available="false"/>
         </td>
       </tr>
     </template>
@@ -69,16 +73,10 @@ function toggle(id) {
 </script>
 
 <style>
-dl {
-  display: grid;
-  grid-template-columns: max-content auto;
+.oracle-events-table {
+  &__query {
+    border-top: 0;
+  }
 }
 
-dt {
-  grid-column-start: 1;
-}
-
-dd {
-  grid-column-start: 2;
-}
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="oracle-events-table-condensed">
-    {{ events }}
     <table
       v-for="event in events.data"
       :key="event.respondTx"
@@ -58,6 +57,13 @@
           <datetime-label :datetime="event.respondedAtTime"/>
         </td>
       </tr>
+      <tr v-if="opened.includes(index)">
+        <td colspan="5">
+          <OracleEventsQueryPanel
+            :event="event"
+            :is-response-available="false"/>
+        </td>
+      </tr>
     </table>
   </div>
 </template>
@@ -70,6 +76,16 @@ defineProps({
     required: true,
   },
 })
+const opened = ref([])
+
+function toggle(id) {
+  const index = opened.value.indexOf(id)
+  if (index > -1) {
+    this.opened.splice(index, 1)
+  } else {
+    this.opened.push(id)
+  }
+}
 </script>
 
 <style scoped>
@@ -92,6 +108,10 @@ defineProps({
 
   &__row:last-of-type &__header {
     border-bottom: 0;
+  }
+
+  &__query ~ &__row {
+    background: red;
   }
 
   &__data {

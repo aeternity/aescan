@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h4 class="footer-list__heading">
+    <h5 class="footer-list__heading">
       {{ title }}
-    </h4>
+    </h5>
     <hr>
     <ul class="footer-list__list">
       <li

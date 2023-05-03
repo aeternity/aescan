@@ -4,44 +4,46 @@
       v-for="event in tokenEvents.data"
       :key="event.hash"
       class="token-events-table-condensed__table">
-      <tr class="token-events-table-condensed__row">
-        <th class="token-events-table-condensed__header">
-          Hash
-        </th>
-        <td class="token-events-table-condensed__data">
-          <value-hash-ellipsed
-            :hash="event.hash"
-            :link-to="`/transactions/${event.hash}`"/>
-        </td>
-      </tr>
-      <tr class="token-events-table-condensed__row">
-        <th class="token-events-table-condensed__header">
-          Name
-        </th>
-        <td class="token-events-table-condensed__data">
-          {{ event.name }}
-        </td>
-      </tr>
-      <tr class="token-events-table-condensed__row">
-        <th class="token-events-table-condensed__header">
-          Date
-        </th>
-        <td class="token-events-table-condensed__data">
-          <datetime-label :datetime="event.created"/>
-        </td>
-      </tr>
+      <tbody>
+        <tr class="token-events-table-condensed__row">
+          <th class="token-events-table-condensed__header">
+            Hash
+          </th>
+          <td class="token-events-table-condensed__data">
+            <value-hash-ellipsed
+              :hash="event.hash"
+              :link-to="`/transactions/${event.hash}`"/>
+          </td>
+        </tr>
+        <tr class="token-events-table-condensed__row">
+          <th class="token-events-table-condensed__header">
+            Name
+          </th>
+          <td class="token-events-table-condensed__data">
+            {{ event.name }}
+          </td>
+        </tr>
+        <tr class="token-events-table-condensed__row">
+          <th class="token-events-table-condensed__header">
+            Date
+          </th>
+          <td class="token-events-table-condensed__data">
+            <datetime-label :datetime="event.created"/>
+          </td>
+        </tr>
 
-      <tr class="token-events-table-condensed__row">
-        <th class="token-events-table-condensed__header">
-          Data
-        </th>
-        <td class="token-events-table-condensed__data">
-          <token-events-data-cell
-            :name="event.name"
-            :data="event.data"
-            :args="event.args"/>
-        </td>
-      </tr>
+        <tr class="token-events-table-condensed__row">
+          <th class="token-events-table-condensed__header">
+            Data
+          </th>
+          <td class="token-events-table-condensed__data">
+            <token-events-data-cell
+              :name="event.name"
+              :data="event.data"
+              :args="event.args"/>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>

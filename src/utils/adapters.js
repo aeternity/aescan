@@ -431,7 +431,6 @@ export function adaptOracleEvents(events) {
       response: 'N/A',
     }
   })
-  console.log('formattedData', formattedData)
   return {
     next: events.next,
     data: formattedData,

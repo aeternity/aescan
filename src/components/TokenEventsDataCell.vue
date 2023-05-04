@@ -63,10 +63,6 @@ defineProps({
     type: String,
     required: true,
   },
-  data: {
-    type: String,
-    required: true,
-  },
   args: {
     type: Array,
     required: true,

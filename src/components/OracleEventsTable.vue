@@ -54,7 +54,7 @@
 <script setup>
 defineProps({
   oracleEvents: {
-    type: Array,
+    type: Object,
     required: true,
   },
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="oracle-events-table-condensed">
     <table
-      v-for="event in oracleEvents.data"
+      v-for="(event, index) in oracleEvents.data"
       :key="event.respondTx"
       class="oracle-events-table-condensed__table">
       <tbody>
@@ -74,7 +74,7 @@
 <script setup>
 defineProps({
   oracleEvents: {
-    type: Array,
+    type: Object,
     required: true,
   },
 })

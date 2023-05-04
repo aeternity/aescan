@@ -456,3 +456,24 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
     lastTxType: stateChannel.last_updated_tx_type,
   }
 }
+
+export function adaptStateChannels2(channels) {
+  // const formattedData = events.data
+  //   .map(event => {
+  //     return {
+  //       created: formatBlockDiffAsDatetime(event.height, blockHeight),
+  //       createdHeight: event.height,
+  //       eventName: event.event_name,
+  //       args: event.args,
+  //       data: event.data,
+  //       callTxHash: event.call_tx_hash,
+  //     }
+  //   })
+  // return {
+  //   next: events.next,
+  //   data: formattedData,
+  //   prev: events.prev,
+  // }
+
+  return channels
+}

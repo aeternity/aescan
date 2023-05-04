@@ -464,11 +464,11 @@ export function adaptStateChannels2(channels) {
     .map(channel => {
       return {
         id: channel.channel,
-        status: channel.state_hash,
+        status: 'asd',
         initiator: channel.initiator,
         responder: channel.responder,
         updates: channel.updates_count,
-        locked: channel.initiator_amount,
+        locked: formatAePrice(formatAettosToAe(channel.initiator_amount)),
         lastRound: channel.solo_round,
         lastUpdatesTime: channel.last_updated_height, // todo convert to time
         lastUpdatesHeight: channel.last_updated_height,

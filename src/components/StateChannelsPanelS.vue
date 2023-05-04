@@ -11,15 +11,33 @@
         <th>Last Updated</th>
         <th>Last TX Type</th>
       </tr>
-      <tr v-for="channel in stateChannels.data">
-        <td>{{ channel.id }}</td>
+      <tr
+        v-for="channel in stateChannels.data"
+        :key="channel.id">
+        <td>
+          <value-hash-ellipsed
+            :hash="channel.id"
+            :link-to="`/accounts/${channel.id}`"/>
+        </td>
         <td>{{ channel.status }}</td>
         <td>
-          {{ channel.initiator }}
-          {{ channel.responder }}
+          <div>
+            Initiator:
+            <value-hash-ellipsed
+              :hash="channel.initiator"
+              :link-to="`/accounts/${channel.initiator}`"/>
+          </div>
+          <div>
+            Responder:
+            <value-hash-ellipsed
+              :hash="channel.responder"
+              :link-to="`/accounts/${channel.responder}`"/>
+          </div>
         </td>
         <td>{{ channel.updates }}</td>
-        <td>{{ channel.locked }}</td>
+        <td>
+          {{ channel.locked }}
+        </td>
         <td>{{ channel.lastRound }}</td>
         <td>{{ channel.lastUpdatesTime }}{{ channel.lastUpdatesHeight }}</td>
         <td>{{ channel.lastUpdate }}</td>

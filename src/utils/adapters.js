@@ -337,6 +337,7 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
 }
 
 export function adaptTokenEvents(events, blockHeight) {
+  console.log('events.data', events.data)
   const formattedData = events.data
     .map(event => {
       return {

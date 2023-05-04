@@ -5,7 +5,8 @@
         :hash="args[0]"
         :link-to="`/accounts/${args[0]}`"/>
       <app-chip class="token-events-data-cell__chip">
-        {{ args[1] }}
+        {{ formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4) }}
+        {{ tokenDetails.symbol }}
       </app-chip>
       {{ data }}
     </template>
@@ -15,7 +16,8 @@
         :hash="args[0]"
         :link-to="`/accounts/${args[0]}`"/>
       <app-chip class="token-events-data-cell__chip">
-        {{ args[1] }}
+        {{ formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4) }}
+        {{ tokenDetails.symbol }}
       </app-chip>
       {{ data }}
     </template>
@@ -43,7 +45,8 @@
         :hash="args[1]"
         :link-to="`/accounts/${args[1]}`"/>
       <app-chip class="token-events-data-cell__chip">
-        {{ args[2] }}
+        {{ formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4) }}
+        {{ tokenDetails.symbol }}
       </app-chip>
       {{ data }}
     </template>

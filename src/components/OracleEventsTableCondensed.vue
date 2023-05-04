@@ -63,9 +63,7 @@
           v-if="isOpened.includes(index)"
           class="oracle-events-table-condensed__row">
           <td colspan="5">
-            <oracle-events-query-panel
-              :event="event"
-              :is-response-available="true"/>
+            <oracle-events-query-panel :event="event"/>
           </td>
         </tr>
       </tbody>

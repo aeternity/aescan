@@ -8,18 +8,18 @@
       <dd>{{ event.queryId }}</dd>
       <dt>Query Fee:</dt>
       <dd>{{ formatAePrice(event.queryFee) }}</dd>
-      <dt v-if="isResponseAvailable">
+      <dt>
         Query:
       </dt>
-      <dd v-if="isResponseAvailable">
+      <dd>
         {{ event.query }}
       </dd>
       <dt>Response TTL:</dt>
       <dd>{{ event.responseTtl }}</dd>
-      <dt v-if="isResponseAvailable">
+      <dt>
         Response:
       </dt>
-      <dd v-if="isResponseAvailable">
+      <dd>
         {{ event.response }}
       </dd>
     </dl>
@@ -30,10 +30,6 @@
 defineProps({
   event: {
     type: Object,
-    required: true,
-  },
-  isResponseAvailable: {
-    type: Boolean,
     required: true,
   },
 })

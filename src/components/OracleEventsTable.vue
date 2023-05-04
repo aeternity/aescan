@@ -43,9 +43,7 @@
           <td
             colspan="5"
             class="oracle-events-table__query">
-            <oracle-events-query-panel
-              :event="event"
-              :is-response-available="true"/>
+            <oracle-events-query-panel :event="event"/>
           </td>
         </tr>
       </template>

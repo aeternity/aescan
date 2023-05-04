@@ -16,7 +16,7 @@
           :hash="event.callTxHash"
           :link-to="`/transactions/${event.callTxHash}`"/>
       </td>
-      <td class="contract-events-table__time">
+      <td>
         <div>
           {{ event.createdHeight }}
         </div>
@@ -65,10 +65,6 @@ export default {
 <style scoped>
 .contract-events-table {
   &__transaction {
-    white-space: nowrap;
-  }
-
-  &__time {
     white-space: nowrap;
   }
 

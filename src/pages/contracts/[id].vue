@@ -50,9 +50,5 @@ if (process.client) {
 <style scoped>
 .contract-details__panel {
   margin-bottom: var(--space-6);
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
 }
 </style>

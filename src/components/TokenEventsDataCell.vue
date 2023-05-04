@@ -8,7 +8,6 @@
         {{ formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4) }}
         {{ tokenDetails.symbol }}
       </app-chip>
-      {{ data }}
     </template>
 
     <template v-else-if="name === 'Burn'">
@@ -19,7 +18,6 @@
         {{ formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4) }}
         {{ tokenDetails.symbol }}
       </app-chip>
-      {{ data }}
     </template>
 
     <template v-else-if="name === 'Transfer'">
@@ -48,7 +46,6 @@
         {{ formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4) }}
         {{ tokenDetails.symbol }}
       </app-chip>
-      {{ data }}
     </template>
     <template v-else>
       N/A

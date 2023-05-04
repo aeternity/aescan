@@ -346,7 +346,6 @@ export function adaptTokenEvents(events, blockHeight) {
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         createdHeight: event.height,
         args: event.args,
-        data: event.data || 'N/A',
       }
     })
 

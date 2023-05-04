@@ -4,69 +4,71 @@
       v-for="event in oracleEvents.data"
       :key="event.respondTx"
       class="oracle-events-table-condensed__table">
-      <tr class="oracle-events-table-condensed__row">
-        <th class="oracle-events-table-condensed__header">
-          Query Tx
-        </th>
-        <td class="oracle-events-table-condensed__data">
-          <value-hash-ellipsed
-            :hash="event.queryTx"
-            :link-to="`/transactions/${event.callTxHash}`"/>
-        </td>
-      </tr>
-      <tr class="oracle-events-table-condensed__row">
-        <th class="oracle-events-table-condensed__header">
-          Status
-        </th>
-        <td class="oracle-events-table-condensed__data">
-          <response-button
-            :status="event.status"
-            :is-collapsed="!isOpened.includes(index)"
-            @click="toggle(index)"/>
-        </td>
-      </tr>
-      <tr class="oracle-events-table-condensed__row">
-        <th class="oracle-events-table-condensed__header">
-          Queried at
-        </th>
-        <td class="oracle-events-table-condensed__data">
-          <div>
-            {{ event.queriedAtHeight }}
-          </div>
-          <datetime-label :datetime="event.queriedAtTime"/>
-        </td>
-      </tr>
-      <tr class="oracle-events-table-condensed__row">
-        <th class="oracle-events-table-condensed__header">
-          Respond Tx
-        </th>
-        <td class="oracle-events-table-condensed__data">
-          N/A
-        </td>
-      </tr>
-      <tr class="oracle-events-table-condensed__row">
-        <th
-          :class="[
-            'oracle-events-table-condensed__header',
-            {'oracle-events-table-condensed__header--opened': isOpened.includes(index)}]">
-          Respond at
-        </th>
-        <td
-          :class="[
-            'oracle-events-table-condensed__data',
-            {'oracle-events-table-condensed__data--opened': isOpened.includes(index)}]">
-          N/A
-        </td>
-      </tr>
-      <tr
-        v-if="isOpened.includes(index)"
-        class="oracle-events-table-condensed__row">
-        <td colspan="5">
-          <oracle-events-query-panel
-            :event="event"
-            :is-response-available="true"/>
-        </td>
-      </tr>
+      <tbody>
+        <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            Query Tx
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <value-hash-ellipsed
+              :hash="event.queryTx"
+              :link-to="`/transactions/${event.callTxHash}`"/>
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            Status
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <response-button
+              :status="event.status"
+              :is-collapsed="!isOpened.includes(index)"
+              @click="toggle(index)"/>
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            Queried at
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <div>
+              {{ event.queriedAtHeight }}
+            </div>
+            <datetime-label :datetime="event.queriedAtTime"/>
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            Respond Tx
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            N/A
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
+          <th
+            :class="[
+              'oracle-events-table-condensed__header',
+              {'oracle-events-table-condensed__header--opened': isOpened.includes(index)}]">
+            Respond at
+          </th>
+          <td
+            :class="[
+              'oracle-events-table-condensed__data',
+              {'oracle-events-table-condensed__data--opened': isOpened.includes(index)}]">
+            N/A
+          </td>
+        </tr>
+        <tr
+          v-if="isOpened.includes(index)"
+          class="oracle-events-table-condensed__row">
+          <td colspan="5">
+            <oracle-events-query-panel
+              :event="event"
+              :is-response-available="true"/>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>

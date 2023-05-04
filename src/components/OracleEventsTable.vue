@@ -1,51 +1,55 @@
 <template>
   <table>
-    <tr>
-      <th>Query Tx</th>
-      <th>Status</th>
-      <th>Queried at</th>
-      <th>Respond Tx</th>
-      <th>Respond at</th>
-    </tr>
-    <template
-      v-for="(event, index) in oracleEvents.data"
-      :key="event.respondTx">
+    <thead>
       <tr>
-        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
-          <hash-symbol>th</hash-symbol>
-          <value-hash-ellipsed
-            :hash="event.queryTx"
-            :link-to="`/transactions/${event.queryTx}`"/>
-        </td>
-        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
-          <response-button
-            :status="event.status"
-            :is-collapsed="!isOpened.includes(index)"
-            @click="toggle(index)"/>
-        </td>
-        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
-          <div>
-            {{ event.queriedAtHeight }}
-          </div>
-          <datetime-label :datetime="event.queriedAtTime"/>
-        </td>
-        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
-          N/A
-        </td>
-        <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
-          N/A
-        </td>
+        <th>Query Tx</th>
+        <th>Status</th>
+        <th>Queried at</th>
+        <th>Respond Tx</th>
+        <th>Respond at</th>
       </tr>
-      <tr v-if="isOpened.includes(index)">
-        <td
-          colspan="5"
-          class="oracle-events-table__query">
-          <oracle-events-query-panel
-            :event="event"
-            :is-response-available="true"/>
-        </td>
-      </tr>
-    </template>
+    </thead>
+    <tbody>
+      <template
+        v-for="(event, index) in oracleEvents.data"
+        :key="event.respondTx">
+        <tr>
+          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+            <hash-symbol>th</hash-symbol>
+            <value-hash-ellipsed
+              :hash="event.queryTx"
+              :link-to="`/transactions/${event.queryTx}`"/>
+          </td>
+          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+            <response-button
+              :status="event.status"
+              :is-collapsed="!isOpened.includes(index)"
+              @click="toggle(index)"/>
+          </td>
+          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+            <div>
+              {{ event.queriedAtHeight }}
+            </div>
+            <datetime-label :datetime="event.queriedAtTime"/>
+          </td>
+          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+            N/A
+          </td>
+          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+            N/A
+          </td>
+        </tr>
+        <tr v-if="isOpened.includes(index)">
+          <td
+            colspan="5"
+            class="oracle-events-table__query">
+            <oracle-events-query-panel
+              :event="event"
+              :is-response-available="true"/>
+          </td>
+        </tr>
+      </template>
+    </tbody>
   </table>
 </template>
 

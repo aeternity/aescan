@@ -92,8 +92,8 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'
@@ -102,39 +102,24 @@ import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatAePrice, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'NameDetailPanel',
-  components: {
-    DatetimeLabel,
-    AppPanel,
-    AppLink,
-    AppChip,
-    CopyChip,
-  },
-  computed: {
-    ...mapState(useNameDetailsStore, ['name']),
-    labelVariant() {
-      return this.name.active ? 'success' : 'error'
-    },
-    nameStatusText() {
-      if (this.name.status === 'auction') {
-        return 'In auction'
-      }
+const { name } = storeToRefs(useNameDetailsStore())
 
-      return this.name.active ? 'Active' : 'Expired'
-    },
-    isNameExpired() {
-      return this.name.status === 'name' && !this.name.active
-    },
-    isNameActive() {
-      return this.name.active && this.name.activated
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatEllipseHash,
-  },
-}
+const labelVariant = computed(() =>
+  name.value.active ? 'success' : 'error',
+)
+const nameStatusText = computed(() => {
+  if (name.value.status === 'auction') {
+    return 'In auction'
+  }
+
+  return name.value.active ? 'Active' : 'Expired'
+})
+const isNameExpired = computed(() =>
+  name.value.status === 'name' && !name.value.active,
+)
+const isNameActive = computed(() =>
+  name.value.active && name.value.activated,
+)
 </script>
 
 <style scoped>

@@ -8,6 +8,7 @@
   </page-header>
 
   <name-details-panel class="name-details__panel"/>
+
   <name-pointers-special-panel
     v-if="name?.active"
     class="name-details__panel"/>

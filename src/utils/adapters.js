@@ -458,22 +458,26 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
 }
 
 export function adaptStateChannels2(channels) {
-  // const formattedData = events.data
-  //   .map(event => {
-  //     return {
-  //       created: formatBlockDiffAsDatetime(event.height, blockHeight),
-  //       createdHeight: event.height,
-  //       eventName: event.event_name,
-  //       args: event.args,
-  //       data: event.data,
-  //       callTxHash: event.call_tx_hash,
-  //     }
-  //   })
-  // return {
-  //   next: events.next,
-  //   data: formattedData,
-  //   prev: events.prev,
-  // }
-
-  return channels
+  // todo correct values?
+  console.log('channels', channels)
+  const formattedData = channels.data
+    .map(channel => {
+      return {
+        id: channel.channel,
+        status: channel.state_hash,
+        initiator: channel.initiator,
+        responder: channel.responder,
+        updates: channel.updates_count,
+        locked: channel.initiator_amount,
+        lastRound: channel.solo_round,
+        lastUpdatesTime: channel.last_updated_height, // todo convert to time
+        lastUpdatesHeight: channel.last_updated_height,
+        lastUpdate: channel.last_updated_tx_type,
+      }
+    })
+  return {
+    next: channels.next,
+    data: formattedData,
+    prev: channels.prev,
+  }
 }

@@ -36,13 +36,16 @@
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
 
-      <app-button
+      <div
         :class="[
-          'header__button',
-          { 'header__button--open': isNavigationOpen }]"
-        to="https://github.com/aeternity/aescan">
-        Contribute
-      </app-button>
+          'header__button-container',
+          { 'header__button-container--open': isNavigationOpen }]">
+        <app-button
+          class="header__button"
+          to="https://github.com/aeternity/aescan">
+          Contribute
+        </app-button>
+      </div>
     </div>
     <div class="header__survey">
       Help us improve aeScan.
@@ -62,7 +65,6 @@ import AppIcon from '@/components/AppIcon'
 import AppButton from '@/components/AppButton'
 import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
-
 export default {
   name: 'TheHeader',
   components: { NetworkSelect, AppIcon, AppLink, TheNavigation, AppButton },
@@ -160,12 +162,11 @@ export default {
     margin-left: var(--space-1);
   }
 
-  &__button {
+  &__button-container {
     display: none;
     flex-basis: 100%;
     justify-content: center;
     margin-top: var(--space-2);
-    padding: var(--space-3) 91px;
 
     &--open {
       display: flex;
@@ -175,6 +176,13 @@ export default {
       display: flex;
       flex-basis: auto;
       margin-top: 0;
+    }
+  }
+
+  &__button {
+    padding: var(--space-3) 91px;
+
+    @media (--desktop) {
       padding: var(--space-3) var(--space-5) !important;
     }
   }

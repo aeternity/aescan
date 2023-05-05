@@ -413,3 +413,25 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
 
   return oracleDetails
 }
+
+export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blockHeight) {
+  return {
+    id: stateChannel.channel,
+    isOpen: stateChannel.active,
+    createTransactionHash: stateChannelCreateTx.source_tx_hash,
+    initialAmount: formatAettosToAe(stateChannel.initiator_amount + stateChannel.responder_amount),
+    initiator: stateChannel.initiator,
+    responder: stateChannel.responder,
+    onChainUpdates: stateChannel.updates_count,
+    lastKnownRound: stateChannel.round,
+    aeLocked: formatAettosToAe(stateChannel.amount),
+    lastUpdatedHeight: stateChannel.last_updated_height,
+    lastUpdated: stateChannel.last_updated_height
+      ? formatBlockDiffAsDatetime(
+        stateChannel.last_updated_height,
+        blockHeight,
+      )
+      : null,
+    lastTxType: stateChannel.last_updated_tx_type,
+  }
+}

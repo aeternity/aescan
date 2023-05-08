@@ -8,9 +8,14 @@
   </page-header>
 
   <state-channel-details-panel
-    v-if="stateChannelDetails"
     class="state-channel-details__panel"
     :state-channel-details="stateChannelDetails"/>
+
+  <app-tabs v-if="stateChannelDetails">
+    <app-tab title="Transactions">
+      <state-channel-transactions-panel/>
+    </app-tab>
+  </app-tabs>
 </template>
 
 <script setup>
@@ -18,6 +23,9 @@ import { storeToRefs } from 'pinia'
 import StateChannelDetailsPanel from '@/components/StateChannelDetailsPanel'
 import PageHeader from '@/components/PageHeader'
 import { useStateChannelDetailsStore } from '@/stores/stateChannelDetails'
+import AppTabs from '@/components/AppTabs'
+import AppTab from '@/components/AppTab'
+import StateChannelTransactionsPanel from '@/components/StateChannelTransactionsPanel'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()
 const { stateChannelDetails } = storeToRefs(stateChannelDetailsStore)

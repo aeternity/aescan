@@ -16,6 +16,9 @@
     <app-tab title="Holders">
       <token-holders-panel/>
     </app-tab>
+    <app-tab title="Events">
+      <token-events-panel/>
+    </app-tab>
   </app-tabs>
 </template>
 
@@ -23,17 +26,20 @@
 import { storeToRefs } from 'pinia'
 import TokenDetailsPanel from '@/components/TokenDetailsPanel'
 import TokenHoldersPanel from '@/components/TokenHoldersPanel'
-import AppTabs from '@/components/AppTabs'
-import AppTab from '@/components/AppTab'
 import PageHeader from '@/components/PageHeader'
 import { useTokenDetailsStore } from '@/stores/tokenDetails'
+import AppTabs from '@/components/AppTabs'
+import AppTab from '@/components/AppTab'
+import TokenEventsPanel from '@/components/TokenEventsPanel'
+
+const route = useRoute()
 
 const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
-const route = useRoute()
 
 await fetchTokenDetails(route.params.id)
+
 </script>
 
 <style scoped>

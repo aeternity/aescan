@@ -45,10 +45,10 @@ export const useAccountStore = defineStore('account', () => {
 
   function fetchAccount(accountId, { limit } = {}) {
     fetchAccountDetails(accountId)
-    fetchAccountNamesCount(accountId)
     fetchAccountTransactions({ accountId, limit })
-    fetchAccountTransactionsCount(accountId)
+    fetchTotalAccountTransactionsCount(accountId)
     fetchAccountNames({ accountId, limit })
+    fetchAccountNamesCount(accountId)
   }
 
   async function fetchAccountDetails(accountId) {
@@ -133,5 +133,7 @@ export const useAccountStore = defineStore('account', () => {
     fetchAccount,
     fetchTotalAccountTransactionsCount,
     fetchAccountTransactions,
+    fetchAccountTransactionsCount,
+    fetchAccountNames,
   }
 })

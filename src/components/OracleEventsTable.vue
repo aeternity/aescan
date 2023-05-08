@@ -13,25 +13,24 @@
         v-for="(event, index) in oracleEvents"
         :key="event.respondTx">
         <tr>
-          <!--            todo fix class-->
-          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--opened': isOpened.includes(index)}]">
             <hash-symbol>th</hash-symbol>
             <value-hash-ellipsed
               :hash="event.queryTx"
               :link-to="`/transactions/${event.queryTx}`"/>
           </td>
-          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--opened': isOpened.includes(index)}]">
             <response-button
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
           </td>
-          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--opened': isOpened.includes(index)}]">
             <div>
               {{ event.queriedAtHeight }}
             </div>
             <datetime-label :datetime="event.queriedAt"/>
           </td>
-          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--opened': isOpened.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
@@ -70,7 +69,7 @@ function toggle(id) {
 
 <style scoped>
 .oracle-events-table {
-  &__opened {
+  &__data--opened {
     border-bottom: 0;
   }
 

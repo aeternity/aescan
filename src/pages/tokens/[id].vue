@@ -40,10 +40,6 @@ await fetchTokenDetails(route.params.id)
 .token-details {
   &__panel {
     margin-bottom: var(--space-6);
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   }
 }
 </style>

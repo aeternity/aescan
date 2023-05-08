@@ -6,7 +6,7 @@
         :size="32"/>
     </app-badge>
     <div class="stats-tile__container">
-      <h3 class="stats-tile__title h4">
+      <h3 class="stats-tile__title h5">
         {{ title }}
         <hint-tooltip class="stats-tile__tooltip">
           <slot name="tooltip"/>

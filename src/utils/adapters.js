@@ -457,7 +457,7 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
   }
 }
 
-export function adaptStateChannels2(channels) {
+export function adaptStateChannels2(channels, blockHeight) {
   // todo correct values?
   console.log('channels', channels)
   const formattedData = channels.data
@@ -468,10 +468,10 @@ export function adaptStateChannels2(channels) {
         initiator: channel.initiator,
         responder: channel.responder,
         updates: channel.updates_count,
-        locked: formatAePrice(formatAettosToAe(channel.initiator_amount)),
-        lastRound: channel.solo_round,
-        lastUpdatesTime: channel.last_updated_height, // todo convert to time
-        lastUpdatesHeight: channel.last_updated_height,
+        locked: formatAePrice(formatAettosToAe(channel.amount)),
+        lastRound: channel.round,
+        lastUpdated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight), // todo convert to time
+        lastUpdatedHeight: channel.last_updated_height,
         lastUpdate: channel.last_updated_tx_type,
       }
     })

@@ -1,57 +1,33 @@
 <template>
-  <app-panel v-if="stateChannels">
-    <table>
-      <tr>
-        <th>State Channel ID</th>
-        <th>Status</th>
-        <th>Participants</th>
-        <th>On-Chain Updates</th>
-        <th>Locked</th>
-        <th>Last Known Round</th>
-        <th>Last Updated</th>
-        <th>Last TX Type</th>
-      </tr>
-      <tr
-        v-for="channel in stateChannels.data"
-        :key="channel.id">
-        <td>
-          <value-hash-ellipsed
-            :hash="channel.id"
-            :link-to="`/accounts/${channel.id}`"/>
-        </td>
-        <td>{{ channel.status }}</td>
-        <td>
-          <div>
-            Initiator:
-            <value-hash-ellipsed
-              :hash="channel.initiator"
-              :link-to="`/accounts/${channel.initiator}`"/>
-          </div>
-          <div>
-            Responder:
-            <value-hash-ellipsed
-              :hash="channel.responder"
-              :link-to="`/accounts/${channel.responder}`"/>
-          </div>
-        </td>
-        <td>{{ channel.updates }}</td>
-        <td>
-          {{ channel.locked }}
-        </td>
-        <td>{{ channel.lastRound }}</td>
-        <td>{{ channel.lastUpdatesTime }}{{ channel.lastUpdatesHeight }}</td>
-        <td>{{ channel.lastUpdate }}</td>
-      </tr>
-    </table>
+  <app-panel
+    v-if="stateChannels"
+    class="state-channel-panel">
+    <!--      todo counter?-->
+    <paginated-content
+      :entities="stateChannels"
+      pagination-style="history"
+      @prev-clicked="loadPrevStateChannels"
+      @next-clicked="loadNextStateChannels">
+      <state-channels-table-s :state-channels="stateChannels"/>
+    </paginated-content>
   </app-panel>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useStateChannelsStore } from '~/stores/stateChannels2'
+import StateChannelsTableS from '~/components/StateChannelsTableS'
+import PaginatedContent from '~/components/PaginatedContent'
 
 const stateChannelsStore = useStateChannelsStore()
 const { stateChannels } = storeToRefs(stateChannelsStore)
 const { fetchStateChannels } = stateChannelsStore
+
+const loadPrevStateChannels = () => {
+  fetchStateChannels(stateChannels.value.prev)
+}
+const loadNextStateChannels = () => {
+  fetchStateChannels(stateChannels.value.next)
+}
 
 const loadStateChannels = () => {
   fetchStateChannels()
@@ -62,3 +38,26 @@ if (process.client) {
 }
 // todo solve naming
 </script>
+
+<style scoped>
+.state-channel-panel {
+  padding: var(--space-4) var(--space-1);
+
+  @media (--desktop) {
+    padding: var(--space-5) var(--space-4) var(--space-4);
+  }
+
+  &__table {
+    display: none;
+    @media (--desktop) {
+      display: revert;
+    }
+  }
+
+  &__table-condensed {
+    @media (--desktop) {
+      display: none;
+    }
+  }
+}
+</style>

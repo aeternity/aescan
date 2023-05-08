@@ -78,12 +78,14 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import NamesPanel from '@/components/NamesPanel'
 import AuctionsPanel from '@/components/AuctionsPanel'
 import BlockchainPanel from '@/components/BlockchainPanel'
 import StateChannelsPanel from '@/components/StateChannelsPanel'
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
+import { useWebSocket } from '@/stores/webSocket'
 
 const {
   fetchSelectedMicroblocksInfo,
@@ -96,6 +98,8 @@ const {
 } = useBlockchainStatsStore()
 const { fetchStateChannels } = useStateChannelsStore()
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+const webSocketStore = useWebSocket()
+const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)
 
 definePageMeta({
   layout: 'empty',
@@ -115,6 +119,14 @@ await useAsyncData(() => Promise.all([
   fetchTotalTransactionsCount(),
   fetchDeltaStats(),
 ]), { server: false })
+
+onBeforeMount(() => {
+  isSubscribedToKeyblockDetails.value = true
+})
+onBeforeUnmount(() => {
+  isSubscribedToKeyblockDetails.value = false
+})
+
 </script>
 
 <style scoped>

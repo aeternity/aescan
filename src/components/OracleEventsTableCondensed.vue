@@ -1,7 +1,7 @@
 <template>
   <div class="oracle-events-table-condensed">
     <table
-      v-for="(event, index) in oracleEvents.data"
+      v-for="(event, index) in oracleEvents"
       :key="event.respondTx"
       class="oracle-events-table-condensed__table">
       <tbody>
@@ -21,7 +21,6 @@
           </th>
           <td class="oracle-events-table-condensed__data">
             <response-button
-              :status="event.status"
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
           </td>
@@ -34,15 +33,18 @@
             <div>
               {{ event.queriedAtHeight }}
             </div>
-            <datetime-label :datetime="event.queriedAtTime"/>
+            <datetime-label :datetime="event.queriedAt"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
-            Respond Tx
+            Queried at
           </th>
           <td class="oracle-events-table-condensed__data">
-            N/A
+            <div>
+              {{ event.queriedAtHeight }}
+            </div>
+            <datetime-label :datetime="event.queriedAt"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
@@ -50,13 +52,15 @@
             :class="[
               'oracle-events-table-condensed__header',
               {'oracle-events-table-condensed__header--opened': isOpened.includes(index)}]">
-            Respond at
+            Respond Tx
           </th>
           <td
             :class="[
               'oracle-events-table-condensed__data',
               {'oracle-events-table-condensed__data--opened': isOpened.includes(index)}]">
-            N/A
+            <value-hash-ellipsed
+              :hash="event.respondTx"
+              :link-to="`/transactions/${event.respondTx}`"/>
           </td>
         </tr>
         <tr

@@ -415,25 +415,15 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
 }
 
 export function adaptOracleEvents(events) {
-  const formattedData = events.data.map(event => {
+  return events.extends.map(event => {
     return {
-      queryTx: event.hash,
-      status: 'Response available',
+      queryTx: events.register_tx_hash,
+      respondTx: event.hash,
       queriedAtHeight: event.block_height,
-      queriedAtTime: DateTime.fromMillis(event.micro_time),
-      respondTx: 'N/A',
-      respondedAtHeight: 'N/A',
-      respondedAtTime: 'N/A',
-      queryId: event.tx.query_id,
-      queryFee: formatAettosToAe(event.tx.query_fee),
-      query: 'N/A',
-      responseTtl: event.tx.response_ttl.value,
-      response: 'N/A',
+      queriedAt: DateTime.fromMillis(event.micro_time),
+      queryId: event.tx.oracle_id,
+      queryFee: formatAettosToAe(event.tx.fee),
+      responseTtl: event.tx.oracle_ttl.value,
     }
   })
-  return {
-    next: events.next,
-    data: formattedData,
-    prev: events.prev,
-  }
 }

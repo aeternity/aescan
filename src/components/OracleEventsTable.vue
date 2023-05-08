@@ -6,14 +6,14 @@
         <th>Status</th>
         <th>Queried at</th>
         <th>Respond Tx</th>
-        <th>Respond at</th>
       </tr>
     </thead>
     <tbody>
       <template
-        v-for="(event, index) in oracleEvents.data"
+        v-for="(event, index) in oracleEvents"
         :key="event.respondTx">
         <tr>
+          <!--            todo fix class-->
           <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
             <hash-symbol>th</hash-symbol>
             <value-hash-ellipsed
@@ -22,7 +22,6 @@
           </td>
           <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
             <response-button
-              :status="event.status"
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
           </td>
@@ -30,13 +29,12 @@
             <div>
               {{ event.queriedAtHeight }}
             </div>
-            <datetime-label :datetime="event.queriedAtTime"/>
+            <datetime-label :datetime="event.queriedAt"/>
           </td>
           <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
-            N/A
-          </td>
-          <td :class="[{'oracle-events-table__opened': isOpened.includes(index)}]">
-            N/A
+            <value-hash-ellipsed
+              :hash="event.respondTx"
+              :link-to="`/transactions/${event.respondTx}`"/>
           </td>
         </tr>
         <tr v-if="isOpened.includes(index)">

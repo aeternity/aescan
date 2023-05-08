@@ -31,7 +31,7 @@
         </tr>
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
-            Contract ID
+            Smart Contract ID
           </th>
           <td class="tokens-table-condensed__data">
             <value-hash-ellipsed

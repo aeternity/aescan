@@ -21,9 +21,9 @@
             Status
           </th>
           <td class="state-channel-details-panel__data">
-            <AppChip :variant="stateChannelDetails.isOpen ? 'success' : 'primary'">
+            <app-chip :variant="stateChannelDetails.isOpen ? 'success' : 'primary'">
               {{ stateChannelDetails.isOpen ? 'Open' : 'Closed' }}
-            </AppChip>
+            </app-chip>
           </td>
         </tr>
         <tr class="state-channel-details-panel__row">
@@ -41,8 +41,7 @@
             </app-link>
           </td>
         </tr>
-        <tr
-          class="state-channel-details-panel__row">
+        <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             Initial amount
           </th>
@@ -80,8 +79,7 @@
             </app-link>
           </td>
         </tr>
-        <tr
-          class="state-channel-details-panel__row">
+        <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             On-chain updates
           </th>
@@ -89,8 +87,7 @@
             {{ formatNumber(stateChannelDetails.onChainUpdates) }}
           </td>
         </tr>
-        <tr
-          class="state-channel-details-panel__row">
+        <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             Last known round
           </th>
@@ -98,8 +95,7 @@
             {{ formatNumber(stateChannelDetails.lastKnownRound) }}
           </td>
         </tr>
-        <tr
-          class="state-channel-details-panel__row">
+        <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             AE locked
           </th>
@@ -121,8 +117,7 @@
             </template>
           </td>
         </tr>
-        <tr
-          class="state-channel-details-panel__row">
+        <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             Last TX Type
           </th>

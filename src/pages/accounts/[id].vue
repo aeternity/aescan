@@ -37,7 +37,7 @@ const accountStore = useAccountStore()
 const { accountDetails } = storeToRefs(accountStore)
 const { fetchAccount, fetchTotalAccountTransactionsCount } = accountStore
 const route = useRoute()
-const isTabsVisible = computed(() => accountDetails && !accountDetails.value?.notExistent)
+const isTabsVisible = computed(() => process.client && accountDetails && !accountDetails.value?.notExistent)
 
 if (process.client) {
   const limit = isDesktop() ? null : 3

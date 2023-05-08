@@ -75,7 +75,9 @@ defineProps({
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  flex-wrap: wrap;
 
   &__transaction-arrow-right-icon {
     margin: 0 var(--space-1);

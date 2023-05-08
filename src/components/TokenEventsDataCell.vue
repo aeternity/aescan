@@ -79,12 +79,8 @@ defineProps({
   gap: var(--space-1);
   flex-wrap: wrap;
 
-  &__transaction-arrow-right-icon {
-    margin: 0 var(--space-1);
-  }
-
-  &__chip {
-    margin-left: var(--space-1);
+  @media (--desktop) {
+    justify-content: space-between;
   }
 }
 

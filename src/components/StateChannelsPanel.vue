@@ -4,8 +4,13 @@
     class="state-channels-panel">
     <!--      todo counter?-->
     <paginated-content
+      v-model:page-index="pageIndex"
+
       :entities="stateChannels"
       pagination-style="history"
+      :total-count="stateChannelsCount"
+      :limit="limit"
+
       @prev-clicked="loadPrevStateChannels"
       @next-clicked="loadNextStateChannels">
       <state-channels-table
@@ -19,13 +24,18 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
+import { computed, ref } from 'vue'
 import { useStateChannelsStore } from '@/stores/stateChannels'
 import PaginatedContent from '@/components/PaginatedContent'
 import StateChannelsTableCondensed from '@/components/StateChannelsTableCondensed'
+import { isDesktop } from '~/utils/screen'
 
 const stateChannelsStore = useStateChannelsStore()
-const { stateChannels } = storeToRefs(stateChannelsStore)
-const { fetchStateChannels } = stateChannelsStore
+const { stateChannels, stateChannelsCount } = storeToRefs(stateChannelsStore)
+const { fetchStateChannels, fetchStateChannelsCount } = stateChannelsStore
+
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+const pageIndex = ref(1)
 
 const loadPrevStateChannels = () => {
   fetchStateChannels(stateChannels.value.prev)
@@ -35,7 +45,9 @@ const loadNextStateChannels = () => {
 }
 
 const loadStateChannels = () => {
-  fetchStateChannels()
+  fetchStateChannels(`/v2/channels?&limit=${limit.value}`)
+  fetchStateChannelsCount()
+  pageIndex.value = 1
 }
 
 if (process.client) {

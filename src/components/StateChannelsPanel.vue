@@ -1,55 +1,63 @@
 <template>
-  <app-panel class="state-channels-panel">
-    <panel-header
-      level="h3"
-      title="STATE CHANNELS"
-      icon-name="state-channel">
-      <template #tooltip>
-        Numbers are counting on-chain transactions only. There can be millions of transactions executed
-        off-chain in
-        <app-link
-          variant="primary"
-          to="https://aeternity.com/state-channels">
-          State Channels
-        </app-link>
-        .
-      </template>
-    </panel-header>
-    <state-channels-table class="state-channels-panel__table"/>
-    <state-channels-swiper class="state-channels-panel__swiper"/>
+  <app-panel
+    v-if="stateChannels"
+    class="state-channel-panel">
+    <!--      todo counter?-->
+    <paginated-content
+      :entities="stateChannels"
+      pagination-style="history"
+      @prev-clicked="loadPrevStateChannels"
+      @next-clicked="loadNextStateChannels">
+      <state-channels-table :state-channels="stateChannels"/>
+      <state-channels-table-condensed/>
+    </paginated-content>
   </app-panel>
 </template>
-<script>
-import AppPanel from '@/components/AppPanel'
-import AppLink from '@/components/AppLink'
-import PanelHeader from '@/components/PanelHeader'
-import StateChannelsSwiper from '@/components/StateChannelsSwiper'
-import StateChannelsTable from '@/components/StateChannelsTable'
+<script setup>
+import { storeToRefs } from 'pinia'
+import { useStateChannelsStore } from '~/stores/stateChannels'
+import PaginatedContent from '~/components/PaginatedContent'
+import StateChannelsTableCondensed from '~/components/StateChannelsTableCondensed'
 
-export default {
-  name: 'StateChannelsPanel',
-  components: { StateChannelsTable, StateChannelsSwiper, PanelHeader, AppPanel, AppLink },
+const stateChannelsStore = useStateChannelsStore()
+const { stateChannels } = storeToRefs(stateChannelsStore)
+const { fetchStateChannels } = stateChannelsStore
+
+const loadPrevStateChannels = () => {
+  fetchStateChannels(stateChannels.value.prev)
 }
+const loadNextStateChannels = () => {
+  fetchStateChannels(stateChannels.value.next)
+}
+
+const loadStateChannels = () => {
+  fetchStateChannels()
+}
+
+if (process.client) {
+  loadStateChannels()
+}
+// todo solve naming
 </script>
 
 <style scoped>
-.state-channels-panel {
-  width: 100%;
+.state-channel-panel {
   padding: var(--space-4) var(--space-1);
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-3);
-  }
 
-  &__swiper {
-    @media (--desktop) {
-      display: none;
-    }
+  @media (--desktop) {
+    padding: var(--space-5) var(--space-4) var(--space-4);
   }
 
   &__table {
     display: none;
     @media (--desktop) {
       display: revert;
+    }
+  }
+
+  &__table-condensed {
+    @media (--desktop) {
+      display: none;
     }
   }
 }

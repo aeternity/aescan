@@ -7,7 +7,7 @@
     State Channels
   </page-header>
 
-  <state-channels-panel-s/>
+  <state-channels-panel/>
 </template>
 
 <script setup>

@@ -1,25 +1,31 @@
-import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptStateChannels } from '@/utils/adapters'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { defineStore, storeToRefs } from 'pinia'
+import { adaptStateChannels2 } from '~/utils/adapters'
+import { useRecentBlocksStore } from '~/stores/recentBlocks'
+// todo imports
 
-export const useStateChannelsStore = defineStore('stateChannels', {
-  state: () => ({
-    rawStateChannels: null,
-  }),
-  getters: {
-    stateChannels(state) {
-      const store = useRecentBlocksStore()
-      return state.rawStateChannels
-        ? adaptStateChannels(state.rawStateChannels, store.blockHeight)
-        : null
-    },
-  },
-  actions: {
-    async fetchStateChannels() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/channels?&limit=4`)
-      this.rawStateChannels = data.data
-    },
-  },
+export const useStateChannelsStore = defineStore('stateChannels', () => {
+  const rawStateChannels = ref(null)
+  const { blockHeight } = storeToRefs(useRecentBlocksStore())
+
+  const stateChannels = computed(() => {
+    return rawStateChannels.value
+      ? adaptStateChannels2(rawStateChannels.value, blockHeight.value)
+      : null
+  })
+
+  async function fetchStateChannels(queryParameters = null) {
+    console.log('fetchStateChannels')
+    // todo better import
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/channels?&limit=10'}`)
+    this.rawStateChannels = data.data
+    console.log('data', data)
+    rawStateChannels.value = data
+  }
+
+  return {
+    fetchStateChannels,
+    stateChannels,
+  }
 })

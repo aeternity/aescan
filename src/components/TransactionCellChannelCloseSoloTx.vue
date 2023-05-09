@@ -11,19 +11,15 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 
-export default {
-  name: 'TransactionCellChannelCloseSoloTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>

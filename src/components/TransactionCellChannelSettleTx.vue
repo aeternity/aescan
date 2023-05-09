@@ -20,30 +20,17 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import TransactionPlusIcon from '@/components/TransactionPlusIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellChannelSlashTx',
-  components: {
-    ValueHashEllipsed,
-    TransactionPlusIcon,
-    TransactionArrowRightIcon,
-    AppChip,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAettosToAe,
-    formatAePrice,
-  },
-}
+})
 </script>

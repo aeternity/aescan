@@ -8,23 +8,15 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellOracleRegisterTx',
-  components: { ValueHashEllipsed, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
 </script>

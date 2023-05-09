@@ -36,27 +36,19 @@
     </tbody>
   </table>
 </template>
-<script>
+
+<script setup>
 import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionTable',
-  components: {
-    ValueHashEllipsed,
-    DatetimeLabel,
-    TransactionCell,
-    HashSymbol,
+defineProps({
+  transactions: {
+    type: Object,
+    required: true,
   },
-  props: {
-    transactions: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

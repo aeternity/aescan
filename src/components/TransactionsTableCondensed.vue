@@ -49,25 +49,17 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'TransactionTableCondensed',
-  components: {
-    ValueHashEllipsed,
-    DatetimeLabel,
-    TransactionCell,
+defineProps({
+  transactions: {
+    type: Object,
+    required: true,
   },
-  props: {
-    transactions: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

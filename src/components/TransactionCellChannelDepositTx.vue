@@ -12,24 +12,16 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellChannelDepositTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  methods: {
-    formatAettosToAe,
-    formatAePrice,
-  },
-}
+})
 </script>

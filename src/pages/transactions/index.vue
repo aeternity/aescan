@@ -10,12 +10,7 @@
   <transactions-panel/>
 </template>
 
-<script>
+<script setup>
 import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
-
-export default {
-  name: 'TransactionsView',
-  components: { PageHeader, TransactionsPanel },
-}
 </script>

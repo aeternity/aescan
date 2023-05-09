@@ -4,13 +4,12 @@
       <tr>
         <th>Query Tx</th>
         <th>Status</th>
-        <th>Queried at</th>
         <th>Respond Tx</th>
       </tr>
     </thead>
     <tbody>
       <template
-        v-for="(event, index) in oracleEvents"
+        v-for="(event, index) in oracleEvents.data"
         :key="event.respondTx">
         <tr>
           <td :class="[{'oracle-events-table__data--opened': isOpened.includes(index)}]">
@@ -24,12 +23,7 @@
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
           </td>
-          <td :class="[{'oracle-events-table__data--opened': isOpened.includes(index)}]">
-            <div>
-              {{ event.queriedAtHeight }}
-            </div>
-            <datetime-label :datetime="event.queriedAt"/>
-          </td>
+
           <td :class="[{'oracle-events-table__data--opened': isOpened.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"

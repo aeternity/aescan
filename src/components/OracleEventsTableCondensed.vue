@@ -1,7 +1,7 @@
 <template>
   <div class="oracle-events-table-condensed">
     <table
-      v-for="(event, index) in oracleEvents"
+      v-for="(event, index) in oracleEvents.data"
       :key="event.respondTx"
       class="oracle-events-table-condensed__table">
       <tbody>
@@ -12,7 +12,7 @@
           <td class="oracle-events-table-condensed__data">
             <value-hash-ellipsed
               :hash="event.queryTx"
-              :link-to="`/transactions/${event.callTxHash}`"/>
+              :link-to="`/transactions/${event.queryTx}`"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
@@ -23,28 +23,6 @@
             <response-button
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
-          </td>
-        </tr>
-        <tr class="oracle-events-table-condensed__row">
-          <th class="oracle-events-table-condensed__header">
-            Queried at
-          </th>
-          <td class="oracle-events-table-condensed__data">
-            <div>
-              {{ event.queriedAtHeight }}
-            </div>
-            <datetime-label :datetime="event.queriedAt"/>
-          </td>
-        </tr>
-        <tr class="oracle-events-table-condensed__row">
-          <th class="oracle-events-table-condensed__header">
-            Queried at
-          </th>
-          <td class="oracle-events-table-condensed__data">
-            <div>
-              {{ event.queriedAtHeight }}
-            </div>
-            <datetime-label :datetime="event.queriedAt"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">

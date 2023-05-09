@@ -1,24 +1,39 @@
 <template>
   <app-panel class="oracle-events-panel">
-    <oracle-events-table
-      v-if="oracleEvents"
-      :oracle-events="oracleEvents"
-      class="oracle-events-panel__table"/>
+    <paginated-content
+      :entities="oracleEvents"
+      @prev-clicked="loadPrevEvents"
+      @next-clicked="loadNextEvents">
+      <oracle-events-table
+        v-if="oracleEvents"
+        :oracle-events="oracleEvents"
+        class="oracle-events-panel__table"/>
 
-    <oracle-events-table-condensed
-      v-if="oracleEvents"
-      :oracle-events="oracleEvents"
-      class="oracle-events-panel__table-condensed"/>
+      <oracle-events-table-condensed
+        v-if="oracleEvents"
+        :oracle-events="oracleEvents"
+        class="oracle-events-panel__table-condensed"/>
+    </paginated-content>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
+import OracleEventsTable from '@/components/OracleEventsTable'
+import OracleEventsTableCondensed from '@/components/OracleEventsTableCondensed'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)
 const { fetchOracleEvents } = oracleDetailsStore
+
+function loadPrevEvents() {
+  fetchOracleEvents({ queryParameters: oracleEvents.value.prev })
+}
+
+function loadNextEvents() {
+  fetchOracleEvents({ queryParameters: oracleEvents.value.next })
+}
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)

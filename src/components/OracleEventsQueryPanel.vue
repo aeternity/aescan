@@ -5,20 +5,27 @@
     </div>
     <dl>
       <dt>Query ID:</dt>
-      <dd>
-        <value-hash-ellipsed
-          class="oracle-events-query-panel__hash-ellipse"
-          :hash="event.queryId"
-          :link-to="`/transactions/${event.queryId}`"/>
-        <app-link
-          class="oracle-events-query-panel__hash"
-          :to="`/transactions/${event.queryId}`">{{ event.queryId }}
-        </app-link>
-      </dd>
+      <dd>{{ event.queryId }}</dd>
+
       <dt>Query Fee:</dt>
       <dd>{{ formatAePrice(event.queryFee) }}</dd>
+
+      <dt>
+        Query:
+      </dt>
+      <dd>
+        {{ event.query }}
+      </dd>
+
       <dt>Response TTL:</dt>
       <dd>{{ event.responseTtl }}</dd>
+
+      <dt>
+        Response:
+      </dt>
+      <dd>
+        {{ event.response }}
+      </dd>
     </dl>
   </app-panel>
 </template>
@@ -27,6 +34,10 @@
 defineProps({
   event: {
     type: Object,
+    required: true,
+  },
+  isResponseAvailable: {
+    type: Boolean,
     required: true,
   },
 })
@@ -43,19 +54,6 @@ defineProps({
     font-weight: 700;
     letter-spacing: 0.015em;
     margin-bottom: var(--space-1);
-  }
-
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 }
 </style>

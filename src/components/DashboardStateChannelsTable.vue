@@ -57,7 +57,7 @@
 </template>
 <script>
 import { mapState } from 'pinia'
-import { useDashboardStateChannelsStore } from '~/stores/dashboardStateChannels'
+import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'

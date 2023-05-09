@@ -16,20 +16,19 @@
       </template>
     </panel-header>
     <dashboard-state-channels-table class="dashboard-state-channels-panel__table"/>
-    <state-channels-swiper class="dashboard-state-channels-panel__swiper"/>
+    <dashboard-state-channels-swiper class="dashboard-state-channels-panel__swiper"/>
   </app-panel>
 </template>
 <script>
 import AppPanel from '@/components/AppPanel'
 import AppLink from '@/components/AppLink'
 import PanelHeader from '@/components/PanelHeader'
-import StateChannelsSwiper from '~/components/DashboardStateChannelsSwiper'
-import StateChannelsTable from '~/components/DashboardStateChannelsTable'
-import DashboardStateChannelsTable from '~/components/DashboardStateChannelsTable'
+import DashboardStateChannelsSwiper from '@/components/DashboardStateChannelsSwiper'
+import DashboardStateChannelsTable from '@/components/DashboardStateChannelsTable'
 
 export default {
   name: 'DashboardStateChannelsPanel',
-  components: { DashboardStateChannelsTable, StateChannelsTable, StateChannelsSwiper, PanelHeader, AppPanel, AppLink },
+  components: { DashboardStateChannelsTable, DashboardStateChannelsSwiper, PanelHeader, AppPanel, AppLink },
 }
 </script>
 

@@ -44,7 +44,7 @@
           <datetime-label :datetime="channel.lastUpdated "/>
         </div>
       </td>
-      <td>{{ channel.lastUpdate }}</td>
+      <td>{{ channel.lastTxType }}</td>
     </tr>
   </table>
 </template>

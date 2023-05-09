@@ -69,7 +69,7 @@
 </template>
 <script>
 import { mapState } from 'pinia'
-import { useDashboardStateChannelsStore } from '~/stores/dashboardStateChannels'
+import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 import { formatAePrice } from '@/utils/format'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

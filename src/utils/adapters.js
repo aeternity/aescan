@@ -472,7 +472,7 @@ export function adaptStateChannels2(channels, blockHeight) {
         lastRound: channel.round,
         lastUpdated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight), // todo convert to time
         lastUpdatedHeight: channel.last_updated_height,
-        lastUpdate: channel.last_updated_tx_type,
+        lastTxType: channel.last_updated_tx_type,
       }
     })
   return {

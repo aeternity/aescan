@@ -8,16 +8,20 @@
       pagination-style="history"
       @prev-clicked="loadPrevStateChannels"
       @next-clicked="loadNextStateChannels">
-      <state-channels-table :state-channels="stateChannels"/>
-      <state-channels-table-condensed/>
+      <state-channels-table
+        :state-channels="stateChannels"
+        class="state-channels-panel__table"/>
+      <state-channels-table-condensed
+        :state-channels="stateChannels"
+        class="state-channels-panel__table-condensed"/>
     </paginated-content>
   </app-panel>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useStateChannelsStore } from '~/stores/stateChannels'
-import PaginatedContent from '~/components/PaginatedContent'
-import StateChannelsTableCondensed from '~/components/StateChannelsTableCondensed'
+import { useStateChannelsStore } from '@/stores/stateChannels'
+import PaginatedContent from '@/components/PaginatedContent'
+import StateChannelsTableCondensed from '@/components/StateChannelsTableCondensed'
 
 const stateChannelsStore = useStateChannelsStore()
 const { stateChannels } = storeToRefs(stateChannelsStore)
@@ -41,7 +45,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.state-channel-panel {
+.state-channels-panel {
   padding: var(--space-4) var(--space-1);
 
   @media (--desktop) {

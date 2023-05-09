@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore, storeToRefs } from 'pinia'
-import { adaptStateChannels } from '~/utils/adapters'
+import { adaptStateChannels } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useStateChannelsStore = defineStore('stateChannels', () => {

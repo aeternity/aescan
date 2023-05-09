@@ -12,7 +12,7 @@
           <td class="state-channels-table-condensed__data">
             <value-hash-ellipsed
               :hash="channel.id"
-              :link-to="`/accounts/${channel.id}`"/>
+              :link-to="`/state-channels/${channel.id}`"/>
           </td>
         </tr>
         <tr class="state-channels-table-condensed__row">

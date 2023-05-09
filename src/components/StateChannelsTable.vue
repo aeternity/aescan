@@ -16,7 +16,7 @@
       <td>
         <value-hash-ellipsed
           :hash="channel.id"
-          :link-to="`/accounts/${channel.id}`"/>
+          :link-to="`/state-channels/${channel.id}`"/>
       </td>
       <td>{{ channel.status }}</td>
       <td>

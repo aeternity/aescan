@@ -10,22 +10,14 @@
       <dt>Query Fee:</dt>
       <dd>{{ formatAePrice(event.queryFee) }}</dd>
 
-      <dt>
-        Query:
-      </dt>
-      <dd>
-        {{ event.query }}
-      </dd>
+      <dt> Query:</dt>
+      <dd> {{ event.query }}</dd>
 
       <dt>Response TTL:</dt>
       <dd>{{ event.responseTtl }}</dd>
 
-      <dt>
-        Response:
-      </dt>
-      <dd>
-        {{ event.response }}
-      </dd>
+      <dt> Response:</dt>
+      <dd> {{ event.response }}</dd>
     </dl>
   </app-panel>
 </template>

@@ -68,23 +68,35 @@
           Additionally, you must not:
         </p>
         <p class="terms-of-service__paragraph">
-          -Use æScan in any manner that could interfere with, disrupt, negatively affect or inhibit other
-          users
-          from fully enjoying æScan, or that
-          could damage, disable, overburden or impair the functioning of our Services in any manner;
-          - Engage in unless such Automated Data Collection is confined solely to search indexing forAutomated
-          Data Collection (scraping)
-          display on the Internet
-          - Engage in the reproduction of any content posted (such as public labels or name tags) or extracted
-          from æScan’s APIs, CSV exports, or
-          our website or any of our affiliate websites without our prior consent or authorization.
-          - Attempt to circumvent any content filtering techniques employed, or attempt to access any service
-          or area of æScan that you are not
-          authorized to access;
-          - Introduce to æScan any virus, trojan worms, logic bombs, or other harmful material;
-          - Provide false, inaccurate, or misleading information; and
-          - Encourage or induce any third party to engage in any of the activities prohibited under this
-          Section.
+          <ul>
+            <li>
+              -Use æScan in any manner that could interfere with, disrupt, negatively affect or inhibit other
+              users
+              from fully enjoying æScan, or that
+              could damage, disable, overburden or impair the functioning of our Services in any manner;
+            </li>
+            <li>
+              - Engage in unless such Automated Data Collection is confined solely to search indexing forAutomated
+              Data Collection (scraping)
+              display on the Internet
+            </li>
+            <li>
+              - Engage in the reproduction of any content posted (such as public labels or name tags) or extracted
+              from æScan’s APIs, CSV exports, or
+              our website or any of our affiliate websites without our prior consent or authorization.
+            </li>
+            <li>
+              - Attempt to circumvent any content filtering techniques employed, or attempt to access any service
+              or area of æScan that you are not
+              authorized to access;
+            </li>
+            <li>  - Introduce to æScan any virus, trojan worms, logic bombs, or other harmful material;</li>
+            <li>- Provide false, inaccurate, or misleading information; and</li>
+            <li>
+              - Encourage or induce any third party to engage in any of the activities prohibited under this
+              Section.
+            </li>
+          </ul>
         </p>
       </li>
       <li>
@@ -248,7 +260,20 @@
   </div>
 </template>
 
+<script setup lang="ts">
+</script>
 <style scoped>
+li::marker {
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  font-size: 28px;
+  line-height: 36px;
+  @media (--desktop) {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+
 .terms-of-service {
   max-width: 680px;
   margin: 0 auto;

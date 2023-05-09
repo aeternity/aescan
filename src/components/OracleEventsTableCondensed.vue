@@ -29,13 +29,13 @@
           <th
             :class="[
               'oracle-events-table-condensed__header',
-              {'oracle-events-table-condensed__header--opened': isOpened.includes(index)}]">
+              {'oracle-events-table-condensed__header--expanded': isOpened.includes(index)}]">
             Respond Tx
           </th>
           <td
             :class="[
               'oracle-events-table-condensed__data',
-              {'oracle-events-table-condensed__data--opened': isOpened.includes(index)}]">
+              {'oracle-events-table-condensed__data--expanded': isOpened.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
@@ -89,7 +89,7 @@ function toggle(id) {
     border-bottom: 1px solid var(--color-midnight-15);
     padding-right: var(--space-4);
 
-    &--opened {
+    &--expanded {
       border-bottom: 0;
     }
   }
@@ -101,7 +101,7 @@ function toggle(id) {
   &__data {
     text-align: right;
 
-    &--opened {
+    &--expanded {
       border-bottom: 0;
     }
   }

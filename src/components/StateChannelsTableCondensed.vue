@@ -44,7 +44,7 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            Updates
+            On-Chain Updates
           </th>
           <td class="state-channels-table-condensed__data">
             {{ channel.updateCount }}

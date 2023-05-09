@@ -1,7 +1,7 @@
 <template>
   <app-panel
     v-if="stateChannels"
-    class="state-channel-panel">
+    class="state-channels-panel">
     <!--      todo counter?-->
     <paginated-content
       :entities="stateChannels"
@@ -41,7 +41,6 @@ const loadStateChannels = () => {
 if (process.client) {
   loadStateChannels()
 }
-// todo solve naming
 </script>
 
 <style scoped>

@@ -47,7 +47,7 @@
             Updates
           </th>
           <td class="state-channels-table-condensed__data">
-            {{ channel.updates }}
+            {{ channel.updateCount }}
           </td>
         </tr>
         <tr class="state-channels-table-condensed__row">
@@ -72,10 +72,10 @@
           </th>
           <td class="state-channels-table-condensed__data">
             <div>
-              {{ channel.lastUpdatedHeight }}
+              {{ channel.updatedHeight }}
             </div>
             <div>
-              <datetime-label :datetime="channel.lastUpdated "/>
+              <datetime-label :datetime="channel.updated "/>
             </div>
           </td>
         </tr>
@@ -84,7 +84,7 @@
             Last TX Type
           </th>
           <td class="state-channels-table-condensed__data">
-            {{ channel.lastTxType }}
+            {{ channel.updateType }}
           </td>
         </tr>
       </tbody>

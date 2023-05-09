@@ -84,7 +84,7 @@ export function adaptChainNames(chainNames, blockHeight) {
   })
 }
 
-export function adaptStateChannels(stateChannels, blockHeight) {
+export function adaptDashboardStateChannels(stateChannels, blockHeight) {
   return stateChannels.map(channel => {
     return {
       initiator: channel.initiator,
@@ -457,9 +457,7 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
   }
 }
 
-export function adaptStateChannels2(channels, blockHeight) {
-  // todo correct values?
-  console.log('channels', channels)
+export function adaptStateChannels(channels, blockHeight) {
   const formattedData = channels.data
     .map(channel => {
       return {
@@ -467,12 +465,12 @@ export function adaptStateChannels2(channels, blockHeight) {
         status: channel.last_updated_tx_type.includes('Close') ? 'Closed' : 'Open',
         initiator: channel.initiator,
         responder: channel.responder,
-        updates: channel.updates_count,
+        updateCount: channel.updates_count,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
         lastRound: channel.round,
-        lastUpdated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight), // todo convert to time
-        lastUpdatedHeight: channel.last_updated_height,
-        lastTxType: channel.last_updated_tx_type,
+        updated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight),
+        updatedHeight: channel.last_updated_height,
+        updateType: channel.last_updated_tx_type,
       }
     })
   return {
@@ -481,3 +479,17 @@ export function adaptStateChannels2(channels, blockHeight) {
     prev: channels.prev,
   }
 }
+
+// export function adaptStateChannels(stateChannels, blockHeight) {
+//   return stateChannels.map(channel => {
+//     return {
+//       amount: formatAettosToAe(channel.amount),
+//       updatedHeight: channel.last_updated_height,
+//       updated: formatBlockDiffAsDatetime(
+//         channel.last_updated_height,
+//         blockHeight,
+//       ),
+//       updateType: channel.last_updated_tx_type,
+//     }
+//   })
+// }

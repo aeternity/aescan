@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptStateChannels } from '@/utils/adapters'
+import { adaptDashboardStateChannels } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useDashboardStateChannelsStore = defineStore('dashboardStateChannels', {
@@ -12,7 +12,7 @@ export const useDashboardStateChannelsStore = defineStore('dashboardStateChannel
     stateChannels(state) {
       const store = useRecentBlocksStore()
       return state.rawStateChannels
-        ? adaptStateChannels(state.rawStateChannels, store.blockHeight)
+        ? adaptDashboardStateChannels(state.rawStateChannels, store.blockHeight)
         : null
     },
   },

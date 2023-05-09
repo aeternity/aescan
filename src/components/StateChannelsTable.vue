@@ -33,18 +33,18 @@
             :link-to="`/accounts/${channel.responder}`"/>
         </div>
       </td>
-      <td>{{ channel.updates }}</td>
+      <td>{{ channel.updateCount }}</td>
       <td>{{ channel.locked }}</td>
       <td>{{ channel.lastRound }}</td>
       <td>
         <div>
-          {{ channel.lastUpdatedHeight }}
+          {{ channel.updatedHeight }}
         </div>
         <div>
-          <datetime-label :datetime="channel.lastUpdated "/>
+          <datetime-label :datetime="channel.updated "/>
         </div>
       </td>
-      <td>{{ channel.lastTxType }}</td>
+      <td>{{ channel.updateType }}</td>
     </tr>
   </table>
 </template>

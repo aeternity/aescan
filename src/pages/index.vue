@@ -70,7 +70,7 @@
               Learn more
             </app-link>
           </p>
-          <dashboard-state-channels-panel class="dashboard-state-channels-panel"/>
+          <dashboard-state-channels-panel class="dashboard__dashboard-state-channels-panel"/>
         </div>
       </div>
     </div>
@@ -86,6 +86,7 @@ import DashboardStateChannelsPanel from '@/components/DashboardStateChannelsPane
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
 import { useWebSocket } from '@/stores/webSocket'
+import { useDashboardStateChannelsStore } from '~/stores/dashboardStateChannels'
 
 const {
   fetchSelectedMicroblocksInfo,
@@ -96,7 +97,7 @@ const {
   fetchMaxTps,
   fetchTotalTransactionsCount,
 } = useBlockchainStatsStore()
-const { fetchStateChannels } = useStateChannelsStore()
+const { fetchStateChannels } = useDashboardStateChannelsStore()
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 const webSocketStore = useWebSocket()
 const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)

@@ -2,15 +2,12 @@
   <app-panel
     v-if="stateChannels"
     class="state-channels-panel">
-    <!--      todo counter?-->
     <paginated-content
       v-model:page-index="pageIndex"
-
       :entities="stateChannels"
       pagination-style="history"
       :total-count="stateChannelsCount"
       :limit="limit"
-
       @prev-clicked="loadPrevStateChannels"
       @next-clicked="loadNextStateChannels">
       <state-channels-table

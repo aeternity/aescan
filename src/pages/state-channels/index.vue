@@ -9,7 +9,3 @@
 
   <state-channels-panel/>
 </template>
-
-<script setup>
-
-</script>

@@ -18,7 +18,6 @@ export const useDashboardStateChannelsStore = defineStore('dashboardStateChannel
   },
   actions: {
     async fetchStateChannels() {
-      console.log('fetchStateChannels')
       const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/channels?&limit=4`)
       this.rawStateChannels = data.data
     },

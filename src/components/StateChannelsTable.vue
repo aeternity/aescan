@@ -8,7 +8,7 @@
       <th>Locked</th>
       <th>Last Known Round</th>
       <th>Last Updated</th>
-        <th>Last TX type</th>
+      <th>Last TX type</th>
     </tr>
     <tr
       v-for="channel in stateChannels.data"

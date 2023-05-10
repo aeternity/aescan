@@ -31,9 +31,7 @@ const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
 
-if (process.client) {
-  await useAsyncData(() => fetchOracleDetails(route.params.id))
-}
+await useAsyncData(() => fetchOracleDetails(route.params.id))
 </script>
 
 <style scoped>

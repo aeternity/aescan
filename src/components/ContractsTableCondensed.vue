@@ -51,23 +51,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'ContractTableCondensed',
-  components: {
-    ValueHashEllipsed,
-    DatetimeLabel,
+defineProps({
+  contracts: {
+    type: Object,
+    required: true,
   },
-  props: {
-    contracts: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

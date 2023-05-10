@@ -7,18 +7,18 @@
     Account
   </page-header>
 
-  <template v-if="accountDetails">
-    <account-details-panel :account-details="accountDetails"/>
+  <account-details-panel
+    v-if="accountDetails"
+    :account-details="accountDetails"/>
 
-    <app-tabs v-if="!accountDetails.notExistent">
-      <app-tab title="Transactions">
-        <account-transactions-panel/>
-      </app-tab>
-      <app-tab title="AENS Names">
-        <account-names-panel/>
-      </app-tab>
-    </app-tabs>
-  </template>
+  <app-tabs v-if="isTabsVisible">
+    <app-tab title="Transactions">
+      <account-transactions-panel/>
+    </app-tab>
+    <app-tab title="AENS Names">
+      <account-names-panel/>
+    </app-tab>
+  </app-tabs>
 </template>
 
 <script setup>
@@ -37,6 +37,7 @@ const accountStore = useAccountStore()
 const { accountDetails } = storeToRefs(accountStore)
 const { fetchAccount, fetchTotalAccountTransactionsCount } = accountStore
 const route = useRoute()
+const isTabsVisible = computed(() => process.client && accountDetails && !accountDetails.value?.notExistent)
 
 if (process.client) {
   const limit = isDesktop() ? null : 3

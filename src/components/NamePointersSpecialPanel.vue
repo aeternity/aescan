@@ -93,26 +93,14 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'NamePointersSpecialPanel',
-  components: {
-    AppLink,
-    AppPanel,
-  },
-  computed: {
-    ...mapState(useNameDetailsStore, ['name']),
-  },
-  methods: {
-    formatEllipseHash,
-  },
-}
+const { name } = storeToRefs(useNameDetailsStore())
 </script>
 
 <style scoped>

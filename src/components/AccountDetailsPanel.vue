@@ -91,8 +91,8 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
@@ -100,37 +100,24 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 
-export default {
-  components: {
-    AppPanel,
-    CopyChip,
-    AppIcon,
-    AppLink,
+const { price } = storeToRefs(useMarketStatsStore())
+const { NODE_URL } = useRuntimeConfig().public
+
+const props = defineProps({
+  accountDetails: {
+    type: Object,
+    required: true,
   },
-  props: {
-    accountDetails: {
-      type: Object,
-      required: true,
-    },
-  },
-  computed: {
-    ...mapState(useMarketStatsStore, ['price']),
-    accountNodeUrl() {
-      return `${this.$config.public.NODE_URL}/v3/accounts/${this.accountDetails.id}`
-    },
-    sanitizedPrice() {
-      return this.price
-        ? `$${formatNullable(formatNumber(this.accountDetails.balance * this.price, 0, 2))}`
-        : '---'
-    },
-  },
-  methods: {
-    formatNumber,
-    formatNullable,
-    formatAePrice,
-    formatEllipseHash,
-  },
-}
+})
+
+const accountNodeUrl = computed(() =>
+  `${NODE_URL}/v3/accounts/${props.accountDetails.id}`,
+)
+const sanitizedPrice = computed(() =>
+  price.value
+    ? `$${formatNullable(formatNumber(props.accountDetails.balance * price.value, 0, 2))}`
+    : '---',
+)
 </script>
 
 <style scoped>

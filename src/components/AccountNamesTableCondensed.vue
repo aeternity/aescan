@@ -51,21 +51,17 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'AccountNamesTableCondensed',
-  components: { DatetimeLabel, AppLink, ValueHashEllipsed },
-  props: {
-    accountNames: {
-      type: Object,
-      default: null,
-    },
+defineProps({
+  accountNames: {
+    type: Object,
+    default: null,
   },
-}
+})
 </script>
 
 <style scoped>

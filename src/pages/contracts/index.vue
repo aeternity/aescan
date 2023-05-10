@@ -10,12 +10,7 @@
   <contracts-panel class="contracts__panel"/>
 </template>
 
-<script>
+<script setup>
 import ContractsPanel from '@/components/ContractsPanel'
 import PageHeader from '@/components/PageHeader'
-
-export default {
-  name: 'TransactionsView',
-  components: { PageHeader, ContractsPanel },
-}
 </script>

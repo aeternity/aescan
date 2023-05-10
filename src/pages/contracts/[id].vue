@@ -7,20 +7,19 @@
     Smart Contract
   </page-header>
 
-  <template v-if="contractDetails">
-    <contract-details-panel
-      class="contract-details__panel"
-      :contract-details="contractDetails"/>
+  <contract-details-panel
+    v-if="contractDetails"
+    class="contract-details__panel"
+    :contract-details="contractDetails"/>
 
-    <app-tabs>
-      <app-tab title="Call transactions">
-        <contract-call-transactions-panel/>
-      </app-tab>
-      <app-tab title="Events">
-        <contract-events-panel/>
-      </app-tab>
-    </app-tabs>
-  </template>
+  <app-tabs v-if="contractDetails">
+    <app-tab title="Call transactions">
+      <contract-call-transactions-panel/>
+    </app-tab>
+    <app-tab title="Events">
+      <contract-events-panel/>
+    </app-tab>
+  </app-tabs>
 </template>
 
 <script setup>
@@ -40,6 +39,7 @@ const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
 
 await useAsyncData(() => fetchContractDetails(route.params.id))
+
 if (process.client) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
@@ -51,9 +51,5 @@ if (process.client) {
 <style scoped>
 .contract-details__panel {
   margin-bottom: var(--space-6);
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
 }
 </style>

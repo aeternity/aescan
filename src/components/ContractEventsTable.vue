@@ -16,7 +16,7 @@
           :hash="event.callTxHash"
           :link-to="`/transactions/${event.callTxHash}`"/>
       </td>
-      <td class="contract-events-table__time">
+      <td>
         <div>
           {{ event.createdHeight }}
         </div>
@@ -27,7 +27,6 @@
       </td>
       <td>
         <copy-chip
-          class="contract-events-panel__copy-chip"
           :clipboard-text="removeLineBreaks(event.args)"
           :label="formatEllipseHash(removeLineBreaks(event.args))"/>
       </td>
@@ -65,10 +64,6 @@ export default {
 <style scoped>
 .contract-events-table {
   &__transaction {
-    white-space: nowrap;
-  }
-
-  &__time {
     white-space: nowrap;
   }
 

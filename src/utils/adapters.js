@@ -311,6 +311,7 @@ export function adaptContractEvents(events, blockHeight) {
         callTxHash: event.call_tx_hash,
       }
     })
+
   return {
     next: events.next,
     data: formattedData,
@@ -333,6 +334,25 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   }
 
   return tokenDetails
+}
+
+export function adaptTokenEvents(events, blockHeight) {
+  const formattedData = events.data
+    .map(event => {
+      return {
+        hash: event.call_tx_hash,
+        name: event.event_name || 'N/A',
+        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        createdHeight: event.height,
+        args: event.args,
+      }
+    })
+
+  return {
+    next: events.next,
+    data: formattedData,
+    prev: events.prev,
+  }
 }
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
@@ -360,6 +380,7 @@ export function adaptListedTokens(tokens) {
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
       }
     })
+
   return {
     next: null,
     data: formattedData,
@@ -431,5 +452,27 @@ export function adaptOracleEvents(events) {
     next: events.next,
     data: formattedData,
     prev: events.prev,
+  }
+}
+
+export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blockHeight) {
+  return {
+    id: stateChannel.channel,
+    isOpen: stateChannel.active,
+    createTransactionHash: stateChannelCreateTx.source_tx_hash,
+    initialAmount: formatAettosToAe(stateChannel.initiator_amount + stateChannel.responder_amount),
+    initiator: stateChannel.initiator,
+    responder: stateChannel.responder,
+    onChainUpdates: stateChannel.updates_count,
+    lastKnownRound: stateChannel.round,
+    aeLocked: formatAettosToAe(stateChannel.amount),
+    lastUpdatedHeight: stateChannel.last_updated_height,
+    lastUpdated: stateChannel.last_updated_height
+      ? formatBlockDiffAsDatetime(
+        stateChannel.last_updated_height,
+        blockHeight,
+      )
+      : null,
+    lastTxType: stateChannel.last_updated_tx_type,
   }
 }

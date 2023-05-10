@@ -28,22 +28,13 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'NamePointersCustomPanel',
-  components: {
-    ValueHashEllipsed,
-    AppPanel,
-  },
-  computed: {
-    ...mapState(useNameDetailsStore, ['name']),
-  },
-}
+const { name } = storeToRefs(useNameDetailsStore())
 </script>
 
 <style scoped>

@@ -7,7 +7,7 @@
     Transactions
   </page-header>
 
-  <transactions-panel class="transactions__panel"/>
+  <transactions-panel/>
 </template>
 
 <script>

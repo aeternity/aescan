@@ -38,21 +38,17 @@
     </tbody>
   </table>
 </template>
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import HashSymbol from '@/components/HashSymbol'
 
-export default {
-  name: 'ContractsTable',
-  components: { HashSymbol, DatetimeLabel, ValueHashEllipsed },
-  props: {
-    contracts: {
-      type: Object,
-      required: true,
-    },
+defineProps({
+  contracts: {
+    type: Object,
+    required: true,
   },
-}
+})
 </script>
 
 <style scoped>

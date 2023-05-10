@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
-import BigNumber from 'bignumber.js'
+import { BigNumber } from 'bignumber.js'
 import { MAXIMUM_FRACTION_DIGITS, MINUTES_PER_BLOCK, NUMBER_FRACTION_THRESHOLD } from '@/utils/constants'
 
 export function formatEllipseHash(hash) {
@@ -13,7 +13,6 @@ export function formatNumber(number, minimumFractionDigits = 0, maximumFractionD
   if (isNaN(number) || number === null) {
     return number
   }
-
   return Intl.NumberFormat('en-US', {
     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
     maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,

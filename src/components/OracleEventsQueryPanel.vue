@@ -38,7 +38,7 @@ defineProps({
 <style scoped>
 .oracle-events-query-panel {
   padding: var(--space-3);
-  background: var(--color-snow) !important;
+  background: var(--color-snow);
   font-size: 11px;
   line-height: 16px;
 

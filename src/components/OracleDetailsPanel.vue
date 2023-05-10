@@ -116,8 +116,8 @@ import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({
   oracleDetails: {
-    type: [Object, null],
-    default: null,
+    type: Object,
+    required: true,
   },
 })
 </script>

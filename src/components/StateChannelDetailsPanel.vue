@@ -159,8 +159,8 @@ const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
 const props = defineProps({
   stateChannelDetails: {
-    type: [Object, null],
-    default: null,
+    type: Object,
+    required: true,
   },
 })
 

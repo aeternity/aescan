@@ -128,8 +128,8 @@ const { price } = storeToRefs(useMarketStatsStore())
 
 const props = defineProps({
   tokenDetails: {
-    type: [Object, null],
-    default: null,
+    type: Object,
+    required: true,
   },
 })
 

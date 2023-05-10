@@ -462,7 +462,7 @@ export function adaptStateChannels(channels, blockHeight) {
     .map(channel => {
       return {
         id: channel.channel,
-        status: channel.last_updated_tx_type.includes('Close') ? 'Closed' : 'Open',
+        status: channel.active ? 'Open' : 'Closed',
         initiator: channel.initiator,
         responder: channel.responder,
         updateCount: channel.updates_count,

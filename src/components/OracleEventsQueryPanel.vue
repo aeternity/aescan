@@ -1,7 +1,7 @@
 <template>
   <app-panel class="oracle-events-query-panel">
     <div class="oracle-events-query-panel__heading">
-      QueryDetails
+      Query Details
     </div>
     <dl>
       <dt>Query ID:</dt>

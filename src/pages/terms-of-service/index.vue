@@ -14,7 +14,6 @@
     <p class="terms-of-service__paragraph">
       Terms and Conditions last updated on <span class=" terms-of-service__highlighted">May 9th 2023</span>
     </p>
-    <!--      todo relative date-->
     <p class="terms-of-service__paragraph">
       BY ACCESSING OR USING æScan SERVICES, YOU AGREE TO BE BOUND BY THESE TERMS OF SERVICE AND ALL TERMS
       INCORPORATED BY REFERENCE
@@ -65,10 +64,8 @@
         Services in any manner;
       </li>
       <li class="terms-of-service__item">
-        Engage in unless such Automated Data Collection is confined solely to search indexing for <span
-          class="terms-of-service__highlighted">
-          Data Collection (scraping)</span>
-        display on the Internet
+        Engage in unless such Automated Data Collection is confined solely to search indexing for
+        <span class="terms-of-service__highlighted">Data Collection (scraping)</span> display on the Internet.
       </li>
       <li class="terms-of-service__item">
         Engage in the reproduction of any content posted (such as public labels or name tags) or extracted
@@ -80,8 +77,7 @@
         or area of æScan that you are not authorized to access;
       </li>
       <li class="terms-of-service__item">
-        Introduce to æScan any virus, trojan worms, logic bombs, or other harmful
-        material;
+        Introduce to æScan any virus, trojan worms, logic bombs, or other harmful material;
       </li>
       <li class="terms-of-service__item">
         Provide false, inaccurate, or misleading information; and

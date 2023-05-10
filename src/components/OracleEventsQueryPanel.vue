@@ -28,10 +28,6 @@ defineProps({
     type: Object,
     required: true,
   },
-  isResponseAvailable: {
-    type: Boolean,
-    required: true,
-  },
 })
 </script>
 

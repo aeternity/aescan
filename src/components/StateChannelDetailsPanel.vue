@@ -119,7 +119,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last TX Type
+            Last TX type
           </th>
           <td class="state-channel-details-panel__data">
             {{ stateChannelDetails.lastTxType }}

@@ -2,6 +2,7 @@
   <app-panel class="oracle-events-panel">
     <paginated-content
       :entities="oracleEvents"
+      pagination-style="history"
       @prev-clicked="loadPrevEvents"
       @next-clicked="loadNextEvents">
       <oracle-events-table

@@ -125,7 +125,7 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
@@ -134,34 +134,18 @@ import AppChip from '@/components/AppChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'ContractGeneralPanel',
-  components: {
-    DatetimeLabel,
-    AppLink,
-    AppIcon,
-    AppPanel,
-    CopyChip,
-    AppChip,
-  },
+const { NODE_URL } = useRuntimeConfig().public
 
-  props: {
-    contractDetails: {
-      type: Object,
-      required: true,
-    },
+const props = defineProps({
+  contractDetails: {
+    type: Object,
+    required: true,
   },
-  computed: {
-    contractNodeUrl() {
-      return `${this.$config.public.NODE_URL}/v3/contracts/${this.contractDetails.id}`
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatEllipseHash,
-  },
-}
+})
+
+const contractNodeUrl = computed(() =>
+  `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
+)
 </script>
 
 <style scoped>

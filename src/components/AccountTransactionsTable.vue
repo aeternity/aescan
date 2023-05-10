@@ -38,21 +38,16 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'AccountTransactionsTable',
-  components: { ValueHashEllipsed, DatetimeLabel, TransactionCell, HashSymbol },
-  props: {
-    accountTransactions: {
-      type: Object,
-      default: null,
-    },
+defineProps({
+  accountTransactions: {
+    type: Object,
+    default: null,
   },
-
-}
+})
 </script>

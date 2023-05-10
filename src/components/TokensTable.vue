@@ -4,7 +4,7 @@
       <tr>
         <th>Symbol</th>
         <th>Name</th>
-        <th>Contract ID</th>
+        <th>Smart Contract ID</th>
       </tr>
     </thead>
     <tbody>

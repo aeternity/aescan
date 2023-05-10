@@ -51,7 +51,7 @@
         </tr>
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
-            Contract ID
+            Smart Contract ID
           </th>
           <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contract_id}`">
@@ -128,8 +128,8 @@ const { price } = storeToRefs(useMarketStatsStore())
 
 const props = defineProps({
   tokenDetails: {
-    type: [Object, null],
-    default: null,
+    type: Object,
+    required: true,
   },
 })
 

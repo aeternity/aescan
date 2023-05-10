@@ -26,20 +26,19 @@ import OracleEventsTableCondensed from '@/components/OracleEventsTableCondensed'
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)
 const { fetchOracleEvents } = oracleDetailsStore
+const route = useRoute()
 
 function loadPrevEvents() {
-  fetchOracleEvents({ queryParameters: oracleEvents.value.prev })
+  fetchOracleEvents(oracleEvents.value.prev)
 }
 
 function loadNextEvents() {
-  fetchOracleEvents({ queryParameters: oracleEvents.value.next })
+  fetchOracleEvents(oracleEvents.value.next)
 }
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
-  await fetchOracleEvents({
-    limit: limit.value,
-  })
+  await fetchOracleEvents(`/v2/oracles/${route.params.id}/responses?limit=${limit.value}`)
 }
 </script>
 

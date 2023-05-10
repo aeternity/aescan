@@ -479,17 +479,3 @@ export function adaptStateChannels(channels, blockHeight) {
     prev: channels.prev,
   }
 }
-
-// export function adaptStateChannels(stateChannels, blockHeight) {
-//   return stateChannels.map(channel => {
-//     return {
-//       amount: formatAettosToAe(channel.amount),
-//       updatedHeight: channel.last_updated_height,
-//       updated: formatBlockDiffAsDatetime(
-//         channel.last_updated_height,
-//         blockHeight,
-//       ),
-//       updateType: channel.last_updated_tx_type,
-//     }
-//   })
-// }

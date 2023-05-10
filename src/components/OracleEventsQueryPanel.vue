@@ -10,14 +10,18 @@
       <dt>Query Fee:</dt>
       <dd>{{ formatAePrice(event.queryFee) }}</dd>
 
-      <dt> Query:</dt>
-      <dd> {{ event.query }}</dd>
+      <dt>Query:</dt>
+      <dd class="oracle-events-query-panel__description">
+        {{ event.query }}
+      </dd>
 
       <dt>Response TTL:</dt>
       <dd>{{ event.responseTtl }}</dd>
 
-      <dt> Response:</dt>
-      <dd> {{ event.response }}</dd>
+      <dt>Response:</dt>
+      <dd class="oracle-events-query-panel__description">
+        {{ event.response }}
+      </dd>
     </dl>
   </app-panel>
 </template>
@@ -42,6 +46,10 @@ defineProps({
     font-weight: 700;
     letter-spacing: 0.015em;
     margin-bottom: var(--space-1);
+  }
+
+  &__description {
+    word-break: break-all;
   }
 }
 </style>

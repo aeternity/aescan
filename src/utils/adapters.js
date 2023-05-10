@@ -421,9 +421,9 @@ export function adaptOracleEvents(events) {
       respondTx: event.source_tx_hash,
       queryId: event.query.query_id,
       queryFee: formatAettosToAe(event.query.fee),
-      query: event.query.query,
+      query: formatDecodeBase64(event.query.query),
       responseTtl: event.query.response_ttl.value,
-      response: event.response,
+      response: formatDecodeBase64(event.response),
     }
   })
 

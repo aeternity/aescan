@@ -43,13 +43,18 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   oracleEvents: {
     type: Object,
     required: true,
   },
 })
+
 const isOpened = ref([])
+
+watch(() => props.oracleEvents, () => {
+  isOpened.value = []
+})
 
 function toggle(id) {
   const index = isOpened.value.indexOf(id)

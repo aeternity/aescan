@@ -77,34 +77,21 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableGAAttachTx',
-  components: {
-    AppLink,
-    TransactionTypeStatusLabel,
+const props = defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  computed: {
-    gasCosts() {
-      return this.transactionData.gas_used * this.transactionData.gas_price
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatNullable,
-  },
-}
+})
+
+const gasCosts = computed(() =>
+  props.transactionData.gas_used * props.transactionData.gas_price,
+)
 </script>
 
 <style scoped>

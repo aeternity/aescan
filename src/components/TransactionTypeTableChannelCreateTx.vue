@@ -84,27 +84,16 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableChannelCreateTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatNullable,
-  },
-}
+})
 </script>
 
 <style scoped>

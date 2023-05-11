@@ -25,16 +25,13 @@
   </table>
 </template>
 
-<script>
-export default {
-  name: 'TransactionTypeTableOracleExtendTx',
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+<script setup>
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>
 
 <style scoped>

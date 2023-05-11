@@ -58,29 +58,17 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import { decode } from '@aeternity/aepp-sdk'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'TransactionTypeTableSpendTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatEllipseHash,
-    decode,
-  },
-}
+})
 </script>
 
 <style scoped>

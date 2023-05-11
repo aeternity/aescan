@@ -35,14 +35,18 @@ const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 const loadPrevStateChannels = () => {
-  fetchStateChannels(stateChannels.value.prev)
+  fetchStateChannels({
+    queryParameters: stateChannels.value.prev,
+  })
 }
 const loadNextStateChannels = () => {
-  fetchStateChannels(stateChannels.value.next)
+  fetchStateChannels({
+    queryParameters: stateChannels.value.next,
+  })
 }
 
 const loadStateChannels = () => {
-  fetchStateChannels(`/v2/channels?&limit=${limit.value}`)
+  fetchStateChannels({ limit: limit.value })
   fetchStateChannelsCount()
   pageIndex.value = 1
 }

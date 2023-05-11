@@ -16,9 +16,18 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
       : null
   })
 
-  async function fetchStateChannels(queryParameters = null) {
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/channels?&limit=10'}`)
-    this.rawStateChannels = data.data
+  async function fetchStateChannels({ limit, queryParameters } = {}) {
+    rawStateChannels.value = null
+    if (queryParameters) {
+      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters}`)
+      rawStateChannels.value = data
+      return
+    }
+
+    const channelsUrl = new URL(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/channels`)
+    channelsUrl.searchParams.append('limit', limit ?? 10)
+
+    const { data } = await axios.get(channelsUrl.toString())
     rawStateChannels.value = data
   }
 

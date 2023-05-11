@@ -198,7 +198,7 @@
     </p>
     <p class="privacy-policy__paragraph">
       If you wish to withdraw your consent to process your Personal Data, please submit a
-      request via INSERT CONTACT FORM LINK
+      request via email to <a href="mailto:info@aeternity.com">info@aeternity.com</a>.
     </p>
     <h2 class="privacy-policy__subheading">
       8. To whom is your personal data disclosed?
@@ -271,8 +271,7 @@
     <p class="privacy-policy__paragraph">
       For further inquiries or complaints in relation to our handling of your Personal Data or
       our Privacy Policy or wish to access, update, or amend your Personal Data as
-      mentioned above, please contact us via our feedback form at INSERT CONTACT
-      FORM LINK.
+      mentioned above, please contact us via our feedback form at <a href="mailto:info@aeternity.com">info@aeternity.com</a>.
     </p>
   </div>
 </template>

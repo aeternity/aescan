@@ -81,7 +81,7 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            Last TX Type
+            Last TX type
           </th>
           <td class="state-channels-table-condensed__data">
             {{ channel.updateType }}

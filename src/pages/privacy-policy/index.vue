@@ -271,13 +271,12 @@
     <p class="privacy-policy__paragraph">
       For further inquiries or complaints in relation to our handling of your Personal Data or
       our Privacy Policy or wish to access, update, or amend your Personal Data as
-      mentioned above, please contact us via our feedback form at <a href="mailto:info@aeternity.com">info@aeternity.com</a>.
+      mentioned above, please contact us via our feedback form at
+      <a href="mailto:info@aeternity.com">info@aeternity.com</a>.
     </p>
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
 <style scoped>
 .privacy-policy {
   max-width: 680px;

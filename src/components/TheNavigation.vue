@@ -43,7 +43,7 @@
       </li>
       <li class="navigation__item">
         <app-link
-          class="navigation__link navigation__link--disabled"
+          class="navigation__link"
           to="/state-channels"
           @click="$emit('link-clicked')">
           State Channels

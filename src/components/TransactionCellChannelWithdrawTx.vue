@@ -7,7 +7,7 @@
 
   <value-hash-ellipsed
     :hash="transactionData.channel_id"
-    :link-to="`/accounts/${transactionData.channel_id}`"/>
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 
   <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionData.amount)) }}

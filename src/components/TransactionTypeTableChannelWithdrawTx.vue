@@ -6,7 +6,9 @@
           Channel id
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
@@ -32,9 +34,7 @@
           Amount
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          {{
-            formatAePrice(formatAettosToAe(transactionData.amount), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
         </td>
       </tr>
     </tbody>

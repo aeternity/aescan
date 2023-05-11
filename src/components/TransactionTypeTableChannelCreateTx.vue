@@ -6,7 +6,9 @@
           Channel id
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          {{ formatNullable(transactionData.channel_id) }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -116,6 +118,7 @@ export default {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-15);
   }
+
   &__data {
     word-wrap: break-word;
     text-align: right;

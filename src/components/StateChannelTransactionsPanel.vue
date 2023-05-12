@@ -4,7 +4,6 @@
     class="state-channel-transactions-panel">
     <paginated-content
       v-model:page-index="pageIndex"
-      :total-count="stateChannelDetails.onChainUpdates"
       :limit="limit"
       :entities="stateChannelTransactions"
       pagination-style="history"

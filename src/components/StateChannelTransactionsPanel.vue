@@ -31,7 +31,7 @@ import { isDesktop } from '@/utils/screen'
 import PaginatedContent from '@/components/PaginatedContent'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()
-const { stateChannelTransactions, stateChannelDetails } = storeToRefs(stateChannelDetailsStore)
+const { stateChannelTransactions } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelTransactions } = stateChannelDetailsStore
 
 const limit = computed(() => isDesktop() ? 10 : 3)

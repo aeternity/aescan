@@ -62,8 +62,13 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
 
   async function fetchOracleEvents(queryParameters = null) {
     const defaultParameters = `/v2/oracles/${oracleId.value}/responses`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawEvents.value = data
+
+    try {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+      rawEvents.value = data
+    } catch (e) {
+      rawEvents.value = null
+    }
   }
 
   return {

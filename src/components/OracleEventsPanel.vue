@@ -1,20 +1,20 @@
 <template>
   <app-panel class="oracle-events-panel">
     <paginated-content
+      v-if="oracleEvents"
       :entities="oracleEvents"
       pagination-style="history"
       @prev-clicked="loadPrevEvents"
       @next-clicked="loadNextEvents">
       <oracle-events-table
-        v-if="oracleEvents"
         :oracle-events="oracleEvents"
         class="oracle-events-panel__table"/>
 
       <oracle-events-table-condensed
-        v-if="oracleEvents"
         :oracle-events="oracleEvents"
         class="oracle-events-panel__table-condensed"/>
     </paginated-content>
+    <data-failed-state v-else/>
   </app-panel>
 </template>
 
@@ -23,6 +23,7 @@ import { storeToRefs } from 'pinia'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsTable from '@/components/OracleEventsTable'
 import OracleEventsTableCondensed from '@/components/OracleEventsTableCondensed'
+import DataFailedState from '~/components/DataFailedState'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)

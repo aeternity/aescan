@@ -449,9 +449,9 @@ export function adaptOracleEvents(events) {
   })
 
   return {
-    next: events.next,
+    next: events?.next,
     data: formattedData,
-    prev: events.prev,
+    prev: events?.prev,
   }
 }
 

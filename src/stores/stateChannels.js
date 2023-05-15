@@ -6,7 +6,6 @@ import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useStateChannelsStore = defineStore('stateChannels', () => {
   const rawStateChannels = ref(null)
-  const stateChannelsCount = ref(null)
 
   const { blockHeight } = storeToRefs(useRecentBlocksStore())
 
@@ -31,14 +30,7 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
     rawStateChannels.value = data
   }
 
-  async function fetchStateChannelsCount() {
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs/count?tx_type=channel_create`)
-    this.stateChannelsCount = data
-  }
-
   return {
-    fetchStateChannelsCount,
-    stateChannelsCount,
     fetchStateChannels,
     stateChannels,
   }

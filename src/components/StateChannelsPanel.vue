@@ -6,7 +6,6 @@
       v-model:page-index="pageIndex"
       :entities="stateChannels"
       pagination-style="history"
-      :total-count="stateChannelsCount"
       :limit="limit"
       @prev-clicked="loadPrevStateChannels"
       @next-clicked="loadNextStateChannels">
@@ -28,8 +27,8 @@ import StateChannelsTableCondensed from '@/components/StateChannelsTableCondense
 import { isDesktop } from '~/utils/screen'
 
 const stateChannelsStore = useStateChannelsStore()
-const { stateChannels, stateChannelsCount } = storeToRefs(stateChannelsStore)
-const { fetchStateChannels, fetchStateChannelsCount } = stateChannelsStore
+const { stateChannels } = storeToRefs(stateChannelsStore)
+const { fetchStateChannels } = stateChannelsStore
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
@@ -47,7 +46,6 @@ const loadNextStateChannels = () => {
 
 const loadStateChannels = () => {
   fetchStateChannels({ limit: limit.value })
-  fetchStateChannelsCount()
   pageIndex.value = 1
 }
 

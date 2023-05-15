@@ -15,34 +15,23 @@
   </app-panel>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import PaginatedContent from '@/components/PaginatedContent'
 import AccountNamesTable from '@/components/AccountNamesTable'
 import AccountNamesTableCondensed from '@/components/AccountNamesTableCondensed'
 import { useAccountStore } from '@/stores/accountDetails'
 
-export default {
-  name: 'AccountNamesPanel',
-  components: {
-    AppPanel,
-    PaginatedContent,
-    AccountNamesTable,
-    AccountNamesTableCondensed,
-  },
-  computed: {
-    ...mapState(useAccountStore, ['accountNames']),
-  },
-  methods: {
-    ...mapActions(useAccountStore, ['fetchAccountNames']),
-    loadPrevAccountNames() {
-      this.fetchAccountNames({ queryParameters: this.accountNames.prev })
-    },
-    loadNextAccountNames() {
-      this.fetchAccountNames({ queryParameters: this.accountNames.next })
-    },
-  },
+const accountStore = useAccountStore()
+const { fetchAccountNames } = accountStore
+const { accountNames } = storeToRefs(accountStore)
+
+function loadPrevAccountNames() {
+  fetchAccountNames({ queryParameters: accountNames.value.prev })
+}
+function loadNextAccountNames() {
+  fetchAccountNames({ queryParameters: accountNames.value.next })
 }
 </script>
 

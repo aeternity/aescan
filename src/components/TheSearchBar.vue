@@ -3,7 +3,7 @@
     <input
       v-model="userQuery"
       class="search-bar__input"
-      placeholder="Search accounts, transactions, names, contracts, oracles..."
+      placeholder="Search accounts, transactions, names, contracts, oracles, state channels..."
       type="search"
       autofocus
       @keyup.enter="search">
@@ -56,6 +56,8 @@ export default {
         this.$router.push(`/oracles/${this.query}`)
       } else if (this.isNameId(this.query)) {
         this.$router.push(`/names/${this.query}`)
+      } else if (this.isStateChannelId(this.query)) {
+        this.$router.push(`/state-channels/${this.query}`)
       } else if (await this.isAccountName(this.query)) {
         this.$router.push(`/names/${this.query}.chain`)
       } else {
@@ -77,6 +79,9 @@ export default {
     },
     isOracleId(query) {
       return isAddressValid(query) && query.startsWith('ok_')
+    },
+    isStateChannelId(query) {
+      return isAddressValid(query) && query.startsWith('ch_')
     },
     async isAccountName(query) {
       return await this.isNameAvailable(query)

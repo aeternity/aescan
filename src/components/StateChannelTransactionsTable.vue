@@ -1,5 +1,5 @@
 <template>
-  <table class="account-transactions-table">
+  <table>
     <thead>
       <tr>
         <th>Hash</th>
@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="transaction in accountTransactions?.data"
+        v-for="transaction in transactions.data"
         :key="transaction.hash">
         <td>
           <hash-symbol>th</hash-symbol>
@@ -45,7 +45,7 @@ import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
-  accountTransactions: {
+  transactions: {
     type: Object,
     default: null,
   },

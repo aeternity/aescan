@@ -76,7 +76,7 @@ const props = defineProps({
 const emit = defineEmits([
   'prev-clicked',
   'next-clicked',
-  'update:page-index',
+  'update:pageIndex',
 ])
 
 const pageIndex = props.pageIndex ? useVModel(props, 'pageIndex', emit) : ref(1)

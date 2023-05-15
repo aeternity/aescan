@@ -17,29 +17,24 @@
     </paginated-content>
   </app-panel>
 </template>
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import { useContractDetailsStore } from '@/stores/contractDetails'
 import ContractEventsTable from '@/components/ContractEventsTable'
 import ContractEventsTableCondensed from '@/components/ContractEventsTableCondensed'
 import PaginatedContent from '@/components/PaginatedContent'
 
-export default {
-  name: 'ContractEventsPanel',
-  components: { PaginatedContent, ContractEventsTableCondensed, ContractEventsTable, AppPanel },
-  computed: {
-    ...mapState(useContractDetailsStore, ['contractEvents']),
-  },
-  methods: {
-    ...mapActions(useContractDetailsStore, ['fetchContractEvents']),
-    loadPrevEvents() {
-      this.fetchContractEvents({ queryParameters: this.contractEvents.prev })
-    },
-    loadNextEvents() {
-      this.fetchContractEvents({ queryParameters: this.contractEvents.next })
-    },
-  },
+const contractDetailsStore = useContractDetailsStore()
+const { fetchContractEvents } = contractDetailsStore
+const { contractEvents } = storeToRefs(contractDetailsStore)
+
+function loadPrevEvents() {
+  fetchContractEvents({ queryParameters: contractEvents.value.prev })
+}
+
+function loadNextEvents() {
+  fetchContractEvents({ queryParameters: contractEvents.value.next })
 }
 </script>
 

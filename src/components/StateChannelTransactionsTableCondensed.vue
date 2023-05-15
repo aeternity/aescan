@@ -1,44 +1,44 @@
 <template>
-  <div class="account-transactions-table-condensed">
+  <div class="state-channel-transactions-table-condensed">
     <table
-      v-for="transaction in accountTransactions?.data"
+      v-for="transaction in transactions?.data"
       :key="transaction.hash"
-      class="account-transactions-table-condensed__table">
+      class="state-channel-transactions-table-condensed__table">
       <tbody>
-        <tr class="account-transactions-table-condensed__row">
-          <th class="account-transactions-table-condensed__header">
+        <tr class="state-channel-transactions-table-condensed__row">
+          <th class="state-channel-transactions-table-condensed__header">
             Hash
           </th>
-          <td class="account-transactions-table-condensed__data">
+          <td class="state-channel-transactions-table-condensed__data">
             <value-hash-ellipsed
               :hash="transaction.hash"
               :link-to="`/transactions/${transaction.hash}`"/>
           </td>
         </tr>
-        <tr class="account-transactions-table-condensed__row">
-          <th class="account-transactions-table-condensed__header">
+        <tr class="state-channel-transactions-table-condensed__row">
+          <th class="state-channel-transactions-table-condensed__header">
             Time
           </th>
-          <td class="account-transactions-table-condensed__data">
+          <td class="state-channel-transactions-table-condensed__data">
             <div>
               {{ transaction.createdHeight }}
             </div>
             <datetime-label :datetime="transaction.created"/>
           </td>
         </tr>
-        <tr class="account-transactions-table-condensed__row">
-          <th class="account-transactions-table-condensed__header">
+        <tr class="state-channel-transactions-table-condensed__row">
+          <th class="state-channel-transactions-table-condensed__header">
             Type
           </th>
-          <td class="account-transactions-table-condensed__data">
+          <td class="state-channel-transactions-table-condensed__data">
             {{ transaction.type }}
           </td>
         </tr>
-        <tr class="account-transactions-table-condensed__row">
-          <th class="account-transactions-table-condensed__header">
+        <tr class="state-channel-transactions-table-condensed__row">
+          <th class="state-channel-transactions-table-condensed__header">
             Data
           </th>
-          <td class="account-transactions-table-condensed__data">
+          <td class="state-channel-transactions-table-condensed__data">
             <transaction-cell
               :transaction-type="transaction.type"
               :transaction-data="transaction.data"/>
@@ -51,11 +51,11 @@
 
 <script setup>
 import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
-  accountTransactions: {
+  transactions: {
     type: Object,
     default: null,
   },
@@ -63,9 +63,7 @@ defineProps({
 </script>
 
 <style scoped>
-.account-transactions-table-condensed {
-  padding: var(--space-4) 0 0;
-
+.state-channel-transactions-table-condensed {
   &__table {
     margin-bottom: var(--space-6);
 

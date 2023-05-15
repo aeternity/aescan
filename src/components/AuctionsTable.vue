@@ -45,28 +45,14 @@
     </tbody>
   </table>
 </template>
-<script>
-import { mapState } from 'pinia'
+<script setup>
 import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'AuctionTable',
-  components: { DatetimeLabel, AppLink, ValueHashEllipsed },
-
-  computed: {
-    ...mapState(useNamesStore, ['auctionsEndingSoon']),
-    ...mapState(useRecentBlocksStore, ['blockHeight']),
-  },
-
-  methods: {
-    formatAePrice,
-  },
-}
+const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>

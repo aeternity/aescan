@@ -13,35 +13,27 @@
             'keyblock-sequence__cell--empty': keyblock?.micro_blocks_count === 0,
             'keyblock-sequence__cell--active': keyblock.hash === selectedKeyblock.hash
           }]"
-        @click="select(keyblock)">
+        @click="selectKeyblock(keyblock)">
         {{ keyblock?.micro_blocks_count }}
       </div>
     </TransitionGroup>
     <div class="keyblock-sequence__overlay"/>
   </div>
 </template>
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-export default {
-  name: 'KeyblockSequence',
-  props: {
-    keyblocks: {
-      type: Array,
-      required: true,
-    },
+const recentBlocksStore = useRecentBlocksStore()
+const { selectKeyblock } = recentBlocksStore
+const { selectedKeyblock } = storeToRefs(recentBlocksStore)
+
+defineProps({
+  keyblocks: {
+    type: Array,
+    required: true,
   },
-  computed: {
-    ...mapState(useRecentBlocksStore, ['selectedKeyblock']),
-  },
-  methods: {
-    ...mapActions(useRecentBlocksStore, ['selectKeyblock']),
-    select(keyblock) {
-      this.selectKeyblock(keyblock)
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

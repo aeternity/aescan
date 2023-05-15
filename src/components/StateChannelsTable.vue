@@ -55,25 +55,14 @@
     </tbody>
   </table>
 </template>
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import { useStateChannelsStore } from '@/stores/stateChannels'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'StateChannelsTable',
-  components: { DatetimeLabel, ValueHashEllipsed },
-
-  computed: {
-    ...mapState(useStateChannelsStore, ['stateChannels']),
-  },
-
-  methods: {
-    formatAePrice,
-  },
-}
+const { stateChannels } = storeToRefs(useStateChannelsStore())
 </script>
 
 <style scoped>

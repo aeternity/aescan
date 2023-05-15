@@ -39,8 +39,7 @@
     </table>
   </paginated-content>
 </template>
-<script>
-import { mapActions } from 'pinia'
+<script setup>
 import HashSymbol from '@/components/HashSymbol'
 import PaginatedContent from '@/components/PaginatedContent'
 import DatetimeLabel from '@/components/DatetimeLabel'
@@ -48,35 +47,20 @@ import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'MicroblockTransactionsTable',
-  components: { ValueHashEllipsed, TransactionCell, PaginatedContent, HashSymbol, DatetimeLabel },
-  props: {
-    transactions: {
-      required: true,
-      type: Object,
-    },
+const { fetchSelectedMicroblockTransactions } = useRecentBlocksStore()
+
+const props = defineProps({
+  transactions: {
+    required: true,
+    type: Object,
   },
-  computed: {
-    hasPagination() {
-      return this.transactions && (this.transactions.prev || this.transactions.next)
-    },
-    isPrevDisabled() {
-      return !this.transactions.prev
-    },
-    isNextDisabled() {
-      return !this.transactions.next
-    },
-  },
-  methods: {
-    ...mapActions(useRecentBlocksStore, ['fetchSelectedMicroblockTransactions']),
-    loadPrevTransactions() {
-      this.fetchSelectedMicroblockTransactions(this.transactions.prev)
-    },
-    loadNextTransactions() {
-      this.fetchSelectedMicroblockTransactions(this.transactions.next)
-    },
-  },
+})
+
+function loadPrevTransactions() {
+  fetchSelectedMicroblockTransactions(props.transactions.prev)
+}
+function loadNextTransactions() {
+  fetchSelectedMicroblockTransactions(props.transactions.next)
 }
 </script>
 

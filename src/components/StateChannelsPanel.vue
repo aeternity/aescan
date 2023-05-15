@@ -19,17 +19,12 @@
     <state-channels-swiper class="state-channels-panel__swiper"/>
   </app-panel>
 </template>
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
 import AppLink from '@/components/AppLink'
 import PanelHeader from '@/components/PanelHeader'
 import StateChannelsSwiper from '@/components/StateChannelsSwiper'
 import StateChannelsTable from '@/components/StateChannelsTable'
-
-export default {
-  name: 'StateChannelsPanel',
-  components: { StateChannelsTable, StateChannelsSwiper, PanelHeader, AppPanel, AppLink },
-}
 </script>
 
 <style scoped>

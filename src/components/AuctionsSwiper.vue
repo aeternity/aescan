@@ -45,30 +45,17 @@
     </template>
   </app-swiper>
 </template>
-<script>
-import { mapState } from 'pinia'
+
+<script setup>
 import AppLink from '@/components/AppLink'
 
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'AuctionsSwiper',
-  components: { DatetimeLabel, ValueHashEllipsed, AppSwiper, AppLink },
-
-  computed: {
-    ...mapState(useNamesStore, ['auctionsEndingSoon']),
-    ...mapState(useRecentBlocksStore, ['blockHeight']),
-  },
-
-  methods: {
-    formatAePrice,
-  },
-}
+const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>

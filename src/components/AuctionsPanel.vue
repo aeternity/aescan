@@ -16,16 +16,11 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
 import PanelHeader from '@/components/PanelHeader'
 import AuctionsSwiper from '@/components/AuctionsSwiper'
 import AuctionsTable from '@/components/AuctionsTable'
-
-export default {
-  name: 'AuctionsPanel',
-  components: { AuctionsTable, AuctionsSwiper, PanelHeader, AppPanel },
-}
 </script>
 
 <style scoped>

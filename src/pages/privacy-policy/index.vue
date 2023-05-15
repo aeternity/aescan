@@ -133,7 +133,7 @@
       logging might be temporarily activated.
       <br>
       (iv) As part of routine server maintenance, all raw web server site visit logs are
-      retained for a maximum of 90 days only and then purged on an automated scheduled
+      retained for a minimum of 90 days only and then purged on an automated scheduled
       basis
     </p>
 

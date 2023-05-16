@@ -16,9 +16,9 @@
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.account }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.account)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.account) }}
+              </span>
             </app-link>
 
             <template v-else>
@@ -33,7 +33,7 @@
           <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.channel"
-              :to="`/accounts/${name.specialPointers.channel}`">
+              :to="`/state-channels/${name.specialPointers.channel}`">
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.channel }}
               </span>

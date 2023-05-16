@@ -9,9 +9,9 @@
     {{ formatAePrice(formatAettosToAe(transactionData.responder_amount_final)) }}
   </app-chip>
 
-  <app-chip size="sm">
-    <value-hash-ellipsed :hash="transactionData.channel_id"/>
-  </app-chip>
+  <value-hash-ellipsed
+    :hash="transactionData.channel_id"
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 </template>
 
 <script>

@@ -92,14 +92,19 @@
             Creator
           </th>
           <td class="oracle-details-panel__data">
-            <app-link :to="`/accounts/${oracleDetails.creator}`">
+            <app-link
+              v-if="oracleDetails.creator"
+              :to="`/accounts/${oracleDetails.creator}`">
               <span class="oracle-details-panel__hash">
                 {{ oracleDetails.creator }}
               </span>
-              <span class="oracle-details-panel__hash-ellipse">{{
-                formatEllipseHash(oracleDetails.creator)
-              }}</span>
+              <span class="oracle-details-panel__hash-ellipse">
+                {{ formatEllipseHash(oracleDetails.creator) }}
+              </span>
             </app-link>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
       </tbody>

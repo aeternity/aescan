@@ -3,7 +3,8 @@
     <panel-header
       level="h3"
       title="STATE CHANNELS"
-      icon-name="state-channel">
+      icon-name="state-channel"
+      show-all-link="/state-channels">
       <template #tooltip>
         Numbers are counting on-chain transactions only. There can be millions of transactions executed
         off-chain in

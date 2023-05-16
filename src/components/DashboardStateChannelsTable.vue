@@ -2,8 +2,8 @@
   <table>
     <thead>
       <tr>
+        <th>State Channel ID</th>
         <th>Participants</th>
-        <th>Channel ID</th>
         <th>On-chain Updates</th>
         <th>Locked</th>
         <th>Last Updated</th>
@@ -14,6 +14,11 @@
       <tr
         v-for="channel in stateChannels"
         :key="channel.channel">
+        <td>
+          <value-hash-ellipsed
+            :link-to="`/state-channels/${channel.channel}`"
+            :hash="channel.channel"/>
+        </td>
         <td>
           <div>
             <span class="dashbaord-state-channels-table__label">
@@ -32,9 +37,6 @@
               :link-to="`/accounts/${channel.responder}`"
               :hash="channel.responder"/>
           </div>
-        </td>
-        <td>
-          <value-hash-ellipsed :hash="channel.channel"/>
         </td>
         <td>
           {{ channel.updateCount }}

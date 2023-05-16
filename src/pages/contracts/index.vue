@@ -7,7 +7,7 @@
     Smart Contracts
   </page-header>
 
-  <contracts-panel class="contracts__panel"/>
+  <contracts-panel/>
 </template>
 
 <script setup>

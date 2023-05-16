@@ -5,6 +5,16 @@
         <tbody>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
+              State Channel ID
+            </th>
+            <td class="dashboard-state-channels-swiper__data">
+              <value-hash-ellipsed
+                :link-to="`/state-channels/${channel.channel}`"
+                :hash="channel.channel"/>
+            </td>
+          </tr>
+          <tr>
+            <th class="dashboard-state-channels-swiper__header">
               Initiator
             </th>
             <td class="dashboard-state-channels-swiper__data">
@@ -21,14 +31,6 @@
               <value-hash-ellipsed
                 :link-to="`/accounts/${channel.responder}`"
                 :hash="channel.responder"/>
-            </td>
-          </tr>
-          <tr>
-            <th class="dashboard-state-channels-swiper__header">
-              Channel ID
-            </th>
-            <td class="dashboard-state-channels-swiper__data">
-              <value-hash-ellipsed :hash="channel.channel"/>
             </td>
           </tr>
           <tr>

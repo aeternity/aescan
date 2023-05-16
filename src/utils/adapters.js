@@ -84,7 +84,7 @@ export function adaptChainNames(chainNames, blockHeight) {
   })
 }
 
-export function adaptStateChannels(stateChannels, blockHeight) {
+export function adaptDashboardStateChannels(stateChannels, blockHeight) {
   return stateChannels.map(channel => {
     return {
       initiator: channel.initiator,
@@ -435,6 +435,26 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
   return oracleDetails
 }
 
+export function adaptOracleEvents(events) {
+  const formattedData = events.data.map(event => {
+    return {
+      queryTx: event.query.source_tx_hash,
+      respondTx: event.source_tx_hash,
+      queryId: event.query.query_id,
+      queryFee: formatAettosToAe(event.query.fee),
+      query: formatDecodeBase64(event.query.query),
+      responseTtl: event.query.response_ttl.value,
+      response: formatDecodeBase64(event.response),
+    }
+  })
+
+  return {
+    next: events?.next,
+    data: formattedData,
+    prev: events?.prev,
+  }
+}
+
 export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blockHeight) {
   return {
     id: stateChannel.channel,
@@ -454,5 +474,28 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
       )
       : null,
     lastTxType: stateChannel.last_updated_tx_type,
+  }
+}
+
+export function adaptStateChannels(channels, blockHeight) {
+  const formattedData = channels.data
+    .map(channel => {
+      return {
+        id: channel.channel,
+        status: channel.active ? 'Open' : 'Closed',
+        initiator: channel.initiator,
+        responder: channel.responder,
+        updateCount: channel.updates_count,
+        locked: formatAePrice(formatAettosToAe(channel.amount)),
+        lastRound: channel.round,
+        updated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight),
+        updatedHeight: channel.last_updated_height,
+        updateType: channel.last_updated_tx_type,
+      }
+    })
+  return {
+    next: channels.next,
+    data: formattedData,
+    prev: channels.prev,
   }
 }

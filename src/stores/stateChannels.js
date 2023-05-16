@@ -1,28 +1,38 @@
-import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import { defineStore, storeToRefs } from 'pinia'
 import { adaptStateChannels } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useStateChannelsStore = defineStore('stateChannels', () => {
-  const { blockHeight } = storeToRefs(useRecentBlocksStore())
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { blockHeight } = storeToRefs(useRecentBlocksStore())
+
   const rawStateChannels = ref(null)
 
-  const stateChannels = computed(() =>
-    rawStateChannels.value
+  const stateChannels = computed(() => {
+    return rawStateChannels.value
       ? adaptStateChannels(rawStateChannels.value, blockHeight.value)
-      : null,
-  )
+      : null
+  })
 
-  async function fetchStateChannels() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/channels?&limit=4`)
-    rawStateChannels.value = data.data
+  async function fetchStateChannels({ limit, queryParameters } = {}) {
+    rawStateChannels.value = null
+    if (queryParameters) {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
+      rawStateChannels.value = data
+      return
+    }
+
+    const channelsUrl = new URL(`${MIDDLEWARE_URL}/v2/channels`)
+    channelsUrl.searchParams.append('limit', limit ?? 10)
+
+    const { data } = await axios.get(channelsUrl.toString())
+    rawStateChannels.value = data
   }
 
   return {
-    rawStateChannels,
-    stateChannels,
     fetchStateChannels,
+    stateChannels,
   }
 })

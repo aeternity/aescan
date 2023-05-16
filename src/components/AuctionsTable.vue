@@ -46,6 +46,7 @@
   </table>
 </template>
 <script setup>
+import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'

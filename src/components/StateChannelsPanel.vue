@@ -1,50 +1,78 @@
 <template>
-  <app-panel class="state-channels-panel">
-    <panel-header
-      level="h3"
-      title="STATE CHANNELS"
-      icon-name="state-channel">
-      <template #tooltip>
-        Numbers are counting on-chain transactions only. There can be millions of transactions executed
-        off-chain in
-        <app-link
-          variant="primary"
-          to="https://aeternity.com/state-channels">
-          State Channels
-        </app-link>
-        .
-      </template>
-    </panel-header>
-    <state-channels-table class="state-channels-panel__table"/>
-    <state-channels-swiper class="state-channels-panel__swiper"/>
+  <app-panel
+    v-if="stateChannels"
+    class="state-channels-panel">
+    <paginated-content
+      v-model:page-index="pageIndex"
+      :entities="stateChannels"
+      pagination-style="history"
+      :limit="limit"
+      @prev-clicked="loadPrevStateChannels"
+      @next-clicked="loadNextStateChannels">
+      <state-channels-table
+        :state-channels="stateChannels"
+        class="state-channels-panel__table"/>
+      <state-channels-table-condensed
+        :state-channels="stateChannels"
+        class="state-channels-panel__table-condensed"/>
+    </paginated-content>
   </app-panel>
 </template>
+
 <script setup>
-import AppPanel from '@/components/AppPanel'
-import AppLink from '@/components/AppLink'
-import PanelHeader from '@/components/PanelHeader'
-import StateChannelsSwiper from '@/components/StateChannelsSwiper'
-import StateChannelsTable from '@/components/StateChannelsTable'
+import { storeToRefs } from 'pinia'
+import { computed, ref } from 'vue'
+import { useStateChannelsStore } from '@/stores/stateChannels'
+import PaginatedContent from '@/components/PaginatedContent'
+import StateChannelsTableCondensed from '@/components/StateChannelsTableCondensed'
+import { isDesktop } from '~/utils/screen'
+
+const stateChannelsStore = useStateChannelsStore()
+const { stateChannels } = storeToRefs(stateChannelsStore)
+const { fetchStateChannels } = stateChannelsStore
+
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+const pageIndex = ref(1)
+
+const loadPrevStateChannels = () => {
+  fetchStateChannels({
+    queryParameters: stateChannels.value.prev,
+  })
+}
+const loadNextStateChannels = () => {
+  fetchStateChannels({
+    queryParameters: stateChannels.value.next,
+  })
+}
+
+const loadStateChannels = () => {
+  fetchStateChannels({ limit: limit.value })
+  pageIndex.value = 1
+}
+
+if (process.client) {
+  loadStateChannels()
+}
 </script>
 
 <style scoped>
 .state-channels-panel {
-  width: 100%;
   padding: var(--space-4) var(--space-1);
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-3);
-  }
 
-  &__swiper {
-    @media (--desktop) {
-      display: none;
-    }
+  @media (--desktop) {
+    padding: var(--space-4);
   }
 
   &__table {
     display: none;
     @media (--desktop) {
       display: revert;
+    }
+  }
+
+  &__table-condensed {
+    @media (--desktop) {
+      display: none;
     }
   }
 }

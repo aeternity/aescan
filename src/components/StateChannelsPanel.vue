@@ -59,7 +59,7 @@ if (process.client) {
   padding: var(--space-4) var(--space-1);
 
   @media (--desktop) {
-    padding: var(--space-5) var(--space-4) var(--space-4);
+    padding: var(--space-4);
   }
 
   &__table {

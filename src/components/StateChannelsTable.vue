@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="state-channels-table">
     <thead>
       <tr>
         <th>State Channel ID</th>
@@ -60,3 +60,9 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.state-channels-table {
+  margin-bottom: var(--space-2);
+}
+</style>

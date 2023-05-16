@@ -11,6 +11,12 @@
     v-if="oracleDetails"
     class="oracle-details__panel"
     :oracle-details="oracleDetails"/>
+
+  <app-tabs>
+    <app-tab title="Events">
+      <oracle-events-panel/>
+    </app-tab>
+  </app-tabs>
 </template>
 
 <script setup>
@@ -18,6 +24,7 @@ import { storeToRefs } from 'pinia'
 import OracleDetailsPanel from '@/components/OracleDetailsPanel'
 import PageHeader from '@/components/PageHeader'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
+import OracleEventsPanel from '@/components/OracleEventsPanel'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)

@@ -1,0 +1,14 @@
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: var(--space-1) 0;
+}
+
+dt {
+  width: 200px;
+  grid-column-start: 1;
+}
+
+dd {
+  grid-column-start: 2;
+}

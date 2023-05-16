@@ -435,6 +435,26 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
   return oracleDetails
 }
 
+export function adaptOracleEvents(events) {
+  const formattedData = events.data.map(event => {
+    return {
+      queryTx: event.query.source_tx_hash,
+      respondTx: event.source_tx_hash,
+      queryId: event.query.query_id,
+      queryFee: formatAettosToAe(event.query.fee),
+      query: formatDecodeBase64(event.query.query),
+      responseTtl: event.query.response_ttl.value,
+      response: formatDecodeBase64(event.response),
+    }
+  })
+
+  return {
+    next: events?.next,
+    data: formattedData,
+    prev: events?.prev,
+  }
+}
+
 export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blockHeight) {
   return {
     id: stateChannel.channel,

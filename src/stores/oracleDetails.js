@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptOracleDetails } from '@/utils/adapters'
+import { adaptOracleDetails, adaptOracleEvents } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useOracleDetailsStore = defineStore('oracleDetails', () => {
@@ -13,6 +13,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const creationTx = ref(null)
   const lastExtendedTx = ref(null)
   const lastQueryTx = ref(null)
+  const rawEvents = ref(null)
 
   const oracleDetails = computed(() => rawOracle.value
     ? adaptOracleDetails(
@@ -24,6 +25,8 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     )
     : null,
   )
+
+  const oracleEvents = computed(() => rawEvents.value ? adaptOracleEvents(rawEvents.value) : null)
 
   async function fetchOracleDetails(id) {
     oracleId.value = id
@@ -57,13 +60,26 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     lastExtendedTx.value = data.data?.[0]
   }
 
+  async function fetchOracleEvents(queryParameters = null) {
+    const defaultParameters = `/v2/oracles/${oracleId.value}/responses`
+
+    try {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+      rawEvents.value = data
+    } catch (e) {
+      rawEvents.value = null
+    }
+  }
+
   return {
     fetchOracleDetails,
+    fetchOracleEvents,
     oracleDetails,
     oracleId,
     rawOracle,
     creationTx,
     lastExtendedTx,
     lastQueryTx,
+    oracleEvents,
   }
 })

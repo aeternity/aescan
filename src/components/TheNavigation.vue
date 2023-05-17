@@ -42,14 +42,12 @@
         </app-link>
       </li>
       <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            State Channels
-          </app-link>
-        </coming-soon-tooltip>
+        <app-link
+          class="navigation__link"
+          to="/state-channels"
+          @click="$emit('link-clicked')">
+          State Channels
+        </app-link>
       </li>
       <li class="navigation__item">
         <coming-soon-tooltip>

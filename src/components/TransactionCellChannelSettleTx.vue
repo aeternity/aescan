@@ -15,9 +15,9 @@
 
   <transaction-arrow-right-icon/>
 
-  <app-chip size="sm">
-    <value-hash-ellipsed :hash="transactionData.channel_id"/>
-  </app-chip>
+  <value-hash-ellipsed
+    :hash="transactionData.channel_id"
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 </template>
 
 <script>

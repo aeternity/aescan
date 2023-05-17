@@ -5,7 +5,9 @@
 
   <transaction-arrow-right-icon/>
 
-  <value-hash-ellipsed :hash="transactionData.channel_id"/>
+  <value-hash-ellipsed
+    :hash="transactionData.channel_id"
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 
   <app-chip size="sm">
     Round {{ transactionData.round }}

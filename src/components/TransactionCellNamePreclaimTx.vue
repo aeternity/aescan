@@ -4,19 +4,13 @@
     :link-to="`/accounts/${transactionData.account_id}`"/>
 </template>
 
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellNamePreclaimTx',
-  components: {
-    ValueHashEllipsed,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-}
+})
 </script>

@@ -10,18 +10,14 @@
     :link-to="`/contracts/${transactionData.contract_id}`"/>
 </template>
 
-<script>
+<script setup>
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellContractCreateTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>

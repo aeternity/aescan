@@ -16,25 +16,18 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import { formatDecodeBase64 } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellOracleQueryTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  methods: {
-    formatDecodeBase64,
-  },
-}
+})
 </script>
 
 <style scoped>

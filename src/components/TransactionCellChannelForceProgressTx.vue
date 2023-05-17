@@ -14,19 +14,15 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellChannelForceProgressTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>

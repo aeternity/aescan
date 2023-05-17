@@ -20,29 +20,20 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellGAMetaTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+const props = defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  computed: {
-    transactionDetails() {
-      return this.transactionData.tx.tx
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
+
+const transactionDetails = computed(() =>
+  props.transactionData.tx.tx,
+)
 </script>

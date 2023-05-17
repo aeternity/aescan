@@ -15,17 +15,12 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
 
 import PanelHeader from '@/components/PanelHeader'
 import NamesSwiper from '@/components/NamesSwiper'
 import NamesTable from '@/components/NamesTable'
-
-export default {
-  name: 'NamesPanel',
-  components: { NamesTable, NamesSwiper, PanelHeader, AppPanel },
-}
 </script>
 
 <style scoped>

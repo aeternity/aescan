@@ -18,6 +18,7 @@
     </paginated-content>
   </app-panel>
 </template>
+
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'

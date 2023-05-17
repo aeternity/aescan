@@ -6,6 +6,7 @@ import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useNameDetailsStore = defineStore('nameDetails', () => {
   const { blockHeight, selectedKeyblock } = storeToRefs(useRecentBlocksStore())
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
   const rawName = ref(null)
   const rawNameActions = ref(null)
@@ -25,18 +26,18 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
 
   async function fetchName(name) {
     rawName.value = null
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/names/${name}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
     rawName.value = data
   }
   async function fetchNameActions({ nameHash = null, queryParameters = null }) {
     rawNameActions.value = null
     const defaultParameters = `/v2/accounts/${nameHash}/activities`
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawNameActions.value = data
   }
   async function isNameAvailable(name) {
     try {
-      await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/names/${name}`)
+      await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
       return true
     } catch (error) {
       if (error.response.status === 404) {

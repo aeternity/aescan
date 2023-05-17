@@ -42,22 +42,18 @@
     </template>
   </app-swiper>
 </template>
-<script>
+<script setup>
 import DatetimeLabel from '@/components/DatetimeLabel'
 import TransactionCell from '@/components/TransactionCell'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionsSwiper',
-  components: { ValueHashEllipsed, AppSwiper, DatetimeLabel, TransactionCell },
-  props: {
-    transactions: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactions: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>
 
 <style scoped>

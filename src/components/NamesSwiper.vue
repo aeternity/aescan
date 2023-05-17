@@ -47,8 +47,8 @@
     </template>
   </app-swiper>
 </template>
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
@@ -56,16 +56,7 @@ import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'NamesSwiper',
-  components: { DatetimeLabel, ValueHashEllipsed, AppSwiper, AppLink },
-  computed: {
-    ...mapState(useNamesStore, ['recentlyActivatedNames']),
-  },
-  methods: {
-    formatAePrice,
-  },
-}
+const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>

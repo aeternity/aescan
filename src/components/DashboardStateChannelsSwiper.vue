@@ -69,26 +69,16 @@
     </template>
   </app-swiper>
 </template>
-<script>
-import { mapState } from 'pinia'
+
+<script setup>
+import { storeToRefs } from 'pinia'
 import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 import { formatAePrice } from '@/utils/format'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'StateChannelsSwiper',
-  components: { DatetimeLabel, ValueHashEllipsed, AppSwiper },
-
-  computed: {
-    ...mapState(useDashboardStateChannelsStore, ['stateChannels']),
-  },
-
-  methods: {
-    formatAePrice,
-  },
-}
+const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 </script>
 
 <style scoped>

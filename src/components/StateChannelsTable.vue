@@ -52,6 +52,7 @@
     </tbody>
   </table>
 </template>
+
 <script setup>
 defineProps({
   stateChannels: {

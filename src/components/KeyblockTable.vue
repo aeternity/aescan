@@ -76,30 +76,22 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'
 
-export default {
-  name: 'KeyblockTable',
-  components: { DatetimeLabel, ValueHashEllipsed, HintTooltip },
-  props: {
-    keyblock: {
-      type: Object,
-      required: true,
-    },
-    stats: {
-      type: Object,
-      default: null,
-    },
+defineProps({
+  keyblock: {
+    type: Object,
+    required: true,
   },
-  methods: {
-    formatAePrice,
-    formatNullable,
+  stats: {
+    type: Object,
+    default: null,
   },
-}
+})
 </script>
 
 <style scoped>

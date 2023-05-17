@@ -3,42 +3,58 @@ import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { formatAettosToAe } from '@/utils/format'
 
-export const useBlockchainStatsStore = defineStore('blockchainStats', {
-  state: () => ({
-    maxTps: null,
-    transactionsCount: null,
-    activeOraclesCount: null,
-    oraclesCount: null,
-    activeNamesCount: null,
-    namesInAuctionCount: null,
-    contractsCount: null,
-    stateChannelsLockedValue: null,
-    stateChannelsCount: null,
-    burnedCount: null,
-  }),
-  actions: {
-    async fetchTotalStats() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/totalstats?limit=1`)
-      const lastBlock = data.data[0]
-      this.activeOraclesCount = lastBlock.active_oracles
-      this.oraclesCount = lastBlock.active_oracles + lastBlock.inactive_oracles
-      this.activeNamesCount = lastBlock.active_names
-      this.namesInAuctionCount = lastBlock.active_auctions
-      this.contractsCount = lastBlock.contracts
-      this.stateChannelsLockedValue = formatAettosToAe(lastBlock.locked_in_channels)
-      this.stateChannelsCount = lastBlock.open_channels
-      this.burnedCount = formatAettosToAe(lastBlock.burned_in_auctions)
-    },
-    async fetchMaxTps() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/stats`)
-      this.maxTps = data.max_transactions_per_second
-    },
-    async fetchTotalTransactionsCount() {
-      const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs/count`)
-      this.transactionsCount = data
-    },
-    increaseTransactionsCounter() {
-      this.transactionsCount += 1
-    },
-  },
+export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+
+  const maxTps = ref(null)
+  const transactionsCount = ref(null)
+  const activeOraclesCount = ref(null)
+  const oraclesCount = ref(null)
+  const activeNamesCount = ref(null)
+  const namesInAuctionCount = ref(null)
+  const contractsCount = ref(null)
+  const stateChannelsLockedValue = ref(null)
+  const stateChannelsCount = ref(null)
+  const burnedCount = ref(null)
+
+  async function fetchTotalStats() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/totalstats?limit=1`)
+    const lastBlock = data.data[0]
+    activeOraclesCount.value = lastBlock.active_oracles
+    oraclesCount.value = lastBlock.active_oracles + lastBlock.inactive_oracles
+    activeNamesCount.value = lastBlock.active_names
+    namesInAuctionCount.value = lastBlock.active_auctions
+    contractsCount.value = lastBlock.contracts
+    stateChannelsLockedValue.value = formatAettosToAe(lastBlock.locked_in_channels)
+    stateChannelsCount.value = lastBlock.open_channels
+    burnedCount.value = formatAettosToAe(lastBlock.burned_in_auctions)
+  }
+  async function fetchMaxTps() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/stats`)
+    maxTps.value = data.max_transactions_per_second
+  }
+  async function fetchTotalTransactionsCount() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count`)
+    transactionsCount.value = data
+  }
+  function increaseTransactionsCounter() {
+    transactionsCount.value += 1
+  }
+
+  return {
+    maxTps,
+    transactionsCount,
+    activeOraclesCount,
+    oraclesCount,
+    activeNamesCount,
+    namesInAuctionCount,
+    contractsCount,
+    stateChannelsLockedValue,
+    stateChannelsCount,
+    burnedCount,
+    fetchTotalStats,
+    fetchMaxTps,
+    fetchTotalTransactionsCount,
+    increaseTransactionsCounter,
+  }
 })

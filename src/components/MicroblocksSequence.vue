@@ -1,7 +1,7 @@
 <template>
   <div class="microblocks-sequence">
     <TransitionGroup
-      ref="microblocks-sequence"
+      ref="microblocksSequence"
       class="microblocks-sequence__sequence"
       name="microblocks-sequence"
       tag="div">
@@ -11,7 +11,7 @@
         :class="[
           'microblocks-sequence__cell',
           {'microblocks-sequence__cell--active': microblock.hash === selectedMicroblock.hash }]"
-        @click="select(microblock)">
+        @click="selectMicroblock(microblock)">
         {{ microblock.transactions_count }}
       </div>
     </TransitionGroup>
@@ -19,35 +19,30 @@
   </div>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-export default {
-  name: 'MicroblocksSequence',
-  props: {
-    microblocks: {
-      required: true,
-      type: Array,
-    },
+const recentBlocksStore = useRecentBlocksStore()
+const { selectMicroblock } = recentBlocksStore
+const { selectedMicroblock } = storeToRefs(recentBlocksStore)
+
+defineProps({
+  microblocks: {
+    required: true,
+    type: Array,
   },
-  computed: {
-    ...mapState(useRecentBlocksStore, ['selectedMicroblock']),
-  },
-  watch: {
-    selectedMicroblock(newBlock, oldBlock) {
-      if (newBlock?.height !== oldBlock?.height) {
-        this.$refs['microblocks-sequence'].$el.scrollLeft = 0
-      }
-    },
-  },
-  methods: {
-    ...mapActions(useRecentBlocksStore, ['selectMicroblock']),
-    select(microblock) {
-      this.selectMicroblock(microblock)
-    },
-  },
-}
+})
+
+const microblocksSequence = ref(null)
+
+watch(
+  selectedMicroblock,
+  (newBlock, oldBlock) => {
+    if (newBlock?.height !== oldBlock?.height) {
+      microblocksSequence.value.$el.scrollLeft = 0
+    }
+  })
 </script>
 
 <style scoped>

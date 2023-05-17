@@ -28,23 +28,17 @@
       :transactions="selectedMicroblockTransactions"/>
   </app-panel>
 </template>
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import MicroblockTransactionsTable from '@/components/MicroblockTransactionsTable'
 import PanelHeader from '@/components/PanelHeader'
 import TransactionsSwiper from '@/components/TransactionsSwiper'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-export default {
-  name: 'DashboardTransactionPanel',
-  components: { AppPanel, MicroblockTransactionsTable, PanelHeader, TransactionsSwiper },
-  computed: {
-    ...mapState(useRecentBlocksStore, [
-      'selectedMicroblockTransactions',
-    ]),
-  },
-}
+const { selectedMicroblockTransactions } = storeToRefs(
+  useRecentBlocksStore(),
+)
 </script>
 
 <style scoped>

@@ -41,23 +41,15 @@
   </table>
 </template>
 
-<script>
-import { formatAePrice, formatAettosToAe, formatDecodeByteArray } from '@/utils/format'
+<script setup>
+import { formatDecodeByteArray } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableOracleRespondTx',
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatDecodeByteArray,
-  },
-}
+})
 </script>
 
 <style scoped>

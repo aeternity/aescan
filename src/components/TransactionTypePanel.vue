@@ -42,9 +42,9 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import { defineAsyncComponent } from 'vue'
-import { mapActions, mapState } from 'pinia'
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
@@ -52,51 +52,40 @@ import CopyChip from '@/components/CopyChip'
 import { formatEllipseHash } from '@/utils/format'
 import { useTransactionDetailsStore } from '@/stores/transactionDetails'
 
-export default {
-  name: 'TransactionTypePanel',
-  components: {
-    CopyChip,
-    AppLink,
-    AppChip,
-    AppPanel,
+const props = defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  computed: {
-    ...mapState(useTransactionDetailsStore, ['contractId']),
-    innerTransactionDetails() {
-      return this.transactionData.tx.tx
-    },
-    transactionTypeTableComponent() {
-      return defineAsyncComponent(() =>
-        import(`@/components/TransactionTypeTable${this.transactionData.type}.vue`),
-      )
-    },
-    typeName() {
-      return this.transactionData.type
-        .replace(/([A-Z]+)/g, ' $1').replace(/([A-Z][a-z])/g, ' $1')
-        .toUpperCase()
-    },
-  },
-  watch: {
-    transactionData: {
-      immediate: true,
-      handler() {
-        if (this.transactionData.ga_id) {
-          this.fetchContractIdByAccountId(this.transactionData.ga_id)
-        }
-      },
-    },
-  },
-  methods: {
-    ...mapActions(useTransactionDetailsStore, ['fetchContractIdByAccountId']),
-    formatEllipseHash,
-  },
-}
+})
+
+const transactionDetailsStore = useTransactionDetailsStore()
+const { fetchContractIdByAccountId } = transactionDetailsStore
+const { contractId } = storeToRefs(transactionDetailsStore)
+
+const innerTransactionDetails = computed(() =>
+  props.transactionData.tx.tx,
+)
+
+const transactionTypeTableComponent = computed(() =>
+  defineAsyncComponent(() =>
+    import(`@/components/TransactionTypeTable${props.transactionData.type}.vue`),
+  ),
+)
+
+const typeName = computed(() =>
+  props.transactionData.type
+    .replace(/([A-Z]+)/g, ' $1').replace(/([A-Z][a-z])/g, ' $1')
+    .toUpperCase(),
+)
+
+watch(props.transactionData, () => {
+  if (props.transactionData.ga_id) {
+    fetchContractIdByAccountId(props.transactionData.ga_id)
+  }
+},
+{ immediate: true },
+)
 </script>
 
 <style scoped>

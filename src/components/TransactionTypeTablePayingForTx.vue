@@ -4,26 +4,22 @@
     :transaction-data="innerTransactionDetails"/>
 </template>
 
-<script>
+<script setup>
 import { defineAsyncComponent } from 'vue'
 
-export default {
-  name: 'TransactionTypeTablePayingForTx',
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+const props = defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  computed: {
-    transactionTypeTableComponent() {
-      return defineAsyncComponent(() =>
-        import(`@/components/TransactionTypeTable${this.innerTransactionDetails.type}.vue`),
-      )
-    },
-    innerTransactionDetails() {
-      return this.transactionData.tx.tx
-    },
-  },
-}
+})
+
+const innerTransactionDetails = computed(() =>
+  props.transactionData.tx.tx,
+)
+const transactionTypeTableComponent = computed(() =>
+  defineAsyncComponent(() =>
+    import(`@/components/TransactionTypeTable${innerTransactionDetails.value.type}.vue`),
+  ),
+)
 </script>

@@ -2,8 +2,18 @@
   <table class="contracts-table__table">
     <thead>
       <tr>
-        <th>Smart Contract ID</th>
-        <th>Created</th>
+        <th>
+          Smart Contract ID
+          <hint-tooltip>
+            {{ HINTS.contractId }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Created
+          <hint-tooltip>
+            {{ HINTS.contractCreated }}
+          </hint-tooltip>
+        </th>
         <th>Hash</th>
         <th>Created By</th>
       </tr>
@@ -39,9 +49,11 @@
   </table>
 </template>
 <script setup>
+import { HINTS } from '../utils/hints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import HashSymbol from '@/components/HashSymbol'
+import HintTooltip from '~/components/HintTooltip'
 
 defineProps({
   contracts: {

@@ -88,7 +88,7 @@
 
 <script setup>
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAePrice, formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

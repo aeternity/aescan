@@ -18,26 +18,21 @@
     class="swiper__blank-state"/>
 </template>
 
-<script>
+<script setup>
 import { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import BlankState from '@/components/BlankState'
 
-export default {
-  name: 'AppSwiper',
-  components: { BlankState, Swiper, SwiperSlide },
-  props: {
-    slides: {
-      type: Array,
-      default: null,
-    },
+defineProps({
+  slides: {
+    type: Array,
+    default: null,
   },
-  data: () => ({
-    modules: [Pagination],
-  }),
-}
+})
+
+const modules = [Pagination]
 </script>
 
 <style>

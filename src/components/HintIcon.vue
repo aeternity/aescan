@@ -4,13 +4,8 @@
     :size="19"
     class="hint-icon"/>
 </template>
-<script>
+<script setup>
 import AppIcon from '@/components/AppIcon'
-
-export default {
-  name: 'HintIcon',
-  components: { AppIcon },
-}
 </script>
 
 <style scoped>

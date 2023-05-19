@@ -1,7 +1,7 @@
 <template>
   <app-select
     v-model="selectedTxType"
-    :options="txsTypes"
+    :options="TX_TYPES_OPTIONS"
     track-by="typeQuery"
     label="label"
     placeholder="Select Tx Type">
@@ -15,37 +15,24 @@
   </app-select>
 </template>
 
-<script>
+<script setup>
+import { useVModel } from '@vueuse/core'
 import AppSelect from '@/components/AppSelect'
 import AppIcon from '@/components/AppIcon'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
-export default {
-  name: 'TransactionsSelect',
-  components: { AppIcon, AppSelect },
-  props: {
-    modelValue: undefined,
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    required: true,
   },
-  emits: ['update:modelValue'],
-  data: () => ({
-    txsTypes: TX_TYPES_OPTIONS,
-  }),
-  computed: {
-    selectedTxType: {
-      get() {
-        return this.modelValue
-      },
-      set(value) {
-        this.$emit('update:modelValue', value)
-      },
-    },
-  },
+})
+const emit = defineEmits(['update:modelValue'])
 
-  methods: {
-    getIconName(option, selectedOption) {
-      return option === selectedOption ? 'check-square' : 'square'
-    },
-  },
+const selectedTxType = useVModel(props, 'modelValue', emit)
+
+function getIconName(option, selectedOption) {
+  return option === selectedOption ? 'check-square' : 'square'
 }
 </script>
 

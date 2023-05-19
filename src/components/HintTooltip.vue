@@ -11,17 +11,9 @@
   </app-tooltip>
 </template>
 
-<script>
+<script setup>
 import HintIcon from '@/components/HintIcon'
 import AppTooltip from '@/components/AppTooltip'
-
-export default {
-  name: 'HintTooltip',
-  components: {
-    HintIcon,
-    AppTooltip,
-  },
-}
 </script>
 
 <style scoped>

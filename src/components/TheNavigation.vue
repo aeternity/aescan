@@ -63,15 +63,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import ComingSoonTooltip from '@/components/ComingSoonTooltip'
 
-export default {
-  name: 'TheNavigation',
-  components: { AppLink, ComingSoonTooltip },
-  emits: ['link-clicked'],
-}
+defineEmits(['link-clicked'])
 </script>
 
 <style scoped>

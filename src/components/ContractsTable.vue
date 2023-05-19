@@ -5,17 +5,27 @@
         <th>
           Smart Contract ID
           <hint-tooltip>
-            {{ HINTS.contractId }}
+            {{ contractsHints.contractId }}
           </hint-tooltip>
         </th>
         <th>
           Created
           <hint-tooltip>
-            {{ HINTS.contractCreated }}
+            {{ contractsHints.contractCreated }}
           </hint-tooltip>
         </th>
-        <th>Hash</th>
-        <th>Created By</th>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ contractsHints.contractTxHash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Created By
+          <hint-tooltip>
+            {{ contractsHints.contractCreator }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -49,7 +59,7 @@
   </table>
 </template>
 <script setup>
-import { HINTS } from '../utils/hints'
+import { contractsHints } from '~/utils/hints/contracts'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import HashSymbol from '@/components/HashSymbol'

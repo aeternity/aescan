@@ -5,6 +5,7 @@
     label="label"
     preselect-first
     :searchable="false"
+    :hide-selected="true"
     :options="TOKEN_TYPES_OPTIONS"/>
 </template>
 

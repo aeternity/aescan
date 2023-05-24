@@ -192,7 +192,7 @@ export default {
     justify-content: center;
     align-items: center;
     height: 24px;
-    background: var(--color-fire);
+    background: var(--color-midnight);
     color: var(--color-white);
     font-family: var(--font-monospaced);
     font-size: 11px;

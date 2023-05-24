@@ -64,8 +64,8 @@
         Services in any manner;
       </li>
       <li class="terms-of-service__item">
-        Engage in unless such Automated Data Collection is confined solely to search indexing for
-        <span class="terms-of-service__highlighted">Data Collection (scraping)</span> display on the Internet.
+        Engage in <span class="terms-of-service__highlighted">Data Collection (scraping)</span> unless such Automated
+        Data Collection is confined solely to search indexing for display on the Internet.
       </li>
       <li class="terms-of-service__item">
         Engage in the reproduction of any content posted (such as public labels or name tags) or extracted
@@ -217,6 +217,8 @@
   </div>
 </template>
 
+<script setup lang="ts">
+</script>
 <style scoped>
 .terms-of-service {
   max-width: 680px;

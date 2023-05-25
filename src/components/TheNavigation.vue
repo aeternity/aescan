@@ -4,32 +4,28 @@
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/transactions"
-          @click="$emit('link-clicked')">
+          to="/transactions">
           Transactions
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/names"
-          @click="$emit('link-clicked')">
+          to="/names">
           Names
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/contracts"
-          @click="$emit('link-clicked')">
+          to="/contracts">
           Smart Contracts
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/tokens"
-          @click="$emit('link-clicked')">
+          to="/tokens">
           Tokens
         </app-link>
       </li>
@@ -74,7 +70,6 @@ import ComingSoonTooltip from '@/components/ComingSoonTooltip'
 export default {
   name: 'TheNavigation',
   components: { AppLink, ComingSoonTooltip },
-  emits: ['link-clicked'],
 }
 </script>
 

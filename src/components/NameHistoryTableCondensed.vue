@@ -20,6 +20,9 @@
             Time
           </th>
           <td class="name-history-table-condensed__data">
+            <div>
+              {{ action.createdHeight }}
+            </div>
             <datetime-label :datetime="action.created"/>
           </td>
         </tr>
@@ -78,7 +81,6 @@ export default {
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
   }
 }
 </style>

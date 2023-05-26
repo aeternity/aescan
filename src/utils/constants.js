@@ -27,6 +27,10 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const TOKEN_TYPES_OPTIONS = [
+  { label: 'Listed', key: 'listedTokens' },
+  { label: 'All Tokens', key: 'allTokens' },
+]
 export const MAX_AE_DISTRIBUTION = 536306702.49932
 export const SPECIAL_POINTERS_PRESET_KEYS = ['account_pubkey', 'oracle_pubkey', 'contract_pubkey', 'channel']
 export const DATETIME_UNITS = [
@@ -44,3 +48,23 @@ export const APP_TITLE = 'æScan - æternity Blockchain Explorer'
 export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platform, and decentralized Smart Contract navigation platform based on æternity'
 export const APP_URL = 'https://aescan.io'
 export const APP_CREATOR = '@aeternity'
+export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
+export const CACHE_KEY_MARKET_DATA = 'aeternity-market-data'
+export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
+
+export const TOKEN_SUPPLY_ACI = [
+  {
+    contract: {
+      functions: [
+        {
+          arguments: [],
+          name: 'total_supply',
+          payable: false,
+          returns: 'int',
+          stateful: false,
+        },
+      ],
+      payable: false,
+    },
+  },
+]

@@ -27,13 +27,13 @@ export const useAccountStore = defineStore('account', {
           transactionsCount: state.accountTransactionsCount,
           totalTransactionsCount: state.totalAccountTransactionsCount,
           namesCount: state.accountNamesCount,
+          isGeneralized: state.rawAccountDetails.kind === 'generalized',
         }
         : null
     },
     accountTransactions(state) {
-      const store = useRecentBlocksStore()
       return state.rawAccountTransactions
-        ? adaptTransactions(state.rawAccountTransactions, store.blockHeight)
+        ? adaptTransactions(state.rawAccountTransactions)
         : null
     },
     accountNames(state) {
@@ -53,7 +53,7 @@ export const useAccountStore = defineStore('account', {
     },
     async fetchAccountDetails(accountId) {
       try {
-        const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/accounts/${accountId}`)
+        const { data } = await axios.get(`${useRuntimeConfig().public.NODE_URL}/v3/accounts/${accountId}`)
         this.rawAccountDetails = data
       } catch (e) {
         if (e.response.status === 404) {

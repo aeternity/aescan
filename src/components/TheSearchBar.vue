@@ -52,6 +52,8 @@ export default {
         this.$router.push(`/transactions/${this.query}`)
       } else if (this.isContractId(this.query)) {
         this.$router.push(`/contracts/${this.query}`)
+      } else if (this.isNameId(this.query)) {
+        this.$router.push(`/names/${this.query}`)
       } else if (await this.isAccountName(this.query)) {
         this.$router.push(`/names/${this.query}.chain`)
       } else {
@@ -61,6 +63,9 @@ export default {
     },
     isAccountAddress(query) {
       return isAddressValid(query) && query.startsWith('ak_')
+    },
+    isNameId(query) {
+      return isAddressValid(query) && query.startsWith('nm_')
     },
     isTransactionHash(query) {
       return isAddressValid(query) && query.startsWith('th_')

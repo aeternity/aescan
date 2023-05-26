@@ -1,18 +1,17 @@
 <template>
   <app-panel class="transaction-general-panel">
     <header class="transaction-general-panel__header">
-      <h3 class="transaction-general-panel__heading">
+      <h2 class="transaction-general-panel__heading h3">
         GENERAL DETAILS
-      </h3>
+      </h2>
       <div class="transaction-general-panel__container">
-        <div class="transaction-general-panel__link-text">
-          <copy-chip :label="transactionDetails.hash"/>
-        </div>
-        <div class="transaction-general-panel__link-text-ellipse">
-          <copy-chip
-            :label="formatEllipseHash(transactionDetails.hash)"
-            :clipboard-text="transactionDetails.hash"/>
-        </div>
+        <copy-chip
+          :label="transactionDetails.hash"
+          class="transaction-general-panel__hash"/>
+        <copy-chip
+          :label="formatEllipseHash(transactionDetails.hash)"
+          :clipboard-text="transactionDetails.hash"
+          class="transaction-general-panel__hash-ellipse"/>
         <app-chip variant="primary">
           {{ transactionDetails.type }}
         </app-chip>
@@ -158,7 +157,7 @@ export default {
   }),
   computed: {
     transactionNodeUrl() {
-      return `${this.$config.public.NODE_URL}/transactions/${this.transactionDetails.hash}`
+      return `${this.$config.public.NODE_URL}/v3/transactions/${this.transactionDetails.hash}`
     },
     transactionMiddlewareUrl() {
       return `${this.$config.public.MIDDLEWARE_URL}/v2/txs/${this.transactionDetails.hash}`
@@ -181,14 +180,8 @@ export default {
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-3);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }
@@ -220,7 +213,6 @@ export default {
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
   }
 
   &__row:last-of-type &__table-header {
@@ -236,15 +228,13 @@ export default {
     }
   }
 
-  &__link-text,
   &__hash {
     display: none;
     @media (--desktop) {
-      display: revert;
+      display: inline-flex;
     }
   }
 
-  &__link-text-ellipse,
   &__hash-ellipse {
     @media (--desktop) {
       display: none;

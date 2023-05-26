@@ -55,6 +55,18 @@ export function formatAettosToAe(aettosAmount) {
   return toAe(aettosAmount)
 }
 
+export function formatTokenPairRouteAsRatio(route) {
+  return route
+    .map(step => [
+      step.liquidityInfo.reserve0,
+      step.liquidityInfo.reserve1,
+    ])
+    .reduce(
+      (ratio, [reserveA, reserveB]) => ratio.multipliedBy(BigNumber(reserveB).div(reserveA)),
+      BigNumber(1),
+    )
+}
+
 export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) {
   const now = DateTime.now().setLocale('en-US')
   const heightDiff = expirationHeight - currentBlockHeight
@@ -65,18 +77,9 @@ export function formatNullable(value) {
   return value || '---'
 }
 
-export function formatBlocksRelative(count) {
-  if (count === 0) {
-    return 'Current keyblock'
-  } else if (count === 1) {
-    return '1 block ago'
-  }
-
-  return `${count} blocks ago`
-}
-
 export function formatDecodeBase64(base64String) {
-  return decodeURIComponent(escape(window.atob(base64String)))
+  const decodedString = process.client ? window.atob(base64String) : Buffer.from(base64String, 'base64').toString('utf8')
+  return decodeURIComponent(escape(decodedString))
 }
 
 export function formatDecodeByteArray(bytesArray) {

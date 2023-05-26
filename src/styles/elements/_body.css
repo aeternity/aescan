@@ -1,11 +1,17 @@
 body {
   height: 100%;
   margin: 0;
-  font-family: var(--font-primary);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--color-midnight);
+
   background: var(--color-snow);
+  color: var(--color-midnight);
+
+  font-family: var(--font-primary);
   text-rendering: auto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.005em;
+  @media (--desktop) {
+    font-size: 14px;
+  }
 }

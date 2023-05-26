@@ -12,20 +12,20 @@
       <tr
         v-for="name in names?.data"
         :key="name.name">
-        <td class="names-in-auction-table__column">
+        <td>
           <app-link :to="`/names/${name.name}`">
             {{ name.name }}
           </app-link>
         </td>
-        <td class="names-in-auction-table__column">
-          <div class="names-in-auction-table__value">
+        <td>
+          <div>
             {{ name.expirationHeight }}
           </div>
           <div>
             <datetime-label :datetime="name.expiration"/>
           </div>
         </td>
-        <td class="names-in-auction-table__column">
+        <td>
           <div>
             <value-hash-ellipsed
               :hash="name.highestBidder"
@@ -74,14 +74,6 @@ export default {
 
 <style scoped>
 .names-in-auction-table {
-  &__column {
-    width: 210px;
-  }
-
-  &__value {
-    font-weight: 700;
-  }
-
   &__price-label {
     font-weight: 700;
     margin-top: var(--space-0);

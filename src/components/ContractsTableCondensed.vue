@@ -20,6 +20,9 @@
             Created
           </th>
           <td class="contracts-table-condensed__data">
+            <div>
+              {{ contract.createdHeight }}
+            </div>
             <datetime-label :datetime="contract.created"/>
           </td>
         </tr>
@@ -35,7 +38,7 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            Created by
+            Created By
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -90,9 +93,6 @@ export default {
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
   }
 }
 </style>

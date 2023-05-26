@@ -5,7 +5,8 @@
         <th class="keyblock-table__header keyblock-table__column-start">
           Height
           <hint-tooltip class="keyblock-table__tooltip">
-            Total number of keyblocks that have been added to the blockchain in a sequential order, starting from the genesis block. Each new block added to the chain increases the height by one.
+            Total number of keyblocks that have been added to the blockchain in a sequential order, starting
+            from the genesis block. Each new block added to the chain increases the height by one.
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
@@ -29,7 +30,8 @@
         <th class="keyblock-table__header keyblock-table__column-start">
           Hash
           <hint-tooltip class="keyblock-table__tooltip">
-            Unique identifier of the latest keyblock. It also serves as a reference point for subsequent keyblocks to be added to the blockchain.
+            Unique identifier of the latest keyblock. It also serves as a reference point for subsequent
+            keyblocks to be added to the blockchain.
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
@@ -40,7 +42,8 @@
         <th class="keyblock-table__header keyblock-table__column-end">
           Beneficiary-Reward
           <hint-tooltip class="keyblock-table__tooltip">
-            Amount that was paid to the miner who added the keyblock to the blockchain, as an incentive for their participation and contribution to the network.
+            Amount that was paid to the miner who added the keyblock to the blockchain, as an incentive for
+            their participation and contribution to the network.
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
@@ -61,7 +64,8 @@
         <th class="keyblock-table__column-end">
           BRI-Reward
           <hint-tooltip class="keyblock-table__tooltip">
-            A fraction of the keyblock reward that was granted to æternity crypto foundation to fund its activities.
+            A fraction of the keyblock reward that was granted to æternity crypto foundation to fund its
+            activities.
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
@@ -104,15 +108,11 @@ export default {
     border-bottom: 1px solid var(--color-midnight-15);
     @media (--desktop) {
       padding: var(--space-2) 0 var(--space-1);
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 0.03em;
     }
   }
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
     @media (--desktop) {
       padding: var(--space-2) 0 var(--space-1);
     }

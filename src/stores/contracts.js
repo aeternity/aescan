@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptContracts } from '~/utils/adapters'
-import { useRecentBlocksStore } from '~/stores/recentBlocks'
+import { adaptContracts } from '@/utils/adapters'
 
 export const useContractsStore = defineStore('contracts', {
   state: () => ({
@@ -11,9 +10,8 @@ export const useContractsStore = defineStore('contracts', {
   }),
   getters: {
     contracts: state => {
-      const store = useRecentBlocksStore()
       return state.rawContracts
-        ? adaptContracts(state.rawContracts, store.blockHeight)
+        ? adaptContracts(state.rawContracts)
         : null
     },
   },

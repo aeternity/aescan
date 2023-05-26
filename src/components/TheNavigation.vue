@@ -4,25 +4,29 @@
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/transactions"
-          @click="$emit('link-clicked')">
+          to="/transactions">
           Transactions
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/names"
-          @click="$emit('link-clicked')">
+          to="/names">
           Names
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/contracts"
-          @click="$emit('link-clicked')">
+          to="/contracts">
           Smart Contracts
+        </app-link>
+      </li>
+      <li class="navigation__item">
+        <app-link
+          class="navigation__link"
+          to="/tokens">
+          Tokens
         </app-link>
       </li>
       <li class="navigation__item">
@@ -32,16 +36,6 @@
             target="_self"
             to="#">
             Oracles
-          </app-link>
-        </coming-soon-tooltip>
-      </li>
-      <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            Tokens
           </app-link>
         </coming-soon-tooltip>
       </li>
@@ -76,7 +70,6 @@ import ComingSoonTooltip from '@/components/ComingSoonTooltip'
 export default {
   name: 'TheNavigation',
   components: { AppLink, ComingSoonTooltip },
-  emits: ['link-clicked'],
 }
 </script>
 
@@ -95,12 +88,12 @@ export default {
   }
 
   &__link {
-    text-decoration: none;
     color: var(--color-midnight);
     display: block;
     padding: var(--space-3) 0;
     font-size: 16px;
     line-height: 24px;
+    letter-spacing: 0.002em;
 
     @media (--desktop) {
       padding: 0;

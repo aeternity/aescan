@@ -1,8 +1,8 @@
 <template>
   <app-panel class="name-pointers-special-panel">
-    <h3 class="name-pointers-special-panel__heading">
+    <h2 class="name-pointers-special-panel__heading h3">
       SPECIAL POINTERS
-    </h3>
+    </h2>
     <table>
       <tbody>
         <tr class="name-pointers-special-panel__row">
@@ -124,14 +124,8 @@ export default {
   }
 
   &__heading {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
     margin-bottom: var(--space-1);
     @media (--desktop) {
-      font-size: 20px;
-      line-height: 28px;
       margin-bottom: 0;
     }
   }

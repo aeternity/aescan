@@ -28,8 +28,7 @@
       <the-navigation
         :class="[
           'header__navigation',
-          { 'header__navigation--open': isNavigationOpen }]"
-        @link-clicked="closeNavigation"/>
+          { 'header__navigation--open': isNavigationOpen }]"/>
 
       <network-select
         :class="[
@@ -71,6 +70,11 @@ export default {
   data: () => ({
     isNavigationOpen: false,
   }),
+  watch: {
+    $route() {
+      this.closeNavigation()
+    },
+  },
   mounted() {
     if (isDesktop()) {
       window.addEventListener('resize', this.closeNavigation)
@@ -164,7 +168,6 @@ export default {
 
   &__link {
     display: none;
-    text-decoration: none;
     flex-basis: 100%;
     justify-content: center;
     margin-top: var(--space-2);
@@ -193,11 +196,12 @@ export default {
     justify-content: center;
     align-items: center;
     height: 24px;
-    background: var(--color-fire);
+    background: var(--color-midnight);
     color: var(--color-white);
     font-family: var(--font-monospaced);
     font-size: 11px;
     line-height: 16px;
+    letter-spacing: 0.0015em;
   }
 
   &__survey-link {

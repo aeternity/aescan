@@ -3,7 +3,7 @@
     <div class="footer__container">
       <div class="footer__body">
         <div class="footer__column">
-          <div class="footer__title">
+          <header class="footer__header">
             <app-tooltip>
               <app-link to="https://aeternity.com/">
                 <img
@@ -17,10 +17,11 @@
                 æternity blockchain
               </template>
             </app-tooltip>
-          </div>
+          </header>
           <p class="footer__paragraph">
             æScan is the Explorer for the æternity Blockchain.
           </p>
+
           <p class="footer__paragraph">
             Engineered to scale and last, æternity is an easily accessible
             blockchain platform for the global public. With numerous innovative
@@ -74,6 +75,8 @@ export default {
         { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
         { label: 'æternity Crypto Foundation', url: 'https://aeternity-foundation.org' },
         { label: 'Blog', url: 'https://blog.aeternity.com' },
+        { label: 'Terms of Service', url: '/terms-of-service' },
+        { label: 'Privacy Policy', url: '/privacy-policy' },
       ],
       community: [
         { label: 'Contribute in the Forum', url: 'https://forum.aeternity.com' },
@@ -116,9 +119,10 @@ export default {
   }
 
   &__network {
-    margin: var(--space-4) 0;
     font-family: var(--font-monospaced);
+    font-size: 14px;
 
+    margin: var(--space-4) 0;
     @media (--desktop) {
       margin: 0 0 48px;
     }
@@ -166,7 +170,7 @@ export default {
     margin-right: var(--space-2);
   }
 
-  &__title {
+  &__header {
     display: flex;
     align-items: center;
     margin-bottom: var(--space-3);
@@ -174,13 +178,8 @@ export default {
 
   &__paragraph {
     margin-bottom: var(--space-3);
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: -0.005em;
 
     @media (--desktop) {
-      font-size: 14px;
       width: 460px;
     }
 

@@ -10,11 +10,11 @@
   <transaction-plus-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.initiator_id"
-    :link-to="`/accounts/${transactionData.initiator_id}`"/>
+    :hash="transactionData.responder_id"
+    :link-to="`/accounts/${transactionData.responder_id}`"/>
 
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.initiator_amount)) }}
+    {{ formatAePrice(formatAettosToAe(transactionData.responder_amount)) }}
   </app-chip>
 
   <transaction-arrow-right-icon/>

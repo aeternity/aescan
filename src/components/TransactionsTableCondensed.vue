@@ -17,9 +17,12 @@
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Time
+            Created
           </th>
           <td class="transactions-table-condensed__data">
+            <div>
+              {{ transaction.createdHeight }}
+            </div>
             <datetime-label :datetime="transaction.created"/>
           </td>
         </tr>
@@ -67,7 +70,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .transactions-table-condensed {
   &__table {
     background: var(--color-white);
@@ -90,9 +93,6 @@ export default {
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
   }
 }
 </style>

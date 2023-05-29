@@ -8,6 +8,9 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             Smart Contract ID
+            <hint-tooltip>
+              {{ contractsHints.contractId }}
+            </hint-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -18,6 +21,9 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             Created
+            <hint-tooltip>
+              {{ contractsHints.contractCreated }}
+            </hint-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <div>
@@ -29,6 +35,9 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             Hash
+            <hint-tooltip>
+              {{ contractsHints.contractTxHash }}
+            </hint-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -39,6 +48,9 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             Created By
+            <hint-tooltip>
+              {{ contractsHints.contractCreator }}
+            </hint-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -54,6 +66,8 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { contractsHints } from '~/utils/hints/contracts'
+import HintTooltip from '~/components/HintTooltip'
 
 defineProps({
   contracts: {

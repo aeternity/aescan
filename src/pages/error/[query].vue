@@ -11,7 +11,7 @@
     <p class="search-error__paragraph">
       Oops! We are sorry. The search string
       <span class="search-error__query">
-        {{ $route.params.query }}</span>
+        {{ route.params.query }}</span>
       was not found.
     </p>
 
@@ -33,23 +33,20 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import { useHead } from '@vueuse/head'
 import AppLink from '@/components/AppLink'
 import PageHeader from '@/components/PageHeader'
 import AppButton from '@/components/AppButton'
 import AppPanel from '@/components/AppPanel'
 
-export default {
-  components: { AppButton, PageHeader, AppLink, AppPanel },
-  setup() {
-    useHead({
-      meta: [
-        { name: 'robots', content: 'noindex' },
-      ],
-    })
-  },
-}
+useHead({
+  meta: [
+    { name: 'robots', content: 'noindex' },
+  ],
+})
+
+const route = useRoute()
 </script>
 
 <style scoped>

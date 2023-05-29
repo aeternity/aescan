@@ -19,11 +19,10 @@
 </template>
 <script setup>
 import { isAddressValid } from '@aeternity/aepp-sdk'
-import { storeToRefs } from 'pinia'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 
-const { isNameAvailable } = storeToRefs(useNameDetailsStore())
+const { isNameAvailable } = useNameDetailsStore()
 const userQuery = ref('')
 const { push } = useRouter()
 
@@ -54,7 +53,7 @@ async function search() {
   } else if (await isAccountName(query.value)) {
     push(`/names/${query.value}.chain`)
   } else {
-    push(`/error/${userQuery}`)
+    push(`/error/${userQuery.value}`)
   }
   userQuery.value = ''
 }

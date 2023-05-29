@@ -68,6 +68,7 @@ export default {
       'marketCap',
       'distribution',
       'distributionPercentage',
+      'circulatingSupply',
     ]),
     priceChangeSign() {
       return this.priceChange > 0 ? '+' : ''

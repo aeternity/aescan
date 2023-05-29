@@ -2,7 +2,12 @@
   <table class="oracles-table">
     <thead>
       <tr>
-        <th>Oracle ID</th>
+        <th>
+          Oracle ID
+          <hint-tooltip>
+            {{ oraclesHints.oracleId }}
+          </hint-tooltip>
+        </th>
         <th>Registered</th>
         <th>Expiration</th>
         <th>Query Fee</th>
@@ -38,9 +43,11 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '../utils/hints/oracles'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
+import HintTooltip from '~/components/HintTooltip'
 
 defineProps({
   oracles: {

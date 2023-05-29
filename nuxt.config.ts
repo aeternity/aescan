@@ -17,12 +17,8 @@ export default defineNuxtConfig({
     dirs: ['./stores'],
   },
   plausible: {
-    domain: process.env.APP_DOMAIN ?? 'localhost:8080',
     apiHost: 'https://plausible.dev.service.aepps.com',
     trackLocalhost: false,
-  },
-  sitemap: {
-    siteUrl: process.env.APP_DOMAIN ?? 'localhost:8080',
   },
   runtimeConfig: {
     public: {
@@ -36,6 +32,7 @@ export default defineNuxtConfig({
       ALTERNATIVE_NETWORK_URL: process.env.ALTERNATIVE_NETWORK_URL,
       ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,
       AE_TOKEN_ID: process.env.AE_TOKEN_ID,
+      siteUrl: process.env.APP_DOMAIN ?? 'localhost:8080',
     },
   },
   postcss: {

@@ -66,19 +66,21 @@ import AppTooltip from '@/components/AppTooltip'
 import FooterSocials from '@/components/FooterSocials'
 import { useStatus } from '@/stores/status'
 
+const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
+
 const links = {
   about: [
     { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
     { label: 'æternity Crypto Foundation', url: 'https://aeternity-foundation.org' },
     { label: 'Blog', url: 'https://blog.aeternity.com' },
+    { label: 'Terms of Service', url: '/terms-of-service' },
+    { label: 'Privacy Policy', url: '/privacy-policy' },
   ],
   community: [
     { label: 'Contribute in the Forum', url: 'https://forum.aeternity.com' },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
   ],
 }
-
-const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
 </script>
 
 <style scoped>

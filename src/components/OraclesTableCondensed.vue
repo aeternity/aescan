@@ -8,6 +8,9 @@
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             Oracle ID
+            <hint-tooltip>
+              {{ oraclesHints.oracleId }}
+            </hint-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             <value-hash-ellipsed
@@ -18,6 +21,9 @@
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             Registered
+            <hint-tooltip>
+              {{ oraclesHints.oracleRegistered }}
+            </hint-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             <div>
@@ -29,6 +35,9 @@
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             Expiration
+            <hint-tooltip>
+              {{ oraclesHints.oracleExpiration }}
+            </hint-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             <div>
@@ -40,6 +49,9 @@
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             Query Fee
+            <hint-tooltip>
+              {{ oraclesHints.queryFee }}
+            </hint-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             {{ formatAePrice(oracle.queryFee) }}
@@ -54,6 +66,8 @@
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
+import { oraclesHints } from '~/utils/hints/oracles'
+import HintTooltip from '~/components/HintTooltip'
 
 defineProps({
   oracles: {

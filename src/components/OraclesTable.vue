@@ -8,9 +8,24 @@
             {{ oraclesHints.oracleId }}
           </hint-tooltip>
         </th>
-        <th>Registered</th>
-        <th>Expiration</th>
-        <th>Query Fee</th>
+        <th>
+          Registered
+          <hint-tooltip>
+            {{ oraclesHints.oracleRegistered }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Expiration
+          <hint-tooltip>
+            {{ oraclesHints.oracleExpiration }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Query Fee
+          <hint-tooltip>
+            {{ oraclesHints.queryFee }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>

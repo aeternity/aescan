@@ -73,12 +73,16 @@
       title="SUPPLY"
       icon-name="supply">
       <div>
-        Burned: <span class="stats-panel__value">{{ formatNullable(formatAePrice(burnedCount, 0)) }}</span>
+        Burned:
+        <span class="stats-panel__value">
+          {{ formatNullable(formatAePrice(burnedCount, 0)) }}
+        </span>
       </div>
       <div>
-        Circulating: <span class="stats-panel__value">{{
-          formatNullable(formatAePrice(circulatingSupply, 0))
-        }}</span>
+        Circulating:
+        <span class="stats-panel__value">
+          {{ formatNullable(formatAePrice(totalTokenSupply, 0)) }}
+        </span>
       </div>
       <template #tooltip>
         Circulating supply is the distributed amount of Æ minus the burned amount of Æ. The protocol automatically burns
@@ -179,7 +183,6 @@ import StatsTile from '@/components/StatsTile'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
-import { useMarketStatsStore } from '@/stores/marketStats'
 
 export default {
   name: 'StatsPanel',
@@ -196,10 +199,9 @@ export default {
       'stateChannelsLockedValue',
       'stateChannelsCount',
       'burnedCount',
+      'totalTokenSupply',
     ]),
-    ...mapState(useMarketStatsStore, [
-      'circulatingSupply',
-    ]),
+
     ...mapState(useRecentBlocksStore, [
       'blockHeight',
       'latestKeyblockTransactionsCount',

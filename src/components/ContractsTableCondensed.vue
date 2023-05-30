@@ -66,7 +66,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { contractsHints } from '~/utils/hints/contracts'
+import { contractsHints } from '~/utils/hints/contractsHints'
 import HintTooltip from '~/components/HintTooltip'
 
 defineProps({

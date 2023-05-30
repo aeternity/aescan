@@ -59,7 +59,7 @@
   </table>
 </template>
 <script setup>
-import { contractsHints } from '~/utils/hints/contracts'
+import { contractsHints } from '~/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import HashSymbol from '@/components/HashSymbol'

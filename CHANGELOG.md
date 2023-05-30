@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0](https://github.com/aeternity/aescan/compare/0.1.0...0.2.0) (2023-05-26)
+## [0.2.1](https://github.com/aeternity/aescan/compare/0.2.0...0.2.1) (2023-05-30)
 
 
 ### Bug Fixes

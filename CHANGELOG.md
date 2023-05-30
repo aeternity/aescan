@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/aeternity/aescan/compare/0.2.0...0.2.1) (2023-05-30)
+
+
+### Bug Fixes
+
+* Content jumping in swiper on Iphone ([#263](https://github.com/aeternity/aescan/issues/263)) ([ce68228](https://github.com/aeternity/aescan/commit/ce682288721389fa721f962699a7ef53f176c405))
+
+
 ## [0.2.0](https://github.com/aeternity/aescan/compare/0.1.0...0.2.0) (2023-05-26)
 
 

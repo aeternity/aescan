@@ -81,7 +81,7 @@ onBeforeUnmount(() => {
 })
 
 function toggleNavigation() {
-  isNavigationOpen.value = !(isNavigationOpen.value)
+  isNavigationOpen.value = !isNavigationOpen.value
 }
 function closeNavigation() {
   isNavigationOpen.value = false

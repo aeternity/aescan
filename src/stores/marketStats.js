@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import cache from 'memory-cache'
-import { useRuntimeConfig } from '#app'
 import {
   CACHE_KEY_MARKET_DATA,
   CACHE_KEY_PRICE_DATA,
@@ -9,16 +8,16 @@ import {
   MARKET_STATS_CACHE_TTL,
   MAX_AE_DISTRIBUTION,
 } from '@/utils/constants'
-import { formatAettosToAe } from '~/utils/format'
+import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 
 export const useMarketStatsStore = defineStore('marketStats', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const blockchainStatsStore = useBlockchainStatsStore()
 
   const price = ref(null)
   const priceChange = ref(null)
   const marketCap = ref(null)
-  const distribution = ref(null)
-  // todo different store?
+
+  const distribution = computed(() => blockchainStatsStore.totalTokenSupply)
 
   const distributionPercentage = computed(() =>
     distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null,
@@ -28,7 +27,6 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     return Promise.all([
       fetchPrice(),
       fetchCoinStats(),
-      fetchTotalStats(),
     ])
   }
 
@@ -41,12 +39,6 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     const cachedAeternityPriceData = cache.get(CACHE_KEY_PRICE_DATA)
     price.value = cachedAeternityPriceData.usd
     priceChange.value = cachedAeternityPriceData.usd_24h_change.toFixed(2)
-  }
-
-  async function fetchTotalStats() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/totalstats?limit=1`)
-    const lastBlock = data.data[0]
-    distribution.value = formatAettosToAe(lastBlock.total_token_supply)
   }
 
   async function fetchCoinStats() {

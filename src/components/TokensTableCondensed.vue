@@ -8,6 +8,9 @@
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
             Symbol
+            <hint-tooltip>
+              {{ tokenHints.tokenSymbol }}
+            </hint-tooltip>
           </th>
           <td class="tokens-table-condensed__data">
             <app-link
@@ -24,6 +27,9 @@
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
             Name
+            <hint-tooltip>
+              {{ tokenHints.tokenName }}
+            </hint-tooltip>
           </th>
           <td class="tokens-table-condensed__data">
             {{ token.name }}
@@ -32,6 +38,9 @@
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
             Smart Contract ID
+            <hint-tooltip>
+              {{ tokenHints.tokenContractId }}
+            </hint-tooltip>
           </th>
           <td class="tokens-table-condensed__data">
             <value-hash-ellipsed
@@ -44,6 +53,7 @@
   </div>
 </template>
 <script setup>
+import { tokenHints } from '../utils/hints/tokensHints'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({

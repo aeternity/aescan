@@ -29,7 +29,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     stateChannelsLockedValue.value = formatAettosToAe(lastBlock.locked_in_channels)
     stateChannelsCount.value = lastBlock.open_channels
     burnedCount.value = formatAettosToAe(lastBlock.burned_in_auctions)
-    totalTokenSupply.value = Number(formatAettosToAe(lastBlock.total_token_supply))
+    totalTokenSupply.value = formatAettosToAe(lastBlock.total_token_supply)
   }
 
   async function fetchMaxTps() {

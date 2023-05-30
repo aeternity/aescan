@@ -1,6 +1,14 @@
 # Changelog
 
-## [0.2.1](https://github.com/aeternity/aescan/compare/0.1.0...0.2.1) (2023-05-30)
+## [0.2.0](https://github.com/aeternity/aescan/compare/0.1.0...0.2.0) (2023-05-26)
+
+
+### Bug Fixes
+
+* Content jumping in swiper on Iphone ([#263](https://github.com/aeternity/aescan/issues/263)) ([ce68228](https://github.com/aeternity/aescan/commit/ce682288721389fa721f962699a7ef53f176c405))
+
+
+## [0.2.0](https://github.com/aeternity/aescan/compare/0.1.0...0.2.0) (2023-05-26)
 
 
 ### Features
@@ -14,6 +22,7 @@
 * fix constants ([8dd4f72](https://github.com/aeternity/aescan/commit/8dd4f725f200af53aae9da6265ef41f61be6087c))
 * move more content to rendering on the server-side ([#138](https://github.com/aeternity/aescan/issues/138)) ([878fb3b](https://github.com/aeternity/aescan/commit/878fb3b777a614b512e30fb3600bee51980da6a1))
 * preselect fist value of select ([27aebaa](https://github.com/aeternity/aescan/commit/27aebaaa9b87f07758cd19012cf67e13e4a44faa))
+* remove fixed width columns from desktop tables ([#194](https://github.com/aeternity/aescan/issues/194)) ([53f00b4](https://github.com/aeternity/aescan/commit/53f00b4c405706c6510cf5d2503f39703a78106f))
 * reuse global variable from constant directly ([acf64b3](https://github.com/aeternity/aescan/commit/acf64b34fbaad372710f8a185897025000a7f1c5))
 * search by name hash ([#61](https://github.com/aeternity/aescan/issues/61)) ([3cdd2c1](https://github.com/aeternity/aescan/commit/3cdd2c1003b02ab410795593f9ee3c1b130c2f1b))
 * show truncated version of contract ID in tokens table ([c993c98](https://github.com/aeternity/aescan/commit/c993c98ce05f94b854e00b28b4e32893e4d1927e))

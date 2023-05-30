@@ -75,6 +75,8 @@ export default {
         { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
         { label: 'æternity Crypto Foundation', url: 'https://aeternity-foundation.org' },
         { label: 'Blog', url: 'https://blog.aeternity.com' },
+        { label: 'Terms of Service', url: '/terms-of-service' },
+        { label: 'Privacy Policy', url: '/privacy-policy' },
       ],
       community: [
         { label: 'Contribute in the Forum', url: 'https://forum.aeternity.com' },

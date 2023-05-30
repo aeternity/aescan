@@ -14,18 +14,18 @@
         <tr
           v-for="name in names?.data"
           :key="name.name">
-          <td class="names-active-table__column">
+          <td>
             <app-link :to="`/names/${name.name}`">
               {{ name.name }}
             </app-link>
           </td>
-          <td class="names-active-table__column">
+          <td>
             <div>
               {{ name.expirationHeight }}
             </div>
             <datetime-label :datetime="name.expiration"/>
           </td>
-          <td class="names-active-table__column">
+          <td>
             <div>
               <value-hash-ellipsed
                 :hash="name.buyer"
@@ -37,7 +37,7 @@
               {{ formatAePrice(name.fee) }}
             </app-chip>
           </td>
-          <td class="names-active-table__column">
+          <td>
             <value-hash-ellipsed
               :hash="name.owner"
               :link-to="`/accounts/${name.owner}`"/>
@@ -85,10 +85,6 @@ export default {
 
 <style scoped>
 .names-active-table {
-  &__column {
-    width: 210px;
-  }
-
   &__price-label {
     font-weight: 700;
     margin-top: var(--space-0);

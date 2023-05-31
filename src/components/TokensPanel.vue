@@ -2,6 +2,7 @@
   <app-panel class="tokens-panel">
     <paginated-content
       :entities="selectedTokens"
+      :total-count="selectedTokensCount"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <template #header>
@@ -30,8 +31,8 @@ import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
 const tokensStore = useTokensStore()
-const { selectedTokens, selectedTokenName } = storeToRefs(tokensStore)
-const { fetchTokens } = useTokensStore()
+const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(tokensStore)
+const { fetchTokens, fetchTokensCount } = useTokensStore()
 
 async function loadPrevTokens() {
   await fetchTokens(selectedTokens.value.prev)
@@ -42,6 +43,11 @@ async function loadNextTokens() {
 }
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+
+await useAsyncData(async() => {
+  await fetchTokensCount()
+  return true
+})
 
 if (process.client) {
   fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)

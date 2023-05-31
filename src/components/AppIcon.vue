@@ -6,33 +6,24 @@
     class="icon"/>
 </template>
 
-<script>
-export default {
-  name: 'AppIcon',
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    size: {
-      type: Number,
-      default: 16,
-    },
+<script setup>
+const icon = ref(null)
+const props = defineProps({
+  name: {
+    type: String,
+    required: true,
   },
-  data() {
-    return {
-      icon: null,
-    }
+  size: {
+    type: Number,
+    default: 16,
   },
-  watch: {
-    name: {
-      immediate: true,
-      async handler() {
-        this.icon = await import(`@/assets/icons/${this.name}.svg`)
-      },
-    },
-  },
-}
+})
+
+watch(
+  computed(() => props.name),
+  async() => { icon.value = await import(`@/assets/icons/${props.name}.svg`) },
+  { immediate: true },
+)
 </script>
 
 <style>

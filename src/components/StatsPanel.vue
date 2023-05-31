@@ -171,8 +171,8 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import StatsTile from '@/components/StatsTile'
@@ -181,38 +181,29 @@ import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import { useMarketStatsStore } from '@/stores/marketStats'
 
-export default {
-  name: 'StatsPanel',
-  components: { StatsTile, AppLink, AppPanel },
-  computed: {
-    ...mapState(useBlockchainStatsStore, [
-      'maxTps',
-      'transactionsCount',
-      'activeOraclesCount',
-      'oraclesCount',
-      'activeNamesCount',
-      'namesInAuctionCount',
-      'contractsCount',
-      'stateChannelsLockedValue',
-      'stateChannelsCount',
-      'burnedCount',
-    ]),
-    ...mapState(useMarketStatsStore, [
-      'circulatingSupply',
-    ]),
-    ...mapState(useRecentBlocksStore, [
-      'blockHeight',
-      'latestKeyblockTransactionsCount',
-      'latestReward',
-      'latestBri',
-    ]),
-  },
-  methods: {
-    formatAePrice,
-    formatNumber,
-    formatNullable,
-  },
-}
+const {
+  maxTps,
+  transactionsCount,
+  activeOraclesCount,
+  oraclesCount,
+  activeNamesCount,
+  namesInAuctionCount,
+  contractsCount,
+  stateChannelsLockedValue,
+  stateChannelsCount,
+  burnedCount,
+} = storeToRefs(useBlockchainStatsStore())
+
+const {
+  circulatingSupply,
+} = storeToRefs(useMarketStatsStore())
+
+const {
+  blockHeight,
+  latestKeyblockTransactionsCount,
+  latestReward,
+  latestBri,
+} = storeToRefs(useRecentBlocksStore())
 </script>
 
 <style scoped>

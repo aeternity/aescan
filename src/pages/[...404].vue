@@ -31,24 +31,19 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import { useHead } from '@vueuse/head'
 import AppLink from '@/components/AppLink'
 import PageHeader from '@/components/PageHeader'
 import AppButton from '@/components/AppButton'
 import AppPanel from '@/components/AppPanel'
 
-export default {
-  components: { AppButton, PageHeader, AppLink, AppPanel },
-  setup() {
-    useHead({
-      meta: [
-        { name: 'robots', content: 'noindex' },
-      ],
-    })
-    setResponseStatus(404, 'Page Not Found')
-  },
-}
+useHead({
+  meta: [
+    { name: 'robots', content: 'noindex' },
+  ],
+})
+setResponseStatus(404, 'Page Not Found')
 </script>
 
 <style scoped>

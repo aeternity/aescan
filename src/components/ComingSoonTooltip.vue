@@ -8,13 +8,6 @@
   </app-tooltip>
 </template>
 
-<script>
+<script setup>
 import AppTooltip from '@/components/AppTooltip'
-
-export default {
-  name: 'ComingSoonTooltip',
-  components: {
-    AppTooltip,
-  },
-}
 </script>

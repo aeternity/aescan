@@ -2,14 +2,54 @@
   <table class="state-channels-table">
     <thead>
       <tr>
-        <th>State Channel ID</th>
-        <th>Status</th>
-        <th>Participants</th>
-        <th>On-Chain Updates</th>
-        <th>Locked</th>
-        <th>Last Known Round</th>
-        <th>Last Updated</th>
-        <th>Last TX type</th>
+        <th>
+          State Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Status
+          <hint-tooltip>
+            {{ stateChannelsHints.status }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Participants
+          <hint-tooltip>
+            {{ stateChannelsHints.participants }}
+          </hint-tooltip>
+        </th>
+        <th>
+          On-Chain Updates
+          <hint-tooltip>
+            {{ stateChannelsHints.onChainUpdates }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Locked
+          <hint-tooltip>
+            {{ stateChannelsHints.locked }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last Known Round
+          <hint-tooltip>
+            {{ stateChannelsHints.lastKnownRound }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last Updated
+          <hint-tooltip>
+            {{ stateChannelsHints.lastUpdated }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last TX type
+          <hint-tooltip>
+            {{ stateChannelsHints.lastTxType }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -54,6 +94,8 @@
 </template>
 
 <script setup>
+import { stateChannelsHints } from '../utils/hints/stateChannelsHints'
+
 defineProps({
   stateChannels: {
     type: Object,

@@ -18,23 +18,19 @@
     </ul>
   </div>
 </template>
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'FooterList',
-  components: { AppLink },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    links: {
-      type: Array,
-      required: true,
-    },
+defineProps({
+  title: {
+    type: String,
+    required: true,
   },
-}
+  links: {
+    type: Array,
+    required: true,
+  },
+})
 </script>
 
 <style scoped>

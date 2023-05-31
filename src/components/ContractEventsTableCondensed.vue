@@ -55,28 +55,22 @@
     </table>
   </div>
 </template>
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatEllipseHash } from '@/utils/format'
 import CopyChip from '@/components/CopyChip'
 
-export default {
-  name: 'ContractEventTableCondensed',
-  components: { CopyChip, DatetimeLabel, ValueHashEllipsed },
-  props: {
-    contractEvents: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    removeLineBreaks(str) {
-      return str.toString().replaceAll('\n', '')
-    },
-    formatEllipseHash,
-  },
+const removeLineBreaks = str => {
+  return str.toString().replaceAll('\n', '')
 }
+
+defineProps({
+  contractEvents: {
+    type: Object,
+    required: true,
+  },
+})
 </script>
 
 <style scoped>

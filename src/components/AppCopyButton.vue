@@ -12,64 +12,52 @@
   </button>
 </template>
 
-<script>
+<script setup>
 import AppIcon from '@/components/AppIcon'
 
 const ICON_COPY = 'copy-simple'
 const ICON_SUCCESS = 'check'
 const SUCCESS_ANIMATION_DURATION = 3000
 
-export default {
-  component: 'AppCopyButton',
-  components: {
-    AppIcon,
+const props = defineProps({
+  clipboardText: {
+    type: String,
+    required: true,
   },
-  props: {
-    clipboardText: {
-      type: String,
-      required: true,
-    },
-    variant: {
-      type: String,
-      default: null,
-      validator: val => ['light'].includes(val),
-    },
+  variant: {
+    type: String,
+    default: null,
+    validator: val => ['light'].includes(val),
   },
-  emits: ['copy:started', 'copy:ended'],
-  data() {
-    return {
-      isCopySuccessful: false,
-      successAnimationTimer: null,
-    }
-  },
-  computed: {
-    iconName() {
-      return this.isCopySuccessful ? ICON_SUCCESS : ICON_COPY
-    },
-  },
-  beforeUnmount() {
-    clearTimeout(this.successAnimationTimer)
-  },
-  methods: {
-    copyText() {
-      navigator.clipboard.writeText(this.clipboardText)
-      if (this.isCopySuccessful) {
-        this.stopCopySuccessAnimation()
-        this.isCopySuccessful = true
-      }
-      this.$emit('copy:started')
-      this.successAnimationTimer = setTimeout(
-        this.stopCopySuccessAnimation,
-        SUCCESS_ANIMATION_DURATION,
-      )
-    },
-    stopCopySuccessAnimation() {
-      clearTimeout(this.successAnimationTimer)
-      this.successAnimationTimer = null
-      this.isCopySuccessful = false
-      this.$emit('copy:ended')
-    },
-  },
+})
+const emit = defineEmits(['copy:started', 'copy:ended'])
+
+const isCopySuccessful = ref(false)
+const successAnimationTimer = ref(null)
+
+const iconName = computed(() => isCopySuccessful.value ? ICON_SUCCESS : ICON_COPY)
+
+onBeforeUnmount(() => clearTimeout(successAnimationTimer.value))
+
+function copyText() {
+  navigator.clipboard.writeText(props.clipboardText)
+  if (isCopySuccessful.value) {
+    stopCopySuccessAnimation()
+    isCopySuccessful.value = true
+  }
+
+  emit('copy:started')
+  successAnimationTimer.value = setTimeout(
+    stopCopySuccessAnimation,
+    SUCCESS_ANIMATION_DURATION,
+  )
+}
+
+function stopCopySuccessAnimation() {
+  clearTimeout(successAnimationTimer.value)
+  successAnimationTimer.value = null
+  isCopySuccessful.value = false
+  emit('copy:ended')
 }
 </script>
 

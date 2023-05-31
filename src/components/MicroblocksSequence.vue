@@ -7,7 +7,7 @@
       tag="div">
       <div
         v-for="microblock in microblocks"
-        :key="microblock.hash"
+        :key="microblock.hash + microblock.prev_key_hash"
         :class="[
           'microblocks-sequence__cell',
           {'microblocks-sequence__cell--active': microblock.hash === selectedMicroblock.hash }]"

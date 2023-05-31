@@ -18,20 +18,17 @@
   </VTooltip>
 </template>
 
-<script>
-export default {
-  name: 'AppTooltip',
-  props: {
-    skidding: {
-      type: Number,
-      default: 0,
-    },
-    hasFixedWidth: {
-      type: Boolean,
-      default: false,
-    },
+<script setup>
+defineProps({
+  skidding: {
+    type: Number,
+    default: 0,
   },
-}
+  hasFixedWidth: {
+    type: Boolean,
+    default: false,
+  },
+})
 </script>
 
 <style scoped>

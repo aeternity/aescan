@@ -40,48 +40,29 @@
   </div>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import AppChip from '@/components/AppChip'
 
-export default {
-  name: 'MarketStats',
-  components: { AppChip },
-  data() {
-    const selectedNetwork = useRuntimeConfig().public.NETWORK_NAME
+const { NETWORK_NAME } = useRuntimeConfig().public
+const selectedNetwork = `${NETWORK_NAME
+  .charAt(0)
+  .toUpperCase()}${NETWORK_NAME.slice(1).toLowerCase()}`
 
-    return {
-      MAX_AE_DISTRIBUTION,
-      selectedNetwork: `${selectedNetwork
-        .charAt(0)
-        .toUpperCase()}${selectedNetwork.slice(1).toLowerCase()}`,
-    }
-  },
-  computed: {
-    ...mapState(useMarketStatsStore, [
-      'price',
-      'priceChange',
-      'marketCap',
-      'distribution',
-      'distributionPercentage',
-    ]),
-    priceChangeSign() {
-      return this.priceChange > 0 ? '+' : ''
-    },
-    priceChipVariant() {
-      return this.priceChange > 0 ? 'success' : 'error'
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatNumber,
-    formatNullable,
-  },
-}
+const {
+  price,
+  priceChange,
+  marketCap,
+  distribution,
+  distributionPercentage,
+} = storeToRefs(useMarketStatsStore())
+
+const priceChangeSign = computed(() => priceChange.value > 0 ? '+' : '')
+const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'error')
 </script>
 
 <style scoped>

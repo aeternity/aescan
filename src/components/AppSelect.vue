@@ -25,60 +25,48 @@
   </vue-multiselect>
 </template>
 
-<script>
+<script setup>
 import VueMultiselect from 'vue-multiselect'
+import { useVModel } from '@vueuse/core'
 import AppIcon from '@/components/AppIcon'
 
-export default {
-  name: 'AppSelect',
-  components: { AppIcon, VueMultiselect },
-  props: {
-    placeholder: {
-      type: String,
-      default: null,
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    trackBy: {
-      type: String,
-      default: null,
-    },
-    options: {
-      type: Array,
-      required: true,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    hideSelected: {
-      type: Boolean,
-      default: false,
-    },
-    searchable: {
-      type: Boolean,
-      default: true,
-    },
-    preselectFirst: {
-      type: Boolean,
-      default: false,
-    },
-    modelValue: undefined,
+const props = defineProps({
+  placeholder: {
+    type: String,
+    default: null,
   },
-  emits: ['update:modelValue'],
-  computed: {
-    selectedValue: {
-      get() {
-        return this.modelValue
-      },
-      set(value) {
-        this.$emit('update:modelValue', value)
-      },
-    },
+  label: {
+    type: String,
+    default: null,
   },
-}
+  trackBy: {
+    type: String,
+    default: null,
+  },
+  options: {
+    type: Array,
+    required: true,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  hideSelected: {
+    type: Boolean,
+    default: false,
+  },
+  searchable: {
+    type: Boolean,
+    default: true,
+  },
+  preselectFirst: {
+    type: Boolean,
+    default: false,
+  },
+  modelValue: undefined,
+})
+const emit = defineEmits(['update:modelValue'])
+const selectedValue = useVModel(props, 'modelValue', emit)
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>

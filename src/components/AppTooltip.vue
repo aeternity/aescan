@@ -57,11 +57,6 @@ defineProps({
         }
       }
     }
-
-    &.v-popper__popper[data-popper-placement^="top"] .v-popper__arrow-outer,
-    &.v-popper__popper[data-popper-placement^="bottom"] .v-popper__arrow-outer {
-      left: 1px;
-    }
   }
 }
 

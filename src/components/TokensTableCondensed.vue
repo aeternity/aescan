@@ -7,10 +7,12 @@
       <tbody>
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
-            Symbol
-            <hint-tooltip>
-              {{ tokenHints.tokenSymbol }}
-            </hint-tooltip>
+            <app-tooltip>
+              Symbol
+              <template #tooltip>
+                {{ tokenHints.tokenSymbol }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="tokens-table-condensed__data">
             <app-link
@@ -26,10 +28,12 @@
 
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
-            Name
-            <hint-tooltip>
-              {{ tokenHints.tokenName }}
-            </hint-tooltip>
+            <app-tooltip>
+              Name
+              <template #tooltip>
+                {{ tokenHints.tokenName }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="tokens-table-condensed__data">
             {{ token.name }}
@@ -37,10 +41,12 @@
         </tr>
         <tr class="tokens-table-condensed__row">
           <th class="tokens-table-condensed__header">
-            Smart Contract ID
-            <hint-tooltip>
-              {{ tokenHints.tokenContractId }}
-            </hint-tooltip>
+            <app-tooltip>
+              Smart Contract ID
+              <template #tooltip>
+                {{ tokenHints.tokenContractId }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="tokens-table-condensed__data">
             <value-hash-ellipsed

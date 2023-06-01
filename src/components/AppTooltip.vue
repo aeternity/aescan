@@ -44,6 +44,7 @@ defineProps({
   &__popper {
     &.v-popper--theme-tooltip {
       .v-popper__inner {
+        margin: 0 var(--space-0);
         padding: var(--space-3);
         background: var(--color-midnight);
         color: var(--color-white);

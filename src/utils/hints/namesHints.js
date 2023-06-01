@@ -1,6 +1,6 @@
 export const namesHints = {
-  name: 'Name that can be use instead of address.',
-  nameInAuction: 'Name that can be use instead of address. Names shorter than 13 characters needs to be auctioned',
+  name: 'Name that points to accounts, contracts, oracles, NFTs and more.',
+  nameInAuction: 'Name that can be use Name that points to accounts, contracts, oracles, NFTs and more. Names shorter than 13 characters needs to be auctioned.',
   expires: 'Estimated date, time, and block height when the name will be detached from the address.',
   buyer: 'Address of the account which paid for the name and it\'s price.',
   owner: 'Owner of the Name.',

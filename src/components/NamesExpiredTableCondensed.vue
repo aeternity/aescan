@@ -41,7 +41,7 @@
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
             <app-tooltip>
-              Expired
+              Last buyer
               <template #tooltip>
                 {{ namesHints.lastBuyer }}
               </template>

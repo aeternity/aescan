@@ -10,7 +10,10 @@ function isAuction(chainName) {
 
 export function adaptKeyblock(keyblock) {
   if (keyblock) {
-    keyblock.mined = DateTime.fromMillis(keyblock.time)
+    return {
+      ...keyblock,
+      mined: DateTime.fromMillis(keyblock.time),
+    }
   }
 
   return keyblock

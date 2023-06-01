@@ -11,14 +11,16 @@
     v-if="accountDetails"
     :account-details="accountDetails"/>
 
-  <app-tabs v-if="isTabsVisible">
-    <app-tab title="Transactions">
-      <account-transactions-panel/>
-    </app-tab>
-    <app-tab title="AENS Names">
-      <account-names-panel/>
-    </app-tab>
-  </app-tabs>
+  <client-only>
+    <app-tabs v-if="isTabsVisible">
+      <app-tab title="Transactions">
+        <account-transactions-panel/>
+      </app-tab>
+      <app-tab title="AENS Names">
+        <account-names-panel/>
+      </app-tab>
+    </app-tabs>
+  </client-only>
 </template>
 
 <script setup>

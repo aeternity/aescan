@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { oraclesHints } from '../utils/hints/oracles'
+import { oraclesHints } from '../utils/hints/oraclesHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'

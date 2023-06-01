@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Expires</th>
+        <th>Ends</th>
         <th>Highest Bid</th>
         <th>Bid Count</th>
       </tr>

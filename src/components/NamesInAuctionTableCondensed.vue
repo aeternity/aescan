@@ -20,7 +20,7 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            Expires
+            Ends
           </th>
           <td class="names-in-auction-table-condensed__data">
             <div>

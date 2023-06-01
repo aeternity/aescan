@@ -61,16 +61,14 @@ export const useAccountStore = defineStore('account', () => {
       }
     }
   }
+
   async function fetchAccountTransactionsCount(accountId, txType = null) {
     accountTransactionsCount.value = null
-    const txCountUrl = new URL(`${MIDDLEWARE_URL}/v2/txs/count`)
-    txCountUrl.searchParams.append('id', accountId)
 
-    if (txType) {
-      txCountUrl.searchParams.append('tx_type', txType)
-    }
+    const params = txType ? `/${accountId}?type=${txType}` : `?id=${accountId}`
+    const txCountUrl = new URL(`${MIDDLEWARE_URL}/v2/txs/count${params}`)
 
-    const { data } = await axios.get(txCountUrl.toString())
+    const { data } = await axios.get(txCountUrl)
 
     accountTransactionsCount.value = data
   }
@@ -82,15 +80,18 @@ export const useAccountStore = defineStore('account', () => {
     const { data } = await axios.get(txCountUrl.toString())
     totalAccountTransactionsCount.value = data
   }
+
   async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
     const defaultParameters = `/v2/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountNames.value = data
   }
+
   async function fetchAccountNamesCount(accountId) {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names?owned_by=${accountId}&state=active`)
     accountNamesCount.value = data.data.length
   }
+
   async function fetchAccountTransactions({ accountId, type, limit, queryParameters } = {}) {
     rawAccountTransactions.value = null
 

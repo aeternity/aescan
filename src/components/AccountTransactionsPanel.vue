@@ -43,7 +43,10 @@ const pageIndex = ref(1)
 
 const limit = computed(() => isDesktop() ? 10 : 3)
 
-fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
+await useAsyncData(async() => {
+  await fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
+  return true
+})
 
 watch(selectedTxType, () => {
   fetchAccountTransactions({

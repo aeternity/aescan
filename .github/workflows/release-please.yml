@@ -12,9 +12,18 @@ jobs:
     outputs:
       release_created: ${{ steps.release-please.outputs.release_created }}
     steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+      - name: Get tags
+        run: git fetch --tags origin
+      - name: Skip release if there are no new commits since last tag
+        run: echo IS_COMMIT_TAGGED=$(git tag --contains HEAD | grep -q . && echo true || echo false) >> $GITHUB_ENV
       - name: Establish release version
+        if: env.IS_COMMIT_TAGGED == 'false'
         run: echo "RELEASE_VERSION=${BRANCH_NAME##*/}" >> $GITHUB_ENV
       - uses: google-github-actions/release-please-action@v3
+        if: env.IS_COMMIT_TAGGED == 'false'
         id: release-please
         with:
           release-type: node

@@ -1,13 +1,10 @@
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/46789227/220656060-996be170-90b6-4f4d-99d2-0b0083c09fe3.png" width="200px" />
-</p>
-
-<p align="center">
 <a href="https://aescan.io">
-    <font size="5">aescan.io</font>
+    <p align="center">
+        <img src="https://user-images.githubusercontent.com/46789227/220656060-996be170-90b6-4f4d-99d2-0b0083c09fe3.png" width="200px" />
+    </p>
 </a>
 
-æScan is a blockchain explorer, analytics platform, and decentralized smart contract navigation platform based on æternity.
+<a href="https://aescan.io">æScan</a> is a blockchain explorer, analytics platform, and decentralized smart contract navigation platform based on æternity.
 </p>
 
 ## Table of contents

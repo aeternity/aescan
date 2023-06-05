@@ -235,8 +235,6 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       return false
     }
 
-    parentMicroblock.transactions_count += 1
-
     // currently displayed microblock transactions
     if (transaction.block_hash === selectedMicroblock.value?.hash) {
       appendTransactionToSelectedMicroblock(transaction)

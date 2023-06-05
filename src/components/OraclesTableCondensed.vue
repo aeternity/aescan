@@ -7,7 +7,12 @@
       <tbody>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            Oracle ID
+            <app-tooltip>
+              Oracle ID
+              <template #tooltip>
+                {{ oraclesHints.oracleId }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             <value-hash-ellipsed
@@ -17,7 +22,12 @@
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            Registered
+            <app-tooltip>
+              Registered
+              <template #tooltip>
+                {{ oraclesHints.oracleRegistered }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             <div>
@@ -28,7 +38,12 @@
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            Expiration
+            <app-tooltip>
+              Expiration
+              <template #tooltip>
+                {{ oraclesHints.oracleExpiration }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             <div>
@@ -39,7 +54,12 @@
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            Query Fee
+            <app-tooltip>
+              Query Fee
+              <template #tooltip>
+                {{ oraclesHints.queryFee }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
             {{ formatAePrice(oracle.queryFee) }}
@@ -54,6 +74,7 @@
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
+import { oraclesHints } from '~/utils/hints/oraclesHints'
 
 defineProps({
   oracles: {

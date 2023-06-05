@@ -17,10 +17,16 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
 
   const blockchainStatsStore = useBlockchainStatsStore()
 
-  const distribution = computed(() => blockchainStatsStore.totalTokenSupply)
+  const distribution = computed(() =>
+    blockchainStatsStore.totalTokenSupply && blockchainStatsStore.burnedCount
+      ? Number(blockchainStatsStore.totalTokenSupply) + Number(blockchainStatsStore.burnedCount)
+      : null,
+  )
 
-  const distributionPercentage = computed(() =>
-    distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null,
+  const distributionPercentage = computed(() => {
+    console.log('distribution.value', distribution.value)
+    return distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null
+  },
   )
 
   function fetchMarketStats() {

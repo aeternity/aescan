@@ -92,12 +92,15 @@ Three different deployment stages are available to test or use æScan:
     </tr>
     <tr>
         <td>Production</td>
-        <td>https://aescan.prd.aepps.com/</td>
+        <td>
+            https://aescan.io
+            https://aescan.prd.aepps.com
+        </td>
         <td>Production environment deployed manually from the main branch by creating a release branch and merging an automatically created Release Pull Request.</td>
     </tr>
     <tr>
         <td>Development</td>
-        <td>https://aescan.dev.aepps.com/</td>
+        <td>https://aescan.dev.aepps.com</td>
         <td>Development environment deployed automatically after every push to the develop branch.</td>
     </tr>
     <tr>

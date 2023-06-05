@@ -1,8 +1,8 @@
 export const namesHints = {
-  name: 'Name that points to accounts, contracts, oracles, and NFTs.',
+  name: 'Unique identifier that may be configured to point to accounts, contracts, oracles, and NFTs.',
   nameInAuction: 'Name that points to accounts, contracts, oracles, NFTs and more. Names shorter than 13 characters need to be auctioned.',
-  expires: 'Estimated date, time, and block height when the name will be detached from the address.',
-  buyer: 'Address of the account which paid for the Name and Name\'s price.',
+  expires: 'Estimated date, time, and block height when the name will be detached from the account.',
+  buyer: 'Address of the account which paid for the Name.',
   owner: 'Owner of the Name.',
   pointsTo: 'Address that Name points to.',
   highestBid: 'Account of the highest bidder and the price of the highest bid.',

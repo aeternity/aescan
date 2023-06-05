@@ -3,6 +3,8 @@
 </p>
 
 <p align="center">
+<a href="https://aescan.io" style="font-size: 22px">aescan.io</a>
+
 æScan is a blockchain explorer, analytics platform, and decentralized smart contract navigation platform based on æternity.
 
 </p>

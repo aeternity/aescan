@@ -10,7 +10,7 @@ import AppIcon from '@/components/AppIcon'
 
 <style scoped>
 .hint-icon {
-  color: var(--color-error);
+  color: var(--color-midnight-25);
   cursor: help;
 }
 </style>

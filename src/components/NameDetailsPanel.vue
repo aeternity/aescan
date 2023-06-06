@@ -111,8 +111,8 @@
 </template>
 
 <script setup>
-import { namesHints } from '~/utils/hints/namesHints'
 import { storeToRefs } from 'pinia'
+import { namesHints } from '~/utils/hints/namesHints'
 import AppPanel from '@/components/AppPanel'
 import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'

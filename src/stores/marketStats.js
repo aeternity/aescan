@@ -24,7 +24,6 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   )
 
   const distributionPercentage = computed(() => {
-    console.log('distribution.value', distribution.value)
     return distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null
   },
   )

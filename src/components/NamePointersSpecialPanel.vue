@@ -8,6 +8,9 @@
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
             Account
+            <hint-tooltip>
+              {{ namesHints.accountPointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
@@ -28,7 +31,10 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Channel
+            State Channel
+            <hint-tooltip>
+              {{ namesHints.channelPointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
@@ -50,6 +56,9 @@
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
             Smart Contract
+            <hint-tooltip>
+              {{ namesHints.contractPointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
@@ -70,6 +79,9 @@
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
             Oracle
+            <hint-tooltip>
+              {{ namesHints.oraclePointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
@@ -95,6 +107,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { namesHints } from '~/utils/hints/namesHints'
+import HintTooltip from '~/components/HintTooltip'
 import AppPanel from '@/components/AppPanel'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatEllipseHash } from '@/utils/format'

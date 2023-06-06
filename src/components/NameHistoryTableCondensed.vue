@@ -8,6 +8,9 @@
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
             Hash
+            <hint-tooltip>
+              {{ namesHints.eventTransactionHash }}
+            </hint-tooltip>
           </th>
           <td class="name-history-table-condensed__data">
             <value-hash-ellipsed
@@ -18,6 +21,9 @@
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
             Time
+            <hint-tooltip>
+              {{ namesHints.eventTime }}
+            </hint-tooltip>
           </th>
           <td class="name-history-table-condensed__data">
             <div>
@@ -29,6 +35,9 @@
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
             Activity
+            <hint-tooltip>
+              {{ namesHints.activity }}
+            </hint-tooltip>
           </th>
           <td class="name-history-table-condensed__data">
             {{ action.type }}
@@ -40,6 +49,8 @@
 </template>
 
 <script setup>
+import { namesHints } from '~/utils/hints/namesHints'
+import HintTooltip from '~/components/HintTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 

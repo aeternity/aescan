@@ -32,7 +32,7 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
   }
 
   async function fetchStateChannelsCount() {
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/txs/count?tx_type=channel_create`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count?tx_type=channel_create`)
     this.stateChannelsCount = data
   }
 

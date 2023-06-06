@@ -48,9 +48,10 @@ const loadNextStateChannels = () => {
 
 const loadStateChannels = () => {
   fetchStateChannels({ limit: limit.value })
-  fetchStateChannelsCount()
   pageIndex.value = 1
 }
+
+fetchStateChannelsCount()
 
 if (process.client) {
   loadStateChannels()

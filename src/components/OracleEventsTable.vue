@@ -2,9 +2,24 @@
   <table>
     <thead>
       <tr>
-        <th>Query Tx</th>
-        <th>Status</th>
-        <th>Respond Tx</th>
+        <th>
+          Query Tx
+          <hint-tooltip>
+            {{ oraclesHints.queryTx }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Status
+          <hint-tooltip>
+            {{ oraclesHints.queryStatus }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Respond Tx
+          <hint-tooltip>
+            {{ oraclesHints.queryRespondTx }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -43,6 +58,9 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '@/utils/hints/oraclesHints'
+import HintTooltip from '@/components/HintTooltip'
+
 const props = defineProps({
   oracleEvents: {
     type: Object,

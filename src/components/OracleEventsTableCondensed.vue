@@ -7,7 +7,12 @@
       <tbody>
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
-            Query Tx
+            <app-tooltip>
+              Query Tx
+              <template #tooltip>
+                {{ oraclesHints.eventTransactionHash }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
             <value-hash-ellipsed
@@ -17,7 +22,12 @@
         </tr>
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
-            Status
+            <app-tooltip>
+              Status
+              <template #tooltip>
+                {{ oraclesHints.queryStatus }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
             <response-button
@@ -30,7 +40,12 @@
             :class="[
               'oracle-events-table-condensed__header',
               {'oracle-events-table-condensed__header--expanded': isOpened.includes(index)}]">
-            Respond Tx
+            <app-tooltip>
+              Respond Tx
+              <template #tooltip>
+                {{ oraclesHints.queryRespondTx }}
+              </template>
+            </app-tooltip>
           </th>
           <td
             :class="[
@@ -54,6 +69,8 @@
 </template>
 
 <script setup>
+import AppTooltip from '@/components/AppTooltip.vue'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 const props = defineProps({
   oracleEvents: {
     type: Object,

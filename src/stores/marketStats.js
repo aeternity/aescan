@@ -14,18 +14,18 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   const price = ref(null)
   const priceChange = ref(null)
   const marketCap = ref(null)
-  const circulatingSupply = ref(null)
 
   const blockchainStatsStore = useBlockchainStatsStore()
 
   const distribution = computed(() =>
-    circulatingSupply.value && blockchainStatsStore.burnedCount
-      ? circulatingSupply.value + Number(blockchainStatsStore.burnedCount)
+    blockchainStatsStore.totalTokenSupply && blockchainStatsStore.burnedCount
+      ? Number(blockchainStatsStore.totalTokenSupply) + Number(blockchainStatsStore.burnedCount)
       : null,
   )
 
-  const distributionPercentage = computed(() =>
-    distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null,
+  const distributionPercentage = computed(() => {
+    return distribution.value ? (distribution.value / MAX_AE_DISTRIBUTION * 100).toFixed(2) : null
+  },
   )
 
   function fetchMarketStats() {
@@ -54,7 +54,6 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
 
     const cachedAeternityMarketData = cache.get(CACHE_KEY_MARKET_DATA)
     marketCap.value = cachedAeternityMarketData.market_cap.usd
-    circulatingSupply.value = cachedAeternityMarketData.circulating_supply
   }
 
   return {
@@ -62,7 +61,6 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     price,
     priceChange,
     marketCap,
-    circulatingSupply,
     distribution,
     distributionPercentage,
   }

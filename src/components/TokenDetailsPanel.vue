@@ -16,6 +16,9 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             Name
+            <hint-tooltip>
+              {{ tokenHints.tokenName }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
             {{ tokenDetails.name }}
@@ -26,6 +29,9 @@
           class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             Price
+            <hint-tooltip>
+              {{ tokenHints.price }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
             {{ formatAePrice(tokenPrice) }} ({{ fiatPrice }})
@@ -36,6 +42,9 @@
           class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             Market cap
+            <hint-tooltip>
+              {{ tokenHints.marketCap }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
             {{ marketCap }}
@@ -52,21 +61,27 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             Smart Contract ID
+            <hint-tooltip>
+              {{ tokenHints.smartContractId }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contract_id}`">
               <span class="token-details-panel__hash">
                 {{ tokenDetails.contract_id }}
               </span>
-              <span class="token-details-panel__hash-ellipse">{{
-                formatEllipseHash(tokenDetails.contract_id)
-              }}</span>
+              <span class="token-details-panel__hash-ellipse">
+                {{ formatEllipseHash(tokenDetails.contract_id) }}
+              </span>
             </app-link>
           </td>
         </tr>
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             Decimals
+            <hint-tooltip>
+              {{ tokenHints.decimals }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
             {{ tokenDetails.decimals }}
@@ -75,6 +90,9 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             Extensions
+            <hint-tooltip>
+              {{ tokenHints.extensions }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data token-details-panel__data--extensions">
             <app-chip
@@ -89,6 +107,9 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             API links
+            <hint-tooltip>
+              {{ tokenHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
             <div class="token-details-panel__container">
@@ -122,6 +143,7 @@ import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
+import { tokenHints } from '~/utils/hints/tokensHints'
 
 const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())

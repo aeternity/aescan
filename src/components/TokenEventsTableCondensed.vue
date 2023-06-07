@@ -7,7 +7,12 @@
       <tbody>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            Hash
+            <app-tooltip>
+              Hash
+              <template #tooltip>
+                {{ contractsHints.hash }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="token-events-table-condensed__data">
             <value-hash-ellipsed
@@ -17,7 +22,12 @@
         </tr>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            Name
+            <app-tooltip>
+              Name
+              <template #tooltip>
+                {{ contractsHints.name }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="token-events-table-condensed__data">
             {{ event.name }}
@@ -25,7 +35,12 @@
         </tr>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            Date
+            <app-tooltip>
+              Date
+              <template #tooltip>
+                {{ contractsHints.date }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="token-events-table-condensed__data">
             <div>

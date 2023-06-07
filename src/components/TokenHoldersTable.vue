@@ -2,9 +2,24 @@
   <table>
     <thead>
       <tr>
-        <th>Account</th>
-        <th>Amount</th>
-        <th>Percentage</th>
+        <th>
+          Account
+          <hint-tooltip>
+            {{ tokenHints.account }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Amount
+          <hint-tooltip>
+            {{ tokenHints.amount }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Percentage
+          <hint-tooltip>
+            {{ tokenHints.percentage }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +50,7 @@
 
 <script setup>
 import { formatNumber } from '@/utils/format'
+import { tokenHints } from '~/utils/hints/tokensHints'
 
 defineProps({
   tokenHolders: {

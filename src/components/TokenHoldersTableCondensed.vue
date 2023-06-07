@@ -6,7 +6,12 @@
       class="token-holders-table-condensed__table">
       <tr class="token-holders-table-condensed__row">
         <th class="token-holders-table-condensed__header">
-          Account
+          <app-tooltip>
+            Account
+            <template #tooltip>
+              {{ contractsHints.account }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
           <value-hash-ellipsed
@@ -16,7 +21,12 @@
       </tr>
       <tr class="token-holders-table-condensed__row">
         <th class="token-holders-table-condensed__header">
-          Amount
+          <app-tooltip>
+            Amount
+            <template #tooltip>
+              {{ contractsHints.amount }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
           {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
@@ -24,7 +34,12 @@
       </tr>
       <tr class="token-holders-table-condensed__row">
         <th class="token-holders-table-condensed__header">
-          Percentage
+          <app-tooltip>
+            Percentage
+            <template #tooltip>
+              {{ contractsHints.percentage }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
           <template v-if="Math.abs(holder.percentage) >= 0.00001">
@@ -42,6 +57,7 @@
 
 <script setup>
 import { formatNumber } from '@/utils/format'
+import { contractsHints } from '~/utils/hints/contractsHints'
 
 defineProps({
   tokenHolders: {

@@ -1,7 +1,6 @@
 <template>
   <VTooltip
     :triggers="['hover', 'click']"
-    :popper-triggers="['hover']"
     :skidding="skidding"
     data-popper-placement="top-start"
     :delay="{ show: 200, hide: 10 }"
@@ -44,6 +43,7 @@ defineProps({
   &__popper {
     &.v-popper--theme-tooltip {
       .v-popper__inner {
+        margin: 0 var(--space-2);
         padding: var(--space-3);
         background: var(--color-midnight);
         color: var(--color-white);
@@ -55,11 +55,6 @@ defineProps({
           word-break: normal;
         }
       }
-    }
-
-    &.v-popper__popper[data-popper-placement^="top"] .v-popper__arrow-outer,
-    &.v-popper__popper[data-popper-placement^="bottom"] .v-popper__arrow-outer {
-      left: 1px;
     }
   }
 }

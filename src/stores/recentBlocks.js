@@ -4,7 +4,12 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { adaptDeltaStats, adaptKeyblock, adaptSelectedMicroblockTransactions } from '@/utils/adapters'
 import { formatAettosToAe, formatNullable, formatNumber } from '@/utils/format'
-import { MESSAGE_BUFFER_SIZE_LIMIT, VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_MICROBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'
+import {
+  MESSAGE_BUFFER_SIZE_LIMIT,
+  VISIBLE_KEYBLOCKS_LIMIT,
+  VISIBLE_MICROBLOCKS_LIMIT,
+  VISIBLE_TRANSACTIONS_LIMIT,
+} from '@/utils/constants'
 
 const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSequence?.[0].hash
 
@@ -42,7 +47,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       : null
   })
   const selectedMicroblockTransactionsCount = computed(() => {
-    return rawSelectedMicroblockTransactions.value?.data.length || 0
+    return selectedMicroblock.value?.transactions_count || 0
   })
   const selectedDeltaStats = computed(() => {
     const selectedKeyblockHeight = selectedKeyblock.value?.height || blockHeight.value

@@ -11,4 +11,8 @@ export const oraclesHints = {
   queryTx: 'Transaction hash of the Oracle query.',
   queryStatus: 'Status indicates the progress in processing of the Oracle query.',
   respondTx: 'Transaction hash of the Oracle response.',
+  queryId: 'Unique identifier of the Oracle query.',
+  queryContent: 'Query is the actual subject of the Query transaction that was sent to the Oracle.',
+  responseTtl: 'The response TTL decides how long the response is available when given from the oracle. The response TTL is always relative. This is to not give incentive to the oracle to post the answer late, since the oracle is paying the fee for the response.',
+  response: 'Response is the result of Oracle query in binary format.',
 }

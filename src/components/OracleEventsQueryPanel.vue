@@ -4,21 +4,46 @@
       Query Details
     </div>
     <dl>
-      <dt>Query ID:</dt>
+      <dt>
+        Query ID:
+        <hint-tooltip>
+          {{ oraclesHints.queryId }}
+        </hint-tooltip>
+      </dt>
       <dd>{{ event.queryId }}</dd>
 
-      <dt>Query Fee:</dt>
+      <dt>
+        Query Fee:
+        <hint-tooltip>
+          {{ oraclesHints.queryFee }}
+        </hint-tooltip>
+      </dt>
       <dd>{{ formatAePrice(event.queryFee) }}</dd>
 
-      <dt>Query:</dt>
+      <dt>
+        Query:
+        <hint-tooltip>
+          {{ oraclesHints.queryContent }}
+        </hint-tooltip>
+      </dt>
       <dd class="oracle-events-query-panel__description">
         {{ event.query }}
       </dd>
 
-      <dt>Response TTL:</dt>
+      <dt>
+        Response TTL:
+        <hint-tooltip>
+          {{ oraclesHints.responseTtl }}
+        </hint-tooltip>
+      </dt>
       <dd>{{ event.responseTtl }}</dd>
 
-      <dt>Response:</dt>
+      <dt>
+        Response:
+        <hint-tooltip>
+          {{ oraclesHints.response }}
+        </hint-tooltip>
+      </dt>
       <dd class="oracle-events-query-panel__description">
         {{ event.response }}
       </dd>
@@ -27,6 +52,10 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '@/utils/hints/oraclesHints'
+import HintTooltip from '@/components/HintTooltip'
+import AppPanel from '@/components/AppPanel'
+
 defineProps({
   event: {
     type: Object,

@@ -2,9 +2,24 @@
   <table class="transactions-table__table">
     <thead>
       <tr>
-        <th>Hash</th>
-        <th>Created</th>
-        <th>Type</th>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ transactionsHints.hash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Created
+          <hint-tooltip>
+            {{ transactionsHints.created }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Type
+          <hint-tooltip>
+            {{ transactionsHints.type }}
+          </hint-tooltip>
+        </th>
         <th>Data</th>
       </tr>
     </thead>

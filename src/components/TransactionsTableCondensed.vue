@@ -7,7 +7,12 @@
       <tbody>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Hash
+            <app-tooltip>
+              Hash
+              <template #tooltip>
+                {{ contractsHints.hash }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -17,7 +22,12 @@
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Created
+            <app-tooltip>
+              Created
+              <template #tooltip>
+                {{ contractsHints.created }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
             <div>
@@ -28,7 +38,12 @@
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Type
+            <app-tooltip>
+              Type
+              <template #tooltip>
+                {{ contractsHints.type }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
             {{ transaction.type }}
@@ -50,6 +65,7 @@
 </template>
 
 <script setup>
+import { contractsHints } from '../utils/hints/contractsHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'

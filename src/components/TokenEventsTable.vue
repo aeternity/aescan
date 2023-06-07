@@ -11,7 +11,7 @@
         <th>
           Name
           <hint-tooltip>
-            {{ tokenHints.name }}
+            {{ tokenHints.eventName }}
           </hint-tooltip>
         </th>
         <th>

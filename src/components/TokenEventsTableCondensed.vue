@@ -10,7 +10,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ contractsHints.hash }}
+                {{ tokenHints.hash }}
               </template>
             </app-tooltip>
           </th>
@@ -25,7 +25,7 @@
             <app-tooltip>
               Name
               <template #tooltip>
-                {{ contractsHints.name }}
+                {{ tokenHints.eventName }}
               </template>
             </app-tooltip>
           </th>
@@ -38,7 +38,7 @@
             <app-tooltip>
               Date
               <template #tooltip>
-                {{ contractsHints.date }}
+                {{ tokenHints.date }}
               </template>
             </app-tooltip>
           </th>

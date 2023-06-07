@@ -53,6 +53,9 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             Total supply
+            <hint-tooltip>
+              {{ tokenHints.totalSupply }}
+            </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
             {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}

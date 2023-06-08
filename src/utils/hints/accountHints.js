@@ -1,5 +1,5 @@
 export const accountHints = {
-  balance: 'Current amount of AE owned by the account',
+  balance: 'Amount of AE currently owned by the account.',
   value: 'Current fiat value of AE owned by the account.',
   transactions: 'Amount of transactions sent from the account.',
   aensNames: 'Amount of Names owned by the account.',

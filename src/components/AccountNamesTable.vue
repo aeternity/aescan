@@ -53,8 +53,8 @@
 import AppLink from '@/components/AppLink'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { accountHints } from '~/utils/hints/accountHints'
-import HintTooltip from '~/components/HintTooltip'
+import { accountHints } from '@/utils/hints/accountHints'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   accountNames: {

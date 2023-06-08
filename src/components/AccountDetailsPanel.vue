@@ -118,7 +118,7 @@ import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import HintTooltip from '~/components/HintTooltip'
+import HintTooltip from '@/components/HintTooltip'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public

@@ -58,8 +58,8 @@ import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { accountHints } from '~/utils/hints/accountHints'
-import HintTooltip from '~/components/HintTooltip'
+import { accountHints } from '@/utils/hints/accountHints'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   accountTransactions: {

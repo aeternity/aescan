@@ -70,7 +70,7 @@
 import AppLink from '@/components/AppLink'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { accountHints } from '~/utils/hints/accountHints'
+import { accountHints } from '@/utils/hints/accountHints'
 
 defineProps({
   accountNames: {

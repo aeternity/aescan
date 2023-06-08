@@ -10,7 +10,7 @@
     </app-link>
   </span>
   <app-chip size="sm">
-    TTL {{ transactionData.name_ttl }}
+    {{ transactionData.name_ttl }}
   </app-chip>
 </template>
 

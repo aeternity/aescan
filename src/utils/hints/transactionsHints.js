@@ -23,7 +23,7 @@ export const transactionsHints = {
   channelSettleTx: 'The last transaction in the lifecycle of a channel, but only required if the parties involved did not manage to cooperate to close the channel. It has to be issued after all possible disputes are resolved and then redistribute the locked coins.',
   channelSnapshotSoloTx: 'Provides a snapshot of the recent off-chain state to be recorded on-chain.',
   channelForceProgressTx: 'Transition the channel into the locked state for the next "lock_period" blocks.',
-  channelGAAttachTx: 'Converts Plain Account into a Generalized Account by attaching code to it. Then the new "meta_tx" is used to interact with the Generalized Account.',
-  channelGAMetaTx: 'Wraps transaction data into a smart contract call. It wraps a "normal" transaction with "auth_data" for a Generalized Account.',
+  gAAttachTx: 'Converts Plain Account into a Generalized Account by attaching code to it. Then the new "meta_tx" is used to interact with the Generalized Account.',
+  gAMetaTx: 'Wraps transaction data into a smart contract call. It wraps a "normal" transaction with "auth_data" for a Generalized Account.',
   payingForTx: 'Covers the fees for another user. It wraps any kind of other transaction types.',
 }

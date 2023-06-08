@@ -4,7 +4,7 @@
     :link-to="`/oracles/${transactionData.oracle_id}`"/>
 
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.fee)) }} FEE
+    {{ formatAePrice(formatAettosToAe(transactionData.fee)) }}
   </app-chip>
 </template>
 

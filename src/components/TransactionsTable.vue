@@ -42,7 +42,7 @@
         <td class="transactions-table__data">
           {{ transaction.type }}
           <hint-tooltip>
-            {{ transactionsHints[transaction.type.charAt(0).toLowerCase() + transaction.type.slice(1)] }}
+            {{ transactionsHints[getHintKey(transaction.type)] }}
           </hint-tooltip>
         </td>
         <td class="transactions-table__data">
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { transactionsHints } from '../utils/hints/transactionsHints'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
@@ -68,6 +68,10 @@ defineProps({
     required: true,
   },
 })
+
+function getHintKey(type) {
+  return type.charAt(0).toLowerCase() + type.slice(1)
+}
 </script>
 
 <style scoped>

@@ -33,12 +33,6 @@
           </hint-tooltip>
         </th>
         <th>
-          Last Known Round
-          <hint-tooltip>
-            {{ stateChannelsHints.lastKnownRound }}
-          </hint-tooltip>
-        </th>
-        <th>
           Last Updated
           <hint-tooltip>
             {{ stateChannelsHints.lastUpdated }}
@@ -78,7 +72,6 @@
         </td>
         <td>{{ channel.updateCount }}</td>
         <td>{{ channel.locked }}</td>
-        <td>{{ channel.lastRound }}</td>
         <td>
           <div>
             {{ channel.updatedHeight }}

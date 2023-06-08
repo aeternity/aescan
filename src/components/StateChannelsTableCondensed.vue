@@ -86,19 +86,6 @@
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
             <app-tooltip>
-              Last Known Round
-              <template #tooltip>
-                {{ stateChannelsHints.lastKnownRound }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="state-channels-table-condensed__data">
-            {{ channel.lastRound }}
-          </td>
-        </tr>
-        <tr class="state-channels-table-condensed__row">
-          <th class="state-channels-table-condensed__header">
-            <app-tooltip>
               Last Updated
               <template #tooltip>
                 {{ stateChannelsHints.lastUpdated }}

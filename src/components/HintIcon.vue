@@ -1,7 +1,7 @@
 <template>
   <app-icon
     name="question"
-    :size="16"
+    :size="17"
     class="hint-icon"/>
 </template>
 <script setup>

@@ -2,9 +2,24 @@
   <table>
     <thead>
       <tr>
-        <th>Data</th>
-        <th>Highest Bid</th>
-        <th>Expires</th>
+        <th>
+          Data
+          <hint-tooltip>
+            {{ namesHints.nameAndHighestBidder }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Highest Bid
+          <hint-tooltip>
+            {{ namesHints.bid }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Expires
+          <hint-tooltip>
+            {{ namesHints.ends }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -48,6 +63,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
+import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

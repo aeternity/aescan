@@ -65,10 +65,11 @@
 </template>
 
 <script setup>
-import { accountHints } from '../utils/hints/accountHints'
+import { accountHints } from '@/utils/hints/accountHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   accountTransactions: {

@@ -68,6 +68,7 @@
 
 <script setup>
 import AppLink from '@/components/AppLink'
+import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { accountHints } from '@/utils/hints/accountHints'

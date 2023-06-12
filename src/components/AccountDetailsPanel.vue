@@ -111,7 +111,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { accountHints } from '../utils/hints/accountHints'
+import { accountHints } from '@/utils/hints/accountHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'

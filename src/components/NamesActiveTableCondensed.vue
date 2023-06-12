@@ -102,7 +102,7 @@
 </template>
 
 <script setup>
-import { namesHints } from '../utils/hints/namesHints'
+import { namesHints } from '@/utils/hints/namesHints'
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import DatetimeLabel from '@/components/DatetimeLabel'

@@ -40,7 +40,7 @@ function loadNextEvents() {
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
-  await fetchOracleEvents(`/v2/oracles/${route.params.id}/responses?limit=${limit.value}`)
+  fetchOracleEvents(`/v2/oracles/${route.params.id}/responses?limit=${limit.value}`)
 }
 </script>
 

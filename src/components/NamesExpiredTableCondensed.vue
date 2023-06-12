@@ -84,7 +84,7 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { namesHints } from '~/utils/hints/namesHints'
+import { namesHints } from '@/utils/hints/namesHints'
 
 defineProps({
   names: {

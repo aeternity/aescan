@@ -12,6 +12,6 @@ export const tokenHints = {
   amount: 'Amount of the tokens held by its owner.',
   percentage: 'Percentage of the token supply held by the account.',
   hash: 'Transaction hash of the event.',
-  eventName: 'Name of the event. The "N/A" value means that it\'s a not part of the standard AEX-9 interface.',
+  eventName: 'Name of the event. The "N/A" value means that it\'s not a part of the standard AEX-9 interface.',
   date: 'Estimated date, time, and block height of the transaction.',
 }

@@ -151,7 +151,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       }
 
       // sometimes delta stats are not yet available on keyblock message, so retry fetching them again
-      if (deltaStats.value === null) {
+      if (selectedDeltaStats.value === null) {
         await fetchDeltaStats()
       }
 

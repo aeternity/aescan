@@ -47,8 +47,8 @@
 
             <footer-list
               class="footer__footer-list"
-              title="Join the community"
-              :links="links.community"/>
+              title="Developers"
+              :links="links.developers"/>
           </div>
         </div>
       </div>
@@ -76,9 +76,11 @@ const links = {
     { label: 'Terms of Service', url: '/terms-of-service' },
     { label: 'Privacy Policy', url: '/privacy-policy' },
   ],
-  community: [
-    { label: 'Contribute in the Forum', url: 'https://forum.aeternity.com' },
+  developers: [
+    { label: 'Middleware API documentation', url: 'https://api-docs.aeternity.io' },
+    { label: 'Node API documentation', url: 'https://api-docs.aeternity.io' },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
+    { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
   ],
 }
 </script>

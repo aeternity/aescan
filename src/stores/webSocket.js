@@ -4,7 +4,7 @@ import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public
-  const { processSocketMessage, resetMessageBuffer } = useRecentBlocksStore()
+  const { processSocketMessage } = useRecentBlocksStore()
 
   const webSocket = shallowRef()
   const isSubscribedToKeyblockDetails = ref(false)
@@ -15,11 +15,9 @@ export const useWebSocket = defineStore('webSocket', () => {
     }
 
     if (newValue) {
-      webSocket.value.send('{"op":"Subscribe", "payload": "MicroBlocks"}')
-      webSocket.value.send('{"op":"Subscribe", "payload": "Transactions"}')
+      webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "MicroBlocks"}')
     } else {
-      webSocket.value.send('{"op":"Unsubscribe", "payload": "MicroBlocks"}')
-      webSocket.value.send('{"op":"Unsubscribe", "payload": "Transactions"}')
+      webSocket.value.send('{"op":"Unsubscribe", "source": "node", "payload": "MicroBlocks"}')
     }
   })
 
@@ -37,18 +35,15 @@ export const useWebSocket = defineStore('webSocket', () => {
   }
 
   function openWebSocket() {
-    webSocket.value.send('{"op":"Subscribe", "payload": "KeyBlocks"}')
+    webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "KeyBlocks"}')
 
     if (isSubscribedToKeyblockDetails.value) {
-      webSocket.value.send('{"op":"Subscribe", "payload": "MicroBlocks"}')
-      webSocket.value.send('{"op":"Subscribe", "payload": "Transactions"}')
+      webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "MicroBlocks"}')
     }
 
     webSocket.value.onmessage = event => {
       processWebSocketData(event.data)
     }
-
-    resetMessageBuffer()
   }
 
   async function processWebSocketData(data) {

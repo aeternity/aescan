@@ -26,4 +26,5 @@ export const transactionsHints = {
   gAAttachTx: 'Converts Plain Account into a Generalized Account by attaching code to it. Then the new "meta_tx" is used to interact with the Generalized Account.',
   gAMetaTx: 'Wraps transaction data into a smart contract call. It wraps a "normal" transaction with "auth_data" for a Generalized Account.',
   payingForTx: 'Covers the fees for another user. It wraps any kind of other transaction types.',
+  round: 'Round',
 }

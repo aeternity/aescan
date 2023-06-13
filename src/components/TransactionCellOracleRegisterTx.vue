@@ -3,9 +3,14 @@
     :hash="transactionData.oracle_id"
     :link-to="`/oracles/${transactionData.oracle_id}`"/>
 
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.fee)) }}
-  </app-chip>
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ formatAePrice(formatAettosToAe(transactionData.fee)) }}
+    </app-chip>
+    <template #tooltip>
+      FEE
+    </template>
+  </app-tooltip>
 </template>
 
 <script setup>

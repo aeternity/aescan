@@ -3,9 +3,14 @@
     :hash="transactionData.oracle_id"
     :link-to="`/oracles/${transactionData.oracle_id}`"/>
 
-  <app-chip size="sm">
-    {{ transactionData.oracle_ttl.value }}
-  </app-chip>
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ transactionData.oracle_ttl.value }}
+    </app-chip>
+    <template #tooltip>
+      TTL
+    </template>
+  </app-tooltip>
 </template>
 
 <script setup>

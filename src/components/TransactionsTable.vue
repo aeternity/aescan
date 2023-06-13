@@ -42,7 +42,7 @@
         <td class="transactions-table__data">
           {{ transaction.type }}
           <hint-tooltip>
-            {{ transactionsHints[getHintKey(transaction.type)] }}
+            {{ transactionsHints[transaction.hintKey] }}
           </hint-tooltip>
         </td>
         <td class="transactions-table__data">
@@ -68,10 +68,6 @@ defineProps({
     required: true,
   },
 })
-
-function getHintKey(type) {
-  return type.charAt(0).toLowerCase() + type.slice(1)
-}
 </script>
 
 <style scoped>

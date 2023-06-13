@@ -43,6 +43,7 @@ export function adaptTransactions(transactions) {
       created: DateTime.fromMillis(transaction.micro_time),
       type: transaction.tx.type,
       data: transaction.tx,
+      hintKey: transaction.tx.type.charAt(0).toLowerCase() + transaction.tx.type.slice(1),
     }
   })
   return {

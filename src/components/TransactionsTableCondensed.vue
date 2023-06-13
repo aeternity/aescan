@@ -41,7 +41,7 @@
             <app-tooltip>
               Type
               <template #tooltip>
-                {{ transactionsHints[getHintKey(transaction.type)] }}
+                {{ transactionsHints[transaction.hintKey] }}
               </template>
             </app-tooltip>
           </th>
@@ -69,7 +69,7 @@ import { contractsHints } from '@/utils/hints/contractsHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { transactionsHints } from '~/utils/hints/transactionsHints'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({
   transactions: {
@@ -77,10 +77,6 @@ defineProps({
     required: true,
   },
 })
-
-function getHintKey(type) {
-  return type.charAt(0).toLowerCase() + type.slice(1)
-}
 </script>
 
 <style scoped>

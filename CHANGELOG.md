@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.2](https://github.com/aeternity/aescan/compare/0.2.1...0.2.2) (2023-06-13)
+
+
+### Features
+
+* api docs links ([#310](https://github.com/aeternity/aescan/issues/310)) ([e723ef4](https://github.com/aeternity/aescan/commit/e723ef41e967af6ed68e807952a2600c0b1ce94c))
+
+
+### Bug Fixes
+
+* release porting ci ([#281](https://github.com/aeternity/aescan/issues/281)) ([9a253ff](https://github.com/aeternity/aescan/commit/9a253ff9f3793bc828205019941de968ddf59525))
+
 ## [0.2.1](https://github.com/aeternity/aescan/compare/0.2.0...0.2.1) (2023-05-30)
 
 

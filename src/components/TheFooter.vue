@@ -77,8 +77,8 @@ const links = {
     { label: 'Privacy Policy', url: '/privacy-policy' },
   ],
   developers: [
-    { label: 'Middleware API documentation', url: 'https://api-docs.aeternity.io' },
     { label: 'Node API documentation', url: 'https://api-docs.aeternity.io' },
+    { label: 'Middleware API documentation', url: 'https://mainnet.aeternity.io/mdw/swagger/index.html?version=v2' },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
     { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
   ],

@@ -1,6 +1,6 @@
 export const transactionsHints = {
   hash: 'Unique identifier of the transaction.',
-  created: 'Estimated date, time, and block height when the transaction has been sent.',
+  created: 'Block height and estimated date and time when the transaction has been sent.',
   type: 'The type of the transaction depends on its purpose in the Æternity ecosystem.',
   spendTx: 'Basic transfer of tokens.',
   contractCallTx: 'Calls the functions of the existing contract.',
@@ -24,7 +24,6 @@ export const transactionsHints = {
   channelSnapshotSoloTx: 'Provides a snapshot of the recent off-chain state to be recorded on-chain.',
   channelForceProgressTx: 'Transition the channel into the locked state for the next "lock_period" blocks.',
   gAAttachTx: 'Converts Plain Account into a Generalized Account by attaching code to it. Then the new "meta_tx" is used to interact with the Generalized Account.',
-  gAMetaTx: 'Wraps transaction data into a smart contract call. It wraps a "normal" transaction with "auth_data" for a Generalized Account.',
+  gAMetaTx: 'Wraps transaction data into a smart contract call. For a Generalized Account it wraps a "normal" transaction with "auth_data".',
   payingForTx: 'Covers the fees for another user. It wraps any kind of other transaction types.',
-  round: 'Round',
 }

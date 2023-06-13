@@ -1,10 +1,10 @@
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/46789227/220656060-996be170-90b6-4f4d-99d2-0b0083c09fe3.png" width="200px" />
-</p>
+<a href="https://aescan.io">
+    <p align="center">
+        <img src="https://user-images.githubusercontent.com/46789227/220656060-996be170-90b6-4f4d-99d2-0b0083c09fe3.png" width="200px" />
+    </p>
+</a>
 
-<p align="center">
-æScan is a blockchain explorer, analytics platform, and decentralized smart contract navigation platform based on æternity.
-
+<a href="https://aescan.io">æScan</a> is a blockchain explorer, analytics platform, and decentralized smart contract navigation platform based on æternity.
 </p>
 
 ## Table of contents
@@ -92,12 +92,12 @@ Three different deployment stages are available to test or use æScan:
     </tr>
     <tr>
         <td>Production</td>
-        <td>https://aescan.prd.aepps.com/</td>
+        <td>https://aescan.io</td>
         <td>Production environment deployed manually from the main branch by creating a release branch and merging an automatically created Release Pull Request.</td>
     </tr>
     <tr>
         <td>Development</td>
-        <td>https://aescan.dev.aepps.com/</td>
+        <td>https://aescan.dev.aepps.com</td>
         <td>Development environment deployed automatically after every push to the develop branch.</td>
     </tr>
     <tr>

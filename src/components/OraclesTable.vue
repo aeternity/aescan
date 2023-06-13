@@ -58,11 +58,11 @@
 </template>
 
 <script setup>
-import { oraclesHints } from '../utils/hints/oraclesHints'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
-import HintTooltip from '~/components/HintTooltip'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   oracles: {

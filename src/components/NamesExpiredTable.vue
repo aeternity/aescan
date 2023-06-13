@@ -2,10 +2,30 @@
   <table class="names-expired-table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Expired</th>
-        <th>Last Buyer</th>
-        <th>Last Owner</th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ namesHints.name }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Expired
+          <hint-tooltip>
+            {{ namesHints.expired }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last Buyer
+          <hint-tooltip>
+            {{ namesHints.lastBuyer }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last Owner
+          <hint-tooltip>
+            {{ namesHints.lastOwner }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -54,6 +74,7 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { namesHints } from '@/utils/hints/namesHints'
 
 defineProps({
   names: {

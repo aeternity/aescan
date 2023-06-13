@@ -49,7 +49,7 @@
 <script setup>
 
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
-import { tokenHints } from '~/utils/hints/tokensHints'
+import { tokenHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokens: {

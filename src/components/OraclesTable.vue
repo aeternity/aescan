@@ -2,10 +2,30 @@
   <table class="oracles-table">
     <thead>
       <tr>
-        <th>Oracle ID</th>
-        <th>Registered</th>
-        <th>Expiration</th>
-        <th>Query Fee</th>
+        <th>
+          Oracle ID
+          <hint-tooltip>
+            {{ oraclesHints.oracleId }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Registered
+          <hint-tooltip>
+            {{ oraclesHints.oracleRegistered }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Expiration
+          <hint-tooltip>
+            {{ oraclesHints.oracleExpiration }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Query Fee
+          <hint-tooltip>
+            {{ oraclesHints.queryFee }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -38,9 +58,11 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   oracles: {

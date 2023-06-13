@@ -53,7 +53,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import TokenEventsDataCell from '~/components/TokenEventsDataCell.vue'
+import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
 
 defineProps({
   tokenEvents: {

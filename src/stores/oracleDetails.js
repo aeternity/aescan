@@ -61,6 +61,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchOracleEvents(queryParameters = null) {
+    rawEvents.value = null
     const defaultParameters = `/v2/oracles/${oracleId.value}/responses`
 
     try {

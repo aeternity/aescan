@@ -4,7 +4,7 @@ export const stateChannelsHints = {
   participants: 'Initiator is the account that created the State Channel via ChannelCreateTx.',
   onChainUpdates: 'Amount of on-chain transactions within the State Channel.',
   locked: 'Currently deposited amount to the State Channel by its participants.',
-  lastUpdated: 'Estimated date, time, and block height of the last interaction with the State Channel.',
+  lastUpdated: 'Block height and estimated date and time of the last interaction with the State Channel.',
   lastTxType: 'Last transaction\'s type of the State Channel.',
   
   createTransaction: 'Create transaction refers to the transaction that initialized the State Channel.',

@@ -1,20 +1,20 @@
 <template>
-  <app-chip
-    ref="container"
-    :variant="!isCopyAnimationActive ? 'primary' : 'success'"
-    class="copy-chip">
-    <div class="copy-chip__text">
-      {{ textToDisplay }}
-    </div>
+  <div class="copy-chip">
+    <app-chip
+      ref="container"
+      :variant="!isCopyAnimationActive ? 'primary' : 'success'">
+      <div class="copy-chip__text">
+        {{ textToDisplay }}
+      </div>
 
-    <app-copy-button
-      v-show="!isCopyAnimationActive"
-      :clipboard-text="clipboardText || label"
-      variant="light"
-      class="copy-chip__copy-button"
-      @copy:started="activateCopyAnimation"
-      @copy:ended="deactivateCopyAnimation"/>
-  </app-chip>
+      <app-copy-button
+        v-show="!isCopyAnimationActive"
+        :clipboard-text="clipboardText || label"
+        variant="light"
+        @copy:started="activateCopyAnimation"
+        @copy:ended="deactivateCopyAnimation"/>
+    </app-chip>
+  </div>
 </template>
 
 <script setup>

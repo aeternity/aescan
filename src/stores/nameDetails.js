@@ -5,20 +5,20 @@ import { adaptName, adaptNameActions } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useNameDetailsStore = defineStore('nameDetails', () => {
-  const { blockHeight, selectedKeyblock } = storeToRefs(useRecentBlocksStore())
+  const { blockHeight, keyblocks } = storeToRefs(useRecentBlocksStore())
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
   const rawName = ref(null)
   const rawNameActions = ref(null)
 
   const name = computed(() => {
-    return rawName.value ? adaptName(rawName.value, blockHeight.value, selectedKeyblock.value?.time) : null
+    return rawName.value ? adaptName(rawName.value, blockHeight.value, keyblocks.value?.[0].time) : null
   })
   const nameHash = computed(() => {
     return rawName.value?.hash || rawName.value?.info.last_bid.tx.name_id
   })
   const nameActions = computed(() => {
-    return rawNameActions.value ? adaptNameActions(rawNameActions.value) : null
+    return rawNameActions.value ? adaptNameActions(rawNameActions.value, blockHeight.value) : null
   })
   const hasNameHistory = computed(() => {
     return !!nameHash.value

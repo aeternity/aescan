@@ -5,14 +5,9 @@
 
   <transaction-arrow-right-icon/>
 
-  <app-tooltip>
-    <value-hash-ellipsed
-      :hash="transactionData.channel_id"
-      :link-to="`/state-channels/${transactionData.channel_id}`"/>
-    <template #tooltip>
-      {{ contractsHints.hash }}
-    </template>
-  </app-tooltip>
+  <value-hash-ellipsed
+    :hash="transactionData.channel_id"
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 
   <app-tooltip>
     <app-chip size="sm">

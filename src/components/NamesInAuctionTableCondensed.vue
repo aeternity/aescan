@@ -7,7 +7,12 @@
       <tbody>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            Name
+            <app-tooltip>
+              Name
+              <template #tooltip>
+                {{ namesHints.nameInAuction }}
+              </template>
+            </app-tooltip>
           </th>
           <td
             class="names-in-auction-table-condensed__data">
@@ -20,7 +25,12 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            Expires
+            <app-tooltip>
+              Ends
+              <template #tooltip>
+                {{ namesHints.ends }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-in-auction-table-condensed__data">
             <div>
@@ -31,7 +41,12 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            Highest Bid
+            <app-tooltip>
+              Highest Bid
+              <template #tooltip>
+                {{ namesHints.highestBid }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-in-auction-table-condensed__data">
             <value-hash-ellipsed
@@ -45,7 +60,12 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            Bid Count
+            <app-tooltip>
+              Bid Count
+              <template #tooltip>
+                {{ namesHints.highestBid }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-in-auction-table-condensed__data">
             {{ name.bidCount }}
@@ -62,6 +82,7 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { namesHints } from '@/utils/hints/namesHints'
 
 defineProps({
   names: {

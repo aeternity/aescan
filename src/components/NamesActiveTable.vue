@@ -3,11 +3,36 @@
     <table class="names-active-table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Expires</th>
-          <th>Buyer</th>
-          <th>Owner</th>
-          <th>Points To</th>
+          <th>
+            Name
+            <hint-tooltip>
+              {{ namesHints.name }}
+            </hint-tooltip>
+          </th>
+          <th>
+            Expires
+            <hint-tooltip>
+              {{ namesHints.expires }}
+            </hint-tooltip>
+          </th>
+          <th>
+            Buyer
+            <hint-tooltip>
+              {{ namesHints.buyer }}
+            </hint-tooltip>
+          </th>
+          <th>
+            Owner
+            <hint-tooltip>
+              {{ namesHints.owner }}
+            </hint-tooltip>
+          </th>
+          <th>
+            Points To
+            <hint-tooltip>
+              {{ namesHints.pointsTo }}
+            </hint-tooltip>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -57,6 +82,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '@/utils/hints/namesHints'
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'

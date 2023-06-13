@@ -128,7 +128,6 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   /* HANDLING COMMUNICATION OVER WEBSOCKET */
 
   async function processSocketMessage(message) {
-    console.log(message)
     switch (message.subscription) {
     case 'KeyBlocks':
       fetchDeltaStats()
@@ -136,10 +135,24 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     case 'MicroBlocks':
       fetchTotalTransactionsCount()
       await fetchKeyblocks()
-      await fetchSelectedKeyblockMicroblocks(selectedKeyblock.value.hash)
 
-      if (isFirstMicroblockSelected.value && isFirstKeyblockSelected.value) {
-        await fetchSelectedMicroblockTransactions()
+      try {
+        await fetchSelectedKeyblockMicroblocks(selectedKeyblock.value.hash + '1')
+
+        if (isFirstMicroblockSelected.value && isFirstKeyblockSelected.value) {
+          await fetchSelectedMicroblockTransactions()
+        }
+      } catch (error) {
+        // ignore 400 errors when fetching data by a non-existing microblock
+        // as they are caused by microforks
+        if (error?.response.status !== 400) {
+          throw error
+        }
+      }
+
+      // sometimes delta stats are not yet available on keyblock message, so retry fetching them again
+      if (deltaStats.value === null) {
+        await fetchDeltaStats()
       }
 
       break

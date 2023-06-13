@@ -23,7 +23,7 @@ import { storeToRefs } from 'pinia'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsTable from '@/components/OracleEventsTable'
 import OracleEventsTableCondensed from '@/components/OracleEventsTableCondensed'
-import DataFailedState from '~/components/DataFailedState'
+import DataFailedState from '@/components/DataFailedState'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)

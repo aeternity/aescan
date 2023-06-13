@@ -74,7 +74,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { contractsHints } from '~/utils/hints/contractsHints'
+import { contractsHints } from '@/utils/hints/contractsHints'
 
 defineProps({
   contracts: {

@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import TokenEventsDataCell from '~/components/TokenEventsDataCell.vue'
+import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
 
 defineProps({
   tokenEvents: {

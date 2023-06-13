@@ -50,7 +50,7 @@
 
 <script setup>
 import { formatNumber } from '@/utils/format'
-import { tokensHints } from '~/utils/hints/tokensHints'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokenHolders: {

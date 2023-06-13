@@ -59,11 +59,11 @@
   </table>
 </template>
 <script setup>
-import { contractsHints } from '~/utils/hints/contractsHints'
+import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import HashSymbol from '@/components/HashSymbol'
-import HintTooltip from '~/components/HintTooltip'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   contracts: {

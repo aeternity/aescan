@@ -2,9 +2,24 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Expires</th>
-        <th>Points To</th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ accountHints.name }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Expires
+          <hint-tooltip>
+            {{ accountHints.expires }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Points To
+          <hint-tooltip>
+            {{ accountHints.pointsTo }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +53,8 @@
 import AppLink from '@/components/AppLink'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { accountHints } from '@/utils/hints/accountHints'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   accountNames: {

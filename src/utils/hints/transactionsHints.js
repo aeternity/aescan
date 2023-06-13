@@ -2,7 +2,7 @@ export const transactionsHints = {
   hash: 'Unique identifier of the transaction.',
   created: 'Estimated date, time, and block height when the transaction has been sent.',
   type: 'The type of the transaction depends on its purpose in the Æternity ecosystem.',
-  spendTx: 'Basic transaction to transfer tokens.',
+  spendTx: 'Basic transfer of tokens.',
   contractCallTx: 'Calls the functions of the existing contract.',
   contractCreateTx: 'Creates the contract.',
   oracleRegisterTx: 'Registers an existing account as the Oracle.',

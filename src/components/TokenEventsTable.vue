@@ -5,19 +5,19 @@
         <th>
           Hash
           <hint-tooltip>
-            {{ tokenHints.hash }}
+            {{ tokensHints.hash }}
           </hint-tooltip>
         </th>
         <th>
           Name
           <hint-tooltip>
-            {{ tokenHints.eventName }}
+            {{ tokensHints.eventName }}
           </hint-tooltip>
         </th>
         <th>
           Date
           <hint-tooltip>
-            {{ tokenHints.date }}
+            {{ tokensHints.date }}
           </hint-tooltip>
         </th>
         <th>Data</th>
@@ -55,7 +55,7 @@
 
 <script setup>
 
-import { tokenHints } from '@/utils/hints/tokensHints'
+import { tokensHints } from '@/utils/hints/tokensHints'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
 
 defineProps({

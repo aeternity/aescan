@@ -5,19 +5,19 @@
         <th>
           Account
           <hint-tooltip>
-            {{ tokenHints.account }}
+            {{ tokensHints.account }}
           </hint-tooltip>
         </th>
         <th>
           Amount
           <hint-tooltip>
-            {{ tokenHints.amount }}
+            {{ tokensHints.amount }}
           </hint-tooltip>
         </th>
         <th>
           Percentage
           <hint-tooltip>
-            {{ tokenHints.percentage }}
+            {{ tokensHints.percentage }}
           </hint-tooltip>
         </th>
       </tr>
@@ -50,7 +50,7 @@
 
 <script setup>
 import { formatNumber } from '@/utils/format'
-import { tokenHints } from '~/utils/hints/tokensHints'
+import { tokensHints } from '~/utils/hints/tokensHints'
 
 defineProps({
   tokenHolders: {

@@ -17,7 +17,7 @@
           <th class="token-details-panel__table-header">
             Name
             <hint-tooltip>
-              {{ tokenHints.tokenName }}
+              {{ tokensHints.tokenName }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
@@ -30,7 +30,7 @@
           <th class="token-details-panel__table-header">
             Price
             <hint-tooltip>
-              {{ tokenHints.price }}
+              {{ tokensHints.price }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
@@ -43,7 +43,7 @@
           <th class="token-details-panel__table-header">
             Market cap
             <hint-tooltip>
-              {{ tokenHints.marketCap }}
+              {{ tokensHints.marketCap }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
@@ -54,7 +54,7 @@
           <th class="token-details-panel__table-header">
             Total supply
             <hint-tooltip>
-              {{ tokenHints.totalSupply }}
+              {{ tokensHints.totalSupply }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
@@ -65,7 +65,7 @@
           <th class="token-details-panel__table-header">
             Smart Contract ID
             <hint-tooltip>
-              {{ tokenHints.smartContractId }}
+              {{ tokensHints.smartContractId }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
@@ -83,7 +83,7 @@
           <th class="token-details-panel__table-header">
             Decimals
             <hint-tooltip>
-              {{ tokenHints.decimals }}
+              {{ tokensHints.decimals }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
@@ -94,7 +94,7 @@
           <th class="token-details-panel__table-header">
             Extensions
             <hint-tooltip>
-              {{ tokenHints.extensions }}
+              {{ tokensHints.extensions }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data token-details-panel__data--extensions">
@@ -111,7 +111,7 @@
           <th class="token-details-panel__table-header">
             API links
             <hint-tooltip>
-              {{ tokenHints.apiLinks }}
+              {{ tokensHints.apiLinks }}
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
@@ -146,7 +146,7 @@ import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
-import { tokenHints } from '~/utils/hints/tokensHints'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())

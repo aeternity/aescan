@@ -10,7 +10,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ tokenHints.hash }}
+                {{ tokensHints.hash }}
               </template>
             </app-tooltip>
           </th>
@@ -25,7 +25,7 @@
             <app-tooltip>
               Name
               <template #tooltip>
-                {{ tokenHints.eventName }}
+                {{ tokensHints.eventName }}
               </template>
             </app-tooltip>
           </th>
@@ -38,7 +38,7 @@
             <app-tooltip>
               Date
               <template #tooltip>
-                {{ tokenHints.date }}
+                {{ tokensHints.date }}
               </template>
             </app-tooltip>
           </th>
@@ -69,6 +69,7 @@
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokenEvents: {

@@ -10,7 +10,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ contractsHints.hash }}
+                {{ transactionsHints.hash }}
               </template>
             </app-tooltip>
           </th>
@@ -25,7 +25,7 @@
             <app-tooltip>
               Created
               <template #tooltip>
-                {{ contractsHints.created }}
+                {{ transactionsHints.created }}
               </template>
             </app-tooltip>
           </th>
@@ -41,12 +41,17 @@
             <app-tooltip>
               Type
               <template #tooltip>
-                {{ transactionsHints[transaction.hintKey] }}
+                {{ transactionsHints.type }}
               </template>
             </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
-            {{ transaction.type }}
+            <app-tooltip>
+              {{ transaction.type }}
+              <template #tooltip>
+                {{ transactionsHints[transaction.hintKey] }}
+              </template>
+            </app-tooltip>
           </td>
         </tr>
         <tr class="transactions-table-condensed__row">
@@ -65,7 +70,6 @@
 </template>
 
 <script setup>
-import { contractsHints } from '@/utils/hints/contractsHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'

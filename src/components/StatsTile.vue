@@ -63,7 +63,6 @@ defineProps({
 
   &__tooltip {
     margin-left: var(--space-0);
-    height: 21px;
   }
 
   &__slot {

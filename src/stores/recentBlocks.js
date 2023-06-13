@@ -137,7 +137,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       await fetchKeyblocks()
 
       try {
-        await fetchSelectedKeyblockMicroblocks(selectedKeyblock.value.hash + '1')
+        await fetchSelectedKeyblockMicroblocks(selectedKeyblock.value.hash)
 
         if (isFirstMicroblockSelected.value && isFirstKeyblockSelected.value) {
           await fetchSelectedMicroblockTransactions()

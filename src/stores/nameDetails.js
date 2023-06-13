@@ -18,7 +18,7 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     return rawName.value?.hash || rawName.value?.info.last_bid.tx.name_id
   })
   const nameActions = computed(() => {
-    return rawNameActions.value ? adaptNameActions(rawNameActions.value) : null
+    return rawNameActions.value ? adaptNameActions(rawNameActions.value, blockHeight.value) : null
   })
   const hasNameHistory = computed(() => {
     return !!nameHash.value

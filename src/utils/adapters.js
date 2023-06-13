@@ -246,21 +246,26 @@ export function adaptName(name, blockHeight, blockTime) {
   return formattedName
 }
 
-export function adaptNameActions(transactions) {
-  const formattedData = transactions.data
-    .map(transaction => {
+export function adaptNameActions(actions, blockHeight) {
+  const formattedData = actions.data
+    .map(action => {
       return {
-        type: transaction.type,
-        hash: transaction.payload.source_tx_hash || transaction.payload.call_tx_hash || transaction.payload.hash,
-        createdHeight: transaction.payload.block_height || transaction.height,
-        created: DateTime.fromMillis(transaction.payload.micro_time),
+        type: action.type,
+        hash: action.payload.source_tx_hash || action.payload.call_tx_hash || action.payload.hash,
+        createdHeight: action.payload.block_height || action.height,
+        created: action.payload?.micro_time
+          ? DateTime.fromMillis(action.payload.micro_time)
+          : formatBlockDiffAsDatetime(
+            action.payload.block_height || action.height,
+            blockHeight,
+          ),
       }
     })
 
   return {
-    next: transactions.next,
+    next: actions.next,
     data: formattedData,
-    prev: transactions.prev,
+    prev: actions.prev,
   }
 }
 
@@ -490,7 +495,6 @@ export function adaptStateChannels(channels, blockHeight) {
         responder: channel.responder,
         updateCount: channel.updates_count,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
-        lastRound: channel.round,
         updated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight),
         updatedHeight: channel.last_updated_height,
         updateType: channel.last_updated_tx_type,

@@ -59,7 +59,7 @@
   </div>
 </template>
 <script setup>
-import { tokenHints } from '../utils/hints/tokensHints'
+import { tokenHints } from '@/utils/hints/tokensHints'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({

@@ -54,8 +54,9 @@
 </template>
 
 <script setup>
-import { tokenHints } from '../utils/hints/tokensHints'
-import TokenEventsDataCell from '~/components/TokenEventsDataCell.vue'
+
+import { tokenHints } from '@/utils/hints/tokensHints'
+import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
 
 defineProps({
   tokenEvents: {

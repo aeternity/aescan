@@ -74,7 +74,7 @@
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
-import { oraclesHints } from '~/utils/hints/oraclesHints'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 defineProps({
   oracles: {

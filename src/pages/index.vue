@@ -86,7 +86,7 @@ import DashboardStateChannelsPanel from '@/components/DashboardStateChannelsPane
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
 import { useWebSocket } from '@/stores/webSocket'
-import { useDashboardStateChannelsStore } from '~/stores/dashboardStateChannels'
+import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 
 const {
   fetchSelectedMicroblocksInfo,

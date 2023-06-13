@@ -490,7 +490,6 @@ export function adaptStateChannels(channels, blockHeight) {
         responder: channel.responder,
         updateCount: channel.updates_count,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
-        lastRound: channel.round,
         updated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight),
         updatedHeight: channel.last_updated_height,
         updateType: channel.last_updated_tx_type,

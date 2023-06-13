@@ -4,7 +4,7 @@
       Query Details
     </div>
     <dl>
-      <dt>
+      <dt class="oracle-events-query-panel__label">
         Query ID:
         <hint-tooltip>
           {{ oraclesHints.queryId }}
@@ -12,7 +12,7 @@
       </dt>
       <dd>{{ event.queryId }}</dd>
 
-      <dt>
+      <dt class="oracle-events-query-panel__label">
         Query Fee:
         <hint-tooltip>
           {{ oraclesHints.queryFee }}
@@ -20,7 +20,7 @@
       </dt>
       <dd>{{ formatAePrice(event.queryFee) }}</dd>
 
-      <dt>
+      <dt class="oracle-events-query-panel__label">
         Query:
         <hint-tooltip>
           {{ oraclesHints.queryContent }}
@@ -30,7 +30,7 @@
         {{ event.query }}
       </dd>
 
-      <dt>
+      <dt class="oracle-events-query-panel__label">
         Response TTL:
         <hint-tooltip>
           {{ oraclesHints.responseTtl }}
@@ -38,7 +38,7 @@
       </dt>
       <dd>{{ event.responseTtl }}</dd>
 
-      <dt>
+      <dt class="oracle-events-query-panel__label">
         Response:
         <hint-tooltip>
           {{ oraclesHints.response }}
@@ -75,6 +75,10 @@ defineProps({
     font-weight: 700;
     letter-spacing: 0.015em;
     margin-bottom: var(--space-1);
+  }
+
+  &__label {
+    height: 16px;
   }
 
   &__description {

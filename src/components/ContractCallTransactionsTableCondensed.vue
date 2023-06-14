@@ -40,7 +40,9 @@
           Entry point
         </th>
         <td class="contract-call-transactions-table-condensed__data">
-          <app-chip v-if="transaction.data.function" size="sm">
+          <app-chip
+            v-if="transaction.data.function"
+            size="sm">
             {{ transaction.data.function }}
           </app-chip>
           <template v-else>

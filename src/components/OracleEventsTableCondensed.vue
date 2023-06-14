@@ -10,7 +10,7 @@
             <app-tooltip>
               Query Tx
               <template #tooltip>
-                {{ oraclesHints.eventTransactionHash }}
+                {{ oraclesHints.queryTx }}
               </template>
             </app-tooltip>
           </th>
@@ -43,7 +43,7 @@
             <app-tooltip>
               Respond Tx
               <template #tooltip>
-                {{ oraclesHints.queryRespondTx }}
+                {{ oraclesHints.respondTx }}
               </template>
             </app-tooltip>
           </th>

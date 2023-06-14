@@ -17,7 +17,7 @@
         <th>
           Respond Tx
           <hint-tooltip>
-            {{ oraclesHints.queryRespondTx }}
+            {{ oraclesHints.respondTx }}
           </hint-tooltip>
         </th>
       </tr>

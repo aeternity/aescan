@@ -18,35 +18,23 @@
   </app-chip>
 
   <transaction-arrow-right-icon/>
-  <app-chip size="sm">
-    <value-hash-ellipsed :hash="transactionData.channel_id"/>
-  </app-chip>
+
+  <value-hash-ellipsed
+    :hash="transactionData.channel_id"
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 </template>
 
-<script>
+<script setup>
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import TransactionPlusIcon from '@/components/TransactionPlusIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellChannelCreateTx',
-  components: {
-    ValueHashEllipsed,
-    TransactionPlusIcon,
-    TransactionArrowRightIcon,
-    AppChip,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
 </script>

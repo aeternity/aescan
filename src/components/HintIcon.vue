@@ -1,21 +1,17 @@
 <template>
   <app-icon
     name="question"
-    :size="19"
+    :size="17"
     class="hint-icon"/>
 </template>
-<script>
+<script setup>
 import AppIcon from '@/components/AppIcon'
-
-export default {
-  name: 'HintIcon',
-  components: { AppIcon },
-}
 </script>
 
 <style scoped>
 .hint-icon {
-  color: var(--color-error);
+  margin-bottom: 2px;
+  color: var(--color-midnight-25);
   cursor: help;
 }
 </style>

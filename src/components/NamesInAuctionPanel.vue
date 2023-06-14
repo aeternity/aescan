@@ -17,34 +17,24 @@
   </app-panel>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import PaginatedContent from '@/components/PaginatedContent'
 import NamesInAuctionTable from '@/components/NamesInAuctionTable'
 import NamesInAuctionTableCondensed from '@/components/NamesInAuctionTableCondensed'
 import { useNamesStore } from '@/stores/names'
 
-export default {
-  name: 'NamesInAuctionPanel',
-  components: {
-    NamesInAuctionTable,
-    NamesInAuctionTableCondensed,
-    AppPanel,
-    PaginatedContent,
-  },
-  computed: {
-    ...mapState(useNamesStore, ['inAuctionNames']),
-  },
-  methods: {
-    ...mapActions(useNamesStore, ['fetchInAuctionNames']),
-    loadPrevNames() {
-      this.fetchInAuctionNames({ queryParameters: this.inAuctionNames.prev })
-    },
-    loadNextNames() {
-      this.fetchInAuctionNames({ queryParameters: this.inAuctionNames.next })
-    },
-  },
+const namesStore = useNamesStore()
+const { fetchInAuctionNames } = namesStore
+const { inAuctionNames } = storeToRefs(namesStore)
+
+function loadPrevNames() {
+  fetchInAuctionNames({ queryParameters: inAuctionNames.value.prev })
+}
+
+function loadNextNames() {
+  fetchInAuctionNames({ queryParameters: inAuctionNames.value.next })
 }
 </script>
 

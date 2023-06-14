@@ -1,6 +1,6 @@
 <template>
   <app-tooltip
-    :skidding="120"
+    :skidding="60"
     has-fixed-width>
     <span class="hint-tooltip__icon">
       <hint-icon/>
@@ -11,22 +11,14 @@
   </app-tooltip>
 </template>
 
-<script>
+<script setup>
 import HintIcon from '@/components/HintIcon'
 import AppTooltip from '@/components/AppTooltip'
-
-export default {
-  name: 'HintTooltip',
-  components: {
-    HintIcon,
-    AppTooltip,
-  },
-}
 </script>
 
 <style scoped>
 .hint-tooltip__icon {
-  height: 25px;
+  line-height: 0;
   display: inline-block;
   vertical-align: middle;
 }

@@ -6,7 +6,9 @@
           Channel id
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          {{ formatNullable(transactionData.channel_id) }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -84,27 +86,16 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAePrice, formatAettosToAe } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableChannelCreateTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatNullable,
-  },
-}
+})
 </script>
 
 <style scoped>
@@ -116,6 +107,7 @@ export default {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-15);
   }
+
   &__data {
     word-wrap: break-word;
     text-align: right;

@@ -4,14 +4,8 @@
     class="transaction-plus-icon"/>
 </template>
 
-<script>
+<script setup>
 import AppIcon from '@/components/AppIcon'
-
-export default {
-  name: 'TransactionPlusIcon',
-  components: { AppIcon },
-}
-
 </script>
 
 <style scoped>

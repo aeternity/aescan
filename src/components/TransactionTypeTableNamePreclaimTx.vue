@@ -15,21 +15,15 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'TransactionTypeTableNamePreclaimTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

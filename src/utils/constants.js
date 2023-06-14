@@ -51,6 +51,9 @@ export const APP_CREATOR = '@aeternity'
 export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
 export const CACHE_KEY_MARKET_DATA = 'aeternity-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
+export const VISIBLE_KEYBLOCKS_LIMIT = 18
+export const VISIBLE_MICROBLOCKS_LIMIT = 30
+export const VISIBLE_TRANSACTIONS_LIMIT = 4
 
 export const TOKEN_SUPPLY_ACI = [
   {

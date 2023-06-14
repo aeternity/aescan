@@ -6,7 +6,9 @@
           Channel id
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
-          {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
@@ -57,26 +59,16 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableChannelCloseMutualTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
 </script>
 
 <style scoped>

@@ -34,21 +34,17 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import HashSymbol from '@/components/HashSymbol'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'NameHistoryTable',
-  components: { ValueHashEllipsed, DatetimeLabel, HashSymbol },
-  props: {
-    actions: {
-      type: Object,
-      required: true,
-    },
+defineProps({
+  actions: {
+    type: Object,
+    required: true,
   },
-}
+})
 </script>
 
 <style scoped>

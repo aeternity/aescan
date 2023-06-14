@@ -35,15 +35,16 @@
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
 
-      <app-link
-        to="https://github.com/aeternity/aescan"
+      <div
         :class="[
-          'header__link',
-          { 'header__link--open': isNavigationOpen }]">
-        <app-button class="header__button">
+          'header__button-container',
+          { 'header__button-container--open': isNavigationOpen }]">
+        <app-button
+          class="header__button"
+          to="https://github.com/aeternity/aescan">
           Contribute
         </app-button>
-      </app-link>
+      </div>
     </div>
     <div class="header__survey">
       Help us improve aeScan.
@@ -56,7 +57,7 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import TheNavigation from '@/components/TheNavigation'
 import AppLink from '@/components/AppLink'
 import AppIcon from '@/components/AppIcon'
@@ -64,35 +65,25 @@ import AppButton from '@/components/AppButton'
 import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
 
-export default {
-  name: 'TheHeader',
-  components: { NetworkSelect, AppIcon, AppLink, TheNavigation, AppButton },
-  data: () => ({
-    isNavigationOpen: false,
-  }),
-  watch: {
-    $route() {
-      this.closeNavigation()
-    },
-  },
-  mounted() {
-    if (isDesktop()) {
-      window.addEventListener('resize', this.closeNavigation)
-    }
-  },
-  beforeUnmount() {
-    if (isDesktop()) {
-      window.removeEventListener('resize', this.closeNavigation)
-    }
-  },
-  methods: {
-    toggleNavigation() {
-      this.isNavigationOpen = !this.isNavigationOpen
-    },
-    closeNavigation() {
-      this.isNavigationOpen = false
-    },
-  },
+const isNavigationOpen = ref(false)
+
+onMounted(() => {
+  if (isDesktop()) {
+    window.addEventListener('resize', closeNavigation())
+  }
+})
+
+onBeforeUnmount(() => {
+  if (isDesktop()) {
+    window.removeEventListener('resize', closeNavigation())
+  }
+})
+
+function toggleNavigation() {
+  isNavigationOpen.value = !isNavigationOpen.value
+}
+function closeNavigation() {
+  isNavigationOpen.value = false
 }
 </script>
 
@@ -166,7 +157,7 @@ export default {
     margin-left: var(--space-1);
   }
 
-  &__link {
+  &__button-container {
     display: none;
     flex-basis: 100%;
     justify-content: center;

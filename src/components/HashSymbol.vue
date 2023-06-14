@@ -3,11 +3,6 @@
     <slot/>
   </div>
 </template>
-<script>
-export default {
-  name: 'HashSymbol',
-}
-</script>
 
 <style scoped>
 .hash-symbol {

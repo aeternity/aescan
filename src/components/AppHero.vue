@@ -27,10 +27,8 @@ import TheSearchBar from '@/components/TheSearchBar'
 import StatsPanel from '@/components/StatsPanel'
 import MarketStats from '@/components/MarketStats'
 
-const config = useRuntimeConfig()
-
-const selectedNetwork = ref(config.public.NETWORK_NAME.toLowerCase())
-
+const { NETWORK_NAME } = useRuntimeConfig().public
+const selectedNetwork = ref(NETWORK_NAME.toLowerCase())
 </script>
 
 <style scoped>

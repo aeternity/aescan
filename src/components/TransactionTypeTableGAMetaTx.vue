@@ -46,48 +46,25 @@
   </table>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
 import { decode } from '@aeternity/aepp-sdk'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 import AppLink from '@/components/AppLink'
-import { useTransactionDetailsStore } from '@/stores/transactionDetails'
 
-export default {
-  name: 'TransactionPanelGaMetaTx',
-  components: {
-    AppLink,
+const props = defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  computed: {
-    ...mapState(useTransactionDetailsStore, ['contractId']),
-    innerTransactionDetails() {
-      return this.transactionData.tx.tx
-    },
-    payload() {
-      return formatNullable(decode(this.innerTransactionDetails.payload).toString())
-    },
-  },
-  watch: {
-    transactionData: {
-      immediate: true,
-      handler() {
-        this.fetchContractIdByAccountId(this.transactionData.ga_id)
-      },
-    },
-  },
-  methods: {
-    ...mapActions(useTransactionDetailsStore, ['fetchContractIdByAccountId']),
-    formatNullable,
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
+
+const innerTransactionDetails = computed(() =>
+  props.transactionData.tx.tx,
+)
+
+const payload = computed(() =>
+  formatNullable(decode(innerTransactionDetails.value.payload).toString()),
+)
 </script>
 
 <style scoped>

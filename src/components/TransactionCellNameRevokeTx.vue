@@ -10,21 +10,17 @@
   </span>
 </template>
 
-<script>
+<script setup>
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'TransactionCellNameRevokeTx',
-  components: { AppLink, ValueHashEllipsed, TransactionArrowRightIcon },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>
 
 <style scoped>

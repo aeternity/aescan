@@ -7,7 +7,12 @@
       <tbody>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Name
+            <app-tooltip>
+              Name
+              <template #tooltip>
+                {{ accountHints.name }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="account-names-table-condensed__data">
             <app-link
@@ -19,7 +24,12 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Expires
+            <app-tooltip>
+              Expires
+              <template #tooltip>
+                {{ accountHints.expires }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="account-names-table-condensed__data">
             <div>
@@ -30,7 +40,12 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            Points To
+            <app-tooltip>
+              Points To
+              <template #tooltip>
+                {{ accountHints.pointsTo }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="account-names-table-condensed__data">
             <template v-if="name.pointers.length">
@@ -51,21 +66,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
+import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { accountHints } from '@/utils/hints/accountHints'
 
-export default {
-  name: 'AccountNamesTableCondensed',
-  components: { DatetimeLabel, AppLink, ValueHashEllipsed },
-  props: {
-    accountNames: {
-      type: Object,
-      default: null,
-    },
+defineProps({
+  accountNames: {
+    type: Object,
+    default: null,
   },
-}
+})
 </script>
 
 <style scoped>

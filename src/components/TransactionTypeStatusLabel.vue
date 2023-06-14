@@ -9,23 +9,14 @@
   </template>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import { formatNullable } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeStatusLabel',
-  components: {
-    AppChip,
+defineProps({
+  status: {
+    type: String,
+    default: null,
   },
-  props: {
-    status: {
-      type: String,
-      default: null,
-    },
-  },
-  methods: {
-    formatNullable,
-  },
-}
+})
 </script>

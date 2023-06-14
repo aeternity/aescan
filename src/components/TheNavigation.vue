@@ -30,24 +30,20 @@
         </app-link>
       </li>
       <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            Oracles
-          </app-link>
-        </coming-soon-tooltip>
+        <app-link
+          class="navigation__link"
+          to="/oracles"
+          @click="$emit('link-clicked')">
+          Oracles
+        </app-link>
       </li>
       <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            State Channels
-          </app-link>
-        </coming-soon-tooltip>
+        <app-link
+          class="navigation__link"
+          to="/state-channels"
+          @click="$emit('link-clicked')">
+          State Channels
+        </app-link>
       </li>
       <li class="navigation__item">
         <coming-soon-tooltip>
@@ -63,14 +59,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import ComingSoonTooltip from '@/components/ComingSoonTooltip'
 
-export default {
-  name: 'TheNavigation',
-  components: { AppLink, ComingSoonTooltip },
-}
+defineEmits(['link-clicked'])
 </script>
 
 <style scoped>

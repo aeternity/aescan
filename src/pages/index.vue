@@ -70,7 +70,7 @@
               Learn more
             </app-link>
           </p>
-          <state-channels-panel class="dashboard__state-channels-panel"/>
+          <dashboard-state-channels-panel class="dashboard__dashboard-state-channels-panel"/>
         </div>
       </div>
     </div>
@@ -78,12 +78,15 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import NamesPanel from '@/components/NamesPanel'
 import AuctionsPanel from '@/components/AuctionsPanel'
 import BlockchainPanel from '@/components/BlockchainPanel'
-import StateChannelsPanel from '@/components/StateChannelsPanel'
+import DashboardStateChannelsPanel from '@/components/DashboardStateChannelsPanel'
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
+import { useWebSocket } from '@/stores/webSocket'
+import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 
 const {
   fetchSelectedMicroblocksInfo,
@@ -94,8 +97,14 @@ const {
   fetchMaxTps,
   fetchTotalTransactionsCount,
 } = useBlockchainStatsStore()
-const { fetchStateChannels } = useStateChannelsStore()
+const { fetchStateChannels } = useDashboardStateChannelsStore()
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+const webSocketStore = useWebSocket()
+const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)
+
+definePageMeta({
+  layout: 'empty',
+})
 
 await useAsyncData(() => Promise.all([
   fetchStateChannels(),
@@ -111,6 +120,14 @@ await useAsyncData(() => Promise.all([
   fetchTotalTransactionsCount(),
   fetchDeltaStats(),
 ]), { server: false })
+
+onBeforeMount(() => {
+  isSubscribedToKeyblockDetails.value = true
+})
+onBeforeUnmount(() => {
+  isSubscribedToKeyblockDetails.value = false
+})
+
 </script>
 
 <style scoped>
@@ -165,7 +182,7 @@ await useAsyncData(() => Promise.all([
     }
   }
 
-  &__state-channels-panel {
+  &__dashboard-state-channels-panel {
     margin-bottom: 120px;
   }
 

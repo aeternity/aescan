@@ -6,7 +6,9 @@
           Channel id
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
-          {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
@@ -51,21 +53,15 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'TransactionTypeTableChannelSnapshotSoloTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

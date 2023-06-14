@@ -32,6 +32,9 @@
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             Balance
+            <hint-tooltip>
+              {{ accountHints.balance }}
+            </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
             {{ formatAePrice(accountDetails.balance, null) }}
@@ -40,6 +43,9 @@
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             Value
+            <hint-tooltip>
+              {{ accountHints.value }}
+            </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
             {{ sanitizedPrice }}
@@ -48,6 +54,9 @@
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             Transactions
+            <hint-tooltip>
+              {{ accountHints.transactions }}
+            </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
@@ -56,6 +65,9 @@
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             AENS Names
+            <hint-tooltip>
+              {{ accountHints.aensNames }}
+            </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
             {{ formatNumber(accountDetails.namesCount) }}
@@ -64,6 +76,9 @@
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             Nonce
+            <hint-tooltip>
+              {{ accountHints.nonce }}
+            </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
             {{ accountDetails.nonce }}
@@ -72,6 +87,9 @@
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             API links
+            <hint-tooltip>
+              {{ accountHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
             <div class="account-details-panel__container">
@@ -91,46 +109,35 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
+import { accountHints } from '@/utils/hints/accountHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
+import HintTooltip from '@/components/HintTooltip'
 
-export default {
-  components: {
-    AppPanel,
-    CopyChip,
-    AppIcon,
-    AppLink,
+const { price } = storeToRefs(useMarketStatsStore())
+const { NODE_URL } = useRuntimeConfig().public
+
+const props = defineProps({
+  accountDetails: {
+    type: Object,
+    required: true,
   },
-  props: {
-    accountDetails: {
-      type: Object,
-      required: true,
-    },
-  },
-  computed: {
-    ...mapState(useMarketStatsStore, ['price']),
-    accountNodeUrl() {
-      return `${this.$config.public.NODE_URL}/v3/accounts/${this.accountDetails.id}`
-    },
-    sanitizedPrice() {
-      return this.price
-        ? `$${formatNullable(formatNumber(this.accountDetails.balance * this.price, 0, 2))}`
-        : '---'
-    },
-  },
-  methods: {
-    formatNumber,
-    formatNullable,
-    formatAePrice,
-    formatEllipseHash,
-  },
-}
+})
+
+const accountNodeUrl = computed(() =>
+  `${NODE_URL}/v3/accounts/${props.accountDetails.id}`,
+)
+const sanitizedPrice = computed(() =>
+  price.value
+    ? `$${formatNullable(formatNumber(props.accountDetails.balance * price.value, 0, 2))}`
+    : '---',
+)
 </script>
 
 <style scoped>

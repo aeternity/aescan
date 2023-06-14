@@ -14,19 +14,15 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import AppChip from '@/components/AppChip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellContractCallTx',
-  components: { ValueHashEllipsed, AppChip, TransactionArrowRightIcon },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>

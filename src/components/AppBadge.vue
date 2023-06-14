@@ -4,12 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'AppBadge',
-}
-</script>
-
 <style scoped>
 .badge {
   display: flex;

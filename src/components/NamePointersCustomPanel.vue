@@ -2,6 +2,9 @@
   <app-panel class="name-pointers-custom-panel">
     <h2 class="name-pointers-custom-panel__heading h3">
       CUSTOM POINTERS
+      <hint-tooltip>
+        {{ namesHints.customPointers }}
+      </hint-tooltip>
     </h2>
     <table>
       <tbody>
@@ -30,6 +33,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { namesHints } from '~/utils/hints/namesHints'
+import HintTooltip from '~/components/HintTooltip'
 import AppPanel from '@/components/AppPanel'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

@@ -2,9 +2,24 @@
   <table>
     <thead>
       <tr>
-        <th>Hash</th>
-        <th>Name</th>
-        <th>Date</th>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ tokensHints.hash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ tokensHints.eventName }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Date
+          <hint-tooltip>
+            {{ tokensHints.date }}
+          </hint-tooltip>
+        </th>
         <th>Data</th>
       </tr>
     </thead>
@@ -39,6 +54,8 @@
 </template>
 
 <script setup>
+
+import { tokensHints } from '@/utils/hints/tokensHints'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
 
 defineProps({

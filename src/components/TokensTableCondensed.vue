@@ -10,7 +10,7 @@
             <app-tooltip>
               Symbol
               <template #tooltip>
-                {{ tokenHints.tokenSymbol }}
+                {{ tokensHints.tokenSymbol }}
               </template>
             </app-tooltip>
           </th>
@@ -31,7 +31,7 @@
             <app-tooltip>
               Name
               <template #tooltip>
-                {{ tokenHints.tokenName }}
+                {{ tokensHints.tokenName }}
               </template>
             </app-tooltip>
           </th>
@@ -44,7 +44,7 @@
             <app-tooltip>
               Smart Contract ID
               <template #tooltip>
-                {{ tokenHints.tokenContractId }}
+                {{ tokensHints.smartContractId }}
               </template>
             </app-tooltip>
           </th>
@@ -59,7 +59,7 @@
   </div>
 </template>
 <script setup>
-import { tokenHints } from '@/utils/hints/tokensHints'
+import { tokensHints } from '@/utils/hints/tokensHints'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({

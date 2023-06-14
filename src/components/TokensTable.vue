@@ -5,19 +5,19 @@
         <th>
           Symbol
           <hint-tooltip>
-            {{ tokenHints.tokenSymbol }}
+            {{ tokensHints.tokenSymbol }}
           </hint-tooltip>
         </th>
         <th>
           Name
           <hint-tooltip>
-            {{ tokenHints.tokenName }}
+            {{ tokensHints.tokenName }}
           </hint-tooltip>
         </th>
         <th>
           Smart Contract ID
           <hint-tooltip>
-            {{ tokenHints.tokenContractId }}
+            {{ tokensHints.smartContractId }}
           </hint-tooltip>
         </th>
       </tr>
@@ -49,7 +49,7 @@
 <script setup>
 
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
-import { tokenHints } from '@/utils/hints/tokensHints'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokens: {

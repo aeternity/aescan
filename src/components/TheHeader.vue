@@ -28,8 +28,7 @@
       <the-navigation
         :class="[
           'header__navigation',
-          { 'header__navigation--open': isNavigationOpen }]"
-        @link-clicked="closeNavigation"/>
+          { 'header__navigation--open': isNavigationOpen }]"/>
 
       <network-select
         :class="[

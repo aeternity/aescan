@@ -26,7 +26,7 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:model-value'])
+const emit = defineEmits(['update:modelValue'])
 
 const activeTabIndex = props.modelValue ? useVModel(props, 'modelValue', emit) : ref(0)
 const tabs = ref([])

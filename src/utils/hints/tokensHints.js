@@ -2,7 +2,7 @@ export const tokensHints = {
   tokenSymbol: 'Non-unique symbol of the token.',
   tokenName: 'Full name of the token.',
   smartContractId: 'Identifier of the Smart Contract that implements the AEX-9 interface.',
-  supplyAmount: 'Inital supply of tokens.',
+  supplyAmount: 'Initial supply of tokens.',
   price: 'Fiat price of the token.',
   marketCap: 'Total market value of the token calculated by multiplying the current price by the total circulating supply.',
   totalSupply: 'Amount of tokens minted.',

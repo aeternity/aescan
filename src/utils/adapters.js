@@ -385,7 +385,7 @@ export function adaptListedTokens(tokens) {
         name: token.name,
         symbol: token.symbol,
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
-        amount: token.amount,
+        amount: formatNumber(Number(BigInt(token.amount))),
       }
     })
 

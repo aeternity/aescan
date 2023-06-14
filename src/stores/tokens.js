@@ -50,8 +50,8 @@ export const useTokensStore = defineStore('tokens', () => {
 
   async function appendTokenSupply(data) {
     return await Promise.all(data.map(async token => {
-      const supply = await fetchTotalSupply(token.address)
-      return { ...token, amount: supply }
+      const amount = await fetchTotalSupply(token.address)
+      return { ...token, amount }
     }))
   }
 

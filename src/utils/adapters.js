@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
+import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNumber } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(chainName) {
@@ -379,13 +379,13 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
 
 export function adaptListedTokens(tokens) {
   const formattedData = tokens
-    .filter(token => token.listed === true)
     .map(token => {
       return {
         contract_id: token.address,
         name: token.name,
         symbol: token.symbol,
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
+        amount: token.amount,
       }
     })
 
@@ -393,6 +393,25 @@ export function adaptListedTokens(tokens) {
     next: null,
     data: formattedData,
     prev: null,
+  }
+}
+
+export function adaptAllTokens(tokens) {
+  const formattedData = tokens.data
+    .map(token => {
+      return {
+        contract_id: token.contract_id,
+        name: token.name,
+        symbol: token.symbol,
+        isAe: token.contract_id === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
+        amount: formatNumber(token.initial_supply),
+      }
+    })
+
+  return {
+    next: tokens.next,
+    data: formattedData,
+    prev: tokens.prev,
   }
 }
 

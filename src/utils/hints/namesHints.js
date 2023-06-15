@@ -23,8 +23,8 @@ export const namesHints = {
   eventTransactionHash: 'Transaction hash of the Name event.',
   eventTime: 'Block height and estimated date and time when the event was triggered.',
   activity: 'Type of event that was triggered.',
-  recentlyActivatedData: 'The Name and its owner who recently activated it. Depending on the length a Name is activated either through an auction or by direct acquisition.',
-  activationPrice: 'Amount of AE tokens than have been burned during Name activation.',
+  recentlyActivatedData: 'The Name and its owner who recently activated it. If the name is shorter than 13 characters, it was bought at an auction.',
+  activationPrice: 'Amount of AE tokens paid for the Name activation.',
   activationTime: 'Block height and estimated date and time when the Name was activated.',
   nameAndHighestBidder: 'Auctioned Name and its highest bidder.',
 }

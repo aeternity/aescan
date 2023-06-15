@@ -2,7 +2,7 @@ export const transactionsHints = {
   hash: 'Unique identifier of the transaction.',
   created: 'Block height and estimated date and time when the transaction was sent.',
   type: 'The type of the transaction depends on its purpose in the æternity ecosystem.',
-  spendTx: 'Transfer AE from one account to another.',
+  spendTx: 'Transfers AE from one account to another.',
   contractCallTx: 'Executes a function call of a deployed Smart Contract.',
   contractCreateTx: 'Deploys a new Smart Contract.',
   oracleRegisterTx: 'Registers an existing account as the Oracle.',

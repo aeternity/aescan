@@ -6,4 +6,6 @@ export const stateChannelsHints = {
   locked: 'Currently deposited amount to the State Channel by its participants.',
   lastUpdated: 'Block height and estimated date and time of the last interaction with the State Channel.',
   lastTxType: 'Last transaction\'s type of the State Channel.',
+  initiator: 'Initiator is the account that created the State Channel via ChannelCreateTx.',
+  responder: 'The participating account that joined the State Channel.',
 }

@@ -2,12 +2,42 @@
   <table>
     <thead>
       <tr>
-        <th>State Channel ID</th>
-        <th>Participants</th>
-        <th>On-chain Updates</th>
-        <th>Locked</th>
-        <th>Last Updated</th>
-        <th>Last TX type</th>
+        <th>
+          State Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Participants
+          <hint-tooltip>
+            {{ stateChannelsHints.participants }}
+          </hint-tooltip>
+        </th>
+        <th>
+          On-Chain Updates
+          <hint-tooltip>
+            {{ stateChannelsHints.onChainUpdates }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Locked
+          <hint-tooltip>
+            {{ stateChannelsHints.locked }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last Updated
+          <hint-tooltip>
+            {{ stateChannelsHints.lastUpdated }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last TX type
+          <hint-tooltip>
+            {{ stateChannelsHints.lastTxType }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -64,6 +94,7 @@ import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 </script>

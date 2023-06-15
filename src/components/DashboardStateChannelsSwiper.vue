@@ -5,7 +5,12 @@
         <tbody>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              State Channel ID
+              <app-tooltip>
+                State Channel ID
+                <template #tooltip>
+                  {{ stateChannelsHints.stateChannelId }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <value-hash-ellipsed
@@ -15,7 +20,12 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              Initiator
+              <app-tooltip>
+                Initiator
+                <template #tooltip>
+                  {{ stateChannelsHints.initiator }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <value-hash-ellipsed
@@ -25,7 +35,12 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              Responder
+              <app-tooltip>
+                Responder
+                <template #tooltip>
+                  {{ stateChannelsHints.responder }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <value-hash-ellipsed
@@ -35,7 +50,12 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              On-chain updates
+              <app-tooltip>
+                On-Chain Updates
+                <template #tooltip>
+                  {{ stateChannelsHints.onChainUpdates }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               {{ channel.updateCount }}
@@ -43,7 +63,12 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              Locked
+              <app-tooltip>
+                Locked
+                <template #tooltip>
+                  {{ stateChannelsHints.locked }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               {{ formatAePrice(channel.amount) }}
@@ -51,7 +76,12 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              Last updated
+              <app-tooltip>
+                Last Updated
+                <template #tooltip>
+                  {{ stateChannelsHints.lastUpdated }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               {{ channel.updatedHeight }} -
@@ -59,7 +89,14 @@
             </td>
           </tr>
           <tr>
-            <th>Type</th>
+            <th>
+              <app-tooltip>
+                Last TX type
+                <template #tooltip>
+                  {{ stateChannelsHints.lastTxType }}
+                </template>
+              </app-tooltip>
+            </th>
             <td class="dashboard-state-channels-swiper__data">
               {{ channel.updateType }}
             </td>
@@ -77,6 +114,7 @@ import { formatAePrice } from '@/utils/format'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 </script>

@@ -34,17 +34,6 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
-
-      <div
-        :class="[
-          'header__button-container',
-          { 'header__button-container--open': isNavigationOpen }]">
-        <app-button
-          class="header__button"
-          to="https://github.com/aeternity/aescan">
-          Contribute
-        </app-button>
-      </div>
     </div>
     <div class="header__survey">
       Help us improve aeScan.
@@ -61,7 +50,6 @@
 import TheNavigation from '@/components/TheNavigation'
 import AppLink from '@/components/AppLink'
 import AppIcon from '@/components/AppIcon'
-import AppButton from '@/components/AppButton'
 import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
 
@@ -82,6 +70,7 @@ onBeforeUnmount(() => {
 function toggleNavigation() {
   isNavigationOpen.value = !isNavigationOpen.value
 }
+
 function closeNavigation() {
   isNavigationOpen.value = false
 }
@@ -126,6 +115,7 @@ function closeNavigation() {
     @media (--desktop) {
       flex-basis: auto;
       display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -147,7 +137,7 @@ function closeNavigation() {
     display: flex;
     margin-left: auto;
     cursor: pointer;
-    color: var(--color-black);
+    color: var(--color-midnight);
     @media (--desktop) {
       display: none;
     }
@@ -155,31 +145,6 @@ function closeNavigation() {
 
   &__icon {
     margin-left: var(--space-1);
-  }
-
-  &__button-container {
-    display: none;
-    flex-basis: 100%;
-    justify-content: center;
-    margin-top: var(--space-2);
-
-    &--open {
-      display: flex;
-    }
-
-    @media (--desktop) {
-      display: flex;
-      flex-basis: auto;
-      margin-top: 0;
-    }
-  }
-
-  &__button {
-    padding: var(--space-3) 91px;
-
-    @media (--desktop) {
-      padding: var(--space-3) var(--space-5) !important;
-    }
   }
 
   &__survey {

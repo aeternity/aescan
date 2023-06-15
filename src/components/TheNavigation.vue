@@ -49,6 +49,16 @@
             class="navigation__link navigation__link--disabled"
             target="_self"
             to="#">
+            NFTs
+          </app-link>
+        </coming-soon-tooltip>
+      </li>
+      <li class="navigation__item">
+        <coming-soon-tooltip>
+          <app-link
+            class="navigation__link navigation__link--disabled"
+            target="_self"
+            to="#">
             Hyperchains
           </app-link>
         </coming-soon-tooltip>
@@ -68,7 +78,7 @@ import ComingSoonTooltip from '@/components/ComingSoonTooltip'
   flex-direction: column;
 
   @media (--desktop) {
-    gap: var(--space-3);
+    gap: var(--space-5);
     flex-direction: row;
   }
 

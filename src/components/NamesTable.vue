@@ -12,7 +12,7 @@
           Price
           <hint-tooltip>
             {{ namesHints.activationPrice }}
-          </hint-tooltip>     
+          </hint-tooltip>
         </th>
         <th>
           Activated

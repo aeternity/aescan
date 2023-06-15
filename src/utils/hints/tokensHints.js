@@ -1,5 +1,17 @@
-export const tokenHints = {
+export const tokensHints = {
   tokenSymbol: 'Non-unique symbol of the token.',
   tokenName: 'Full name of the token.',
-  tokenContractId: 'Identifier of a the Smart Contract that implements AEX-9 interface.',
+  smartContractId: 'Identifier of the Smart Contract that implements the AEX-9 interface.',
+  price: 'Fiat price of the token.',
+  marketCap: 'Total market value of the token calculated by multiplying the current price by the total circulating supply.',
+  totalSupply: 'Amount of tokens minted.',
+  decimals: 'The decimal granularity of each token.',
+  extensions: 'Properties of the token.',
+  apiLinks: 'Links to sources of the token data.',
+  account: 'Account of the token holder.',
+  amount: 'Amount of the tokens held by its owner.',
+  percentage: 'Percentage of the token supply held by the account.',
+  hash: 'Transaction hash of the event.',
+  eventName: 'Name of the event. The "N/A" value means that it\'s not a part of the standard AEX-9 interface.',
+  date: 'Block height and estimated date and time of the transaction.',
 }

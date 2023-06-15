@@ -42,10 +42,6 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     transactionsCount.value = data
   }
 
-  function increaseTransactionsCounter() {
-    transactionsCount.value += 1
-  }
-
   return {
     maxTps,
     transactionsCount,
@@ -60,7 +56,6 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     fetchTotalStats,
     fetchMaxTps,
     fetchTotalTransactionsCount,
-    increaseTransactionsCounter,
     totalTokenSupply,
   }
 })

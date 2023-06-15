@@ -4,48 +4,42 @@
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/transactions"
-          @click="$emit('link-clicked')">
+          to="/transactions">
           Transactions
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/names"
-          @click="$emit('link-clicked')">
+          to="/names">
           Names
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/contracts"
-          @click="$emit('link-clicked')">
+          to="/contracts">
           Smart Contracts
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/tokens"
-          @click="$emit('link-clicked')">
+          to="/tokens">
           Tokens
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/oracles"
-          @click="$emit('link-clicked')">
+          to="/oracles">
           Oracles
         </app-link>
       </li>
       <li class="navigation__item">
         <app-link
           class="navigation__link"
-          to="/state-channels"
-          @click="$emit('link-clicked')">
+          to="/state-channels">
           State Channels
         </app-link>
       </li>
@@ -66,8 +60,6 @@
 <script setup>
 import AppLink from '@/components/AppLink'
 import ComingSoonTooltip from '@/components/ComingSoonTooltip'
-
-defineEmits(['link-clicked'])
 </script>
 
 <style scoped>

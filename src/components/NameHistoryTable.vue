@@ -2,9 +2,24 @@
   <table>
     <thead>
       <tr>
-        <th>Hash</th>
-        <th>Time</th>
-        <th>Activity</th>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ namesHints.eventTransactionHash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Time
+          <hint-tooltip>
+            {{ namesHints.eventTime }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Activity
+          <hint-tooltip>
+            {{ namesHints.activity }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +52,8 @@
 <script setup>
 import HashSymbol from '@/components/HashSymbol'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
+import { namesHints } from '~/utils/hints/namesHints'
+import HintTooltip from '~/components/HintTooltip'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({

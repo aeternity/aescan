@@ -48,7 +48,7 @@ defineProps({
         background: var(--color-midnight);
         color: var(--color-white);
         border: none;
-        word-break: break-all;
+        word-break: break-word;
         /* stylelint-disable  max-nesting-depth  */
         /* as it is 3rd party component */
         @media (--desktop) {

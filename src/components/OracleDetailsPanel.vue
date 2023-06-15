@@ -19,6 +19,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Registered
+            <hint-tooltip>
+              {{ oraclesHints.oracleRegistered }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.registeredHeight }} -
@@ -28,6 +31,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Last extended
+            <hint-tooltip>
+              {{ oraclesHints.lastExtended }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastExtended">
@@ -42,6 +48,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Last query
+            <hint-tooltip>
+              {{ oraclesHints.lastQuery }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastQuery">
@@ -56,6 +65,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Expiration
+            <hint-tooltip>
+              {{ oraclesHints.oracleExpiration }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.expirationHeight }} -
@@ -66,6 +78,9 @@
           class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Query fee
+            <hint-tooltip>
+              {{ oraclesHints.queryFee }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ formatAePrice(oracleDetails.fee, null) }}
@@ -74,6 +89,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Query format
+            <hint-tooltip>
+              {{ oraclesHints.queryFormat }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.queryFormat }}
@@ -82,6 +100,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Query response
+            <hint-tooltip>
+              {{ oraclesHints.responseFormat }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.responseFormat }}
@@ -90,6 +111,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Creator
+            <hint-tooltip>
+              {{ oraclesHints.oracleCreator }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             <app-link
@@ -114,6 +138,8 @@
 
 <script setup>
 import { formatAePrice } from '@/utils/format'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
+import HintTooltip from '@/components/HintTooltip'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'

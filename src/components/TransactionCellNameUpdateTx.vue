@@ -9,9 +9,15 @@
       {{ transactionData.name }}
     </app-link>
   </span>
-  <app-chip size="sm">
-    TTL {{ transactionData.name_ttl }}
-  </app-chip>
+
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ transactionData.name_ttl }}
+    </app-chip>
+    <template #tooltip>
+      TTL
+    </template>
+  </app-tooltip>
 </template>
 
 <script setup>

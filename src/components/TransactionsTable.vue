@@ -2,9 +2,24 @@
   <table class="transactions-table__table">
     <thead>
       <tr>
-        <th>Hash</th>
-        <th>Created</th>
-        <th>Type</th>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ transactionsHints.hash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Created
+          <hint-tooltip>
+            {{ transactionsHints.created }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Type
+          <hint-tooltip>
+            {{ transactionsHints.type }}
+          </hint-tooltip>
+        </th>
         <th>Data</th>
       </tr>
     </thead>
@@ -26,6 +41,9 @@
         </td>
         <td class="transactions-table__data">
           {{ transaction.type }}
+          <hint-tooltip>
+            {{ transactionsHints[transaction.hintKey] }}
+          </hint-tooltip>
         </td>
         <td class="transactions-table__data">
           <transaction-cell
@@ -38,6 +56,7 @@
 </template>
 
 <script setup>
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'

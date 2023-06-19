@@ -5,7 +5,12 @@
         <tbody>
           <tr>
             <th class="names-swiper__header">
-              Name
+              <app-tooltip>
+                Name
+                <template #tooltip>
+                  {{ namesHints.name }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="names-swiper__data">
               <app-link
@@ -17,7 +22,12 @@
           </tr>
           <tr>
             <th class="names-swiper__header">
-              Claimed by
+              <app-tooltip>
+                Claimed by
+                <template #tooltip>
+                  {{ namesHints.owner }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="names-swiper__data">
               <value-hash-ellipsed
@@ -27,7 +37,12 @@
           </tr>
           <tr>
             <th class="names-swiper__header">
-              Price
+              <app-tooltip>
+                Price
+                <template #tooltip>
+                  {{ namesHints.activationPrice }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="names-swiper__data">
               {{ formatAePrice(name.price) }}
@@ -35,7 +50,12 @@
           </tr>
           <tr>
             <th>
-              Activated
+              <app-tooltip>
+                Activated
+                <template #tooltip>
+                  {{ namesHints.activationTime }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="names-swiper__data">
               {{ name.activatedHeight }} -
@@ -52,6 +72,7 @@ import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
+import { namesHints } from '@/utils/hints/namesHints'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'

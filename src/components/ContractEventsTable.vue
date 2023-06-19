@@ -2,21 +2,21 @@
   <table>
     <tr>
       <th>
-        Call Transaction
+        Call transaction
         <hint-tooltip>
-          {{ contractsHints.callTransactions }}
+          {{ contractsHints.eventsCallTransaction }}
         </hint-tooltip>
       </th>
       <th>
         Created
         <hint-tooltip>
-          {{ contractsHints.created }}
+          {{ contractsHints.eventsCreated }}
         </hint-tooltip>
       </th>
       <th>
-        Event Name
+        Name
         <hint-tooltip>
-          {{ contractsHints.eventsEventName }}
+          {{ contractsHints.eventsName }}
         </hint-tooltip>
       </th>
       <th>

@@ -6,7 +6,12 @@
       class="contract-events-table-condensed__table">
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Call transaction
+          <app-tooltip>
+            Call transaction
+            <template #tooltip>
+              {{ contractsHints.callTransactionsHash }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           <value-hash-ellipsed
@@ -16,7 +21,12 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Created
+          <app-tooltip>
+            Created
+            <template #tooltip>
+              {{ contractsHints.eventsCreated }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           <div>
@@ -27,7 +37,12 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Event name
+          <app-tooltip>
+            Event name
+            <template #tooltip>
+              {{ contractsHints.eventsEventName }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           {{ event.eventName ? event.eventName : 'N/A' }}
@@ -35,7 +50,12 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Arguments
+          <app-tooltip>
+            Arguments
+            <template #tooltip>
+              {{ contractsHints.eventsArguments }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           <copy-chip
@@ -56,6 +76,7 @@
   </div>
 </template>
 <script setup>
+import { contractsHints } from '../utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatEllipseHash } from '@/utils/format'

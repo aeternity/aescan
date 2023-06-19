@@ -2,10 +2,30 @@
   <table>
     <thead>
       <tr>
-        <th>Hash</th>
-        <th>Time</th>
-        <th>Caller</th>
-        <th>Entry Point</th>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ contractsHints.callTransactionsHash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Time
+          <hint-tooltip>
+            {{ contractsHints.callTransactionsTime }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Caller
+          <hint-tooltip>
+            {{ contractsHints.callTransactionsCaller }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Entry Point
+          <hint-tooltip>
+            {{ contractsHints.callTransactionsEntryPoint }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -46,6 +66,7 @@
 </template>
 
 <script setup>
+import { contractsHints } from '../utils/hints/contractsHints'
 import HashSymbol from '@/components/HashSymbol'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

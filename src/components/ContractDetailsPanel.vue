@@ -116,6 +116,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Smart Contract calls
+            <hint-tooltip>
+              {{ contractsHints.contractCalls }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             {{ contractDetails.callsCount }}
@@ -124,6 +127,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             API links
+            <hint-tooltip>
+              {{ contractsHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <div class="contract-details-panel__container">

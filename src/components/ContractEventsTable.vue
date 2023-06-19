@@ -1,10 +1,30 @@
 <template>
   <table>
     <tr>
-      <th>Call Transaction</th>
-      <th>Created</th>
-      <th>Event Name</th>
-      <th>Arguments</th>
+      <th>
+        Call Transaction
+        <hint-tooltip>
+          {{ contractsHints.callTransactions }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Created
+        <hint-tooltip>
+          {{ contractsHints.created }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Event Name
+        <hint-tooltip>
+          {{ contractsHints.eventsEventName }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Arguments
+        <hint-tooltip>
+          {{ contractsHints.eventsArguments }}
+        </hint-tooltip>
+      </th>
       <th>Data</th>
     </tr>
     <tr
@@ -38,6 +58,7 @@
 </template>
 
 <script setup>
+import { contractsHints } from '../utils/hints/contractsHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import CopyChip from '@/components/CopyChip'
 import HashSymbol from '@/components/HashSymbol'

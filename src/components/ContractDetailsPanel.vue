@@ -23,6 +23,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Create transaction
+            <hint-tooltip>
+              {{ contractsHints.contractTxHash }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
@@ -38,6 +41,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Date
+            <hint-tooltip>
+              {{ contractsHints.contractCreated }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <datetime-label :datetime="contractDetails.creationDate"/>
@@ -48,6 +54,9 @@
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Created by
+            <hint-tooltip>
+              {{ contractsHints.contractCreator }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
@@ -65,6 +74,9 @@
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Bytecode
+            <hint-tooltip>
+              {{ contractsHints.bytecode }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <copy-chip
@@ -75,6 +87,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Smart Contract’s account
+            <hint-tooltip>
+              {{ contractsHints.contractsAccount }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
@@ -90,6 +105,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Smart Contract's account balance
+            <hint-tooltip>
+              {{ contractsHints.contractsAccountBalance }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
@@ -133,6 +151,8 @@ import CopyChip from '@/components/CopyChip'
 import AppChip from '@/components/AppChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { contractsHints } from '~/utils/hints/contractsHints'
+import HintTooltip from '~/components/HintTooltip'
 
 const { NODE_URL } = useRuntimeConfig().public
 

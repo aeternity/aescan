@@ -17,18 +17,17 @@
 </template>
 
 <script setup>
-import { useVModel } from '@vueuse/core'
 
 const props = defineProps({
   modelValue: {
     type: Number,
-    default: 0,
+    default: null,
   },
 })
 
 const emit = defineEmits(['update:modelValue'])
 
-const activeTabIndex = props.modelValue ? useVModel(props, 'modelValue', emit) : ref(0)
+const activeTabIndex = ref(props.modelValue)
 const tabs = ref([])
 
 provide('registerTab', tab => tabs.value.push(tab))
@@ -45,10 +44,10 @@ onMounted(() => {
 
 function selectTab(index) {
   activeTabIndex.value = index
-
   tabs.value.forEach((tab, index) => {
     tab.isActive = index === activeTabIndex.value
   })
+  emit('update:modelValue', index)
 }
 </script>
 

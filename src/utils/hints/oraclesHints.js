@@ -1,9 +1,9 @@
 export const oraclesHints = {
   oracleId: 'Unique Oracle identifier inherited from the account address of the operator.',
-  registered: 'Block height and estimated date when the Oracle has been registered via OracleRegisterTx.',
+  registered: 'Keyblock height and estimated date when the Oracle has been registered via OracleRegisterTx.',
   expiration: 'The default lifetime of an Oracle is 500 keyblocks. The initial lifetime can be set to a higher value and an Oracle can be extended anytime, e.g. by setting up an automated service. In case the Oracle lifetime is passed, the Oracle operator can re-register it anytime.',
   queryFee: 'The default fee required to query an Oracle is 30,000 aettos and is defined by the Oracle operator when registering it. The Oracle operator can set it to any value and even allow to query the Oracle for free.',
-  lastExtended: 'Block height and estimated date when the Oracle has been extended.',
+  lastExtended: 'Keyblock height and estimated date when the Oracle has been extended.',
   lastQuery: 'Keyblock height and exact date of the last query to the Oracle.',
   queryFormat: 'Format of the Oracle query defined during the registration of the Oracle.',
   responseFormat: 'Format of the Oracle response defined during the registration of the Oracle.',

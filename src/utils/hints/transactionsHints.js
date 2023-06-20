@@ -14,7 +14,7 @@ export const transactionsHints = {
   nameClaimTx: 'Claims a name directly (only if name length is > 12 chars), triggers a new name auction or places a higher bid on an existing auction. An additional name fee needs to be provided and the amount of AE required depends on the length of the name. The name fee will be burned with the activation of the name',
   nameUpdateTx: 'Extend the lifetime of a name and/or to update the pointers of a name. Extending the lifetime of a name is free and does not require any extra fee.',
   nameTransferTx: 'Transfers the ownership of a name to another account.',
-  nameRevokeTx: 'Revokes the ownership of a name. After a fixed timeout of 2016 blocks, the Name will be available for claiming again.',
+  nameRevokeTx: 'Revokes the ownership of a name. After a fixed timeout of 2016 keyblocks, the Name will be available for claiming again.',
   channelCreateTx: 'Used by an initiator to open a State Channel with a counterparty, the responder. Both participants agree on several conditions, for example the lock period which is important to prevent malicious behavior. This transaction is co-signed by the responder. The initiator covers the fee of this transaction.',
   channelDepositTx: 'Deposits funds into the channel. A participant moves coins from the participant\'s balance to the channel\'s one. ',
   channelWithdrawTx: 'Withdraws locked coins from a State Channel.',

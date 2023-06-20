@@ -4,7 +4,7 @@ export const stateChannelsHints = {
   participants: 'Initiator is the account that paid the fees to create the State Channel. Responder is the account that joined the State Channel.',
   onChainUpdates: 'Amount of on-chain transactions related to the State Channel. Participants can for example deposit to, withdraw from or provide a snapshot of the State Channel to the chain.',
   locked: 'Current amount of AE coins deposited to the State Channel by both participants. While the State Channel is open and no snapshot is provided to the chain, only the participants know who owns a specific amount of the deposited AE coins.',
-  lastUpdated: 'Block height and estimated date and time of the last on-chain interaction with the State Channel.',
+  lastUpdated: 'Keyblock height and estimated date and time of the last on-chain interaction with the State Channel.',
   lastTxType: 'Type of the last on-chain transaction related to the State Channel.',
   createTransaction: 'The transaction that created the State Channel.',
   initialAmount: 'The total amount of AE coins that have initially been deposited to the State Channel by initiator and responder combined.',

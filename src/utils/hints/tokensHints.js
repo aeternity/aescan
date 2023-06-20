@@ -13,5 +13,5 @@ export const tokensHints = {
   percentage: 'Percentage of the token supply held by the account.',
   hash: 'Transaction hash of the event.',
   eventName: 'Name of the event. The "N/A" value means that it\'s not a part of the standard AEX-9 interface.',
-  date: 'Block height and estimated date and time of the transaction.',
+  date: 'Keyblock height and estimated date and time of the transaction.',
 }

@@ -6,7 +6,7 @@
       class="contract-events-table-condensed__table">
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Call transaction
+          Call Transaction
         </th>
         <td class="contract-events-table-condensed__data">
           <value-hash-ellipsed
@@ -27,7 +27,7 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Event name
+          Event Name
         </th>
         <td class="contract-events-table-condensed__data">
           {{ event.eventName ? event.eventName : 'N/A' }}

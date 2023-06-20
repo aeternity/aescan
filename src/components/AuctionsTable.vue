@@ -36,7 +36,7 @@
             </app-link>
           </div>
           <div>
-            <span class="auctions-table__label">Highest bidder: </span>
+            <span class="auctions-table__label">Highest Bidder: </span>
             <value-hash-ellipsed
               :link-to="`/accounts/${auction.highestBidder}`"
               :hash="auction.highestBidder"/>

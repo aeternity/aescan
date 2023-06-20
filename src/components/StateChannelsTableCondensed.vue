@@ -104,7 +104,7 @@
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
             <app-tooltip>
-              Last TX type
+              Last TX Type
               <template #tooltip>
                 {{ stateChannelsHints.lastTxType }}
               </template>

@@ -36,7 +36,7 @@
           v-if="name.bidder"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Highest bidder
+            Highest Bidder
             <hint-tooltip>
               {{ namesHints.bidder }}
             </hint-tooltip>
@@ -69,7 +69,7 @@
           v-if="isNameActive"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned since
+            Owned Since
             <hint-tooltip>
               {{ namesHints.ownedSince }}
             </hint-tooltip>

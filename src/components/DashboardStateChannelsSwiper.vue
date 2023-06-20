@@ -91,7 +91,7 @@
           <tr>
             <th>
               <app-tooltip>
-                Last TX type
+                Last TX Type
                 <template #tooltip>
                   {{ stateChannelsHints.lastTxType }}
                 </template>

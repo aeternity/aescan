@@ -39,7 +39,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Last TX type
+          Last TX Type
           <hint-tooltip>
             {{ stateChannelsHints.lastTxType }}
           </hint-tooltip>

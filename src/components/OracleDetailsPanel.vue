@@ -30,7 +30,7 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Last extended
+            Last Extended
             <hint-tooltip>
               {{ oraclesHints.lastExtended }}
             </hint-tooltip>
@@ -47,7 +47,7 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Last queried
+            Last Queried
             <hint-tooltip>
               {{ oraclesHints.lastQueried }}
             </hint-tooltip>
@@ -77,7 +77,7 @@
         <tr
           class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query fee
+            Query Fee
             <hint-tooltip>
               {{ oraclesHints.queryFee }}
             </hint-tooltip>
@@ -88,7 +88,7 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query format
+            Query Format
             <hint-tooltip>
               {{ oraclesHints.queryFormat }}
             </hint-tooltip>
@@ -99,7 +99,7 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Response format
+            Response Format
             <hint-tooltip>
               {{ oraclesHints.responseFormat }}
             </hint-tooltip>

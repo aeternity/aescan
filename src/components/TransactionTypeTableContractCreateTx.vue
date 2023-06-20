@@ -59,9 +59,9 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Gas used /
+          Gas Used /
           <wbr>
-          Gas costs
+          Gas Costs
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatNullable(transactionData.gas_used) }}

@@ -23,7 +23,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query id
+          Query ID
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ formatNullable(transactionData.query_id) }}
@@ -39,7 +39,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query fee
+          Query Fee
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.query_fee), null) }}
@@ -47,7 +47,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query Lifetime / type
+          Query TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.query_ttl.value }}
@@ -57,7 +57,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Response Lifetime / type
+          Response TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.response_ttl.value }}

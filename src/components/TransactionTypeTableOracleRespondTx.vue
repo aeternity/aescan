@@ -13,7 +13,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Query id
+          Query ID
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.query_id }}
@@ -29,7 +29,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Response Lifetime / type
+          Response TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.response_ttl.value }}

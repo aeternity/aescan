@@ -4,7 +4,7 @@
       <tr class="transaction-type-panel-channel-force-progress-tx__row">
         <th
           class="transaction-type-panel-channel-force-progress-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -46,7 +46,7 @@
       <tr class="transaction-type-panel-channel-force-progress-tx__row">
         <th
           class="transaction-type-panel-channel-force-progress-tx__table-header">
-          Forced by
+          Forced By
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">

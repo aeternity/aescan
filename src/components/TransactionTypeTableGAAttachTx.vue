@@ -31,7 +31,7 @@
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
-          Auth function
+          Auth Function
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ transactionData.auth_fun_name }}
@@ -59,9 +59,9 @@
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
-          Gas used /
+          Gas Used /
           <wbr>
-          Gas costs
+          Gas Costs
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ formatNullable(transactionData.gas_used) }}

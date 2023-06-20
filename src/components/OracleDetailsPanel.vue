@@ -20,7 +20,7 @@
           <th class="oracle-details-panel__table-header">
             Registered
             <hint-tooltip>
-              {{ oraclesHints.oracleRegistered }}
+              {{ oraclesHints.registered }}
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
@@ -47,15 +47,15 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Last query
+            Last queried
             <hint-tooltip>
-              {{ oraclesHints.lastQuery }}
+              {{ oraclesHints.lastQueried }}
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            <template v-if="oracleDetails.lastQuery">
-              {{ oracleDetails.lastQueryHeight }} -
-              <datetime-label :datetime="oracleDetails.lastQuery"/>
+            <template v-if="oracleDetails.lastQueried">
+              {{ oracleDetails.lastQueriedHeight }} -
+              <datetime-label :datetime="oracleDetails.lastQueried"/>
             </template>
             <template v-else>
               ---
@@ -66,7 +66,7 @@
           <th class="oracle-details-panel__table-header">
             Expiration
             <hint-tooltip>
-              {{ oraclesHints.oracleExpiration }}
+              {{ oraclesHints.expiration }}
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
@@ -99,7 +99,7 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query response
+            Response format
             <hint-tooltip>
               {{ oraclesHints.responseFormat }}
             </hint-tooltip>
@@ -110,9 +110,9 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Creator
+            Operator
             <hint-tooltip>
-              {{ oraclesHints.oracleCreator }}
+              {{ oraclesHints.oracleOperator }}
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">

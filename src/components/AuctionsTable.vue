@@ -36,14 +36,13 @@
             </app-link>
           </div>
           <div>
-            <span class="auctions-table__label">Last bid by: </span>
+            <span class="auctions-table__label">Highest bidder: </span>
             <value-hash-ellipsed
               :link-to="`/accounts/${auction.highestBidder}`"
               :hash="auction.highestBidder"/>
           </div>
         </td>
         <td>
-          <span class="auctions-table__label">Bid</span>
           <div class="auctions-table__value">
             {{ formatAePrice(auction.bid) }}
           </div>

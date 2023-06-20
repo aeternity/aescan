@@ -29,7 +29,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Response TTL / type
+          Response Lifetime / type
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.response_ttl.value }}

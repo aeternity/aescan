@@ -10,12 +10,9 @@
         </th>
         <th>
           Participants
-          <hint-tooltip>
-            {{ stateChannelsHints.participants }}
-          </hint-tooltip>
         </th>
         <th>
-          On-Chain Updates
+          On-Chain TXs
           <hint-tooltip>
             {{ stateChannelsHints.onChainUpdates }}
           </hint-tooltip>

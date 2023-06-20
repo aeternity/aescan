@@ -96,7 +96,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            On-chain updates
+            On-Chain TXs
             <hint-tooltip>
               {{ stateChannelsHints.onChainUpdates }}
             </hint-tooltip>

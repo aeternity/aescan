@@ -13,7 +13,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-extend-tx__row">
         <th class="transaction-type-panel-oracle-extend-tx__table-header">
-          Oracle TTL / type
+          Oracle Lifetime / type
         </th>
         <td class="transaction-type-panel-oracle-extend-tx__data">
           {{ transactionData.oracle_ttl.value }}

@@ -28,7 +28,7 @@
       </tr>
       <tr class="transaction-type-panel-name-update-tx__row">
         <th class="transaction-type-panel-name-update-tx__table-header">
-          Name TTL
+          Name Lifetime
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
           {{ transactionData.name_ttl }}

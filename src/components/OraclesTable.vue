@@ -11,13 +11,13 @@
         <th>
           Registered
           <hint-tooltip>
-            {{ oraclesHints.oracleRegistered }}
+            {{ oraclesHints.registered }}
           </hint-tooltip>
         </th>
         <th>
           Expiration
           <hint-tooltip>
-            {{ oraclesHints.oracleExpiration }}
+            {{ oraclesHints.expiration }}
           </hint-tooltip>
         </th>
         <th>

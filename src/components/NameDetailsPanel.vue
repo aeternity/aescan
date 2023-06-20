@@ -26,9 +26,9 @@
               <span class="name-details-panel__link-text">
                 {{ name.owner }}
               </span>
-              <span class="name-details-panel__link-text-ellipse">{{
-                formatEllipseHash(name.owner)
-              }}</span>
+              <span class="name-details-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.owner) }}
+              </span>
             </app-link>
           </td>
         </tr>
@@ -36,17 +36,19 @@
           v-if="name.bidder"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Last bid by
+            Highest bidder
             <hint-tooltip>
               {{ namesHints.bidder }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
-              <span class="name-details-panel__link-text">{{ name.bidder }}</span>
-              <span class="name-details-panel__link-text-ellipse">{{
-                formatEllipseHash(name.bidder)
-              }}</span>
+              <span class="name-details-panel__link-text">
+                {{ name.bidder }}
+              </span>
+              <span class="name-details-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.bidder) }}
+              </span>
             </app-link>
           </td>
         </tr>
@@ -78,7 +80,7 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ isNameExpired ? "Expired" : "Expires" }}
+            {{ isNameExpired ? "Expired" : "Ends" }}
             <hint-tooltip>
               {{ isNameExpired ? namesHints.expired : namesHints.expires }}
             </hint-tooltip>

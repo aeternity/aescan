@@ -23,7 +23,7 @@
           <tr>
             <th class="auctions-swiper__header">
               <app-tooltip>
-                Last bid by
+                Highest bidder
                 <template #tooltip>
                   {{ namesHints.bidder }}
                 </template>

@@ -60,7 +60,7 @@
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
             <app-tooltip>
-              On-Chain Updates
+              On-Chain TXs
               <template #tooltip>
                 {{ stateChannelsHints.onChainUpdates }}
               </template>

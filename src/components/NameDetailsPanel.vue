@@ -80,7 +80,7 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ isNameExpired ? "Expired" : "Ends" }}
+            {{ isNameExpired ? "Expired" : "Expires" }}
             <hint-tooltip>
               {{ isNameExpired ? namesHints.expired : namesHints.expires }}
             </hint-tooltip>

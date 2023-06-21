@@ -1,9 +1,9 @@
 export const namesHints = {
   name: 'Unique identifier that may be configured to point to accounts, smart contracts or oracles.',
   nameInAuction: 'Unique identifier that may be configured to point to accounts, contracts or oracles. names shorter than 13 characters are always auctioned.',
-  expires: 'Keyblock height and estimated date and time when the auction ends and the name will be activated and owned by the highest bidder. After expiration, the name enters into a revoked state and can be claimed again after a fixed timeout of 2016 keyblocks.',
-  buyer: 'Address of the account which paid for the name and price of the name.',
-  owner: 'Account that paid the shown price to claim the name.',
+  expires: 'Keyblock height and estimated date and time when the name will be detached from the account. After expiration, the name enters into a revoked state and can be claimed again after a fixed timeout of 2016 keyblocks.',
+  buyer: 'Account that paid the shown price to claim the name.',
+  owner: 'Owner of the name.',
   pointsTo: 'The account the name points to.',
   highestBid: 'Account of the highest bidder and the price of the highest bid. Required minimum bid increase is 5%.',
   bidCount: 'Amount of bids in the auction.',

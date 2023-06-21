@@ -4,7 +4,7 @@ export const oraclesHints = {
   expiration: 'The default lifetime of an oracle is 500 keyblocks. The initial lifetime can be set to a higher value and an oracle can be extended anytime, e.g. by setting up an automated service. In case the oracle lifetime is passed, the oracle operator can re-register it anytime.',
   queryFee: 'The default fee required to query an oracle is 30,000 aettos and is defined by the oracle operator when registering it. The oracle operator can set it to any value and even allow to query the oracle for free.',
   lastExtended: 'Keyblock height and estimated date when the oracle has been extended.',
-  lastQuery: 'Keyblock height and exact date of the last query to the oracle.',
+  lastQueried: 'Keyblock height and exact date of the last query to the oracle.',
   queryFormat: 'Format of the oracle query defined during the registration of the oracle.',
   responseFormat: 'Format of the oracle response defined during the registration of the oracle.',
   oracleOperator: 'The account that operates the oracle.',

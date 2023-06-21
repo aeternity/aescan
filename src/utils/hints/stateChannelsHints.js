@@ -6,6 +6,7 @@ export const stateChannelsHints = {
   locked: 'Current amount of AE coins deposited to the state channel by both participants. While the state channel is open and no snapshot is provided to the chain, only the participants know who owns a specific amount of the deposited AE coins.',
   lastUpdated: 'Keyblock height and estimated date and time of the last on-chain interaction with the state channel.',
   lastTxType: 'Type of the last on-chain transaction related to the state channel.',
+  apiLinks: 'Links to sources of the smart contract data.',
   createTransaction: 'The transaction that created the state channel.',
   initialAmount: 'The total amount of AE coins that have initially been deposited to the state channel by initiator and responder combined.',
   initiator: 'The account that initiated the creation of the state channel and covered the fees for its creation.',

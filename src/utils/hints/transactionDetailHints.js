@@ -1,0 +1,17 @@
+export const transactionDetailsHints = {
+  spendTxSender: 'Account that dispatched the transaction.',
+  spendTxSenderRecipient: 'Account that the transaction is transferred to.',
+  spendTxSenderAmount: 'Amount of AE that is being transferred.',
+  spendTxSenderPayload: 'Additional message attached to transaction.',
+  contractStatus: 'Status of the transaction',
+  contractSmartContract: 'Unique identifier for a smart contract instance that lives on the blockchain.',
+  contractCaller: 'Account that called the smart contract.',
+  contractAmount: 'Amount of AE coins that was transferred to smart contract address.',
+  contractEntryPoint: 'The entry point of the smart contract that has been called.',
+  contractArguments: 'Arguments that was passed to entry point call with the call.',
+  contractReturn: 'Value that has been emitted after the call to entry point.',
+  contractGasLimit: 'Maximum amount of gas that will be paid for transaction.',
+  contractGasPrice: 'Price for one unit of gas.',
+  contractGasUsed: 'Amount of gas that was paid for interaction with the smart contract.',
+  contractGasCost: 'Price in AE that was paid for interaction with the smart contract.',
+}

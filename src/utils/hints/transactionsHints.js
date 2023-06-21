@@ -27,8 +27,4 @@ export const transactionsHints = {
   gAAttachTx: 'Converts a regular, plain-old account into a generalized account by attaching a smart contract to it that has to implement a special function to authorize transactions.',
   gAMetaTx: 'This transaction type must be used in order to execute transactions for a generalized account where the authorization is handled by a smart contract. The actual transaction is wrapped and will only be executed if the provided auth data is valid according to the smart contract that verifies it.',
   payingForTx: 'Covers the fees for another user. It wraps any kind of other transaction types.',
-  spendTxSender: 'Account that dispatched the transaction.',
-  spendTxSenderRecipient: 'Account that the transaction is transferred to.',
-  spendTxSenderAmount: 'Amount of AE that is being transferred.',
-  spendTxSenderPayload: 'Additional message attached to transaction.',
 }

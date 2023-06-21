@@ -54,6 +54,7 @@ export function adaptTransactions(transactions) {
 }
 
 export function adaptContracts(contracts) {
+  console.log('contracts', contracts)
   const formattedData = contracts.data.map(contract => {
     return {
       contractId: contract.tx.contract_id,
@@ -178,6 +179,7 @@ export function adaptInAuctionNames(names, blockHeight) {
 }
 
 export function adaptExpiredNames(names, blockHeight) {
+  console.log('names', names)
   const formattedData = names.data.map(name => ({
     name: name.name,
     expirationHeight: name.info.expire_height,
@@ -295,6 +297,11 @@ export function adaptContractDetails(
   contractType,
   contractAccountBalance,
 ) {
+  console.log('rawContractInformation', rawContractInformation)
+  console.log('contractCallsCount', contractCallsCount)
+  console.log('contractCreationTx', contractCreationTx)
+  console.log('contractType', contractType)
+  console.log('contractAccountBalance', contractAccountBalance)
   return {
     id: rawContractInformation?.id,
     createTransactionHash: contractCreationTx?.hash,
@@ -309,6 +316,7 @@ export function adaptContractDetails(
 }
 
 export function adaptContractEvents(events, blockHeight) {
+  console.log('events', events)
   const formattedData = events.data
     .map(event => {
       return {

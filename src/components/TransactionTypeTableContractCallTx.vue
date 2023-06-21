@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Status
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractStatus }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           <transaction-type-status-label :status="transactionData.result"/>
@@ -12,6 +15,9 @@
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Smart Contract
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractSmartContract }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           <app-link :to="`/contracts/${transactionData.contract_id}`">
@@ -22,6 +28,9 @@
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Caller
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractCaller }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           <app-link :to="`/accounts/${transactionData.caller_id}`">
@@ -32,6 +41,9 @@
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Amount
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractAmount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
@@ -40,6 +52,9 @@
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Entry Point
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractEntryPoint }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           <app-chip>
@@ -50,6 +65,9 @@
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Arguments
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractArguments }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           {{ formatNullable(transactionData.arguments) }}
@@ -58,6 +76,9 @@
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Return
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractReturn }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           {{ formatNullable(transactionData.return) }}
@@ -65,9 +86,16 @@
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
-          Gas Limit /
+          Gas Limit
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractGasLimit }}
+          </hint-tooltip>
+          /
           <wbr>
           Gas Price
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractGasPrice }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           {{ transactionData.gas }}
@@ -77,9 +105,16 @@
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
-          Gas Used /
+          Gas Used
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractGasUsed }}
+          </hint-tooltip>
+          /
           <wbr>
           Gas Costs
+          <hint-tooltip>
+            {{ transactionDetailsHints.contractGasCost }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           {{ formatNullable(transactionData.gas_used) }}
@@ -96,6 +131,7 @@ import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 import AppChip from '@/components/AppChip'
+import { transactionDetailsHints } from '~/utils/hints/transactionDetailHints'
 
 const props = defineProps({
   transactionData: {

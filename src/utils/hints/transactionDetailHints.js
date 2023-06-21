@@ -13,6 +13,7 @@ export const transactionDetailsHints = {
   spendTxSenderPayload: 'Additional message attached to transaction.',
   contractStatus: 'Status of the transaction',
   contractSmartContract: 'Unique identifier for a smart contract instance that lives on the blockchain.',
+  contractCreator: 'Account that created the smart contract.',
   contractCaller: 'Account that called the smart contract.',
   contractAmount: 'Amount of AE coins that was transferred to smart contract address.',
   contractEntryPoint: 'The entry point of the smart contract that has been called.',

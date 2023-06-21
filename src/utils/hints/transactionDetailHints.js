@@ -1,4 +1,12 @@
 export const transactionDetailsHints = {
+  blockHeight: 'Keyblock height when the transaction was mined.',
+  blockConfirmations: 'Amount of keyblocks that was added since the transaction was produced.',
+  status: 'Status of the transaction.',
+  microblockHash: 'Microblock in which the transaction is included.',
+  time: 'Exact date and time when the transaction was mined.',
+  fee: 'Transaction fee for the transaction',
+  nonce: 'Value of the nonce for the transaction. Nonce serves as a one-time authenticator for transactions.',
+  apiLinks: 'Links to sources of the transaction data.',
   spendTxSender: 'Account that dispatched the transaction.',
   spendTxSenderRecipient: 'Account that the transaction is transferred to.',
   spendTxSenderAmount: 'Amount of AE that is being transferred.',

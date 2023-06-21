@@ -5,7 +5,7 @@ export const namesHints = {
   buyer: 'Address of the account which paid for the name and price of the name.',
   owner: 'Account that paid the shown price to claim the name.',
   pointsTo: 'The account the name points to.',
-  highestBid: 'Account of the highest bidder and the price of the highest bid.',
+  highestBid: 'Account of the highest bidder and the price of the highest bid. Required minimum bid increase is 5%.',
   bidCount: 'Amount of bids in the auction.',
   ends: 'Keyblock height and estimated date and time when the auction ends.',
   expired: 'Keyblock height and estimated date and time when the name was detached from the account. After expiration, the name entered into a revoked state and can be claimed again after a fixed timeout of 2016 keyblocks.',

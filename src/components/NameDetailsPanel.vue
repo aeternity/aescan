@@ -16,9 +16,9 @@
           v-if="name.status !== 'auction'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owner
+            {{ isNameExpired ? "Last Owner" : "Owner" }}
             <hint-tooltip>
-              {{ namesHints.owner }}
+              {{ isNameExpired ? namesHints.lastOwner : namesHints.owner }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">

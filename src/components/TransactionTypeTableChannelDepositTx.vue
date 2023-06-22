@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-channel-deposit-tx__row">
         <th class="transaction-type-panel-channel-deposit-tx__table-header">
           Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-channel-deposit-tx__row">
         <th class="transaction-type-panel-channel-deposit-tx__table-header">
           Round
+          <hint-tooltip>
+            {{ stateChannelsHints.depositRound }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           {{ transactionData.round }}
@@ -22,6 +28,9 @@
       <tr class="transaction-type-panel-channel-deposit-tx__row">
         <th class="transaction-type-panel-channel-deposit-tx__table-header">
           Depositor
+          <hint-tooltip>
+            {{ stateChannelsHints.depositor }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -30,7 +39,12 @@
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-deposit-tx__row">
-        <td>Amount</td>
+        <th class="transaction-type-panel-channel-deposit-tx__table-header">
+          Amount
+          <hint-tooltip>
+            {{ stateChannelsHints.depositAmount }}
+          </hint-tooltip>
+        </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
         </td>
@@ -40,6 +54,7 @@
 </template>
 
 <script setup>
+import { stateChannelsHints } from '../utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 

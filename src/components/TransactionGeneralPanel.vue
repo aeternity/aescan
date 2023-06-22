@@ -23,7 +23,7 @@
           <th class="transaction-general-panel__table-header">
             Keyblock Height
             <hint-tooltip>
-              {{ transactionDetailsHints.blockHeight }}
+              {{ transactionsHints.blockHeight }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -34,7 +34,7 @@
           <th class="transaction-general-panel__table-header">
             Keyblock Confirmations
             <hint-tooltip>
-              {{ transactionDetailsHints.keyblockConfirmations }}
+              {{ transactionsHints.keyblockConfirmations }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -45,7 +45,7 @@
           <th class="transaction-general-panel__table-header">
             Status
             <hint-tooltip>
-              {{ transactionDetailsHints.status }}
+              {{ transactionsHints.status }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -67,7 +67,7 @@
           <th class="transaction-general-panel__table-header">
             Microblock Hash
             <hint-tooltip>
-              {{ transactionDetailsHints.microblockHash }}
+              {{ transactionsHints.microblockHash }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -85,7 +85,7 @@
           <th class="transaction-general-panel__table-header">
             Time
             <hint-tooltip>
-              {{ transactionDetailsHints.time }}
+              {{ transactionsHints.time }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -96,7 +96,7 @@
           <th class="transaction-general-panel__table-header">
             Fee
             <hint-tooltip>
-              {{ transactionDetailsHints.fee }}
+              {{ transactionsHints.fee }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -107,7 +107,7 @@
           <th class="transaction-general-panel__table-header">
             Nonce
             <hint-tooltip>
-              {{ transactionDetailsHints.nonce }}
+              {{ transactionsHints.nonce }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -118,7 +118,7 @@
           <th class="transaction-general-panel__table-header">
             API links
             <hint-tooltip>
-              {{ transactionDetailsHints.apiLinks }}
+              {{ transactionsHints.apiLinks }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
@@ -149,7 +149,7 @@
 </template>
 
 <script setup>
-import { transactionDetailsHints } from '../utils/hints/transactionsHints'
+import { transactionsHints } from '../utils/hints/transactionsHints'
 import AppPanel from '@/components/AppPanel'
 import AppChip from '@/components/AppChip'
 import AppIcon from '@/components/AppIcon'

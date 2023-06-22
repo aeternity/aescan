@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
           Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
           Initiator / Amount
+          <hint-tooltip>
+            {{ stateChannelsHints.initiatorAmount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
@@ -31,6 +37,9 @@
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
           Responder / Amount
+          <hint-tooltip>
+            {{ stateChannelsHints.responderAmount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
@@ -48,6 +57,9 @@
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
           Sent By
+          <hint-tooltip>
+            {{ stateChannelsHints.sentBy }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -60,6 +72,7 @@
 </template>
 
 <script setup>
+import { stateChannelsHints } from '../utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 

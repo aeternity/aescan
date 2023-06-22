@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
           Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
           Round
+          <hint-tooltip>
+            {{ stateChannelsHints.snapshotRound }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           {{ transactionData.round }}
@@ -22,6 +28,9 @@
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
           Initiator
+          <hint-tooltip>
+            {{ stateChannelsHints.initiator }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
@@ -32,6 +41,9 @@
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
           Responder
+          <hint-tooltip>
+            {{ stateChannelsHints.responder }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
@@ -42,6 +54,9 @@
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
           Snapshotted By
+          <hint-tooltip>
+            {{ stateChannelsHints.snapshottedBy }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -54,6 +69,7 @@
 </template>
 
 <script setup>
+import { stateChannelsHints } from '../utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 
 defineProps({

@@ -77,8 +77,7 @@ export function formatNullable(value) {
 }
 
 export function formatDecodeBase64(base64String) {
-  const decodedString = process.client ? window.atob(base64String) : Buffer.from(base64String, 'base64').toString('utf8')
-  return decodeURIComponent(escape(decodedString))
+  return process.client ? window.atob(base64String) : Buffer.from(base64String, 'base64').toString('utf8')
 }
 
 export function formatDecodeByteArray(bytesArray) {

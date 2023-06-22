@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
           Name
+          <hint-tooltip>
+            {{ namesHints.name }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
           <app-link :to="`/names/${transactionData.name}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
           Claimer
+          <hint-tooltip>
+            {{ namesHints.claimer }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
           <app-link :to="`/accounts/${transactionData.account_id}`">
@@ -23,7 +29,10 @@
       </tr>
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
-          Name Fee
+          Activation Price
+          <hint-tooltip>
+            {{ namesHints.activationPrice }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.name_fee), null) }}
@@ -34,6 +43,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '../utils/hints/namesHints'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 

@@ -106,7 +106,7 @@
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
-import { transactionDetailsHints } from '@/utils/hints/transactionDetailHints'
+import { transactionDetailsHints } from '@/utils/hints/transactionsHints'
 
 const props = defineProps({
   transactionData: {

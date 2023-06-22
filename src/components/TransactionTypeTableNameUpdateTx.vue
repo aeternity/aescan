@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-name-update-tx__row">
         <th class="transaction-type-panel-name-update-tx__table-header">
           Name
+          <hint-tooltip>
+            {{ namesHints.name }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
           <app-link
@@ -19,6 +22,9 @@
       <tr class="transaction-type-panel-name-update-tx__row">
         <th class="transaction-type-panel-name-update-tx__table-header">
           Owner
+          <hint-tooltip>
+            {{ namesHints.owner }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
           <app-link :to="`/accounts/${transactionData.account_id}`">
@@ -29,6 +35,9 @@
       <tr class="transaction-type-panel-name-update-tx__row">
         <th class="transaction-type-panel-name-update-tx__table-header">
           Name TTL
+          <hint-tooltip>
+            {{ namesHints.nameTtl }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
           {{ transactionData.name_ttl }}
@@ -39,6 +48,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '../utils/hints/namesHints'
 import AppLink from '@/components/AppLink'
 import { formatNullable } from '@/utils/format'
 

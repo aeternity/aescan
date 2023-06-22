@@ -72,7 +72,7 @@
 
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
-import { transactionDetailsHints } from '../utils/hints/transactionDetailHints'
+import { transactionDetailsHints } from '../utils/hints/transactionsHints'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 

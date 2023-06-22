@@ -10,6 +10,9 @@
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">
             Account
+            <hint-tooltip>
+              {{ namesHints.accountPointer }}
+            </hint-tooltip>
           </th>
           <td class="transaction-pointers-panel__data">
             <app-link
@@ -18,9 +21,9 @@
               <span class="transaction-pointers-panel__link-text">
                 {{ pointers.account_pubkey }}
               </span>
-              <span class="transaction-pointers-panel__link-text-ellipse">{{
-                formatEllipseHash(pointers.account_pubkey)
-              }}</span>
+              <span class="transaction-pointers-panel__link-text-ellipse">
+                {{ formatEllipseHash(pointers.account_pubkey) }}
+              </span>
             </app-link>
             <template v-else>
               ---
@@ -30,6 +33,9 @@
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">
             Channel
+            <hint-tooltip>
+              {{ namesHints.channelPointer }}
+            </hint-tooltip>
           </th>
           <td class="transaction-pointers-panel__data">
             {{ formatNullable(pointers.channel) }}
@@ -38,6 +44,9 @@
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">
             Smart Contract
+            <hint-tooltip>
+              {{ namesHints.contractPointer }}
+            </hint-tooltip>
           </th>
           <td class="transaction-pointers-panel__data">
             <app-link
@@ -46,9 +55,9 @@
               <span class="transaction-pointers-panel__link-text">
                 {{ pointers.contract_pubkey }}
               </span>
-              <span class="transaction-pointers-panel__link-text-ellipse">{{
-                formatEllipseHash(pointers.contract_pubkey)
-              }}</span>
+              <span class="transaction-pointers-panel__link-text-ellipse">
+                {{ formatEllipseHash(pointers.contract_pubkey) }}
+              </span>
             </app-link>
             <template v-else>
               ---
@@ -58,6 +67,9 @@
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">
             Oracle
+            <hint-tooltip>
+              {{ namesHints.oraclePointer }}
+            </hint-tooltip>
           </th>
           <td class="transaction-pointers-panel__data">
             {{ formatNullable(pointers.oracle_pubkey) }}
@@ -69,6 +81,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '../utils/hints/namesHints'
 import AppPanel from '@/components/AppPanel'
 import { formatNullable } from '@/utils/format'
 

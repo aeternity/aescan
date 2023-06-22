@@ -5,7 +5,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Status
           <hint-tooltip>
-            {{ transactionDetailsHints.contractStatus }}
+            {{ contractHints.contractStatus }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -16,7 +16,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Smart Contract
           <hint-tooltip>
-            {{ transactionDetailsHints.contractSmartContract }}
+            {{ contractHints.contractSmartContract }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -29,7 +29,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Caller
           <hint-tooltip>
-            {{ transactionDetailsHints.contractCaller }}
+            {{ contractHints.contractCaller }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -42,7 +42,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Amount
           <hint-tooltip>
-            {{ transactionDetailsHints.contractAmount }}
+            {{ contractHints.contractAmount }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -53,7 +53,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Entry Point
           <hint-tooltip>
-            {{ transactionDetailsHints.contractEntryPoint }}
+            {{ contractHints.contractEntryPoint }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -66,7 +66,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Arguments
           <hint-tooltip>
-            {{ transactionDetailsHints.contractArguments }}
+            {{ contractHints.contractArguments }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -77,7 +77,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Return
           <hint-tooltip>
-            {{ transactionDetailsHints.contractReturn }}
+            {{ contractHints.contractReturn }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -88,13 +88,13 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Gas Limit
           <hint-tooltip>
-            {{ transactionDetailsHints.contractGasLimit }}
+            {{ contractHints.contractGasLimit }}
           </hint-tooltip>
           /
           <wbr>
           Gas Price
           <hint-tooltip>
-            {{ transactionDetailsHints.contractGasPrice }}
+            {{ contractHints.contractGasPrice }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -107,13 +107,13 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Gas Used
           <hint-tooltip>
-            {{ transactionDetailsHints.contractGasUsed }}
+            {{ contractHints.contractGasUsed }}
           </hint-tooltip>
           /
           <wbr>
           Gas Costs
           <hint-tooltip>
-            {{ transactionDetailsHints.contractGasCost }}
+            {{ contractHints.contractGasCost }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -131,7 +131,7 @@ import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 import AppChip from '@/components/AppChip'
-import { transactionDetailsHints } from '~/utils/hints/transactionDetailHints'
+import { contractHints } from '~/utils/hints/contractHints'
 
 const props = defineProps({
   transactionData: {

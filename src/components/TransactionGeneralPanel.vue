@@ -149,7 +149,7 @@
 </template>
 
 <script setup>
-import { transactionDetailsHints } from '../utils/hints/transactionDetailHints'
+import { transactionDetailsHints } from '../utils/hints/transactionsHints'
 import AppPanel from '@/components/AppPanel'
 import AppChip from '@/components/AppChip'
 import AppIcon from '@/components/AppIcon'

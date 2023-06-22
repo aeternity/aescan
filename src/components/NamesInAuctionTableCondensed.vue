@@ -63,7 +63,7 @@
             <app-tooltip>
               Bid Count
               <template #tooltip>
-                {{ namesHints.highestBid }}
+                {{ namesHints.bidCount }}
               </template>
             </app-tooltip>
           </th>

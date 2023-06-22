@@ -15,7 +15,7 @@
       {{ transactionData.name_ttl }}
     </app-chip>
     <template #tooltip>
-      TTL
+      Lifetime
     </template>
   </app-tooltip>
 </template>

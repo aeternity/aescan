@@ -3,7 +3,7 @@
     <tbody>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -13,7 +13,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Initiator / amount
+          Initiator / Amount
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
@@ -30,7 +30,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Responder / amount
+          Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
@@ -47,7 +47,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Settled by
+          Settled By
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">

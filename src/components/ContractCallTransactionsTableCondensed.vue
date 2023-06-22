@@ -37,7 +37,7 @@
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">
         <th class="contract-call-transactions-table-condensed__header">
-          Entry point
+          Entry Point
         </th>
         <td class="contract-call-transactions-table-condensed__data">
           <app-chip

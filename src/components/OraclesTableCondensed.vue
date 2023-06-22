@@ -25,7 +25,7 @@
             <app-tooltip>
               Registered
               <template #tooltip>
-                {{ oraclesHints.oracleRegistered }}
+                {{ oraclesHints.registered }}
               </template>
             </app-tooltip>
           </th>
@@ -41,7 +41,7 @@
             <app-tooltip>
               Expiration
               <template #tooltip>
-                {{ oraclesHints.oracleExpiration }}
+                {{ oraclesHints.expiration }}
               </template>
             </app-tooltip>
           </th>

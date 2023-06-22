@@ -31,7 +31,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Create transaction
+            Create Transaction
             <hint-tooltip>
               {{ stateChannelsHints.createTransaction }}
             </hint-tooltip>
@@ -49,7 +49,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Initial amount
+            Initial Amount
             <hint-tooltip>
               {{ stateChannelsHints.initialAmount }}
             </hint-tooltip>
@@ -96,7 +96,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            On-chain updates
+            On-Chain TXs
             <hint-tooltip>
               {{ stateChannelsHints.onChainUpdates }}
             </hint-tooltip>
@@ -107,7 +107,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last known round
+            Last Known Round
             <hint-tooltip>
               {{ stateChannelsHints.lastKnownRound }}
             </hint-tooltip>
@@ -118,7 +118,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            AE locked
+            AE Locked
             <hint-tooltip>
               {{ stateChannelsHints.locked }}
             </hint-tooltip>
@@ -129,7 +129,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last updated
+            Last Updated
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
@@ -146,7 +146,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last TX type
+            Last TX Type
             <hint-tooltip>
               {{ stateChannelsHints.lastTxType }}
             </hint-tooltip>
@@ -157,7 +157,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            API links
+            API Links
+            <hint-tooltip>
+              {{ stateChannelsHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             <div class="state-channel-details-panel__container">

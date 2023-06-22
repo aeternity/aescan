@@ -437,7 +437,7 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
     creator: creationTx?.tx.account_id,
     lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.micro_time) : null,
     lastExtendedHeight: lastExtendedTx?.block_height,
-    lastQuery: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
     lastQueryHeight: lastQueryTx?.block_height,
   }
 

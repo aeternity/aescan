@@ -22,7 +22,7 @@
       <tbody>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Create transaction
+            Create Transaction
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
@@ -47,7 +47,7 @@
           v-if="contractDetails.createdBy"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Created by
+            Created By
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
@@ -74,7 +74,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract’s account
+            Smart Contract’s Account
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
@@ -89,7 +89,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract's account balance
+            Smart Contract's Account Balance
           </th>
           <td class="contract-details-panel__data">
             {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
@@ -97,7 +97,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract calls
+            Smart Contract Calls
           </th>
           <td class="contract-details-panel__data">
             {{ contractDetails.callsCount }}

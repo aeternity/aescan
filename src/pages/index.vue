@@ -38,17 +38,17 @@
             .chain names
           </h2>
           <p class="dashboard__paragraph">
-            The æternity blockchain supports protocol-level .chain names via the
+            The æternity blockchain supports protocol-level .chain Names via the
             æternity naming system (AENS).
           </p>
           <names-panel/>
         </div>
         <div class="dashboard__column">
           <h2 class="dashboard__heading">
-            .chain name auctions
+            .chain Name Auctions
           </h2>
           <p class="dashboard__paragraph">
-            .chain names can be obtained either immediately or via an auction
+            .chain Names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
           </p>
           <auctions-panel>Auctions ending soon</auctions-panel>
@@ -58,7 +58,7 @@
       <div class="dashboard__row">
         <div class="dashboard__column">
           <h2 class="dashboard__heading">
-            State channels
+            State Channels
           </h2>
           <p class="dashboard__paragraph">
             State Channels allow the gas-free execution of smart contracts and

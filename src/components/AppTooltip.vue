@@ -1,9 +1,10 @@
 <template>
   <VTooltip
     :triggers="['hover', 'click']"
+    :popper-triggers="['hover']"
     :skidding="skidding"
     data-popper-placement="top-start"
-    :delay="{ show: 200, hide: 10 }"
+    :delay="{ show: 300, hide: 0 }"
     :auto-hide="true">
     <span>
       <slot/>

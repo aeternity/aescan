@@ -51,7 +51,7 @@
           <tr>
             <th class="dashboard-state-channels-swiper__header">
               <app-tooltip>
-                On-Chain Updates
+                On-Chain TXs
                 <template #tooltip>
                   {{ stateChannelsHints.onChainUpdates }}
                 </template>
@@ -91,7 +91,7 @@
           <tr>
             <th>
               <app-tooltip>
-                Last TX type
+                Last TX Type
                 <template #tooltip>
                   {{ stateChannelsHints.lastTxType }}
                 </template>

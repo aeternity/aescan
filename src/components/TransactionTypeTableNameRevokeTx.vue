@@ -18,7 +18,7 @@
       </tr>
       <tr class="transaction-type-panel-name-revoke-tx__row">
         <th class="transaction-type-panel-name-revoke-tx__table-header">
-          Last owner
+          Last Owner
         </th>
         <td class="transaction-type-panel-name-revoke-tx__data">
           <app-link :to="`/accounts/${transactionData.account_id}`">

@@ -1,6 +1,6 @@
 export const transactionDetailsHints = {
-  blockHeight: 'Keyblock height when the transaction was mined.',
-  blockConfirmations: 'Amount of keyblocks that was added since the transaction was produced.',
+  keyblockHeight: 'Keyblock height when the transaction was mined.',
+  keyblockConfirmations: 'Amount of keyblocks that was added since the transaction was produced.',
   status: 'Status of the transaction.',
   microblockHash: 'Microblock in which the transaction is included.',
   time: 'Exact date and time when the transaction was mined.',
@@ -23,4 +23,6 @@ export const transactionDetailsHints = {
   contractGasPrice: 'Price for one unit of gas.',
   contractGasUsed: 'Amount of gas that was paid for interaction with the smart contract.',
   contractGasCost: 'Price in AE that was paid for interaction with the smart contract.',
+  oracle: 'Unique Oracle identifier inherited from the account address of the operator.',
+  oracleTTL: 'Unique Oracle identifier inherited from the account address of the operator.',
 }

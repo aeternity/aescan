@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
           Oracle
+          <hint-tooltip>
+            {{ oraclesHints.oracleId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           <app-link :to="`/oracles/${transactionData.oracle_id}`">
@@ -13,7 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Oracle Lifetime / Type
+          Oracle TTL / Type
+          <hint-tooltip>
+            {{ oraclesHints.responseTtl }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.oracle_ttl.value }}
@@ -24,6 +30,9 @@
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
           Query Fee
+          <hint-tooltip>
+            {{ oraclesHints.queryFee }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.query_fee), null) }}
@@ -32,6 +41,9 @@
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
           Query Format
+          <hint-tooltip>
+            {{ oraclesHints.queryFormat }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.query_format }}
@@ -40,6 +52,9 @@
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
           Response Format
+          <hint-tooltip>
+            {{ oraclesHints.responseFormat }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.response_format }}
@@ -50,6 +65,7 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '../utils/hints/oraclesHints'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 
 defineProps({

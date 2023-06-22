@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
           Oracle
+          <hint-tooltip>
+            {{ oraclesHints.oracleId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           <app-link :to="`/oracles/${transactionData.oracle_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
           Sender
+          <hint-tooltip>
+            {{ oraclesHints.sender }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           <app-link :to="`/accounts/${transactionData.sender_id}`">
@@ -24,6 +30,9 @@
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
           Query ID
+          <hint-tooltip>
+            {{ oraclesHints.queryId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ formatNullable(transactionData.query_id) }}
@@ -32,6 +41,9 @@
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
           Query
+          <hint-tooltip>
+            {{ oraclesHints.queryContent }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.query }}
@@ -40,6 +52,9 @@
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
           Query Fee
+          <hint-tooltip>
+            {{ oraclesHints.queryFee }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.query_fee), null) }}
@@ -48,6 +63,9 @@
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
           Query TTL / Type
+          <hint-tooltip>
+            {{ oraclesHints.queryTtl }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.query_ttl.value }}
@@ -58,6 +76,9 @@
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
           Response TTL / Type
+          <hint-tooltip>
+            {{ oraclesHints.responseTtl }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.response_ttl.value }}
@@ -70,6 +91,7 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '../utils/hints/oraclesHints'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 

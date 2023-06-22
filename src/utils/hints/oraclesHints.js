@@ -15,4 +15,7 @@ export const oraclesHints = {
   queryContent: 'The query is the actual subject of the Query transaction that was sent to the oracle.',
   responseTtl: 'Defines how long the response will be accessible in keyblocks. The displayed lifetime is relative and if a smart contract relies on the response, the user or a service should make sure the response is consumed during its lifetime.',
   response: 'The response payload to the given query.',
+  sender: 'Account that queried the oracle.',
+  queryTtl: 'Defines how long the query will be accessible in keyblocks.',
+  oracleTtl: 'Defines how long the oracle will be accessible in keyblocks.',
 }

@@ -8,7 +8,7 @@
       {{ transactionData.oracle_ttl.value }}
     </app-chip>
     <template #tooltip>
-      Lifetime
+      TTL
     </template>
   </app-tooltip>
 </template>

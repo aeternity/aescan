@@ -27,14 +27,14 @@
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
-            {{ transactionDetails.blockHeight }}
+            {{ transactionDetails.keyblockHeight }}
           </td>
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Keyblock Confirmations
             <hint-tooltip>
-              {{ transactionDetailsHints.blockConfirmations }}
+              {{ transactionDetailsHints.keyblockConfirmations }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">

@@ -65,7 +65,7 @@
 </template>
 
 <script setup>
-import { oraclesHints } from '../utils/hints/oraclesHints'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 
 defineProps({

@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { oraclesHints } from '../utils/hints/oraclesHints'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 defineProps({
   transactionData: {

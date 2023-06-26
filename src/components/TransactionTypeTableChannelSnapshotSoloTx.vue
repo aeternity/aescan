@@ -69,7 +69,7 @@
 </template>
 
 <script setup>
-import { stateChannelsHints } from '../utils/hints/stateChannelsHints'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 
 defineProps({

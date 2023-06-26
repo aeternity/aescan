@@ -81,7 +81,7 @@
 </template>
 
 <script setup>
-import { namesHints } from '../utils/hints/namesHints'
+import { namesHints } from '@/utils/hints/namesHints'
 import AppPanel from '@/components/AppPanel'
 import { formatNullable } from '@/utils/format'
 

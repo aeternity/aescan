@@ -5,7 +5,7 @@
         <th class="transaction-type-panel-spend-tx__table-header">
           Sender
           <hint-tooltip>
-            {{ transactionsHints.spendTxSender }}
+            {{ transactionsHints.sender }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
@@ -23,7 +23,7 @@
         <th class="transaction-type-panel-spend-tx__table-header">
           Recipient
           <hint-tooltip>
-            {{ transactionsHints.spendTxSenderRecipient }}
+            {{ transactionsHints.recipient }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
@@ -48,7 +48,7 @@
         <th class="transaction-type-panel-spend-tx__table-header">
           Amount
           <hint-tooltip>
-            {{ transactionsHints.spendTxSenderAmount }}
+            {{ transactionsHints.amount }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
@@ -59,7 +59,7 @@
         <th class="transaction-type-panel-spend-tx__table-header">
           Payload
           <hint-tooltip>
-            {{ transactionsHints.spendTxSenderPayload }}
+            {{ transactionsHints.payload }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
@@ -72,7 +72,7 @@
 
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
-import { transactionsHints } from '../utils/hints/transactionsHints'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 

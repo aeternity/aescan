@@ -91,7 +91,7 @@
 </template>
 
 <script setup>
-import { oraclesHints } from '../utils/hints/oraclesHints'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 

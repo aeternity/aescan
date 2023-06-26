@@ -18,7 +18,7 @@
         <th class="transaction-type-panel-oracle-register-tx__table-header">
           Oracle TTL / Type
           <hint-tooltip>
-            {{ oraclesHints.responseTtl }}
+            {{ oraclesHints.oracleTtl }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">

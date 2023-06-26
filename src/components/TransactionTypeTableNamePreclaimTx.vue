@@ -5,7 +5,7 @@
         <th class="transaction-type-panel-name-preclaim-tx__table-header">
           Claimer
           <hint-tooltip>
-            {{ namesHints.claimer }}
+            {{ namesHints.preclaimer }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-preclaim-tx__data">

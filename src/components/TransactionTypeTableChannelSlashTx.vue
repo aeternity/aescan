@@ -18,11 +18,11 @@
         <th class="transaction-type-panel-channel-slash-tx__table-header">
           Round
           <hint-tooltip>
-            {{ stateChannelsHints.lastKnownRound }}
+            {{ stateChannelsHints.slashedRound }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
-          {{ transactionData.slashedRound }}
+          {{ transactionData.round }}
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-slash-tx__row">

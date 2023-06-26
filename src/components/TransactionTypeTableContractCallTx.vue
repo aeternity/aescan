@@ -5,7 +5,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Status
           <hint-tooltip>
-            {{ contractHints.contractStatus }}
+            {{ contractsHints.contractStatus }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -16,7 +16,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Smart Contract
           <hint-tooltip>
-            {{ contractHints.contractSmartContract }}
+            {{ contractsHints.contractSmartContract }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -29,7 +29,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Caller
           <hint-tooltip>
-            {{ contractHints.contractCaller }}
+            {{ contractsHints.contractCaller }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -42,7 +42,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Amount
           <hint-tooltip>
-            {{ contractHints.contractAmount }}
+            {{ contractsHints.contractAmount }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -53,7 +53,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Entry Point
           <hint-tooltip>
-            {{ contractHints.contractEntryPoint }}
+            {{ contractsHints.contractEntryPoint }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -66,7 +66,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Arguments
           <hint-tooltip>
-            {{ contractHints.contractArguments }}
+            {{ contractsHints.contractArguments }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -77,7 +77,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Return
           <hint-tooltip>
-            {{ contractHints.contractReturn }}
+            {{ contractsHints.contractReturn }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -88,13 +88,13 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Gas Limit
           <hint-tooltip>
-            {{ contractHints.contractGasLimit }}
+            {{ contractsHints.contractGasLimit }}
           </hint-tooltip>
           /
           <wbr>
           Gas Price
           <hint-tooltip>
-            {{ contractHints.contractGasPrice }}
+            {{ contractsHints.contractGasPrice }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -107,13 +107,13 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Gas Used
           <hint-tooltip>
-            {{ contractHints.contractGasUsed }}
+            {{ contractsHints.contractGasUsed }}
           </hint-tooltip>
           /
           <wbr>
           Gas Costs
           <hint-tooltip>
-            {{ contractHints.contractGasCost }}
+            {{ contractsHints.contractGasCost }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
@@ -127,11 +127,11 @@
 </template>
 
 <script setup>
+import { contractsHints } from '@/utils/hints/contractsHints'
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 import AppChip from '@/components/AppChip'
-import { contractHints } from '~/utils/hints/contractHints'
 
 const props = defineProps({
   transactionData: {

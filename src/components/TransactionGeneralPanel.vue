@@ -23,11 +23,11 @@
           <th class="transaction-general-panel__table-header">
             Keyblock Height
             <hint-tooltip>
-              {{ transactionsHints.blockHeight }}
+              {{ transactionsHints.keyblockHeight }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
-            {{ transactionDetails.keyblockHeight }}
+            {{ transactionDetails.blockHeight }}
           </td>
         </tr>
         <tr class="transaction-general-panel__row">

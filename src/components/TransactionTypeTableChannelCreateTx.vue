@@ -34,7 +34,7 @@
         <th class="transaction-type-panel-channel-create-tx__table-header">
           Initiator / Amount
           <hint-tooltip>
-            {{ stateChannelsHints.initiatorAmount }}
+            {{ stateChannelsHints.initiatorCreateAmount }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
@@ -65,7 +65,7 @@
         <th class="transaction-type-panel-channel-create-tx__table-header">
           Responder / Amount
           <hint-tooltip>
-            {{ stateChannelsHints.responderAmount }}
+            {{ stateChannelsHints.responderCreateAmount }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">

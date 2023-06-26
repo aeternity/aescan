@@ -23,9 +23,6 @@
         </th>
         <td class="transaction-type-panel-channel-close-solo-tx__data">
           {{ transactionData.round }}
-          <hint-tooltip>
-            {{ stateChannelsHints.closeRound }}
-          </hint-tooltip>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-close-solo-tx__row">

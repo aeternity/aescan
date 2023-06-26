@@ -19,7 +19,7 @@
         <th class="transaction-type-panel-channel-force-progress-tx__table-header">
           Round
           <hint-tooltip>
-            {{ stateChannelsHints.progressRound }}
+            {{ stateChannelsHints.forceProgressRound }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
@@ -59,7 +59,7 @@
           class="transaction-type-panel-channel-force-progress-tx__table-header">
           Forced By
           <hint-tooltip>
-            {{ stateChannelsHints.forcedBby }}
+            {{ stateChannelsHints.forcedBy }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">

@@ -5,7 +5,7 @@
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Status
           <hint-tooltip>
-            {{ transactionsHints.contractStatus }}
+            {{ contractsHints.contractStatus }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
@@ -16,7 +16,7 @@
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Smart Contract
           <hint-tooltip>
-            {{ transactionsHints.contractSmartContract }}
+            {{ contractsHints.contractSmartContract }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
@@ -29,7 +29,7 @@
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Creator
           <hint-tooltip>
-            {{ transactionsHints.contractCreator }}
+            {{ contractsHints.contractCreator }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
@@ -42,7 +42,7 @@
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Amount
           <hint-tooltip>
-            {{ transactionsHints.contractAmount }}
+            {{ contractsHints.contractAmount }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
@@ -53,7 +53,7 @@
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Arguments
           <hint-tooltip>
-            {{ transactionsHints.contractArguments }}
+            {{ contractsHints.contractArguments }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
@@ -64,13 +64,13 @@
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Gas Limit
           <hint-tooltip>
-            {{ transactionsHints.contractGasLimit }}
+            {{ contractsHints.contractGasLimit }}
           </hint-tooltip>
           /
           <wbr>
           Gas Price
           <hint-tooltip>
-            {{ transactionsHints.contractGasPrice }}
+            {{ contractsHints.contractGasPrice }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
@@ -83,13 +83,13 @@
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Gas Used
           <hint-tooltip>
-            {{ transactionsHints.contractGasUsed }}
+            {{ contractsHints.contractGasUsed }}
           </hint-tooltip>
           /
           <wbr>
           Gas Costs
           <hint-tooltip>
-            {{ transactionsHints.contractGasCost }}
+            {{ contractsHints.contractGasCost }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
@@ -106,6 +106,7 @@
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { contractsHints } from '@/utils/hints/contractsHints'
 
 const props = defineProps({
   transactionData: {

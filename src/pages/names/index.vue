@@ -57,11 +57,11 @@ const activeTabIndex = computed({
         type: TAB_KEYS[index],
       },
     }
-    
+
     if (activeTabIndex.value === index) {
-       return replace(newRoute)
+      return replace(newRoute)
     }
-    
+
     return push(newRoute)
   },
 })

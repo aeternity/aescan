@@ -108,7 +108,7 @@
         </app-link>
         , users can execute a virtually unlimited number of transactions safely, at lightning speed & with instant
         finality while only paying the fee for two on-chain transactions to open and close the channel.
-        The total locked value refers to the maximum amount that can be transacted in the channel.
+        The total locked value is the amount of AE that is currently used off-chain across all channels.
       </template>
     </stats-tile>
     <stats-tile
@@ -164,6 +164,7 @@
         Æternity Naming System (ÆNS) uses human-meaningful names instead of cryptic addresses for accounts, making
         blockchain technology more accessible, less prone to errors and user-friendly. Register your dot chain name
         today with the
+        <br>
         <app-link
           variant="primary"
           to="https://wallet.superhero.com/">

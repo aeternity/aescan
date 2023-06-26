@@ -56,7 +56,12 @@
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Data
+            <app-tooltip>
+              Data
+              <template #tooltip>
+                {{ transactionsHints.data }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
             <transaction-cell

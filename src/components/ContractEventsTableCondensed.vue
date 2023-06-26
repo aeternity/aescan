@@ -7,7 +7,7 @@
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
           <app-tooltip>
-            Call transaction
+            Call Transaction
             <template #tooltip>
               {{ contractsHints.eventsCallTransaction }}
             </template>
@@ -38,7 +38,7 @@
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
           <app-tooltip>
-            Name
+            Event Name
             <template #tooltip>
               {{ contractsHints.eventsName }}
             </template>

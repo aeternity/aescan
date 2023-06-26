@@ -21,7 +21,7 @@
           </hint-tooltip>
         </th>
         <th>
-          On-Chain Updates
+          On-Chain TXs
           <hint-tooltip>
             {{ stateChannelsHints.onChainUpdates }}
           </hint-tooltip>
@@ -39,7 +39,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Last TX type
+          Last TX Type
           <hint-tooltip>
             {{ stateChannelsHints.lastTxType }}
           </hint-tooltip>

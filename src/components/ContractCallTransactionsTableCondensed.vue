@@ -53,7 +53,7 @@
       <tr class="contract-call-transactions-table-condensed__row">
         <th class="contract-call-transactions-table-condensed__header">
           <app-tooltip>
-            Entry point
+            Entry Point
             <template #tooltip>
               {{ contractsHints.callTransactionsEntryPoint }}
             </template>

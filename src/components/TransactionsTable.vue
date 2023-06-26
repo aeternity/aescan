@@ -20,7 +20,12 @@
             {{ transactionsHints.type }}
           </hint-tooltip>
         </th>
-        <th>Data</th>
+        <th>
+          Data
+          <hint-tooltip>
+            {{ transactionsHints.data }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>

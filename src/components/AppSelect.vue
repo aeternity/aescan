@@ -94,7 +94,13 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__content-wrapper {
     box-shadow: 2px 2px 14px 5px rgba(78, 78, 86, 0.2);
-    border-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  &--above &__content-wrapper {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   &__option {

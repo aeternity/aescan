@@ -22,7 +22,7 @@
       <tbody>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Create transaction
+            Create Transaction
             <hint-tooltip>
               {{ contractsHints.contractTxHash }}
             </hint-tooltip>
@@ -53,7 +53,7 @@
           v-if="contractDetails.createdBy"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Created by
+            Created By
             <hint-tooltip>
               {{ contractsHints.contractCreator }}
             </hint-tooltip>
@@ -86,7 +86,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract’s account
+            Smart Contract’s Account
             <hint-tooltip>
               {{ contractsHints.contractsAccount }}
             </hint-tooltip>
@@ -104,7 +104,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract's account balance
+            Smart Contract's Account Balance
             <hint-tooltip>
               {{ contractsHints.contractsAccountBalance }}
             </hint-tooltip>
@@ -115,7 +115,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract calls
+            Smart Contract Calls
             <hint-tooltip>
               {{ contractsHints.contractCalls }}
             </hint-tooltip>

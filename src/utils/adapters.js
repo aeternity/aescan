@@ -416,7 +416,7 @@ export function adaptOracles(oracles, blockHeight) {
   }
 }
 
-export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQueryTx, blockHeight) {
+export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHeight) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.query_fee),
@@ -434,10 +434,10 @@ export function adaptOracleDetails(oracle, creationTx, lastExtendedTx, lastQuery
     registeredHeight: oracle.active_from,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
-    creator: creationTx?.tx.account_id,
+    operator: oracle.oracle.replace('ok_', 'ak_'),
     lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.micro_time) : null,
     lastExtendedHeight: lastExtendedTx?.block_height,
-    lastQuery: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
     lastQueryHeight: lastQueryTx?.block_height,
   }
 

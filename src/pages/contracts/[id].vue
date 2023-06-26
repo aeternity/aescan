@@ -13,7 +13,7 @@
     :contract-details="contractDetails"/>
 
   <app-tabs v-if="contractDetails">
-    <app-tab title="Call transactions">
+    <app-tab title="Call Transactions">
       <contract-call-transactions-panel/>
     </app-tab>
     <app-tab title="Events">

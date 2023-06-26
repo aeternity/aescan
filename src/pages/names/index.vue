@@ -36,7 +36,7 @@ import { isDesktop } from '@/utils/screen'
 const TAB_KEYS = ['active', 'in-auction', 'expired']
 
 const { fetchNamesDetails } = useNamesStore()
-const { push } = useRouter()
+const { push, replace } = useRouter()
 const route = useRoute()
 
 const activeTabIndex = computed({
@@ -52,11 +52,17 @@ const activeTabIndex = computed({
     return index >= 0 ? index : 0
   },
   set(index) {
-    push({
+    const newRoute = {
       query: {
         type: TAB_KEYS[index],
       },
-    })
+    }
+    
+    if (activeTabIndex.value === index) {
+       return replace(newRoute)
+    }
+    
+    return push(newRoute)
   },
 })
 

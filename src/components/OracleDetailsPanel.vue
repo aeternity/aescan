@@ -54,7 +54,7 @@
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastQueried">
-              {{ oracleDetails.lastQueriedHeight }} -
+              {{ oracleDetails.lastQueryHeight }} -
               <datetime-label :datetime="oracleDetails.lastQueried"/>
             </template>
             <template v-else>

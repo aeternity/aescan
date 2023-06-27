@@ -29,7 +29,7 @@ export const namesHints = {
   nameAndHighestBidder: 'Auctioned name and its highest bidder.',
   preclaimer: 'Account that pre-claimed the name.',
   claimer: 'Account that claimed the name.',
-  nameTtl: 'Lifetime of the name that points to the address in keyblocks.',
+  nameTtl: 'he relative lifetime before expiration in keyblocks.',
   oldOwner: 'The account that previously owned the name.',
-  newOwner: 'The account that the name was transferred to.',
+  newOwner: 'The account that received the name and became its new owner.',
 }

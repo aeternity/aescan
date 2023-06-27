@@ -51,9 +51,9 @@
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
-          Entry Point
+          Entrypoint
           <hint-tooltip>
-            {{ contractsHints.entryPoint }}
+            {{ contractsHints.entrypoint }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">

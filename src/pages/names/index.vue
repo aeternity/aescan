@@ -41,15 +41,13 @@ const route = useRoute()
 
 const activeTabIndex = computed({
   get() {
-    const { type } = route.query
+    const { type: activeTabName } = route.query
 
-    if (type === undefined) {
+    if (activeTabName === undefined) {
       return 0
     }
 
-    const index = TAB_KEYS.indexOf(type)
-
-    return index >= 0 ? index : 0
+    return TAB_KEYS.indexOf(activeTabName)
   },
   set(index) {
     const newRoute = {
@@ -59,6 +57,7 @@ const activeTabIndex = computed({
     }
 
     if (activeTabIndex.value === index) {
+      // if navigating back
       return replace(newRoute)
     }
 

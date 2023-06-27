@@ -26,12 +26,12 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
+provide('registerTab', tab => tabs.value.push(tab))
 
-const activeTabIndex = props.modelValue !== null ? useVModel(props, 'modelValue', emit) : ref(0)
+const emit = defineEmits(['update:modelValue'])
 const tabs = ref([])
 
-provide('registerTab', tab => tabs.value.push(tab))
+const activeTabIndex = props.modelValue === null ? ref(0) : useVModel(props, 'modelValue', emit)
 
 watch(
   () => props.modelValue,
@@ -40,14 +40,13 @@ watch(
 )
 
 onMounted(() => {
-  tabs.value[activeTabIndex.value].isActive = true
+  selectTab(activeTabIndex.value)
 })
 
-function selectTab(index) {
-  activeTabIndex.value = index
-
+function selectTab(tabIndex) {
+  activeTabIndex.value = tabIndex
   tabs.value.forEach((tab, index) => {
-    tab.isActive = index === activeTabIndex.value
+    tab.isActive = index === tabIndex
   })
 }
 </script>

@@ -60,7 +60,7 @@
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
             <app-tooltip>
-              On-Chain Updates
+              On-Chain TXs
               <template #tooltip>
                 {{ stateChannelsHints.onChainUpdates }}
               </template>
@@ -104,7 +104,7 @@
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
             <app-tooltip>
-              Last TX type
+              Last TX Type
               <template #tooltip>
                 {{ stateChannelsHints.lastTxType }}
               </template>
@@ -120,7 +120,7 @@
 </template>
 
 <script setup>
-import { stateChannelsHints } from '~/utils/hints/stateChannelsHints'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 defineProps({
   stateChannels: {

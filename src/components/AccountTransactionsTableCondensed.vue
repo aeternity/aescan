@@ -46,12 +46,22 @@
             </app-tooltip>
           </th>
           <td class="account-transactions-table-condensed__data">
-            {{ transaction.type }}
+            <app-tooltip>
+              {{ transaction.type }}
+              <template #tooltip>
+                {{ transactionsHints[transaction.hintKey] }}
+              </template>
+            </app-tooltip>
           </td>
         </tr>
         <tr class="account-transactions-table-condensed__row">
           <th class="account-transactions-table-condensed__header">
-            Data
+            <app-tooltip>
+              Data
+              <template #tooltip>
+                {{ accountHints.data }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="account-transactions-table-condensed__data">
             <transaction-cell
@@ -65,6 +75,7 @@
 </template>
 
 <script setup>
+import { transactionsHints } from '../utils/hints/transactionsHints'
 import { accountHints } from '@/utils/hints/accountHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

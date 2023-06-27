@@ -31,9 +31,14 @@
             :link-to="`/accounts/${transaction.data.caller_id}`"/>
         </td>
         <td>
-          <app-chip size="sm">
+          <app-chip
+            v-if="transaction.data.function"
+            size="sm">
             {{ transaction.data.function }}
           </app-chip>
+          <template v-else>
+            N/A
+          </template>
         </td>
       </tr>
     </tbody>

@@ -76,7 +76,7 @@
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
             <app-tooltip>
-              Points to
+              Points To
               <template #tooltip>
                 {{ namesHints.pointsTo }}
               </template>

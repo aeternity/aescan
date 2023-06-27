@@ -31,7 +31,7 @@
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
-          Auth function
+          Auth Function
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ transactionData.auth_fun_name }}
@@ -47,30 +47,26 @@
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
-          Gas limit /
+          Gas Limit /
           <wbr>
-          Gas price
+          Gas Price
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ formatNullable(transactionData.gas) }}
           /
-          {{
-            formatAePrice(formatAettosToAe(transactionData.gas_price), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.gas_price), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
-          Gas used /
+          Gas Used /
           <wbr>
-          Gas costs
+          Gas Costs
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ formatNullable(transactionData.gas_used) }}
           /
-          {{
-            formatNullable(formatAePrice(formatAettosToAe(gasCosts), null))
-          }}
+          {{ formatNullable(formatAePrice(formatAettosToAe(gasCosts), null)) }}
         </td>
       </tr>
     </tbody>

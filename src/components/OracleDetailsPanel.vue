@@ -19,6 +19,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Registered
+            <hint-tooltip>
+              {{ oraclesHints.registered }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.registeredHeight }} -
@@ -27,7 +30,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Last extended
+            Last Extended
+            <hint-tooltip>
+              {{ oraclesHints.lastExtended }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastExtended">
@@ -41,12 +47,15 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Last query
+            Last Queried
+            <hint-tooltip>
+              {{ oraclesHints.lastQueried }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            <template v-if="oracleDetails.lastQuery">
+            <template v-if="oracleDetails.lastQueried">
               {{ oracleDetails.lastQueryHeight }} -
-              <datetime-label :datetime="oracleDetails.lastQuery"/>
+              <datetime-label :datetime="oracleDetails.lastQueried"/>
             </template>
             <template v-else>
               ---
@@ -56,6 +65,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             Expiration
+            <hint-tooltip>
+              {{ oraclesHints.expiration }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.expirationHeight }} -
@@ -65,7 +77,10 @@
         <tr
           class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query fee
+            Query Fee
+            <hint-tooltip>
+              {{ oraclesHints.queryFee }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ formatAePrice(oracleDetails.fee, null) }}
@@ -73,7 +88,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query format
+            Query Format
+            <hint-tooltip>
+              {{ oraclesHints.queryFormat }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.queryFormat }}
@@ -81,7 +99,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query response
+            Response Format
+            <hint-tooltip>
+              {{ oraclesHints.responseFormat }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.responseFormat }}
@@ -89,22 +110,21 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Creator
+            Operator
+            <hint-tooltip>
+              {{ oraclesHints.oracleOperator }}
+            </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
             <app-link
-              v-if="oracleDetails.creator"
-              :to="`/accounts/${oracleDetails.creator}`">
+              :to="`/accounts/${oracleDetails.operator}`">
               <span class="oracle-details-panel__hash">
-                {{ oracleDetails.creator }}
+                {{ oracleDetails.operator }}
               </span>
               <span class="oracle-details-panel__hash-ellipse">
-                {{ formatEllipseHash(oracleDetails.creator) }}
+                {{ formatEllipseHash(oracleDetails.operator) }}
               </span>
             </app-link>
-            <template v-else>
-              N/A
-            </template>
           </td>
         </tr>
       </tbody>
@@ -114,6 +134,8 @@
 
 <script setup>
 import { formatAePrice } from '@/utils/format'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
+import HintTooltip from '@/components/HintTooltip'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'

@@ -37,12 +37,17 @@
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">
         <th class="contract-call-transactions-table-condensed__header">
-          Entry point
+          Entry Point
         </th>
         <td class="contract-call-transactions-table-condensed__data">
-          <app-chip size="sm">
+          <app-chip
+            v-if="transaction.data.function"
+            size="sm">
             {{ transaction.data.function }}
           </app-chip>
+          <template v-else>
+            N/A
+          </template>
         </td>
       </tr>
     </table>

@@ -34,9 +34,7 @@
           Amount
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          {{
-            formatAePrice(formatAettosToAe(transactionData.amount), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
@@ -49,30 +47,26 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Gas limit /
+          Gas Limit /
           <wbr>
-          Gas price
+          Gas Price
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ transactionData.gas }}
           /
-          {{
-            formatAePrice(formatAettosToAe(transactionData.gas_price), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.gas_price), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Gas used /
+          Gas Used /
           <wbr>
-          Gas costs
+          Gas Costs
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatNullable(transactionData.gas_used) }}
           /
-          {{
-            formatNullable(formatAePrice(formatAettosToAe(gasCosts), null))
-          }}
+          {{ formatNullable(formatAePrice(formatAettosToAe(gasCosts), null)) }}
         </td>
       </tr>
     </tbody>

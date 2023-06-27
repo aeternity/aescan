@@ -16,16 +16,19 @@
           v-if="name.status !== 'auction'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owner
+            {{ isNameExpired ? "Last Owner" : "Owner" }}
+            <hint-tooltip>
+              {{ isNameExpired ? namesHints.lastOwner : namesHints.owner }}
+            </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.owner}`">
               <span class="name-details-panel__link-text">
                 {{ name.owner }}
               </span>
-              <span class="name-details-panel__link-text-ellipse">{{
-                formatEllipseHash(name.owner)
-              }}</span>
+              <span class="name-details-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.owner) }}
+              </span>
             </app-link>
           </td>
         </tr>
@@ -33,14 +36,19 @@
           v-if="name.bidder"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Bidder
+            Highest Bidder
+            <hint-tooltip>
+              {{ namesHints.bidder }}
+            </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
-              <span class="name-details-panel__link-text">{{ name.bidder }}</span>
-              <span class="name-details-panel__link-text-ellipse">{{
-                formatEllipseHash(name.bidder)
-              }}</span>
+              <span class="name-details-panel__link-text">
+                {{ name.bidder }}
+              </span>
+              <span class="name-details-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.bidder) }}
+              </span>
             </app-link>
           </td>
         </tr>
@@ -48,7 +56,10 @@
           v-if="name.bid"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Bid amount
+            Highest Bid
+            <hint-tooltip>
+              {{ namesHints.bid }}
+            </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
             {{ formatAePrice(name.bid) }}
@@ -58,7 +69,10 @@
           v-if="isNameActive"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned since
+            Owned Since
+            <hint-tooltip>
+              {{ namesHints.ownedSince }}
+            </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
             <datetime-label :datetime="name.activated"/>
@@ -67,6 +81,9 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             {{ isNameExpired ? "Expired" : "Expires" }}
+            <hint-tooltip>
+              {{ isNameExpired ? namesHints.expired : namesHints.expires }}
+            </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
             <span>
@@ -80,6 +97,9 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             Status
+            <hint-tooltip>
+              {{ namesHints.status }}
+            </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
             <app-chip :variant="labelVariant">
@@ -94,10 +114,12 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { namesHints } from '@/utils/hints/namesHints'
 import AppPanel from '@/components/AppPanel'
 import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'
 import CopyChip from '@/components/CopyChip'
+import HintTooltip from '~/components/HintTooltip'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatAePrice, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'

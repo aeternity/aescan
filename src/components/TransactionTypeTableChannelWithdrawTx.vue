@@ -3,7 +3,7 @@
     <tbody>
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">

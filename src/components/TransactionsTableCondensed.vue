@@ -7,7 +7,12 @@
       <tbody>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Hash
+            <app-tooltip>
+              Hash
+              <template #tooltip>
+                {{ transactionsHints.hash }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -17,7 +22,12 @@
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Created
+            <app-tooltip>
+              Created
+              <template #tooltip>
+                {{ transactionsHints.created }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
             <div>
@@ -28,15 +38,30 @@
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Type
+            <app-tooltip>
+              Type
+              <template #tooltip>
+                {{ transactionsHints.type }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
-            {{ transaction.type }}
+            <app-tooltip>
+              {{ transaction.type }}
+              <template #tooltip>
+                {{ transactionsHints[transaction.hintKey] }}
+              </template>
+            </app-tooltip>
           </td>
         </tr>
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
-            Data
+            <app-tooltip>
+              Data
+              <template #tooltip>
+                {{ transactionsHints.data }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
             <transaction-cell
@@ -53,6 +78,7 @@
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({
   transactions: {

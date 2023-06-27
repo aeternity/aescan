@@ -18,28 +18,25 @@
     </div>
   </div>
 </template>
-<script>
+
+<script setup>
 import AppIcon from '@/components/AppIcon'
 import HintTooltip from '@/components/HintTooltip'
 import AppBadge from '@/components/AppBadge'
 
-export default {
-  name: 'StatsTile',
-  components: { AppBadge, HintTooltip, AppIcon },
-  props: {
-    iconName: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
+defineProps({
+  iconName: {
+    type: String,
+    required: true,
   },
-}
+  title: {
+    type: String,
+    required: true,
+  },
+})
 </script>
-<style scoped>
 
+<style scoped>
 .stats-tile {
   display: flex;
   flex-direction: row;
@@ -66,7 +63,6 @@ export default {
 
   &__tooltip {
     margin-left: var(--space-0);
-    height: 21px;
   }
 
   &__slot {

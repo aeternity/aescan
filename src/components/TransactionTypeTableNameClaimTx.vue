@@ -23,12 +23,10 @@
       </tr>
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
-          Name fee
+          Name Fee
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          {{
-            formatAePrice(formatAettosToAe(transactionData.name_fee), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.name_fee), null) }}
         </td>
       </tr>
     </tbody>

@@ -73,12 +73,16 @@
       title="SUPPLY"
       icon-name="supply">
       <div>
-        Burned: <span class="stats-panel__value">{{ formatNullable(formatAePrice(burnedCount, 0)) }}</span>
+        Burned:
+        <span class="stats-panel__value">
+          {{ formatNullable(formatAePrice(burnedCount, 0)) }}
+        </span>
       </div>
       <div>
-        Circulating: <span class="stats-panel__value">{{
-          formatNullable(formatAePrice(circulatingSupply, 0))
-        }}</span>
+        Circulating:
+        <span class="stats-panel__value">
+          {{ formatNullable(formatAePrice(totalTokenSupply, 0)) }}
+        </span>
       </div>
       <template #tooltip>
         Circulating supply is the distributed amount of Æ minus the burned amount of Æ. The protocol automatically burns
@@ -104,7 +108,7 @@
         </app-link>
         , users can execute a virtually unlimited number of transactions safely, at lightning speed & with instant
         finality while only paying the fee for two on-chain transactions to open and close the channel.
-        The total locked value refers to the maximum amount that can be transacted in the channel.
+        The total locked value is the amount of AE that is currently used off-chain across all channels.
       </template>
     </stats-tile>
     <stats-tile
@@ -160,6 +164,7 @@
         Æternity Naming System (ÆNS) uses human-meaningful names instead of cryptic addresses for accounts, making
         blockchain technology more accessible, less prone to errors and user-friendly. Register your dot chain name
         today with the
+        <br>
         <app-link
           variant="primary"
           to="https://wallet.superhero.com/">
@@ -171,48 +176,35 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import StatsTile from '@/components/StatsTile'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
-import { useMarketStatsStore } from '@/stores/marketStats'
 
-export default {
-  name: 'StatsPanel',
-  components: { StatsTile, AppLink, AppPanel },
-  computed: {
-    ...mapState(useBlockchainStatsStore, [
-      'maxTps',
-      'transactionsCount',
-      'activeOraclesCount',
-      'oraclesCount',
-      'activeNamesCount',
-      'namesInAuctionCount',
-      'contractsCount',
-      'stateChannelsLockedValue',
-      'stateChannelsCount',
-      'burnedCount',
-    ]),
-    ...mapState(useMarketStatsStore, [
-      'circulatingSupply',
-    ]),
-    ...mapState(useRecentBlocksStore, [
-      'blockHeight',
-      'latestKeyblockTransactionsCount',
-      'latestReward',
-      'latestBri',
-    ]),
-  },
-  methods: {
-    formatAePrice,
-    formatNumber,
-    formatNullable,
-  },
-}
+const {
+  maxTps,
+  transactionsCount,
+  activeOraclesCount,
+  oraclesCount,
+  activeNamesCount,
+  namesInAuctionCount,
+  contractsCount,
+  stateChannelsLockedValue,
+  stateChannelsCount,
+  burnedCount,
+  totalTokenSupply,
+} = storeToRefs(useBlockchainStatsStore())
+
+const {
+  blockHeight,
+  latestKeyblockTransactionsCount,
+  latestReward,
+  latestBri,
+} = storeToRefs(useRecentBlocksStore())
 </script>
 
 <style scoped>

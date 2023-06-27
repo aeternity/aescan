@@ -31,35 +31,31 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import AppIcon from '@/components/AppIcon'
 import AppBadge from '@/components/AppBadge'
 import AppLink from '@/components/AppLink'
 import HintTooltip from '@/components/HintTooltip'
 
-export default {
-  name: 'PanelHeader',
-  components: { AppLink, AppIcon, AppBadge, HintTooltip },
-  props: {
-    level: {
-      type: String,
-      required: true,
-      validator: val => ['h2', 'h3', 'h4', 'h5'].includes(val),
-    },
-    iconName: {
-      type: String,
-      default: null,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    showAllLink: {
-      type: String,
-      default: null,
-    },
+defineProps({
+  level: {
+    type: String,
+    required: true,
+    validator: val => ['h2', 'h3', 'h4', 'h5'].includes(val),
   },
-}
+  iconName: {
+    type: String,
+    default: null,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  showAllLink: {
+    type: String,
+    default: null,
+  },
+})
 </script>
 
 <style scoped>

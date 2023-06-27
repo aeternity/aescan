@@ -7,7 +7,12 @@
       <tbody>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            Hash
+            <app-tooltip>
+              Hash
+              <template #tooltip>
+                {{ tokensHints.hash }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="token-events-table-condensed__data">
             <value-hash-ellipsed
@@ -17,7 +22,12 @@
         </tr>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            Name
+            <app-tooltip>
+              Name
+              <template #tooltip>
+                {{ tokensHints.eventName }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="token-events-table-condensed__data">
             {{ event.name }}
@@ -25,7 +35,12 @@
         </tr>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            Date
+            <app-tooltip>
+              Date
+              <template #tooltip>
+                {{ tokensHints.date }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="token-events-table-condensed__data">
             <div>
@@ -53,7 +68,8 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import TokenEventsDataCell from '~/components/TokenEventsDataCell.vue'
+import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokenEvents: {

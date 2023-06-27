@@ -47,8 +47,8 @@
 
             <footer-list
               class="footer__footer-list"
-              title="Join the community"
-              :links="links.community"/>
+              title="Developers"
+              :links="links.developers"/>
           </div>
         </div>
       </div>
@@ -57,39 +57,31 @@
     </div>
   </footer>
 </template>
-<script>
-import { mapState } from 'pinia'
+
+<script setup>
+import { storeToRefs } from 'pinia'
 import FooterList from '@/components/FooterList'
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
 import FooterSocials from '@/components/FooterSocials'
 import { useStatus } from '@/stores/status'
 
-export default {
-  name: 'TheFooter',
-  components: { FooterSocials, AppLink, FooterList, AppTooltip },
+const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
 
-  data: () => ({
-    links: {
-      about: [
-        { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
-        { label: 'æternity Crypto Foundation', url: 'https://aeternity-foundation.org' },
-        { label: 'Blog', url: 'https://blog.aeternity.com' },
-        { label: 'Terms of Service', url: '/terms-of-service' },
-        { label: 'Privacy Policy', url: '/privacy-policy' },
-      ],
-      community: [
-        { label: 'Contribute in the Forum', url: 'https://forum.aeternity.com' },
-        { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
-      ],
-    },
-  }),
-  computed: {
-    ...mapState(useStatus, [
-      'middlewareVersion',
-      'nodeVersion',
-    ]),
-  },
+const links = {
+  about: [
+    { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
+    { label: 'æternity Crypto Foundation', url: 'https://aeternity-foundation.org' },
+    { label: 'Blog', url: 'https://blog.aeternity.com' },
+    { label: 'Terms of Service', url: '/terms-of-service' },
+    { label: 'Privacy Policy', url: '/privacy-policy' },
+  ],
+  developers: [
+    { label: 'Node API documentation', url: 'https://api-docs.aeternity.io' },
+    { label: 'Middleware API documentation', url: 'https://mainnet.aeternity.io/mdw/swagger/index.html?version=v2' },
+    { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
+    { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
+  ],
 }
 </script>
 

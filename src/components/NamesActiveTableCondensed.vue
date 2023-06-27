@@ -7,7 +7,12 @@
       <tbody>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            Name
+            <app-tooltip>
+              Name
+              <template #tooltip>
+                {{ namesHints.name }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
             <app-link
@@ -19,7 +24,12 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            Expires
+            <app-tooltip>
+              Expires
+              <template #tooltip>
+                {{ namesHints.expires }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
             <div>
@@ -30,7 +40,12 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            Buyer
+            <app-tooltip>
+              Buyer
+              <template #tooltip>
+                {{ namesHints.buyer }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
             <value-hash-ellipsed
@@ -45,7 +60,12 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            Owner
+            <app-tooltip>
+              Owner
+              <template #tooltip>
+                {{ namesHints.owner }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
             <value-hash-ellipsed
@@ -55,7 +75,12 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            Points to
+            <app-tooltip>
+              Points To
+              <template #tooltip>
+                {{ namesHints.pointsTo }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
             <template v-if="name.pointers.length > 0">
@@ -77,6 +102,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '@/utils/hints/namesHints'
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import DatetimeLabel from '@/components/DatetimeLabel'

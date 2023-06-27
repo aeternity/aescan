@@ -1,62 +1,52 @@
 <template>
-  <app-chip
-    ref="container"
-    :variant="!isCopyAnimationActive ? 'primary' : 'success'"
-    class="copy-chip">
-    <div class="copy-chip__text">
-      {{ textToDisplay }}
-    </div>
+  <div class="copy-chip">
+    <app-chip
+      ref="container"
+      :variant="!isCopyAnimationActive ? 'primary' : 'success'">
+      <div class="copy-chip__text">
+        {{ textToDisplay }}
+      </div>
 
-    <app-copy-button
-      v-show="!isCopyAnimationActive"
-      :clipboard-text="clipboardText || label"
-      variant="light"
-      class="copy-chip__copy-button"
-      @copy:started="activateCopyAnimation"
-      @copy:ended="deactivateCopyAnimation"/>
-  </app-chip>
+      <app-copy-button
+        v-show="!isCopyAnimationActive"
+        :clipboard-text="clipboardText || label"
+        variant="light"
+        @copy:started="activateCopyAnimation"
+        @copy:ended="deactivateCopyAnimation"/>
+    </app-chip>
+  </div>
 </template>
 
-<script>
+<script setup>
 import AppCopyButton from '@/components/AppCopyButton'
 import AppChip from '@/components/AppChip'
 
-export default {
-  component: 'CopyChip',
-  components: {
-    AppChip,
-    AppCopyButton,
+const props = defineProps({
+  label: {
+    type: String,
+    required: true,
   },
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    clipboardText: {
-      type: String,
-      default: null,
-    },
+  clipboardText: {
+    type: String,
+    default: null,
   },
-  data() {
-    return {
-      isCopyAnimationActive: false,
-    }
-  },
-  computed: {
-    textToDisplay() {
-      return this.isCopyAnimationActive ? 'Copied!' : this.label
-    },
-  },
-  methods: {
-    activateCopyAnimation() {
-      this.isCopyAnimationActive = true
-      this.$refs.container.$el.style.width = `${this.$refs.container.$el.clientWidth}px`
-    },
-    deactivateCopyAnimation() {
-      this.isCopyAnimationActive = false
-      this.$refs.container.$el.style.width = ''
-    },
-  },
+})
+
+const isCopyAnimationActive = ref(false)
+const container = ref(null)
+
+const textToDisplay = computed(() =>
+  isCopyAnimationActive.value ? 'Copied!' : props.label,
+)
+
+function activateCopyAnimation() {
+  isCopyAnimationActive.value = true
+  container.value.$el.style.width = `${container.value.$el.clientWidth}px`
+}
+
+function deactivateCopyAnimation() {
+  isCopyAnimationActive.value = false
+  container.value.$el.style.width = ''
 }
 </script>
 

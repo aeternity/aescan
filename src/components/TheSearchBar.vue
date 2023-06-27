@@ -17,76 +17,66 @@
     </button>
   </div>
 </template>
-<script>
+<script setup>
 import { isAddressValid } from '@aeternity/aepp-sdk'
-import { mapActions } from 'pinia'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 
-export default {
-  name: 'TheSearchBar',
-  components: { AppIcon },
-  data() {
-    return {
-      userQuery: '',
-    }
-  },
-  computed: {
-    query() {
-      const trimmedQuery = this.userQuery.trim()
-      return trimmedQuery.endsWith('.chain')
-        ? trimmedQuery.slice(0, -6)
-        : trimmedQuery
-    },
-  },
-  methods: {
-    ...mapActions(useNameDetailsStore, ['isNameAvailable']),
-    async search() {
-      if (!this.query) {
-        return
-      }
+const { isNameAvailable } = useNameDetailsStore()
+const userQuery = ref('')
+const { push } = useRouter()
 
-      if (this.isAccountAddress(this.query)) {
-        this.$router.push(`/accounts/${this.query}`)
-      } else if (this.isTransactionHash(this.query)) {
-        this.$router.push(`/transactions/${this.query}`)
-      } else if (this.isContractId(this.query)) {
-        this.$router.push(`/contracts/${this.query}`)
-      } else if (this.isOracleId(this.query)) {
-        this.$router.push(`/oracles/${this.query}`)
-      } else if (this.isNameId(this.query)) {
-        this.$router.push(`/names/${this.query}`)
-      } else if (this.isStateChannelId(this.query)) {
-        this.$router.push(`/state-channels/${this.query}`)
-      } else if (await this.isAccountName(this.query)) {
-        this.$router.push(`/names/${this.query}.chain`)
-      } else {
-        this.$router.push(`/error/${this.userQuery}`)
-      }
-      this.userQuery = ''
-    },
-    isAccountAddress(query) {
-      return isAddressValid(query) && query.startsWith('ak_')
-    },
-    isNameId(query) {
-      return isAddressValid(query) && query.startsWith('nm_')
-    },
-    isTransactionHash(query) {
-      return isAddressValid(query) && query.startsWith('th_')
-    },
-    isContractId(query) {
-      return isAddressValid(query) && query.startsWith('ct_')
-    },
-    isOracleId(query) {
-      return isAddressValid(query) && query.startsWith('ok_')
-    },
-    isStateChannelId(query) {
-      return isAddressValid(query) && query.startsWith('ch_')
-    },
-    async isAccountName(query) {
-      return await this.isNameAvailable(query)
-    },
-  },
+const query = computed(() => {
+  const trimmedQuery = userQuery.value.trim()
+  return trimmedQuery.endsWith('.chain')
+    ? trimmedQuery.slice(0, -6)
+    : trimmedQuery
+})
+
+async function search() {
+  if (!query.value) {
+    return
+  }
+
+  if (isAccountAddress(query.value)) {
+    push(`/accounts/${query.value}`)
+  } else if (isTransactionHash(query.value)) {
+    push(`/transactions/${query.value}`)
+  } else if (isContractId(query.value)) {
+    push(`/contracts/${query.value}`)
+  } else if (isOracleId(query.value)) {
+    push(`/oracles/${query.value}`)
+  } else if (isNameId(query.value)) {
+    push(`/names/${query.value}`)
+  } else if (isStateChannelId(query.value)) {
+    push(`/state-channels/${query.value}`)
+  } else if (await isAccountName(query.value)) {
+    push(`/names/${query.value}.chain`)
+  } else {
+    push(`/error/${userQuery.value}`)
+  }
+  userQuery.value = ''
+}
+function isAccountAddress(query) {
+  return isAddressValid(query) && query.startsWith('ak_')
+}
+function isNameId(query) {
+  return isAddressValid(query) && query.startsWith('nm_')
+}
+function isTransactionHash(query) {
+  return isAddressValid(query) && query.startsWith('th_')
+}
+function isContractId(query) {
+  return isAddressValid(query) && query.startsWith('ct_')
+}
+function isOracleId(query) {
+  return isAddressValid(query) && query.startsWith('ok_')
+}
+function isStateChannelId(query) {
+  return isAddressValid(query) && query.startsWith('ch_')
+}
+async function isAccountName(query) {
+  return await isNameAvailable(query)
 }
 </script>
 

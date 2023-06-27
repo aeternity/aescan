@@ -10,7 +10,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
 
   const oracleId = ref(null)
   const rawOracle = ref(null)
-  const creationTx = ref(null)
   const lastExtendedTx = ref(null)
   const lastQueryTx = ref(null)
   const rawEvents = ref(null)
@@ -18,7 +17,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const oracleDetails = computed(() => rawOracle.value
     ? adaptOracleDetails(
       rawOracle.value,
-      creationTx.value,
       lastExtendedTx.value,
       lastQueryTx.value,
       blockHeight.value,
@@ -32,7 +30,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     oracleId.value = id
 
     await Promise.allSettled([
-      fetchOracle().then(() => fetchCreationTx()),
+      fetchOracle(),
       fetchLastQueryTx(),
       fetchLastExtendedTx(),
     ])
@@ -43,11 +41,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   async function fetchOracle() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/oracles/${oracleId.value}`)
     rawOracle.value = data
-  }
-
-  async function fetchCreationTx() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/${rawOracle.value.register_tx_hash}`)
-    creationTx.value = data
   }
 
   async function fetchLastQueryTx() {
@@ -61,6 +54,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchOracleEvents(queryParameters = null) {
+    rawEvents.value = null
     const defaultParameters = `/v2/oracles/${oracleId.value}/responses`
 
     try {
@@ -77,7 +71,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     oracleDetails,
     oracleId,
     rawOracle,
-    creationTx,
     lastExtendedTx,
     lastQueryTx,
     oracleEvents,

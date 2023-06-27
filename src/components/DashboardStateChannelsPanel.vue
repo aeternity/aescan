@@ -5,32 +5,17 @@
       title="STATE CHANNELS"
       icon-name="state-channel"
       show-all-link="/state-channels">
-      <template #tooltip>
-        Numbers are counting on-chain transactions only. There can be millions of transactions executed
-        off-chain in
-        <app-link
-          variant="primary"
-          to="https://aeternity.com/state-channels">
-          State Channels
-        </app-link>
-        .
-      </template>
+      State Channels
     </panel-header>
     <dashboard-state-channels-table class="dashboard-state-channels-panel__table"/>
     <dashboard-state-channels-swiper class="dashboard-state-channels-panel__swiper"/>
   </app-panel>
 </template>
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
-import AppLink from '@/components/AppLink'
 import PanelHeader from '@/components/PanelHeader'
 import DashboardStateChannelsSwiper from '@/components/DashboardStateChannelsSwiper'
 import DashboardStateChannelsTable from '@/components/DashboardStateChannelsTable'
-
-export default {
-  name: 'DashboardStateChannelsPanel',
-  components: { DashboardStateChannelsTable, DashboardStateChannelsSwiper, PanelHeader, AppPanel, AppLink },
-}
 </script>
 
 <style scoped>

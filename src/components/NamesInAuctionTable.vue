@@ -2,10 +2,30 @@
   <table class="names-in-auction-table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Expires</th>
-        <th>Highest Bid</th>
-        <th>Bid Count</th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ namesHints.nameInAuction }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Ends
+          <hint-tooltip>
+            {{ namesHints.ends }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Highest Bid
+          <hint-tooltip>
+            {{ namesHints.highestBid }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Bid Count
+          <hint-tooltip>
+            {{ namesHints.bidCount }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -51,6 +71,7 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { namesHints } from '@/utils/hints/namesHints'
 
 defineProps({
   names: {

@@ -1,56 +1,25 @@
 <template>
   <app-select
     v-model="selectedTxType"
-    :options="txsTypes"
+    :options="TX_TYPES_OPTIONS"
     track-by="typeQuery"
     label="label"
-    placeholder="Select Tx Type">
-    <template #option="{ option: txType }">
-      <app-icon
-        v-if="selectedTxType"
-        class="transactions-select__icon"
-        :name="getIconName(txType.label, selectedTxType.label)"/>
-      {{ txType.label }}
-    </template>
-  </app-select>
+    placeholder="Select Tx Type"/>
 </template>
 
-<script>
+<script setup>
+import { useVModel } from '@vueuse/core'
 import AppSelect from '@/components/AppSelect'
-import AppIcon from '@/components/AppIcon'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
-export default {
-  name: 'TransactionsSelect',
-  components: { AppIcon, AppSelect },
-  props: {
-    modelValue: undefined,
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    required: true,
   },
-  emits: ['update:modelValue'],
-  data: () => ({
-    txsTypes: TX_TYPES_OPTIONS,
-  }),
-  computed: {
-    selectedTxType: {
-      get() {
-        return this.modelValue
-      },
-      set(value) {
-        this.$emit('update:modelValue', value)
-      },
-    },
-  },
+})
 
-  methods: {
-    getIconName(option, selectedOption) {
-      return option === selectedOption ? 'check-square' : 'square'
-    },
-  },
-}
+const emit = defineEmits(['update:modelValue'])
+
+const selectedTxType = useVModel(props, 'modelValue', emit)
 </script>
-
-<style scoped>
-.transactions-select__icon {
-  margin-right: var(--space-1);
-}
-</style>

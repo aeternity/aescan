@@ -16,6 +16,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   const stateChannelsLockedValue = ref(null)
   const stateChannelsCount = ref(null)
   const burnedCount = ref(null)
+  const totalTokenSupply = ref(null)
 
   async function fetchTotalStats() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/totalstats?limit=1`)
@@ -28,17 +29,17 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     stateChannelsLockedValue.value = formatAettosToAe(lastBlock.locked_in_channels)
     stateChannelsCount.value = lastBlock.open_channels
     burnedCount.value = formatAettosToAe(lastBlock.burned_in_auctions)
+    totalTokenSupply.value = formatAettosToAe(lastBlock.total_token_supply)
   }
+
   async function fetchMaxTps() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/stats`)
     maxTps.value = data.max_transactions_per_second
   }
+
   async function fetchTotalTransactionsCount() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count`)
     transactionsCount.value = data
-  }
-  function increaseTransactionsCounter() {
-    transactionsCount.value += 1
   }
 
   return {
@@ -55,6 +56,6 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     fetchTotalStats,
     fetchMaxTps,
     fetchTotalTransactionsCount,
-    increaseTransactionsCounter,
+    totalTokenSupply,
   }
 })

@@ -11,10 +11,6 @@
 
 <script setup>
 defineProps({
-  status: {
-    type: String,
-    required: true,
-  },
   isCollapsed: {
     type: Boolean,
     default: true,

@@ -23,31 +23,24 @@
   </button>
 </template>
 
-<script>
+<script setup>
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'AppButton',
-  components: {
-    AppIcon,
-    AppLink,
+defineProps({
+  iconName: {
+    type: String,
+    default: null,
   },
-  props: {
-    iconName: {
-      type: String,
-      default: null,
-    },
-    to: {
-      type: String,
-      default: null,
-    },
-    target: {
-      type: String,
-      default: '_blank',
-    },
+  to: {
+    type: String,
+    default: null,
   },
-}
+  target: {
+    type: String,
+    default: '_blank',
+  },
+})
 </script>
 
 <style scoped>

@@ -8,9 +8,14 @@
     :hash="transactionData.channel_id"
     :link-to="`/state-channels/${transactionData.channel_id}`"/>
 
-  <app-chip size="sm">
-    Round {{ transactionData.round }}
-  </app-chip>
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ transactionData.round }}
+    </app-chip>
+    <template #tooltip>
+      Round
+    </template>
+  </app-tooltip>
 </template>
 
 <script setup>

@@ -1,6 +1,6 @@
 {
   "name": "aescan",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "private": true,
   "author": "æternity",
   "description": "æScan is a blockchain explorer, analytics platform, and decentralized smart contract navigation platform based on æternity",
@@ -43,7 +43,7 @@
     "memory-cache": "^0.2.0",
     "pinia": "^2.0.32",
     "swiper": "^8.4.5",
-    "vue": "^3.2.47",
+    "vue": "^3.3.4",
     "vue-multiselect": "^3.0.0-beta.1",
     "vue-router": "^4.1.6"
   },
@@ -61,8 +61,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.8.0",
-    "nuxt": "^3.4.2",
-    "nuxt-simple-sitemap": "2.4.18",
+    "nuxt": "^3.5.2",
+    "nuxt-simple-sitemap": "2.6.1",
     "postcss": "^8.4.20",
     "postcss-custom-media": "^8.0.2",
     "postcss-html": "^1.5.0",

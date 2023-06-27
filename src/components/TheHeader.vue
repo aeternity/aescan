@@ -3,7 +3,8 @@
     <div
       :class="[
         'header__container',
-        { 'header__container--open': isNavigationOpen }]">
+        { 'header__container--open': isNavigationOpen },
+      ]">
       <app-link
         to="/"
         @click="closeNavigation">
@@ -28,18 +29,20 @@
       <the-navigation
         :class="[
           'header__navigation',
-          { 'header__navigation--open': isNavigationOpen }]"
-        @link-clicked="closeNavigation"/>
+          { 'header__navigation--open': isNavigationOpen },
+        ]"/>
 
       <network-select
         :class="[
           'header__network-select',
-          { 'header__network-select--open': isNavigationOpen }]"/>
+          { 'header__network-select--open': isNavigationOpen },
+        ]"/>
 
       <div
         :class="[
           'header__button-container',
-          { 'header__button-container--open': isNavigationOpen }]">
+          { 'header__button-container--open': isNavigationOpen },
+        ]">
         <app-button
           class="header__button"
           to="https://github.com/aeternity/aescan">
@@ -58,7 +61,7 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import TheNavigation from '@/components/TheNavigation'
 import AppLink from '@/components/AppLink'
 import AppIcon from '@/components/AppIcon'
@@ -66,30 +69,30 @@ import AppButton from '@/components/AppButton'
 import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
 
-export default {
-  name: 'TheHeader',
-  components: { NetworkSelect, AppIcon, AppLink, TheNavigation, AppButton },
-  data: () => ({
-    isNavigationOpen: false,
-  }),
-  mounted() {
-    if (isDesktop()) {
-      window.addEventListener('resize', this.closeNavigation)
-    }
-  },
-  beforeUnmount() {
-    if (isDesktop()) {
-      window.removeEventListener('resize', this.closeNavigation)
-    }
-  },
-  methods: {
-    toggleNavigation() {
-      this.isNavigationOpen = !this.isNavigationOpen
-    },
-    closeNavigation() {
-      this.isNavigationOpen = false
-    },
-  },
+const route = useRoute()
+const isNavigationOpen = ref(false)
+
+onMounted(() => {
+  if (isDesktop()) {
+    window.addEventListener('resize', closeNavigation())
+  }
+})
+
+onBeforeUnmount(() => {
+  if (isDesktop()) {
+    window.removeEventListener('resize', closeNavigation())
+  }
+})
+
+watch(route, () => {
+  closeNavigation()
+})
+
+function toggleNavigation() {
+  isNavigationOpen.value = !isNavigationOpen.value
+}
+function closeNavigation() {
+  isNavigationOpen.value = false
 }
 </script>
 

@@ -9,21 +9,21 @@
           </hint-tooltip>
         </th>
         <th>
-          Created
+          Created By
           <hint-tooltip>
-            {{ contractsHints.contractCreated }}
+            {{ contractsHints.createdBy }}
           </hint-tooltip>
         </th>
         <th>
           Hash
           <hint-tooltip>
-            {{ contractsHints.contractTxHash }}
+            {{ contractsHints.hash }}
           </hint-tooltip>
         </th>
         <th>
           Created By
           <hint-tooltip>
-            {{ contractsHints.contractCreator }}
+            {{ contractsHints.creator }}
           </hint-tooltip>
         </th>
       </tr>

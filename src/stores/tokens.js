@@ -14,7 +14,7 @@ export const useTokensStore = defineStore('tokens', () => {
     return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value : allTokens.value
   })
   const selectedTokensCount = computed(() => {
-    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value.data.length : allTokensCount.value
+    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value?.data.length : allTokensCount.value
   })
 
   const listedTokens = computed(() =>

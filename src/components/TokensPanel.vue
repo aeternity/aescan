@@ -37,10 +37,6 @@ const { fetchTokens, fetchTokensCount } = useTokensStore()
 
 const pageIndex = ref(1)
 
-watch(selectedTokenName, () => {
-  pageIndex.value = 1
-})
-
 async function loadPrevTokens() {
   await fetchTokens(selectedTokens.value.prev)
 }
@@ -57,7 +53,12 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
+  watch(selectedTokenName, async () => {
+    pageIndex.value = 1
+    await fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
+  }, {
+    immediate: true
+  })
 }
 
 </script>

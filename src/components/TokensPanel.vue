@@ -1,6 +1,7 @@
 <template>
   <app-panel class="tokens-panel">
     <paginated-content
+      v-model:page-index="pageIndex"
       :entities="selectedTokens"
       :total-count="selectedTokensCount"
       @prev-clicked="loadPrevTokens"
@@ -22,7 +23,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useTokensStore } from '@/stores/tokens'
 import TokensTableCondensed from '@/components/TokensTableCondensed'
 import TokensTable from '@/components/TokensTable'
@@ -33,6 +34,12 @@ import { isDesktop } from '@/utils/screen'
 const tokensStore = useTokensStore()
 const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(tokensStore)
 const { fetchTokens, fetchTokensCount } = useTokensStore()
+
+const pageIndex = ref(1)
+
+watch(selectedTokenName, () => {
+  pageIndex.value = 1
+})
 
 async function loadPrevTokens() {
   await fetchTokens(selectedTokens.value.prev)

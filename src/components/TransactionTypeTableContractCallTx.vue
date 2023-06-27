@@ -34,14 +34,12 @@
           Amount
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          {{
-            formatAePrice(formatAettosToAe(transactionData.amount), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
-          Entrypoint
+          Entry Point
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           <app-chip>
@@ -67,66 +65,48 @@
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
-          Gas limit /
+          Gas Limit /
           <wbr>
-          Gas price
+          Gas Price
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           {{ transactionData.gas }}
           /
-          {{
-            formatAePrice(formatAettosToAe(transactionData.gas_price), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.gas_price), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
-          Gas used /
+          Gas Used /
           <wbr>
-          Gas costs
+          Gas Costs
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           {{ formatNullable(transactionData.gas_used) }}
           /
-          {{
-            formatNullable(formatAePrice(formatAettosToAe(gasCosts), null))
-          }}
+          {{ formatNullable(formatAePrice(formatAettosToAe(gasCosts), null)) }}
         </td>
       </tr>
     </tbody>
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 
-export default {
-  name: 'TransactionTypeTableContractCallTx',
-  components: {
-    AppChip,
-    AppLink,
-    TransactionTypeStatusLabel,
+const props = defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  computed: {
-    gasCosts() {
-      return this.transactionData.gas_used * this.transactionData.gas_price
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatNullable,
-  },
-}
+})
+
+const gasCosts = computed(() =>
+  props.transactionData.gas_used * props.transactionData.gas_price,
+)
 </script>
 
 <style scoped>

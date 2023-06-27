@@ -10,7 +10,10 @@ function isAuction(chainName) {
 
 export function adaptKeyblock(keyblock) {
   if (keyblock) {
-    keyblock.mined = DateTime.fromMillis(keyblock.time)
+    return {
+      ...keyblock,
+      mined: DateTime.fromMillis(keyblock.time),
+    }
   }
 
   return keyblock
@@ -40,6 +43,7 @@ export function adaptTransactions(transactions) {
       created: DateTime.fromMillis(transaction.micro_time),
       type: transaction.tx.type,
       data: transaction.tx,
+      hintKey: transaction.tx.type.charAt(0).toLowerCase() + transaction.tx.type.slice(1),
     }
   })
   return {
@@ -84,7 +88,7 @@ export function adaptChainNames(chainNames, blockHeight) {
   })
 }
 
-export function adaptStateChannels(stateChannels, blockHeight) {
+export function adaptDashboardStateChannels(stateChannels, blockHeight) {
   return stateChannels.map(channel => {
     return {
       initiator: channel.initiator,
@@ -243,21 +247,26 @@ export function adaptName(name, blockHeight, blockTime) {
   return formattedName
 }
 
-export function adaptNameActions(transactions) {
-  const formattedData = transactions.data
-    .map(transaction => {
+export function adaptNameActions(actions, blockHeight) {
+  const formattedData = actions.data
+    .map(action => {
       return {
-        type: transaction.type,
-        hash: transaction.payload.source_tx_hash || transaction.payload.call_tx_hash || transaction.payload.hash,
-        createdHeight: transaction.payload.block_height || transaction.height,
-        created: DateTime.fromMillis(transaction.payload.micro_time),
+        type: action.type,
+        hash: action.payload.source_tx_hash || action.payload.call_tx_hash || action.payload.hash,
+        createdHeight: action.payload.block_height || action.height,
+        created: action.payload?.micro_time
+          ? DateTime.fromMillis(action.payload.micro_time)
+          : formatBlockDiffAsDatetime(
+            action.payload.block_height || action.height,
+            blockHeight,
+          ),
       }
     })
 
   return {
-    next: transactions.next,
+    next: actions.next,
     data: formattedData,
-    prev: transactions.prev,
+    prev: actions.prev,
   }
 }
 
@@ -311,6 +320,7 @@ export function adaptContractEvents(events, blockHeight) {
         callTxHash: event.call_tx_hash,
       }
     })
+
   return {
     next: events.next,
     data: formattedData,
@@ -333,6 +343,25 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   }
 
   return tokenDetails
+}
+
+export function adaptTokenEvents(events, blockHeight) {
+  const formattedData = events.data
+    .map(event => {
+      return {
+        hash: event.call_tx_hash,
+        name: event.event_name || 'N/A',
+        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        createdHeight: event.height,
+        args: event.args,
+      }
+    })
+
+  return {
+    next: events.next,
+    data: formattedData,
+    prev: events.prev,
+  }
 }
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
@@ -360,9 +389,121 @@ export function adaptListedTokens(tokens) {
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
       }
     })
+
   return {
     next: null,
     data: formattedData,
     prev: null,
+  }
+}
+
+export function adaptOracles(oracles, blockHeight) {
+  const formattedData = oracles.data.map(oracle => {
+    return {
+      id: oracle.oracle,
+      activeFromHeight: oracle.active_from,
+      activeFrom: formatBlockDiffAsDatetime(oracle.active_from, blockHeight),
+      expireHeight: oracle.expire_height,
+      expire: formatBlockDiffAsDatetime(oracle.expire_height, blockHeight),
+      queryFee: formatAettosToAe(oracle.query_fee),
+    }
+  })
+
+  return {
+    next: oracles.next,
+    data: formattedData,
+    prev: oracles.prev,
+  }
+}
+
+export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHeight) {
+  const oracleDetails = {
+    id: oracle.oracle,
+    fee: formatAettosToAe(oracle.query_fee),
+    expiration: formatBlockDiffAsDatetime(
+      oracle.expire_height,
+      blockHeight,
+    ),
+    expirationHeight: oracle.expire_height,
+    registered: oracle.active_from
+      ? formatBlockDiffAsDatetime(
+        oracle.active_from,
+        blockHeight,
+      )
+      : null,
+    registeredHeight: oracle.active_from,
+    queryFormat: oracle.format.query,
+    responseFormat: oracle.format.response,
+    operator: oracle.oracle.replace('ok_', 'ak_'),
+    lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.micro_time) : null,
+    lastExtendedHeight: lastExtendedTx?.block_height,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
+    lastQueryHeight: lastQueryTx?.block_height,
+  }
+
+  return oracleDetails
+}
+
+export function adaptOracleEvents(events) {
+  const formattedData = events.data.map(event => {
+    return {
+      queryTx: event.query.source_tx_hash,
+      respondTx: event.source_tx_hash,
+      queryId: event.query.query_id,
+      queryFee: formatAettosToAe(event.query.fee),
+      query: formatDecodeBase64(event.query.query),
+      responseTtl: event.query.response_ttl.value,
+      response: formatDecodeBase64(event.response),
+    }
+  })
+
+  return {
+    next: events?.next,
+    data: formattedData,
+    prev: events?.prev,
+  }
+}
+
+export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blockHeight) {
+  return {
+    id: stateChannel.channel,
+    isOpen: stateChannel.active,
+    createTransactionHash: stateChannelCreateTx.source_tx_hash,
+    initialAmount: formatAettosToAe(stateChannel.initiator_amount + stateChannel.responder_amount),
+    initiator: stateChannel.initiator,
+    responder: stateChannel.responder,
+    onChainUpdates: stateChannel.updates_count,
+    lastKnownRound: stateChannel.round,
+    aeLocked: formatAettosToAe(stateChannel.amount),
+    lastUpdatedHeight: stateChannel.last_updated_height,
+    lastUpdated: stateChannel.last_updated_height
+      ? formatBlockDiffAsDatetime(
+        stateChannel.last_updated_height,
+        blockHeight,
+      )
+      : null,
+    lastTxType: stateChannel.last_updated_tx_type,
+  }
+}
+
+export function adaptStateChannels(channels, blockHeight) {
+  const formattedData = channels.data
+    .map(channel => {
+      return {
+        id: channel.channel,
+        status: channel.active ? 'Open' : 'Closed',
+        initiator: channel.initiator,
+        responder: channel.responder,
+        updateCount: channel.updates_count,
+        locked: formatAePrice(formatAettosToAe(channel.amount)),
+        updated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight),
+        updatedHeight: channel.last_updated_height,
+        updateType: channel.last_updated_tx_type,
+      }
+    })
+  return {
+    next: channels.next,
+    data: formattedData,
+    prev: channels.prev,
   }
 }

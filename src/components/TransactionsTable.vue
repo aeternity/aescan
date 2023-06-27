@@ -2,10 +2,30 @@
   <table class="transactions-table__table">
     <thead>
       <tr>
-        <th>Hash</th>
-        <th>Created</th>
-        <th>Type</th>
-        <th>Data</th>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ transactionsHints.hash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Created
+          <hint-tooltip>
+            {{ transactionsHints.created }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Type
+          <hint-tooltip>
+            {{ transactionsHints.type }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Data
+          <hint-tooltip>
+            {{ transactionsHints.data }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +46,9 @@
         </td>
         <td class="transactions-table__data">
           {{ transaction.type }}
+          <hint-tooltip>
+            {{ transactionsHints[transaction.hintKey] }}
+          </hint-tooltip>
         </td>
         <td class="transactions-table__data">
           <transaction-cell
@@ -36,27 +59,20 @@
     </tbody>
   </table>
 </template>
-<script>
+
+<script setup>
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionTable',
-  components: {
-    ValueHashEllipsed,
-    DatetimeLabel,
-    TransactionCell,
-    HashSymbol,
+defineProps({
+  transactions: {
+    type: Object,
+    required: true,
   },
-  props: {
-    transactions: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

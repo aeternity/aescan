@@ -1,53 +1,83 @@
 <template>
-  <table>
+  <table class="state-channels-table">
     <thead>
       <tr>
-        <th>Participants</th>
-        <th>Channel ID</th>
-        <th>On-chain Updates</th>
-        <th>Locked</th>
-        <th>Last Updated</th>
-        <th>Last TX Type</th>
+        <th>
+          State Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Status
+          <hint-tooltip>
+            {{ stateChannelsHints.status }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Participants
+          <hint-tooltip>
+            {{ stateChannelsHints.participants }}
+          </hint-tooltip>
+        </th>
+        <th>
+          On-Chain TXs
+          <hint-tooltip>
+            {{ stateChannelsHints.onChainUpdates }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Locked
+          <hint-tooltip>
+            {{ stateChannelsHints.locked }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last Updated
+          <hint-tooltip>
+            {{ stateChannelsHints.lastUpdated }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last TX Type
+          <hint-tooltip>
+            {{ stateChannelsHints.lastTxType }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr
-        v-for="channel in stateChannels"
-        :key="channel.channel">
+        v-for="channel in stateChannels.data"
+        :key="channel.id">
+        <td>
+          <value-hash-ellipsed
+            :hash="channel.id"
+            :link-to="`/state-channels/${channel.id}`"/>
+        </td>
+        <td>{{ channel.status }}</td>
         <td>
           <div>
-            <span class="state-channels-table__label">
-              Initiator:
-            </span>
-
+            Initiator:
             <value-hash-ellipsed
-              :link-to="`/accounts/${channel.initiator}`"
-              :hash="channel.initiator"/>
+              :hash="channel.initiator"
+              :link-to="`/accounts/${channel.initiator}`"/>
           </div>
           <div>
-            <span class="state-channels-table__label">
-              Responder:
-            </span>
+            Responder:
             <value-hash-ellipsed
-              :link-to="`/accounts/${channel.responder}`"
-              :hash="channel.responder"/>
+              :hash="channel.responder"
+              :link-to="`/accounts/${channel.responder}`"/>
           </div>
         </td>
-        <td>
-          <value-hash-ellipsed :hash="channel.channel"/>
-        </td>
-        <td>
-          {{ channel.updateCount }}
-        </td>
-        <td>
-          {{ formatAePrice(channel.amount) }}
-        </td>
+        <td>{{ channel.updateCount }}</td>
+        <td>{{ channel.locked }}</td>
         <td>
           <div>
             {{ channel.updatedHeight }}
           </div>
           <div>
-            <datetime-label :datetime="channel.updated"/>
+            <datetime-label :datetime="channel.updated "/>
           </div>
         </td>
         <td>{{ channel.updateType }}</td>
@@ -55,32 +85,20 @@
     </tbody>
   </table>
 </template>
-<script>
-import { mapState } from 'pinia'
-import { useStateChannelsStore } from '@/stores/stateChannels'
-import { formatAePrice } from '@/utils/format'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'StateChannelsTable',
-  components: { DatetimeLabel, ValueHashEllipsed },
+<script setup>
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
-  computed: {
-    ...mapState(useStateChannelsStore, ['stateChannels']),
+defineProps({
+  stateChannels: {
+    type: Object,
+    required: true,
   },
-
-  methods: {
-    formatAePrice,
-  },
-}
+})
 </script>
 
 <style scoped>
 .state-channels-table {
-  &__label {
-    display: inline-block;
-    margin: 0 var(--space-0) var(--space-0) 0;
-  }
+  margin-bottom: var(--space-2);
 }
 </style>

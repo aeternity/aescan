@@ -2,10 +2,30 @@
   <table class="names-in-auction-table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Expires</th>
-        <th>Highest Bid</th>
-        <th>Bid Count</th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ namesHints.nameInAuction }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Ends
+          <hint-tooltip>
+            {{ namesHints.ends }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Highest Bid
+          <hint-tooltip>
+            {{ namesHints.highestBid }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Bid Count
+          <hint-tooltip>
+            {{ namesHints.bidCount }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -45,31 +65,20 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { namesHints } from '@/utils/hints/namesHints'
 
-export default {
-  name: 'NamesInAuctionTable',
-  components: {
-    DatetimeLabel,
-    ValueHashEllipsed,
-    AppChip,
-    AppLink,
+defineProps({
+  names: {
+    type: Object,
+    required: true,
   },
-  props: {
-    names: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    formatAePrice,
-  },
-}
+})
 </script>
 
 <style scoped>

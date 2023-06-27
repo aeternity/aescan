@@ -18,7 +18,7 @@
       </tr>
       <tr class="transaction-type-panel-name-revoke-tx__row">
         <th class="transaction-type-panel-name-revoke-tx__table-header">
-          Last owner
+          Last Owner
         </th>
         <td class="transaction-type-panel-name-revoke-tx__data">
           <app-link :to="`/accounts/${transactionData.account_id}`">
@@ -30,25 +30,16 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import { formatNullable } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableNameRevokeTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatNullable,
-  },
-}
+})
 </script>
 
 <style scoped>

@@ -3,15 +3,17 @@
     <tbody>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
-          {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Initiator / amount
+          Initiator / Amount
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
@@ -28,7 +30,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Responder / amount
+          Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
@@ -45,7 +47,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Sent by
+          Sent By
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -57,26 +59,16 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableChannelCloseMutualTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
 </script>
 
 <style scoped>

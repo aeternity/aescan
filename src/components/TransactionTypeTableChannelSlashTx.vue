@@ -3,10 +3,12 @@
     <tbody>
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
-          {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-slash-tx__row">
@@ -19,7 +21,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
-          Slashed by
+          Slashed By
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -31,21 +33,15 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'TransactionTypeTableChannelSlashTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

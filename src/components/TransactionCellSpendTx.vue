@@ -20,37 +20,21 @@
   </app-chip>
 </template>
 
-<script>
+<script setup>
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'TransactionCellSpendTx',
-  components: {
-    AppLink,
-    ValueHashEllipsed,
-    TransactionArrowRightIcon,
-    AppChip,
+const props = defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  computed: {
-    hasRecipientName() {
-      return !!this.transactionData.recipient
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
+
+const hasRecipientName = computed(() => !!props.transactionData.recipient)
 </script>
 
 <style scoped>

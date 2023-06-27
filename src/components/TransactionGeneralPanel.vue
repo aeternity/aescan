@@ -21,7 +21,7 @@
       <tbody>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Block height
+            Keyblock Height
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.blockHeight }}
@@ -29,7 +29,7 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Block confirmations
+            Keyblock Confirmations
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.confirmations }}
@@ -56,15 +56,15 @@
           v-if="transactionDetails.blockHash"
           class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Microblock hash
+            Microblock Hash
           </th>
           <td class="transaction-general-panel__data">
-            <span class="transaction-general-panel__hash">{{
-              transactionDetails.blockHash
-            }}</span>
-            <span class="transaction-general-panel__hash-ellipse">{{
-              formatEllipseHash(transactionDetails.blockHash)
-            }}</span>
+            <span class="transaction-general-panel__hash">
+              {{ transactionDetails.blockHash }}
+            </span>
+            <span class="transaction-general-panel__hash-ellipse">
+              {{ formatEllipseHash(transactionDetails.blockHash) }}
+            </span>
           </td>
         </tr>
         <tr
@@ -124,7 +124,7 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
 import AppChip from '@/components/AppChip'
 import AppIcon from '@/components/AppIcon'
@@ -133,42 +133,22 @@ import CopyChip from '@/components/CopyChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'TransactionGeneralPanel',
-  components: {
-    DatetimeLabel,
-    AppLink,
-    AppIcon,
-    AppChip,
-    AppPanel,
-    CopyChip,
-  },
+const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 
-  props: {
-    transactionDetails: {
-      type: Object,
-      required: true,
-    },
+const props = defineProps({
+  transactionDetails: {
+    type: Object,
+    required: true,
   },
-  data: () => ({
-    generation: null,
-    maxHeight: null,
-    currentKeyblockHeight: null,
-  }),
-  computed: {
-    transactionNodeUrl() {
-      return `${this.$config.public.NODE_URL}/v3/transactions/${this.transactionDetails.hash}`
-    },
-    transactionMiddlewareUrl() {
-      return `${this.$config.public.MIDDLEWARE_URL}/v2/txs/${this.transactionDetails.hash}`
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatEllipseHash,
-  },
-}
+})
+
+const transactionNodeUrl = computed(() => {
+  return `${NODE_URL}/v3/transactions/${props.transactionDetails.hash}`
+})
+
+const transactionMiddlewareUrl = computed(() => {
+  return `${MIDDLEWARE_URL}/v2/txs/${props.transactionDetails.hash}`
+})
 </script>
 
 <style scoped>

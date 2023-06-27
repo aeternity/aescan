@@ -37,25 +37,17 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import DashboardTransactionPanel from '@/components/DashboardTransactionPanel'
 import MicroblocksSequence from '@/components/MicroblocksSequence'
 import PanelHeader from '@/components/PanelHeader'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-export default {
-  name: 'DashboardMicroblocksPanel',
-  components: { AppPanel, DashboardTransactionPanel, MicroblocksSequence, PanelHeader },
-
-  computed: {
-    ...mapState(useRecentBlocksStore, [
-      'selectedKeyblockMicroblocks',
-      'selectedMicroblockTransactionsCount',
-    ]),
-  },
-}
+const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = storeToRefs(
+  useRecentBlocksStore(),
+)
 </script>
 
 <style scoped>

@@ -6,7 +6,9 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{ transactionData.oracle_id }}
+          <app-link :to="`/oracles/${transactionData.oracle_id}`">
+            {{ transactionData.oracle_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
@@ -21,7 +23,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query id
+          Query ID
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ formatNullable(transactionData.query_id) }}
@@ -37,17 +39,15 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query fee
+          Query Fee
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{
-            formatAePrice(formatAettosToAe(transactionData.query_fee), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.query_fee), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query TTL / type
+          Query TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.query_ttl.value }}
@@ -57,7 +57,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Response TTL / type
+          Response TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.response_ttl.value }}
@@ -69,27 +69,16 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableOracleQueryTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatNullable,
-  },
-}
+})
 </script>
 
 <style scoped>

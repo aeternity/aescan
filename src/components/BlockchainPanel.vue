@@ -61,40 +61,22 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import KeyblockTableCondensed from '@/components/KeyblockTableCondensed'
-import { formatAePrice, formatNullable } from '@/utils/format'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import KeyblockTable from '@/components/KeyblockTable'
 import PanelHeader from '@/components/PanelHeader'
 import KeyblockSequence from '@/components/KeyblockSequence'
 import DashboardMicroblocksPanel from '@/components/DashboardMicroblocksPanel'
 
-export default {
-  name: 'BlockchainPanel',
-  components: {
-    DashboardMicroblocksPanel,
-    KeyblockSequence,
-    PanelHeader,
-    KeyblockTable,
-    KeyblockTableCondensed,
-    AppPanel,
-  },
-  computed: {
-    ...mapState(useRecentBlocksStore, [
-      'keyblocks',
-      'selectedKeyblock',
-      'selectedDeltaStats',
-      'selectedKeyblockTransactionsCount',
-    ]),
-  },
-  methods: {
-    formatNullable,
-    formatAePrice,
-  },
-}
+const {
+  keyblocks,
+  selectedKeyblock,
+  selectedDeltaStats,
+  selectedKeyblockTransactionsCount,
+} = storeToRefs(useRecentBlocksStore())
 </script>
 
 <style scoped>

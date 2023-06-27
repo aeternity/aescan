@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
-import BigNumber from 'bignumber.js'
+import { BigNumber } from 'bignumber.js'
 import { MAXIMUM_FRACTION_DIGITS, MINUTES_PER_BLOCK, NUMBER_FRACTION_THRESHOLD } from '@/utils/constants'
 
 export function formatEllipseHash(hash) {
@@ -13,7 +13,6 @@ export function formatNumber(number, minimumFractionDigits = 0, maximumFractionD
   if (isNaN(number) || number === null) {
     return number
   }
-
   return Intl.NumberFormat('en-US', {
     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
     maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
@@ -78,8 +77,7 @@ export function formatNullable(value) {
 }
 
 export function formatDecodeBase64(base64String) {
-  const decodedString = process.client ? window.atob(base64String) : Buffer.from(base64String, 'base64').toString('utf8')
-  return decodeURIComponent(escape(decodedString))
+  return process.client ? window.atob(base64String) : Buffer.from(base64String, 'base64').toString('utf8')
 }
 
 export function formatDecodeByteArray(bytesArray) {

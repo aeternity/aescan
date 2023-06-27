@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h4 class="footer-list__heading">
+    <h5 class="footer-list__heading">
       {{ title }}
-    </h4>
+    </h5>
     <hr>
     <ul class="footer-list__list">
       <li
@@ -18,23 +18,19 @@
     </ul>
   </div>
 </template>
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'FooterList',
-  components: { AppLink },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    links: {
-      type: Array,
-      required: true,
-    },
+defineProps({
+  title: {
+    type: String,
+    required: true,
   },
-}
+  links: {
+    type: Array,
+    required: true,
+  },
+})
 </script>
 
 <style scoped>

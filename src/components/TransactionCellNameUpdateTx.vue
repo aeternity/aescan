@@ -9,32 +9,29 @@
       {{ transactionData.name }}
     </app-link>
   </span>
-  <app-chip size="sm">
-    TTL {{ transactionData.name_ttl }}
-  </app-chip>
+
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ transactionData.name_ttl }}
+    </app-chip>
+    <template #tooltip>
+      Lifetime
+    </template>
+  </app-tooltip>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import AppLink from '@/components/AppLink'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellNameUpdateTx',
-  components: {
-    ValueHashEllipsed,
-    AppLink,
-    TransactionArrowRightIcon,
-    AppChip,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

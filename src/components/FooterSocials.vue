@@ -13,46 +13,40 @@
     </app-link>
   </div>
 </template>
-<script>
+<script setup>
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'FooterSocials',
-  components: { AppIcon, AppLink },
-  data: () => ({
-    socials: [
-      {
-        name: 'Forum',
-        url: 'https://forum.aeternity.com',
-      },
-      {
-        name: 'Telegram',
-        url: 'https://telegram.me/aeternity',
-      },
-      {
-        name: 'Reddit',
-        url: 'https://reddit.com/r/Aeternity/',
-      },
-      {
-        name: 'Linkedin',
-        url: 'https://www.linkedin.com/company/aeternity',
-      },
-      {
-        name: 'Youtube',
-        url: 'https://youtube.com/@aeternityblockchain',
-      },
-      {
-        name: 'Medium',
-        url: 'https://blog.aeternity.com/',
-      },
-      {
-        name: 'Twitter',
-        url: 'https://twitter.com/aeternity',
-      },
-    ],
-  }),
-}
+const socials = [
+  {
+    name: 'Forum',
+    url: 'https://forum.aeternity.com',
+  },
+  {
+    name: 'Telegram',
+    url: 'https://telegram.me/aeternity',
+  },
+  {
+    name: 'Reddit',
+    url: 'https://reddit.com/r/Aeternity/',
+  },
+  {
+    name: 'Linkedin',
+    url: 'https://www.linkedin.com/company/aeternity',
+  },
+  {
+    name: 'Youtube',
+    url: 'https://youtube.com/@aeternityblockchain',
+  },
+  {
+    name: 'Medium',
+    url: 'https://blog.aeternity.com/',
+  },
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/aeternity',
+  },
+]
 </script>
 
 <style scoped>

@@ -4,26 +4,29 @@
     :link-to="`/accounts/${transactionData.from_id}`"/>
   <transaction-arrow-right-icon/>
 
-  <value-hash-ellipsed :hash="transactionData.channel_id"/>
+  <value-hash-ellipsed
+    :hash="transactionData.channel_id"
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 
-  <app-chip size="sm">
-    Round {{ transactionData.round }}
-  </app-chip>
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ transactionData.round }}
+    </app-chip>
+    <template #tooltip>
+      Round
+    </template>
+  </app-tooltip>
 </template>
 
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 
-export default {
-  name: 'TransactionCellChannelCloseSoloTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>

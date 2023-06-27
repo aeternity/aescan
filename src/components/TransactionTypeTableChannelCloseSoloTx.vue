@@ -3,10 +3,12 @@
     <tbody>
       <tr class="transaction-type-panel-channel-close-solo-tx__row">
         <th class="transaction-type-panel-channel-close-solo-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-close-solo-tx__data">
-          {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channel_id}`">
+            {{ transactionData.channel_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-close-solo-tx__row">
@@ -39,7 +41,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-close-solo-tx__row">
         <th class="transaction-type-panel-channel-close-solo-tx__table-header">
-          Proposed by
+          Proposed By
         </th>
         <td class="transaction-type-panel-channel-close-solo-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -51,21 +53,15 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'TransactionTypeTableChannelCloseSoloTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

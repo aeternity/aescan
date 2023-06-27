@@ -5,7 +5,12 @@
         <tbody>
           <tr>
             <th class="auctions-swiper__header">
-              Name
+              <app-tooltip>
+                Name
+                <template #tooltip>
+                  {{ namesHints.name }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="auctions-swiper__data">
               <app-link
@@ -17,7 +22,12 @@
           </tr>
           <tr>
             <th class="auctions-swiper__header">
-              Last bid by
+              <app-tooltip>
+                Highest Bidder
+                <template #tooltip>
+                  {{ namesHints.bidder }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="auctions-swiper__data">
               <value-hash-ellipsed
@@ -27,14 +37,26 @@
           </tr>
           <tr>
             <th class="auctions-swiper__header">
-              Bid
+              <app-tooltip>
+                Bid
+                <template #tooltip>
+                  {{ namesHints.bid }}
+                </template>
+              </app-tooltip>
             </th>
             <td class="auctions-swiper__data">
               {{ formatAePrice(auction.bid) }}
             </td>
           </tr>
           <tr>
-            <th>Ending</th>
+            <th>
+              <app-tooltip>
+                Ending
+                <template #tooltip>
+                  {{ namesHints.ends }}
+                </template>
+              </app-tooltip>
+            </th>
             <td class="auctions-swiper__data">
               {{ auction.expirationHeight }} -
               <datetime-label :datetime="auction.expiration"/>
@@ -45,30 +67,18 @@
     </template>
   </app-swiper>
 </template>
-<script>
-import { mapState } from 'pinia'
-import AppLink from '@/components/AppLink'
 
+<script setup>
+import { storeToRefs } from 'pinia'
+import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { namesHints } from '@/utils/hints/namesHints'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'AuctionsSwiper',
-  components: { DatetimeLabel, ValueHashEllipsed, AppSwiper, AppLink },
-
-  computed: {
-    ...mapState(useNamesStore, ['auctionsEndingSoon']),
-    ...mapState(useRecentBlocksStore, ['blockHeight']),
-  },
-
-  methods: {
-    formatAePrice,
-  },
-}
+const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>

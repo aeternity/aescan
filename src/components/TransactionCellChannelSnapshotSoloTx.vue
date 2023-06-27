@@ -6,24 +6,25 @@
 
   <value-hash-ellipsed :hash="transactionData.from_id"/>
 
-  <app-chip size="sm">
-    Round {{ transactionData.round }}
-  </app-chip>
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ transactionData.round }}
+    </app-chip>
+    <template #tooltip>
+      Round
+    </template>
+  </app-tooltip>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellChannelSnapshotSoloTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>

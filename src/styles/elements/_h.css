@@ -49,3 +49,14 @@ h4,
     line-height: 24px;
   }
 }
+
+
+h5,
+.h5 {
+  font-size: 16px;
+  line-height: 24px;
+  @media (--desktop) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

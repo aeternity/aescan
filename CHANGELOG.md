@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.3.0](https://github.com/aeternity/aescan/compare/0.2.2...0.3.0) (2023-06-26)
+
+
+### Features
+
+* dashboard hints ([#319](https://github.com/aeternity/aescan/issues/319)) ([c9c453a](https://github.com/aeternity/aescan/commit/c9c453ab492c73e1e0f84727906371175f61844d))
+* name details hints ([#288](https://github.com/aeternity/aescan/issues/288)) ([18b0d6a](https://github.com/aeternity/aescan/commit/18b0d6a7376981afb8874be27ded960f016a35b8))
+* oracle details hints ([#291](https://github.com/aeternity/aescan/issues/291)) ([1c697d1](https://github.com/aeternity/aescan/commit/1c697d1a29f28a97387c38e2f4f03764b0442bec))
+* state channel details hints ([#318](https://github.com/aeternity/aescan/issues/318)) ([19a714a](https://github.com/aeternity/aescan/commit/19a714a03bebcc01d8267def2828e6cb8900c890))
+* Transactions page hints ([#297](https://github.com/aeternity/aescan/issues/297)) ([0014bfc](https://github.com/aeternity/aescan/commit/0014bfc96874161133cbd2620d1d65126ea8a4e9))
+
+
+### Bug Fixes
+
+* empty chip in contract call transactions ([ca26141](https://github.com/aeternity/aescan/commit/ca2614111cdb061ca8c812dbb68e95d4a34afc66))
+* Fix border and select checkboxes ([#316](https://github.com/aeternity/aescan/issues/316)) ([cc8e671](https://github.com/aeternity/aescan/commit/cc8e671fc7a78e56feeb8b56125bf26f2d8f5c67))
+* Hints content revision for next release ([#335](https://github.com/aeternity/aescan/issues/335)) ([05cc185](https://github.com/aeternity/aescan/commit/05cc185b3cc5aa09934fb43589a08b171ffd9c00))
+* last query height ([#349](https://github.com/aeternity/aescan/issues/349)) ([9760e97](https://github.com/aeternity/aescan/commit/9760e974ca2e7c3fe935857a78a9dccf11026bf6))
+* mobile menu item click ([#325](https://github.com/aeternity/aescan/issues/325)) ([159f887](https://github.com/aeternity/aescan/commit/159f8871bd17e36208bc22dc72a3881da4150668))
+* oracle events not loading ([#344](https://github.com/aeternity/aescan/issues/344)) ([228ec46](https://github.com/aeternity/aescan/commit/228ec46a210bb39c16cfc353bdd83a91bab64a77))
+* oracle operator value ([#342](https://github.com/aeternity/aescan/issues/342)) ([c54ec0e](https://github.com/aeternity/aescan/commit/c54ec0ea0848af48ce41eed31926db8315bd7d68))
+
 ## [0.2.2](https://github.com/aeternity/aescan/compare/0.2.1...0.2.2) (2023-06-13)
 
 

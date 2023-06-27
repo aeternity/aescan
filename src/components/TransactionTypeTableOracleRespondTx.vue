@@ -6,12 +6,14 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
-          {{ transactionData.oracle_id }}
+          <app-link :to="`/oracles/${transactionData.oracle_id}`">
+            {{ transactionData.oracle_id }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Query id
+          Query ID
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.query_id }}
@@ -27,7 +29,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Response TTL / type
+          Response TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.response_ttl.value }}
@@ -39,27 +41,15 @@
   </table>
 </template>
 
-<script>
-import {
-  formatAePrice,
-  formatAettosToAe,
-  formatDecodeByteArray,
-} from '@/utils/format'
+<script setup>
+import { formatDecodeByteArray } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableOracleRespondTx',
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatDecodeByteArray,
-  },
-}
+})
 </script>
 
 <style scoped>

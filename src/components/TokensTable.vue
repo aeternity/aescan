@@ -2,9 +2,24 @@
   <table class="tokens-table">
     <thead>
       <tr>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Contract ID</th>
+        <th>
+          Symbol
+          <hint-tooltip>
+            {{ tokensHints.tokenSymbol }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ tokensHints.tokenName }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Smart Contract ID
+          <hint-tooltip>
+            {{ tokensHints.smartContractId }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +49,7 @@
 <script setup>
 
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokens: {

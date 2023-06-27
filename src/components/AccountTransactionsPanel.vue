@@ -23,8 +23,8 @@
   </app-panel>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import { useAccountStore } from '@/stores/accountDetails'
 import AccountTransactionsTable from '@/components/AccountTransactionsTable'
@@ -33,47 +33,41 @@ import TransactionsSelect from '@/components/TransactionsSelect'
 import { isDesktop } from '@/utils/screen'
 import PaginatedContent from '@/components/PaginatedContent'
 
-export default {
-  name: 'AccountTransactionsPanel',
-  components: {
-    PaginatedContent,
-    TransactionsSelect,
-    AccountTransactionsTable,
-    AccountTransactionsTableCondensed,
-    AppPanel,
-  },
-  data: () => ({
-    selectedTxType: { typeQuery: null, label: 'All types' },
-    limit: isDesktop() ? 10 : 3,
-    pageIndex: 1,
-  }),
-  computed: {
-    ...mapState(useAccountStore, ['accountTransactions', 'accountTransactionsCount']),
-  },
-  watch: {
-    selectedTxType() {
-      this.fetchAccountTransactions({
-        accountId: this.$route.params.id,
-        limit: this.limit,
-        type: this.selectedTxType.typeQuery,
-      })
-      this.fetchAccountTransactionsCount(this.$route.params.id, this.selectedTxType.typeQuery)
-      this.pageIndex = 1
-    },
-  },
-  methods: {
-    ...mapActions(useAccountStore, ['fetchAccountTransactions', 'fetchAccountTransactionsCount']),
-    loadPrevTransactions() {
-      this.fetchAccountTransactions({
-        queryParameters: this.accountTransactions.prev,
-      })
-    },
-    loadNextTransactions() {
-      this.fetchAccountTransactions({
-        queryParameters: this.accountTransactions.next,
-      })
-    },
-  },
+const route = useRoute()
+const accountStore = useAccountStore()
+const { fetchAccountTransactions, fetchAccountTransactionsCount } = accountStore
+const { accountTransactions, accountTransactionsCount } = storeToRefs(accountStore)
+
+const selectedTxType = ref({ typeQuery: null, label: 'All types' })
+const pageIndex = ref(1)
+
+const limit = computed(() => isDesktop() ? 10 : 3)
+
+await useAsyncData(async() => {
+  await fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
+  return true
+})
+
+watch(selectedTxType, () => {
+  fetchAccountTransactions({
+    accountId: route.params.id,
+    limit: limit.value,
+    type: selectedTxType.value.typeQuery,
+  })
+  fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
+  pageIndex.value = 1
+})
+
+function loadPrevTransactions() {
+  fetchAccountTransactions({
+    queryParameters: accountTransactions.value.prev,
+  })
+}
+
+function loadNextTransactions() {
+  fetchAccountTransactions({
+    queryParameters: accountTransactions.value.next,
+  })
 }
 </script>
 

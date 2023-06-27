@@ -6,7 +6,7 @@
       class="contract-events-table-condensed__table">
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Call transaction
+          Call Transaction
         </th>
         <td class="contract-events-table-condensed__data">
           <value-hash-ellipsed
@@ -27,7 +27,7 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Event name
+          Event Name
         </th>
         <td class="contract-events-table-condensed__data">
           {{ event.eventName ? event.eventName : 'N/A' }}
@@ -55,28 +55,22 @@
     </table>
   </div>
 </template>
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatEllipseHash } from '@/utils/format'
 import CopyChip from '@/components/CopyChip'
 
-export default {
-  name: 'ContractEventTableCondensed',
-  components: { CopyChip, DatetimeLabel, ValueHashEllipsed },
-  props: {
-    contractEvents: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    removeLineBreaks(str) {
-      return str.toString().replaceAll('\n', '')
-    },
-    formatEllipseHash,
-  },
+const removeLineBreaks = str => {
+  return str.toString().replaceAll('\n', '')
 }
+
+defineProps({
+  contractEvents: {
+    type: Object,
+    required: true,
+  },
+})
 </script>
 
 <style scoped>

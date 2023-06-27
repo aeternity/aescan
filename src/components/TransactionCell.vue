@@ -11,42 +11,39 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { defineAsyncComponent } from 'vue'
 
-export default {
-  name: 'TransactionCell',
-  props: {
-    transactionType: {
-      type: String,
-      required: true,
-    },
-    transactionData: {
-      type: Object,
-      required: true,
-    },
+const props = defineProps({
+  transactionType: {
+    type: String,
+    required: true,
   },
-  computed: {
-    cellData() {
-      if (this.transactionType === 'PayingForTx') {
-        return this.transactionData.tx.tx
-      }
-
-      return this.transactionData
-    },
-    transactionCellComponent() {
-      if (this.transactionType === 'PayingForTx') {
-        return defineAsyncComponent(() =>
-          import(`@/components/TransactionCell${this.transactionData.tx.tx.type}.vue`),
-        )
-      }
-
-      return defineAsyncComponent(() =>
-        import(`@/components/TransactionCell${this.transactionType}.vue`),
-      )
-    },
+  transactionData: {
+    type: Object,
+    required: true,
   },
-}
+})
+
+const cellData = computed(() => {
+  if (props.transactionType === 'PayingForTx') {
+    return props.transactionData.tx.tx
+  }
+
+  return props.transactionData
+})
+
+const transactionCellComponent = computed(() => {
+  if (props.transactionType === 'PayingForTx') {
+    return defineAsyncComponent(() =>
+      import(`@/components/TransactionCell${props.transactionData.tx.tx.type}.vue`),
+    )
+  }
+
+  return defineAsyncComponent(() =>
+    import(`@/components/TransactionCell${props.transactionType}.vue`),
+  )
+})
 </script>
 
 <style scoped>

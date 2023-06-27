@@ -7,7 +7,12 @@
       <tbody>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            Smart Contract ID
+            <app-tooltip>
+              Smart Contract ID
+              <template #tooltip>
+                {{ contractsHints.contractId }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -17,7 +22,12 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            Created
+            <app-tooltip>
+              Created
+              <template #tooltip>
+                {{ contractsHints.contractCreated }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <div>
@@ -28,7 +38,12 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            Hash
+            <app-tooltip>
+              Hash
+              <template #tooltip>
+                {{ contractsHints.contractTxHash }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -38,7 +53,12 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            Created By
+            <app-tooltip>
+              Created By
+              <template #tooltip>
+                {{ contractsHints.contractCreator }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -51,23 +71,17 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { contractsHints } from '@/utils/hints/contractsHints'
 
-export default {
-  name: 'ContractTableCondensed',
-  components: {
-    ValueHashEllipsed,
-    DatetimeLabel,
+defineProps({
+  contracts: {
+    type: Object,
+    required: true,
   },
-  props: {
-    contracts: {
-      type: Object,
-      required: true,
-    },
-  },
-}
+})
 </script>
 
 <style scoped>

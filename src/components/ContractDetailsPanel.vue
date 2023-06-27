@@ -22,7 +22,7 @@
       <tbody>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Create transaction
+            Create Transaction
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
@@ -47,7 +47,7 @@
           v-if="contractDetails.createdBy"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Created by
+            Created By
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
@@ -74,7 +74,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract’s account
+            Smart Contract’s Account
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
@@ -89,7 +89,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract's account balance
+            Smart Contract's Account Balance
           </th>
           <td class="contract-details-panel__data">
             {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
@@ -97,7 +97,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract calls
+            Smart Contract Calls
           </th>
           <td class="contract-details-panel__data">
             {{ contractDetails.callsCount }}
@@ -125,7 +125,7 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
@@ -134,34 +134,18 @@ import AppChip from '@/components/AppChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-export default {
-  name: 'ContractGeneralPanel',
-  components: {
-    DatetimeLabel,
-    AppLink,
-    AppIcon,
-    AppPanel,
-    CopyChip,
-    AppChip,
-  },
+const { NODE_URL } = useRuntimeConfig().public
 
-  props: {
-    contractDetails: {
-      type: Object,
-      required: true,
-    },
+const props = defineProps({
+  contractDetails: {
+    type: Object,
+    required: true,
   },
-  computed: {
-    contractNodeUrl() {
-      return `${this.$config.public.NODE_URL}/v3/contracts/${this.contractDetails.id}`
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatEllipseHash,
-  },
-}
+})
+
+const contractNodeUrl = computed(() =>
+  `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
+)
 </script>
 
 <style scoped>

@@ -6,12 +6,14 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          {{ formatNullable(transactionData.oracle_id) }}
+          <app-link :to="`/oracles/${transactionData.oracle_id}`">
+            {{ formatNullable(transactionData.oracle_id) }}
+          </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Oracle TTL / type
+          Oracle Lifetime / Type
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.oracle_ttl.value }}
@@ -21,17 +23,15 @@
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Query fee
+          Query Fee
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          {{
-            formatAePrice(formatAettosToAe(transactionData.query_fee), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.query_fee), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Query format
+          Query Format
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.query_format }}
@@ -39,7 +39,7 @@
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Response format
+          Response Format
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.response_format }}
@@ -49,23 +49,15 @@
   </table>
 </template>
 
-<script>
+<script setup>
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableOracleRegisterTx',
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-    formatNullable,
-  },
-}
+})
 </script>
 
 <style scoped>

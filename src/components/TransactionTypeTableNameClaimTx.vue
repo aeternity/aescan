@@ -23,38 +23,26 @@
       </tr>
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
-          Name fee
+          Name Fee
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          {{
-            formatAePrice(formatAettosToAe(transactionData.name_fee), null)
-          }}
+          {{ formatAePrice(formatAettosToAe(transactionData.name_fee), null) }}
         </td>
       </tr>
     </tbody>
   </table>
 </template>
 
-<script>
+<script setup>
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 
-export default {
-  name: 'TransactionTypeTableNameClaimTx',
-  components: {
-    AppLink,
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
-  },
-  methods: {
-    formatAePrice,
-    formatAettosToAe,
-  },
-}
+})
 </script>
 
 <style scoped>

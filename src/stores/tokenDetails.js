@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptTokenDetails, adaptTokenHolders } from '@/utils/adapters'
+import { adaptTokenDetails, adaptTokenEvents } from '@/utils/adapters'
 import { formatTokenPairRouteAsRatio } from '@/utils/format'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
 import { useAesdk } from '@/stores/aesdk'
@@ -12,6 +12,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   const tokenId = ref(null)
   const price = ref(null)
+  const rawTokenEvents = ref(null)
   const rawToken = ref(null)
   const rawTotalSupply = ref(null)
   const rawTokenHolders = ref(null)
@@ -25,13 +26,21 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     : null,
   )
 
-  const tokenHolders = computed(() => tokenDetails.value?.totalSupply && rawTokenHolders.value
-    ? adaptTokenHolders(
-      rawTokenHolders.value,
-      tokenDetails.value,
-    )
-    : null,
+  const tokenHolders = computed(() =>
+    tokenDetails.value?.totalSupply && rawTokenHolders.value
+      ? adaptTokenHolders(
+        rawTokenHolders.value,
+        tokenDetails.value,
+      )
+      : null,
   )
+
+  const tokenEvents = computed(() => {
+    const store = useRecentBlocksStore()
+    return rawTokenEvents.value
+      ? adaptTokenEvents(rawTokenEvents.value, store.blockHeight)
+      : null
+  })
 
   function fetchTokenDetails(id) {
     tokenId.value = id
@@ -73,9 +82,16 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     price.value = formatTokenPairRouteAsRatio(data[0])
   }
 
+  async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {
+    rawTokenEvents.value = null
+    const defaultParameters = `/v2/contracts/logs?contract=${contractId}&aexn-args=true&limit=${limit ?? 10}`
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawTokenEvents.value = data
+  }
+
   async function fetchTokenHolders({ queryParameters, limit } = {}) {
     rawTokenHolders.value = null
-    const defaultParameters = `/v2/aex9/${tokenId.value}/balances?limit=${limit ?? 10}`
+    const defaultParameters = `/v2/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenHolders.value = data
   }
@@ -83,7 +99,10 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   return {
     fetchTokenDetails,
     fetchTokenHolders,
+    fetchTokenEvents,
     tokenDetails,
     tokenHolders,
+    tokenEvents,
   }
-})
+},
+)

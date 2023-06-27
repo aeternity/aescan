@@ -68,36 +68,25 @@
   </app-panel>
 </template>
 
-<script>
+<script setup>
 import AppPanel from '@/components/AppPanel'
 import { formatNullable } from '@/utils/format'
 
-export default {
-  name: 'TransactionPointersPanel',
-  components: {
-    AppPanel,
+const props = defineProps({
+  transactionData: {
+    type: Object,
+    required: true,
   },
-  props: {
-    transactionData: {
-      type: Object,
-      required: true,
-    },
-  },
-  computed: {
-    pointers() {
-      return this.transactionData.pointers.reduce(
-        (accumulator, pointer) => ({
-          ...accumulator,
-          [pointer.key]: pointer.id,
-        }),
-        {},
-      )
-    },
-  },
-  methods: {
-    formatNullable,
-  },
-}
+})
+const pointers = computed(() => {
+  return props.transactionData.pointers.reduce(
+    (accumulator, pointer) => ({
+      ...accumulator,
+      [pointer.key]: pointer.id,
+    }),
+    {},
+  )
+})
 </script>
 
 <style scoped>

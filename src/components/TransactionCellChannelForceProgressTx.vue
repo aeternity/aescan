@@ -5,26 +5,29 @@
 
   <transaction-arrow-right-icon/>
 
-  <value-hash-ellipsed :hash="transactionData.channel_id"/>
+  <value-hash-ellipsed
+    :hash="transactionData.channel_id"
+    :link-to="`/state-channels/${transactionData.channel_id}`"/>
 
-  <app-chip size="sm">
-    Round {{ transactionData.round }}
-  </app-chip>
+  <app-tooltip>
+    <app-chip size="sm">
+      {{ transactionData.round }}
+    </app-chip>
+    <template #tooltip>
+      Round
+    </template>
+  </app-tooltip>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-export default {
-  name: 'TransactionCellChannelForceProgressTx',
-  components: { ValueHashEllipsed, TransactionArrowRightIcon, AppChip },
-  props: {
-    transactionData: {
-      required: true,
-      type: Object,
-    },
+defineProps({
+  transactionData: {
+    required: true,
+    type: Object,
   },
-}
+})
 </script>

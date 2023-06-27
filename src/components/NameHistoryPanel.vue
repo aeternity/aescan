@@ -18,29 +18,23 @@
   </app-panel>
 </template>
 
-<script>
-import { mapActions, mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
 import NameHistoryTable from '@/components/NameHistoryTable'
 import NameHistoryTableCondensed from '@/components/NameHistoryTableCondensed'
 import AppPanel from '@/components/AppPanel'
 import PaginatedContent from '@/components/PaginatedContent'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 
-export default {
-  name: 'NameHistoryPanel',
-  components: { AppPanel, PaginatedContent, NameHistoryTable, NameHistoryTableCondensed },
-  computed: {
-    ...mapState(useNameDetailsStore, ['nameActions']),
-  },
-  methods: {
-    ...mapActions(useNameDetailsStore, ['fetchNameActions']),
-    loadPrevActions() {
-      this.fetchNameActions({ queryParameters: this.nameActions.prev })
-    },
-    loadNextActions() {
-      this.fetchNameActions({ queryParameters: this.nameActions.next })
-    },
-  },
+const nameDetailsStore = useNameDetailsStore()
+const { fetchNameActions } = nameDetailsStore
+const { nameActions } = storeToRefs(nameDetailsStore)
+
+function loadPrevActions() {
+  return fetchNameActions({ queryParameters: nameActions.value.prev })
+}
+function loadNextActions() {
+  return fetchNameActions({ queryParameters: nameActions.value.next })
 }
 </script>
 

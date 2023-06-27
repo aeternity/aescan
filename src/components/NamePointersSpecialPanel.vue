@@ -8,6 +8,9 @@
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
             Account
+            <hint-tooltip>
+              {{ namesHints.accountPointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
@@ -16,9 +19,9 @@
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.account }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.account)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.account) }}
+              </span>
             </app-link>
 
             <template v-else>
@@ -28,18 +31,21 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Channel
+            State Channel
+            <hint-tooltip>
+              {{ namesHints.channelPointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.channel"
-              :to="`/accounts/${name.specialPointers.channel}`">
+              :to="`/state-channels/${name.specialPointers.channel}`">
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.channel }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.channel)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.channel) }}
+              </span>
             </app-link>
 
             <template v-else>
@@ -50,6 +56,9 @@
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
             Smart Contract
+            <hint-tooltip>
+              {{ namesHints.contractPointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
@@ -58,9 +67,9 @@
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.contract }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.contract)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.contract) }}
+              </span>
             </app-link>
             <template v-else>
               -
@@ -70,17 +79,20 @@
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
             Oracle
+            <hint-tooltip>
+              {{ namesHints.oraclePointer }}
+            </hint-tooltip>
           </th>
           <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.oracle"
-              :to="`/accounts/${name.specialPointers.oracle}`">
+              :to="`/oracles/${name.specialPointers.oracle}`">
               <span class="name-pointers-special-panel__link-text">
                 {{ name.specialPointers.oracle }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">{{
-                formatEllipseHash(name.specialPointers.oracle)
-              }}</span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.oracle) }}
+              </span>
             </app-link>
 
             <template v-else>
@@ -93,26 +105,16 @@
   </app-panel>
 </template>
 
-<script>
-import { mapState } from 'pinia'
+<script setup>
+import { storeToRefs } from 'pinia'
+import { namesHints } from '@/utils/hints/namesHints'
+import HintTooltip from '~/components/HintTooltip'
 import AppPanel from '@/components/AppPanel'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 
-export default {
-  name: 'NamePointersSpecialPanel',
-  components: {
-    AppLink,
-    AppPanel,
-  },
-  computed: {
-    ...mapState(useNameDetailsStore, ['name']),
-  },
-  methods: {
-    formatEllipseHash,
-  },
-}
+const { name } = storeToRefs(useNameDetailsStore())
 </script>
 
 <style scoped>

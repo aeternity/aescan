@@ -7,7 +7,12 @@
       <tbody>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            Name
+            <app-tooltip>
+              Name
+              <template #tooltip>
+                {{ namesHints.name }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-expired-table-condensed__data">
             <app-link
@@ -19,7 +24,12 @@
         </tr>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            Expired
+            <app-tooltip>
+              Expired
+              <template #tooltip>
+                {{ namesHints.expired }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-expired-table-condensed__data">
             <div>
@@ -30,7 +40,12 @@
         </tr>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            Last buyer
+            <app-tooltip>
+              Last Buyer
+              <template #tooltip>
+                {{ namesHints.lastBuyer }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-expired-table-condensed__data">
             <value-hash-ellipsed
@@ -45,7 +60,12 @@
         </tr>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            Last owner
+            <app-tooltip>
+              Last Owner
+              <template #tooltip>
+                {{ namesHints.lastOwner }}
+              </template>
+            </app-tooltip>
           </th>
           <td class="names-expired-table-condensed__data">
             <value-hash-ellipsed
@@ -58,31 +78,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { namesHints } from '@/utils/hints/namesHints'
 
-export default {
-  name: 'NamesExpiredTableCondensed',
-  components: {
-    DatetimeLabel,
-    ValueHashEllipsed,
-    AppChip,
-    AppLink,
+defineProps({
+  names: {
+    type: Object,
+    required: true,
   },
-  props: {
-    names: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    formatAePrice,
-  },
-}
+})
 </script>
 
 <style scoped>

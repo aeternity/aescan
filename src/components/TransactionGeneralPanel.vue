@@ -21,7 +21,7 @@
       <tbody>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Block height
+            Keyblock Height
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.blockHeight }}
@@ -29,7 +29,7 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Block confirmations
+            Keyblock Confirmations
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.confirmations }}
@@ -56,15 +56,15 @@
           v-if="transactionDetails.blockHash"
           class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Microblock hash
+            Microblock Hash
           </th>
           <td class="transaction-general-panel__data">
-            <span class="transaction-general-panel__hash">{{
-              transactionDetails.blockHash
-            }}</span>
-            <span class="transaction-general-panel__hash-ellipse">{{
-              formatEllipseHash(transactionDetails.blockHash)
-            }}</span>
+            <span class="transaction-general-panel__hash">
+              {{ transactionDetails.blockHash }}
+            </span>
+            <span class="transaction-general-panel__hash-ellipse">
+              {{ formatEllipseHash(transactionDetails.blockHash) }}
+            </span>
           </td>
         </tr>
         <tr

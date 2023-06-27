@@ -3,7 +3,7 @@
     <tbody>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -13,7 +13,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Channel reserve
+          Channel Reserve
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           {{
@@ -26,7 +26,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Initiator / amount
+          Initiator / Amount
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <app-link :to="`/accounts/${transactionData.initiator_id}`">
@@ -43,7 +43,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Initiator delegates
+          Initiator Delegates
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           {{ transactionData.delegate_ids }}
@@ -51,7 +51,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Responder / amount
+          Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <app-link :to="`/accounts/${transactionData.responder_id}`">
@@ -68,7 +68,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Responder delegates
+          Responder Delegates
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           {{ transactionData.delegate_ids }}
@@ -76,7 +76,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Lock period
+          Lock Period
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           {{ transactionData.lock_period }}

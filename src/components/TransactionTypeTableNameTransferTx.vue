@@ -18,7 +18,7 @@
       </tr>
       <tr class="ransaction-type-panel-name-transfer-tx__row">
         <th class="transaction-type-panel-name-transfer-tx__table-header">
-          Old owner
+          Old Owner
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
           <app-link :to="`/accounts/${transactionData.account_id}`">
@@ -28,7 +28,7 @@
       </tr>
       <tr class="ransaction-type-panel-name-transfer-tx__row">
         <th class="transaction-type-panel-name-transfer-tx__table-header">
-          New owner
+          New Owner
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
           <app-link :to="`/accounts/${transactionData.recipient_id}`">

@@ -3,7 +3,7 @@
     <tbody>
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
-          Channel id
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -21,7 +21,7 @@
       </tr>
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
-          Slashed by
+          Slashed By
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">

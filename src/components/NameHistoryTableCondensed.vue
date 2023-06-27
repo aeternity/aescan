@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import { namesHints } from '~/utils/hints/namesHints'
+import { namesHints } from '@/utils/hints/namesHints'
 import AppTooltip from '~/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'

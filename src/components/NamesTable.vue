@@ -2,9 +2,24 @@
   <table>
     <thead>
       <tr>
-        <th>Data</th>
-        <th>Price</th>
-        <th>Activated</th>
+        <th>
+          Data
+          <hint-tooltip>
+            {{ namesHints.recentlyActivatedData }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Price
+          <hint-tooltip>
+            {{ namesHints.activationPrice }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Activated
+          <hint-tooltip>
+            {{ namesHints.activationTime }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -50,6 +65,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
+import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

@@ -19,6 +19,9 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             Status
+            <hint-tooltip>
+              {{ stateChannelsHints.status }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             <app-chip :variant="stateChannelDetails.isOpen ? 'success' : 'primary'">
@@ -28,7 +31,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Create transaction
+            Create Transaction
+            <hint-tooltip>
+              {{ stateChannelsHints.createTransaction }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             <app-link :to="`/transactions/${stateChannelDetails.createTransactionHash}`">
@@ -43,7 +49,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Initial amount
+            Initial Amount
+            <hint-tooltip>
+              {{ stateChannelsHints.initialAmount }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             {{ formatAePrice(stateChannelDetails.initialAmount, null) }}
@@ -52,6 +61,9 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             Initiator
+            <hint-tooltip>
+              {{ stateChannelsHints.initiator }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             <app-link :to="`/accounts/${stateChannelDetails.initiator}`">
@@ -67,6 +79,9 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             Responder
+            <hint-tooltip>
+              {{ stateChannelsHints.responder }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             <app-link :to="`/accounts/${stateChannelDetails.responder}`">
@@ -81,7 +96,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            On-chain updates
+            On-Chain TXs
+            <hint-tooltip>
+              {{ stateChannelsHints.onChainUpdates }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             {{ formatNumber(stateChannelDetails.onChainUpdates) }}
@@ -89,7 +107,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last known round
+            Last Known Round
+            <hint-tooltip>
+              {{ stateChannelsHints.lastKnownRound }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             {{ formatNumber(stateChannelDetails.lastKnownRound) }}
@@ -97,7 +118,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            AE locked
+            AE Locked
+            <hint-tooltip>
+              {{ stateChannelsHints.locked }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             {{ formatAePrice(stateChannelDetails.aeLocked, null) }}
@@ -105,7 +129,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last updated
+            Last Updated
+            <hint-tooltip>
+              {{ stateChannelsHints.lastUpdated }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             <template v-if="stateChannelDetails.lastUpdated">
@@ -119,7 +146,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last TX type
+            Last TX Type
+            <hint-tooltip>
+              {{ stateChannelsHints.lastTxType }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             {{ stateChannelDetails.lastTxType }}
@@ -127,7 +157,10 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            API links
+            API Links
+            <hint-tooltip>
+              {{ stateChannelsHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
             <div class="state-channel-details-panel__container">
@@ -149,6 +182,7 @@
 
 <script setup>
 import { formatAePrice } from '@/utils/format'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'
 import AppPanel from '@/components/AppPanel'

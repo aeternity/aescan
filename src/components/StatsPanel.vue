@@ -217,7 +217,7 @@ const {
 
   @media (--desktop) {
     gap: var(--space-5) var(--space-3);
-    grid-template-columns:248px 248px 285px 285px;
+    grid-template-columns:1fr 1fr 1fr 1fr;
     grid-template-rows: 68px 1fr;
     padding: var(--space-6);
   }

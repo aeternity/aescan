@@ -81,6 +81,8 @@ const {
 
 <style scoped>
 .blockchain-panel {
+  width: 100%;
+
   &__container {
     padding: var(--space-4) var(--space-1) var(--space-1);
     @media (--desktop) {

@@ -78,7 +78,7 @@
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'
-import { contractsHints } from '~/utils/hints/contractsHints'
+import { contractsHints } from '@/utils/hints/contractsHints'
 
 defineProps({
   contractCallTransactions: {

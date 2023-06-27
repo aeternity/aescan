@@ -25,7 +25,12 @@
           {{ contractsHints.eventsArguments }}
         </hint-tooltip>
       </th>
-      <th>Data</th>
+      <th>
+        Data
+        <hint-tooltip>
+          {{ contractsHints.data }}
+        </hint-tooltip>
+      </th>
     </tr>
     <tr
       v-for="event in contractEvents.data"
@@ -58,7 +63,7 @@
 </template>
 
 <script setup>
-import { contractsHints } from '../utils/hints/contractsHints'
+import { contractsHints } from '@/utils/hints/contractsHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import CopyChip from '@/components/CopyChip'
 import HashSymbol from '@/components/HashSymbol'

@@ -66,7 +66,12 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Data
+          <app-tooltip>
+            Data
+            <template #tooltip>
+              {{ contractsHints.data }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           {{ event.data }}
@@ -76,7 +81,7 @@
   </div>
 </template>
 <script setup>
-import { contractsHints } from '../utils/hints/contractsHints'
+import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatEllipseHash } from '@/utils/format'

@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { contractsHints } from '../utils/hints/contractsHints'
+import { contractsHints } from '@/utils/hints/contractsHints'
 import HashSymbol from '@/components/HashSymbol'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

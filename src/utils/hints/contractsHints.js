@@ -16,4 +16,5 @@ export const contractsHints = {
   eventsCreated: 'Estimated date, time and block height when the smart contract had emitted the event.',
   eventsName: 'Name of the emitted event.',
   eventsArguments: 'The arguments of the emitted event.',
+  data: 'The content of the emitted event.',
 }

@@ -81,7 +81,7 @@ export function adaptChainNames(chainNames, blockHeight) {
         blockHeight,
       ),
       isAuction: isAuction(chainName.name),
-      price: formatAettosToAe(chainName.info.claims[chainName.info.claims.length - 1].tx.name_fee),
+      price: formatAettosToAe(chainName.info.claims.at(-1).tx.name_fee),
     }
   })
 }

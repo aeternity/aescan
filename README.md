@@ -148,4 +148,3 @@ website, Github repositories and blog for more information.
 - [æternity middleware](https://github.com/aeternity/ae_mdw)
 - [æternity node](https://github.com/aeternity/aeternity)
 - [æternity node API](https://api-docs.aeternity.io)
-

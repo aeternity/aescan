@@ -4,6 +4,7 @@
       v-model:page-index="pageIndex"
       :entities="selectedTokens"
       :total-count="selectedTokensCount"
+      :limit="limit"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <template #header>

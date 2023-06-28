@@ -36,17 +36,6 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
-      <div
-        :class="[
-          'header__button-container',
-          { 'header__button-container--open': isNavigationOpen },
-        ]">
-        <app-button
-          class="header__button"
-          to="https://github.com/aeternity/aescan">
-          Contribute
-        </app-button>
-      </div>
     </div>
     <div class="header__survey">
       Help us improve aeScan.

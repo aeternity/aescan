@@ -1,7 +1,10 @@
 <template>
   <app-panel class="tokens-panel">
     <paginated-content
+      v-model:page-index="pageIndex"
       :entities="selectedTokens"
+      :total-count="selectedTokensCount"
+      :limit="limit"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <template #header>
@@ -21,7 +24,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useTokensStore } from '@/stores/tokens'
 import TokensTableCondensed from '@/components/TokensTableCondensed'
 import TokensTable from '@/components/TokensTable'
@@ -30,8 +33,10 @@ import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
 const tokensStore = useTokensStore()
-const { selectedTokens, selectedTokenName } = storeToRefs(tokensStore)
-const { fetchTokens } = useTokensStore()
+const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(tokensStore)
+const { fetchTokens, fetchTokensCount } = useTokensStore()
+
+const pageIndex = ref(1)
 
 async function loadPrevTokens() {
   await fetchTokens(selectedTokens.value.prev)
@@ -43,8 +48,18 @@ async function loadNextTokens() {
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
+await useAsyncData(async() => {
+  await fetchTokensCount()
+  return true
+})
+
 if (process.client) {
-  fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
+  watch(selectedTokenName, async() => {
+    pageIndex.value = 1
+    await fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
+  }, {
+    immediate: true,
+  })
 }
 
 </script>

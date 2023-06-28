@@ -8,9 +8,13 @@ export const useTokensStore = defineStore('tokens', () => {
   const rawListedTokens = ref(null)
   const allTokens = ref(null)
   const selectedTokenName = ref(null)
+  const allTokensCount = ref(null)
 
   const selectedTokens = computed(() => {
     return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value : allTokens.value
+  })
+  const selectedTokensCount = computed(() => {
+    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value?.data.length : allTokensCount.value
   })
 
   const listedTokens = computed(() =>
@@ -38,9 +42,17 @@ export const useTokensStore = defineStore('tokens', () => {
     rawListedTokens.value = data
   }
 
+  async function fetchTokensCount() {
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/aex9/count`)
+    allTokensCount.value = data.data
+  }
+
   return {
     selectedTokens,
     selectedTokenName,
+    allTokensCount,
+    selectedTokensCount,
     fetchTokens,
+    fetchTokensCount,
   }
 })

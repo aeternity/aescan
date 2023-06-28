@@ -22,32 +22,31 @@ import { useVModel } from '@vueuse/core'
 const props = defineProps({
   modelValue: {
     type: Number,
-    default: 0,
+    default: null,
   },
 })
 
-const emit = defineEmits(['update:model-value'])
+provide('registerTab', tab => tabs.value.push(tab))
 
-const activeTabIndex = props.modelValue ? useVModel(props, 'modelValue', emit) : ref(0)
+const emit = defineEmits(['update:modelValue'])
 const tabs = ref([])
 
-provide('registerTab', tab => tabs.value.push(tab))
+const activeTabIndex = props.modelValue === null ? ref(0) : useVModel(props, 'modelValue', emit)
 
 watch(
   () => props.modelValue,
-  newTabIndex => selectTab(newTabIndex),
+  () => selectTab(activeTabIndex.value),
   { immediate: true },
 )
 
 onMounted(() => {
-  tabs.value[activeTabIndex.value].isActive = true
+  selectTab(activeTabIndex.value)
 })
 
-function selectTab(index) {
-  activeTabIndex.value = index
-
+function selectTab(tabIndex) {
+  activeTabIndex.value = tabIndex
   tabs.value.forEach((tab, index) => {
-    tab.isActive = index === activeTabIndex.value
+    tab.isActive = index === tabIndex
   })
 }
 </script>

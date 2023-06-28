@@ -80,10 +80,8 @@ export function adaptChainNames(chainNames, blockHeight) {
         chainName.info.active_from,
         blockHeight,
       ),
-      isAuction: isAuction(chainName),
-      price: isAuction(chainName)
-        ? formatAettosToAe(chainName.last_bid.tx.name_fee)
-        : formatAettosToAe(chainName.info.claims[chainName.info.claims.length - 1].tx.name_fee),
+      isAuction: isAuction(chainName.name),
+      price: formatAettosToAe(chainName.info.claims[chainName.info.claims.length - 1].tx.name_fee),
     }
   })
 }

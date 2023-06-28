@@ -1,8 +1,5 @@
 <template>
-  <value-hash-ellipsed
-    :hash="transactionData.oracle_id"
-    :link-to="`/oracles/${transactionData.oracle_id}`"/>
-
+  <value-hash-ellipsed :hash="transactionData.oracle_id"/>
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed :hash="transactionData.query_id"/>
@@ -16,7 +13,7 @@
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { formatDecodeByteArray, formatEllipseHash } from '@/utils/format'
+import { formatDecodeByteArray } from '@/utils/format'
 
 const props = defineProps({
   transactionData: {
@@ -25,6 +22,6 @@ const props = defineProps({
   },
 })
 const oracleResponse = computed(() =>
-  formatEllipseHash(formatDecodeByteArray(props.transactionData.response)),
+  formatDecodeByteArray(props.transactionData.response).slice(0, 8),
 )
 </script>

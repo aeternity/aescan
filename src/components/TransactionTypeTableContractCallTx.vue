@@ -39,7 +39,7 @@
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
         <th class="transaction-type-panel-contract-call-tx__table-header">
-          Entry Point
+          Entrypoint
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
           <app-chip>

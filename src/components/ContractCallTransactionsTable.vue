@@ -21,7 +21,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Entry Point
+          Entrypoint
           <hint-tooltip>
             {{ contractsHints.callTransactionsEntryPoint }}
           </hint-tooltip>

@@ -20,15 +20,9 @@
         </hint-tooltip>
       </th>
       <th>
-        Arguments
-        <hint-tooltip>
-          {{ contractsHints.eventsArguments }}
-        </hint-tooltip>
-      </th>
-      <th>
         Data
         <hint-tooltip>
-          {{ contractsHints.data }}
+          {{ contractsHints.eventsData }}
         </hint-tooltip>
       </th>
     </tr>
@@ -52,11 +46,8 @@
       </td>
       <td>
         <copy-chip
-          :clipboard-text="removeLineBreaks(event.args)"
-          :label="formatEllipseHash(removeLineBreaks(event.args))"/>
-      </td>
-      <td class="contract-events-table__event-data">
-        {{ event.data }}
+          :clipboard-text="removeLineBreaks(event.data)"
+          :label="formatEllipseHash(removeLineBreaks(event.data))"/>
       </td>
     </tr>
   </table>

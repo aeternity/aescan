@@ -51,30 +51,17 @@
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
           <app-tooltip>
-            Arguments
+            Data
             <template #tooltip>
-              {{ contractsHints.eventsArguments }}
+              {{ contractsHints.eventsData }}
             </template>
           </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           <copy-chip
             class="contract-events-table-panel__copy-chip"
-            :clipboard-text="removeLineBreaks(event.args)"
-            :label="formatEllipseHash(removeLineBreaks(event.args))"/>
-        </td>
-      </tr>
-      <tr class="contract-events-table-condensed__row">
-        <th class="contract-events-table-condensed__header">
-          <app-tooltip>
-            Data
-            <template #tooltip>
-              {{ contractsHints.data }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-events-table-condensed__data">
-          {{ event.data }}
+            :clipboard-text="removeLineBreaks(event.data)"
+            :label="formatEllipseHash(removeLineBreaks(event.data))"/>
         </td>
       </tr>
     </table>

@@ -15,6 +15,5 @@ export const contractsHints = {
   eventsCallTransaction: 'Unique identifier of the ContractCallTx which emitted the event.',
   eventsCreated: 'Keyblock height and estimated date and time when the smart contract had emitted the event.',
   eventsName: 'Name of the emitted event.',
-  eventsArguments: 'The arguments of the emitted event.',
-  data: 'The content of the emitted event.',
+  eventsData: 'The arguments of the emitted event.',
 }

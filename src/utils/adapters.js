@@ -106,15 +106,12 @@ export function adaptDashboardStateChannels(stateChannels, blockHeight) {
   })
 }
 
-export function adaptAccountNames(names, blockHeight) {
+export function adaptAccountNames(names) {
   const formattedData = names.data.map(name => {
     return {
       name: name.name,
       expirationHeight: name.info.expire_height,
-      expires: formatBlockDiffAsDatetime(
-        name.info.expire_height,
-        blockHeight,
-      ),
+      expires: DateTime.fromMillis(name.info.approximate_expire_time),
       pointers: Object.values(name.info.pointers),
     }
   })
@@ -141,16 +138,13 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
   }
 }
 
-export function adaptActiveNames(names, blockHeight) {
+export function adaptActiveNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
     buyer: name.info.ownership.original,
     owner: name.info.ownership.current,
     fee: formatAettosToAe(name.info.claims[0].tx.name_fee),
-    expiration: formatBlockDiffAsDatetime(
-      name.info.expire_height,
-      blockHeight,
-    ),
+    expiration: DateTime.fromMillis(name.info.approximate_expire_time),
     expirationHeight: name.info.expire_height,
     pointers: Object.values(name.info.pointers),
   }))
@@ -177,14 +171,11 @@ export function adaptInAuctionNames(names, blockHeight) {
   }
 }
 
-export function adaptExpiredNames(names, blockHeight) {
+export function adaptExpiredNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
     expirationHeight: name.info.expire_height,
-    expiration: formatBlockDiffAsDatetime(
-      name.info.expire_height,
-      blockHeight,
-    ),
+    expiration: DateTime.fromMillis(name.info.approximate_expire_time),
     fee: formatAettosToAe(name.info.claims[0].tx.name_fee),
     lastBuyer: name.info.ownership.original,
     lastOwner: name.info.ownership.current,
@@ -248,20 +239,19 @@ export function adaptName(name, blockHeight, blockTime) {
 }
 
 export function adaptNameActions(actions, blockHeight) {
-  const formattedData = actions.data
-    .map(action => {
-      return {
-        type: action.type,
-        hash: action.payload.source_tx_hash || action.payload.call_tx_hash || action.payload.hash,
-        createdHeight: action.payload.block_height || action.height,
-        created: action.payload?.micro_time
-          ? DateTime.fromMillis(action.payload.micro_time)
-          : formatBlockDiffAsDatetime(
-            action.payload.block_height || action.height,
-            blockHeight,
-          ),
-      }
-    })
+  const formattedData = actions.data.map(action => {
+    return {
+      type: action.type,
+      hash: action.payload.source_tx_hash || action.payload.call_tx_hash || action.payload.hash,
+      createdHeight: action.payload.block_height || action.height,
+      created: action.payload?.micro_time
+        ? DateTime.fromMillis(action.payload.micro_time)
+        : formatBlockDiffAsDatetime(
+          action.payload.block_height || action.height,
+          blockHeight,
+        ),
+    }
+  })
 
   return {
     next: actions.next,
@@ -404,7 +394,7 @@ export function adaptOracles(oracles, blockHeight) {
       activeFromHeight: oracle.active_from,
       activeFrom: formatBlockDiffAsDatetime(oracle.active_from, blockHeight),
       expireHeight: oracle.expire_height,
-      expire: formatBlockDiffAsDatetime(oracle.expire_height, blockHeight),
+      expire: DateTime.fromMillis(oracle.approximate_expire_time),
       queryFee: formatAettosToAe(oracle.query_fee),
     }
   })
@@ -420,10 +410,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.query_fee),
-    expiration: formatBlockDiffAsDatetime(
-      oracle.expire_height,
-      blockHeight,
-    ),
+    expiration: oracle.approximate_expire_time,
     expirationHeight: oracle.expire_height,
     registered: oracle.active_from
       ? formatBlockDiffAsDatetime(

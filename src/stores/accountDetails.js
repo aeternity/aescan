@@ -1,12 +1,10 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { adaptAccountNames, adaptTransactions } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useAccountStore = defineStore('account', () => {
-  const { blockHeight } = storeToRefs(useRecentBlocksStore())
   const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
 
   const rawAccountDetails = ref(null)
@@ -39,7 +37,7 @@ export const useAccountStore = defineStore('account', () => {
   )
   const accountNames = computed(() =>
     rawAccountNames.value
-      ? adaptAccountNames(rawAccountNames.value, blockHeight.value)
+      ? adaptAccountNames(rawAccountNames.value)
       : null,
   )
 

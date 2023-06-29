@@ -6,7 +6,7 @@ export const contractsHints = {
   status: 'Status of the transaction.',
   smartContract: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   caller: 'Account that called the smart contract.',
-  amount: 'Amount of AE coins that was transferred to smart contract address.',
+  amount: 'Amount of AE coins that were transferred to the smart contract address.',
   entrypoint: 'The entrypoint of the smart contract that has been called.',
   arguments: 'Arguments that were passed to the entrypoint.',
   return: 'Value that was returned by the entrypoint.',

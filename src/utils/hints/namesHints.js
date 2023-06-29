@@ -27,9 +27,9 @@ export const namesHints = {
   activationPrice: 'Amount of AE coins paid for the name activation at fixed price or via auction. These AE coins are burned.',
   activationTime: 'Keyblock height and date and time when the name was activated.',
   nameAndHighestBidder: 'Auctioned name and its highest bidder.',
-  preclaimer: 'Account that pre-claimed the name.',
-  claimer: 'Account that claimed the name.',
-  nameTtl: 'he relative lifetime before expiration in keyblocks.',
+  preclaimer: 'The account that pre-claimed the name.',
+  claimer: 'The account that claimed the name.',
+  nameTtl: 'The relative lifetime before expiration in keyblocks.',
   oldOwner: 'The account that previously owned the name.',
   newOwner: 'The account that received the name and became its new owner.',
 }

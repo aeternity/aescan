@@ -68,7 +68,7 @@ import ComingSoonTooltip from '@/components/ComingSoonTooltip'
   flex-direction: column;
 
   @media (--desktop) {
-    gap: var(--space-3);
+    gap: var(--space-5);
     flex-direction: row;
   }
 

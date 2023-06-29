@@ -1,3 +1,3 @@
 export function isDesktop() {
-  return window.innerWidth >= 1200
+  return window.innerWidth >= 1280
 }

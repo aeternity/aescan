@@ -1,11 +1,30 @@
 <template>
   <table>
     <tr>
-      <th>Call Transaction</th>
-      <th>Created</th>
-      <th>Event Name</th>
-      <th>Arguments</th>
-      <th>Data</th>
+      <th>
+        Call transaction
+        <hint-tooltip>
+          {{ contractsHints.eventsCallTransaction }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Created
+        <hint-tooltip>
+          {{ contractsHints.eventsCreated }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Name
+        <hint-tooltip>
+          {{ contractsHints.eventsName }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Data
+        <hint-tooltip>
+          {{ contractsHints.eventsData }}
+        </hint-tooltip>
+      </th>
     </tr>
     <tr
       v-for="event in contractEvents.data"
@@ -27,17 +46,15 @@
       </td>
       <td>
         <copy-chip
-          :clipboard-text="removeLineBreaks(event.args)"
-          :label="formatEllipseHash(removeLineBreaks(event.args))"/>
-      </td>
-      <td class="contract-events-table__event-data">
-        {{ event.data }}
+          :clipboard-text="removeLineBreaks(event.data)"
+          :label="formatEllipseHash(removeLineBreaks(event.data))"/>
       </td>
     </tr>
   </table>
 </template>
 
 <script setup>
+import { contractsHints } from '@/utils/hints/contractsHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import CopyChip from '@/components/CopyChip'
 import HashSymbol from '@/components/HashSymbol'

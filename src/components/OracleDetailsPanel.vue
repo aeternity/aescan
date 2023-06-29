@@ -112,7 +112,7 @@
           <th class="oracle-details-panel__table-header">
             Operator
             <hint-tooltip>
-              {{ oraclesHints.oracleOperator }}
+              {{ oraclesHints.operator }}
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
@@ -125,6 +125,34 @@
                 {{ formatEllipseHash(oracleDetails.operator) }}
               </span>
             </app-link>
+          </td>
+        </tr>
+        <tr>
+          <th class="contract-details-panel__table-header">
+            API links
+            <hint-tooltip>
+              {{ oraclesHints.apiLinks }}
+            </hint-tooltip>
+          </th>
+          <td class="oracle-details-panel__data">
+            <div class="oracle-details-panel__container">
+              <app-link
+                :to="oracleNodeUrl"
+                class="oracle-details-panel__link">
+                <app-icon
+                  name="file-cloud"
+                  :size="22"/>
+                Node
+              </app-link>
+              <app-link
+                :to="oracleMiddlewareUrl"
+                class="oracle-details-panel__link">
+                <app-icon
+                  name="file-cloud"
+                  :size="22"/>
+                Middleware
+              </app-link>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -140,13 +168,24 @@ import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import AppIcon from '@/components/AppIcon'
 
-defineProps({
+const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+
+const props = defineProps({
   oracleDetails: {
     type: Object,
     required: true,
   },
 })
+
+const oracleNodeUrl = computed(() =>
+  `${NODE_URL}/v3/oracles/${props.oracleDetails.id}`,
+)
+
+const oracleMiddlewareUrl = computed(() =>
+  `${MIDDLEWARE_URL}/v3/oracles/${props.oracleDetails.id}`,
+)
 </script>
 
 <style scoped>
@@ -197,6 +236,15 @@ defineProps({
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 
   &__chip,

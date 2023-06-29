@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-name-revoke-tx__row">
         <th class="transaction-type-panel-name-revoke-tx__table-header">
           Name
+          <hint-tooltip>
+            {{ namesHints.name }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-revoke-tx__data">
           <app-link
@@ -19,6 +22,9 @@
       <tr class="transaction-type-panel-name-revoke-tx__row">
         <th class="transaction-type-panel-name-revoke-tx__table-header">
           Last Owner
+          <hint-tooltip>
+            {{ namesHints.lastOwner }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-revoke-tx__data">
           <app-link :to="`/accounts/${transactionData.account_id}`">
@@ -31,6 +37,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '@/utils/hints/namesHints'
 import AppLink from '@/components/AppLink'
 import { formatNullable } from '@/utils/format'
 

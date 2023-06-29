@@ -5,6 +5,9 @@
       <Meta
         name="description"
         :content="APP_DESCRIPTION"/>
+      <Meta
+        name="keywords"
+        :content="APP_KEYWORDS"/>
       <Link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -77,7 +80,7 @@ import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 import { initializeStores } from '@/stores'
 import { useWebSocket } from '@/stores/webSocket'
-import { APP_CREATOR, APP_DESCRIPTION, APP_TITLE, APP_URL } from '@/utils/constants'
+import { APP_CREATOR, APP_DESCRIPTION, APP_TITLE, APP_URL, APP_KEYWORDS } from '@/utils/constants'
 
 await useAsyncData(() => initializeStores())
 

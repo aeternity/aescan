@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
           Oracle
+          <hint-tooltip>
+            {{ oraclesHints.oracleId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           <app-link :to="`/oracles/${transactionData.oracle_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
           Query ID
+          <hint-tooltip>
+            {{ oraclesHints.queryId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.query_id }}
@@ -22,6 +28,9 @@
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
           Response
+          <hint-tooltip>
+            {{ oraclesHints.response }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ formatDecodeByteArray(transactionData.response) }}
@@ -30,6 +39,9 @@
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
           Response TTL / Type
+          <hint-tooltip>
+            {{ oraclesHints.responseTtl }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.response_ttl.value }}
@@ -42,6 +54,7 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 import { formatDecodeByteArray } from '@/utils/format'
 
 defineProps({

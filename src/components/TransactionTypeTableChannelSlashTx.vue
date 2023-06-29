@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
           Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
           Round
+          <hint-tooltip>
+            {{ stateChannelsHints.slashedRound }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           {{ transactionData.round }}
@@ -22,6 +28,9 @@
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
           Slashed By
+          <hint-tooltip>
+            {{ stateChannelsHints.slashedBy }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -34,6 +43,7 @@
 </template>
 
 <script setup>
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 
 defineProps({

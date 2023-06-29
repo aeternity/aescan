@@ -12,7 +12,10 @@ export const oraclesHints = {
   queryStatus: 'Status of the oracle query that can be expanded to see the details.',
   respondTx: 'Transaction hash of the oracle response.',
   queryId: 'Unique identifier of the oracle query.',
-  queryContent: 'The query is the actual subject of the Query transaction that was sent to the oracle.',
+  queryContent: 'The actual subject of the OracleQueryTx that an oracle operator requests in order to respond.',
   responseTtl: 'Defines how long the response will be accessible in keyblocks. The displayed lifetime is relative and if a smart contract relies on the response, the user or a service should make sure the response is consumed during its lifetime.',
   response: 'The response payload to the given query.',
+  sender: 'The account that queried the oracle.',
+  queryTtl: 'Defines the lifetime of an oracle query in keyblocks. The oracle operator can only respond as long as the query is valid.',
+  oracleTtl: 'Defines how long the oracle will be accessible in keyblocks.',
 }

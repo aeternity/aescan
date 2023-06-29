@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
           Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
           Round
+          <hint-tooltip>
+            {{ stateChannelsHints.withdrawRound }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           {{ transactionData.round }}
@@ -22,6 +28,9 @@
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
           Recipient
+          <hint-tooltip>
+            {{ stateChannelsHints.withdrawRecipient }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           <app-link :to="`/accounts/${transactionData.to_id}`">
@@ -32,6 +41,9 @@
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
           Amount
+          <hint-tooltip>
+            {{ stateChannelsHints.withdrawAmount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
@@ -42,6 +54,7 @@
 </template>
 
 <script setup>
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 

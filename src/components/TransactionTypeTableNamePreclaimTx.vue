@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-name-preclaim-tx__row">
         <th class="transaction-type-panel-name-preclaim-tx__table-header">
           Claimer
+          <hint-tooltip>
+            {{ namesHints.preclaimer }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-preclaim-tx__data">
           <app-link :to="`/accounts/${transactionData.account_id}`">
@@ -16,6 +19,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '@/utils/hints/namesHints'
 import AppLink from '@/components/AppLink'
 
 defineProps({

@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
           Sender
+          <hint-tooltip>
+            {{ transactionsHints.sender }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           <app-link :to="`/accounts/${innerTransactionDetails.sender_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
           Recipient
+          <hint-tooltip>
+            {{ transactionsHints.recipient }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           <app-link :to="`/accounts/${innerTransactionDetails.recipient_id}`">
@@ -24,6 +30,9 @@
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
           Amount
+          <hint-tooltip>
+            {{ transactionsHints.amount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           {{
@@ -37,6 +46,9 @@
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
           Payload
+          <hint-tooltip>
+            {{ transactionsHints.payload }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           {{ payload }}
@@ -48,6 +60,7 @@
 
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 

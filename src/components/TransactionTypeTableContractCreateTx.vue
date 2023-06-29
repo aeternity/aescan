@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Status
+          <hint-tooltip>
+            {{ contractsHints.status }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <transaction-type-status-label :status="transactionData.return_type"/>
@@ -12,6 +15,9 @@
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Smart Contract
+          <hint-tooltip>
+            {{ contractsHints.smartContract }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <app-link :to="`/contracts/${transactionData.contract_id}`">
@@ -21,7 +27,10 @@
       </tr>
       <tr>
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Creator
+          Created By
+          <hint-tooltip>
+            {{ contractsHints.createdBy }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <app-link :to="`/accounts/${transactionData.owner_id}`">
@@ -32,6 +41,9 @@
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Amount
+          <hint-tooltip>
+            {{ contractsHints.amount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
@@ -40,6 +52,9 @@
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
           Arguments
+          <hint-tooltip>
+            {{ contractsHints.arguments }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatNullable(transactionData.args) }}
@@ -47,9 +62,16 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Gas Limit /
+          Gas Limit
+          <hint-tooltip>
+            {{ contractsHints.gasLimit }}
+          </hint-tooltip>
+          /
           <wbr>
           Gas Price
+          <hint-tooltip>
+            {{ contractsHints.gasPrice }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ transactionData.gas }}
@@ -59,9 +81,16 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Gas Used /
+          Gas Used
+          <hint-tooltip>
+            {{ contractsHints.gasUsed }}
+          </hint-tooltip>
+          /
           <wbr>
           Gas Costs
+          <hint-tooltip>
+            {{ contractsHints.gasCost }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatNullable(transactionData.gas_used) }}
@@ -77,6 +106,7 @@
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { contractsHints } from '@/utils/hints/contractsHints'
 
 const props = defineProps({
   transactionData: {

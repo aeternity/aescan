@@ -31,7 +31,7 @@
       </dd>
 
       <dt class="oracle-events-query-panel_term">
-        Response Lifetime:
+        Response TTL:
         <hint-tooltip>
           {{ oraclesHints.responseTtl }}
         </hint-tooltip>

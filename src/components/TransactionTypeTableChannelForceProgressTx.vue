@@ -5,6 +5,9 @@
         <th
           class="transaction-type-panel-channel-force-progress-tx__table-header">
           Channel ID
+          <hint-tooltip>
+            {{ stateChannelsHints.stateChannelId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
           <app-link :to="`/state-channels/${transactionData.channel_id}`">
@@ -13,9 +16,11 @@
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-force-progress-tx__row">
-        <th
-          class="transaction-type-panel-channel-force-progress-tx__table-header">
+        <th class="transaction-type-panel-channel-force-progress-tx__table-header">
           Round
+          <hint-tooltip>
+            {{ stateChannelsHints.forceProgressRound }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
           {{ transactionData.round }}
@@ -25,6 +30,9 @@
         <th
           class="transaction-type-panel-channel-force-progress-tx__table-header">
           Initiator
+          <hint-tooltip>
+            {{ stateChannelsHints.initiator }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
@@ -36,6 +44,9 @@
         <th
           class="transaction-type-panel-channel-force-progress-tx__table-header">
           Responder
+          <hint-tooltip>
+            {{ stateChannelsHints.responder }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
@@ -47,6 +58,9 @@
         <th
           class="transaction-type-panel-channel-force-progress-tx__table-header">
           Forced By
+          <hint-tooltip>
+            {{ stateChannelsHints.forcedBy }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
           <app-link :to="`/accounts/${transactionData.from_id}`">
@@ -59,6 +73,7 @@
 </template>
 
 <script setup>
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 
 defineProps({

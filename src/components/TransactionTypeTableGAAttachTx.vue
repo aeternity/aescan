@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
           Status
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxStatus }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <transaction-type-status-label :status="transactionData.return_type"/>
@@ -12,6 +15,9 @@
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
           Account
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxAccount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <app-link :to="`/accounts/${transactionData.owner_id}`">
@@ -22,6 +28,9 @@
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
           Smart Contract ID
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxSmartContractId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <app-link :to="`/contracts/${transactionData.contract_id}`">
@@ -32,6 +41,9 @@
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
           Auth Function
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxAuthFunction }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ transactionData.auth_fun_name }}
@@ -40,6 +52,9 @@
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
           Arguments
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxArguments }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ formatNullable(transactionData.args) }}
@@ -47,9 +62,16 @@
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
-          Gas Limit /
+          Gas Limit
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxGasLimit }}
+          </hint-tooltip>
+          /
           <wbr>
           Gas Price
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxGasPrice }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ formatNullable(transactionData.gas) }}
@@ -59,9 +81,16 @@
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
         <th class="transaction-type-panel-ga-attach-tx__table-header">
-          Gas Used /
+          Gas Used
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxGasUsed }}
+          </hint-tooltip>
+          /
           <wbr>
           Gas Costs
+          <hint-tooltip>
+            {{ transactionsHints.gaAttachTxGasCost }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ formatNullable(transactionData.gas_used) }}
@@ -74,6 +103,7 @@
 </template>
 
 <script setup>
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'

@@ -23,9 +23,9 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             <app-tooltip>
-              Created
+              Created By
               <template #tooltip>
-                {{ contractsHints.contractCreated }}
+                {{ contractsHints.createdBy }}
               </template>
             </app-tooltip>
           </th>
@@ -41,7 +41,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ contractsHints.contractTxHash }}
+                {{ contractsHints.hash }}
               </template>
             </app-tooltip>
           </th>
@@ -56,7 +56,7 @@
             <app-tooltip>
               Created By
               <template #tooltip>
-                {{ contractsHints.contractCreator }}
+                {{ contractsHints.creator }}
               </template>
             </app-tooltip>
           </th>

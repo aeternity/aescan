@@ -22,6 +22,9 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Keyblock Height
+            <hint-tooltip>
+              {{ transactionsHints.keyblockHeight }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.blockHeight }}
@@ -30,6 +33,9 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Keyblock Confirmations
+            <hint-tooltip>
+              {{ transactionsHints.keyblockConfirmations }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.confirmations }}
@@ -38,6 +44,9 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Status
+            <hint-tooltip>
+              {{ transactionsHints.status }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             <app-chip
@@ -57,6 +66,9 @@
           class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Microblock Hash
+            <hint-tooltip>
+              {{ transactionsHints.microblockHash }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             <span class="transaction-general-panel__hash">
@@ -72,6 +84,9 @@
           class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Time
+            <hint-tooltip>
+              {{ transactionsHints.time }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             <datetime-label :datetime="transactionDetails.created"/>
@@ -80,6 +95,9 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Fee
+            <hint-tooltip>
+              {{ transactionsHints.fee }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             {{ formatAePrice(formatAettosToAe(transactionDetails.fee), null) }}
@@ -88,6 +106,9 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             Nonce
+            <hint-tooltip>
+              {{ transactionsHints.nonce }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.nonce }}
@@ -96,6 +117,9 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             API links
+            <hint-tooltip>
+              {{ transactionsHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
             <div class="transaction-general-panel__container">
@@ -125,6 +149,7 @@
 </template>
 
 <script setup>
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import AppPanel from '@/components/AppPanel'
 import AppChip from '@/components/AppChip'
 import AppIcon from '@/components/AppIcon'

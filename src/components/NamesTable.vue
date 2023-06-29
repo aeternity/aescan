@@ -44,7 +44,7 @@
         </td>
         <td>
           <div class="names-table__label">
-            {{ name.isAuction ? 'Auction bid' : 'Fixed price' }}
+            {{ name.isAuction ? 'Auction' : 'Fixed price' }}
           </div>
           <div class="names-table__name-price">
             {{ formatAePrice(name.price) }}

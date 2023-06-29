@@ -315,7 +315,8 @@ export function adaptContractEvents(events, blockHeight) {
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         createdHeight: event.height,
         eventName: event.event_name,
-        data: event.args,
+        args: event.args,
+        data: event.data,
         callTxHash: event.call_tx_hash,
       }
     })

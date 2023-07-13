@@ -1,4 +1,5 @@
 export const oraclesHints = {
+  oracle: 'Oracle is a component that connects Smart Contracts with real-world data. It acts as a trusted source of external information by fetching data from various sources and validating its accuracy.',
   oracleId: 'Unique oracle identifier inherited from the account address of the operator.',
   registered: 'Keyblock height and exact date when the oracle has been registered via OracleRegisterTx.',
   expiration: 'The default lifetime of an oracle is 500 keyblocks. The initial lifetime can be set to a higher value and an oracle can be extended anytime, e.g. by setting up an automated service. In case the oracle lifetime is passed, the oracle operator can re-register it anytime.',

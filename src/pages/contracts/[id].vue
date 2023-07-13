@@ -5,6 +5,10 @@
 
   <page-header>
     Smart Contract
+
+    <template #tooltip>
+      {{ contractsHints.contract }}
+    </template>
   </page-header>
 
   <contract-details-panel
@@ -31,6 +35,7 @@ import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
 import ContractEventsPanel from '@/components/ContractEventsPanel'
 import { isDesktop } from '@/utils/screen'
+import { contractsHints } from '@/utils/hints/contractsHints'
 import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
 
 const contractDetailsStore = useContractDetailsStore()

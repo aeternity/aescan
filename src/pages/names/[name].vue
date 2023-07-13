@@ -5,6 +5,10 @@
 
   <page-header>
     AENS Name
+
+    <template #tooltip>
+      {{ namesHints.name }}
+    </template>
   </page-header>
 
   <name-details-panel class="name-details__panel"/>
@@ -34,6 +38,7 @@ import NamePointersCustomPanel from '@/components/NamePointersCustomPanel'
 import PageHeader from '@/components/PageHeader'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
+import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
 
 const nameDetailsStore = useNameDetailsStore()

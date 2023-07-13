@@ -1,4 +1,5 @@
 export const accountHints = {
+  account: 'An abstract cryptographic entity that can send or receive transactions in æternity blockchain.',
   balance: 'Amount of AE owned by the account.',
   value: 'USD value of AE owned by the account.',
   transactions: 'Amount of transactions where the account was involved.',

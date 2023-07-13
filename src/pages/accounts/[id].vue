@@ -5,6 +5,10 @@
 
   <page-header>
     Account
+
+    <template #tooltip>
+      {{ accountHints.account }}
+    </template>
   </page-header>
 
   <account-details-panel
@@ -33,6 +37,7 @@ import AccountTransactionsPanel from '@/components/AccountTransactionsPanel'
 import AccountNamesPanel from '@/components/AccountNamesPanel'
 import PageHeader from '@/components/PageHeader'
 import AccountDetailsPanel from '@/components/AccountDetailsPanel'
+import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'
 
 const accountStore = useAccountStore()

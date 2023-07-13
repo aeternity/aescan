@@ -5,6 +5,10 @@
 
   <page-header>
     Oracles
+
+    <template #tooltip>
+      {{ oraclesHints.oracle }}
+    </template>
   </page-header>
 
   <oracles-panel/>
@@ -13,4 +17,5 @@
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import OraclesPanel from '@/components/OraclesPanel'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 </script>

@@ -1,4 +1,5 @@
 export const contractsHints = {
+  contract: 'Smart contract is a self-executing program deployed in the blockchain that can be used to facilitate a wide range of business processes, exchange of value, and agreements.',
   contractId: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   contractCreated: 'Keyblock height and exact date and time when the smart contract was created.',
   contractTxHash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',
@@ -20,7 +21,6 @@ export const contractsHints = {
   hash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',
   creator: 'Account that created the smart contract on the blockchain.',
   status: 'Status of the transaction.',
-  smartContract: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   caller: 'Account that called the smart contract.',
   amount: 'Amount of AE coins that were transferred to the smart contract address.',
   entrypoint: 'The entrypoint of the smart contract that has been called.',

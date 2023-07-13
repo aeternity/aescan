@@ -5,6 +5,10 @@
 
   <page-header>
     Oracle
+
+    <template #tooltip>
+      {{ oraclesHints.oracle }}
+    </template>
   </page-header>
 
   <oracle-details-panel
@@ -25,6 +29,7 @@ import OracleDetailsPanel from '@/components/OracleDetailsPanel'
 import PageHeader from '@/components/PageHeader'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsPanel from '@/components/OracleEventsPanel'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)

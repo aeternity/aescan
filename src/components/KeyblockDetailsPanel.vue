@@ -126,13 +126,11 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
-import { useMarketStatsStore } from '@/stores/marketStats'
+import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

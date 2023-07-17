@@ -21,7 +21,7 @@
             Keyblock height
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatNumber(keyblockDetails.height) }}
+            {{ keyblockDetails.height }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">

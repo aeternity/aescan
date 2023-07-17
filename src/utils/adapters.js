@@ -20,14 +20,10 @@ export function adaptKeyblock(keyblock) {
 }
 
 export function adaptMicroblock(microblock) {
-  if (microblock) {
-    return {
-      ...microblock,
-      time: DateTime.fromMillis(microblock.time),
-    }
+  return {
+    ...microblock,
+    time: DateTime.fromMillis(microblock.time),
   }
-
-  return microblock
 }
 
 export function adaptSelectedMicroblockTransactions(transactions) {

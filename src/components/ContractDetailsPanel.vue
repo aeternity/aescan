@@ -126,7 +126,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            API links
+            API Links
             <hint-tooltip>
               {{ contractsHints.apiLinks }}
             </hint-tooltip>

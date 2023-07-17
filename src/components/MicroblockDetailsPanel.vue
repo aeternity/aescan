@@ -57,7 +57,7 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            API links
+            API Links
           </th>
           <td class="microblock-details-panel__data">
             <div class="microblock-details-panel__container">

@@ -116,7 +116,7 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            API links
+            API Links
             <hint-tooltip>
               {{ transactionsHints.apiLinks }}
             </hint-tooltip>

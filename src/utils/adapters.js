@@ -19,6 +19,17 @@ export function adaptKeyblock(keyblock) {
   return keyblock
 }
 
+export function adaptMicroblock(microblock) {
+  if (microblock) {
+    return {
+      ...microblock,
+      time: DateTime.fromMillis(microblock.time),
+    }
+  }
+
+  return microblock
+}
+
 export function adaptSelectedMicroblockTransactions(transactions) {
   const formattedData = transactions.data.map(transaction => {
     return {

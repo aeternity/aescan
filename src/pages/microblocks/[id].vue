@@ -1,0 +1,31 @@
+<template>
+  <Head>
+    <Title>{{ APP_TITLE_SHORT }} | Microblock </Title>
+  </Head>
+
+  <page-header>
+    Microblock
+  </page-header>
+
+  <microblock-details-panel
+    v-if="microblockDetails"
+    :microblock-details="microblockDetails"/>
+</template>
+
+<script setup>
+import { storeToRefs } from 'pinia'
+import { useRoute } from 'nuxt/app'
+import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
+import PageHeader from '@/components/PageHeader'
+import MicroblockDetailsPanel from '@/components/MicroblockDetailsPanel'
+
+const microblockDetailsStore = useMicroblockDetailsStore()
+const { microblockDetails } = storeToRefs(microblockDetailsStore)
+const { fetchMicroblock } = microblockDetailsStore
+const route = useRoute()
+
+await useAsyncData(async() => {
+  await fetchMicroblock(route.params.id)
+  return true
+})
+</script>

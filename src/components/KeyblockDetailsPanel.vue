@@ -18,7 +18,7 @@
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Keyblock height
+            Keyblock Height
           </th>
           <td class="keyblock-details-panel__data">
             {{ keyblockDetails.height }}
@@ -80,7 +80,7 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Microblocks
+            Microblocks Count
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.micro_blocks_count) }}
@@ -96,7 +96,7 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            API links
+            API Links
           </th>
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__container">

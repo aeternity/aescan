@@ -43,8 +43,8 @@ defineProps({
   &__sequence {
     display: flex;
     height: 40px;
-    overflow-x: visible;
-    overflow-y: visible;
+    overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
@@ -69,10 +69,17 @@ defineProps({
     font-size: 14px;
     cursor: pointer;
 
-    &:first-child {
+    &:first-child:after {
       box-shadow: 0 0 0 0 var(--color-midnight-35);
       transform: scale(1);
       animation: pulse 2s infinite;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 40px;
+      width: 40px;
+      border-radius: 4px;
     }
 
     @media (--desktop) {
@@ -87,7 +94,7 @@ defineProps({
     &--active {
       background: var(--color-fire);
 
-      &:first-child {
+      &:first-child:after {
         box-shadow: 0 0 0 0 var(--color-fire);
         transform: scale(1);
         animation: pulse-active 2s infinite;

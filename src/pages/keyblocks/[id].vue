@@ -10,7 +10,7 @@
   <keyblock-details-panel
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
-  <keyblock-microblocks-panel/>
+  <keyblock-microblocks-panel :microblocks-count="keyblockDetails.micro_blocks_count"/>
 </template>
 
 <script setup>

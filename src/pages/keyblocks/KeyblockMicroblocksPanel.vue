@@ -4,6 +4,8 @@
       v-model:page-index="pageIndex"
       pagination-style="history"
       :entities="keyblockMicroblocks"
+      :total-count="microblocksCount"
+      :limit="limit"
       @prev-clicked="loadPrevMicroblocks"
       @next-clicked="loadNextMicroblocks">
       <keyblock-microblocks-table
@@ -24,17 +26,22 @@ import KeyblockMicroblocksTable from '@/pages/keyblocks/KeyblockMicroblocksTable
 import PaginatedContent from '@/components/PaginatedContent'
 import KeyblockMicroblocksTableCondensed from '~/pages/keyblocks/KeyblockMicroblocksTableCondensed'
 
+defineProps({
+  microblocksCount: {
+    type: Object,
+    required: true,
+  },
+})
+
 const { keyblockMicroblocks } = storeToRefs(useKeyblockDetailsStore())
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()
 
-if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
-  await fetchKeyblockMicroblocks({
-    limit: limit.value,
-    keyblockHash: route.params.id,
-  })
-}
+const limit = computed(() => isDesktop() ? 10 : 3)
+await fetchKeyblockMicroblocks({
+  limit: limit.value,
+  keyblockHash: route.params.id,
+})
 
 const pageIndex = ref(1)
 const loadPrevMicroblocks = () => fetchKeyblockMicroblocks({ queryParameters: keyblockMicroblocks.value.prev })

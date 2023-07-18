@@ -57,24 +57,31 @@ async function search() {
   }
   userQuery.value = ''
 }
+
 function isAccountAddress(query) {
   return isAddressValid(query) && query.startsWith('ak_')
 }
+
 function isNameId(query) {
   return isAddressValid(query) && query.startsWith('nm_')
 }
+
 function isTransactionHash(query) {
   return isAddressValid(query) && query.startsWith('th_')
 }
+
 function isContractId(query) {
   return isAddressValid(query) && query.startsWith('ct_')
 }
+
 function isOracleId(query) {
   return isAddressValid(query) && query.startsWith('ok_')
 }
+
 function isStateChannelId(query) {
   return isAddressValid(query) && query.startsWith('ch_')
 }
+
 async function isAccountName(query) {
   return await isNameAvailable(query)
 }
@@ -88,7 +95,7 @@ async function isAccountName(query) {
 
   height: 40px;
   background: var(--color-white);
-  border: 1px solid var(--color-midnight);
+  border: 1px solid var(--color-midnight-55);
   border-radius: 8px;
 
   &__submit {

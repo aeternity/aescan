@@ -9,11 +9,12 @@
 <style scoped>
 .default-layout {
   background-image: url("@/assets/background.svg");
-  background-color: var(--color-midnight-35);
+  background-color: #d2d2d2;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-blend-mode: multiply;
 
   &__parallax {
     padding: 120px var(--space-1) var(--space-6);

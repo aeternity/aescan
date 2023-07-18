@@ -1,31 +1,42 @@
 <template>
   <app-panel class="keyblock-details-panel">
-    <header class="keyblock-details-panel__header">
-      <h2 class="keyblock-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div>
-        <copy-chip
-          :label="keyblockDetails.hash"
-          class="keyblock-details-panel__chip"/>
-        <copy-chip
-          :label="formatEllipseHash(keyblockDetails.hash)"
-          :clipboard-text="keyblockDetails.hash"
-          class="keyblock-details-panel__chip-ellipse"/>
-      </div>
-    </header>
     <table>
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Keyblock Height
+            <hint-icon class="bbb"/>
+            Height
           </th>
           <td class="keyblock-details-panel__data">
+            <button
+              :class="[
+                'pagination__button',
+                'pagination__button--prev',
+                {'pagination__button--disabled': isPrevDisabled}
+              ]"
+              @click="$emit('prev-clicked')">
+              <app-icon
+                :size="22"
+                name="caret-left"/>
+            </button>
+
             {{ keyblockDetails.height }}
+            <button
+              :class="[
+                'pagination__button',
+                'pagination__button--next',
+                {'pagination__button--disabled': isNextDisabled}
+              ]"
+              @click="$emit('next-clicked')">
+              <app-icon
+                :size="22"
+                name="caret-right"/>
+            </button>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             Time
           </th>
           <td class="keyblock-details-panel__data">
@@ -34,6 +45,7 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             Miner
           </th>
           <td class="keyblock-details-panel__data">
@@ -49,6 +61,7 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             Beneficiary
           </th>
           <td class="keyblock-details-panel__data">
@@ -64,22 +77,35 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             Beneficiary Reward
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.block_reward, null) }}
+            <div class="aaa">
+              <token-symbol-icon
+                class="keyblock-details-panel__icon"
+                contract-id="ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa"/>
+              {{ formatAePrice(keyblockDetails.block_reward, null) }}
+            </div>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             BRI Reward
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.dev_reward, null) }}
+            <div class="aaa">
+              <token-symbol-icon
+                class="keyblock-details-panel__icon"
+                contract-id="ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa"/>
+              {{ formatAePrice(keyblockDetails.dev_reward, null) }}
+            </div>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             Microblocks Count
           </th>
           <td class="keyblock-details-panel__data">
@@ -88,6 +114,7 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             Transactions Count
           </th>
           <td class="keyblock-details-panel__data">
@@ -96,6 +123,7 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
+            <hint-icon class="bbb"/>
             API Links
           </th>
           <td class="keyblock-details-panel__data">
@@ -127,7 +155,6 @@
 
 <script setup>
 import AppPanel from '@/components/AppPanel'
-import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
@@ -150,6 +177,17 @@ const keyblockMiddlewareUrl = computed(() =>
 </script>
 
 <style scoped>
+.bbb {
+  position: relative;
+  top: 6px;
+}
+
+.aaa {
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
 .keyblock-details-panel {
   padding: var(--space-4) var(--space-1) var(--space-3);
   margin-bottom: var(--space-7);
@@ -184,6 +222,15 @@ const keyblockMiddlewareUrl = computed(() =>
     }
   }
 
+  &__icon {
+    width: 28px;
+    height: 28px;
+    @media (--desktop) {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
   &__chip-ellipse,
   &__hash-ellipse {
     @media (--desktop) {
@@ -200,12 +247,12 @@ const keyblockMiddlewareUrl = computed(() =>
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   &__link {

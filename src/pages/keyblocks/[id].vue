@@ -5,11 +5,16 @@
 
   <page-header>
     Keyblock
+    <br>
+    <small>
+      kh_MGnv8gVCSm4RprcrqMTgSMCoRPFYFNFSxERZG7Y8vrejcWExF
+    </small>
   </page-header>
 
   <keyblock-details-panel
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
+
   <keyblock-microblocks-panel :microblocks-count="keyblockDetails.micro_blocks_count"/>
 </template>
 
@@ -31,3 +36,11 @@ await useAsyncData(async() => {
   return true
 })
 </script>
+
+<style scoped>
+small {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-monospaced);
+}
+</style>

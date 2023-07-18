@@ -18,7 +18,7 @@
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Keyblock Height
+            Height
           </th>
           <td class="keyblock-details-panel__data">
             {{ keyblockDetails.height }}

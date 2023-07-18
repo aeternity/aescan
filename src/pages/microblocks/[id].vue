@@ -5,6 +5,10 @@
 
   <page-header>
     Microblock
+
+    <template #tooltip>
+      {{ microblocksHints.microblock }}
+    </template>
   </page-header>
 
   <microblock-details-panel
@@ -15,6 +19,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'nuxt/app'
+import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PageHeader from '@/components/PageHeader'
 import MicroblockDetailsPanel from '@/components/MicroblockDetailsPanel'

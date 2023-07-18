@@ -9,10 +9,12 @@
       v-for="microblock in microblocks.data"
       :key="microblock.hash">
       <td>
-        {{ microblock.hash }}
+        <value-hash-ellipsed
+          :hash="microblock.hash"
+          :link-to="`/micro-blocks/${microblock.hash}`"/>
       </td>
       <td>
-        {{ microblock.time }}
+        <datetime-label :datetime="microblock.time"/>
       </td>
       <td>
         {{ microblock.transactionsCount }}
@@ -21,7 +23,10 @@
   </table>
 </template>
 <script setup>
-const props = defineProps({
+import DatetimeLabel from '~/components/DatetimeLabel'
+import ValueHashEllipsed from '~/components/ValueHashEllipsed'
+
+defineProps({
   microblocks: {
     type: Object,
     required: true,

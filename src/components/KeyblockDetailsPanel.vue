@@ -37,14 +37,12 @@
             Miner
           </th>
           <td class="keyblock-details-panel__data">
-            <app-link :to="`/accounts/${keyblockDetails.miner}`">
-              <span class="keyblock-details-panel__hash">
-                {{ keyblockDetails.miner }}
-              </span>
-              <span class="keyblock-details-panel__hash-ellipse">
-                {{ formatEllipseHash(keyblockDetails.miner) }}
-              </span>
-            </app-link>
+            <span class="keyblock-details-panel__hash">
+              {{ keyblockDetails.miner }}
+            </span>
+            <span class="keyblock-details-panel__hash-ellipse">
+              {{ formatEllipseHash(keyblockDetails.miner) }}
+            </span>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">

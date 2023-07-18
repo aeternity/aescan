@@ -8,6 +8,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
 
   const rawKeyblock = ref(null)
   const keyblockDeltaStats = ref(null)
+  const keyblockMicroblocks = ref(null)
 
   const keyblockDetails = computed(() => {
     return rawKeyblock.value ? adaptKeyblock(rawKeyblock.value, keyblockDeltaStats.value) : null
@@ -24,6 +25,12 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     rawKeyblock.value = data
   }
 
+  async function fetchKeyblockMicroblocks(keyblockHash) {
+    keyblockMicroblocks.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${keyblockHash}/micro-blocks`)
+    keyblockMicroblocks.value = data
+  }
+
   async function fetchKeyblockDeltaStats(keyblockHeight) {
     keyblockDeltaStats.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/deltastats?scope=gen:${keyblockHeight}`)
@@ -35,5 +42,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     keyblockDeltaStats,
     keyblockDetails,
     fetchKeyblock,
+    fetchKeyblockMicroblocks,
+    keyblockMicroblocks,
   }
 })

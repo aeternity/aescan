@@ -1,17 +1,20 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptKeyblock } from '@/utils/adapters'
+import { adaptKeyblock, adaptKeyblockMicroblocks } from '@/utils/adapters'
 
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
   const rawKeyblock = ref(null)
   const keyblockDeltaStats = ref(null)
-  const keyblockMicroblocks = ref(null)
+  const rawKeyblockMicroblocks = ref(null)
 
   const keyblockDetails = computed(() => {
     return rawKeyblock.value ? adaptKeyblock(rawKeyblock.value, keyblockDeltaStats.value) : null
+  })
+  const keyblockMicroblocks = computed(() => {
+    return rawKeyblockMicroblocks.value ? adaptKeyblockMicroblocks(rawKeyblockMicroblocks.value) : null
   })
 
   async function fetchKeyblock(keyblockHash) {
@@ -26,9 +29,9 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   }
 
   async function fetchKeyblockMicroblocks(keyblockHash) {
-    keyblockMicroblocks.value = null
+    rawKeyblockMicroblocks.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${keyblockHash}/micro-blocks`)
-    keyblockMicroblocks.value = data
+    rawKeyblockMicroblocks.value = data
   }
 
   async function fetchKeyblockDeltaStats(keyblockHeight) {

@@ -12,7 +12,7 @@
     :keyblock-details="keyblockDetails"/>
 
   <keyblock-microblocks-panel
-    v-if="keyblockDetails"
+    v-if="keyblockMicroblocks"
     :microblocks="keyblockMicroblocks"/>
 </template>
 

@@ -5,6 +5,9 @@
 
   <page-header>
     Keyblock
+    <template #tooltip>
+      {{ keyblocksHints.keyblock }}
+    </template>
   </page-header>
 
   <keyblock-details-panel
@@ -15,6 +18,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'nuxt/app'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetailsStore'
 import PageHeader from '@/components/PageHeader'
 import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'

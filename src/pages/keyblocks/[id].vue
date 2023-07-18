@@ -15,7 +15,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'nuxt/app'
-import { useKeyblockDetailsStore } from '@/stores/keyblockDetailsStore'
+import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 import PageHeader from '@/components/PageHeader'
 import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
 

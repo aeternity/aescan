@@ -10,10 +10,7 @@
   <keyblock-details-panel
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
-
-  <keyblock-microblocks-panel
-    v-if="keyblockMicroblocks"
-    :microblocks="keyblockMicroblocks"/>
+  <keyblock-microblocks-panel/>
 </template>
 
 <script setup>
@@ -25,14 +22,12 @@ import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
 import KeyblockMicroblocksPanel from '~/pages/keyblocks/KeyblockMicroblocksPanel'
 
 const keyblockDetailsStore = useKeyblockDetailsStore()
-const { keyblockDetails, keyblockMicroblocks } = storeToRefs(keyblockDetailsStore)
-const { fetchKeyblock, fetchKeyblockMicroblocks } = keyblockDetailsStore
+const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
+const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
 
 await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)
-  await fetchKeyblockMicroblocks(route.params.id)
-  // todo jinak
   return true
 })
 </script>

@@ -28,9 +28,10 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     rawKeyblock.value = data
   }
 
-  async function fetchKeyblockMicroblocks(keyblockHash) {
+  async function fetchKeyblockMicroblocks({ queryParameters, limit, keyblockHash } = {}) {
     rawKeyblockMicroblocks.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${keyblockHash}/micro-blocks`)
+    const defaultParameters = `/v2/key-blocks/${keyblockHash}/micro-blocks?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawKeyblockMicroblocks.value = data
   }
 

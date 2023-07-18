@@ -42,10 +42,14 @@ defineProps({
 
   &__sequence {
     display: flex;
-    height: 40px;
+    height: calc(40px + 16px);
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
+
+    /*animation overflow workaround*/
+    margin: -8px;
+    padding: 8px;
 
     &::-webkit-scrollbar {
       display: none;
@@ -56,6 +60,7 @@ defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     min-width: 40px;
     height: 100%;
@@ -69,17 +74,10 @@ defineProps({
     font-size: 14px;
     cursor: pointer;
 
-    &:first-child:after {
+    &:first-child {
       box-shadow: 0 0 0 0 var(--color-midnight-35);
       transform: scale(1);
       animation: pulse 2s infinite;
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 40px;
-      width: 40px;
-      border-radius: 4px;
     }
 
     @media (--desktop) {
@@ -94,7 +92,7 @@ defineProps({
     &--active {
       background: var(--color-fire);
 
-      &:first-child:after {
+      &:first-child {
         box-shadow: 0 0 0 0 var(--color-fire);
         transform: scale(1);
         animation: pulse-active 2s infinite;
@@ -106,7 +104,7 @@ defineProps({
     width: 80px;
     height: 100%;
     position: absolute;
-    right: 0;
+    right: -8px;
     top: 0;
     background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 100%);
 

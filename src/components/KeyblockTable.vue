@@ -10,7 +10,10 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          {{ keyblock.height }}
+          <app-link
+            :to="`/keyblocks/${keyblock.height}`">
+            {{ keyblock.height }}
+          </app-link>
         </td>
         <th class="keyblock-table__header keyblock-table__column-end">
           Beneficiary
@@ -36,6 +39,7 @@
         </th>
         <td class="keyblock-table__data">
           <value-hash-ellipsed
+            :link-to="`/keyblocks/${keyblock.hash}`"
             :hash="keyblock.hash"
             class="keyblock-table__value-hash-ellipsed"/>
         </td>

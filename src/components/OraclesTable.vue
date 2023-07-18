@@ -39,7 +39,10 @@
         </td>
         <td class="oracles-table__data">
           <div>
-            {{ oracle.activeFromHeight }}
+            <app-link
+              :to="`/keyblocks/${oracle.activeFromHeight}`">
+              {{ oracle.activeFromHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="oracle.activeFrom"/>
         </td>

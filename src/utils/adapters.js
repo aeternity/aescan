@@ -407,7 +407,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.query_fee),
-    expiration: oracle.approximate_expire_time,
+    expiration: DateTime.fromMillis(oracle.approximate_expire_time),
     expirationHeight: oracle.expire_height,
     registered: oracle.active_from
       ? formatBlockDiffAsDatetime(

@@ -21,7 +21,10 @@
           </th>
           <td class="state-channel-transactions-table-condensed__data">
             <div>
-              {{ transaction.createdHeight }}
+              <app-link
+                :to="`/keyblocks/${transaction.createdHeight}`">
+                {{ transaction.createdHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="transaction.created"/>
           </td>

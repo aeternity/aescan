@@ -86,7 +86,12 @@
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <span>
+            <app-link
+              v-if="isNameExpired"
+              :to="`/keyblocks/${name.expirationHeight}`">
+              {{ name.expirationHeight }}
+            </app-link>
+            <span v-else>
               {{ name.expirationHeight }}
             </span>
             (

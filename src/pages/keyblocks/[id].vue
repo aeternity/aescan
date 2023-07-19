@@ -10,6 +10,7 @@
   <keyblock-details-panel
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
+
   <keyblock-microblocks-panel :microblocks-count="keyblockDetails.micro_blocks_count"/>
 </template>
 
@@ -20,6 +21,9 @@ import { useKeyblockDetailsStore } from '@/stores/keyblockDetailsStore'
 import PageHeader from '@/components/PageHeader'
 import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
 import KeyblockMicroblocksPanel from '~/pages/keyblocks/KeyblockMicroblocksPanel'
+import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
+import PageHeader from '@/components/PageHeader'
+import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
 
 const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)

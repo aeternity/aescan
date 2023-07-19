@@ -8,15 +8,24 @@ function isAuction(chainName) {
   return chainName.length - suffixLength < auctionLength
 }
 
-export function adaptKeyblock(keyblock) {
+export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
     return {
       ...keyblock,
       mined: DateTime.fromMillis(keyblock.time),
+      block_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.block_reward) : null,
+      dev_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.dev_reward) : null,
     }
   }
 
   return keyblock
+}
+
+export function adaptMicroblock(microblock) {
+  return {
+    ...microblock,
+    time: DateTime.fromMillis(microblock.time),
+  }
 }
 
 export function adaptSelectedMicroblockTransactions(transactions) {

@@ -109,7 +109,7 @@
         </tr>
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
-            API links
+            API Links
             <hint-tooltip>
               {{ tokensHints.apiLinks }}
             </hint-tooltip>

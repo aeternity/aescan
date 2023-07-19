@@ -20,9 +20,9 @@ import { useRoute } from 'nuxt/app'
 import PageHeader from '@/components/PageHeader'
 import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
 import KeyblockMicroblocksPanel from '@/pages/keyblocks/KeyblockMicroblocksPanel'
-import { useKeyblockDetails } from '@/stores/keyblockDetails'
+import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
-const keyblockDetailsStore = useKeyblockDetails()
+const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()

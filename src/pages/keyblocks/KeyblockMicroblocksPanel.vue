@@ -22,14 +22,14 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { useKeyblockDetails } from '@/stores/keyblockDetails'
+import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 import PaginatedContent from '@/components/PaginatedContent'
 import KeyblockMicroblocksTable from '@/pages/keyblocks/KeyblockMicroblocksTable'
 import KeyblockMicroblocksTableCondensed from '@/pages/keyblocks/KeyblockMicroblocksTableCondensed'
 import { isDesktop } from '~/utils/screen'
 
-const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetails())
-const { fetchKeyblockMicroblocks } = useKeyblockDetails()
+const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetailsStore())
+const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 await fetchKeyblockMicroblocks({

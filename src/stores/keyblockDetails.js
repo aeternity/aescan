@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { adaptKeyblock, adaptKeyblockMicroblocks } from '@/utils/adapters'
 
-export const useKeyblockDetails = defineStore('keyblockDetails', () => {
+export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
   const rawKeyblock = ref(null)

@@ -59,6 +59,7 @@ const props = defineProps({
 function loadPrevTransactions() {
   fetchSelectedMicroblockTransactions(props.transactions.prev)
 }
+
 function loadNextTransactions() {
   fetchSelectedMicroblockTransactions(props.transactions.next)
 }

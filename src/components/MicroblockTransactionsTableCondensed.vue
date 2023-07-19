@@ -10,7 +10,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ microblocksHints.hash }}
+                {{ microblocksHints.transactionHash }}
               </template>
             </app-tooltip>
           </th>
@@ -26,7 +26,7 @@
             <app-tooltip>
               Time
               <template #tooltip>
-                {{ microblocksHints.time }}
+                {{ microblocksHints.transactionTime }}
               </template>
             </app-tooltip>
           </th>

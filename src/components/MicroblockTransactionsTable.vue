@@ -4,19 +4,19 @@
       <th>
         Hash
         <hint-tooltip>
-          {{ microblocksHints.hash }}
+          {{ microblocksHints.transactionHash }}
         </hint-tooltip>
       </th>
       <th>
         Time
         <hint-tooltip>
-          {{ microblocksHints.hash }}
+          {{ microblocksHints.transactionTime }}
         </hint-tooltip>
       </th>
     </tr>
     <tr
       v-for="transaction in transactions.data"
-      :key="transaction.has">
+      :key="transaction.hash">
       <td>
         <app-link
           :to="`/transactions/${transaction.hash}`">

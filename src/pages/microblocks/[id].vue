@@ -10,6 +10,8 @@
   <microblock-details-panel
     v-if="microblockDetails"
     :microblock-details="microblockDetails"/>
+
+  <microblock-transactions-panel/>
 </template>
 
 <script setup>
@@ -18,6 +20,7 @@ import { useRoute } from 'nuxt/app'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PageHeader from '@/components/PageHeader'
 import MicroblockDetailsPanel from '@/components/MicroblockDetailsPanel'
+import MicroblockTransactionsPanel from '~/components/MicroblockTransactionsPanel'
 
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)

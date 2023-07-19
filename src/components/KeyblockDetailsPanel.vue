@@ -18,7 +18,6 @@
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-
             Height
             <hint-tooltip>
               {{ keyblocksHints.height }}

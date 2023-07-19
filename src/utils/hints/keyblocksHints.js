@@ -6,7 +6,7 @@ export const keyblocksHints = {
   mined: 'The exact moment when the keyblock was successfully added to the blockchain.',
   beneficiary: 'The miner who successfully added the keyblock to the blockchain and received a block reward.',
   beneficiaryReward: 'Amount that was paid to the miner who added the keyblock to the blockchain, as an incentive for their participation and contribution to the network.',
-  briReward: ' A fraction of the keyblock reward that was granted to æternity crypto foundation to fund its activities.',
+  briReward: 'A fraction of the keyblock reward that was granted to æternity crypto foundation to fund its activities.',
   hash: 'Unique identifier of the latest keyblock. It also serves as a reference point for subsequent keyblocks to be added to the blockchain.',
   microblockCount: 'Count of microblocks that the keyblock contains',
   transactionsCount: 'Count of transactions that the keyblock contains',

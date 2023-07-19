@@ -1,5 +1,5 @@
 export const tokensHints = {
-  token: 'Fungible Token is a Smart Contract that implements the AEX-9 Simple Fungible Token Standard. It is used to represent any asset that is fungible, tradeable and transferable.',
+  token: 'Fungible token is a smart contract that implements the AEX-9 Simple Fungible Token Standard. It is used to represent any asset that is fungible, tradeable and transferable.',
   tokenSymbol: 'Non-unique symbol of the token.',
   tokenName: 'Full name of the token.',
   smartContractId: 'Identifier of the smart contract that implements the AEX-9 fungible token standard.',

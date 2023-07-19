@@ -24,9 +24,9 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 import PaginatedContent from '@/components/PaginatedContent'
-import KeyblockMicroblocksTable from '@/pages/keyblocks/KeyblockMicroblocksTable'
-import KeyblockMicroblocksTableCondensed from '@/pages/keyblocks/KeyblockMicroblocksTableCondensed'
-import { isDesktop } from '~/utils/screen'
+import KeyblockMicroblocksTable from '@/components/KeyblockMicroblocksTable'
+import KeyblockMicroblocksTableCondensed from '@/components/KeyblockMicroblocksTableCondensed'
+import { isDesktop } from '@/utils/screen'
 
 const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetailsStore())
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()

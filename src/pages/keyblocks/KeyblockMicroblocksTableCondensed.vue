@@ -12,7 +12,6 @@
             </app-tooltip>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
-            <!--            todo full link-->
             <value-hash-ellipsed
               :hash="microblock.hash"
               :link-to="`/micro-blocks/${microblock.hash}`"/>
@@ -45,7 +44,6 @@
   </div>
 </template>
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({

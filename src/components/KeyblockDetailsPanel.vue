@@ -65,7 +65,7 @@
             Beneficiary Reward
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.block_reward, null) }}
+            {{ formatAePrice(keyblockDetails.blockReward, null) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -73,7 +73,7 @@
             BRI Reward
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.dev_reward, null) }}
+            {{ formatAePrice(keyblockDetails.devReward, null) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -81,7 +81,7 @@
             Microblocks Count
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatNumber(keyblockDetails.micro_blocks_count) }}
+            {{ formatNumber(keyblockDetails.microBlocksCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -89,7 +89,7 @@
             Transactions Count
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatNumber(keyblockDetails.transactions_count) }}
+            {{ formatNumber(keyblockDetails.transactionsCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -124,11 +124,6 @@
 </template>
 
 <script setup>
-import AppPanel from '@/components/AppPanel'
-import CopyChip from '@/components/CopyChip'
-import AppIcon from '@/components/AppIcon'
-import AppLink from '@/components/AppLink'
-import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

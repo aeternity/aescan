@@ -13,8 +13,8 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
     return {
       ...keyblock,
       mined: DateTime.fromMillis(keyblock.time),
-      block_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.block_reward) : null,
-      dev_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.dev_reward) : null,
+      blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
+      devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
     }
   }
 

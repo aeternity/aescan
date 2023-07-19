@@ -60,6 +60,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useRuntimeConfig } from '#app'
 import FooterList from '@/components/FooterList'
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
@@ -67,6 +68,7 @@ import FooterSocials from '@/components/FooterSocials'
 import { useStatus } from '@/stores/status'
 
 const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
+const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
 const links = {
   about: [
@@ -78,7 +80,7 @@ const links = {
   ],
   developers: [
     { label: 'Node API documentation', url: 'https://api-docs.aeternity.io' },
-    { label: 'Middleware API documentation', url: 'https://mainnet.aeternity.io/mdw/swagger/index.html?version=v2' },
+    { label: 'Middleware API documentation', url: `${MIDDLEWARE_URL}/swagger` },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
     { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
   ],

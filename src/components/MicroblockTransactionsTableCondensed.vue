@@ -10,7 +10,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ tokensHints.hash }}
+                {{ microblocksHints.hash }}
               </template>
             </app-tooltip>
           </th>
@@ -26,7 +26,7 @@
             <app-tooltip>
               Time
               <template #tooltip>
-                {{ tokensHints.eventName }}
+                {{ microblocksHints.time }}
               </template>
             </app-tooltip>
           </th>
@@ -39,7 +39,7 @@
   </div>
 </template>
 <script setup>
-import { tokensHints } from '~/utils/hints/tokensHints'
+import { microblocksHints } from '@/utils/hints/microblocksHints'
 
 defineProps({
   transactions: {

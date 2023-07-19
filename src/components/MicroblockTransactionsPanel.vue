@@ -1,7 +1,6 @@
 <template>
   <app-panel class="microblock-transactions-panel">
     <!--    todo sanitize-->
-    <!--    todo solve naming-->
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="transactions"
@@ -10,10 +9,10 @@
       :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
-      <microblock-transactions-table-2
+      <microblock-transactions-table
         :transactions="transactions"
         class="microblock-transactions-panel__table"/>
-      <microblock-transactions-table-condensed-2
+      <microblock-transactions-table-condensed
         :transactions="transactions"
         class="microblock-transactions-panel__table-condensed"/>
     </paginated-content>

@@ -1,11 +1,11 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Microblock </Title>
+    <Title>{{ APP_TITLE_SHORT }} | Microblock</Title>
+
   </Head>
 
   <page-header>
     Microblock
-
     <template #tooltip>
       {{ microblocksHints.microblock }}
     </template>
@@ -19,6 +19,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'nuxt/app'
+
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PageHeader from '@/components/PageHeader'

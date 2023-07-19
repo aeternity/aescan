@@ -10,7 +10,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ keyblocksHints.hash }}
+                {{ keyblocksHints.microblockHash }}
               </template>
             </app-tooltip>
           </th>

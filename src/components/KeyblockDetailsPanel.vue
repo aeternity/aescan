@@ -18,7 +18,8 @@
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Keyblock Height
+
+            Height
             <hint-tooltip>
               {{ keyblocksHints.height }}
             </hint-tooltip>
@@ -46,14 +47,12 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            <app-link :to="`/accounts/${keyblockDetails.miner}`">
-              <span class="keyblock-details-panel__hash">
-                {{ keyblockDetails.miner }}
-              </span>
-              <span class="keyblock-details-panel__hash-ellipse">
-                {{ formatEllipseHash(keyblockDetails.miner) }}
-              </span>
-            </app-link>
+            <span class="keyblock-details-panel__hash">
+              {{ keyblockDetails.miner }}
+            </span>
+            <span class="keyblock-details-panel__hash-ellipse">
+              {{ formatEllipseHash(keyblockDetails.miner) }}
+            </span>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -153,7 +152,7 @@
 </template>
 
 <script setup>
-import { keyblocksHints } from '../utils/hints/keyblocksHints'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'

@@ -141,6 +141,14 @@
                   :size="22"/>
                 Node
               </app-link>
+              <app-link
+                :to="contractMiddlewareUrl"
+                class="contract-details-panel__link">
+                <app-icon
+                  name="file-cloud"
+                  :size="22"/>
+                Middleware
+              </app-link>
             </div>
           </td>
         </tr>
@@ -160,7 +168,7 @@ import DatetimeLabel from '@/components/DatetimeLabel'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '~/components/HintTooltip'
 
-const { NODE_URL } = useRuntimeConfig().public
+const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 
 const props = defineProps({
   contractDetails: {
@@ -171,6 +179,9 @@ const props = defineProps({
 
 const contractNodeUrl = computed(() =>
   `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
+)
+const contractMiddlewareUrl = computed(() =>
+  `${MIDDLEWARE_URL}/v2/contracts/${props.contractDetails.id}`,
 )
 </script>
 
@@ -225,6 +236,10 @@ const contractNodeUrl = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 
   &__hash {

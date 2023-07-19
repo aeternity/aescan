@@ -21,7 +21,7 @@
             Keyblock
           </th>
           <td class="microblock-details-panel__data">
-            <app-link :to="`/microblocks/${microblockDetails.prev_key_hash}`">
+            <app-link :to="`/keyblocks/${microblockDetails.prev_key_hash}`">
               <span class="microblock-details-panel__hash">
                 {{ microblockDetails.prev_key_hash }}
               </span>
@@ -33,10 +33,12 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Microblock Height
+            Height
           </th>
           <td class="microblock-details-panel__data">
-            {{ formatNumber(microblockDetails.height) }}
+            <app-link :to="`/keyblocks/${microblockDetails.height}`">
+              {{ microblockDetails.height }}
+            </app-link>
           </td>
         </tr>
         <tr class="microblock-details-panel__row">

@@ -1,13 +1,18 @@
 <template>
-  <app-panel v-if="microblockTransactions">
+  <app-panel class="microblock-transactions-panel">
     <!--    todo sanitize-->
     <!--    todo solve naming-->
     <paginated-content
-      :entities="microblockTransactions"
+      :entities="transactions"
       pagination-style="history"
       @prev-clicked="loadPrevMicroblockTransactions"
       @next-clicked="loadNextMicroblockTransactions">
-      <microblock-transactions-table-2 :microblock-transactions="microblockTransactions"/>
+      <microblock-transactions-table-2
+        class="microblock-transactions-panel__table"
+        :transactions="transactions"/>
+      <microblock-transactions-table-condensed-2
+        :transactions="transactions"
+        class="microblock-transactions-panel__table-condensed"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -16,17 +21,17 @@ import { storeToRefs } from 'pinia'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 
 const microblockDetailsStore = useMicroblockDetailsStore()
-const { microblockTransactions } = storeToRefs(microblockDetailsStore)
+const { microblockTransactions: transactions } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblockTransactions } = microblockDetailsStore
 
 const route = useRoute()
 
 function loadPrevMicroblockTransactions() {
-  fetchMicroblockTransactions({ queryParameters: microblockTransactions.value.prev })
+  fetchMicroblockTransactions({ queryParameters: transactions.value.prev })
 }
 
 function loadNextMicroblockTransactions() {
-  fetchMicroblockTransactions({ queryParameters: microblockTransactions.value.next })
+  fetchMicroblockTransactions({ queryParameters: transactions.value.next })
 }
 
 if (process.client) {
@@ -37,3 +42,26 @@ if (process.client) {
   })
 }
 </script>
+
+<style scoped>
+.microblock-transactions-panel {
+  padding: var(--space-3) var(--space-1) var(--space-4);
+  margin-top: var(--space-2);
+  @media (--desktop) {
+    padding: var(--space-2) var(--space-4) var(--space-4);
+  }
+
+  &__table {
+    display: none;
+    @media (--desktop) {
+      display: revert;
+    }
+  }
+
+  &__table-condensed {
+    @media (--desktop) {
+      display: none;
+    }
+  }
+}
+</style>

@@ -4,15 +4,24 @@
       <th>Hash</th>
       <th>Time</th>
     </tr>
-    <tr v-for="transaction in microblockTransactions.data">
-      <td>{{ transaction.hash }}</td>
-      <td>{{ transaction.time }}</td>
+    <tr
+      v-for="transaction in transactions.data"
+      :key="transaction.has">
+      <td>
+        <app-link
+          :to="`/transactions/${transaction.hash}`">
+          {{ transaction.hash }}
+        </app-link>
+      </td>
+      <td>
+        <datetime-label :datetime="transaction.time"/>
+      </td>
     </tr>
   </table>
 </template>
 <script setup>
 defineProps({
-  microblockTransactions: {
+  transactions: {
     type: Object,
     required: true,
   },

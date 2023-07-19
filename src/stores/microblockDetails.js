@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptMicroblock } from '@/utils/adapters'
+import { adaptMicroblock, adaptMicroblockTransactions } from '@/utils/adapters'
 
 export const useMicroblockDetailsStore = defineStore('microblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -13,6 +13,10 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
     return rawMicroblock.value ? adaptMicroblock(rawMicroblock.value) : null
   })
 
+  const microblockTransactions = computed(() => {
+    return rawMicroblockTransactions.value ? adaptMicroblockTransactions(rawMicroblockTransactions.value) : null
+  })
+
   async function fetchMicroblock(microblockHash) {
     rawMicroblock.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/micro-blocks/${microblockHash}`)
@@ -20,10 +24,8 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
   }
 
   async function fetchMicroblockTransactions(microblockHash) {
-    console.log('microblockHash', microblockHash)
     rawMicroblockTransactions.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/micro-blocks/${microblockHash}/txs`)
-    console.log('data', data)
     rawMicroblockTransactions.value = data
   }
 
@@ -31,7 +33,7 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
     rawMicroblock,
     microblockDetails,
     fetchMicroblock,
-    rawMicroblockTransactions,
+    microblockTransactions,
     fetchMicroblockTransactions,
   }
 })

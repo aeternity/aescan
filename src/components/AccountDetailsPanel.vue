@@ -86,7 +86,7 @@
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            API links
+            API Links
             <hint-tooltip>
               {{ accountHints.apiLinks }}
             </hint-tooltip>

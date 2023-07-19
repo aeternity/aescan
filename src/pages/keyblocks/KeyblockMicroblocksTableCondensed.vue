@@ -9,6 +9,9 @@
           <th class="keyblock-microblocks-table-condensed__header">
             <app-tooltip>
               Hash
+              <template #tooltip>
+                {{ keyblocksHints.hash }}
+              </template>
             </app-tooltip>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
@@ -21,6 +24,9 @@
           <th class="keyblock-microblocks-table-condensed__header">
             <app-tooltip>
               Time
+              <template #tooltip>
+                {{ keyblocksHints.time }}
+              </template>
             </app-tooltip>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
@@ -31,6 +37,9 @@
           <th class="keyblock-microblocks-table-condensed__header">
             <app-tooltip>
               Transactions Count
+              <template #tooltip>
+                {{ keyblocksHints.transactionsCount }}
+              </template>
             </app-tooltip>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
@@ -44,6 +53,7 @@
   </div>
 </template>
 <script setup>
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({

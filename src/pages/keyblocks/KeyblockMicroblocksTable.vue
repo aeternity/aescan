@@ -1,9 +1,24 @@
 <template>
   <table>
     <tr>
-      <th>Hash</th>
-      <th>Time</th>
-      <th>Transactions Count</th>
+      <th>
+        Hash
+        <hint-tooltip>
+          {{ keyblocksHints.microblockHash }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Time
+        <hint-tooltip>
+          {{ keyblocksHints.time }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Transactions Count
+        <hint-tooltip>
+          {{ keyblocksHints.transactionsCount }}
+        </hint-tooltip>
+      </th>
     </tr>
     <tr
       v-for="microblock in microblocks.data"
@@ -23,7 +38,8 @@
   </table>
 </template>
 <script setup>
-import DatetimeLabel from '~/components/DatetimeLabel'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
+import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({
   microblocks: {

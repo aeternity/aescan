@@ -24,8 +24,6 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
   }
 
   async function fetchMicroblockTransactions({ queryParameters, limit, microblockHash } = {}) {
-    console.log('queryParameters, limit, microblockHash', queryParameters, limit, microblockHash)
-
     rawMicroblockTransactions.value = null
     const defaultParameters = `/v2/micro-blocks/${microblockHash}/txs?limit=${limit ?? 10}`
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)

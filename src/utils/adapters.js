@@ -29,7 +29,6 @@ export function adaptMicroblock(microblock) {
 }
 
 export function adaptMicroblockTransactions(transactions) {
-  console.log('transactions', transactions)
   const formattedData = transactions.data.map(transaction => {
     return {
       hash: transaction.hash,

@@ -3,13 +3,16 @@
     <!--    todo sanitize-->
     <!--    todo solve naming-->
     <paginated-content
+      v-model:page-index="pageIndex"
       :entities="transactions"
       pagination-style="history"
-      @prev-clicked="loadPrevMicroblockTransactions"
-      @next-clicked="loadNextMicroblockTransactions">
+      :total-count="microblockDetails.transactions_count"
+      :limit="limit"
+      @prev-clicked="loadPrevTransactions"
+      @next-clicked="loadNextTransactions">
       <microblock-transactions-table-2
-        class="microblock-transactions-panel__table"
-        :transactions="transactions"/>
+        :transactions="transactions"
+        class="microblock-transactions-panel__table"/>
       <microblock-transactions-table-condensed-2
         :transactions="transactions"
         class="microblock-transactions-panel__table-condensed"/>
@@ -18,24 +21,27 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
+import PaginatedContent from '@/components/PaginatedContent'
 
 const microblockDetailsStore = useMicroblockDetailsStore()
-const { microblockTransactions: transactions } = storeToRefs(microblockDetailsStore)
+const { microblockTransactions: transactions, microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblockTransactions } = microblockDetailsStore
 
 const route = useRoute()
+const pageIndex = ref(1)
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-function loadPrevMicroblockTransactions() {
+function loadPrevTransactions() {
   fetchMicroblockTransactions({ queryParameters: transactions.value.prev })
 }
 
-function loadNextMicroblockTransactions() {
+function loadNextTransactions() {
   fetchMicroblockTransactions({ queryParameters: transactions.value.next })
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
   await fetchMicroblockTransactions({
     limit: limit.value,
     microblockHash: route.params.id,

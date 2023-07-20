@@ -11,7 +11,7 @@
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
 
-  <keyblock-microblocks-panel/>
+  <keyblock-microblocks-panel v-if="keyblockDetails"/>
 </template>
 
 <script setup>
@@ -27,8 +27,10 @@ const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
 
-await useAsyncData(async() => {
-  await fetchKeyblock(route.params.id)
-  return true
-})
+if (process.client) {
+  await useAsyncData(async() => {
+    await fetchKeyblock(route.params.id)
+    return true
+  })
+}
 </script>

@@ -1,5 +1,7 @@
 <template>
-  <app-panel class="keyblock-microblock-panel">
+  <app-panel
+    v-if="microblocks"
+    class="keyblock-microblock-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       pagination-style="history"
@@ -9,11 +11,9 @@
       @prev-clicked="loadPrevMicroblocks"
       @next-clicked="loadNextMicroblocks">
       <keyblock-microblocks-table
-        v-if="microblocks"
         :microblocks="microblocks"
         class="keyblock-microblock-panel__table"/>
       <keyblock-microblocks-table-condensed
-        v-if="microblocks"
         :microblocks="microblocks"
         class="keyblock-microblock-panel__table-condensed"/>
     </paginated-content>

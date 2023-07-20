@@ -17,7 +17,7 @@
           <td class="keyblock-microblocks-table-condensed__data">
             <value-hash-ellipsed
               :hash="microblock.hash"
-              :link-to="`/micro-blocks/${microblock.hash}`"/>
+              :link-to="`/microblocks/${microblock.hash}`"/>
           </td>
         </tr>
         <tr class="keyblock-microblocks-table-condensed__row">

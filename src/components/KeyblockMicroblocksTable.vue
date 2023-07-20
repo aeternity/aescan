@@ -24,7 +24,7 @@
       v-for="microblock in microblocks.data"
       :key="microblock.hash">
       <td>
-        <app-link :to="`/micro-blocks/${microblock.hash}`">
+        <app-link :to="`/microblocks/${microblock.hash}`">
           {{ microblock.hash }}
         </app-link>
       </td>

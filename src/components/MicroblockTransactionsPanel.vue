@@ -1,5 +1,7 @@
 <template>
-  <app-panel class="microblock-transactions-panel">
+  <app-panel
+    v-if="transactions"
+    class="microblock-transactions-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="transactions"

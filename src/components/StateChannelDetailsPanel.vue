@@ -118,7 +118,7 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            AE Locked
+            Locked
             <hint-tooltip>
               {{ stateChannelsHints.locked }}
             </hint-tooltip>

@@ -83,9 +83,9 @@
           v-if="transactionDetails.created"
           class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Time
+            Created
             <hint-tooltip>
-              {{ transactionsHints.time }}
+              {{ transactionsHints.created }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">

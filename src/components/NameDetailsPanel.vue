@@ -80,9 +80,9 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ isNameExpired ? "Expired" : "Expires" }}
+            {{ nameStatusLabel }}
             <hint-tooltip>
-              {{ isNameExpired ? namesHints.expired : namesHints.expires }}
+              {{ namesHints[nameStatusHint] }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
@@ -130,11 +130,29 @@ const labelVariant = computed(() =>
   name.value.active ? 'success' : 'error',
 )
 const nameStatusText = computed(() => {
-  if (name.value.status === 'auction') {
+  if (isNameInAuction.value) {
     return 'In auction'
   }
 
   return name.value.active ? 'Active' : 'Expired'
+})
+const nameStatusLabel = computed(() => {
+  if (isNameInAuction.value) {
+    return 'Ends'
+  } else if (isNameExpired.value) {
+    return 'Expired'
+  } else if (isNameActive.value) {
+    return 'Expires'
+  }
+})
+const nameStatusHint = computed(() => {
+  if (isNameInAuction.value) {
+    return 'ends'
+  } else if (isNameExpired.value) {
+    return 'expired'
+  } else if (isNameActive.value) {
+    return 'expires'
+  }
 })
 const isNameExpired = computed(() =>
   name.value.status === 'name' && !name.value.active,
@@ -142,6 +160,10 @@ const isNameExpired = computed(() =>
 const isNameActive = computed(() =>
   name.value.active && name.value.activated,
 )
+const isNameInAuction = computed(() =>
+  name.value.status === 'auction',
+)
+
 </script>
 
 <style scoped>

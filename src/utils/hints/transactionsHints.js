@@ -31,7 +31,6 @@ export const transactionsHints = {
   keyblockConfirmations: 'Amount of keyblocks that were added since the transaction was mined.',
   status: 'Status of the transaction.',
   microblockHash: 'Microblock in which the transaction is included.',
-  time: 'Exact date and time when the transaction was mined.',
   fee: 'Fees paid for the transaction.',
   nonce: 'The nonce that has been used to execute this transaction. The nonce is used to prevent replay attacks and to keep transactions for a specific account in the right order. If a transaction with a way higher nonce is broadcasted, it won\'t be executed until all transactions with lower nonces are executed.',
   apiLinks: 'Links to sources of the transaction data.',

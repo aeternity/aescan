@@ -11,7 +11,7 @@
     v-if="microblockDetails"
     :microblock-details="microblockDetails"/>
 
-  <microblock-transactions-panel/>
+  <microblock-transactions-panel v-if="microblockDetails"/>
 </template>
 
 <script setup>
@@ -27,8 +27,10 @@ const { microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblock } = microblockDetailsStore
 const route = useRoute()
 
-await useAsyncData(async() => {
-  await fetchMicroblock(route.params.id)
-  return true
-})
+if (process.client) {
+  await useAsyncData(async() => {
+    await fetchMicroblock(route.params.id)
+    return true
+  })
+}
 </script>

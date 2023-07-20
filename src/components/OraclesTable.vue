@@ -48,7 +48,10 @@
         </td>
         <td class="oracles-table__data">
           <div>
-            {{ oracle.expireHeight }}
+            <app-link
+              :to="`/keyblocks/${oracle.expireHeight}`">
+              {{ oracle.expireHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="oracle.expire"/>
         </td>

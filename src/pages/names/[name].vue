@@ -8,6 +8,11 @@
 
     <template #tooltip>
       {{ namesHints.name }}
+      <app-link
+        variant="primary"
+        to="https://docs.aeternity.com/protocol/AENS/">
+        Learn more
+      </app-link>
     </template>
   </page-header>
 

@@ -1,5 +1,5 @@
 export const namesHints = {
-  name: 'A unique identifier that may be configured to point to accounts, smart contracts or oracles.',
+  name: 'A unique, transferrable identifier that provides a way for users to map human-readable names to blockchain resources such as accounts, smart contracts or oracles. It expires after a fixed amount of time unless it gets extended.',
   nameInAuction: 'Unique identifier that may be configured to point to accounts, contracts or oracles. names shorter than 13 characters are always auctioned.',
   expires: 'Keyblock height and estimated date and time when the name will be detached from the account. After expiration, the name enters into a revoked state and can be claimed again after a fixed timeout of 2016 keyblocks.',
   buyer: 'Account that paid the shown price to claim the name.',

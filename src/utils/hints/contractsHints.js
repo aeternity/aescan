@@ -1,5 +1,5 @@
 export const contractsHints = {
-  contract: 'A self-executing program deployed in the blockchain that can be used to facilitate a wide range of business processes, exchange of value, and agreements.',
+  contract: 'A program deployed on the blockchain that runs when predetermined conditions are met. Smart Contracts are written in Sophia, a typed functional programming language.',
   contractId: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   contractCreated: 'Keyblock height and exact date and time when the smart contract was created.',
   contractTxHash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',

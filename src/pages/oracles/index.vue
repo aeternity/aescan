@@ -8,6 +8,11 @@
 
     <template #tooltip>
       {{ oraclesHints.oracle }}
+      <app-link
+        variant="primary"
+        to="https://docs.aeternity.com/protocol/oracles/">
+        Learn more
+      </app-link>
     </template>
   </page-header>
 

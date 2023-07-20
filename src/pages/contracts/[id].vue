@@ -8,6 +8,11 @@
 
     <template #tooltip>
       {{ contractsHints.contract }}
+      <app-link
+        variant="primary"
+        to="https://docs.aeternity.com/protocol/contracts/">
+        Learn more
+      </app-link>
     </template>
   </page-header>
 

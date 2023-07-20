@@ -1,5 +1,5 @@
 export const transactionsHints = {
-  transaction: 'A record of value transfer or an operation execution that enables the participants to verify and confirm these actions on the blockchain.',
+  transaction: 'A record of value transfer or an operation execution that enables the participants to verify and confirm these actions on the blockchain. The purpose and the parties involved in the transactions vary depending on their type.',
   hash: 'Unique identifier of the transaction.',
   created: 'Keyblock height and exact date and time when the transaction has been executed by inclusion into a microblock.',
   type: 'The type of the transaction depends on its purpose in the æternity ecosystem.',

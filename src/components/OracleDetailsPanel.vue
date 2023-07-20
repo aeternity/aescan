@@ -82,7 +82,11 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            {{ oracleDetails.expirationHeight }} -
+            <app-link
+              :to="`/keyblocks/${oracleDetails.expirationHeight}`">
+              {{ oracleDetails.expirationHeight }}
+            </app-link>
+            -
             <datetime-label :datetime="oracleDetails.expiration"/>
           </td>
         </tr>

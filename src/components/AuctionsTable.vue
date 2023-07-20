@@ -49,7 +49,10 @@
         </td>
         <td>
           <div class="auctions-table__blocks">
-            {{ auction.expirationHeight }}
+            <app-link
+              :to="`/keyblocks/${auction.expirationHeight}`">
+              {{ auction.expirationHeight }}
+            </app-link>
           </div>
           <div>
             <datetime-label :datetime="auction.expiration"/>

@@ -87,13 +87,9 @@
           </th>
           <td class="name-details-panel__data">
             <app-link
-              v-if="isNameExpired"
               :to="`/keyblocks/${name.expirationHeight}`">
               {{ name.expirationHeight }}
             </app-link>
-            <span v-else>
-              {{ name.expirationHeight }}
-            </span>
             (
             <datetime-label :datetime="name.expiration"/>
             )

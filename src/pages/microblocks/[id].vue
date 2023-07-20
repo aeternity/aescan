@@ -27,10 +27,8 @@ const { microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblock } = microblockDetailsStore
 const route = useRoute()
 
-if (process.client) {
-  await useAsyncData(async() => {
-    await fetchMicroblock(route.params.id)
-    return true
-  })
-}
+await useAsyncData(async() => {
+  await fetchMicroblock(route.params.id)
+  return true
+})
 </script>

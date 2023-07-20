@@ -42,7 +42,7 @@ function loadNextTransactions() {
 }
 
 if (process.client) {
-  await fetchMicroblockTransactions({
+  fetchMicroblockTransactions({
     limit: limit.value,
     microblockHash: route.params.id,
   })

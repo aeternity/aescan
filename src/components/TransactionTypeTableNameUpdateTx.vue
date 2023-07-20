@@ -27,8 +27,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
-          <app-link :to="`/accounts/${transactionData.account_id}`">
-            {{ transactionData.account_id }}
+          <app-link :to="`/accounts/${transactionData.accountId}`">
+            {{ transactionData.accountId }}
           </app-link>
         </td>
       </tr>
@@ -40,7 +40,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
-          {{ transactionData.name_ttl }}
+          {{ transactionData.nameTtl }}
         </td>
       </tr>
     </tbody>

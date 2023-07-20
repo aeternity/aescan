@@ -59,7 +59,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ formatNullable(formatAePrice(stats?.block_reward)) }}
+          {{ formatNullable(formatAePrice(stats?.blockReward)) }}
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
@@ -71,7 +71,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ formatNullable(formatAePrice(stats?.dev_reward)) }}
+          {{ formatNullable(formatAePrice(stats?.devReward)) }}
         </td>
       </tr>
     </tbody>

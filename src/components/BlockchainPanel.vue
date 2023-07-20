@@ -10,7 +10,7 @@
           <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
             Microblocks in selected keyblock:
             <span class="blockchain-panel__count">
-              {{ selectedKeyblock?.micro_blocks_count }}
+              {{ selectedKeyblock?.microBlocksCount }}
             </span>
           </div>
           <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
@@ -35,7 +35,7 @@
       <div class="blockchain-panel__summary">
         Microblocks in selected keyblock:
         <span class="blockchain-panel__count">
-          {{ selectedKeyblock?.micro_blocks_count }}
+          {{ selectedKeyblock?.microBlocksCount }}
         </span>
       </div>
       <div class="blockchain-panel__summary">

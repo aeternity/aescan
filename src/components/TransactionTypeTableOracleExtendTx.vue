@@ -9,8 +9,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-extend-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracle_id}`">
-            {{ transactionData.oracle_id }}
+          <app-link :to="`/oracles/${transactionData.oracleId}`">
+            {{ transactionData.oracleId }}
           </app-link>
         </td>
       </tr>
@@ -22,9 +22,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-extend-tx__data">
-          {{ transactionData.oracle_ttl.value }}
+          {{ transactionData.oracleTtl.value }}
           /
-          {{ transactionData.oracle_ttl.type }}
+          {{ transactionData.oracleTtl.type }}
         </td>
       </tr>
     </tbody>

@@ -46,8 +46,8 @@
         </th>
         <td class="contract-call-transactions-table-condensed__data">
           <value-hash-ellipsed
-            :hash="transaction.data.caller_id"
-            :link-to="`/accounts/${transaction.data.caller_id}`"/>
+            :hash="transaction.data.callerId"
+            :link-to="`/accounts/${transaction.data.callerId}`"/>
         </td>
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">

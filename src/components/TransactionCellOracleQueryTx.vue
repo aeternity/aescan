@@ -1,13 +1,13 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.sender_id"
-    :link-to="`/accounts/${transactionData.sender_id}`"/>
+    :hash="transactionData.senderId"
+    :link-to="`/accounts/${transactionData.senderId}`"/>
 
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.oracle_id"
-    :link-to="`/oracles/${transactionData.oracle_id}`"/>
+    :hash="transactionData.oracleId"
+    :link-to="`/oracles/${transactionData.oracleId}`"/>
 
   <app-chip
     size="sm"

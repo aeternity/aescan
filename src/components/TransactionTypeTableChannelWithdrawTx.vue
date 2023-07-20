@@ -9,8 +9,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          <app-link :to="`/state-channels/${transactionData.channel_id}`">
-            {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channelId}`">
+            {{ transactionData.channelId }}
           </app-link>
         </td>
       </tr>
@@ -33,8 +33,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          <app-link :to="`/accounts/${transactionData.to_id}`">
-            {{ transactionData.to_id }}
+          <app-link :to="`/accounts/${transactionData.toId}`">
+            {{ transactionData.toId }}
           </app-link>
         </td>
       </tr>

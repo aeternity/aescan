@@ -6,7 +6,7 @@
       </h2>
       <div class="token-details-panel__container">
         <token-symbol-icon
-          :contract-id="tokenDetails.contract_id"
+          :contract-id="tokenDetails.contractId"
           class="token-details-panel__icon"/>
         <copy-chip :label="tokenDetails.symbol"/>
       </div>
@@ -69,12 +69,12 @@
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
-            <app-link :to="`/contracts/${tokenDetails.contract_id}`">
+            <app-link :to="`/contracts/${tokenDetails.contractId}`">
               <span class="token-details-panel__hash">
-                {{ tokenDetails.contract_id }}
+                {{ tokenDetails.contractId }}
               </span>
               <span class="token-details-panel__hash-ellipse">
-                {{ formatEllipseHash(tokenDetails.contract_id) }}
+                {{ formatEllipseHash(tokenDetails.contractId) }}
               </span>
             </app-link>
           </td>
@@ -159,12 +159,12 @@ const props = defineProps({
 })
 
 const tokenMiddlewareUrl = computed(() =>
-  `${config.MIDDLEWARE_URL}/v2/aex9/${props.tokenDetails.contract_id}`,
+  `${config.MIDDLEWARE_URL}/v2/aex9/${props.tokenDetails.contractId}`,
 )
 
 const tokenDexUrl = computed(() =>
   props.tokenDetails.price
-    ? `${config.DEX_BACKEND_URL}/tokens/by-address/${props.tokenDetails.contract_id}`
+    ? `${config.DEX_BACKEND_URL}/tokens/by-address/${props.tokenDetails.contractId}`
     : null,
 )
 

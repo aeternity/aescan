@@ -27,8 +27,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
-          <app-link :to="`/accounts/${transactionData.account_id}`">
-            {{ transactionData.account_id }}
+          <app-link :to="`/accounts/${transactionData.accountId}`">
+            {{ transactionData.accountId }}
           </app-link>
         </td>
       </tr>
@@ -40,8 +40,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
-          <app-link :to="`/accounts/${transactionData.recipient_id}`">
-            {{ transactionData.recipient_id }}
+          <app-link :to="`/accounts/${transactionData.recipientId}`">
+            {{ transactionData.recipientId }}
           </app-link>
         </td>
       </tr>

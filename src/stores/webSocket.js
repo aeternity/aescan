@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
+import camelcaseKeysDeep from 'camelcase-keys-deep'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useWebSocket = defineStore('webSocket', () => {
@@ -50,8 +51,8 @@ export const useWebSocket = defineStore('webSocket', () => {
     if (!data.includes('payload')) {
       return
     }
-
-    await processSocketMessage(JSON.parse(data))
+    const parsedData = camelcaseKeysDeep(JSON.parse(data))
+    await processSocketMessage(parsedData)
   }
 
   return {

@@ -1,16 +1,16 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.owner_id"
-    :link-to="`/accounts/${transactionData.owner_id}`"/>
+    :hash="transactionData.ownerId"
+    :link-to="`/accounts/${transactionData.ownerId}`"/>
 
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.contract_id"
-    :link-to="`/contracts/${transactionData.contract_id}`"/>
+    :hash="transactionData.contractId"
+    :link-to="`/contracts/${transactionData.contractId}`"/>
 
   <app-chip size="sm">
-    {{ transactionData.auth_fun_name }}
+    {{ transactionData.authFunName }}
   </app-chip>
 </template>
 

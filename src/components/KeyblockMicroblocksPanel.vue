@@ -32,7 +32,7 @@ const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKey
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-await fetchKeyblockMicroblocks({
+fetchKeyblockMicroblocks({
   limit: limit.value,
   keyblockHash: route.params.id,
 })

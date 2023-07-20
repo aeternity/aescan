@@ -27,10 +27,8 @@ const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
 
-if (process.client) {
-  await useAsyncData(async() => {
-    await fetchKeyblock(route.params.id)
-    return true
-  })
-}
+await useAsyncData(async() => {
+  await fetchKeyblock(route.params.id)
+  return true
+})
 </script>

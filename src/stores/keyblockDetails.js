@@ -30,10 +30,23 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     keyblockDeltaStats.value = data.data[0]
   }
 
+  async function isKeyblockAvailable(keyblockHash) {
+    try {
+      await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${keyblockHash}`)
+      return true
+    } catch (error) {
+      if (error.response.status === 404) {
+        return false
+      }
+      return null
+    }
+  }
+
   return {
     rawKeyblock,
     keyblockDeltaStats,
     keyblockDetails,
     fetchKeyblock,
+    isKeyblockAvailable,
   }
 })

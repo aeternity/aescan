@@ -3,7 +3,7 @@
     <input
       v-model="userQuery"
       class="search-bar__input"
-      placeholder="Search accounts, transactions, names, contracts, oracles, state channels..."
+      placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
       type="search"
       autofocus
       @keyup.enter="search">
@@ -21,8 +21,10 @@
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
+import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
 const { isNameAvailable } = useNameDetailsStore()
+const { isKeyblockAvailable } = useKeyblockDetailsStore()
 const userQuery = ref('')
 const { push } = useRouter()
 
@@ -50,8 +52,12 @@ async function search() {
     push(`/names/${query.value}`)
   } else if (isStateChannelId(query.value)) {
     push(`/state-channels/${query.value}`)
+  } else if (isMicroblockId(query.value)) {
+    push(`/microblocks/${query.value}`)
   } else if (await isAccountName(query.value)) {
     push(`/names/${query.value}.chain`)
+  } else if (await isKeyblockId(query.value)) {
+    push(`/keyblocks/${query.value}`)
   } else {
     push(`/error/${userQuery.value}`)
   }
@@ -77,6 +83,20 @@ function isStateChannelId(query) {
 }
 async function isAccountName(query) {
   return await isNameAvailable(query)
+}
+function isKeyblockId(query) {
+  if (isAddressValid(query) && query.startsWith('kh_')) {
+    return true
+  }
+
+  if (!isNaN(query)) {
+    return isKeyblockAvailable(query)
+  }
+
+  return false
+}
+function isMicroblockId(query) {
+  return isAddressValid(query) && query.startsWith('mh_')
 }
 </script>
 

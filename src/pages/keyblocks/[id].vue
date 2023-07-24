@@ -13,7 +13,7 @@
 
   <app-tabs>
     <app-tab title="Microblocks">
-      <keyblock-microblocks-panel/>
+      <keyblock-microblocks-panel v-if="keyblockDetails"/>
     </app-tab>
   </app-tabs>
 </template>

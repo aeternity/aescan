@@ -28,7 +28,31 @@
             Height
           </th>
           <td class="keyblock-details-panel__data">
-            {{ keyblockDetails.height }}
+            <div class="keyblock-details-panel__controls">
+              <app-link :to="`/keyblocks/${keyblockDetails.height - 1}`">
+                <button
+                  :class="[
+                    'keyblock-details-panel__button',
+                    'keyblock-details-panel__button--prev',
+                  ]">
+                  <app-icon
+                    :size="22"
+                    name="caret-left"/>
+                </button>
+              </app-link>
+              {{ keyblockDetails.height }}
+              <app-link :to="`/keyblocks/${keyblockDetails.height + 1}`">
+                <button
+                  :class="[
+                    'keyblock-details-panel__button',
+                    'keyblock-details-panel__button--next',
+                  ]">
+                  <app-icon
+                    :size="22"
+                    name="caret-right"/>
+                </button>
+              </app-link>
+            </div>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -224,6 +248,40 @@ const keyblockMiddlewareUrl = computed(() =>
 
   &__not-existent {
     margin: var(--space-3) 0;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--color-midnight);
+    border-radius: 4px;
+    cursor: pointer;
+
+    @media (--desktop) {
+      width: 32px;
+      height: 32px;
+    }
+
+    &--next {
+      margin-left: var(--space-6);
+    }
+
+    &--prev {
+      margin-right: var(--space-6);
+    }
+
   }
 }
 </style>

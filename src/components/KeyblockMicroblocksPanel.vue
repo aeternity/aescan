@@ -6,7 +6,7 @@
       v-model:page-index="pageIndex"
       pagination-style="history"
       :entities="microblocks"
-      :total-count="keyblockDetails.micro_blocks_count"
+      :total-count="keyblockDetails.microBlocksCount"
       :limit="limit"
       @prev-clicked="loadPrevMicroblocks"
       @next-clicked="loadNextMicroblocks">

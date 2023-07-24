@@ -25,7 +25,7 @@ export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
   const formattedData = keyblockMicroblocks.data.map(microblock => {
     return {
       time: DateTime.fromMillis(microblock.time),
-      transactionsCount: microblock.transactions_count,
+      transactionsCount: microblock.transactionsCount,
       hash: microblock.hash,
     }
   })

@@ -24,9 +24,9 @@
       v-for="microblock in microblocks.data"
       :key="microblock.hash">
       <td>
-        <app-link :to="`/microblocks/${microblock.hash}`">
-          {{ microblock.hash }}
-        </app-link>
+        <value-hash-ellipsed
+          :link-to="`/microblocks/${microblock.hash}`"
+          :hash="microblock.hash"/>
       </td>
       <td>
         <datetime-label :datetime="microblock.time"/>

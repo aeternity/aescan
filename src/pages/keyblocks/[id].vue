@@ -11,7 +11,11 @@
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
 
-  <keyblock-microblocks-panel v-if="keyblockDetails"/>
+  <app-tabs>
+    <app-tab title="Microblocks">
+      <keyblock-microblocks-panel/>
+    </app-tab>
+  </app-tabs>
 </template>
 
 <script setup>
@@ -21,6 +25,8 @@ import PageHeader from '@/components/PageHeader'
 import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
 import KeyblockMicroblocksPanel from '@/components/KeyblockMicroblocksPanel'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
+import AppTabs from '~/components/AppTabs'
+import AppTab from '~/components/AppTab'
 
 const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)

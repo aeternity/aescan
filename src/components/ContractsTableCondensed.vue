@@ -23,15 +23,18 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             <app-tooltip>
-              Created By
+              Created
               <template #tooltip>
-                {{ contractsHints.createdBy }}
+                {{ contractsHints.created }}
               </template>
             </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <div>
-              {{ contract.createdHeight }}
+              <app-link
+                :to="`/keyblocks/${contract.createdHeight}`">
+                {{ contract.createdHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="contract.created"/>
           </td>

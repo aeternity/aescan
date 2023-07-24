@@ -58,7 +58,11 @@
               </app-tooltip>
             </th>
             <td class="auctions-swiper__data">
-              {{ auction.expirationHeight }} -
+              <app-link
+                :to="`/keyblocks/${auction.expirationHeight}`">
+                {{ auction.expirationHeight }}
+              </app-link>
+              -
               <datetime-label :datetime="auction.expiration"/>
             </td>
           </tr>

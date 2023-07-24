@@ -27,7 +27,14 @@
       <div>
         Height:
         <span class="stats-panel__value">
-          {{ formatNullable(formatNumber(blockHeight)) }}
+          <app-link
+            v-if="blockHeight"
+            :to="`/keyblocks/${blockHeight}`">
+            {{ blockHeight }}
+          </app-link>
+          <template v-else>
+            ---
+          </template>
         </span>
       </div>
       <div>

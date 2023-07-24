@@ -21,6 +21,21 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   return keyblock
 }
 
+export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
+  const formattedData = keyblockMicroblocks.data.map(microblock => {
+    return {
+      time: DateTime.fromMillis(microblock.time),
+      transactionsCount: microblock.transactions_count,
+      hash: microblock.hash,
+    }
+  })
+  return {
+    next: keyblockMicroblocks.next,
+    data: formattedData,
+    prev: keyblockMicroblocks.prev,
+  }
+}
+
 export function adaptMicroblock(microblock) {
   return {
     ...microblock,

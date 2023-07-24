@@ -34,7 +34,10 @@
           </th>
           <td class="names-in-auction-table-condensed__data">
             <div>
-              {{ name.expirationHeight }}
+              <app-link
+                :to="`/keyblocks/${name.expirationHeight}`">
+                {{ name.expirationHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="name.expiration"/>
           </td>

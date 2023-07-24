@@ -15,10 +15,9 @@
             </app-tooltip>
           </th>
           <td class="microblock-transactions-table-condensed__data">
-            <app-link
-              :to="`/transactions/${transaction.hash}`">
-              {{ transaction.hash }}
-            </app-link>
+            <value-hash-ellipsed
+              :link-to="`/transactions/${transaction.hash}`"
+              :hash="transaction.hash"/>
           </td>
         </tr>
         <tr class="microblock-transactions-table-condensed__row">

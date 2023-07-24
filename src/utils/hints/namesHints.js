@@ -25,7 +25,7 @@ export const namesHints = {
   activity: 'Type of event that was triggered.',
   recentlyActivatedData: 'The name and its owner who claimed it.',
   activationPrice: 'Amount of AE coins paid for the name activation at fixed price or via auction. These AE coins are burned.',
-  activationTime: 'Keyblock height and date and time when the name was activated.',
+  activationTime: 'Keyblock height and exact date and time when the name was activated.',
   nameAndHighestBidder: 'Auctioned name and its highest bidder.',
   preclaimer: 'The account that pre-claimed the name.',
   claimer: 'The account that claimed the name.',

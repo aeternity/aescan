@@ -87,7 +87,8 @@
       <template #tooltip>
         Circulating supply is the distributed amount of Æ minus the burned amount of Æ. The protocol automatically burns
         all Æ which are used to claim ÆNS names. Account that holds the burned amount:
-        <app-link to="/accounts/ak_11111111111111111111111111111111273Yts">ak_11111111111111111111111111111111273Yts
+        <app-link to="/accounts/ak_11111111111111111111111111111111273Yts">
+          ak_11111111111111111111111111111111273Yts
         </app-link>
       </template>
     </stats-tile>

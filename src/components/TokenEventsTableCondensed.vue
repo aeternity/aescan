@@ -44,7 +44,10 @@
           </th>
           <td class="token-events-table-condensed__data">
             <div>
-              {{ event.createdHeight }}
+              <app-link
+                :to="`/keyblocks/${event.createdHeight}`">
+                {{ event.createdHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="event.created"/>
           </td>

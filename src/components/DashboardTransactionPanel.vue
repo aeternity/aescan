@@ -4,7 +4,7 @@
       level="h5"
       class="dashboard-transactions-panel__panel-header"
       title="Transactions"
-      show-all-link="/transactions"
+      :show-all-link="microblockDetailsLink"
       icon-name="transactions">
       <template #header>
         <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
@@ -36,9 +36,14 @@ import PanelHeader from '@/components/PanelHeader'
 import TransactionsSwiper from '@/components/TransactionsSwiper'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-const { selectedMicroblockTransactions } = storeToRefs(
+const {
+  selectedMicroblockTransactions,
+  selectedMicroblock,
+} = storeToRefs(
   useRecentBlocksStore(),
 )
+
+const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.value?.hash}`)
 </script>
 
 <style scoped>

@@ -37,7 +37,7 @@ export const transactionsHints = {
   sender: 'Account that sent AE coins.',
   recipient: 'Account that received AE coins.',
   amount: 'Amount of AE coins that were transferred.',
-  payload: 'Additional message attached to transaction.',
+  payload: 'Additional message attached to the transaction.',
   gaAttachTxStatus: 'Status of the transaction.',
   gaAttachTxAccount: 'Account that was converted into a generalized account. The authorization logic of the account is now handled by the smart contract that was attached to the account.',
   gaAttachTxSmartContractId: 'Unique identifier of the smart contract that was attached to the account.',

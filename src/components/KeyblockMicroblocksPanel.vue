@@ -31,11 +31,16 @@ import { isDesktop } from '@/utils/screen'
 const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetailsStore())
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-fetchKeyblockMicroblocks({
-  limit: limit.value,
-  keyblockHash: route.params.id,
-})
+
+const limit = computed(() => isDesktop() ? 10 : 3)
+
+if (process.client) {
+  fetchKeyblockMicroblocks({
+    limit: limit.value,
+    keyblockHash: route.params.id,
+  })
+}
+
 const pageIndex = ref(1)
 const loadPrevMicroblocks = () =>
   fetchKeyblockMicroblocks(

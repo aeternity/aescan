@@ -27,7 +27,10 @@
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
-            {{ transactionDetails.blockHeight }}
+            <app-link
+              :to="`/keyblocks/${transactionDetails.blockHeight}`">
+              {{ transactionDetails.blockHeight }}
+            </app-link>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">
@@ -71,12 +74,16 @@
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
-            <span class="transaction-general-panel__hash">
+            <app-link
+              :to="`/microblocks/${transactionDetails.blockHash}`"
+              class="transaction-general-panel__hash">
               {{ transactionDetails.blockHash }}
-            </span>
-            <span class="transaction-general-panel__hash-ellipse">
+            </app-link>
+            <app-link
+              :to="`/microblocks/${transactionDetails.blockHash}`"
+              class="transaction-general-panel__hash-ellipse">
               {{ formatEllipseHash(transactionDetails.blockHash) }}
-            </span>
+            </app-link>
           </td>
         </tr>
         <tr
@@ -116,7 +123,7 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            API links
+            API Links
             <hint-tooltip>
               {{ transactionsHints.apiLinks }}
             </hint-tooltip>

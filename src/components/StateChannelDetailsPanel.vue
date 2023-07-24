@@ -136,7 +136,11 @@
           </th>
           <td class="state-channel-details-panel__data">
             <template v-if="stateChannelDetails.lastUpdated">
-              {{ stateChannelDetails.lastUpdatedHeight }} -
+              <app-link
+                :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
+                {{ stateChannelDetails.lastUpdatedHeight }}
+              </app-link>
+              -
               <datetime-label :datetime="stateChannelDetails.lastUpdated"/>
             </template>
             <template v-else>

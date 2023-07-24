@@ -86,9 +86,10 @@
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <span>
+            <app-link
+              :to="`/keyblocks/${name.expirationHeight}`">
               {{ name.expirationHeight }}
-            </span>
+            </app-link>
             (
             <datetime-label :datetime="name.expiration"/>
             )

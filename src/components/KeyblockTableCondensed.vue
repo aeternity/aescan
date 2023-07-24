@@ -9,7 +9,10 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ keyblock.height }}
+          <app-link
+            :to="`/keyblocks/${keyblock.height}`">
+            {{ keyblock.height }}
+          </app-link>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
@@ -20,7 +23,9 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          <value-hash-ellipsed :hash="keyblock.hash"/>
+          <value-hash-ellipsed
+            :link-to="`/keyblocks/${keyblock.hash}`"
+            :hash="keyblock.hash"/>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">

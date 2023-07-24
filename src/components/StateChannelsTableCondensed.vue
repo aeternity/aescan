@@ -94,7 +94,10 @@
           </th>
           <td class="state-channels-table-condensed__data">
             <div>
-              {{ channel.updatedHeight }}
+              <app-link
+                :to="`/keyblocks/${channel.updatedHeight}`">
+                {{ channel.updatedHeight }}
+              </app-link>
             </div>
             <div>
               <datetime-label :datetime="channel.updated "/>

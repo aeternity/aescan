@@ -11,4 +11,7 @@ export const keyblocksHints = {
   microblockCount: 'Count of microblocks that the keyblock contains',
   transactionsCount: 'Count of transactions that the keyblock contains',
   apiLinks: 'Links to sources of the keyblock data.',
+  microblockHash: 'Unique identifier of the microblock.',
+  time: 'Date and time when the microblock was created.',
+  transactionsCount: 'Amount of transactions in the microblock.',
 }

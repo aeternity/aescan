@@ -17,7 +17,7 @@ export const contractsHints = {
   eventsCreated: 'Keyblock height and estimated date and time when the smart contract had emitted the event.',
   eventsName: 'Name of the emitted event.',
   eventsData: 'The arguments of the emitted event.',
-  createdBy: 'Keyblock height and exact date and time when the smart contract was created.',
+  created: 'Keyblock height and exact date and time when the smart contract was created.',
   hash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',
   creator: 'Account that created the smart contract on the blockchain.',
   status: 'Status of the transaction.',

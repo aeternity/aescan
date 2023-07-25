@@ -21,6 +21,21 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   return keyblock
 }
 
+export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
+  const formattedData = keyblockMicroblocks.data.map(microblock => {
+    return {
+      time: DateTime.fromMillis(microblock.time),
+      transactionsCount: microblock.transactions_count,
+      hash: microblock.hash,
+    }
+  })
+  return {
+    next: keyblockMicroblocks.next,
+    data: formattedData,
+    prev: keyblockMicroblocks.prev,
+  }
+}
+
 export function adaptMicroblock(microblock) {
   return {
     ...microblock,
@@ -416,7 +431,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.query_fee),
-    expiration: oracle.approximate_expire_time,
+    expiration: DateTime.fromMillis(oracle.approximate_expire_time),
     expirationHeight: oracle.expire_height,
     registered: oracle.active_from
       ? formatBlockDiffAsDatetime(

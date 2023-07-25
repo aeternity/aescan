@@ -1,73 +1,81 @@
 <template>
-  <paginated-content
-    :entities="transactions"
-    @prev-clicked="loadPrevTransactions"
-    @next-clicked="loadNextTransactions">
-    <table>
-      <thead>
-        <tr>
-          <th>Hash</th>
-          <th>Created</th>
-          <th>Type</th>
-          <th>Data</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="transaction in transactions.data"
-          :key="transaction.hash ">
-          <td>
-            <hash-symbol>
-              th
-            </hash-symbol>
+  <table class="microblock-transactions-table">
+    <thead>
+      <tr>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ microblocksHints.transactionHash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Time
+          <hint-tooltip>
+            {{ microblocksHints.transactionTime }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Type
+          <hint-tooltip>
+            {{ microblocksHints.transactionType }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Data
+          <hint-tooltip>
+            {{ microblocksHints.transactionData }}
+          </hint-tooltip>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        v-for="transaction in transactions?.data"
+        :key="transaction.hash">
+        <td>
+          <hash-symbol>th</hash-symbol>
 
-            <value-hash-ellipsed
-              :hash="transaction.hash"
-              :link-to="`/transactions/${transaction.hash}`"/>
-          </td>
-          <td>
-            <datetime-label :datetime="transaction.created"/>
-          </td>
-          <td>{{ transaction.type }}</td>
-          <td>
-            <transaction-cell
-              :transaction-data="transaction.data"
-              :transaction-type="transaction.type"/>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </paginated-content>
+          <value-hash-ellipsed
+            :hash="transaction.hash"
+            :link-to="`/transactions/${transaction.hash}`"/>
+        </td>
+        <td>
+          <div>
+            <app-link
+              :to="`/keyblocks/${transaction.createdHeight}`">
+              {{ transaction.createdHeight }}
+            </app-link>
+          </div>
+          <datetime-label :datetime="transaction.created"/>
+        </td>
+        <td>
+          {{ transaction.type }}
+          <hint-tooltip>
+            {{ transactionsHints[transaction.hintKey] }}
+          </hint-tooltip>
+        </td>
+        <td>
+          <transaction-cell
+            :transaction-type="transaction.type"
+            :transaction-data="transaction.data"/>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 <script setup>
-import HashSymbol from '@/components/HashSymbol'
-import PaginatedContent from '@/components/PaginatedContent'
-import DatetimeLabel from '@/components/DatetimeLabel'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { microblocksHints } from '@/utils/hints/microblocksHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
+import HashSymbol from '@/components/HashSymbol'
+import HintTooltip from '@/components/HintTooltip'
+import DatetimeLabel from '@/components/DatetimeLabel'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 
-const { fetchSelectedMicroblockTransactions } = useRecentBlocksStore()
-
-const props = defineProps({
+defineProps({
   transactions: {
-    required: true,
     type: Object,
+    required: true,
   },
 })
-
-function loadPrevTransactions() {
-  fetchSelectedMicroblockTransactions(props.transactions.prev)
-}
-function loadNextTransactions() {
-  fetchSelectedMicroblockTransactions(props.transactions.next)
-}
 </script>
-
-<style scoped>
-.microblock-transaction-table {
-  &__pagination {
-    margin-top: var(--space-0);
-  }
-}
-</style>

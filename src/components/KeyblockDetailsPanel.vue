@@ -4,7 +4,7 @@
       <h2 class="keyblock-details-panel__heading h3">
         DETAILS
       </h2>
-      <div>
+      <div v-if="!keyblockDetails.notExistent">
         <copy-chip
           :label="keyblockDetails.hash"
           class="keyblock-details-panel__chip"/>
@@ -14,7 +14,14 @@
           class="keyblock-details-panel__chip-ellipse"/>
       </div>
     </header>
-    <table>
+    <p
+      v-if="keyblockDetails.notExistent"
+      class="keyblock-details-panel__not-existent">
+      Requested keyblock has never been seen in the network.
+      <br>
+      Details will be displayed here after it is mined.
+    </p>
+    <table v-else>
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
@@ -213,6 +220,10 @@ const keyblockMiddlewareUrl = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__not-existent {
+    margin: var(--space-3) 0;
   }
 }
 </style>

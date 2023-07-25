@@ -40,7 +40,10 @@
         </td>
         <td class="transactions-table__data">
           <div>
-            {{ transaction.createdHeight }}
+            <app-link
+              :to="`/keyblocks/${transaction.createdHeight}`">
+              {{ transaction.createdHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="transaction.created"/>
         </td>

@@ -1,35 +1,35 @@
 <template>
-  <div class="transactions-table-condensed">
+  <div class="microblock-transactions-table-condensed">
     <table
-      v-for="transaction in transactions.data"
+      v-for="transaction in transactions?.data"
       :key="transaction.hash"
-      class="transactions-table-condensed__table">
+      class="microblock-transactions-table-condensed__table">
       <tbody>
-        <tr class="transactions-table-condensed__row">
-          <th class="transactions-table-condensed__header">
+        <tr class="microblock-transactions-table-condensed__row">
+          <th class="microblock-transactions-table-condensed__header">
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ transactionsHints.hash }}
+                {{ microblocksHints.transactionHash }}
               </template>
             </app-tooltip>
           </th>
-          <td class="transactions-table-condensed__data">
+          <td class="microblock-transactions-table-condensed__data">
             <value-hash-ellipsed
-              :link-to="`/transactions/${transaction.hash}`"
-              :hash="transaction.hash"/>
+              :hash="transaction.hash"
+              :link-to="`/transactions/${transaction.hash}`"/>
           </td>
         </tr>
-        <tr class="transactions-table-condensed__row">
-          <th class="transactions-table-condensed__header">
+        <tr class="microblock-transactions-table-condensed__row">
+          <th class="microblock-transactions-table-condensed__header">
             <app-tooltip>
-              Created
+              Time
               <template #tooltip>
-                {{ transactionsHints.created }}
+                {{ microblocksHints.transactionTime }}
               </template>
             </app-tooltip>
           </th>
-          <td class="transactions-table-condensed__data">
+          <td class="microblock-transactions-table-condensed__data">
             <div>
               <app-link
                 :to="`/keyblocks/${transaction.createdHeight}`">
@@ -39,16 +39,16 @@
             <datetime-label :datetime="transaction.created"/>
           </td>
         </tr>
-        <tr class="transactions-table-condensed__row">
-          <th class="transactions-table-condensed__header">
+        <tr class="microblock-transactions-table-condensed__row">
+          <th class="microblock-transactions-table-condensed__header">
             <app-tooltip>
               Type
               <template #tooltip>
-                {{ transactionsHints.type }}
+                {{ microblocksHints.transactionType }}
               </template>
             </app-tooltip>
           </th>
-          <td class="transactions-table-condensed__data">
+          <td class="microblock-transactions-table-condensed__data">
             <app-tooltip>
               {{ transaction.type }}
               <template #tooltip>
@@ -57,16 +57,16 @@
             </app-tooltip>
           </td>
         </tr>
-        <tr class="transactions-table-condensed__row">
-          <th class="transactions-table-condensed__header">
+        <tr class="microblock-transactions-table-condensed__row">
+          <th class="microblock-transactions-table-condensed__header">
             <app-tooltip>
               Data
               <template #tooltip>
-                {{ transactionsHints.data }}
+                {{ microblocksHints.transactionData }}
               </template>
             </app-tooltip>
           </th>
-          <td class="transactions-table-condensed__data">
+          <td class="microblock-transactions-table-condensed__data">
             <transaction-cell
               :transaction-type="transaction.type"
               :transaction-data="transaction.data"/>
@@ -76,11 +76,12 @@
     </table>
   </div>
 </template>
-
 <script setup>
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
+import AppTooltip from '@/components/AppTooltip'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({
@@ -92,20 +93,23 @@ defineProps({
 </script>
 
 <style scoped>
-.transactions-table-condensed {
+.microblock-transactions-table-condensed {
+  padding: var(--space-4) 0 0;
+
   &__table {
-    background: var(--color-white);
-    padding: 0 var(--space-1) var(--space-7);
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-6);
 
     &:last-of-type {
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-1);
+    }
+
+    @media (--desktop) {
+      padding: var(--space-4);
     }
   }
 
   &__header {
     border-bottom: 1px solid var(--color-midnight-15);
-    padding-right: var(--space-4);
   }
 
   &__row:last-of-type &__header {

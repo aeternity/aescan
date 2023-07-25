@@ -41,7 +41,9 @@
                 </button>
               </app-link>
               {{ keyblockDetails.height }}
-              <app-link :to="`/keyblocks/${keyblockDetails.height + 1}`">
+              <app-link
+                :to="`/keyblocks/${keyblockDetails.height + 1}`"
+                :class="[{'keyblock-details-panel__keyblock-link--disabled': !isNextKeyblockMined}]">
                 <button
                   :class="[
                     'keyblock-details-panel__button',
@@ -253,6 +255,10 @@ const isNextKeyblockMined = computed(() =>
     }
   }
 
+  &__keyblock-link--disabled {
+    pointer-events: none;
+  }
+
   &__not-existent {
     margin: var(--space-3) 0;
   }
@@ -276,11 +282,6 @@ const isNextKeyblockMined = computed(() =>
     border-radius: 4px;
     cursor: pointer;
 
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.3;
-    }
-
     &--next {
       margin-left: var(--space-6);
     }
@@ -288,6 +289,12 @@ const isNextKeyblockMined = computed(() =>
     &--prev {
       margin-right: var(--space-6);
     }
+  }
+
+  &__keyblock-link--disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
 </style>

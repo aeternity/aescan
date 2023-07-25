@@ -255,10 +255,6 @@ const isNextKeyblockMined = computed(() =>
     }
   }
 
-  &__keyblock-link--disabled {
-    pointer-events: none;
-  }
-
   &__not-existent {
     margin: var(--space-3) 0;
   }

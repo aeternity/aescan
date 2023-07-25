@@ -46,7 +46,8 @@
                   :class="[
                     'keyblock-details-panel__button',
                     'keyblock-details-panel__button--next',
-                  ]">
+                  ]"
+                  :disabled="!isNextKeyblockMined">
                   <app-icon
                     :size="22"
                     name="caret-right"/>
@@ -155,13 +156,16 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
+import { useRecentBlocksStore } from '~/stores/recentBlocks'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+const { blockHeight: latestBlockHeight } = storeToRefs(useRecentBlocksStore())
 
 const props = defineProps({
   keyblockDetails: {
@@ -175,6 +179,9 @@ const keyblockNodeUrl = computed(() =>
 )
 const keyblockMiddlewareUrl = computed(() =>
   `${MIDDLEWARE_URL}/v2/key-blocks/${props.keyblockDetails.hash}`,
+)
+const isNextKeyblockMined = computed(() =>
+  props.keyblockDetails.height < latestBlockHeight.value,
 )
 </script>
 
@@ -269,6 +276,11 @@ const keyblockMiddlewareUrl = computed(() =>
     border-radius: 4px;
     cursor: pointer;
 
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+
     &--next {
       margin-left: var(--space-6);
     }
@@ -276,7 +288,6 @@ const keyblockMiddlewareUrl = computed(() =>
     &--prev {
       margin-right: var(--space-6);
     }
-
   }
 }
 </style>

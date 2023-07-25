@@ -97,8 +97,10 @@
               {{ tokensHints.extensions }}
             </hint-tooltip>
           </th>
-          <td class="token-details-panel__data token-details-panel__data--extensions">
-            <div v-if="!!tokenDetails.extensions.length">
+          <td class="token-details-panel__data">
+            <div
+              v-if="!!tokenDetails.extensions.length"
+              class="token-details-panel__extensions">
               <app-chip
                 v-for="extension in tokenDetails.extensions"
                 :key="extension"
@@ -236,13 +238,13 @@ const tokenPrice = computed(() =>
 
   &__data {
     text-align: right;
+  }
 
-    &--extensions {
-      display: flex;
-      flex-wrap: wrap;
-      row-gap: var(--space-1);
-      justify-content: flex-end;
-    }
+  &__extensions {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: var(--space-1);
+    justify-content: flex-end;
   }
 
   &__row:last-of-type &__table-header {

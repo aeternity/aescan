@@ -23,7 +23,7 @@ export const contractsHints = {
   smartContract: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   caller: 'Account that called the smart contract.',
   amount: 'Amount of AE coins that were transferred to the smart contract address.',
-  entrypoint: 'The entrypoint of the smart contract that has been called.',
+  entrypoint: 'The entrypoint of the smart contract that was called.',
   arguments: 'Arguments that were passed to the entrypoint.',
   return: 'Value that was returned by the entrypoint.',
   gasLimit: 'Maximum amount of gas to be consumed by this transaction.',

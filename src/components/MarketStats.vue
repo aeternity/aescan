@@ -57,7 +57,7 @@ const selectedNetwork = `${NETWORK_NAME
   .charAt(0)
   .toUpperCase()}${NETWORK_NAME.slice(1).toLowerCase()}`
 
-const isMainnet = NETWORK_NAME.toLowerCase === 'mainnet'
+const isMainnet = NETWORK_NAME.toLowerCase() === 'mainnet'
 
 const {
   price,

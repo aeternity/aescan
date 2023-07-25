@@ -17,10 +17,6 @@
           v-for="transaction in transactions.data"
           :key="transaction.hash ">
           <td>
-            <hash-symbol>
-              th
-            </hash-symbol>
-
             <value-hash-ellipsed
               :hash="transaction.hash"
               :link-to="`/transactions/${transaction.hash}`"/>
@@ -40,7 +36,6 @@
   </paginated-content>
 </template>
 <script setup>
-import HashSymbol from '@/components/HashSymbol'
 import PaginatedContent from '@/components/PaginatedContent'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'

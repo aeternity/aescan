@@ -13,8 +13,6 @@
         v-for="transaction in transactions.data"
         :key="transaction.hash">
         <td>
-          <hash-symbol>th</hash-symbol>
-
           <value-hash-ellipsed
             :hash="transaction.hash"
             :link-to="`/transactions/${transaction.hash}`"/>
@@ -42,7 +40,6 @@
 </template>
 
 <script setup>
-import HashSymbol from '@/components/HashSymbol'
 import TransactionCell from '@/components/TransactionCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

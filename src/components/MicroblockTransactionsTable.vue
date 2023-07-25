@@ -33,8 +33,6 @@
         v-for="transaction in transactions?.data"
         :key="transaction.hash">
         <td>
-          <hash-symbol>th</hash-symbol>
-
           <value-hash-ellipsed
             :hash="transaction.hash"
             :link-to="`/transactions/${transaction.hash}`"/>
@@ -67,7 +65,6 @@
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import HashSymbol from '@/components/HashSymbol'
 import HintTooltip from '@/components/HintTooltip'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { transactionsHints } from '@/utils/hints/transactionsHints'

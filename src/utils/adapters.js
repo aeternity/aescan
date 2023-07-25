@@ -28,20 +28,6 @@ export function adaptMicroblock(microblock) {
   }
 }
 
-export function adaptMicroblockTransactions(transactions) {
-  const formattedData = transactions.data.map(transaction => {
-    return {
-      hash: transaction.hash,
-      time: DateTime.fromMillis(transaction.micro_time),
-    }
-  })
-  return {
-    next: transactions.next,
-    data: formattedData,
-    prev: transactions.prev,
-  }
-}
-
 export function adaptSelectedMicroblockTransactions(transactions) {
   const formattedData = transactions.data.map(transaction => {
     return {

@@ -4,7 +4,9 @@
       Current {{ selectedNetwork }} Stats
     </h2>
     <ul class="market-stats__list">
-      <li class="market-stats__item">
+      <li
+        v-if="isMainnet"
+        class="market-stats__item">
         <div class="market-stats__label">
           Price:
         </div>
@@ -17,7 +19,9 @@
           </app-chip>
         </div>
       </li>
-      <li class="market-stats__item">
+      <li
+        v-if="isMainnet"
+        class="market-stats__item">
         <div class="market-stats__label">
           Marketcap:
         </div>
@@ -52,6 +56,8 @@ const { NETWORK_NAME } = useRuntimeConfig().public
 const selectedNetwork = `${NETWORK_NAME
   .charAt(0)
   .toUpperCase()}${NETWORK_NAME.slice(1).toLowerCase()}`
+
+const isMainnet = NETWORK_NAME.toLowerCase === 'mainnet'
 
 const {
   price,

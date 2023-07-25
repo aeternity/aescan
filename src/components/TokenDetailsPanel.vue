@@ -98,13 +98,18 @@
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data token-details-panel__data--extensions">
-            <app-chip
-              v-for="extension in tokenDetails.extensions"
-              :key="extension"
-              size="sm"
-              class="token-details-panel__chip">
-              {{ extension }}
-            </app-chip>
+            <div v-if="!!tokenDetails.extensions.length">
+              <app-chip
+                v-for="extension in tokenDetails.extensions"
+                :key="extension"
+                size="sm"
+                class="token-details-panel__chip">
+                {{ extension }}
+              </app-chip>
+            </div>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
         <tr class="token-details-panel__row">

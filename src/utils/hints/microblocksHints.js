@@ -5,4 +5,8 @@ export const microblocksHints = {
   time: 'Date and time when the microblock has been mined.',
   transactionsCount: 'Number of transactions in the microblock.',
   apiLinks: 'Links to sources of the microblock data.',
+  transactionHash: 'Unique identifier of the transaction.',
+  transactionTime: 'Keyblock height and exact date and time when the transaction was executed by inclusion into a microblock.',
+  transactionType: 'The type of the transaction depends on its purpose in the æternity ecosystem.',
+  transactionData: 'The data displayed differs for each tx type.',
 }

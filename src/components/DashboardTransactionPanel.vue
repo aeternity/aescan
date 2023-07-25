@@ -17,7 +17,7 @@
       Displaying transactions of selected microblock
     </div>
 
-    <microblock-transactions-table
+    <dashboard-microblock-transactions-table
       v-if="selectedMicroblockTransactions"
       class="dashboard-transactions-panel__transactions-table"
       :transactions="selectedMicroblockTransactions"/>
@@ -31,10 +31,10 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
-import MicroblockTransactionsTable from '@/components/MicroblockTransactionsTable'
 import PanelHeader from '@/components/PanelHeader'
 import TransactionsSwiper from '@/components/TransactionsSwiper'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import DashboardMicroblockTransactionsTable from '@/components/DashboardMicroblockTransactionsTable'
 
 const {
   selectedMicroblockTransactions,

@@ -1,5 +1,5 @@
 export const stateChannelsHints = {
-  stateChannel: 'An off-chain mechanism that allow participants to conduct multiple transactions or interactions without involving the main blockchain for each step. By reducing transaction fees and increasing transaction speed, state channels provide a scalable solution for applications requiring frequent and rapid interactions while still leveraging the security of the Aeternity blockchain.',
+  stateChannel: 'A state channel allows the gas-free execution of smart contracts and transactions, privately and with the speed of light, while still being able to escalate on-chain in case of disagreement.',
   stateChannelId: 'Unique identifier of the state channel.',
   status: 'While the status is "Open", the state channel participants can execute an unlimited amount of transactions off-chain with instant finality. The status will be "Closed" if one of the participants executes either a ChannelCloseMutualTx or a ChannelSettleTx',
   participants: 'Initiator is the account that paid the fees to create the state channel. Responder is the account that joined the state channel.',

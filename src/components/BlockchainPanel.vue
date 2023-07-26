@@ -21,9 +21,7 @@
           </div>
         </template>
         <template #tooltip>
-          Unlike in Bitcoin, (key)blocks do not directly include any transaction. Instead, a mined keyblock
-          determines a new leader who is then eligible to create new microblocks every 3 seconds which include
-          the transactions. On average, a new keyblock is mined every 3 minutes.
+          {{ keyblocksHints.keyblock }}
         </template>
       </panel-header>
 
@@ -63,6 +61,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { keyblocksHints } from '../utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
 import KeyblockTableCondensed from '@/components/KeyblockTableCondensed'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'

@@ -26,6 +26,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Height
+            <hint-tooltip>
+              {{ keyblocksHints.height }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__controls">
@@ -61,6 +64,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Time
+            <hint-tooltip>
+              {{ keyblocksHints.mined }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <datetime-label :datetime="keyblockDetails.mined"/>
@@ -69,6 +75,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Miner
+            <hint-tooltip>
+              {{ keyblocksHints.miner }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <span class="keyblock-details-panel__hash">
@@ -82,6 +91,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Beneficiary
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiary }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
@@ -97,6 +109,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Beneficiary Reward
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiaryReward }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.block_reward, null) }}
@@ -105,6 +120,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             BRI Reward
+            <hint-tooltip>
+              {{ keyblocksHints.briReward }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.dev_reward, null) }}
@@ -113,6 +131,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Microblocks Count
+            <hint-tooltip>
+              {{ keyblocksHints.microblockCount }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.micro_blocks_count) }}
@@ -121,6 +142,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Transactions Count
+            <hint-tooltip>
+              {{ keyblocksHints.transactionsCount }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.transactions_count) }}
@@ -129,6 +153,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             API Links
+            <hint-tooltip>
+              {{ keyblocksHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__container">
@@ -159,6 +186,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'

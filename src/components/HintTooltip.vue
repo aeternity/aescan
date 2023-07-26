@@ -3,7 +3,7 @@
     :skidding="60"
     has-fixed-width>
     <span class="hint-tooltip__icon">
-      <hint-icon :theme="theme"/>
+      <hint-icon :variant="variant"/>
     </span>
     <template #tooltip>
       <slot/>
@@ -16,7 +16,7 @@ import HintIcon from '@/components/HintIcon'
 import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
-  theme: {
+  variant: {
     type: String,
     default: 'light',
     validator: val =>

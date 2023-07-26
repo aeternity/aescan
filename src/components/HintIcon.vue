@@ -2,14 +2,14 @@
   <app-icon
     name="question"
     :size="17"
-    :class="['hint-icon', {'hint-icon--dark': theme === 'dark'}]"/>
+    :class="['hint-icon', {'hint-icon--dark': variant === 'dark'}]"/>
 </template>
 
 <script setup>
 import AppIcon from '@/components/AppIcon'
 
 defineProps({
-  theme: {
+  variant: {
     type: String,
     default: 'light',
     validator: val =>

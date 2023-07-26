@@ -62,6 +62,9 @@ onMounted(() => {
   if (isDesktop()) {
     window.addEventListener('resize', closeNavigation())
   }
+  window.onpopstate = function() {
+    handleNavigateBack()
+  }
 })
 
 onBeforeUnmount(() => {
@@ -73,6 +76,13 @@ onBeforeUnmount(() => {
 watch(route, () => {
   closeNavigation()
 })
+
+function handleNavigateBack() {
+  if (isNavigationOpen.value) {
+    window.history.forward(1)
+    closeNavigation()
+  }
+}
 
 function toggleNavigation() {
   isNavigationOpen.value = !isNavigationOpen.value

@@ -6,6 +6,9 @@
       title="Transactions"
       :show-all-link="microblockDetailsLink"
       icon-name="transactions">
+      <template #tooltip>
+        {{ transactionsHints.transaction }}
+      </template>
       <template #header>
         <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
           Displaying transactions of selected microblock
@@ -17,7 +20,7 @@
       Displaying transactions of selected microblock
     </div>
 
-    <microblock-transactions-table
+    <dashboard-microblock-transactions-table
       v-if="selectedMicroblockTransactions"
       class="dashboard-transactions-panel__transactions-table"
       :transactions="selectedMicroblockTransactions"/>
@@ -31,10 +34,11 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
-import MicroblockTransactionsTable from '@/components/MicroblockTransactionsTable'
 import PanelHeader from '@/components/PanelHeader'
 import TransactionsSwiper from '@/components/TransactionsSwiper'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import DashboardMicroblockTransactionsTable from '@/components/DashboardMicroblockTransactionsTable'
 
 const {
   selectedMicroblockTransactions,

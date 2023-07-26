@@ -185,8 +185,8 @@
 </template>
 
 <script setup>
-import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import { storeToRefs } from 'pinia'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'

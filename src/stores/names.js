@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptActiveNames, adaptChainNames, adaptExpiredNames, adaptInAuctionNames } from '@/utils/adapters'
+import { adaptActiveNames, adaptExpiredNames, adaptInAuctionNames, adaptNames } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useNamesStore = defineStore('names', () => {
@@ -31,7 +31,7 @@ export const useNamesStore = defineStore('names', () => {
   })
   const recentlyActivatedNames = computed(() => {
     return rawRecentlyActivatedNames.value
-      ? adaptChainNames(rawRecentlyActivatedNames.value, blockHeight.value)
+      ? adaptNames(rawRecentlyActivatedNames.value, blockHeight.value)
       : null
   })
 

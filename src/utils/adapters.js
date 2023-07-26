@@ -2,10 +2,10 @@ import { DateTime } from 'luxon'
 import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
-function isAuction(chainName) {
+function isAuction(name) {
   const auctionLength = 13
   const suffixLength = 6
-  return chainName.length - suffixLength < auctionLength
+  return name.length - suffixLength < auctionLength
 }
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
@@ -94,18 +94,18 @@ export function adaptContracts(contracts) {
   }
 }
 
-export function adaptChainNames(chainNames, blockHeight) {
-  return chainNames.map(chainName => {
+export function adaptNames(names, blockHeight) {
+  return names.map(name => {
     return {
-      name: chainName.name,
-      address: chainName.info.ownership.current,
-      activatedHeight: chainName.info.activeFrom,
+      name: name.name,
+      address: name.info.ownership.current,
+      activatedHeight: name.info.activeFrom,
       activated: formatBlockDiffAsDatetime(
-        chainName.info.activeFrom,
+        name.info.activeFrom,
         blockHeight,
       ),
-      isAuction: isAuction(chainName.name),
-      price: formatAettosToAe(chainName.info.claims.at(-1).tx.nameFee),
+      isAuction: isAuction(name.name),
+      price: formatAettosToAe(name.info.claims.at(-1).tx.nameFee),
     }
   })
 }

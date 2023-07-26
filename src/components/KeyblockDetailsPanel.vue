@@ -28,7 +28,34 @@
             Height
           </th>
           <td class="keyblock-details-panel__data">
-            {{ keyblockDetails.height }}
+            <div class="keyblock-details-panel__controls">
+              <app-link :to="`/keyblocks/${keyblockDetails.height - 1}`">
+                <button
+                  :class="[
+                    'keyblock-details-panel__button',
+                    'keyblock-details-panel__button--prev',
+                  ]">
+                  <app-icon
+                    :size="22"
+                    name="caret-left"/>
+                </button>
+              </app-link>
+              {{ keyblockDetails.height }}
+              <app-link
+                :to="`/keyblocks/${keyblockDetails.height + 1}`"
+                :class="[{'keyblock-details-panel__keyblock-link--disabled': !isNextKeyblockMined}]">
+                <button
+                  :class="[
+                    'keyblock-details-panel__button',
+                    'keyblock-details-panel__button--next',
+                  ]"
+                  :disabled="!isNextKeyblockMined">
+                  <app-icon
+                    :size="22"
+                    name="caret-right"/>
+                </button>
+              </app-link>
+            </div>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -131,13 +158,16 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
+import { useRecentBlocksStore } from '~/stores/recentBlocks'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+const { blockHeight: latestBlockHeight } = storeToRefs(useRecentBlocksStore())
 
 const props = defineProps({
   keyblockDetails: {
@@ -151,6 +181,9 @@ const keyblockNodeUrl = computed(() =>
 )
 const keyblockMiddlewareUrl = computed(() =>
   `${MIDDLEWARE_URL}/v2/key-blocks/${props.keyblockDetails.hash}`,
+)
+const isNextKeyblockMined = computed(() =>
+  props.keyblockDetails.height < latestBlockHeight.value,
 )
 </script>
 
@@ -224,6 +257,40 @@ const keyblockMiddlewareUrl = computed(() =>
 
   &__not-existent {
     margin: var(--space-3) 0;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--color-midnight);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &--next {
+      margin-left: var(--space-6);
+    }
+
+    &--prev {
+      margin-right: var(--space-6);
+    }
+  }
+
+  &__keyblock-link--disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
 </style>

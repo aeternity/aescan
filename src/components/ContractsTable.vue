@@ -9,9 +9,9 @@
           </hint-tooltip>
         </th>
         <th>
-          Created By
+          Created
           <hint-tooltip>
-            {{ contractsHints.createdBy }}
+            {{ contractsHints.created }}
           </hint-tooltip>
         </th>
         <th>
@@ -39,7 +39,10 @@
         </td>
         <td class="contracts-table__data">
           <div>
-            {{ contract.createdHeight }}
+            <app-link
+              :to="`/keyblocks/${contract.createdHeight}`">
+              {{ contract.createdHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="contract.created"/>
         </td>

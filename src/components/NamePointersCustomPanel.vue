@@ -34,7 +34,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { namesHints } from '@/utils/hints/namesHints'
-import HintTooltip from '~/components/HintTooltip'
+import HintTooltip from '@/components/HintTooltip'
 import AppPanel from '@/components/AppPanel'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

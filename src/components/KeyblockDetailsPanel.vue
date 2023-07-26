@@ -4,7 +4,7 @@
       <h2 class="keyblock-details-panel__heading h3">
         DETAILS
       </h2>
-      <div>
+      <div v-if="!keyblockDetails.notExistent">
         <copy-chip
           :label="keyblockDetails.hash"
           class="keyblock-details-panel__chip"/>
@@ -14,19 +14,59 @@
           class="keyblock-details-panel__chip-ellipse"/>
       </div>
     </header>
-    <table>
+    <p
+      v-if="keyblockDetails.notExistent"
+      class="keyblock-details-panel__not-existent">
+      Requested keyblock has never been seen in the network.
+      <br>
+      Details will be displayed here after it is mined.
+    </p>
+    <table v-else>
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Height
+            <hint-tooltip>
+              {{ keyblocksHints.height }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ keyblockDetails.height }}
+            <div class="keyblock-details-panel__controls">
+              <app-link :to="`/keyblocks/${keyblockDetails.height - 1}`">
+                <button
+                  :class="[
+                    'keyblock-details-panel__button',
+                    'keyblock-details-panel__button--prev',
+                  ]">
+                  <app-icon
+                    :size="22"
+                    name="caret-left"/>
+                </button>
+              </app-link>
+              {{ keyblockDetails.height }}
+              <app-link
+                :to="`/keyblocks/${keyblockDetails.height + 1}`"
+                :class="[{'keyblock-details-panel__keyblock-link--disabled': !isNextKeyblockMined}]">
+                <button
+                  :class="[
+                    'keyblock-details-panel__button',
+                    'keyblock-details-panel__button--next',
+                  ]"
+                  :disabled="!isNextKeyblockMined">
+                  <app-icon
+                    :size="22"
+                    name="caret-right"/>
+                </button>
+              </app-link>
+            </div>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Time
+            <hint-tooltip>
+              {{ keyblocksHints.mined }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <datetime-label :datetime="keyblockDetails.mined"/>
@@ -35,6 +75,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Miner
+            <hint-tooltip>
+              {{ keyblocksHints.miner }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <span class="keyblock-details-panel__hash">
@@ -48,6 +91,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Beneficiary
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiary }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
@@ -63,6 +109,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Beneficiary Reward
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiaryReward }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.block_reward, null) }}
@@ -71,6 +120,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             BRI Reward
+            <hint-tooltip>
+              {{ keyblocksHints.briReward }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.dev_reward, null) }}
@@ -79,6 +131,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Microblocks Count
+            <hint-tooltip>
+              {{ keyblocksHints.microblockCount }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.micro_blocks_count) }}
@@ -87,6 +142,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             Transactions Count
+            <hint-tooltip>
+              {{ keyblocksHints.transactionsCount }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.transactions_count) }}
@@ -95,6 +153,9 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             API Links
+            <hint-tooltip>
+              {{ keyblocksHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__container">
@@ -124,13 +185,17 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
+import { useRecentBlocksStore } from '~/stores/recentBlocks'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+const { blockHeight: latestBlockHeight } = storeToRefs(useRecentBlocksStore())
 
 const props = defineProps({
   keyblockDetails: {
@@ -144,6 +209,9 @@ const keyblockNodeUrl = computed(() =>
 )
 const keyblockMiddlewareUrl = computed(() =>
   `${MIDDLEWARE_URL}/v2/key-blocks/${props.keyblockDetails.hash}`,
+)
+const isNextKeyblockMined = computed(() =>
+  props.keyblockDetails.height < latestBlockHeight.value,
 )
 </script>
 
@@ -213,6 +281,44 @@ const keyblockMiddlewareUrl = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__not-existent {
+    margin: var(--space-3) 0;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--color-midnight);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &--next {
+      margin-left: var(--space-6);
+    }
+
+    &--prev {
+      margin-right: var(--space-6);
+    }
+  }
+
+  &__keyblock-link--disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
 </style>

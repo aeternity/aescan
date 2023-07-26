@@ -6,6 +6,10 @@
       icon-name="state-channel"
       show-all-link="/state-channels">
       State Channels
+
+      <template #tooltip>
+        {{ stateChannelsHints.stateChannel }}
+      </template>
     </panel-header>
     <dashboard-state-channels-table class="dashboard-state-channels-panel__table"/>
     <dashboard-state-channels-swiper class="dashboard-state-channels-panel__swiper"/>
@@ -16,6 +20,7 @@ import AppPanel from '@/components/AppPanel'
 import PanelHeader from '@/components/PanelHeader'
 import DashboardStateChannelsSwiper from '@/components/DashboardStateChannelsSwiper'
 import DashboardStateChannelsTable from '@/components/DashboardStateChannelsTable'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 </script>
 
 <style scoped>

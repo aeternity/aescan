@@ -5,31 +5,34 @@
         <th class="keyblock-table-condensed__header">
           Height
           <hint-tooltip class="keyblock-table-condensed__tooltip">
-            Total number of keyblocks that have been added to the blockchain in a sequential order, starting
-            from the genesis block. Each new block added to the chain increases the height by one.
+            {{ keyblocksHints.height }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ keyblock.height }}
+          <app-link
+            :to="`/keyblocks/${keyblock.height}`">
+            {{ keyblock.height }}
+          </app-link>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
           Hash
           <hint-tooltip class="keyblock-table-condensed__tooltip">
-            Unique identifier of the latest keyblock. It also serves as a reference point for subsequent
-            keyblocks to be added to the blockchain.
+            {{ keyblocksHints.hash }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          <value-hash-ellipsed :hash="keyblock.hash"/>
+          <value-hash-ellipsed
+            :link-to="`/keyblocks/${keyblock.hash}`"
+            :hash="keyblock.hash"/>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
           Mined
           <hint-tooltip class="keyblock-table-condensed__tooltip">
-            The exact moment when the keyblock was successfully added to the blockchain.
+            {{ keyblocksHints.mined }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
@@ -40,7 +43,7 @@
         <th class="keyblock-table-condensed__header">
           Beneficiary
           <hint-tooltip class="keyblock-table-condensed__tooltip">
-            The miner who successfully added the keyblock to the blockchain and received a block reward.
+            {{ keyblocksHints.beneficiary }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
@@ -54,8 +57,7 @@
         <th class="keyblock-table-condensed__header">
           Beneficiary-Reward
           <hint-tooltip class="keyblock-table-condensed__tooltip">
-            Amount that was paid to the miner who added the keyblock to the blockchain, as an incentive for
-            their participation and contribution to the network.
+            {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
@@ -66,8 +68,7 @@
         <th class="keyblock-table-condensed__header">
           BRI-Reward
           <hint-tooltip class="keyblock-table-condensed__tooltip">
-            A fraction of the keyblock reward that was granted to æternity crypto foundation to fund its
-            activities.
+            {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
@@ -79,6 +80,7 @@
 </template>
 
 <script setup>
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

@@ -58,7 +58,11 @@
               </app-tooltip>
             </th>
             <td class="names-swiper__data">
-              {{ name.activatedHeight }} -
+              <app-link
+                :to="`/keyblocks/${name.activatedHeight}`">
+                {{ name.activatedHeight }}
+              </app-link>
+              -
               <datetime-label :datetime="name.activated"/>
             </td>
           </tr>

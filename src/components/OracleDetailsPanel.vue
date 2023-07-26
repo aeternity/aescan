@@ -24,7 +24,11 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            {{ oracleDetails.registeredHeight }} -
+            <app-link
+              :to="`/keyblocks/${oracleDetails.registeredHeight}`">
+              {{ oracleDetails.registeredHeight }}
+            </app-link>
+            -
             <datetime-label :datetime="oracleDetails.registered"/>
           </td>
         </tr>
@@ -37,7 +41,11 @@
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastExtended">
-              {{ oracleDetails.lastExtendedHeight }} -
+              <app-link
+                :to="`/keyblocks/${oracleDetails.lastExtendedHeight}`">
+                {{ oracleDetails.lastExtendedHeight }}
+              </app-link>
+              -
               <datetime-label :datetime="oracleDetails.lastExtended"/>
             </template>
             <template v-else>
@@ -54,7 +62,11 @@
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastQueried">
-              {{ oracleDetails.lastQueryHeight }} -
+              <app-link
+                :to="`/keyblocks/${oracleDetails.lastQueryHeight}`">
+                {{ oracleDetails.lastQueryHeight }}
+              </app-link>
+              -
               <datetime-label :datetime="oracleDetails.lastQueried"/>
             </template>
             <template v-else>
@@ -70,7 +82,11 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            {{ oracleDetails.expirationHeight }} -
+            <app-link
+              :to="`/keyblocks/${oracleDetails.expirationHeight}`">
+              {{ oracleDetails.expirationHeight }}
+            </app-link>
+            -
             <datetime-label :datetime="oracleDetails.expiration"/>
           </td>
         </tr>

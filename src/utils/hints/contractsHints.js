@@ -1,4 +1,5 @@
 export const contractsHints = {
+  contract: 'A smart contract is a program that runs on the æternity blockchain. It\'s a collection of code (its functions) and data (its state) that resides at a specific address (contract id) on the æternity blockchain. Each smart contract has an account associated to it. Functions can be executed by any account via ContractCallTx and may change the smart contract\'s state. Smart contracts on the æternity blockchain are written in Sophia, a typed functional programming language.',
   contractId: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   contractCreated: 'Keyblock height and exact date and time when the smart contract was created.',
   contractTxHash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',
@@ -16,11 +17,10 @@ export const contractsHints = {
   eventsCreated: 'Keyblock height and estimated date and time when the smart contract had emitted the event.',
   eventsName: 'Name of the emitted event.',
   eventsData: 'The arguments of the emitted event.',
-  createdBy: 'Keyblock height and exact date and time when the smart contract was created.',
+  created: 'Keyblock height and exact date and time when the smart contract was created.',
   hash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',
   creator: 'Account that created the smart contract on the blockchain.',
   status: 'Status of the transaction.',
-  smartContract: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   caller: 'Account that called the smart contract.',
   amount: 'Amount of AE coins that were transferred to the smart contract address.',
   entrypoint: 'The entrypoint of the smart contract that was called.',

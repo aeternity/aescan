@@ -31,7 +31,10 @@
           </th>
           <td class="name-history-table-condensed__data">
             <div>
-              {{ action.createdHeight }}
+              <app-link
+                :to="`/keyblocks/${action.createdHeight}`">
+                {{ action.createdHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="action.created"/>
           </td>
@@ -56,7 +59,7 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppTooltip from '~/components/AppTooltip'
+import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 

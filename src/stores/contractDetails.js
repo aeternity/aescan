@@ -88,7 +88,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
   async function fetchContractEvents({ queryParameters = null }) {
     rawContractEvents.value = null
-    const defaultParameters = `/v2/contracts/logs?contractId=${contractId.value}`
+    const defaultParameters = `/v2/contracts/logs?contract_id=${contractId.value}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawContractEvents.value = data
   }

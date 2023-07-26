@@ -6,6 +6,9 @@
       title="Transactions"
       :show-all-link="microblockDetailsLink"
       icon-name="transactions">
+      <template #tooltip>
+        {{ transactionsHints.transaction }}
+      </template>
       <template #header>
         <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
           Displaying transactions of selected microblock
@@ -33,6 +36,7 @@ import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import PanelHeader from '@/components/PanelHeader'
 import TransactionsSwiper from '@/components/TransactionsSwiper'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import DashboardMicroblockTransactionsTable from '@/components/DashboardMicroblockTransactionsTable'
 

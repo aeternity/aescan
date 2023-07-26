@@ -1,4 +1,5 @@
 export const tokensHints = {
+  token: 'A token is implemented via a smart contract and can represent virtually anything on æternity. The AEX-9 fungible token standard allows developers to build token applications that are interoperable with other products and services. A fungible token is divisible and interchangeable.',
   tokenSymbol: 'Non-unique symbol of the token.',
   tokenName: 'Full name of the token.',
   smartContractId: 'Identifier of the smart contract that implements the AEX-9 fungible token standard.',

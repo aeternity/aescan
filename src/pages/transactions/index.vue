@@ -5,6 +5,10 @@
 
   <page-header>
     Transactions
+
+    <template #tooltip>
+      {{ transactionsHints.transaction }}
+    </template>
   </page-header>
 
   <transactions-panel/>
@@ -13,4 +17,5 @@
 <script setup>
 import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 </script>

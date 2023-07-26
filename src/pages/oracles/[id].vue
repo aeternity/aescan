@@ -5,6 +5,15 @@
 
   <page-header>
     Oracle
+
+    <template #tooltip>
+      {{ oraclesHints.oracle }}
+      <app-link
+        variant="primary"
+        to="https://docs.aeternity.com/protocol/oracles/">
+        Learn more
+      </app-link>
+    </template>
   </page-header>
 
   <oracle-details-panel
@@ -25,6 +34,7 @@ import OracleDetailsPanel from '@/components/OracleDetailsPanel'
 import PageHeader from '@/components/PageHeader'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsPanel from '@/components/OracleEventsPanel'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)

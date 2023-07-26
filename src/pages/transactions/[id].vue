@@ -5,6 +5,10 @@
 
   <page-header>
     Transaction
+
+    <template #tooltip>
+      {{ transactionsHints.transaction }}
+    </template>
   </page-header>
 
   <transaction-general-panel
@@ -28,6 +32,7 @@ import { storeToRefs } from 'pinia'
 import TransactionGeneralPanel from '@/components/TransactionGeneralPanel'
 import PageHeader from '@/components/PageHeader'
 import { useTransactionDetailsStore } from '@/stores/transactionDetails'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import TransactionTypePanel from '@/components/TransactionTypePanel'
 import TransactionPointersPanel from '@/components/TransactionPointersPanel'
 

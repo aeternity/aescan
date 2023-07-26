@@ -5,6 +5,10 @@
 
   <page-header>
     Token
+
+    <template #tooltip>
+      {{ tokensHints.token }}
+    </template>
   </page-header>
 
   <token-details-panel
@@ -30,6 +34,7 @@ import PageHeader from '@/components/PageHeader'
 import { useTokenDetailsStore } from '@/stores/tokenDetails'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
+import { tokensHints } from '@/utils/hints/tokensHints'
 import TokenEventsPanel from '@/components/TokenEventsPanel'
 
 const route = useRoute()

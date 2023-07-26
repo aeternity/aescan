@@ -33,7 +33,10 @@
         </td>
         <td>
           <div>
-            {{ name.expirationHeight }}
+            <app-link
+              :to="`/keyblocks/${name.expirationHeight}`">
+              {{ name.expirationHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="name.expires"/>
         </td>

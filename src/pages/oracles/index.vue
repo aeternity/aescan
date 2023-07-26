@@ -5,6 +5,15 @@
 
   <page-header>
     Oracles
+
+    <template #tooltip>
+      {{ oraclesHints.oracle }}
+      <app-link
+        variant="primary"
+        to="https://docs.aeternity.com/protocol/oracles/">
+        Learn more
+      </app-link>
+    </template>
   </page-header>
 
   <oracles-panel/>
@@ -13,4 +22,5 @@
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import OraclesPanel from '@/components/OraclesPanel'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
 </script>

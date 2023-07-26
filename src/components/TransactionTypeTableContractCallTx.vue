@@ -16,7 +16,7 @@
         <th class="transaction-type-panel-contract-call-tx__table-header">
           Smart Contract
           <hint-tooltip>
-            {{ contractsHints.smartContract }}
+            {{ contractsHints.contractId }}
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">

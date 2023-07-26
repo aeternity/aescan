@@ -5,6 +5,15 @@
 
   <page-header>
     Names
+
+    <template #tooltip>
+      {{ namesHints.name }}
+      <app-link
+        variant="primary"
+        to="https://docs.aeternity.com/protocol/AENS/">
+        Learn more
+      </app-link>
+    </template>
   </page-header>
 
   <app-tabs
@@ -31,6 +40,7 @@ import NamesInAuctionPanel from '@/components/NamesInAuctionPanel'
 import NamesExpiredPanel from '@/components/NamesExpiredPanel'
 import { useNamesStore } from '@/stores/names'
 import PageHeader from '@/components/PageHeader'
+import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
 
 const TAB_KEYS = ['active', 'in-auction', 'expired']

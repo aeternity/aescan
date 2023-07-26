@@ -76,7 +76,10 @@
         </td>
         <td>
           <div>
-            {{ channel.updatedHeight }}
+            <app-link
+              :to="`/keyblocks/${channel.updatedHeight}`">
+              {{ channel.updatedHeight }}
+            </app-link>
           </div>
           <div>
             <datetime-label :datetime="channel.updated"/>

@@ -31,7 +31,10 @@
           </th>
           <td class="name-history-table-condensed__data">
             <div>
-              {{ action.createdHeight }}
+              <app-link
+                :to="`/keyblocks/${action.createdHeight}`">
+                {{ action.createdHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="action.created"/>
           </td>

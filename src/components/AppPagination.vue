@@ -4,14 +4,14 @@
       :class="[
         'pagination__container',
         {'pagination__container--disabled': isPrevDisabled},
-      ]">
+      ]"
+      @click="!isPrevDisabled && $emit('prev-clicked')">
       <button
         :class="[
           'pagination__button',
           'pagination__button--prev',
           {'pagination__button--disabled': isPrevDisabled}
-        ]"
-        @click="$emit('prev-clicked')">
+        ]">
         <app-icon
           :size="22"
           name="caret-left"/>
@@ -24,7 +24,8 @@
       :class="[
         'pagination__container',
         {'pagination__container--disabled': isNextDisabled},
-      ]">
+      ]"
+      @click="!isNextDisabled && $emit('next-clicked')">
       <div class="pagination__label">
         {{ nextLabel }}
       </div>
@@ -33,8 +34,7 @@
           'pagination__button',
           'pagination__button--next',
           {'pagination__button--disabled': isNextDisabled}
-        ]"
-        @click="$emit('next-clicked')">
+        ]">
         <app-icon
           :size="22"
           name="caret-right"/>
@@ -76,9 +76,11 @@ defineEmits(['prev-clicked', 'next-clicked'])
     display: flex;
     align-items: center;
     color: var(--color-midnight);
+    cursor: pointer;
 
     &--disabled {
       color: var(--color-midnight-35);
+      cursor: not-allowed;
     }
   }
 

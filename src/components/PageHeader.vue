@@ -2,6 +2,12 @@
   <header class="page-header">
     <app-title>
       <slot/>
+
+      <hint-tooltip
+        v-if="$slots.tooltip"
+        class="page-header__tooltip">
+        <slot name="tooltip"/>
+      </hint-tooltip>
     </app-title>
     <the-search-bar class="page-header__search-bar"/>
   </header>
@@ -10,6 +16,7 @@
 <script setup>
 import TheSearchBar from '@/components/TheSearchBar'
 import AppTitle from '@/components/AppTitle'
+import HintTooltip from '@/components/HintTooltip'
 </script>
 
 <style scoped>
@@ -30,6 +37,10 @@ import AppTitle from '@/components/AppTitle'
       width: 50%;
       margin-bottom: var(--space-0);
     }
+  }
+
+  &__tooltip {
+    margin-left: var(--space-1);
   }
 }
 </style>

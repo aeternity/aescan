@@ -103,11 +103,6 @@ defineEmits(['prev-clicked', 'next-clicked'])
     border-radius: 4px;
     cursor: pointer;
 
-    @media (--desktop) {
-      width: 32px;
-      height: 32px;
-    }
-
     &:active {
       color: var(--color-blue);
     }

@@ -56,6 +56,7 @@ import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
 
 const route = useRoute()
+const router = useRouter()
 const isNavigationOpen = ref(false)
 
 onMounted(() => {
@@ -77,13 +78,6 @@ watch(route, () => {
   closeNavigation()
 })
 
-function handleNavigateBack() {
-  if (isNavigationOpen.value) {
-    window.history.forward(1)
-    closeNavigation()
-  }
-}
-
 function toggleNavigation() {
   isNavigationOpen.value = !isNavigationOpen.value
 }
@@ -91,6 +85,28 @@ function toggleNavigation() {
 function closeNavigation() {
   isNavigationOpen.value = false
 }
+
+function handleNavigateBack() {
+  if (isNavigationOpen.value) {
+    // simulate navigation to the same page when navigating back in browser
+    // the navigation will be blocked by guard below
+    window.history.forward(1)
+    closeNavigation()
+  }
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.params.id && from.params.id) {
+    if (to.params.id !== from.params.id) {
+      next() // Allow navigation to the next page within the route
+    } else {
+      next(false) // Block navigation to the same page within the route
+    }
+  } else {
+    next() // Allow navigation to other routes
+  }
+})
+
 </script>
 
 <style scoped>

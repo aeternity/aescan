@@ -1,44 +1,51 @@
 <template>
   <app-panel class="transaction-type-panel">
-    <header class="transaction-type-panel__header">
-      <h2 class="transaction-type-panel__heading h3">
-        {{ typeName }} DETAILS
-      </h2>
-      <div class="transaction-type-panel__container">
-        <app-link
-          v-if="transactionData.type === 'SpendTx' && transactionData.recipient?.account"
-          :to="`/names/${transactionData.recipient.name}`">
-          <app-chip>
-            {{ transactionData.recipient.name }}
-          </app-chip>
-        </app-link>
-        <template v-if="transactionData.type === 'PayingForTx'">
-          <copy-chip
+    <div
+      v-if="transactionData"
+      class="transaction-type-panel__container">
+      <header class="transaction-type-panel__header">
+        <h2 class="transaction-type-panel__heading h3">
+          {{ typeName }} DETAILS
+        </h2>
+        <div class="transaction-type-panel__chip-container">
+          <app-link
+            v-if="transactionData.type === 'SpendTx' && transactionData.recipient?.account"
+            :to="`/names/${transactionData.recipient.name}`">
+            <app-chip>
+              {{ transactionData.recipient.name }}
+            </app-chip>
+          </app-link>
+          <template v-if="transactionData.type === 'PayingForTx'">
+            <copy-chip
             :label="transactionData.payerId"
-            class="transaction-type-panel__copy-chip"/>
-          <copy-chip
+              class="transaction-type-panel__copy-chip"/>
+            <copy-chip
             :label="formatEllipseHash(transactionData.payerId)"
             :clipboard-text="transactionData.payerId"
-            class="transaction-type-panel__copy-chip-ellipse"/>
-          <app-chip variant="primary">
-            {{ transactionData.tx.tx.type }}
-          </app-chip>
-        </template>
-        <template v-if="transactionData.type === 'GAMetaTx'">
-          <copy-chip
-            v-if="contractId"
-            :label="formatEllipseHash(contractId)"
-            :clipboard-text="contractId"/>
+              class="transaction-type-panel__copy-chip-ellipse"/>
+            <app-chip variant="primary">
+              {{ transactionData.tx.tx.type }}
+            </app-chip>
+          </template>
+          <template v-if="transactionData.type === 'GAMetaTx'">
+            <copy-chip
+              v-if="contractId"
+              :label="formatEllipseHash(contractId)"
+              :clipboard-text="contractId"/>
 
-          <app-chip>
-            {{ innerTransactionDetails.type }}
-          </app-chip>
-        </template>
-      </div>
-    </header>
-    <component
-      :is="transactionTypeTableComponent"
-      :transaction-data="transactionData"/>
+            <app-chip>
+              {{ innerTransactionDetails.type }}
+            </app-chip>
+          </template>
+        </div>
+      </header>
+      <component
+        :is="transactionTypeTableComponent"
+        :transaction-data="transactionData"/>
+    </div>
+    <spinner-loader
+      v-else
+      class="transaction-type-panel__spinner-loader"/>
   </app-panel>
 </template>
 
@@ -54,8 +61,8 @@ import { useTransactionDetailsStore } from '@/stores/transactionDetails'
 
 const props = defineProps({
   transactionData: {
+    type: [Object, null],
     required: true,
-    type: Object,
   },
 })
 
@@ -91,6 +98,12 @@ watch(props.transactionData, () => {
 <style scoped>
 .transaction-type-panel {
   padding: var(--space-4) var(--space-1) var(--space-3);
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 100%;
+  }
 
   @media (--desktop) {
     padding: var(--space-4) var(--space-4) var(--space-2);
@@ -111,7 +124,7 @@ watch(props.transactionData, () => {
     }
   }
 
-  &__container {
+  &__chip-container {
     display: flex;
     flex-wrap: wrap;
     max-width: 100%;

@@ -1,33 +1,40 @@
 <template>
   <app-panel class="name-pointers-custom-panel">
-    <h2 class="name-pointers-custom-panel__heading h3">
-      CUSTOM POINTERS
-      <hint-tooltip>
-        {{ namesHints.customPointers }}
-      </hint-tooltip>
-    </h2>
-    <table>
-      <tbody>
-        <tr>
-          <th class="name-pointers-custom-panel__header">
-            Key
-          </th>
-          <th class="name-pointers-custom-panel__header">
-            Value
-          </th>
-        </tr>
-        <tr
-          v-for="(pointer, index) in name.customPointers"
-          :key="index">
-          <th>{{ pointer.key }}</th>
-          <td class="name-pointers-custom-panel__data">
-            <value-hash-ellipsed
-              :hash="pointer.pointer"
-              :link-to="`/accounts/${pointer.pointer}`"/>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div
+      v-if="name"
+      class="name-pointers-custom-panel__container">
+      <h2 class="name-pointers-custom-panel__heading h3">
+        CUSTOM POINTERS
+        <hint-tooltip>
+          {{ namesHints.customPointers }}
+        </hint-tooltip>
+      </h2>
+      <table>
+        <tbody>
+          <tr>
+            <th class="name-pointers-custom-panel__header">
+              Key
+            </th>
+            <th class="name-pointers-custom-panel__header">
+              Value
+            </th>
+          </tr>
+          <tr
+            v-for="(pointer, index) in name.customPointers"
+            :key="index">
+            <th>{{ pointer.key }}</th>
+            <td class="name-pointers-custom-panel__data">
+              <value-hash-ellipsed
+                :hash="pointer.pointer"
+                :link-to="`/accounts/${pointer.pointer}`"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <spinner-loader
+      v-else
+      class="name-pointers-custom-panel__spinner-loader"/>
   </app-panel>
 </template>
 
@@ -40,11 +47,19 @@ import { useNameDetailsStore } from '@/stores/nameDetails'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const { name } = storeToRefs(useNameDetailsStore())
+
 </script>
 
 <style scoped>
 .name-pointers-custom-panel {
   padding: var(--space-4) var(--space-1) var(--space-3);
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 100%;
+  }
+
   @media (--desktop) {
     padding: var(--space-4) var(--space-4) var(--space-3);
   }
@@ -55,6 +70,10 @@ const { name } = storeToRefs(useNameDetailsStore())
 
   &__heading {
     margin-bottom: var(--space-1);
+  }
+
+  &__spinner-loader {
+    margin-bottom: var(--space-3);
   }
 }
 </style>

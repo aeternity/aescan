@@ -17,7 +17,6 @@
   </page-header>
 
   <contract-details-panel
-    v-if="contractDetails"
     class="contract-details__panel"
     :contract-details="contractDetails"/>
 

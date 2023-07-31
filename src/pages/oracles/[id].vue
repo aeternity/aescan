@@ -17,7 +17,6 @@
   </page-header>
 
   <oracle-details-panel
-    v-if="oracleDetails"
     class="oracle-details__panel"
     :oracle-details="oracleDetails"/>
 

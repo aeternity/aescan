@@ -5,14 +5,12 @@
 
   <page-header>
     Token
-
     <template #tooltip>
       {{ tokensHints.token }}
     </template>
   </page-header>
 
   <token-details-panel
-    v-if="tokenDetails"
     class="token-details__panel"
     :token-details="tokenDetails"/>
 

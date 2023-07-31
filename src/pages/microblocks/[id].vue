@@ -10,9 +10,7 @@
     </template>
   </page-header>
 
-  <microblock-details-panel
-    v-if="microblockDetails"
-    :microblock-details="microblockDetails"/>
+  <microblock-details-panel :microblock-details="microblockDetails"/>
 
   <microblock-transactions-panel/>
 </template>

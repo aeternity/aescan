@@ -1,172 +1,179 @@
 <template>
   <app-panel class="keyblock-details-panel">
-    <header class="keyblock-details-panel__header">
-      <h2 class="keyblock-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div v-if="!keyblockDetails.notExistent">
-        <copy-chip
-          :label="keyblockDetails.hash"
-          class="keyblock-details-panel__chip"/>
-        <copy-chip
-          :label="formatEllipseHash(keyblockDetails.hash)"
-          :clipboard-text="keyblockDetails.hash"
-          class="keyblock-details-panel__chip-ellipse"/>
-      </div>
-    </header>
-    <p
-      v-if="keyblockDetails.notExistent"
-      class="keyblock-details-panel__not-existent">
-      Requested keyblock has never been seen in the network.
-      <br>
-      Details will be displayed here after it is mined.
-    </p>
-    <table v-else>
-      <tbody>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            Height
-            <hint-tooltip>
-              {{ keyblocksHints.height }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
-            <div class="keyblock-details-panel__controls">
+    <div
+      v-if="keyblockDetails"
+      class="keyblock-details-panel__container">
+      <header class="keyblock-details-panel__header">
+        <h2 class="keyblock-details-panel__heading h3">
+          DETAILS
+        </h2>
+        <div v-if="!keyblockDetails.notExistent">
+          <copy-chip
+            :label="keyblockDetails.hash"
+            class="keyblock-details-panel__chip"/>
+          <copy-chip
+            :label="formatEllipseHash(keyblockDetails.hash)"
+            :clipboard-text="keyblockDetails.hash"
+            class="keyblock-details-panel__chip-ellipse"/>
+        </div>
+      </header>
+      <p
+        v-if="keyblockDetails.notExistent"
+        class="keyblock-details-panel__not-existent">
+        Requested keyblock has never been seen in the network.
+        <br>
+        Details will be displayed here after it is mined.
+      </p>
+      <table v-else>
+        <tbody>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              Height
+              <hint-tooltip>
+                {{ keyblocksHints.height }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
+              <div class="keyblock-details-panel__controls">
               <pagination-button
                 class="keyblock-details-panel__button--prev"
                 direction="left"
                 @click="$router.push(`/keyblocks/${keyblockDetails.height - 1}`)"/>
 
-              {{ keyblockDetails.height }}
+                {{ keyblockDetails.height }}
 
               <pagination-button
                 class="keyblock-details-panel__button--next"
                 direction="right"
                 :disabled="!isNextKeyblockMined"
                 @click="$router.push(`/keyblocks/${keyblockDetails.height + 1}`)"/>
-            </div>
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            Time
-            <hint-tooltip>
-              {{ keyblocksHints.mined }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
-            <datetime-label :datetime="keyblockDetails.mined"/>
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            Miner
-            <hint-tooltip>
-              {{ keyblocksHints.miner }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
-            <span class="keyblock-details-panel__hash">
-              {{ keyblockDetails.miner }}
-            </span>
-            <span class="keyblock-details-panel__hash-ellipse">
-              {{ formatEllipseHash(keyblockDetails.miner) }}
-            </span>
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            Beneficiary
-            <hint-tooltip>
-              {{ keyblocksHints.beneficiary }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
-            <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
+              </div>
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              Time
+              <hint-tooltip>
+                {{ keyblocksHints.mined }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
+              <datetime-label :datetime="keyblockDetails.mined"/>
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              Miner
+              <hint-tooltip>
+                {{ keyblocksHints.miner }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
               <span class="keyblock-details-panel__hash">
-                {{ keyblockDetails.beneficiary }}
+                {{ keyblockDetails.miner }}
               </span>
               <span class="keyblock-details-panel__hash-ellipse">
-                {{ formatEllipseHash(keyblockDetails.beneficiary) }}
+                {{ formatEllipseHash(keyblockDetails.miner) }}
               </span>
-            </app-link>
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            Beneficiary Reward
-            <hint-tooltip>
-              {{ keyblocksHints.beneficiaryReward }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              Beneficiary
+              <hint-tooltip>
+                {{ keyblocksHints.beneficiary }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
+              <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
+                <span class="keyblock-details-panel__hash">
+                  {{ keyblockDetails.beneficiary }}
+                </span>
+                <span class="keyblock-details-panel__hash-ellipse">
+                  {{ formatEllipseHash(keyblockDetails.beneficiary) }}
+                </span>
+              </app-link>
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              Beneficiary Reward
+              <hint-tooltip>
+                {{ keyblocksHints.beneficiaryReward }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.blockReward, null) }}
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            BRI Reward
-            <hint-tooltip>
-              {{ keyblocksHints.briReward }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              BRI Reward
+              <hint-tooltip>
+                {{ keyblocksHints.briReward }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.devReward, null) }}
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            Microblocks Count
-            <hint-tooltip>
-              {{ keyblocksHints.microblockCount }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              Microblocks Count
+              <hint-tooltip>
+                {{ keyblocksHints.microblockCount }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.microBlocksCount) }}
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            Transactions Count
-            <hint-tooltip>
-              {{ keyblocksHints.transactionsCount }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              Transactions Count
+              <hint-tooltip>
+                {{ keyblocksHints.transactionsCount }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.transactionsCount) }}
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            API Links
-            <hint-tooltip>
-              {{ keyblocksHints.apiLinks }}
-            </hint-tooltip>
-          </th>
-          <td class="keyblock-details-panel__data">
-            <div class="keyblock-details-panel__container">
-              <app-link
-                :to="keyblockNodeUrl"
-                class="keyblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
+            </td>
+          </tr>
+          <tr class="keyblock-details-panel__row">
+            <th class="keyblock-details-panel__table-header">
+              API Links
+              <hint-tooltip>
+                {{ keyblocksHints.apiLinks }}
+              </hint-tooltip>
+            </th>
+            <td class="keyblock-details-panel__data">
+              <div class="keyblock-details-panel__link-container">
+                <app-link
+                  :to="keyblockNodeUrl"
+                  class="keyblock-details-panel__link">
+                  <app-icon
+                    name="file-cloud"
+                    :size="22"/>
+                  Node
+                </app-link>
 
-              <app-link
-                :to="keyblockMiddlewareUrl"
-                class="keyblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                <app-link
+                  :to="keyblockMiddlewareUrl"
+                  class="keyblock-details-panel__link">
+                  <app-icon
+                    name="file-cloud"
+                    :size="22"/>
+                  Middleware
+                </app-link>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <spinner-loader
+      v-else
+      class="keyblock-details-panel__spinner-loader"/>
   </app-panel>
 </template>
 
@@ -185,7 +192,7 @@ const { blockHeight: latestBlockHeight } = storeToRefs(useRecentBlocksStore())
 
 const props = defineProps({
   keyblockDetails: {
-    type: Object,
+    type: [Object, null],
     required: true,
   },
 })
@@ -205,10 +212,16 @@ const isNextKeyblockMined = computed(() =>
 .keyblock-details-panel {
   padding: var(--space-4) var(--space-1) var(--space-3);
   margin-bottom: var(--space-7);
+  display: flex;
+  justify-content: center;
 
   @media (--desktop) {
     padding: var(--space-4) var(--space-4) var(--space-2);
     margin-bottom: var(--space-6);
+  }
+
+  &__container {
+    width: 100%;
   }
 
   &__header {
@@ -255,7 +268,7 @@ const isNextKeyblockMined = computed(() =>
     text-align: right;
   }
 
-  &__container {
+  &__link-container {
     display: flex;
     justify-content: flex-end;
   }
@@ -300,6 +313,10 @@ const isNextKeyblockMined = computed(() =>
     cursor: not-allowed;
     opacity: 0.3;
     pointer-events: none;
+  }
+
+  &__spinner-loader {
+    margin-bottom: var(--space-3);
   }
 }
 </style>

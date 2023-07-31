@@ -1,178 +1,186 @@
 <template>
   <app-panel class="oracle-details-panel">
-    <header class="oracle-details-panel__header">
-      <h3 class="oracle-details-panel__heading">
-        DETAILS
-      </h3>
-      <div class="oracle-details-panel__container">
-        <copy-chip
-          :label="oracleDetails.id"
-          class="oracle-details-panel__chip"/>
-        <copy-chip
-          :label="formatEllipseHash(oracleDetails.id)"
-          :clipboard-text="oracleDetails.id"
-          class="oracle-details-panel__chip-ellipse"/>
-      </div>
-    </header>
-    <table>
-      <tbody>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Registered
-            <hint-tooltip>
-              {{ oraclesHints.registered }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            <app-link
-              :to="`/keyblocks/${oracleDetails.registeredHeight}`">
-              {{ oracleDetails.registeredHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="oracleDetails.registered"/>
-          </td>
-        </tr>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Last Extended
-            <hint-tooltip>
-              {{ oraclesHints.lastExtended }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            <template v-if="oracleDetails.lastExtended">
+    <div
+      v-if="oracleDetails"
+      class="oracle-details-panel__container">
+      <header class="oracle-details-panel__header">
+        <h3 class="oracle-details-panel__heading">
+          DETAILS
+        </h3>
+        <div class="oracle-details-panel__container">
+          <copy-chip
+            :label="oracleDetails.id"
+            class="oracle-details-panel__chip"/>
+          <copy-chip
+            :label="formatEllipseHash(oracleDetails.id)"
+            :clipboard-text="oracleDetails.id"
+            class="oracle-details-panel__chip-ellipse"/>
+        </div>
+      </header>
+      <table>
+        <tbody>
+          <tr class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Registered
+              <hint-tooltip>
+                {{ oraclesHints.registered }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
               <app-link
-                :to="`/keyblocks/${oracleDetails.lastExtendedHeight}`">
-                {{ oracleDetails.lastExtendedHeight }}
+                :to="`/keyblocks/${oracleDetails.registeredHeight}`">
+                {{ oracleDetails.registeredHeight }}
               </app-link>
               -
-              <datetime-label :datetime="oracleDetails.lastExtended"/>
-            </template>
-            <template v-else>
-              ---
-            </template>
-          </td>
-        </tr>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Last Queried
-            <hint-tooltip>
-              {{ oraclesHints.lastQueried }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            <template v-if="oracleDetails.lastQueried">
+              <datetime-label :datetime="oracleDetails.registered"/>
+            </td>
+          </tr>
+          <tr class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Last Extended
+              <hint-tooltip>
+                {{ oraclesHints.lastExtended }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
+              <template v-if="oracleDetails.lastExtended">
+                <app-link
+                  :to="`/keyblocks/${oracleDetails.lastExtendedHeight}`">
+                  {{ oracleDetails.lastExtendedHeight }}
+                </app-link>
+                -
+                <datetime-label :datetime="oracleDetails.lastExtended"/>
+              </template>
+              <template v-else>
+                ---
+              </template>
+            </td>
+          </tr>
+          <tr class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Last Queried
+              <hint-tooltip>
+                {{ oraclesHints.lastQueried }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
+              <template v-if="oracleDetails.lastQueried">
+                <app-link
+                  :to="`/keyblocks/${oracleDetails.lastQueryHeight}`">
+                  {{ oracleDetails.lastQueryHeight }}
+                </app-link>
+                -
+                <datetime-label :datetime="oracleDetails.lastQueried"/>
+              </template>
+              <template v-else>
+                ---
+              </template>
+            </td>
+          </tr>
+          <tr class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Expiration
+              <hint-tooltip>
+                {{ oraclesHints.expiration }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
               <app-link
-                :to="`/keyblocks/${oracleDetails.lastQueryHeight}`">
-                {{ oracleDetails.lastQueryHeight }}
+                :to="`/keyblocks/${oracleDetails.expirationHeight}`">
+                {{ oracleDetails.expirationHeight }}
               </app-link>
               -
-              <datetime-label :datetime="oracleDetails.lastQueried"/>
-            </template>
-            <template v-else>
-              ---
-            </template>
-          </td>
-        </tr>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Expiration
-            <hint-tooltip>
-              {{ oraclesHints.expiration }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            <app-link
-              :to="`/keyblocks/${oracleDetails.expirationHeight}`">
-              {{ oracleDetails.expirationHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="oracleDetails.expiration"/>
-          </td>
-        </tr>
-        <tr
-          class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Query Fee
-            <hint-tooltip>
-              {{ oraclesHints.queryFee }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            {{ formatAePrice(oracleDetails.fee, null) }}
-          </td>
-        </tr>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Query Format
-            <hint-tooltip>
-              {{ oraclesHints.queryFormat }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            {{ oracleDetails.queryFormat }}
-          </td>
-        </tr>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Response Format
-            <hint-tooltip>
-              {{ oraclesHints.responseFormat }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            {{ oracleDetails.responseFormat }}
-          </td>
-        </tr>
-        <tr class="oracle-details-panel__row">
-          <th class="oracle-details-panel__table-header">
-            Operator
-            <hint-tooltip>
-              {{ oraclesHints.operator }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            <app-link
-              :to="`/accounts/${oracleDetails.operator}`">
-              <span class="oracle-details-panel__hash">
-                {{ oracleDetails.operator }}
-              </span>
-              <span class="oracle-details-panel__hash-ellipse">
-                {{ formatEllipseHash(oracleDetails.operator) }}
-              </span>
-            </app-link>
-          </td>
-        </tr>
-        <tr>
-          <th class="contract-details-panel__table-header">
-            API links
-            <hint-tooltip>
-              {{ oraclesHints.apiLinks }}
-            </hint-tooltip>
-          </th>
-          <td class="oracle-details-panel__data">
-            <div class="oracle-details-panel__container">
+              <datetime-label :datetime="oracleDetails.expiration"/>
+            </td>
+          </tr>
+          <tr
+            class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Query Fee
+              <hint-tooltip>
+                {{ oraclesHints.queryFee }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
+              {{ formatAePrice(oracleDetails.fee, null) }}
+            </td>
+          </tr>
+          <tr class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Query Format
+              <hint-tooltip>
+                {{ oraclesHints.queryFormat }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
+              {{ oracleDetails.queryFormat }}
+            </td>
+          </tr>
+          <tr class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Response Format
+              <hint-tooltip>
+                {{ oraclesHints.responseFormat }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
+              {{ oracleDetails.responseFormat }}
+            </td>
+          </tr>
+          <tr class="oracle-details-panel__row">
+            <th class="oracle-details-panel__table-header">
+              Operator
+              <hint-tooltip>
+                {{ oraclesHints.operator }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
               <app-link
-                :to="oracleNodeUrl"
-                class="oracle-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
+                :to="`/accounts/${oracleDetails.operator}`">
+                <span class="oracle-details-panel__hash">
+                  {{ oracleDetails.operator }}
+                </span>
+                <span class="oracle-details-panel__hash-ellipse">
+                  {{ formatEllipseHash(oracleDetails.operator) }}
+                </span>
               </app-link>
-              <app-link
-                :to="oracleMiddlewareUrl"
-                class="oracle-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+          <tr>
+            <th class="contract-details-panel__table-header">
+              API links
+              <hint-tooltip>
+                {{ oraclesHints.apiLinks }}
+              </hint-tooltip>
+            </th>
+            <td class="oracle-details-panel__data">
+              <div class="oracle-details-panel__link-container">
+                <app-link
+                  :to="oracleNodeUrl"
+                  class="oracle-details-panel__link">
+                  <app-icon
+                    name="file-cloud"
+                    :size="22"/>
+                  Node
+                </app-link>
+                <app-link
+                  :to="oracleMiddlewareUrl"
+                  class="oracle-details-panel__link">
+                  <app-icon
+                    name="file-cloud"
+                    :size="22"/>
+                  Middleware
+                </app-link>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <spinner-loader
+      v-else
+      class="oracle-details-panel__spinner-loader"/>
   </app-panel>
 </template>
 
@@ -207,9 +215,15 @@ const oracleMiddlewareUrl = computed(() =>
 <style scoped>
 .oracle-details-panel {
   padding: var(--space-4) var(--space-1) var(--space-2);
+  display: flex;
+  justify-content: center;
 
   @media (--desktop) {
     padding: var(--space-4) var(--space-4) var(--space-2);
+  }
+
+  &__container {
+    width: 100%;
   }
 
   &__heading {
@@ -276,6 +290,10 @@ const oracleMiddlewareUrl = computed(() =>
     @media (--desktop) {
       display: none;
     }
+  }
+
+  &__spinner-loader {
+    margin-bottom: var(--space-3);
   }
 }
 </style>

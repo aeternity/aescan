@@ -1,42 +1,48 @@
 <template>
   <div
-    v-if="entities"
     ref="paginatedContent"
     class="paginated-content">
-    <header class="paginated-content__header">
-      <div class="paginated-content__counter">
-        <span v-if="hasCounter">
-          <template v-if="totalCount > 0">
-            Displaying
-            <span class="paginated-content__highlighted">
-              {{ formatNullable(firstVisibleIndex) }}-{{ formatNullable(lastVisibleIndex) }}
-              of
-              {{ formatNullable(totalCount) }}
-            </span>
-            records
-          </template>
-          <template v-else>
-            Displaying
-            <span class="paginated-content__highlighted">0</span>
-            records
-          </template>
-        </span>
-      </div>
-      <slot name="header"/>
-    </header>
-    <slot v-if="!!entities?.data.length"/>
-    <blank-state
-      v-else
-      class="paginated-content__blank-state"/>
+    <div
+      v-if="entities"
+      class="paginated-content__container">
+      <header class="paginated-content__header">
+        <div class="paginated-content__counter">
+          <span v-if="hasCounter">
+            <template v-if="totalCount > 0">
+              Displaying
+              <span class="paginated-content__highlighted">
+                {{ formatNullable(firstVisibleIndex) }}-{{ formatNullable(lastVisibleIndex) }}
+                of
+                {{ formatNullable(totalCount) }}
+              </span>
+              records
+            </template>
+            <template v-else>
+              Displaying
+              <span class="paginated-content__highlighted">0</span>
+              records
+            </template>
+          </span>
+        </div>
+        <slot name="header"/>
+      </header>
+      <slot v-if="!!entities?.data.length"/>
+      <blank-state
+        v-else
+        class="paginated-content__blank-state"/>
 
-    <app-pagination
-      v-if="hasPagination"
-      :is-prev-disabled="isPrevDisabled"
-      :is-next-disabled="isNextDisabled"
-      :prev-label="prevLabel"
-      :next-label="nextLabel"
-      @prev-clicked="handlePrevClicked"
-      @next-clicked="handleNextClicked"/>
+      <app-pagination
+        v-if="hasPagination"
+        :is-prev-disabled="isPrevDisabled"
+        :is-next-disabled="isNextDisabled"
+        :prev-label="prevLabel"
+        :next-label="nextLabel"
+        @prev-clicked="handlePrevClicked"
+        @next-clicked="handleNextClicked"/>
+    </div>
+    <div v-else>
+      <spinner-loader class="paginated-content__spinner-loader"/>
+    </div>
   </div>
 </template>
 
@@ -72,7 +78,6 @@ const props = defineProps({
     },
   },
 })
-
 const emit = defineEmits([
   'prev-clicked',
   'next-clicked',
@@ -80,7 +85,6 @@ const emit = defineEmits([
 ])
 
 const pageIndex = props.pageIndex ? useVModel(props, 'pageIndex', emit) : ref(1)
-
 const firstVisibleIndex = computed(
   () => (pageIndex.value - 1) * props.limit + 1,
 )
@@ -109,26 +113,53 @@ const nextLabel = computed(() => {
 })
 
 const handlePrevClicked = () => {
+  setContainerHeight()
   pageIndex.value--
   emit('prev-clicked')
-  scrollToPaginatedContent()
 }
 
 const handleNextClicked = () => {
+  setContainerHeight()
   pageIndex.value++
   emit('next-clicked')
-  scrollToPaginatedContent()
+}
+
+watch(
+  () => props.entities,
+  () => {
+    if (props.entities) {
+      // reset container height after new data is loaded
+      resetContainerHeight()
+    }
+  },
+)
+
+function setContainerHeight() {
+  paginatedContent.value.style.height = `${paginatedContent.value.clientHeight}px`
+}
+
+function resetContainerHeight() {
+  paginatedContent.value.style.height = ''
 }
 
 const paginatedContent = ref()
 
-function scrollToPaginatedContent() {
-  paginatedContent.value.scrollIntoView()
-}
+onMounted(() => {
+  window.addEventListener('resize', resetContainerHeight())
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', resetContainerHeight())
+})
+
 </script>
 
 <style scoped>
 .paginated-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &__header {
     display: flex;
     align-items: center;
@@ -143,6 +174,10 @@ function scrollToPaginatedContent() {
     &:empty {
       display: none;
     }
+  }
+
+  &__container {
+    width: 100%;
   }
 
   &__counter {
@@ -161,6 +196,10 @@ function scrollToPaginatedContent() {
 
   &__blank-state {
     margin-top: var(--space-3);
+  }
+
+  &__spinner-loader {
+    margin-bottom: var(--space-3);
   }
 }
 </style>

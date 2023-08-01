@@ -414,8 +414,8 @@ export function adaptOracles(oracles, blockHeight) {
       id: oracle.oracle,
       activeFromHeight: oracle.activeFrom,
       activeFrom: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
-      expireHeight: oracle.expireHeight,
-      expire: DateTime.fromMillis(oracle.approximateExpireTime),
+      expirationHeight: oracle.expireHeight,
+      expiration: DateTime.fromMillis(oracle.approximateExpireTime),
       queryFee: formatAettosToAe(oracle.queryFee),
     }
   })

@@ -448,7 +448,6 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
     lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.microTime) : null,
     lastQueryHeight: lastQueryTx?.blockHeight,
   }
-  console.log('oracleDetails', oracleDetails)
   return oracleDetails
 }
 

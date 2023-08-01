@@ -33,8 +33,6 @@
         v-for="transaction in contractCallTransactions.data"
         :key="transaction.hash">
         <td>
-          <hash-symbol>th</hash-symbol>
-
           <value-hash-ellipsed
             :hash="transaction.hash"
             :link-to="`/transactions/${transaction.hash}`"/>
@@ -70,7 +68,6 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import HashSymbol from '@/components/HashSymbol'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'

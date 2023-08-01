@@ -295,7 +295,6 @@
 
   &__paragraph {
     margin-bottom: var(--space-5);
-    font-family: var(--font-monospaced);
   }
 
   &__highlighted {

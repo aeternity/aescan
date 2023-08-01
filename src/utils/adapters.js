@@ -431,7 +431,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
-    expiration: oracle.approximateExpireTime,
+    expiration: DateTime.fromMillis(oracle.approximateExpireTime),
     expirationHeight: oracle.expireHeight,
     registered: oracle.activeFrom
       ? formatBlockDiffAsDatetime(
@@ -448,7 +448,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
     lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.microTime) : null,
     lastQueryHeight: lastQueryTx?.blockHeight,
   }
-
+  console.log('oracleDetails', oracleDetails)
   return oracleDetails
 }
 

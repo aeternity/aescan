@@ -13,7 +13,7 @@
       @click="search">
       <app-icon
         name="magnifying-glass"
-        :size="21"/>
+        :size="18"/>
     </button>
   </div>
 </template>
@@ -63,27 +63,35 @@ async function search() {
   }
   userQuery.value = ''
 }
+
 function isAccountAddress(query) {
   return isAddressValid(query) && query.startsWith('ak_')
 }
+
 function isNameId(query) {
   return isAddressValid(query) && query.startsWith('nm_')
 }
+
 function isTransactionHash(query) {
   return isAddressValid(query) && query.startsWith('th_')
 }
+
 function isContractId(query) {
   return isAddressValid(query) && query.startsWith('ct_')
 }
+
 function isOracleId(query) {
   return isAddressValid(query) && query.startsWith('ok_')
 }
+
 function isStateChannelId(query) {
   return isAddressValid(query) && query.startsWith('ch_')
 }
+
 async function isAccountName(query) {
   return await isNameAvailable(query)
 }
+
 function isKeyblockId(query) {
   if (isAddressValid(query) && query.startsWith('kh_')) {
     return true
@@ -95,6 +103,7 @@ function isKeyblockId(query) {
 
   return false
 }
+
 function isMicroblockId(query) {
   return isAddressValid(query) && query.startsWith('mh_')
 }
@@ -102,7 +111,7 @@ function isMicroblockId(query) {
 
 <style scoped>
 .search-bar {
-  padding: var(--space-1) 10px var(--space-1) var(--space-3);
+  padding: 6px var(--space-0) 6px var(--space-3);
   display: flex;
   align-items: center;
 
@@ -112,12 +121,20 @@ function isMicroblockId(query) {
   border-radius: 8px;
 
   &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 100%;
+    border-radius: 4px;
+
     margin: auto;
     padding: 0;
     border: none;
-    background: inherit;
     cursor: pointer;
-    color: var(--color-midnight);
+
+    background: var(--color-midnight);
+    color: var(--color-white)
   }
 
   &__input {
@@ -125,7 +142,7 @@ function isMicroblockId(query) {
     border: none;
     background-color: var(--color-white);
     margin-right: var(--space-1);
-    font-size: 11px;
+    font-size: 14px;
     appearance: none;
     font-family: var(--font-monospaced);
 

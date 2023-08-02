@@ -80,6 +80,7 @@
           </th>
           <td class="contract-details-panel__data">
             <copy-chip
+              variant="primary"
               :label="formatEllipseHash(contractDetails.bytecode)"
               :clipboard-text="contractDetails.bytecode"/>
           </td>

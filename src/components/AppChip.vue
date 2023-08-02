@@ -15,7 +15,7 @@ defineProps({
     type: String,
     default: 'primary',
     validator: val =>
-      ['primary', 'secondary', 'success', 'error'].includes(val),
+      ['primary', 'secondary', 'success', 'error', 'dark'].includes(val),
   },
   size: {
     type: String,

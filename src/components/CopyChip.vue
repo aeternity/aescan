@@ -2,7 +2,7 @@
   <div class="copy-chip">
     <app-chip
       ref="container"
-      :variant="!isCopyAnimationActive ? variant : 'success'">
+      :variant="!isCopyAnimationActive ? 'dark' : 'success'">
       <div class="copy-chip__text">
         {{ textToDisplay }}
       </div>
@@ -25,12 +25,6 @@ const props = defineProps({
   label: {
     type: String,
     required: true,
-  },
-  variant: {
-    type: String,
-    default: 'dark',
-    validator: val =>
-      ['primary', 'dark'].includes(val),
   },
   clipboardText: {
     type: String,

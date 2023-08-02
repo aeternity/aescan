@@ -134,7 +134,7 @@ function isMicroblockId(query) {
     cursor: pointer;
 
     background: var(--color-midnight);
-    color: var(--color-white)
+    color: var(--color-white);
   }
 
   &__input {

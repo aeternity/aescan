@@ -9,8 +9,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/state-channels/${transactionData.channel_id}`">
-            {{ transactionData.channel_id }}
+          <app-link :to="`/state-channels/${transactionData.channelId}`">
+            {{ transactionData.channelId }}
           </app-link>
         </td>
       </tr>
@@ -24,7 +24,7 @@
         <td class="transaction-type-panel-channel-create-tx__data">
           {{
             formatAePrice(
-              formatAettosToAe(transactionData.channel_reserve),
+              formatAettosToAe(transactionData.channelReserve),
               null,
             )
           }}
@@ -38,13 +38,13 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/accounts/${transactionData.initiator_id}`">
-            {{ transactionData.initiator_id }}
+          <app-link :to="`/accounts/${transactionData.initiatorId}`">
+            {{ transactionData.initiatorId }}
           </app-link>
           /
           {{
             formatAePrice(
-              formatAettosToAe(transactionData.initiator_amount),
+              formatAettosToAe(transactionData.initiatorAmount),
               null,
             )
           }}
@@ -69,13 +69,13 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/accounts/${transactionData.responder_id}`">
-            {{ transactionData.responder_id }}
+          <app-link :to="`/accounts/${transactionData.responderId}`">
+            {{ transactionData.responderId }}
           </app-link>
           /
           {{
             formatAePrice(
-              formatAettosToAe(transactionData.responder_amount),
+              formatAettosToAe(transactionData.responderAmount),
               null,
             )
           }}

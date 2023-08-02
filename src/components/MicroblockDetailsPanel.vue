@@ -24,12 +24,12 @@
             </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
-            <app-link :to="`/keyblocks/${microblockDetails.prev_key_hash}`">
+            <app-link :to="`/keyblocks/${microblockDetails.prevKeyHash}`">
               <span class="microblock-details-panel__hash">
-                {{ microblockDetails.prev_key_hash }}
+                {{ microblockDetails.prevKeyHash }}
               </span>
               <span class="microblock-details-panel__hash-ellipse">
-                {{ formatEllipseHash(microblockDetails.prev_key_hash) }}
+                {{ formatEllipseHash(microblockDetails.prevKeyHash) }}
               </span>
             </app-link>
           </td>
@@ -66,7 +66,7 @@
             </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
-            {{ formatNumber(microblockDetails.transactions_count) }}
+            {{ formatNumber(microblockDetails.transactionsCount) }}
           </td>
         </tr>
         <tr class="microblock-details-panel__row">

@@ -1,7 +1,7 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.sender_id"
-    :link-to="`/accounts/${transactionData.sender_id}`"/>
+    :hash="transactionData.senderId"
+    :link-to="`/accounts/${transactionData.senderId}`"/>
 
   <transaction-arrow-right-icon/>
   <app-link
@@ -12,8 +12,8 @@
   </app-link>
   <value-hash-ellipsed
     v-else
-    :hash="transactionData.recipient_id"
-    :link-to="`/accounts/${transactionData.recipient_id}`"/>
+    :hash="transactionData.recipientId"
+    :link-to="`/accounts/${transactionData.recipientId}`"/>
 
   <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionData.amount)) }}

@@ -237,7 +237,6 @@
 
   &__paragraph {
     margin-bottom: var(--space-5);
-    font-family: var(--font-monospaced);
   }
 
   &__highlighted {
@@ -247,11 +246,11 @@
   &__list {
     list-style-type: disc;
     margin-left: var(--space-2);
+    font-family: var(--font-monospaced);
   }
 
   &__item {
     margin-bottom: var(--space-1);
-
   }
 }
 </style>

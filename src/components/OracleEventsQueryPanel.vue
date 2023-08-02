@@ -6,7 +6,7 @@
     <dl>
       <dt class="oracle-events-query-panel_term">
         Query ID:
-        <hint-tooltip>
+        <hint-tooltip variant="dark">
           {{ oraclesHints.queryId }}
         </hint-tooltip>
       </dt>
@@ -14,7 +14,7 @@
 
       <dt class="oracle-events-query-panel_term">
         Query Fee:
-        <hint-tooltip>
+        <hint-tooltip variant="dark">
           {{ oraclesHints.queryFee }}
         </hint-tooltip>
       </dt>
@@ -22,7 +22,7 @@
 
       <dt class="oracle-events-query-panel_term">
         Query:
-        <hint-tooltip>
+        <hint-tooltip variant="dark">
           {{ oraclesHints.queryContent }}
         </hint-tooltip>
       </dt>
@@ -32,7 +32,7 @@
 
       <dt class="oracle-events-query-panel_term">
         Response TTL:
-        <hint-tooltip>
+        <hint-tooltip variant="dark">
           {{ oraclesHints.responseTtl }}
         </hint-tooltip>
       </dt>
@@ -40,7 +40,7 @@
 
       <dt class="oracle-events-query-panel_term">
         Response:
-        <hint-tooltip>
+        <hint-tooltip variant="dark">
           {{ oraclesHints.response }}
         </hint-tooltip>
       </dt>

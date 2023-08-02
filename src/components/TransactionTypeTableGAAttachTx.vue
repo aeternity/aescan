@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          <transaction-type-status-label :status="transactionData.return_type"/>
+          <transaction-type-status-label :status="transactionData.returnType"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
@@ -20,8 +20,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          <app-link :to="`/accounts/${transactionData.owner_id}`">
-            {{ transactionData.owner_id }}
+          <app-link :to="`/accounts/${transactionData.ownerId}`">
+            {{ transactionData.ownerId }}
           </app-link>
         </td>
       </tr>
@@ -33,8 +33,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          <app-link :to="`/contracts/${transactionData.contract_id}`">
-            {{ formatNullable(transactionData.contract_id) }}
+          <app-link :to="`/contracts/${transactionData.contractId}`">
+            {{ formatNullable(transactionData.contractId) }}
           </app-link>
         </td>
       </tr>
@@ -46,7 +46,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          {{ transactionData.auth_fun_name }}
+          {{ transactionData.authFunName }}
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
@@ -76,7 +76,7 @@
         <td class="transaction-type-panel-ga-attach-tx__data">
           {{ formatNullable(transactionData.gas) }}
           /
-          {{ formatAePrice(formatAettosToAe(transactionData.gas_price), null) }}
+          {{ formatAePrice(formatAettosToAe(transactionData.gasPrice), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
@@ -93,7 +93,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          {{ formatNullable(transactionData.gas_used) }}
+          {{ formatNullable(transactionData.gasUsed) }}
           /
           {{ formatNullable(formatAePrice(formatAettosToAe(gasCosts), null)) }}
         </td>
@@ -116,7 +116,7 @@ const props = defineProps({
 })
 
 const gasCosts = computed(() =>
-  props.transactionData.gas_used * props.transactionData.gas_price,
+  props.transactionData.gasUsed * props.transactionData.gasPrice,
 )
 </script>
 

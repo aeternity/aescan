@@ -1,11 +1,11 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.oracle_id"
-    :link-to="`/oracles/${transactionData.oracle_id}`"/>
+    :hash="transactionData.oracleId"
+    :link-to="`/oracles/${transactionData.oracleId}`"/>
 
   <app-tooltip>
     <app-chip size="sm">
-      {{ transactionData.oracle_ttl.value }}
+      {{ transactionData.oracleTtl.value }}
     </app-chip>
     <template #tooltip>
       TTL

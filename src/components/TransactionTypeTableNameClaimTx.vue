@@ -22,8 +22,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          <app-link :to="`/accounts/${transactionData.account_id}`">
-            {{ transactionData.account_id }}
+          <app-link :to="`/accounts/${transactionData.accountId}`">
+            {{ transactionData.accountId }}
           </app-link>
         </td>
       </tr>
@@ -35,7 +35,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.name_fee), null) }}
+          {{ formatAePrice(formatAettosToAe(transactionData.nameFee), null) }}
         </td>
       </tr>
     </tbody>

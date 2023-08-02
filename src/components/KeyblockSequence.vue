@@ -10,11 +10,11 @@
         :class="[
           'keyblock-sequence__cell',
           {
-            'keyblock-sequence__cell--empty': keyblock?.micro_blocks_count === 0,
+            'keyblock-sequence__cell--empty': keyblock?.microBlocksCount === 0,
             'keyblock-sequence__cell--active': keyblock.hash === selectedKeyblock.hash
           }]"
         @click="selectKeyblock(keyblock)">
-        {{ keyblock?.micro_blocks_count }}
+        {{ keyblock?.microBlocksCount }}
       </div>
     </TransitionGroup>
     <div class="keyblock-sequence__overlay"/>

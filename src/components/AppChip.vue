@@ -63,6 +63,11 @@ defineProps({
     color: var(--color-white);
   }
 
+  &--dark {
+    background: var(--color-midnight-55);
+    color: var(--color-white);
+  }
+
   &--sm {
     height: 28px;
     padding: var(--space-0) var(--space-1);

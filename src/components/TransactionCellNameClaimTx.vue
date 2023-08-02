@@ -1,7 +1,7 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.account_id"
-    :link-to="`/accounts/${transactionData.account_id}`"/>
+    :hash="transactionData.accountId"
+    :link-to="`/accounts/${transactionData.accountId}`"/>
 
   <transaction-arrow-right-icon/>
   <span class="u-ellipsis transaction-cell-name-claim-tx__name">
@@ -10,7 +10,7 @@
     </app-link>
   </span>
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.name_fee)) }}
+    {{ formatAePrice(formatAettosToAe(transactionData.nameFee)) }}
   </app-chip>
 </template>
 

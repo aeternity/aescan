@@ -19,14 +19,17 @@
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             Keyblock
+            <hint-tooltip>
+              {{ microblocksHints.keyblock }}
+            </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
-            <app-link :to="`/keyblocks/${microblockDetails.prev_key_hash}`">
+            <app-link :to="`/keyblocks/${microblockDetails.prevKeyHash}`">
               <span class="microblock-details-panel__hash">
-                {{ microblockDetails.prev_key_hash }}
+                {{ microblockDetails.prevKeyHash }}
               </span>
               <span class="microblock-details-panel__hash-ellipse">
-                {{ formatEllipseHash(microblockDetails.prev_key_hash) }}
+                {{ formatEllipseHash(microblockDetails.prevKeyHash) }}
               </span>
             </app-link>
           </td>
@@ -34,6 +37,9 @@
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             Height
+            <hint-tooltip>
+              {{ microblocksHints.microblockHeight }}
+            </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
             <app-link :to="`/keyblocks/${microblockDetails.height}`">
@@ -44,6 +50,9 @@
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             Time
+            <hint-tooltip>
+              {{ microblocksHints.time }}
+            </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
             <datetime-label :datetime="microblockDetails.time"/>
@@ -52,14 +61,20 @@
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             Transactions Count
+            <hint-tooltip>
+              {{ microblocksHints.transactionsCount }}
+            </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
-            {{ formatNumber(microblockDetails.transactions_count) }}
+            {{ formatNumber(microblockDetails.transactionsCount) }}
           </td>
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             API Links
+            <hint-tooltip>
+              {{ microblocksHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
             <div class="microblock-details-panel__container">
@@ -89,6 +104,7 @@
 </template>
 
 <script setup>
+import { microblocksHints } from '@/utils/hints/microblocksHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'

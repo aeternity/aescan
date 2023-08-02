@@ -28,7 +28,6 @@
         :key="event.respondTx">
         <tr>
           <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
-            <hash-symbol>th</hash-symbol>
             <value-hash-ellipsed
               :hash="event.queryTx"
               :link-to="`/transactions/${event.queryTx}`"/>

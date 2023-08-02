@@ -5,8 +5,7 @@
         <th class="keyblock-table__header keyblock-table__column-start">
           Height
           <hint-tooltip class="keyblock-table__tooltip">
-            Total number of keyblocks that have been added to the blockchain in a sequential order, starting
-            from the genesis block. Each new block added to the chain increases the height by one.
+            {{ keyblocksHints.height }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
@@ -18,7 +17,7 @@
         <th class="keyblock-table__header keyblock-table__column-end">
           Beneficiary
           <hint-tooltip class="keyblock-table__tooltip">
-            The miner who successfully added the keyblock to the blockchain and received a block reward.
+            {{ keyblocksHints.beneficiary }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
@@ -33,8 +32,7 @@
         <th class="keyblock-table__header keyblock-table__column-start">
           Hash
           <hint-tooltip class="keyblock-table__tooltip">
-            Unique identifier of the latest keyblock. It also serves as a reference point for subsequent
-            keyblocks to be added to the blockchain.
+            {{ keyblocksHints.hash }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
@@ -46,12 +44,11 @@
         <th class="keyblock-table__header keyblock-table__column-end">
           Beneficiary-Reward
           <hint-tooltip class="keyblock-table__tooltip">
-            Amount that was paid to the miner who added the keyblock to the blockchain, as an incentive for
-            their participation and contribution to the network.
+            {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          {{ formatNullable(formatAePrice(stats?.block_reward)) }}
+          {{ formatNullable(formatAePrice(stats?.blockReward)) }}
         </td>
       </tr>
 
@@ -59,7 +56,7 @@
         <th class="keyblock-table__column-start">
           Mined
           <hint-tooltip class="keyblock-table__tooltip">
-            The exact moment when the keyblock was successfully added to the blockchain.
+            {{ keyblocksHints.mined }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data ">
@@ -68,12 +65,11 @@
         <th class="keyblock-table__column-end">
           BRI-Reward
           <hint-tooltip class="keyblock-table__tooltip">
-            A fraction of the keyblock reward that was granted to æternity crypto foundation to fund its
-            activities.
+            {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          {{ formatNullable(formatAePrice(stats?.dev_reward)) }}
+          {{ formatNullable(formatAePrice(stats?.devReward)) }}
         </td>
       </tr>
     </tbody>
@@ -81,6 +77,7 @@
 </template>
 
 <script setup>
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

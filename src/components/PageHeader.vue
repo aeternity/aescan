@@ -5,7 +5,8 @@
 
       <hint-tooltip
         v-if="$slots.tooltip"
-        class="page-header__tooltip">
+        class="page-header__tooltip"
+        variant="dark">
         <slot name="tooltip"/>
       </hint-tooltip>
     </app-title>

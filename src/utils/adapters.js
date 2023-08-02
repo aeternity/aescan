@@ -2,10 +2,10 @@ import { DateTime } from 'luxon'
 import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
-function isAuction(chainName) {
+function isAuction(name) {
   const auctionLength = 13
   const suffixLength = 6
-  return chainName.length - suffixLength < auctionLength
+  return name.length - suffixLength < auctionLength
 }
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
@@ -13,8 +13,8 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
     return {
       ...keyblock,
       mined: DateTime.fromMillis(keyblock.time),
-      block_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.block_reward) : null,
-      dev_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.dev_reward) : null,
+      blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
+      devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
     }
   }
 
@@ -25,7 +25,7 @@ export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
   const formattedData = keyblockMicroblocks.data.map(microblock => {
     return {
       time: DateTime.fromMillis(microblock.time),
-      transactionsCount: microblock.transactions_count,
+      transactionsCount: microblock.transactionsCount,
       hash: microblock.hash,
     }
   })
@@ -49,7 +49,7 @@ export function adaptSelectedMicroblockTransactions(transactions) {
       hash: transaction.hash,
       type: transaction.tx.type,
       data: transaction.tx,
-      created: DateTime.fromMillis(transaction.micro_time),
+      created: DateTime.fromMillis(transaction.microTime),
     }
   })
   return {
@@ -63,8 +63,8 @@ export function adaptTransactions(transactions) {
   const formattedData = transactions.data.map(transaction => {
     return {
       hash: transaction.hash,
-      createdHeight: transaction.block_height,
-      created: DateTime.fromMillis(transaction.micro_time),
+      createdHeight: transaction.blockHeight,
+      created: DateTime.fromMillis(transaction.microTime),
       type: transaction.tx.type,
       data: transaction.tx,
       hintKey: transaction.tx.type.charAt(0).toLowerCase() + transaction.tx.type.slice(1),
@@ -80,11 +80,11 @@ export function adaptTransactions(transactions) {
 export function adaptContracts(contracts) {
   const formattedData = contracts.data.map(contract => {
     return {
-      contractId: contract.tx.contract_id,
-      created: DateTime.fromMillis(contract.micro_time),
-      createdHeight: contract.block_height,
+      contractId: contract.tx.contractId,
+      created: DateTime.fromMillis(contract.microTime),
+      createdHeight: contract.blockHeight,
       hash: contract.hash,
-      createdBy: contract.tx.caller_id,
+      createdBy: contract.tx.callerId,
     }
   })
   return {
@@ -94,18 +94,18 @@ export function adaptContracts(contracts) {
   }
 }
 
-export function adaptChainNames(chainNames, blockHeight) {
-  return chainNames.map(chainName => {
+export function adaptNames(names, blockHeight) {
+  return names.map(name => {
     return {
-      name: chainName.name,
-      address: chainName.info.ownership.current,
-      activatedHeight: chainName.info.active_from,
+      name: name.name,
+      address: name.info.ownership.current,
+      activatedHeight: name.info.activeFrom,
       activated: formatBlockDiffAsDatetime(
-        chainName.info.active_from,
+        name.info.activeFrom,
         blockHeight,
       ),
-      isAuction: isAuction(chainName.name),
-      price: formatAettosToAe(chainName.info.claims.at(-1).tx.name_fee),
+      isAuction: isAuction(name.name),
+      price: formatAettosToAe(name.info.claims.at(-1).tx.nameFee),
     }
   })
 }
@@ -116,14 +116,14 @@ export function adaptDashboardStateChannels(stateChannels, blockHeight) {
       initiator: channel.initiator,
       responder: channel.responder,
       channel: channel.channel,
-      updateCount: channel.updates_count,
+      updateCount: channel.updatesCount,
       amount: formatAettosToAe(channel.amount),
-      updatedHeight: channel.last_updated_height,
+      updatedHeight: channel.lastUpdatedHeight,
       updated: formatBlockDiffAsDatetime(
-        channel.last_updated_height,
+        channel.lastUpdatedHeight,
         blockHeight,
       ),
-      updateType: channel.last_updated_tx_type,
+      updateType: channel.lastUpdatedTxType,
     }
   })
 }
@@ -132,8 +132,8 @@ export function adaptAccountNames(names) {
   const formattedData = names.data.map(name => {
     return {
       name: name.name,
-      expirationHeight: name.info.expire_height,
-      expires: DateTime.fromMillis(name.info.approximate_expire_time),
+      expirationHeight: name.info.expireHeight,
+      expires: DateTime.fromMillis(name.info.approximateExpireTime),
       pointers: Object.values(name.info.pointers),
     }
   })
@@ -155,8 +155,8 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
 
   return {
     ...selectedDeltaStats,
-    block_reward: formatAettosToAe(selectedDeltaStats.block_reward),
-    dev_reward: formatAettosToAe(selectedDeltaStats.dev_reward),
+    blockReward: formatAettosToAe(selectedDeltaStats.blockReward),
+    devReward: formatAettosToAe(selectedDeltaStats.devReward),
   }
 }
 
@@ -165,9 +165,9 @@ export function adaptActiveNames(names) {
     name: name.name,
     buyer: name.info.ownership.original,
     owner: name.info.ownership.current,
-    fee: formatAettosToAe(name.info.claims[0].tx.name_fee),
-    expiration: DateTime.fromMillis(name.info.approximate_expire_time),
-    expirationHeight: name.info.expire_height,
+    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
+    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
+    expirationHeight: name.info.expireHeight,
     pointers: Object.values(name.info.pointers),
   }))
   return {
@@ -180,11 +180,11 @@ export function adaptActiveNames(names) {
 export function adaptInAuctionNames(names, blockHeight) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    highestBidder: name.info.last_bid.tx.account_id,
-    bid: formatAettosToAe(name.info.last_bid.tx.name_fee),
+    highestBidder: name.info.lastBid.tx.accountId,
+    bid: formatAettosToAe(name.info.lastBid.tx.nameFee),
     bidCount: name.info.bids.length,
-    expirationHeight: name.info.auction_end,
-    expiration: formatBlockDiffAsDatetime(name.info.auction_end, blockHeight),
+    expirationHeight: name.info.auctionEnd,
+    expiration: formatBlockDiffAsDatetime(name.info.auctionEnd, blockHeight),
   }))
   return {
     next: names.next,
@@ -196,9 +196,9 @@ export function adaptInAuctionNames(names, blockHeight) {
 export function adaptExpiredNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    expirationHeight: name.info.expire_height,
-    expiration: DateTime.fromMillis(name.info.approximate_expire_time),
-    fee: formatAettosToAe(name.info.claims[0].tx.name_fee),
+    expirationHeight: name.info.expireHeight,
+    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
+    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
     lastBuyer: name.info.ownership.original,
     lastOwner: name.info.ownership.current,
   }))
@@ -226,32 +226,32 @@ export function adaptCustomPointers(allPointers) {
 }
 
 export function adaptName(name, blockHeight, blockTime) {
-  const lastBid = name?.auction?.last_bid || name?.info?.last_bid
+  const lastBid = name?.auction?.lastBid || name?.info?.lastBid
   const customPointers = adaptCustomPointers(name.info?.pointers)
   const formattedName = {
     name: name.name,
     active: name.active,
     owner: name.info?.ownership?.current,
-    bidder: lastBid?.tx?.account_id,
-    bid: lastBid?.tx.name_fee ? formatAettosToAe(lastBid.tx.name_fee) : null,
+    bidder: lastBid?.tx?.accountId,
+    bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
     status: name.status,
-    expirationHeight: name.info.expire_height ?? name.info.auction_end,
+    expirationHeight: name.info.expireHeight ?? name.info.auctionEnd,
     expiration: formatBlockDiffAsDatetime(
-      name.info.expire_height ?? name.info.auction_end,
+      name.info.expireHeight ?? name.info.auctionEnd,
       blockHeight,
     ),
     specialPointers: {
-      account: name.info?.pointers?.account_pubkey,
+      account: name.info?.pointers?.accountPubkey,
       channel: name.info?.pointers?.channel,
-      contract: name.info?.pointers?.contract_pubkey,
-      oracle: name.info?.pointers?.oracle_pubkey,
+      contract: name.info?.pointers?.contractPubkey,
+      oracle: name.info?.pointers?.oraclePubkey,
     },
     customPointers,
   }
 
   if (name.status === 'name' && name.active) {
     const blockCreatedTime = DateTime.fromMillis(blockTime)
-    const heightDiff = blockHeight - name.info.active_from
+    const heightDiff = blockHeight - name.info.activeFrom
     formattedName.activated = blockCreatedTime.minus({
       minutes: heightDiff * MINUTES_PER_BLOCK,
     })
@@ -264,12 +264,12 @@ export function adaptNameActions(actions, blockHeight) {
   const formattedData = actions.data.map(action => {
     return {
       type: action.type,
-      hash: action.payload.source_tx_hash || action.payload.call_tx_hash || action.payload.hash,
-      createdHeight: action.payload.block_height || action.height,
-      created: action.payload?.micro_time
-        ? DateTime.fromMillis(action.payload.micro_time)
+      hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
+      createdHeight: action.payload.blockHeight || action.height,
+      created: action.payload?.microTime
+        ? DateTime.fromMillis(action.payload.microTime)
         : formatBlockDiffAsDatetime(
-          action.payload.block_height || action.height,
+          action.payload.blockHeight || action.height,
           blockHeight,
         ),
     }
@@ -284,12 +284,12 @@ export function adaptNameActions(actions, blockHeight) {
 
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
   const created = transactionDetails.time ? DateTime.fromMillis(transactionDetails.time) : null
-  const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.block_height : 0
-  const blockHash = transactionDetails.block_hash !== 'none' ? transactionDetails.block_hash : null
+  const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.blockHeight : 0
+  const blockHash = transactionDetails.blockHash !== 'none' ? transactionDetails.blockHash : null
 
   return {
     type: transactionDetails.tx.type,
-    blockHeight: transactionDetails.block_height,
+    blockHeight: transactionDetails.blockHeight,
     blockHash,
     hash: transactionDetails.hash,
     fee: transactionDetails.tx.fee,
@@ -310,8 +310,8 @@ export function adaptContractDetails(
   return {
     id: rawContractInformation?.id,
     createTransactionHash: contractCreationTx?.hash,
-    createdBy: contractCreationTx?.tx.caller_id,
-    creationDate: DateTime.fromMillis(contractCreationTx?.micro_time),
+    createdBy: contractCreationTx?.tx.callerId,
+    creationDate: DateTime.fromMillis(contractCreationTx?.microTime),
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
     contractAccountBalance,
@@ -326,9 +326,9 @@ export function adaptContractEvents(events, blockHeight) {
       return {
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         createdHeight: event.height,
-        eventName: event.event_name,
+        eventName: event.eventName,
         data: event.args,
-        callTxHash: event.call_tx_hash,
+        callTxHash: event.callTxHash,
       }
     })
 
@@ -360,8 +360,8 @@ export function adaptTokenEvents(events, blockHeight) {
   const formattedData = events.data
     .map(event => {
       return {
-        hash: event.call_tx_hash,
-        name: event.event_name || 'N/A',
+        hash: event.callTxHash,
+        name: event.eventName || 'N/A',
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         createdHeight: event.height,
         args: event.args,
@@ -377,7 +377,7 @@ export function adaptTokenEvents(events, blockHeight) {
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
   const formattedData = tokenHolders.data.map(holder => ({
-    address: holder.account_id,
+    address: holder.accountId,
     amount: holder.amount / (10 ** tokenDetails.decimals),
     percentage: (holder.amount / (10 ** (tokenDetails.decimals - 2))) / tokenDetails.totalSupply,
   }))
@@ -394,7 +394,7 @@ export function adaptListedTokens(tokens) {
     .filter(token => token.listed === true)
     .map(token => {
       return {
-        contract_id: token.address,
+        contractId: token.address,
         name: token.name,
         symbol: token.symbol,
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
@@ -412,11 +412,11 @@ export function adaptOracles(oracles, blockHeight) {
   const formattedData = oracles.data.map(oracle => {
     return {
       id: oracle.oracle,
-      activeFromHeight: oracle.active_from,
-      activeFrom: formatBlockDiffAsDatetime(oracle.active_from, blockHeight),
-      expireHeight: oracle.expire_height,
-      expire: DateTime.fromMillis(oracle.approximate_expire_time),
-      queryFee: formatAettosToAe(oracle.query_fee),
+      activeFromHeight: oracle.activeFrom,
+      activeFrom: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
+      expirationHeight: oracle.expireHeight,
+      expiration: DateTime.fromMillis(oracle.approximateExpireTime),
+      queryFee: formatAettosToAe(oracle.queryFee),
     }
   })
 
@@ -430,37 +430,36 @@ export function adaptOracles(oracles, blockHeight) {
 export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHeight) {
   const oracleDetails = {
     id: oracle.oracle,
-    fee: formatAettosToAe(oracle.query_fee),
-    expiration: DateTime.fromMillis(oracle.approximate_expire_time),
-    expirationHeight: oracle.expire_height,
-    registered: oracle.active_from
+    fee: formatAettosToAe(oracle.queryFee),
+    expiration: DateTime.fromMillis(oracle.approximateExpireTime),
+    expirationHeight: oracle.expireHeight,
+    registered: oracle.activeFrom
       ? formatBlockDiffAsDatetime(
-        oracle.active_from,
+        oracle.activeFrom,
         blockHeight,
       )
       : null,
-    registeredHeight: oracle.active_from,
+    registeredHeight: oracle.activeFrom,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
     operator: oracle.oracle.replace('ok_', 'ak_'),
-    lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.micro_time) : null,
-    lastExtendedHeight: lastExtendedTx?.block_height,
-    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.micro_time) : null,
-    lastQueryHeight: lastQueryTx?.block_height,
+    lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.microTime) : null,
+    lastExtendedHeight: lastExtendedTx?.blockHeight,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.microTime) : null,
+    lastQueryHeight: lastQueryTx?.blockHeight,
   }
-
   return oracleDetails
 }
 
 export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
-      queryTx: event.query.source_tx_hash,
-      respondTx: event.source_tx_hash,
-      queryId: event.query.query_id,
+      queryTx: event.query.sourceTxHash,
+      respondTx: event.sourceTxHash,
+      queryId: event.query.queryId,
       queryFee: formatAettosToAe(event.query.fee),
       query: formatDecodeBase64(event.query.query),
-      responseTtl: event.query.response_ttl.value,
+      responseTtl: event.query.responseTtl.value,
       response: formatDecodeBase64(event.response),
     }
   })
@@ -476,21 +475,21 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
   return {
     id: stateChannel.channel,
     isOpen: stateChannel.active,
-    createTransactionHash: stateChannelCreateTx.source_tx_hash,
-    initialAmount: formatAettosToAe(stateChannel.initiator_amount + stateChannel.responder_amount),
+    createTransactionHash: stateChannelCreateTx.sourceTxHash,
+    initialAmount: formatAettosToAe(stateChannel.initiatorAmount + stateChannel.responderAmount),
     initiator: stateChannel.initiator,
     responder: stateChannel.responder,
-    onChainUpdates: stateChannel.updates_count,
+    onChainUpdates: stateChannel.updatesCount,
     lastKnownRound: stateChannel.round,
     aeLocked: formatAettosToAe(stateChannel.amount),
-    lastUpdatedHeight: stateChannel.last_updated_height,
-    lastUpdated: stateChannel.last_updated_height
+    lastUpdatedHeight: stateChannel.lastUpdatedHeight,
+    lastUpdated: stateChannel.lastUpdatedHeight
       ? formatBlockDiffAsDatetime(
-        stateChannel.last_updated_height,
+        stateChannel.lastUpdatedHeight,
         blockHeight,
       )
       : null,
-    lastTxType: stateChannel.last_updated_tx_type,
+    lastTxType: stateChannel.lastUpdatedTxType,
   }
 }
 
@@ -502,11 +501,11 @@ export function adaptStateChannels(channels, blockHeight) {
         status: channel.active ? 'Open' : 'Closed',
         initiator: channel.initiator,
         responder: channel.responder,
-        updateCount: channel.updates_count,
+        updateCount: channel.updatesCount,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
-        updated: formatBlockDiffAsDatetime(channel.last_updated_height, blockHeight),
-        updatedHeight: channel.last_updated_height,
-        updateType: channel.last_updated_tx_type,
+        updated: formatBlockDiffAsDatetime(channel.lastUpdatedHeight, blockHeight),
+        updatedHeight: channel.lastUpdatedHeight,
+        updateType: channel.lastUpdatedTxType,
       }
     })
   return {

@@ -1,27 +1,27 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.initiator_id"
-    :link-to="`/accounts/${transactionData.initiator_id}`"/>
+    :hash="transactionData.initiatorId"
+    :link-to="`/accounts/${transactionData.initiatorId}`"/>
 
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.initiator_amount)) }}
+    {{ formatAePrice(formatAettosToAe(transactionData.initiatorAmount)) }}
   </app-chip>
 
   <transaction-plus-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.responder_id"
-    :link-to="`/accounts/${transactionData.responder_id}`"/>
+    :hash="transactionData.responderId"
+    :link-to="`/accounts/${transactionData.responderId}`"/>
 
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.responder_amount)) }}
+    {{ formatAePrice(formatAettosToAe(transactionData.responderAmount)) }}
   </app-chip>
 
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.channel_id"
-    :link-to="`/state-channels/${transactionData.channel_id}`"/>
+    :hash="transactionData.channelId"
+    :link-to="`/state-channels/${transactionData.channelId}`"/>
 </template>
 
 <script setup>

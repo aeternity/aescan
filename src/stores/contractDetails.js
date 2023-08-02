@@ -54,21 +54,25 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
     return true
   }
+
   async function fetchContractInformation() {
     rawContractInformation.value = null
     const { data } = await axios.get(`${NODE_URL}/v3/contracts/${contractId.value}`)
     rawContractInformation.value = data
   }
+
   async function fetchContractCallsCount() {
     contractCallsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count/${contractId.value}`)
-    contractCallsCount.value = Object.values(data?.contract_call_tx ?? {}).reduce((sum, value) => sum + value, 0)
+    contractCallsCount.value = Object.values(data?.contractCallTx ?? {}).reduce((sum, value) => sum + value, 0)
   }
+
   async function fetchContractCreationTx() {
     contractCreationTx.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs?limit=1&contract=${contractId.value}&direction=forward`)
     contractCreationTx.value = data?.data[0]
   }
+
   function fetchContractType() {
     contractType.value = null
     return Promise.any([
@@ -76,10 +80,12 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
       fetchIsContractAex141(),
     ])
   }
+
   async function fetchBalance() {
     const { data } = await axios.get(`${NODE_URL}/v3/accounts/${contractId.value.replace('ct_', 'ak_')}`)
     contractAccountBalance.value = data.balance
   }
+
   async function fetchContractEvents({ queryParameters = null }) {
     rawContractEvents.value = null
     const defaultParameters = `/v2/contracts/logs?contract_id=${contractId.value}`
@@ -110,6 +116,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
     await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId.value}`)
     contractType.value = 'AEX-9'
   }
+
   async function fetchIsContractAex141() {
     await axios.get(`${MIDDLEWARE_URL}/v2/aex141/${contractId.value}`)
     contractType.value = 'AEX-141'

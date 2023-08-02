@@ -30,7 +30,6 @@
       v-for="event in contractEvents.data"
       :key="event.callTxHash">
       <td class="contract-events-table__transaction">
-        <hash-symbol>th</hash-symbol>
         <value-hash-ellipsed
           :hash="event.callTxHash"
           :link-to="`/transactions/${event.callTxHash}`"/>
@@ -60,7 +59,6 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import CopyChip from '@/components/CopyChip'
-import HashSymbol from '@/components/HashSymbol'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { formatEllipseHash } from '@/utils/format'
 

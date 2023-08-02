@@ -9,8 +9,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracle_id}`">
-            {{ transactionData.oracle_id }}
+          <app-link :to="`/oracles/${transactionData.oracleId}`">
+            {{ transactionData.oracleId }}
           </app-link>
         </td>
       </tr>
@@ -22,8 +22,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link :to="`/accounts/${transactionData.sender_id}`">
-            {{ transactionData.sender_id }}
+          <app-link :to="`/accounts/${transactionData.senderId}`">
+            {{ transactionData.senderId }}
           </app-link>
         </td>
       </tr>
@@ -35,7 +35,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{ formatNullable(transactionData.query_id) }}
+          {{ formatNullable(transactionData.queryId) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
@@ -57,7 +57,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.query_fee), null) }}
+          {{ formatAePrice(formatAettosToAe(transactionData.queryFee), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
@@ -68,9 +68,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{ transactionData.query_ttl.value }}
+          {{ transactionData.queryTtl.value }}
           /
-          {{ transactionData.query_ttl.type }}
+          {{ transactionData.queryTtl.type }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
@@ -81,9 +81,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{ transactionData.response_ttl.value }}
+          {{ transactionData.responseTtl.value }}
           /
-          {{ transactionData.response_ttl.type }}
+          {{ transactionData.responseTtl.type }}
         </td>
       </tr>
     </tbody>

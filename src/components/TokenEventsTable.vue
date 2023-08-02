@@ -28,7 +28,6 @@
         v-for="event in tokenEvents.data"
         :key="event.hash">
         <td class="tokens-event-table__hash">
-          <hash-symbol>th</hash-symbol>
           <value-hash-ellipsed
             :hash="event.hash"
             :link-to="`/transactions/${event.hash}`"/>

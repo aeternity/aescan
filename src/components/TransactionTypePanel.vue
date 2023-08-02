@@ -14,11 +14,11 @@
         </app-link>
         <template v-if="transactionData.type === 'PayingForTx'">
           <copy-chip
-            :label="transactionData.payer_id"
+            :label="transactionData.payerId"
             class="transaction-type-panel__copy-chip"/>
           <copy-chip
-            :label="formatEllipseHash(transactionData.payer_id)"
-            :clipboard-text="transactionData.payer_id"
+            :label="formatEllipseHash(transactionData.payerId)"
+            :clipboard-text="transactionData.payerId"
             class="transaction-type-panel__copy-chip-ellipse"/>
           <app-chip variant="primary">
             {{ transactionData.tx.tx.type }}

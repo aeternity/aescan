@@ -1,13 +1,13 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.to_id"
-    :link-to="`/accounts/${transactionData.to_id}`"/>
+    :hash="transactionData.toId"
+    :link-to="`/accounts/${transactionData.toId}`"/>
 
   <transaction-arrow-left-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.channel_id"
-    :link-to="`/state-channels/${transactionData.channel_id}`"/>
+    :hash="transactionData.channelId"
+    :link-to="`/state-channels/${transactionData.channelId}`"/>
 
   <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionData.amount)) }}

@@ -4,11 +4,7 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { adaptDeltaStats, adaptKeyblock, adaptSelectedMicroblockTransactions } from '@/utils/adapters'
 import { formatAettosToAe, formatNullable, formatNumber } from '@/utils/format'
-import {
-  VISIBLE_KEYBLOCKS_LIMIT,
-  VISIBLE_MICROBLOCKS_LIMIT,
-  VISIBLE_TRANSACTIONS_LIMIT,
-} from '@/utils/constants'
+import { VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_MICROBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'
 
 const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSequence?.[0].hash
 
@@ -37,7 +33,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     return rawSelectedMicroblock.value || selectedKeyblockMicroblocks.value?.[0]
   })
   const selectedKeyblockTransactionsCount = computed(() => {
-    return selectedKeyblock.value ? formatNullable(formatNumber(selectedKeyblock.value.transactions_count)) : ''
+    return selectedKeyblock.value ? formatNullable(formatNumber(selectedKeyblock.value.transactionsCount)) : ''
   })
   const selectedMicroblockTransactions = computed(() => {
     return rawSelectedMicroblockTransactions.value
@@ -45,20 +41,20 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       : null
   })
   const selectedMicroblockTransactionsCount = computed(() => {
-    return selectedMicroblock.value?.transactions_count || 0
+    return selectedMicroblock.value?.transactionsCount || 0
   })
   const selectedDeltaStats = computed(() => {
     const selectedKeyblockHeight = selectedKeyblock.value?.height || blockHeight.value
     return deltaStats.value ? adaptDeltaStats(deltaStats.value, selectedKeyblockHeight) : null
   })
   const latestReward = computed(() => {
-    return deltaStats.value ? formatAettosToAe(deltaStats.value[0].block_reward) : null
+    return deltaStats.value ? formatAettosToAe(deltaStats.value[0].blockReward) : null
   })
   const latestBri = computed(() => {
-    return deltaStats.value ? formatAettosToAe(deltaStats.value[0].dev_reward) : null
+    return deltaStats.value ? formatAettosToAe(deltaStats.value[0].devReward) : null
   })
   const latestKeyblockTransactionsCount = computed(() => {
-    return keyblocks.value?.[0].transactions_count
+    return keyblocks.value?.[0].transactionsCount
   })
   const blockHeight = computed(() => {
     return keyblocks.value?.[0].height
@@ -73,7 +69,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       rawSelectedKeyblock.value = keyblock
     }
 
-    if (keyblock?.micro_blocks_count === 0) {
+    if (keyblock?.microBlocksCount === 0) {
       clearSelectedMicroblocks()
       return
     }

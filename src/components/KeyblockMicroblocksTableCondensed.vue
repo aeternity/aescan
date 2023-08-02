@@ -38,13 +38,13 @@
             <app-tooltip>
               Transactions Count
               <template #tooltip>
-                {{ keyblocksHints.transactionsCount }}
+                {{ keyblocksHints.microblockTransactionsCount }}
               </template>
             </app-tooltip>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
             <div>
-              {{ microblock.transactionsCount }}
+              {{ microblock.microblockTransactionsCount }}
             </div>
           </td>
         </tr>

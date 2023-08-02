@@ -1,8 +1,6 @@
 <template>
   <Head>
-    <Title>
-      {{ APP_TITLE_SHORT }} | Unexpected Error
-    </Title>
+    <Title> {{ APP_TITLE_SHORT }} | Unexpected Error </Title>
 
     <Meta
       name="description"
@@ -106,8 +104,8 @@ import AppLink from '@/components/AppLink'
 import PageHeader from '@/components/PageHeader'
 import AppButton from '@/components/AppButton'
 import AppPanel from '@/components/AppPanel'
-import TheHeader from '~/components/TheHeader'
-import TheFooter from '~/components/TheFooter'
+import TheHeader from '@/components/TheHeader'
+import TheFooter from '@/components/TheFooter'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '~/utils/constants'
 
 useHead({

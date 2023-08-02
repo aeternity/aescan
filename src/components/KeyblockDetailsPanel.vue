@@ -33,14 +33,14 @@
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__controls">
               <pagination-button
-                class="keyblock-details-panel__prev-button"
+                class="keyblock-details-panel__button--prev"
                 direction="left"
                 @click="$router.push(`/keyblocks/${keyblockDetails.height - 1}`)"/>
 
               {{ keyblockDetails.height }}
 
               <pagination-button
-                class="keyblock-details-panel__next-button"
+                class="keyblock-details-panel__button--next"
                 direction="right"
                 :disabled="!isNextKeyblockMined"
                 @click="$router.push(`/keyblocks/${keyblockDetails.height + 1}`)"/>
@@ -279,19 +279,20 @@ const isNextKeyblockMined = computed(() =>
     align-items: center;
   }
 
-  &__next-button {
-    margin-left: var(--space-1);
+  &__button {
+    &--next {
+      margin-left: var(--space-1);
 
-    @media (--desktop) {
-      margin-left: var(--space-3);
+      @media (--desktop) {
+        margin-left: var(--space-3);
+      }
     }
-  }
+    &--prev {
+      margin-right: var(--space-1);
 
-  &__prev-button {
-    margin-right: var(--space-1);
-
-    @media (--desktop) {
-      margin-right: var(--space-3);
+      @media (--desktop) {
+        margin-right: var(--space-3);
+      }
     }
   }
 

@@ -14,7 +14,7 @@
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
 
-  <app-tabs v-if="keyblockDetails && !keyblockDetails?.notExistent">
+  <app-tabs v-if="showTabs">
     <app-tab title="Microblocks">
       <keyblock-microblocks-panel/>
     </app-tab>
@@ -36,6 +36,8 @@ const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
+
+const showTabs = computed(() => keyblockDetails && !keyblockDetails?.notExistent)
 
 await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)

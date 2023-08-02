@@ -2,7 +2,7 @@
   <button
     :class="[
       'pagination-button',
-      ...($slots.default ? [`pagination-button--${direction}`] : []),
+      $slots.default ? [`pagination-button--${direction}`] : [],
       {'pagination-button--disabled': disabled}
     ]"
     @click="!disabled && $emit('click')">
@@ -25,7 +25,7 @@ import AppIcon from '@/components/AppIcon'
 defineProps({
   direction: {
     type: String,
-    default: 'left',
+    required: true,
     validator: val => ['left', 'right'].includes(val),
   },
   disabled: {
@@ -60,11 +60,11 @@ defineEmits(['click'])
   }
 
   &--left {
-    padding: 4px 8px 4px 4px;
+    padding: var(--space-0) var(--space-1) var(--space-0) var(--space-0);
   }
 
   &--right {
-    padding: 4px 4px 4px 8px;
+    padding: var(--space-0) var(--space-0) var(--space-0) var(--space-1);
   }
 
   &--disabled {

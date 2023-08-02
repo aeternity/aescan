@@ -9,7 +9,7 @@
     </pagination-button>
 
     <pagination-button
-      class="pagination__next-button"
+      class="pagination__button--next"
       direction="right"
       :disabled="isNextDisabled"
       @click="$emit('next-clicked')">
@@ -48,13 +48,14 @@ defineEmits(['prev-clicked', 'next-clicked'])
   display: flex;
   justify-content: space-between;
 
-  &__next-button {
-    margin-left: var(--space-1);
+  &__button {
+    &--next{
+      margin-left: var(--space-1);
+    }
+   
+    &--prev {
+      margin-right: var(--space-1);
+    }
   }
-
-  &__prev-button {
-    margin-right: var(--space-1);
-  }
-
 }
 </style>

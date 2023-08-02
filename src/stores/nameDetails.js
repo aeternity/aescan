@@ -15,7 +15,7 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     return rawName.value ? adaptName(rawName.value, blockHeight.value, keyblocks.value?.[0].time) : null
   })
   const nameHash = computed(() => {
-    return rawName.value?.hash || rawName.value?.info.last_bid.tx.name_id
+    return rawName.value?.hash || rawName.value?.info.lastBid.tx.nameId
   })
   const nameActions = computed(() => {
     return rawNameActions.value ? adaptNameActions(rawNameActions.value, blockHeight.value) : null
@@ -29,12 +29,14 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
     rawName.value = data
   }
+
   async function fetchNameActions({ nameHash = null, queryParameters = null }) {
     rawNameActions.value = null
     const defaultParameters = `/v2/accounts/${nameHash}/activities`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawNameActions.value = data
   }
+
   async function isNameAvailable(name) {
     try {
       await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)

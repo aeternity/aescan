@@ -1,23 +1,23 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.from_id"
-    :link-to="`/accounts/${transactionData.from_id}`"/>
+    :hash="transactionData.fromId"
+    :link-to="`/accounts/${transactionData.fromId}`"/>
 
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.initiator_amount_final)) }}
+    {{ formatAePrice(formatAettosToAe(transactionData.initiatorAmountFinal)) }}
   </app-chip>
 
   <transaction-plus-icon/>
 
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.responder_amount_final)) }}
+    {{ formatAePrice(formatAettosToAe(transactionData.responderAmountFinal)) }}
   </app-chip>
 
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.channel_id"
-    :link-to="`/state-channels/${transactionData.channel_id}`"/>
+    :hash="transactionData.channelId"
+    :link-to="`/state-channels/${transactionData.channelId}`"/>
 </template>
 
 <script setup>

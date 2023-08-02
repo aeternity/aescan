@@ -6,14 +6,14 @@
   </app-chip>
 
   <value-hash-ellipsed
-    :hash="transactionDetails.sender_id"
-    :link-to="`/accounts/${transactionDetails.sender_id}`"/>
+    :hash="transactionDetails.senderId"
+    :link-to="`/accounts/${transactionDetails.senderId}`"/>
 
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionDetails.recipient_id"
-    :link-to="`/accounts/${transactionDetails.recipient_id}`"/>
+    :hash="transactionDetails.recipientId"
+    :link-to="`/accounts/${transactionDetails.recipientId}`"/>
 
   <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionDetails.amount)) }}

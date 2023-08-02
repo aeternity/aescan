@@ -48,8 +48,8 @@
         </td>
         <td>
           <value-hash-ellipsed
-            :hash="transaction.data.caller_id"
-            :link-to="`/accounts/${transaction.data.caller_id}`"/>
+            :hash="transaction.data.callerId"
+            :link-to="`/accounts/${transaction.data.callerId}`"/>
         </td>
         <td>
           <app-chip

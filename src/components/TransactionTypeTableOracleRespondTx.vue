@@ -9,8 +9,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracle_id}`">
-            {{ transactionData.oracle_id }}
+          <app-link :to="`/oracles/${transactionData.oracleId}`">
+            {{ transactionData.oracleId }}
           </app-link>
         </td>
       </tr>
@@ -22,7 +22,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
-          {{ transactionData.query_id }}
+          {{ transactionData.queryId }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
@@ -44,9 +44,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
-          {{ transactionData.response_ttl.value }}
+          {{ transactionData.responseTtl.value }}
           /
-          {{ transactionData.response_ttl.type }}
+          {{ transactionData.responseTtl.type }}
         </td>
       </tr>
     </tbody>

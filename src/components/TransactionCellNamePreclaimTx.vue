@@ -1,7 +1,7 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.account_id"
-    :link-to="`/accounts/${transactionData.account_id}`"/>
+    :hash="transactionData.accountId"
+    :link-to="`/accounts/${transactionData.accountId}`"/>
 </template>
 
 <script setup>

@@ -114,7 +114,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.block_reward, null) }}
+            {{ formatAePrice(keyblockDetails.blockReward, null) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -125,7 +125,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.dev_reward, null) }}
+            {{ formatAePrice(keyblockDetails.devReward, null) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -136,7 +136,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatNumber(keyblockDetails.micro_blocks_count) }}
+            {{ formatNumber(keyblockDetails.microBlocksCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -147,7 +147,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatNumber(keyblockDetails.transactions_count) }}
+            {{ formatNumber(keyblockDetails.transactionsCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">

@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="contractCallTransactions"
-    class="contract-call-transactions-panel">
+  <app-panel class="contract-call-transactions-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       :total-count="contractCallsCount"

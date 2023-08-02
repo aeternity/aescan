@@ -113,13 +113,13 @@ const nextLabel = computed(() => {
 })
 
 const handlePrevClicked = () => {
-  setContainerHeight()
+  setFixedContainerHeight()
   pageIndex.value--
   emit('prev-clicked')
 }
 
 const handleNextClicked = () => {
-  setContainerHeight()
+  setFixedContainerHeight()
   pageIndex.value++
   emit('next-clicked')
 }
@@ -134,7 +134,7 @@ watch(
   },
 )
 
-function setContainerHeight() {
+function setFixedContainerHeight() {
   paginatedContent.value.style.height = `${paginatedContent.value.clientHeight}px`
 }
 
@@ -199,7 +199,7 @@ onBeforeUnmount(() => {
   }
 
   &__spinner-loader {
-    margin-bottom: var(--space-3);
+    margin: var(--space-3) 0;
   }
 }
 </style>

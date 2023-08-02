@@ -14,7 +14,7 @@
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
 
-  <app-tabs v-if="keyblockExists">
+  <app-tabs v-if="isKeyblockExistent">
     <app-tab title="Microblocks">
       <keyblock-microblocks-panel/>
     </app-tab>
@@ -42,5 +42,5 @@ await useAsyncData(async() => {
   return true
 })
 
-const keyblockExists = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
+const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
 </script>

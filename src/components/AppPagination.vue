@@ -49,10 +49,10 @@ defineEmits(['prev-clicked', 'next-clicked'])
   justify-content: space-between;
 
   &__button {
-    &--next{
+    &--next {
       margin-left: var(--space-1);
     }
-   
+
     &--prev {
       margin-right: var(--space-1);
     }

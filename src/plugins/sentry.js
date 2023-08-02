@@ -18,11 +18,11 @@ export default defineNuxtPlugin(({ vueApp }) => {
 
   Sentry.init({
     app: vueApp,
-    dsn: config.SENTRY_DSN,
+    dsn: config.public.SENTRY_DSN,
     integrations: [
       new BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-        tracingOrigins: [config.APP_DOMAIN, /^\//],
+        tracingOrigins: [config.public.APP_DOMAIN, /^\//],
       }),
     ],
     beforeSend: (event) => {

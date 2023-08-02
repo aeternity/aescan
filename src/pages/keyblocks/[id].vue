@@ -37,7 +37,7 @@ const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
 
-const showTabs = computed(() => keyblockDetails && !keyblockDetails?.notExistent)
+const showTabs = computed(() => keyblockDetails.value && !keyblockDetails.value?.notExistent)
 
 await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)

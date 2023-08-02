@@ -95,7 +95,7 @@
       </app-panel>
     </div>
   </div>
-  <the-footer class="app__footer"/>
+  <the-footer/>
 </template>
 
 <script setup>

@@ -14,7 +14,7 @@
     v-if="keyblockDetails"
     :keyblock-details="keyblockDetails"/>
 
-  <app-tabs v-if="!keyblockDetails.notExistent">
+  <app-tabs v-if="keyblockDetails && !keyblockDetails.notExistent">
     <app-tab title="Microblocks">
       <keyblock-microblocks-panel/>
     </app-tab>

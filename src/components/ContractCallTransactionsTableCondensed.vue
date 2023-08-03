@@ -6,7 +6,12 @@
       class="contract-call-transactions-table-condensed__table">
       <tr class="contract-call-transactions-table-condensed__row">
         <th class="contract-call-transactions-table-condensed__header">
-          Hash
+          <app-tooltip>
+            Hash
+            <template #tooltip>
+              {{ contractsHints.callTransactionsHash }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-call-transactions-table-condensed__data">
           <value-hash-ellipsed
@@ -16,18 +21,31 @@
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">
         <th class="contract-call-transactions-table-condensed__header">
-          Time
+          <app-tooltip>
+            Time
+            <template #tooltip>
+              {{ contractsHints.callTransactionsTime }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-call-transactions-table-condensed__data">
           <div>
-            {{ transaction.createdHeight }}
+            <app-link
+              :to="`/keyblocks/${transaction.createdHeight}`">
+              {{ transaction.createdHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="transaction.created"/>
         </td>
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">
         <th class="contract-call-transactions-table-condensed__header">
-          Type
+          <app-tooltip>
+            Caller
+            <template #tooltip>
+              {{ contractsHints.callTransactionsCaller }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-call-transactions-table-condensed__data">
           <value-hash-ellipsed
@@ -37,7 +55,12 @@
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">
         <th class="contract-call-transactions-table-condensed__header">
-          Entry Point
+          <app-tooltip>
+            Entrypoint
+            <template #tooltip>
+              {{ contractsHints.callTransactionsEntryPoint }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-call-transactions-table-condensed__data">
           <app-chip
@@ -58,6 +81,7 @@
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'
+import { contractsHints } from '@/utils/hints/contractsHints'
 
 defineProps({
   contractCallTransactions: {

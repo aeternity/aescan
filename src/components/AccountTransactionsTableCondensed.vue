@@ -31,7 +31,10 @@
           </th>
           <td class="account-transactions-table-condensed__data">
             <div>
-              {{ transaction.createdHeight }}
+              <app-link
+                :to="`/keyblocks/${transaction.createdHeight}`">
+                {{ transaction.createdHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="transaction.created"/>
           </td>
@@ -75,7 +78,7 @@
 </template>
 
 <script setup>
-import { transactionsHints } from '../utils/hints/transactionsHints'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { accountHints } from '@/utils/hints/accountHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

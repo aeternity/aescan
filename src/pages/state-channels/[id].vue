@@ -5,6 +5,15 @@
 
   <page-header>
     State Channel
+
+    <template #tooltip>
+      {{ stateChannelsHints.stateChannel }}
+      <app-link
+        variant="primary"
+        to="https://aeternity.com/state-channels">
+        Learn more
+      </app-link>
+    </template>
   </page-header>
 
   <state-channel-details-panel
@@ -25,6 +34,7 @@ import PageHeader from '@/components/PageHeader'
 import { useStateChannelDetailsStore } from '@/stores/stateChannelDetails'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import StateChannelTransactionsPanel from '@/components/StateChannelTransactionsPanel'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()

@@ -86,9 +86,10 @@
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <span>
+            <app-link
+              :to="`/keyblocks/${name.expirationHeight}`">
               {{ name.expirationHeight }}
-            </span>
+            </app-link>
             (
             <datetime-label :datetime="name.expiration"/>
             )
@@ -119,7 +120,7 @@ import AppPanel from '@/components/AppPanel'
 import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'
 import CopyChip from '@/components/CopyChip'
-import HintTooltip from '~/components/HintTooltip'
+import HintTooltip from '@/components/HintTooltip'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatAePrice, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'

@@ -84,7 +84,11 @@
               </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
-              {{ channel.updatedHeight }} -
+              <app-link
+                :to="`/keyblocks/${channel.updatedHeight}`">
+                {{ channel.updatedHeight }}
+              </app-link>
+              -
               <datetime-label :datetime="channel.updated"/>
             </td>
           </tr>

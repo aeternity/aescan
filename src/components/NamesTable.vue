@@ -44,7 +44,7 @@
         </td>
         <td>
           <div class="names-table__label">
-            {{ name.isAuction ? 'Auction bid' : 'Fixed price' }}
+            {{ name.isAuction ? 'Auction' : 'Fixed price' }}
           </div>
           <div class="names-table__name-price">
             {{ formatAePrice(name.price) }}
@@ -52,7 +52,10 @@
         </td>
         <td>
           <div class="names-table__blocks">
-            {{ name.activatedHeight }}
+            <app-link
+              :to="`/keyblocks/${name.activatedHeight}`">
+              {{ name.activatedHeight }}
+            </app-link>
           </div>
           <div>
             <datetime-label :datetime="name.activated"/>

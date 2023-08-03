@@ -4,6 +4,9 @@
       <tr class="transaction-type-panel-oracle-extend-tx__row">
         <th class="transaction-type-panel-oracle-extend-tx__table-header">
           Oracle
+          <hint-tooltip>
+            {{ oraclesHints.oracleId }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-extend-tx__data">
           <app-link :to="`/oracles/${transactionData.oracle_id}`">
@@ -14,6 +17,9 @@
       <tr class="transaction-type-panel-oracle-extend-tx__row">
         <th class="transaction-type-panel-oracle-extend-tx__table-header">
           Oracle TTL / Type
+          <hint-tooltip>
+            {{ oraclesHints.oracleTtl }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-extend-tx__data">
           {{ transactionData.oracle_ttl.value }}
@@ -26,6 +32,8 @@
 </template>
 
 <script setup>
+import { oraclesHints } from '@/utils/hints/oraclesHints'
+
 defineProps({
   transactionData: {
     required: true,

@@ -27,7 +27,14 @@
       <div>
         Height:
         <span class="stats-panel__value">
-          {{ formatNullable(formatNumber(blockHeight)) }}
+          <app-link
+            v-if="blockHeight"
+            :to="`/keyblocks/${blockHeight}`">
+            {{ blockHeight }}
+          </app-link>
+          <template v-else>
+            ---
+          </template>
         </span>
       </div>
       <div>
@@ -218,7 +225,7 @@ const {
 
   @media (--desktop) {
     gap: var(--space-5) var(--space-3);
-    grid-template-columns:248px 248px 285px 285px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 68px 1fr;
     padding: var(--space-6);
   }

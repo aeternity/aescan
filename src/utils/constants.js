@@ -45,13 +45,14 @@ export const NUMBER_FRACTION_THRESHOLD = 100000
 export const MAXIMUM_FRACTION_DIGITS = 20
 export const APP_TITLE_SHORT = 'æScan'
 export const APP_TITLE = 'æScan - æternity Blockchain Explorer'
-export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platform, and decentralized Smart Contract navigation platform based on æternity'
+export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platform, and decentralized Smart Contract navigation platform based on æternity.'
+export const APP_KEYWORDS = 'aescan, aeternity, blockchain, explorer, search, crypto, currency'
 export const APP_URL = 'https://aescan.io'
 export const APP_CREATOR = '@aeternity'
 export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
 export const CACHE_KEY_MARKET_DATA = 'aeternity-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
-export const VISIBLE_KEYBLOCKS_LIMIT = 18
+export const VISIBLE_KEYBLOCKS_LIMIT = 20
 export const VISIBLE_MICROBLOCKS_LIMIT = 30
 export const VISIBLE_TRANSACTIONS_LIMIT = 4
 

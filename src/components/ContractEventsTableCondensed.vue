@@ -6,7 +6,12 @@
       class="contract-events-table-condensed__table">
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Call Transaction
+          <app-tooltip>
+            Call Transaction
+            <template #tooltip>
+              {{ contractsHints.eventsCallTransaction }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           <value-hash-ellipsed
@@ -16,18 +21,31 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Created
+          <app-tooltip>
+            Created
+            <template #tooltip>
+              {{ contractsHints.eventsCreated }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           <div>
-            {{ event.createdHeight }}
+            <app-link
+              :to="`/keyblocks/${event.createdHeight}`">
+              {{ event.createdHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="event.created"/>
         </td>
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Event Name
+          <app-tooltip>
+            Event Name
+            <template #tooltip>
+              {{ contractsHints.eventsName }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           {{ event.eventName ? event.eventName : 'N/A' }}
@@ -35,27 +53,25 @@
       </tr>
       <tr class="contract-events-table-condensed__row">
         <th class="contract-events-table-condensed__header">
-          Arguments
+          <app-tooltip>
+            Data
+            <template #tooltip>
+              {{ contractsHints.eventsData }}
+            </template>
+          </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
           <copy-chip
             class="contract-events-table-panel__copy-chip"
-            :clipboard-text="removeLineBreaks(event.args)"
-            :label="formatEllipseHash(removeLineBreaks(event.args))"/>
-        </td>
-      </tr>
-      <tr class="contract-events-table-condensed__row">
-        <th class="contract-events-table-condensed__header">
-          Data
-        </th>
-        <td class="contract-events-table-condensed__data">
-          {{ event.data }}
+            :clipboard-text="removeLineBreaks(event.data)"
+            :label="formatEllipseHash(removeLineBreaks(event.data))"/>
         </td>
       </tr>
     </table>
   </div>
 </template>
 <script setup>
+import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatEllipseHash } from '@/utils/format'

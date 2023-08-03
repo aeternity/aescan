@@ -23,6 +23,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Create Transaction
+            <hint-tooltip>
+              {{ contractsHints.contractTxHash }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
@@ -38,6 +41,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Date
+            <hint-tooltip>
+              {{ contractsHints.contractCreated }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <datetime-label :datetime="contractDetails.creationDate"/>
@@ -48,6 +54,9 @@
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Created By
+            <hint-tooltip>
+              {{ contractsHints.contractCreator }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
@@ -65,6 +74,9 @@
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Bytecode
+            <hint-tooltip>
+              {{ contractsHints.bytecode }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <copy-chip
@@ -75,6 +87,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Smart Contract’s Account
+            <hint-tooltip>
+              {{ contractsHints.contractsAccount }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
@@ -90,6 +105,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Smart Contract's Account Balance
+            <hint-tooltip>
+              {{ contractsHints.contractsAccountBalance }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
@@ -98,6 +116,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Smart Contract Calls
+            <hint-tooltip>
+              {{ contractsHints.contractCalls }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             {{ contractDetails.callsCount }}
@@ -105,7 +126,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            API links
+            API Links
+            <hint-tooltip>
+              {{ contractsHints.apiLinks }}
+            </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
             <div class="contract-details-panel__container">
@@ -116,6 +140,14 @@
                   name="file-cloud"
                   :size="22"/>
                 Node
+              </app-link>
+              <app-link
+                :to="contractMiddlewareUrl"
+                class="contract-details-panel__link">
+                <app-icon
+                  name="file-cloud"
+                  :size="22"/>
+                Middleware
               </app-link>
             </div>
           </td>
@@ -133,8 +165,10 @@ import CopyChip from '@/components/CopyChip'
 import AppChip from '@/components/AppChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
+import { contractsHints } from '@/utils/hints/contractsHints'
+import HintTooltip from '@/components/HintTooltip'
 
-const { NODE_URL } = useRuntimeConfig().public
+const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 
 const props = defineProps({
   contractDetails: {
@@ -145,6 +179,9 @@ const props = defineProps({
 
 const contractNodeUrl = computed(() =>
   `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
+)
+const contractMiddlewareUrl = computed(() =>
+  `${MIDDLEWARE_URL}/v2/contracts/${props.contractDetails.id}`,
 )
 </script>
 
@@ -199,6 +236,10 @@ const contractNodeUrl = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 
   &__hash {

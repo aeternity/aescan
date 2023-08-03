@@ -4,32 +4,38 @@
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
           Sender
+          <hint-tooltip>
+            {{ transactionsHints.sender }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           <app-link :to="`/accounts/${transactionData.sender_id}`">
-            <span class="transaction-type-panel-spend-tx__hash">{{
-              transactionData.sender_id
-            }}</span>
-            <span class="transaction-type-panel-spend-tx__hash-ellipse">{{
-              formatEllipseHash(transactionData.sender_id)
-            }}</span>
+            <span class="transaction-type-panel-spend-tx__hash">
+              {{ transactionData.sender_id }}
+            </span>
+            <span class="transaction-type-panel-spend-tx__hash-ellipse">
+              {{ formatEllipseHash(transactionData.sender_id) }}
+            </span>
           </app-link>
         </td>
       </tr>
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
           Recipient
+          <hint-tooltip>
+            {{ transactionsHints.recipient }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           <app-link
             v-if="!transactionData.recipient"
             :to="`/accounts/${transactionData.recipient_id}`">
-            <span class="transaction-type-panel-spend-tx__hash">{{
-              transactionData.recipient_id
-            }}</span>
-            <span class="transaction-type-panel-spend-tx__hash-ellipse">{{
-              formatEllipseHash(transactionData.recipient_id)
-            }}</span>
+            <span class="transaction-type-panel-spend-tx__hash">
+              {{ transactionData.recipient_id }}
+            </span>
+            <span class="transaction-type-panel-spend-tx__hash-ellipse">
+              {{ formatEllipseHash(transactionData.recipient_id) }}
+            </span>
           </app-link>
           <app-link
             v-else
@@ -41,6 +47,9 @@
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
           Amount
+          <hint-tooltip>
+            {{ transactionsHints.amount }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
@@ -49,6 +58,9 @@
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
           Payload
+          <hint-tooltip>
+            {{ transactionsHints.payload }}
+          </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           {{ decode(transactionData.payload) }}
@@ -60,6 +72,7 @@
 
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 

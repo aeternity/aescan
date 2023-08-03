@@ -35,7 +35,10 @@
         </td>
         <td>
           <div>
-            {{ action.createdHeight }}
+            <app-link
+              :to="`/keyblocks/${action.createdHeight}`">
+              {{ action.createdHeight }}
+            </app-link>
           </div>
           <datetime-label :datetime="action.created"/>
         </td>
@@ -53,7 +56,7 @@
 import HashSymbol from '@/components/HashSymbol'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
-import HintTooltip from '~/components/HintTooltip'
+import HintTooltip from '@/components/HintTooltip'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({

@@ -8,15 +8,39 @@ function isAuction(chainName) {
   return chainName.length - suffixLength < auctionLength
 }
 
-export function adaptKeyblock(keyblock) {
+export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
     return {
       ...keyblock,
       mined: DateTime.fromMillis(keyblock.time),
+      block_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.block_reward) : null,
+      dev_reward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.dev_reward) : null,
     }
   }
 
   return keyblock
+}
+
+export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
+  const formattedData = keyblockMicroblocks.data.map(microblock => {
+    return {
+      time: DateTime.fromMillis(microblock.time),
+      transactionsCount: microblock.transactions_count,
+      hash: microblock.hash,
+    }
+  })
+  return {
+    next: keyblockMicroblocks.next,
+    data: formattedData,
+    prev: keyblockMicroblocks.prev,
+  }
+}
+
+export function adaptMicroblock(microblock) {
+  return {
+    ...microblock,
+    time: DateTime.fromMillis(microblock.time),
+  }
 }
 
 export function adaptSelectedMicroblockTransactions(transactions) {
@@ -80,10 +104,8 @@ export function adaptChainNames(chainNames, blockHeight) {
         chainName.info.active_from,
         blockHeight,
       ),
-      isAuction: isAuction(chainName),
-      price: isAuction(chainName)
-        ? formatAettosToAe(chainName.last_bid.tx.name_fee)
-        : formatAettosToAe(chainName.info.claims[chainName.info.claims.length - 1].tx.name_fee),
+      isAuction: isAuction(chainName.name),
+      price: formatAettosToAe(chainName.info.claims.at(-1).tx.name_fee),
     }
   })
 }
@@ -106,15 +128,12 @@ export function adaptDashboardStateChannels(stateChannels, blockHeight) {
   })
 }
 
-export function adaptAccountNames(names, blockHeight) {
+export function adaptAccountNames(names) {
   const formattedData = names.data.map(name => {
     return {
       name: name.name,
       expirationHeight: name.info.expire_height,
-      expires: formatBlockDiffAsDatetime(
-        name.info.expire_height,
-        blockHeight,
-      ),
+      expires: DateTime.fromMillis(name.info.approximate_expire_time),
       pointers: Object.values(name.info.pointers),
     }
   })
@@ -141,16 +160,13 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
   }
 }
 
-export function adaptActiveNames(names, blockHeight) {
+export function adaptActiveNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
     buyer: name.info.ownership.original,
     owner: name.info.ownership.current,
     fee: formatAettosToAe(name.info.claims[0].tx.name_fee),
-    expiration: formatBlockDiffAsDatetime(
-      name.info.expire_height,
-      blockHeight,
-    ),
+    expiration: DateTime.fromMillis(name.info.approximate_expire_time),
     expirationHeight: name.info.expire_height,
     pointers: Object.values(name.info.pointers),
   }))
@@ -177,14 +193,11 @@ export function adaptInAuctionNames(names, blockHeight) {
   }
 }
 
-export function adaptExpiredNames(names, blockHeight) {
+export function adaptExpiredNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
     expirationHeight: name.info.expire_height,
-    expiration: formatBlockDiffAsDatetime(
-      name.info.expire_height,
-      blockHeight,
-    ),
+    expiration: DateTime.fromMillis(name.info.approximate_expire_time),
     fee: formatAettosToAe(name.info.claims[0].tx.name_fee),
     lastBuyer: name.info.ownership.original,
     lastOwner: name.info.ownership.current,
@@ -248,20 +261,19 @@ export function adaptName(name, blockHeight, blockTime) {
 }
 
 export function adaptNameActions(actions, blockHeight) {
-  const formattedData = actions.data
-    .map(action => {
-      return {
-        type: action.type,
-        hash: action.payload.source_tx_hash || action.payload.call_tx_hash || action.payload.hash,
-        createdHeight: action.payload.block_height || action.height,
-        created: action.payload?.micro_time
-          ? DateTime.fromMillis(action.payload.micro_time)
-          : formatBlockDiffAsDatetime(
-            action.payload.block_height || action.height,
-            blockHeight,
-          ),
-      }
-    })
+  const formattedData = actions.data.map(action => {
+    return {
+      type: action.type,
+      hash: action.payload.source_tx_hash || action.payload.call_tx_hash || action.payload.hash,
+      createdHeight: action.payload.block_height || action.height,
+      created: action.payload?.micro_time
+        ? DateTime.fromMillis(action.payload.micro_time)
+        : formatBlockDiffAsDatetime(
+          action.payload.block_height || action.height,
+          blockHeight,
+        ),
+    }
+  })
 
   return {
     next: actions.next,
@@ -315,8 +327,7 @@ export function adaptContractEvents(events, blockHeight) {
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         createdHeight: event.height,
         eventName: event.event_name,
-        args: event.args,
-        data: event.data,
+        data: event.args,
         callTxHash: event.call_tx_hash,
       }
     })
@@ -404,7 +415,7 @@ export function adaptOracles(oracles, blockHeight) {
       activeFromHeight: oracle.active_from,
       activeFrom: formatBlockDiffAsDatetime(oracle.active_from, blockHeight),
       expireHeight: oracle.expire_height,
-      expire: formatBlockDiffAsDatetime(oracle.expire_height, blockHeight),
+      expire: DateTime.fromMillis(oracle.approximate_expire_time),
       queryFee: formatAettosToAe(oracle.query_fee),
     }
   })
@@ -420,10 +431,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.query_fee),
-    expiration: formatBlockDiffAsDatetime(
-      oracle.expire_height,
-      blockHeight,
-    ),
+    expiration: DateTime.fromMillis(oracle.approximate_expire_time),
     expirationHeight: oracle.expire_height,
     registered: oracle.active_from
       ? formatBlockDiffAsDatetime(

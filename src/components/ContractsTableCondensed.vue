@@ -25,13 +25,16 @@
             <app-tooltip>
               Created
               <template #tooltip>
-                {{ contractsHints.contractCreated }}
+                {{ contractsHints.created }}
               </template>
             </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
             <div>
-              {{ contract.createdHeight }}
+              <app-link
+                :to="`/keyblocks/${contract.createdHeight}`">
+                {{ contract.createdHeight }}
+              </app-link>
             </div>
             <datetime-label :datetime="contract.created"/>
           </td>
@@ -41,7 +44,7 @@
             <app-tooltip>
               Hash
               <template #tooltip>
-                {{ contractsHints.contractTxHash }}
+                {{ contractsHints.hash }}
               </template>
             </app-tooltip>
           </th>
@@ -56,7 +59,7 @@
             <app-tooltip>
               Created By
               <template #tooltip>
-                {{ contractsHints.contractCreator }}
+                {{ contractsHints.creator }}
               </template>
             </app-tooltip>
           </th>

@@ -27,9 +27,14 @@
         </div>
       </div>
       <div class="dashboard__row">
-        <client-only>
+        <client-only v-if="!isLoading">
           <blockchain-panel/>
         </client-only>
+        <app-panel
+          v-else
+          class="dashboard__panel-loader">
+          <spinner-loader/>
+        </app-panel>
       </div>
 
       <div class="dashboard__row">
@@ -106,6 +111,8 @@ definePageMeta({
   layout: 'empty',
 })
 
+const isLoading = ref(true)
+
 await useAsyncData(() => Promise.all([
   fetchStateChannels(),
   fetchInAuctionNames(),
@@ -119,7 +126,9 @@ await useAsyncData(() => Promise.all([
   fetchSelectedMicroblocksInfo(),
   fetchTotalTransactionsCount(),
   fetchDeltaStats(),
-]), { server: false })
+]).then(() => {
+  isLoading.value = false
+}), { server: false })
 
 onBeforeMount(() => {
   isSubscribedToKeyblockDetails.value = true
@@ -190,6 +199,14 @@ onBeforeUnmount(() => {
     font-size: 14px;
     line-height: 20px;
     font-family: var(--font-monospaced);
+  }
+
+  &__panel-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--space-4);
   }
 }
 </style>

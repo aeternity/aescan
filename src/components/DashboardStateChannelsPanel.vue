@@ -2,7 +2,7 @@
   <app-panel class="dashboard-state-channels-panel">
     <panel-header
       level="h3"
-      title="STATE CHANNELS"
+      title="State Channels"
       icon-name="state-channel"
       show-all-link="/state-channels">
       State Channels

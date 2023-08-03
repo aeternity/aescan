@@ -11,7 +11,7 @@
       <div class="panel-header__container">
         <component
           :is="level"
-          class="panel-header__heading h3">
+          class="panel-header__heading h2">
           {{ title }}
           <hint-tooltip v-if="$slots.tooltip">
             <slot name="tooltip"/>

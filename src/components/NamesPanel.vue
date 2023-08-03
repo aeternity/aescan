@@ -2,7 +2,7 @@
   <app-panel class="names-panel">
     <panel-header
       level="h3"
-      title="NAMES RECENTLY ACTIVATED"
+      title="Names recently activated"
       icon-name="aens-name"
       show-all-link="/names/?type=active">
       <template #tooltip>

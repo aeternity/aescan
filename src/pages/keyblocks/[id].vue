@@ -43,4 +43,6 @@ await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)
   return true
 })
+
+const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
 </script>

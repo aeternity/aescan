@@ -21,12 +21,9 @@
 </template>
 
 <script setup>
-import { useRuntimeConfig } from 'nuxt/app'
 import TheSearchBar from '@/components/TheSearchBar'
 import StatsPanel from '@/components/StatsPanel'
 import MarketStats from '@/components/MarketStats'
-
-const { NETWORK_NAME } = useRuntimeConfig().public
 </script>
 
 <style scoped>

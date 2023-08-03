@@ -1,114 +1,107 @@
 <template>
   <app-panel class="name-pointers-special-panel">
-    <div
-      v-if="name"
-      class="name-pointers-special-panel__container">
-      <h2 class="name-pointers-special-panel__heading h3">
-        SPECIAL POINTERS
-      </h2>
-      <table>
-        <tbody>
-          <tr class="name-pointers-special-panel__row">
-            <th class="name-pointers-special-panel__table-header">
-              Account
-              <hint-tooltip>
-                {{ namesHints.accountPointer }}
-              </hint-tooltip>
-            </th>
-            <td class="name-pointers-special-panel__data">
-              <app-link
-                v-if="name.specialPointers.account"
-                :to="`/accounts/${name.specialPointers.account}`">
-                <span class="name-pointers-special-panel__link-text">
-                  {{ name.specialPointers.account }}
-                </span>
-                <span class="name-pointers-special-panel__link-text-ellipse">
-                  {{ formatEllipseHash(name.specialPointers.account) }}
-                </span>
-              </app-link>
+    <h2 class="name-pointers-special-panel__heading h3">
+      SPECIAL POINTERS
+    </h2>
+    <table>
+      <tbody>
+        <tr class="name-pointers-special-panel__row">
+          <th class="name-pointers-special-panel__table-header">
+            Account
+            <hint-tooltip>
+              {{ namesHints.accountPointer }}
+            </hint-tooltip>
+          </th>
+          <td class="name-pointers-special-panel__data">
+            <app-link
+              v-if="name.specialPointers.account"
+              :to="`/accounts/${name.specialPointers.account}`">
+              <span class="name-pointers-special-panel__link-text">
+                {{ name.specialPointers.account }}
+              </span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.account) }}
+              </span>
+            </app-link>
 
-              <template v-else>
-                -
-              </template>
-            </td>
-          </tr>
-          <tr class="name-pointers-special-panel__row">
-            <th class="name-pointers-special-panel__table-header">
-              State Channel
-              <hint-tooltip>
-                {{ namesHints.channelPointer }}
-              </hint-tooltip>
-            </th>
-            <td class="name-pointers-special-panel__data">
-              <app-link
-                v-if="name.specialPointers.channel"
-                :to="`/state-channels/${name.specialPointers.channel}`">
-                <span class="name-pointers-special-panel__link-text">
-                  {{ name.specialPointers.channel }}
-                </span>
-                <span class="name-pointers-special-panel__link-text-ellipse">
-                  {{ formatEllipseHash(name.specialPointers.channel) }}
-                </span>
-              </app-link>
+            <template v-else>
+              -
+            </template>
+          </td>
+        </tr>
+        <tr class="name-pointers-special-panel__row">
+          <th class="name-pointers-special-panel__table-header">
+            State Channel
+            <hint-tooltip>
+              {{ namesHints.channelPointer }}
+            </hint-tooltip>
+          </th>
+          <td class="name-pointers-special-panel__data">
+            <app-link
+              v-if="name.specialPointers.channel"
+              :to="`/state-channels/${name.specialPointers.channel}`">
+              <span class="name-pointers-special-panel__link-text">
+                {{ name.specialPointers.channel }}
+              </span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.channel) }}
+              </span>
+            </app-link>
 
-              <template v-else>
-                -
-              </template>
-            </td>
-          </tr>
-          <tr class="name-pointers-special-panel__row">
-            <th class="name-pointers-special-panel__table-header">
-              Smart Contract
-              <hint-tooltip>
-                {{ namesHints.contractPointer }}
-              </hint-tooltip>
-            </th>
-            <td class="name-pointers-special-panel__data">
-              <app-link
-                v-if="name.specialPointers.contract"
-                :to="`/contracts/${name.specialPointers.contract}`">
-                <span class="name-pointers-special-panel__link-text">
-                  {{ name.specialPointers.contract }}
-                </span>
-                <span class="name-pointers-special-panel__link-text-ellipse">
-                  {{ formatEllipseHash(name.specialPointers.contract) }}
-                </span>
-              </app-link>
-              <template v-else>
-                -
-              </template>
-            </td>
-          </tr>
-          <tr class="name-pointers-special-panel__row">
-            <th class="name-pointers-special-panel__table-header">
-              Oracle
-              <hint-tooltip>
-                {{ namesHints.oraclePointer }}
-              </hint-tooltip>
-            </th>
-            <td class="name-pointers-special-panel__data">
-              <app-link
-                v-if="name.specialPointers.oracle"
-                :to="`/oracles/${name.specialPointers.oracle}`">
-                <span class="name-pointers-special-panel__link-text">
-                  {{ name.specialPointers.oracle }}
-                </span>
-                <span class="name-pointers-special-panel__link-text-ellipse">
-                  {{ formatEllipseHash(name.specialPointers.oracle) }}
-                </span>
-              </app-link>
+            <template v-else>
+              -
+            </template>
+          </td>
+        </tr>
+        <tr class="name-pointers-special-panel__row">
+          <th class="name-pointers-special-panel__table-header">
+            Smart Contract
+            <hint-tooltip>
+              {{ namesHints.contractPointer }}
+            </hint-tooltip>
+          </th>
+          <td class="name-pointers-special-panel__data">
+            <app-link
+              v-if="name.specialPointers.contract"
+              :to="`/contracts/${name.specialPointers.contract}`">
+              <span class="name-pointers-special-panel__link-text">
+                {{ name.specialPointers.contract }}
+              </span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.contract) }}
+              </span>
+            </app-link>
+            <template v-else>
+              -
+            </template>
+          </td>
+        </tr>
+        <tr class="name-pointers-special-panel__row">
+          <th class="name-pointers-special-panel__table-header">
+            Oracle
+            <hint-tooltip>
+              {{ namesHints.oraclePointer }}
+            </hint-tooltip>
+          </th>
+          <td class="name-pointers-special-panel__data">
+            <app-link
+              v-if="name.specialPointers.oracle"
+              :to="`/oracles/${name.specialPointers.oracle}`">
+              <span class="name-pointers-special-panel__link-text">
+                {{ name.specialPointers.oracle }}
+              </span>
+              <span class="name-pointers-special-panel__link-text-ellipse">
+                {{ formatEllipseHash(name.specialPointers.oracle) }}
+              </span>
+            </app-link>
 
-              <template v-else>
-                -
-              </template>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <spinner-loader
-      v-else
-      class="name-pointers-special-panel__spinner-loader"/>
+            <template v-else>
+              -
+            </template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </app-panel>
 </template>
 
@@ -127,12 +120,6 @@ const { name } = storeToRefs(useNameDetailsStore())
 <style scoped>
 .name-pointers-special-panel {
   padding: var(--space-4) var(--space-1) var(--space-3);
-  display: flex;
-  justify-content: center;
-
-  &__container {
-    width: 100%;
-  }
 
   @media (--desktop) {
     padding: var(--space-4) var(--space-4) var(--space-3);
@@ -168,10 +155,6 @@ const { name } = storeToRefs(useNameDetailsStore())
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__spinner-loader {
-    margin-bottom: var(--space-3);
   }
 }
 </style>

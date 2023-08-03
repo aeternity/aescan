@@ -1,157 +1,150 @@
 <template>
   <app-panel class="token-details-panel">
-    <div
-      v-if="tokenDetails"
-      class="token-details-panel__container">
-      <header class="token-details-panel__header">
-        <h2 class="token-details-panel__heading h3">
-          DETAILS
-        </h2>
-        <div class="token-details-panel__container">
-          <token-symbol-icon
+    <header class="token-details-panel__header">
+      <h2 class="token-details-panel__heading h3">
+        DETAILS
+      </h2>
+      <div class="token-details-panel__container">
+        <token-symbol-icon
           :contract-id="tokenDetails.contractId"
-            class="token-details-panel__icon"/>
-          <copy-chip :label="tokenDetails.symbol"/>
-        </div>
-      </header>
-      <table>
-        <tbody>
-          <tr class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              Name
-              <hint-tooltip>
-                {{ tokensHints.tokenName }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
-              {{ tokenDetails.name }}
-            </td>
-          </tr>
-          <tr
-            v-if="tokenDetails.price"
-            class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              Price
-              <hint-tooltip>
-                {{ tokensHints.price }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
-              {{ formatAePrice(tokenPrice) }} ({{ fiatPrice }})
-            </td>
-          </tr>
-          <tr
-            v-if="tokenDetails.marketCap"
-            class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              Market cap
-              <hint-tooltip>
-                {{ tokensHints.marketCap }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
-              {{ marketCap }}
-            </td>
-          </tr>
-          <tr class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              Total supply
-              <hint-tooltip>
-                {{ tokensHints.totalSupply }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
-              {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}
-            </td>
-          </tr>
-          <tr class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              Smart Contract ID
-              <hint-tooltip>
-                {{ tokensHints.smartContractId }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
+          class="token-details-panel__icon"/>
+        <copy-chip :label="tokenDetails.symbol"/>
+      </div>
+    </header>
+    <table>
+      <tbody>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            Name
+            <hint-tooltip>
+              {{ tokensHints.tokenName }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
+            {{ tokenDetails.name }}
+          </td>
+        </tr>
+        <tr
+          v-if="tokenDetails.price"
+          class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            Price
+            <hint-tooltip>
+              {{ tokensHints.price }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
+            {{ formatAePrice(tokenPrice) }} ({{ fiatPrice }})
+          </td>
+        </tr>
+        <tr
+          v-if="tokenDetails.marketCap"
+          class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            Market cap
+            <hint-tooltip>
+              {{ tokensHints.marketCap }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
+            {{ marketCap }}
+          </td>
+        </tr>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            Total supply
+            <hint-tooltip>
+              {{ tokensHints.totalSupply }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
+            {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}
+          </td>
+        </tr>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            Smart Contract ID
+            <hint-tooltip>
+              {{ tokensHints.smartContractId }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contractId}`">
-                <span class="token-details-panel__hash">
+              <span class="token-details-panel__hash">
                 {{ tokenDetails.contractId }}
-                </span>
-                <span class="token-details-panel__hash-ellipse">
+              </span>
+              <span class="token-details-panel__hash-ellipse">
                 {{ formatEllipseHash(tokenDetails.contractId) }}
-                </span>
+              </span>
+            </app-link>
+          </td>
+        </tr>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            Decimals
+            <hint-tooltip>
+              {{ tokensHints.decimals }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
+            {{ tokenDetails.decimals }}
+          </td>
+        </tr>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            Extensions
+            <hint-tooltip>
+              {{ tokensHints.extensions }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
+            <div
+              v-if="!!tokenDetails.extensions.length"
+              class="token-details-panel__extensions">
+              <app-chip
+                v-for="extension in tokenDetails.extensions"
+                :key="extension"
+                size="sm"
+                class="token-details-panel__chip">
+                {{ extension }}
+              </app-chip>
+            </div>
+            <template v-else>
+              N/A
+            </template>
+          </td>
+        </tr>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            API Links
+            <hint-tooltip>
+              {{ tokensHints.apiLinks }}
+            </hint-tooltip>
+          </th>
+          <td class="token-details-panel__data">
+            <div class="token-details-panel__container">
+              <app-link
+                v-if="tokenDexUrl"
+                :to="tokenDexUrl"
+                class="token-details-panel__link">
+                <app-icon
+                  name="file-dex"
+                  :size="22"/>
+                DEX
               </app-link>
-            </td>
-          </tr>
-          <tr class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              Decimals
-              <hint-tooltip>
-                {{ tokensHints.decimals }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
-              {{ tokenDetails.decimals }}
-            </td>
-          </tr>
-          <tr class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              Extensions
-              <hint-tooltip>
-                {{ tokensHints.extensions }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
-              <div
-                v-if="!!tokenDetails.extensions.length"
-                class="token-details-panel__extensions">
-                <app-chip
-                  v-for="extension in tokenDetails.extensions"
-                  :key="extension"
-                  size="sm"
-                  class="token-details-panel__chip">
-                  {{ extension }}
-                </app-chip>
-              </div>
-              <template v-else>
-                N/A
-              </template>
-            </td>
-          </tr>
-          <tr class="token-details-panel__row">
-            <th class="token-details-panel__table-header">
-              API Links
-              <hint-tooltip>
-                {{ tokensHints.apiLinks }}
-              </hint-tooltip>
-            </th>
-            <td class="token-details-panel__data">
-              <div class="token-details-panel__link-container">
-                <app-link
-                  v-if="tokenDexUrl"
-                  :to="tokenDexUrl"
-                  class="token-details-panel__link">
-                  <app-icon
-                    name="file-dex"
-                    :size="22"/>
-                  DEX
-                </app-link>
-                <app-link
-                  :to="tokenMiddlewareUrl"
-                  class="token-details-panel__link">
-                  <app-icon
-                    name="file-cloud"
-                    :size="22"/>
-                  Middleware
-                </app-link>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <spinner-loader
-      v-else
-      class="token-details-panel__spinner-loader"/>
+              <app-link
+                :to="tokenMiddlewareUrl"
+                class="token-details-panel__link">
+                <app-icon
+                  name="file-cloud"
+                  :size="22"/>
+                Middleware
+              </app-link>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </app-panel>
 </template>
 
@@ -167,7 +160,7 @@ const { price } = storeToRefs(useMarketStatsStore())
 
 const props = defineProps({
   tokenDetails: {
-    type: [Object, null],
+    type: Object,
     required: true,
   },
 })
@@ -204,15 +197,9 @@ const tokenPrice = computed(() =>
 <style scoped>
 .token-details-panel {
   padding: var(--space-4) var(--space-1) var(--space-2);
-  display: flex;
-  justify-content: center;
 
   @media (--desktop) {
     padding: var(--space-4) var(--space-4) var(--space-2);
-  }
-
-  &__container {
-    width: 100%;
   }
 
   &__heading {
@@ -232,7 +219,7 @@ const tokenPrice = computed(() =>
     }
   }
 
-  &__link-container {
+  &__container {
     display: inline-flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -294,10 +281,6 @@ const tokenPrice = computed(() =>
     @media (--desktop) {
       display: none;
     }
-  }
-
-  &__spinner-loader {
-    margin-bottom: var(--space-3);
   }
 }
 </style>

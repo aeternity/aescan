@@ -1,87 +1,82 @@
 <template>
   <app-panel class="transaction-pointers-panel">
-    <div
-      v-if="transactionData"
-      class="transaction-pointers-panel__container">
-      <header class="transaction-pointers-panel__header">
-        <h2 class="transaction-pointers-panel__heading h3">
-          NAME POINTERS
-        </h2>
-      </header>
-      <table class="transaction-pointers-panel__table">
-        <tbody>
-          <tr class="transaction-pointers-panel__row">
-            <th class="transaction-pointers-panel__table-header">
-              Account
-              <hint-tooltip>
-                {{ namesHints.accountPointer }}
-              </hint-tooltip>
-            </th>
-            <td class="transaction-pointers-panel__data">
-              <app-link
+    <header class="transaction-pointers-panel__header">
+      <h2 class="transaction-pointers-panel__heading h3">
+        NAME POINTERS
+      </h2>
+    </header>
+    <table class="transaction-pointers-panel__table">
+      <tbody>
+        <tr class="transaction-pointers-panel__row">
+          <th class="transaction-pointers-panel__table-header">
+            Account
+            <hint-tooltip>
+              {{ namesHints.accountPointer }}
+            </hint-tooltip>
+          </th>
+          <td class="transaction-pointers-panel__data">
+            <app-link
               v-if="pointers.accountPubkey"
               :to="`/accounts/${pointers.accountPubkey}`">
-                <span class="transaction-pointers-panel__link-text">
+              <span class="transaction-pointers-panel__link-text">
                 {{ pointers.accountPubkey }}
-                </span>
-                <span class="transaction-pointers-panel__link-text-ellipse">
+              </span>
+              <span class="transaction-pointers-panel__link-text-ellipse">
                 {{ formatEllipseHash(pointers.accountPubkey) }}
-                </span>
-              </app-link>
-              <template v-else>
-                ---
-              </template>
-            </td>
-          </tr>
-          <tr class="transaction-pointers-panel__row">
-            <th class="transaction-pointers-panel__table-header">
-              Channel
-              <hint-tooltip>
-                {{ namesHints.channelPointer }}
-              </hint-tooltip>
-            </th>
-            <td class="transaction-pointers-panel__data">
-              {{ formatNullable(pointers.channel) }}
-            </td>
-          </tr>
-          <tr class="transaction-pointers-panel__row">
-            <th class="transaction-pointers-panel__table-header">
-              Smart Contract
-              <hint-tooltip>
-                {{ namesHints.contractPointer }}
-              </hint-tooltip>
-            </th>
-            <td class="transaction-pointers-panel__data">
-              <app-link
+              </span>
+            </app-link>
+            <template v-else>
+              ---
+            </template>
+          </td>
+        </tr>
+        <tr class="transaction-pointers-panel__row">
+          <th class="transaction-pointers-panel__table-header">
+            Channel
+            <hint-tooltip>
+              {{ namesHints.channelPointer }}
+            </hint-tooltip>
+          </th>
+          <td class="transaction-pointers-panel__data">
+            {{ formatNullable(pointers.channel) }}
+          </td>
+        </tr>
+        <tr class="transaction-pointers-panel__row">
+          <th class="transaction-pointers-panel__table-header">
+            Smart Contract
+            <hint-tooltip>
+              {{ namesHints.contractPointer }}
+            </hint-tooltip>
+          </th>
+          <td class="transaction-pointers-panel__data">
+            <app-link
               v-if="pointers.contractPubkey"
               :to="`/contracts/${pointers.contractPubkey}`">
-                <span class="transaction-pointers-panel__link-text">
+              <span class="transaction-pointers-panel__link-text">
                 {{ pointers.contractPubkey }}
-                </span>
-                <span class="transaction-pointers-panel__link-text-ellipse">
+              </span>
+              <span class="transaction-pointers-panel__link-text-ellipse">
                 {{ formatEllipseHash(pointers.contractPubkey) }}
-                </span>
-              </app-link>
-              <template v-else>
-                ---
-              </template>
-            </td>
-          </tr>
-          <tr class="transaction-pointers-panel__row">
-            <th class="transaction-pointers-panel__table-header">
-              Oracle
-              <hint-tooltip>
-                {{ namesHints.oraclePointer }}
-              </hint-tooltip>
-            </th>
-            <td class="transaction-pointers-panel__data">
+              </span>
+            </app-link>
+            <template v-else>
+              ---
+            </template>
+          </td>
+        </tr>
+        <tr class="transaction-pointers-panel__row">
+          <th class="transaction-pointers-panel__table-header">
+            Oracle
+            <hint-tooltip>
+              {{ namesHints.oraclePointer }}
+            </hint-tooltip>
+          </th>
+          <td class="transaction-pointers-panel__data">
             {{ formatNullable(pointers.oraclePubkey) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <spinner-loader class="transaction-pointers-panel__spinner-loader"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </app-panel>
 </template>
 
@@ -110,12 +105,6 @@ const pointers = computed(() => {
 <style scoped>
 .transaction-pointers-panel {
   padding: var(--space-4) var(--space-2);
-  display: flex;
-  justify-content: center;
-
-  &__container {
-    width: 100%;
-  }
 
   @media (--desktop) {
     padding: var(--space-4);
@@ -160,10 +149,6 @@ const pointers = computed(() => {
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__spinner-loader {
-    margin-bottom: var(--space-3);
   }
 }
 </style>

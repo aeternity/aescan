@@ -12,10 +12,12 @@
   </page-header>
 
   <transaction-general-panel
+    v-if="transactionDetails"
     class="transaction-details__panel"
     :transaction-details="transactionDetails"/>
 
   <transaction-type-panel
+    v-if="transactionTypeData"
     class="transaction-details__panel"
     :transaction-data="transactionTypeData"/>
 

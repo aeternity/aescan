@@ -3,7 +3,7 @@
     <img
       class="spinner-loader__image"
       alt="loading"
-      src="@/assets/loader.gif"
+      src="@/assets/loader.svg"
       height="47">
     <div>Loading</div>
   </div>

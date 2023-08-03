@@ -178,7 +178,7 @@ import CopyChip from '@/components/CopyChip'
 import PaginationButton from '@/components/PaginationButton'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
-import { useRecentBlocksStore } from '~/stores/recentBlocks'
+import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 const { blockHeight: latestBlockHeight } = storeToRefs(useRecentBlocksStore())
@@ -287,6 +287,7 @@ const isNextKeyblockMined = computed(() =>
         margin-left: var(--space-3);
       }
     }
+
     &--prev {
       margin-right: var(--space-1);
 

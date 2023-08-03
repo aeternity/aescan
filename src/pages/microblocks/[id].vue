@@ -25,7 +25,7 @@ import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PageHeader from '@/components/PageHeader'
 import MicroblockDetailsPanel from '@/components/MicroblockDetailsPanel'
-import MicroblockTransactionsPanel from '~/components/MicroblockTransactionsPanel'
+import MicroblockTransactionsPanel from '@/components/MicroblockTransactionsPanel'
 
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)

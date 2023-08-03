@@ -61,7 +61,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { keyblocksHints } from '../utils/hints/keyblocksHints'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
 import KeyblockTableCondensed from '@/components/KeyblockTableCondensed'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptAccountNames, adaptTransactions } from '@/utils/adapters'
+import { adaptAccountNames, adaptTransactions, adaptAccountActivities } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
 
 export const useAccountStore = defineStore('account', () => {
@@ -16,6 +16,7 @@ export const useAccountStore = defineStore('account', () => {
   const selectedKeyblockMicroblocks = ref(null)
   const selectedMicroblockTransactions = ref(null)
   const rawAccountNames = ref(null)
+  const rawAccountActivities = ref(null)
   const rawAccountTransactions = ref(null)
 
   const accountDetails = computed(() =>
@@ -28,6 +29,11 @@ export const useAccountStore = defineStore('account', () => {
         namesCount: accountNamesCount.value,
         isGeneralized: rawAccountDetails.value.kind === 'generalized',
       }
+      : null,
+  )
+  const accountActivities = computed(() =>
+    rawAccountActivities.value
+      ? adaptAccountActivities(rawAccountActivities.value)
       : null,
   )
   const accountTransactions = computed(() =>
@@ -90,6 +96,12 @@ export const useAccountStore = defineStore('account', () => {
     accountNamesCount.value = data.data.length
   }
 
+  async function fetchAccountActivities({ accountId, limit, queryParameters } = {}) {
+    const defaultParameters = `/v2/accounts/${accountId}/activities?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawAccountActivities.value = data
+  }
+
   async function fetchAccountTransactions({ accountId, type, limit, queryParameters } = {}) {
     rawAccountTransactions.value = null
 
@@ -125,11 +137,14 @@ export const useAccountStore = defineStore('account', () => {
     selectedKeyblockMicroblocks,
     selectedMicroblockTransactions,
     rawAccountNames,
+    rawAccountActivities,
     rawAccountTransactions,
     accountDetails,
+    accountActivities,
     accountTransactions,
     accountNames,
     fetchAccount,
+    fetchAccountActivities,
     fetchTotalAccountTransactionsCount,
     fetchAccountTransactions,
     fetchAccountTransactionsCount,

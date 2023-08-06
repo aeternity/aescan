@@ -20,6 +20,9 @@
       <app-tab title="Transactions">
         <account-transactions-panel/>
       </app-tab>
+      <app-tab title="Activities">
+        <account-activities-panel/>
+      </app-tab>
       <app-tab title="AENS Names">
         <account-names-panel/>
       </app-tab>
@@ -33,6 +36,7 @@ import { useRoute } from 'nuxt/app'
 import { useAccountStore } from '@/stores/accountDetails'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
+import AccountActivitiesPanel from '@/components/AccountActivitiesPanel'
 import AccountTransactionsPanel from '@/components/AccountTransactionsPanel'
 import AccountNamesPanel from '@/components/AccountNamesPanel'
 import PageHeader from '@/components/PageHeader'
@@ -42,14 +46,15 @@ import { isDesktop } from '@/utils/screen'
 
 const accountStore = useAccountStore()
 const { accountDetails } = storeToRefs(accountStore)
-const { fetchAccount, fetchTotalAccountTransactionsCount } = accountStore
+const { fetchAccount, fetchAccountActivities, fetchTotalAccountTransactionsCount } = accountStore
 const route = useRoute()
-const isTabsVisible = computed(() => process.client && accountDetails && !accountDetails.value?.notExistent)
+const isTabsVisible = computed(() => process.client && accountDetails.value && !accountDetails.value?.notExistent)
 
 if (process.client) {
   const limit = isDesktop() ? null : 3
   await useAsyncData(async() => {
     await fetchAccount(route.params.id, { limit })
+    await fetchAccountActivities({ accountId: route.params.id, limit })
     await fetchTotalAccountTransactionsCount(route.params.id)
     return true
   })

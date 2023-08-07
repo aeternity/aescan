@@ -15,9 +15,9 @@ th {
 
   @media (--desktop) {
     font-size: 16px;
-    line-height: 24px;
-    vertical-align: middle;
-    padding: var(--space-2) 0 var(--space-1);
+    line-height: 18px;
+    vertical-align: top;
+    padding: var(--space-1) 0 7px;
   }
 }
 
@@ -26,7 +26,7 @@ td {
   font-weight: 400;
   padding: var(--space-1) 0;
   text-align: left;
-  border-bottom: 1px solid var(--color-midnight-15);
+  border-bottom: 1.5px solid var(--color-midnight-25);
   vertical-align: middle;
 
   @media (--desktop) {

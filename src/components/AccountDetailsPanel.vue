@@ -3,9 +3,7 @@
     <template #heading>
       DETAILS
     </template>
-    <template
-
-      #header>
+    <template #header>
       <app-chip
         v-if="accountDetails.isGeneralized"
         class="account-details-panel__chip">
@@ -142,11 +140,11 @@ const sanitizedPrice = computed(() =>
 
 <style scoped>
 .account-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-3);
   margin-bottom: var(--space-7);
 
+  /*todo move*/
+
   @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
     margin-bottom: var(--space-6);
   }
 

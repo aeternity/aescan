@@ -17,6 +17,7 @@
     </paginated-content>
   </app-panel>
 </template>
+
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
@@ -41,7 +42,7 @@ function loadNextEvents() {
 <style scoped>
 .contract-events-panel {
   margin-top: var(--space-2);
-//todo move
+  /*//todo move*/
 
   &__table {
     display: none;

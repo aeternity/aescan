@@ -22,11 +22,14 @@ import HintTooltip from '@/components/HintTooltip'
 
 <style scoped>
 .page-header {
+  height: 64px;
+  padding: 8px 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
   margin: 0 var(--space-1) var(--space-7);
+  /*// todo move*/
 
   @media (--desktop) {
     margin: 0 0 var(--space-6);

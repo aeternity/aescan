@@ -3,7 +3,9 @@
     ref="paginatedContent"
     class="paginated-content">
     <template v-if="entities">
-      <header class="paginated-content__header">
+      <header
+      v-if="hasCounter || $slots.header"
+      class="paginated-content__header">
         <div class="paginated-content__counter">
           <span v-if="hasCounter">
             <template v-if="totalCount > 0">
@@ -29,9 +31,7 @@
         class="paginated-content__container">
         <slot/>
       </div>
-      <blank-state
-        v-else
-        class="paginated-content__blank-state"/>
+    <blank-state v-else/>
 
       <app-pagination
         v-if="hasPagination"
@@ -165,6 +165,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
 
   &__header {
+    padding: 8px 0;
     display: flex;
     align-items: center;
     flex-direction: column;

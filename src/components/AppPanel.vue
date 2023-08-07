@@ -7,7 +7,9 @@
       <h2 class="panel__heading h3">
         <slot name="heading"/>
       </h2>
-      <slot name="header"/>
+      <div class="panel__container">
+        <slot name="header"/>
+      </div>
     </header>
     <slot/>
   </div>
@@ -26,13 +28,18 @@
   }
 
   &__header {
-    margin-bottom: var(--space-2);
+    padding: 8px 0;
+    margin-bottom: var(--space-4);
     @media (--desktop) {
-      margin-bottom: 0;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
     }
+  }
+
+  &__container {
+    display: flex;
+    gap: 8px;
   }
 }
 </style>

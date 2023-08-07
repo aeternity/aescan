@@ -85,7 +85,7 @@ function selectTab(tabIndex) {
     &--active {
       margin-bottom: 0;
       color: var(--color-midnight);
-      border-radius: 4px 4px 0 0;
+      border-radius: 4px;
       border-bottom: 3px solid var(--color-fire);
       background: var(--color-white);
     }

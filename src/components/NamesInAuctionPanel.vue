@@ -40,13 +40,7 @@ function loadNextNames() {
 
 <style scoped>
 .names-in-auction-panel {
-  background: var(--color-white);
-  padding: var(--space-3) var(--space-1) var(--space-4);
-  margin-top: var(--space-2);
-
-  @media (--desktop) {
-    padding: var(--space-2) var(--space-4) var(--space-4);
-  }
+  margin-top: var(--space-2); /*todo move*/
 
   &__names-in-auction-table {
     display: none;

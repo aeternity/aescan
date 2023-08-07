@@ -57,13 +57,6 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
 <style scoped>
 .dashboard-transactions-panel {
-  background: var(--color-white);
-  padding: var(--space-4) var(--space-1);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__panel-header {
     margin-bottom: var(--space-3);
     @media (--desktop) {

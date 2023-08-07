@@ -1,5 +1,5 @@
 <template>
-  <app-panel class="oracles-panel">
+  <app-panel>
     <paginated-content
       :entities="oracles"
       :limit="limit"
@@ -48,12 +48,6 @@ if (process.client) {
 
 <style scoped>
 .oracles-panel {
-  padding: var(--space-4) var(--space-1);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__oracles-table {
     display: none;
     @media (--desktop) {

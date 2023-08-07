@@ -2,14 +2,15 @@
   <app-panel
     v-if="name"
     class="name-details-panel">
-    <header class="name-details-panel__header">
-      <h2 class="name-details-panel__heading h3">
-        DETAILS
-      </h2>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
       <copy-chip
         class="name-details-panel__name"
         :label="name.name"/>
-    </header>
+    </template>
+
     <table>
       <tbody>
         <tr
@@ -169,26 +170,6 @@ const isNameInAuction = computed(() =>
 
 <style scoped>
 .name-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-3);
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-3);
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__header {
-    @media (--desktop) {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
   &__name {
     overflow-wrap: anywhere;
     margin-bottom: var(--space-1);

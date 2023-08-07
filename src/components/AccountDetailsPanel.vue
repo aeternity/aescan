@@ -1,25 +1,25 @@
 <template>
   <app-panel class="account-details-panel">
-    <header class="account-details-panel__header">
-      <h2 class="account-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div>
-        <app-chip
-          v-if="accountDetails.isGeneralized"
-          class="account-details-panel__chip">
-          Generalized
-        </app-chip>
+    <template #heading>
+      DETAILS
+    </template>
+    <template
 
-        <copy-chip
-          :label="accountDetails.id"
-          class="account-details-panel__copy-chip"/>
-        <copy-chip
-          :label="formatEllipseHash(accountDetails.id)"
-          :clipboard-text="accountDetails.id"
-          class="account-details-panel__copy-chip-ellipse"/>
-      </div>
-    </header>
+      #header>
+      <app-chip
+        v-if="accountDetails.isGeneralized"
+        class="account-details-panel__chip">
+        Generalized
+      </app-chip>
+
+      <copy-chip
+        :label="accountDetails.id"
+        class="account-details-panel__copy-chip"/>
+      <copy-chip
+        :label="formatEllipseHash(accountDetails.id)"
+        :clipboard-text="accountDetails.id"
+        class="account-details-panel__copy-chip-ellipse"/>
+    </template>
     <p
       v-if="accountDetails.notExistent"
       class="account-details-panel__not-existent">
@@ -148,23 +148,6 @@ const sanitizedPrice = computed(() =>
   @media (--desktop) {
     padding: var(--space-4) var(--space-4) var(--space-2);
     margin-bottom: var(--space-6);
-  }
-
-  &__header {
-    margin-bottom: var(--space-2);
-    @media (--desktop) {
-      margin-bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
   }
 
   &__chip {

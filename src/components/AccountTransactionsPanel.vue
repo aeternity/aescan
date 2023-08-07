@@ -73,12 +73,6 @@ function loadNextTransactions() {
 
 <style scoped>
 .account-transactions-panel {
-  padding: var(--space-4) var(--space-1);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__account-transactions-table {
     display: none;
 

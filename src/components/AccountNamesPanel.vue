@@ -38,13 +38,6 @@ async function loadNextAccountNames() {
 
 <style scoped>
 .account-names-panel {
-  background: var(--color-white);
-  padding: var(--space-4) var(--space-1) var(--space-3);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__account-names-table {
     display: none;
 

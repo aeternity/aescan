@@ -1,19 +1,18 @@
 <template>
   <app-panel class="oracle-details-panel">
-    <header class="oracle-details-panel__header">
-      <h3 class="oracle-details-panel__heading">
-        DETAILS
-      </h3>
-      <div class="oracle-details-panel__container">
-        <copy-chip
-          :label="oracleDetails.id"
-          class="oracle-details-panel__chip"/>
-        <copy-chip
-          :label="formatEllipseHash(oracleDetails.id)"
-          :clipboard-text="oracleDetails.id"
-          class="oracle-details-panel__chip-ellipse"/>
-      </div>
-    </header>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
+      <copy-chip
+        :label="oracleDetails.id"
+        class="oracle-details-panel__chip"/>
+      <copy-chip
+        :label="formatEllipseHash(oracleDetails.id)"
+        :clipboard-text="oracleDetails.id"
+        class="oracle-details-panel__chip-ellipse"/>
+    </template>
+
     <table>
       <tbody>
         <tr class="oracle-details-panel__row">
@@ -206,42 +205,6 @@ const oracleMiddlewareUrl = computed(() =>
 
 <style scoped>
 .oracle-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-2);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__header {
-    margin-bottom: var(--space-2);
-    @media (--desktop) {
-      margin-bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__container {
-    display: inline-flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-1);
-    margin-bottom: var(--space-1);
-
-    @media (--desktop) {
-      justify-content: flex-end;
-      margin-bottom: 0;
-    }
-  }
-
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-15);
   }

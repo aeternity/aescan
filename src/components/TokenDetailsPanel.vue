@@ -1,16 +1,15 @@
 <template>
   <app-panel class="token-details-panel">
-    <header class="token-details-panel__header">
-      <h2 class="token-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div class="token-details-panel__container">
-        <token-symbol-icon
-          :contract-id="tokenDetails.contractId"
-          class="token-details-panel__icon"/>
-        <copy-chip :label="tokenDetails.symbol"/>
-      </div>
-    </header>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
+      <token-symbol-icon
+        :contract-id="tokenDetails.contractId"
+        class="token-details-panel__icon"/>
+      <copy-chip :label="tokenDetails.symbol"/>
+    </template>
+
     <table>
       <tbody>
         <tr class="token-details-panel__row">
@@ -196,42 +195,6 @@ const tokenPrice = computed(() =>
 
 <style scoped>
 .token-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-2);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__header {
-    margin-bottom: var(--space-2);
-    @media (--desktop) {
-      margin-bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__container {
-    display: inline-flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-1);
-    margin-bottom: var(--space-1);
-
-    @media (--desktop) {
-      justify-content: flex-end;
-      margin-bottom: 0;
-    }
-  }
-
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-15);
   }

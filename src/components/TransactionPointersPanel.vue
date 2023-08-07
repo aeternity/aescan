@@ -1,10 +1,8 @@
 <template>
   <app-panel class="transaction-pointers-panel">
-    <header class="transaction-pointers-panel__header">
-      <h2 class="transaction-pointers-panel__heading h3">
-        NAME POINTERS
-      </h2>
-    </header>
+    <template #heading>
+      NAME POINTERS
+    </template>
     <table class="transaction-pointers-panel__table">
       <tbody>
         <tr class="transaction-pointers-panel__row">
@@ -104,27 +102,6 @@ const pointers = computed(() => {
 
 <style scoped>
 .transaction-pointers-panel {
-  padding: var(--space-4) var(--space-2);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
-  &__heading {
-    margin-bottom: var(--space-4);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__header {
-    @media (--desktop) {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-15);
   }

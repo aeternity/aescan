@@ -70,9 +70,9 @@
       </page-header>
 
       <app-panel class="error__panel">
-        <h1 class="error__heading">
+        <h2 class="error__heading">
           Sorry! We encountered an unexpected error
-        </h1>
+        </h2>
         <p class="error__paragraph">
           ERROR CODE: 500 - Internal Server error
         </p>
@@ -106,7 +106,7 @@ import AppButton from '@/components/AppButton'
 import AppPanel from '@/components/AppPanel'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
-import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '~/utils/constants'
+import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
 
 useHead({
   meta: [

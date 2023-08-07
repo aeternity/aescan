@@ -57,7 +57,9 @@
           <datetime-label :datetime="activity.time"/>
         </td>
         <td>
-          {{ activity.type }}
+          <account-activity-type-cell
+            :account-details="accountDetails"
+            :activity="activity"/>
         </td>
         <td>
           <account-activity-cell
@@ -83,6 +85,7 @@
 
 <script setup>
 import AccountActivityCell from '@/components/AccountActivityCell'
+import AccountActivityTypeCell from '@/components/AccountActivityTypeCell'
 import InternalTransferCell from '@/components/InternalTransferCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

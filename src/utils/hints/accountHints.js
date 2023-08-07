@@ -15,7 +15,7 @@ export const accountHints = {
   pointsTo: 'The account that points to the name owned by the account.',
   activityHash: 'Transaction hash of the transaction corresponding to the activity where the account was involved. Some of the activities are executed internally and therefore don\'t have a transaction hash.',
   activityTime: 'Keyblock height and exact date and time when the activity has been executed by inclusion into a microblock.',
-  activityType: 'Type of the activity where the account was involved represented by a blockchain event.',
+  activityType: 'Type of the activity where the account was involved.',
   activityMeaning: 'The meaning of the activity.',
   activityData: 'The data displayed differs for each activity type.',
 }

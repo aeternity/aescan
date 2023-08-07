@@ -53,7 +53,9 @@
             </app-tooltip>
           </th>
           <td class="account-activities-table-condensed__data">
-            {{ activity.type }}
+            <account-activity-type-cell
+              :account-details="accountDetails"
+              :activity="activity"/>
           </td>
         </tr>
         <tr class="account-activities-table-condensed__row">
@@ -100,6 +102,7 @@
 
 <script setup>
 import AccountActivityCell from '@/components/AccountActivityCell'
+import AccountActivityTypeCell from '@/components/AccountActivityTypeCell'
 import InternalTransferCell from '@/components/InternalTransferCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

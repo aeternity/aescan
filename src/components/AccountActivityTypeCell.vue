@@ -1,6 +1,6 @@
 <template>
   <span>
-    {{ activityDescription }}
+    {{ activityType }}
   </span>
 </template>
 
@@ -20,72 +20,49 @@ const props = defineProps({
 
 const tx = computed(() => props.activity.payload?.tx)
 
-const activityDescription = computed(() => {
+const activityType = computed(() => {
   switch (props.activity.type) {
   case 'SpendTxEvent':
-    if (tx.value.senderId === props.accountDetails.id) {
-      return 'Transferred to'
-    }
-    return 'Received from'
+    return 'AE'
   case 'NamePreclaimTxEvent':
-    return 'Preclaimed'
   case 'NameClaimTxEvent':
-    return 'Claimed'
   case 'NameTransferTxEvent':
-    if (tx.value.accountId === props.accountDetails.id) {
-      return 'Transferred to'
-    }
-    return 'Received from'
   case 'NameRevokeTxEvent':
-    return 'Revoked'
   case 'NameUpdateTxEvent':
-    return 'Updated'
+    return 'AENS'
   case 'ContractCreateTxEvent':
-    return 'Created'
+    return 'Smart Contract'
   case 'ContractCallTxEvent':
-    if (SWAP_CONTRACT_CALLS.includes(tx.value.function)) {
-      return 'Swapped'
-    } else if (ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
-      return 'Added liquidity'
-    } else if (REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
-      return 'Removed liquidity'
+    if (
+      SWAP_CONTRACT_CALLS.includes(tx.value.function) ||
+      ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
+      REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
+      return 'SH-DEX'
     }
-    return 'Called'
+    return 'Smart Contract'
   case 'OracleRegisterTxEvent':
-    return 'Registered'
   case 'OracleQueryTxEvent':
-    return 'Queried'
   case 'OracleRespondTxEvent':
-    return 'Responded'
   case 'OracleExtendTxEvent':
-    return 'Extended'
+    return 'Oracle'
   case 'ChannelCreateTxEvent':
-    return 'Created'
   case 'ChannelDepositTxEvent':
-    return 'Deposited'
   case 'ChannelWithdrawTxEvent':
-    return 'Withdrew'
   case 'ChannelCloseMutualTxEvent':
-    return 'Closed mutually'
   case 'ChannelCloseSoloTxEvent':
-    return 'Closed solo'
   case 'ChannelSlashTxEvent':
-    return 'Issued slash'
   case 'ChannelSettleTxEvent':
-    return 'Settled'
   case 'ChannelSnapshotSoloTxEvent':
-    return 'Snapshotted'
   case 'ChannelForceProgressTxEvent':
-    return 'Force progressed'
+    return 'State Channel'
   case 'GAAttachTxEvent':
-    return 'Attached contract'
   case 'GAMetaTxEvent':
-    return 'Transferred'
+    return 'GA Transaction'
   case 'PayingForTxEvent':
-    return 'Paid for'
+    return 'Wrapped Transaction'
   case 'InternalTransferEvent':
     if (props.activity.payload.kind === 'reward_block') {
-      return 'Beneficiary reward'
+      return 'AE'
     }
     return 'N/A'
   default:

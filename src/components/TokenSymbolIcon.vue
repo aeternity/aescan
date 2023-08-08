@@ -2,8 +2,7 @@
   <img
     v-if="isAe"
     alt="æ token"
-    src="@/assets/ae-token.svg"
-    class="token-symbol-icon">
+    src="@/assets/ae-token.svg">
 
   <img
     v-else-if="isLaex"
@@ -12,8 +11,7 @@
 
   <app-identicon
     v-else
-    :id="contractId"
-    class="token-symbol-icon"/>
+    :id="contractId"/>
 </template>
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'

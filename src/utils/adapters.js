@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+import { useRuntimeConfig } from 'nuxt/app'
 import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
@@ -400,6 +401,17 @@ export function adaptListedTokens(tokens) {
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
       }
     })
+
+  const isMainnet = useRuntimeConfig().public.NETWORK_NAME.toLowerCase() === 'mainnet'
+
+  if (isMainnet && !formattedData.some(token => token.contractId === LAEX_CONTRACT_ID)) {
+    formattedData.unshift({
+      contractId: LAEX_CONTRACT_ID,
+      name: 'LÆXON',
+      symbol: 'LAEX',
+      isAe: false,
+    })
+  }
 
   return {
     next: null,

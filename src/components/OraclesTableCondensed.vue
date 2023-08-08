@@ -51,11 +51,11 @@
           <td class="oracles-table-condensed__data">
             <div>
               <app-link
-                :to="`/keyblocks/${oracle.expireHeight}`">
-                {{ oracle.expireHeight }}
+                :to="`/keyblocks/${oracle.expirationHeight}`">
+                {{ oracle.expirationHeight }}
               </app-link>
             </div>
-            <datetime-label :datetime="oracle.expire"/>
+            <datetime-label :datetime="oracle.expiration"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">

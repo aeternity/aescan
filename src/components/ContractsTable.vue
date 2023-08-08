@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Hash
+          Create Transaction
           <hint-tooltip>
             {{ contractsHints.hash }}
           </hint-tooltip>
@@ -47,7 +47,6 @@
           <datetime-label :datetime="contract.created"/>
         </td>
         <td class="contracts-table__data">
-          <hash-symbol>th</hash-symbol>
           <value-hash-ellipsed
             :link-to="`/transactions/${contract.hash}`"
             :hash="contract.hash"/>
@@ -65,7 +64,6 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import HashSymbol from '@/components/HashSymbol'
 import HintTooltip from '@/components/HintTooltip'
 
 defineProps({

@@ -7,12 +7,12 @@
       tag="div">
       <div
         v-for="microblock in microblocks"
-        :key="microblock.hash + microblock.prev_key_hash"
+        :key="microblock.hash + microblock.prevKeyHash"
         :class="[
           'microblocks-sequence__cell',
           {'microblocks-sequence__cell--active': microblock.hash === selectedMicroblock.hash }]"
         @click="selectMicroblock(microblock)">
-        {{ microblock.transactions_count }}
+        {{ microblock.transactionsCount }}
       </div>
     </TransitionGroup>
     <div class="microblocks-sequence__overlay"/>

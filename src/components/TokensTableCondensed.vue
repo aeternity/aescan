@@ -2,7 +2,7 @@
   <div class="tokens-table-condensed">
     <table
       v-for="token in tokens.data"
-      :key="token.contract_id"
+      :key="token.contractId"
       class="tokens-table-condensed__table">
       <tbody>
         <tr class="tokens-table-condensed__row">
@@ -16,10 +16,10 @@
           </th>
           <td class="tokens-table-condensed__data">
             <app-link
-              :to="`/tokens/${token.contract_id}`"
+              :to="`/tokens/${token.contractId}`"
               class="tokens-table-condensed__link">
               <token-symbol-icon
-                :contract-id="token.contract_id"
+                :contract-id="token.contractId"
                 class="tokens-table-condensed__icon"/>
               {{ token.symbol }}
             </app-link>
@@ -50,8 +50,8 @@
           </th>
           <td class="tokens-table-condensed__data">
             <value-hash-ellipsed
-              :link-to="`/contracts/${token.contract_id}`"
-              :hash="token.contract_id"/>
+              :link-to="`/contracts/${token.contractId}`"
+              :hash="token.contractId"/>
           </td>
         </tr>
       </tbody>

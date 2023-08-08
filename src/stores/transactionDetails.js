@@ -23,9 +23,9 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
   async function fetchTransactionDetails(transactionId) {
     clearTransactionDetails()
     const { data: transaction } = await axios.get(`${NODE_URL}/v3/transactions/${transactionId}`)
-    const isMined = transaction.block_height > -1
+    const isMined = transaction.blockHeight > -1
 
-    const time = isMined ? await fetchTimeByBlockHash(transaction.block_hash) : null
+    const time = isMined ? await fetchTimeByBlockHash(transaction.blockHash) : null
 
     rawTransactionDetails.value = {
       ...transaction,
@@ -37,13 +37,13 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
   }
 
   async function fetchTransactionTypeData(transactionId) {
-    const isCurrentKeyblock = blockHeight.value - rawTransactionDetails.value.block_height === 0
+    const isCurrentKeyblock = blockHeight.value - rawTransactionDetails.value.blockHeight === 0
 
     if (!isCurrentKeyblock) {
       const { data: transactionData } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/${transactionId}`)
 
-      if (transactionData.tx.channel_id) {
-        const { data: channelData } = await axios.get(`${MIDDLEWARE_URL}/v2/channels/${transactionData.tx.channel_id}`)
+      if (transactionData.tx.channelId) {
+        const { data: channelData } = await axios.get(`${MIDDLEWARE_URL}/v2/channels/${transactionData.tx.channelId}`)
 
         transactionData.tx.channel = channelData
       }
@@ -61,7 +61,7 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
 
   async function fetchContractIdByAccountId(accountId) {
     const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
-    contractId.value = data.contract_id
+    contractId.value = data.contractId
   }
 
   function clearTransactionDetails() {

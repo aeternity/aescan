@@ -1,7 +1,7 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.account_id"
-    :link-to="`/accounts/${transactionData.account_id}`"/>
+    :hash="transactionData.accountId"
+    :link-to="`/accounts/${transactionData.accountId}`"/>
 
   <transaction-arrow-right-icon/>
   <span class="u-ellipsis transaction-cell-name-update-tx__name">
@@ -12,7 +12,7 @@
 
   <app-tooltip>
     <app-chip size="sm">
-      {{ transactionData.name_ttl }}
+      {{ transactionData.nameTtl }}
     </app-chip>
     <template #tooltip>
       TTL

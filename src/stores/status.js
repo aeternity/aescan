@@ -9,8 +9,8 @@ export const useStatus = defineStore('status', () => {
 
   async function fetchStatus() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/status`)
-    middlewareVersion.value = data.mdw_version
-    nodeVersion.value = data.node_version
+    middlewareVersion.value = data.mdwVersion
+    nodeVersion.value = data.nodeVersion
   }
 
   return {

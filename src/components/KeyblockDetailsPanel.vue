@@ -32,32 +32,18 @@
           </th>
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__controls">
-              <app-link :to="`/keyblocks/${keyblockDetails.height - 1}`">
-                <button
-                  :class="[
-                    'keyblock-details-panel__button',
-                    'keyblock-details-panel__button--prev',
-                  ]">
-                  <app-icon
-                    :size="22"
-                    name="caret-left"/>
-                </button>
-              </app-link>
+              <pagination-button
+                class="keyblock-details-panel__button--prev"
+                direction="left"
+                @click="$router.push(`/keyblocks/${keyblockDetails.height - 1}`)"/>
+
               {{ keyblockDetails.height }}
-              <app-link
-                :to="`/keyblocks/${keyblockDetails.height + 1}`"
-                :class="[{'keyblock-details-panel__keyblock-link--disabled': !isNextKeyblockMined}]">
-                <button
-                  :class="[
-                    'keyblock-details-panel__button',
-                    'keyblock-details-panel__button--next',
-                  ]"
-                  :disabled="!isNextKeyblockMined">
-                  <app-icon
-                    :size="22"
-                    name="caret-right"/>
-                </button>
-              </app-link>
+
+              <pagination-button
+                class="keyblock-details-panel__button--next"
+                direction="right"
+                :disabled="!isNextKeyblockMined"
+                @click="$router.push(`/keyblocks/${keyblockDetails.height + 1}`)"/>
             </div>
           </td>
         </tr>
@@ -114,7 +100,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.block_reward, null) }}
+            {{ formatAePrice(keyblockDetails.blockReward, null) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -125,7 +111,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.dev_reward, null) }}
+            {{ formatAePrice(keyblockDetails.devReward, null) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -136,7 +122,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatNumber(keyblockDetails.micro_blocks_count) }}
+            {{ formatNumber(keyblockDetails.microBlocksCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -147,7 +133,7 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            {{ formatNumber(keyblockDetails.transactions_count) }}
+            {{ formatNumber(keyblockDetails.transactionsCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -189,7 +175,7 @@ import { storeToRefs } from 'pinia'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
-import AppIcon from '@/components/AppIcon'
+import PaginationButton from '@/components/PaginationButton'
 import AppLink from '@/components/AppLink'
 import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
 import { useRecentBlocksStore } from '~/stores/recentBlocks'
@@ -294,24 +280,19 @@ const isNextKeyblockMined = computed(() =>
   }
 
   &__button {
-    width: 32px;
-    height: 32px;
-
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-    border: 1px solid var(--color-midnight);
-    border-radius: 4px;
-    cursor: pointer;
-
     &--next {
-      margin-left: var(--space-6);
-    }
+      margin-left: var(--space-1);
 
+      @media (--desktop) {
+        margin-left: var(--space-3);
+      }
+    }
     &--prev {
-      margin-right: var(--space-6);
+      margin-right: var(--space-1);
+
+      @media (--desktop) {
+        margin-right: var(--space-3);
+      }
     }
   }
 

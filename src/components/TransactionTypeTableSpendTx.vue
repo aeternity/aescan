@@ -9,12 +9,12 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
-          <app-link :to="`/accounts/${transactionData.sender_id}`">
+          <app-link :to="`/accounts/${transactionData.senderId}`">
             <span class="transaction-type-panel-spend-tx__hash">
-              {{ transactionData.sender_id }}
+              {{ transactionData.senderId }}
             </span>
             <span class="transaction-type-panel-spend-tx__hash-ellipse">
-              {{ formatEllipseHash(transactionData.sender_id) }}
+              {{ formatEllipseHash(transactionData.senderId) }}
             </span>
           </app-link>
         </td>
@@ -29,12 +29,12 @@
         <td class="transaction-type-panel-spend-tx__data">
           <app-link
             v-if="!transactionData.recipient"
-            :to="`/accounts/${transactionData.recipient_id}`">
+            :to="`/accounts/${transactionData.recipientId}`">
             <span class="transaction-type-panel-spend-tx__hash">
-              {{ transactionData.recipient_id }}
+              {{ transactionData.recipientId }}
             </span>
             <span class="transaction-type-panel-spend-tx__hash-ellipse">
-              {{ formatEllipseHash(transactionData.recipient_id) }}
+              {{ formatEllipseHash(transactionData.recipientId) }}
             </span>
           </app-link>
           <app-link

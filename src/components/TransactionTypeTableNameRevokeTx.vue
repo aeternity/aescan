@@ -27,8 +27,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-revoke-tx__data">
-          <app-link :to="`/accounts/${transactionData.account_id}`">
-            {{ transactionData.account_id }}
+          <app-link :to="`/accounts/${transactionData.accountId}`">
+            {{ transactionData.accountId }}
           </app-link>
         </td>
       </tr>

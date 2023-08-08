@@ -1,49 +1,25 @@
 <template>
   <div class="pagination">
-    <div
-      :class="[
-        'pagination__container',
-        {'pagination__container--disabled': isPrevDisabled},
-      ]">
-      <button
-        :class="[
-          'pagination__button',
-          'pagination__button--prev',
-          {'pagination__button--disabled': isPrevDisabled}
-        ]"
-        @click="$emit('prev-clicked')">
-        <app-icon
-          :size="22"
-          name="caret-left"/>
-      </button>
-      <div class="pagination__label">
-        {{ prevLabel }}
-      </div>
-    </div>
-    <div
-      :class="[
-        'pagination__container',
-        {'pagination__container--disabled': isNextDisabled},
-      ]">
-      <div class="pagination__label">
-        {{ nextLabel }}
-      </div>
-      <button
-        :class="[
-          'pagination__button',
-          'pagination__button--next',
-          {'pagination__button--disabled': isNextDisabled}
-        ]"
-        @click="$emit('next-clicked')">
-        <app-icon
-          :size="22"
-          name="caret-right"/>
-      </button>
-    </div>
+    <pagination-button
+      class="pagination__prev-button"
+      direction="left"
+      :disabled="isPrevDisabled"
+      @click="$emit('prev-clicked')">
+      {{ prevLabel }}
+    </pagination-button>
+
+    <pagination-button
+      class="pagination__button--next"
+      direction="right"
+      :disabled="isNextDisabled"
+      @click="$emit('next-clicked')">
+      {{ nextLabel }}
+    </pagination-button>
   </div>
 </template>
+
 <script setup>
-import AppIcon from '@/components/AppIcon'
+import PaginationButton from '@/components/PaginationButton'
 
 defineProps({
   isPrevDisabled: {
@@ -72,52 +48,13 @@ defineEmits(['prev-clicked', 'next-clicked'])
   display: flex;
   justify-content: space-between;
 
-  &__container {
-    display: flex;
-    align-items: center;
-    color: var(--color-midnight);
-
-    &--disabled {
-      color: var(--color-midnight-35);
-    }
-  }
-
-  &__label {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-  }
-
   &__button {
-    width: 32px;
-    height: 32px;
-
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-    border: 1px solid var(--color-midnight);
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:active {
-      color: var(--color-blue);
-    }
-
     &--next {
       margin-left: var(--space-1);
     }
 
     &--prev {
       margin-right: var(--space-1);
-    }
-
-    &--disabled {
-      pointer-events: none;
-      cursor: not-allowed;
-      border-color: var(--color-midnight-35);
-      color: var(--color-midnight-35);
     }
   }
 }

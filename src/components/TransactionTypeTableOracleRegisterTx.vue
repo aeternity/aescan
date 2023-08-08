@@ -9,8 +9,8 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracle_id}`">
-            {{ formatNullable(transactionData.oracle_id) }}
+          <app-link :to="`/oracles/${transactionData.oracleId}`">
+            {{ formatNullable(transactionData.oracleId) }}
           </app-link>
         </td>
       </tr>
@@ -22,9 +22,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          {{ transactionData.oracle_ttl.value }}
+          {{ transactionData.oracleTtl.value }}
           /
-          {{ transactionData.oracle_ttl.type }}
+          {{ transactionData.oracleTtl.type }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
@@ -35,7 +35,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.query_fee), null) }}
+          {{ formatAePrice(formatAettosToAe(transactionData.queryFee), null) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
@@ -46,7 +46,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          {{ transactionData.query_format }}
+          {{ transactionData.queryFormat }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
@@ -57,7 +57,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          {{ transactionData.response_format }}
+          {{ transactionData.responseFormat }}
         </td>
       </tr>
     </tbody>

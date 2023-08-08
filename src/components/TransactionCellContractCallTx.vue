@@ -1,13 +1,13 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.caller_id"
-    :link-to="`/accounts/${transactionData.caller_id}`"/>
+    :hash="transactionData.callerId"
+    :link-to="`/accounts/${transactionData.callerId}`"/>
 
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed
-    :hash="transactionData.contract_id"
-    :link-to="`/contracts/${transactionData.contract_id}`"/>
+    :hash="transactionData.contractId"
+    :link-to="`/contracts/${transactionData.contractId}`"/>
 
   <app-chip size="sm">
     {{ transactionData.function }}

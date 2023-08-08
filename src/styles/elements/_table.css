@@ -16,6 +16,7 @@ th {
   @media (--desktop) {
     font-size: 16px;
     line-height: 24px;
+    vertical-align: middle;
     padding: var(--space-2) 0 var(--space-1);
   }
 }

@@ -1,7 +1,7 @@
 export const oraclesHints = {
   oracle: 'An oracle can be queried to put off-chain real-world data from any kind of data source on the æternity blockchain for smart contracts to use on-chain. This is necessary because smart contracts running on æternity are deterministic and cannot access information stored outside the blockchain network.',
   oracleId: 'Unique oracle identifier inherited from the account address of the operator.',
-  registered: 'Keyblock height and exact date when the oracle has been registered via OracleRegisterTx.',
+  registered: 'Keyblock height and the exact date when the oracle was registered via OracleRegisterTx.',
   expiration: 'The default lifetime of an oracle is 500 keyblocks. The initial lifetime can be set to a higher value and an oracle can be extended anytime, e.g. by setting up an automated service. In case the oracle lifetime is passed, the oracle operator can re-register it anytime.',
   queryFee: 'The default fee required to query an oracle is 30,000 aettos and is defined by the oracle operator when registering it. The oracle operator can set it to any value and even allow to query the oracle for free.',
   lastExtended: 'Keyblock height and estimated date when the oracle has been extended.',

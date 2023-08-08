@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.0](https://github.com/aeternity/aescan/compare/0.4.0...0.5.0) (2023-08-08)
+
+
+### Features
+
+* Add 500 error page ([#421](https://github.com/aeternity/aescan/issues/421)) ([951f1b3](https://github.com/aeternity/aescan/commit/951f1b3ae84990d4343d0ff6c412ac777b130750))
+* lexon token listing ([#434](https://github.com/aeternity/aescan/issues/434)) ([a1f39df](https://github.com/aeternity/aescan/commit/a1f39dfd32d6c6a44c385a25cca65018859b0ddd))
+
+
+### Bug Fixes
+
+* empty name claims ([#433](https://github.com/aeternity/aescan/issues/433)) ([9dce670](https://github.com/aeternity/aescan/commit/9dce670ea1ea56a97100e1d5288195112c449006))
+* hotfix remove duplicate condition ([#426](https://github.com/aeternity/aescan/issues/426)) ([00763e7](https://github.com/aeternity/aescan/commit/00763e7442af71a2026b7b01d3e9813af050abfb))
+
 ## [0.4.0](https://github.com/aeternity/aescan/compare/0.3.0...0.4.0) (2023-08-03)
 
 

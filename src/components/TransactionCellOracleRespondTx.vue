@@ -1,11 +1,11 @@
 <template>
   <value-hash-ellipsed
-    :hash="transactionData.oracle_id"
-    :link-to="`/oracles/${transactionData.oracle_id}`"/>
+    :hash="transactionData.oracleId"
+    :link-to="`/oracles/${transactionData.oracleId}`"/>
 
   <transaction-arrow-right-icon/>
 
-  <value-hash-ellipsed :hash="transactionData.query_id"/>
+  <value-hash-ellipsed :hash="transactionData.queryId"/>
 
   <app-chip size="sm">
     {{ oracleResponse }}

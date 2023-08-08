@@ -25,13 +25,13 @@
     <tbody>
       <tr
         v-for="token in tokens.data"
-        :key="token.contract_id">
+        :key="token.contractId">
         <td>
           <app-link
-            :to="`/tokens/${token.contract_id}`"
+            :to="`/tokens/${token.contractId}`"
             class="tokens-table__link">
             <token-symbol-icon
-              :contract-id="token.contract_id"
+              :contract-id="token.contractId"
               class="tokens-table__icon"/>
             {{ token.symbol }}
           </app-link>
@@ -39,8 +39,8 @@
         <td>{{ token.name }}</td>
         <td>
           <value-hash-ellipsed
-            :link-to="`/contracts/${token.contract_id}`"
-            :hash="token.contract_id "/>
+            :link-to="`/contracts/${token.contractId}`"
+            :hash="token.contractId "/>
         </td>
       </tr>
     </tbody>

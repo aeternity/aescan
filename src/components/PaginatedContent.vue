@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
     @media (--desktop) {
       justify-content: space-between;
       flex-direction: row;
-      margin-bottom: var(--space-1);
+      /*margin-bottom: var(--space-1);*/
     }
 
     &:empty {

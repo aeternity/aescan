@@ -49,6 +49,7 @@ if (process.client) {
   margin-top: var(--space-2);
 
   &__table {
+    margin-bottom: var(--space-4);
     display: none;
     @media (--desktop) {
       display: revert;

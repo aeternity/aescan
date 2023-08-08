@@ -63,7 +63,7 @@ function selectTab(tabIndex) {
     width: 100%;
     gap: var(--space-0);
     list-style: none;
-    margin-bottom: var(--space-2);
+    margin-bottom: 10px;
   }
 
   &__item {
@@ -73,9 +73,10 @@ function selectTab(tabIndex) {
     cursor: pointer;
     padding: var(--space-1);
     background: var(--color-midnight-15);
-    color: var(--color-gray);
+    color: var(--color-midnight-55);
     border-radius: 4px;
     margin-bottom: 3px;
+    letter-spacing: 0.003em;
 
     @media (--desktop) {
       font-size: 16px;
@@ -86,7 +87,7 @@ function selectTab(tabIndex) {
       margin-bottom: 0;
       color: var(--color-midnight);
       border-radius: 4px;
-      border-bottom: 3px solid var(--color-fire);
+      border-bottom: 2.5px solid var(--color-fire);
       background: var(--color-white);
     }
   }

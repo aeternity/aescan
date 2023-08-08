@@ -1,8 +1,8 @@
 <template>
   <app-panel class="oracle-events-query-panel">
-    <template #heading>
+    <div class="oracle-events-query-panel__heading">
       Query Details
-    </template>
+    </div>
     <dl>
       <dt class="oracle-events-query-panel_term">
         Query ID:
@@ -69,6 +69,16 @@ defineProps({
   background: var(--color-snow);
   font-size: 11px;
   line-height: 16px;
+
+  @media (--desktop) {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  &__heading {
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    margin-bottom: var(--space-3);
+  }
 
   &__term {
     height: 16px;

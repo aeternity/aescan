@@ -218,8 +218,8 @@ const tokenPrice = computed(() =>
     width: 28px;
     height: 28px;
     @media (--desktop) {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
     }
   }
 

@@ -3,13 +3,14 @@ table {
   border-collapse: collapse;
 }
 
+
 th {
   text-align: left;
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
 
-  vertical-align: initial;
+  vertical-align: middle;
   padding: var(--space-1) 0;
 
 
@@ -17,7 +18,7 @@ th {
     font-size: 16px;
     line-height: 18px;
     vertical-align: top;
-    padding: var(--space-1) 0 7px;
+    padding: 12px 0 7px;
   }
 }
 
@@ -30,9 +31,15 @@ td {
   vertical-align: middle;
 
   @media (--desktop) {
-    padding: var(--space-1) var(--space-0);
+    padding: 12px var(--space-0) 7px;
   }
 }
+
+
+thead tr:first-of-type th {
+  padding-bottom: 0;
+}
+
 
 td:first-of-type {
   padding-left: 0;
@@ -44,5 +51,6 @@ td:last-of-type {
 
 tr:last-of-type td {
   border-bottom: 0;
+  padding-bottom: 0;
 }
 

@@ -46,8 +46,7 @@ function loadNextActions() {
 
     @media (--desktop) {
       display: revert;
-      margin-bottom: var(--space-2);
-    }
+      margin-bottom: var(--space-4);
   }
 
   &__name-history-table-condensed {

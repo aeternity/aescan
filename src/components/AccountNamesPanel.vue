@@ -43,7 +43,7 @@ async function loadNextAccountNames() {
 
     @media (--desktop) {
       display: revert;
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
     }
   }
 

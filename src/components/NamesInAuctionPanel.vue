@@ -47,7 +47,7 @@ function loadNextNames() {
 
     @media (--desktop) {
       display: revert;
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-4);
     }
   }
 

@@ -80,7 +80,7 @@ defineProps({
 
 <style scoped>
 .oracles-table {
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
 
   &__data {
     vertical-align: top;

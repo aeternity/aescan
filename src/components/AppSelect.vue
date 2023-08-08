@@ -83,6 +83,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   &__tags {
     border-radius: 8px;
     border-color: var(--color-midnight);
+    border-width: 1.5px;
     cursor: pointer;
   }
 
@@ -90,6 +91,8 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     color: var(--color-midnight);
     font-size: 14px;
     line-height: 20px;
+    font-family: var(--font-primary);
+    font-weight: 500;
   }
 
   &__content-wrapper {

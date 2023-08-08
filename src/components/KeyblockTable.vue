@@ -98,7 +98,7 @@ defineProps({
 <style scoped>
 .keyblock-table {
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1.5px solid var(--color-midnight-15);
     @media (--desktop) {
       padding: var(--space-2) 0 var(--space-1);
     }

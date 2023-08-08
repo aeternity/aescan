@@ -39,6 +39,7 @@ defineProps({
 <style scoped>
 .keyblock-sequence {
   position: relative;
+  padding: 8px 0;
 
   &__sequence {
     display: flex;

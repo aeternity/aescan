@@ -83,9 +83,10 @@ const {
   width: 100%;
 
   &__container {
-    padding: var(--space-4) var(--space-1) var(--space-1);
+    /*padding: var(--space-4) var(--space-1) var(--space-1);*/
     @media (--desktop) {
-      padding: var(--space-4) var(--space-4) var(--space-1);
+      /*padding: var(--space-4) var(--space-4) var(--space-1);*/
+      padding-bottom: 16px;
     }
   }
 
@@ -110,15 +111,15 @@ const {
   }
 
   &__keyblock-sequence {
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
   }
 
-  &__dashboard-microblock-panel {
-    margin: 0 var(--space-2) var(--space-1);
-    @media (--desktop) {
-      margin: 0 var(--space-4) var(--space-4);
-    }
-  }
+  /*&__dashboard-microblock-panel {*/
+  /*  margin: 0 var(--space-2) var(--space-1);*/
+  /*  @media (--desktop) {*/
+  /*    margin: 0 var(--space-4) var(--space-4);*/
+  /*  }*/
+  /*}*/
 
   &__summary {
     font-family: var(--font-monospaced);

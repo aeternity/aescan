@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
   &__row {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3) var(--space-4);
+    gap: var(--space-3) var(--space-6);
     margin-bottom: var(--space-4);
 
     @media (--desktop) {

@@ -1,11 +1,31 @@
 <template>
   <div class="default-layout">
     <div class="default-layout__parallax">
-      <slot/>
+      <div v-show="isLoading">
+        <app-panel>
+          <spinner-loader class="default-layout__spinner-loader"/>
+        </app-panel>
+      </div>
+
+      <div v-show="!isLoading">
+        <slot/>
+      </div>
     </div>
   </div>
 </template>
 
+<script setup>
+
+const nuxtApp = useNuxtApp()
+const isLoading = ref(true)
+nuxtApp.hook('page:start', () => {
+  isLoading.value = true
+})
+nuxtApp.hook('page:finish', () => {
+  isLoading.value = false
+})
+
+</script>
 <style scoped>
 .default-layout {
   background-image: url("@/assets/background.svg");
@@ -22,6 +42,10 @@
     @media (--desktop) {
       padding: 120px 0;
     }
+  }
+
+  &__spinner-loader {
+    padding: var(--space-3) 0;
   }
 }
 </style>

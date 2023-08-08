@@ -105,7 +105,7 @@ export function adaptNames(names, blockHeight) {
         blockHeight,
       ),
       isAuction: isAuction(name.name),
-      price: formatAettosToAe(name.info.claims.at(-1).tx.nameFee),
+      price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
     }
   })
 }

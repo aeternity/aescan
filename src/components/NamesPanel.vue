@@ -25,6 +25,8 @@ import NamesTable from '@/components/NamesTable'
 
 <style scoped>
 .names-panel {
+  padding-top: var(--space-3);
+
   &__swiper {
     @media (--desktop) {
       display: none;

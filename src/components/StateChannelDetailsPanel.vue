@@ -207,7 +207,7 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v2/channels/${props.stateCh
 <style scoped>
 .state-channel-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1.5px solid var(--color-midnight-15);
   }
 
   &__data {

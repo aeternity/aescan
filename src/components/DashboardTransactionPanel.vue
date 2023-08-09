@@ -57,7 +57,7 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
 <style scoped>
 .dashboard-transactions-panel {
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-1);
 
   &__panel-header {
     margin-bottom: var(--space-3);
@@ -81,7 +81,7 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
   &__summary {
     display: block;
-    margin-bottom: var(--space-1);
+    margin-bottom: var(--space-3);
     font-family: var(--font-monospaced);
     font-size: 14px;
     line-height: 20px;

@@ -1,0 +1,71 @@
+<svg width="43" height="44" viewBox="0 0 43 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_11159_26702)">
+        <path class="path" d="M17.1806 4.62883L21.9395 1.97737L30.6145 6.75557L30.505 11.8754L17.1806 4.62883Z"
+              fill="#F5274E"/>
+        <path class="path" d="M34.6838 9.26129L39.4578 11.9212L39.4699 21.6538L34.786 24.1631L34.6838 9.26129Z"
+              fill="#F5274E"/>
+
+        <path class="path" d="M39.3301 26.1525V31.4554L30.7045 36.3164L26.1648 33.665L39.3301 26.1525Z" fill="#F5274E"/>
+        <path class="path" d="M26.2954 38.5815L21.5006 41.1722L12.8917 36.2839L13.0713 31.1659L26.2954 38.5815Z"
+              fill="#F5274E"/>
+        <path class="path" d="M8.98413 33.8637L4.21014 31.2038L4.19807 21.4712L8.88195 18.9619L8.98413 33.8637Z"
+              fill="#F5274E"/>
+        <path class="path" d="M4.32422 17.1834V11.8805L13.0512 7.01953L17.6444 9.67098L4.32422 17.1834Z"
+              fill="#F5274E"/>
+
+        <path d="M14.3154 16.8086L21.8274 12.5487L29.1845 16.8086L21.75 20.919L14.3154 16.8086Z" fill="#F5274E"/>
+        <path d="M23.0266 23.0905L30.5386 18.8306L30.5386 27.2756L23.0266 31.3861L23.0266 23.0905Z" fill="#F5274E"/>
+        <path d="M13.0295 27.3192L12.8919 18.912L20.5058 23.075L20.5087 31.4085L13.0295 27.3192Z" fill="#F5274E"/>
+    </g>
+    <defs>
+        <clipPath id="clip0_11159_26702">
+            <rect width="43" height="44" fill="white"/>
+        </clipPath>
+    </defs>
+
+    <style>
+        .path {
+        animation: lds-spinner 1.2s linear infinite;
+        }
+
+        .path:nth-child(1) {
+        opacity:0;
+        animation-delay: -1s;
+        }
+        .path:nth-child(2) {
+        opacity:0;
+        animation-delay: -0.8s;
+        }
+        .path:nth-child(3) {
+        opacity:0;
+        animation-delay: -0.6s;
+        }
+        .path:nth-child(4) {
+        opacity:0;
+        animation-delay: -0.4s;
+        }
+        .path:nth-child(5) {
+        opacity:0;
+        animation-delay: -0.2s;
+        }
+        .path:nth-child(6) {
+        opacity:0;
+
+        }
+
+        @keyframes lds-spinner {
+        0% {
+        opacity: 1;
+        }
+        50% {
+        opacity: 0.9;
+        }
+        100% {
+        opacity: 0;
+        }
+        }
+
+    </style>
+</svg>
+
+

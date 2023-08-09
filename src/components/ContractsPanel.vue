@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="contracts"
-    class="contracts-panel">
+  <app-panel class="contracts-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="contracts"

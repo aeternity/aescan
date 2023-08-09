@@ -1,17 +1,14 @@
 <template>
   <app-panel class="oracles-panel">
     <paginated-content
-      v-if="oracles"
       :entities="oracles"
       :limit="limit"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
       <oracles-table
-        v-if="oracles"
         class="oracles-panel__oracles-table"
         :oracles="oracles"/>
       <oracles-table-condensed
-        v-if="oracles"
         class="oracles-panel__oracles-table-condensed"
         :oracles="oracles"/>
     </paginated-content>
@@ -31,14 +28,14 @@ const oraclesStore = useOraclesStore()
 const { fetchOracles } = oraclesStore
 const { oracles } = storeToRefs(oraclesStore)
 
-const limit = computed(() => isDesktop() ? 10 : 3)
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-async function loadPrevOracles() {
-  await fetchOracles({ queryParameters: oracles.value.prev })
+function loadPrevOracles() {
+  fetchOracles({ queryParameters: oracles.value.prev })
 }
 
-async function loadNextOracles() {
-  await fetchOracles({ queryParameters: oracles.value.next })
+function loadNextOracles() {
+  fetchOracles({ queryParameters: oracles.value.next })
 }
 
 if (process.client) {

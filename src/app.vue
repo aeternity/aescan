@@ -65,10 +65,6 @@
 
   <the-header/>
   <NuxtLayout>
-    <NuxtLoadingIndicator
-      :duration="3000"
-      :throttle="300"
-      :color="false"/>
     <NuxtPage/>
   </NuxtLayout>
   <the-footer class="app__footer"/>

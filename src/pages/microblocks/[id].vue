@@ -14,7 +14,7 @@
     v-if="microblockDetails"
     :microblock-details="microblockDetails"/>
 
-  <microblock-transactions-panel v-if="microblockDetails"/>
+  <microblock-transactions-panel/>
 </template>
 
 <script setup>

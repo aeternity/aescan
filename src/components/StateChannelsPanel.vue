@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="stateChannels"
-    class="state-channels-panel">
+  <app-panel class="state-channels-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="stateChannels"
@@ -35,23 +33,24 @@ const { fetchStateChannels, fetchStateChannelsCount } = stateChannelsStore
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
-const loadPrevStateChannels = () => {
-  fetchStateChannels({
+async function loadPrevStateChannels() {
+  await fetchStateChannels({
     queryParameters: stateChannels.value.prev,
   })
 }
-const loadNextStateChannels = () => {
-  fetchStateChannels({
+
+async function loadNextStateChannels() {
+  await fetchStateChannels({
     queryParameters: stateChannels.value.next,
   })
 }
 
-const loadStateChannels = () => {
-  fetchStateChannels({ limit: limit.value })
+async function loadStateChannels() {
+  await fetchStateChannels({ limit: limit.value })
   pageIndex.value = 1
 }
 
-fetchStateChannelsCount()
+await fetchStateChannelsCount()
 
 if (process.client) {
   loadStateChannels()

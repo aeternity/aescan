@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="contractCallTransactions"
-    class="contract-call-transactions-panel">
+  <app-panel class="contract-call-transactions-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       :total-count="contractCallsCount"
@@ -35,7 +33,7 @@ const contractDetailsStore = useContractDetailsStore()
 const { contractCallTransactions, contractCallsCount } = storeToRefs(contractDetailsStore)
 const { fetchContractCallTransactions } = contractDetailsStore
 
-const limit = computed(() => isDesktop() ? 10 : 3)
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 const loadPrevTransactions = () => {

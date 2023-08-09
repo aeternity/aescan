@@ -15,20 +15,22 @@
       </app-link>
     </template>
   </page-header>
-
-  <app-tabs
-    v-model="activeTabIndex"
-    class="names__tabs">
-    <app-tab title="Active">
-      <names-active-panel/>
-    </app-tab>
-    <app-tab title="In Auction">
-      <names-in-auction-panel/>
-    </app-tab>
-    <app-tab title="Expired">
-      <names-expired-panel/>
-    </app-tab>
-  </app-tabs>
+  <template v-if="!isLoading">
+    <app-tabs
+      v-model="activeTabIndex"
+      class="names__tabs">
+      <app-tab title="Active">
+        <names-active-panel/>
+      </app-tab>
+      <app-tab title="In Auction">
+        <names-in-auction-panel/>
+      </app-tab>
+      <app-tab title="Expired">
+        <names-expired-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -73,6 +75,15 @@ const activeTabIndex = computed({
 
     return push(newRoute)
   },
+})
+
+const nuxtApp = useNuxtApp()
+const isLoading = ref(true)
+nuxtApp.hook('page:start', () => {
+  isLoading.value = true
+})
+nuxtApp.hook('page:finish', () => {
+  isLoading.value = false
 })
 
 if (process.client) {

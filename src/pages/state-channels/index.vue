@@ -16,9 +16,20 @@
     </template>
   </page-header>
 
-  <state-channels-panel/>
+  <state-channels-panel v-if="!isLoading"/>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
+
+const nuxtApp = useNuxtApp()
+const isLoading = ref(true)
+nuxtApp.hook('page:start', () => {
+  isLoading.value = true
+})
+nuxtApp.hook('page:finish', () => {
+  isLoading.value = false
+})
+
 </script>

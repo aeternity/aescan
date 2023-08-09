@@ -11,7 +11,9 @@
     </template>
   </page-header>
 
-  <account-details-panel :account-details="accountDetails"/>
+  <account-details-panel
+    v-if="accountDetails"
+    :account-details="accountDetails"/>
 
   <client-only>
     <app-tabs v-if="isTabsVisible">

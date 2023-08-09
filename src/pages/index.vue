@@ -60,24 +60,19 @@
           <h2 class="dashboard__heading">
             State Channels
           </h2>
-        </div>
-        <div class="dashboard__column">
-          <p class="dashboard__paragraph dashboard__paragraph--horizontal">
+          <p class="dashboard__paragraph">
             State Channels allow the gas-free execution of smart contracts and
             transactions, privately and with the speed of light, while still
             being able to escalate on-chain in case of disagreement.
             <app-link
               class="dashboard__link"
-              to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b"
-              is-text-link>
+              to="https://aeternity.com/state-channels">
               Learn more
             </app-link>
-            <br>
-            Soon also with Hyperchains support!
           </p>
+          <dashboard-state-channels-panel class="dashboard__dashboard-state-channels-panel"/>
         </div>
       </div>
-      <dashboard-state-channels-panel class="dashboard__dashboard-state-channels-panel"/>
     </div>
   </div>
 </template>
@@ -87,6 +82,7 @@ import { storeToRefs } from 'pinia'
 import NamesPanel from '@/components/NamesPanel'
 import AuctionsPanel from '@/components/AuctionsPanel'
 import BlockchainPanel from '@/components/BlockchainPanel'
+import DashboardStateChannelsPanel from '@/components/DashboardStateChannelsPanel'
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'
 import { useWebSocket } from '@/stores/webSocket'

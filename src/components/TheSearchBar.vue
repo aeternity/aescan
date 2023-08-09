@@ -146,10 +146,6 @@ function isMicroblockId(query) {
     appearance: none;
     font-family: var(--font-monospaced);
 
-    @media (--desktop) {
-      font-size: 14px;
-    }
-
     &:focus {
       outline: none;
     }

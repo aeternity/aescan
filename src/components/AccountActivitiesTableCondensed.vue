@@ -2,7 +2,7 @@
   <div class="account-activities-table-condensed">
     <table
       v-for="(activity, index) in accountActivities?.data"
-      :key="`${activity.hash}-${activity.type}-${index}`"
+      :key="index"
       class="account-activities-table-condensed__table">
       <tbody>
         <tr class="account-activities-table-condensed__row">

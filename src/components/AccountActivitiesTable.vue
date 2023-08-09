@@ -37,7 +37,7 @@
     <tbody>
       <tr
         v-for="(activity, index) in accountActivities?.data"
-        :key="`${activity.hash}-${activity.type}-${index}`">
+        :key="index">
         <td>
           <value-hash-ellipsed
             v-if="activity.hash"

@@ -2,7 +2,7 @@
   <div
     ref="paginatedContent"
     class="paginated-content">
-    <template v-if="entities !== null">
+    <template v-if="entities">
       <header class="paginated-content__header">
         <div class="paginated-content__counter">
           <span v-if="hasCounter">

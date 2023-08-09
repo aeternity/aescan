@@ -11,19 +11,22 @@
     </template>
   </page-header>
 
-  <token-details-panel
-    v-if="tokenDetails"
-    class="token-details__panel"
-    :token-details="tokenDetails"/>
+  <template v-if="!isLoading">
+    <token-details-panel
+      v-if="tokenDetails"
+      class="token-details__panel"
+      :token-details="tokenDetails"/>
 
-  <app-tabs>
-    <app-tab title="Holders">
-      <token-holders-panel/>
-    </app-tab>
-    <app-tab title="Events">
-      <token-events-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs>
+      <app-tab title="Holders">
+        <token-holders-panel/>
+      </app-tab>
+      <app-tab title="Events">
+        <token-events-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -42,6 +45,15 @@ const route = useRoute()
 const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
+
+const nuxtApp = useNuxtApp()
+const isLoading = ref(true)
+nuxtApp.hook('page:start', () => {
+  isLoading.value = true
+})
+nuxtApp.hook('page:finish', () => {
+  isLoading.value = false
+})
 
 await fetchTokenDetails(route.params.id)
 

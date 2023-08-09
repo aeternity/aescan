@@ -9,12 +9,14 @@
       {{ microblocksHints.microblock }}
     </template>
   </page-header>
+  <template v-if="!isLoading">
+    <microblock-details-panel
+      v-if="microblockDetails"
+      :microblock-details="microblockDetails"/>
 
-  <microblock-details-panel
-    v-if="microblockDetails"
-    :microblock-details="microblockDetails"/>
-
-  <microblock-transactions-panel/>
+    <microblock-transactions-panel/>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -31,6 +33,15 @@ const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblock } = microblockDetailsStore
 const route = useRoute()
+
+const nuxtApp = useNuxtApp()
+const isLoading = ref(true)
+nuxtApp.hook('page:start', () => {
+  isLoading.value = true
+})
+nuxtApp.hook('page:finish', () => {
+  isLoading.value = false
+})
 
 await useAsyncData(async() => {
   await fetchMicroblock(route.params.id)

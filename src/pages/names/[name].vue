@@ -16,21 +16,24 @@
     </template>
   </page-header>
 
-  <name-details-panel class="name-details__panel"/>
+  <template v-if="!isLoading">
+    <name-details-panel class="name-details__panel"/>
 
-  <name-pointers-special-panel
-    v-if="name?.active"
-    class="name-details__panel"/>
-  <name-pointers-custom-panel
-    v-if="hasCustomPanel"
-    class="name-details__panel"/>
-  <app-tabs
-    v-if="hasNameHistory"
-    class="name-details__tabs">
-    <app-tab title="History">
-      <name-history-panel class="name-details__history"/>
-    </app-tab>
-  </app-tabs>
+    <name-pointers-special-panel
+      v-if="name?.active"
+      class="name-details__panel"/>
+    <name-pointers-custom-panel
+      v-if="hasCustomPanel"
+      class="name-details__panel"/>
+    <app-tabs
+      v-if="hasNameHistory"
+      class="name-details__tabs">
+      <app-tab title="History">
+        <name-history-panel class="name-details__history"/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -55,6 +58,15 @@ const {
 const route = useRoute()
 const { replace } = useRouter()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
+
+const nuxtApp = useNuxtApp()
+const isLoading = ref(true)
+nuxtApp.hook('page:start', () => {
+  isLoading.value = true
+})
+nuxtApp.hook('page:finish', () => {
+  isLoading.value = false
+})
 
 try {
   await fetchName(route.params.name)

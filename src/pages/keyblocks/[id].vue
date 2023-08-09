@@ -10,15 +10,18 @@
     </template>
   </page-header>
 
-  <keyblock-details-panel
-    v-if="keyblockDetails"
-    :keyblock-details="keyblockDetails"/>
+  <template v-if="!isLoading">
+    <keyblock-details-panel
+      v-if="keyblockDetails"
+      :keyblock-details="keyblockDetails"/>
 
-  <app-tabs v-if="isKeyblockExistent">
-    <app-tab title="Microblocks">
-      <keyblock-microblocks-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs v-if="isKeyblockExistent">
+      <app-tab title="Microblocks">
+        <keyblock-microblocks-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -36,6 +39,15 @@ const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
+
+const nuxtApp = useNuxtApp()
+const isLoading = ref(true)
+nuxtApp.hook('page:start', () => {
+  isLoading.value = true
+})
+nuxtApp.hook('page:finish', () => {
+  isLoading.value = false
+})
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
 

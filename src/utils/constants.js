@@ -55,6 +55,7 @@ export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
 export const VISIBLE_KEYBLOCKS_LIMIT = 20
 export const VISIBLE_MICROBLOCKS_LIMIT = 30
 export const VISIBLE_TRANSACTIONS_LIMIT = 4
+export const LAEX_CONTRACT_ID = 'ct_xtk8rSz9suPb6D6VLquyfVji25FcnFRDjn3dnn5mmvHsPiESt'
 
 export const TOKEN_SUPPLY_ACI = [
   {

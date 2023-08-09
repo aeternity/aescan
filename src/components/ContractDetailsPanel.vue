@@ -40,7 +40,7 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Date
+            Created
             <hint-tooltip>
               {{ contractsHints.contractCreated }}
             </hint-tooltip>

@@ -47,7 +47,7 @@
             {{ name.isAuction ? 'Auction' : 'Fixed price' }}
           </div>
           <div class="names-table__name-price">
-            {{ formatAePrice(name.price) }}
+            {{ formatNullable(formatAePrice(name.price)) }}
           </div>
         </td>
         <td>
@@ -70,7 +70,7 @@ import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
-import { formatAePrice } from '@/utils/format'
+import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 

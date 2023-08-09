@@ -42,7 +42,7 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             <app-tooltip>
-              Hash
+              Create Transaction
               <template #tooltip>
                 {{ contractsHints.hash }}
               </template>

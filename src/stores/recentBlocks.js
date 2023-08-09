@@ -106,13 +106,12 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     selectedKeyblockMicroblocks.value = data.data
   }
 
-  async function fetchSelectedMicroblockTransactions(queryParameters = null) {
+  async function fetchSelectedMicroblockTransactions() {
     if (!selectedMicroblock.value) {
       return
     }
 
-    const defaultParameters = `/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=${VISIBLE_TRANSACTIONS_LIMIT}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=${VISIBLE_TRANSACTIONS_LIMIT}`)
     rawSelectedMicroblockTransactions.value = data
   }
 

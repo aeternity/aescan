@@ -42,6 +42,7 @@
     </template>
   </app-swiper>
 </template>
+
 <script setup>
 import DatetimeLabel from '@/components/DatetimeLabel'
 import TransactionCell from '@/components/TransactionCell'

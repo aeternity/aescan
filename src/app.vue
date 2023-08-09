@@ -80,7 +80,7 @@ import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 import { initializeStores } from '@/stores'
 import { useWebSocket } from '@/stores/webSocket'
-import { APP_CREATOR, APP_DESCRIPTION, APP_TITLE, APP_URL, APP_KEYWORDS } from '@/utils/constants'
+import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
 
 await useAsyncData(() => initializeStores())
 

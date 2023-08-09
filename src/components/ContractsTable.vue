@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Hash
+          Create Transaction
           <hint-tooltip>
             {{ contractsHints.hash }}
           </hint-tooltip>

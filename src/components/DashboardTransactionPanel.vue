@@ -11,13 +11,17 @@
       </template>
       <template #header>
         <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
-          Displaying transactions of selected microblock
+          Displaying
+          {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
+          transactions of selected microblock
         </div>
       </template>
     </panel-header>
 
     <div class="dashboard-transactions-panel__summary">
-      Displaying transactions of selected microblock
+      Displaying
+      {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
+      transactions of selected microblock
     </div>
 
     <dashboard-microblock-transactions-table
@@ -42,6 +46,7 @@ import DashboardMicroblockTransactionsTable from '@/components/DashboardMicroblo
 
 const {
   selectedMicroblockTransactions,
+  selectedMicroblockTransactionsCount,
   selectedMicroblock,
 } = storeToRefs(
   useRecentBlocksStore(),

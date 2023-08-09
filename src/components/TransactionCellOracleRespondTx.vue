@@ -7,7 +7,9 @@
 
   <value-hash-ellipsed :hash="transactionData.query_id"/>
 
-  <app-chip size="sm">
+  <app-chip
+    v-if="oracleResponse"
+    size="sm">
     {{ oracleResponse }}
   </app-chip>
 </template>
@@ -24,7 +26,8 @@ const props = defineProps({
     type: Object,
   },
 })
-const oracleResponse = computed(() =>
-  formatDecodeByteArray(props.transactionData.response).slice(0, 8),
-)
+const oracleResponse = computed(() => {
+  const decodedResponse = formatDecodeByteArray(props.transactionData.response)
+  return decodedResponse.length > 8 ? decodedResponse.slice(0, 8) : decodedResponse
+})
 </script>

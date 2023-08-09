@@ -2,9 +2,7 @@
   <div
     ref="paginatedContent"
     class="paginated-content">
-    <div
-      v-if="entities"
-      class="paginated-content__container">
+    <template v-if="entities !== null">
       <header class="paginated-content__header">
         <div class="paginated-content__counter">
           <span v-if="hasCounter">
@@ -26,20 +24,25 @@
         </div>
         <slot name="header"/>
       </header>
-      <slot v-if="!!entities?.data.length"/>
+      <div
+        v-if="!!entities?.data.length"
+        class="paginated-content__container">
+        <slot/>
+      </div>
       <blank-state
         v-else
         class="paginated-content__blank-state"/>
 
       <app-pagination
         v-if="hasPagination"
+        class="paginated-content__pagination"
         :is-prev-disabled="isPrevDisabled"
         :is-next-disabled="isNextDisabled"
         :prev-label="prevLabel"
         :next-label="nextLabel"
         @prev-clicked="handlePrevClicked"
         @next-clicked="handleNextClicked"/>
-    </div>
+    </template>
     <div v-else>
       <spinner-loader class="paginated-content__spinner-loader"/>
     </div>
@@ -159,11 +162,13 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   &__header {
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 
     @media (--desktop) {
       justify-content: space-between;
@@ -196,10 +201,15 @@ onBeforeUnmount(() => {
 
   &__blank-state {
     margin-top: var(--space-3);
+    width: 100%;
   }
 
   &__spinner-loader {
     margin: var(--space-3) 0;
+  }
+
+  &__pagination {
+    width: 100%;
   }
 }
 </style>

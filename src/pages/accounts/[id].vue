@@ -42,14 +42,7 @@ import AccountDetailsPanel from '@/components/AccountDetailsPanel'
 import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 
 const accountStore = useAccountStore()
 const { accountDetails } = storeToRefs(accountStore)

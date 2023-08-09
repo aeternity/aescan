@@ -77,14 +77,7 @@ const activeTabIndex = computed({
   },
 })
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 
 if (process.client) {
   const limit = isDesktop() ? null : 3

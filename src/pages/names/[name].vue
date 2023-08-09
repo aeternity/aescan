@@ -59,14 +59,7 @@ const route = useRoute()
 const { replace } = useRouter()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 
 try {
   await fetchName(route.params.name)

@@ -19,12 +19,5 @@ import PageHeader from '@/components/PageHeader'
 import TokensPanel from '@/components/TokensPanel'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 </script>

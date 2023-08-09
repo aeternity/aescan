@@ -40,14 +40,7 @@ const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
 

@@ -20,12 +20,5 @@ import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 </script>

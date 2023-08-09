@@ -25,12 +25,5 @@ import ContractsPanel from '@/components/ContractsPanel'
 import PageHeader from '@/components/PageHeader'
 import { contractsHints } from '@/utils/hints/contractsHints'
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 </script>

@@ -23,13 +23,6 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 
 </script>

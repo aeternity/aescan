@@ -25,12 +25,5 @@ import PageHeader from '@/components/PageHeader'
 import OraclesPanel from '@/components/OraclesPanel'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 </script>

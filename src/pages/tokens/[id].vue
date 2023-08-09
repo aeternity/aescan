@@ -46,14 +46,7 @@ const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 
 await fetchTokenDetails(route.params.id)
 

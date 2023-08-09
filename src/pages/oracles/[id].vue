@@ -43,14 +43,7 @@ const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
-const nuxtApp = useNuxtApp()
-const isLoading = ref(true)
-nuxtApp.hook('page:start', () => {
-  isLoading.value = true
-})
-nuxtApp.hook('page:finish', () => {
-  isLoading.value = false
-})
+const isLoading = useLoading()
 await useAsyncData(() => fetchOracleDetails(route.params.id))
 </script>
 

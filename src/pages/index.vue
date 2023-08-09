@@ -70,7 +70,7 @@
               Learn more
             </app-link>
           </p>
-          <dashboard-state-channels-panel class="dashboard__dashboard-state-channels-panel"/>
+          <dashboard-state-channels-panel/>
         </div>
       </div>
     </div>
@@ -180,10 +180,6 @@ onBeforeUnmount(() => {
         margin: 0;
       }
     }
-  }
-
-  &__dashboard-state-channels-panel {
-    margin-bottom: 120px;
   }
 
   &__link {

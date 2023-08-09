@@ -4,7 +4,8 @@
       level="h3"
       title="State Channels"
       icon-name="state-channel"
-      show-all-link="/state-channels">
+      show-all-link="/state-channels"
+      class="dashboard-state-channels-panel__panel-header">
       State Channels
 
       <template #tooltip>
@@ -25,7 +26,13 @@ import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 <style scoped>
 .dashboard-state-channels-panel {
+  padding-top: var(--space-3);
+  padding-bottom: var(--space-3);
   width: 100%;
+
+  &__panel-header {
+    margin-bottom: var(--space-3);
+  }
 
   &__swiper {
     @media (--desktop) {

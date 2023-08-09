@@ -33,7 +33,7 @@ const contractDetailsStore = useContractDetailsStore()
 const { contractCallTransactions, contractCallsCount } = storeToRefs(contractDetailsStore)
 const { fetchContractCallTransactions } = contractDetailsStore
 
-const limit = computed(() => isDesktop() ? 10 : 3)
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 const loadPrevTransactions = () => {

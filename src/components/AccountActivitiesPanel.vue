@@ -35,13 +35,13 @@ const { accountActivities, accountDetails } = storeToRefs(accountStore)
 const limit = computed(() => isDesktop() ? 10 : 3)
 
 function loadPrevActivities() {
-  fetchAccountActivities({
+  return fetchAccountActivities({
     queryParameters: accountActivities.value.prev,
   })
 }
 
 function loadNextActivities() {
-  fetchAccountActivities({
+  return fetchAccountActivities({
     queryParameters: accountActivities.value.next,
   })
 }

@@ -1,10 +1,8 @@
 <template>
   <span v-if="activity.payload?.kind !== 'reward_block'">N/A</span>
-  <template v-else>
-    <app-chip size="sm">
-      {{ formatAePrice(formatAettosToAe(activity.payload.amount)) }}
-    </app-chip>
-  </template>
+  <app-chip v-else size="sm">
+    {{ formatAePrice(formatAettosToAe(activity.payload.amount)) }}
+  </app-chip>
 </template>
 
 <script setup>

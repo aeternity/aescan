@@ -15,20 +15,22 @@
       </app-link>
     </template>
   </page-header>
+  <template v-if="!isLoading">
+    <contract-details-panel
+      v-if="contractDetails"
+      class="contract-details__panel"
+      :contract-details="contractDetails"/>
 
-  <contract-details-panel
-    v-if="contractDetails"
-    class="contract-details__panel"
-    :contract-details="contractDetails"/>
-
-  <app-tabs v-if="contractDetails">
-    <app-tab title="Call Transactions">
-      <contract-call-transactions-panel/>
-    </app-tab>
-    <app-tab title="Events">
-      <contract-events-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs v-if="contractDetails">
+      <app-tab title="Call Transactions">
+        <contract-call-transactions-panel/>
+      </app-tab>
+      <app-tab title="Events">
+        <contract-events-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -47,6 +49,8 @@ const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
+
+const { isLoading } = useLoading()
 
 await useAsyncData(() => fetchContractDetails(route.params.id))
 

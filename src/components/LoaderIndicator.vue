@@ -1,7 +1,7 @@
 <template>
-  <div class="spinner-loader">
+  <div class="loader-indicator">
     <img
-      class="spinner-loader__image"
+      class="loader-indicator__image"
       alt="loading"
       src="@/assets/loader.svg"
       height="47">
@@ -11,7 +11,7 @@
 
 <style scoped>
 
-.spinner-loader {
+.loader-indicator {
   display: flex;
   flex-direction: column;
   align-items: center;

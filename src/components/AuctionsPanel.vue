@@ -2,7 +2,7 @@
   <app-panel class="auctions-panel">
     <panel-header
       level="h3"
-      title="AUCTIONS ENDING SOON"
+      title="Auctions ending soon"
       icon-name="aens-name"
       show-all-link="/names/?type=in-auction">
       <template #tooltip>

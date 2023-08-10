@@ -15,7 +15,7 @@ defineProps({
     type: String,
     default: 'primary',
     validator: val =>
-      ['primary', 'secondary', 'success', 'error'].includes(val),
+      ['primary', 'secondary', 'success', 'error', 'dark'].includes(val),
   },
   size: {
     type: String,
@@ -60,6 +60,11 @@ defineProps({
 
   &--error {
     background: var(--color-error);
+    color: var(--color-white);
+  }
+
+  &--dark {
+    background: var(--color-midnight-55);
     color: var(--color-white);
   }
 

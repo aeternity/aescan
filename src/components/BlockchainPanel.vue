@@ -4,7 +4,7 @@
       <panel-header
         level="h3"
         class="blockchain-panel__panel-header"
-        title="Keyblocks"
+        title="KEYBLOCKS"
         icon-name="latest-keyblock">
         <template #header>
           <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
@@ -101,6 +101,7 @@ const {
     display: none;
     @media (--desktop) {
       display: revert;
+      margin-bottom: var(--space-2);
     }
   }
 
@@ -114,6 +115,9 @@ const {
 
   &__keyblock-sequence {
     margin-bottom: var(--space-3);
+    @media (--desktop) {
+      margin-bottom: var(--space-4);
+    }
   }
 
   /*&__dashboard-microblock-panel {*/

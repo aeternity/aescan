@@ -74,16 +74,10 @@ defineProps({
 <style scoped>
 .name-history-table-condensed {
   &__table {
-    margin-bottom: var(--space-4);
-
-    &:last-of-type {
-      margin-bottom: var(--space-3);
-    }
+    margin-bottom: var(--space-6);
 
     @media (--desktop) {
-      &:last-of-type {
-        margin-bottom: var(--space-1);
-      }
+      padding: var(--space-4);
     }
   }
 

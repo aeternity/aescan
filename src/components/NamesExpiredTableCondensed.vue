@@ -103,10 +103,6 @@ defineProps({
     background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-6);
-
-    &:last-of-type {
-      margin-bottom: var(--space-1);
-    }
   }
 
   &__header {

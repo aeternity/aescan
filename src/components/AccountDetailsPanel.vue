@@ -140,9 +140,10 @@ const sanitizedPrice = computed(() =>
 
 <style scoped>
 .account-details-panel {
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-4);
 
   /*todo move*/
+  /*todo check all condensed*/
 
   @media (--desktop) {
     margin-bottom: var(--space-6);

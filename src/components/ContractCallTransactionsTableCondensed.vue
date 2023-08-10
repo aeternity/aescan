@@ -98,10 +98,6 @@ defineProps({
   &__table {
     margin-bottom: var(--space-6);
 
-    &:last-of-type {
-      margin-bottom: var(--space-1);
-    }
-
     @media (--desktop) {
       padding: var(--space-4);
     }

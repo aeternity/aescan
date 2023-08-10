@@ -3,7 +3,7 @@
     <panel-header
       level="h5"
       class="dashboard-transactions-panel__panel-header"
-      title="Transactions"
+      title="TRANSACTIONS"
       :show-all-link="microblockDetailsLink"
       icon-name="transactions">
       <template #tooltip>
@@ -58,12 +58,12 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 <style scoped>
 .dashboard-transactions-panel {
   padding: var(--space-3) var(--space-1);
+  @media (--desktop) {
+    padding: var(--space-3);
+  }
 
   &__panel-header {
     margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: var(--space-0);
-    }
   }
 
   &__transactions-swiper {
@@ -81,7 +81,7 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
   &__summary {
     display: block;
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
     font-family: var(--font-monospaced);
     font-size: 14px;
     line-height: 20px;

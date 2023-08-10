@@ -98,9 +98,6 @@ defineProps({
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);
 
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
   }
 
   &__header {

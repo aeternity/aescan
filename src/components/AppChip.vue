@@ -28,7 +28,6 @@ defineProps({
   align-items: center;
   text-align: center;
   height: 28px;
-  font-size: 14px;
   line-height: 20px;
   padding: var(--space-0) var(--space-1);
   letter-spacing: -0.07px;

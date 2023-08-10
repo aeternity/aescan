@@ -111,8 +111,12 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
 
   &__value {
     display: flex;
-    align-items: center;
     font-weight: 400;
+    flex-direction: column;
+    @media (--desktop) {
+      align-items: center;
+      flex-direction: row;
+    }
   }
 
   &__label {
@@ -120,7 +124,11 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
   }
 
   &__chip {
-    margin-left: var(--space-1);
+
+    margin: var(--space-1) auto 0 0;
+    @media (--desktop) {
+      margin-left: var(--space-1);
+    }
   }
 }
 </style>

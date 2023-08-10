@@ -60,6 +60,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     try {
       const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
       rawEvents.value = data
+      console.log('data', data)
     } catch (e) {
       rawEvents.value = null
     }

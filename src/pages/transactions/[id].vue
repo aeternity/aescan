@@ -50,7 +50,7 @@ await fetchTransactionDetails(route.params.id)
 <style scoped>
 .transaction-details {
   &__panel {
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
 
     &:last-of-type {
       margin-bottom: 0;

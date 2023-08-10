@@ -2,7 +2,7 @@
   <app-panel class="names-panel">
     <panel-header
       level="h3"
-      title="Names recently activated"
+      title="NAMES RECENTLY ACTIVATED"
       icon-name="aens-name"
       show-all-link="/names/?type=active">
       <template #tooltip>
@@ -25,7 +25,10 @@ import NamesTable from '@/components/NamesTable'
 
 <style scoped>
 .names-panel {
-  padding-top: var(--space-3);
+  padding: var(--space-3) var(--space-1);
+  @media (--desktop) {
+    padding: var(--space-4);
+  }
 
   &__swiper {
     @media (--desktop) {

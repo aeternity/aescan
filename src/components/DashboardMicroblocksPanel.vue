@@ -4,7 +4,7 @@
       <panel-header
         level="h4"
         class="dashboard-microblocks-panel__panel-header"
-        title="Microblocks"
+        title="MICROBLOCKS"
         icon-name="microblocks">
         <template #tooltip>
           {{ microblocksHints.microblock }}
@@ -60,6 +60,9 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = sto
 
   &__panel-header {
     margin-bottom: var(--space-2);
+    @media (--desktop) {
+      margin-bottom: var(--space-3);
+    }
   }
 
   &__microblock-sequence {

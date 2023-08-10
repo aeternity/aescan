@@ -31,7 +31,9 @@
         class="paginated-content__container">
         <slot/>
       </div>
-      <blank-state v-else/>
+      <blank-state
+        v-else
+        class="paginated-content__blank-state"/>
 
       <app-pagination
         v-if="hasPagination"
@@ -167,13 +169,15 @@ onBeforeUnmount(() => {
   &__header {
     padding: 8px 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     width: 100%;
 
     @media (--desktop) {
       justify-content: space-between;
       flex-direction: row;
+      align-items: center;
+
       /*margin-bottom: var(--space-1);*/
     }
 
@@ -189,10 +193,9 @@ onBeforeUnmount(() => {
   &__counter {
     margin-bottom: var(--space-3);
     font-family: var(--font-monospaced);
-    text-align: center;
+
     @media (--desktop) {
       margin-bottom: 0;
-      text-align: left;
     }
   }
 
@@ -210,6 +213,10 @@ onBeforeUnmount(() => {
   }
 
   &__pagination {
+    width: 100%;
+  }
+
+  &__blank-state {
     width: 100%;
   }
 }

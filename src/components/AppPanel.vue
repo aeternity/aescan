@@ -28,8 +28,7 @@
   }
 
   &__header {
-    padding: 8px 0;
-    margin-bottom: var(--space-4);
+    padding: 8px 0 0 0;
     @media (--desktop) {
       display: flex;
       justify-content: space-between;
@@ -37,9 +36,18 @@
     }
   }
 
+  &__heading {
+    margin-bottom: var(--space-1);
+  }
+
   &__container {
+    padding: 8px 0;
     display: flex;
     gap: 8px;
+
+    &:empty {
+      padding: 0;
+    }
   }
 }
 </style>

@@ -27,7 +27,8 @@ const props = defineProps({
   },
 })
 const oracleResponse = computed(() => {
-  const decodedResponse = formatDecodeByteArray(props.transactionData.response)
+  const { response } = props.transactionData
+  const decodedResponse = response instanceof Array ? formatDecodeByteArray(response) : response.toString()
   return decodedResponse.length > 8 ? decodedResponse.slice(0, 8) : decodedResponse
 })
 </script>

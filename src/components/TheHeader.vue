@@ -95,7 +95,7 @@ function closeNavigation() {
     flex-wrap: wrap;
     align-items: center;
     margin: 0 auto;
-    padding: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-3);
     column-gap: var(--space-5);
 
     &--open {

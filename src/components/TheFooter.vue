@@ -104,7 +104,7 @@ const links = {
     padding: var(--space-7) var(--space-4) 80px;
 
     @media (--desktop) {
-      width: 1200px;
+      width: 100%;
       max-width: var(--container-width);
       padding: 120px 0;
     }

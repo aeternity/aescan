@@ -42,7 +42,7 @@ import AccountDetailsPanel from '@/components/AccountDetailsPanel'
 import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 const accountStore = useAccountStore()
 const { accountDetails } = storeToRefs(accountStore)

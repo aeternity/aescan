@@ -50,7 +50,7 @@ const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 await useAsyncData(() => fetchContractDetails(route.params.id))
 

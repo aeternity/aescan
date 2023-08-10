@@ -25,5 +25,5 @@ import ContractsPanel from '@/components/ContractsPanel'
 import PageHeader from '@/components/PageHeader'
 import { contractsHints } from '@/utils/hints/contractsHints'
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 </script>

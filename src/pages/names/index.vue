@@ -77,7 +77,7 @@ const activeTabIndex = computed({
   },
 })
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 if (process.client) {
   const limit = isDesktop() ? null : 3

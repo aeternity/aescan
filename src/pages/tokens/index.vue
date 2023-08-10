@@ -19,5 +19,5 @@ import PageHeader from '@/components/PageHeader'
 import TokensPanel from '@/components/TokensPanel'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 </script>

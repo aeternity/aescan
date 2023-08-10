@@ -23,6 +23,6 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 </script>

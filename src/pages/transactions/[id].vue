@@ -47,7 +47,7 @@ const {
 const { fetchTransactionDetails } = transactionDetailsStore
 const route = useRoute()
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 await fetchTransactionDetails(route.params.id)
 </script>

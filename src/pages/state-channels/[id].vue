@@ -44,7 +44,7 @@ const { stateChannelDetails } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelDetails } = stateChannelDetailsStore
 const route = useRoute()
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 </script>

@@ -46,7 +46,7 @@ const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 await fetchTokenDetails(route.params.id)
 

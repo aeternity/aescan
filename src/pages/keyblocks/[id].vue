@@ -40,7 +40,7 @@ const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
 

@@ -34,7 +34,7 @@ const { microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblock } = microblockDetailsStore
 const route = useRoute()
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 
 await useAsyncData(async() => {
   await fetchMicroblock(route.params.id)

@@ -20,5 +20,5 @@ import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
-const isLoading = useLoading()
+const { isLoading } = useLoading()
 </script>

@@ -4,8 +4,8 @@
     class="paginated-content">
     <template v-if="entities">
       <header
-      v-if="hasCounter || $slots.header"
-      class="paginated-content__header">
+        v-if="hasCounter || $slots.header"
+        class="paginated-content__header">
         <div class="paginated-content__counter">
           <span v-if="hasCounter">
             <template v-if="totalCount > 0">
@@ -31,7 +31,7 @@
         class="paginated-content__container">
         <slot/>
       </div>
-    <blank-state v-else/>
+      <blank-state v-else/>
 
       <app-pagination
         v-if="hasPagination"

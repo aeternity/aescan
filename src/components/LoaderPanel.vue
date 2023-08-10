@@ -8,10 +8,10 @@
 .loader-panel {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: var(--space-4);
 
   &__loader-indicator {
-    padding: var(--space-3) 0;
+    margin: var(--space-3) 0;
   }
 }
 </style>

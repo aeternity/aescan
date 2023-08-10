@@ -29,10 +29,12 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   async function fetchOracleDetails(id) {
     oracleId.value = id
 
-    await Promise.allSettled([
+    await Promise.all([
       fetchOracle(),
-      fetchLastQueryTx(),
-      fetchLastExtendedTx(),
+      Promise.allSettled([
+        fetchLastQueryTx(),
+        fetchLastExtendedTx(),
+      ]),
     ])
 
     return true

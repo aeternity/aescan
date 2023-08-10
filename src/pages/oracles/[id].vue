@@ -6,6 +6,10 @@
   <page-header>
     Oracle
 
+    <template v-if="!oracleFound">
+      not found
+    </template>
+
     <template #tooltip>
       {{ oraclesHints.oracle }}
       <app-link
@@ -16,7 +20,7 @@
     </template>
   </page-header>
 
-  <template v-if="!isLoading">
+  <template v-if="!isLoading && oracleFound">
     <oracle-details-panel
       v-if="oracleDetails"
       class="oracle-details__panel"
@@ -28,7 +32,14 @@
       </app-tab>
     </app-tabs>
   </template>
-  <loader-panel v-else/>
+  <loader-panel v-else-if="isLoading"/>
+  <not-found-panel v-else>
+    Oops! We are sorry. The oracle identified by
+    <q>
+      {{ route.params.id }}
+    </q>
+    was not found.
+  </not-found-panel>
 </template>
 
 <script setup>
@@ -37,6 +48,7 @@ import OracleDetailsPanel from '@/components/OracleDetailsPanel'
 import PageHeader from '@/components/PageHeader'
 import { useOracleDetailsStore } from '@/stores/oracleDetails'
 import OracleEventsPanel from '@/components/OracleEventsPanel'
+import NotFoundPanel from '@/components/NotFoundPanel'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const oracleDetailsStore = useOracleDetailsStore()
@@ -44,7 +56,15 @@ const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
 const { isLoading } = useLoading()
-await useAsyncData(() => fetchOracleDetails(route.params.id))
+
+const oracleFound = ref(true)
+
+const { error } = await useAsyncData(() => fetchOracleDetails(route.params.id))
+
+if (error.value) {
+  oracleFound.value = false
+  setResponseStatus(404, 'Oracle not found')
+}
 </script>
 
 <style scoped>

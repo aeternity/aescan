@@ -54,7 +54,7 @@ export const useAccountStore = defineStore('account', () => {
       const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
       rawAccountDetails.value = data
     } catch (e) {
-      if (e.response.status === 404) {
+      if ([400, 404].includes(e.response.status)) {
         rawAccountDetails.value = { id: accountId, notExistent: true }
       }
     }

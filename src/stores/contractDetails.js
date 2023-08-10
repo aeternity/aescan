@@ -44,12 +44,15 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
   async function fetchContractDetails(id) {
     contractId.value = id
-    await Promise.allSettled([
+    await Promise.all([
       fetchContractInformation(),
-      fetchContractCallsCount(),
-      fetchContractCreationTx(),
-      fetchContractType(),
-      fetchBalance(),
+      Promise.allSettled([
+        fetchContractInformation(),
+        fetchContractCallsCount(),
+        fetchContractCreationTx(),
+        fetchContractType(),
+        fetchBalance(),
+      ]),
     ])
 
     return true

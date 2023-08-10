@@ -5,12 +5,17 @@
 
   <page-header>
     Keyblock
+
+    <template v-if="!keyblockFound">
+      not found
+    </template>
+
     <template #tooltip>
       {{ keyblocksHints.keyblock }}
     </template>
   </page-header>
 
-  <template v-if="!isLoading">
+  <template v-if="!isLoading && keyblockFound">
     <keyblock-details-panel
       v-if="keyblockDetails"
       :keyblock-details="keyblockDetails"/>
@@ -21,7 +26,14 @@
       </app-tab>
     </app-tabs>
   </template>
-  <loader-panel v-else/>
+  <loader-panel v-else-if="isLoading"/>
+  <not-found-panel v-else>
+    Oops! We are sorry. The keyblock identified by
+    <q>
+      {{ route.params.id }}
+    </q>
+    was not found.
+  </not-found-panel>
 </template>
 
 <script setup>
@@ -30,6 +42,7 @@ import { useRoute } from 'nuxt/app'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 import PageHeader from '@/components/PageHeader'
+import NotFoundPanel from '@/components/NotFoundPanel'
 import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
 import KeyblockMicroblocksPanel from '@/components/KeyblockMicroblocksPanel'
 import AppTabs from '@/components/AppTabs'
@@ -43,9 +56,15 @@ const route = useRoute()
 const { isLoading } = useLoading()
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
+const keyblockFound = ref(true)
 
-await useAsyncData(async() => {
+const { error } = await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)
   return true
 })
+
+if (error.value) {
+  keyblockFound.value = false
+  setResponseStatus(404, 'Keyblock not found')
+}
 </script>

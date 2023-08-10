@@ -6,6 +6,10 @@
   <page-header>
     Smart Contract
 
+    <template v-if="!contractFound">
+      not found
+    </template>
+
     <template #tooltip>
       {{ contractsHints.contract }}
       <app-link
@@ -15,7 +19,7 @@
       </app-link>
     </template>
   </page-header>
-  <template v-if="!isLoading">
+  <template v-if="!isLoading && contractFound">
     <contract-details-panel
       v-if="contractDetails"
       class="contract-details__panel"
@@ -30,7 +34,14 @@
       </app-tab>
     </app-tabs>
   </template>
-  <loader-panel v-else/>
+  <loader-panel v-else-if="isLoading"/>
+  <not-found-panel v-else>
+    Oops! We are sorry. The Smart Contract identified by
+    <q>
+      {{ route.params.id }}
+    </q>
+    was not found.
+  </not-found-panel>
 </template>
 
 <script setup>
@@ -38,6 +49,7 @@ import { storeToRefs } from 'pinia'
 import ContractDetailsPanel from '@/components/ContractDetailsPanel'
 import PageHeader from '@/components/PageHeader'
 import { useContractDetailsStore } from '@/stores/contractDetails'
+import NotFoundPanel from '@/components/NotFoundPanel'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
 import ContractEventsPanel from '@/components/ContractEventsPanel'
@@ -54,11 +66,20 @@ const { isLoading } = useLoading()
 
 await useAsyncData(() => fetchContractDetails(route.params.id))
 
-if (process.client) {
+const contractFound = ref(true)
+
+const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
+
+if (process.client && !error.value) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
     queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}`,
   }))
+}
+
+if (error.value) {
+  contractFound.value = false
+  setResponseStatus(404, 'Smart Contract not found')
 }
 </script>
 

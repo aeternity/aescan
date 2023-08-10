@@ -6,12 +6,16 @@
   <page-header>
     Transaction
 
+    <template v-if="!transactionFound">
+      not found
+    </template>
+
     <template #tooltip>
       {{ transactionsHints.transaction }}
     </template>
   </page-header>
 
-  <template v-if="!isLoading">
+  <template v-if="!isLoading && transactionFound">
     <transaction-general-panel
       v-if="transactionDetails"
       class="transaction-details__panel"
@@ -27,13 +31,21 @@
       class="transaction-details__panel"
       :transaction-data="transactionTypeData"/>
   </template>
-  <loader-panel v-else/>
+  <loader-panel v-else-if="isLoading"/>
+  <not-found-panel v-else>
+    Oops! We are sorry. The transaction identified by
+    <q>
+      {{ route.params.id }}
+    </q>
+    was not found.
+  </not-found-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
 import TransactionGeneralPanel from '@/components/TransactionGeneralPanel'
 import PageHeader from '@/components/PageHeader'
+import NotFoundPanel from '@/components/NotFoundPanel'
 import { useTransactionDetailsStore } from '@/stores/transactionDetails'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import TransactionTypePanel from '@/components/TransactionTypePanel'
@@ -49,7 +61,16 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-await fetchTransactionDetails(route.params.id)
+const transactionFound = ref(true)
+
+try {
+  await fetchTransactionDetails(route.params.id)
+} catch (error) {
+  if ([400, 404].includes(error.response?.status)) {
+    transactionFound.value = false
+    setResponseStatus(404, 'Transaction not found')
+  }
+}
 </script>
 
 <style scoped>

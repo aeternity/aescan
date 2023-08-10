@@ -45,10 +45,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   function fetchTokenDetails(id) {
     tokenId.value = id
 
-    return Promise.allSettled([
+    return Promise.all([
       fetchToken(),
-      fetchTotalSupply(),
-      fetchPrice(),
+      Promise.allSettled([
+        fetchTotalSupply(),
+        fetchPrice(),
+      ]),
     ])
   }
 

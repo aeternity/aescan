@@ -15,16 +15,18 @@
       </app-link>
     </template>
   </page-header>
+  <template v-if="!isLoading">
+    <state-channel-details-panel
+      class="state-channel-details__panel"
+      :state-channel-details="stateChannelDetails"/>
 
-  <state-channel-details-panel
-    class="state-channel-details__panel"
-    :state-channel-details="stateChannelDetails"/>
-
-  <app-tabs v-if="stateChannelDetails">
-    <app-tab title="Transactions">
-      <state-channel-transactions-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs v-if="stateChannelDetails">
+      <app-tab title="Transactions">
+        <state-channel-transactions-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -41,6 +43,8 @@ const stateChannelDetailsStore = useStateChannelDetailsStore()
 const { stateChannelDetails } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelDetails } = stateChannelDetailsStore
 const route = useRoute()
+
+const { isLoading } = useLoading()
 
 await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 </script>

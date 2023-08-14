@@ -46,7 +46,7 @@
         @next-clicked="handleNextClicked"/>
     </template>
     <div v-else>
-      <spinner-loader class="paginated-content__spinner-loader"/>
+      <loader-indicator class="paginated-content__loader-indicator"/>
     </div>
   </div>
 </template>
@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
     width: 100%;
   }
 
-  &__spinner-loader {
+  &__loader-indicator {
     margin: var(--space-3) 0;
   }
 

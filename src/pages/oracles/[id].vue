@@ -16,16 +16,19 @@
     </template>
   </page-header>
 
-  <oracle-details-panel
-    v-if="oracleDetails"
-    class="oracle-details__panel"
-    :oracle-details="oracleDetails"/>
+  <template v-if="!isLoading">
+    <oracle-details-panel
+      v-if="oracleDetails"
+      class="oracle-details__panel"
+      :oracle-details="oracleDetails"/>
 
-  <app-tabs>
-    <app-tab title="Events">
-      <oracle-events-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs>
+      <app-tab title="Events">
+        <oracle-events-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -40,7 +43,7 @@ const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
-
+const { isLoading } = useLoading()
 await useAsyncData(() => fetchOracleDetails(route.params.id))
 </script>
 

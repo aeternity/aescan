@@ -50,6 +50,7 @@ if (process.client) {
 <style scoped>
 .token-holders-panel {
   margin-top: var(--space-2);
+  /*todo margin?*/
 
   /*todo move*/
 

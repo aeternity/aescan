@@ -20,7 +20,7 @@
     max-width: var(--container-width);
     margin: 0 auto;
     @media (--desktop) {
-      padding: 120px 0;
+      padding: 120px 0 var(--space-6);
     }
   }
 }

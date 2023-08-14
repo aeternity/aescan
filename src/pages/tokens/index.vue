@@ -10,7 +10,9 @@
       {{ tokensHints.token }}
     </template>
   </page-header>
-  <tokens-panel v-if="!isLoading"/>
+  <tokens-panel
+    v-if="!isLoading"
+    class="tokens__tokens-panel"/>
   <loader-panel v-else/>
 </template>
 
@@ -21,3 +23,9 @@ import { tokensHints } from '@/utils/hints/tokensHints'
 
 const { isLoading } = useLoading()
 </script>
+
+<style scoped>
+.tokens__tokens-panel {
+  margin-bottom: var(--space-6);
+}
+</style>

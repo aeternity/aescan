@@ -91,6 +91,7 @@ if (process.client) {
     padding-top: var(--space-4);
     @media (--desktop) {
       padding-top: 0;
+      margin-bottom: 80px;
     }
   }
 }

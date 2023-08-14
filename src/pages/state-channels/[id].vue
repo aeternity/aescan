@@ -16,6 +16,7 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
+    <!--    todo fix clas-->
     <state-channel-details-panel
       class="state-channel-details__panel"
       :state-channel-details="stateChannelDetails"/>
@@ -52,7 +53,7 @@ await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 <style scoped>
 .state-channel-details {
   &__panel {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
   }
 }
 </style>

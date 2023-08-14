@@ -16,7 +16,9 @@
     </template>
   </page-header>
 
-  <oracles-panel v-if="!isLoading"/>
+  <oracles-panel
+    v-if="!isLoading"
+    class="oracles__oracle-panel"/>
   <loader-panel v-else/>
 </template>
 
@@ -27,3 +29,9 @@ import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const { isLoading } = useLoading()
 </script>
+
+<style scoped>
+.oracles__oracle-panel {
+  margin-bottom: var(--space-6);
+}
+</style>

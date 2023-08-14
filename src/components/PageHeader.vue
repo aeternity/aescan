@@ -32,7 +32,6 @@ import HintTooltip from '@/components/HintTooltip'
 
   @media (--desktop) {
     margin: 0 0 var(--space-6);
-    height: 48px;
   }
 
   &__search-bar {

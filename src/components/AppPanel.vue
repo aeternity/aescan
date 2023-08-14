@@ -28,11 +28,13 @@
   }
 
   &__header {
+    /*todo fix to variables*/
     padding: 8px 0 0 0;
     @media (--desktop) {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      padding: 8px 0 var(--space-4);
     }
   }
 
@@ -44,6 +46,10 @@
     padding: 8px 0;
     display: flex;
     gap: 8px;
+
+    @media (--desktop) {
+      padding: 0;
+    }
 
     &:empty {
       padding: 0;

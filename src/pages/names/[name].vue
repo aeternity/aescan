@@ -76,11 +76,12 @@ if (hasNameHistory && process.client) {
 <style scoped>
 .name-details {
   &__panel {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
   }
 
   &__history {
     margin-top: var(--space-2);
+    margin-bottom: var(--space-6);
   }
 }
 </style>

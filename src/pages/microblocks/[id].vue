@@ -15,6 +15,7 @@
       :microblock-details="microblockDetails"/>
 
     <microblock-transactions-panel/>
+    <!--    todo add tabs-->
   </template>
   <loader-panel v-else/>
 </template>

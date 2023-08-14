@@ -99,20 +99,21 @@ defineProps({
 
 <style scoped>
 .keyblock-table-condensed {
+  &__table {
+    padding: 0 var(--space-1) var(--space-7);
+    margin-bottom: var(--space-4);
+  }
+
   &__header {
     border-bottom: 1.5px solid var(--color-midnight-25);
   }
 
-  &__data {
-    text-align: right;
-  }
-
-  &__value-hash-ellipsed {
-    font-weight: 400;
-  }
-
   &__row:last-of-type &__header {
     border-bottom: 0;
+  }
+
+  &__data {
+    text-align: right;
   }
 
   &__tooltip {

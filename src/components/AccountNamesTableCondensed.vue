@@ -87,17 +87,8 @@ defineProps({
 <style scoped>
 .account-names-table-condensed {
   &__table {
-    padding: var(--space-4);
-    margin-bottom: var(--space-6);
-  }
-
-  &:last-of-type {
-    margin-bottom: var(--space-5);
-  }
-
-  &__name {
-    display: inline-block;
-    max-width: 160px;
+    padding: 0 var(--space-1) var(--space-7);
+    margin-bottom: var(--space-4);
   }
 
   &__header {
@@ -110,6 +101,11 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__name {
+    display: inline-block;
+    max-width: 160px;
   }
 
   &__pointer {

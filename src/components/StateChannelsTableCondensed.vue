@@ -142,7 +142,6 @@ defineProps({
 
   &__header {
     border-bottom: 1.5px solid var(--color-midnight-25);
-    padding-right: var(--space-4);
   }
 
   &__row:last-of-type &__header {

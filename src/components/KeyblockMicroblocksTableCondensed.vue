@@ -69,13 +69,10 @@ defineProps({
   &__table {
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-4);
-
   }
 
   &__header {
-    vertical-align: top;
     border-bottom: 1.5px solid var(--color-midnight-25);
-    padding-right: var(--space-4);
   }
 
   &__row:last-of-type &__header {
@@ -84,9 +81,6 @@ defineProps({
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
   }
 }
 </style>

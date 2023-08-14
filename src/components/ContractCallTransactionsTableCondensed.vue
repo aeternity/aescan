@@ -92,14 +92,9 @@ defineProps({
 
 <style scoped>
 .contract-call-transactions-table-condensed {
-  padding: var(--space-4) 0 0;
-
   &__table {
-    margin-bottom: var(--space-6);
-
-    @media (--desktop) {
-      padding: var(--space-4);
-    }
+    padding: 0 var(--space-1) var(--space-7);
+    margin-bottom: var(--space-4);
   }
 
   &__header {

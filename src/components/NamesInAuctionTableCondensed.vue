@@ -104,21 +104,19 @@ defineProps({
 
   &__header {
     border-bottom: 1.5px solid var(--color-midnight-25);
-    padding-right: var(--space-2);
-    min-width: 120px;
   }
 
   &__row:last-of-type &__header {
     border-bottom: 0;
   }
 
+  &__data {
+    text-align: right;
+  }
+
   &__name {
     max-width: 200px;
     display: inline-block;
-  }
-
-  &__data {
-    text-align: right;
   }
 
   &__highest-bid {

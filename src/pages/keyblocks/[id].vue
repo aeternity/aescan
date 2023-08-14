@@ -6,7 +6,7 @@
   <page-header>
     Keyblock
 
-    <template v-if="!keyblockFound">
+    <template v-if="!isKeyblockFound">
       not found
     </template>
 
@@ -15,7 +15,7 @@
     </template>
   </page-header>
 
-  <template v-if="!isLoading && keyblockFound">
+  <template v-if="!isLoading && isKeyblockFound">
     <keyblock-details-panel
       v-if="keyblockDetails"
       :keyblock-details="keyblockDetails"/>
@@ -56,7 +56,7 @@ const route = useRoute()
 const { isLoading } = useLoading()
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
-const keyblockFound = ref(true)
+const isKeyblockFound = ref(true)
 
 const { error } = await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)
@@ -64,7 +64,7 @@ const { error } = await useAsyncData(async() => {
 })
 
 if (error.value) {
-  keyblockFound.value = false
+  isKeyblockFound.value = false
   setResponseStatus(404, 'Keyblock not found')
 }
 </script>

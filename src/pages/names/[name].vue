@@ -6,7 +6,7 @@
   <page-header>
     AENS Name
 
-    <template v-if="!nameFound">
+    <template v-if="!isNameFound">
       not found
     </template>
 
@@ -20,7 +20,7 @@
     </template>
   </page-header>
 
-  <template v-if="nameFound && !isLoading">
+  <template v-if="isNameFound && !isLoading">
     <name-details-panel class="name-details__panel"/>
 
     <name-pointers-special-panel
@@ -70,7 +70,7 @@ const {
 const route = useRoute()
 const { replace } = useRouter()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
-const nameFound = ref(true)
+const isNameFound = ref(true)
 
 const { isLoading } = useLoading()
 
@@ -78,7 +78,7 @@ try {
   await fetchName(route.params.name)
 } catch (error) {
   if (error.response?.status === 404) {
-    nameFound.value = false
+    isNameFound.value = false
     setResponseStatus(404, 'AENS Name not found')
   } else {
     replace(`/error/${route.params.name}`)

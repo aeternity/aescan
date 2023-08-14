@@ -6,7 +6,7 @@
   <page-header>
     Oracle
 
-    <template v-if="!oracleFound">
+    <template v-if="!isOracleFound">
       not found
     </template>
 
@@ -20,7 +20,7 @@
     </template>
   </page-header>
 
-  <template v-if="!isLoading && oracleFound">
+  <template v-if="!isLoading && isOracleFound">
     <oracle-details-panel
       v-if="oracleDetails"
       class="oracle-details__panel"
@@ -57,12 +57,12 @@ const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
 const { isLoading } = useLoading()
 
-const oracleFound = ref(true)
+const isOracleFound = ref(true)
 
 const { error } = await useAsyncData(() => fetchOracleDetails(route.params.id))
 
 if (error.value) {
-  oracleFound.value = false
+  isOracleFound.value = false
   setResponseStatus(404, 'Oracle not found')
 }
 </script>

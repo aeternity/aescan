@@ -6,7 +6,7 @@
   <page-header>
     Token
 
-    <template v-if="!tokenFound">
+    <template v-if="!isTokenFound">
       not found
     </template>
 
@@ -15,7 +15,7 @@
     </template>
   </page-header>
 
-  <template v-if="!isLoading && tokenFound">
+  <template v-if="!isLoading && isTokenFound">
     <token-details-panel
       v-if="tokenDetails"
       class="token-details__panel"
@@ -59,13 +59,13 @@ const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
 const { isLoading } = useLoading()
-const tokenFound = ref(true)
+const isTokenFound = ref(true)
 
 try {
   await fetchTokenDetails(route.params.id)
 } catch (error) {
   if ([400, 404].includes(error.response?.status)) {
-    tokenFound.value = false
+    isTokenFound.value = false
     setResponseStatus(404, 'Token not found')
   }
 }

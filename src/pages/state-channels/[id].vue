@@ -6,7 +6,7 @@
   <page-header>
     State Channel
 
-    <template v-if="!channelFound">
+    <template v-if="!isChannelFound">
       not found
     </template>
 
@@ -20,7 +20,7 @@
     </template>
   </page-header>
 
-  <template v-if="!isLoading && channelFound">
+  <template v-if="!isLoading && isChannelFound">
     <state-channel-details-panel
       class="state-channel-details__panel"
       :state-channel-details="stateChannelDetails"/>
@@ -59,12 +59,12 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const channelFound = ref(true)
+const isChannelFound = ref(true)
 
 const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 
 if (error.value) {
-  channelFound.value = false
+  isChannelFound.value = false
   setResponseStatus(404, 'State Channel not found')
 }
 </script>

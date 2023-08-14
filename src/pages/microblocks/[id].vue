@@ -6,7 +6,7 @@
   <page-header>
     Microblock
 
-    <template v-if="!microblockFound">
+    <template v-if="!isMicroblockFound">
       not found
     </template>
 
@@ -14,7 +14,7 @@
       {{ microblocksHints.microblock }}
     </template>
   </page-header>
-  <template v-if="!isLoading && microblockFound">
+  <template v-if="!isLoading && isMicroblockFound">
     <microblock-details-panel
       v-if="microblockDetails"
       :microblock-details="microblockDetails"/>
@@ -48,7 +48,7 @@ const { microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblock } = microblockDetailsStore
 const route = useRoute()
 
-const microblockFound = ref(true)
+const isMicroblockFound = ref(true)
 
 const { error } = await useAsyncData(async() => {
   await fetchMicroblock(route.params.id)
@@ -56,7 +56,7 @@ const { error } = await useAsyncData(async() => {
 })
 
 if (error.value) {
-  microblockFound.value = false
+  isMicroblockFound.value = false
   setResponseStatus(404, 'Microblock not found')
 }
 </script>

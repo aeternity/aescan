@@ -6,7 +6,7 @@
   <page-header>
     Smart Contract
 
-    <template v-if="!contractFound">
+    <template v-if="!isContractFound">
       not found
     </template>
 
@@ -19,7 +19,7 @@
       </app-link>
     </template>
   </page-header>
-  <template v-if="!isLoading && contractFound">
+  <template v-if="!isLoading && isContractFound">
     <contract-details-panel
       v-if="contractDetails"
       class="contract-details__panel"
@@ -66,7 +66,7 @@ const { isLoading } = useLoading()
 
 await useAsyncData(() => fetchContractDetails(route.params.id))
 
-const contractFound = ref(true)
+const isContractFound = ref(true)
 
 const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
 
@@ -78,7 +78,7 @@ if (process.client && !error.value) {
 }
 
 if (error.value) {
-  contractFound.value = false
+  isContractFound.value = false
   setResponseStatus(404, 'Smart Contract not found')
 }
 </script>

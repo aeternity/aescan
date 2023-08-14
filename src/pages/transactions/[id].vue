@@ -6,7 +6,7 @@
   <page-header>
     Transaction
 
-    <template v-if="!transactionFound">
+    <template v-if="!isTransactionFound">
       not found
     </template>
 
@@ -15,7 +15,7 @@
     </template>
   </page-header>
 
-  <template v-if="!isLoading && transactionFound">
+  <template v-if="!isLoading && isTransactionFound">
     <transaction-general-panel
       v-if="transactionDetails"
       class="transaction-details__panel"
@@ -61,13 +61,13 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const transactionFound = ref(true)
+const isTransactionFound = ref(true)
 
 try {
   await fetchTransactionDetails(route.params.id)
 } catch (error) {
   if ([400, 404].includes(error.response?.status)) {
-    transactionFound.value = false
+    isTransactionFound.value = false
     setResponseStatus(404, 'Transaction not found')
   }
 }

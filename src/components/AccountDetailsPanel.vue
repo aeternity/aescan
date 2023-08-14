@@ -4,9 +4,7 @@
       DETAILS
     </template>
     <template #header>
-      <app-chip
-        v-if="accountDetails.isGeneralized"
-        class="account-details-panel__chip">
+      <app-chip v-if="accountDetails.isGeneralized">
         Generalized
       </app-chip>
 
@@ -147,10 +145,6 @@ const sanitizedPrice = computed(() =>
 
   @media (--desktop) {
     margin-bottom: var(--space-6);
-  }
-
-  &__chip {
-    margin-right: var(--space-1);
   }
 
   &__copy-chip {

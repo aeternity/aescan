@@ -60,6 +60,7 @@ if (process.client) {
 
 <style scoped>
 .contract-details__panel {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
+  /*todo move*/
 }
 </style>

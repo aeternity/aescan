@@ -11,7 +11,7 @@ th {
   line-height: 22px;
 
   vertical-align: middle;
-  padding: var(--space-1) 0;
+  padding: 7px 0;
 
 
   @media (--desktop) {
@@ -25,7 +25,7 @@ th {
 td {
   font-family: var(--font-monospaced);
   font-weight: 400;
-  padding: var(--space-1) 0;
+  padding: 7px 0;
   text-align: left;
   border-bottom: 1.5px solid var(--color-midnight-25);
   vertical-align: middle;

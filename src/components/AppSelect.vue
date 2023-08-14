@@ -89,10 +89,11 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__single {
     color: var(--color-midnight);
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
-    font-family: var(--font-primary);
-    font-weight: 500;
+    @media (--desktop) {
+      font-size: 14px;
+    }
   }
 
   &__content-wrapper {
@@ -113,8 +114,11 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     border: solid var(--color-midnight-35);
     border-width: 1px 0;
     color: solid var(--color-midnight);
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
+    @media (--desktop) {
+      font-size: 14px;
+    }
 
     &:last-child {
       border-width: 1px 0 0;

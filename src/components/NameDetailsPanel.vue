@@ -172,10 +172,6 @@ const isNameInAuction = computed(() =>
 .name-details-panel {
   &__name {
     overflow-wrap: anywhere;
-    margin-bottom: var(--space-1);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
   }
 
   &__data {

@@ -48,7 +48,7 @@ await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 <style scoped>
 .state-channel-details {
   &__panel {
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
   }
 }
 </style>

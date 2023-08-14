@@ -93,13 +93,9 @@ defineProps({
 <style scoped>
 .oracles-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
 
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
   }
 
   &__header {

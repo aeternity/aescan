@@ -97,13 +97,8 @@ function toggle(id) {
 <style scoped>
 .oracle-events-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
-    margin-bottom: var(--space-5);
-
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
+    margin-bottom: var(--space-4);
   }
 
   &__header {

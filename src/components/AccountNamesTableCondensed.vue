@@ -87,7 +87,6 @@ defineProps({
 <style scoped>
 .account-names-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: var(--space-4);
     margin-bottom: var(--space-6);
   }

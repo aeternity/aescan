@@ -203,11 +203,6 @@ onBeforeUnmount(() => {
     font-weight: 700;
   }
 
-  &__blank-state {
-    margin-top: var(--space-3);
-    width: 100%;
-  }
-
   &__loader-indicator {
     margin: var(--space-3) 0;
   }

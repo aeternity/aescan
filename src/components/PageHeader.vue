@@ -22,7 +22,6 @@ import HintTooltip from '@/components/HintTooltip'
 
 <style scoped>
 .page-header {
-
   padding: 8px 0;
   display: flex;
   justify-content: space-between;

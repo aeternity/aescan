@@ -126,7 +126,7 @@ defineProps({
   }
 
   &__header {
-    border-bottom: 1.5px solid var(--color-midnight-15);
+    border-bottom: 1.5px solid var(--color-midnight-25);
     padding-right: var(--space-2);
     min-width: 80px;
   }

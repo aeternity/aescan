@@ -108,7 +108,7 @@ function toggle(id) {
 
   &__header {
     vertical-align: top;
-    border-bottom: 1.5px solid var(--color-midnight-15);
+    border-bottom: 1.5px solid var(--color-midnight-25);
     padding-right: var(--space-4);
 
     &--expanded {

@@ -186,7 +186,7 @@ const contractMiddlewareUrl = computed(() =>
 <style scoped>
 .contract-details-panel {
   &__table-header {
-    border-bottom: 1.5px solid var(--color-midnight-15);
+    border-bottom: 1.5px solid var(--color-midnight-25);
   }
 
   &__data {

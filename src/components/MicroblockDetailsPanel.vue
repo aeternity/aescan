@@ -171,7 +171,7 @@ const microblockMiddlewareUrl = computed(() =>
   }
 
   &__table-header {
-    border-bottom: 1.5px solid var(--color-midnight-15);
+    border-bottom: 1.5px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__table-header {

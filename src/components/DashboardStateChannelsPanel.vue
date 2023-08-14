@@ -26,6 +26,7 @@ import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 <style scoped>
 .dashboard-state-channels-panel {
+  /*todo remove styles and margin*/
   padding: var(--space-3) var(--space-1);
   width: 100%;
   @media (--desktop) {

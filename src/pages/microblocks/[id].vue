@@ -12,6 +12,7 @@
   <template v-if="!isLoading">
     <microblock-details-panel
       v-if="microblockDetails"
+      class="microblock-details-panel"
       :microblock-details="microblockDetails"/>
 
     <microblock-transactions-panel/>
@@ -42,3 +43,8 @@ await useAsyncData(async() => {
   return true
 })
 </script>
+<style scoped>
+.microblock-details-panel {
+  margin-bottom: var(--space-6);
+}
+</style>

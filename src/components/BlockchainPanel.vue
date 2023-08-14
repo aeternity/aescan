@@ -82,6 +82,8 @@ const {
 .blockchain-panel {
   width: 100%;
 
+  /*todo adjust*/
+
   &__container {
     /*padding: var(--space-4) var(--space-1) var(--space-1);*/
     @media (--desktop) {

@@ -170,6 +170,8 @@ const isNameInAuction = computed(() =>
 
 <style scoped>
 .name-details-panel {
+  /*todo sort styles*/
+
   &__name {
     overflow-wrap: anywhere;
   }

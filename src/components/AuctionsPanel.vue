@@ -25,6 +25,7 @@ import AuctionsTable from '@/components/AuctionsTable'
 
 <style scoped>
 .auctions-panel {
+  /*todo this styles?*/
   padding: var(--space-3) var(--space-1);
   @media (--desktop) {
     padding: var(--space-4);

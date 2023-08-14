@@ -47,6 +47,7 @@ if (process.client) {
 <style scoped>
 .token-events-panel {
   margin-top: var(--space-2);
+  /*todo move*/
 
   &__table {
     margin-bottom: var(--space-4);

@@ -44,6 +44,8 @@ const { name } = storeToRefs(useNameDetailsStore())
 
 <style scoped>
 .name-pointers-custom-panel {
+  /*todo lines*/
+
   &__header {
     padding: var(--space-1) 0;
   }

@@ -55,13 +55,3 @@
   }
 }
 </style>
-
-<style>
-.not-found-panel {
-  q {
-    font-weight: 700;
-    word-wrap: break-word;
-    quotes: none;
-  }
-}
-</style>

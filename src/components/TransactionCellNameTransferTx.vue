@@ -10,7 +10,7 @@
     :link-to="`/accounts/${transactionData.recipientId}`"/>
 
   <app-chip
-    size="sm"
+
     class="u-ellipsis transaction-cell-name-transfer-tx__name">
     {{ transactionData.name }}
   </app-chip>

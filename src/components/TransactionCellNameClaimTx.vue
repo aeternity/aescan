@@ -9,7 +9,7 @@
       {{ transactionData.name }}
     </app-link>
   </span>
-  <app-chip size="sm">
+  <app-chip>
     {{ formatAePrice(formatAettosToAe(transactionData.nameFee)) }}
   </app-chip>
 </template>

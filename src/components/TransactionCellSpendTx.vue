@@ -15,7 +15,7 @@
     :hash="transactionData.recipientId"
     :link-to="`/accounts/${transactionData.recipientId}`"/>
 
-  <app-chip size="sm">
+  <app-chip>
     {{ formatAePrice(formatAettosToAe(transactionData.amount)) }}
   </app-chip>
 </template>

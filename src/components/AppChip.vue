@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="[
-      'chip',
-      variant ? `chip--${variant}` : null,
-    ]">
+    :class="[ 'chip', variant ? `chip--${variant}` : null ]">
     <slot/>
   </div>
 </template>
@@ -16,7 +13,6 @@ defineProps({
     validator: val =>
       ['primary', 'secondary', 'success', 'error', 'dark'].includes(val),
   },
-  // todo remove size
 })
 </script>
 
@@ -28,7 +24,6 @@ defineProps({
   align-items: center;
   text-align: center;
   height: 28px;
-  line-height: 20px;
   padding: var(--space-0) var(--space-1);
   letter-spacing: -0.07px;
 
@@ -55,11 +50,6 @@ defineProps({
   &--dark {
     background: var(--color-midnight-55);
     color: var(--color-white);
-  }
-
-  &--sm {
-    height: 28px;
-    padding: var(--space-0) var(--space-1);
   }
 }
 </style>

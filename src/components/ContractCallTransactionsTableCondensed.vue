@@ -64,8 +64,7 @@
         </th>
         <td class="contract-call-transactions-table-condensed__data">
           <app-chip
-            v-if="transaction.data.function"
-            size="sm">
+            v-if="transaction.data.function">
             {{ transaction.data.function }}
           </app-chip>
           <template v-else>

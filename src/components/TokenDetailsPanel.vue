@@ -103,7 +103,7 @@
               <app-chip
                 v-for="extension in tokenDetails.extensions"
                 :key="extension"
-                size="sm"
+
                 class="token-details-panel__chip">
                 {{ extension }}
               </app-chip>

@@ -3,13 +3,13 @@
     :hash="transactionData.fromId"
     :link-to="`/accounts/${transactionData.fromId}`"/>
 
-  <app-chip size="sm">
+  <app-chip>
     {{ formatAePrice(formatAettosToAe(transactionData.initiatorAmountFinal)) }}
   </app-chip>
 
   <transaction-plus-icon/>
 
-  <app-chip size="sm">
+  <app-chip>
     {{ formatAePrice(formatAettosToAe(transactionData.responderAmountFinal)) }}
   </app-chip>
 

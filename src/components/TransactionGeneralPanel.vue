@@ -57,8 +57,7 @@
               Mined
             </app-chip>
             <app-chip
-              v-else
-              size="sm">
+              v-else>
               Pending
             </app-chip>
           </td>

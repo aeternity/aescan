@@ -11,7 +11,7 @@
   </span>
 
   <app-tooltip>
-    <app-chip size="sm">
+    <app-chip>
       {{ transactionData.nameTtl }}
     </app-chip>
     <template #tooltip>

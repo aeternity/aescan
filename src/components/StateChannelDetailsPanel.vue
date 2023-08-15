@@ -218,6 +218,11 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v2/channels/${props.stateCh
     border-bottom: 0;
   }
 
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
+
   &__chip,
   &__hash {
     display: none;
@@ -231,11 +236,6 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v2/channels/${props.stateCh
     @media (--desktop) {
       display: none;
     }
-  }
-
-  &__link {
-    display: inline-flex;
-    align-items: center;
   }
 }
 </style>

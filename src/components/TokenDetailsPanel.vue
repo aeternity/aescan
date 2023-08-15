@@ -195,6 +195,19 @@ const tokenPrice = computed(() =>
 
 <style scoped>
 .token-details-panel {
+
+  &__table-header {
+    border-bottom: 1.5px solid var(--color-midnight-25);
+  }
+
+  &__data {
+    text-align: right;
+  }
+
+  &__row:last-of-type &__table-header {
+    border-bottom: 0;
+  }
+
   &__container {
     display: inline-flex;
     justify-content: flex-start;
@@ -208,12 +221,9 @@ const tokenPrice = computed(() =>
     }
   }
 
-  &__table-header {
-    border-bottom: 1.5px solid var(--color-midnight-25);
-  }
-
-  &__data {
-    text-align: right;
+  &__link {
+    display: inline-flex;
+    align-items: center;
   }
 
   &__extensions {
@@ -223,10 +233,6 @@ const tokenPrice = computed(() =>
     justify-content: flex-end;
   }
 
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
   &__icon {
     width: 28px;
     height: 28px;
@@ -234,11 +240,6 @@ const tokenPrice = computed(() =>
       width: 24px;
       height: 24px;
     }
-  }
-
-  &__link {
-    display: inline-flex;
-    align-items: center;
   }
 
   &__chip {

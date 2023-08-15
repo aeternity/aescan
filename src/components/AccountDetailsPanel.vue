@@ -138,20 +138,6 @@ const sanitizedPrice = computed(() =>
 
 <style scoped>
 .account-details-panel {
-  &__copy-chip {
-    display: none;
-
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__copy-chip-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
   &__table-header {
     border-bottom: 1.5px solid var(--color-midnight-25);
   }
@@ -172,6 +158,20 @@ const sanitizedPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
+  }
+
+  &__copy-chip {
+    display: none;
+
+    @media (--desktop) {
+      display: inline-flex;
+    }
+  }
+
+  &__copy-chip-ellipse {
+    @media (--desktop) {
+      display: none;
+    }
   }
 
   &__not-existent {

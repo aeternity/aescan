@@ -203,21 +203,6 @@ const isNextKeyblockMined = computed(() =>
 
 <style scoped>
 .keyblock-details-panel {
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
   &__table-header {
     border-bottom: 1.5px solid var(--color-midnight-25);
   }
@@ -241,6 +226,21 @@ const isNextKeyblockMined = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
+    }
+  }
+
+  &__chip,
+  &__hash {
+    display: none;
+    @media (--desktop) {
+      display: inline-flex;
+    }
+  }
+
+  &__chip-ellipse,
+  &__hash-ellipse {
+    @media (--desktop) {
+      display: none;
     }
   }
 

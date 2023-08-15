@@ -182,10 +182,6 @@ const isNameInAuction = computed(() =>
     text-align: right;
   }
 
-  &__name {
-    overflow-wrap: anywhere;
-  }
-
   &__link-text {
     display: none;
     @media (--desktop) {
@@ -197,6 +193,10 @@ const isNameInAuction = computed(() =>
     @media (--desktop) {
       display: none;
     }
+  }
+
+  &__name {
+    overflow-wrap: anywhere;
   }
 }
 </style>

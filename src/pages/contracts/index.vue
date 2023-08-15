@@ -16,9 +16,7 @@
     </template>
   </page-header>
 
-  <contracts-panel
-    v-if="!isLoading"
-    class="contracts__contracts-panel"/>
+  <contracts-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>
 
@@ -29,9 +27,3 @@ import { contractsHints } from '@/utils/hints/contractsHints'
 
 const { isLoading } = useLoading()
 </script>
-
-<style scoped>
-.contracts__contracts-panel {
-  margin-bottom: var(--space-6);
-}
-</style>

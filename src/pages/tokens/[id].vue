@@ -53,8 +53,7 @@ await fetchTokenDetails(route.params.id)
 </script>
 
 <style scoped>
-.token-details __panel {
-  margin-bottom: var(--space-4);
-
+.token-details__panel {
+  margin-bottom: var(--space-6);
 }
 </style>

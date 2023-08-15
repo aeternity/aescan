@@ -49,7 +49,6 @@ await useAsyncData(() => fetchOracleDetails(route.params.id))
 
 <style scoped>
 .oracle-details__panel {
-    margin-bottom: var(--space-6);
-  }
+  margin-bottom: var(--space-6);
 }
 </style>

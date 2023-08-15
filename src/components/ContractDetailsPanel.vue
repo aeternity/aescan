@@ -185,19 +185,6 @@ const contractMiddlewareUrl = computed(() =>
 
 <style scoped>
 .contract-details-panel {
-  &__container {
-    display: inline-flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-1);
-    margin-bottom: var(--space-1);
-
-    @media (--desktop) {
-      justify-content: flex-end;
-      margin-bottom: 0;
-    }
-  }
-
   &__table-header {
     border-bottom: 1.5px solid var(--color-midnight-25);
   }
@@ -216,6 +203,19 @@ const contractMiddlewareUrl = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
+    }
+  }
+
+  &__container {
+    display: inline-flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-1);
+    margin-bottom: var(--space-1);
+
+    @media (--desktop) {
+      justify-content: flex-end;
+      margin-bottom: 0;
     }
   }
 

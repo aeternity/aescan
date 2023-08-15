@@ -10,7 +10,7 @@
     :link-to="`/oracles/${transactionData.oracleId}`"/>
 
   <app-chip
-
+    size="sm"
     class="transaction-cell-oracle-query__query u-ellipsis">
     {{ formatDecodeBase64(transactionData.query) }}
   </app-chip>

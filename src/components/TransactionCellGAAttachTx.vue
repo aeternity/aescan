@@ -9,7 +9,7 @@
     :hash="transactionData.contractId"
     :link-to="`/contracts/${transactionData.contractId}`"/>
 
-  <app-chip>
+  <app-chip size="sm">
     {{ transactionData.authFunName }}
   </app-chip>
 </template>

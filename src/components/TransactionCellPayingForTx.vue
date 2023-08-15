@@ -1,6 +1,6 @@
 <template>
   <app-chip
-
+    size="sm"
     class="u-ellipsis">
     SpendTx
   </app-chip>
@@ -15,7 +15,7 @@
     :hash="transactionDetails.recipientId"
     :link-to="`/accounts/${transactionDetails.recipientId}`"/>
 
-  <app-chip>
+  <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionDetails.amount)) }}
   </app-chip>
 </template>

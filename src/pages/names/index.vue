@@ -16,9 +16,7 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
-    <app-tabs
-      v-model="activeTabIndex"
-      class="names__tabs">
+    <app-tabs v-model="activeTabIndex">
       <app-tab title="Active">
         <names-active-panel/>
       </app-tab>
@@ -84,13 +82,3 @@ if (process.client) {
   fetchNamesDetails({ limit })
 }
 </script>
-
-<style scoped>
-.names__tabs {
-  padding-top: var(--space-4);
-  @media (--desktop) {
-    padding-top: 0;
-  }
-
-}
-</style>

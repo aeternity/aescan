@@ -7,7 +7,9 @@
 
   <value-hash-ellipsed :hash="transactionData.queryId"/>
 
-  <app-chip v-if="oracleResponse">
+  <app-chip
+    v-if="oracleResponse"
+    size="sm">
     {{ oracleResponse }}
   </app-chip>
 </template>

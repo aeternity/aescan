@@ -48,6 +48,7 @@ if (process.client) {
 .oracle-events-panel {
   &__table {
     display: none;
+    margin-bottom: var(--space-4);
     @media (--desktop) {
       display: revert;
     }

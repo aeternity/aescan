@@ -4,7 +4,7 @@
     :link-to="`/oracles/${transactionData.oracleId}`"/>
 
   <app-tooltip>
-    <app-chip>
+    <app-chip size="sm">
       {{ transactionData.oracleTtl.value }}
     </app-chip>
     <template #tooltip>

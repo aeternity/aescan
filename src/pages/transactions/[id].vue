@@ -24,6 +24,7 @@
 
     <transaction-pointers-panel
       v-if="transactionTypeData?.pointers"
+      class="transaction-details__panel"
       :transaction-data="transactionTypeData"/>
   </template>
   <loader-panel v-else/>
@@ -53,6 +54,12 @@ await fetchTransactionDetails(route.params.id)
 
 <style scoped>
 .transaction-details__panel {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 </style>

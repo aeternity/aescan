@@ -126,7 +126,7 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
   &__chip {
     margin: var(--space-1) auto 0 0;
     @media (--desktop) {
-      margin-left: var(--space-1);
+      margin: 0 0 0 var(--space-1);
     }
   }
 }

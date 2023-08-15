@@ -7,7 +7,7 @@
   <value-hash-ellipsed :hash="transactionData.fromId"/>
 
   <app-tooltip>
-    <app-chip>
+    <app-chip size="sm">
       {{ transactionData.round }}
     </app-chip>
     <template #tooltip>

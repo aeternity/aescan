@@ -4,7 +4,7 @@
     :link-to="`/oracles/${transactionData.oracleId}`"/>
 
   <app-tooltip>
-    <app-chip>
+    <app-chip size="sm">
       {{ formatAePrice(formatAettosToAe(transactionData.fee)) }}
     </app-chip>
     <template #tooltip>

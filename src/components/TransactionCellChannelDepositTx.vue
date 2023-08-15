@@ -9,7 +9,7 @@
     :hash="transactionData.channelId"
     :link-to="`/state-channels/${transactionData.channelId}`"/>
 
-  <app-chip>
+  <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionData.fee)) }}
   </app-chip>
 </template>

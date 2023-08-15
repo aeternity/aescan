@@ -10,7 +10,7 @@
     :link-to="`/state-channels/${transactionData.channelId}`"/>
 
   <app-tooltip>
-    <app-chip>
+    <app-chip size="sm">
       {{ transactionData.round }}
     </app-chip>
     <template #tooltip>

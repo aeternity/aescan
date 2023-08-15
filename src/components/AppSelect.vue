@@ -138,6 +138,14 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     }
   }
 
+  &__input {
+    font-size: 12px;
+    line-height: 20px;
+    @media (--desktop) {
+      font-size: 14px;
+    }
+  }
+
   &__select {
     display: flex;
     justify-content: center;

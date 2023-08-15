@@ -1,11 +1,11 @@
 <template>
-  <app-chip>
+  <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionData.initiatorAmountFinal)) }}
   </app-chip>
 
   <transaction-plus-icon/>
 
-  <app-chip>
+  <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(transactionData.responderAmountFinal)) }}
   </app-chip>
 

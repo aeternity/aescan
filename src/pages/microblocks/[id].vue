@@ -14,9 +14,11 @@
       v-if="microblockDetails"
       class="microblock-details-panel"
       :microblock-details="microblockDetails"/>
-
-    <microblock-transactions-panel/>
-    <!--    todo add tabs-->
+    <app-tabs>
+      <app-tab title="Transactions">
+        <microblock-transactions-panel/>
+      </app-tab>
+    </app-tabs>
   </template>
   <loader-panel v-else/>
 </template>
@@ -30,6 +32,9 @@ import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PageHeader from '@/components/PageHeader'
 import MicroblockDetailsPanel from '@/components/MicroblockDetailsPanel'
 import MicroblockTransactionsPanel from '~/components/MicroblockTransactionsPanel'
+import AppTabs from '~/components/AppTabs'
+import AppTab from '~/components/AppTab'
+import KeyblockMicroblocksPanel from '~/components/KeyblockMicroblocksPanel'
 
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)

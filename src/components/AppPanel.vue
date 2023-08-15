@@ -15,7 +15,6 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
 <style scoped>
 .panel {
   max-width: 100%;
@@ -28,13 +27,12 @@
   }
 
   &__header {
-    /*todo fix to variables*/
-    padding: 8px 0 0 0;
+    padding: var(--space-1) 0 0 0;
     @media (--desktop) {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      padding: 8px 0 var(--space-4);
+      padding: var(--space-1) 0 var(--space-4);
     }
   }
 
@@ -43,9 +41,9 @@
   }
 
   &__container {
-    padding: 8px 0;
+    padding: var(--space-1) 0;
     display: flex;
-    gap: 8px;
+    gap: var(--space-1);
 
     @media (--desktop) {
       padding: 0;

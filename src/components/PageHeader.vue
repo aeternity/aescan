@@ -28,7 +28,6 @@ import HintTooltip from '@/components/HintTooltip'
   align-items: flex-end;
   flex-wrap: wrap;
   margin: 0 var(--space-1) var(--space-6);
-  /*// todo move*/
 
   @media (--desktop) {
     margin: 0 0 var(--space-6);

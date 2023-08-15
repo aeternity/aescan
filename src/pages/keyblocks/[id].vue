@@ -13,6 +13,7 @@
   <template v-if="!isLoading">
     <keyblock-details-panel
       v-if="keyblockDetails"
+      class="keyblocks_keyblock-details-panel"
       :keyblock-details="keyblockDetails"/>
 
     <app-tabs v-if="isKeyblockExistent">
@@ -49,3 +50,9 @@ await useAsyncData(async() => {
   return true
 })
 </script>
+
+<style scoped>
+.keyblocks_keyblock-details-panel {
+  margin-bottom: var(--space-6);
+}
+</style>

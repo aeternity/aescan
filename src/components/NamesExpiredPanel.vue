@@ -40,9 +40,6 @@ function loadNextNames() {
 
 <style scoped>
 .names-expired-panel {
-  margin-top: var(--space-2);
-  /*todo move out*/
-
   &__names-expired-table {
     display: none;
 

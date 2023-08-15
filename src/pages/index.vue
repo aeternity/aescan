@@ -139,6 +139,7 @@ onBeforeUnmount(() => {
 
     @media (--desktop) {
       padding: 0;
+      margin-bottom: 80px;
     }
   }
 

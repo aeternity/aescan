@@ -21,9 +21,7 @@
       class="contract-details__panel"
       :contract-details="contractDetails"/>
 
-    <app-tabs
-      v-if="contractDetails"
-      class="contract-details__tabs">
+    <app-tabs v-if="contractDetails">
       <app-tab title="Call Transactions">
         <contract-call-transactions-panel/>
       </app-tab>
@@ -65,14 +63,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.contract-details {
-  &__panel {
-    margin-bottom: var(--space-6);
-  }
-
-  &__tabs {
-    margin-bottom: var(--space-6);
-    /*todo or margin top on footer*/
-  }
+.contract-details__panel {
+  margin-bottom: var(--space-6);
 }
 </style>

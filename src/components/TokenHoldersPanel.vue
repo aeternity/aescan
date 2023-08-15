@@ -49,14 +49,9 @@ if (process.client) {
 
 <style scoped>
 .token-holders-panel {
-  margin-top: var(--space-2);
-  /*todo margin?*/
-
-  /*todo move*/
-
   &__table {
-    margin-bottom: var(--space-4);
     display: none;
+    margin-bottom: var(--space-4);
     @media (--desktop) {
       display: revert;
     }

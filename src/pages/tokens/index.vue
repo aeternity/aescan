@@ -23,9 +23,3 @@ import { tokensHints } from '@/utils/hints/tokensHints'
 
 const { isLoading } = useLoading()
 </script>
-
-<style scoped>
-.tokens__tokens-panel {
-  margin-bottom: var(--space-6);
-}
-</style>

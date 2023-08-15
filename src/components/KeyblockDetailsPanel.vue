@@ -203,12 +203,6 @@ const isNextKeyblockMined = computed(() =>
 
 <style scoped>
 .keyblock-details-panel {
-  margin-bottom: var(--space-4);
-  /*todo move*/
-  @media (--desktop) {
-    margin-bottom: var(--space-6);
-  }
-
   &__chip,
   &__hash {
     display: none;

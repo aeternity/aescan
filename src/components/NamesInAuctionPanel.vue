@@ -40,8 +40,6 @@ function loadNextNames() {
 
 <style scoped>
 .names-in-auction-panel {
-  margin-top: var(--space-2); /*todo move*/
-
   &__names-in-auction-table {
     display: none;
 

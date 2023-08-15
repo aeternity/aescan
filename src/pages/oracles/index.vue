@@ -29,9 +29,3 @@ import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const { isLoading } = useLoading()
 </script>
-
-<style scoped>
-.oracles__oracle-panel {
-  margin-bottom: var(--space-6);
-}
-</style>

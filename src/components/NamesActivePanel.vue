@@ -40,9 +40,6 @@ function loadNextNames() {
 
 <style scoped>
 .names-active-panel {
-  margin-top: var(--space-2);
-  /*todo move out*/
-
   &__names-active-table {
     display: none;
 

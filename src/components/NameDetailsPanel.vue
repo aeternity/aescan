@@ -170,14 +170,20 @@ const isNameInAuction = computed(() =>
 
 <style scoped>
 .name-details-panel {
-  /*todo sort styles*/
+  &__table-header {
+    border-bottom: 1.5px solid var(--color-midnight-25);
+  }
 
-  &__name {
-    overflow-wrap: anywhere;
+  &__row:last-of-type &__table-header {
+    border-bottom: 0;
   }
 
   &__data {
     text-align: right;
+  }
+
+  &__name {
+    overflow-wrap: anywhere;
   }
 
   &__link-text {
@@ -191,14 +197,6 @@ const isNameInAuction = computed(() =>
     @media (--desktop) {
       display: none;
     }
-  }
-
-  &__table-header {
-    border-bottom: 1.5px solid var(--color-midnight-25);
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
   }
 }
 </style>

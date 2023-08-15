@@ -138,15 +138,6 @@ const sanitizedPrice = computed(() =>
 
 <style scoped>
 .account-details-panel {
-  margin-bottom: var(--space-4);
-
-  /*todo move*/
-  /*todo check all condensed*/
-
-  @media (--desktop) {
-    margin-bottom: var(--space-6);
-  }
-
   &__copy-chip {
     display: none;
 

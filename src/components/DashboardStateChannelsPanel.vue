@@ -26,16 +26,10 @@ import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 <style scoped>
 .dashboard-state-channels-panel {
-  /*todo remove styles and margin*/
-  padding: var(--space-3) var(--space-1);
   width: 100%;
+  padding: var(--space-3) var(--space-1);
   @media (--desktop) {
     padding: var(--space-4);
-    margin-bottom: 80px;
-  }
-
-  &__panel-header {
-    margin-bottom: var(--space-3);
   }
 
   &__swiper {

@@ -55,7 +55,7 @@
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
     </div>
-    <dashboard-microblocks-panel class="blockchain-panel__dashboard-microblock-panel"/>
+    <dashboard-microblocks-panel/>
   </app-panel>
 </template>
 
@@ -82,13 +82,9 @@ const {
 .blockchain-panel {
   width: 100%;
 
-  /*todo adjust*/
-
   &__container {
-    /*padding: var(--space-4) var(--space-1) var(--space-1);*/
     @media (--desktop) {
-      /*padding: var(--space-4) var(--space-4) var(--space-1);*/
-      padding-bottom: 16px;
+      padding-bottom: var(--space-3);
     }
   }
 
@@ -121,13 +117,6 @@ const {
       margin-bottom: var(--space-4);
     }
   }
-
-  /*&__dashboard-microblock-panel {*/
-  /*  margin: var(--space-1) 0;*/
-  /*  @media (--desktop) {*/
-  /*    margin: 0 var(--space-4) var(--space-4);*/
-  /*  }*/
-  /*}*/
 
   &__summary {
     font-family: var(--font-monospaced);

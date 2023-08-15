@@ -51,7 +51,6 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = sto
 
 <style scoped>
 .dashboard-microblocks-panel {
-  /*todo remove styles*/
   background: var(--color-snow);
   padding: var(--space-3) var(--space-1) var(--space-1);
 

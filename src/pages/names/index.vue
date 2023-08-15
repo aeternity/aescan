@@ -86,13 +86,11 @@ if (process.client) {
 </script>
 
 <style scoped>
-.names {
-  &__tabs {
-    padding-top: var(--space-4);
-    @media (--desktop) {
-      padding-top: 0;
-      margin-bottom: 80px;
-    }
+.names__tabs {
+  padding-top: var(--space-4);
+  @media (--desktop) {
+    padding-top: 0;
   }
+
 }
 </style>

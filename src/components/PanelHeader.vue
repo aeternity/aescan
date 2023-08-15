@@ -62,7 +62,7 @@ defineProps({
 .panel-header {
   display: flex;
   flex-direction: row;
-  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
 
   &__body {
     display: flex;

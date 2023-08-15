@@ -11,7 +11,9 @@
         :label="formatEllipseHash(transactionDetails.hash)"
         :clipboard-text="transactionDetails.hash"
         class="transaction-general-panel__hash-ellipse"/>
-      <app-chip variant="primary">
+      <app-chip
+        variant="primary"
+        size="sm">
         {{ transactionDetails.type }}
       </app-chip>
     </template>

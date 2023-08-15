@@ -74,7 +74,7 @@ defineProps({
 .tokens-table-condensed {
   &__table {
     padding: 0 var(--space-1) var(--space-7);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-5);
   }
 
   &__header {

@@ -57,9 +57,10 @@ await fetchTransactionDetails(route.params.id)
   margin-bottom: var(--space-4);
   @media (--desktop) {
     margin-bottom: var(--space-6);
-    &:last-child {
-      margin-bottom: 0;
-    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 </style>

@@ -24,7 +24,11 @@
             </template>
           </span>
         </div>
-        <slot name="header"/>
+        <div
+          v-if="$slots.header"
+          class="paginated-content__slot-header">
+          <slot name="header"/>
+        </div>
       </header>
       <div
         v-if="!!entities?.data.length"
@@ -167,7 +171,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
 
   &__header {
-    padding: 8px 0;
+    padding: var(--space-1) 0;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -188,8 +192,16 @@ onBeforeUnmount(() => {
     width: 100%;
   }
 
+  &__slot-header {
+    margin-top: var(--space-3);
+    width: 100%;
+    @media (--desktop) {
+      margin-top: 0;
+      width: auto;
+    }
+  }
+
   &__counter {
-    margin-bottom: var(--space-3);
     font-family: var(--font-monospaced);
 
     @media (--desktop) {

@@ -74,7 +74,10 @@ if (hasNameHistory && process.client) {
 <style scoped>
 .name-details {
   &__panel {
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
+    @media (--desktop) {
+      margin-bottom: var(--space-6);
+    }
   }
 }
 </style>

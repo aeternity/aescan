@@ -1,6 +1,5 @@
 <template>
   <div class="panel">
-    <!--    todo a co  <panel-header-->
     <header
       v-if="$slots.heading"
       class="panel__header">

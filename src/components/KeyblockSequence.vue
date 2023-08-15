@@ -40,7 +40,7 @@ defineProps({
 .keyblock-sequence {
   position: relative;
   @media (--desktop) {
-    padding: 8px 0;
+    padding: var(--space-1) 0;
   }
 
   &__sequence {
@@ -51,8 +51,8 @@ defineProps({
     scrollbar-width: none;
 
     /*animation overflow workaround*/
-    margin: -8px;
-    padding: 8px;
+    margin: calc(-1 * var(--space-1));
+    padding: var(--space-1);
 
     &::-webkit-scrollbar {
       display: none;

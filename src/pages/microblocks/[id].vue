@@ -31,10 +31,9 @@ import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PageHeader from '@/components/PageHeader'
 import MicroblockDetailsPanel from '@/components/MicroblockDetailsPanel'
-import MicroblockTransactionsPanel from '~/components/MicroblockTransactionsPanel'
-import AppTabs from '~/components/AppTabs'
-import AppTab from '~/components/AppTab'
-import KeyblockMicroblocksPanel from '~/components/KeyblockMicroblocksPanel'
+import MicroblockTransactionsPanel from '@/components/MicroblockTransactionsPanel'
+import AppTabs from '@/components/AppTabs'
+import AppTab from '@/components/AppTab'
 
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)

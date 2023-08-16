@@ -109,7 +109,7 @@ export const useAccountStore = defineStore('account', () => {
     rawAccountTokens.value = data
 
     if (rawAccountTokens.value?.data.length) {
-      fetchAccountTokensPrices()
+      await fetchAccountTokensPrices()
     }
   }
 

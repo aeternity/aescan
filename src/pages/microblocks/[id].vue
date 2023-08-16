@@ -12,9 +12,13 @@
   <template v-if="!isLoading">
     <microblock-details-panel
       v-if="microblockDetails"
+      class="microblock-details__microblock-details-panel"
       :microblock-details="microblockDetails"/>
-
-    <microblock-transactions-panel/>
+    <app-tabs>
+      <app-tab title="Transactions">
+        <microblock-transactions-panel/>
+      </app-tab>
+    </app-tabs>
   </template>
   <loader-panel v-else/>
 </template>
@@ -27,7 +31,9 @@ import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PageHeader from '@/components/PageHeader'
 import MicroblockDetailsPanel from '@/components/MicroblockDetailsPanel'
-import MicroblockTransactionsPanel from '~/components/MicroblockTransactionsPanel'
+import MicroblockTransactionsPanel from '@/components/MicroblockTransactionsPanel'
+import AppTabs from '@/components/AppTabs'
+import AppTab from '@/components/AppTab'
 
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)
@@ -41,3 +47,11 @@ await useAsyncData(async() => {
   return true
 })
 </script>
+<style scoped>
+.microblock-details__microblock-details-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

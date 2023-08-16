@@ -122,7 +122,6 @@ const links = {
 
   &__network {
     font-family: var(--font-monospaced);
-    font-size: 14px;
 
     margin: var(--space-4) 0;
     @media (--desktop) {

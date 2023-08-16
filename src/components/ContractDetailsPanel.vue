@@ -1,23 +1,21 @@
 <template>
   <app-panel class="contract-details-panel">
-    <header class="contract-details-panel__header">
-      <h2 class="contract-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div class="contract-details-panel__container">
-        <div class="contract-details-panel__hash">
-          <copy-chip :label="contractDetails.id"/>
-        </div>
-        <div class="contract-details-panel__hash-ellipse">
-          <copy-chip
-            :label="formatEllipseHash(contractDetails.id)"
-            :clipboard-text="contractDetails.id"/>
-        </div>
-        <app-chip v-if="contractDetails?.contractType">
-          {{ contractDetails.contractType }}
-        </app-chip>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
+      <div class="contract-details-panel__hash">
+        <copy-chip :label="contractDetails.id"/>
       </div>
-    </header>
+      <div class="contract-details-panel__hash-ellipse">
+        <copy-chip
+          :label="formatEllipseHash(contractDetails.id)"
+          :clipboard-text="contractDetails.id"/>
+      </div>
+      <app-chip v-if="contractDetails?.contractType">
+        {{ contractDetails.contractType }}
+      </app-chip>
+    </template>
     <table>
       <tbody>
         <tr class="contract-details-panel__row">
@@ -187,42 +185,8 @@ const contractMiddlewareUrl = computed(() =>
 
 <style scoped>
 .contract-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-2);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__header {
-    @media (--desktop) {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__container {
-    display: inline-flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-1);
-    margin-bottom: var(--space-1);
-
-    @media (--desktop) {
-      justify-content: flex-end;
-      margin-bottom: 0;
-    }
-  }
-
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__data {
@@ -239,6 +203,19 @@ const contractMiddlewareUrl = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
+    }
+  }
+
+  &__container {
+    display: inline-flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-1);
+    margin-bottom: var(--space-1);
+
+    @media (--desktop) {
+      justify-content: flex-end;
+      margin-bottom: 0;
     }
   }
 

@@ -1,11 +1,11 @@
 <template>
   <app-panel class="name-pointers-custom-panel">
-    <h2 class="name-pointers-custom-panel__heading h3">
+    <template #heading>
       CUSTOM POINTERS
       <hint-tooltip>
         {{ namesHints.customPointers }}
       </hint-tooltip>
-    </h2>
+    </template>
     <table>
       <tbody>
         <tr>
@@ -20,7 +20,7 @@
           v-for="(pointer, index) in name.customPointers"
           :key="index">
           <th>{{ pointer.key }}</th>
-          <td class="name-pointers-custom-panel__data">
+          <td>
             <value-hash-ellipsed
               :hash="pointer.pointer"
               :link-to="`/accounts/${pointer.pointer}`"/>
@@ -44,17 +44,8 @@ const { name } = storeToRefs(useNameDetailsStore())
 
 <style scoped>
 .name-pointers-custom-panel {
-  padding: var(--space-4) var(--space-1) var(--space-3);
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-3);
-  }
-
   &__header {
     padding: var(--space-1) 0;
-  }
-
-  &__heading {
-    margin-bottom: var(--space-1);
   }
 }
 </style>

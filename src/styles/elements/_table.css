@@ -3,36 +3,43 @@ table {
   border-collapse: collapse;
 }
 
+
 th {
   text-align: left;
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
 
-  vertical-align: initial;
-  padding: var(--space-1) 0;
+  vertical-align: middle;
+  padding: 7px 0;
 
 
   @media (--desktop) {
     font-size: 16px;
-    line-height: 24px;
-    vertical-align: middle;
-    padding: var(--space-2) 0 var(--space-1);
+    line-height: 18px;
+    vertical-align: top;
+    padding: 10px 0 var(--space-1);
   }
 }
 
 td {
   font-family: var(--font-monospaced);
   font-weight: 400;
-  padding: var(--space-1) 0;
+  padding: 7px 0;
   text-align: left;
-  border-bottom: 1px solid var(--color-midnight-15);
+  border-bottom: 1px solid var(--color-midnight-25);
   vertical-align: middle;
 
   @media (--desktop) {
-    padding: var(--space-1) var(--space-0);
+    padding: 10px var(--space-0) var(--space-1);
   }
 }
+
+
+thead tr:first-of-type th {
+  padding-bottom: 0;
+}
+
 
 td:first-of-type {
   padding-left: 0;
@@ -44,5 +51,6 @@ td:last-of-type {
 
 tr:last-of-type td {
   border-bottom: 0;
+  padding-bottom: 0;
 }
 

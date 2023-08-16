@@ -79,7 +79,7 @@ defineProps({
 <style scoped>
 .transactions-table {
   &__table {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-4);
   }
 
   &__data {

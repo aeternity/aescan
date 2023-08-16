@@ -3,7 +3,9 @@
     ref="paginatedContent"
     class="paginated-content">
     <template v-if="entities">
-      <header class="paginated-content__header">
+      <header
+        v-if="hasCounter || $slots.header"
+        class="paginated-content__header">
         <div class="paginated-content__counter">
           <span v-if="hasCounter">
             <template v-if="totalCount > 0">
@@ -22,7 +24,11 @@
             </template>
           </span>
         </div>
-        <slot name="header"/>
+        <div
+          v-if="$slots.header"
+          class="paginated-content__slot-header">
+          <slot name="header"/>
+        </div>
       </header>
       <div
         v-if="!!entities?.data.length"
@@ -165,15 +171,16 @@ onBeforeUnmount(() => {
   flex-direction: column;
 
   &__header {
+    padding: var(--space-1) 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     width: 100%;
 
     @media (--desktop) {
       justify-content: space-between;
       flex-direction: row;
-      margin-bottom: var(--space-1);
+      align-items: center;
     }
 
     &:empty {
@@ -185,13 +192,20 @@ onBeforeUnmount(() => {
     width: 100%;
   }
 
+  &__slot-header {
+    margin-top: var(--space-3);
+    width: 100%;
+    @media (--desktop) {
+      margin-top: 0;
+      width: auto;
+    }
+  }
+
   &__counter {
-    margin-bottom: var(--space-3);
     font-family: var(--font-monospaced);
-    text-align: center;
+
     @media (--desktop) {
       margin-bottom: 0;
-      text-align: left;
     }
   }
 
@@ -199,16 +213,15 @@ onBeforeUnmount(() => {
     font-weight: 700;
   }
 
-  &__blank-state {
-    margin-top: var(--space-3);
-    width: 100%;
-  }
-
   &__loader-indicator {
     margin: var(--space-3) 0;
   }
 
   &__pagination {
+    width: 100%;
+  }
+
+  &__blank-state {
     width: 100%;
   }
 }

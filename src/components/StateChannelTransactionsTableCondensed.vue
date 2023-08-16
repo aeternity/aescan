@@ -68,19 +68,12 @@ defineProps({
 <style scoped>
 .state-channel-transactions-table-condensed {
   &__table {
-    margin-bottom: var(--space-6);
-
-    &:last-of-type {
-      margin-bottom: var(--space-1);
-    }
-
-    @media (--desktop) {
-      padding: var(--space-4);
-    }
+    padding: 0 var(--space-1) var(--space-7);
+    margin-bottom: var(--space-5);
   }
 
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__header {

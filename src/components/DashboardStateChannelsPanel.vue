@@ -4,8 +4,7 @@
       level="h3"
       title="State Channels"
       icon-name="state-channel"
-      show-all-link="/state-channels"
-      class="dashboard-state-channels-panel__panel-header">
+      show-all-link="/state-channels">
       State Channels
 
       <template #tooltip>

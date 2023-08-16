@@ -10,9 +10,7 @@
       {{ tokensHints.token }}
     </template>
   </page-header>
-  <tokens-panel
-    v-if="!isLoading"
-    class="tokens__tokens-panel"/>
+  <tokens-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>
 

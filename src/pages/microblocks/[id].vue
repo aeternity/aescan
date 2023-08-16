@@ -12,7 +12,7 @@
   <template v-if="!isLoading">
     <microblock-details-panel
       v-if="microblockDetails"
-      class="microblock-details-panel"
+      class="microblock-details__microblock-details-panel"
       :microblock-details="microblockDetails"/>
     <app-tabs>
       <app-tab title="Transactions">
@@ -48,7 +48,7 @@ await useAsyncData(async() => {
 })
 </script>
 <style scoped>
-.microblock-details-panel {
+.microblock-details__microblock-details-panel {
   margin-bottom: var(--space-4);
   @media (--desktop) {
     margin-bottom: var(--space-6);

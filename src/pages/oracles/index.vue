@@ -16,9 +16,7 @@
     </template>
   </page-header>
 
-  <oracles-panel
-    v-if="!isLoading"
-    class="oracles__oracle-panel"/>
+  <oracles-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>
 

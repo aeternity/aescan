@@ -41,7 +41,7 @@ defineProps({
   display: flex;
   flex-direction: row;
   word-break: break-word;
-  padding: 8px 0;
+  padding: var(--space-1) 0;
 
   &__container {
     display: flex;

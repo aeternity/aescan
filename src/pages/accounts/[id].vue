@@ -23,6 +23,9 @@
         <app-tab title="AENS Names">
           <account-names-panel/>
         </app-tab>
+        <app-tab title="Tokens">
+          <account-tokens-panel/>
+        </app-tab>
       </app-tabs>
     </client-only>
   </template>
@@ -37,6 +40,7 @@ import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
 import AccountTransactionsPanel from '@/components/AccountTransactionsPanel'
 import AccountNamesPanel from '@/components/AccountNamesPanel'
+import AccountTokensPanel from '@/components/AccountTokensPanel'
 import PageHeader from '@/components/PageHeader'
 import AccountDetailsPanel from '@/components/AccountDetailsPanel'
 import { accountHints } from '@/utils/hints/accountHints'

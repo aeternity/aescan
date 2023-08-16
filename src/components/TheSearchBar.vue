@@ -1,5 +1,7 @@
 <template>
-  <div class="search-bar">
+  <div
+    class="search-bar">
+    <search-select v-model="selectedEntity"/>
     <input
       v-model="userQuery"
       class="search-bar__input"
@@ -10,7 +12,7 @@
 
     <button
       class="search-bar__submit"
-      @click="search">
+      @click="navigate">
       <app-icon
         name="magnifying-glass"
         :size="18"/>
@@ -22,6 +24,7 @@ import { isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
+import SearchSelect from '~/components/SearchSelect'
 
 const { isNameAvailable } = useNameDetailsStore()
 const { isKeyblockAvailable } = useKeyblockDetailsStore()
@@ -34,6 +37,17 @@ const query = computed(() => {
     ? trimmedQuery.slice(0, -6)
     : trimmedQuery
 })
+
+const selectedEntity = ref(null)
+
+function navigate() {
+  if (!query.value) {
+    return
+  }
+
+  push(`/${selectedEntity.value?.name}/${query.value}`)
+  userQuery.value = ''
+}
 
 async function search() {
   if (!query.value) {
@@ -111,11 +125,12 @@ function isMicroblockId(query) {
 
 <style scoped>
 .search-bar {
-  padding: 6px var(--space-0) 6px var(--space-3);
+  padding: var(--space-0);
   display: flex;
   align-items: center;
+  justify-content: center;
 
-  height: 40px;
+  height: 42px;
   background: var(--color-white);
   border: 1px solid var(--color-midnight);
   border-radius: 8px;

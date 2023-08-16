@@ -86,23 +86,6 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     margin: 0;
   }
 
-  &--sm {
-    min-height: var(--space-5);
-
-    .multiselect__tags {
-      min-height: var(--space-5);
-    }
-
-    .multiselect__select {
-      height: 32px;
-      padding: 0 var(--space-0);
-    }
-
-    .multiselect__single {
-      margin-bottom: 6px;
-    }
-  }
-
   &__tags {
     padding: 6px 40px 0 8px;
     border-radius: 8px;
@@ -179,6 +162,23 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
     .multiselect__select {
       background: transparent;
+    }
+  }
+
+  &--sm {
+    min-height: var(--space-5);
+
+    .multiselect__tags {
+      min-height: var(--space-5);
+    }
+
+    .multiselect__select {
+      height: 32px;
+      padding: 0 var(--space-0);
+    }
+
+    .multiselect__single {
+      margin-bottom: 6px;
     }
   }
 }

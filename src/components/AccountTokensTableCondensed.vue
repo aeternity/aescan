@@ -107,11 +107,6 @@ defineProps({
     margin-bottom: var(--space-5);
   }
 
-  &__token {
-    display: inline-block;
-    max-width: 160px;
-  }
-
   &__header {
     border-bottom: 1px solid var(--color-midnight-15);
   }

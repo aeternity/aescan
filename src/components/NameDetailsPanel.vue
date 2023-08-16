@@ -171,7 +171,7 @@ const isNameInAuction = computed(() =>
 <style scoped>
 .name-details-panel {
   &__table-header {
-    border-bottom: 1.5px solid var(--color-midnight-25);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__table-header {

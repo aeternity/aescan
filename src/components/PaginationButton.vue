@@ -50,7 +50,7 @@ defineEmits(['click'])
   line-height: 20px;
   font-weight: 500;
   font-family: var(--font-primary);
-  border: 1.5px solid var(--color-midnight);
+  border: 1px solid var(--color-midnight);
   border-radius: 4px;
   cursor: pointer;
   user-select: none;

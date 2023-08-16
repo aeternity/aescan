@@ -13,7 +13,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useVModel } from '@vueuse/core'
+import { useRoute } from '#app'
 import AppSelect from '@/components/AppSelect'
+
+const route = useRoute()
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -24,8 +27,19 @@ const props = defineProps({
   },
 })
 
+onMounted(() => {
+  preselectedEntityName.value = route.path.split('/')[1] || ''
+  selectedEntity.value = preselectedEntity.value
+})
+
 const selectedEntity = useVModel(props, 'modelValue', emit)
-// todo defauls
+
+const preselectedEntity = computed(() => {
+  return entities.value.find(entity => entity.url === preselectedEntityName.value)
+})
+
+const preselectedEntityName = ref(null)
+
 const entities = ref([
   {
     name: 'All types',
@@ -72,12 +86,11 @@ const entities = ref([
     url: 'microblocks',
   },
 ])
-
 </script>
 
 <style scoped>
 .search-select {
   width: 180px;
-  min-height: 32px !important;
+  min-height: 32px;
 }
 </style>

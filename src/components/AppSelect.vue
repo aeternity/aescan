@@ -94,14 +94,21 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     }
 
     .multiselect__select {
-      height: 30px;
+      height: 32px;
+      padding: 0px 4px;
+    }
+
+    .multiselect__single {
+      margin-bottom: 6px;
     }
   }
 
   &__tags {
+    padding: 6px 40px 0 8px;
     border-radius: 8px;
     border-color: var(--color-midnight);
     cursor: pointer;
+    letter-spacing: -0.07px;
   }
 
   &__single {

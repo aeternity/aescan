@@ -7,11 +7,11 @@
       placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
       type="search"
       autofocus
-      @keyup.enter="navigate">
+      @keyup.enter="search">
 
     <button
-      class="search-bar__submit"
-      @click="navigate">
+      class="search-bar__button"
+      @click="search">
       <app-icon
         name="magnifying-glass"
         :size="18"/>
@@ -19,14 +19,9 @@
   </div>
 </template>
 <script setup>
-import { isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
-import { useNameDetailsStore } from '@/stores/nameDetails'
-import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
-import SearchSelect from '~/components/SearchSelect'
+import SearchSelect from '@/components/SearchSelect'
 
-const { isNameAvailable } = useNameDetailsStore()
-const { isKeyblockAvailable } = useKeyblockDetailsStore()
 const userQuery = ref('')
 const { push } = useRouter()
 
@@ -39,86 +34,13 @@ const query = computed(() => {
 
 const selectedEntity = ref(null)
 
-function navigate() {
+function search() {
   if (!query.value) {
     return
   }
 
-  push(`/${selectedEntity.value?.name}/${query.value}`)
+  push(`/${selectedEntity.value?.url}/${query.value}`)
   userQuery.value = ''
-}
-
-async function search() {
-  if (!query.value) {
-    return
-  }
-
-  if (isAccountAddress(query.value)) {
-    push(`/accounts/${query.value}`)
-  } else if (isTransactionHash(query.value)) {
-    push(`/transactions/${query.value}`)
-  } else if (isContractId(query.value)) {
-    push(`/contracts/${query.value}`)
-  } else if (isOracleId(query.value)) {
-    push(`/oracles/${query.value}`)
-  } else if (isNameId(query.value)) {
-    push(`/names/${query.value}`)
-  } else if (isStateChannelId(query.value)) {
-    push(`/state-channels/${query.value}`)
-  } else if (isMicroblockId(query.value)) {
-    push(`/microblocks/${query.value}`)
-  } else if (await isAccountName(query.value)) {
-    push(`/names/${query.value}.chain`)
-  } else if (await isKeyblockId(query.value)) {
-    push(`/keyblocks/${query.value}`)
-  } else {
-    push(`/error/${userQuery.value}`)
-  }
-  userQuery.value = ''
-}
-
-function isAccountAddress(query) {
-  return isAddressValid(query) && query.startsWith('ak_')
-}
-
-function isNameId(query) {
-  return isAddressValid(query) && query.startsWith('nm_')
-}
-
-function isTransactionHash(query) {
-  return isAddressValid(query) && query.startsWith('th_')
-}
-
-function isContractId(query) {
-  return isAddressValid(query) && query.startsWith('ct_')
-}
-
-function isOracleId(query) {
-  return isAddressValid(query) && query.startsWith('ok_')
-}
-
-function isStateChannelId(query) {
-  return isAddressValid(query) && query.startsWith('ch_')
-}
-
-async function isAccountName(query) {
-  return await isNameAvailable(query)
-}
-
-function isKeyblockId(query) {
-  if (isAddressValid(query) && query.startsWith('kh_')) {
-    return true
-  }
-
-  if (!isNaN(query)) {
-    return isKeyblockAvailable(query)
-  }
-
-  return false
-}
-
-function isMicroblockId(query) {
-  return isAddressValid(query) && query.startsWith('mh_')
 }
 </script>
 
@@ -134,7 +56,7 @@ function isMicroblockId(query) {
   border: 1px solid var(--color-midnight);
   border-radius: 8px;
 
-  &__submit {
+  &__button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -152,10 +74,10 @@ function isMicroblockId(query) {
   }
 
   &__input {
-    width: 100%;
+    flex-grow: 1;
     border: none;
     background-color: var(--color-white);
-    margin-right: var(--space-1);
+    margin: 0 var(--space-1);
     font-size: 14px;
     appearance: none;
     font-family: var(--font-monospaced);

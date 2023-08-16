@@ -18,7 +18,7 @@ th {
     font-size: 16px;
     line-height: 18px;
     vertical-align: top;
-    padding: 10px 0 8px;
+    padding: 10px 0 var(--space-1);
   }
 }
 
@@ -31,7 +31,7 @@ td {
   vertical-align: middle;
 
   @media (--desktop) {
-    padding: 10px var(--space-0) 8px;
+    padding: 10px var(--space-0) var(--space-1);
   }
 }
 

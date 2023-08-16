@@ -1,6 +1,7 @@
 <template>
   <app-select
     v-model="selectedEntity"
+    size="sm"
     class="search-select"
     :options="entities"
     track-by="name"
@@ -24,7 +25,7 @@ const props = defineProps({
 })
 
 const selectedEntity = useVModel(props, 'modelValue', emit)
-
+// todo defauls
 const entities = ref([
   {
     name: 'All types',
@@ -77,12 +78,6 @@ const entities = ref([
 <style scoped>
 .search-select {
   width: 180px;
-  min-height: 32px !important;
-}
-</style>
-
-<style>
-.multiselect__tags {
   min-height: 32px !important;
 }
 </style>

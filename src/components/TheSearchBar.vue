@@ -1,6 +1,5 @@
 <template>
-  <div
-    class="search-bar">
+  <div class="search-bar">
     <search-select v-model="selectedEntity"/>
     <input
       v-model="userQuery"
@@ -8,7 +7,7 @@
       placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
       type="search"
       autofocus
-      @keyup.enter="search">
+      @keyup.enter="navigate">
 
     <button
       class="search-bar__submit"

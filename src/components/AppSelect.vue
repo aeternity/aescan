@@ -9,7 +9,8 @@
     :disabled="disabled"
     :searchable="searchable"
     :hide-selected="hideSelected"
-    :preselect-first="preselectFirst">
+    :preselect-first="preselectFirst"
+    :class="[ size ? `multiselect--${size}` : null ]">
     <template
       v-for="(_, slot) of $slots"
       #[slot]="scope">
@@ -31,6 +32,11 @@ import { useVModel } from '@vueuse/core'
 import AppIcon from '@/components/AppIcon'
 
 const props = defineProps({
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['sm'].includes(val),
+  },
   placeholder: {
     type: String,
     default: null,
@@ -78,6 +84,18 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   @media (--desktop) {
     width: 320px;
     margin: 0;
+  }
+
+  &--sm {
+    min-height: 32px;
+
+    .multiselect__tags {
+      min-height: 32px;
+    }
+
+    .multiselect__select {
+      height: 30px;
+    }
   }
 
   &__tags {

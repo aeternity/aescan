@@ -87,15 +87,15 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   }
 
   &--sm {
-    min-height: 32px;
+    min-height: var(--space-5);
 
     .multiselect__tags {
-      min-height: 32px;
+      min-height: var(--space-5);
     }
 
     .multiselect__select {
       height: 32px;
-      padding: 0px 4px;
+      padding: 0 var(--space-0);
     }
 
     .multiselect__single {

@@ -22,7 +22,7 @@
 
   <template v-if="!isLoading && isChannelFound">
     <state-channel-details-panel
-      class="state-channel-details__panel"
+      class="state-channel-details__state-channel-details-panel"
       :state-channel-details="stateChannelDetails"/>
 
     <app-tabs v-if="stateChannelDetails">
@@ -70,8 +70,9 @@ if (error.value) {
 </script>
 
 <style scoped>
-.state-channel-details {
-  &__panel {
+.state-channel-details__state-channel-details-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
     margin-bottom: var(--space-6);
   }
 }

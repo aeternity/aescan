@@ -12,7 +12,6 @@ export const stateChannelsHints = {
   initialAmount: 'The total amount of AE coins that have initially been deposited to the state channel by initiator and responder combined.',
   initiator: 'The account that initiated the creation of the state channel and covered the fees for its creation.',
   responder: 'The participating account that joined the state channel.',
-  // todo round
   lastKnownRound: 'Participants can protect themselves from being cheated on by providing a snapshot from the latest off-chain round to the chain.',
   slashedRound: 'The round in which the slash was triggered.',
   slashedBy: 'The account that slashed (disputed) malicious ChannelCloseSoloTx or ChannelForceProgressTx.',

@@ -56,12 +56,6 @@ if (process.client) {
 
 <style scoped>
 .contract-call-transactions-panel {
-  padding: var(--space-4) var(--space-1);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__table {
     display: none;
     @media (--desktop) {

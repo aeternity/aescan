@@ -74,13 +74,14 @@ try {
 </script>
 
 <style scoped>
-.transaction-details {
-  &__panel {
+.transaction-details__panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
     margin-bottom: var(--space-6);
+  }
 
-    &:last-of-type {
-      margin-bottom: 0;
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 </style>

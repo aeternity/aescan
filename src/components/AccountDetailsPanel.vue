@@ -1,25 +1,21 @@
 <template>
   <app-panel class="account-details-panel">
-    <header class="account-details-panel__header">
-      <h2 class="account-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div>
-        <app-chip
-          v-if="accountDetails.isGeneralized"
-          class="account-details-panel__chip">
-          Generalized
-        </app-chip>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
+      <app-chip v-if="accountDetails.isGeneralized">
+        Generalized
+      </app-chip>
 
-        <copy-chip
-          :label="accountDetails.id"
-          class="account-details-panel__copy-chip"/>
-        <copy-chip
-          :label="formatEllipseHash(accountDetails.id)"
-          :clipboard-text="accountDetails.id"
-          class="account-details-panel__copy-chip-ellipse"/>
-      </div>
-    </header>
+      <copy-chip
+        :label="accountDetails.id"
+        class="account-details-panel__copy-chip"/>
+      <copy-chip
+        :label="formatEllipseHash(accountDetails.id)"
+        :clipboard-text="accountDetails.id"
+        class="account-details-panel__copy-chip-ellipse"/>
+    </template>
     <p
       v-if="accountDetails.notExistent"
       class="account-details-panel__not-existent">
@@ -142,51 +138,8 @@ const sanitizedPrice = computed(() =>
 
 <style scoped>
 .account-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-3);
-  margin-bottom: var(--space-7);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
-    margin-bottom: var(--space-6);
-  }
-
-  &__header {
-    margin-bottom: var(--space-2);
-    @media (--desktop) {
-      margin-bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__chip {
-    margin-right: var(--space-1);
-  }
-
-  &__copy-chip {
-    display: none;
-
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__copy-chip-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__table-header {
@@ -205,6 +158,20 @@ const sanitizedPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
+  }
+
+  &__copy-chip {
+    display: none;
+
+    @media (--desktop) {
+      display: inline-flex;
+    }
+  }
+
+  &__copy-chip-ellipse {
+    @media (--desktop) {
+      display: none;
+    }
   }
 
   &__not-existent {

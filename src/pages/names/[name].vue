@@ -29,11 +29,9 @@
     <name-pointers-custom-panel
       v-if="hasCustomPanel"
       class="name-details__panel"/>
-    <app-tabs
-      v-if="hasNameHistory"
-      class="name-details__tabs">
+    <app-tabs v-if="hasNameHistory">
       <app-tab title="History">
-        <name-history-panel class="name-details__history"/>
+        <name-history-panel/>
       </app-tab>
     </app-tabs>
   </template>
@@ -94,11 +92,10 @@ if (hasNameHistory && process.client) {
 <style scoped>
 .name-details {
   &__panel {
-    margin-bottom: var(--space-6);
-  }
-
-  &__history {
-    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+    @media (--desktop) {
+      margin-bottom: var(--space-6);
+    }
   }
 }
 </style>

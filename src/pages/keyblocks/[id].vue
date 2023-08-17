@@ -18,6 +18,7 @@
   <template v-if="!isLoading && isKeyblockFound">
     <keyblock-details-panel
       v-if="keyblockDetails"
+      class="keyblock-details__keyblock-details-panel"
       :keyblock-details="keyblockDetails"/>
 
     <app-tabs v-if="isKeyblockExistent">
@@ -68,3 +69,12 @@ if (error.value) {
   setResponseStatus(404, 'Keyblock not found')
 }
 </script>
+
+<style scoped>
+.keyblock-details__keyblock-details-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

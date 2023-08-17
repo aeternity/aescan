@@ -234,14 +234,14 @@ const {
   }
 
   &__stats-tile {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-2);
 
     &:last-of-type {
       margin-bottom: 0;
     }
 
     @media (--desktop) {
-      margin-bottom: 0 ;
+      margin-bottom: 0;
     }
   }
 

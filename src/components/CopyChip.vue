@@ -2,6 +2,7 @@
   <div class="copy-chip">
     <app-chip
       ref="container"
+      size="sm"
       :variant="!isCopyAnimationActive ? 'dark' : 'success'">
       <div class="copy-chip__text">
         {{ textToDisplay }}

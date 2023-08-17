@@ -94,17 +94,12 @@ defineProps({
 <style scoped>
 .transactions-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);
-
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
   }
 
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
     padding-right: var(--space-4);
   }
 

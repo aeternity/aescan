@@ -13,6 +13,7 @@
   <template v-if="!isLoading">
     <account-details-panel
       v-if="accountDetails"
+      class="account__account-details-panel"
       :account-details="accountDetails"/>
 
     <client-only>
@@ -63,3 +64,12 @@ if (process.client) {
   })
 }
 </script>
+
+<style scoped>
+.account__account-details-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

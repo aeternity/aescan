@@ -104,7 +104,7 @@ function closeNavigation() {
 
     @media (--desktop) {
       width: 100%;
-      padding: 10px 0;
+      padding: 15px 0;
       max-width: var(--container-width);
     }
   }

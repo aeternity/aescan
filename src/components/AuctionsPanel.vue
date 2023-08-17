@@ -2,7 +2,7 @@
   <app-panel class="auctions-panel">
     <panel-header
       level="h3"
-      title="Auctions ending soon"
+      title="AUCTIONS ENDING SOON"
       icon-name="aens-name"
       show-all-link="/names/?type=in-auction">
       <template #tooltip>
@@ -25,9 +25,9 @@ import AuctionsTable from '@/components/AuctionsTable'
 
 <style scoped>
 .auctions-panel {
-  padding: var(--space-4) var(--space-1);
+  padding: var(--space-3) var(--space-1);
   @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-3);
+    padding: var(--space-4);
   }
 
   &__swiper {

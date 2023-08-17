@@ -46,14 +46,9 @@ if (process.client) {
 
 <style scoped>
 .token-events-panel {
-  padding: var(--space-3) var(--space-1) var(--space-4);
-  margin-top: var(--space-2);
-  @media (--desktop) {
-    padding: var(--space-2) var(--space-4) var(--space-4);
-  }
-
   &__table {
     display: none;
+    margin-bottom: var(--space-4);
     @media (--desktop) {
       display: revert;
     }

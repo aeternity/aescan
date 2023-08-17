@@ -102,6 +102,6 @@ defineProps({
 
 <style scoped>
 .state-channels-table {
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
 }
 </style>

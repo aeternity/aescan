@@ -187,11 +187,9 @@
     </stats-tile>
   </app-panel>
 
-  <app-panel
+  <loader-panel
     v-else
-    class="stats-panel__panel-loader">
-    <spinner-loader/>
-  </app-panel>
+    class="stats-panel__loader-panel"/>
 </template>
 
 <script setup>
@@ -262,7 +260,7 @@ const isLoading = computed(() => {
     font-weight: 700;
   }
 
-  &__panel-loader {
+  &__loader-panel {
     height: 784px;
     width: 100%;
     display: flex;

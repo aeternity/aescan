@@ -25,7 +25,7 @@ const errorData = computed(() => {
   if (typeof error.value.data === 'string') {
     return JSON.parse(error.value.data)
   }
-  
+
   return error.value.data
 })
 

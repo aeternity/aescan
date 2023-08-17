@@ -6,10 +6,6 @@
   <page-header>
     AENS Name
 
-    <template v-if="!isNameFound">
-      not found
-    </template>
-
     <template #tooltip>
       {{ namesHints.name }}
       <app-link
@@ -20,7 +16,7 @@
     </template>
   </page-header>
 
-  <template v-if="isNameFound && !isLoading">
+  <template v-if="!isLoading">
     <name-details-panel class="name-details__panel"/>
 
     <name-pointers-special-panel
@@ -35,14 +31,7 @@
       </app-tab>
     </app-tabs>
   </template>
-  <loader-panel v-else-if="isLoading"/>
-  <not-found-panel v-else>
-    Oops! We are sorry. The name
-    <q>
-      {{ route.params.name }}
-    </q>
-    was not found.
-  </not-found-panel>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -52,7 +41,6 @@ import NameDetailsPanel from '@/components/NameDetailsPanel'
 import NameHistoryPanel from '@/components/NameHistoryPanel'
 import NamePointersSpecialPanel from '@/components/NamePointersSpecialPanel'
 import NamePointersCustomPanel from '@/components/NamePointersCustomPanel'
-import NotFoundPanel from '@/components/NotFoundPanel'
 import PageHeader from '@/components/PageHeader'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
@@ -68,7 +56,6 @@ const {
 const route = useRoute()
 const { replace } = useRouter()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
-const isNameFound = ref(true)
 
 const { isLoading } = useLoading()
 
@@ -76,8 +63,14 @@ try {
   await fetchName(route.params.name)
 } catch (error) {
   if (error.response?.status === 404) {
-    isNameFound.value = false
-    setResponseStatus(404, 'AENS Name not found')
+    throw showError({
+      data: {
+        entityId: route.params.name,
+        entityName: 'Name',
+      },
+      statusCode: 404,
+      statusMessage: 'EntityNotFound',
+    })
   } else {
     replace(`/error/${route.params.name}`)
   }

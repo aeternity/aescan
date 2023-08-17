@@ -15,12 +15,19 @@
     <div class="not-found-panel__container">
       <app-button
         to="/"
+        size="sm"
         class="not-found-panel__button">
         Back to Dashboard
       </app-button>
     </div>
   </app-panel>
 </template>
+
+<script setup>
+import AppButton from '@/components/AppButton'
+import AppLink from '@/components/AppLink'
+import AppPanel from '@/components/AppPanel'
+</script>
 
 <style scoped>
 .not-found-panel {
@@ -40,6 +47,11 @@
     }
   }
 
+  &__button {
+    width: 215px;
+    color: #fff !important;
+  }
+
   &__container {
     display: flex;
     justify-content: center;
@@ -47,11 +59,6 @@
     @media (--desktop) {
       justify-content: flex-start;
     }
-  }
-
-  &__button {
-    width: 215px;
-    padding: var(--space-3) var(--space-5);
   }
 }
 </style>

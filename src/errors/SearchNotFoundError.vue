@@ -10,7 +10,7 @@
   <not-found-panel>
     Oops! We are sorry. The search string
     <q>
-      {{ route.params.query }}
+      {{ errorData.searchQuery }}
     </q>
     was not found.
   </not-found-panel>
@@ -19,6 +19,15 @@
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import NotFoundPanel from '@/components/NotFoundPanel'
+
+const error = useError()
+const errorData = computed(() => {
+  if (typeof error.value.data === 'string') {
+    return JSON.parse(error.value.data)
+  }
+
+  return error.value.data
+})
 
 const route = useRoute()
 </script>

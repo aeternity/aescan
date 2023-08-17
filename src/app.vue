@@ -69,7 +69,7 @@
       <NuxtPage/>
     </NuxtLayout>
     <the-footer class="app__footer"/>
-    
+
     <template #error="{ error }">
       <error :error="error"/>
     </template>

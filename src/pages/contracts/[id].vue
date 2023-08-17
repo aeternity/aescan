@@ -31,7 +31,7 @@
       </app-tab>
     </app-tabs>
   </template>
-  <loader-panel v-else />
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -56,7 +56,7 @@ const { isLoading } = useLoading()
 const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
 
 if (error.value) {
-  throw showError({ 
+  throw showError({
     data: {
       entityName: 'Smart Contract',
       entityId: route.params.id,

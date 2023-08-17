@@ -22,7 +22,7 @@
     <div class="unexpected-error__container">
       <app-button
         to="/"
-        class="unexpected-error__button">
+        size="sm">
         Back to Dashboard
       </app-button>
     </div>
@@ -35,7 +35,6 @@ import PageHeader from '@/components/PageHeader'
 import AppButton from '@/components/AppButton'
 import AppPanel from '@/components/AppPanel'
 
-const error = useError()
 setResponseStatus(500, 'Unexpected Error')
 </script>
 
@@ -65,7 +64,6 @@ setResponseStatus(500, 'Unexpected Error')
 
   &__button {
     width: 215px;
-    padding: var(--space-3) var(--space-5);
     color: #fff !important;
   }
 

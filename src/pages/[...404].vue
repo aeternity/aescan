@@ -1,5 +1,5 @@
 <script setup>
-throw showError({ 
+throw showError({
   statusCode: 404,
   statusMessage: 'PageNotFound',
 })

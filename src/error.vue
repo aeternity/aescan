@@ -66,9 +66,9 @@
     <the-header/>
     <div class="error">
       <div class="error__parallax">
-        <component 
-          v-if="error"
-          :is="errorComponent" />
+        <component
+          :is="errorComponent"
+          v-if="error"/>
       </div>
     </div>
     <the-footer/>
@@ -77,10 +77,6 @@
 
 <script setup>
 import { useHead } from '@vueuse/head'
-import AppLink from '@/components/AppLink'
-import PageHeader from '@/components/PageHeader'
-import AppButton from '@/components/AppButton'
-import AppPanel from '@/components/AppPanel'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
@@ -94,15 +90,15 @@ useHead({
 const error = useError()
 
 const errorComponent = computed(() => {
-  switch(error.value?.statusMessage) {
-    case 'EntityNotFound':
-      return defineAsyncComponent(() => import('@/errors/EntityNotFound.vue'))
-    case 'SearchNotFound':
-      return defineAsyncComponent(() => import('@/errors/SearchNotFound.vue'))
-    case 'PageNotFound':
-      return defineAsyncComponent(() => import('@/errors/PageNotFound.vue'))
-    default:
-      return defineAsyncComponent(() => import('@/errors/UnexpectedError.vue'))
+  switch (error.value?.statusMessage) {
+  case 'EntityNotFound':
+    return defineAsyncComponent(() => import('@/errors/EntityNotFoundError.vue'))
+  case 'SearchNotFound':
+    return defineAsyncComponent(() => import('@/errors/SearchNotFoundError.vue'))
+  case 'PageNotFound':
+    return defineAsyncComponent(() => import('@/errors/PageNotFoundError.vue'))
+  default:
+    return defineAsyncComponent(() => import('@/errors/UnexpectedError.vue'))
   }
 })
 </script>

@@ -6,25 +6,31 @@
     Search
   </page-header>
 
-  <app-panel
-    v-if="namesFound && tokensFound"
-    class="">
-    <app-tabs>
-      <app-tab title="Names">
+  <app-tabs v-if="namesFound && tokensFound">
+    <app-tab title="Names">
+      <app-panel>
         <table>
           <tr>
-            <th>Name</th>
+            <th>
+              Name
+            </th>
             <th>Status</th>
           </tr>
           <tr
             v-for="name in namesFound.data"
             :key="name.payload.name">
-            <td>{{ name.payload.name }}</td>
+            <td>
+              <app-link :to="`/names/${name.payload.name}`">
+                {{ name.payload.name }}
+              </app-link>
+            </td>
             <td>{{ parseStatus(name.payload) }}</td>
           </tr>
         </table>
-      </app-tab>
-      <app-tab title="Tokens">
+      </app-panel>
+    </app-tab>
+    <app-tab title="Tokens">
+      <app-panel>
         <table>
           <tr>
             <th>Symbol</th>
@@ -34,13 +40,48 @@
           <tr
             v-for="token in tokensFound.data"
             :key="token.contractId">
-            <td>{{ token.symbol }}</td>
+            <td>
+              <app-link
+                :to="`/tokens/${token.contractId}`">
+                <token-symbol-icon
+                  :contract-id="token.contractId"/>
+                {{ token.symbol }}
+              </app-link>
+            </td>
             <td>{{ token.name }}</td>
             <td>{{ token.contractId }}</td>
+            <!--            tokens icons-->
+            <!--            todo pagination-->
           </tr>
         </table>
-      </app-tab>
-    </app-tabs>
+      </app-panel>
+    </app-tab>
+  </app-tabs>
+
+  <app-panel>
+    <template #heading>
+      Accounts
+    </template>
+  </app-panel>
+  <app-panel>
+    <template #heading>
+      Transactions
+    </template>
+  </app-panel>
+  <app-panel>
+    <template #heading>
+      Smart Contracts
+    </template>
+  </app-panel>
+  <app-panel>
+    <template #heading>
+      Oracles
+    </template>
+  </app-panel>
+  <app-panel>
+    <template #heading>
+      State Channels
+    </template>
   </app-panel>
 </template>
 
@@ -51,6 +92,8 @@ import { useRoute, useRuntimeConfig } from '#app'
 import PageHeader from '~/components/PageHeader'
 import AppTabs from '~/components/AppTabs'
 import AppTab from '~/components/AppTab'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon'
+import AppLink from '~/components/AppLink'
 
 const route = useRoute()
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -76,7 +119,6 @@ async function searchByName(name) {
   // todo promise
   const { data: namesdata } = await axios.get(`${MIDDLEWARE_URL}/v2/names/search?prefix=${name}`)
   const { data: tokensdata } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9?limit=10&prefix=${name}`)
-  console.log('tokensdata', tokensdata)
   namesFound.value = namesdata
   tokensFound.value = tokensdata
 }

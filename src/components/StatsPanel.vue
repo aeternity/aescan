@@ -232,7 +232,6 @@ const isLoading = computed(() => {
 
 <style scoped>
 .stats-panel {
-
   display: grid;
   grid-template-columns:4fr;
   gap: var(--space-1);
@@ -241,7 +240,6 @@ const isLoading = computed(() => {
   padding: var(--space-5) var(--space-1);
 
   @media (--desktop) {
-
     gap: var(--space-5) var(--space-3);
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 68px 1fr;

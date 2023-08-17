@@ -28,6 +28,4 @@ const errorData = computed(() => {
 
   return error.value.data
 })
-
-const route = useRoute()
 </script>

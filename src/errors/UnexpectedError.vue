@@ -1,32 +1,28 @@
 <template>
-  <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Search not found</Title>
-  </Head>
-
   <page-header>
-    Search not found
+    Unexpected Error
   </page-header>
 
-  <app-panel class="search-error__panel">
-    <p class="search-error__paragraph">
-      Oops! We are sorry. The search string
-      <span class="search-error__query">
-        {{ route.params.query }}</span>
-      was not found.
+  <app-panel class="unexpected-error__panel">
+    <h2 class="unexpected-error__heading">
+      Sorry! We encountered an unexpected error
+    </h2>
+    <p class="unexpected-error__paragraph">
+      ERROR CODE: 500 - Internal Server error
     </p>
-
-    <p class="search-error__paragraph">
-      Ask for help in the
+    <p class="unexpected-error__paragraph">
+      We’re not quite sure what went wrong. You can go back, ask for help
+      in the
       <app-link to="https://forum.aeternity.com/">
         Forum
       </app-link>
-      if the error persists.
+      or tell us your story in the Feedback Survey.
     </p>
 
-    <div class="search-error__container">
+    <div class="unexpected-error__container">
       <app-button
         to="/"
-        class="search-error__button">
+        class="unexpected-error__button">
         Back to Dashboard
       </app-button>
     </div>
@@ -34,23 +30,17 @@
 </template>
 
 <script setup>
-import { useHead } from '@vueuse/head'
 import AppLink from '@/components/AppLink'
 import PageHeader from '@/components/PageHeader'
 import AppButton from '@/components/AppButton'
 import AppPanel from '@/components/AppPanel'
 
-useHead({
-  meta: [
-    { name: 'robots', content: 'noindex' },
-  ],
-})
-
-const route = useRoute()
+const error = useError()
+setResponseStatus(500, 'Unexpected Error')
 </script>
 
 <style scoped>
-.search-error {
+.unexpected-error {
   &__panel {
     margin-top: var(--space-4);
     padding: var(--space-4) var(--space-1);
@@ -60,8 +50,12 @@ const route = useRoute()
     }
   }
 
+  &__heading {
+    margin-bottom: var(--space-4);
+  }
+
   &__paragraph {
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
     @media (--desktop) {
       &:last-of-type {
         margin-bottom: var(--space-6);
@@ -72,6 +66,7 @@ const route = useRoute()
   &__button {
     width: 215px;
     padding: var(--space-3) var(--space-5);
+    color: #fff !important;
   }
 
   &__query {

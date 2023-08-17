@@ -5,11 +5,11 @@
     </p>
 
     <p class="not-found-panel__paragraph">
-      Maybe the
+      Ask for help in the
       <app-link to="https://forum.aeternity.com/">
-        community
+        Forum
       </app-link>
-      can help you.
+      if the error persists.
     </p>
 
     <div class="not-found-panel__container">

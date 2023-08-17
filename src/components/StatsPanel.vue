@@ -270,12 +270,11 @@ const isLoading = computed(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: var(--space-4);
 
     @media (--desktop) {
       /*hardcoded height to prevent content jumping*/
-      height: 248px;
+      height: 264px;
     }
   }
 }

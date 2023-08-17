@@ -1,9 +1,7 @@
 <template>
   <table>
     <tr>
-      <th>
-        Name
-      </th>
+      <th>Name</th>
       <th>Status</th>
     </tr>
     <tr
@@ -18,8 +16,8 @@
     </tr>
   </table>
 </template>
-<script setup>
 
+<script setup>
 defineProps({
   namesFound: {
     type: Object,

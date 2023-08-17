@@ -47,9 +47,9 @@
           {{ token.tokenName }}
         </td>
         <td>
-          <app-link :to="`/contracts/${token.contractId}`">
-            {{ token.contractId }}
-          </app-link>
+          <value-hash-ellipsed
+            :link-to="`/contracts/${token.contractId}`"
+            :hash="token.contractId "/>
         </td>
         <td>
           {{ token.amount }}

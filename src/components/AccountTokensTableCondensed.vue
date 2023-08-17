@@ -30,15 +30,13 @@
             </app-tooltip>
           </th>
           <td class="account-tokens-table-condensed__data">
-            <app-link :to="`/tokens/${token.contractId}`">
-              {{ token.tokenName }}
-            </app-link>
+            {{ token.tokenName }}
           </td>
         </tr>
         <tr class="account-tokens-table-condensed__row">
           <th class="account-tokens-table-condensed__header">
             <app-tooltip>
-              Contract
+              Smart Contract
               <template #tooltip>
                 {{ tokensHints.smartContractId }}
               </template>

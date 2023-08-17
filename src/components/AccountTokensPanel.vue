@@ -38,19 +38,12 @@ async function loadNextAccountTokens() {
 
 <style scoped>
 .account-tokens-panel {
-  background: var(--color-white);
-  padding: var(--space-4) var(--space-1) var(--space-3);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__account-tokens-table {
     display: none;
 
     @media (--desktop) {
       display: revert;
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
     }
   }
 

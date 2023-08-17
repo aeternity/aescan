@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Contract
+          Smart Contract
           <hint-tooltip>
             {{ tokensHints.smartContractId }}
           </hint-tooltip>
@@ -44,9 +44,7 @@
           </app-link>
         </td>
         <td>
-          <app-link :to="`/tokens/${token.contractId}`">
-            {{ token.tokenName }}
-          </app-link>
+          {{ token.tokenName }}
         </td>
         <td>
           <app-link :to="`/contracts/${token.contractId}`">

@@ -6,10 +6,6 @@
   <page-header>
     State Channel
 
-    <template v-if="!isChannelFound">
-      not found
-    </template>
-
     <template #tooltip>
       {{ stateChannelsHints.stateChannel }}
       <app-link
@@ -20,7 +16,7 @@
     </template>
   </page-header>
 
-  <template v-if="!isLoading && isChannelFound">
+  <template v-if="!isLoading">
     <state-channel-details-panel
       class="state-channel-details__state-channel-details-panel"
       :state-channel-details="stateChannelDetails"/>
@@ -31,21 +27,13 @@
       </app-tab>
     </app-tabs>
   </template>
-  <loader-panel v-else-if="isLoading"/>
-  <not-found-panel v-else>
-    Oops! We are sorry. The state channel identified by
-    <q>
-      {{ route.params.id }}
-    </q>
-    was not found.
-  </not-found-panel>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
 import StateChannelDetailsPanel from '@/components/StateChannelDetailsPanel'
 import PageHeader from '@/components/PageHeader'
-import NotFoundPanel from '@/components/NotFoundPanel'
 import { useStateChannelDetailsStore } from '@/stores/stateChannelDetails'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
@@ -59,13 +47,17 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const isChannelFound = ref(true)
-
 const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 
 if (error.value) {
-  isChannelFound.value = false
-  setResponseStatus(404, 'State Channel not found')
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'State Channel',
+    },
+    statusCode: 404,
+    statusMessage: 'EntityNotFound',
+  })
 }
 </script>
 

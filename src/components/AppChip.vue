@@ -40,7 +40,7 @@ defineProps({
   @media (--desktop) {
     height: 32px;
     font-size: 14px;
-    padding: 6px var(--space-1);
+    padding: var(--space-0) var(--space-1);
   }
 
   &--primary {

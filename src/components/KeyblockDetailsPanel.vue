@@ -1,9 +1,9 @@
 <template>
   <app-panel class="keyblock-details-panel">
-    <header class="keyblock-details-panel__header">
-      <h2 class="keyblock-details-panel__heading h3">
-        DETAILS
-      </h2>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
       <div v-if="!keyblockDetails.notExistent">
         <copy-chip
           :label="keyblockDetails.hash"
@@ -13,7 +13,7 @@
           :clipboard-text="keyblockDetails.hash"
           class="keyblock-details-panel__chip-ellipse"/>
       </div>
-    </header>
+    </template>
     <p
       v-if="keyblockDetails.notExistent"
       class="keyblock-details-panel__not-existent">
@@ -203,48 +203,8 @@ const isNextKeyblockMined = computed(() =>
 
 <style scoped>
 .keyblock-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-3);
-  margin-bottom: var(--space-7);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
-    margin-bottom: var(--space-6);
-  }
-
-  &__header {
-    margin-bottom: var(--space-2);
-    @media (--desktop) {
-      margin-bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__table-header {
@@ -266,6 +226,21 @@ const isNextKeyblockMined = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
+    }
+  }
+
+  &__chip,
+  &__hash {
+    display: none;
+    @media (--desktop) {
+      display: inline-flex;
+    }
+  }
+
+  &__chip-ellipse,
+  &__hash-ellipse {
+    @media (--desktop) {
+      display: none;
     }
   }
 

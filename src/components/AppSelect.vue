@@ -83,13 +83,17 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   &__tags {
     border-radius: 8px;
     border-color: var(--color-midnight);
+    border-width: 1px;
     cursor: pointer;
   }
 
   &__single {
     color: var(--color-midnight);
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
+    @media (--desktop) {
+      font-size: 14px;
+    }
   }
 
   &__content-wrapper {
@@ -110,8 +114,11 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     border: solid var(--color-midnight-35);
     border-width: 1px 0;
     color: solid var(--color-midnight);
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
+    @media (--desktop) {
+      font-size: 14px;
+    }
 
     &:last-child {
       border-width: 1px 0 0;
@@ -128,6 +135,14 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     &--selected&--highlight {
       background: var(--color-midnight-35);
       color: var(--color-midnight);
+    }
+  }
+
+  &__input {
+    font-size: 12px;
+    line-height: 20px;
+    @media (--desktop) {
+      font-size: 14px;
     }
   }
 

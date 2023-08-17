@@ -75,7 +75,7 @@
               Learn more
             </app-link>
           </p>
-          <dashboard-state-channels-panel class="dashboard__dashboard-state-channels-panel"/>
+          <dashboard-state-channels-panel/>
         </div>
       </div>
     </div>
@@ -148,13 +148,14 @@ onBeforeUnmount(() => {
 
     @media (--desktop) {
       padding: 0;
+      margin-bottom: 80px;
     }
   }
 
   &__row {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3) var(--space-4);
+    gap: var(--space-3) var(--space-6);
     margin-bottom: var(--space-4);
 
     @media (--desktop) {
@@ -189,10 +190,6 @@ onBeforeUnmount(() => {
         margin: 0;
       }
     }
-  }
-
-  &__dashboard-state-channels-panel {
-    margin-bottom: 120px;
   }
 
   &__link {

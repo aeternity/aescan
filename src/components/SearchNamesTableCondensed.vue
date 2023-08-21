@@ -1,7 +1,7 @@
 <template>
   <div>
     <table
-      v-for="name in namesFound.data"
+      v-for="name in names.data"
       :key="name.payload.name"
       class="search-names-table-condensed__table">
       <tbody>
@@ -37,7 +37,7 @@ import AppLink from '~/components/AppLink'
 import AppTooltip from '~/components/AppTooltip'
 
 defineProps({
-  namesFound: {
+  names: {
     type: Object,
     required: true,
   },

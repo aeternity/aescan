@@ -5,7 +5,7 @@
       <th>Status</th>
     </tr>
     <tr
-      v-for="name in namesFound.data"
+      v-for="name in names.data"
       :key="name.payload.name">
       <td>
         <app-link :to="`/names/${name.payload.name}`">
@@ -19,7 +19,7 @@
 
 <script setup>
 defineProps({
-  namesFound: {
+  names: {
     type: Object,
     required: true,
   },

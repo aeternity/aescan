@@ -4,15 +4,14 @@
       :entities="namesFound"
       :limit="limit"
       pagination-style="history"
-      @prev-clicked="loadPrevNamesFound"
-      @next-clicked="loadNextNamesFound">
+      @prev-clicked="loadPrevNames"
+      @next-clicked="loadNextNames">
       <search-names-table
-        :names-found="namesFound"
+        :names="namesFound"
         class="search-names-panel__search-names-table"/>
       <search-names-table-condensed
-        :names-found="namesFound"
+        :names="namesFound"
         class="search-names-panel__search-names-table-condensed"/>
-      <!--      todo rename props-->
     </paginated-content>
   </app-panel>
 </template>
@@ -33,11 +32,11 @@ const route = useRoute()
 
 await fetchNamesSearch({ query: route.params.id, limit: limit.value })
 
-async function loadPrevNamesFound() {
+async function loadPrevNames() {
   await fetchNamesSearch({ queryParameters: namesFound.value.prev })
 }
 
-async function loadNextNamesFound() {
+async function loadNextNames() {
   await fetchNamesSearch({ queryParameters: namesFound.value.next })
 }
 </script>

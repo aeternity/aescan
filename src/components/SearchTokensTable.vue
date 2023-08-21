@@ -6,7 +6,7 @@
       <th>Smart Contract</th>
     </tr>
     <tr
-      v-for="token in tokensFound.data"
+      v-for="token in tokens.data"
       :key="token.contractId">
       <td>
         <app-link :to="`/tokens/${token.contractId}`">
@@ -24,7 +24,7 @@
 <script setup>
 
 defineProps({
-  tokensFound: {
+  tokens: {
     type: Object,
     required: true,
   },

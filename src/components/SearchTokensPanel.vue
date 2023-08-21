@@ -4,15 +4,14 @@
       :entities="tokensFound"
       :limit="limit"
       pagination-style="history"
-      @prev-clicked="loadPrevTokensFound"
-      @next-clicked="loadNextTokensFound">
+      @prev-clicked="loadPrevTokens"
+      @next-clicked="loadNextTokens">
       <search-tokens-table
-        :tokens-found="tokensFound"
+        :tokens="tokensFound"
         class="search-tokens-panel__search-tokens-table"/>
       <search-tokens-table-condensed
-        :tokens-found="tokensFound"
+        :tokens="tokensFound"
         class="search-tokens-panel__search-tokens-table-condensed"/>
-      <!--      todo rename props-->
     </paginated-content>
   </app-panel>
 </template>
@@ -32,11 +31,11 @@ const route = useRoute()
 
 await fetchTokenSearch({ query: route.params.id, limit: limit.value })
 
-async function loadPrevTokensFound() {
+async function loadPrevTokens() {
   await fetchTokenSearch({ queryParameters: tokensFound.value.prev })
 }
 
-async function loadNextTokensFound() {
+async function loadNextTokens() {
   await fetchTokenSearch({ queryParameters: tokensFound.value.next })
 }
 </script>

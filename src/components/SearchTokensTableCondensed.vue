@@ -1,7 +1,7 @@
 <template>
   <div>
     <table
-      v-for="token in tokensFound.data"
+      v-for="token in tokens.data"
       :key="token.contractId"
       class="search-tokens-table-condensed__table">
       <tbody>
@@ -49,7 +49,7 @@ import AppLink from '~/components/AppLink'
 import AppTooltip from '~/components/AppTooltip'
 
 defineProps({
-  tokensFound: {
+  tokens: {
     type: Object,
     required: true,
   },

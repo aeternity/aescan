@@ -107,8 +107,8 @@ const error = useError()
 
 const errorComponent = error => {
   switch (unref(error)?.statusMessage) {
-  case 'EntityNotFound':
-    return defineAsyncComponent(() => import('@/errors/EntityNotFoundError.vue'))
+  case 'EntityDetailsNotFound':
+    return defineAsyncComponent(() => import('@/errors/EntityDetailsNotFoundError.vue'))
   case 'SearchNotFound':
     return defineAsyncComponent(() => import('@/errors/SearchNotFoundError.vue'))
   case 'PageNotFound':

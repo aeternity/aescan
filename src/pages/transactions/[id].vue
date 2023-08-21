@@ -58,8 +58,7 @@ try {
         entityId: route.params.id,
         entityName: 'Transaction',
       },
-      statusCode: 404,
-      statusMessage: 'EntityNotFound',
+      statusMessage: 'EntityDetailsNotFound',
     })
   }
 

@@ -61,8 +61,7 @@ if (error.value) {
       entityName: 'Smart Contract',
       entityId: route.params.id,
     },
-    statusCode: 404,
-    statusMessage: 'EntityNotFound',
+    statusMessage: 'EntityDetailsNotFound',
   })
 }
 

@@ -54,7 +54,6 @@ const {
   fetchNameActions,
 } = nameDetailsStore
 const route = useRoute()
-const { replace } = useRouter()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
 const { isLoading } = useLoading()
@@ -68,11 +67,10 @@ try {
         entityId: route.params.name,
         entityName: 'Name',
       },
-      statusCode: 404,
-      statusMessage: 'EntityNotFound',
+      statusMessage: 'EntityDetailsNotFound',
     })
   } else {
-    replace(`/error/${route.params.name}`)
+    throw error
   }
 }
 

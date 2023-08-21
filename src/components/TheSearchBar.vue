@@ -64,7 +64,6 @@ async function search() {
       data: {
         searchQuery: query.value,
       },
-      statusCode: 404,
       statusMessage: 'SearchNotFound',
     })
   }

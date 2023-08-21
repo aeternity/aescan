@@ -57,8 +57,7 @@ try {
         entityId: route.params.id,
         entityName: 'Token',
       },
-      statusCode: 404,
-      statusMessage: 'EntityNotFound',
+      statusMessage: 'EntityDetailsNotFound',
     })
   }
 }

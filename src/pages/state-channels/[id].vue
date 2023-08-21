@@ -55,8 +55,7 @@ if (error.value) {
       entityId: route.params.id,
       entityName: 'State Channel',
     },
-    statusCode: 404,
-    statusMessage: 'EntityNotFound',
+    statusMessage: 'EntityDetailsNotFound',
   })
 }
 </script>

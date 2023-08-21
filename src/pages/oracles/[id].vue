@@ -53,8 +53,7 @@ if (error.value) {
       entityId: route.params.id,
       entityName: 'Oracle',
     },
-    statusCode: 404,
-    statusMessage: 'EntityNotFound',
+    statusMessage: 'EntityDetailsNotFound',
   })
 }
 </script>

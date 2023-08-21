@@ -1,10 +1,10 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Page not found</Title>
+    <Title>{{ APP_TITLE_SHORT }} | Page Not Found</Title>
   </Head>
 
   <page-header>
-    Page not found
+    Page Not Found
   </page-header>
 
   <not-found-panel>

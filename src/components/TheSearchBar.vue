@@ -59,6 +59,7 @@ async function search() {
   } else if (await isKeyblockId(query.value)) {
     push(`/keyblocks/${query.value}`)
   } else {
+    clearError()
     throw showError({
       data: {
         searchQuery: query.value,

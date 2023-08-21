@@ -63,15 +63,31 @@
         :content="APP_CREATOR"/>
     </Head>
 
-    <the-header/>
-    <div class="error">
-      <div class="error__parallax">
-        <component
-          :is="errorComponent"
-          v-if="error"/>
+    <NuxtErrorBoundary>
+      <the-header/>
+      <div class="error">
+        <div class="error__parallax">
+          <component
+            :is="errorComponent(error)"
+            v-if="error"
+            :error="error"/>
+        </div>
       </div>
-    </div>
-    <the-footer/>
+      <the-footer/>
+
+      <template #error="{ error: innerError }">
+        <the-header/>
+        <div class="error">
+          <div class="error__parallax">
+            <component
+              :is="errorComponent(innerError)"
+              v-if="error && innerError"
+              :error="innerError"/>
+          </div>
+        </div>
+        <the-footer/>
+      </template>
+    </NuxtErrorBoundary>
   </div>
 </template>
 
@@ -89,8 +105,8 @@ useHead({
 
 const error = useError()
 
-const errorComponent = computed(() => {
-  switch (error.value?.statusMessage) {
+const errorComponent = error => {
+  switch (unref(error)?.statusMessage) {
   case 'EntityNotFound':
     return defineAsyncComponent(() => import('@/errors/EntityNotFoundError.vue'))
   case 'SearchNotFound':
@@ -100,7 +116,7 @@ const errorComponent = computed(() => {
   default:
     return defineAsyncComponent(() => import('@/errors/UnexpectedError.vue'))
   }
-})
+}
 </script>
 
 <style scoped>

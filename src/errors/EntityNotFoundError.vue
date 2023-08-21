@@ -20,13 +20,20 @@
 import PageHeader from '@/components/PageHeader'
 import NotFoundPanel from '@/components/NotFoundPanel'
 
-const error = useError()
+const props = defineProps({
+  error: {
+    type: Object,
+    required: true,
+  },
+})
+
 const errorData = computed(() => {
-  if (typeof error.value.data === 'string') {
-    return JSON.parse(error.value.data)
+  const error = unref(props.error)
+  if (typeof error.data === 'string') {
+    return JSON.parse(error.data)
   }
 
-  return error.value.data
+  return error.data
 })
 
 setResponseStatus(404, `${errorData.value.entityName} Not Found`)

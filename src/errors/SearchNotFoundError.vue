@@ -1,10 +1,10 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Search not found</Title>
+    <Title>{{ APP_TITLE_SHORT }} | Search Not Found</Title>
   </Head>
 
   <page-header>
-    Search not found
+    Search Not Found
   </page-header>
 
   <not-found-panel>
@@ -20,12 +20,19 @@
 import PageHeader from '@/components/PageHeader'
 import NotFoundPanel from '@/components/NotFoundPanel'
 
-const error = useError()
+const props = defineProps({
+  error: {
+    type: Object,
+    required: true,
+  },
+})
+
 const errorData = computed(() => {
-  if (typeof error.value.data === 'string') {
-    return JSON.parse(error.value.data)
+  const error = unref(props.error)
+  if (typeof error.data === 'string') {
+    return JSON.parse(error.data)
   }
 
-  return error.value.data
+  return error.data
 })
 </script>

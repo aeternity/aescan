@@ -62,6 +62,8 @@ try {
       statusMessage: 'EntityNotFound',
     })
   }
+
+  throw error
 }
 </script>
 

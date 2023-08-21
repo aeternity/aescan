@@ -1,5 +1,5 @@
 <template>
-  <div class="tokens-table-condensed">
+  <div>
     <table
       v-for="token in tokens.data"
       :key="token.contractId"

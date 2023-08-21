@@ -1,7 +1,7 @@
 <template>
-  <div class="names-active-table-condensed">
+  <div>
     <table
-      v-for="name of names?.data"
+      v-for="name of names.data"
       :key="name.name"
       class="names-active-table-condensed__table">
       <tbody>

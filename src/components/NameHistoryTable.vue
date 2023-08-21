@@ -24,7 +24,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="action in actions?.data"
+        v-for="action in actions.data"
         :key="action.hash">
         <td>
           <value-hash-ellipsed

@@ -1,6 +1,5 @@
 <template>
-  <!--  todo remove unused classes-->
-  <div class="contracts-table-condensed">
+  <div>
     <table
       v-for="contract in contracts.data"
       :key="contract.contractId"

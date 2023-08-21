@@ -1,5 +1,5 @@
 <template>
-  <div class="token-holders-table-condensed">
+  <div>
     <table
       v-for="holder in tokenHolders.data"
       :key="holder.address"

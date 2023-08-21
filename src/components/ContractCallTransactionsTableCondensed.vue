@@ -1,5 +1,5 @@
 <template>
-  <div class="contract-call-transactions-table-condensed">
+  <div>
     <table
       v-for="transaction in contractCallTransactions.data"
       :key="transaction.hash"

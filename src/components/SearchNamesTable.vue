@@ -6,13 +6,13 @@
     </tr>
     <tr
       v-for="name in names.data"
-      :key="name.payload.name">
+      :key="name.name">
       <td>
-        <app-link :to="`/names/${name.payload.name}`">
-          {{ name.payload.name }}
+        <app-link :to="`/names/${name.name}`">
+          {{ name.name }}
         </app-link>
       </td>
-      <td>{{ parseStatus(name.payload) }}</td>
+      <td>{{ name.status }}</td>
     </tr>
   </table>
 </template>
@@ -24,16 +24,4 @@ defineProps({
     required: true,
   },
 })
-
-// todo adapter
-function parseStatus(name) {
-  if (name.auctionEnd) {
-    return 'In Auction'
-  } else if (name.active) {
-    return 'Active'
-  } else {
-    return 'Expired'
-  }
-}
-
 </script>

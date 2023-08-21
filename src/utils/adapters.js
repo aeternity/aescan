@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
+import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNameStatus } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(name) {
@@ -524,5 +524,21 @@ export function adaptStateChannels(channels, blockHeight) {
     next: channels.next,
     data: formattedData,
     prev: channels.prev,
+  }
+}
+
+export function adaptNamesFound(names) {
+  const formattedData = names.data
+    .map(name => {
+      return {
+        name: name.payload.name,
+        status: formatNameStatus(name),
+      }
+    })
+
+  return {
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
   }
 }

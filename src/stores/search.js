@@ -5,14 +5,20 @@ import { defineStore } from 'pinia'
 export const useSearchStore = defineStore('search', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
-  const namesFound = ref([])
+  const rawNamesFound = ref([])
   const tokensFound = ref([])
 
+  const namesFound = computed(() => {
+    return rawNamesFound.value
+      ? adaptNamesFound(rawNamesFound.value)
+      : null
+  })
+
   async function fetchNamesSearch({ query, limit, queryParameters } = {}) {
-    namesFound.value = null
+    rawNamesFound.value = null
     const defaultParameters = `/v2/names/search?prefix=${query}&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    namesFound.value = data
+    rawNamesFound.value = data
   }
 
   async function fetchTokenSearch({ query, limit, queryParameters } = {}) {

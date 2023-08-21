@@ -1,4 +1,5 @@
 <template>
+  <!--  todo class fix-->
   <table class="contracts-table__table">
     <thead>
       <tr>

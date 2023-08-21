@@ -49,8 +49,8 @@
   <loader-panel v-else/>
 </template>
 
-<!--          todo  tokens icons-->
 <!--          todo  contents-->
+<!--todo routing-->
 
 <!--            todo hints-->
 <!--todo imports-->
@@ -60,8 +60,6 @@ import PageHeader from '~/components/PageHeader'
 import AppTabs from '~/components/AppTabs'
 import AppTab from '~/components/AppTab'
 import AppPanel from '~/components/AppPanel'
-import SearchResultsNamesPanel from '~/components/SearchNamesPanel'
-import SerchResultsTokensPanel from '~/components/SearchTokensPanel'
 
 const { isLoading } = useLoading()
 

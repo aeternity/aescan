@@ -12,9 +12,12 @@
             </app-tooltip>
           </th>
           <td class="search-tokens-table-condensed__data">
-            <app-link :to="`/tokens/${token.contractId}`">
+            <app-link
+              :to="`/tokens/${token.contractId}`"
+              class="search-tokens-table-condensed__link">
               <token-symbol-icon
-                :contract-id="token.contractId"/>
+                :contract-id="token.contractId"
+                class="search-tokens-table-condensed__icon"/>
               {{ token.symbol }}
             </app-link>
           </td>
@@ -54,7 +57,6 @@ defineProps({
     required: true,
   },
 })
-
 </script>
 
 <style scoped>
@@ -74,6 +76,17 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: var(--space-1);
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="search-tokens-table">
     <tr>
       <th>Symbol</th>
       <th>Name</th>
@@ -9,8 +9,11 @@
       v-for="token in tokens.data"
       :key="token.contractId">
       <td>
-        <app-link :to="`/tokens/${token.contractId}`">
+        <app-link
+          :to="`/tokens/${token.contractId}`"
+          class="search-tokens-table__link">
           <token-symbol-icon
+            class="search-tokens-table__icon"
             :contract-id="token.contractId"/>
           {{ token.symbol }}
         </app-link>
@@ -31,3 +34,21 @@ defineProps({
 })
 
 </script>
+
+<style scoped>
+.search-tokens-table {
+  margin-bottom: var(--space-4);
+  /*todo move up*/
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
+  }
+}
+</style>

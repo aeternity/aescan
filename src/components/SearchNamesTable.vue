@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="search-names-table">
     <tr>
       <th>Name</th>
       <th>Status</th>
@@ -25,3 +25,9 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.search-names-table {
+  margin-bottom: var(--space-4);
+}
+</style>

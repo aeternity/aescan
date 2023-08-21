@@ -15,7 +15,6 @@
     <div class="not-found-panel__container">
       <app-button
         to="/"
-        size="sm"
         class="not-found-panel__button">
         Back to Dashboard
       </app-button>

@@ -3,7 +3,7 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    :class="['button',`button--size-${size}`]">
+    class="button">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -13,7 +13,7 @@
   </app-link>
   <button
     v-else
-    :class="['button',`.button--size-${size}`]">
+    class="button">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -40,11 +40,6 @@ defineProps({
     type: String,
     default: '_blank',
   },
-  size: {
-    type: String,
-    default: 'md',
-    validator: value => ['sm', 'md'].includes(value),
-  },
 })
 </script>
 
@@ -67,13 +62,7 @@ defineProps({
   border-radius: 48px;
   border: none;
 
-  &--size-sm {
-    padding: var(--space-3) var(--space-5);
-  }
-
-  &--size-md {
-    padding: var(--space-3) var(--space-7);
-  }
+  padding: var(--space-3) var(--space-5);
 
   &__icon {
     margin-right: var(--space-1);

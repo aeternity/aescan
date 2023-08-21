@@ -21,8 +21,7 @@
 
     <div class="unexpected-error__container">
       <app-button
-        to="/"
-        size="sm">
+        to="/">
         Back to Dashboard
       </app-button>
     </div>

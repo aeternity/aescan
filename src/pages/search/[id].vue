@@ -9,10 +9,10 @@
   <template v-if="!isLoading">
     <app-tabs>
       <app-tab title="Names">
-        <search-results-names-panel class="search__panel"/>
+        <search-names-panel class="search__panel"/>
       </app-tab>
       <app-tab title="Tokens">
-        <serch-results-tokens-panel class="search__panel"/>
+        <search-tokens-panel class="search__panel"/>
       </app-tab>
     </app-tabs>
 
@@ -60,8 +60,8 @@ import PageHeader from '~/components/PageHeader'
 import AppTabs from '~/components/AppTabs'
 import AppTab from '~/components/AppTab'
 import AppPanel from '~/components/AppPanel'
-import SearchResultsNamesPanel from '~/pages/search/SearchResultsNamesPanel'
-import SerchResultsTokensPanel from '~/pages/search/SerchResultsTokensPanel'
+import SearchResultsNamesPanel from '~/components/SearchNamesPanel'
+import SerchResultsTokensPanel from '~/components/SearchTokensPanel'
 
 const { isLoading } = useLoading()
 

@@ -3,15 +3,15 @@
     <table
       v-for="token in tokensFound.data"
       :key="token.contractId"
-      class="search-results-tokens-table-condensed__table">
+      class="search-tokens-table-condensed__table">
       <tbody>
-        <tr class="search-results-tokens-table-condensed__row">
-          <th class="search-results-tokens-table-condensed__header">
+        <tr class="search-tokens-table-condensed__row">
+          <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Symbol
             </app-tooltip>
           </th>
-          <td class="search-results-tokens-table-condensed__data">
+          <td class="search-tokens-table-condensed__data">
             <app-link :to="`/tokens/${token.contractId}`">
               <token-symbol-icon
                 :contract-id="token.contractId"/>
@@ -19,23 +19,23 @@
             </app-link>
           </td>
         </tr>
-        <tr class="search-results-tokens-table-condensed__row">
-          <th class="search-results-tokens-table-condensed__header">
+        <tr class="search-tokens-table-condensed__row">
+          <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Name
             </app-tooltip>
           </th>
-          <td class="search-results-tokens-table-condensed__data">
+          <td class="search-tokens-table-condensed__data">
             {{ token.name }}
           </td>
         </tr>
-        <tr class="search-results-tokens-table-condensed__row">
-          <th class="search-results-tokens-table-condensed__header">
+        <tr class="search-tokens-table-condensed__row">
+          <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Smart Contract
             </app-tooltip>
           </th>
-          <td class="search-results-tokens-table-condensed__data">
+          <td class="search-tokens-table-condensed__data">
             {{ token.contractId }}
           </td>
         </tr>
@@ -58,7 +58,7 @@ defineProps({
 </script>
 
 <style scoped>
-.search-results-tokens-table-condensed {
+.search-tokens-table-condensed {
   &__table {
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);

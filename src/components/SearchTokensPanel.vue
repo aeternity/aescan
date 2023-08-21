@@ -6,12 +6,12 @@
       pagination-style="history"
       @prev-clicked="loadPrevTokensFound"
       @next-clicked="loadNextTokensFound">
-      <search-results-tokens-table
+      <search-tokens-table
         :tokens-found="tokensFound"
-        class="search-results-tokens-panel__search-results-tokens-table"/>
-      <search-results-tokens-table-condensed
+        class="search-tokens-panel__search-tokens-table"/>
+      <search-tokens-table-condensed
         :tokens-found="tokensFound"
-        class="search-results-tokens-panel__search-results-tokens-table-condensed"/>
+        class="search-tokens-panel__search-tokens-table-condensed"/>
       <!--      todo rename props-->
     </paginated-content>
   </app-panel>
@@ -22,8 +22,6 @@ import { useRoute } from '#app'
 import { storeToRefs } from 'pinia'
 import { isDesktop } from '~/utils/screen'
 import { useSearchStore } from '~/stores/search'
-import SearchResultsTokensTable from '~/pages/search/SearchResultsTokensTable'
-import SearchResultsTokensTableCondensed from '~/pages/search/SearchResultsTokensTableCondensed'
 
 const searchStore = useSearchStore()
 const { tokensFound } = storeToRefs(searchStore)
@@ -44,15 +42,15 @@ async function loadNextTokensFound() {
 </script>
 
 <style scoped>
-.search-results-tokens-panel {
-  &__search-results-tokens-table {
+.search-tokens-panel {
+  &__search-tokens-table {
     display: none;
     @media (--desktop) {
       display: revert;
     }
   }
 
-  &__search-results-tokens-table-condensed {
+  &__search-tokens-table-condensed {
     @media (--desktop) {
       display: none;
     }

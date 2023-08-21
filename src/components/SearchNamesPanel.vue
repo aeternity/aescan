@@ -6,12 +6,12 @@
       pagination-style="history"
       @prev-clicked="loadPrevNamesFound"
       @next-clicked="loadNextNamesFound">
-      <search-results-names-table
+      <search-names-table
         :names-found="namesFound"
-        class="search-results-names-panel__search-results-names-table"/>
-      <search-results-names-table-condensed
+        class="search-names-panel__search-names-table"/>
+      <search-names-table-condensed
         :names-found="namesFound"
-        class="search-results-names-panel__search-results-names-table-condensed"/>
+        class="search-names-panel__search-names-table-condensed"/>
       <!--      todo rename props-->
     </paginated-content>
   </app-panel>
@@ -23,8 +23,6 @@ import { useRoute } from '#app'
 import { storeToRefs } from 'pinia'
 import { isDesktop } from '~/utils/screen'
 import { useSearchStore } from '~/stores/search'
-import SearchResultsNamesTable from '~/pages/search/SearchResultsNamesTable'
-import SearchResultsNamesTableCondensed from '~/pages/search/SearchResultsNamesTableCondensed'
 
 const searchStore = useSearchStore()
 const { namesFound } = storeToRefs(searchStore)
@@ -45,15 +43,15 @@ async function loadNextNamesFound() {
 </script>
 
 <style scoped>
-.search-results-names-panel {
-  &__search-results-names-table {
+.search-names-panel {
+  &__search-names-table {
     display: none;
     @media (--desktop) {
       display: revert;
     }
   }
 
-  &__search-results-names-table-condensed {
+  &__search-names-table-condensed {
     @media (--desktop) {
       display: none;
     }

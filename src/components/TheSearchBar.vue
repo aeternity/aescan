@@ -20,10 +20,8 @@
 <script setup>
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
-import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
-const { isNameAvailable } = useNameDetailsStore()
 const { isKeyblockAvailable } = useKeyblockDetailsStore()
 const userQuery = ref('')
 const { push } = useRouter()
@@ -48,18 +46,16 @@ async function search() {
     push(`/contracts/${query.value}`)
   } else if (isOracleId(query.value)) {
     push(`/oracles/${query.value}`)
-  } else if (isNameId(query.value)) {
-    push(`/names/${query.value}`)
   } else if (isStateChannelId(query.value)) {
     push(`/state-channels/${query.value}`)
   } else if (isMicroblockId(query.value)) {
     push(`/microblocks/${query.value}`)
-  } else if (await isAccountName(query.value)) {
-    push(`/names/${query.value}.chain`)
+  } else if (isNameId(query.value)) {
+    push(`/names/${query.value}`)
   } else if (await isKeyblockId(query.value)) {
     push(`/keyblocks/${query.value}`)
   } else {
-    push(`/error/${userQuery.value}`)
+    push(`/search/${userQuery.value}`)
   }
   userQuery.value = ''
 }
@@ -86,10 +82,6 @@ function isOracleId(query) {
 
 function isStateChannelId(query) {
   return isAddressValid(query) && query.startsWith('ch_')
-}
-
-async function isAccountName(query) {
-  return await isNameAvailable(query)
 }
 
 function isKeyblockId(query) {

@@ -173,9 +173,6 @@
   <loader-panel v-else/>
 </template>
 
-<!--todo routing-->
-<!--todo imports-->
-
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { contractsHints } from '@/utils/hints/contractsHints'

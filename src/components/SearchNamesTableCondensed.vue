@@ -9,6 +9,9 @@
           <th class="search-names-table-condensed__header">
             <app-tooltip>
               Name
+              <template #tooltip>
+                {{ namesHints.name }}
+              </template>
             </app-tooltip>
           </th>
           <td class="search-names-table-condensed__data">
@@ -21,6 +24,9 @@
           <th class="search-names-table-condensed__header">
             <app-tooltip>
               Status
+              <template #tooltip>
+                {{ namesHints.status }}
+              </template>
             </app-tooltip>
           </th>
           <td class="search-names-table-condensed__data">
@@ -33,6 +39,7 @@
 </template>
 
 <script setup>
+import { namesHints } from '../utils/hints/namesHints'
 import AppLink from '~/components/AppLink'
 import AppTooltip from '~/components/AppTooltip'
 

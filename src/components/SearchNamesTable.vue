@@ -1,8 +1,18 @@
 <template>
   <table class="search-names-table">
     <tr>
-      <th>Name</th>
-      <th>Status</th>
+      <th>
+        Name
+        <hint-tooltip>
+          {{ namesHints.name }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Status
+        <hint-tooltip>
+          {{ namesHints.status }}
+        </hint-tooltip>
+      </th>
     </tr>
     <tr
       v-for="name in names.data"
@@ -18,6 +28,8 @@
 </template>
 
 <script setup>
+import { namesHints } from '../utils/hints/namesHints'
+
 defineProps({
   names: {
     type: Object,

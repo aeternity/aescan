@@ -9,6 +9,9 @@
           <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Symbol
+              <template #tooltip>
+                {{ tokensHints.tokenSymbol }}
+              </template>
             </app-tooltip>
           </th>
           <td class="search-tokens-table-condensed__data">
@@ -26,6 +29,9 @@
           <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Name
+              <template #tooltip>
+                {{ tokensHints.tokenName }}
+              </template>
             </app-tooltip>
           </th>
           <td class="search-tokens-table-condensed__data">
@@ -35,7 +41,10 @@
         <tr class="search-tokens-table-condensed__row">
           <th class="search-tokens-table-condensed__header">
             <app-tooltip>
-              Smart Contract
+              Smart Contract ID
+              <template #tooltip>
+                {{ tokensHints.smartContractId }}
+              </template>
             </app-tooltip>
           </th>
           <td class="search-tokens-table-condensed__data">
@@ -52,6 +61,7 @@
 
 import AppLink from '~/components/AppLink'
 import AppTooltip from '~/components/AppTooltip'
+import { tokensHints } from '~/utils/hints/tokensHints'
 
 defineProps({
   tokens: {

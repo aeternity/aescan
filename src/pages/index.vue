@@ -30,11 +30,9 @@
         <client-only v-if="!isLoading">
           <blockchain-panel/>
         </client-only>
-        <app-panel
+        <loader-panel
           v-else
-          class="dashboard__panel-loader">
-          <spinner-loader/>
-        </app-panel>
+          class="dashboard__loader-panel"/>
       </div>
 
       <div class="dashboard__row">
@@ -198,13 +196,8 @@ onBeforeUnmount(() => {
     font-family: var(--font-monospaced);
   }
 
-  &__panel-loader {
+  &__loader-panel {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: var(--space-4);
   }
 }
 </style>

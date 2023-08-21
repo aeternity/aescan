@@ -45,7 +45,7 @@
 
 <script setup>
 
-import { tokensHints } from '~/utils/hints/tokensHints'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokens: {

@@ -59,9 +59,9 @@
 </template>
 <script setup>
 
-import AppLink from '~/components/AppLink'
-import AppTooltip from '~/components/AppTooltip'
-import { tokensHints } from '~/utils/hints/tokensHints'
+import AppLink from '@/components/AppLink'
+import AppTooltip from '@/components/AppTooltip'
+import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
   tokens: {

@@ -40,8 +40,8 @@
 
 <script setup>
 import { namesHints } from '../utils/hints/namesHints'
-import AppLink from '~/components/AppLink'
-import AppTooltip from '~/components/AppTooltip'
+import AppLink from '@/components/AppLink'
+import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   names: {

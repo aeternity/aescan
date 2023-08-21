@@ -177,18 +177,18 @@
 <!--todo imports-->
 
 <script setup>
-import { transactionsHints } from '../../utils/hints/transactionsHints'
-import { contractsHints } from '../../utils/hints/contractsHints'
-import { oraclesHints } from '../../utils/hints/oraclesHints'
-import { stateChannelsHints } from '../../utils/hints/stateChannelsHints'
-import { keyblocksHints } from '../../utils/hints/keyblocksHints'
-import { microblocksHints } from '../../utils/hints/microblocksHints'
-import PageHeader from '~/components/PageHeader'
-import AppTabs from '~/components/AppTabs'
-import AppTab from '~/components/AppTab'
-import AppPanel from '~/components/AppPanel'
-import { accountHints } from '~/utils/hints/accountHints'
-import HintTooltip from '~/components/HintTooltip'
+import { transactionsHints } from '@/utils/hints/transactionsHints'
+import { contractsHints } from '@/utils/hints/contractsHints'
+import { oraclesHints } from '@/utils/hints/oraclesHints'
+import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
+import { microblocksHints } from '@/utils/hints/microblocksHints'
+import PageHeader from '@/components/PageHeader'
+import AppTabs from '@/components/AppTabs'
+import AppTab from '@/components/AppTab'
+import AppPanel from '@/components/AppPanel'
+import { accountHints } from '@/utils/hints/accountHints'
+import HintTooltip from '@/components/HintTooltip'
 
 const { isLoading } = useLoading()
 const route = useRoute()

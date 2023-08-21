@@ -20,8 +20,8 @@
 import { computed } from 'vue'
 import { useRoute } from '#app'
 import { storeToRefs } from 'pinia'
-import { isDesktop } from '~/utils/screen'
-import { useSearchStore } from '~/stores/search'
+import { isDesktop } from '@/utils/screen'
+import { useSearchStore } from '@/stores/search'
 
 const searchStore = useSearchStore()
 const { namesFound } = storeToRefs(searchStore)

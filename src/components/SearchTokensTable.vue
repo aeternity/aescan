@@ -19,7 +19,11 @@
         </app-link>
       </td>
       <td>{{ token.name }}</td>
-      <td>{{ token.contractId }}</td>
+      <td>
+        <value-hash-ellipsed
+          :link-to="`/contracts/${token.contractId}`"
+          :hash="token.contractId "/>
+      </td>
     </tr>
   </table>
 </template>

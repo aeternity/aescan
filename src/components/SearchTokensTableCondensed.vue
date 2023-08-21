@@ -39,7 +39,9 @@
             </app-tooltip>
           </th>
           <td class="search-tokens-table-condensed__data">
-            {{ token.contractId }}
+            <value-hash-ellipsed
+              :link-to="`/contracts/${token.contractId}`"
+              :hash="token.contractId "/>
           </td>
         </tr>
       </tbody>

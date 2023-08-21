@@ -1,45 +1,47 @@
 <template>
-  <table
-    v-for="token in tokensFound.data"
-    :key="token.contractId"
-    class="search-results-tokens-table-condensed__table">
-    <tbody>
-      <tr class="search-results-tokens-table-condensed__row">
-        <th class="search-results-tokens-table-condensed__header">
-          <app-tooltip>
-            Symbol
-          </app-tooltip>
-        </th>
-        <td class="search-results-tokens-table-condensed__data">
-          <app-link :to="`/tokens/${token.contractId}`">
-            <token-symbol-icon
-              :contract-id="token.contractId"/>
-            {{ token.symbol }}
-          </app-link>
-        </td>
-      </tr>
-      <tr class="search-results-tokens-table-condensed__row">
-        <th class="search-results-tokens-table-condensed__header">
-          <app-tooltip>
-            Name
-          </app-tooltip>
-        </th>
-        <td class="search-results-tokens-table-condensed__data">
-          {{ token.name }}
-        </td>
-      </tr>
-      <tr class="search-results-tokens-table-condensed__row">
-        <th class="search-results-tokens-table-condensed__header">
-          <app-tooltip>
-            Smart Contract
-          </app-tooltip>
-        </th>
-        <td class="search-results-tokens-table-condensed__data">
-          {{ token.contractId }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table
+      v-for="token in tokensFound.data"
+      :key="token.contractId"
+      class="search-results-tokens-table-condensed__table">
+      <tbody>
+        <tr class="search-results-tokens-table-condensed__row">
+          <th class="search-results-tokens-table-condensed__header">
+            <app-tooltip>
+              Symbol
+            </app-tooltip>
+          </th>
+          <td class="search-results-tokens-table-condensed__data">
+            <app-link :to="`/tokens/${token.contractId}`">
+              <token-symbol-icon
+                :contract-id="token.contractId"/>
+              {{ token.symbol }}
+            </app-link>
+          </td>
+        </tr>
+        <tr class="search-results-tokens-table-condensed__row">
+          <th class="search-results-tokens-table-condensed__header">
+            <app-tooltip>
+              Name
+            </app-tooltip>
+          </th>
+          <td class="search-results-tokens-table-condensed__data">
+            {{ token.name }}
+          </td>
+        </tr>
+        <tr class="search-results-tokens-table-condensed__row">
+          <th class="search-results-tokens-table-condensed__header">
+            <app-tooltip>
+              Smart Contract
+            </app-tooltip>
+          </th>
+          <td class="search-results-tokens-table-condensed__data">
+            {{ token.contractId }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 <script setup>
 

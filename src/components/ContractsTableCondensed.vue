@@ -1,4 +1,5 @@
 <template>
+  <!--  todo remove unused classes-->
   <div class="contracts-table-condensed">
     <table
       v-for="contract in contracts.data"

@@ -1,33 +1,35 @@
 <template>
-  <table
-    v-for="name in namesFound.data"
-    :key="name.payload.name"
-    class="search-results-names-table-condensed__table">
-    <tbody>
-      <tr class="search-results-names-table-condensed__row">
-        <th class="search-results-names-table-condensed__header">
-          <app-tooltip>
-            Name
-          </app-tooltip>
-        </th>
-        <td class="search-results-names-table-condensed__data">
-          <app-link :to="`/names/${name.payload.name}`">
-            {{ name.payload.name }}
-          </app-link>
-        </td>
-      </tr>
-      <tr class="search-results-names-table-condensed__row">
-        <th class="search-results-names-table-condensed__header">
-          <app-tooltip>
-            Status
-          </app-tooltip>
-        </th>
-        <td class="search-results-names-table-condensed__data">
-          {{ parseStatus(name.payload) }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table
+      v-for="name in namesFound.data"
+      :key="name.payload.name"
+      class="search-results-names-table-condensed__table">
+      <tbody>
+        <tr class="search-results-names-table-condensed__row">
+          <th class="search-results-names-table-condensed__header">
+            <app-tooltip>
+              Name
+            </app-tooltip>
+          </th>
+          <td class="search-results-names-table-condensed__data">
+            <app-link :to="`/names/${name.payload.name}`">
+              {{ name.payload.name }}
+            </app-link>
+          </td>
+        </tr>
+        <tr class="search-results-names-table-condensed__row">
+          <th class="search-results-names-table-condensed__header">
+            <app-tooltip>
+              Status
+            </app-tooltip>
+          </th>
+          <td class="search-results-names-table-condensed__data">
+            {{ parseStatus(name.payload) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script setup>

@@ -37,9 +37,7 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
   }
 
   async function fetchTransactionTypeData(transactionId) {
-    const isCurrentKeyblock = blockHeight.value - rawTransactionDetails.value.blockHeight === 0
-
-    if (!isCurrentKeyblock) {
+    try {
       const { data: transactionData } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/${transactionId}`)
 
       if (transactionData.tx.channelId) {
@@ -49,8 +47,8 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
       }
 
       transactionTypeData.value = transactionData.tx
-    } else {
-      transactionTypeData.value = rawTransactionDetails.value.tx
+    } catch {
+      transactionTypeData.value = null
     }
   }
 
@@ -69,11 +67,16 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
     transactionTypeData.value = null
   }
 
+  function processTransactionUpdate(message) {
+    transactionTypeData.value = message.tx
+  }
+
   return {
     contractId,
     transactionDetails,
     transactionTypeData,
     fetchTransactionDetails,
     fetchContractIdByAccountId,
+    processTransactionUpdate,
   }
 })

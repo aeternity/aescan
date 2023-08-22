@@ -8,7 +8,7 @@
   </page-header>
 
   <not-found-panel>
-    Oops! We are sorry. The search string
+    Oops! We are sorry. The search query
     <q>
       {{ errorData.searchQuery }}
     </q>

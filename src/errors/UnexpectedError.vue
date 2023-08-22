@@ -4,9 +4,9 @@
   </page-header>
 
   <app-panel class="unexpected-error__panel">
-    <h2 class="unexpected-error__heading">
+    <template #heading>
       Sorry! We encountered an unexpected error
-    </h2>
+    </template>
     <p class="unexpected-error__paragraph">
       ERROR CODE: 500 - Internal Server error
     </p>
@@ -39,19 +39,6 @@ setResponseStatus(500, 'Unexpected Error')
 
 <style scoped>
 .unexpected-error {
-  &__panel {
-    margin-top: var(--space-4);
-    padding: var(--space-4) var(--space-1);
-
-    @media (--desktop) {
-      padding: var(--space-4);
-    }
-  }
-
-  &__heading {
-    margin-bottom: var(--space-4);
-  }
-
   &__paragraph {
     margin-bottom: var(--space-5);
     @media (--desktop) {

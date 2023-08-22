@@ -30,13 +30,6 @@ import AppPanel from '@/components/AppPanel'
 
 <style scoped>
 .not-found-panel {
-  margin-top: var(--space-4);
-  padding: var(--space-4) var(--space-1);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__paragraph {
     margin-bottom: var(--space-3);
     @media (--desktop) {

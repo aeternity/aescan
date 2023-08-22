@@ -18,7 +18,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useRoute } from '#app'
 import { storeToRefs } from 'pinia'
 import { isDesktop } from '@/utils/screen'
 import { useSearchStore } from '@/stores/search'

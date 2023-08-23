@@ -40,15 +40,22 @@
         </div>
         <div class="footer__column">
           <div class="footer__network">
-            <div class="footer__version">
+            <app-link
+              class="footer__version"
+              :to="APP_CHANGELOG_URL">
               ÆSCAN VERSION v{{ APP_VERSION }}
-            </div>
-            <div class="footer__version">
+            </app-link>
+            <app-link
+              class="footer__version"
+              :to="NODE_CHANGELOG_URL">
               NODE VERSION v{{ nodeVersion }}
-            </div>
-            <div>
+            </app-link>
+            <app-link
+              class="footer__version"
+              :to="MDW_CHANGELOG_URL">
               MIDDLEWARE VERSION v{{ middlewareVersion }}
-            </div>
+            </app-link>
+            <div/>
           </div>
           <div class="footer__link-container">
             <footer-list
@@ -81,6 +88,10 @@ import { useStatus } from '@/stores/status'
 const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const { APP_VERSION } = useAppConfig()
+
+const APP_CHANGELOG_URL = 'https://github.com/aeternity/aescan/blob/main/CHANGELOG.md'
+const NODE_CHANGELOG_URL = 'https://github.com/aeternity/aeternity/releases'
+const MDW_CHANGELOG_URL = 'https://github.com/aeternity/ae_mdw/blob/master/CHANGELOG.md'
 
 const links = {
   about: [
@@ -133,7 +144,8 @@ const links = {
     }
   }
 
-  &__version {
+  &__version:not(:last-child) {
+    display: block;
     margin-bottom: var(--space-1);
   }
 

@@ -41,6 +41,9 @@
         <div class="footer__column">
           <div class="footer__network">
             <div class="footer__version">
+              ÆSCAN VERSION v{{ APP_VERSION }}
+            </div>
+            <div class="footer__version">
               NODE VERSION v{{ nodeVersion }}
             </div>
             <div>
@@ -77,6 +80,7 @@ import { useStatus } from '@/stores/status'
 
 const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
+const { APP_VERSION } = useAppConfig()
 
 const links = {
   about: [

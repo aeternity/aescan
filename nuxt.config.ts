@@ -20,6 +20,9 @@ export default defineNuxtConfig({
     apiHost: 'https://plausible.dev.service.aepps.com',
     trackLocalhost: false,
   },
+  appConfig: {
+    APP_VERSION: process.env.APP_VERSION || 'dev-preview',
+  },
   runtimeConfig: {
     public: {
       SENTRY_DSN: process.env.SENTRY_DSN,

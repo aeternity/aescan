@@ -18,8 +18,8 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     ? adaptOracleDetails(
       rawOracle.value,
       lastExtendedTx.value,
-      lastQueryTx.value,
       blockHeight.value,
+      rawEvents.value,
     )
     : null,
   )
@@ -30,8 +30,8 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     oracleId.value = id
 
     await Promise.allSettled([
+      fetchOracleEvents(),
       fetchOracle(),
-      fetchLastQueryTx(),
       fetchLastExtendedTx(),
     ])
 
@@ -41,11 +41,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   async function fetchOracle() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/oracles/${oracleId.value}`)
     rawOracle.value = data
-  }
-
-  async function fetchLastQueryTx() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs?direction=backward&limit=1&type=oracle_query&oracle=${oracleId.value}`)
-    lastQueryTx.value = data.data?.[0]
   }
 
   async function fetchLastExtendedTx() {

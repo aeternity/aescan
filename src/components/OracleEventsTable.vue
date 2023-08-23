@@ -15,7 +15,19 @@
           </hint-tooltip>
         </th>
         <th>
+          Queried At
+          <hint-tooltip>
+            {{ oraclesHints.queryStatus }}
+          </hint-tooltip>
+        </th>
+        <th>
           Respond Tx
+          <hint-tooltip>
+            {{ oraclesHints.respondTx }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Responded At
           <hint-tooltip>
             {{ oraclesHints.respondTx }}
           </hint-tooltip>
@@ -37,11 +49,20 @@
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
           </td>
-
+          <td>
+            {{ event.queriedAtHeight }}
+            -
+            <datetime-label :datetime="event.queriedAt"/>
+          </td>
           <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
+          </td>
+          <td>
+            {{ event.respondedAtHeight }}
+            -
+            <datetime-label :datetime="event.respondedAt"/>
           </td>
         </tr>
         <tr v-if="isOpened.includes(index)">

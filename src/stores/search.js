@@ -16,14 +16,14 @@ export const useSearchStore = defineStore('search', () => {
 
   async function fetchNamesSearch({ query, limit, queryParameters } = {}) {
     rawNamesFound.value = null
-    const defaultParameters = `/v2/names/search?prefix=${query}&limit=${limit ?? 10}`
+    const defaultParameters = `/v2/names/search?prefix=${query}&limit=${limit ?? 10}&direction=forward`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawNamesFound.value = data
   }
 
   async function fetchTokenSearch({ query, limit, queryParameters } = {}) {
     tokensFound.value = null
-    const defaultParameters = `/v2/aex9?prefix=${query}&limit=${limit ?? 10}`
+    const defaultParameters = `/v2/aex9?prefix=${query}&limit=${limit ?? 10}&direction=forward`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     tokensFound.value = data
   }

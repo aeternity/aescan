@@ -40,7 +40,7 @@
         <td>
           <value-hash-ellipsed
             :link-to="`/contracts/${token.contractId}`"
-            :hash="token.contractId "/>
+            :hash="token.contractId"/>
         </td>
       </tr>
     </tbody>
@@ -63,7 +63,6 @@ defineProps({
 <style scoped>
 .search-tokens-table {
   margin-bottom: var(--space-4);
-  /*todo move up*/
 
   &__link {
     display: inline-flex;

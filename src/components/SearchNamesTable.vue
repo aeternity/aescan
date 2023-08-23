@@ -17,24 +17,22 @@
       </tr>
     </thead>
     <tbody>
-      <tbody>
-        <tr
-          v-for="name in names.data"
-          :key="name.name">
-          <td>
-            <app-link :to="`/names/${name.name}`">
-              {{ name.name }}
-            </app-link>
-          </td>
-          <td>{{ name.status }}</td>
-        </tr>
-      </tbody>
+      <tr
+        v-for="name in names.data"
+        :key="name.name">
+        <td>
+          <app-link :to="`/names/${name.name}`">
+            {{ name.name }}
+          </app-link>
+        </td>
+        <td>{{ name.status }}</td>
+      </tr>
     </tbody>
   </table>
 </template>
 
 <script setup>
-import { namesHints } from '../utils/hints/namesHints'
+import { namesHints } from '@/utils/hints/namesHints'
 
 defineProps({
   names: {

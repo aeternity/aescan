@@ -527,7 +527,7 @@ export function adaptStateChannels(channels, blockHeight) {
   }
 }
 
-export function adaptNamesFound(names) {
+export function adaptNamesResults(names) {
   const formattedData = names.data
     .map(name => {
       return {

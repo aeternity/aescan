@@ -5,33 +5,33 @@ import { defineStore } from 'pinia'
 export const useSearchStore = defineStore('search', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
-  const rawNamesFound = ref([])
-  const tokensFound = ref([])
+  const rawNamesResults = ref([])
+  const tokensResults = ref([])
 
-  const namesFound = computed(() => {
-    return rawNamesFound.value
-      ? adaptNamesFound(rawNamesFound.value)
+  const namesResults = computed(() => {
+    return rawNamesResults.value
+      ? adaptNamesResults(rawNamesResults.value)
       : null
   })
 
-  async function fetchNamesSearch({ query, limit, queryParameters } = {}) {
-    rawNamesFound.value = null
+  async function fetchNamesResults({ query, limit, queryParameters } = {}) {
+    rawNamesResults.value = null
     const defaultParameters = `/v2/names/search?prefix=${query}&limit=${limit ?? 10}&direction=forward`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawNamesFound.value = data
+    rawNamesResults.value = data
   }
 
-  async function fetchTokenSearch({ query, limit, queryParameters } = {}) {
-    tokensFound.value = null
+  async function fetchTokenResults({ query, limit, queryParameters } = {}) {
+    tokensResults.value = null
     const defaultParameters = `/v2/aex9?prefix=${query}&limit=${limit ?? 10}&direction=forward`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    tokensFound.value = data
+    tokensResults.value = data
   }
 
   return {
-    namesFound,
-    tokensFound,
-    fetchTokenSearch,
-    fetchNamesSearch,
+    namesResults,
+    tokensResults,
+    fetchTokenResults,
+    fetchNamesResults,
   }
 })

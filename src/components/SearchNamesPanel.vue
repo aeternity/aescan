@@ -1,16 +1,16 @@
 <template>
   <app-panel>
     <paginated-content
-      :entities="namesFound"
+      :entities="namesResults"
       :limit="limit"
       pagination-style="history"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
       <search-names-table
-        :names="namesFound"
+        :names="namesResults"
         class="search-names-panel__search-names-table"/>
       <search-names-table-condensed
-        :names="namesFound"
+        :names="namesResults"
         class="search-names-panel__search-names-table-condensed"/>
     </paginated-content>
   </app-panel>
@@ -23,20 +23,20 @@ import { isDesktop } from '@/utils/screen'
 import { useSearchStore } from '@/stores/search'
 
 const searchStore = useSearchStore()
-const { namesFound } = storeToRefs(searchStore)
-const { fetchNamesSearch } = searchStore
+const { namesResults } = storeToRefs(searchStore)
+const { fetchNamesResults } = searchStore
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()
 
-await fetchNamesSearch({ query: route.params.id, limit: limit.value })
+await fetchNamesResults({ query: route.params.id, limit: limit.value })
 
 async function loadPrevNames() {
-  await fetchNamesSearch({ queryParameters: namesFound.value.prev })
+  await fetchNamesResults({ queryParameters: namesResults.value.prev })
 }
 
 async function loadNextNames() {
-  await fetchNamesSearch({ queryParameters: namesFound.value.next })
+  await fetchNamesResults({ queryParameters: namesResults.value.next })
 }
 </script>
 

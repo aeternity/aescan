@@ -1,16 +1,16 @@
 <template>
   <app-panel>
     <paginated-content
-      :entities="tokensFound"
+      :entities="tokensResults"
       :limit="limit"
       pagination-style="history"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <search-tokens-table
-        :tokens="tokensFound"
+        :tokens="tokensResults"
         class="search-tokens-panel__search-tokens-table"/>
       <search-tokens-table-condensed
-        :tokens="tokensFound"
+        :tokens="tokensResults"
         class="search-tokens-panel__search-tokens-table-condensed"/>
     </paginated-content>
   </app-panel>
@@ -22,20 +22,20 @@ import { isDesktop } from '@/utils/screen'
 import { useSearchStore } from '@/stores/search'
 
 const searchStore = useSearchStore()
-const { tokensFound } = storeToRefs(searchStore)
-const { fetchTokenSearch } = searchStore
+const { tokensResults } = storeToRefs(searchStore)
+const { fetchTokenResults } = searchStore
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()
 
-await fetchTokenSearch({ query: route.params.id, limit: limit.value })
+await fetchTokenResults({ query: route.params.id, limit: limit.value })
 
 async function loadPrevTokens() {
-  await fetchTokenSearch({ queryParameters: tokensFound.value.prev })
+  await fetchTokenResults({ queryParameters: tokensResults.value.prev })
 }
 
 async function loadNextTokens() {
-  await fetchTokenSearch({ queryParameters: tokensFound.value.next })
+  await fetchTokenResults({ queryParameters: tokensResults.value.next })
 }
 </script>
 

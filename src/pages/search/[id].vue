@@ -31,7 +31,6 @@ const { isLoading } = useLoading()
 
 <style scoped>
 .search {
-
   &__paragraph {
     margin-bottom: var(--space-4);
   }

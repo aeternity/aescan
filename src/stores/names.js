@@ -1,12 +1,13 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptActiveNames, adaptExpiredNames, adaptInAuctionNames, adaptNames } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useNamesStore = defineStore('names', () => {
   const { blockHeight } = storeToRefs(useRecentBlocksStore())
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const rawActiveNames = ref(null)
   const rawInAuctionNames = ref(null)

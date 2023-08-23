@@ -1,7 +1,7 @@
 <template>
   <div>
     <Head>
-      <Title> {{ APP_TITLE_SHORT }} | Unexpected Error </Title>
+      <Title> {{ APP_TITLE_SHORT }}</Title>
 
       <Meta
         name="description"

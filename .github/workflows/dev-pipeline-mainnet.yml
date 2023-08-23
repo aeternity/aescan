@@ -58,7 +58,11 @@ jobs:
           images: aeternity/aescan
           tags: |
             type=raw,value=develop,enable=${{ endsWith(GitHub.ref, 'develop') }}
-      
+
+      - name: Create dotenv
+        run: |
+          echo APP_VERSION=$(git describe --tags)-dev >> .env
+
       - name: Build and push docker image
         if: github.event_name == 'push'
         uses: docker/build-push-action@v2

@@ -18,7 +18,7 @@
     </app-tabs>
 
     <search-keyblock-panel
-      v-if="keyblockResults"
+      v-if="isKeyblockPanelDisplayed"
       :keyblock-results="keyblockResults"
       class="search__panel"/>
   </template>
@@ -42,6 +42,10 @@ const { fetchKeyblockResults } = searchStore
 const route = useRoute()
 
 await fetchKeyblockResults(route.params.id)
+
+const isKeyblockPanelDisplayed = computed(() => {
+  return keyblockResults.value && !keyblockResults.value.notExistent
+})
 
 </script>
 

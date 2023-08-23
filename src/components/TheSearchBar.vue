@@ -20,9 +20,7 @@
 <script setup>
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
-import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
-const { isKeyblockAvailable } = useKeyblockDetailsStore()
 const userQuery = ref('')
 const { push } = useRouter()
 
@@ -88,11 +86,6 @@ function isKeyblockId(query) {
   if (isAddressValid(query) && query.startsWith('kh_')) {
     return true
   }
-
-  if (!isNaN(query)) {
-    return isKeyblockAvailable(query)
-  }
-
   return false
 }
 

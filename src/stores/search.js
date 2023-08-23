@@ -7,6 +7,7 @@ export const useSearchStore = defineStore('search', () => {
 
   const rawNamesResults = ref([])
   const tokensResults = ref([])
+  const keyblockResults = ref([])
 
   const namesResults = computed(() => {
     return rawNamesResults.value
@@ -28,10 +29,29 @@ export const useSearchStore = defineStore('search', () => {
     tokensResults.value = data
   }
 
+  async function fetchKeyblockResults(query) {
+    keyblockResults.value = null
+    if (!isNaN(query)) {
+      try {
+        const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${query}`)
+        keyblockResults.value = data
+      } catch (error) {
+        if (error.response?.status === 404) {
+          keyblockResults.value = { notExistent: true }
+          return
+        }
+
+        throw error
+      }
+    }
+  }
+
   return {
     namesResults,
     tokensResults,
+    keyblockResults,
     fetchTokenResults,
     fetchNamesResults,
+    fetchKeyblockResults,
   }
 })

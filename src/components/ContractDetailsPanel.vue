@@ -44,7 +44,7 @@
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
-            <app-link to="/blocks/{{ contractDetails.creationHeight }}">
+            <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
               {{ contractDetails.creationHeight }}
             </app-link>
             (

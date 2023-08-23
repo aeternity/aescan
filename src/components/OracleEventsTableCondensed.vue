@@ -36,6 +36,24 @@
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            <app-tooltip>
+              Queried At
+              <template #tooltip>
+                {{ oraclesHints.queriedAt }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <app-link
+              :to="`/keyblocks/${event.queriedAtHeight}`">
+              {{ event.queriedAtHeight }}
+            </app-link>
+            -
+            <datetime-label :datetime="event.queriedAt"/>
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
           <th
             :class="[
               'oracle-events-table-condensed__header',
@@ -54,6 +72,24 @@
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            <app-tooltip>
+              Responded At
+              <template #tooltip>
+                {{ oraclesHints.queriedAt }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <app-link
+              :to="`/keyblocks/${event.respondedAtHeight}`">
+              {{ event.respondedAtHeight }}
+            </app-link>
+            -
+            <datetime-label :datetime="event.respondedAt"/>
           </td>
         </tr>
         <tr

@@ -17,7 +17,7 @@
         <th>
           Queried At
           <hint-tooltip>
-            {{ oraclesHints.queryStatus }}
+            {{ oraclesHints.queriedAt }}
           </hint-tooltip>
         </th>
         <th>
@@ -29,7 +29,7 @@
         <th>
           Responded At
           <hint-tooltip>
-            {{ oraclesHints.respondTx }}
+            {{ oraclesHints.respondedAt }}
           </hint-tooltip>
         </th>
       </tr>
@@ -50,7 +50,10 @@
               @click="toggle(index)"/>
           </td>
           <td>
-            {{ event.queriedAtHeight }}
+            <app-link
+              :to="`/keyblocks/${event.queriedAtHeight}`">
+              {{ event.queriedAtHeight }}
+            </app-link>
             -
             <datetime-label :datetime="event.queriedAt"/>
           </td>
@@ -60,7 +63,10 @@
               :link-to="`/transactions/${event.respondTx}`"/>
           </td>
           <td>
-            {{ event.respondedAtHeight }}
+            <app-link
+              :to="`/keyblocks/${event.respondedAtHeight}`">
+              {{ event.respondedAtHeight }}
+            </app-link>
             -
             <datetime-label :datetime="event.respondedAt"/>
           </td>

@@ -61,13 +61,5 @@ const isKeyblockPanelDisplayed = computed(() => {
       margin-bottom: 0;
     }
   }
-
-  &__paragraph {
-    margin-bottom: var(--space-4);
-  }
-
-  &__highlighted {
-    font-weight: 700;
-  }
 }
 </style>

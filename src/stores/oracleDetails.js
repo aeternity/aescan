@@ -11,7 +11,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const oracleId = ref(null)
   const rawOracle = ref(null)
   const lastExtendedTx = ref(null)
-  const lastQueryTx = ref(null)
   const rawEvents = ref(null)
 
   const oracleDetails = computed(() => rawOracle.value
@@ -19,11 +18,11 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
       rawOracle.value,
       lastExtendedTx.value,
       blockHeight.value,
-      rawEvents.value,
+      lastQueryTx.value,
     )
     : null,
   )
-
+  const lastQueryTx = computed(() => rawEvents.value?.data?.[0]?.query)
   const oracleEvents = computed(() => rawEvents.value ? adaptOracleEvents(rawEvents.value) : null)
 
   async function fetchOracleDetails(id) {
@@ -67,7 +66,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     oracleId,
     rawOracle,
     lastExtendedTx,
-    lastQueryTx,
     oracleEvents,
   }
 })

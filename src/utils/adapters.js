@@ -460,8 +460,7 @@ export function adaptOracles(oracles, blockHeight) {
   }
 }
 
-export function adaptOracleDetails(oracle, lastExtendedTx, blockHeight, rawEvents) {
-  const lastQueryTx = rawEvents?.data?.[0]?.query
+export function adaptOracleDetails(oracle, lastExtendedTx, blockHeight, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),

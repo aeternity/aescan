@@ -7,7 +7,6 @@
       type="search"
       autofocus
       @keyup.enter="search">
-
     <button
       class="search-bar__submit"
       @click="search">
@@ -20,10 +19,11 @@
 <script setup>
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
+import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
+const { isKeyblockAvailable } = useKeyblockDetailsStore()
 const userQuery = ref('')
 const { push } = useRouter()
-
 const query = computed(() => {
   const trimmedQuery = userQuery.value.trim()
   return trimmedQuery.endsWith('.chain')
@@ -35,7 +35,6 @@ async function search() {
   if (!query.value) {
     return
   }
-
   if (isAccountAddress(query.value)) {
     push(`/accounts/${query.value}`)
   } else if (isTransactionHash(query.value)) {
@@ -86,6 +85,9 @@ function isKeyblockId(query) {
   if (isAddressValid(query) && query.startsWith('kh_')) {
     return true
   }
+  if (!isNaN(query)) {
+    return isKeyblockAvailable(query)
+  }
   return false
 }
 
@@ -93,13 +95,11 @@ function isMicroblockId(query) {
   return isAddressValid(query) && query.startsWith('mh_')
 }
 </script>
-
 <style scoped>
 .search-bar {
   padding: 6px var(--space-0) 6px var(--space-3);
   display: flex;
   align-items: center;
-
   height: 40px;
   background: var(--color-white);
   border: 1px solid var(--color-midnight);
@@ -112,12 +112,10 @@ function isMicroblockId(query) {
     width: 38px;
     height: 100%;
     border-radius: 4px;
-
     margin: auto;
     padding: 0;
     border: none;
     cursor: pointer;
-
     background: var(--color-midnight);
     color: var(--color-white);
   }
@@ -149,4 +147,5 @@ function isMicroblockId(query) {
     }
   }
 }
+
 </style>

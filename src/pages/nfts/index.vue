@@ -7,7 +7,7 @@
     NFTs
 
     <template #tooltip>
-      <!--      tod hints-->
+      {{ nftsHints.nft }}
     </template>
   </page-header>
 
@@ -16,6 +16,8 @@
 </template>
 
 <script setup>
+
+import { nftsHints } from '../../utils/hints/nftsHints'
 
 const { isLoading } = useLoading()
 </script>

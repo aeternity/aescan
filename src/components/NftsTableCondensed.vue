@@ -10,7 +10,7 @@
             <app-tooltip>
               Collection Name
               <template #tooltip>
-                {{ transactionsHints.hash }}
+                {{ nftsHints.hash }}
               </template>
             </app-tooltip>
           </th>
@@ -26,7 +26,7 @@
             <app-tooltip>
               Owners
               <template #tooltip>
-                {{ transactionsHints.created }}
+                {{ nftsHints.owners }}
               </template>
             </app-tooltip>
           </th>
@@ -40,7 +40,7 @@
             <app-tooltip>
               Amount
               <template #tooltip>
-                {{ transactionsHints.type }}
+                {{ nftsHints.amount }}
               </template>
             </app-tooltip>
           </th>
@@ -54,7 +54,7 @@
             <app-tooltip>
               Smart Contract ID
               <template #tooltip>
-                {{ transactionsHints.type }}
+                {{ nftsHints.smartContractId }}
               </template>
             </app-tooltip>
           </th>
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { transactionsHints } from '@/utils/hints/transactionsHints'
+import { nftsHints } from '../utils/hints/nftsHints'
 
 defineProps({
   nfts: {

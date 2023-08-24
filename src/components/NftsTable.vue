@@ -5,25 +5,25 @@
         <th>
           Collection Name
           <hint-tooltip>
-          <!--            {{ nftsHints.hash }}-->
+            {{ nftsHints.collectionName }}
           </hint-tooltip>
         </th>
         <th>
           Owners
           <hint-tooltip>
-          <!--            {{ nftsHints.hash }}-->
+            {{ nftsHints.owners }}
           </hint-tooltip>
         </th>
         <th>
           Amount
           <hint-tooltip>
-          <!--            {{ nftsHints.hash }}-->
+            {{ nftsHints.amount }}
           </hint-tooltip>
         </th>
         <th>
           Smart Contract ID
           <hint-tooltip>
-          <!--            {{ nftsHints.hash }}-->
+            {{ nftsHints.smartContractId }}
           </hint-tooltip>
         </th>
       </tr>
@@ -53,6 +53,8 @@
   </table>
 </template>
 <script setup>
+
+import { nftsHints } from '../utils/hints/nftsHints'
 
 defineProps({
   nfts: {

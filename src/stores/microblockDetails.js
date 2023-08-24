@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptMicroblock, adaptTransactions } from '@/utils/adapters'
 
 export const useMicroblockDetailsStore = defineStore('microblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const rawMicroblock = ref(null)
   const rawMicroblockTransactions = ref(null)

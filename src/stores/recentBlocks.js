@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { adaptDeltaStats, adaptKeyblock, adaptSelectedMicroblockTransactions } from '@/utils/adapters'
 import { formatAettosToAe, formatNullable, formatNumber } from '@/utils/format'
@@ -10,6 +10,7 @@ const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSeq
 
 export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 
   const deltaStats = ref(null)

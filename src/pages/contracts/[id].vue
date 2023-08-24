@@ -15,6 +15,7 @@
       </app-link>
     </template>
   </page-header>
+
   <template v-if="!isLoading">
     <contract-details-panel
       v-if="contractDetails"
@@ -52,9 +53,19 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-await useAsyncData(() => fetchContractDetails(route.params.id))
+const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
 
-if (process.client) {
+if (error.value) {
+  throw showError({
+    data: {
+      entityName: 'Smart Contract',
+      entityId: route.params.id,
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
+}
+
+if (process.client && !error.value) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
     queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}`,

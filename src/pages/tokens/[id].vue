@@ -48,8 +48,19 @@ const { fetchTokenDetails } = tokenDetailsStore
 
 const { isLoading } = useLoading()
 
-await fetchTokenDetails(route.params.id)
-
+try {
+  await fetchTokenDetails(route.params.id)
+} catch (error) {
+  if ([400, 404].includes(error.response?.status)) {
+    throw showError({
+      data: {
+        entityId: route.params.id,
+        entityName: 'Token',
+      },
+      statusMessage: 'EntityDetailsNotFound',
+    })
+  }
+}
 </script>
 
 <style scoped>

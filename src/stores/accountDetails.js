@@ -1,6 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { adaptAccountNames, adaptTransactions, adaptAccountTokens } from '@/utils/adapters'
 import { formatAettosToAe, formatTokenPairRouteAsRatio } from '@/utils/format'
@@ -13,6 +13,7 @@ export const useAccountStore = defineStore('account', () => {
     AE_TOKEN_ID,
   } = useRuntimeConfig().public
   const { price: aeFiatPrice } = storeToRefs(useMarketStatsStore())
+  const axios = useAxios()
 
   const rawAccountDetails = ref(null)
   const accountTransactionsCount = ref(null)
@@ -70,7 +71,7 @@ export const useAccountStore = defineStore('account', () => {
       const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
       rawAccountDetails.value = data
     } catch (e) {
-      if (e.response.status === 404) {
+      if ([400, 404].includes(e.response.status)) {
         rawAccountDetails.value = { id: accountId, notExistent: true }
       }
     }

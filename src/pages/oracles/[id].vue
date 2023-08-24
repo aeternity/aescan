@@ -44,7 +44,18 @@ const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
 const { isLoading } = useLoading()
-await useAsyncData(() => fetchOracleDetails(route.params.id))
+
+const { error } = await useAsyncData(() => fetchOracleDetails(route.params.id))
+
+if (error.value) {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'Oracle',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
+}
 </script>
 
 <style scoped>

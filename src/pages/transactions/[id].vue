@@ -49,7 +49,21 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-await fetchTransactionDetails(route.params.id)
+try {
+  await fetchTransactionDetails(route.params.id)
+} catch (error) {
+  if ([400, 404].includes(error.response?.status)) {
+    throw showError({
+      data: {
+        entityId: route.params.id,
+        entityName: 'Transaction',
+      },
+      statusMessage: 'EntityDetailsNotFound',
+    })
+  }
+
+  throw error
+}
 </script>
 
 <style scoped>

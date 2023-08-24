@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptContracts } from '@/utils/adapters'
 
 export const useContractsStore = defineStore('contracts', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const rawContracts = ref(null)
   const contractsCount = ref(null)
 

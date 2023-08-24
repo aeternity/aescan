@@ -80,11 +80,6 @@ function isStateChannelId(query) {
 }
 
 async function isAccountName(query) {
-  console.log('isAccountName')
-
-  console.log('query', query)
-  console.log(query.endsWith('.chain'))
-  console.log(query.endsWith('.test') || query.endsWith('.chain'))
   if (query.endsWith('.test') || query.endsWith('.chain')) {
     return await isNameAvailable(query)
   } else {

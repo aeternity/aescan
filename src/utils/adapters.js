@@ -145,6 +145,26 @@ export function adaptAccountNames(names) {
   }
 }
 
+export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
+  const formattedData = tokens.data.map(token => {
+    const amount = token.amount / (10 ** token.decimals)
+    const tokenAePrice = tokenPrices[token.contractId] ? 1 / tokenPrices[token.contractId] : null
+
+    return {
+      tokenSymbol: token.tokenSymbol,
+      tokenName: token.tokenName,
+      contractId: token.contractId,
+      amount,
+      value: tokenAePrice !== null ? amount * tokenAePrice * aeFiatPrice : null,
+    }
+  })
+  return {
+    next: tokens.next,
+    data: formattedData,
+    prev: tokens.prev,
+  }
+}
+
 export function adaptDeltaStats(deltaStats, keyblockHeight) {
   const selectedDeltaStats = deltaStats.find(
     stat => stat.height === keyblockHeight,
@@ -313,6 +333,7 @@ export function adaptContractDetails(
     createTransactionHash: contractCreationTx?.hash,
     createdBy: contractCreationTx?.tx.callerId,
     creationDate: DateTime.fromMillis(contractCreationTx?.microTime),
+    creationHeight: contractCreationTx.blockHeight,
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
     contractAccountBalance,

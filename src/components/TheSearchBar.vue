@@ -1,7 +1,7 @@
 <template>
   <div class="search-bar">
     <input
-      v-model="userQuery"
+      v-model="query"
       class="search-bar__input"
       placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
       type="search"
@@ -19,17 +19,13 @@
 <script setup>
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
+import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
+const { isNameAvailable } = useNameDetailsStore()
 const { isKeyblockAvailable } = useKeyblockDetailsStore()
-const userQuery = ref('')
+const query = ref('')
 const { push } = useRouter()
-const query = computed(() => {
-  const trimmedQuery = userQuery.value.trim()
-  return trimmedQuery.endsWith('.chain')
-    ? trimmedQuery.slice(0, -6)
-    : trimmedQuery
-})
 
 async function search() {
   if (!query.value) {
@@ -49,18 +45,14 @@ async function search() {
     push(`/microblocks/${query.value}`)
   } else if (isNameId(query.value)) {
     push(`/names/${query.value}`)
+  } else if (await isAccountName(query.value)) {
+    push(`/names/${query.value}`)
   } else if (await isKeyblockId(query.value)) {
     push(`/keyblocks/${query.value}`)
   } else {
-    clearError()
-    throw showError({
-      data: {
-        searchQuery: query.value,
-      },
-      statusMessage: 'SearchNotFound',
-    })
+    push(`/search/${query.value}`)
   }
-  userQuery.value = ''
+  query.value = ''
 }
 
 function isAccountAddress(query) {
@@ -85,6 +77,19 @@ function isOracleId(query) {
 
 function isStateChannelId(query) {
   return isAddressValid(query) && query.startsWith('ch_')
+}
+
+async function isAccountName(query) {
+  console.log('isAccountName')
+
+  console.log('query', query)
+  console.log(query.endsWith('.chain'))
+  console.log(query.endsWith('.test') || query.endsWith('.chain'))
+  if (query.endsWith('.test') || query.endsWith('.chain')) {
+    return await isNameAvailable(query)
+  } else {
+    return false
+  }
 }
 
 function isKeyblockId(query) {

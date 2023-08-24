@@ -38,6 +38,18 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     rawNameActions.value = data
   }
 
+  async function isNameAvailable(name) {
+    try {
+      await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
+      return true
+    } catch (error) {
+      if (error.response.status === 404) {
+        return false
+      }
+      return null
+    }
+  }
+
   return {
     rawName,
     rawNameActions,
@@ -47,5 +59,6 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     hasNameHistory,
     fetchName,
     fetchNameActions,
+    isNameAvailable,
   }
 })

@@ -1,11 +1,12 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptOracles } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useOraclesStore = defineStore('oracles', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const recentBlocksStore = useRecentBlocksStore()
   const { blockHeight } = storeToRefs(recentBlocksStore)
 

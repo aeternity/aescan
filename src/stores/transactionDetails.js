@@ -1,12 +1,13 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import { adaptTransactionDetails } from '@/utils/adapters'
 
 export const useTransactionDetailsStore = defineStore('transactionDetails', () => {
   const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const contractId = ref(null)
   const rawTransactionDetails = ref(null)

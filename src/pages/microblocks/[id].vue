@@ -5,6 +5,7 @@
 
   <page-header>
     Microblock
+
     <template #tooltip>
       {{ microblocksHints.microblock }}
     </template>
@@ -35,17 +36,26 @@ import MicroblockTransactionsPanel from '@/components/MicroblockTransactionsPane
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
 
+const { isLoading } = useLoading()
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblock } = microblockDetailsStore
 const route = useRoute()
 
-const { isLoading } = useLoading()
-
-await useAsyncData(async() => {
+const { error } = await useAsyncData(async() => {
   await fetchMicroblock(route.params.id)
   return true
 })
+
+if (error.value) {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'Microblock',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
+}
 </script>
 <style scoped>
 .microblock-details__microblock-details-panel {

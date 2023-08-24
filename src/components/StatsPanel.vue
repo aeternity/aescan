@@ -1,5 +1,7 @@
 <template>
-  <app-panel class="stats-panel">
+  <app-panel
+    v-if="!isLoading"
+    class="stats-panel">
     <stats-tile
       class="stats-panel__stats-tile"
       title="TRANSACTIONS"
@@ -184,6 +186,10 @@
       </template>
     </stats-tile>
   </app-panel>
+
+  <loader-panel
+    v-else
+    class="stats-panel__loader-panel"/>
 </template>
 
 <script setup>
@@ -215,6 +221,11 @@ const {
   latestReward,
   latestBri,
 } = storeToRefs(useRecentBlocksStore())
+
+const isLoading = computed(() => {
+  return !(transactionsCount.value && latestBri.value && latestReward.value)
+})
+
 </script>
 
 <style scoped>
@@ -247,6 +258,20 @@ const {
 
   &__value {
     font-weight: 700;
+  }
+
+  &__loader-panel {
+    height: 784px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+
+    @media (--desktop) {
+      /*hardcoded height to prevent content jumping*/
+      height: 264px;
+    }
   }
 }
 </style>

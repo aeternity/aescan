@@ -54,7 +54,6 @@ const {
   fetchNameActions,
 } = nameDetailsStore
 const route = useRoute()
-const { replace } = useRouter()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
 const { isLoading } = useLoading()
@@ -62,7 +61,17 @@ const { isLoading } = useLoading()
 try {
   await fetchName(route.params.name)
 } catch (error) {
-  replace(`/error/${route.params.name}`)
+  if (error.response?.status === 404) {
+    throw showError({
+      data: {
+        entityId: route.params.name,
+        entityName: 'Name',
+      },
+      statusMessage: 'EntityDetailsNotFound',
+    })
+  } else {
+    throw error
+  }
 }
 
 if (hasNameHistory && process.client) {

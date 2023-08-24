@@ -1,6 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptTokenDetails, adaptTokenEvents } from '@/utils/adapters'
 import { formatTokenPairRouteAsRatio } from '@/utils/format'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
@@ -8,6 +8,7 @@ import { useAesdk } from '@/stores/aesdk'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const { AE_TOKEN_ID, DEX_BACKEND_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const { aeSdk } = storeToRefs(useAesdk())
 
   const tokenId = ref(null)
@@ -46,10 +47,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   function fetchTokenDetails(id) {
     tokenId.value = id
 
-    return Promise.allSettled([
+    return Promise.all([
       fetchToken(),
-      fetchTotalSupply(),
-      fetchPrice(),
+      Promise.allSettled([
+        fetchTotalSupply(),
+        fetchPrice(),
+      ]),
     ])
   }
 

@@ -333,6 +333,7 @@ export function adaptContractDetails(
     createTransactionHash: contractCreationTx?.hash,
     createdBy: contractCreationTx?.tx.callerId,
     creationDate: DateTime.fromMillis(contractCreationTx?.microTime),
+    creationHeight: contractCreationTx.blockHeight,
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
     contractAccountBalance,

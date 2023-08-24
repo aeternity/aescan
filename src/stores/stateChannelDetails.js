@@ -31,7 +31,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   async function fetchStateChannelDetails(id) {
     stateChannelId.value = id
 
-    await Promise.allSettled([
+    await Promise.all([
       fetchStateChannel(),
       fetchStateChannelCreateTx(),
     ])

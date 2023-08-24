@@ -3,7 +3,6 @@
     <paginated-content
       :entities="tokensResults"
       :limit="limit"
-      pagination-style="history"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <search-tokens-table

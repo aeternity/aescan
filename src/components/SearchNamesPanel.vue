@@ -3,7 +3,6 @@
     <paginated-content
       :entities="namesResults"
       :limit="limit"
-      pagination-style="history"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
       <search-names-table

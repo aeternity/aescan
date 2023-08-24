@@ -1,25 +1,34 @@
 <template>
-  <app-panel v-if="nfts && nftsCount">
-    <table>
-      <tr>
-        <th>Collection Name</th>
-        <th>Owners</th>
-        <th>Amount</th>
-        <th>Smart Contract ID</th>
-      </tr>
-      <tr v-for="nft in nfts.data">
-        <td>{{ nft.name }}</td>
-        <td>{{ nft.nftOwners }}</td>
-        <td>{{ nft.nftsAmount }}</td>
-        <td>{{ nft.contractId }}</td>
-      </tr>
-    </table>
+  <app-panel>
+    <paginated-content
+      v-model:page-index="pageIndex"
+      :entities="nfts"
+      :total-count="nftsCount"
+      :limit="limit"
+      pagination-style="history"
+      @prev-clicked="loadPrevNfts"
+      @next-clicked="loadNextNfts">
+      <nfts-table
+        :nfts="nfts"
+        class="nfts-panel__table"/>
+      <nfts-table-condensed
+        :nfts="nfts"
+        class="nfts-panel__table-condensed"/>
+    </paginated-content>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { computed, ref } from 'vue'
 import { useNftsStore } from '~/stores/nfts'
+import PaginatedContent from '~/components/PaginatedContent'
+import { isDesktop } from '~/utils/screen'
+import NftsTable from '~/components/NftsTable'
+import NftsTableCondensed from '~/components/NftsTableCondensed'
+
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+const pageIndex = ref(1)
 
 const nftsStore = useNftsStore()
 const {
@@ -30,4 +39,25 @@ const { fetchNfts, fetchNftsCount } = nftsStore
 
 await fetchNftsCount()
 await fetchNfts()
+
+// todo function
+const loadPrevNfts = () => fetchNfts(nfts.value.prev)
+const loadNextNfts = () => fetchNfts(nfts.value.next)
 </script>
+
+<style scoped>
+.nfts-panel {
+  &__table {
+    display: none;
+    @media (--desktop) {
+      display: revert;
+    }
+  }
+
+  &__table-condensed {
+    @media (--desktop) {
+      display: none;
+    }
+  }
+}
+</style>

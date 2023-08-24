@@ -6,23 +6,19 @@ export const useNftsStore = defineStore('nfts', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
-  const rawNfts = ref(null)
+  const nfts = ref(null)
   const nftsCount = ref(null)
 
-  const nfts = computed(() =>
-    rawNfts.value,
-  )
-
   async function fetchNfts(queryParameters = null) {
-    rawNfts.value = null
+    nfts.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/aex141?limit=10'}`)
-    rawNfts.value = data
+    nfts.value = data
   }
 
   async function fetchNftsCount() {
     nftsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex141/count`)
-    nftsCount.value = data
+    nftsCount.value = data.data
   }
 
   return {

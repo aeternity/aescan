@@ -68,8 +68,8 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
     transactionTypeData.value = null
   }
 
-  function processTransactionUpdate(message) {
-    transactionTypeData.value = message.tx
+  function updateTransactionTypeData(websocketMessage) {
+    transactionTypeData.value = websocketMessage.tx
   }
 
   return {
@@ -78,6 +78,6 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
     transactionTypeData,
     fetchTransactionDetails,
     fetchContractIdByAccountId,
-    processTransactionUpdate,
+    updateTransactionTypeData,
   }
 })

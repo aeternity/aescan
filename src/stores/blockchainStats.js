@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { formatAettosToAe } from '@/utils/format'
 
 export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const maxTps = ref(null)
   const transactionsCount = ref(null)

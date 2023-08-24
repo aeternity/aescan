@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptKeyblock, adaptKeyblockMicroblocks } from '@/utils/adapters'
 
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const rawKeyblock = ref(null)
   const keyblockDeltaStats = ref(null)

@@ -20,12 +20,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed, ref } from 'vue'
 import { useNftsStore } from '@/stores/nfts'
-import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
-import NftsTable from '@/components/NftsTable'
-import NftsTableCondensed from '@/components/NftsTableCondensed'
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

@@ -5,7 +5,6 @@
 
   <page-header>
     NFTs
-
     <template #tooltip>
       {{ nftsHints.nft }}
     </template>
@@ -16,8 +15,7 @@
 </template>
 
 <script setup>
-
-import { nftsHints } from '../../utils/hints/nftsHints'
+import { nftsHints } from '@/utils/hints/nftsHints'
 
 const { isLoading } = useLoading()
 </script>

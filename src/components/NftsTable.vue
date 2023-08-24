@@ -54,7 +54,7 @@
 </template>
 <script setup>
 
-import { nftsHints } from '../utils/hints/nftsHints'
+import { nftsHints } from '@/utils/hints/nftsHints'
 
 defineProps({
   nfts: {

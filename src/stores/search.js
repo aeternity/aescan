@@ -1,9 +1,10 @@
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
+import useAxios from '@/composables/useAxios'
 
 export const useSearchStore = defineStore('search', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const rawNamesResults = ref([])
   const tokensResults = ref([])

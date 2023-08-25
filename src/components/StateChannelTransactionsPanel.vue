@@ -5,7 +5,7 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :limit="limit"
-      :totalCount="stateChannelTxCount"
+      :total-count="stateChannelTxCount"
       :entities="stateChannelTransactions"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"

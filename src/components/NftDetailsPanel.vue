@@ -73,7 +73,7 @@
           </td>
         </tr>
         <tr
-          v-if="tokenLimit !== null"
+          v-if="nftDetails.tokenLimit !== null"
           class="nft-details-panel__row">
           <th class="nft-details-panel__table-header">
             Token limit
@@ -82,11 +82,11 @@
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
-            {{ tokenLimit }}
+            {{ nftDetails.tokenLimit }}
           </td>
         </tr>
         <tr
-          v-if="templateLimit !== null"
+          v-if="nftDetails.templateLimit !== null"
           class="nft-details-panel__row">
           <th class="nft-details-panel__table-header">
             Template limit
@@ -95,7 +95,7 @@
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
-            {{ templateLimit }}
+            {{ nftDetails.templateLimit }}
           </td>
         </tr>
       </tbody>
@@ -107,47 +107,17 @@
 import AppPanel from '@/components/AppPanel'
 import { nftsHints } from '@/utils/hints/nftHints'
 
-const props = defineProps({
+defineProps({
   nftDetails: {
     type: Object,
     required: true,
   },
 })
 
-// todo move
-const tokenLimit = computed(() => {
-  const extensions = props.nftDetails.extensions
-  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
-    return props.nftDetails.limits.tokenLimit
-  } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
-    return 'Unlimited'
-  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
-    return null
-  } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
-    return null
-  }
-})
-
-const templateLimit = computed(() => {
-  const extensions = props.nftDetails.extensions
-
-  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
-    return null
-  } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
-    return null
-  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
-    return 'Unlimited'
-  } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
-    return props.nftDetails.limits.templateLimit
-  }
-})
-
 </script>
 
 <style scoped>
 .nft-details-panel {
-  /*todo styles revision*/
-
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
   }

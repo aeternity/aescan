@@ -19,17 +19,17 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { nftsHints } from '../../utils/hints/nftHints'
+import { nftsHints } from '@/utils/hints/nftHints'
 import PageHeader from '@/components/PageHeader'
 import { useNftDetailsStore } from '@/stores/nftDetails'
-import NftDetailsPanel from '~/components/NftDetailsPanel'
+import NftDetailsPanel from '@/components/NftDetailsPanel'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftDetails } = storeToRefs(nftDetailsStore)
 const { fetchNftDetails } = nftDetailsStore
 const route = useRoute()
-const { isLoading } = useLoading()
 
+const { isLoading } = useLoading()
 const { error } = await useAsyncData(() => fetchNftDetails(route.params.id))
 
 if (error.value) {
@@ -42,12 +42,3 @@ if (error.value) {
   })
 }
 </script>
-
-<style scoped>
-.nft-details__panel {
-  margin-bottom: var(--space-4);
-  @media (--desktop) {
-    margin-bottom: var(--space-6);
-  }
-}
-</style>

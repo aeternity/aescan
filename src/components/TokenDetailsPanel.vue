@@ -188,7 +188,6 @@ const marketCap = computed(() =>
 
 <style scoped>
 .token-details-panel {
-
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
   }

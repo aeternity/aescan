@@ -13,7 +13,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   const rawStateChannel = ref(null)
   const rawStateChannelCreateTx = ref(null)
   const rawStateChannelTransactions = ref(null)
-  const stateChannelTxCount = ref(null)
+  const stateChannelTransactionsCount = ref(null)
 
   const stateChannelDetails = computed(() => rawStateChannel.value
     ? adaptStateChannelDetails(
@@ -35,7 +35,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     await Promise.all([
       fetchStateChannel(),
       fetchStateChannelCreateTx(),
-      fetchStateChannelTxCount(),
+      fetchStateChannelTransactionsCount(),
     ])
 
     return true
@@ -65,9 +65,9 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     const { data } = await axios.get(transactionsUrl.toString())
     rawStateChannelTransactions.value = data
   }
-  async function fetchStateChannelTxCount() {
+  async function fetchStateChannelTransactionsCount() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count?id=${stateChannelId.value}`)
-    stateChannelTxCount.value = data + 1
+    stateChannelTransactionsCount.value = data + 1
   }
 
   return {
@@ -77,7 +77,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     stateChannelId,
     stateChannelDetails,
     stateChannelTransactions,
-    stateChannelTxCount,
+    stateChannelTransactionsCount,
     fetchStateChannelDetails,
     fetchStateChannelTransactions,
   }

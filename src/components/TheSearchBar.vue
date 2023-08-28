@@ -45,7 +45,7 @@ async function search() {
     push(`/microblocks/${query.value}`)
   } else if (isNameId(query.value)) {
     push(`/names/${query.value}`)
-  } else if (await isAccountName(query.value)) {
+  } else if (await isName(query.value)) {
     push(`/names/${query.value}`)
   } else if (await isKeyblockId(query.value)) {
     push(`/keyblocks/${query.value}`)
@@ -79,7 +79,7 @@ function isStateChannelId(query) {
   return isAddressValid(query) && query.startsWith('ch_')
 }
 
-async function isAccountName(query) {
+async function isName(query) {
   if (query.endsWith('.test') || query.endsWith('.chain')) {
     return await isNameAvailable(query)
   } else {

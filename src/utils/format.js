@@ -83,3 +83,13 @@ export function formatDecodeBase64(base64String) {
 export function formatDecodeByteArray(bytesArray) {
   return String.fromCharCode(...bytesArray)
 }
+
+export function formatNameStatus(name) {
+  if (name.payload.auctionEnd) {
+    return 'In Auction'
+  } else if (name.payload.active) {
+    return 'Active'
+  } else {
+    return 'Expired'
+  }
+}

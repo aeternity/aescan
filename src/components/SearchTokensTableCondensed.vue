@@ -3,10 +3,10 @@
     <table
       v-for="token in tokens.data"
       :key="token.contractId"
-      class="tokens-table-condensed__table">
+      class="search-tokens-table-condensed__table">
       <tbody>
-        <tr class="tokens-table-condensed__row">
-          <th class="tokens-table-condensed__header">
+        <tr class="search-tokens-table-condensed__row">
+          <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Symbol
               <template #tooltip>
@@ -14,20 +14,19 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="tokens-table-condensed__data">
+          <td class="search-tokens-table-condensed__data">
             <app-link
               :to="`/tokens/${token.contractId}`"
-              class="tokens-table-condensed__link">
+              class="search-tokens-table-condensed__link">
               <token-symbol-icon
                 :contract-id="token.contractId"
-                class="tokens-table-condensed__icon"/>
+                class="search-tokens-table-condensed__icon"/>
               {{ token.symbol }}
             </app-link>
           </td>
         </tr>
-
-        <tr class="tokens-table-condensed__row">
-          <th class="tokens-table-condensed__header">
+        <tr class="search-tokens-table-condensed__row">
+          <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Name
               <template #tooltip>
@@ -35,12 +34,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="tokens-table-condensed__data">
+          <td class="search-tokens-table-condensed__data">
             {{ token.name }}
           </td>
         </tr>
-        <tr class="tokens-table-condensed__row">
-          <th class="tokens-table-condensed__header">
+        <tr class="search-tokens-table-condensed__row">
+          <th class="search-tokens-table-condensed__header">
             <app-tooltip>
               Smart Contract ID
               <template #tooltip>
@@ -48,10 +47,10 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="tokens-table-condensed__data">
+          <td class="search-tokens-table-condensed__data">
             <value-hash-ellipsed
               :link-to="`/contracts/${token.contractId}`"
-              :hash="token.contractId"/>
+              :hash="token.contractId "/>
           </td>
         </tr>
       </tbody>
@@ -59,8 +58,10 @@
   </div>
 </template>
 <script setup>
+
+import AppLink from '@/components/AppLink'
+import AppTooltip from '@/components/AppTooltip'
 import { tokensHints } from '@/utils/hints/tokensHints'
-import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({
   tokens: {
@@ -71,7 +72,7 @@ defineProps({
 </script>
 
 <style scoped>
-.tokens-table-condensed {
+.search-tokens-table-condensed {
   &__table {
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);
@@ -89,15 +90,15 @@ defineProps({
     text-align: right;
   }
 
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
+
   &__icon {
     width: 20px;
     height: 20px;
     margin-right: var(--space-1);
-  }
-
-  &__link {
-    display: inline-flex;
-    align-items: center;
   }
 }
 </style>

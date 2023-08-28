@@ -1,5 +1,5 @@
 <template>
-  <div class="oracles-table-condensed">
+  <div>
     <table
       v-for="oracle in oracles.data"
       :key="oracle.oracleId"

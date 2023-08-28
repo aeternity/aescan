@@ -1,5 +1,5 @@
 <template>
-  <div class="transactions-table-condensed">
+  <div>
     <table
       v-for="transaction in transactions.data"
       :key="transaction.hash"

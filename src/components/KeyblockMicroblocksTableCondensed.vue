@@ -1,5 +1,5 @@
 <template>
-  <div class="keyblock-microblocks-table-condensed">
+  <div>
     <table
       v-for="microblock in microblocks.data"
       :key="microblock.hash"

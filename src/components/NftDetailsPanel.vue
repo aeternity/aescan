@@ -19,7 +19,7 @@
           <th class="nft-details-panel__table-header">
             Collection name
             <hint-tooltip>
-            <!--                          {{ nftsHints.lastExtended }}-->
+              {{ nftsHints.collectionName }}
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
@@ -30,7 +30,7 @@
           <th class="nft-details-panel__table-header">
             Owners
             <hint-tooltip>
-            <!--              {{ nftsHints.lastQueried }}-->
+              {{ nftsHints.owners }}
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
@@ -41,7 +41,7 @@
           <th class="nft-details-panel__table-header">
             Amount
             <hint-tooltip>
-            <!--              {{ nftsHints.expiration }}-->
+              {{ nftsHints.amount }}
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
@@ -53,7 +53,7 @@
           <th class="nft-details-panel__table-header">
             Extensions
             <hint-tooltip>
-            <!--              {{ nftsHints.queryFee }}-->
+              {{ nftsHints.extensions }}
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
@@ -78,7 +78,7 @@
           <th class="nft-details-panel__table-header">
             Token limit
             <hint-tooltip>
-            <!--              {{ nftsHints.queryFormat }}-->
+              {{ nftsHints.tokenLimit }}
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
@@ -91,7 +91,7 @@
           <th class="nft-details-panel__table-header">
             Template limit
             <hint-tooltip>
-            <!--              {{ nftsHints.responseFormat }}-->
+              {{ nftsHints.templateLimit }}
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
@@ -104,7 +104,8 @@
 </template>
 
 <script setup>
-import AppPanel from '~/components/AppPanel'
+import AppPanel from '@/components/AppPanel'
+import { nftsHints } from '@/utils/hints/nftHints'
 
 const props = defineProps({
   nftDetails: {
@@ -169,7 +170,6 @@ const templateLimit = computed(() => {
   }
 
   &__extensions {
-    /*todo fix in tokens*/
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);

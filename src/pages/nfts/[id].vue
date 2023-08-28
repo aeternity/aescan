@@ -7,29 +7,30 @@
     NFT
 
     <template #tooltip>
-      <!--      {{ oraclesHints.oracle }}-->
+      {{ nftsHints.nft }}
     </template>
   </page-header>
 
   <nft-details-panel
     v-if="!isLoading"
-    :nft-details="nft"/>
+    :nft-details="nftDetails"/>
   <loader-panel v-else/>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { nftsHints } from '../../utils/hints/nftHints'
 import PageHeader from '@/components/PageHeader'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import NftDetailsPanel from '~/components/NftDetailsPanel'
 
 const nftDetailsStore = useNftDetailsStore()
-const { nft } = storeToRefs(nftDetailsStore)
-const { fetchNft } = nftDetailsStore
+const { nftDetails } = storeToRefs(nftDetailsStore)
+const { fetchNftDetails } = nftDetailsStore
 const route = useRoute()
 const { isLoading } = useLoading()
 
-const { error } = await useAsyncData(() => fetchNft(route.params.id))
+const { error } = await useAsyncData(() => fetchNftDetails(route.params.id))
 
 if (error.value) {
   throw showError({

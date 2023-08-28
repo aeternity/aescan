@@ -6,17 +6,15 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
-  const nft = ref(null)
+  const nftDetails = ref(null)
 
-  async function fetchNft(contractId) {
-    // todo naming
-    // todo reset
+  async function fetchNftDetails(contractId) {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex141/${contractId}`)
-    nft.value = data
+    nftDetails.value = data
   }
 
   return {
-    nft,
-    fetchNft,
+    nftDetails,
+    fetchNftDetails,
   }
 })

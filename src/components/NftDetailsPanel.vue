@@ -1,6 +1,5 @@
 <template>
   <app-panel class="nft-details-panel">
-    {{ nftDetails }}
     <template #heading>
       DETAILS
     </template>
@@ -58,10 +57,24 @@
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
-            {{ nftDetails.extensions }}
+            <div
+              v-if="!!nftDetails.extensions.length"
+              class="nft-details-panel__extensions">
+              <app-chip
+                v-for="extension in nftDetails.extensions"
+                :key="extension"
+                size="sm">
+                {{ extension }}
+              </app-chip>
+            </div>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
-        <tr class="nft-details-panel__row">
+        <tr
+          v-if="tokenLimit !== null"
+          class="nft-details-panel__row">
           <th class="nft-details-panel__table-header">
             Token limit
             <hint-tooltip>
@@ -69,10 +82,12 @@
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
-            {{ nftDetails.limits }}
+            {{ tokenLimit }}
           </td>
         </tr>
-        <tr class="nft-details-panel__row">
+        <tr
+          v-if="templateLimit !== null"
+          class="nft-details-panel__row">
           <th class="nft-details-panel__table-header">
             Template limit
             <hint-tooltip>
@@ -80,7 +95,7 @@
             </hint-tooltip>
           </th>
           <td class="nft-details-panel__data">
-            ???
+            {{ templateLimit }}
           </td>
         </tr>
       </tbody>
@@ -91,11 +106,39 @@
 <script setup>
 import AppPanel from '~/components/AppPanel'
 
-defineProps({
+const props = defineProps({
   nftDetails: {
     type: Object,
     required: true,
   },
+})
+
+// todo move
+const tokenLimit = computed(() => {
+  const extensions = props.nftDetails.extensions
+  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+    return props.nftDetails.limits.tokenLimit
+  } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
+    return 'Unlimited'
+  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+    return null
+  } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
+    return null
+  }
+})
+
+const templateLimit = computed(() => {
+  const extensions = props.nftDetails.extensions
+
+  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+    return null
+  } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
+    return null
+  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+    return 'Unlimited'
+  } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
+    return props.nftDetails.limits.templateLimit
+  }
 })
 
 </script>
@@ -123,6 +166,14 @@ defineProps({
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__extensions {
+    /*todo fix in tokens*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    justify-content: flex-end;
   }
 
   &__chip,

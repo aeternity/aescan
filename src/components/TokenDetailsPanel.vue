@@ -103,8 +103,7 @@
               <app-chip
                 v-for="extension in tokenDetails.extensions"
                 :key="extension"
-                size="sm"
-                class="token-details-panel__chip">
+                size="sm">
                 {{ extension }}
               </app-chip>
             </div>
@@ -223,7 +222,7 @@ const marketCap = computed(() =>
   &__extensions {
     display: flex;
     flex-wrap: wrap;
-    row-gap: var(--space-1);
+    gap: var(--space-1);
     justify-content: flex-end;
   }
 
@@ -234,11 +233,6 @@ const marketCap = computed(() =>
       width: 24px;
       height: 24px;
     }
-  }
-
-  &__chip {
-    margin-left: var(--space-1);
-    display: inline-flex;
   }
 
   &__hash {

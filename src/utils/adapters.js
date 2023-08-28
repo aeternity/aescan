@@ -402,7 +402,7 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
   const formattedData = tokenHolders.data.map(holder => ({
     address: holder.accountId,
     amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
-    percentage: ((new BigNumber(holder.amount))
+    percentage: (new BigNumber(holder.amount)
       .dividedBy(10 ** (tokenDetails.decimals - 2)))
       .dividedBy(tokenDetails.totalSupply).toNumber(),
   }))

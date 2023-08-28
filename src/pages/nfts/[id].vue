@@ -13,6 +13,11 @@
     <nft-details-panel
       v-if="nftDetails"
       :nft-details="nftDetails"/>
+    <app-tabs>
+      <app-tab title="Transfers">
+        <nft-transfers-panel/>
+      </app-tab>
+    </app-tabs>
   </template>
   <loader-panel v-else/>
 </template>

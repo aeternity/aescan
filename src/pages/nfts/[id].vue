@@ -9,9 +9,11 @@
       {{ nftsHints.nft }}
     </template>
   </page-header>
-  <nft-details-panel
-    v-if="isNftDetailsLoaded"
-    :nft-details="nftDetails"/>
+  <template v-if="!isLoading">
+    <nft-details-panel
+      v-if="nftDetails"
+      :nft-details="nftDetails"/>
+  </template>
   <loader-panel v-else/>
 </template>
 
@@ -28,9 +30,6 @@ const { fetchNftDetails } = nftDetailsStore
 const route = useRoute()
 
 const { isLoading } = useLoading()
-const isNftDetailsLoaded = computed(() => {
-  return !isLoading.value && nftDetails.value
-})
 
 try {
   await fetchNftDetails(route.params.id)

@@ -556,6 +556,38 @@ export function adaptStateChannels(channels, blockHeight) {
   }
 }
 
+export function adaptNftDetails(nft) {
+  function getTokenLimit(extensions, tokenLimit) {
+    if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+      return tokenLimit
+    } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
+      return 'Unlimited'
+    } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+      return null
+    } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
+      return null
+    }
+  }
+
+  function getTemplateLimit(extensions, templateLimit) {
+    if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+      return null
+    } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
+      return null
+    } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+      return 'Unlimited'
+    } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
+      return templateLimit
+    }
+  }
+
+  return {
+    ...nft,
+    tokenLimit: getTokenLimit(nft.extensions, nft.limits.tokenLimit),
+    templateLimit: getTemplateLimit(nft.extensions, nft.limits.templateLimit),
+  }
+}
+
 export function adaptNamesResults(names) {
   const formattedData = names.data
     .map(name => {

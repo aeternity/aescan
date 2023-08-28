@@ -5,14 +5,12 @@
 
   <page-header>
     NFT
-
     <template #tooltip>
       {{ nftsHints.nft }}
     </template>
   </page-header>
-
   <nft-details-panel
-    v-if="!isLoading"
+    v-if="isNftDetailsLoaded"
     :nft-details="nftDetails"/>
   <loader-panel v-else/>
 </template>
@@ -30,15 +28,21 @@ const { fetchNftDetails } = nftDetailsStore
 const route = useRoute()
 
 const { isLoading } = useLoading()
-const { error } = await useAsyncData(() => fetchNftDetails(route.params.id))
+const isNftDetailsLoaded = computed(() => {
+  return !isLoading.value && nftDetails.value
+})
 
-if (error.value) {
-  throw showError({
-    data: {
-      entityId: route.params.id,
-      entityName: 'NFT',
-    },
-    statusMessage: 'EntityDetailsNotFound',
-  })
+try {
+  await fetchNftDetails(route.params.id)
+} catch (error) {
+  if ([400, 404].includes(error.response?.status)) {
+    throw showError({
+      data: {
+        entityId: route.params.id,
+        entityName: 'NFT',
+      },
+      statusMessage: 'EntityDetailsNotFound',
+    })
+  }
 }
 </script>

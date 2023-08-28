@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
 import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNameStatus } from '@/utils/format'
+import { BigNumber } from 'bignumber.js'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(name) {
@@ -400,8 +401,10 @@ export function adaptTokenEvents(events, blockHeight) {
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
   const formattedData = tokenHolders.data.map(holder => ({
     address: holder.accountId,
-    amount: holder.amount / (10 ** tokenDetails.decimals),
-    percentage: (holder.amount / (10 ** (tokenDetails.decimals - 2))) / tokenDetails.totalSupply,
+    amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
+    percentage: (new BigNumber(holder.amount)
+      .dividedBy(10 ** (tokenDetails.decimals - 2)))
+      .dividedBy(tokenDetails.totalSupply).toNumber(),
   }))
 
   return {

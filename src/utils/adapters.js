@@ -2,13 +2,15 @@ import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
 import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNameStatus } from '@/utils/format'
+import {
+  formatAettosToAe,
+  formatBlockDiffAsDatetime,
+  formatDecodeBase64,
+  formatIsAuction,
+  formatTemplateLimit,
+  formatTokenLimit,
+} from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
-
-function isAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
-}
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
@@ -106,7 +108,7 @@ export function adaptNames(names, blockHeight) {
         name.info.activeFrom,
         blockHeight,
       ),
-      isAuction: isAuction(name.name),
+      isAuction: formatIsAuction(name.name),
       price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
     }
   })
@@ -570,33 +572,9 @@ export function adaptNamesResults(names) {
 }
 
 export function adaptNftDetails(nft) {
-  function getTokenLimit(extensions, tokenLimit) {
-    if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
-      return tokenLimit
-    } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
-      return 'Unlimited'
-    } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
-      return null
-    } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
-      return null
-    }
-  }
-
-  function getTemplateLimit(extensions, templateLimit) {
-    if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
-      return null
-    } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
-      return null
-    } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
-      return 'Unlimited'
-    } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
-      return templateLimit
-    }
-  }
-
   return {
     ...nft,
-    tokenLimit: getTokenLimit(nft.extensions, nft.limits.tokenLimit),
-    templateLimit: getTemplateLimit(nft.extensions, nft.limits.templateLimit),
+    tokenLimit: formatTokenLimit(nft.extensions, nft.limits.tokenLimit),
+    templateLimit: formatTemplateLimit(nft.extensions, nft.limits.templateLimit),
   }
 }

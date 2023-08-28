@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNameStatus } from '@/utils/format'
 import { BigNumber } from 'bignumber.js'
+import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNameStatus } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(name) {

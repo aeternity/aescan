@@ -1,7 +1,7 @@
 <template>
-  <div class="state-channel-transactions-table-condensed">
+  <div>
     <table
-      v-for="transaction in transactions?.data"
+      v-for="transaction in transactions.data"
       :key="transaction.hash"
       class="state-channel-transactions-table-condensed__table">
       <tbody>

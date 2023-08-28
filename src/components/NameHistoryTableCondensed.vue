@@ -1,7 +1,7 @@
 <template>
-  <div class="name-history-table-condensed">
+  <div>
     <table
-      v-for="action of actions?.data"
+      v-for="action of actions.data"
       :key="action.hash"
       class="name-history-table-condensed__table">
       <tbody>

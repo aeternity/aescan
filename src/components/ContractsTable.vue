@@ -1,5 +1,5 @@
 <template>
-  <table class="contracts-table__table">
+  <table class="contracts-table">
     <thead>
       <tr>
         <th>
@@ -76,9 +76,7 @@ defineProps({
 
 <style scoped>
 .contracts-table {
-  &__table {
-    margin-bottom: var(--space-4);
-  }
+  margin-bottom: var(--space-4);
 
   &__data {
     vertical-align: top;

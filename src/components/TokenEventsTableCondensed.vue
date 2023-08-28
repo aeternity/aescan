@@ -1,5 +1,5 @@
 <template>
-  <div class="token-events-table-condensed">
+  <div>
     <table
       v-for="event in tokenEvents.data"
       :key="event.hash"

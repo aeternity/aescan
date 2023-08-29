@@ -9,9 +9,12 @@ export const useNftsStore = defineStore('nfts', () => {
   const nfts = ref(null)
   const nftsCount = ref(null)
 
-  async function fetchNfts(queryParameters = null) {
+  async function fetchNfts({ queryParameters, limit } = {}) {
     nfts.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/aex141?limit=10'}`)
+    const defaultParameters = `/v2/aex141?limit=${limit || 10}`
+    const { data } = await axios.get(
+      `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
+    )
     nfts.value = data
   }
 

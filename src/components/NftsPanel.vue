@@ -33,15 +33,19 @@ const {
 } = storeToRefs(nftsStore)
 const { fetchNfts, fetchNftsCount } = nftsStore
 
-await fetchNftsCount()
-await fetchNfts()
-
 async function loadPrevNfts() {
-  await fetchNfts(nfts.value.prev)
+  await fetchNfts({ queryParameters: nfts.value.prev })
 }
 
 async function loadNextNfts() {
-  await fetchNfts(nfts.value.next)
+  await fetchNfts({ queryParameters: nfts.value.next })
+}
+
+if (process.client) {
+  await fetchNfts({
+    limit: limit.value,
+  })
+  await fetchNftsCount()
 }
 
 </script>

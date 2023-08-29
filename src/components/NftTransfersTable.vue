@@ -5,31 +5,31 @@
         <th>
           Hash
           <hint-tooltip>
-          <!--            {{ contractsHints.contractId }}-->
+            {{ nftsHints.contractId }}
           </hint-tooltip>
         </th>
         <th>
           Time
           <hint-tooltip>
-          <!--            {{ contractsHints.created }}-->
+            {{ nftsHints.transferTime }}
           </hint-tooltip>
         </th>
         <th>
           Token ID
           <hint-tooltip>
-          <!--            {{ contractsHints.hash }}-->
+            {{ nftsHints.transferTokenId }}
           </hint-tooltip>
         </th>
         <th>
           Recipient
           <hint-tooltip>
-          <!--            {{ contractsHints.creator }}-->
+            {{ nftsHints.transferRecipient }}
           </hint-tooltip>
         </th>
         <th>
           Sender
           <hint-tooltip>
-          <!--            {{ contractsHints.creator }}-->
+            {{ nftsHints.transferSender }}
           </hint-tooltip>
         </th>
       </tr>
@@ -37,8 +37,8 @@
     <tbody>
       <tr
         v-for="transfer in nftTransfers.data"
-        :key="transfer.contractId">
-        <td class="nft-transfers-table__data">
+        :key="transfer.txHash">
+        <td>
           <value-hash-ellipsed
             :link-to="`/transactions/${transfer.txHash}`"
             :hash="transfer.txHash"/>
@@ -46,14 +46,14 @@
         <td class="nft-transfers-table__data">
           <div>
             <app-link
-              :to="`/keyblocks/${transfer.blockHeight}`">
-              {{ transfer.blockHeight }}
+              :to="`/keyblocks/${transfer.height}`">
+              {{ transfer.height }}
             </app-link>
           </div>
-        <!--          <datetime-label :datetime="nftTransfers.created"/>-->
+          <datetime-label :datetime="transfer.time"/>
         </td>
         <td class="nft-transfers-table__data">
-          {{ transfer.tokenID }}
+          {{ transfer.tokenId }}
         </td>
         <td class="nft-transfers-table__data">
           <value-hash-ellipsed
@@ -70,8 +70,8 @@
   </table>
 </template>
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import HintTooltip from '@/components/HintTooltip'
+
+import { nftsHints } from '../utils/hints/nftHints'
 
 defineProps({
   nftTransfers: {

@@ -32,20 +32,18 @@ const nftDetailsStore = useNftDetailsStore()
 const { nftTransfers } = storeToRefs(nftDetailsStore)
 const { fetchNftTransfers } = nftDetailsStore
 
-function loadPrevNftTransfers() {
-  fetchNftTransfers({ queryParameters: nftTransfers.value.prev })
+async function loadPrevNftTransfers() {
+  await fetchNftTransfers({ queryParameters: nftTransfers.value.prev })
 }
 
-function loadNextNftTransfers() {
-  fetchNftTransfers({ queryParameters: nftTransfers.value.next })
+async function loadNextNftTransfers() {
+  await fetchNftTransfers({ queryParameters: nftTransfers.value.next })
 }
 
-if (process.client) {
-  fetchNftTransfers({
-    limit: limit.value,
-    contractId: route.params.id,
-  })
-}
+await fetchNftTransfers({
+  limit: limit.value,
+  contractId: route.params.id,
+})
 </script>
 
 <style scoped>

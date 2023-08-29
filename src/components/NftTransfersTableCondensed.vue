@@ -4,88 +4,91 @@
       v-for="transfer in nftTransfers.data"
       :key="transfer.hash"
       class="contract-call-transactions-table-condensed__table">
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Hash
-            <template #tooltip>
-              <!--              {{ contractsHints.callTransactionsHash }}-->
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <value-hash-ellipsed
-            :link-to="`/transactions/${transfer.txHash}`"
-            :hash="transfer.txHash"/>
-        </td>
-      </tr>
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Time
-            <template #tooltip>
-              <!--              {{ contractsHints.callTransactionsTime }}-->
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${transfer.blockHeight}`">
-              {{ transfer.blockHeight }}
-            </app-link>
-          </div>
-          <!--          <datetime-label :datetime="nftTransfers.created"/>-->
-        </td>
-      </tr>
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Token ID
-            <template #tooltip>
-              <!--              {{ contractsHints.callTransactionsCaller }}-->
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          {{ transfer.tokenID }}
-        </td>
-      </tr>
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Recipient
-            <template #tooltip>
-              <!--              {{ contractsHints.callTransactionsCaller }}-->
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <value-hash-ellipsed
-            :link-to="`/accounts/${transfer.recipient}`"
-            :hash="transfer.recipient"/>
-        </td>
-      </tr>
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Sender
-            <template #tooltip>
-              <!--              {{ contractsHints.callTransactionsCaller }}-->
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <value-hash-ellipsed
-            :link-to="`/accounts/${transfer.sender}`"
-            :hash="transfer.sender"/>
-        </td>
-      </tr>
+      <tbody>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <app-tooltip>
+              Hash
+              <template #tooltip>
+                {{ nftsHints.transferHash }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <value-hash-ellipsed
+              :link-to="`/transactions/${transfer.txHash}`"
+              :hash="transfer.txHash"/>
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <app-tooltip>
+              Time
+              <template #tooltip>
+                {{ nftsHints.transferTime }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <div>
+              <app-link
+                :to="`/keyblocks/${transfer.height}`">
+                {{ transfer.height }}
+              </app-link>
+            </div>
+            <datetime-label :datetime="transfer.time"/>
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <app-tooltip>
+              Token ID
+              <template #tooltip>
+                {{ nftsHints.transferTokenId }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            {{ transfer.tokenId }}
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <app-tooltip>
+              Recipient
+              <template #tooltip>
+                {{ nftsHints.transferRecipient }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <value-hash-ellipsed
+              :link-to="`/accounts/${transfer.recipient}`"
+              :hash="transfer.recipient"/>
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <app-tooltip>
+              Sender
+              <template #tooltip>
+                {{ nftsHints.transferSender }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <value-hash-ellipsed
+              :link-to="`/accounts/${transfer.sender}`"
+              :hash="transfer.sender"/>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
 
 <script setup>
+import { nftsHints } from '../utils/hints/nftHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <app-chip :class="['response-button', {'response-button--activated': !isCollapsed}]">
-      Response available
+    <app-chip :class="['expand-button', {'expand-button--activated': !isCollapsed}]">
+      <slot/>
       <app-icon
-        class="response-button__icon"
+        class="expand-button__icon"
         :name="isCollapsed ? 'plus-circle' : 'minus-circle' "/>
     </app-chip>
   </div>
@@ -19,17 +19,18 @@ defineProps({
 </script>
 
 <style scoped>
-.response-button {
+.expand-button {
   cursor: pointer;
-  color: var(--color-midnight);
+  color: var(--color-white);
+  background-color: var(--color-midnight-55);
 
   &__icon {
     margin-left: var(--space-1);
   }
 
   &--activated {
-    color: var(--color-white);
-    background-color: var(--color-midnight-55);
+    color: var(--color-midnight);
+    background-color: var(--color-snow);
   }
 }
 </style>

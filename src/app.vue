@@ -63,7 +63,7 @@
     </Head>
   </Html>
 
-  <NuxtErrorBoundary>
+  <NuxtErrorBoundary @error="logError">
     <the-header/>
     <NuxtLayout>
       <NuxtPage/>
@@ -96,6 +96,10 @@ if (import.meta.env.MODE !== 'production') {
   useHead({
     meta: [{ name: 'robots', content: 'noindex' }],
   })
+}
+
+function logError(error) {
+  console.error(error)
 }
 </script>
 

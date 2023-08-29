@@ -33,9 +33,11 @@
               :link-to="`/transactions/${event.queryTx}`"/>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
-            <response-button
+            <expand-button
               :is-collapsed="!isOpened.includes(index)"
-              @click="toggle(index)"/>
+              @click="toggle(index)">
+              Response available
+            </expand-button>
           </td>
 
           <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">

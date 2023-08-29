@@ -45,7 +45,9 @@ export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
     }
   })
   return {
-    next: keyblockMicroblocks.next, data: formattedData, prev: keyblockMicroblocks.prev,
+    next: keyblockMicroblocks.next,
+    data: formattedData,
+    prev: keyblockMicroblocks.prev,
   }
 }
 
@@ -65,7 +67,9 @@ export function adaptSelectedMicroblockTransactions(transactions) {
     }
   })
   return {
-    next: transactions.next, data: formattedData, prev: transactions.prev,
+    next: transactions.next,
+    data: formattedData,
+    prev: transactions.prev,
   }
 }
 
@@ -81,7 +85,9 @@ export function adaptTransactions(transactions) {
     }
   })
   return {
-    next: transactions.next, data: formattedData, prev: transactions.prev,
+    next: transactions.next,
+    data: formattedData,
+    prev: transactions.prev,
   }
 }
 
@@ -96,7 +102,9 @@ export function adaptContracts(contracts) {
     }
   })
   return {
-    next: contracts.next, data: formattedData, prev: contracts.prev,
+    next: contracts.next,
+    data: formattedData,
+    prev: contracts.prev,
   }
 }
 
@@ -138,7 +146,9 @@ export function adaptAccountNames(names) {
     }
   })
   return {
-    next: names.next, data: formattedData, prev: names.prev,
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
   }
 }
 
@@ -158,7 +168,9 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
     }
   })
   return {
-    next: tokens.next, data: formattedData, prev: tokens.prev,
+    next: tokens.next,
+    data: formattedData,
+    prev: tokens.prev,
   }
 }
 
@@ -187,7 +199,9 @@ export function adaptActiveNames(names) {
     pointers: Object.values(name.info.pointers),
   }))
   return {
-    next: names.next, data: formattedData, prev: names.prev,
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
   }
 }
 
@@ -201,7 +215,9 @@ export function adaptInAuctionNames(names, blockHeight) {
     expiration: formatBlockDiffAsDatetime(name.info.auctionEnd, blockHeight),
   }))
   return {
-    next: names.next, data: formattedData, prev: names.prev,
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
   }
 }
 
@@ -215,7 +231,9 @@ export function adaptExpiredNames(names) {
     lastOwner: name.info.ownership.current,
   }))
   return {
-    next: names.next, data: formattedData, prev: names.prev,
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
   }
 }
 
@@ -272,12 +290,16 @@ export function adaptNameActions(actions, blockHeight) {
       type: action.type,
       hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
       createdHeight: action.payload.blockHeight || action.height,
-      created: action.payload?.microTime ? DateTime.fromMillis(action.payload.microTime) : formatBlockDiffAsDatetime(action.payload.blockHeight || action.height, blockHeight),
+      created: action.payload?.microTime
+        ? DateTime.fromMillis(action.payload.microTime)
+        : formatBlockDiffAsDatetime(action.payload.blockHeight || action.height, blockHeight),
     }
   })
 
   return {
-    next: actions.next, data: formattedData, prev: actions.prev,
+    next: actions.next,
+    data: formattedData,
+    prev: actions.prev,
   }
 }
 
@@ -299,7 +321,12 @@ export function adaptTransactionDetails(transactionDetails, blockHeight) {
   }
 }
 
-export function adaptContractDetails(rawContractInformation, contractCallsCount, contractCreationTx, contractType, contractAccountBalance) {
+export function adaptContractDetails(
+  rawContractInformation,
+  contractCallsCount,
+  contractCreationTx,
+  contractType,
+  contractAccountBalance) {
   return {
     id: rawContractInformation?.id,
     createTransactionHash: contractCreationTx?.hash,
@@ -327,7 +354,9 @@ export function adaptContractEvents(events, blockHeight) {
     })
 
   return {
-    next: events.next, data: formattedData, prev: events.prev,
+    next: events.next,
+    data: formattedData,
+    prev: events.prev,
   }
 }
 
@@ -360,7 +389,9 @@ export function adaptTokenEvents(events, blockHeight) {
     })
 
   return {
-    next: events.next, data: formattedData, prev: events.prev,
+    next: events.next,
+    data: formattedData,
+    prev: events.prev,
   }
 }
 
@@ -374,7 +405,9 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
   }))
 
   return {
-    next: tokenHolders.next, data: formattedData, prev: tokenHolders.prev,
+    next: tokenHolders.next,
+    data: formattedData,
+    prev: tokenHolders.prev,
   }
 }
 
@@ -399,7 +432,9 @@ export function adaptListedTokens(tokens) {
   }
 
   return {
-    next: null, data: formattedData, prev: null,
+    next: null,
+    data: formattedData,
+    prev: null,
   }
 }
 
@@ -416,7 +451,9 @@ export function adaptOracles(oracles, blockHeight) {
   })
 
   return {
-    next: oracles.next, data: formattedData, prev: oracles.prev,
+    next: oracles.next,
+    data: formattedData,
+    prev: oracles.prev,
   }
 }
 
@@ -453,7 +490,9 @@ export function adaptOracleEvents(events) {
   })
 
   return {
-    next: events?.next, data: formattedData, prev: events?.prev,
+    next: events?.next,
+    data: formattedData,
+    prev: events?.prev,
   }
 }
 
@@ -469,7 +508,9 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
     lastKnownRound: stateChannel.round,
     aeLocked: formatAettosToAe(stateChannel.amount),
     lastUpdatedHeight: stateChannel.lastUpdatedHeight,
-    lastUpdated: stateChannel.lastUpdatedHeight ? formatBlockDiffAsDatetime(stateChannel.lastUpdatedHeight, blockHeight) : null,
+    lastUpdated: stateChannel.lastUpdatedHeight
+      ? formatBlockDiffAsDatetime(stateChannel.lastUpdatedHeight, blockHeight)
+      : null,
     lastTxType: stateChannel.lastUpdatedTxType,
   }
 }
@@ -490,7 +531,9 @@ export function adaptStateChannels(channels, blockHeight) {
       }
     })
   return {
-    next: channels.next, data: formattedData, prev: channels.prev,
+    next: channels.next,
+    data: formattedData,
+    prev: channels.prev,
   }
 }
 
@@ -511,7 +554,9 @@ export function adaptNamesResults(names) {
     })
 
   return {
-    next: names.next, data: formattedData, prev: names.prev,
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
   }
 }
 
@@ -527,9 +572,10 @@ export function adaptNftTransfers(transfers) {
         sender: transfer.sender,
       }
     })
-  console.log('formattedData', formattedData)
   return {
-    next: transfers.next, data: formattedData, prev: transfers.prev,
+    next: transfers.next,
+    data: formattedData,
+    prev: transfers.prev,
   }
 }
 

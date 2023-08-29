@@ -1,10 +1,12 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
+import { BigNumber } from 'bignumber.js'
 import {
   formatAettosToAe,
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatNameStatus,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
@@ -43,16 +45,13 @@ export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
     }
   })
   return {
-    next: keyblockMicroblocks.next,
-    data: formattedData,
-    prev: keyblockMicroblocks.prev,
+    next: keyblockMicroblocks.next, data: formattedData, prev: keyblockMicroblocks.prev,
   }
 }
 
 export function adaptMicroblock(microblock) {
   return {
-    ...microblock,
-    time: DateTime.fromMillis(microblock.time),
+    ...microblock, time: DateTime.fromMillis(microblock.time),
   }
 }
 
@@ -66,9 +65,7 @@ export function adaptSelectedMicroblockTransactions(transactions) {
     }
   })
   return {
-    next: transactions.next,
-    data: formattedData,
-    prev: transactions.prev,
+    next: transactions.next, data: formattedData, prev: transactions.prev,
   }
 }
 
@@ -84,9 +81,7 @@ export function adaptTransactions(transactions) {
     }
   })
   return {
-    next: transactions.next,
-    data: formattedData,
-    prev: transactions.prev,
+    next: transactions.next, data: formattedData, prev: transactions.prev,
   }
 }
 
@@ -101,9 +96,7 @@ export function adaptContracts(contracts) {
     }
   })
   return {
-    next: contracts.next,
-    data: formattedData,
-    prev: contracts.prev,
+    next: contracts.next, data: formattedData, prev: contracts.prev,
   }
 }
 
@@ -113,10 +106,7 @@ export function adaptNames(names, blockHeight) {
       name: name.name,
       address: name.info.ownership.current,
       activatedHeight: name.info.activeFrom,
-      activated: formatBlockDiffAsDatetime(
-        name.info.activeFrom,
-        blockHeight,
-      ),
+      activated: formatBlockDiffAsDatetime(name.info.activeFrom, blockHeight),
       isAuction: formatIsAuction(name.name),
       price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
     }
@@ -132,10 +122,7 @@ export function adaptDashboardStateChannels(stateChannels, blockHeight) {
       updateCount: channel.updatesCount,
       amount: formatAettosToAe(channel.amount),
       updatedHeight: channel.lastUpdatedHeight,
-      updated: formatBlockDiffAsDatetime(
-        channel.lastUpdatedHeight,
-        blockHeight,
-      ),
+      updated: formatBlockDiffAsDatetime(channel.lastUpdatedHeight, blockHeight),
       updateType: channel.lastUpdatedTxType,
     }
   })
@@ -151,9 +138,7 @@ export function adaptAccountNames(names) {
     }
   })
   return {
-    next: names.next,
-    data: formattedData,
-    prev: names.prev,
+    next: names.next, data: formattedData, prev: names.prev,
   }
 }
 
@@ -173,16 +158,12 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
     }
   })
   return {
-    next: tokens.next,
-    data: formattedData,
-    prev: tokens.prev,
+    next: tokens.next, data: formattedData, prev: tokens.prev,
   }
 }
 
 export function adaptDeltaStats(deltaStats, keyblockHeight) {
-  const selectedDeltaStats = deltaStats.find(
-    stat => stat.height === keyblockHeight,
-  )
+  const selectedDeltaStats = deltaStats.find(stat => stat.height === keyblockHeight)
 
   if (!selectedDeltaStats) {
     return null
@@ -206,9 +187,7 @@ export function adaptActiveNames(names) {
     pointers: Object.values(name.info.pointers),
   }))
   return {
-    next: names.next,
-    data: formattedData,
-    prev: names.prev,
+    next: names.next, data: formattedData, prev: names.prev,
   }
 }
 
@@ -222,9 +201,7 @@ export function adaptInAuctionNames(names, blockHeight) {
     expiration: formatBlockDiffAsDatetime(name.info.auctionEnd, blockHeight),
   }))
   return {
-    next: names.next,
-    data: formattedData,
-    prev: names.prev,
+    next: names.next, data: formattedData, prev: names.prev,
   }
 }
 
@@ -238,9 +215,7 @@ export function adaptExpiredNames(names) {
     lastOwner: name.info.ownership.current,
   }))
   return {
-    next: names.next,
-    data: formattedData,
-    prev: names.prev,
+    next: names.next, data: formattedData, prev: names.prev,
   }
 }
 
@@ -254,8 +229,7 @@ export function adaptCustomPointers(allPointers) {
 
   return Object.entries(customPointers).map(pointer => {
     return {
-      key: formatDecodeBase64(pointer[0]),
-      pointer: pointer[1],
+      key: formatDecodeBase64(pointer[0]), pointer: pointer[1],
     }
   })
 }
@@ -271,10 +245,7 @@ export function adaptName(name, blockHeight, blockTime) {
     bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
     status: name.status,
     expirationHeight: name.info.expireHeight ?? name.info.auctionEnd,
-    expiration: formatBlockDiffAsDatetime(
-      name.info.expireHeight ?? name.info.auctionEnd,
-      blockHeight,
-    ),
+    expiration: formatBlockDiffAsDatetime(name.info.expireHeight ?? name.info.auctionEnd, blockHeight),
     specialPointers: {
       account: name.info?.pointers?.accountPubkey,
       channel: name.info?.pointers?.channel,
@@ -301,19 +272,12 @@ export function adaptNameActions(actions, blockHeight) {
       type: action.type,
       hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
       createdHeight: action.payload.blockHeight || action.height,
-      created: action.payload?.microTime
-        ? DateTime.fromMillis(action.payload.microTime)
-        : formatBlockDiffAsDatetime(
-          action.payload.blockHeight || action.height,
-          blockHeight,
-        ),
+      created: action.payload?.microTime ? DateTime.fromMillis(action.payload.microTime) : formatBlockDiffAsDatetime(action.payload.blockHeight || action.height, blockHeight),
     }
   })
 
   return {
-    next: actions.next,
-    data: formattedData,
-    prev: actions.prev,
+    next: actions.next, data: formattedData, prev: actions.prev,
   }
 }
 
@@ -335,13 +299,7 @@ export function adaptTransactionDetails(transactionDetails, blockHeight) {
   }
 }
 
-export function adaptContractDetails(
-  rawContractInformation,
-  contractCallsCount,
-  contractCreationTx,
-  contractType,
-  contractAccountBalance,
-) {
+export function adaptContractDetails(rawContractInformation, contractCallsCount, contractCreationTx, contractType, contractAccountBalance) {
   return {
     id: rawContractInformation?.id,
     createTransactionHash: contractCreationTx?.hash,
@@ -369,16 +327,13 @@ export function adaptContractEvents(events, blockHeight) {
     })
 
   return {
-    next: events.next,
-    data: formattedData,
-    prev: events.prev,
+    next: events.next, data: formattedData, prev: events.prev,
   }
 }
 
 export function adaptTokenDetails(token, totalSupply = null, price = null) {
   const tokenDetails = {
-    ...token,
-    ...(price && { price }),
+    ...token, ...(price && { price }),
   }
 
   if (token && totalSupply) {
@@ -405,9 +360,7 @@ export function adaptTokenEvents(events, blockHeight) {
     })
 
   return {
-    next: events.next,
-    data: formattedData,
-    prev: events.prev,
+    next: events.next, data: formattedData, prev: events.prev,
   }
 }
 
@@ -421,9 +374,7 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
   }))
 
   return {
-    next: tokenHolders.next,
-    data: formattedData,
-    prev: tokenHolders.prev,
+    next: tokenHolders.next, data: formattedData, prev: tokenHolders.prev,
   }
 }
 
@@ -443,17 +394,12 @@ export function adaptListedTokens(tokens) {
 
   if (isMainnet && !formattedData.some(token => token.contractId === LAEX_CONTRACT_ID)) {
     formattedData.unshift({
-      contractId: LAEX_CONTRACT_ID,
-      name: 'LÆXON',
-      symbol: 'LAEX',
-      isAe: false,
+      contractId: LAEX_CONTRACT_ID, name: 'LÆXON', symbol: 'LAEX', isAe: false,
     })
   }
 
   return {
-    next: null,
-    data: formattedData,
-    prev: null,
+    next: null, data: formattedData, prev: null,
   }
 }
 
@@ -470,9 +416,7 @@ export function adaptOracles(oracles, blockHeight) {
   })
 
   return {
-    next: oracles.next,
-    data: formattedData,
-    prev: oracles.prev,
+    next: oracles.next, data: formattedData, prev: oracles.prev,
   }
 }
 
@@ -482,12 +426,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
     fee: formatAettosToAe(oracle.queryFee),
     expiration: DateTime.fromMillis(oracle.approximateExpireTime),
     expirationHeight: oracle.expireHeight,
-    registered: oracle.activeFrom
-      ? formatBlockDiffAsDatetime(
-        oracle.activeFrom,
-        blockHeight,
-      )
-      : null,
+    registered: oracle.activeFrom ? formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight) : null,
     registeredHeight: oracle.activeFrom,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
@@ -514,9 +453,7 @@ export function adaptOracleEvents(events) {
   })
 
   return {
-    next: events?.next,
-    data: formattedData,
-    prev: events?.prev,
+    next: events?.next, data: formattedData, prev: events?.prev,
   }
 }
 
@@ -532,12 +469,7 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
     lastKnownRound: stateChannel.round,
     aeLocked: formatAettosToAe(stateChannel.amount),
     lastUpdatedHeight: stateChannel.lastUpdatedHeight,
-    lastUpdated: stateChannel.lastUpdatedHeight
-      ? formatBlockDiffAsDatetime(
-        stateChannel.lastUpdatedHeight,
-        blockHeight,
-      )
-      : null,
+    lastUpdated: stateChannel.lastUpdatedHeight ? formatBlockDiffAsDatetime(stateChannel.lastUpdatedHeight, blockHeight) : null,
     lastTxType: stateChannel.lastUpdatedTxType,
   }
 }
@@ -558,17 +490,15 @@ export function adaptStateChannels(channels, blockHeight) {
       }
     })
   return {
-    next: channels.next,
-    data: formattedData,
-    prev: channels.prev,
+    next: channels.next, data: formattedData, prev: channels.prev,
   }
 }
 
 export function adaptNftDetails(nft) {
   return {
     ...nft,
-    tokenLimit: formatTokenLimit(nft.extensions, nft.limits.tokenLimit),
-    templateLimit: formatTemplateLimit(nft.extensions, nft.limits.templateLimit),
+    tokenLimit: formatTokenLimit(nft.extensions, nft.limits?.tokenLimit),
+    templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
   }
 }
 
@@ -576,15 +506,12 @@ export function adaptNamesResults(names) {
   const formattedData = names.data
     .map(name => {
       return {
-        name: name.payload.name,
-        status: formatNameStatus(name),
+        name: name.payload.name, status: formatNameStatus(name),
       }
     })
 
   return {
-    next: names.next,
-    data: formattedData,
-    prev: names.prev,
+    next: names.next, data: formattedData, prev: names.prev,
   }
 }
 

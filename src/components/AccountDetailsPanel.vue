@@ -131,7 +131,7 @@ const accountNodeUrl = computed(() =>
 )
 const sanitizedPrice = computed(() =>
   price.value
-    ? `$${formatNullable(formatNumber(props.accountDetails.balance * price.value, 0, 2))}`
+    ? `$${formatNullable(formatNumber(props.accountDetails.balance * price.value, 2, 2))}`
     : '---',
 )
 </script>

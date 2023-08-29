@@ -9,13 +9,24 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-export function formatNumber(number, minimumFractionDigits = 0, maximumSignificantDigits = 4) {
+export function formatNumber(
+  number,
+  minimumFractionDigits = 0,
+  maximumFractionDigits = 5,
+  maximumSignificantDigits = null) {
   if (isNaN(number) || number === null) {
     return number
   }
+
+  if (maximumSignificantDigits !== null) {
+    return Intl.NumberFormat('en-US', {
+      maximumSignificantDigits,
+    }).format(number)
+  }
+
   return Intl.NumberFormat('en-US', {
     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
-    maximumSignificantDigits,
+    maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
   }).format(number)
 }
 
@@ -40,7 +51,7 @@ export function formatAePrice(price, maxDigits = 8) {
   decimals = decimals?.replace(/0+$/, '')
 
   if (!decimals) {
-    return integers === '0' && decimals !== '' ? `~${integers} AE` : `${formatNumber(integers)} AE`
+    return integers === '0' ? `~${integers} AE` : `${formatNumber(integers)} AE`
   }
 
   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} AE`

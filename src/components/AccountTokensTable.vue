@@ -52,10 +52,10 @@
             :hash="token.contractId "/>
         </td>
         <td>
-          {{ token.amount }}
+          {{ formatNumber(token.amount) }}
         </td>
         <td>
-          {{ token.value !== null ? `$${formatNumber(token.value)}` : 'N/A' }}
+          {{ token.value !== null ? `$${formatNumber(token.value,null,null, 7)}` : 'N/A' }}
         </td>
       </tr>
     </tbody>

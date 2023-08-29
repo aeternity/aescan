@@ -18,6 +18,9 @@
       <app-tab title="Transfers">
         <nft-transfers-panel/>
       </app-tab>
+      <app-tab title="Inventory">
+        <nft-inventory-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -29,6 +32,7 @@ import { nftsHints } from '@/utils/hints/nftHints'
 import PageHeader from '@/components/PageHeader'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import NftDetailsPanel from '@/components/NftDetailsPanel'
+import NftInventoryPanel from '~/components/NftInventoryPanel'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftDetails } = storeToRefs(nftDetailsStore)

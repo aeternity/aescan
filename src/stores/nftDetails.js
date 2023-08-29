@@ -9,6 +9,7 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
 
   const rawNftDetails = ref(null)
   const rawNftTransfers = ref(null)
+  const nftInventory = ref(null)
 
   const nftDetails = computed(() => {
     return rawNftDetails.value
@@ -34,10 +35,19 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     rawNftTransfers.value = data
   }
 
+  async function fetchNftInventory({ queryParameters, limit, contractId } = {}) {
+    nftInventory.value = null
+    const defaultParameters = `/v2/aex141/${contractId}/templates?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    nftInventory.value = data
+  }
+
   return {
     nftDetails,
     fetchNftDetails,
     fetchNftTransfers,
     nftTransfers,
+    fetchNftInventory,
+    nftInventory,
   }
 })

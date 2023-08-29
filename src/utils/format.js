@@ -124,27 +124,33 @@ export function formatIsAuction(name) {
 }
 
 export function formatTokenLimit(extensions, tokenLimit) {
-  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
-    return tokenLimit
-  } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
-    return 'Unlimited'
-  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
-    return null
-  } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
-    return null
+  if (tokenLimit) {
+    if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+      return tokenLimit
+    } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
+      return 'Unlimited'
+    } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+      return null
+    } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
+      return null
+    }
   }
+  return null
 }
 
 export function formatTemplateLimit(extensions, templateLimit) {
-  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
-    return null
-  } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
-    return null
-  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
-    return 'Unlimited'
-  } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
-    return templateLimit
+  if (templateLimit) {
+    if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+      return null
+    } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
+      return null
+    } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+      return 'Unlimited'
+    } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
+      return templateLimit
+    }
   }
+  return null
 }
 
 export function formatIsAuction(name) {

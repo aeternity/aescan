@@ -21,8 +21,10 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     rawNftDetails.value = data
   }
 
-  async function fetchNftTransfers(contractId) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex141/transfers/${contractId}`)
+  async function fetchNftTransfers({ queryParameters, limit, contractId } = {}) {
+    nftTransfers.value = null
+    const defaultParameters = `/v2/aex141/transfers/${contractId}?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     nftTransfers.value = data
   }
 

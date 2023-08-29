@@ -149,14 +149,16 @@ export function adaptAccountNames(names) {
 export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
   const formattedData = tokens.data.map(token => {
     const amount = token.amount / (10 ** token.decimals)
-    const tokenAePrice = tokenPrices[token.contractId] ? 1 / tokenPrices[token.contractId] : null
+    const tokenAePrice = tokenPrices[token.contractId] || null
 
     return {
       tokenSymbol: token.tokenSymbol,
       tokenName: token.tokenName,
       contractId: token.contractId,
       amount,
-      value: tokenAePrice !== null ? amount * tokenAePrice * aeFiatPrice : null,
+      value: tokenAePrice !== null
+        ? (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber()
+        : null,
     }
   })
   return {
@@ -369,11 +371,11 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   }
 
   if (token && totalSupply) {
-    tokenDetails.totalSupply = Number(totalSupply / BigInt(10 ** token.decimals))
+    tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
   }
 
   if (tokenDetails.totalSupply && price) {
-    tokenDetails.marketCap = tokenDetails.totalSupply * price
+    tokenDetails.marketCap = (new BigNumber(tokenDetails.totalSupply)).multipliedBy(price).toNumber()
   }
 
   return tokenDetails

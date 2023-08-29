@@ -9,13 +9,13 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-export function formatNumber(number, minimumFractionDigits = 0, maximumFractionDigits = 5) {
+export function formatNumber(number, minimumFractionDigits = 0, maximumSignificantDigits = 4) {
   if (isNaN(number) || number === null) {
     return number
   }
   return Intl.NumberFormat('en-US', {
     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
-    maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
+    maximumSignificantDigits,
   }).format(number)
 }
 
@@ -52,18 +52,6 @@ export function formatAettosToAe(aettosAmount) {
   }
 
   return toAe(aettosAmount)
-}
-
-export function formatTokenPairRouteAsRatio(route) {
-  return route
-    .map(step => [
-      step.liquidityInfo.reserve0,
-      step.liquidityInfo.reserve1,
-    ])
-    .reduce(
-      (ratio, [reserveA, reserveB]) => ratio.multipliedBy(BigNumber(reserveB).div(reserveA)),
-      BigNumber(1),
-    )
 }
 
 export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) {

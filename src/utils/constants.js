@@ -42,7 +42,7 @@ export const DATETIME_UNITS = [
   'seconds',
 ]
 export const NUMBER_FRACTION_THRESHOLD = 100000
-export const MAXIMUM_FRACTION_DIGITS = 20
+export const MAXIMUM_FRACTION_DIGITS = 18
 export const APP_TITLE_SHORT = 'æScan'
 export const APP_TITLE = 'æScan - æternity Blockchain Explorer'
 export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platform, and decentralized Smart Contract navigation platform based on æternity.'

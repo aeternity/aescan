@@ -46,10 +46,10 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import TheNavigation from '@/components/TheNavigation'
 import AppLink from '@/components/AppLink'
 import AppIcon from '@/components/AppIcon'
-import { storeToRefs } from 'pinia'
 import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
 import { useUiStore } from '@/stores/ui'

@@ -77,10 +77,10 @@
 
 <script setup>
 import { useHead } from '@vueuse/head'
+import { storeToRefs } from 'pinia'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 import Error from '@/error'
-import { storeToRefs } from 'pinia'
 import { initializeStores } from '@/stores'
 import { useWebSocket } from '@/stores/webSocket'
 import { useUiStore } from '@/stores/ui'
@@ -111,16 +111,15 @@ if (import.meta.env.MODE !== 'production') {
 
 const isHistoryNavigationDetected = ref(false)
 
-router.options.history.listen((a,b,c,d) => {
-  isHistoryNavigationDetected.value = true;
+router.options.history.listen(() => {
+  isHistoryNavigationDetected.value = true
 })
 
-router.beforeEach((to, from, next, abort) => {
-  if(isHistoryNavigationDetected.value && isNavigationDrawerOpen.value){
+router.beforeEach((_to, _from, next, abort) => {
+  if (isHistoryNavigationDetected.value && isNavigationDrawerOpen.value) {
     isNavigationDrawerOpen.value = false
-    console.log('abort')
     abort()
-  } else{
+  } else {
     next()
   }
   isHistoryNavigationDetected.value = false

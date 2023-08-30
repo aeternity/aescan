@@ -21,7 +21,7 @@
       class="account-details-panel__not-existent">
       The account has never been seen in the network.
       <br>
-      Details will be displayed after the first interaction with this account.
+      Details will be displayed once the first transaction from the account is send.
     </p>
     <table v-else>
       <tbody>
@@ -175,7 +175,7 @@ const sanitizedPrice = computed(() =>
   }
 
   &__not-existent {
-    margin: var(--space-3) 0;
+    margin: 0 0 var(--space-3) 0;
   }
 }
 </style>

@@ -80,9 +80,14 @@ import { useHead } from '@vueuse/head'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 import Error from '@/error'
+import { storeToRefs } from 'pinia'
 import { initializeStores } from '@/stores'
 import { useWebSocket } from '@/stores/webSocket'
+import { useUiStore } from '@/stores/ui'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
+
+const { isNavigationDrawerOpen } = storeToRefs(useUiStore())
+const router = useRouter()
 
 await useAsyncData(() => initializeStores())
 
@@ -104,9 +109,22 @@ if (import.meta.env.MODE !== 'production') {
   })
 }
 
-function logError(error) {
-  console.error(error)
-}
+const isHistoryNavigationDetected = ref(false)
+
+router.options.history.listen((a,b,c,d) => {
+  isHistoryNavigationDetected.value = true;
+})
+
+router.beforeEach((to, from, next, abort) => {
+  if(isHistoryNavigationDetected.value && isNavigationDrawerOpen.value){
+    isNavigationDrawerOpen.value = false
+    console.log('abort')
+    abort()
+  } else{
+    next()
+  }
+  isHistoryNavigationDetected.value = false
+})
 </script>
 
 <style>

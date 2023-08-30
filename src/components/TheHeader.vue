@@ -3,7 +3,7 @@
     <div
       :class="[
         'header__container',
-        { 'header__container--open': isNavigationOpen },
+        { 'header__container--open': isNavigationDrawerOpen },
       ]">
       <app-link
         to="/"
@@ -17,7 +17,7 @@
         class="header__hamburger"
         @click="toggleNavigation">
         <app-icon
-          v-if="isNavigationOpen"
+          v-if="isNavigationDrawerOpen"
           name="cross"
           :size="34"/>
         <app-icon
@@ -29,13 +29,13 @@
       <the-navigation
         :class="[
           'header__navigation',
-          { 'header__navigation--open': isNavigationOpen },
+          { 'header__navigation--open': isNavigationDrawerOpen },
         ]"/>
 
       <network-select
         :class="[
           'header__network-select',
-          { 'header__network-select--open': isNavigationOpen }]"/>
+          { 'header__network-select--open': isNavigationDrawerOpen }]"/>
     </div>
     <div
       v-if="isSyncing"
@@ -46,10 +46,17 @@
 </template>
 
 <script setup>
+import TheNavigation from '@/components/TheNavigation'
+import AppLink from '@/components/AppLink'
+import AppIcon from '@/components/AppIcon'
+import { storeToRefs } from 'pinia'
+import { isDesktop } from '@/utils/screen'
+import NetworkSelect from '@/components/NetworkSelect'
+import { useUiStore } from '@/stores/ui'
 import { useStatus } from '@/stores/status'
 
 const route = useRoute()
-const isNavigationOpen = ref(false)
+const { isNavigationDrawerOpen } = storeToRefs(useUiStore())
 
 const { isSyncing } = storeToRefs(useStatus())
 
@@ -66,11 +73,11 @@ watch(() => route.fullPath, () => {
 })
 
 function toggleNavigation() {
-  isNavigationOpen.value = !isNavigationOpen.value
+  isNavigationDrawerOpen.value = !isNavigationDrawerOpen.value
 }
 
 function closeNavigation() {
-  isNavigationOpen.value = false
+  isNavigationDrawerOpen.value = false
 }
 </script>
 

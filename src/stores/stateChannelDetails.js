@@ -1,13 +1,11 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptStateChannelDetails, adaptTransactions } from '@/utils/adapters'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useStateChannelDetailsStore = defineStore('stateChannelDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
-  const { blockHeight } = storeToRefs(useRecentBlocksStore())
 
   const stateChannelId = ref(null)
   const rawStateChannel = ref(null)
@@ -18,7 +16,6 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     ? adaptStateChannelDetails(
       rawStateChannel.value,
       rawStateChannelCreateTx.value,
-      blockHeight.value,
     )
     : null,
   )
@@ -38,14 +35,17 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
 
     return true
   }
+
   async function fetchStateChannel() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/channels/${stateChannelId.value}`)
     rawStateChannel.value = data
   }
+
   async function fetchStateChannelCreateTx() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/channels/${stateChannelId.value}/updates?direction=forward&limit=1`)
     rawStateChannelCreateTx.value = data.data[0]
   }
+
   async function fetchStateChannelTransactions({ limit, queryParameters } = {}) {
     rawStateChannelTransactions.value = null
 

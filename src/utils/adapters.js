@@ -509,7 +509,7 @@ export function adaptOracleEvents(events) {
   }
 }
 
-export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blockHeight) {
+export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx) {
   return {
     id: stateChannel.channel,
     isOpen: stateChannel.active,
@@ -521,18 +521,14 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
     lastKnownRound: stateChannel.round,
     aeLocked: formatAettosToAe(stateChannel.amount),
     lastUpdatedHeight: stateChannel.lastUpdatedHeight,
-    lastUpdated: stateChannel.lastUpdatedHeight
-      ? formatBlockDiffAsDatetime(
-        stateChannel.lastUpdatedHeight,
-        blockHeight,
-      )
-      : null,
+    lastUpdated: DateTime.fromMillis(stateChannel.lastUpdatedTime),
     lastTxType: stateChannel.lastUpdatedTxType,
   }
 }
 
-export function adaptStateChannels(channels, blockHeight) {
-  const formattedData = channels.data
+// todo rename
+export function adaptStateChannels(stateChannels) {
+  const formattedData = stateChannels.data
     .map(channel => {
       return {
         id: channel.channel,
@@ -541,9 +537,9 @@ export function adaptStateChannels(channels, blockHeight) {
         responder: channel.responder,
         updateCount: channel.updatesCount,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
-        updated: formatBlockDiffAsDatetime(channel.lastUpdatedHeight, blockHeight),
-        updatedHeight: channel.lastUpdatedHeight,
-        updateType: channel.lastUpdatedTxType,
+        lastUpdated: DateTime.fromMillis(channel.lastUpdatedTime),
+        lastUpdatedHeight: channel.lastUpdatedHeight,
+        lastTxType: channel.lastUpdatedTxType,
       }
     })
   return {

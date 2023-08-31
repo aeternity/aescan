@@ -75,15 +75,15 @@
         <td>
           <div>
             <app-link
-              :to="`/keyblocks/${channel.updatedHeight}`">
-              {{ channel.updatedHeight }}
+              :to="`/keyblocks/${channel.lastUpdatedHeight}`">
+              {{ channel.lastUpdatedHeight }}
             </app-link>
           </div>
           <div>
-            <datetime-label :datetime="channel.updated "/>
+            <datetime-label :datetime="channel.lastUpdated "/>
           </div>
         </td>
-        <td>{{ channel.updateType }}</td>
+        <td>{{ channel.lastTxType }}</td>
       </tr>
     </tbody>
   </table>

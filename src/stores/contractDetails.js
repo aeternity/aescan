@@ -1,13 +1,11 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptContractDetails, adaptContractEvents, adaptTransactions } from '@/utils/adapters'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useContractDetailsStore = defineStore('contractDetails', () => {
   const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
-  const { blockHeight } = storeToRefs(useRecentBlocksStore())
 
   const contractId = ref(null)
   const contractCallsCount = ref(null)
@@ -20,7 +18,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
   const contractEvents = computed(() => {
     return rawContractEvents.value
-      ? adaptContractEvents(rawContractEvents.value, blockHeight.value)
+      ? adaptContractEvents(rawContractEvents.value)
       : null
   })
 

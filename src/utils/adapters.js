@@ -342,11 +342,11 @@ export function adaptContractDetails(
   }
 }
 
-export function adaptContractEvents(events, blockHeight) {
+export function adaptContractEvents(events) {
   const formattedData = events.data
     .map(event => {
       return {
-        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        created: DateTime.fromMillis(event.blockTime),
         createdHeight: event.height,
         eventName: event.eventName,
         data: event.args,
@@ -378,13 +378,13 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   return tokenDetails
 }
 
-export function adaptTokenEvents(events, blockHeight) {
+export function adaptTokenEvents(events) {
   const formattedData = events.data
     .map(event => {
       return {
         hash: event.callTxHash,
         name: event.eventName || 'N/A',
-        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        created: DateTime.fromMillis(event.blockTime),
         createdHeight: event.height,
         args: event.args,
       }

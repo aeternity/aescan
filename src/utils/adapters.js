@@ -198,14 +198,14 @@ export function adaptActiveNames(names) {
   }
 }
 
-export function adaptInAuctionNames(names, blockHeight) {
+export function adaptInAuctionNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
     highestBidder: name.info.lastBid.tx.accountId,
     bid: formatAettosToAe(name.info.lastBid.tx.nameFee),
     bidCount: name.info.bids.length,
     expirationHeight: name.info.auctionEnd,
-    expiration: formatBlockDiffAsDatetime(name.info.auctionEnd, blockHeight),
+    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
   }))
   return {
     next: names.next,
@@ -281,18 +281,13 @@ export function adaptName(name, blockHeight, blockTime) {
   return formattedName
 }
 
-export function adaptNameActions(actions, blockHeight) {
+export function adaptNameActions(actions) {
   const formattedData = actions.data.map(action => {
     return {
       type: action.type,
       hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
       createdHeight: action.payload.blockHeight || action.height,
-      created: action.payload?.microTime
-        ? DateTime.fromMillis(action.payload.microTime)
-        : formatBlockDiffAsDatetime(
-          action.payload.blockHeight || action.height,
-          blockHeight,
-        ),
+      created: DateTime.fromMillis(action.payload.microTime),
     }
   })
 

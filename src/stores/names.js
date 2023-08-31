@@ -21,7 +21,7 @@ export const useNamesStore = defineStore('names', () => {
   })
   const inAuctionNames = computed(() => {
     return rawInAuctionNames.value
-      ? adaptInAuctionNames(rawInAuctionNames.value, blockHeight.value)
+      ? adaptInAuctionNames(rawInAuctionNames.value)
       : null
   })
   const auctionsEndingSoon = computed(() => inAuctionNames.value?.data.slice(0, 4))

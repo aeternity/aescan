@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="name in names?.data"
+        v-for="name in names.data"
         :key="name.name">
         <td>
           <app-link :to="`/names/${name.name}`">

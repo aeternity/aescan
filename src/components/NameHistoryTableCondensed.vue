@@ -1,7 +1,7 @@
 <template>
-  <div class="name-history-table-condensed">
+  <div>
     <table
-      v-for="action of actions?.data"
+      v-for="action of actions.data"
       :key="action.hash"
       class="name-history-table-condensed__table">
       <tbody>
@@ -74,21 +74,12 @@ defineProps({
 <style scoped>
 .name-history-table-condensed {
   &__table {
-    margin-bottom: var(--space-4);
-
-    &:last-of-type {
-      margin-bottom: var(--space-3);
-    }
-
-    @media (--desktop) {
-      &:last-of-type {
-        margin-bottom: var(--space-1);
-      }
-    }
+    padding: 0 var(--space-1) var(--space-7);
+    margin-bottom: var(--space-5);
   }
 
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__header {

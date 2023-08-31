@@ -1,12 +1,13 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptActiveNames, adaptExpiredNames, adaptInAuctionNames, adaptNames } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useNamesStore = defineStore('names', () => {
   const { blockHeight } = storeToRefs(useRecentBlocksStore())
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const rawActiveNames = ref(null)
   const rawInAuctionNames = ref(null)
@@ -44,6 +45,7 @@ export const useNamesStore = defineStore('names', () => {
   }
 
   async function fetchActiveNames({ queryParameters, limit } = {}) {
+    rawActiveNames.value = null
     const { data } = await axios.get(
       `${MIDDLEWARE_URL}${queryParameters || `/v2/names?state=active&expand=true&by=deactivation&direction=forward&limit=${limit ?? 10}`}`,
     )
@@ -51,6 +53,7 @@ export const useNamesStore = defineStore('names', () => {
   }
 
   async function fetchInAuctionNames({ queryParameters, limit } = {}) {
+    rawInAuctionNames.value = null
     const { data } = await axios.get(
       `${MIDDLEWARE_URL}${queryParameters || `/v2/names/auctions?by=expiration&direction=forward&limit=${limit ?? 10}`}`,
     )
@@ -58,6 +61,7 @@ export const useNamesStore = defineStore('names', () => {
   }
 
   async function fetchExpiredNames({ queryParameters, limit } = {}) {
+    rawExpiredNames.value = null
     const { data } = await axios.get(
       `${MIDDLEWARE_URL}${queryParameters || `/v2/names?state=inactive&expand=true&limit=${limit ?? 10}`}`,
     )

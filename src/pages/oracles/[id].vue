@@ -16,16 +16,19 @@
     </template>
   </page-header>
 
-  <oracle-details-panel
-    v-if="oracleDetails"
-    class="oracle-details__panel"
-    :oracle-details="oracleDetails"/>
+  <template v-if="!isLoading">
+    <oracle-details-panel
+      v-if="oracleDetails"
+      class="oracle-details__panel"
+      :oracle-details="oracleDetails"/>
 
-  <app-tabs>
-    <app-tab title="Events">
-      <oracle-events-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs>
+      <app-tab title="Events">
+        <oracle-events-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -40,13 +43,25 @@ const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
 const route = useRoute()
+const { isLoading } = useLoading()
 
-await useAsyncData(() => fetchOracleDetails(route.params.id))
+const { error } = await useAsyncData(() => fetchOracleDetails(route.params.id))
+
+if (error.value) {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'Oracle',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
+}
 </script>
 
 <style scoped>
-.oracle-details {
-  &__panel {
+.oracle-details__panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
     margin-bottom: var(--space-6);
   }
 }

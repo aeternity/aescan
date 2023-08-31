@@ -42,6 +42,7 @@
     </template>
   </app-swiper>
 </template>
+
 <script setup>
 import DatetimeLabel from '@/components/DatetimeLabel'
 import TransactionCell from '@/components/TransactionCell'
@@ -59,7 +60,7 @@ defineProps({
 <style scoped>
 .transactions-swiper {
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__data {

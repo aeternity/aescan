@@ -1,5 +1,5 @@
 <template>
-  <div class="oracle-events-table-condensed">
+  <div>
     <table
       v-for="(event, index) in oracleEvents.data"
       :key="event.respondTx"
@@ -71,6 +71,7 @@
 <script setup>
 import AppTooltip from '@/components/AppTooltip.vue'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
+
 const props = defineProps({
   oracleEvents: {
     type: Object,
@@ -96,19 +97,12 @@ function toggle(id) {
 <style scoped>
 .oracle-events-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);
-
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
   }
 
   &__header {
-    vertical-align: top;
-    border-bottom: 1px solid var(--color-midnight-15);
-    padding-right: var(--space-4);
+    border-bottom: 1px solid var(--color-midnight-25);
 
     &--expanded {
       border-bottom: 0;

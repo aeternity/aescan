@@ -1,12 +1,13 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import { adaptTransactionDetails } from '@/utils/adapters'
 
 export const useTransactionDetailsStore = defineStore('transactionDetails', () => {
   const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
 
   const contractId = ref(null)
   const rawTransactionDetails = ref(null)
@@ -37,9 +38,7 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
   }
 
   async function fetchTransactionTypeData(transactionId) {
-    const isCurrentKeyblock = blockHeight.value - rawTransactionDetails.value.blockHeight === 0
-
-    if (!isCurrentKeyblock) {
+    try {
       const { data: transactionData } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/${transactionId}`)
 
       if (transactionData.tx.channelId) {
@@ -49,8 +48,8 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
       }
 
       transactionTypeData.value = transactionData.tx
-    } else {
-      transactionTypeData.value = rawTransactionDetails.value.tx
+    } catch {
+      transactionTypeData.value = null
     }
   }
 
@@ -69,11 +68,16 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
     transactionTypeData.value = null
   }
 
+  function updateTransactionTypeData(websocketMessage) {
+    transactionTypeData.value = websocketMessage.tx
+  }
+
   return {
     contractId,
     transactionDetails,
     transactionTypeData,
     fetchTransactionDetails,
     fetchContractIdByAccountId,
+    updateTransactionTypeData,
   }
 })

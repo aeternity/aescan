@@ -3,6 +3,7 @@
     <paginated-content
       :entities="tokenEvents"
       pagination-style="history"
+      :total-count="tokenEventsCount"
       @prev-clicked="loadPrevEvents"
       @next-clicked="loadNextEvents">
       <token-events-table
@@ -23,8 +24,8 @@ import { useTokenDetailsStore } from '@/stores/tokenDetails'
 import TokenEventsTable from '@/components/TokenEventsTable.vue'
 import TokenEventsTableCondensed from '@/components/TokenEventsTableCondensed.vue'
 
-const { tokenEvents } = storeToRefs(useTokenDetailsStore())
-const { fetchTokenEvents } = useTokenDetailsStore()
+const { tokenEvents, tokenEventsCount } = storeToRefs(useTokenDetailsStore())
+const { fetchTokenEvents, fetchTokenEventsCount } = useTokenDetailsStore()
 const route = useRoute()
 
 function loadPrevEvents() {
@@ -34,6 +35,8 @@ function loadPrevEvents() {
 function loadNextEvents() {
   fetchTokenEvents({ queryParameters: tokenEvents.value.next })
 }
+
+await fetchTokenEventsCount(route.params.id)
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
@@ -46,14 +49,9 @@ if (process.client) {
 
 <style scoped>
 .token-events-panel {
-  padding: var(--space-3) var(--space-1) var(--space-4);
-  margin-top: var(--space-2);
-  @media (--desktop) {
-    padding: var(--space-2) var(--space-4) var(--space-4);
-  }
-
   &__table {
     display: none;
+    margin-bottom: var(--space-4);
     @media (--desktop) {
       display: revert;
     }

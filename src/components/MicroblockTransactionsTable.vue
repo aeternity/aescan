@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="transaction in transactions?.data"
+        v-for="transaction in transactions.data"
         :key="transaction.hash">
         <td>
           <value-hash-ellipsed

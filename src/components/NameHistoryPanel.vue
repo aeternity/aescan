@@ -33,6 +33,7 @@ const { nameActions } = storeToRefs(nameDetailsStore)
 function loadPrevActions() {
   return fetchNameActions({ queryParameters: nameActions.value.prev })
 }
+
 function loadNextActions() {
   return fetchNameActions({ queryParameters: nameActions.value.next })
 }
@@ -40,20 +41,12 @@ function loadNextActions() {
 
 <style scoped>
 .name-history-panel {
-  background: var(--color-white);
-  padding: var(--space-3) var(--space-1) var(--space-4);
-
-  @media (--desktop) {
-    background: var(--color-white);
-    padding: var(--space-2) var(--space-4) var(--space-4);
-  }
-
   &__name-history-table {
     display: none;
 
     @media (--desktop) {
       display: revert;
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-4);
     }
   }
 

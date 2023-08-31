@@ -16,19 +16,22 @@
     </template>
   </page-header>
 
-  <contract-details-panel
-    v-if="contractDetails"
-    class="contract-details__panel"
-    :contract-details="contractDetails"/>
+  <template v-if="!isLoading">
+    <contract-details-panel
+      v-if="contractDetails"
+      class="contract-details__panel"
+      :contract-details="contractDetails"/>
 
-  <app-tabs v-if="contractDetails">
-    <app-tab title="Call Transactions">
-      <contract-call-transactions-panel/>
-    </app-tab>
-    <app-tab title="Events">
-      <contract-events-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs v-if="contractDetails">
+      <app-tab title="Call Transactions">
+        <contract-call-transactions-panel/>
+      </app-tab>
+      <app-tab title="Events">
+        <contract-events-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -48,9 +51,21 @@ const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
 
-await useAsyncData(() => fetchContractDetails(route.params.id))
+const { isLoading } = useLoading()
 
-if (process.client) {
+const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
+
+if (error.value) {
+  throw showError({
+    data: {
+      entityName: 'Smart Contract',
+      entityId: route.params.id,
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
+}
+
+if (process.client && !error.value) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
     queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}`,
@@ -60,6 +75,9 @@ if (process.client) {
 
 <style scoped>
 .contract-details__panel {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
 }
 </style>

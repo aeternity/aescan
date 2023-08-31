@@ -1,19 +1,18 @@
 <template>
   <div class="search-bar">
     <input
-      v-model="userQuery"
+      v-model="query"
       class="search-bar__input"
       placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
       type="search"
       autofocus
       @keyup.enter="search">
-
     <button
       class="search-bar__submit"
       @click="search">
       <app-icon
         name="magnifying-glass"
-        :size="21"/>
+        :size="18"/>
     </button>
   </div>
 </template>
@@ -25,21 +24,13 @@ import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
 const { isNameAvailable } = useNameDetailsStore()
 const { isKeyblockAvailable } = useKeyblockDetailsStore()
-const userQuery = ref('')
+const query = ref('')
 const { push } = useRouter()
-
-const query = computed(() => {
-  const trimmedQuery = userQuery.value.trim()
-  return trimmedQuery.endsWith('.chain')
-    ? trimmedQuery.slice(0, -6)
-    : trimmedQuery
-})
 
 async function search() {
   if (!query.value) {
     return
   }
-
   if (isAccountAddress(query.value)) {
     push(`/accounts/${query.value}`)
   } else if (isTransactionHash(query.value)) {
@@ -48,76 +39,91 @@ async function search() {
     push(`/contracts/${query.value}`)
   } else if (isOracleId(query.value)) {
     push(`/oracles/${query.value}`)
-  } else if (isNameId(query.value)) {
-    push(`/names/${query.value}`)
   } else if (isStateChannelId(query.value)) {
     push(`/state-channels/${query.value}`)
   } else if (isMicroblockId(query.value)) {
     push(`/microblocks/${query.value}`)
-  } else if (await isAccountName(query.value)) {
-    push(`/names/${query.value}.chain`)
+  } else if (isNameId(query.value)) {
+    push(`/names/${query.value}`)
+  } else if (await isName(query.value)) {
+    push(`/names/${query.value}`)
   } else if (await isKeyblockId(query.value)) {
     push(`/keyblocks/${query.value}`)
   } else {
-    push(`/error/${userQuery.value}`)
+    push(`/search/${query.value}`)
   }
-  userQuery.value = ''
+  query.value = ''
 }
+
 function isAccountAddress(query) {
   return isAddressValid(query) && query.startsWith('ak_')
 }
+
 function isNameId(query) {
   return isAddressValid(query) && query.startsWith('nm_')
 }
+
 function isTransactionHash(query) {
   return isAddressValid(query) && query.startsWith('th_')
 }
+
 function isContractId(query) {
   return isAddressValid(query) && query.startsWith('ct_')
 }
+
 function isOracleId(query) {
   return isAddressValid(query) && query.startsWith('ok_')
 }
+
 function isStateChannelId(query) {
   return isAddressValid(query) && query.startsWith('ch_')
 }
-async function isAccountName(query) {
-  return await isNameAvailable(query)
+
+async function isName(query) {
+  if (query.endsWith('.test') || query.endsWith('.chain')) {
+    return await isNameAvailable(query)
+  } else {
+    return false
+  }
 }
+
 function isKeyblockId(query) {
   if (isAddressValid(query) && query.startsWith('kh_')) {
     return true
   }
-
   if (!isNaN(query)) {
     return isKeyblockAvailable(query)
   }
-
   return false
 }
+
 function isMicroblockId(query) {
   return isAddressValid(query) && query.startsWith('mh_')
 }
 </script>
-
 <style scoped>
 .search-bar {
-  padding: var(--space-1) 10px var(--space-1) var(--space-3);
+  padding: 6px var(--space-0) 6px var(--space-3);
   display: flex;
   align-items: center;
-
   height: 40px;
   background: var(--color-white);
   border: 1px solid var(--color-midnight);
   border-radius: 8px;
 
   &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 100%;
+    border-radius: 4px;
     margin: auto;
     padding: 0;
     border: none;
-    background: inherit;
     cursor: pointer;
-    color: var(--color-midnight);
+    background: var(--color-midnight);
+    color: var(--color-white);
   }
 
   &__input {
@@ -125,13 +131,9 @@ function isMicroblockId(query) {
     border: none;
     background-color: var(--color-white);
     margin-right: var(--space-1);
-    font-size: 11px;
+    font-size: 14px;
     appearance: none;
     font-family: var(--font-monospaced);
-
-    @media (--desktop) {
-      font-size: 14px;
-    }
 
     &:focus {
       outline: none;
@@ -151,4 +153,5 @@ function isMicroblockId(query) {
     }
   }
 }
+
 </style>

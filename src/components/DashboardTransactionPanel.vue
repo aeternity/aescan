@@ -3,7 +3,7 @@
     <panel-header
       level="h5"
       class="dashboard-transactions-panel__panel-header"
-      title="Transactions"
+      title="TRANSACTIONS"
       :show-all-link="microblockDetailsLink"
       icon-name="transactions">
       <template #tooltip>
@@ -11,13 +11,17 @@
       </template>
       <template #header>
         <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
-          Displaying transactions of selected microblock
+          Displaying
+          {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
+          transactions of selected microblock
         </div>
       </template>
     </panel-header>
 
     <div class="dashboard-transactions-panel__summary">
-      Displaying transactions of selected microblock
+      Displaying
+      {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
+      transactions of selected microblock
     </div>
 
     <dashboard-microblock-transactions-table
@@ -42,6 +46,7 @@ import DashboardMicroblockTransactionsTable from '@/components/DashboardMicroblo
 
 const {
   selectedMicroblockTransactions,
+  selectedMicroblockTransactionsCount,
   selectedMicroblock,
 } = storeToRefs(
   useRecentBlocksStore(),
@@ -52,18 +57,13 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
 <style scoped>
 .dashboard-transactions-panel {
-  background: var(--color-white);
-  padding: var(--space-4) var(--space-1);
-
+  padding: var(--space-3) var(--space-1);
   @media (--desktop) {
-    padding: var(--space-4);
+    padding: var(--space-3);
   }
 
   &__panel-header {
     margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: var(--space-0);
-    }
   }
 
   &__transactions-swiper {
@@ -81,7 +81,7 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
   &__summary {
     display: block;
-    margin-bottom: var(--space-1);
+    margin-bottom: var(--space-2);
     font-family: var(--font-monospaced);
     font-size: 14px;
     line-height: 20px;

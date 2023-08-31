@@ -1,7 +1,7 @@
 <template>
-  <div class="names-in-auction-table-condensed">
+  <div>
     <table
-      v-for="name in names?.data"
+      v-for="name in names.data"
       :key="name.name"
       class="names-in-auction-table-condensed__table">
       <tbody>
@@ -98,32 +98,25 @@ defineProps({
 <style scoped>
 .names-in-auction-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
-    margin-bottom: var(--space-6);
-
-    &:last-of-type {
-      margin-bottom: var(--space-1);
-    }
+    margin-bottom: var(--space-5);
   }
 
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
-    padding-right: var(--space-2);
-    min-width: 120px;
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__header {
     border-bottom: 0;
   }
 
+  &__data {
+    text-align: right;
+  }
+
   &__name {
     max-width: 200px;
     display: inline-block;
-  }
-
-  &__data {
-    text-align: right;
   }
 
   &__highest-bid {

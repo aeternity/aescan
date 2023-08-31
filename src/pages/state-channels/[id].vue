@@ -16,15 +16,18 @@
     </template>
   </page-header>
 
-  <state-channel-details-panel
-    class="state-channel-details__panel"
-    :state-channel-details="stateChannelDetails"/>
+  <template v-if="!isLoading">
+    <state-channel-details-panel
+      class="state-channel-details__state-channel-details-panel"
+      :state-channel-details="stateChannelDetails"/>
 
-  <app-tabs v-if="stateChannelDetails">
-    <app-tab title="Transactions">
-      <state-channel-transactions-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs v-if="stateChannelDetails">
+      <app-tab title="Transactions">
+        <state-channel-transactions-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -42,12 +45,25 @@ const { stateChannelDetails } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelDetails } = stateChannelDetailsStore
 const route = useRoute()
 
-await useAsyncData(() => fetchStateChannelDetails(route.params.id))
+const { isLoading } = useLoading()
+
+const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
+
+if (error.value) {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'State Channel',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
+}
 </script>
 
 <style scoped>
-.state-channel-details {
-  &__panel {
+.state-channel-details__state-channel-details-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
     margin-bottom: var(--space-6);
   }
 }

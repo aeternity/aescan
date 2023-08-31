@@ -1,11 +1,19 @@
-import { defineStore } from 'pinia'
-import axios from 'axios'
+import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptAccountNames, adaptTransactions } from '@/utils/adapters'
+import useAxios from '@/composables/useAxios'
+import { useMarketStatsStore } from '@/stores/marketStats'
+import { adaptAccountNames, adaptTransactions, adaptAccountTokens } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
+import { useDexStore } from '@/stores/dex'
 
 export const useAccountStore = defineStore('account', () => {
-  const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
+  const {
+    MIDDLEWARE_URL,
+    NODE_URL,
+  } = useRuntimeConfig().public
+  const { price: aeFiatPrice } = storeToRefs(useMarketStatsStore())
+  const axios = useAxios()
+  const { fetchPrice } = useDexStore()
 
   const rawAccountDetails = ref(null)
   const accountTransactionsCount = ref(null)
@@ -16,7 +24,9 @@ export const useAccountStore = defineStore('account', () => {
   const selectedKeyblockMicroblocks = ref(null)
   const selectedMicroblockTransactions = ref(null)
   const rawAccountNames = ref(null)
+  const rawAccountTokens = ref(null)
   const rawAccountTransactions = ref(null)
+  const tokenPrices = ref({})
 
   const accountDetails = computed(() =>
     rawAccountDetails.value
@@ -41,12 +51,19 @@ export const useAccountStore = defineStore('account', () => {
       : null,
   )
 
+  const accountTokens = computed(() =>
+    rawAccountTokens.value
+      ? adaptAccountTokens(rawAccountTokens.value, tokenPrices.value, aeFiatPrice.value)
+      : null,
+  )
+
   function fetchAccount(accountId, { limit } = {}) {
     fetchAccountDetails(accountId)
     fetchAccountTransactions({ accountId, limit })
     fetchTotalAccountTransactionsCount(accountId)
     fetchAccountNames({ accountId, limit })
     fetchAccountNamesCount(accountId)
+    fetchAccountTokens({ accountId, limit })
   }
 
   async function fetchAccountDetails(accountId) {
@@ -54,7 +71,7 @@ export const useAccountStore = defineStore('account', () => {
       const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
       rawAccountDetails.value = data
     } catch (e) {
-      if (e.response.status === 404) {
+      if ([400, 404].includes(e.response.status)) {
         rawAccountDetails.value = { id: accountId, notExistent: true }
       }
     }
@@ -80,9 +97,33 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
+    rawAccountNames.value = null
     const defaultParameters = `/v2/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountNames.value = data
+  }
+
+  async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {
+    rawAccountTokens.value = null
+    const defaultParameters = `/v2/aex9/account-balances/${accountId}?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawAccountTokens.value = data
+
+    if (rawAccountTokens.value?.data.length) {
+      await fetchAccountTokensPrices()
+    }
+  }
+
+  async function fetchAccountTokensPrices() {
+    tokenPrices.value = {}
+    await Promise.all(
+      rawAccountTokens.value.data.map(async token => {
+        const price = await fetchPrice(token.contractId, token.decimals)
+        if (price) {
+          tokenPrices.value[token.contractId] = price
+        }
+      }),
+    )
   }
 
   async function fetchAccountNamesCount(accountId) {
@@ -126,13 +167,17 @@ export const useAccountStore = defineStore('account', () => {
     selectedMicroblockTransactions,
     rawAccountNames,
     rawAccountTransactions,
+    rawAccountTokens,
     accountDetails,
     accountTransactions,
     accountNames,
+    accountTokens,
+    tokenPrices,
     fetchAccount,
     fetchTotalAccountTransactionsCount,
     fetchAccountTransactions,
     fetchAccountTransactionsCount,
     fetchAccountNames,
+    fetchAccountTokens,
   }
 })

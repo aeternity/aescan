@@ -27,9 +27,12 @@
         </div>
       </div>
       <div class="dashboard__row">
-        <client-only>
+        <client-only v-if="!isLoading">
           <blockchain-panel/>
         </client-only>
+        <loader-panel
+          v-else
+          class="dashboard__loader-panel"/>
       </div>
 
       <div class="dashboard__row">
@@ -70,7 +73,7 @@
               Learn more
             </app-link>
           </p>
-          <dashboard-state-channels-panel class="dashboard__dashboard-state-channels-panel"/>
+          <dashboard-state-channels-panel/>
         </div>
       </div>
     </div>
@@ -106,6 +109,8 @@ definePageMeta({
   layout: 'empty',
 })
 
+const isLoading = ref(true)
+
 await useAsyncData(() => Promise.all([
   fetchStateChannels(),
   fetchInAuctionNames(),
@@ -119,7 +124,9 @@ await useAsyncData(() => Promise.all([
   fetchSelectedMicroblocksInfo(),
   fetchTotalTransactionsCount(),
   fetchDeltaStats(),
-]), { server: false })
+]).then(() => {
+  isLoading.value = false
+}), { server: false })
 
 onBeforeMount(() => {
   isSubscribedToKeyblockDetails.value = true
@@ -139,13 +146,14 @@ onBeforeUnmount(() => {
 
     @media (--desktop) {
       padding: 0;
+      margin-bottom: 80px;
     }
   }
 
   &__row {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3) var(--space-4);
+    gap: var(--space-3) var(--space-6);
     margin-bottom: var(--space-4);
 
     @media (--desktop) {
@@ -182,14 +190,14 @@ onBeforeUnmount(() => {
     }
   }
 
-  &__dashboard-state-channels-panel {
-    margin-bottom: 120px;
-  }
-
   &__link {
     font-size: 14px;
     line-height: 20px;
     font-family: var(--font-monospaced);
+  }
+
+  &__loader-panel {
+    width: 100%;
   }
 }
 </style>

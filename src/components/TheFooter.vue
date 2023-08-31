@@ -3,14 +3,22 @@
     <div class="footer__container">
       <div class="footer__body">
         <div class="footer__column">
+          <img
+            class="footer__logo-aescan"
+            alt="æScan logo"
+            src="@/assets/logo.svg">
+
           <header class="footer__header">
             <app-tooltip>
+              <div class="footer__powered-by">
+                Powered by
+              </div>
               <app-link to="https://aeternity.com/">
                 <img
-                  class="footer__logo"
+                  class="footer__logo-aeternity"
                   alt="æScan logo"
                   src="@/assets/logo-footer.svg"
-                  height="24">
+                  width="100">
               </app-link>
 
               <template #tooltip>
@@ -60,7 +68,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRuntimeConfig } from '#app'
 import FooterList from '@/components/FooterList'
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
@@ -114,11 +121,10 @@ const links = {
 
   &__network {
     font-family: var(--font-monospaced);
-    font-size: 14px;
 
     margin: var(--space-4) 0;
     @media (--desktop) {
-      margin: 0 0 48px;
+      margin: 0 0 120px;
     }
   }
 
@@ -156,12 +162,22 @@ const links = {
 
     @media (--desktop) {
       flex-direction: row;
-      align-items: flex-end;
     }
   }
 
-  &__logo {
+  &__powered-by {
+    font-size: 11px;
+    font-family: var(--font-monospaced);
+    margin-bottom: var(--space-1);
+  }
+
+  &__logo-aescan {
+    margin-bottom: 56px;
+  }
+
+  &__logo-aeternity {
     margin-right: var(--space-2);
+    margin-bottom: 56px;
   }
 
   &__header {
@@ -174,7 +190,7 @@ const links = {
     margin-bottom: var(--space-3);
 
     @media (--desktop) {
-      width: 460px;
+      width: 472px;
     }
 
     &:last-of-type {

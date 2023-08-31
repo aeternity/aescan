@@ -1,5 +1,5 @@
 <template>
-  <div class="oracles-table-condensed">
+  <div>
     <table
       v-for="oracle in oracles.data"
       :key="oracle.oracleId"
@@ -93,18 +93,12 @@ defineProps({
 <style scoped>
 .oracles-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);
-
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
   }
 
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
-    padding-right: var(--space-4);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__header {

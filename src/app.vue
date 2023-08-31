@@ -63,21 +63,24 @@
     </Head>
   </Html>
 
-  <the-header/>
-  <NuxtLayout>
-    <NuxtLoadingIndicator
-      :duration="3000"
-      :throttle="300"
-      :color="false"/>
-    <NuxtPage/>
-  </NuxtLayout>
-  <the-footer class="app__footer"/>
+  <NuxtErrorBoundary>
+    <the-header/>
+    <NuxtLayout>
+      <NuxtPage/>
+    </NuxtLayout>
+    <the-footer class="app__footer"/>
+
+    <template #error="{ error }">
+      <error :error="error"/>
+    </template>
+  </NuxtErrorBoundary>
 </template>
 
 <script setup>
 import { useHead } from '@vueuse/head'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
+import Error from '@/error'
 import { initializeStores } from '@/stores'
 import { useWebSocket } from '@/stores/webSocket'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'

@@ -2,7 +2,7 @@
   <app-panel class="dashboard-state-channels-panel">
     <panel-header
       level="h3"
-      title="STATE CHANNELS"
+      title="State Channels"
       icon-name="state-channel"
       show-all-link="/state-channels">
       State Channels
@@ -26,9 +26,9 @@ import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 <style scoped>
 .dashboard-state-channels-panel {
   width: 100%;
-  padding: var(--space-4) var(--space-1);
+  padding: var(--space-3) var(--space-1);
   @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-3);
+    padding: var(--space-4);
   }
 
   &__swiper {

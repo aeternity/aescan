@@ -1,22 +1,23 @@
 <template>
   <app-panel class="transaction-general-panel">
-    <header class="transaction-general-panel__header">
-      <h2 class="transaction-general-panel__heading h3">
-        GENERAL DETAILS
-      </h2>
-      <div class="transaction-general-panel__container">
-        <copy-chip
-          :label="transactionDetails.hash"
-          class="transaction-general-panel__hash"/>
-        <copy-chip
-          :label="formatEllipseHash(transactionDetails.hash)"
-          :clipboard-text="transactionDetails.hash"
-          class="transaction-general-panel__hash-ellipse"/>
-        <app-chip variant="primary">
-          {{ transactionDetails.type }}
-        </app-chip>
-      </div>
-    </header>
+    <template #heading>
+      GENERAL DETAILS
+    </template>
+    <template #header>
+      <copy-chip
+        :label="transactionDetails.hash"
+        class="transaction-general-panel__hash"/>
+      <copy-chip
+        :label="formatEllipseHash(transactionDetails.hash)"
+        :clipboard-text="transactionDetails.hash"
+        class="transaction-general-panel__hash-ellipse"/>
+      <app-chip
+        variant="primary"
+        size="sm">
+        {{ transactionDetails.type }}
+      </app-chip>
+    </template>
+
     <table>
       <tbody>
         <tr class="transaction-general-panel__row">
@@ -185,27 +186,6 @@ const transactionMiddlewareUrl = computed(() => {
 
 <style scoped>
 .transaction-general-panel {
-  padding: var(--space-4) var(--space-1) var(--space-2);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__header {
-    @media (--desktop) {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
   &__container {
     display: inline-flex;
     justify-content: flex-start;
@@ -220,7 +200,7 @@ const transactionMiddlewareUrl = computed(() => {
   }
 
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__data {

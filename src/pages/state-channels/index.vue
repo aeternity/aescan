@@ -16,9 +16,13 @@
     </template>
   </page-header>
 
-  <state-channels-panel/>
+  <state-channels-panel v-if="!isLoading"/>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
+
+const { isLoading } = useLoading()
+
 </script>

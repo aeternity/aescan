@@ -16,21 +16,22 @@
     </template>
   </page-header>
 
-  <name-details-panel class="name-details__panel"/>
+  <template v-if="!isLoading">
+    <name-details-panel class="name-details__panel"/>
 
-  <name-pointers-special-panel
-    v-if="name?.active"
-    class="name-details__panel"/>
-  <name-pointers-custom-panel
-    v-if="hasCustomPanel"
-    class="name-details__panel"/>
-  <app-tabs
-    v-if="hasNameHistory"
-    class="name-details__tabs">
-    <app-tab title="History">
-      <name-history-panel class="name-details__history"/>
-    </app-tab>
-  </app-tabs>
+    <name-pointers-special-panel
+      v-if="name?.active"
+      class="name-details__panel"/>
+    <name-pointers-custom-panel
+      v-if="hasCustomPanel"
+      class="name-details__panel"/>
+    <app-tabs v-if="hasNameHistory">
+      <app-tab title="History">
+        <name-history-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -53,13 +54,24 @@ const {
   fetchNameActions,
 } = nameDetailsStore
 const route = useRoute()
-const { replace } = useRouter()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
+
+const { isLoading } = useLoading()
 
 try {
   await fetchName(route.params.name)
 } catch (error) {
-  replace(`/error/${route.params.name}`)
+  if (error.response?.status === 404) {
+    throw showError({
+      data: {
+        entityId: route.params.name,
+        entityName: 'Name',
+      },
+      statusMessage: 'EntityDetailsNotFound',
+    })
+  } else {
+    throw error
+  }
 }
 
 if (hasNameHistory && process.client) {
@@ -71,11 +83,10 @@ if (hasNameHistory && process.client) {
 <style scoped>
 .name-details {
   &__panel {
-    margin-bottom: var(--space-6);
-  }
-
-  &__history {
-    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+    @media (--desktop) {
+      margin-bottom: var(--space-6);
+    }
   }
 }
 </style>

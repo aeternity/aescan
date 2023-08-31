@@ -1,11 +1,12 @@
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore, storeToRefs } from 'pinia'
+import useAxios from '@/composables/useAxios'
 import { adaptStateChannels } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useStateChannelsStore = defineStore('stateChannels', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const { blockHeight } = storeToRefs(useRecentBlocksStore())
 
   const rawStateChannels = ref(null)

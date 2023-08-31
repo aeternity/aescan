@@ -15,20 +15,20 @@
       </app-link>
     </template>
   </page-header>
-
-  <app-tabs
-    v-model="activeTabIndex"
-    class="names__tabs">
-    <app-tab title="Active">
-      <names-active-panel/>
-    </app-tab>
-    <app-tab title="In Auction">
-      <names-in-auction-panel/>
-    </app-tab>
-    <app-tab title="Expired">
-      <names-expired-panel/>
-    </app-tab>
-  </app-tabs>
+  <template v-if="!isLoading">
+    <app-tabs v-model="activeTabIndex">
+      <app-tab title="Active">
+        <names-active-panel/>
+      </app-tab>
+      <app-tab title="In Auction">
+        <names-in-auction-panel/>
+      </app-tab>
+      <app-tab title="Expired">
+        <names-expired-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -75,19 +75,10 @@ const activeTabIndex = computed({
   },
 })
 
+const { isLoading } = useLoading()
+
 if (process.client) {
   const limit = isDesktop() ? null : 3
   fetchNamesDetails({ limit })
 }
 </script>
-
-<style scoped>
-.names {
-  &__tabs {
-    padding-top: var(--space-4);
-    @media (--desktop) {
-      padding-top: 0;
-    }
-  }
-}
-</style>

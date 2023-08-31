@@ -16,11 +16,14 @@
     </template>
   </page-header>
 
-  <oracles-panel/>
+  <oracles-panel v-if="!isLoading"/>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import OraclesPanel from '@/components/OraclesPanel'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
+
+const { isLoading } = useLoading()
 </script>

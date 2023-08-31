@@ -55,7 +55,7 @@ defineEmits(['click'])
   cursor: pointer;
   user-select: none;
 
-   &:active {
+  &:active {
     color: var(--color-blue);
   }
 

@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="microblocks"
-    class="keyblock-microblock-panel">
+  <app-panel class="keyblock-microblock-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       pagination-style="history"
@@ -52,13 +50,8 @@ const loadNextMicroblocks = () =>
 
 <style scoped>
 .keyblock-microblock-panel {
-  padding: var(--space-4) var(--space-1) var(--space-4);
-  margin-top: var(--space-2);
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-4);
-  }
-
   &__table {
+    margin-bottom: var(--space-4);
     display: none;
     @media (--desktop) {
       display: revert;

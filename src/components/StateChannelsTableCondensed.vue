@@ -95,12 +95,12 @@
           <td class="state-channels-table-condensed__data">
             <div>
               <app-link
-                :to="`/keyblocks/${channel.updatedHeight}`">
-                {{ channel.updatedHeight }}
+                :to="`/keyblocks/${channel.lastUpdatedHeight}`">
+                {{ channel.lastUpdatedHeight }}
               </app-link>
             </div>
             <div>
-              <datetime-label :datetime="channel.updated "/>
+              <datetime-label :datetime="channel.lastUpdated "/>
             </div>
           </td>
         </tr>
@@ -114,7 +114,7 @@
             </app-tooltip>
           </th>
           <td class="state-channels-table-condensed__data">
-            {{ channel.updateType }}
+            {{ channel.lastTxType }}
           </td>
         </tr>
       </tbody>

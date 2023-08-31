@@ -112,7 +112,7 @@ export function adaptNames(names, blockHeight) {
   })
 }
 
-export function adaptDashboardStateChannels(stateChannels, blockHeight) {
+export function adaptDashboardStateChannels(stateChannels) {
   return stateChannels.map(channel => {
     return {
       initiator: channel.initiator,
@@ -120,12 +120,9 @@ export function adaptDashboardStateChannels(stateChannels, blockHeight) {
       channel: channel.channel,
       updateCount: channel.updatesCount,
       amount: formatAettosToAe(channel.amount),
-      updatedHeight: channel.lastUpdatedHeight,
-      updated: formatBlockDiffAsDatetime(
-        channel.lastUpdatedHeight,
-        blockHeight,
-      ),
-      updateType: channel.lastUpdatedTxType,
+      lastUpdatedHeight: channel.lastUpdatedHeight,
+      lastUpdated: DateTime.fromMillis(channel.lastUpdatedTime),
+      lastTxType: channel.lastUpdatedTxType,
     }
   })
 }
@@ -526,7 +523,6 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx) {
   }
 }
 
-// todo rename
 export function adaptStateChannels(stateChannels) {
   const formattedData = stateChannels.data
     .map(channel => {

@@ -32,11 +32,11 @@
           <td class="oracles-table-condensed__data">
             <div>
               <app-link
-                :to="`/keyblocks/${oracle.activeFromHeight}`">
-                {{ oracle.activeFromHeight }}
+                :to="`/keyblocks/${oracle.registeredHeight}`">
+                {{ oracle.registeredHeight }}
               </app-link>
             </div>
-            <datetime-label :datetime="oracle.activeFrom"/>
+            <datetime-label :datetime="oracle.registered"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">

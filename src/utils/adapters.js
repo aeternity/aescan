@@ -443,12 +443,12 @@ export function adaptListedTokens(tokens) {
   }
 }
 
-export function adaptOracles(oracles, blockHeight) {
+export function adaptOracles(oracles) {
   const formattedData = oracles.data.map(oracle => {
     return {
       id: oracle.oracle,
-      activeFromHeight: oracle.activeFrom,
-      activeFrom: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
+      registeredHeight: oracle.activeFrom,
+      registered: DateTime.fromMillis(oracle.registerTime),
       expirationHeight: oracle.expireHeight,
       expiration: DateTime.fromMillis(oracle.approximateExpireTime),
       queryFee: formatAettosToAe(oracle.queryFee),
@@ -462,18 +462,13 @@ export function adaptOracles(oracles, blockHeight) {
   }
 }
 
-export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHeight) {
+export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
     expiration: DateTime.fromMillis(oracle.approximateExpireTime),
     expirationHeight: oracle.expireHeight,
-    registered: oracle.activeFrom
-      ? formatBlockDiffAsDatetime(
-        oracle.activeFrom,
-        blockHeight,
-      )
-      : null,
+    registered: DateTime.fromMillis(oracle.registerTime),
     registeredHeight: oracle.activeFrom,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
@@ -533,15 +528,15 @@ export function adaptStateChannels(stateChannels) {
         responder: channel.responder,
         updateCount: channel.updatesCount,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
-        lastUpdated: DateTime.fromMillis(channel.lastUpdatedTime),
         lastUpdatedHeight: channel.lastUpdatedHeight,
+        lastUpdated: DateTime.fromMillis(channel.lastUpdatedTime),
         lastTxType: channel.lastUpdatedTxType,
       }
     })
   return {
-    next: channels.next,
+    next: stateChannels.next,
     data: formattedData,
-    prev: channels.prev,
+    prev: stateChannels.prev,
   }
 }
 

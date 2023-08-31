@@ -28,7 +28,6 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
 
     const { data } = await axios.get(channelsUrl.toString())
     rawStateChannels.value = data
-    console.log('data', data)
   }
 
   async function fetchStateChannelsCount() {

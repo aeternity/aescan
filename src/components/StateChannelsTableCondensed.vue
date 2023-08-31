@@ -100,7 +100,7 @@
               </app-link>
             </div>
             <div>
-              <datetime-label :datetime="channel.lastUpdated "/>
+              <datetime-label :datetime="channel.lastUpdated"/>
             </div>
           </td>
         </tr>

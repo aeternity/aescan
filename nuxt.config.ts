@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     trackLocalhost: false,
   },
   appConfig: {
-    APP_VERSION: process.env.APP_VERSION || 'UNKNOWN',
+    APP_VERSION: process.env.APP_VERSION,
   },
   runtimeConfig: {
     public: {

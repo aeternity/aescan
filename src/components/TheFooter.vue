@@ -40,22 +40,28 @@
         </div>
         <div class="footer__column">
           <div class="footer__network">
-            <app-link
-              class="footer__version"
-              :to="APP_CHANGELOG_URL">
-              ÆSCAN VERSION v{{ APP_VERSION }}
-            </app-link>
-            <app-link
-              class="footer__version"
-              :to="NODE_CHANGELOG_URL">
-              NODE VERSION v{{ nodeVersion }}
-            </app-link>
-            <app-link
-              class="footer__version"
-              :to="MDW_CHANGELOG_URL">
-              MIDDLEWARE VERSION v{{ middlewareVersion }}
-            </app-link>
-            <div/>
+            <div
+              v-if="!!APP_VERSION"
+              class="footer__version">
+              ÆSCAN VERSION
+              <app-link :to="APP_RELEASES_URL">
+                v{{ APP_VERSION }}
+              </app-link>
+            </div>
+            <div
+              class="footer__version">
+              NODE VERSION
+              <app-link :to="NODE_RELEASES_URL">
+                v{{ nodeVersion }}
+              </app-link>
+            </div>
+            <div
+              class="footer__version">
+              MIDDLEWARE VERSION
+              <app-link :to="MDW_RELEASES_URL">
+                v{{ middlewareVersion }}
+              </app-link>
+            </div>
           </div>
           <div class="footer__link-container">
             <footer-list
@@ -88,9 +94,9 @@ const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const { APP_VERSION } = useAppConfig()
 
-const APP_CHANGELOG_URL = 'https://github.com/aeternity/aescan/blob/main/CHANGELOG.md'
-const NODE_CHANGELOG_URL = 'https://github.com/aeternity/aeternity/releases'
-const MDW_CHANGELOG_URL = 'https://github.com/aeternity/ae_mdw/blob/master/CHANGELOG.md'
+const APP_RELEASES_URL = 'https://github.com/aeternity/aescan/releases'
+const NODE_RELEASES_URL = 'https://github.com/aeternity/aeternity/releases'
+const MDW_RELEASES_URL = 'https://github.com/aeternity/ae_mdw/releases'
 
 const links = {
   about: [

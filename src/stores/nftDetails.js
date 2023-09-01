@@ -10,6 +10,7 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
   const rawNftDetails = ref(null)
   const rawNftTransfers = ref(null)
   const nftInventory = ref(null)
+  const nftOwners = ref(null)
 
   const nftDetails = computed(() => {
     return rawNftDetails.value
@@ -42,6 +43,21 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     nftInventory.value = data
   }
 
+  function fetchNftOwners({ queryParameters, limit, contractId } = {}) {
+    nftOwners.value = null
+
+    const obj = {
+      data: [{
+        contractId: 'ct_2w7MHbcyk5iM4yijZmjGcUF2DSZuVM1Mueppx5SSvPn5cgLJuZ',
+        ownerId: 'ak_uTWegpfN6UjA4yz8X4ZVRi9xKEYeXHJDRZcRryTsRHAFoBpLa',
+        tokenId: 1,
+      }],
+      next: null,
+      prev: null,
+    }
+    nftOwners.value = obj
+  }
+
   return {
     nftDetails,
     fetchNftDetails,
@@ -49,5 +65,7 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     nftTransfers,
     fetchNftInventory,
     nftInventory,
+    fetchNftOwners,
+    nftOwners,
   }
 })

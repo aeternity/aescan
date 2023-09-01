@@ -37,7 +37,7 @@
           <td
             colspan="5"
             class="nft-inventory-table__query">
-            AAAA
+            <nft-owners-panel :contract-id="nft.contractId"/>
           </td>
         </tr>
       </template>

@@ -113,7 +113,7 @@ export function formatTemplateLimit(extensions, templateLimit) {
   } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
     return templateLimit
   } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
-    return templateLimit
+    return 'Unlimited'
   }
 }
 

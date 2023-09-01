@@ -21,7 +21,7 @@
       class="account-details-panel__not-existent">
       The account has never been seen in the network.
       <br>
-      Details will be displayed once the first transaction from the account is sent.
+      Details will be displayed once the account is involved in a transaction.
     </p>
     <table v-else>
       <tbody>

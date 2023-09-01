@@ -1,14 +1,16 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptTokenDetails, adaptTokenEvents } from '@/utils/adapters'
-import { formatTokenPairRouteAsRatio } from '@/utils/format'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
 import { useAesdk } from '@/stores/aesdk'
+import { useDexStore } from '@/stores/dex'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {
-  const { AE_TOKEN_ID, DEX_BACKEND_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const { aeSdk } = storeToRefs(useAesdk())
+  const { fetchPrice } = useDexStore()
 
   const tokenId = ref(null)
   const price = ref(null)
@@ -22,7 +24,8 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
       rawToken.value,
-      rawTotalSupply.value, price.value,
+      rawTotalSupply.value,
+      price.value,
     )
     : null,
   )
@@ -46,11 +49,19 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   function fetchTokenDetails(id) {
     tokenId.value = id
 
-    return Promise.allSettled([
-      fetchToken(),
-      fetchTotalSupply(),
-      fetchPrice(),
+    const tokenPromise = fetchToken()
+
+    return Promise.all([
+      tokenPromise,
+      Promise.allSettled([
+        fetchTotalSupply(),
+        tokenPromise.then(() => fetchTokenPrice()),
+      ]),
     ])
+  }
+
+  async function fetchTokenPrice() {
+    price.value = await fetchPrice(tokenId.value, rawToken.value.decimals)
   }
 
   async function fetchToken() {
@@ -65,22 +76,6 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     })
     const contractCallResult = await contractInstance.total_supply()
     rawTotalSupply.value = contractCallResult?.decodedResult
-  }
-
-  async function fetchPrice() {
-    if (tokenId.value === AE_TOKEN_ID) {
-      price.value = 1
-      return
-    }
-
-    const { data } = await axios.get(`${DEX_BACKEND_URL}/pairs/swap-routes/${tokenId.value}/${AE_TOKEN_ID}`)
-
-    if (data.length === 0) {
-      price.value = false
-      return
-    }
-
-    price.value = formatTokenPairRouteAsRatio(data[0])
   }
 
   async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {

@@ -24,7 +24,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="name in accountNames?.data"
+        v-for="name in accountNames.data"
         :key="name.name">
         <td>
           <app-link :to="`/names/${name.name}`">

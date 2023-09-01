@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
+import { BigNumber } from 'bignumber.js'
+import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNameStatus } from '@/utils/format'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 function isAuction(name) {
@@ -148,14 +149,16 @@ export function adaptAccountNames(names) {
 export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
   const formattedData = tokens.data.map(token => {
     const amount = token.amount / (10 ** token.decimals)
-    const tokenAePrice = tokenPrices[token.contractId] ? 1 / tokenPrices[token.contractId] : null
+    const tokenAePrice = tokenPrices[token.contractId] || null
 
     return {
       tokenSymbol: token.tokenSymbol,
       tokenName: token.tokenName,
       contractId: token.contractId,
       amount,
-      value: tokenAePrice !== null ? amount * tokenAePrice * aeFiatPrice : null,
+      value: tokenAePrice !== null
+        ? (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber()
+        : null,
     }
   })
   return {
@@ -368,11 +371,11 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   }
 
   if (token && totalSupply) {
-    tokenDetails.totalSupply = Number(totalSupply / BigInt(10 ** token.decimals))
+    tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
   }
 
   if (tokenDetails.totalSupply && price) {
-    tokenDetails.marketCap = tokenDetails.totalSupply * price
+    tokenDetails.marketCap = (new BigNumber(tokenDetails.totalSupply)).multipliedBy(price).toNumber()
   }
 
   return tokenDetails
@@ -400,8 +403,10 @@ export function adaptTokenEvents(events, blockHeight) {
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
   const formattedData = tokenHolders.data.map(holder => ({
     address: holder.accountId,
-    amount: holder.amount / (10 ** tokenDetails.decimals),
-    percentage: (holder.amount / (10 ** (tokenDetails.decimals - 2))) / tokenDetails.totalSupply,
+    amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
+    percentage: (new BigNumber(holder.amount)
+      .dividedBy(10 ** (tokenDetails.decimals - 2)))
+      .dividedBy(tokenDetails.totalSupply).toNumber(),
   }))
 
   return {
@@ -545,5 +550,21 @@ export function adaptStateChannels(channels, blockHeight) {
     next: channels.next,
     data: formattedData,
     prev: channels.prev,
+  }
+}
+
+export function adaptNamesResults(names) {
+  const formattedData = names.data
+    .map(name => {
+      return {
+        name: name.payload.name,
+        status: formatNameStatus(name),
+      }
+    })
+
+  return {
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
   }
 }

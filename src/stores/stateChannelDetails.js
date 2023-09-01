@@ -1,17 +1,19 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptStateChannelDetails, adaptTransactions } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useStateChannelDetailsStore = defineStore('stateChannelDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const { blockHeight } = storeToRefs(useRecentBlocksStore())
 
   const stateChannelId = ref(null)
   const rawStateChannel = ref(null)
   const rawStateChannelCreateTx = ref(null)
   const rawStateChannelTransactions = ref(null)
+  const stateChannelTransactionsCount = ref(null)
 
   const stateChannelDetails = computed(() => rawStateChannel.value
     ? adaptStateChannelDetails(
@@ -30,9 +32,10 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   async function fetchStateChannelDetails(id) {
     stateChannelId.value = id
 
-    await Promise.allSettled([
+    await Promise.all([
       fetchStateChannel(),
       fetchStateChannelCreateTx(),
+      fetchStateChannelTransactionsCount(),
     ])
 
     return true
@@ -62,6 +65,10 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     const { data } = await axios.get(transactionsUrl.toString())
     rawStateChannelTransactions.value = data
   }
+  async function fetchStateChannelTransactionsCount() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count?id=${stateChannelId.value}`)
+    stateChannelTransactionsCount.value = data + 1
+  }
 
   return {
     rawStateChannel,
@@ -70,6 +77,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     stateChannelId,
     stateChannelDetails,
     stateChannelTransactions,
+    stateChannelTransactionsCount,
     fetchStateChannelDetails,
     fetchStateChannelTransactions,
   }

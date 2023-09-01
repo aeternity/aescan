@@ -4,7 +4,9 @@
     :link-to="`/accounts/${transactionData.fromId}`"/>
   <transaction-arrow-right-icon/>
 
-  <value-hash-ellipsed :hash="transactionData.fromId"/>
+  <value-hash-ellipsed
+    :hash="transactionData.channelId"
+    :link-to="`/state-channels/${transactionData.channelId}`"/>
 
   <app-tooltip>
     <app-chip size="sm">

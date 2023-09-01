@@ -1,18 +1,19 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { adaptAccountNames, adaptTransactions, adaptAccountTokens } from '@/utils/adapters'
-import { formatAettosToAe, formatTokenPairRouteAsRatio } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
+import { useDexStore } from '@/stores/dex'
 
 export const useAccountStore = defineStore('account', () => {
   const {
     MIDDLEWARE_URL,
     NODE_URL,
-    DEX_BACKEND_URL,
-    AE_TOKEN_ID,
   } = useRuntimeConfig().public
   const { price: aeFiatPrice } = storeToRefs(useMarketStatsStore())
+  const axios = useAxios()
+  const { fetchPrice } = useDexStore()
 
   const rawAccountDetails = ref(null)
   const accountTransactionsCount = ref(null)
@@ -70,7 +71,7 @@ export const useAccountStore = defineStore('account', () => {
       const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
       rawAccountDetails.value = data
     } catch (e) {
-      if (e.response.status === 404) {
+      if ([400, 404].includes(e.response.status)) {
         rawAccountDetails.value = { id: accountId, notExistent: true }
       }
     }
@@ -117,26 +118,12 @@ export const useAccountStore = defineStore('account', () => {
     tokenPrices.value = {}
     await Promise.all(
       rawAccountTokens.value.data.map(async token => {
-        const price = await fetchTokenPrice(token.contractId)
+        const price = await fetchPrice(token.contractId, token.decimals)
         if (price) {
           tokenPrices.value[token.contractId] = price
         }
       }),
     )
-  }
-
-  async function fetchTokenPrice(tokenId) {
-    if (tokenId === AE_TOKEN_ID) {
-      return 1
-    }
-
-    const { data } = await axios.get(`${DEX_BACKEND_URL}/pairs/swap-routes/${tokenId}/${AE_TOKEN_ID}`)
-
-    if (data.length === 0) {
-      return null
-    }
-
-    return formatTokenPairRouteAsRatio(data[0])
   }
 
   async function fetchAccountNamesCount(accountId) {

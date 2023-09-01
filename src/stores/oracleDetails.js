@@ -1,12 +1,13 @@
 import { defineStore, storeToRefs } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 import { adaptOracleDetails, adaptOracleEvents } from '@/utils/adapters'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const { blockHeight } = storeToRefs(useRecentBlocksStore())
+  const axios = useAxios()
 
   const oracleId = ref(null)
   const rawOracle = ref(null)
@@ -29,10 +30,12 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   async function fetchOracleDetails(id) {
     oracleId.value = id
 
-    await Promise.allSettled([
+    await Promise.all([
       fetchOracle(),
-      fetchLastQueryTx(),
-      fetchLastExtendedTx(),
+      Promise.allSettled([
+        fetchLastQueryTx(),
+        fetchLastExtendedTx(),
+      ]),
     ])
 
     return true

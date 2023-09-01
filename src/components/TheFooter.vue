@@ -78,7 +78,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRuntimeConfig } from '#app'
 import FooterList from '@/components/FooterList'
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'

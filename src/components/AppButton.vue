@@ -53,7 +53,6 @@ defineProps({
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
-  padding: var(--space-3) var(--space-7);
   text-decoration: none;
   letter-spacing: 0.015em;
 
@@ -61,8 +60,9 @@ defineProps({
   color: var(--color-white);
 
   border-radius: 48px;
-
   border: none;
+
+  padding: var(--space-3) var(--space-5);
 
   &__icon {
     margin-right: var(--space-1);

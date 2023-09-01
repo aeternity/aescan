@@ -58,7 +58,7 @@
             </app-tooltip>
           </th>
           <td class="account-tokens-table-condensed__data">
-            {{ token.amount }}
+            {{ formatNumber(token.amount) }}
           </td>
         </tr>
         <tr class="account-tokens-table-condensed__row">
@@ -71,7 +71,7 @@
             </app-tooltip>
           </th>
           <td class="account-tokens-table-condensed__data">
-            {{ token.value !== null ? `$${formatNumber(token.value)}` : 'N/A' }}
+            {{ token.value !== null ? `$${formatNumber(token.value, null, null, 7)}` : 'N/A' }}
           </td>
         </tr>
       </tbody>

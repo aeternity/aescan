@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
+import useAxios from '@/composables/useAxios'
 
 export const useStatus = defineStore('status', () => {
   const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
   const middlewareVersion = ref(null)
   const nodeVersion = ref(null)
 

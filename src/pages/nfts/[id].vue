@@ -43,5 +43,6 @@ try {
       statusMessage: 'EntityDetailsNotFound',
     })
   }
+  throw error
 }
 </script>

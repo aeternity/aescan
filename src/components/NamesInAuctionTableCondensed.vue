@@ -1,7 +1,7 @@
 <template>
-  <div class="names-in-auction-table-condensed">
+  <div>
     <table
-      v-for="name in names?.data"
+      v-for="name in names.data"
       :key="name.name"
       class="names-in-auction-table-condensed__table">
       <tbody>

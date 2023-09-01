@@ -1,5 +1,5 @@
 <template>
-  <div class="state-channels-table-condensed">
+  <div>
     <table
       v-for="channel in stateChannels.data"
       :key="channel.id"

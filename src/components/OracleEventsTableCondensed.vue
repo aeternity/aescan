@@ -1,5 +1,5 @@
 <template>
-  <div class="oracle-events-table-condensed">
+  <div>
     <table
       v-for="(event, index) in oracleEvents.data"
       :key="event.respondTx"

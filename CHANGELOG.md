@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.6.0](https://github.com/aeternity/aescan/compare/0.5.0...0.6.0) (2023-08-30)
+
+
+### Features
+
+* account tokens ([#450](https://github.com/aeternity/aescan/issues/450)) ([f5941dd](https://github.com/aeternity/aescan/commit/f5941ddbbbcfaf4cf5edf6636839efc2e67348d0))
+* adjust colors ([#422](https://github.com/aeternity/aescan/issues/422)) ([7a4aafb](https://github.com/aeternity/aescan/commit/7a4aafb55ac5c42c654cd8925879e9208bb0d642))
+* Adjust panels spacing ([#448](https://github.com/aeternity/aescan/issues/448)) ([e0ef32b](https://github.com/aeternity/aescan/commit/e0ef32bf4ec88e005200904437eaee07766b366a))
+* app metrics and axios optimization ([#469](https://github.com/aeternity/aescan/issues/469)) ([556c342](https://github.com/aeternity/aescan/commit/556c342afbef3ae4cdbd2b8943d0e5a72225a3a3))
+* Dashboard loading indicators 3 ([#455](https://github.com/aeternity/aescan/issues/455)) ([4e007a6](https://github.com/aeternity/aescan/commit/4e007a687caf90919b0a6e227c75e89a170d09ea))
+* display correct Node version ([#440](https://github.com/aeternity/aescan/issues/440)) ([359b8c0](https://github.com/aeternity/aescan/commit/359b8c0f43b499913e35f8fc2cbdc49267a3cc19))
+* implement not found panel for all details pages ([#444](https://github.com/aeternity/aescan/issues/444)) ([0fad7d6](https://github.com/aeternity/aescan/commit/0fad7d6d550cf73ce12fc520164711d140464c81))
+* Improve search results page ([#458](https://github.com/aeternity/aescan/issues/458)) ([c0f7f10](https://github.com/aeternity/aescan/commit/c0f7f10b7d84ae7915856320e930e8f8bb85d4c5))
+* Loading for tables ([#419](https://github.com/aeternity/aescan/issues/419)) ([3c20573](https://github.com/aeternity/aescan/commit/3c2057349db9ace8952f5a1e1f86fd85683a49da))
+* Loading indicator for panels  2 ([#441](https://github.com/aeternity/aescan/issues/441)) ([7b883f8](https://github.com/aeternity/aescan/commit/7b883f85d025d6f7ae14963e7d022ca6e46e70f0))
+* Token events counter ([#456](https://github.com/aeternity/aescan/issues/456)) ([557d935](https://github.com/aeternity/aescan/commit/557d9359fa2d93bf3892dc7bb1a7f5af5c99f087))
+* transactions live sync ([#466](https://github.com/aeternity/aescan/issues/466)) ([ec703ce](https://github.com/aeternity/aescan/commit/ec703cea3f9c66d8eda142f4b9d3fef468ba6c38))
+
+
+### Bug Fixes
+
+* ChannelSnapshotSolo wierd values ([#470](https://github.com/aeternity/aescan/issues/470)) ([3e33b8e](https://github.com/aeternity/aescan/commit/3e33b8eb1128d95bf4be42e721f25c856aaf5a5e))
+* display correct token holder values ([#479](https://github.com/aeternity/aescan/issues/479)) ([7a29bd6](https://github.com/aeternity/aescan/commit/7a29bd6b5d8350c01cffc38578d96273b8e8dc93))
+* Keyblock height is missing in contract details panel ([#468](https://github.com/aeternity/aescan/issues/468)) ([a244b83](https://github.com/aeternity/aescan/commit/a244b835ce4744ea3a5fac9af66c6f96e5b865ad))
+* Oracle response of OracleRespondTx transactions is not displayed correctly ([#358](https://github.com/aeternity/aescan/issues/358)) ([0ccbe21](https://github.com/aeternity/aescan/commit/0ccbe21d2f0e8ca70b1f7776d216159958c4d792))
+* remove pagination from dashboard microblock transactions panel ([#408](https://github.com/aeternity/aescan/issues/408)) ([03432c0](https://github.com/aeternity/aescan/commit/03432c08f9b1ec743cfacce3c0d947eaae75b830))
+* token prices and meaningful number formatting ([#482](https://github.com/aeternity/aescan/issues/482)) ([5aabe60](https://github.com/aeternity/aescan/commit/5aabe60c9a369d8579be4e7c7c1fe7d9644ebbc7))
+
 ## [0.5.0](https://github.com/aeternity/aescan/compare/0.4.0...0.5.0) (2023-08-08)
 
 

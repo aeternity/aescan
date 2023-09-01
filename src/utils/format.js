@@ -9,10 +9,21 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-export function formatNumber(number, minimumFractionDigits = 0, maximumFractionDigits = 5) {
+export function formatNumber(
+  number,
+  minimumFractionDigits = 0,
+  maximumFractionDigits = 5,
+  maximumSignificantDigits = null) {
   if (isNaN(number) || number === null) {
     return number
   }
+
+  if (maximumSignificantDigits !== null) {
+    return Intl.NumberFormat('en-US', {
+      maximumSignificantDigits,
+    }).format(number)
+  }
+
   return Intl.NumberFormat('en-US', {
     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
     maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
@@ -40,7 +51,7 @@ export function formatAePrice(price, maxDigits = 8) {
   decimals = decimals?.replace(/0+$/, '')
 
   if (!decimals) {
-    return integers === '0' && decimals !== '' ? `~${integers} AE` : `${formatNumber(integers)} AE`
+    return integers === '0' ? `~${integers} AE` : `${formatNumber(integers)} AE`
   }
 
   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} AE`
@@ -52,18 +63,6 @@ export function formatAettosToAe(aettosAmount) {
   }
 
   return toAe(aettosAmount)
-}
-
-export function formatTokenPairRouteAsRatio(route) {
-  return route
-    .map(step => [
-      step.liquidityInfo.reserve0,
-      step.liquidityInfo.reserve1,
-    ])
-    .reduce(
-      (ratio, [reserveA, reserveB]) => ratio.multipliedBy(BigNumber(reserveB).div(reserveA)),
-      BigNumber(1),
-    )
 }
 
 export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) {
@@ -82,4 +81,14 @@ export function formatDecodeBase64(base64String) {
 
 export function formatDecodeByteArray(bytesArray) {
   return String.fromCharCode(...bytesArray)
+}
+
+export function formatNameStatus(name) {
+  if (name.payload.auctionEnd) {
+    return 'In Auction'
+  } else if (name.payload.active) {
+    return 'Active'
+  } else {
+    return 'Expired'
+  }
 }

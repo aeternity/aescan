@@ -6,11 +6,9 @@ import { adaptKeyblock, adaptKeyblockMicroblocks } from '@/utils/adapters'
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
-
   const rawKeyblock = ref(null)
   const keyblockDeltaStats = ref(null)
   const rawKeyblockMicroblocks = ref(null)
-
   const keyblockDetails = computed(() => {
     return rawKeyblock.value?.hash ? adaptKeyblock(rawKeyblock.value, keyblockDeltaStats.value) : rawKeyblock.value
   })
@@ -33,7 +31,6 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
         rawKeyblock.value = { notExistent: true }
         return
       }
-
       throw error
     }
   }

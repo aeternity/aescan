@@ -1,7 +1,7 @@
 <template>
-  <div class="account-transactions-table-condensed">
+  <div>
     <table
-      v-for="transaction in accountTransactions?.data"
+      v-for="transaction in accountTransactions.data"
       :key="transaction.hash"
       class="account-transactions-table-condensed__table">
       <tbody>

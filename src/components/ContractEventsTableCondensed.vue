@@ -1,5 +1,5 @@
 <template>
-  <div class="contract-events-table-condensed">
+  <div>
     <table
       v-for="(event, index) in contractEvents.data"
       :key="event.callTxHash"

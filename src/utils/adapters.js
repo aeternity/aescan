@@ -10,6 +10,8 @@ import {
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
+import { BigNumber } from 'bignumber.js'
+
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {

@@ -80,11 +80,26 @@
           <!--              :link-to="`/transactions/${event.respondTx}`"/>-->
           </td>
         </tr>
+        <tr class="nft-inventory-table-condensed__row">
+          <th class="nft-inventory-table-condensed__header">
+            <app-tooltip>
+              Status
+              <template #tooltip>
+              <!--                {{ oraclesHints.queryStatus }}-->
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="nft-inventory-table-condensed__data">
+            <response-button
+              :is-collapsed="!isOpened.includes(index)"
+              @click="toggle(index)"/>
+          </td>
+        </tr>
         <tr
           v-if="isOpened.includes(index)"
           class="nft-inventory-table-condensed__row">
           <td colspan="5">
-          <!--            <oracle-events-query-panel :event="event"/>-->
+            AAAA
           </td>
         </tr>
       </tbody>
@@ -116,3 +131,32 @@ function toggle(id) {
   }
 }
 </script>
+
+<style scoped>
+.nft-inventory-table-condensed {
+  &__table {
+    padding: 0 var(--space-1) var(--space-7);
+    margin-bottom: var(--space-5);
+  }
+
+  &__header {
+    border-bottom: 1px solid var(--color-midnight-25);
+
+    &--expanded {
+      border-bottom: 0;
+    }
+  }
+
+  &__row:last-of-type &__header {
+    border-bottom: 0;
+  }
+
+  &__data {
+    text-align: right;
+
+    &--expanded {
+      border-bottom: 0;
+    }
+  }
+}
+</style>

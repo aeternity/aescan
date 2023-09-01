@@ -99,11 +99,10 @@ useHead({
   meta: [
     { name: 'robots', content: 'noindex' },
   ],
-  titleTemplate: title => {
-    return title
+  titleTemplate: title =>
+    title
       ? `${APP_TITLE_SHORT} | ${title}`
-      : APP_TITLE
-  },
+      : APP_TITLE,
 })
 
 const error = useError()

@@ -92,11 +92,10 @@ if (process.client) {
 }
 
 useHead({
-  titleTemplate: title => {
-    return title
+  titleTemplate: title =>
+    title
       ? `${APP_TITLE_SHORT} | ${title}`
-      : APP_TITLE
-  },
+      : APP_TITLE,
 })
 
 if (import.meta.env.MODE !== 'production') {

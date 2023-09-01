@@ -18,7 +18,7 @@ export const useNftsStore = defineStore('nfts', () => {
 
   async function fetchNftsList({ queryParameters, limit } = {}) {
     nfts.value = null
-    const defaultParameters = `/v2/aex141?limit=${limit || 10}`
+    const defaultParameters = `/v2/aex141?direction=backward&limit=${limit || 10}`
     const { data } = await axios.get(
       `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
     )

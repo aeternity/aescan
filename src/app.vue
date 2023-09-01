@@ -1,7 +1,6 @@
 <template>
   <Html>
     <Head>
-      <Title>{{ APP_TITLE_SHORT }}</Title>
       <Meta
         name="description"
         :content="APP_DESCRIPTION"/>
@@ -91,6 +90,14 @@ if (process.client) {
   const { initializeWebSocket } = useWebSocket()
   initializeWebSocket()
 }
+
+useHead({
+  titleTemplate: title => {
+    return title
+      ? `${APP_TITLE_SHORT} | ${title}`
+      : APP_TITLE
+  },
+})
 
 if (import.meta.env.MODE !== 'production') {
   useHead({

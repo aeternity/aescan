@@ -1,8 +1,6 @@
 <template>
   <div>
     <Head>
-      <Title> {{ APP_TITLE_SHORT }}</Title>
-
       <Meta
         name="description"
         :content="APP_DESCRIPTION"/>
@@ -101,6 +99,11 @@ useHead({
   meta: [
     { name: 'robots', content: 'noindex' },
   ],
+  titleTemplate: title => {
+    return title
+      ? `${APP_TITLE_SHORT} | ${title}`
+      : APP_TITLE
+  },
 })
 
 const error = useError()

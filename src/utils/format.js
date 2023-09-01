@@ -111,7 +111,7 @@ export function formatTemplateLimit(extensions, templateLimit) {
   } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
     return null
   } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
-    return 'Unlimited'
+    return templateLimit
   } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
     return templateLimit
   }

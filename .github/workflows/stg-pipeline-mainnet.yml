@@ -64,6 +64,10 @@ jobs:
         run: |
           echo GIT_SHA=$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
       
+      - name: Create dotenv
+        run: |
+          echo APP_VERSION=$(git describe --tags)-preview >> .env
+
       - name: Build and push docker image
         if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'synchronize'
         uses: docker/build-push-action@v2

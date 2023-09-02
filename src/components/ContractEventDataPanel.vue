@@ -5,13 +5,16 @@
     </div>
     <dl>
       <template
-        v-for="(arg, index) in event.data"
+        v-for="(argument, index) in event.data"
         :key="index">
         <dt class="contract-event-data-panel_term">
           [arg{{ index }}]:
         </dt>
         <dd class="contract-event-data-panel__value">
-          {{ arg }}
+          {{ argument }}
+          <app-copy-button
+            :clipboard-text="argument"
+            size="sm"/>
         </dd>
       </template>
     </dl>
@@ -20,6 +23,7 @@
 
 <script setup>
 import AppPanel from '@/components/AppPanel'
+import AppCopyButton from '@/components/AppCopyButton'
 
 defineProps({
   event: {
@@ -50,6 +54,9 @@ defineProps({
   }
 
   &__value {
+    color: var(--color-midnight-55);
+    display: flex;
+    gap: var(--space-0);
     word-break: break-all;
   }
 }

@@ -64,6 +64,14 @@
           </app-tooltip>
         </th>
         <td
+          v-if="event.isDecoded"
+          class="contract-events-table-condensed__cell">
+          <contract-event-cell
+            :event="event"
+            :contract-details="contractDetails"/>
+        </td>
+        <td
+          v-else
           :class="[
             'contract-events-table-condensed__data',
             {'contract-events-table-condensed__data--expanded': isOpened.includes(index)}]">
@@ -92,6 +100,10 @@ import ContractEventDataPanel from '@/components/ContractEventDataPanel'
 import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({
+  contractDetails: {
+    type: Object,
+    required: true,
+  },
   contractEvents: {
     type: Object,
     required: true,

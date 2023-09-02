@@ -47,7 +47,14 @@
         <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
           {{ event.eventName ? event.eventName : 'N/A' }}
         </td>
-        <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+        <td v-if="event.isDecoded">
+          <contract-event-cell
+            :event="event"
+            :contract-details="contractDetails"/>
+        </td>
+        <td
+          v-else
+          :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
           <expand-button
             :is-collapsed="!isOpened.includes(index)"
             @click="toggle(index)">
@@ -58,7 +65,10 @@
       <tr v-if="isOpened.includes(index)">
         <td
           colspan="4"
-          class="contract-events-table__arguments">
+          :class="[
+            'contract-events-table__arguments',
+            {'contract-events-table__arguments--expanded': isOpened.includes(index)}
+          ]">
           <contract-event-data-panel :event="event"/>
         </td>
       </tr>
@@ -72,8 +82,13 @@ import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import ContractEventDataPanel from '@/components/ContractEventDataPanel'
 import ExpandButton from '@/components/ExpandButton'
+import ContractEventCell from '@/components/ContractEventCell'
 
 const props = defineProps({
+  contractDetails: {
+    type: Object,
+    required: true,
+  },
   contractEvents: {
     type: Object,
     required: true,
@@ -108,6 +123,10 @@ function toggle(id) {
 
   &__arguments {
     border-top: 0;
+
+    &--expanded {
+      padding-bottom: 0;
+    }
   }
 }
 </style>

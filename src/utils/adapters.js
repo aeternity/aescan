@@ -447,7 +447,7 @@ export function adaptOracles(oracles, blockHeight) {
   }
 }
 
-export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHeight) {
+export function adaptOracleDetails(oracle, lastExtendedTx, blockHeight, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
@@ -460,8 +460,8 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
     operator: oracle.oracle.replace('ok_', 'ak_'),
     lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.microTime) : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.microTime) : null,
-    lastQueryHeight: lastQueryTx?.blockHeight,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.blockTime) : null,
+    lastQueryHeight: lastQueryTx?.height,
   }
   return oracleDetails
 }
@@ -469,6 +469,10 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
 export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
+      queriedAt: DateTime.fromMillis(event.query.blockTime),
+      queriedAtHeight: event.query.height,
+      respondedAt: DateTime.fromMillis(event.blockTime),
+      respondedAtHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,
       queryId: event.query.queryId,

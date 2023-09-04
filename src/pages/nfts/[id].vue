@@ -36,6 +36,7 @@ const { fetchNftDetails } = nftDetailsStore
 const route = useRoute()
 
 const { isLoading } = useLoading()
+
 try {
   await fetchNftDetails(route.params.id)
 } catch (error) {

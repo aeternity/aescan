@@ -10,16 +10,6 @@ import {
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
-import { BigNumber } from 'bignumber.js'
-import {
-  formatAettosToAe,
-  formatBlockDiffAsDatetime,
-  formatDecodeBase64,
-  formatIsAuction,
-  formatNameStatus,
-  formatTemplateLimit,
-  formatTokenLimit,
-} from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
@@ -534,14 +524,6 @@ export function adaptStateChannels(channels, blockHeight) {
     next: channels.next,
     data: formattedData,
     prev: channels.prev,
-  }
-}
-
-export function adaptNftDetails(nft) {
-  return {
-    ...nft,
-    tokenLimit: formatTokenLimit(nft.extensions, nft.limits?.tokenLimit),
-    templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
   }
 }
 

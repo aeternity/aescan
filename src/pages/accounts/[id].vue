@@ -57,7 +57,7 @@ const { fetchAccount } = accountStore
 const route = useRoute()
 
 const isTabsVisible = computed(() => process.client &&
-    ((accountDetails && !accountDetails.value?.notExistent) ||
+    ((accountDetails.value && !accountDetails.value?.notExistent) ||
         !!accountTokens.value?.data.length))
 
 const isTokensTabSelected = computed(() => process.client &&

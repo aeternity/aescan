@@ -104,6 +104,7 @@
 </template>
 
 <script setup>
+
 import AppPanel from '@/components/AppPanel'
 import { nftsHints } from '@/utils/hints/nftHints'
 

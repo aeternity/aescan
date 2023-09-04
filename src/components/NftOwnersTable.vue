@@ -4,12 +4,21 @@
     <tr>
       <th class="nft-owners-table__header">
         Token ID
+        <hint-tooltip>
+          {{ nftsHints.ownersTokenId }}
+        </hint-tooltip>
       </th>
       <th class="nft-owners-table__header">
         Contract ID
+        <hint-tooltip>
+          {{ nftsHints.ownersContractId }}
+        </hint-tooltip>
       </th>
       <th class="nft-owners-table__header">
         Owner ID
+        <hint-tooltip>
+          {{ nftsHints.ownersOwnerId }}
+        </hint-tooltip>
       </th>
     </tr>
     <tr
@@ -33,6 +42,9 @@
 </template>
 
 <script setup>
+import { nftsHints } from '../utils/hints/nftHints'
+import HintTooltip from '~/components/HintTooltip'
+
 defineProps({
   owners: {
     type: Object,

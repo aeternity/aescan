@@ -10,7 +10,7 @@
             <app-tooltip>
               Template ID
               <template #tooltip>
-              <!--              {{ oraclesHints.queryTx }}-->
+                {{ nftsHints.inventoryTemplateId }}
               </template>
             </app-tooltip>
           </th>
@@ -23,7 +23,7 @@
             <app-tooltip>
               Supply
               <template #tooltip>
-              <!--              {{ oraclesHints.queryTx }}-->
+                {{ nftsHints.inventorySupply }}
               </template>
             </app-tooltip>
           </th>
@@ -36,7 +36,7 @@
             <app-tooltip>
               Limit
               <template #tooltip>
-              <!--              {{ oraclesHints.queryStatus }}-->
+                {{ nftsHints.inventoryLimit }}
               </template>
             </app-tooltip>
           </th>
@@ -49,7 +49,7 @@
             <app-tooltip>
               Create Transaction
               <template #tooltip>
-              <!--              {{ oraclesHints.queryStatus }}-->
+                {{ nftsHints.inventoryCreteTransaction }}
               </template>
             </app-tooltip>
           </th>
@@ -107,6 +107,7 @@
   </div>
 </template>
 <script setup>
+import { nftsHints } from '../utils/hints/nftHints'
 import AppTooltip from '~/components/AppTooltip'
 
 const props = defineProps({

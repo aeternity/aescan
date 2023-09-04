@@ -12,4 +12,12 @@ export const nftsHints = {
   transferTokenId: 'The ID of the NFT that was transferred.',
   transferRecipient: 'The recipient of the NFT.',
   transferSender: 'The sender of the NFT.',
+  inventoryTemplateId: 'The ID of the NFT template.',
+  inventorySupply: 'The number of NFTs that are minted from this template.',
+  inventoryLimit: 'The maximum number of NFTs that can be minted from this template.',
+  inventoryCreteTransaction: 'The hash of the transaction that created the NFT template.',
+  ownersTokenId: 'The ID of the NFT.',
+  ownersContractId: 'The ID of the smart contract that implements the AEX-141 non-fungible token standard.',
+  ownersOwnerId: 'The ID of the owner of the NFT.',
+  // todo fix hints
 }

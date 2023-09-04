@@ -2,10 +2,30 @@
   <table>
     <thead>
       <tr>
-        <th>Template ID</th>
-        <th>Supply</th>
-        <th>Limit</th>
-        <th>Create Transaction</th>
+        <th>
+          Template ID
+          <hint-tooltip>
+            {{ nftsHints.inventoryTemplateId }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Supply
+          <hint-tooltip>
+            {{ nftsHints.inventorySupply }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Limit
+          <hint-tooltip>
+            {{ nftsHints.inventoryLimit }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Create Transaction
+          <hint-tooltip>
+            {{ nftsHints.inventoryCreteTransaction }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -45,6 +65,8 @@
   </table>
 </template>
 <script setup>
+
+import { nftsHints } from '../utils/hints/nftHints'
 
 const props = defineProps({
   nftInventory: {

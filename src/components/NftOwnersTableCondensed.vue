@@ -10,7 +10,7 @@
             <app-tooltip>
               Token ID
               <template #tooltip>
-              <!--              {{ oraclesHints.queryTx }}-->
+                {{ nftsHints.ownersTokenId }}
               </template>
             </app-tooltip>
           </th>
@@ -23,7 +23,7 @@
             <app-tooltip>
               Contract ID
               <template #tooltip>
-              <!--              {{ oraclesHints.queryTx }}-->
+                {{ nftsHints.ownersContractId }}
               </template>
             </app-tooltip>
           </th>
@@ -38,11 +38,12 @@
             <app-tooltip>
               Owner ID
               <template #tooltip>
-              <!--              {{ oraclesHints.queryStatus }}-->
+                {{ nftsHints.ownersOwnerId }}
               </template>
             </app-tooltip>
           </th>
           <td class="nft-owners-table-condensed__data">
+            <!--            todo shorten-->
             <app-link :to="`/accounts/${owner.ownerId}`">
               {{ owner.ownerId }}
             </app-link>
@@ -53,6 +54,7 @@
   </div>
 </template>
 <script setup>
+import { nftsHints } from '../utils/hints/nftHints'
 import AppTooltip from '~/components/AppTooltip'
 
 defineProps({

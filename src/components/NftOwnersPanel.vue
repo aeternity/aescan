@@ -1,39 +1,28 @@
 <template>
-  <!--  todo shorten name-->
-  <app-panel class="nft-inventory-panel">
-    <table>
-      <tr>
-        <th>
-          Token ID
-        </th>
-        <th>
-          Contract ID
-        </th>
-        <th>
-          Owner ID
-        </th>
-      </tr>
-      <tr v-for="owner in nftOwners.data">
-        <td>
-          {{ owner.tokenId }}
-        </td>
-        <td>
-          <app-link :to="`/contracts/${owner.contractId}`">
-            {{ owner.contractId }}
-          </app-link>
-        </td>
-        <td>
-          <app-link :to="`/accounts/${owner.ownerId}`">
-            {{ owner.ownerId }}
-          </app-link>
-        </td>
-      </tr>
-    </table>
+  <app-panel
+    v-if="nftOwners"
+    class="nft-owners-panel">
+    <paginated-content
+      :entities="nftOwners"
+      :limit="limit"
+      @next-clicked="loadNextNftowners"
+      @prev-clicked="loadPrevNftowners">
+      <nft-owners-table
+        :owners="nftOwners"
+        class="nft-owners-panel__table"/>
+
+      <nft-owners-table-condensed
+        :owners="nftOwners"
+        class="nft-owners-panel__table-condensed"/>
+    </paginated-content>
   </app-panel>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 import { useNftDetailsStore } from '~/stores/nftDetails'
+import PaginatedContent from '~/components/PaginatedContent'
+import { isDesktop } from '~/utils/screen'
 
 const props = defineProps({
   contractId: {
@@ -45,14 +34,26 @@ const props = defineProps({
 const nftDetailsStore = useNftDetailsStore()
 const { nftOwners } = storeToRefs(nftDetailsStore)
 const { fetchNftOwners } = nftDetailsStore
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-fetchNftOwners({
-  contractId: props.contractId,
-})
+if (process.client) {
+  fetchNftOwners({
+    limit: limit.value,
+    contractId: props.contractId,
+  })
+}
+
+function loadNextNftowners() {
+  fetchNftOwners({ queryParameters: nftOwners.value.next })
+}
+
+function loadPrevNftowners() {
+  fetchNftOwners({ queryParameters: nftOwners.value.prev })
+}
 </script>
 
 <style scoped>
-.nft-inventory-panel {
+.nft-owners-panel {
   background: var(--color-snow);
   font-size: 11px;
   line-height: 16px;
@@ -61,18 +62,18 @@ fetchNftOwners({
     padding: var(--space-3) var(--space-4);
   }
 
-  &__heading {
-    font-weight: 700;
-    letter-spacing: 0.015em;
-    margin-bottom: var(--space-3);
+  &__table {
+    display: none;
+    margin-bottom: var(--space-4);
+    @media (--desktop) {
+      display: revert;
+    }
   }
 
-  &__term {
-    height: 16px;
-  }
-
-  &__description {
-    word-break: break-all;
+  &__table-condensed {
+    @media (--desktop) {
+      display: none;
+    }
   }
 }
 </style>

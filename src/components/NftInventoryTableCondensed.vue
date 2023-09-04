@@ -99,7 +99,7 @@
           v-if="isOpened.includes(index)"
           class="nft-inventory-table-condensed__row">
           <td colspan="5">
-            AAAA
+            <nft-owners-panel :contract-id="nft.contractId"/>
           </td>
         </tr>
       </tbody>

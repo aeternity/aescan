@@ -44,6 +44,7 @@
             {{ nft.edition.limit }}
           </td>
         </tr>
+
         <tr class="nft-inventory-table-condensed__row">
           <th class="nft-inventory-table-condensed__header">
             <app-tooltip>
@@ -54,43 +55,17 @@
             </app-tooltip>
           </th>
           <td class="nft-inventory-table-condensed__data">
-            <app-link :to="`/transactions/${nft.edition.limitTxHash}`">
-              {{ nft.edition.limitTxHash }}
-            </app-link>
+            <value-hash-ellipsed
+              :link-to="`/transactions/${nft.edition.limitTxHash}`"
+              :hash="nft.edition.limitTxHash"/>
           </td>
         </tr>
+
         <tr class="nft-inventory-table-condensed__row">
-          <th
-            :class="[
-              'nft-inventory-table-condensed__header',
-              {'nft-inventory-table-condensed__header--expanded': isOpened.includes(index)}]">
-            <app-tooltip>
-              Respond Tx
-              <template #tooltip>
-              <!--              {{ oraclesHints.respondTx }}-->
-              </template>
-            </app-tooltip>
-          </th>
           <td
-            :class="[
-              'nft-inventory-table-condensed__data',
-              {'nft-inventory-table-condensed__data--expanded': isOpened.includes(index)}]">
-          <!--            <value-hash-ellipsed-->
-          <!--              :hash="event.respondTx"-->
-          <!--              :link-to="`/transactions/${event.respondTx}`"/>-->
-          </td>
-        </tr>
-        <tr class="nft-inventory-table-condensed__row">
-          <th class="nft-inventory-table-condensed__header">
-            <app-tooltip>
-              Status
-              <template #tooltip>
-              <!--                {{ oraclesHints.queryStatus }}-->
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="nft-inventory-table-condensed__data">
+            colspan="2">
             <response-button
+              class="nft-inventory-table-condensed__button"
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
           </td>
@@ -109,6 +84,7 @@
 <script setup>
 import { nftsHints } from '../utils/hints/nftHints'
 import AppTooltip from '~/components/AppTooltip'
+import ValueHashEllipsed from '~/components/ValueHashEllipsed'
 
 const props = defineProps({
   nftInventory: {
@@ -158,6 +134,11 @@ function toggle(id) {
     &--expanded {
       border-bottom: 0;
     }
+  }
+
+  &__button {
+    /*todo fix width*/
+    width: 100%;
   }
 }
 </style>

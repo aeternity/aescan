@@ -43,9 +43,9 @@
             {{ nft.edition.limit }}
           </td>
           <td :class="[{'nft-inventory-table__data--expanded': isOpened.includes(index)}]">
-            <app-link :to="`/transactions/${nft.edition.limitTxHash}`">
-              {{ nft.edition.limitTxHash }}
-            </app-link>
+            <value-hash-ellipsed
+              :link-to="`/transactions/${nft.edition.limitTxHash}`"
+              :hash="nft.edition.limitTxHash"/>
           </td>
           <td :class="[{'nft-inventory-table__data--expanded': isOpened.includes(index)}]">
             <response-button
@@ -67,6 +67,7 @@
 <script setup>
 
 import { nftsHints } from '../utils/hints/nftHints'
+import ValueHashEllipsed from '~/components/ValueHashEllipsed'
 
 const props = defineProps({
   nftInventory: {

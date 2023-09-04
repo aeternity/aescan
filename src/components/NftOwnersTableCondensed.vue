@@ -28,9 +28,9 @@
             </app-tooltip>
           </th>
           <td class="nft-owners-table-condensed__data">
-            <app-link :to="`/contracts/${owner.contractId}`">
-              {{ owner.contractId }}
-            </app-link>
+            <value-hash-ellipsed
+              :link-to="`/contracts/${owner.contractId}`"
+              :hash="owner.contractId "/>
           </td>
         </tr>
         <tr class="nft-owners-table-condensed__row">
@@ -43,10 +43,9 @@
             </app-tooltip>
           </th>
           <td class="nft-owners-table-condensed__data">
-            <!--            todo shorten-->
-            <app-link :to="`/accounts/${owner.ownerId}`">
-              {{ owner.ownerId }}
-            </app-link>
+            <value-hash-ellipsed
+              :link-to="`/accounts/${owner.ownerId}`"
+              :hash="owner.ownerId "/>
           </td>
         </tr>
       </tbody>

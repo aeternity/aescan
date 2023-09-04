@@ -1,43 +1,46 @@
 <template>
-  <!--  todo markup-->
   <table>
-    <tr>
-      <th class="nft-owners-table__header">
-        Token ID
-        <hint-tooltip>
-          {{ nftsHints.ownersTokenId }}
-        </hint-tooltip>
-      </th>
-      <th class="nft-owners-table__header">
-        Contract ID
-        <hint-tooltip>
-          {{ nftsHints.ownersContractId }}
-        </hint-tooltip>
-      </th>
-      <th class="nft-owners-table__header">
-        Owner ID
-        <hint-tooltip>
-          {{ nftsHints.ownersOwnerId }}
-        </hint-tooltip>
-      </th>
-    </tr>
-    <tr
-      v-for="owner in owners.data"
-      :key="owner.tokenId">
-      <td class="nft-owners-table__data">
-        {{ owner.tokenId }}
-      </td>
-      <td class="nft-owners-table__data">
-        <app-link :to="`/contracts/${owner.contractId}`">
-          {{ owner.contractId }}
-        </app-link>
-      </td>
-      <td class="nft-owners-table__data">
-        <app-link :to="`/accounts/${owner.ownerId}`">
-          {{ owner.ownerId }}
-        </app-link>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th class="nft-owners-table__header">
+          Token ID
+          <hint-tooltip>
+            {{ nftsHints.ownersTokenId }}
+          </hint-tooltip>
+        </th>
+        <th class="nft-owners-table__header">
+          Contract ID
+          <hint-tooltip>
+            {{ nftsHints.ownersContractId }}
+          </hint-tooltip>
+        </th>
+        <th class="nft-owners-table__header">
+          Owner ID
+          <hint-tooltip>
+            {{ nftsHints.ownersOwnerId }}
+          </hint-tooltip>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        v-for="owner in owners.data"
+        :key="owner.tokenId">
+        <td class="nft-owners-table__data">
+          {{ owner.tokenId }}
+        </td>
+        <td class="nft-owners-table__data">
+          <value-hash-ellipsed
+            :link-to="`/contracts/${owner.contractId}`"
+            :hash="owner.contractId "/>
+        </td>
+        <td class="nft-owners-table__data">
+          <value-hash-ellipsed
+            :link-to="`/accounts/${owner.ownerId}`"
+            :hash="owner.ownerId "/>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 

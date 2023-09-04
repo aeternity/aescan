@@ -17,7 +17,7 @@
       <tbody>
         <tr class="nft-details-panel__row">
           <th class="nft-details-panel__table-header">
-            Collection name
+            Collection Name
             <hint-tooltip>
               {{ nftsHints.collectionName }}
             </hint-tooltip>

@@ -20,4 +20,6 @@ export const oraclesHints = {
   sender: 'The account that queried the oracle.',
   queryTtl: 'Defines the lifetime of an oracle query in keyblocks. The oracle operator can only respond as long as the query is valid.',
   oracleTtl: 'Defines how long the oracle will be accessible in keyblocks.',
+  queriedAt: 'Keyblock height and exact date when the oracle query was sent.',
+  respondedAt: 'Keyblock height and exact date when the oracle response was sent.',
 }

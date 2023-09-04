@@ -122,13 +122,3 @@ export function formatIsAuction(name) {
   const suffixLength = 6
   return name.length - suffixLength < auctionLength
 }
-
-export function formatNameStatus(name) {
-  if (name.payload.auctionEnd) {
-    return 'In Auction'
-  } else if (name.payload.active) {
-    return 'Active'
-  } else {
-    return 'Expired'
-  }
-}

@@ -44,6 +44,13 @@
         </app-link>
       </li>
       <li class="navigation__item">
+        <app-link
+          class="navigation__link"
+          to="/nfts">
+          NFTs
+        </app-link>
+      </li>
+      <li class="navigation__item">
         <coming-soon-tooltip>
           <app-link
             class="navigation__link navigation__link--disabled"

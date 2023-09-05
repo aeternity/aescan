@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | State Channel</Title>
+    <Title>State Channel</Title>
   </Head>
 
   <page-header>

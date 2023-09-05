@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Smart Contracts</Title>
+    <Title>Smart Contracts</Title>
   </Head>
 
   <page-header>

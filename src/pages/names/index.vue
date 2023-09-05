@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Names</Title>
+    <Title>Names</Title>
   </Head>
 
   <page-header>

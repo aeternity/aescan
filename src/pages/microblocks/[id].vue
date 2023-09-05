@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Microblock</Title>
+    <Title>Microblock</Title>
   </Head>
 
   <page-header>

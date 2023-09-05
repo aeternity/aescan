@@ -3,10 +3,10 @@
     <table
       v-for="owner in owners.data"
       :key="owner.tokenId"
-      class="nft-owners-table-condensed__table">
+      class="nfts-templates-owners-table-condensed__table">
       <tbody>
-        <tr class="nft-owners-table-condensed__row">
-          <th class="nft-owners-table-condensed__header">
+        <tr class="nfts-templates-owners-table-condensed__row">
+          <th class="nfts-templates-owners-table-condensed__header">
             <app-tooltip>
               Token ID
               <template #tooltip>
@@ -14,12 +14,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="nft-owners-table-condensed__data">
+          <td class="nfts-templates-owners-table-condensed__data">
             {{ owner.tokenId }}
           </td>
         </tr>
-        <tr class="nft-owners-table-condensed__row">
-          <th class="nft-owners-table-condensed__header">
+        <tr class="nfts-templates-owners-table-condensed__row">
+          <th class="nfts-templates-owners-table-condensed__header">
             <app-tooltip>
               Smart Contract ID
               <template #tooltip>
@@ -27,14 +27,14 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="nft-owners-table-condensed__data">
+          <td class="nfts-templates-owners-table-condensed__data">
             <value-hash-ellipsed
               :link-to="`/contracts/${owner.contractId}`"
               :hash="owner.contractId "/>
           </td>
         </tr>
-        <tr class="nft-owners-table-condensed__row">
-          <th class="nft-owners-table-condensed__header">
+        <tr class="nfts-templates-owners-table-condensed__row">
+          <th class="nfts-templates-owners-table-condensed__header">
             <app-tooltip>
               Owner ID
               <template #tooltip>
@@ -42,7 +42,7 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="nft-owners-table-condensed__data">
+          <td class="nfts-templates-owners-table-condensed__data">
             <value-hash-ellipsed
               :link-to="`/accounts/${owner.ownerId}`"
               :hash="owner.ownerId "/>
@@ -66,7 +66,7 @@ defineProps({
 </script>
 
 <style scoped>
-.nft-owners-table-condensed {
+.nfts-templates-owners-table-condensed {
   &__table {
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);

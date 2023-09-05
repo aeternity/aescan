@@ -3,10 +3,10 @@
     <table
       v-for="(nft, index) in nftInventory.data"
       :key="nft.templateId"
-      class="nft-inventory-table-condensed__table">
+      class="nfts-inventory-table-condensed__table">
       <tbody>
-        <tr class="nft-inventory-table-condensed__row">
-          <th class="nft-inventory-table-condensed__header">
+        <tr class="nfts-inventory-table-condensed__row">
+          <th class="nfts-inventory-table-condensed__header">
             <app-tooltip>
               Template ID
               <template #tooltip>
@@ -14,12 +14,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="nft-inventory-table-condensed__data">
+          <td class="nfts-inventory-table-condensed__data">
             {{ nft.templateId }}
           </td>
         </tr>
-        <tr class="nft-inventory-table-condensed__row">
-          <th class="nft-inventory-table-condensed__header">
+        <tr class="nfts-inventory-table-condensed__row">
+          <th class="nfts-inventory-table-condensed__header">
             <app-tooltip>
               Supply
               <template #tooltip>
@@ -27,12 +27,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="nft-inventory-table-condensed__data">
+          <td class="nfts-inventory-table-condensed__data">
             {{ nft.edition.supply }}
           </td>
         </tr>
-        <tr class="nft-inventory-table-condensed__row">
-          <th class="nft-inventory-table-condensed__header">
+        <tr class="nfts-inventory-table-condensed__row">
+          <th class="nfts-inventory-table-condensed__header">
             <app-tooltip>
               Limit
               <template #tooltip>
@@ -40,13 +40,13 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="nft-inventory-table-condensed__data">
+          <td class="nfts-inventory-table-condensed__data">
             {{ nft.edition.limit }}
           </td>
         </tr>
 
-        <tr class="nft-inventory-table-condensed__row">
-          <th class="nft-inventory-table-condensed__header">
+        <tr class="nfts-inventory-table-condensed__row">
+          <th class="nfts-inventory-table-condensed__header">
             <app-tooltip>
               Create Transaction
               <template #tooltip>
@@ -54,16 +54,16 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="nft-inventory-table-condensed__data">
+          <td class="nfts-inventory-table-condensed__data">
             <value-hash-ellipsed
               :link-to="`/transactions/${nft.edition.limitTxHash}`"
               :hash="nft.edition.limitTxHash"/>
           </td>
         </tr>
 
-        <tr class="nft-inventory-table-condensed__row">
+        <tr class="nfts-inventory-table-condensed__row">
           <th/>
-          <td class="nft-inventory-table-condensed__data">
+          <td class="nfts-inventory-table-condensed__data">
             <response-button
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
@@ -71,9 +71,9 @@
         </tr>
         <tr
           v-if="isOpened.includes(index)"
-          class="nft-inventory-table-condensed__row">
+          class="nfts-inventory-table-condensed__row">
           <td colspan="2">
-            <nft-owners-panel :contract-id="nft.contractId"/>
+            <nfts-templates-owners-panel :contract-id="nft.contractId"/>
           </td>
         </tr>
       </tbody>
@@ -109,7 +109,7 @@ function toggle(id) {
 </script>
 
 <style scoped>
-.nft-inventory-table-condensed {
+.nfts-inventory-table-condensed {
   &__table {
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);

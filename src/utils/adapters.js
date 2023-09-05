@@ -576,7 +576,7 @@ export function adaptNamesResults(names) {
   }
 }
 
-export function adaptNftDetails(nft) {
+export function adaptNft(nft) {
   return {
     ...nft,
     tokenLimit: formatTokenLimit(nft.extensions, nft.limits?.tokenLimit),

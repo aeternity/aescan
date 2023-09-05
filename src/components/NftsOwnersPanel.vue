@@ -1,18 +1,18 @@
 <template>
   <app-panel
     v-if="nftOwners"
-    class="nft-owners-panel">
+    class="nfts-owners-panel">
     <paginated-content
       :entities="nftOwners"
       :limit="limit"
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
-      <nft-owners-table
+      <nfts-owners-table
         :owners="nftOwners"
-        class="nft-owners-panel__table"/>
-      <nft-owners-table-condensed
+        class="nfts-owners-panel__table"/>
+      <nfts-owners-table-condensed
         :owners="nftOwners"
-        class="nft-owners-panel__table-condensed"/>
+        class="nfts-owners-panel__table-condensed"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -23,24 +23,13 @@ import { useNftDetailsStore } from '@/stores/nftDetails'
 import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
-const props = defineProps({
-  contractId: {
-    type: String,
-    required: true,
-  },
-})
+// todo emove props
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftOwners } = storeToRefs(nftDetailsStore)
 const { fetchNftOwners } = nftDetailsStore
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-if (process.client) {
-  fetchNftOwners({
-    limit: limit.value,
-    contractId: props.contractId,
-  })
-}
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function loadNextNftowners() {
   fetchNftOwners({ queryParameters: nftOwners.value.next })
@@ -52,7 +41,7 @@ function loadPrevNftowners() {
 </script>
 
 <style scoped>
-.nft-owners-panel {
+.nfts-owners-panel {
   background: var(--color-snow);
   font-size: 11px;
   line-height: 16px;

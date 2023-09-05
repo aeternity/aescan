@@ -1,5 +1,5 @@
 <template>
-  <table class="nft-transfers-table">
+  <table class="nfts-transfers-table">
     <thead>
       <tr>
         <th>
@@ -43,7 +43,7 @@
             :link-to="`/transactions/${transfer.txHash}`"
             :hash="transfer.txHash"/>
         </td>
-        <td class="nft-transfers-table__data">
+        <td class="nfts-transfers-table__data">
           <div>
             <app-link
               :to="`/keyblocks/${transfer.height}`">
@@ -52,15 +52,15 @@
           </div>
           <datetime-label :datetime="transfer.time"/>
         </td>
-        <td class="nft-transfers-table__data">
+        <td class="nfts-transfers-table__data">
           {{ transfer.tokenId }}
         </td>
-        <td class="nft-transfers-table__data">
+        <td class="nfts-transfers-table__data">
           <value-hash-ellipsed
             :link-to="`/accounts/${transfer.recipient}`"
             :hash="transfer.recipient"/>
         </td>
-        <td class="nft-transfers-table__data">
+        <td class="nfts-transfers-table__data">
           <value-hash-ellipsed
             :link-to="`/accounts/${transfer.sender}`"
             :hash="transfer.sender"/>
@@ -82,7 +82,7 @@ defineProps({
 </script>
 
 <style scoped>
-.nft-transfers-table {
+.nfts-transfers-table {
   margin-bottom: var(--space-4);
 
   &__data {

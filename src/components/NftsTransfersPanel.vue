@@ -6,13 +6,13 @@
       :limit="10"
       @prev-clicked="loadPrevNftTransfers"
       @next-clicked="loadNextNftTransfers">
-      <nft-transfers-table
-        class="nft-transfers-panel__table"
-        :nft-transfers="nftTransfers"/>
+      <nfts-transfers-table
+        class="nfts-transfers-panel__table"
+        :nfts-transfers="nftTransfers"/>
 
-      <nft-transfers-table-condensed
-        class="nft-transfers-panel__table-condensed"
-        :nft-transfers="nftTransfers"/>
+      <nfts-transfers-table-condensed
+        class="nfts-transfers-panel__table-condensed"
+        :nfts-transfers="nftTransfers"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -20,13 +20,8 @@
 <script setup>
 
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import PaginatedContent from '@/components/PaginatedContent'
-import { isDesktop } from '@/utils/screen'
-
-const route = useRoute()
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftTransfers } = storeToRefs(nftDetailsStore)
@@ -40,14 +35,10 @@ async function loadNextNftTransfers() {
   await fetchNftTransfers({ queryParameters: nftTransfers.value.next })
 }
 
-await fetchNftTransfers({
-  limit: limit.value,
-  contractId: route.params.id,
-})
 </script>
 
 <style scoped>
-.nft-transfers-panel {
+.nfts-transfers-panel {
   &__table {
     display: none;
     @media (--desktop) {

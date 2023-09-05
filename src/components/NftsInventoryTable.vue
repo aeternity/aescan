@@ -33,21 +33,21 @@
         v-for="(nft, index) in nftInventory.data"
         :key="nft.templateId ">
         <tr>
-          <td :class="[{'nft-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
             {{ nft.templateId }}
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
             {{ nft.edition.supply }}
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
             {{ nft.edition.limit }}
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
             <value-hash-ellipsed
               :link-to="`/transactions/${nft.edition.limitTxHash}`"
               :hash="nft.edition.limitTxHash"/>
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
             <response-button
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
@@ -56,8 +56,8 @@
         <tr v-if="isOpened.includes(index)">
           <td
             colspan="5"
-            class="nft-inventory-table__owners">
-            <nft-owners-panel :contract-id="nft.contractId"/>
+            class="nfts-inventory-table__owners">
+            <nfts-templates-owners-panel :contract-id="nft.contractId"/>
           </td>
         </tr>
       </template>
@@ -93,7 +93,7 @@ function toggle(id) {
 </script>
 
 <style scoped>
-.nft-inventory-table {
+.nfts-inventory-table {
   &__data--expanded {
     border-bottom: 0;
   }

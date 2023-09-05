@@ -2,19 +2,13 @@
   <table>
     <thead>
       <tr>
-        <th class="nft-owners-table__header">
+        <th class="nfts-owners-table__header">
           Token ID
           <hint-tooltip>
             {{ nftsHints.ownersTokenId }}
           </hint-tooltip>
         </th>
-        <th class="nft-owners-table__header">
-          Smart Contract ID
-          <hint-tooltip>
-            {{ nftsHints.ownersContractId }}
-          </hint-tooltip>
-        </th>
-        <th class="nft-owners-table__header">
+        <th class="nfts-owners-table__header">
           Owner ID
           <hint-tooltip>
             {{ nftsHints.ownersOwnerId }}
@@ -26,15 +20,10 @@
       <tr
         v-for="owner in owners.data"
         :key="owner.tokenId">
-        <td class="nft-owners-table__data">
+        <td class="nfts-owners-table__data">
           {{ owner.tokenId }}
         </td>
-        <td class="nft-owners-table__data">
-          <value-hash-ellipsed
-            :link-to="`/contracts/${owner.contractId}`"
-            :hash="owner.contractId "/>
-        </td>
-        <td class="nft-owners-table__data">
+        <td class="nfts-owners-table__data">
           <value-hash-ellipsed
             :link-to="`/accounts/${owner.ownerId}`"
             :hash="owner.ownerId "/>
@@ -57,7 +46,7 @@ defineProps({
 </script>
 
 <style scoped>
-.nft-owners-table {
+.nfts-owners-table {
   &__header {
     font-family: var(--font-primary);
   }

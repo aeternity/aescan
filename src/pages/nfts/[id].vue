@@ -11,15 +11,19 @@
   </page-header>
   <template v-if="!isLoading">
     <nft-details-panel
-      v-if="nftDetails"
+      v-if="nft"
       class="nft-details__panel"
-      :nft-details="nftDetails"/>
+      :nft-details="nft"/>
     <app-tabs>
       <app-tab title="Transfers">
-        <nft-transfers-panel/>
+        <nfts-transfers-panel/>
       </app-tab>
       <app-tab title="Inventory">
-        <nft-inventory-panel/>
+        <nft-inventory-panel v-if="hasTemplates"/>
+        <nft-owners-panel
+          v-else
+          :contract-id="nft.contractId"/>
+        <!--        todo remove prop-->
       </app-tab>
     </app-tabs>
   </template>
@@ -31,15 +35,20 @@ import { storeToRefs } from 'pinia'
 import { nftsHints } from '@/utils/hints/nftHints'
 import PageHeader from '@/components/PageHeader'
 import { useNftDetailsStore } from '@/stores/nftDetails'
-import NftDetailsPanel from '@/components/NftDetailsPanel'
-import NftInventoryPanel from '@/components/NftInventoryPanel'
+import NftDetailsPanel from '~/components/NftsDetailsPanel'
+import NftInventoryPanel from '~/components/NftsInventoryPanel'
+import NftOwnersPanel from '~/components/NftsOwnersPanel'
 
 const nftDetailsStore = useNftDetailsStore()
-const { nftDetails } = storeToRefs(nftDetailsStore)
+const { nft } = storeToRefs(nftDetailsStore)
 const { fetchNftDetails } = nftDetailsStore
 const route = useRoute()
 
 const { isLoading } = useLoading()
+
+const hasTemplates = computed(() => {
+  return nft.value?.extensions.includes('mintable_templates_limit')
+})
 
 try {
   await fetchNftDetails(route.params.id)

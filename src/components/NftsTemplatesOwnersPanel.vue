@@ -41,7 +41,6 @@ async function loadPrevNftowners() {
   font-size: 11px;
   line-height: 16px;
 
-  /*todo fix style*/
   @media (--desktop) {
     padding: var(--space-3) var(--space-4);
   }

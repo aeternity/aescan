@@ -29,7 +29,7 @@ const props = defineProps({
 
 const eventData = computed(() => props.event.data)
 const tokenValue = computed(() => {
-  if (props.contractDetails?.contractType === 'AEX-141') {
+  if (!props.contractDetails.tokenDetails || props.contractDetails.contractType === 'AEX-141') {
     return eventData.value[0]
   }
 

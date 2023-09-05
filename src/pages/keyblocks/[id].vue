@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>Keyblock </Title>
+    <Title>Keyblock</Title>
   </Head>
 
   <page-header>

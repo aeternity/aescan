@@ -6,12 +6,12 @@
   <transaction-arrow-right-icon/>
 
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(eventData[1])) }}
+    {{ tokenValue }}
   </app-chip>
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatNumber, formatReduceDecimals } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
@@ -28,4 +28,13 @@ const props = defineProps({
 })
 
 const eventData = computed(() => props.event.data)
+const tokenValue = computed(() => {
+  if (props.contractDetails?.contractType === 'AEX-141') {
+    return eventData.value[0]
+  }
+
+  return formatNumber(
+    formatReduceDecimals(eventData.value[0], props.contractDetails.tokenDetails.decimals),
+  ) + ` ${props.contractDetails.tokenDetails.symbol}`
+})
 </script>

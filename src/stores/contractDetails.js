@@ -13,6 +13,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
   const contractCallsCount = ref(null)
   const contractCreationTx = ref(null)
   const contractType = ref('')
+  const tokenDetails = ref(null)
   const rawContractInformation = ref(null)
   const rawContractEvents = ref(null)
   const rawContractCallTransactions = ref(null)
@@ -34,6 +35,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
       contractCallsCount.value,
       contractCreationTx.value,
       contractType.value,
+      tokenDetails.value,
       contractAccountBalance.value,
     )
   })
@@ -117,12 +119,12 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
   }
 
   async function fetchIsContractAex9() {
-    await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId.value}`)
+    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId.value}`)).data
     contractType.value = 'AEX-9'
   }
 
   async function fetchIsContractAex141() {
-    await axios.get(`${MIDDLEWARE_URL}/v2/aex141/${contractId.value}`)
+    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/v2/aex141/${contractId.value}`)).data
     contractType.value = 'AEX-141'
   }
 
@@ -131,6 +133,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
     contractCallsCount,
     contractCreationTx,
     contractType,
+    tokenDetails,
     rawContractInformation,
     rawContractEvents,
     rawContractCallTransactions,

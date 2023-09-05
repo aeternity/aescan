@@ -332,6 +332,7 @@ export function adaptContractDetails(
   contractCallsCount,
   contractCreationTx,
   contractType,
+  tokenDetails,
   contractAccountBalance,
 ) {
   return {
@@ -345,6 +346,7 @@ export function adaptContractDetails(
     contractAccountBalance,
     callsCount: contractCallsCount,
     contractType,
+    tokenDetails,
   }
 }
 

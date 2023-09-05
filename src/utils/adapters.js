@@ -1,14 +1,17 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64, formatNameStatus } from '@/utils/format'
-import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
+import {
+  formatAettosToAe,
+  formatBlockDiffAsDatetime,
+  formatDecodeBase64,
+  formatIsAuction,
+  formatNameStatus,
+  formatTemplateLimit,
+  formatTokenLimit,
+} from '@/utils/format'
 
-function isAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
-}
+import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
@@ -106,7 +109,7 @@ export function adaptNames(names, blockHeight) {
         name.info.activeFrom,
         blockHeight,
       ),
-      isAuction: isAuction(name.name),
+      isAuction: formatIsAuction(name.name),
       price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
     }
   })
@@ -465,7 +468,7 @@ export function adaptOracles(oracles, blockHeight) {
   }
 }
 
-export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHeight) {
+export function adaptOracleDetails(oracle, lastExtendedTx, blockHeight, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
@@ -483,8 +486,8 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
     operator: oracle.oracle.replace('ok_', 'ak_'),
     lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.microTime) : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.microTime) : null,
-    lastQueryHeight: lastQueryTx?.blockHeight,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.blockTime) : null,
+    lastQueryHeight: lastQueryTx?.height,
   }
   return oracleDetails
 }
@@ -492,6 +495,10 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
 export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
+      queriedAt: DateTime.fromMillis(event.query.blockTime),
+      queriedAtHeight: event.query.height,
+      respondedAt: DateTime.fromMillis(event.blockTime),
+      respondedAtHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,
       queryId: event.query.queryId,
@@ -566,5 +573,13 @@ export function adaptNamesResults(names) {
     next: names.next,
     data: formattedData,
     prev: names.prev,
+  }
+}
+
+export function adaptNftDetails(nft) {
+  return {
+    ...nft,
+    tokenLimit: formatTokenLimit(nft.extensions, nft.limits.tokenLimit),
+    templateLimit: formatTemplateLimit(nft.extensions, nft.limits.templateLimit),
   }
 }

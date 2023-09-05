@@ -47,8 +47,13 @@ const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
-const loadPrevTransactions = () => fetchTransactions(transactions.value.prev)
-const loadNextTransactions = () => fetchTransactions(transactions.value.next)
+async function loadPrevTransactions() {
+  await fetchTransactions(transactions.value.prev)
+}
+
+async function loadNextTransactions() {
+  await fetchTransactions(transactions.value.next)
+}
 
 const loadTransactions = () => {
   const { txType } = route.query

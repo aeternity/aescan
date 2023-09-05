@@ -13,7 +13,6 @@
 
   <template v-if="!isLoading">
     <token-details-panel
-      v-if="tokenDetails"
       class="token-details__panel"
       :token-details="tokenDetails"/>
 

@@ -45,7 +45,7 @@
           <datetime-label :datetime="event.created"/>
         </td>
         <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
-          {{ event.eventName ? event.eventName : 'N/A' }}
+          {{ event.eventName || 'N/A' }}
         </td>
         <td v-if="event.isDecoded">
           <contract-event-cell

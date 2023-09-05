@@ -1,12 +1,8 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-<<<<<<< HEAD
-import { adaptAccountNames, adaptTransactions, adaptAccountActivities } from '@/utils/adapters'
-=======
 import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { adaptAccountNames, adaptTransactions, adaptAccountTokens } from '@/utils/adapters'
->>>>>>> develop
+import { adaptAccountNames, adaptTransactions, adaptAccountTokens, adaptAccountActivities } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
 import { useDexStore } from '@/stores/dex'
 

@@ -21,15 +21,15 @@
           </hint-tooltip>
         </th>
         <th>
-          Recipient
-          <hint-tooltip>
-            {{ nftsHints.transferRecipient }}
-          </hint-tooltip>
-        </th>
-        <th>
           Sender
           <hint-tooltip>
             {{ nftsHints.transferSender }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Recipient
+          <hint-tooltip>
+            {{ nftsHints.transferRecipient }}
           </hint-tooltip>
         </th>
       </tr>
@@ -57,13 +57,13 @@
         </td>
         <td class="nft-transfers-table__data">
           <value-hash-ellipsed
-            :link-to="`/accounts/${transfer.recipient}`"
-            :hash="transfer.recipient"/>
+            :link-to="`/accounts/${transfer.sender}`"
+            :hash="transfer.sender"/>
         </td>
         <td class="nft-transfers-table__data">
           <value-hash-ellipsed
-            :link-to="`/accounts/${transfer.sender}`"
-            :hash="transfer.sender"/>
+            :link-to="`/accounts/${transfer.recipient}`"
+            :hash="transfer.recipient"/>
         </td>
       </tr>
     </tbody>

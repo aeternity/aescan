@@ -52,21 +52,7 @@
             {{ transfer.tokenId }}
           </td>
         </tr>
-        <tr class="contract-call-transactions-table-condensed__row">
-          <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Recipient
-              <template #tooltip>
-                {{ nftsHints.transferRecipient }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="contract-call-transactions-table-condensed__data">
-            <value-hash-ellipsed
-              :link-to="`/accounts/${transfer.recipient}`"
-              :hash="transfer.recipient"/>
-          </td>
-        </tr>
+
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
             <app-tooltip>
@@ -80,6 +66,21 @@
             <value-hash-ellipsed
               :link-to="`/accounts/${transfer.sender}`"
               :hash="transfer.sender"/>
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <app-tooltip>
+              Recipient
+              <template #tooltip>
+                {{ nftsHints.transferRecipient }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <value-hash-ellipsed
+              :link-to="`/accounts/${transfer.recipient}`"
+              :hash="transfer.recipient"/>
           </td>
         </tr>
       </tbody>

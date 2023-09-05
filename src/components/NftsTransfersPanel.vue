@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel v-if="nftTransfers">
     <paginated-content
       :entities="nftTransfers"
       pagination-style="history"
@@ -8,11 +8,10 @@
       @next-clicked="loadNextNftTransfers">
       <nfts-transfers-table
         class="nfts-transfers-panel__table"
-        :nfts-transfers="nftTransfers"/>
-
+        :nft-transfers="nftTransfers"/>
       <nfts-transfers-table-condensed
         class="nfts-transfers-panel__table-condensed"
-        :nfts-transfers="nftTransfers"/>
+        :nft-transfers="nftTransfers"/>
     </paginated-content>
   </app-panel>
 </template>

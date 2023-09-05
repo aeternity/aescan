@@ -58,7 +58,7 @@ defineProps({
   }
 
   &__header {
-    font-family: var(--font-primary);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__header {
@@ -67,10 +67,6 @@ defineProps({
 
   &__data {
     text-align: right;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: -0.05em;
   }
 }
 </style>

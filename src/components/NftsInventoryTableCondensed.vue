@@ -73,7 +73,7 @@
           v-if="isOpened.includes(index)"
           class="nfts-inventory-table-condensed__row">
           <td colspan="2">
-            <nfts-templates-owners-panel :contract-id="nft.contractId"/>
+            <nfts-templates-owners-panel/>
           </td>
         </tr>
       </tbody>

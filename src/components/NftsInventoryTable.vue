@@ -57,7 +57,7 @@
           <td
             colspan="5"
             class="nfts-inventory-table__owners">
-            <nfts-templates-owners-panel :contract-id="nft.contractId"/>
+            <nfts-templates-owners-panel/>
           </td>
         </tr>
       </template>

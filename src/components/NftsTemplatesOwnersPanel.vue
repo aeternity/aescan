@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="nftOwners"
-    class="nfts-templates-owners-panel">
+  <app-panel class="nfts-templates-owners-panel">
     <paginated-content
       :entities="nftOwners"
       :limit="limit"
@@ -22,13 +20,6 @@ import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
-
-defineProps({
-  contractId: {
-    type: String,
-    required: true,
-  },
-})
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftOwners } = storeToRefs(nftDetailsStore)
@@ -51,6 +42,7 @@ function loadPrevNftowners() {
   font-size: 11px;
   line-height: 16px;
 
+  /*todo fix style*/
   @media (--desktop) {
     padding: var(--space-3) var(--space-4);
   }

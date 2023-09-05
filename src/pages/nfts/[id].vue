@@ -20,10 +20,7 @@
       </app-tab>
       <app-tab title="Inventory">
         <nft-inventory-panel v-if="hasTemplates"/>
-        <nft-owners-panel
-          v-else
-          :contract-id="nft.contractId"/>
-        <!--        todo remove prop-->
+        <nft-owners-panel v-else/>
       </app-tab>
     </app-tabs>
   </template>

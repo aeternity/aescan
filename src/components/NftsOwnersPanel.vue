@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="nftOwners"
-    class="nfts-owners-panel">
+  <app-panel>
     <paginated-content
       :entities="nftOwners"
       :limit="limit"
@@ -23,8 +21,6 @@ import { useNftDetailsStore } from '@/stores/nftDetails'
 import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
-// todo emove props
-
 const nftDetailsStore = useNftDetailsStore()
 const { nftOwners } = storeToRefs(nftDetailsStore)
 const { fetchNftOwners } = nftDetailsStore
@@ -42,14 +38,6 @@ function loadPrevNftowners() {
 
 <style scoped>
 .nfts-owners-panel {
-  background: var(--color-snow);
-  font-size: 11px;
-  line-height: 16px;
-
-  @media (--desktop) {
-    padding: var(--space-3) var(--space-4);
-  }
-
   &__table {
     display: none;
     margin-bottom: var(--space-4);

@@ -18,7 +18,6 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
 
     await Promise.all([
       fetchNft(),
-      // todo shift promisses
       Promise.allSettled([
         fetchNftTransfers(),
         fetchNftInventory(),
@@ -51,9 +50,7 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     rawNftTransfers.value = null
     const defaultParameters = `/v2/aex141/transfers/${nftId.value}?limit=${limit ?? 10}`
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-
     rawNftTransfers.value = data
-    console.log('rawNftTransfers.value', rawNftTransfers.value)
   }
 
   async function fetchNftInventory({ queryParameters, limit } = {}) {
@@ -61,7 +58,6 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     const defaultParameters = `/v2/aex141/${nftId.value}/templates?limit=${limit ?? 10}`
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     nftInventory.value = data
-    console.log('nftInventory.value', nftInventory.value)
   }
 
   async function fetchNftOwners({ queryParameters, limit } = {}) {
@@ -69,19 +65,6 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     const defaultParameters = `/v2/aex141/${nftId.value}/owners?limit=${limit ?? 10}`
     const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     nftOwners.value = data
-    console.log('nftOwners.value', nftOwners.value)
-    // todo connect
-
-    // const obj = {
-    //   data: [{
-    //     contractId: 'ct_2w7MHbcyk5iM4yijZmjGcUF2DSZuVM1Mueppx5SSvPn5cgLJuZ',
-    //     ownerId: 'ak_uTWegpfN6UjA4yz8X4ZVRi9xKEYeXHJDRZcRryTsRHAFoBpLa',
-    //     tokenId: 1,
-    //   }],
-    //   next: null,
-    //   prev: null,
-    // }
-    // nftOwners.value = obj
   }
 
   return {

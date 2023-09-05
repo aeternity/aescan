@@ -15,8 +15,8 @@
     </paginated-content>
   </app-panel>
 </template>
-<script setup>
 
+<script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
@@ -27,7 +27,9 @@ const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftInventory } = storeToRefs(nftDetailsStore)
+const { fetchNftInventory } = nftDetailsStore
 
+// todo async
 function loadPrevNftInventory() {
   fetchNftInventory({ queryParameters: nftInventory.value.prev })
 }

@@ -44,18 +44,3 @@ defineProps({
   },
 })
 </script>
-
-<style scoped>
-.nfts-owners-table {
-  &__header {
-    font-family: var(--font-primary);
-  }
-
-  &__data {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: -0.05em;
-  }
-}
-</style>

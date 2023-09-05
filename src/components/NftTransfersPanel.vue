@@ -22,8 +22,8 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
-import PaginatedContent from '~/components/PaginatedContent'
-import { isDesktop } from '~/utils/screen'
+import PaginatedContent from '@/components/PaginatedContent'
+import { isDesktop } from '@/utils/screen'
 
 const route = useRoute()
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)

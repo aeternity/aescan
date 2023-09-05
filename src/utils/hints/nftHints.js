@@ -16,8 +16,7 @@ export const nftsHints = {
   inventorySupply: 'The number of NFTs that are minted from this template.',
   inventoryLimit: 'The maximum number of NFTs that can be minted from this template.',
   inventoryCreteTransaction: 'The hash of the transaction that created the NFT template.',
-  ownersTokenId: 'The ID of the NFT.',
-  ownersContractId: 'The ID of the smart contract that implements the AEX-141 non-fungible token standard.',
-  ownersOwnerId: 'The ID of the owner of the NFT.',
-  // todo fix hints
+  ownersTokenId: 'Unique identifier of the NFT.',
+  ownersContractId: 'Unique identifier of the smart contract that implements the AEX-141 non-fungible token standard.',
+  ownersOwnerId: 'The account of the owner of the NFT.',
 }

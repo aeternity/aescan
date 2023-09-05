@@ -10,7 +10,6 @@
       <nft-owners-table
         :owners="nftOwners"
         class="nft-owners-panel__table"/>
-
       <nft-owners-table-condensed
         :owners="nftOwners"
         class="nft-owners-panel__table-condensed"/>
@@ -20,9 +19,9 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { useNftDetailsStore } from '~/stores/nftDetails'
-import PaginatedContent from '~/components/PaginatedContent'
-import { isDesktop } from '~/utils/screen'
+import { useNftDetailsStore } from '@/stores/nftDetails'
+import PaginatedContent from '@/components/PaginatedContent'
+import { isDesktop } from '@/utils/screen'
 
 const props = defineProps({
   contractId: {

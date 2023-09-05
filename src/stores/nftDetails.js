@@ -26,7 +26,6 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
 
   async function fetchNftDetails(contractId) {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex141/${contractId}`)
-    console.log('data', data)
     rawNftDetails.value = data
   }
 

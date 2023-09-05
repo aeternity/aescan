@@ -62,10 +62,9 @@
         </tr>
 
         <tr class="nft-inventory-table-condensed__row">
-          <td
-            colspan="2">
+          <th/>
+          <td class="nft-inventory-table-condensed__data">
             <response-button
-              class="nft-inventory-table-condensed__button"
               :is-collapsed="!isOpened.includes(index)"
               @click="toggle(index)"/>
           </td>
@@ -73,7 +72,7 @@
         <tr
           v-if="isOpened.includes(index)"
           class="nft-inventory-table-condensed__row">
-          <td colspan="5">
+          <td colspan="2">
             <nft-owners-panel :contract-id="nft.contractId"/>
           </td>
         </tr>
@@ -82,9 +81,9 @@
   </div>
 </template>
 <script setup>
-import { nftsHints } from '../utils/hints/nftHints'
-import AppTooltip from '~/components/AppTooltip'
-import ValueHashEllipsed from '~/components/ValueHashEllipsed'
+import { nftsHints } from '@/utils/hints/nftHints'
+import AppTooltip from '@/components/AppTooltip'
+import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const props = defineProps({
   nftInventory: {
@@ -134,11 +133,6 @@ function toggle(id) {
     &--expanded {
       border-bottom: 0;
     }
-  }
-
-  &__button {
-    /*todo fix width*/
-    width: 100%;
   }
 }
 </style>

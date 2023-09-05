@@ -32,7 +32,7 @@ import { nftsHints } from '@/utils/hints/nftHints'
 import PageHeader from '@/components/PageHeader'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import NftDetailsPanel from '@/components/NftDetailsPanel'
-import NftInventoryPanel from '~/components/NftInventoryPanel'
+import NftInventoryPanel from '@/components/NftInventoryPanel'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftDetails } = storeToRefs(nftDetailsStore)

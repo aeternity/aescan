@@ -56,7 +56,7 @@
         <tr v-if="isOpened.includes(index)">
           <td
             colspan="5"
-            class="nft-inventory-table__query">
+            class="nft-inventory-table__owners">
             <nft-owners-panel :contract-id="nft.contractId"/>
           </td>
         </tr>
@@ -66,8 +66,8 @@
 </template>
 <script setup>
 
-import { nftsHints } from '../utils/hints/nftHints'
-import ValueHashEllipsed from '~/components/ValueHashEllipsed'
+import { nftsHints } from '@/utils/hints/nftHints'
+import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const props = defineProps({
   nftInventory: {
@@ -98,8 +98,7 @@ function toggle(id) {
     border-bottom: 0;
   }
 
-  &__query {
-    /*todo classname*/
+  &__owners {
     border-top: 0;
   }
 }

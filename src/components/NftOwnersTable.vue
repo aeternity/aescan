@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th class="nft-owners-table__header">
-          Contract ID
+          Smart Contract ID
           <hint-tooltip>
             {{ nftsHints.ownersContractId }}
           </hint-tooltip>
@@ -45,8 +45,8 @@
 </template>
 
 <script setup>
-import { nftsHints } from '../utils/hints/nftHints'
-import HintTooltip from '~/components/HintTooltip'
+import { nftsHints } from '@/utils/hints/nftHints'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   owners: {

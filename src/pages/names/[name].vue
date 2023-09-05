@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | AENS Name</Title>
+    <Title>AENS Name</Title>
   </Head>
 
   <page-header>

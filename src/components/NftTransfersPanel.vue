@@ -40,10 +40,12 @@ async function loadNextNftTransfers() {
   await fetchNftTransfers({ queryParameters: nftTransfers.value.next })
 }
 
-await fetchNftTransfers({
-  limit: limit.value,
-  contractId: route.params.id,
-})
+if (process.client) {
+  await fetchNftTransfers({
+    limit: limit.value,
+    contractId: route.params.id,
+  })
+}
 </script>
 
 <style scoped>

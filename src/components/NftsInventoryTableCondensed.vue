@@ -61,12 +61,16 @@
           </td>
         </tr>
 
-        <tr class="nfts-inventory-table-condensed__row">
+        <tr
+          v-if="!!nftOwners.data.length"
+          class="nfts-inventory-table-condensed__row">
           <th/>
           <td class="nfts-inventory-table-condensed__data">
-            <response-button
+            <expand-button
               :is-collapsed="!isOpened.includes(index)"
-              @click="toggle(index)"/>
+              @click="toggle(index)">
+              {{ isOpened.includes(index) ? 'Collapse' : 'Expand' }}
+            </expand-button>
           </td>
         </tr>
         <tr
@@ -81,9 +85,11 @@
   </div>
 </template>
 <script setup>
+import { storeToRefs } from 'pinia'
 import { nftsHints } from '@/utils/hints/nftHints'
-import AppTooltip from '@/components/AppTooltip'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
+
+const nftDetailsStore = useNftDetailsStore()
+const { nftOwners } = storeToRefs(nftDetailsStore)
 
 const props = defineProps({
   nftInventory: {

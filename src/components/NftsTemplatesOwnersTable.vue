@@ -46,7 +46,6 @@
 
 <script setup>
 import { nftsHints } from '@/utils/hints/nftHints'
-import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   owners: {

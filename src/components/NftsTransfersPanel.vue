@@ -17,10 +17,8 @@
 </template>
 
 <script setup>
-
 import { storeToRefs } from 'pinia'
 import { useNftDetailsStore } from '@/stores/nftDetails'
-import PaginatedContent from '@/components/PaginatedContent'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftTransfers } = storeToRefs(nftDetailsStore)
@@ -33,7 +31,6 @@ async function loadPrevNftTransfers() {
 async function loadNextNftTransfers() {
   await fetchNftTransfers({ queryParameters: nftTransfers.value.next })
 }
-
 </script>
 
 <style scoped>

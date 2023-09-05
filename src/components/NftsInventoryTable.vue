@@ -48,9 +48,12 @@
               :hash="nft.edition.limitTxHash"/>
           </td>
           <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
-            <response-button
+            <expand-button
+              v-if="!!nftOwners.data.length"
               :is-collapsed="!isOpened.includes(index)"
-              @click="toggle(index)"/>
+              @click="toggle(index)">
+              {{ isOpened.includes(index) ? 'Collapse' : 'Expand' }}
+            </expand-button>
           </td>
         </tr>
         <tr v-if="isOpened.includes(index)">
@@ -66,8 +69,13 @@
 </template>
 <script setup>
 
+import { storeToRefs } from 'pinia'
 import { nftsHints } from '@/utils/hints/nftHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
+import { useNftDetailsStore } from '~/stores/nftDetails'
+
+const nftDetailsStore = useNftDetailsStore()
+const { nftOwners } = storeToRefs(nftDetailsStore)
 
 const props = defineProps({
   nftInventory: {

@@ -69,8 +69,8 @@
     </tbody>
   </table>
 </template>
-<script setup>
 
+<script setup>
 import { nftsHints } from '@/utils/hints/nftHints'
 
 defineProps({

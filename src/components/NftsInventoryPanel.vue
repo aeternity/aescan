@@ -7,10 +7,10 @@
       @next-clicked="loadNextNftInventory"
       @prev-clicked="loadPrevNftInventory">
       <nfts-inventory-table
-        :nfts-inventory="nftInventory"
+        :nft-inventory="nftInventory"
         class="nfts-inventory-panel__table"/>
       <nfts-inventory-table-condensed
-        :nfts-inventory="nftInventory"
+        :nft-inventory="nftInventory"
         class="nfts-inventory-panel__table-condensed"/>
     </paginated-content>
   </app-panel>
@@ -19,23 +19,28 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
+import { useRoute } from 'nuxt/app'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import { isDesktop } from '@/utils/screen'
 import PaginatedContent from '@/components/PaginatedContent'
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+const route = useRoute()
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftInventory } = storeToRefs(nftDetailsStore)
 const { fetchNftInventory } = nftDetailsStore
 
-// todo async
-function loadPrevNftInventory() {
-  fetchNftInventory({ queryParameters: nftInventory.value.prev })
+async function loadPrevNftInventory() {
+  await fetchNftInventory({ queryParameters: nftInventory.value.prev })
 }
 
-function loadNextNftInventory() {
-  fetchNftInventory({ queryParameters: nftInventory.value.next })
+async function loadNextNftInventory() {
+  await fetchNftInventory({ queryParameters: nftInventory.value.next })
+}
+
+if (process.client) {
+  await fetchNftInventory({ queryParameters: `/v2/aex141/${route.params.id}/templates?limit=${limit.value}` })
 }
 </script>
 

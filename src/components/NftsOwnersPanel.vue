@@ -18,7 +18,6 @@
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
-import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
 const nftDetailsStore = useNftDetailsStore()
@@ -27,12 +26,12 @@ const { fetchNftOwners } = nftDetailsStore
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-function loadNextNftowners() {
-  fetchNftOwners({ queryParameters: nftOwners.value.next })
+async function loadNextNftowners() {
+  await fetchNftOwners({ queryParameters: nftOwners.value.next })
 }
 
-function loadPrevNftowners() {
-  fetchNftOwners({ queryParameters: nftOwners.value.prev })
+async function loadPrevNftowners() {
+  await fetchNftOwners({ queryParameters: nftOwners.value.prev })
 }
 </script>
 

@@ -89,7 +89,6 @@
 
 <script setup>
 import { nftsHints } from '@/utils/hints/nftHints'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   nftTransfers: {

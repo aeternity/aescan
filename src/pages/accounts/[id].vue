@@ -5,11 +5,11 @@
 
   <page-header>
     Account
-
     <template #tooltip>
       {{ accountHints.account }}
     </template>
   </page-header>
+
   <template v-if="!isLoading">
     <account-details-panel
       v-if="accountDetails"

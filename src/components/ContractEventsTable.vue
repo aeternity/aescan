@@ -58,7 +58,7 @@
           <expand-button
             :is-collapsed="!isOpened.includes(index)"
             @click="toggle(index)">
-            {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
+            {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguments' }}
           </expand-button>
         </td>
       </tr>

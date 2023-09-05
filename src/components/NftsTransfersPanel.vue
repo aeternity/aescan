@@ -3,7 +3,7 @@
     <paginated-content
       :entities="nftTransfers"
       pagination-style="history"
-      :limit="10"
+      :limit="limit"
       @prev-clicked="loadPrevNftTransfers"
       @next-clicked="loadNextNftTransfers">
       <nfts-transfers-table
@@ -18,11 +18,15 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
+import { isDesktop } from '~/utils/screen'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftTransfers } = storeToRefs(nftDetailsStore)
 const { fetchNftTransfers } = nftDetailsStore
+
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevNftTransfers() {
   await fetchNftTransfers({ queryParameters: nftTransfers.value.prev })

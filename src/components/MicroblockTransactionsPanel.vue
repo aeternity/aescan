@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="transactions"
-    class="microblock-transactions-panel">
+  <app-panel class="microblock-transactions-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="transactions"
@@ -51,12 +49,6 @@ if (process.client) {
 
 <style scoped>
 .microblock-transactions-panel {
-  padding: var(--space-4) var(--space-1) var(--space-4);
-  margin-top: var(--space-2);
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-4);
-  }
-
   &__table {
     display: none;
     @media (--desktop) {

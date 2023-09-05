@@ -1,5 +1,5 @@
 <template>
-  <div class="oracle-events-table-condensed">
+  <div>
     <table
       v-for="(event, index) in oracleEvents.data"
       :key="event.respondTx"
@@ -36,6 +36,24 @@
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            <app-tooltip>
+              Queried At
+              <template #tooltip>
+                {{ oraclesHints.queriedAt }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <app-link
+              :to="`/keyblocks/${event.queriedAtHeight}`">
+              {{ event.queriedAtHeight }}
+            </app-link>
+            -
+            <datetime-label :datetime="event.queriedAt"/>
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
           <th
             :class="[
               'oracle-events-table-condensed__header',
@@ -56,6 +74,24 @@
               :link-to="`/transactions/${event.respondTx}`"/>
           </td>
         </tr>
+        <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            <app-tooltip>
+              Responded At
+              <template #tooltip>
+                {{ oraclesHints.queriedAt }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <app-link
+              :to="`/keyblocks/${event.respondedAtHeight}`">
+              {{ event.respondedAtHeight }}
+            </app-link>
+            -
+            <datetime-label :datetime="event.respondedAt"/>
+          </td>
+        </tr>
         <tr
           v-if="isOpened.includes(index)"
           class="oracle-events-table-condensed__row">
@@ -71,6 +107,7 @@
 <script setup>
 import AppTooltip from '@/components/AppTooltip.vue'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
+
 const props = defineProps({
   oracleEvents: {
     type: Object,
@@ -96,19 +133,12 @@ function toggle(id) {
 <style scoped>
 .oracle-events-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);
-
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
   }
 
   &__header {
-    vertical-align: top;
-    border-bottom: 1px solid var(--color-midnight-15);
-    padding-right: var(--space-4);
+    border-bottom: 1px solid var(--color-midnight-25);
 
     &--expanded {
       border-bottom: 0;

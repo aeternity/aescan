@@ -1,7 +1,7 @@
 <template>
-  <div class="names-active-table-condensed">
+  <div>
     <table
-      v-for="name of names?.data"
+      v-for="name of names.data"
       :key="name.name"
       class="names-active-table-condensed__table">
       <tbody>
@@ -120,23 +120,21 @@ defineProps({
 <style scoped>
 .names-active-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
-    margin-bottom: var(--space-6);
-
-    &:last-of-type {
-      margin-bottom: var(--space-1);
-    }
+    margin-bottom: var(--space-5);
   }
 
   &__header {
-    border-bottom: 1px solid var(--color-midnight-15);
-    padding-right: var(--space-2);
+    border-bottom: 1px solid var(--color-midnight-25);
     min-width: 80px;
   }
 
   &__row:last-of-type &__header {
     border-bottom: 0;
+  }
+
+  &__data {
+    text-align: right;
   }
 
   &__name {
@@ -146,10 +144,6 @@ defineProps({
 
   &__pointer {
     display: block;
-  }
-
-  &__data {
-    text-align: right;
   }
 
   &__buyer {

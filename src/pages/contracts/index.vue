@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Smart Contracts</Title>
+    <Title>Smart Contracts</Title>
   </Head>
 
   <page-header>
@@ -16,11 +16,14 @@
     </template>
   </page-header>
 
-  <contracts-panel/>
+  <contracts-panel v-if="!isLoading"/>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
 import ContractsPanel from '@/components/ContractsPanel'
 import PageHeader from '@/components/PageHeader'
 import { contractsHints } from '@/utils/hints/contractsHints'
+
+const { isLoading } = useLoading()
 </script>

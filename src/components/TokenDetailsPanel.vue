@@ -1,16 +1,15 @@
 <template>
   <app-panel class="token-details-panel">
-    <header class="token-details-panel__header">
-      <h2 class="token-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div class="token-details-panel__container">
-        <token-symbol-icon
-          :contract-id="tokenDetails.contractId"
-          class="token-details-panel__icon"/>
-        <copy-chip :label="tokenDetails.symbol"/>
-      </div>
-    </header>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
+      <token-symbol-icon
+        :contract-id="tokenDetails.contractId"
+        class="token-details-panel__icon"/>
+      <copy-chip :label="tokenDetails.symbol"/>
+    </template>
+
     <table>
       <tbody>
         <tr class="token-details-panel__row">
@@ -34,7 +33,7 @@
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
-            {{ formatAePrice(tokenPrice) }} ({{ fiatPrice }})
+            {{ formatAePrice(tokenDetails.price) }} ({{ fiatPrice }})
           </td>
         </tr>
         <tr
@@ -104,8 +103,7 @@
               <app-chip
                 v-for="extension in tokenDetails.extensions"
                 :key="extension"
-                size="sm"
-                class="token-details-panel__chip">
+                size="sm">
                 {{ extension }}
               </app-chip>
             </div>
@@ -177,7 +175,7 @@ const tokenDexUrl = computed(() =>
 
 const fiatPrice = computed(() =>
   props.tokenDetails.price && price.value
-    ? `$${price.value / props.tokenDetails.price}`
+    ? `$${formatNumber(price.value * props.tokenDetails.price, null, null, 7)}`
     : '---',
 )
 
@@ -186,37 +184,20 @@ const marketCap = computed(() =>
     ? `$${formatNullable(formatNumber(props.tokenDetails.marketCap * price.value, 0, 2))}`
     : '---',
 )
-
-const tokenPrice = computed(() =>
-  props.tokenDetails.price
-    ? 1 / props.tokenDetails.price
-    : '---',
-)
 </script>
 
 <style scoped>
 .token-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-2);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
+  &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
+  &__data {
+    text-align: right;
   }
 
-  &__header {
-    margin-bottom: var(--space-2);
-    @media (--desktop) {
-      margin-bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+  &__row:last-of-type &__table-header {
+    border-bottom: 0;
   }
 
   &__container {
@@ -232,42 +213,25 @@ const tokenPrice = computed(() =>
     }
   }
 
-  &__table-header {
-    border-bottom: 1px solid var(--color-midnight-15);
-  }
-
-  &__data {
-    text-align: right;
+  &__link {
+    display: inline-flex;
+    align-items: center;
   }
 
   &__extensions {
     display: flex;
     flex-wrap: wrap;
-    row-gap: var(--space-1);
+    gap: var(--space-1);
     justify-content: flex-end;
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
   }
 
   &__icon {
     width: 28px;
     height: 28px;
     @media (--desktop) {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
     }
-  }
-
-  &__link {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  &__chip {
-    margin-left: var(--space-1);
-    display: inline-flex;
   }
 
   &__hash {

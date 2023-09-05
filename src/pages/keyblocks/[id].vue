@@ -1,24 +1,28 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Keyblock </Title>
+    <Title>Keyblock</Title>
   </Head>
 
   <page-header>
     Keyblock
+
     <template #tooltip>
       {{ keyblocksHints.keyblock }}
     </template>
   </page-header>
 
-  <keyblock-details-panel
-    v-if="keyblockDetails"
-    :keyblock-details="keyblockDetails"/>
+  <template v-if="!isLoading">
+    <keyblock-details-panel
+      class="keyblock-details__keyblock-details-panel"
+      :keyblock-details="keyblockDetails"/>
 
-  <app-tabs v-if="isKeyblockExistent">
-    <app-tab title="Microblocks">
-      <keyblock-microblocks-panel/>
-    </app-tab>
-  </app-tabs>
+    <app-tabs v-if="isKeyblockExistent">
+      <app-tab title="Microblocks">
+        <keyblock-microblocks-panel/>
+      </app-tab>
+    </app-tabs>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -37,10 +41,31 @@ const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
 const route = useRoute()
 
+const { isLoading } = useLoading()
+
 const isKeyblockExistent = computed(() => keyblockDetails.value && !keyblockDetails.value.notExistent)
 
-await useAsyncData(async() => {
+const { error } = await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)
   return true
 })
+
+if (error.value) {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'Keyblock',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
+}
 </script>
+
+<style scoped>
+.keyblock-details__keyblock-details-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

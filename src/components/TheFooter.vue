@@ -3,14 +3,22 @@
     <div class="footer__container">
       <div class="footer__body">
         <div class="footer__column">
+          <img
+            class="footer__logo-aescan"
+            alt="æScan logo"
+            src="@/assets/logo.svg">
+
           <header class="footer__header">
             <app-tooltip>
+              <div class="footer__powered-by">
+                Powered by
+              </div>
               <app-link to="https://aeternity.com/">
                 <img
-                  class="footer__logo"
+                  class="footer__logo-aeternity"
                   alt="æScan logo"
                   src="@/assets/logo-footer.svg"
-                  height="24">
+                  width="100">
               </app-link>
 
               <template #tooltip>
@@ -32,11 +40,27 @@
         </div>
         <div class="footer__column">
           <div class="footer__network">
-            <div class="footer__version">
-              NODE VERSION v{{ nodeVersion }}
+            <div
+              v-if="!!APP_VERSION"
+              class="footer__version">
+              ÆSCAN VERSION
+              <app-link :to="APP_RELEASES_URL">
+                v{{ APP_VERSION }}
+              </app-link>
             </div>
-            <div>
-              MIDDLEWARE VERSION v{{ middlewareVersion }}
+            <div
+              class="footer__version">
+              NODE VERSION
+              <app-link :to="NODE_RELEASES_URL">
+                v{{ nodeVersion }}
+              </app-link>
+            </div>
+            <div
+              class="footer__version">
+              MIDDLEWARE VERSION
+              <app-link :to="MDW_RELEASES_URL">
+                v{{ middlewareVersion }}
+              </app-link>
             </div>
           </div>
           <div class="footer__link-container">
@@ -60,7 +84,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRuntimeConfig } from '#app'
 import FooterList from '@/components/FooterList'
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
@@ -69,6 +92,11 @@ import { useStatus } from '@/stores/status'
 
 const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
+const { APP_VERSION } = useAppConfig()
+
+const APP_RELEASES_URL = 'https://github.com/aeternity/aescan/releases'
+const NODE_RELEASES_URL = 'https://github.com/aeternity/aeternity/releases'
+const MDW_RELEASES_URL = 'https://github.com/aeternity/ae_mdw/releases'
 
 const links = {
   about: [
@@ -114,15 +142,15 @@ const links = {
 
   &__network {
     font-family: var(--font-monospaced);
-    font-size: 14px;
 
     margin: var(--space-4) 0;
     @media (--desktop) {
-      margin: 0 0 48px;
+      margin: 0 0 120px;
     }
   }
 
-  &__version {
+  &__version:not(:last-child) {
+    display: block;
     margin-bottom: var(--space-1);
   }
 
@@ -156,12 +184,22 @@ const links = {
 
     @media (--desktop) {
       flex-direction: row;
-      align-items: flex-end;
     }
   }
 
-  &__logo {
+  &__powered-by {
+    font-size: 11px;
+    font-family: var(--font-monospaced);
+    margin-bottom: var(--space-1);
+  }
+
+  &__logo-aescan {
+    margin-bottom: 56px;
+  }
+
+  &__logo-aeternity {
     margin-right: var(--space-2);
+    margin-bottom: 56px;
   }
 
   &__header {
@@ -174,7 +212,7 @@ const links = {
     margin-bottom: var(--space-3);
 
     @media (--desktop) {
-      width: 460px;
+      width: 472px;
     }
 
     &:last-of-type {

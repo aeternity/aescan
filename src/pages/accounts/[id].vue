@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Account</Title>
+    <Title>Account</Title>
   </Head>
 
   <page-header>
@@ -10,24 +10,30 @@
       {{ accountHints.account }}
     </template>
   </page-header>
+  <template v-if="!isLoading">
+    <account-details-panel
+      v-if="accountDetails"
+      class="account__account-details-panel"
+      :account-details="accountDetails"/>
 
-  <account-details-panel
-    v-if="accountDetails"
-    :account-details="accountDetails"/>
-
-  <client-only>
-    <app-tabs v-if="isTabsVisible">
-      <app-tab title="Transactions">
-        <account-transactions-panel/>
-      </app-tab>
-      <app-tab title="Activities">
-        <account-activities-panel/>
-      </app-tab>
-      <app-tab title="AENS Names">
-        <account-names-panel/>
-      </app-tab>
-    </app-tabs>
-  </client-only>
+    <client-only>
+      <app-tabs v-if="isTabsVisible">
+        <app-tab title="Transactions">
+          <account-transactions-panel/>
+        </app-tab>
+        <app-tab title="AENS Names">
+          <account-names-panel/>
+        </app-tab>
+        <app-tab title="Tokens">
+          <account-tokens-panel/>
+        </app-tab>
+        <app-tab title="Activities">
+          <account-activities-panel/>
+        </app-tab>
+      </app-tabs>
+    </client-only>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -39,10 +45,13 @@ import AppTab from '@/components/AppTab'
 import AccountActivitiesPanel from '@/components/AccountActivitiesPanel'
 import AccountTransactionsPanel from '@/components/AccountTransactionsPanel'
 import AccountNamesPanel from '@/components/AccountNamesPanel'
+import AccountTokensPanel from '@/components/AccountTokensPanel'
 import PageHeader from '@/components/PageHeader'
 import AccountDetailsPanel from '@/components/AccountDetailsPanel'
 import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'
+
+const { isLoading } = useLoading()
 
 const accountStore = useAccountStore()
 const { accountDetails } = storeToRefs(accountStore)
@@ -60,3 +69,12 @@ if (process.client) {
   })
 }
 </script>
+
+<style scoped>
+.account__account-details-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

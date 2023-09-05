@@ -1,5 +1,5 @@
 <template>
-  <div class="token-events-table-condensed">
+  <div>
     <table
       v-for="event in tokenEvents.data"
       :key="event.hash"
@@ -85,19 +85,12 @@ defineProps({
 <style scoped>
 .token-events-table-condensed {
   &__table {
-    background: var(--color-white);
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);
-
-    &:last-of-type {
-      margin-bottom: var(--space-2);
-    }
   }
 
   &__header {
-    vertical-align: top;
-    border-bottom: 1px solid var(--color-midnight-15);
-    padding-right: var(--space-4);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__header {
@@ -106,9 +99,6 @@ defineProps({
 
   &__data {
     text-align: right;
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 20px;
   }
 }
 </style>

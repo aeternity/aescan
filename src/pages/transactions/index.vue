@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Transactions</Title>
+    <Title>Transactions</Title>
   </Head>
 
   <page-header>
@@ -11,11 +11,14 @@
     </template>
   </page-header>
 
-  <transactions-panel/>
+  <transactions-panel v-if="!isLoading"/>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
 import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
+
+const { isLoading } = useLoading()
 </script>

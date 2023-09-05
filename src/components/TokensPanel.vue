@@ -66,12 +66,6 @@ if (process.client) {
 
 <style scoped>
 .tokens-panel {
-  padding: var(--space-4) var(--space-1);
-
-  @media (--desktop) {
-    padding: var(--space-4);
-  }
-
   &__tokens-table {
     display: none;
     @media (--desktop) {

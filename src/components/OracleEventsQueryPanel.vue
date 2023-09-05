@@ -66,15 +66,18 @@ defineProps({
 
 <style scoped>
 .oracle-events-query-panel {
-  padding: var(--space-3);
   background: var(--color-snow);
   font-size: 11px;
   line-height: 16px;
 
+  @media (--desktop) {
+    padding: var(--space-3) var(--space-4);
+  }
+
   &__heading {
     font-weight: 700;
     letter-spacing: 0.015em;
-    margin-bottom: var(--space-1);
+    margin-bottom: var(--space-3);
   }
 
   &__term {

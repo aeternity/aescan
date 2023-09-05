@@ -1,13 +1,17 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatDecodeBase64 } from '@/utils/format'
-import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
+import { BigNumber } from 'bignumber.js'
+import {
+  formatAettosToAe,
+  formatBlockDiffAsDatetime,
+  formatDecodeBase64,
+  formatIsAuction,
+  formatNameStatus,
+  formatTemplateLimit,
+  formatTokenLimit,
+} from '@/utils/format'
 
-function isAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
-}
+import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
@@ -105,7 +109,7 @@ export function adaptNames(names, blockHeight) {
         name.info.activeFrom,
         blockHeight,
       ),
-      isAuction: isAuction(name.name),
+      isAuction: formatIsAuction(name.name),
       price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
     }
   })
@@ -164,6 +168,28 @@ export function adaptAccountNames(names) {
     next: names.next,
     data: formattedData,
     prev: names.prev,
+  }
+}
+
+export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
+  const formattedData = tokens.data.map(token => {
+    const amount = token.amount / (10 ** token.decimals)
+    const tokenAePrice = tokenPrices[token.contractId] || null
+
+    return {
+      tokenSymbol: token.tokenSymbol,
+      tokenName: token.tokenName,
+      contractId: token.contractId,
+      amount,
+      value: tokenAePrice !== null
+        ? (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber()
+        : null,
+    }
+  })
+  return {
+    next: tokens.next,
+    data: formattedData,
+    prev: tokens.prev,
   }
 }
 
@@ -335,6 +361,7 @@ export function adaptContractDetails(
     createTransactionHash: contractCreationTx?.hash,
     createdBy: contractCreationTx?.tx.callerId,
     creationDate: DateTime.fromMillis(contractCreationTx?.microTime),
+    creationHeight: contractCreationTx.blockHeight,
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
     contractAccountBalance,
@@ -369,11 +396,11 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   }
 
   if (token && totalSupply) {
-    tokenDetails.totalSupply = Number(totalSupply / BigInt(10 ** token.decimals))
+    tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
   }
 
   if (tokenDetails.totalSupply && price) {
-    tokenDetails.marketCap = tokenDetails.totalSupply * price
+    tokenDetails.marketCap = (new BigNumber(tokenDetails.totalSupply)).multipliedBy(price).toNumber()
   }
 
   return tokenDetails
@@ -401,8 +428,10 @@ export function adaptTokenEvents(events, blockHeight) {
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
   const formattedData = tokenHolders.data.map(holder => ({
     address: holder.accountId,
-    amount: holder.amount / (10 ** tokenDetails.decimals),
-    percentage: (holder.amount / (10 ** (tokenDetails.decimals - 2))) / tokenDetails.totalSupply,
+    amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
+    percentage: (new BigNumber(holder.amount)
+      .dividedBy(10 ** (tokenDetails.decimals - 2)))
+      .dividedBy(tokenDetails.totalSupply).toNumber(),
   }))
 
   return {
@@ -461,7 +490,7 @@ export function adaptOracles(oracles, blockHeight) {
   }
 }
 
-export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHeight) {
+export function adaptOracleDetails(oracle, lastExtendedTx, blockHeight, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
@@ -479,8 +508,8 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
     operator: oracle.oracle.replace('ok_', 'ak_'),
     lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.microTime) : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.microTime) : null,
-    lastQueryHeight: lastQueryTx?.blockHeight,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.blockTime) : null,
+    lastQueryHeight: lastQueryTx?.height,
   }
   return oracleDetails
 }
@@ -488,6 +517,10 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx, blockHei
 export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
+      queriedAt: DateTime.fromMillis(event.query.blockTime),
+      queriedAtHeight: event.query.height,
+      respondedAt: DateTime.fromMillis(event.blockTime),
+      respondedAtHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,
       queryId: event.query.queryId,
@@ -546,5 +579,29 @@ export function adaptStateChannels(channels, blockHeight) {
     next: channels.next,
     data: formattedData,
     prev: channels.prev,
+  }
+}
+
+export function adaptNamesResults(names) {
+  const formattedData = names.data
+    .map(name => {
+      return {
+        name: name.payload.name,
+        status: formatNameStatus(name),
+      }
+    })
+
+  return {
+    next: names.next,
+    data: formattedData,
+    prev: names.prev,
+  }
+}
+
+export function adaptNftDetails(nft) {
+  return {
+    ...nft,
+    tokenLimit: formatTokenLimit(nft.extensions, nft.limits.tokenLimit),
+    templateLimit: formatTemplateLimit(nft.extensions, nft.limits.templateLimit),
   }
 }

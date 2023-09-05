@@ -1,7 +1,5 @@
 <template>
-  <app-panel
-    v-if="contracts"
-    class="contracts-panel">
+  <app-panel class="contracts-panel">
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="contracts"
@@ -58,12 +56,6 @@ if (process.client) {
 
 <style scoped>
 .contracts-panel {
-  padding: var(--space-4) var(--space-1);
-
-  @media (--desktop) {
-    padding: var(--space-5) var(--space-4) var(--space-4);
-  }
-
   &__table {
     display: none;
     @media (--desktop) {

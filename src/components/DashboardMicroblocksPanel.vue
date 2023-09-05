@@ -4,7 +4,7 @@
       <panel-header
         level="h4"
         class="dashboard-microblocks-panel__panel-header"
-        title="Microblocks"
+        title="MICROBLOCKS"
         icon-name="microblocks">
         <template #tooltip>
           {{ microblocksHints.microblock }}
@@ -52,27 +52,26 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = sto
 <style scoped>
 .dashboard-microblocks-panel {
   background: var(--color-snow);
-  padding: var(--space-4) var(--space-1) var(--space-1);
+  padding: var(--space-3) var(--space-1) var(--space-1);
 
   @media (--desktop) {
     padding: var(--space-3) var(--space-3) var(--space-3);
   }
 
   &__panel-header {
-    margin-bottom: var(--space-3);
-  }
-
-  &__microblock-sequence {
-    margin-bottom: var(--space-4);
-
+    margin-bottom: var(--space-2);
     @media (--desktop) {
       margin-bottom: var(--space-3);
     }
   }
 
+  &__microblock-sequence {
+    margin-bottom: var(--space-3);
+  }
+
   &__summary {
     display: block;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
     font-family: var(--font-monospaced);
     font-size: 14px;
     line-height: 20px;

@@ -4,7 +4,7 @@
       <div class="hero__row">
         <div class="hero__column">
           <h1 class="hero__heading">
-            æternity {{ selectedNetwork }} at a glance
+            æternity at a glance
           </h1>
           <div class="hero__subheading">
             Welcome to æScan, the æternity blockchain explorer
@@ -21,14 +21,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRuntimeConfig } from 'nuxt/app'
 import TheSearchBar from '@/components/TheSearchBar'
 import StatsPanel from '@/components/StatsPanel'
 import MarketStats from '@/components/MarketStats'
-
-const { NETWORK_NAME } = useRuntimeConfig().public
-const selectedNetwork = ref(NETWORK_NAME.toLowerCase())
 </script>
 
 <style scoped>

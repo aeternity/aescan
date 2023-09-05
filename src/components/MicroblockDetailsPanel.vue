@@ -1,19 +1,17 @@
 <template>
   <app-panel class="microblock-details-panel">
-    <header class="microblock-details-panel__header">
-      <h2 class="microblock-details-panel__heading h3">
-        DETAILS
-      </h2>
-      <div>
-        <copy-chip
-          :label="microblockDetails.hash"
-          class="microblock-details-panel__chip"/>
-        <copy-chip
-          :label="formatEllipseHash(microblockDetails.hash)"
-          :clipboard-text="microblockDetails.hash"
-          class="microblock-details-panel__chip-ellipse"/>
-      </div>
-    </header>
+    <template #heading>
+      DETAILS
+    </template>
+    <template #header>
+      <copy-chip
+        :label="microblockDetails.hash"
+        class="microblock-details-panel__chip"/>
+      <copy-chip
+        :label="formatEllipseHash(microblockDetails.hash)"
+        :clipboard-text="microblockDetails.hash"
+        class="microblock-details-panel__chip-ellipse"/>
+    </template>
     <table>
       <tbody>
         <tr class="microblock-details-panel__row">
@@ -130,48 +128,8 @@ const microblockMiddlewareUrl = computed(() =>
 
 <style scoped>
 .microblock-details-panel {
-  padding: var(--space-4) var(--space-1) var(--space-3);
-  margin-bottom: var(--space-7);
-
-  @media (--desktop) {
-    padding: var(--space-4) var(--space-4) var(--space-2);
-    margin-bottom: var(--space-6);
-  }
-
-  &__header {
-    margin-bottom: var(--space-2);
-    @media (--desktop) {
-      margin-bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-  }
-
-  &__heading {
-    margin-bottom: var(--space-3);
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-15);
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__row:last-of-type &__table-header {
@@ -193,6 +151,21 @@ const microblockMiddlewareUrl = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
+    }
+  }
+
+  &__chip,
+  &__hash {
+    display: none;
+    @media (--desktop) {
+      display: inline-flex;
+    }
+  }
+
+  &__chip-ellipse,
+  &__hash-ellipse {
+    @media (--desktop) {
+      display: none;
     }
   }
 }

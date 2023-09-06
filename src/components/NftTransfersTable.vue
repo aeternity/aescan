@@ -5,7 +5,7 @@
         <th>
           Hash
           <hint-tooltip>
-            {{ nftsHints.contractId }}
+            {{ nftsHints.transferHash }}
           </hint-tooltip>
         </th>
         <th>

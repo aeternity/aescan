@@ -1,31 +1,35 @@
 <template>
-  <app-panel class="dashboard-microblocks-panel">
-    <div class="dashboard-microblocks-panel__container">
-      <panel-header
-        level="h4"
-        class="dashboard-microblocks-panel__panel-header"
-        title="MICROBLOCKS"
-        icon-name="microblocks">
-        <template #tooltip>
-          {{ microblocksHints.microblock }}
-        </template>
-        <template #header>
-          <div class="dashboard-microblocks-panel__summary dashboard-microblocks-panel__summary--desktop">
-            Transactions in this microblock:
-            <span class="dashboard-microblocks-panel__count">
-              {{ selectedMicroblockTransactionsCount }}
-            </span>
-          </div>
-        </template>
-      </panel-header>
+  <!--  class="dashboard-microblocks-panel__panel-header"-->
 
-      <div class="dashboard-microblocks-panel__summary">
+  <app-panel
+    class="dashboard-microblocks-panel"
+    level="h4"
+    title="MICROBLOCKS"
+    icon-name="microblocks">
+    <!--    <div class="dashboard-microblocks-panel__container">-->
+    <template #title>
+      Microblocks
+    </template>
+
+    <template #tooltip>
+      {{ microblocksHints.microblock }}
+    </template>
+    <template #header>
+      <div class="dashboard-microblocks-panel__summary dashboard-microblocks-panel__summary--desktop">
         Transactions in this microblock:
         <span class="dashboard-microblocks-panel__count">
           {{ selectedMicroblockTransactionsCount }}
         </span>
       </div>
+    </template>
+
+    <div class="dashboard-microblocks-panel__summary">
+      Transactions in this microblock:
+      <span class="dashboard-microblocks-panel__count">
+        {{ selectedMicroblockTransactionsCount }}
+      </span>
     </div>
+    <!--    </div>-->
 
     <microblocks-sequence
       v-if="selectedKeyblockMicroblocks"
@@ -41,7 +45,6 @@ import { microblocksHints } from '@/utils/hints/microblocksHints'
 import AppPanel from '@/components/AppPanel'
 import DashboardTransactionPanel from '@/components/DashboardTransactionPanel'
 import MicroblocksSequence from '@/components/MicroblocksSequence'
-import PanelHeader from '@/components/PanelHeader'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = storeToRefs(

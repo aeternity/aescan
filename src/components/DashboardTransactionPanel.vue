@@ -1,22 +1,24 @@
 <template>
-  <app-panel class="dashboard-transactions-panel">
-    <panel-header
-      level="h5"
-      class="dashboard-transactions-panel__panel-header"
-      title="TRANSACTIONS"
-      :show-all-link="microblockDetailsLink"
-      icon-name="transactions">
-      <template #tooltip>
-        {{ transactionsHints.transaction }}
-      </template>
-      <template #header>
-        <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
-          Displaying
-          {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
-          transactions of selected microblock
-        </div>
-      </template>
-    </panel-header>
+  <!--  class="dashboard-transactions-panel__panel-header"-->
+
+  <app-panel
+    class="dashboard-transactions-panel"
+    level="h5"
+    :show-all-link="microblockDetailsLink"
+    icon-name="transactions">
+    <template #title>
+      Transactions
+    </template>
+    <template #tooltip>
+      {{ transactionsHints.transaction }}
+    </template>
+    <template #header>
+      <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
+        Displaying
+        {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
+        transactions of selected microblock
+      </div>
+    </template>
 
     <div class="dashboard-transactions-panel__summary">
       Displaying
@@ -38,7 +40,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
-import PanelHeader from '@/components/PanelHeader'
 import TransactionsSwiper from '@/components/TransactionsSwiper'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'

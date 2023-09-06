@@ -1,18 +1,57 @@
 <template>
   <div class="panel">
-    <header
-      v-if="$slots.heading"
-      class="panel__header">
-      <h2 class="panel__heading h3">
-        <slot name="heading"/>
-      </h2>
-      <div class="panel__container">
+    <panel-header
+      :level="level"
+      :icon-name="iconName"
+      :show-all-link="showAllLink">
+      <template
+        v-if="!!$slots.tooltip"
+        #header>
         <slot name="header"/>
-      </div>
-    </header>
+      </template>
+      <template #title>
+        <slot name="title"/>
+      </template>
+      <template
+        v-if="!!$slots.tooltip"
+        #tooltip>
+        <slot name="tooltip"/>
+      </template>
+
+      <!--      <header-->
+      <!--        v-if="$slots.heading"-->
+      <!--        class="panel__header">-->
+      <!--        <h2 class="panel__heading h3">-->
+      <!--          <slot name="heading"/>-->
+      <!--        </h2>-->
+      <!--        <div class="panel__container">-->
+      <!--          <slot name="header"/>-->
+      <!--        </div>-->
+      <!--      </header>-->
+    </panel-header>
     <slot/>
   </div>
 </template>
+<!--todo pass slots-->
+
+<script setup>
+
+defineProps({
+  level: {
+    type: String,
+    default: 'h3',
+    validator: val => ['h2', 'h3', 'h4', 'h5'].includes(val),
+  },
+  iconName: {
+    type: String,
+    default: null,
+  },
+  showAllLink: {
+    type: String,
+    default: null,
+  },
+})
+</script>
 
 <style scoped>
 .panel {

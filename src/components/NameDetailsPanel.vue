@@ -2,7 +2,7 @@
   <app-panel
     v-if="name"
     class="name-details-panel">
-    <template #heading>
+    <template #title>
       DETAILS
     </template>
     <template #header>

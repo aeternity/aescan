@@ -1,6 +1,6 @@
 <template>
   <app-panel class="transaction-general-panel">
-    <template #heading>
+    <template #title>
       GENERAL DETAILS
     </template>
     <template #header>

@@ -1,5 +1,7 @@
 <template>
-  <header class="panel-header">
+  <header
+    v-if="!!$slots.header"
+    class="panel-header">
     <app-badge
       v-if="iconName"
       class="panel-header__badge">
@@ -12,8 +14,8 @@
         <component
           :is="level"
           class="panel-header__heading h3">
-          {{ title }}
-          <hint-tooltip v-if="$slots.tooltip">
+          <slot name="title"/>
+          <hint-tooltip v-if="!!$slots.tooltip">
             <slot name="tooltip"/>
           </hint-tooltip>
         </component>
@@ -36,11 +38,11 @@ import AppIcon from '@/components/AppIcon'
 import AppBadge from '@/components/AppBadge'
 import AppLink from '@/components/AppLink'
 import HintTooltip from '@/components/HintTooltip'
-
+// todo reduce props
 defineProps({
   level: {
     type: String,
-    required: true,
+    default: 'h3',
     validator: val => ['h2', 'h3', 'h4', 'h5'].includes(val),
   },
   iconName: {

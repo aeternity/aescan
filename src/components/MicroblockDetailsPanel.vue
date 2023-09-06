@@ -1,6 +1,6 @@
 <template>
   <app-panel class="microblock-details-panel">
-    <template #heading>
+    <template #title>
       DETAILS
     </template>
     <template #header>

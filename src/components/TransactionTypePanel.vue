@@ -1,6 +1,6 @@
 <template>
   <app-panel class="transaction-type-panel">
-    <template #heading>
+    <template #title>
       {{ typeName }} DETAILS
     </template>
     <template #header>

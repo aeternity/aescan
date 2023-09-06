@@ -1,60 +1,61 @@
 <template>
-  <app-panel class="blockchain-panel">
-    <div class="blockchain-panel__container">
-      <panel-header
-        level="h3"
-        class="blockchain-panel__panel-header"
-        title="KEYBLOCKS"
-        icon-name="latest-keyblock">
-        <template #header>
-          <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
-            Microblocks in selected keyblock:
-            <span class="blockchain-panel__count">
-              {{ selectedKeyblock?.microBlocksCount }}
-            </span>
-          </div>
-          <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
-            Total transactions in selected keyblock:
-            <span class="blockchain-panel__count">
-              {{ selectedKeyblockTransactionsCount }}
-            </span>
-          </div>
-        </template>
-        <template #tooltip>
-          {{ keyblocksHints.keyblock }}
-        </template>
-      </panel-header>
-
-      <keyblock-sequence
-        v-if="keyblocks"
-        class="blockchain-panel__keyblock-sequence"
-        :keyblocks="keyblocks"/>
-
-      <div class="blockchain-panel__summary">
+  <app-panel
+    class="blockchain-panel"
+    level="h3"
+    title="KEYBLOCKS"
+    icon-name="latest-keyblock">
+    <!--    todo  class="blockchain-panel__panel-header"-->
+    <!--    todo  class="blockchain-panel__container"-->
+    <template #title>
+      Keyblocks
+    </template>
+    <template #header>
+      <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
         Microblocks in selected keyblock:
         <span class="blockchain-panel__count">
           {{ selectedKeyblock?.microBlocksCount }}
         </span>
       </div>
-      <div class="blockchain-panel__summary">
-        Transactions in this microblock:
+      <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
+        Total transactions in selected keyblock:
         <span class="blockchain-panel__count">
           {{ selectedKeyblockTransactionsCount }}
         </span>
       </div>
+    </template>
+    <template #tooltip>
+      {{ keyblocksHints.keyblock }}
+    </template>
 
-      <keyblock-table
-        v-if="selectedKeyblock"
-        class="blockchain-panel__keyblock-table"
-        :keyblock="selectedKeyblock"
-        :stats="selectedDeltaStats"/>
+    <keyblock-sequence
+      v-if="keyblocks"
+      class="blockchain-panel__keyblock-sequence"
+      :keyblocks="keyblocks"/>
 
-      <keyblock-table-condensed
-        v-if="selectedKeyblock"
-        class="blockchain-panel__keyblock-table-condensed"
-        :keyblock="selectedKeyblock"
-        :stats="selectedDeltaStats"/>
+    <div class="blockchain-panel__summary">
+      Microblocks in selected keyblock:
+      <span class="blockchain-panel__count">
+        {{ selectedKeyblock?.microBlocksCount }}
+      </span>
     </div>
+    <div class="blockchain-panel__summary">
+      Transactions in this microblock:
+      <span class="blockchain-panel__count">
+        {{ selectedKeyblockTransactionsCount }}
+      </span>
+    </div>
+
+    <keyblock-table
+      v-if="selectedKeyblock"
+      class="blockchain-panel__keyblock-table"
+      :keyblock="selectedKeyblock"
+      :stats="selectedDeltaStats"/>
+
+    <keyblock-table-condensed
+      v-if="selectedKeyblock"
+      class="blockchain-panel__keyblock-table-condensed"
+      :keyblock="selectedKeyblock"
+      :stats="selectedDeltaStats"/>
     <dashboard-microblocks-panel/>
   </app-panel>
 </template>
@@ -66,7 +67,6 @@ import AppPanel from '@/components/AppPanel'
 import KeyblockTableCondensed from '@/components/KeyblockTableCondensed'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import KeyblockTable from '@/components/KeyblockTable'
-import PanelHeader from '@/components/PanelHeader'
 import KeyblockSequence from '@/components/KeyblockSequence'
 import DashboardMicroblocksPanel from '@/components/DashboardMicroblocksPanel'
 

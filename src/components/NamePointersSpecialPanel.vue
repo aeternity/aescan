@@ -1,6 +1,6 @@
 <template>
   <app-panel class="name-pointers-special-panel">
-    <template #heading>
+    <template #title>
       SPECIAL POINTERS
     </template>
     <table>

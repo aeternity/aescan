@@ -86,7 +86,7 @@ import { useWebSocket } from '@/stores/webSocket'
 import { useUiStore } from '@/stores/ui'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
 
-const { isNavigationDrawerOpen } = storeToRefs(useUiStore())
+const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const router = useRouter()
 
 await useAsyncData(() => initializeStores())
@@ -123,8 +123,8 @@ router.beforeEach((_to, from, next, abort) => {
   if (detectedHistoryNavigation.value === 'back') {
     detectedHistoryNavigation.value = null
 
-    if (isNavigationDrawerOpen.value && from.hash !== NAVIGATION_HASH) {
-      isNavigationDrawerOpen.value = false
+    if (isMobileMenuOpen.value && from.hash !== NAVIGATION_HASH) {
+      isMobileMenuOpen.value = false
       abort()
       return
     }

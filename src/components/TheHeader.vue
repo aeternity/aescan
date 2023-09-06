@@ -3,7 +3,7 @@
     <div
       :class="[
         'header__container',
-        { 'header__container--open': isNavigationDrawerOpen },
+        { 'header__container--open': isMobileMenuOpen },
       ]">
       <app-link
         to="/"
@@ -17,7 +17,7 @@
         class="header__hamburger"
         @click="toggleNavigation">
         <app-icon
-          v-if="isNavigationDrawerOpen"
+          v-if="isMobileMenuOpen"
           name="cross"
           :size="34"/>
         <app-icon
@@ -29,13 +29,13 @@
       <the-navigation
         :class="[
           'header__navigation',
-          { 'header__navigation--open': isNavigationDrawerOpen },
+          { 'header__navigation--open': isMobileMenuOpen },
         ]"/>
 
       <network-select
         :class="[
           'header__network-select',
-          { 'header__network-select--open': isNavigationDrawerOpen }]"/>
+          { 'header__network-select--open': isMobileMenuOpen }]"/>
     </div>
     <div
       v-if="isSyncing"
@@ -58,7 +58,7 @@ import { NAVIGATION_HASH } from '@/utils/constants'
 
 const route = useRoute()
 const router = useRouter()
-const { isNavigationDrawerOpen } = storeToRefs(useUiStore())
+const { isMobileMenuOpen } = storeToRefs(useUiStore())
 
 const { isSyncing } = storeToRefs(useStatus())
 
@@ -77,15 +77,15 @@ watch(() => route.fullPath, () => {
 })
 
 function toggleNavigation() {
-  if (!isNavigationDrawerOpen.value && router.options.history.state.back === null) {
+  if (!isMobileMenuOpen.value && router.options.history.state.back === null) {
     router.push({ hash: NAVIGATION_HASH })
   }
 
-  isNavigationDrawerOpen.value = !isNavigationDrawerOpen.value
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
 function closeNavigation() {
-  isNavigationDrawerOpen.value = false
+  isMobileMenuOpen.value = false
 }
 </script>
 

@@ -5,8 +5,14 @@ dl {
 }
 
 dt {
-  width: 200px;
+  width: fit-content;
+  padding-right: var(--space-2);
   grid-column-start: 1;
+
+  @media (--desktop) {
+    padding: 0;
+    width: 200px;
+  }
 }
 
 dd {

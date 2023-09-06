@@ -66,10 +66,7 @@ const isTokensTabSelected = computed(() => process.client &&
 
 if (process.client) {
   const limit = isDesktop() ? null : 3
-  await useAsyncData(async() => {
-    await fetchAccount(route.params.id, { limit })
-    return true
-  })
+  await fetchAccount(route.params.id, { limit })
 }
 </script>
 

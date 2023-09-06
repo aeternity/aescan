@@ -123,7 +123,7 @@ router.beforeEach((_to, from, next, abort) => {
   if (detectedHistoryNavigation.value === 'back') {
     detectedHistoryNavigation.value = null
 
-    if (isMobileMenuOpen.value && from.hash !== NAVIGATION_HASH) {
+    if (isMobileMenuOpen.value && from.hash !== MENU_HASH) {
       isMobileMenuOpen.value = false
       abort()
       return

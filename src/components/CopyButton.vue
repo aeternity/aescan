@@ -2,7 +2,7 @@
   <button
     :class="[
       'copy-button',
-      `copy-button--${size}`,
+      size ? `copy-button--${size}` : null,
       variant ? `copy-button--${variant}` : null,
       { 'copy-button--success': isCopySuccessful },
     ]"
@@ -27,8 +27,8 @@ const props = defineProps({
   },
   size: {
     type: String,
-    default: 'md',
-    validator: val => ['sm', 'md'].includes(val),
+    default: null,
+    validator: val => ['sm'].includes(val),
   },
   variant: {
     type: String,

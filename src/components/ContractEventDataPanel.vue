@@ -12,7 +12,7 @@
         </dt>
         <dd class="contract-event-data-panel__value">
           {{ argument }}
-          <app-copy-button
+          <copy-button
             :clipboard-text="argument"
             size="sm"/>
         </dd>
@@ -23,7 +23,7 @@
 
 <script setup>
 import AppPanel from '@/components/AppPanel'
-import AppCopyButton from '@/components/AppCopyButton'
+import CopyButton from '@/components/CopyButton'
 
 defineProps({
   event: {

@@ -31,7 +31,7 @@ const contractEventCellComponent = computed(() =>
     try {
       return await import(`@/components/ContractEventCell${props.event.eventName}.vue`)
     } catch {
-      console.error(`Uknown event ${props.event.eventName} in contract ${props.contractDetails.id}`)
+      console.error(`Unknown event ${props.event.eventName} in contract ${props.contractDetails.id}`)
       return defineComponent(() => () => h('span', 'N/A'))
     }
   },

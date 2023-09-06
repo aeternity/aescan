@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <app-chip :class="['expand-button', {'expand-button--activated': !isCollapsed}]">
-      <slot/>
-      <app-icon
-        class="expand-button__icon"
-        :name="isCollapsed ? 'plus-circle' : 'minus-circle' "/>
-    </app-chip>
-  </div>
+  <app-chip :class="['expand-button', {'expand-button--activated': !isCollapsed}]">
+    <slot/>
+    <app-icon
+      class="expand-button__icon"
+      :name="isCollapsed ? 'plus-circle' : 'minus-circle' "/>
+  </app-chip>
 </template>
 
 <script setup>

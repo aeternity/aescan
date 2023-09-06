@@ -113,32 +113,20 @@ const detectedHistoryNavigation = ref(null)
 
 router.options.history.listen((_to, _from, meta) => {
   if (meta.type !== 'pop') {
-    return;
+    return
   }
 
   detectedHistoryNavigation.value = meta.direction
 })
 
 router.beforeEach((to, from, next, abort) => {
-  if (detectedHistoryNavigation.value === 'forward') {
-    detectedHistoryNavigation.value = null
-
-    if (to.hash === NAVIGATION_HASH) {
-      abort()
-    } else {
-      next()
-    }
-    
-    return;
-  }
-  
   if (detectedHistoryNavigation.value === 'back') {
     detectedHistoryNavigation.value = null
-    
+
     if (isNavigationDrawerOpen.value && from.hash !== NAVIGATION_HASH) {
       isNavigationDrawerOpen.value = false
       abort()
-      return;
+      return
     }
   }
 

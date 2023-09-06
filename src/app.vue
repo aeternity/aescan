@@ -119,7 +119,7 @@ router.options.history.listen((_to, _from, meta) => {
   detectedHistoryNavigation.value = meta.direction
 })
 
-router.beforeEach((to, from, next, abort) => {
+router.beforeEach((_to, from, next, abort) => {
   if (detectedHistoryNavigation.value === 'back') {
     detectedHistoryNavigation.value = null
 

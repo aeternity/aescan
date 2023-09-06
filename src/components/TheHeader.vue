@@ -54,8 +54,10 @@ import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
 import { useUiStore } from '@/stores/ui'
 import { useStatus } from '@/stores/status'
+import { NAVIGATION_HASH } from '@/utils/constants'
 
 const route = useRoute()
+const router = useRouter()
 const { isNavigationDrawerOpen } = storeToRefs(useUiStore())
 
 const { isSyncing } = storeToRefs(useStatus())
@@ -69,10 +71,16 @@ onBeforeUnmount(() => {
 })
 
 watch(() => route.fullPath, () => {
-  closeNavigation()
+  if (route.hash !== NAVIGATION_HASH) {
+    closeNavigation()
+  }
 })
 
 function toggleNavigation() {
+  if (!isNavigationDrawerOpen.value && router.options.history.state.back === null) {
+    router.push({ hash: NAVIGATION_HASH })
+  }
+
   isNavigationDrawerOpen.value = !isNavigationDrawerOpen.value
 }
 

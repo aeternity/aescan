@@ -109,22 +109,40 @@ if (import.meta.env.MODE !== 'production') {
   })
 }
 
-const isHistoryBackNavigationDetected = ref(false)
+const detectedHistoryNavigation = ref(null)
 
 router.options.history.listen((_to, _from, meta) => {
-  if (meta.type === 'pop' && meta.direction === 'back') {
-    isHistoryBackNavigationDetected.value = true
+  if (meta.type !== 'pop') {
+    return;
   }
+
+  detectedHistoryNavigation.value = meta.direction
 })
 
-router.beforeEach((_to, _from, next, abort) => {
-  if (isHistoryBackNavigationDetected.value && isNavigationDrawerOpen.value) {
-    isNavigationDrawerOpen.value = false
-    abort()
-  } else {
-    next()
+router.beforeEach((to, from, next, abort) => {
+  if (detectedHistoryNavigation.value === 'forward') {
+    detectedHistoryNavigation.value = null
+
+    if (to.hash === NAVIGATION_HASH) {
+      abort()
+    } else {
+      next()
+    }
+    
+    return;
   }
-  isHistoryBackNavigationDetected.value = false
+  
+  if (detectedHistoryNavigation.value === 'back') {
+    detectedHistoryNavigation.value = null
+    
+    if (isNavigationDrawerOpen.value && from.hash !== NAVIGATION_HASH) {
+      isNavigationDrawerOpen.value = false
+      abort()
+      return;
+    }
+  }
+
+  next()
 })
 </script>
 

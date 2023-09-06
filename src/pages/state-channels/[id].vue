@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | State Channel</Title>
+    <Title>State Channel</Title>
   </Head>
 
   <page-header>
@@ -21,7 +21,7 @@
       class="state-channel-details__state-channel-details-panel"
       :state-channel-details="stateChannelDetails"/>
 
-    <app-tabs v-if="stateChannelDetails">
+    <app-tabs>
       <app-tab title="Transactions">
         <state-channel-transactions-panel/>
       </app-tab>
@@ -46,7 +46,6 @@ const { fetchStateChannelDetails } = stateChannelDetailsStore
 const route = useRoute()
 
 const { isLoading } = useLoading()
-
 const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 
 if (error.value) {

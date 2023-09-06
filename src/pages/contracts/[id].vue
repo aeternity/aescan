@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Smart Contract</Title>
+    <Title>Smart Contract</Title>
   </Head>
 
   <page-header>
@@ -18,7 +18,6 @@
 
   <template v-if="!isLoading">
     <contract-details-panel
-      v-if="contractDetails"
       class="contract-details__panel"
       :contract-details="contractDetails"/>
 

@@ -57,6 +57,10 @@ jobs:
           tags: |
             type=raw,value=${{ steps.release_tag.outputs.TAG }}
 
+      - name: Create dotenv
+        run: |
+          echo APP_VERSION=$(git describe --tags --abbrev=0) >> .env
+
       - name: Build and push docker image
         uses: docker/build-push-action@v2
         with:

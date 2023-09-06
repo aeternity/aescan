@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Keyblock </Title>
+    <Title>Keyblock</Title>
   </Head>
 
   <page-header>
@@ -13,7 +13,6 @@
 
   <template v-if="!isLoading">
     <keyblock-details-panel
-      v-if="keyblockDetails"
       class="keyblock-details__keyblock-details-panel"
       :keyblock-details="keyblockDetails"/>
 

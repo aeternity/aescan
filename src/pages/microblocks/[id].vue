@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Microblock</Title>
+    <Title>Microblock</Title>
   </Head>
 
   <page-header>
@@ -12,7 +12,6 @@
   </page-header>
   <template v-if="!isLoading">
     <microblock-details-panel
-      v-if="microblockDetails"
       class="microblock-details__microblock-details-panel"
       :microblock-details="microblockDetails"/>
     <app-tabs>

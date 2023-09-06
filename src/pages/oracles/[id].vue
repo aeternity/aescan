@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Oracle</Title>
+    <Title>Oracle</Title>
   </Head>
 
   <page-header>
@@ -18,7 +18,6 @@
 
   <template v-if="!isLoading">
     <oracle-details-panel
-      v-if="oracleDetails"
       class="oracle-details__panel"
       :oracle-details="oracleDetails"/>
 

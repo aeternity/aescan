@@ -88,6 +88,8 @@ const activityDescription = computed(() => {
       return 'Beneficiary reward'
     }
     return 'N/A'
+  case 'Aex9TransferEvent':
+    return 'Trasnfered to'
   default:
     return 'N/A'
   }

@@ -83,16 +83,9 @@
             </app-tooltip>
           </th>
           <td class="account-activities-table-condensed__data">
-            <transaction-cell
-              v-if="activity.payload.tx"
-              :transaction-type="activity.payload.tx.type"
-              :transaction-data="activity.payload.tx"/>
-            <internal-transfer-cell
-              v-else-if="activity.type==='InternalTransferEvent'"
+            <account-activity-data-cell
+              :account-details="accountDetails"
               :activity="activity"/>
-            <template v-else>
-              N/A
-            </template>
           </td>
         </tr>
       </tbody>
@@ -103,7 +96,7 @@
 <script setup>
 import AccountActivityCell from '@/components/AccountActivityCell'
 import AccountActivityTypeCell from '@/components/AccountActivityTypeCell'
-import InternalTransferCell from '@/components/InternalTransferCell'
+import AccountActivityDataCell from '@/components/AccountActivityDataCell'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { accountHints } from '@/utils/hints/accountHints'

@@ -65,6 +65,8 @@ const activityType = computed(() => {
       return 'AE'
     }
     return 'N/A'
+  case 'Aex9TransferEvent':
+    return 'AEX-9'
   default:
     return 'N/A'
   }

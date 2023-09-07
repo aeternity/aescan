@@ -12,7 +12,13 @@
   <template v-if="!isLoading">
     <nft-details-panel
       v-if="nftDetails"
+      class="nft-details__panel"
       :nft-details="nftDetails"/>
+    <app-tabs>
+      <app-tab title="Transfers">
+        <nft-transfers-panel/>
+      </app-tab>
+    </app-tabs>
   </template>
   <loader-panel v-else/>
 </template>
@@ -46,3 +52,12 @@ try {
   throw error
 }
 </script>
+
+<style scoped>
+.nft-details__panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

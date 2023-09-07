@@ -12,7 +12,6 @@
   </page-header>
   <template v-if="!isLoading">
     <account-details-panel
-      v-if="accountDetails"
       class="account__account-details-panel"
       :account-details="accountDetails"/>
 

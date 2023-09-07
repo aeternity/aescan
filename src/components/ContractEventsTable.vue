@@ -26,62 +26,107 @@
         </hint-tooltip>
       </th>
     </tr>
-    <tr
-      v-for="event in contractEvents.data"
+    <template
+      v-for="(event, index) in contractEvents.data"
       :key="event.callTxHash">
-      <td class="contract-events-table__transaction">
-        <value-hash-ellipsed
-          :hash="event.callTxHash"
-          :link-to="`/transactions/${event.callTxHash}`"/>
-      </td>
-      <td>
-        <div>
-          <app-link
-            :to="`/keyblocks/${event.createdHeight}`">
-            {{ event.createdHeight }}
-          </app-link>
-        </div>
-        <datetime-label :datetime="event.created"/>
-      </td>
-      <td>
-        {{ event.eventName ? event.eventName : 'N/A' }}
-      </td>
-      <td>
-        <copy-chip
-          :clipboard-text="removeLineBreaks(event.data)"
-          :label="formatEllipseHash(removeLineBreaks(event.data))"/>
-      </td>
-    </tr>
+      <tr>
+        <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+          <value-hash-ellipsed
+            :hash="event.callTxHash"
+            :link-to="`/transactions/${event.callTxHash}`"/>
+        </td>
+        <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+          <div>
+            <app-link
+              :to="`/keyblocks/${event.createdHeight}`">
+              {{ event.createdHeight }}
+            </app-link>
+          </div>
+          <datetime-label :datetime="event.created"/>
+        </td>
+        <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+          {{ event.eventName || 'N/A' }}
+        </td>
+        <td v-if="event.isDecoded">
+          <contract-event-cell
+            :event="event"
+            :contract-details="contractDetails"/>
+        </td>
+        <td
+          v-else
+          :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+          <expand-button
+            :is-collapsed="!isOpened.includes(index)"
+            @click="toggle(index)">
+            {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguments' }}
+          </expand-button>
+        </td>
+      </tr>
+      <tr v-if="isOpened.includes(index)">
+        <td
+          colspan="4"
+          :class="[
+            'contract-events-table__arguments',
+            {'contract-events-table__arguments--expanded': isOpened.includes(index)}
+          ]">
+          <contract-event-data-panel :event="event"/>
+        </td>
+      </tr>
+    </template>
   </table>
 </template>
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import CopyChip from '@/components/CopyChip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { formatEllipseHash } from '@/utils/format'
+import ContractEventDataPanel from '@/components/ContractEventDataPanel'
+import ExpandButton from '@/components/ExpandButton'
+import ContractEventCell from '@/components/ContractEventCell'
 
-const removeLineBreaks = str => {
-  return str.toString().replaceAll('\n', '')
-}
-
-defineProps({
+const props = defineProps({
+  contractDetails: {
+    type: Object,
+    required: true,
+  },
   contractEvents: {
     type: Object,
     required: true,
   },
 })
+
+const isOpened = ref([])
+
+watch(() => props.contractEvents, () => {
+  isOpened.value = []
+})
+
+function toggle(id) {
+  const index = isOpened.value.indexOf(id)
+  if (index > -1) {
+    isOpened.value.splice(index, 1)
+  } else {
+    isOpened.value.push(id)
+  }
+}
 </script>
 <style scoped>
 .contract-events-table {
-  &__transaction {
-    white-space: nowrap;
+  &__data--expanded {
+    border-bottom: 0;
   }
 
   &__event-data {
     word-wrap: anywhere;
     max-width: 450px;
+  }
+
+  &__arguments {
+    border-top: 0;
+
+    &--expanded {
+      padding-bottom: 0;
+    }
   }
 }
 </style>

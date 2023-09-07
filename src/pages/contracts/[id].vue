@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Smart Contract</Title>
+    <Title>Smart Contract</Title>
   </Head>
 
   <page-header>
@@ -67,7 +67,7 @@ if (error.value) {
 if (process.client && !error.value) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
-    queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}`,
+    queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
 }
 </script>

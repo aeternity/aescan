@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Account</Title>
+    <Title>Account</Title>
   </Head>
 
   <page-header>

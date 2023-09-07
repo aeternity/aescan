@@ -332,6 +332,7 @@ export function adaptContractDetails(
   contractCallsCount,
   contractCreationTx,
   contractType,
+  tokenDetails,
   contractAccountBalance,
 ) {
   return {
@@ -345,6 +346,7 @@ export function adaptContractDetails(
     contractAccountBalance,
     callsCount: contractCallsCount,
     contractType,
+    tokenDetails,
   }
 }
 
@@ -356,6 +358,7 @@ export function adaptContractEvents(events, blockHeight) {
         createdHeight: event.height,
         eventName: event.eventName,
         data: event.args,
+        isDecoded: !!event.eventName,
         callTxHash: event.callTxHash,
       }
     })

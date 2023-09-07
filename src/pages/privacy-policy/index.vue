@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Privacy Policy</Title>
+    <Title>Privacy Policy</Title>
   </Head>
   <div class="privacy-policy">
     <h1 class="privacy-policy__heading">

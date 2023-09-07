@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | NFTs</Title>
+    <Title>NFTs</Title>
   </Head>
 
   <page-header>

@@ -8,7 +8,7 @@
         {{ textToDisplay }}
       </div>
 
-      <app-copy-button
+      <copy-button
         v-show="!isCopyAnimationActive"
         :clipboard-text="clipboardText || label"
         variant="light"
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import AppCopyButton from '@/components/AppCopyButton'
+import CopyButton from '@/components/CopyButton'
 import AppChip from '@/components/AppChip'
 
 const props = defineProps({

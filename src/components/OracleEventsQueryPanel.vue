@@ -10,7 +10,9 @@
           {{ oraclesHints.queryId }}
         </hint-tooltip>
       </dt>
-      <dd>{{ event.queryId }}</dd>
+      <dd class="oracle-events-query-panel__description">
+        {{ event.queryId }}
+      </dd>
 
       <dt class="oracle-events-query-panel_term">
         Query Fee:

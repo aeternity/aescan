@@ -28,7 +28,7 @@
       </div>
       <div class="dashboard__row">
         <client-only v-if="!isLoading">
-          <blockchain-panel/>
+          <dashboard-keyblock-panel/>
         </client-only>
         <loader-panel
           v-else
@@ -44,7 +44,7 @@
             The æternity blockchain supports protocol-level .chain Names via the
             æternity naming system (AENS).
           </p>
-          <names-panel/>
+          <dashboard-names-panel/>
         </div>
         <div class="dashboard__column">
           <h2 class="dashboard__heading">
@@ -54,7 +54,7 @@
             .chain Names can be obtained either immediately or via an auction
             process, if shorter than 13 characters.
           </p>
-          <auctions-panel>Auctions ending soon</auctions-panel>
+          <dashboard-auctions-panel>Auctions ending soon</dashboard-auctions-panel>
         </div>
       </div>
 
@@ -82,9 +82,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import NamesPanel from '@/components/NamesPanel'
-import AuctionsPanel from '@/components/AuctionsPanel'
-import BlockchainPanel from '@/components/BlockchainPanel'
+import DashboardNamesPanel from '@/components/DashboardNamesPanel'
 import DashboardStateChannelsPanel from '@/components/DashboardStateChannelsPanel'
 import AppHero from '@/components/AppHero'
 import AppLink from '@/components/AppLink'

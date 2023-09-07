@@ -8,7 +8,7 @@
     icon-name="microblocks">
     <!--    <div class="dashboard-microblocks-panel__container">-->
     <template #title>
-      Microblocks
+      MICROBLOCKS
     </template>
 
     <template #tooltip>

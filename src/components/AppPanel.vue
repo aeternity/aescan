@@ -5,11 +5,13 @@
       :icon-name="iconName"
       :show-all-link="showAllLink">
       <template
-        v-if="!!$slots.tooltip"
+        v-if="!!$slots.header"
         #header>
         <slot name="header"/>
       </template>
-      <template #title>
+      <template
+        v-if="!!$slots.title"
+        #title>
         <slot name="title"/>
       </template>
       <template

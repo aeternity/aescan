@@ -7,7 +7,7 @@
     <!--    todo  class="blockchain-panel__panel-header"-->
     <!--    todo  class="blockchain-panel__container"-->
     <template #title>
-      Keyblocks
+      KEYBLOCKS
     </template>
     <template #header>
       <div class="blockchain-panel__summary blockchain-panel__summary--desktop">

@@ -6,7 +6,7 @@
     icon-name="state-channel"
     show-all-link="/state-channels">
     <template #title>
-      State Channels
+      STATE CHANNELS
     </template>
 
     <template #tooltip>

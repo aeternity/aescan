@@ -5,7 +5,7 @@
     icon-name="aens-name"
     show-all-link="/names/?type=in-auction">
     <template #title>
-      Auctions ending soon
+      AUCTIONS ENDING SOON
     </template>
     <template #tooltip>
       These ÆNS names are currently in auction. If someone tries to claim an ÆNS name with a name length &lt;=12,

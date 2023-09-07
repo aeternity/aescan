@@ -7,7 +7,7 @@
     :show-all-link="microblockDetailsLink"
     icon-name="transactions">
     <template #title>
-      Transactions
+      TRANSACTIONS
     </template>
     <template #tooltip>
       {{ transactionsHints.transaction }}

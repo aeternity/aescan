@@ -6,7 +6,7 @@
     icon-name="aens-name"
     show-all-link="/names/?type=active">
     <template #title>
-      Recently activated names
+      RECENTLY ACTIVATED NAMES
     </template>
     <template #tooltip>
       These ÆNS names have recently been activated directly by a claim (name length > 12) or implicitly

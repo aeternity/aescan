@@ -1,6 +1,6 @@
 <template>
   <header
-    v-if="!!$slots.header"
+    v-if="!!$slots.header || !!$slots.title"
     class="panel-header">
     <app-badge
       v-if="iconName"
@@ -48,10 +48,6 @@ defineProps({
   iconName: {
     type: String,
     default: null,
-  },
-  title: {
-    type: String,
-    required: true,
   },
   showAllLink: {
     type: String,
@@ -106,6 +102,7 @@ defineProps({
   }
 
   &__heading {
+    /*todo level*/
     display: flex;
     gap: var(--space-0);
     font-style: normal;

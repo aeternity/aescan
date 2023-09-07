@@ -10,15 +10,13 @@
         through an expired auction (name length &lt;= 12).
       </template>
     </dashboard-panel-header>
-    <names-table class="dashboard-names-panel__table"/>
-    <names-swiper class="dashboard-names-panel__swiper"/>
+    <dashboard-names-table class="dashboard-names-panel__table"/>
+    <dashboard-names-swiper class="dashboard-names-panel__swiper"/>
   </app-panel>
 </template>
 
 <script setup>
 import AppPanel from '@/components/AppPanel'
-import NamesSwiper from '@/components/NamesSwiper'
-import NamesTable from '@/components/NamesTable'
 </script>
 
 <style scoped>

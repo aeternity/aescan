@@ -5,60 +5,57 @@
         <th>
           Data
           <hint-tooltip>
-            {{ namesHints.recentlyActivatedData }}
+            {{ namesHints.nameAndHighestBidder }}
           </hint-tooltip>
         </th>
         <th>
-          Price
+          Highest Bid
           <hint-tooltip>
-            {{ namesHints.activationPrice }}
+            {{ namesHints.bid }}
           </hint-tooltip>
         </th>
         <th>
-          Activated
+          Expires
           <hint-tooltip>
-            {{ namesHints.activationTime }}
+            {{ namesHints.ends }}
           </hint-tooltip>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr
-        v-for="name in recentlyActivatedNames"
-        :key="name.name">
+        v-for="auction in auctionsEndingSoon"
+        :key="auction.name">
         <td>
           <div>
-            <span class="names-table__label">Name:</span>
+            <span class="dashboard-auctions-table__label">Name:</span>
             <app-link
-              :to="`/names/${name.name}`"
-              class="names-table__chain-name u-ellipsis">
-              {{ name.name }}
+              :to="`/names/${auction.name}`"
+              class="dashboard-auctions-table__chain-name u-ellipsis">
+              {{ auction.name }}
             </app-link>
           </div>
           <div>
-            <span class="names-table__label">Claimed by: </span>
+            <span class="dashboard-auctions-table__label">Highest Bidder: </span>
             <value-hash-ellipsed
-              :link-to="`/accounts/${name.address}`"
-              :hash="name.address"/>
+              :link-to="`/accounts/${auction.highestBidder}`"
+              :hash="auction.highestBidder"/>
           </div>
         </td>
         <td>
-          <div class="names-table__label">
-            {{ name.isAuction ? 'Auction' : 'Fixed price' }}
-          </div>
-          <div class="names-table__name-price">
-            {{ formatNullable(formatAePrice(name.price)) }}
+          <div class="dashboard-auctions-table__value">
+            {{ formatAePrice(auction.bid) }}
           </div>
         </td>
         <td>
-          <div class="names-table__blocks">
+          <div class="dashboard-auctions-table__blocks">
             <app-link
-              :to="`/keyblocks/${name.activatedHeight}`">
-              {{ name.activatedHeight }}
+              :to="`/keyblocks/${auction.expirationHeight}`">
+              {{ auction.expirationHeight }}
             </app-link>
           </div>
           <div>
-            <datetime-label :datetime="name.activated"/>
+            <datetime-label :datetime="auction.expiration"/>
           </div>
         </td>
       </tr>
@@ -70,15 +67,15 @@ import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
-import { formatAePrice, formatNullable } from '@/utils/format'
+import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 
-const { recentlyActivatedNames } = storeToRefs(useNamesStore())
+const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>
-.names-table {
+.dashboard-auctions-table {
   &__chain-name {
     display: inline-block;
     width: 160px;
@@ -89,7 +86,7 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
     margin: 0 var(--space-0) var(--space-0) 0;
   }
 
-  &__name-price {
+  &__value {
     font-weight: 700;
   }
 

@@ -11,15 +11,13 @@
         name. The shorter the name, the longer the auction lives.
       </template>
     </dashboard-panel-header>
-    <auctions-table class="dashboard-auctions-panel__table"/>
-    <auctions-swiper class="dashboard-auctions-panel__swiper"/>
+    <dashboard-auctions-table class="dashboard-auctions-panel__table"/>
+    <dashboard-auctions-swiper class="dashboard-auctions-panel__swiper"/>
   </app-panel>
 </template>
 
 <script setup>
 import AppPanel from '@/components/AppPanel'
-import AuctionsSwiper from '@/components/AuctionsSwiper'
-import AuctionsTable from '@/components/AuctionsTable'
 </script>
 
 <style scoped>

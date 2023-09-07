@@ -30,9 +30,11 @@
             </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
-            <response-button
+            <expand-button
               :is-collapsed="!isOpened.includes(index)"
-              @click="toggle(index)"/>
+              @click="toggle(index)">
+              Response available
+            </expand-button>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">

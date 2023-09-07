@@ -7,11 +7,13 @@
       @next-clicked="loadNextEvents">
       <contract-events-table
         v-if="contractEvents"
+        :contract-details="contractDetails"
         :contract-events="contractEvents"
         class="contract-events-panel__table"/>
 
       <contract-events-table-condensed
         v-if="contractEvents"
+        :contract-details="contractDetails"
         :contract-events="contractEvents"
         class="contract-events-panel__table-condensed"/>
     </paginated-content>
@@ -28,7 +30,7 @@ import PaginatedContent from '@/components/PaginatedContent'
 
 const contractDetailsStore = useContractDetailsStore()
 const { fetchContractEvents } = contractDetailsStore
-const { contractEvents } = storeToRefs(contractDetailsStore)
+const { contractEvents, contractDetails } = storeToRefs(contractDetailsStore)
 
 function loadPrevEvents() {
   fetchContractEvents({ queryParameters: contractEvents.value.prev })

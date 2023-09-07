@@ -5,7 +5,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #header>
+    <template #end>
       <copy-chip
         class="name-details-panel__name"
         :label="name.name"/>

@@ -22,13 +22,17 @@
         <slot name="header"/>
       </div>
 
-      <app-link
-        v-if="showAllLink"
-        :to="showAllLink"
-        is-text-link
-        class="panel-header__link">
-        Show all
-      </app-link>
+      <!--      <app-link-->
+      <!--        v-if="showAllLink"-->
+      <!--        :to="showAllLink"-->
+      <!--        is-text-link-->
+      <!--        class="panel-header__link">-->
+      <!--        Show all-->
+      <!--      </app-link>-->
+      <div class="panel-header__link-container">
+        <slot name="end"/>
+      </div>
+      <!--      todo mozna 2 sloty-->
     </div>
   </header>
 </template>
@@ -36,7 +40,6 @@
 <script setup>
 import AppIcon from '@/components/AppIcon'
 import AppBadge from '@/components/AppBadge'
-import AppLink from '@/components/AppLink'
 import HintTooltip from '@/components/HintTooltip'
 // todo reduce props
 defineProps({

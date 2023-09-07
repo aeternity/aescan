@@ -2,8 +2,7 @@
   <app-panel
     class="auctions-panel"
     level="h3"
-    icon-name="aens-name"
-    show-all-link="/names/?type=in-auction">
+    icon-name="aens-name">
     <template #title>
       AUCTIONS ENDING SOON
     </template>
@@ -11,6 +10,14 @@
       These ÆNS names are currently in auction. If someone tries to claim an ÆNS name with a name length &lt;=12,
       an auction is automatically triggered. The auction duration is currently dependent on the length of the
       name. The shorter the name, the longer the auction lives.
+    </template>
+    <template #end>
+      <app-link
+        is-text-link
+        :to="`/names/?type=in-auction`"
+        class="auctions-panel__link">
+        Show all
+      </app-link>
     </template>
     <auctions-table class="auctions-panel__table"/>
     <auctions-swiper class="auctions-panel__swiper"/>

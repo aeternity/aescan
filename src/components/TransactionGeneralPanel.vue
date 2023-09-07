@@ -3,7 +3,7 @@
     <template #title>
       GENERAL DETAILS
     </template>
-    <template #header>
+    <template #end>
       <copy-chip
         :label="transactionDetails.hash"
         class="transaction-general-panel__hash"/>

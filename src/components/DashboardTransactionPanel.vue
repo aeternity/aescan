@@ -4,7 +4,6 @@
   <app-panel
     class="dashboard-transactions-panel"
     level="h5"
-    :show-all-link="microblockDetailsLink"
     icon-name="transactions">
     <template #title>
       TRANSACTIONS
@@ -18,6 +17,15 @@
         {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
         transactions of selected microblock
       </div>
+    </template>
+    <template #end>
+      <app-link
+        v-if="selectedMicroblock"
+        :to="microblockDetailsLink"
+        is-text-link
+        class="dashboard-transactions-panel__link">
+        Show all
+      </app-link>
     </template>
 
     <div class="dashboard-transactions-panel__summary">

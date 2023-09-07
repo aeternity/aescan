@@ -3,7 +3,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #header>
+    <template #end>
       <copy-chip
         :label="microblockDetails.hash"
         class="microblock-details-panel__chip"/>

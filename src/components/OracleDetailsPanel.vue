@@ -3,7 +3,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #header>
+    <template #end>
       <copy-chip
         :label="oracleDetails.id"
         class="oracle-details-panel__chip"/>

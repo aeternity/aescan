@@ -20,6 +20,12 @@
         <slot name="tooltip"/>
       </template>
 
+      <template
+        v-if="!!$slots.end"
+        #end>
+        <slot name="end"/>
+      </template>
+
       <!--      <header-->
       <!--        v-if="$slots.heading"-->
       <!--        class="panel__header">-->

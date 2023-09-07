@@ -3,7 +3,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #header>
+    <template #end>
       <copy-chip
         :label="nftDetails.contractId"
         class="nft-details-panel__chip"/>

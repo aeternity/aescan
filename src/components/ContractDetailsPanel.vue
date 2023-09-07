@@ -3,7 +3,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #header>
+    <template #end>
       <div class="contract-details-panel__hash">
         <copy-chip :label="contractDetails.id"/>
       </div>

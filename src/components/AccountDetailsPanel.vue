@@ -4,7 +4,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #end>
+    <template #header-end>
       <app-chip v-if="accountDetails.isGeneralized">
         Generalized
       </app-chip>

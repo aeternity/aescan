@@ -3,7 +3,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #end>
+    <template #header-end>
       <div v-if="!keyblockDetails.notExistent">
         <copy-chip
           :label="keyblockDetails.hash"

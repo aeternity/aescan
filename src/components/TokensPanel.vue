@@ -7,7 +7,8 @@
       :limit="limit"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
-      <template #end>
+      <!--      todo rename as well-->
+      <template #header-end>
         <token-select v-model="selectedTokenName"/>
       </template>
       <tokens-table

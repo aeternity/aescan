@@ -14,7 +14,7 @@
     <template #tooltip>
       {{ microblocksHints.microblock }}
     </template>
-    <template #header>
+    <template #header-center>
       <div class="dashboard-microblocks-panel__summary dashboard-microblocks-panel__summary--desktop">
         Transactions in this microblock:
         <span class="dashboard-microblocks-panel__count">

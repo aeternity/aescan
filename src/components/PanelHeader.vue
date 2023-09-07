@@ -19,19 +19,19 @@
             <slot name="tooltip"/>
           </hint-tooltip>
         </component>
-        <slot name="header"/>
+        <slot name="header-center"/>
       </div>
 
-      <!--      <app-link-->
-      <!--        v-if="showAllLink"-->
-      <!--        :to="showAllLink"-->
-      <!--        is-text-link-->
-      <!--        class="panel-header__link">-->
-      <!--        Show all-->
-      <!--      </app-link>-->
-      <div class="panel-header__link-container">
-        <slot name="end"/>
+      <div class="panel-header__header-end">
+        <slot name="header-end"/>
       </div>
+      <app-link
+        v-if="showAllLink"
+        :to="showAllLink"
+        is-text-link
+        class="panel-header__link">
+        Show all
+      </app-link>
       <!--      todo mozna 2 sloty-->
     </div>
   </header>
@@ -82,6 +82,19 @@ defineProps({
     justify-content: space-between;
     flex-grow: 1;
     align-items: center;
+  }
+
+  &__header-end {
+    display: flex;
+    gap: var(--space-1);
+
+    @media (--desktop) {
+      padding: 0;
+    }
+
+    &:empty {
+      padding: 0;
+    }
   }
 
   &__badge {

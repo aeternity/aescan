@@ -5,11 +5,6 @@
       :icon-name="iconName"
       :show-all-link="showAllLink">
       <template
-        v-if="!!$slots.header"
-        #header>
-        <slot name="header"/>
-      </template>
-      <template
         v-if="!!$slots.title"
         #title>
         <slot name="title"/>
@@ -19,11 +14,15 @@
         #tooltip>
         <slot name="tooltip"/>
       </template>
-
       <template
-        v-if="!!$slots.end"
-        #end>
-        <slot name="end"/>
+        v-if="!!$slots['header-center']"
+        #header-center>
+        <slot name="header-center"/>
+      </template>
+      <template
+        v-if="!!$slots['header-end']"
+        #header-end>
+        <slot name="header-end"/>
       </template>
 
       <!--      <header-->

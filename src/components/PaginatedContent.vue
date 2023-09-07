@@ -25,9 +25,9 @@
           </span>
         </div>
         <div
-          v-if="$slots.header"
+          v-if="$slots['header-end']"
           class="paginated-content__slot-header">
-          <slot name="header"/>
+          <slot name="header-end"/>
         </div>
       </header>
       <div

@@ -3,7 +3,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #end>
+    <template #header-end>
       <token-symbol-icon
         :contract-id="tokenDetails.contractId"
         class="token-details-panel__icon"/>

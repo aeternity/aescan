@@ -9,7 +9,7 @@
     <template #title>
       KEYBLOCKS
     </template>
-    <template #header>
+    <template #header-center>
       <div class="blockchain-panel__summary blockchain-panel__summary--desktop">
         Microblocks in selected keyblock:
         <span class="blockchain-panel__count">

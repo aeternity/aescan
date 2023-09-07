@@ -8,7 +8,7 @@
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
-      <template #end>
+      <template #header-end>
         <transactions-select v-model="selectedTxType"/>
       </template>
 

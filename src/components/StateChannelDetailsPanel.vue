@@ -3,7 +3,7 @@
     <template #title>
       DETAILS
     </template>
-    <template #end>
+    <template #header-end>
       <copy-chip
         :label="stateChannelDetails.id"
         class="state-channel-details-panel__chip"/>

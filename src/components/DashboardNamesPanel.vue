@@ -1,9 +1,10 @@
 <template>
   <!--  todo rename to dashboard-->
   <app-panel
-    class="names-panel"
+    class="dashboard-names-panel"
     level="h3"
-    icon-name="aens-name">
+    icon-name="aens-name"
+    show-all-link="/names/?type=active">
     <template #title>
       RECENTLY ACTIVATED NAMES
     </template>
@@ -11,17 +12,9 @@
       These ÆNS names have recently been activated directly by a claim (name length > 12) or implicitly
       through an expired auction (name length &lt;= 12).
     </template>
-    <template #end>
-      <app-link
-        is-text-link
-        to="/names/?type=active"
-        class="names-panel__link">
-        Show all
-      </app-link>
-      <!--      todo class and clean mess-->
-    </template>
-    <names-table class="names-panel__table"/>
-    <names-swiper class="names-panel__swiper"/>
+    <!--      todo class and clean mess-->
+    <names-table class="dashboard-names-panel__table"/>
+    <names-swiper class="dashboard-names-panel__swiper"/>
   </app-panel>
 </template>
 
@@ -32,7 +25,7 @@ import NamesTable from '@/components/NamesTable'
 </script>
 
 <style scoped>
-.names-panel {
+.dashboard-names-panel {
   padding: var(--space-3) var(--space-1);
   @media (--desktop) {
     padding: var(--space-4);

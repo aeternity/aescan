@@ -3,7 +3,7 @@
     <template #title>
       {{ typeName }} DETAILS
     </template>
-    <template #end>
+    <template #header-end>
       <app-link
         v-if="transactionData.type === 'SpendTx' && transactionData.recipient?.account"
         :to="`/names/${transactionData.recipient.name}`">

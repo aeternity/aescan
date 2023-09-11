@@ -47,19 +47,16 @@ const hasTemplates = computed(() => {
   return nft.value?.extensions.includes('mintable_templates_limit')
 })
 
-try {
-  await fetchNftDetails(route.params.id)
-} catch (error) {
-  if ([400, 404].includes(error.response?.status)) {
-    throw showError({
-      data: {
-        entityId: route.params.id,
-        entityName: 'NFT',
-      },
-      statusMessage: 'EntityDetailsNotFound',
-    })
-  }
-  throw error
+const { error } = await useAsyncData(() => fetchNftDetails(route.params.id))
+
+if (error.value) {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'NFT',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
 }
 </script>
 

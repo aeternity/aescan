@@ -18,7 +18,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import { isDesktop } from '@/utils/screen'
 

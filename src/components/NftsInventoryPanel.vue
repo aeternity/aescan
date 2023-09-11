@@ -19,13 +19,11 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { useRoute } from 'nuxt/app'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import { isDesktop } from '@/utils/screen'
 import PaginatedContent from '@/components/PaginatedContent'
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-const route = useRoute()
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftInventory } = storeToRefs(nftDetailsStore)
@@ -40,7 +38,7 @@ async function loadNextNftInventory() {
 }
 
 if (process.client) {
-  await fetchNftInventory({ queryParameters: `/v2/aex141/${route.params.id}/templates?limit=${limit.value}` })
+  await fetchNftInventory({ limit: limit.value })
 }
 </script>
 

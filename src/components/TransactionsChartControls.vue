@@ -51,7 +51,6 @@
 <script setup>
 
 function handle(value) {
-  console.log('handle', value)
   emit('clicked', value)
 }
 
@@ -59,7 +58,6 @@ const emit = defineEmits(['clicked'])
 </script>
 
 <style scoped>
-
 div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

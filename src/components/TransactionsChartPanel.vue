@@ -1,14 +1,23 @@
 <template>
-  <app-panel>
+  <app-panel
+
+    class="chart">
     <template #heading>
       TOTAL TRANSACTIONS
     </template>
     <template #header>
-      <transactions-chart-controls/>
+      <transactions-chart-controls @clicked="iii"/>
     </template>
-    <Line
-      :options="chartOptions"
-      :data="chartData"/>
+
+    <div
+      class="chart-container"
+      style="position: relative; height:200px">
+      <Line
+
+        :options="chartOptions"
+        :data="chartData"/>
+    </div>
+
     <transactions-chart-controls @clicked="iii"/>
   </app-panel>
 </template>
@@ -45,7 +54,7 @@ ChartJS.register(CategoryScale,
 
 ChartJS.defaults.font.family = 'Roboto Mono'
 
-await fetchTransactionsStatistics()
+// await fetchTransactionsStatistics()
 const stats = computed(() => {
   return transactionsStatistics.value?.data?.map(stat => {
     return stat.count
@@ -59,7 +68,6 @@ const labels = computed(() => {
 })
 
 async function iii(val) {
-  console.log('val')
   await fetchTransactionsStatistics(val)
 }
 
@@ -68,15 +76,18 @@ const chartData = computed(() => {
     labels: labels.value,
     datasets: [{
       data: stats.value,
-      label: 'Data One',
+      label: null,
       cubicInterpolationMode: 'monotone',
       tension: 0.4,
       borderColor: '#f5274e',
+      pointRadius: 4,
     }],
   }
 })
 
 const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,
@@ -84,16 +95,12 @@ const chartOptions = {
 
     tooltip: {
       callbacks: {
-        label: function(context) {
-          return context.dataset.data[context.dataIndex]
-        },
         title: function() {
           return null
         },
       },
     },
   },
-  responsive: true,
   scales: {
     y: {
       border: {

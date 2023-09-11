@@ -1,20 +1,20 @@
 <template>
   <div>
-    <button>
+    <button @click="handle(1)">
       <app-chip
         variant="primary"
         size="sm">
         1H
       </app-chip>
     </button>
-    <button>
+    <button @click="handle(1)">
       <app-chip
         variant="primary"
         size="sm">
         1D
       </app-chip>
     </button>
-    <button>
+    <button @click="handle(7)">
       <app-chip
         variant="primary"
         size="sm">
@@ -24,19 +24,22 @@
     <button>
       <app-chip
         variant="primary"
-        size="sm">
+        size="sm"
+        @click="handle(30)">
         1M
       </app-chip>
     </button>
     <button>
       <app-chip
         variant="primary"
-        size="sm">
+        size="sm"
+        @click="handle(100)">
         1Y
       </app-chip>
     </button>
     <button
-      class="b">
+      class="b"
+      @click="handle(100)">
       <app-chip
         variant="primary"
         size="sm">
@@ -45,10 +48,14 @@
     </button>
   </div>
 </template>
-<script>
-export default {
-  name: 'TransactionsChartControls',
+<script setup>
+
+function handle(value) {
+  console.log('handle', value)
+  emit('clicked', value)
 }
+
+const emit = defineEmits(['clicked'])
 </script>
 
 <style scoped>

@@ -7,10 +7,9 @@
       <transactions-chart-controls/>
     </template>
     <Line
-      id="my-chart-id"
       :options="chartOptions"
       :data="chartData"/>
-    <transactions-chart-controls/>
+    <transactions-chart-controls @clicked="iii"/>
   </app-panel>
 </template>
 
@@ -43,7 +42,9 @@ ChartJS.register(CategoryScale,
   Title,
   Tooltip,
   Legend)
+
 ChartJS.defaults.font.family = 'Roboto Mono'
+
 await fetchTransactionsStatistics()
 const stats = computed(() => {
   return transactionsStatistics.value?.data?.map(stat => {
@@ -57,16 +58,23 @@ const labels = computed(() => {
   })
 })
 
-const chartData = {
-  labels: labels.value,
-  datasets: [{
-    data: stats.value,
-    label: 'Data One',
-    cubicInterpolationMode: 'monotone',
-    tension: 0.4,
-  }],
-
+async function iii(val) {
+  console.log('val')
+  await fetchTransactionsStatistics(val)
 }
+
+const chartData = computed(() => {
+  return {
+    labels: labels.value,
+    datasets: [{
+      data: stats.value,
+      label: 'Data One',
+      cubicInterpolationMode: 'monotone',
+      tension: 0.4,
+      borderColor: '#f5274e',
+    }],
+  }
+})
 
 const chartOptions = {
   plugins: {
@@ -75,23 +83,11 @@ const chartOptions = {
     },
 
     tooltip: {
-      // filter: function(tooltipItem) {
-      //   console.log('tooltipItem', tooltipItem)
-      //   return tooltipItem.datasetIndex === 0
-      // },
       callbacks: {
         label: function(context) {
-          console.log('context', context)
-          const label = context.dataset.data[context.dataIndex] || ''
-          // const label = 'AAA'
-
-          return label
+          return context.dataset.data[context.dataIndex]
         },
-        title: function(context) {
-          // console.log('context', context)
-          // const label = context.dataset.data[context.dataIndex] || ''
-          const label = 'AAA'
-
+        title: function() {
           return null
         },
       },

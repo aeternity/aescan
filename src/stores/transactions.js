@@ -30,9 +30,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsCount.value = data
   }
 
-  async function fetchTransactionsStatistics(queryParameters = null) {
+  async function fetchTransactionsStatistics(limit = 7) {
     transactionsStatistics.value = null
-    const { data } = await axios.get('https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions')
+    const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions?limit=${limit}`)
     transactionsStatistics.value = data
   }
 

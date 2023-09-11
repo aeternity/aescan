@@ -1,5 +1,5 @@
 <template>
-  <app-panel v-if="nftTransfers">
+  <app-panel>
     <paginated-content
       :entities="nftTransfers"
       pagination-style="history"

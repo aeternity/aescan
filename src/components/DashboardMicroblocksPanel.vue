@@ -1,9 +1,9 @@
 <template>
   <app-panel class="dashboard-microblocks-panel">
     <div class="dashboard-microblocks-panel__container">
-      <panel-header
+      <dashboard-panel-header
         level="h4"
-        class="dashboard-microblocks-panel__panel-header"
+        class="dashboard-microblocks-panel__dashboard-panel-header"
         title="MICROBLOCKS"
         icon-name="microblocks">
         <template #tooltip>
@@ -17,7 +17,7 @@
             </span>
           </div>
         </template>
-      </panel-header>
+      </dashboard-panel-header>
 
       <div class="dashboard-microblocks-panel__summary">
         Transactions in this microblock:
@@ -41,7 +41,6 @@ import { microblocksHints } from '@/utils/hints/microblocksHints'
 import AppPanel from '@/components/AppPanel'
 import DashboardTransactionPanel from '@/components/DashboardTransactionPanel'
 import MicroblocksSequence from '@/components/MicroblocksSequence'
-import PanelHeader from '@/components/PanelHeader'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = storeToRefs(
@@ -58,7 +57,7 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = sto
     padding: var(--space-3) var(--space-3) var(--space-3);
   }
 
-  &__panel-header {
+  &__dashboard-panel-header {
     margin-bottom: var(--space-2);
     @media (--desktop) {
       margin-bottom: var(--space-3);

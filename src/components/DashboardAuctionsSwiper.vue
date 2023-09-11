@@ -4,7 +4,7 @@
       <table>
         <tbody>
           <tr>
-            <th class="auctions-swiper__header">
+            <th class="dashboard-auctions-swiper__header">
               <app-tooltip>
                 Name
                 <template #tooltip>
@@ -12,16 +12,16 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="auctions-swiper__data">
+            <td class="dashboard-auctions-swiper__data">
               <app-link
                 :to="`/names/${auction.name}`"
-                class="auctions-swiper__name u-ellipsis">
+                class="dashboard-auctions-swiper__name u-ellipsis">
                 {{ auction.name }}
               </app-link>
             </td>
           </tr>
           <tr>
-            <th class="auctions-swiper__header">
+            <th class="dashboard-auctions-swiper__header">
               <app-tooltip>
                 Highest Bidder
                 <template #tooltip>
@@ -29,14 +29,14 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="auctions-swiper__data">
+            <td class="dashboard-auctions-swiper__data">
               <value-hash-ellipsed
                 :hash="auction.highestBidder"
                 :link-to="`/accounts/${auction.highestBidder}`"/>
             </td>
           </tr>
           <tr>
-            <th class="auctions-swiper__header">
+            <th class="dashboard-auctions-swiper__header">
               <app-tooltip>
                 Bid
                 <template #tooltip>
@@ -44,7 +44,7 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="auctions-swiper__data">
+            <td class="dashboard-auctions-swiper__data">
               {{ formatAePrice(auction.bid) }}
             </td>
           </tr>
@@ -57,7 +57,7 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="auctions-swiper__data">
+            <td class="dashboard-auctions-swiper__data">
               <app-link
                 :to="`/keyblocks/${auction.expirationHeight}`">
                 {{ auction.expirationHeight }}
@@ -86,7 +86,7 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>
-.auctions-swiper {
+.dashboard-auctions-swiper {
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
   }

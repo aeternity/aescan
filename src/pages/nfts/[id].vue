@@ -32,9 +32,9 @@ import { storeToRefs } from 'pinia'
 import { nftsHints } from '@/utils/hints/nftHints'
 import PageHeader from '@/components/PageHeader'
 import { useNftDetailsStore } from '@/stores/nftDetails'
-import NftDetailsPanel from '~/components/NftsDetailsPanel'
-import NftInventoryPanel from '~/components/NftsInventoryPanel'
-import NftOwnersPanel from '~/components/NftsOwnersPanel'
+import NftDetailsPanel from '@/components/NftsDetailsPanel'
+import NftInventoryPanel from '@/components/NftsInventoryPanel'
+import NftOwnersPanel from '@/components/NftsOwnersPanel'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nft } = storeToRefs(nftDetailsStore)

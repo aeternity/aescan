@@ -1,49 +1,35 @@
 <template>
-  <div>
+  <div class="transactions-chart-controls">
     <button @click="handle(1)">
       <app-chip
-        variant="primary"
-        size="sm">
+        variant="secondary">
         1H
       </app-chip>
     </button>
-    <button @click="handle(1)">
+    <button @click="handle(2)">
       <app-chip
-        variant="primary"
-        size="sm">
+        variant="error">
         1D
       </app-chip>
     </button>
     <button @click="handle(7)">
       <app-chip
-        variant="primary"
-        size="sm">
+        variant="primary">
         1W
       </app-chip>
     </button>
     <button>
       <app-chip
-        variant="primary"
-        size="sm"
+        variant="secondary"
         @click="handle(30)">
         1M
       </app-chip>
     </button>
     <button>
       <app-chip
-        variant="primary"
-        size="sm"
+        variant="secondary"
         @click="handle(100)">
         1Y
-      </app-chip>
-    </button>
-    <button
-      class="b"
-      @click="handle(100)">
-      <app-chip
-        variant="primary"
-        size="sm">
-        CUSTOM
       </app-chip>
     </button>
   </div>
@@ -58,31 +44,24 @@ const emit = defineEmits(['clicked'])
 </script>
 
 <style scoped>
-div {
+.transactions-chart-controls {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 50px;
+  column-gap: 8px;
+
+  @media (--desktop) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }
 
 button {
   grid-column: span 1;
-}
+  background: transparent;
+  border: 0;
+  padding: 0;
+  width: 30px;
 
-.b {
-  grid-column: span 5;
-}
-
-@media (--desktop) {
-  div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  }
-
-  button {
-    grid-column: span 1;
-  }
-
-  .b {
+  @media (--desktop) {
     grid-column: span 1;
   }
 }

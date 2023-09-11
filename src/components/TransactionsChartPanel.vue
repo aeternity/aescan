@@ -1,24 +1,24 @@
 <template>
-  <app-panel
-
-    class="chart">
+  <app-panel class="chart">
     <template #heading>
       TOTAL TRANSACTIONS
     </template>
     <template #header>
-      <transactions-chart-controls @clicked="iii"/>
+      <transactions-chart-controls
+        class="transactions-chart-panel__controls"
+        @clicked="iii"/>
     </template>
 
     <div
-      class="chart-container"
-      style="position: relative; height:200px">
+      class="chart-container">
       <Line
-
         :options="chartOptions"
         :data="chartData"/>
     </div>
 
-    <transactions-chart-controls @clicked="iii"/>
+    <transactions-chart-controls
+      class="transactions-chart-panel__controls--condensed"
+      @clicked="iii"/>
   </app-panel>
 </template>
 
@@ -54,7 +54,8 @@ ChartJS.register(CategoryScale,
 
 ChartJS.defaults.font.family = 'Roboto Mono'
 
-// await fetchTransactionsStatistics()
+await fetchTransactionsStatistics()
+
 const stats = computed(() => {
   return transactionsStatistics.value?.data?.map(stat => {
     return stat.count
@@ -80,7 +81,9 @@ const chartData = computed(() => {
       cubicInterpolationMode: 'monotone',
       tension: 0.4,
       borderColor: '#f5274e',
-      pointRadius: 4,
+      backgroundColor: '#f5274e',
+      pointRadius: 3,
+      pointHitRadius: 20,
     }],
   }
 })
@@ -92,8 +95,10 @@ const chartOptions = {
     legend: {
       display: false,
     },
-
     tooltip: {
+      tooltip: {
+        position: 'top',
+      },
       callbacks: {
         title: function() {
           return null
@@ -116,5 +121,27 @@ const chartOptions = {
     },
   },
 }
-
 </script>
+
+<style scoped>
+.chart-container {
+  position: relative;
+  height: 250px;
+}
+
+.transactions-chart-panel {
+  &__controls {
+    display: none;
+    @media (--desktop) {
+      display: grid;
+    }
+  }
+
+  &__controls--condensed {
+    @media (--desktop) {
+      display: none;
+    }
+  }
+}
+
+</style>

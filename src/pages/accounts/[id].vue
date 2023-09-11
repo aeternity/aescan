@@ -5,11 +5,11 @@
 
   <page-header>
     Account
-
     <template #tooltip>
       {{ accountHints.account }}
     </template>
   </page-header>
+
   <template v-if="!isLoading">
     <account-details-panel
       class="account__account-details-panel"
@@ -23,7 +23,9 @@
         <app-tab title="AENS Names">
           <account-names-panel/>
         </app-tab>
-        <app-tab title="Tokens">
+        <app-tab
+          title="Tokens"
+          :is-preselected="isTokensTabSelected">
           <account-tokens-panel/>
         </app-tab>
       </app-tabs>
@@ -49,18 +51,21 @@ import { isDesktop } from '@/utils/screen'
 const { isLoading } = useLoading()
 
 const accountStore = useAccountStore()
-const { accountDetails } = storeToRefs(accountStore)
-const { fetchAccount, fetchTotalAccountTransactionsCount } = accountStore
+const { accountDetails, accountTokens } = storeToRefs(accountStore)
+const { fetchAccount } = accountStore
 const route = useRoute()
-const isTabsVisible = computed(() => process.client && accountDetails && !accountDetails.value?.notExistent)
+
+const isTabsVisible = computed(() => process.client &&
+    ((accountDetails.value && !accountDetails.value?.notExistent) ||
+        !!accountTokens.value?.data.length))
+
+const isTokensTabSelected = computed(() => process.client &&
+    accountDetails.value?.notExistent &&
+    !!accountTokens.value?.data.length)
 
 if (process.client) {
   const limit = isDesktop() ? null : 3
-  await useAsyncData(async() => {
-    await fetchAccount(route.params.id, { limit })
-    await fetchTotalAccountTransactionsCount(route.params.id)
-    return true
-  })
+  await fetchAccount(route.params.id, { limit })
 }
 </script>
 

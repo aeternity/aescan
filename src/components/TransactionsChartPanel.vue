@@ -1,16 +1,15 @@
 <template>
-  <app-panel class="chart">
+  <app-panel>
     <template #heading>
       TOTAL TRANSACTIONS
     </template>
     <template #header>
       <transactions-chart-controls
         class="transactions-chart-panel__controls"
-        @clicked="iii"/>
+        @selected="fetchRangeData"/>
     </template>
 
-    <div
-      class="chart-container">
+    <div class="transactions-chart-panel__container">
       <Line
         :options="chartOptions"
         :data="chartData"/>
@@ -18,7 +17,7 @@
 
     <transactions-chart-controls
       class="transactions-chart-panel__controls--condensed"
-      @clicked="iii"/>
+      @selected="fetchRangeData"/>
   </app-panel>
 </template>
 
@@ -53,24 +52,6 @@ ChartJS.register(CategoryScale,
   Legend)
 
 ChartJS.defaults.font.family = 'Roboto Mono'
-
-await fetchTransactionsStatistics()
-
-const stats = computed(() => {
-  return transactionsStatistics.value?.data?.map(stat => {
-    return stat.count
-  })
-})
-
-const labels = computed(() => {
-  return transactionsStatistics.value?.data?.map(stat => {
-    return stat.startDate
-  })
-})
-
-async function iii(val) {
-  await fetchTransactionsStatistics(val)
-}
 
 const chartData = computed(() => {
   return {
@@ -121,15 +102,34 @@ const chartOptions = {
     },
   },
 }
+
+await fetchTransactionsStatistics()
+
+const stats = computed(() => {
+  return transactionsStatistics.value?.data?.map(stat => {
+    return stat.count
+  })
+})
+
+const labels = computed(() => {
+  return transactionsStatistics.value?.data?.map(stat => {
+    return stat.startDate
+  })
+})
+
+async function fetchRangeData(range) {
+  await fetchTransactionsStatistics(range)
+}
+
 </script>
 
 <style scoped>
-.chart-container {
-  position: relative;
-  height: 250px;
-}
-
 .transactions-chart-panel {
+  &__container {
+    position: relative;
+    height: 250px;
+  }
+
   &__controls {
     display: none;
     @media (--desktop) {

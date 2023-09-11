@@ -1,18 +1,18 @@
 <template>
   <div class="transactions-chart-controls">
-    <button @click="handle(1)">
+    <button @click="select(1)">
       <app-chip
         variant="secondary">
         1H
       </app-chip>
     </button>
-    <button @click="handle(2)">
+    <button @click="select(2)">
       <app-chip
         variant="error">
         1D
       </app-chip>
     </button>
-    <button @click="handle(7)">
+    <button @click="select(7)">
       <app-chip
         variant="primary">
         1W
@@ -21,23 +21,23 @@
     <button>
       <app-chip
         variant="secondary"
-        @click="handle(30)">
+        @click="select(30)">
         1M
       </app-chip>
     </button>
     <button>
       <app-chip
         variant="secondary"
-        @click="handle(100)">
+        @click="select(1000)">
         1Y
       </app-chip>
     </button>
   </div>
 </template>
-<script setup>
 
-function handle(value) {
-  emit('clicked', value)
+<script setup>
+function select(value) {
+  emit('selected', value)
 }
 
 const emit = defineEmits(['clicked'])

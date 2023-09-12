@@ -56,7 +56,7 @@ const { isLoading } = useLoading()
 
 const accountStore = useAccountStore()
 const { accountDetails, accountTokens } = storeToRefs(accountStore)
-const { fetchAccount, fetchAccountActivities, fetchTotalAccountTransactionsCount } = accountStore
+const { fetchAccount } = accountStore
 const route = useRoute()
 
 const isTabsVisible = computed(() => process.client &&
@@ -70,7 +70,6 @@ const isTokensTabSelected = computed(() => process.client &&
 if (process.client) {
   const limit = isDesktop() ? null : 3
   await fetchAccount(route.params.id, { limit })
-
 }
 </script>
 

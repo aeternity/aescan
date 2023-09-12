@@ -5,7 +5,6 @@
       :entities="nfts"
       :total-count="nftsCount"
       :limit="limit"
-      pagination-style="history"
       @prev-clicked="loadPrevNfts"
       @next-clicked="loadNextNfts">
       <nfts-table

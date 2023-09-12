@@ -1,17 +1,17 @@
 <template>
-  <header class="panel-header">
+  <header class="dashboard-panel-header">
     <app-badge
       v-if="iconName"
-      class="panel-header__badge">
+      class="dashboard-panel-header__badge">
       <app-icon
         :name="iconName"
         :size="32"/>
     </app-badge>
-    <div class="panel-header__body">
-      <div class="panel-header__container">
+    <div class="dashboard-panel-header__body">
+      <div class="dashboard-panel-header__container">
         <component
           :is="level"
-          class="panel-header__heading h3">
+          class="dashboard-panel-header__heading h3">
           {{ title }}
           <hint-tooltip v-if="$slots.tooltip">
             <slot name="tooltip"/>
@@ -24,7 +24,7 @@
         v-if="showAllLink"
         :to="showAllLink"
         is-text-link
-        class="panel-header__link">
+        class="dashboard-panel-header__link">
         Show all
       </app-link>
     </div>
@@ -59,7 +59,7 @@ defineProps({
 </script>
 
 <style scoped>
-.panel-header {
+.dashboard-panel-header {
   display: flex;
   flex-direction: row;
   margin-bottom: var(--space-4);

@@ -601,10 +601,29 @@ export function adaptNamesResults(names) {
   }
 }
 
+export function adaptNftTransfers(transfers) {
+  const formattedData = transfers.data
+    .map(transfer => {
+      return {
+        txHash: transfer.txHash,
+        time: DateTime.fromMillis(transfer.microTime),
+        height: transfer.blockHeight,
+        tokenId: transfer.tokenId,
+        recipient: transfer.recipient,
+        sender: transfer.sender,
+      }
+    })
+  return {
+    next: transfers.next,
+    data: formattedData,
+    prev: transfers.prev,
+  }
+}
+
 export function adaptNftDetails(nft) {
   return {
     ...nft,
-    tokenLimit: formatTokenLimit(nft.extensions, nft.limits.tokenLimit),
-    templateLimit: formatTemplateLimit(nft.extensions, nft.limits.templateLimit),
+    tokenLimit: formatTokenLimit(nft.extensions, nft.limits?.tokenLimit),
+    templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
   }
 }

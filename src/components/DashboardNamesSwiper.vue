@@ -4,7 +4,7 @@
       <table>
         <tbody>
           <tr>
-            <th class="names-swiper__header">
+            <th class="dashboard-names-swiper__header">
               <app-tooltip>
                 Name
                 <template #tooltip>
@@ -12,16 +12,16 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="names-swiper__data">
+            <td class="dashboard-names-swiper__data">
               <app-link
                 :to="`/names/${name.name}`"
-                class="names-swiper__name u-ellipsis">
+                class="dashboard-names-swiper__name u-ellipsis">
                 {{ name.name }}
               </app-link>
             </td>
           </tr>
           <tr>
-            <th class="names-swiper__header">
+            <th class="dashboard-names-swiper__header">
               <app-tooltip>
                 Claimed by
                 <template #tooltip>
@@ -29,14 +29,14 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="names-swiper__data">
+            <td class="dashboard-names-swiper__data">
               <value-hash-ellipsed
                 :link-to="`/accounts/${name.address}`"
                 :hash="name.address"/>
             </td>
           </tr>
           <tr>
-            <th class="names-swiper__header">
+            <th class="dashboard-names-swiper__header">
               <app-tooltip>
                 Price
                 <template #tooltip>
@@ -44,7 +44,7 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="names-swiper__data">
+            <td class="dashboard-names-swiper__data">
               {{ formatNullable(formatAePrice(name.price)) }}
             </td>
           </tr>
@@ -57,7 +57,7 @@
                 </template>
               </app-tooltip>
             </th>
-            <td class="names-swiper__data">
+            <td class="dashboard-names-swiper__data">
               <app-link
                 :to="`/keyblocks/${name.activatedHeight}`">
                 {{ name.activatedHeight }}
@@ -85,7 +85,7 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>
-.names-swiper {
+.dashboard-names-swiper {
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
   }

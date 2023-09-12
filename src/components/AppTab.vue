@@ -12,6 +12,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  isPreselected: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const isActive = ref(false)
@@ -19,6 +23,7 @@ const registerTab = inject('registerTab')
 
 registerTab({
   title: props.title,
+  isPreselected: props.isPreselected,
   isActive,
 })
 </script>

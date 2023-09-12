@@ -7,4 +7,9 @@ export const nftsHints = {
   extensions: 'Extensions that are implemented for this NFT according to the creator of the smart contract.',
   tokenLimit: 'The maximum number of NFTs that can be minted.',
   templateLimit: 'The maximum number of NFTs that can be minted per template.',
+  transferHash: 'The hash of the transaction that transferred the NFT.',
+  transferTime: 'Keyblock height and estimated date and time when the NFT was transferred',
+  transferTokenId: 'The ID of the NFT that was transferred.',
+  transferRecipient: 'The recipient of the NFT.',
+  transferSender: 'The sender of the NFT.',
 }

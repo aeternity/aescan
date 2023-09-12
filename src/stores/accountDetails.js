@@ -63,13 +63,19 @@ export const useAccountStore = defineStore('account', () => {
       : null,
   )
 
-  function fetchAccount(accountId, { limit } = {}) {
-    fetchAccountDetails(accountId)
-    fetchAccountTransactions({ accountId, limit })
-    fetchTotalAccountTransactionsCount(accountId)
-    fetchAccountNames({ accountId, limit })
-    fetchAccountNamesCount(accountId)
-    fetchAccountTokens({ accountId, limit })
+  async function fetchAccount(accountId, { limit } = {}) {
+    await Promise.all([
+      fetchAccountDetails(accountId),
+
+      Promise.allSettled([
+        fetchAccountTokens({ accountId, limit }),
+        fetchAccountTransactions({ accountId, limit }),
+        fetchTotalAccountTransactionsCount(accountId),
+        fetchAccountNames({ accountId, limit }),
+        fetchAccountNamesCount(accountId),
+      ]),
+    ])
+    return true
   }
 
   async function fetchAccountDetails(accountId) {

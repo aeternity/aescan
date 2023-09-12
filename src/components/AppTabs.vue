@@ -36,11 +36,15 @@ const activeTabIndex = props.modelValue === null ? ref(0) : useVModel(props, 'mo
 watch(
   () => props.modelValue,
   () => selectTab(activeTabIndex.value),
-  { immediate: true },
 )
 
 onMounted(() => {
-  selectTab(activeTabIndex.value)
+  selectTab(preselectedTabIndex.value || activeTabIndex.value)
+})
+
+const preselectedTabIndex = computed(() => {
+  const index = tabs.value.findIndex(tab => tab.isPreselected)
+  return index === -1 ? null : index
 })
 
 function selectTab(tabIndex) {

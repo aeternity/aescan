@@ -1,77 +1,77 @@
 <template>
   <table class="account-activities-table">
     <thead>
-    <tr>
-      <th>
-        Hash
-        <hint-tooltip>
-          {{ accountHints.activityHash }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Time
-        <hint-tooltip>
-          {{ accountHints.activityTime }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Type
-        <hint-tooltip>
-          {{ accountHints.activityType }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Activity
-        <hint-tooltip>
-          {{ accountHints.activityMeaning }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Data
-        <hint-tooltip>
-          {{ accountHints.activityData }}
-        </hint-tooltip>
-      </th>
-    </tr>
+      <tr>
+        <th>
+          Hash
+          <hint-tooltip>
+            {{ accountHints.activityHash }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Time
+          <hint-tooltip>
+            {{ accountHints.activityTime }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Type
+          <hint-tooltip>
+            {{ accountHints.activityType }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Activity
+          <hint-tooltip>
+            {{ accountHints.activityMeaning }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Data
+          <hint-tooltip>
+            {{ accountHints.activityData }}
+          </hint-tooltip>
+        </th>
+      </tr>
     </thead>
     <tbody>
-    <tr
+      <tr
         v-for="(activity, index) in accountActivities?.data"
         :key="index">
-      <td>
-        <value-hash-ellipsed
+        <td>
+          <value-hash-ellipsed
             v-if="activity.hash"
             :hash="activity.hash"
             :link-to="`/transactions/${activity.hash}`"/>
-        <template v-else>
-          N/A
-        </template>
-      </td>
-      <td>
-        <div>
-          <app-link
+          <template v-else>
+            N/A
+          </template>
+        </td>
+        <td>
+          <div>
+            <app-link
               :to="`/keyblocks/${activity.height}`">
-            {{ activity.height }}
-          </app-link>
-        </div>
-        <datetime-label :datetime="activity.time"/>
-      </td>
-      <td>
-        <account-activity-type-cell
+              {{ activity.height }}
+            </app-link>
+          </div>
+          <datetime-label :datetime="activity.time"/>
+        </td>
+        <td>
+          <account-activity-type-cell
             :account-details="accountDetails"
             :activity="activity"/>
-      </td>
-      <td>
-        <account-activity-cell
+        </td>
+        <td>
+          <account-activity-cell
             :account-details="accountDetails"
             :activity="activity"/>
-      </td>
-      <td>
-        <account-activity-data-cell
+        </td>
+        <td>
+          <account-activity-data-cell
             :account-details="accountDetails"
             :activity="activity"/>
-      </td>
-    </tr>
+        </td>
+      </tr>
     </tbody>
   </table>
 </template>

@@ -2,7 +2,7 @@ import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { adaptAccountNames, adaptTransactions, adaptAccountTokens, adaptAccountActivities } from '@/utils/adapters'
+import { adaptAccountActivities, adaptAccountNames, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
 import { useDexStore } from '@/stores/dex'
 
@@ -73,6 +73,7 @@ export const useAccountStore = defineStore('account', () => {
         fetchTotalAccountTransactionsCount(accountId),
         fetchAccountNames({ accountId, limit }),
         fetchAccountNamesCount(accountId),
+        fetchAccountActivities({ accountId, limit }),
       ]),
     ])
     return true

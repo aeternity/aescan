@@ -13,7 +13,7 @@ export const nftsHints = {
   transferRecipient: 'The recipient of the NFT.',
   transferSender: 'The sender of the NFT.',
   inventoryTemplateId: 'The ID of the NFT template.',
-  inventorySupply: 'The number of NFTs that are minted from this template.',
+  inventorySupply: 'The number of NFTs that are minted in this template.',
   inventoryLimit: 'The maximum number of NFTs that can be minted from this template.',
   inventoryCreteTransaction: 'The hash of the transaction that created the NFT template.',
   ownersTokenId: 'Unique identifier of the NFT.',

@@ -3,7 +3,7 @@
     <app-butt
       v-for="(button, index) in buttons"
       :key="index"
-      :variant="selected === index ? 'primary' : 'secondary'"
+      :variant="selected === index ? 'error' : 'secondary'"
       @click="select(index)">
       {{ button.label }}
     </app-butt>
@@ -13,18 +13,18 @@
 <script setup>
 
 const buttons = [
-  { count: 1, label: '1H' },
-  { count: 2, label: '1D' },
-  { count: 7, label: '1W' },
-  { count: 30, label: '1M' },
-  { count: 365, label: '1Y' },
+  { slug: '?limit=7&interval_by=day', label: '1W' },
+  { slug: '?limit=30&interval_by=day', label: '1M' },
+  { slug: '?limit=90&interval_by=day', label: '3M' },
+  { slug: '?limit=12&interval_by=month', label: '1Y' },
+  { slug: '?limit=100&interval_by=month', label: 'ALL' },
 ]
 
 const selected = ref(0)
 
 function select(value) {
   selected.value = value
-  emit('selected', buttons[value].count)
+  emit('selected', buttons[value].slug)
 }
 
 const emit = defineEmits(['selected'])

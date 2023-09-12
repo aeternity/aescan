@@ -43,13 +43,15 @@ const {
 } = storeToRefs(transactionsStore)
 const { fetchTransactionsStatistics } = transactionsStore
 
-ChartJS.register(CategoryScale,
+ChartJS.register(
+  CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
   Title,
   Tooltip,
-  Legend)
+  Legend,
+)
 
 ChartJS.defaults.font.family = 'Roboto Mono'
 
@@ -81,8 +83,8 @@ const chartOptions = {
         position: 'top',
       },
       callbacks: {
-        title: function() {
-          return null
+        title: function(context) {
+          return context.label
         },
       },
     },

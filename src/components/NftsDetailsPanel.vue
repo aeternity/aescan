@@ -1,65 +1,65 @@
 <template>
-  <app-panel class="nft-details-panel">
+  <app-panel class="nfts-details-panel">
     <template #heading>
       DETAILS
     </template>
     <template #header>
       <copy-chip
         :label="nftDetails.contractId"
-        class="nft-details-panel__chip"/>
+        class="nfts-details-panel__chip"/>
       <copy-chip
         :label="formatEllipseHash(nftDetails.contractId)"
         :clipboard-text="nftDetails.contractId"
-        class="nft-details-panel__chip-ellipse"/>
+        class="nfts-details-panel__chip-ellipse"/>
     </template>
 
     <table>
       <tbody>
-        <tr class="nft-details-panel__row">
-          <th class="nft-details-panel__table-header">
+        <tr class="nfts-details-panel__row">
+          <th class="nfts-details-panel__table-header">
             Collection Name
             <hint-tooltip>
               {{ nftsHints.collectionName }}
             </hint-tooltip>
           </th>
-          <td class="nft-details-panel__data">
+          <td class="nfts-details-panel__data">
             {{ nftDetails.name }}
           </td>
         </tr>
-        <tr class="nft-details-panel__row">
-          <th class="nft-details-panel__table-header">
+        <tr class="nfts-details-panel__row">
+          <th class="nfts-details-panel__table-header">
             Owners
             <hint-tooltip>
               {{ nftsHints.owners }}
             </hint-tooltip>
           </th>
-          <td class="nft-details-panel__data">
+          <td class="nfts-details-panel__data">
             {{ nftDetails.nftOwners }}
           </td>
         </tr>
-        <tr class="nft-details-panel__row">
-          <th class="nft-details-panel__table-header">
+        <tr class="nfts-details-panel__row">
+          <th class="nfts-details-panel__table-header">
             Amount
             <hint-tooltip>
               {{ nftsHints.amount }}
             </hint-tooltip>
           </th>
-          <td class="nft-details-panel__data">
+          <td class="nfts-details-panel__data">
             {{ nftDetails.nftsAmount }}
           </td>
         </tr>
         <tr
-          class="nft-details-panel__row">
-          <th class="nft-details-panel__table-header">
+          class="nfts-details-panel__row">
+          <th class="nfts-details-panel__table-header">
             Extensions
             <hint-tooltip>
               {{ nftsHints.extensions }}
             </hint-tooltip>
           </th>
-          <td class="nft-details-panel__data">
+          <td class="nfts-details-panel__data">
             <div
               v-if="!!nftDetails.extensions.length"
-              class="nft-details-panel__extensions">
+              class="nfts-details-panel__extensions">
               <app-chip
                 v-for="extension in nftDetails.extensions"
                 :key="extension"
@@ -74,27 +74,27 @@
         </tr>
         <tr
           v-if="nftDetails.tokenLimit !== null"
-          class="nft-details-panel__row">
-          <th class="nft-details-panel__table-header">
+          class="nfts-details-panel__row">
+          <th class="nfts-details-panel__table-header">
             Token limit
             <hint-tooltip>
               {{ nftsHints.tokenLimit }}
             </hint-tooltip>
           </th>
-          <td class="nft-details-panel__data">
+          <td class="nfts-details-panel__data">
             {{ nftDetails.tokenLimit }}
           </td>
         </tr>
         <tr
           v-if="nftDetails.templateLimit !== null"
-          class="nft-details-panel__row">
-          <th class="nft-details-panel__table-header">
+          class="nfts-details-panel__row">
+          <th class="nfts-details-panel__table-header">
             Template limit
             <hint-tooltip>
               {{ nftsHints.templateLimit }}
             </hint-tooltip>
           </th>
-          <td class="nft-details-panel__data">
+          <td class="nfts-details-panel__data">
             {{ nftDetails.templateLimit }}
           </td>
         </tr>
@@ -117,7 +117,7 @@ defineProps({
 </script>
 
 <style scoped>
-.nft-details-panel {
+.nfts-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
   }

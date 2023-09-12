@@ -1,46 +1,33 @@
 <template>
   <div class="transactions-chart-controls">
-    <button @click="select(1)">
-      <app-chip
-        variant="secondary">
-        1H
-      </app-chip>
-    </button>
-    <button @click="select(2)">
-      <app-chip
-        variant="error">
-        1D
-      </app-chip>
-    </button>
-    <button @click="select(7)">
-      <app-chip
-        variant="primary">
-        1W
-      </app-chip>
-    </button>
-    <button>
-      <app-chip
-        variant="secondary"
-        @click="select(30)">
-        1M
-      </app-chip>
-    </button>
-    <button>
-      <app-chip
-        variant="secondary"
-        @click="select(1000)">
-        1Y
-      </app-chip>
-    </button>
+    <app-butt
+      v-for="(button, index) in buttons"
+      :key="index"
+      :variant="selected === index ? 'primary' : 'secondary'"
+      @click="select(index)">
+      {{ button.label }}
+    </app-butt>
   </div>
 </template>
 
 <script setup>
+
+const buttons = [
+  { count: 1, label: '1H' },
+  { count: 2, label: '1D' },
+  { count: 7, label: '1W' },
+  { count: 30, label: '1M' },
+  { count: 365, label: '1Y' },
+]
+
+const selected = ref(0)
+
 function select(value) {
-  emit('selected', value)
+  selected.value = value
+  emit('selected', buttons[value].count)
 }
 
-const emit = defineEmits(['clicked'])
+const emit = defineEmits(['selected'])
 </script>
 
 <style scoped>

@@ -5,7 +5,10 @@
 </template>
 
 <script setup>
-import { SWAP_CONTRACT_CALLS, ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS } from '@/utils/constants'
+import { useRuntimeConfig } from 'nuxt/app'
+import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
+
+const { SH_CONTRACTS } = useRuntimeConfig().public
 
 const props = defineProps({
   accountDetails: {
@@ -35,8 +38,9 @@ const activityType = computed(() => {
   case 'ContractCallTxEvent':
     if (
       SWAP_CONTRACT_CALLS.includes(tx.value.function) ||
-      ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
-      REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
+          ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
+          REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
+          SH_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'
@@ -63,10 +67,20 @@ const activityType = computed(() => {
   case 'InternalTransferEvent':
     if (props.activity.payload.kind === 'reward_block') {
       return 'AE'
+    } else if (
+      SH_CONTRACTS.includes(props.activity.payload.contractId)) {
+      return 'SH-DEX'
     }
-    return 'N/A'
+    return 'Smart Contract'
+
   case 'Aex9TransferEvent':
     return 'AEX-9'
+  case 'InternalContractCallEvent':
+    if (
+      SH_CONTRACTS.includes(props.activity.payload.contractId)) {
+      return 'SH-DEX'
+    }
+    return 'Smart Contract'
   default:
     return 'N/A'
   }

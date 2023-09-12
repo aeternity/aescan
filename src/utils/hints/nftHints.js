@@ -14,7 +14,7 @@ export const nftsHints = {
   transferSender: 'The sender of the NFT.',
   inventoryTemplateId: 'The ID of the NFT template.',
   inventorySupply: 'The number of NFTs that are minted in this template.',
-  inventoryLimit: 'The maximum number of NFTs that can be minted from this template.',
+  inventoryLimit: 'The maximum number of NFTs that can be minted in this template.',
   inventoryCreteTransaction: 'The hash of the transaction that created the NFT template.',
   ownersTokenId: 'Unique identifier of the NFT.',
   ownersContractId: 'Unique identifier of the smart contract that implements the AEX-141 non-fungible token standard.',

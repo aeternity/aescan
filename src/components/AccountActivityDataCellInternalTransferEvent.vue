@@ -1,5 +1,7 @@
 <template>
-  <span v-if="activity.payload?.kind !== 'reward_block'">N/A</span>
+  <template v-if="activity.payload?.kind !== 'reward_block'">
+    N/A
+  </template>
   <app-chip
     v-else
     size="sm">

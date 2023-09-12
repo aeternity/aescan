@@ -5,7 +5,9 @@
 </template>
 
 <script setup>
-import { SWAP_CONTRACT_CALLS, ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS } from '@/utils/constants'
+import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
+
+const { SH_CONTRACTS } = useRuntimeConfig().public
 
 const props = defineProps({
   accountDetails: {
@@ -87,9 +89,14 @@ const activityDescription = computed(() => {
     if (props.activity.payload.kind === 'reward_block') {
       return 'Beneficiary reward'
     }
-    return 'N/A'
+    if (SH_CONTRACTS.includes(props.activity.payload.contractId)) {
+      return 'SH-DEX transfer'
+    }
+    return 'Internal transfer'
   case 'Aex9TransferEvent':
     return 'Trasnfered to'
+  case 'InternalContractCallEvent':
+    return 'Internal call'
   default:
     return 'N/A'
   }

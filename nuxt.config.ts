@@ -36,7 +36,7 @@ export default defineNuxtConfig({
       ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,
       AE_TOKEN_ID: process.env.AE_TOKEN_ID,
       DEBUG_MODE: process.env.DEBUG_MODE,
-      SH_CONTRACTS: process.env.SH_CONTRACTS.split(', '),
+      SH_CONTRACTS: process.env.SH_CONTRACTS?.split(';'),
     },
   },
   postcss: {

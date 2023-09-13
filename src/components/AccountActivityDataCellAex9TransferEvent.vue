@@ -2,7 +2,6 @@
   <value-hash-ellipsed
     :hash="activityPayload.contractId"
     :link-to="`/contracts/${activityPayload.contractId}`"/>
-
   <transaction-arrow-right-icon/>
 
   <value-hash-ellipsed

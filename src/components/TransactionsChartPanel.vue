@@ -34,6 +34,7 @@ import {
   Tooltip,
 } from 'chart.js'
 import { storeToRefs } from 'pinia'
+import { DateTime } from 'luxon'
 import { useTransactionsStore } from '~/stores/transactions'
 import TransactionsChartControls from '~/components/TransactionsChartControls'
 
@@ -105,6 +106,9 @@ const chartOptions = {
   },
 }
 
+const selectedInterval = ref('')
+// todo animation
+
 await fetchTransactionsStatistics()
 
 const stats = computed(() => {
@@ -115,12 +119,23 @@ const stats = computed(() => {
 
 const labels = computed(() => {
   return transactionsStatistics.value?.data?.map(stat => {
-    return stat.startDate
+    return formatLabel(stat.startDate)
   })
 })
 
-async function fetchRangeData(range) {
-  await fetchTransactionsStatistics(range)
+function formatLabel(label) {
+  const date = DateTime.fromISO(label)
+
+  if (selectedInterval.value === 'month') {
+    return date.toFormat('yyyy-MM')
+  }
+
+  return date.toFormat('MM-dd')
+}
+
+async function fetchRangeData({ interval, limit }) {
+  selectedInterval.value = interval
+  await fetchTransactionsStatistics(`?limit=${limit}&interval_by=${interval}`)
 }
 
 </script>
@@ -140,6 +155,7 @@ async function fetchRangeData(range) {
   }
 
   &__controls--condensed {
+    margin-top: var(--space-4);
     @media (--desktop) {
       display: none;
     }

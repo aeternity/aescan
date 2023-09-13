@@ -112,13 +112,13 @@ const selectedInterval = ref('')
 await fetchTransactionsStatistics()
 
 const stats = computed(() => {
-  return transactionsStatistics.value?.data?.map(stat => {
+  return transactionsStatistics.value?.map(stat => {
     return stat.count
   })
 })
 
 const labels = computed(() => {
-  return transactionsStatistics.value?.data?.map(stat => {
+  return transactionsStatistics.value?.map(stat => {
     return formatLabel(stat.startDate)
   })
 })

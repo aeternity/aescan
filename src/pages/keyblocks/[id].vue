@@ -13,6 +13,7 @@
 
   <template v-if="!isLoading">
     <keyblock-details-panel
+      v-if="keyblockDetails"
       class="keyblock-details__keyblock-details-panel"
       :keyblock-details="keyblockDetails"/>
 

@@ -4,7 +4,7 @@
       v-for="(button, index) in buttons"
       :key="index"
       class="transactions-chart-controls__button"
-      :variant="selected === index ? 'error' : 'secondary'"
+      :variant="selectedIndex === index ? 'error' : 'secondary'"
       @click="select(index)">
       {{ button.label }}
     </app-chip>
@@ -21,12 +21,10 @@ const buttons = [
   { interval: 'month', limit: '100', label: 'ALL' },
 ]
 
-// todo first value is always low
-
-const selected = ref(0)
+const selectedIndex = ref(0)
 
 function select(value) {
-  selected.value = value
+  selectedIndex.value = value
   emit('selected', buttons[value])
 }
 

@@ -107,7 +107,6 @@ const chartOptions = {
 }
 
 const selectedInterval = ref('')
-// todo animation
 
 await fetchTransactionsStatistics()
 

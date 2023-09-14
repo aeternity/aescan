@@ -10,6 +10,7 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
+    <transactions-stats class="transactions__transactions-stats"/>
     <transactions-chart-panel class="transactions-panel"/>
     <transactions-panel class="transactions-panel"/>
   </template>
@@ -21,6 +22,7 @@ import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import TransactionsChartPanel from '@/components/TransactionsChartPanel'
+import TransactionsStats from '~/components/TransactionsStats'
 
 const { isLoading } = useLoading()
 </script>
@@ -38,3 +40,12 @@ const { isLoading } = useLoading()
   }
 }
 </style>
+
+<style scoped>
+.transactions {
+  &__transactions-stats {
+    margin-bottom: var(--space-2);
+  }
+}
+</style>
+

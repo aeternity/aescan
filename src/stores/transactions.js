@@ -10,10 +10,24 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
+  const dailyTransactions = ref(null)
 
   const transactions = computed(() =>
     rawTransactions.value
       ? adaptTransactions(rawTransactions.value)
+      : null,
+  )
+
+  const lastDayTransactionsCount = computed(() =>
+    dailyTransactions.value
+      ? dailyTransactions.value[0].count
+      : null,
+  )
+
+  const lastDayTransactionsIncrement = computed(() =>
+    dailyTransactions.value
+      ? ((dailyTransactions.value[0].count - dailyTransactions.value[1].count) *
+        100 / dailyTransactions.value[0].count).toFixed(2)
       : null,
   )
 
@@ -30,6 +44,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsCount.value = data
   }
 
+  async function fetchDailyTransactions() {
+    dailyTransactions.value = null
+    const { data } = await axios.get('https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions?limit=2&interval_by=day')
+    dailyTransactions.value = data.data
+  }
+
   async function fetchTransactionsStatistics(slug) {
     transactionsStatistics.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug || '?limit=8&interval_by=day'}`)
@@ -37,12 +57,14 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   return {
-    rawTransactions,
     transactionsCount,
     transactions,
     fetchTransactions,
     fetchTransactionsCount,
     transactionsStatistics,
     fetchTransactionsStatistics,
+    fetchDailyTransactions,
+    lastDayTransactionsIncrement,
+    lastDayTransactionsCount,
   }
 })

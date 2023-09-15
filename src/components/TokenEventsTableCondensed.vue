@@ -1,7 +1,7 @@
 <template>
   <div>
     <table
-      v-for="event in tokenEvents.data"
+      v-for="(event, index) in tokenEvents.data"
       :key="event.hash"
       class="token-events-table-condensed__table">
       <tbody>
@@ -57,11 +57,32 @@
           <th class="token-events-table-condensed__header">
             Data
           </th>
-          <td class="token-events-table-condensed__data">
+          <td
+            v-if="event.isDecoded"
+
+            class="token-events-table-condensed__data">
             <token-events-data-cell
               :name="event.name"
               :data="event.data"
               :args="event.args"/>
+          </td>
+          <td
+            v-else
+            :class="[
+              'token-events-table-condensed__data',
+              {'token-events-table-condensed__data--expanded': isOpened.includes(index)}]">
+            <expand-button
+              :is-collapsed="!isOpened.includes(index)"
+              @click="toggle(index)">
+              {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
+            </expand-button>
+          </td>
+        </tr>
+        <tr
+          v-if="isOpened.includes(index)"
+          class="token-events-table-condensed__row">
+          <td colspan="5">
+            <event-data-panel :args="event.args"/>
           </td>
         </tr>
       </tbody>
@@ -73,13 +94,29 @@ import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
 import { tokensHints } from '@/utils/hints/tokensHints'
+import ExpandButton from '~/components/ExpandButton'
 
-defineProps({
+const props = defineProps({
   tokenEvents: {
     type: Object,
     required: true,
   },
 })
+
+const isOpened = ref([])
+
+watch(() => props.tokenEvents, () => {
+  isOpened.value = []
+})
+
+function toggle(id) {
+  const index = isOpened.value.indexOf(id)
+  if (index > -1) {
+    isOpened.value.splice(index, 1)
+  } else {
+    isOpened.value.push(id)
+  }
+}
 </script>
 
 <style scoped>
@@ -91,6 +128,10 @@ defineProps({
 
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    &--expanded {
+      border-bottom: 0;
+    }
   }
 
   &__row:last-of-type &__header {
@@ -99,6 +140,10 @@ defineProps({
 
   &__data {
     text-align: right;
+
+    &--expanded {
+      border-bottom: 0;
+    }
   }
 }
 </style>

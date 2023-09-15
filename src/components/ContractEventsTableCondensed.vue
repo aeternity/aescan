@@ -86,7 +86,7 @@
         v-if="isOpened.includes(index)"
         class="contract-events-table-condensed__row">
         <td colspan="5">
-          <contract-event-data-panel :event="event"/>
+          <event-data-panel :args="event.args"/>
         </td>
       </tr>
     </table>
@@ -96,7 +96,6 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import ContractEventDataPanel from '@/components/ContractEventDataPanel'
 import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({

@@ -69,7 +69,7 @@
             'contract-events-table__arguments',
             {'contract-events-table__arguments--expanded': isOpened.includes(index)}
           ]">
-          <contract-event-data-panel :event="event"/>
+          <event-data-panel :event="event"/>
         </td>
       </tr>
     </template>
@@ -80,7 +80,7 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import ContractEventDataPanel from '@/components/ContractEventDataPanel'
+import EventDataPanel from '@/components/EventDataPanel'
 import ExpandButton from '@/components/ExpandButton'
 import ContractEventCell from '@/components/ContractEventCell'
 

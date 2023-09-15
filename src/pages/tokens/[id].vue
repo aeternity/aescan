@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Token</Title>
+    <Title>Token</Title>
   </Head>
 
   <page-header>
@@ -13,7 +13,6 @@
 
   <template v-if="!isLoading">
     <token-details-panel
-      v-if="tokenDetails"
       class="token-details__panel"
       :token-details="tokenDetails"/>
 

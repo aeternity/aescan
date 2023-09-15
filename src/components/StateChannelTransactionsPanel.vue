@@ -5,6 +5,7 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :limit="limit"
+      :total-count="stateChannelTransactionsCount"
       :entities="stateChannelTransactions"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
@@ -31,7 +32,7 @@ import { isDesktop } from '@/utils/screen'
 import PaginatedContent from '@/components/PaginatedContent'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()
-const { stateChannelTransactions } = storeToRefs(stateChannelDetailsStore)
+const { stateChannelTransactions, stateChannelTransactionsCount } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelTransactions } = stateChannelDetailsStore
 
 const limit = computed(() => isDesktop() ? 10 : 3)

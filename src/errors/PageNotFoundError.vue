@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Page Not Found</Title>
+    <Title>Page Not Found</Title>
   </Head>
 
   <page-header>

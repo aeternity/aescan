@@ -1,7 +1,6 @@
 <template>
   <Html>
     <Head>
-      <Title>{{ APP_TITLE_SHORT }}</Title>
       <Meta
         name="description"
         :content="APP_DESCRIPTION"/>
@@ -63,7 +62,7 @@
     </Head>
   </Html>
 
-  <NuxtErrorBoundary>
+  <NuxtErrorBoundary @error="logError">
     <the-header/>
     <NuxtLayout>
       <NuxtPage/>
@@ -92,10 +91,21 @@ if (process.client) {
   initializeWebSocket()
 }
 
+useHead({
+  titleTemplate: pageTitle =>
+    pageTitle
+      ? `${APP_TITLE_SHORT} | ${pageTitle}`
+      : APP_TITLE,
+})
+
 if (import.meta.env.MODE !== 'production') {
   useHead({
     meta: [{ name: 'robots', content: 'noindex' }],
   })
+}
+
+function logError(error) {
+  console.error(error)
 }
 </script>
 

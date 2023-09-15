@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ APP_TITLE_SHORT }} | Terms of Service</Title>
+    <Title>Terms of Service</Title>
   </Head>
   <div class="terms-of-service">
     <h1 class="terms-of-service__heading">

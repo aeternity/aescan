@@ -57,6 +57,14 @@ export function formatAePrice(price, maxDigits = 8) {
   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} AE`
 }
 
+export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
+  if (isNaN(tokenAmount) || tokenAmount === null) {
+    return tokenAmount
+  }
+
+  return (new BigNumber(tokenAmount)).dividedBy(10 ** numberOfDecimals).toNumber()
+}
+
 export function formatAettosToAe(aettosAmount) {
   if (isNaN(aettosAmount) || aettosAmount === null) {
     return aettosAmount
@@ -91,4 +99,34 @@ export function formatNameStatus(name) {
   } else {
     return 'Expired'
   }
+}
+
+export function formatTokenLimit(extensions, tokenLimit) {
+  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+    return tokenLimit
+  } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
+    return 'Unlimited'
+  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+    return null
+  } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
+    return null
+  }
+}
+
+export function formatTemplateLimit(extensions, templateLimit) {
+  if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
+    return null
+  } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
+    return null
+  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+    return templateLimit
+  } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
+    return 'Unlimited'
+  }
+}
+
+export function formatIsAuction(name) {
+  const auctionLength = 13
+  const suffixLength = 6
+  return name.length - suffixLength < auctionLength
 }

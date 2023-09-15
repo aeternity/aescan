@@ -15,9 +15,21 @@
           </hint-tooltip>
         </th>
         <th>
+          Queried At
+          <hint-tooltip>
+            {{ oraclesHints.queriedAt }}
+          </hint-tooltip>
+        </th>
+        <th>
           Respond Tx
           <hint-tooltip>
             {{ oraclesHints.respondTx }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Responded At
+          <hint-tooltip>
+            {{ oraclesHints.respondedAt }}
           </hint-tooltip>
         </th>
       </tr>
@@ -33,15 +45,34 @@
               :link-to="`/transactions/${event.queryTx}`"/>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
-            <response-button
+            <expand-button
               :is-collapsed="!isOpened.includes(index)"
-              @click="toggle(index)"/>
+              @click="toggle(index)">
+              Response available
+            </expand-button>
           </td>
-
+          <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
+            <div>
+              <app-link
+                :to="`/keyblocks/${event.queriedAtHeight}`">
+                {{ event.queriedAtHeight }}
+              </app-link>
+            </div>
+            <datetime-label :datetime="event.queriedAt"/>
+          </td>
           <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
+          </td>
+          <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
+            <div>
+              <app-link
+                :to="`/keyblocks/${event.respondedAtHeight}`">
+                {{ event.respondedAtHeight }}
+              </app-link>
+            </div>
+            <datetime-label :datetime="event.respondedAt"/>
           </td>
         </tr>
         <tr v-if="isOpened.includes(index)">

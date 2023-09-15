@@ -54,7 +54,10 @@
         </tr>
 
         <tr class="token-events-table-condensed__row">
-          <th class="token-events-table-condensed__header">
+          <th
+            :class="[
+              'token-events-table-condensed__header',
+              {'token-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             Data
           </th>
           <td

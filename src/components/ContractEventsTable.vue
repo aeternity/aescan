@@ -69,7 +69,7 @@
             'contract-events-table__arguments',
             {'contract-events-table__arguments--expanded': isExpanded.includes(index)}
           ]">
-          <event-data-panel :event="event"/>
+          <event-data-panel :args="event.args"/>
         </td>
       </tr>
     </template>

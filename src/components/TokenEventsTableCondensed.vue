@@ -59,7 +59,6 @@
           </th>
           <td
             v-if="event.isDecoded"
-
             class="token-events-table-condensed__data">
             <token-events-data-cell
               :name="event.name"
@@ -70,16 +69,16 @@
             v-else
             :class="[
               'token-events-table-condensed__data',
-              {'token-events-table-condensed__data--expanded': isOpened.includes(index)}]">
+              {'token-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
             <expand-button
-              :is-collapsed="!isOpened.includes(index)"
+              :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
-              {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
+              {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
             </expand-button>
           </td>
         </tr>
         <tr
-          v-if="isOpened.includes(index)"
+          v-if="isExpanded.includes(index)"
           class="token-events-table-condensed__row">
           <td colspan="5">
             <event-data-panel :args="event.args"/>
@@ -92,7 +91,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
+import TokenEventsDataCell from '@/components/TokenEventsDataCell'
 import { tokensHints } from '@/utils/hints/tokensHints'
 import ExpandButton from '~/components/ExpandButton'
 
@@ -103,18 +102,18 @@ const props = defineProps({
   },
 })
 
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.tokenEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

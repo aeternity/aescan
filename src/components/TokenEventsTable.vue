@@ -30,15 +30,15 @@
         <tr>
           <td
             class="tokens-event-table__hash"
-            :class="[{'token-events-table__data--expanded': isOpened.includes(index)}]">
+            :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.hash"
               :link-to="`/transactions/${event.hash}`"/>
           </td>
-          <td :class="[{'token-events-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             {{ event.name }}
           </td>
-          <td :class="[{'token-events-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             <div>
               <app-link
                 :to="`/keyblocks/${event.createdHeight}`">
@@ -55,20 +55,20 @@
           </td>
           <td
             v-else
-            :class="[{'token-events-table__data--expanded': isOpened.includes(index)}]">
+            :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
-              :is-collapsed="!isOpened.includes(index)"
+              :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
-              {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguments' }}
+              {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguments' }}
             </expand-button>
           </td>
         </tr>
-        <tr v-if="isOpened.includes(index)">
+        <tr v-if="isExpanded.includes(index)">
           <td
             colspan="4"
             :class="[
               'token-events-table__arguments',
-              {'token-events-table__arguments--expanded': isOpened.includes(index)}
+              {'token-events-table__arguments--expanded': isExpanded.includes(index)}
             ]">
             <event-data-panel :args="event.args"/>
           </td>
@@ -92,19 +92,19 @@ const props = defineProps({
   },
 })
 
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.tokenEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
     // todo rename
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

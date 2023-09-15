@@ -55,7 +55,7 @@
         <th
           :class="[
             'contract-events-table-condensed__header',
-            {'contract-events-table-condensed__header--expanded': isOpened.includes(index)}]">
+            {'contract-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
           <app-tooltip>
             Data
             <template #tooltip>
@@ -74,16 +74,16 @@
           v-else
           :class="[
             'contract-events-table-condensed__data',
-            {'contract-events-table-condensed__data--expanded': isOpened.includes(index)}]">
+            {'contract-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
           <expand-button
-            :is-collapsed="!isOpened.includes(index)"
+            :is-expanded="isExpanded.includes(index)"
             @click="toggle(index)">
-            {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
+            {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
           </expand-button>
         </td>
       </tr>
       <tr
-        v-if="isOpened.includes(index)"
+        v-if="isExpanded.includes(index)"
         class="contract-events-table-condensed__row">
         <td colspan="5">
           <event-data-panel :args="event.args"/>
@@ -109,18 +109,18 @@ const props = defineProps({
   },
 })
 
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.contractEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

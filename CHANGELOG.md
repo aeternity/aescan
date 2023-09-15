@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.7.0](https://github.com/aeternity/aescan/compare/0.6.0...0.7.0) (2023-09-15)
+
+
+### Features
+
+* application version in footer ([#473](https://github.com/aeternity/aescan/issues/473)) ([f2be1b9](https://github.com/aeternity/aescan/commit/f2be1b9e5bf7365650ce5c1ca470634f00f7ee74))
+* better title handling ([#490](https://github.com/aeternity/aescan/issues/490)) ([54f9fc7](https://github.com/aeternity/aescan/commit/54f9fc75aafdd9d9f323464e0276139240faf2d8))
+* display state channel transactions count ([#477](https://github.com/aeternity/aescan/issues/477)) ([b9ebbfe](https://github.com/aeternity/aescan/commit/b9ebbfedd946a6005acf706dcf91c3cf2cd9611e))
+* Nft details inventory tab ([#487](https://github.com/aeternity/aescan/issues/487)) ([383c4a4](https://github.com/aeternity/aescan/commit/383c4a492cfb9480ffe881253524d29816d25bba))
+* NFT details panel ([#476](https://github.com/aeternity/aescan/issues/476)) ([c3fa902](https://github.com/aeternity/aescan/commit/c3fa902ca38d8b81722d71720a8dac240ddfbae9))
+* Nft details transfers tab ([#494](https://github.com/aeternity/aescan/issues/494)) ([f05c1a5](https://github.com/aeternity/aescan/commit/f05c1a5b95b6541de0fb7310c80e63416421f31d))
+* NFTs list  ([#474](https://github.com/aeternity/aescan/issues/474)) ([6c9c236](https://github.com/aeternity/aescan/commit/6c9c2364a13dbae49baffc0227d20569afb35d2d))
+* oracle details last query not displayed ([#472](https://github.com/aeternity/aescan/issues/472)) ([0d53ec7](https://github.com/aeternity/aescan/commit/0d53ec7916bf1cf4d0c9004135c9781173f9d5c6))
+* Reuse PanelHeader in AppPanel ([#502](https://github.com/aeternity/aescan/issues/502)) ([9209bb3](https://github.com/aeternity/aescan/commit/9209bb30aa876c031a2fda4d5ca2fad20e36e570))
+* show contract call arguments in a more approchable way ([#486](https://github.com/aeternity/aescan/issues/486)) ([5bc8bee](https://github.com/aeternity/aescan/commit/5bc8bee16ae899d2277eae598967b11c6eefb839))
+
+
+### Bug Fixes
+
+* display account details if accounts owns tokens and has never been seen on the network  ([#488](https://github.com/aeternity/aescan/issues/488)) ([b297e74](https://github.com/aeternity/aescan/commit/b297e7461db3fd4ce952895b9c57e480b547f7e7))
+* keyblock navigation condition ([fe52a8f](https://github.com/aeternity/aescan/commit/fe52a8f2de815746a1239bf46b5d66df71b0e814))
+* keyblock navigation condition ([#506](https://github.com/aeternity/aescan/issues/506)) ([3b39476](https://github.com/aeternity/aescan/commit/3b394760a1c475cd408bb86148acfa4cc8836164))
+* nfts ordering ([#505](https://github.com/aeternity/aescan/issues/505)) ([c164e78](https://github.com/aeternity/aescan/commit/c164e78c8e1257e7c99fd21f9dc325d35665fb11))
+* nfts ordering ([#505](https://github.com/aeternity/aescan/issues/505)) ([aea43fa](https://github.com/aeternity/aescan/commit/aea43fac8270b7e4d595dea6956689910d3f8445))
+
 ## [0.6.0](https://github.com/aeternity/aescan/compare/0.5.0...0.6.0) (2023-08-30)
 
 

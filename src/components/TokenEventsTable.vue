@@ -83,8 +83,8 @@
 
 import { tokensHints } from '@/utils/hints/tokensHints'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
-import EventDataPanel from '~/components/EventDataPanel'
-import ExpandButton from '~/components/ExpandButton'
+import EventDataPanel from '@/components/EventDataPanel'
+import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({
   tokenEvents: {

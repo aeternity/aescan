@@ -96,7 +96,7 @@ import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell'
 import { tokensHints } from '@/utils/hints/tokensHints'
-import ExpandButton from '~/components/ExpandButton'
+import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({
   tokenEvents: {

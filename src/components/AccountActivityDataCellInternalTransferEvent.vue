@@ -1,9 +1,5 @@
 <template>
   <app-chip size="sm">
-    {{ activity.payload.kind }}
-  </app-chip>
-
-  <app-chip size="sm">
     {{ formatAePrice(formatAettosToAe(activity.payload.amount)) }}
   </app-chip>
 </template>
@@ -16,6 +12,10 @@ defineProps({
   activity: {
     type: Object,
     required: true,
+  },
+  accountDetails: {
+    type: Object,
+    default: null,
   },
 })
 </script>

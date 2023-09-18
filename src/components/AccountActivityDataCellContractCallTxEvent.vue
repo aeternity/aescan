@@ -1,22 +1,25 @@
 <template>
   <value-hash-ellipsed
-    :hash="activityPayload.contractId"
-    :link-to="`/contracts/${activityPayload.contractId}`"/>
+    :hash="activity.payload.tx.contractId"
+    :link-to="`/contracts/${activity.payload.tx.contractId}`"/>
+
+  <app-chip size="sm">
+    {{ activity.payload.tx.function }}
+  </app-chip>
 </template>
 
 <script setup>
+
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
-const props = defineProps({
+defineProps({
   activity: {
-    type: Object,
     required: true,
+    type: Object,
   },
   accountDetails: {
     type: Object,
     default: null,
   },
 })
-
-const activityPayload = computed(() => props.activity.payload)
 </script>

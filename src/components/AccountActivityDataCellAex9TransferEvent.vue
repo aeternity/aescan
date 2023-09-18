@@ -2,11 +2,6 @@
   <value-hash-ellipsed
     :hash="activityPayload.contractId"
     :link-to="`/contracts/${activityPayload.contractId}`"/>
-  <transaction-arrow-right-icon/>
-
-  <value-hash-ellipsed
-    :hash="activityPayload.recipientId"
-    :link-to="`/accounts/${activityPayload.recipientId}`"/>
 
   <app-chip size="sm">
     {{ tokenValue }}
@@ -16,13 +11,16 @@
 <script setup>
 import { formatNumber, formatReduceDecimals } from '@/utils/format'
 import AppChip from '@/components/AppChip'
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const props = defineProps({
   activity: {
     type: Object,
     required: true,
+  },
+  accountDetails: {
+    type: Object,
+    default: null,
   },
 })
 

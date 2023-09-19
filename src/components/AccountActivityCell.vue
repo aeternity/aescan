@@ -7,7 +7,7 @@
 <script setup>
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
 
-const { SH_CONTRACTS } = useRuntimeConfig().public
+const { SH_DEX_CONTRACTS } = useRuntimeConfig().public
 
 const props = defineProps({
   accountDetails: {
@@ -89,7 +89,7 @@ const activityDescription = computed(() => {
     if (props.activity.payload.kind === 'reward_block') {
       return 'Beneficiary reward'
     }
-    if (SH_CONTRACTS.includes(props.activity.payload.contractId)) {
+    if (SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX transfer'
     }
     return 'Internal transfer'

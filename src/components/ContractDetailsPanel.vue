@@ -12,12 +12,40 @@
           :label="formatEllipseHash(contractDetails.id)"
           :clipboard-text="contractDetails.id"/>
       </div>
-      <app-chip v-if="contractDetails?.contractType">
+      <app-chip
+        v-if="contractDetails?.contractType"
+        size="sm">
         {{ contractDetails.contractType }}
       </app-chip>
     </template>
     <table>
       <tbody>
+        <tr
+          v-if="contractDetails.contractType"
+          class="contract-details-panel__row">
+          <th class="contract-details-panel__table-header">
+            Token
+            <hint-tooltip>
+              {{ contractsHints.token }}
+            </hint-tooltip>
+          </th>
+          <td class="contract-details-panel__data">
+            <app-link
+              v-if="contractDetails.contractType === 'AEX-9'"
+              :to="`/tokens/${contractDetails.id}`"
+              class="contract-details-panel__link">
+              <token-symbol-icon
+                :contract-id="contractDetails.id"
+                class="contract-details-panel__icon"/>
+              {{ contractDetails.tokenDetails.symbol }}
+            </app-link>
+            <app-link
+              v-if="contractDetails.contractType === 'AEX-141'"
+              :to="`/nfts/${contractDetails.id}`">
+              {{ contractDetails.tokenDetails.name }}
+            </app-link>
+          </td>
+        </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Create Transaction
@@ -170,6 +198,7 @@ import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/form
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '@/components/HintTooltip'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 
@@ -178,6 +207,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+})
+
+onMounted(() => {
+  console.log(props.contractDetails)
 })
 
 const contractNodeUrl = computed(() =>
@@ -209,6 +242,12 @@ const contractMiddlewareUrl = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
   }
 
   &__container {

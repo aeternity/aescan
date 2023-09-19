@@ -1,9 +1,7 @@
 <template>
-  <span class="u-ellipsis account-activity-data-cell-name-update-tx-event__name">
-    <app-link :to="`/names/${activity.payload.tx.name}`">
-      {{ activity.payload.tx.name }}
-    </app-link>
-  </span>
+  <app-link :to="`/names/${activity.payload.tx.name}`">
+    {{ activity.payload.tx.name }}
+  </app-link>
 
   <app-tooltip>
     <app-chip size="sm">
@@ -30,10 +28,3 @@ defineProps({
   },
 })
 </script>
-
-<style scoped>
-.account-activity-data-cell-name-update-tx-event__name {
-  display: inline-block;
-  max-width: 160px;
-}
-</style>

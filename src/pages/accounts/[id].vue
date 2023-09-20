@@ -28,6 +28,9 @@
           :is-preselected="isTokensTabSelected">
           <account-tokens-panel/>
         </app-tab>
+        <app-tab title="Activities">
+          <account-activities-panel/>
+        </app-tab>
       </app-tabs>
     </client-only>
   </template>
@@ -40,6 +43,7 @@ import { useRoute } from 'nuxt/app'
 import { useAccountStore } from '@/stores/accountDetails'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
+import AccountActivitiesPanel from '@/components/AccountActivitiesPanel'
 import AccountTransactionsPanel from '@/components/AccountTransactionsPanel'
 import AccountNamesPanel from '@/components/AccountNamesPanel'
 import AccountTokensPanel from '@/components/AccountTokensPanel'

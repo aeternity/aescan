@@ -31,7 +31,7 @@
           </th>
           <td class="oracle-events-table-condensed__data">
             <expand-button
-              :is-collapsed="!isOpened.includes(index)"
+              :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
               Response available
             </expand-button>
@@ -59,7 +59,7 @@
           <th
             :class="[
               'oracle-events-table-condensed__header',
-              {'oracle-events-table-condensed__header--expanded': isOpened.includes(index)}]">
+              {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             <app-tooltip>
               Respond Tx
               <template #tooltip>
@@ -70,7 +70,7 @@
           <td
             :class="[
               'oracle-events-table-condensed__data',
-              {'oracle-events-table-condensed__data--expanded': isOpened.includes(index)}]">
+              {'oracle-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
@@ -95,7 +95,7 @@
           </td>
         </tr>
         <tr
-          v-if="isOpened.includes(index)"
+          v-if="isExpanded.includes(index)"
           class="oracle-events-table-condensed__row">
           <td colspan="5">
             <oracle-events-query-panel :event="event"/>
@@ -116,18 +116,18 @@ const props = defineProps({
     required: true,
   },
 })
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.oracleEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

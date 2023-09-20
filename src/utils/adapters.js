@@ -381,6 +381,7 @@ export function adaptContractEvents(events, blockHeight) {
         createdHeight: event.height,
         eventName: event.eventName,
         data: event.args,
+        args: event.args,
         isDecoded: !!event.eventName,
         callTxHash: event.callTxHash,
       }
@@ -418,6 +419,7 @@ export function adaptTokenEvents(events, blockHeight) {
         name: event.eventName || 'N/A',
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         createdHeight: event.height,
+        isDecoded: !!event.eventName,
         args: event.args,
       }
     })

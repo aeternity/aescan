@@ -67,14 +67,14 @@
           <th/>
           <td class="nfts-inventory-table-condensed__data">
             <expand-button
-              :is-collapsed="!isOpened.includes(index)"
+              :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
-              {{ isOpened.includes(index) ? 'Collapse' : 'Expand' }}
+              {{ isExpanded.includes(index) ? 'Collapse' : 'Expand' }}
             </expand-button>
           </td>
         </tr>
         <tr
-          v-if="isOpened.includes(index)"
+          v-if="isExpanded.includes(index)"
           class="nfts-inventory-table-condensed__row">
           <td colspan="2">
             <nfts-templates-owners-panel/>
@@ -98,18 +98,18 @@ const props = defineProps({
   },
 })
 
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.nftInventory, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

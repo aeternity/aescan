@@ -30,12 +30,12 @@
       v-for="(event, index) in contractEvents.data"
       :key="event.callTxHash">
       <tr>
-        <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+        <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
           <value-hash-ellipsed
             :hash="event.callTxHash"
             :link-to="`/transactions/${event.callTxHash}`"/>
         </td>
-        <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+        <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
           <div>
             <app-link
               :to="`/keyblocks/${event.createdHeight}`">
@@ -44,7 +44,7 @@
           </div>
           <datetime-label :datetime="event.created"/>
         </td>
-        <td :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+        <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
           {{ event.eventName || 'N/A' }}
         </td>
         <td v-if="event.isDecoded">
@@ -54,22 +54,22 @@
         </td>
         <td
           v-else
-          :class="[{'contract-events-table__data--expanded': isOpened.includes(index)}]">
+          :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
           <expand-button
-            :is-collapsed="!isOpened.includes(index)"
+            :is-expanded="isExpanded.includes(index)"
             @click="toggle(index)">
-            {{ isOpened.includes(index) ? 'Hide arguments' : 'See arguments' }}
+            {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguments' }}
           </expand-button>
         </td>
       </tr>
-      <tr v-if="isOpened.includes(index)">
+      <tr v-if="isExpanded.includes(index)">
         <td
           colspan="4"
           :class="[
             'contract-events-table__arguments',
-            {'contract-events-table__arguments--expanded': isOpened.includes(index)}
+            {'contract-events-table__arguments--expanded': isExpanded.includes(index)}
           ]">
-          <contract-event-data-panel :event="event"/>
+          <event-data-panel :args="event.args"/>
         </td>
       </tr>
     </template>
@@ -80,7 +80,7 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import ContractEventDataPanel from '@/components/ContractEventDataPanel'
+import EventDataPanel from '@/components/EventDataPanel'
 import ExpandButton from '@/components/ExpandButton'
 import ContractEventCell from '@/components/ContractEventCell'
 
@@ -95,18 +95,18 @@ const props = defineProps({
   },
 })
 
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.contractEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

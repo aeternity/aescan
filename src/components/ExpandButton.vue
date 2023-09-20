@@ -1,15 +1,15 @@
 <template>
-  <app-chip :class="['expand-button', {'expand-button--activated': !isCollapsed}]">
+  <app-chip :class="['expand-button', {'expand-button--activated': isExpanded}]">
     <slot/>
     <app-icon
       class="expand-button__icon"
-      :name="isCollapsed ? 'plus-circle' : 'minus-circle' "/>
+      :name="isExpanded ? 'minus-circle' :'plus-circle'"/>
   </app-chip>
 </template>
 
 <script setup>
 defineProps({
-  isCollapsed: {
+  isExpanded: {
     type: Boolean,
     default: true,
   },

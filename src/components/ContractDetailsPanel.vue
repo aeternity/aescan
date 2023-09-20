@@ -209,10 +209,6 @@ const props = defineProps({
   },
 })
 
-onMounted(() => {
-  console.log(props.contractDetails)
-})
-
 const contractNodeUrl = computed(() =>
   `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
 )

@@ -30,15 +30,18 @@
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
-            <app-link
+            <div
               v-if="contractDetails.contractType === 'AEX-9'"
-              :to="`/tokens/${contractDetails.id}`"
-              class="contract-details-panel__token">
-              <token-symbol-icon
-                :contract-id="contractDetails.id"
-                class="contract-details-panel__icon"/>
-              {{ contractDetails.tokenDetails.symbol }}
-            </app-link>
+              class="contract-details-panel__token-container">
+              <app-link
+                :to="`/tokens/${contractDetails.id}`"
+                class="contract-details-panel__token">
+                <token-symbol-icon
+                  :contract-id="contractDetails.id"
+                  class="contract-details-panel__icon"/>
+                {{ contractDetails.tokenDetails.symbol }}
+              </app-link>
+            </div>
             <app-link
               v-if="contractDetails.contractType === 'AEX-141'"
               :to="`/nfts/${contractDetails.id}`">
@@ -240,10 +243,15 @@ const contractMiddlewareUrl = computed(() =>
     }
   }
 
+  &__token-container {
+    height: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &__token {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
   }
 
   &__icon {
@@ -253,6 +261,7 @@ const contractMiddlewareUrl = computed(() =>
   }
 
   &__container {
+    height: 24px;
     display: inline-flex;
     justify-content: flex-start;
     flex-wrap: wrap;

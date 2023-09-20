@@ -457,17 +457,6 @@ export function adaptListedTokens(tokens) {
       }
     })
 
-  const isMainnet = useRuntimeConfig().public.NETWORK_NAME.toLowerCase() === 'mainnet'
-
-  if (isMainnet && !formattedData.some(token => token.contractId === LAEX_CONTRACT_ID)) {
-    formattedData.unshift({
-      contractId: LAEX_CONTRACT_ID,
-      name: 'LÆXON',
-      symbol: 'LAEX',
-      isAe: false,
-    })
-  }
-
   return {
     next: null,
     data: formattedData,

@@ -3,7 +3,6 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="accountTransactions"
-      :total-count="accountTransactionsCount"
       :limit="limit"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
@@ -35,18 +34,13 @@ import PaginatedContent from '@/components/PaginatedContent'
 
 const route = useRoute()
 const accountStore = useAccountStore()
-const { fetchAccountTransactions, fetchAccountTransactionsCount } = accountStore
-const { accountTransactions, accountTransactionsCount } = storeToRefs(accountStore)
+const { fetchAccountTransactions } = accountStore
+const { accountTransactions } = storeToRefs(accountStore)
 
 const selectedTxType = ref({ typeQuery: null, label: 'All types' })
 const pageIndex = ref(1)
 
 const limit = computed(() => isDesktop() ? 10 : 3)
-
-await useAsyncData(async() => {
-  await fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
-  return true
-})
 
 watch(selectedTxType, () => {
   fetchAccountTransactions({
@@ -54,7 +48,6 @@ watch(selectedTxType, () => {
     limit: limit.value,
     type: selectedTxType.value.typeQuery,
   })
-  fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
   pageIndex.value = 1
 })
 

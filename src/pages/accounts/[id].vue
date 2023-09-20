@@ -17,6 +17,9 @@
 
     <client-only>
       <app-tabs v-if="isTabsVisible">
+        <app-tab title="Activities">
+          <account-activities-panel/>
+        </app-tab>
         <app-tab title="Transactions">
           <account-transactions-panel/>
         </app-tab>
@@ -27,9 +30,6 @@
           title="Tokens"
           :is-preselected="isTokensTabSelected">
           <account-tokens-panel/>
-        </app-tab>
-        <app-tab title="Activities">
-          <account-activities-panel/>
         </app-tab>
       </app-tabs>
     </client-only>

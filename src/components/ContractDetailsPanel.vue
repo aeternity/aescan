@@ -33,7 +33,7 @@
             <app-link
               v-if="contractDetails.contractType === 'AEX-9'"
               :to="`/tokens/${contractDetails.id}`"
-              class="contract-details-panel__link">
+              class="contract-details-panel__token">
               <token-symbol-icon
                 :contract-id="contractDetails.id"
                 class="contract-details-panel__icon"/>
@@ -238,6 +238,12 @@ const contractMiddlewareUrl = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__token {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   &__icon {

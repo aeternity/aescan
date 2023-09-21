@@ -3,6 +3,7 @@ export const contractsHints = {
   contractId: 'Unique identifier for a smart contract instance that lives on the blockchain.',
   contractCreated: 'Keyblock height and exact date and time when the smart contract was created.',
   contractTxHash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',
+  token: 'The token which is represented by the AEX-X classified smart contract.',
   contractCreator: 'Account that created the smart contract.',
   bytecode: 'Low-level representation of the smart contract that is generated when the contract\'s source code is compiled.',
   contractsAccount: 'The account associated with the smart contract.',

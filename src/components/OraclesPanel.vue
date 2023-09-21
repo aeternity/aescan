@@ -5,6 +5,9 @@
       :limit="limit"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
+      <template #header>
+        <oracles-select v-model="selectedOracleState"/>
+      </template>
       <oracles-table
         class="oracles-panel__oracles-table"
         :oracles="oracles"/>
@@ -17,7 +20,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { useRoute, useRouter } from 'nuxt/app'
 import { useOraclesStore } from '@/stores/oracles'
 import OraclesTableCondensed from '@/components/OraclesTableCondensed'
 import OraclesTable from '@/components/OraclesTable'
@@ -27,6 +31,10 @@ import { isDesktop } from '@/utils/screen'
 const oraclesStore = useOraclesStore()
 const { fetchOracles } = oraclesStore
 const { oracles } = storeToRefs(oraclesStore)
+const route = useRoute()
+const { push } = useRouter()
+
+const selectedOracleState = ref(ORACLE_STATES_OPTIONS[0])
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
@@ -38,10 +46,26 @@ function loadNextOracles() {
   fetchOracles({ queryParameters: oracles.value.next })
 }
 
+async function loadOracles() {
+  const { state } = route.query
+  const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
+  selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
+  await fetchOracles({ queryParameters: `/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}` })
+}
+
 if (process.client) {
-  fetchOracles({
-    limit: limit.value,
+  watch(route, (newRoute, prevRoute) => {
+    if (newRoute.name !== prevRoute.name) {
+      return
+    }
+    loadOracles()
   })
+  watch(selectedOracleState, () => {
+    const stateQuery = selectedOracleState.value?.stateQuery
+    const slug = `${stateQuery ? '?state=' + stateQuery : ''}`
+    push(`/oracles${slug}`)
+  })
+  loadOracles()
 }
 
 </script>

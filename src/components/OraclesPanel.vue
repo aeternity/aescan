@@ -6,10 +6,10 @@
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
       <oracles-table
-        class="oracles-panel__oracles-table"
+        class="u-hidden-mobile"
         :oracles="oracles"/>
       <oracles-table-condensed
-        class="oracles-panel__oracles-table-condensed"
+        class="u-hidden-desktop"
         :oracles="oracles"/>
     </paginated-content>
   </app-panel>
@@ -45,20 +45,3 @@ if (process.client) {
 }
 
 </script>
-
-<style scoped>
-.oracles-panel {
-  &__oracles-table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__oracles-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

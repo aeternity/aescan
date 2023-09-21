@@ -72,19 +72,9 @@ function loadNextTransactions() {
 </script>
 
 <style scoped>
-.account-transactions-panel {
-  &__account-transactions-table {
-    display: none;
-
+.account-transactions-panel__account-transactions-table {
     @media (--desktop) {
-      display: revert;
       margin-bottom: var(--space-4);
-    }
-  }
-
-  &__account-transactions-table-condensed {
-    @media (--desktop) {
-      display: none;
     }
   }
 }

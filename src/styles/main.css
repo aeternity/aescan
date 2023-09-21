@@ -16,6 +16,7 @@
 @import "elements/_table.css";
 
 @import "utilities/_ellipsis.css";
+@import "utilities/_responsive.css";
 
 /* 3rd party components */
 @import 'floating-vue/dist/style.css';

@@ -7,12 +7,13 @@
       @prev-clicked="loadPrevActivities"
       @next-clicked="loadNextActivities">
       <account-activities-table
-        class="account-activities-panel__account-activities-table"
-        :account-details="accountDetails"
+        class="account-activities-panel__account-activities-table u-hidden-mobile
+        :account-details="
+        accountDetails"
         :account-activities="accountActivities"/>
 
       <account-activities-table-condensed
-        class="account-activities-panel__account-activities-table-condensed"
+        class="u-hidden-desktop"
         :account-details="accountDetails"
         :account-activities="accountActivities"/>
     </paginated-content>
@@ -50,23 +51,13 @@ function loadNextActivities() {
 <style scoped>
 .account-activities-panel {
   padding: var(--space-4) var(--space-1);
-
   @media (--desktop) {
     padding: var(--space-4);
   }
 
   &__account-activities-table {
-    display: none;
-
     @media (--desktop) {
-      display: revert;
       margin-bottom: var(--space-2);
-    }
-  }
-
-  &__account-activities-table-condensed {
-    @media (--desktop) {
-      display: none;
     }
   }
 }

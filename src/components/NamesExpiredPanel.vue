@@ -6,12 +6,12 @@
       @next-clicked="loadNextNames">
       <names-expired-table
         v-if="expiredNames"
-        class="names-expired-panel__names-expired-table"
+        class="names-expired-panel__names-expired-table u-hidden-mobile"
         :names="expiredNames"/>
 
       <names-expired-table-condensed
         v-if="expiredNames"
-        class="names-expired-panel__names-expired-table-condensed"
+        class="names-expired-panel__names-expired-table-condensed u-hidden-desktop"
         :names="expiredNames"/>
     </paginated-content>
   </app-panel>
@@ -39,20 +39,9 @@ function loadNextNames() {
 </script>
 
 <style scoped>
-.names-expired-panel {
-  &__names-expired-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__names-expired-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
+.names-expired-panel__names-expired-table {
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
   }
 }
 </style>

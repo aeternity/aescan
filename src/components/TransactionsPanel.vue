@@ -11,12 +11,12 @@
       <template #header>
         <transactions-select v-model="selectedTxType"/>
       </template>
-      <transactions-table-condensed
-        :transactions="transactions"
-        class="transactions-panel__table-condensed"/>
       <transactions-table
         :transactions="transactions"
-        class="transactions-panel__table"/>
+        class="u-hidden-mobile"/>
+      <transactions-table-condensed
+        :transactions="transactions"
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -80,20 +80,3 @@ if (process.client) {
   loadTransactions()
 }
 </script>
-
-<style scoped>
-.transactions-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

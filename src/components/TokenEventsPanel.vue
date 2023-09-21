@@ -9,11 +9,11 @@
       <token-events-table
         v-if="tokenEvents"
         :token-events="tokenEvents"
-        class="token-events-panel__table"/>
+        class="token-events-panel__table u-hidden-mobile"/>
       <token-events-table-condensed
         v-if="tokenEvents"
         :token-events="tokenEvents"
-        class="token-events-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -48,19 +48,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.token-events-panel {
-  &__table {
-    display: none;
-    margin-bottom: var(--space-4);
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
+.token-events-panel__table {
+  margin-bottom: var(--space-4);
 }
 </style>

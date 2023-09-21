@@ -8,12 +8,12 @@
       pagination-style="history"
       @prev-clicked="loadPrevContracts"
       @next-clicked="loadNextContracts">
-      <contract-table-condensed
-        :contracts="contracts"
-        class="contracts-panel__table-condensed"/>
       <contracts-table
         :contracts="contracts"
-        class="contracts-panel__table"/>
+        class="u-hidden-mobile"/>
+      <contract-table-condensed
+        :contracts="contracts"
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -53,20 +53,3 @@ if (process.client) {
 }
 
 </script>
-
-<style scoped>
-.contracts-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

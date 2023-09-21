@@ -12,11 +12,11 @@
       </template>
       <tokens-table
         v-if="selectedTokens"
-        class="tokens-panel__tokens-table"
+        class="u-hidden-mobile"
         :tokens="selectedTokens"/>
       <tokens-table-condensed
         v-if="selectedTokens"
-        class="tokens-panel__tokens-table-condensed"
+        class="u-hidden-desktop"
         :tokens="selectedTokens"/>
     </paginated-content>
   </app-panel>
@@ -63,20 +63,3 @@ if (process.client) {
 }
 
 </script>
-
-<style scoped>
-.tokens-panel {
-  &__tokens-table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__tokens-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

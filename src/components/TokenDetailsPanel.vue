@@ -69,10 +69,10 @@
           </th>
           <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contractId}`">
-              <span class="token-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ tokenDetails.contractId }}
               </span>
-              <span class="token-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(tokenDetails.contractId) }}
               </span>
             </app-link>
@@ -231,19 +231,6 @@ const marketCap = computed(() =>
     @media (--desktop) {
       width: 24px;
       height: 24px;
-    }
-  }
-
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
     }
   }
 }

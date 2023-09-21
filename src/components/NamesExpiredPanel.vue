@@ -11,7 +11,7 @@
 
       <names-expired-table-condensed
         v-if="expiredNames"
-        class="names-expired-panel__names-expired-table-condensed u-hidden-desktop"
+        class="u-hidden-desktop"
         :names="expiredNames"/>
     </paginated-content>
   </app-panel>

@@ -55,12 +55,12 @@ async function loadNextTransactions() {
   await fetchTransactions(transactions.value.next)
 }
 
-const loadTransactions = () => {
+async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
-  fetchTransactions(`/v2/txs?limit=${limit.value}${txType ? '&type=' + txType : ''}`)
-  fetchTransactionsCount(txType)
+  await fetchTransactions(`/v2/txs?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
+  await fetchTransactionsCount(selectedTxType.value.typeQuery)
   pageIndex.value = 1
 }
 

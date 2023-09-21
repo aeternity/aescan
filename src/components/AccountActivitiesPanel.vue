@@ -7,9 +7,8 @@
       @prev-clicked="loadPrevActivities"
       @next-clicked="loadNextActivities">
       <account-activities-table
-        class="account-activities-panel__account-activities-table u-hidden-mobile
-        :account-details="
-        accountDetails"
+        class="account-activities-panel__account-activities-table u-hidden-mobile"
+        :account-details="accountDetails"
         :account-activities="accountActivities"/>
 
       <account-activities-table-condensed

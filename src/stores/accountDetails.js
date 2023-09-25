@@ -16,7 +16,6 @@ export const useAccountStore = defineStore('account', () => {
   const { fetchPrice } = useDexStore()
 
   const rawAccountDetails = ref(null)
-  const accountTransactionsCount = ref(null)
   const totalAccountTransactionsCount = ref(null)
   const accountNamesCount = ref(null)
   const selectedKeyblock = ref(null)
@@ -34,7 +33,6 @@ export const useAccountStore = defineStore('account', () => {
       ? {
         ...rawAccountDetails.value,
         balance: formatAettosToAe(rawAccountDetails.value.balance),
-        transactionsCount: accountTransactionsCount.value,
         totalTransactionsCount: totalAccountTransactionsCount.value,
         namesCount: accountNamesCount.value,
         isGeneralized: rawAccountDetails.value.kind === 'generalized',
@@ -88,17 +86,6 @@ export const useAccountStore = defineStore('account', () => {
         rawAccountDetails.value = { id: accountId, notExistent: true }
       }
     }
-  }
-
-  async function fetchAccountTransactionsCount(accountId, txType = null) {
-    accountTransactionsCount.value = null
-
-    const params = txType ? `/${accountId}?type=${txType}` : `?id=${accountId}`
-    const txCountUrl = new URL(`${MIDDLEWARE_URL}/v2/txs/count${params}`)
-
-    const { data } = await axios.get(txCountUrl)
-
-    accountTransactionsCount.value = data
   }
 
   async function fetchTotalAccountTransactionsCount(accountId) {
@@ -165,7 +152,7 @@ export const useAccountStore = defineStore('account', () => {
     transactionsUrl.searchParams.append('limit', limit ?? 10)
 
     if (accountId) {
-      transactionsUrl.searchParams.append('account', accountId)
+      transactionsUrl.searchParams.append('sender_id', accountId)
     }
 
     if (type) {
@@ -178,7 +165,6 @@ export const useAccountStore = defineStore('account', () => {
 
   return {
     rawAccountDetails,
-    accountTransactionsCount,
     totalAccountTransactionsCount,
     accountNamesCount,
     selectedKeyblock,
@@ -199,7 +185,6 @@ export const useAccountStore = defineStore('account', () => {
     fetchAccountActivities,
     fetchTotalAccountTransactionsCount,
     fetchAccountTransactions,
-    fetchAccountTransactionsCount,
     fetchAccountNames,
     fetchAccountTokens,
   }

@@ -133,6 +133,29 @@ export function adaptDashboardStateChannels(stateChannels, blockHeight) {
   })
 }
 
+export function adaptAccountActivities(activities) {
+  const formattedData = activities.data.map(activity => {
+    return {
+      hash: activity.payload?.hash || activity.payload?.txHash ||
+        activity.payload?.refTxHash || activity.payload?.callTxHash,
+      type: activity.type,
+      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime),
+      height: activity.payload?.blockHeight || activity.height,
+      payload: activity.payload,
+      hintKey:
+        activity.payload?.tx
+          ? activity.payload.tx.type.charAt(0).toLowerCase() + activity.payload.tx.type.slice(1)
+          : null,
+    }
+  })
+
+  return {
+    next: activities.next,
+    data: formattedData,
+    prev: activities.prev,
+  }
+}
+
 export function adaptAccountNames(names) {
   const formattedData = names.data.map(name => {
     return {
@@ -358,6 +381,7 @@ export function adaptContractEvents(events, blockHeight) {
         createdHeight: event.height,
         eventName: event.eventName,
         data: event.args,
+        args: event.args,
         isDecoded: !!event.eventName,
         callTxHash: event.callTxHash,
       }
@@ -395,6 +419,7 @@ export function adaptTokenEvents(events, blockHeight) {
         name: event.eventName || 'N/A',
         created: formatBlockDiffAsDatetime(event.height, blockHeight),
         createdHeight: event.height,
+        isDecoded: !!event.eventName,
         args: event.args,
       }
     })
@@ -433,17 +458,6 @@ export function adaptListedTokens(tokens) {
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
       }
     })
-
-  const isMainnet = useRuntimeConfig().public.NETWORK_NAME.toLowerCase() === 'mainnet'
-
-  if (isMainnet && !formattedData.some(token => token.contractId === LAEX_CONTRACT_ID)) {
-    formattedData.unshift({
-      contractId: LAEX_CONTRACT_ID,
-      name: 'LÆXON',
-      symbol: 'LAEX',
-      isAe: false,
-    })
-  }
 
   return {
     next: null,

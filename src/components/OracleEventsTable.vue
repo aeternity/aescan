@@ -39,19 +39,19 @@
         v-for="(event, index) in oracleEvents.data"
         :key="event.respondTx">
         <tr>
-          <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.queryTx"
               :link-to="`/transactions/${event.queryTx}`"/>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
-              :is-collapsed="!isOpened.includes(index)"
+              :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
               Response available
             </expand-button>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <div>
               <app-link
                 :to="`/keyblocks/${event.queriedAtHeight}`">
@@ -60,12 +60,12 @@
             </div>
             <datetime-label :datetime="event.queriedAt"/>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <div>
               <app-link
                 :to="`/keyblocks/${event.respondedAtHeight}`">
@@ -75,7 +75,7 @@
             <datetime-label :datetime="event.respondedAt"/>
           </td>
         </tr>
-        <tr v-if="isOpened.includes(index)">
+        <tr v-if="isExpanded.includes(index)">
           <td
             colspan="5"
             class="oracle-events-table__query">
@@ -98,18 +98,18 @@ const props = defineProps({
   },
 })
 
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.oracleEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

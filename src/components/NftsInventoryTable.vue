@@ -33,30 +33,30 @@
         v-for="(nft, index) in nftInventory.data"
         :key="nft.templateId ">
         <tr>
-          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
             {{ nft.templateId }}
           </td>
-          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
             {{ nft.edition.supply }}
           </td>
-          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
             {{ nft.edition.limit }}
           </td>
-          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :link-to="`/transactions/${nft.edition.limitTxHash}`"
               :hash="nft.edition.limitTxHash"/>
           </td>
-          <td :class="[{'nfts-inventory-table__data--expanded': isOpened.includes(index)}]">
+          <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
               v-if="!!nftOwners.data.length"
-              :is-collapsed="!isOpened.includes(index)"
+              :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
-              {{ isOpened.includes(index) ? 'Collapse' : 'Expand' }}
+              {{ isExpanded.includes(index) ? 'Collapse' : 'Expand' }}
             </expand-button>
           </td>
         </tr>
-        <tr v-if="isOpened.includes(index)">
+        <tr v-if="isExpanded.includes(index)">
           <td
             colspan="5"
             class="nfts-inventory-table__owners">
@@ -84,18 +84,18 @@ const props = defineProps({
   },
 })
 
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.oracleEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

@@ -5,7 +5,7 @@
     </div>
     <dl>
       <template
-        v-for="(argument, index) in event.data"
+        v-for="(argument, index) in args"
         :key="index">
         <dt class="contract-event-data-panel_term">
           [arg{{ index }}]:
@@ -26,7 +26,7 @@ import AppPanel from '@/components/AppPanel'
 import CopyButton from '@/components/CopyButton'
 
 defineProps({
-  event: {
+  args: {
     type: Object,
     required: true,
   },

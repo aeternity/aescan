@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.8.0](https://github.com/aeternity/aescan/compare/0.7.0...0.8.0) (2023-09-25)
+
+
+### Features
+
+* Account - Adjust transactions tab display only transactions performed by the account ([#515](https://github.com/aeternity/aescan/issues/515)) ([f1cfbf5](https://github.com/aeternity/aescan/commit/f1cfbf509ed891e425baba5aeb4b34ba14e501ba))
+* account activities ([#428](https://github.com/aeternity/aescan/issues/428)) ([7af4104](https://github.com/aeternity/aescan/commit/7af4104e18c0c129c1be0de2db68fa6a9a19f060))
+* link to token page for AEX-X classified tokens ([#513](https://github.com/aeternity/aescan/issues/513)) ([d39a7b5](https://github.com/aeternity/aescan/commit/d39a7b53b16ecda4542ac5de30624d0f7ff70eda))
+* Remove temporary Lexon token constants ([#516](https://github.com/aeternity/aescan/issues/516)) ([3121de4](https://github.com/aeternity/aescan/commit/3121de47fb369924690cc188dbc854acf27c6580))
+* Show decoded values for known contract events ([#510](https://github.com/aeternity/aescan/issues/510)) ([5f230eb](https://github.com/aeternity/aescan/commit/5f230ebd13ce84b8c002877d76c5d13c38c64261))
+
 ## [0.7.0](https://github.com/aeternity/aescan/compare/0.6.0...0.7.0) (2023-09-15)
 
 

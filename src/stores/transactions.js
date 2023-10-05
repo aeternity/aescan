@@ -32,8 +32,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactionsStatistics(slug) {
     transactionsStatistics.value = null
-    // todo fix address
-    const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions${slug || ''}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug || ''}`)
     transactionsStatistics.value = data.data.reverse()
   }
 

@@ -33,7 +33,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function fetchTransactionsStatistics(slug) {
     transactionsStatistics.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug || ''}`)
-    transactionsStatistics.value = data.data.reverse()
+    transactionsStatistics.value = data.data.slice(1).reverse()
   }
 
   return {

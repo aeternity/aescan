@@ -134,7 +134,7 @@ function formatLabel(label) {
 
 async function fetchRangeData({ interval, limit }) {
   selectedInterval.value = interval
-  await fetchTransactionsStatistics(`?limit=${limit}&interval_by=${interval}`)
+  await fetchTransactionsStatistics(`?limit=${parseInt(limit) + 1}&interval_by=${interval}`)
 }
 
 </script>

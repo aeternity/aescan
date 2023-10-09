@@ -31,8 +31,12 @@
         :key="action.hash">
         <td>
           <value-hash-ellipsed
+            v-if="action.hash"
             :hash="action.hash"
             :link-to="`/transactions/${action.hash}`"/>
+          <template v-else>
+            N/A
+          </template>
         </td>
         <td>
           <block-time-cell

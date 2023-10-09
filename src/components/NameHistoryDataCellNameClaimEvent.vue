@@ -7,17 +7,16 @@
 
     <app-tooltip>
       <app-chip size="sm">
-        {{ payload.tx.clientTtl }}
+        {{ formatAePrice(formatAettosToAe(payload.tx.nameFee), null) }}
       </app-chip>
       <template #tooltip>
-        TTL
+        Fee
       </template>
     </app-tooltip>
   </span>
 </template>
 
 <script setup>
-import AppChip from '~/components/AppChip'
 import ValueHashEllipsed from '~/components/ValueHashEllipsed'
 
 const props = defineProps({

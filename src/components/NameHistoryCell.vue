@@ -31,16 +31,26 @@ const activityDescription = computed(() => {
   //     return 'Transferred to'
   //   }
   //   return 'Received from'
-  case 'InternalContractCallEvent':
-    return 'Internal Contract Call'
+
   case 'NameUpdateTxEvent':
     return 'Updated'
   case 'NameTransferTxEvent':
     return 'Transferred'
   case 'NamePreclaimEvent':
-    return 'Preclaimed'
+    return 'Name commitment initialized'
   case 'NameClaimEvent':
-    return 'Claimed'
+    return 'Activated'
+  case 'NameRevokeTxEvent':
+    return 'Revoked'
+
+  case 'NameExpiredEvent':
+    return 'Expired'
+
+  case 'InternalContractCallEvent':
+    return 'Internal Contract Call'
+  case 'SpendTxEvent':
+    return 'Spend'
+
   default:
     return 'N/A'
   }

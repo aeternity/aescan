@@ -4,20 +4,10 @@
     <value-hash-ellipsed
       :hash="payload.tx.accountId"
       :link-to="`/accounts/${payload.tx.accountId}`"/>
-
-    <app-tooltip>
-      <app-chip size="sm">
-        {{ payload.tx.clientTtl }}
-      </app-chip>
-      <template #tooltip>
-        TTL
-      </template>
-    </app-tooltip>
   </span>
 </template>
 
 <script setup>
-import AppChip from '~/components/AppChip'
 import ValueHashEllipsed from '~/components/ValueHashEllipsed'
 
 const props = defineProps({

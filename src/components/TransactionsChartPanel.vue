@@ -6,7 +6,7 @@
     <template #header>
       <transactions-chart-controls
         class="transactions-chart-panel__controls"
-        @selected="fetchRangeData"/>
+        @selected="loadTransactionsStatistics"/>
     </template>
 
     <div class="transactions-chart-panel__container">
@@ -17,7 +17,7 @@
 
     <transactions-chart-controls
       class="transactions-chart-panel__controls--condensed"
-      @selected="fetchRangeData"/>
+      @selected="loadTransactionsStatistics"/>
   </app-panel>
 </template>
 
@@ -108,7 +108,10 @@ const chartOptions = {
 
 const selectedInterval = ref('')
 
-await fetchTransactionsStatistics()
+await useAsyncData(async() => {
+  await fetchTransactionsStatistics()
+  return true
+})
 
 const stats = computed(() => {
   return transactionsStatistics.value?.map(stat => {
@@ -132,7 +135,7 @@ function formatLabel(label) {
   return date.toFormat('MM-dd')
 }
 
-async function fetchRangeData({ interval, limit }) {
+async function loadTransactionsStatistics({ interval, limit }) {
   selectedInterval.value = interval
   await fetchTransactionsStatistics(`?limit=${parseInt(limit) + 1}&interval_by=${interval}`)
 }

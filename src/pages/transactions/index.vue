@@ -20,7 +20,7 @@
 import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import TransactionsChartPanel from '~/components/TransactionsChartPanel'
+import TransactionsChartPanel from '@/components/TransactionsChartPanel'
 
 const { isLoading } = useLoading()
 </script>

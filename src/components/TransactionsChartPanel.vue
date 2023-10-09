@@ -35,8 +35,8 @@ import {
 } from 'chart.js'
 import { storeToRefs } from 'pinia'
 import { DateTime } from 'luxon'
-import { useTransactionsStore } from '~/stores/transactions'
-import TransactionsChartControls from '~/components/TransactionsChartControls'
+import { useTransactionsStore } from '@/stores/transactions'
+import TransactionsChartControls from '@/components/TransactionsChartControls'
 
 const transactionsStore = useTransactionsStore()
 const {

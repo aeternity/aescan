@@ -20,6 +20,9 @@
             {{ namesHints.activity }}
           </hint-tooltip>
         </th>
+        <th>
+          Data
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +41,16 @@
         </td>
         <td>
           <div>
-            {{ action.type }}
+            <name-history-cell
+              :activity="action.type"
+              :payload="action.payload"/>
+          </div>
+        </td>
+        <td>
+          <div>
+            <name-history-data-cell
+              :activity="action.type"
+              :payload="action.payload"/>
           </div>
         </td>
       </tr>
@@ -51,6 +63,7 @@ import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 import HintTooltip from '@/components/HintTooltip'
 import BlockTimeCell from '~/components/BlockTimeCell'
+import NameHistoryCell from '~/components/NameHistoryCell'
 
 defineProps({
   actions: {

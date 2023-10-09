@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   payload: {
     type: Object,
     required: true,

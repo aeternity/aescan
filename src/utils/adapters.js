@@ -318,16 +318,6 @@ export function adaptNameActions(actions) {
     }
   })
 
-  if (!name.active) {
-    formattedData.unshift({
-      type: 'NameExpiredEvent',
-      hash: '',
-      createdHeight: name.expirationHeight,
-      created: name.expiration,
-      payload: { tx: { accountId: name.owner } },
-    })
-  }
-
   return {
     next: actions.next,
     data: formattedData,

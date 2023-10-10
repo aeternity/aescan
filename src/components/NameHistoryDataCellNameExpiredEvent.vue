@@ -1,16 +1,13 @@
 <template>
-  <span>
-    <!--todo layout-->
-    <value-hash-ellipsed
-      :hash="payload.tx.accountId"
-      :link-to="`/accounts/${payload.tx.accountId}`"/>
-  </span>
+  <value-hash-ellipsed
+    :hash="payload.tx.accountId"
+    :link-to="`/accounts/${payload.tx.accountId}`"/>
 </template>
 
 <script setup>
 import ValueHashEllipsed from '~/components/ValueHashEllipsed'
 
-const props = defineProps({
+defineProps({
   payload: {
     type: Object,
     required: true,

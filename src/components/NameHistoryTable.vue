@@ -44,18 +44,14 @@
             :datetime="action.created"/>
         </td>
         <td>
-          <div>
-            <name-history-cell
-              :activity="action.type"
-              :payload="action.payload"/>
-          </div>
+          <name-history-cell
+            :activity="action.type"
+            :payload="action.payload"/>
         </td>
         <td>
-          <div>
-            <name-history-data-cell
-              :activity="action.type"
-              :payload="action.payload"/>
-          </div>
+          <name-history-data-cell
+            :activity="action.type"
+            :payload="action.payload"/>
         </td>
       </tr>
     </tbody>
@@ -63,11 +59,9 @@
 </template>
 
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 import HintTooltip from '@/components/HintTooltip'
 import BlockTimeCell from '~/components/BlockTimeCell'
-import NameHistoryCell from '~/components/NameHistoryCell'
 
 defineProps({
   actions: {

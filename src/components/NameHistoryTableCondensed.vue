@@ -16,8 +16,12 @@
           </th>
           <td class="name-history-table-condensed__data">
             <value-hash-ellipsed
+              v-if="action.hash"
               :hash="action.hash"
               :link-to="`/transactions/${action.hash}`"/>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
         <tr class="name-history-table-condensed__row">
@@ -45,7 +49,19 @@
             </app-tooltip>
           </th>
           <td class="name-history-table-condensed__data">
-            {{ action.type }}
+            <name-history-cell
+              :activity="action.type"
+              :payload="action.payload"/>
+          </td>
+        </tr>
+        <tr class="name-history-table-condensed__row">
+          <th class="name-history-table-condensed__header">
+            Data
+          </th>
+          <td class="name-history-table-condensed__data">
+            <name-history-data-cell
+              :activity="action.type"
+              :payload="action.payload"/>
           </td>
         </tr>
       </tbody>

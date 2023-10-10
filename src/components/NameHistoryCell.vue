@@ -1,7 +1,5 @@
 <template>
-  <span>
-    {{ activityDescription }}
-  </span>
+  {{ activityDescription }}
 </template>
 
 <script setup>
@@ -17,14 +15,10 @@ const props = defineProps({
 })
 
 const isAuction = computed(() => {
-  return formatIsAuction(props.payload.tx.name)
+  return props.payload.tx.name ? formatIsAuction(props.payload.tx.name) : false
 })
 
 const activityDescription = computed(() => {
-  console.log('props.activity', props.activity)
-  console.log('props.payload', props.payload)
-  console.log('isAuction', isAuction)
-  console.log('----')
   switch (props.activity) {
   // case 'SpendTxEvent':
   //   if (tx.value.senderId === props.payload.id) {
@@ -39,7 +33,11 @@ const activityDescription = computed(() => {
   case 'NamePreclaimEvent':
     return 'Name commitment initialized'
   case 'NameClaimEvent':
+    if (isAuction.value) {
+      return 'Bid placed'
+    }
     return 'Activated'
+
   case 'NameRevokeTxEvent':
     return 'Revoked'
 

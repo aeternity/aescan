@@ -1,5 +1,5 @@
 <template>
-  <div class="account-activity-data-cell">
+  <div class="name-history-data-cell">
     <Suspense>
       <component
         :is="dataCellComponent"
@@ -40,7 +40,7 @@ const dataCellComponent = computed(() =>
 </script>
 
 <style scoped>
-.account-activity-data-cell {
+.name-history-data-cell {
   display: flex;
   justify-content: flex-end;
   align-items: center;

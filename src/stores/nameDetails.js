@@ -33,8 +33,9 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
 
   async function fetchNameActions({ nameHash = null, queryParameters = null }) {
     rawNameActions.value = null
-    const defaultParameters = `/v2/accounts/${nameHash}/activities`
+    const defaultParameters = `/v2/names/${nameHash}/history`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    console.log('data', data)
     rawNameActions.value = data
   }
 

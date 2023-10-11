@@ -20,7 +20,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useRoute, useRouter } from 'nuxt/app'
 import { useOraclesStore } from '@/stores/oracles'
 import OraclesTableCondensed from '@/components/OraclesTableCondensed'
@@ -32,9 +32,9 @@ const oraclesStore = useOraclesStore()
 const { fetchOracles } = oraclesStore
 const { oracles } = storeToRefs(oraclesStore)
 const route = useRoute()
-const { push } = useRouter()
+const { push, replace } = useRouter()
 
-const selectedOracleState = ref(ORACLE_STATES_OPTIONS[0])
+// const selectedOracleState = ref(ORACLE_STATES_OPTIONS[0])
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
@@ -53,6 +53,29 @@ async function loadOracles() {
   await fetchOracles({ queryParameters: `/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}` })
 }
 
+const selectedOracleState = computed({
+  get() {
+    const { state } = route.query
+    if (state === undefined) {
+      return ORACLE_STATES_OPTIONS[0]
+    }
+    return ORACLE_STATES_OPTIONS.find(oracleState => oracleState.stateQuery === state)
+  },
+  set(index) {
+    const newRoute = {
+      query: {
+        state: index.stateQuery,
+      },
+    }
+
+    if (selectedOracleState.value.stateQuery === index.stateQuery) {
+      // if navigating back
+      return replace(newRoute)
+    }
+    return push(newRoute)
+  },
+})
+
 if (process.client) {
   watch(route, (newRoute, prevRoute) => {
     if (newRoute.name !== prevRoute.name) {
@@ -60,11 +83,7 @@ if (process.client) {
     }
     loadOracles()
   })
-  watch(selectedOracleState, () => {
-    const stateQuery = selectedOracleState.value?.stateQuery
-    const slug = `${stateQuery ? '?state=' + stateQuery : ''}`
-    push(`/oracles${slug}`)
-  })
+
   loadOracles()
 }
 

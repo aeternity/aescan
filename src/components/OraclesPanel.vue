@@ -3,6 +3,7 @@
     <paginated-content
       :entities="oracles"
       :limit="limit"
+      :total-count="getOraclesCount(selectedOracleState.stateQuery)"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
       <template #header>
@@ -29,7 +30,7 @@ import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
 const oraclesStore = useOraclesStore()
-const { fetchOracles } = oraclesStore
+const { fetchOracles, fetchOraclesCount, getOraclesCount } = oraclesStore
 const { oracles } = storeToRefs(oraclesStore)
 const route = useRoute()
 const { push, replace } = useRouter()
@@ -49,6 +50,7 @@ async function loadOracles() {
   const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
   await fetchOracles(`/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`)
+  await fetchOraclesCount()
 }
 
 const selectedOracleState = computed({

@@ -34,23 +34,21 @@ const { oracles } = storeToRefs(oraclesStore)
 const route = useRoute()
 const { push, replace } = useRouter()
 
-// const selectedOracleState = ref(ORACLE_STATES_OPTIONS[0])
-
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function loadPrevOracles() {
-  fetchOracles({ queryParameters: oracles.value.prev })
+  fetchOracles(oracles.value.prev)
 }
 
 function loadNextOracles() {
-  fetchOracles({ queryParameters: oracles.value.next })
+  fetchOracles(oracles.value.next)
 }
 
 async function loadOracles() {
   const { state } = route.query
   const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
-  await fetchOracles({ queryParameters: `/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}` })
+  await fetchOracles(`/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`)
 }
 
 const selectedOracleState = computed({

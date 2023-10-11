@@ -3,7 +3,6 @@
     <Suspense>
       <component
         :is="dataCellComponent"
-        :activity="activity"
         :payload="payload"/>
       <template #fallback>
         Loading...

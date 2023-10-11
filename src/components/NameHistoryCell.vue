@@ -20,12 +20,6 @@ const isAuction = computed(() => {
 
 const activityDescription = computed(() => {
   switch (props.activity) {
-  // case 'SpendTxEvent':
-  //   if (tx.value.senderId === props.payload.id) {
-  //     return 'Transferred to'
-  //   }
-  //   return 'Received from'
-
   case 'NameUpdateTxEvent':
     return 'Updated'
   case 'NameTransferTxEvent':

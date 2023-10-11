@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:page-index="pageIndex"
       :entities="oracles"
       :limit="limit"
       :total-count="getOraclesCount(selectedOracleState.stateQuery)"
@@ -21,7 +22,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'nuxt/app'
 import { useOraclesStore } from '@/stores/oracles'
 import OraclesTableCondensed from '@/components/OraclesTableCondensed'
@@ -36,6 +37,7 @@ const route = useRoute()
 const { push, replace } = useRouter()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+const pageIndex = ref(1)
 
 function loadPrevOracles() {
   fetchOracles(oracles.value.prev)
@@ -51,6 +53,7 @@ async function loadOracles() {
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
   await fetchOracles(`/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`)
   await fetchOraclesCount()
+  pageIndex.value = 1
 }
 
 const selectedOracleState = computed({

@@ -151,7 +151,7 @@ async function loadTransactionsStatistics({ interval, limit }) {
   &__chart-controls {
     display: none;
     @media (--desktop) {
-      display: grid;
+      display: flex;
     }
 
     &--condensed {

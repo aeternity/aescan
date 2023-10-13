@@ -154,7 +154,9 @@ async function loadTransactionsStatistics({ interval, limit }) {
       display: flex;
     }
 
-    &--condensed {
+    /*todo fix this*/
+
+  &--condensed {
       margin-top: var(--space-4);
       @media (--desktop) {
         display: none;

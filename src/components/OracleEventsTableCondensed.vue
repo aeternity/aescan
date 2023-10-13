@@ -48,7 +48,7 @@
           </th>
           <td class="oracle-events-table-condensed__data">
             <block-time-cell
-              :height="event.queriedAtHeight"
+              :height="event.queriedHeight"
               :datetime="event.queriedAt"/>
           </td>
         </tr>
@@ -84,7 +84,7 @@
           </th>
           <td class="oracle-events-table-condensed__data">
             <block-time-cell
-              :height="event.respondedAtHeight"
+              :height="event.respondedHeight"
               :datetime="event.respondedAt"/>
           </td>
         </tr>

@@ -53,7 +53,7 @@
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
-              :height="event.queriedAtHeight"
+              :height="event.queriedHeight"
               :datetime="event.queriedAt"/>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
@@ -63,7 +63,7 @@
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
-              :height="event.respondedAtHeight"
+              :height="event.respondedHeight"
               :datetime="event.respondedAt"/>
           </td>
         </tr>

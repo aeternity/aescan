@@ -39,8 +39,8 @@
         </td>
         <td class="oracles-table__data">
           <block-time-cell
-            :height="oracle.activeFromHeight"
-            :datetime="oracle.activeFrom"/>
+            :height="oracle.activatedHeight"
+            :datetime="oracle.activated"/>
         </td>
         <td class="oracles-table__data">
           <block-time-cell

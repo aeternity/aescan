@@ -1,6 +1,5 @@
 <template>
   <div class="range-picker__container">
-    {{ isRangeSet }}
     <VueDatePicker
       ref="datepicker"
       v-model="date"

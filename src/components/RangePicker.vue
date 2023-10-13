@@ -10,6 +10,7 @@
       hide-input-icon
       :enable-time-picker="false"
       :partial-range="false"
+      :min-date="from"
       :max-date="today"
       placeholder="CUSTOM"
       :input-class-name="`range-picker__input ${selectedIndex === 'custom' ? 'range-picker__input--active' : ''}`"
@@ -41,7 +42,7 @@ watch(() => props.isRangeSet, (newVal, oldVal) => {
   }
 })
 
-// todo limit at beginning
+const from = '2018-11-28'
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 function setActive() {
@@ -61,6 +62,7 @@ const emit = defineEmits(['updated', 'activated'])
 <style>
 .range-picker {
   display: inline-flex;
+  /*todo fix differently*/
 
   &__container {
     grid-column: span 5;
@@ -71,12 +73,12 @@ const emit = defineEmits(['updated', 'activated'])
   }
 
   &__input {
-    height: 28px;
     width: 100%;
-
-    font-family: var(--font-monospaced);
+    height: 28px;
     align-items: center;
     text-align: center;
+
+    font-family: var(--font-monospaced);
     font-size: 12px;
     line-height: 20px;
     font-weight: 400;
@@ -87,6 +89,7 @@ const emit = defineEmits(['updated', 'activated'])
     padding: var(--space-0) var(--space-1);
     background: var(--color-snow);
     color: var(--color-midnight);
+    /*todo fix mobile rangepicker styles*/
 
     @media (--desktop) {
       width: 68px;
@@ -98,6 +101,7 @@ const emit = defineEmits(['updated', 'activated'])
     &--active {
       background: var(--color-error) !important;
       color: var(--color-white);
+      /*todo color?*/
       width: 100%;
       @media (--desktop) {
         width: 208px;

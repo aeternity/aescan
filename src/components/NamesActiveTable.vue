@@ -45,13 +45,9 @@
             </app-link>
           </td>
           <td>
-            <div>
-              <app-link
-                :to="`/keyblocks/${name.expirationHeight}`">
-                {{ name.expirationHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="name.expiration"/>
+            <block-time-cell
+              :height="name.expirationHeight"
+              :datetime="name.expiration"/>
           </td>
           <td>
             <div>
@@ -90,7 +86,6 @@ import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({
   names: {

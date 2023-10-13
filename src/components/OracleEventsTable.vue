@@ -52,13 +52,9 @@
             </expand-button>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
-            <div>
-              <app-link
-                :to="`/keyblocks/${event.queriedAtHeight}`">
-                {{ event.queriedAtHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="event.queriedAt"/>
+            <block-time-cell
+              :height="event.queriedAtHeight"
+              :datetime="event.queriedAt"/>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
@@ -66,13 +62,9 @@
               :link-to="`/transactions/${event.respondTx}`"/>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
-            <div>
-              <app-link
-                :to="`/keyblocks/${event.respondedAtHeight}`">
-                {{ event.respondedAtHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="event.respondedAt"/>
+            <block-time-cell
+              :height="event.respondedAtHeight"
+              :datetime="event.respondedAt"/>
           </td>
         </tr>
         <tr v-if="isExpanded.includes(index)">

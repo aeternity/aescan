@@ -38,13 +38,9 @@
             :link-to="`/transactions/${transaction.hash}`"/>
         </td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${transaction.createdHeight}`">
-              {{ transaction.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="transaction.created"/>
+          <block-time-cell
+            :height="transaction.createdHeight"
+            :datetime="transaction.created"/>
         </td>
         <td>
           {{ transaction.type }}
@@ -66,7 +62,6 @@ import { microblocksHints } from '@/utils/hints/microblocksHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({

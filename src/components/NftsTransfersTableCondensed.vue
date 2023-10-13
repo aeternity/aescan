@@ -30,13 +30,9 @@
             </app-tooltip>
           </th>
           <td class="contract-call-transactions-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${transfer.height}`">
-                {{ transfer.height }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="transfer.time"/>
+            <block-time-cell
+              :height="transfer.height"
+              :datetime="transfer.time"/>
           </td>
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">

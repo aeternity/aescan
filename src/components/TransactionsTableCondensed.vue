@@ -30,13 +30,9 @@
             </app-tooltip>
           </th>
           <td class="transactions-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${transaction.createdHeight}`">
-                {{ transaction.createdHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="transaction.created"/>
+            <block-time-cell
+              :height="transaction.createdHeight"
+              :datetime="transaction.created"/>
           </td>
         </tr>
         <tr class="transactions-table-condensed__row">
@@ -80,7 +76,6 @@
 <script setup>
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({

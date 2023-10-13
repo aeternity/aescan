@@ -112,7 +112,7 @@ const emit = defineEmits(['updated', 'activated'])
     color: var(--color-white);
   }
 
-  &__end {
+  &_end {
     background: var(--color-error) !important;
     color: var(--color-white);
   }

@@ -4,7 +4,9 @@
     :options="ORACLE_STATES_OPTIONS"
     track-by="stateQuery"
     label="label"
-    placeholder="Select Oracle State"/>
+    placeholder="Select Oracle State"
+    :searchable="false"
+    :hide-selected="true"/>
 </template>
 
 <script setup>

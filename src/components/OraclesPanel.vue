@@ -5,6 +5,9 @@
       :limit="limit"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
+      <template #header>
+        <oracles-select v-model="selectedOracleState"/>
+      </template>
       <oracles-table
         class="oracles-panel__oracles-table"
         :oracles="oracles"/>
@@ -18,6 +21,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
+import { useRoute, useRouter } from 'nuxt/app'
 import { useOraclesStore } from '@/stores/oracles'
 import OraclesTableCondensed from '@/components/OraclesTableCondensed'
 import OraclesTable from '@/components/OraclesTable'
@@ -27,21 +31,58 @@ import { isDesktop } from '@/utils/screen'
 const oraclesStore = useOraclesStore()
 const { fetchOracles } = oraclesStore
 const { oracles } = storeToRefs(oraclesStore)
+const route = useRoute()
+const { push, replace } = useRouter()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function loadPrevOracles() {
-  fetchOracles({ queryParameters: oracles.value.prev })
+  fetchOracles(oracles.value.prev)
 }
 
 function loadNextOracles() {
-  fetchOracles({ queryParameters: oracles.value.next })
+  fetchOracles(oracles.value.next)
 }
 
+async function loadOracles() {
+  const { state } = route.query
+  const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
+  selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
+  await fetchOracles(`/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`)
+}
+
+const selectedOracleState = computed({
+  get() {
+    const { state } = route.query
+    if (state === undefined) {
+      return ORACLE_STATES_OPTIONS[0]
+    }
+    return ORACLE_STATES_OPTIONS.find(oracleState => oracleState.stateQuery === state)
+  },
+  set(index) {
+    const newRoute = {
+      query: {
+        state: index.stateQuery,
+      },
+    }
+
+    if (selectedOracleState.value.stateQuery === index.stateQuery) {
+      // if navigating back
+      return replace(newRoute)
+    }
+    return push(newRoute)
+  },
+})
+
 if (process.client) {
-  fetchOracles({
-    limit: limit.value,
+  watch(route, (newRoute, prevRoute) => {
+    if (newRoute.name !== prevRoute.name) {
+      return
+    }
+    loadOracles()
   })
+
+  loadOracles()
 }
 
 </script>

@@ -449,13 +449,13 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
 
 export function adaptListedTokens(tokens) {
   const formattedData = tokens
-    .filter(token => token.listed === true)
     .map(token => {
       return {
         contractId: token.address,
         name: token.name,
         symbol: token.symbol,
         isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
+        totalSupply: formatNumber((new BigNumber(token.totalSupply)).dividedBy(10 ** token.decimals).toNumber()),
       }
     })
 
@@ -463,6 +463,26 @@ export function adaptListedTokens(tokens) {
     next: null,
     data: formattedData,
     prev: null,
+  }
+}
+
+export function adaptTokens(tokens) {
+  console.log('tokens', tokens)
+  const formattedData = tokens.data.map(token => {
+    return {
+      contractId: token.contractId,
+      name: token.name,
+      symbol: token.symbol,
+      isAe: token.address === useRuntimeConfig().public.AE_TOKEN_CONTRACT_ID,
+      totalSupply: formatNumber((new BigNumber(token.totalSupply)).dividedBy(10 ** token.decimals).toNumber()),
+
+    }
+  })
+
+  return {
+    next: tokens.next,
+    data: formattedData,
+    prev: tokens.prev,
   }
 }
 

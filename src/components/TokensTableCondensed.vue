@@ -54,6 +54,19 @@
               :hash="token.contractId"/>
           </td>
         </tr>
+        <tr class="tokens-table-condensed__row">
+          <th class="tokens-table-condensed__header">
+            <app-tooltip>
+              Total Supply
+              <template #tooltip>
+                {{ tokensHints.totalSupply }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="tokens-table-condensed__data">
+            {{ token.totalSupply }}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

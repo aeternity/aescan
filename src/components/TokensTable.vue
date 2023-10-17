@@ -20,6 +20,12 @@
             {{ tokensHints.smartContractId }}
           </hint-tooltip>
         </th>
+        <th>
+          Total Supply
+          <hint-tooltip>
+            {{ tokensHints.totalSupply }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -41,6 +47,9 @@
           <value-hash-ellipsed
             :link-to="`/contracts/${token.contractId}`"
             :hash="token.contractId "/>
+        </td>
+        <td>
+          {{ token.totalSupply }}
         </td>
       </tr>
     </tbody>

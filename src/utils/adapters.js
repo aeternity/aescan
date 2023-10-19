@@ -161,7 +161,7 @@ export function adaptAccountNames(names) {
     return {
       name: name.name,
       expirationHeight: name.info.expireHeight,
-      expires: DateTime.fromMillis(name.info.approximateExpireTime),
+      expiration: DateTime.fromMillis(name.info.approximateExpireTime),
       pointers: Object.values(name.info.pointers),
     }
   })
@@ -470,8 +470,8 @@ export function adaptOracles(oracles, blockHeight) {
   const formattedData = oracles.data.map(oracle => {
     return {
       id: oracle.oracle,
-      activeFromHeight: oracle.activeFrom,
-      activeFrom: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
+      activatedHeight: oracle.activeFrom,
+      activated: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
       expirationHeight: oracle.expireHeight,
       expiration: DateTime.fromMillis(oracle.approximateExpireTime),
       queryFee: formatAettosToAe(oracle.queryFee),
@@ -513,9 +513,9 @@ export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
       queriedAt: DateTime.fromMillis(event.query.blockTime),
-      queriedAtHeight: event.query.height,
+      queriedHeight: event.query.height,
       respondedAt: DateTime.fromMillis(event.blockTime),
-      respondedAtHeight: event.height,
+      respondedHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,
       queryId: event.query.queryId,

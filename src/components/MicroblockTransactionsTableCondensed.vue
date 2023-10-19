@@ -30,13 +30,9 @@
             </app-tooltip>
           </th>
           <td class="microblock-transactions-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${transaction.createdHeight}`">
-                {{ transaction.createdHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="transaction.created"/>
+            <block-time-cell
+              :height="transaction.createdHeight"
+              :datetime="transaction.created"/>
           </td>
         </tr>
         <tr class="microblock-transactions-table-condensed__row">
@@ -80,7 +76,6 @@
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppTooltip from '@/components/AppTooltip'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 

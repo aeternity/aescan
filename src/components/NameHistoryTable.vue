@@ -32,13 +32,9 @@
             :link-to="`/transactions/${action.hash}`"/>
         </td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${action.createdHeight}`">
-              {{ action.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="action.created"/>
+          <block-time-cell
+            :height="action.createdHeight"
+            :datetime="action.created"/>
         </td>
         <td>
           <div>
@@ -54,7 +50,7 @@
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 import HintTooltip from '@/components/HintTooltip'
-import DatetimeLabel from '@/components/DatetimeLabel'
+import BlockTimeCell from '~/components/BlockTimeCell'
 
 defineProps({
   actions: {

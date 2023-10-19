@@ -49,13 +49,9 @@
         </td>
         <td>
           <div class="dashboard-auctions-table__blocks">
-            <app-link
-              :to="`/keyblocks/${auction.expirationHeight}`">
-              {{ auction.expirationHeight }}
-            </app-link>
-          </div>
-          <div>
-            <datetime-label :datetime="auction.expiration"/>
+            <block-time-cell
+              :height="auction.expirationHeight"
+              :datetime="auction.expiration"/>
           </div>
         </td>
       </tr>
@@ -69,7 +65,6 @@ import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>

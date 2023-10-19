@@ -30,13 +30,9 @@
             </app-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${oracle.activeFromHeight}`">
-                {{ oracle.activeFromHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="oracle.activeFrom"/>
+            <block-time-cell
+              :height="oracle.activatedHeight"
+              :datetime="oracle.activated"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">
@@ -49,13 +45,9 @@
             </app-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${oracle.expirationHeight}`">
-                {{ oracle.expirationHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="oracle.expiration"/>
+            <block-time-cell
+              :height="oracle.expirationHeight"
+              :datetime="oracle.expiration"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">
@@ -78,7 +70,6 @@
 
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 

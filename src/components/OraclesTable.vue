@@ -38,22 +38,14 @@
             :hash="oracle.id"/>
         </td>
         <td class="oracles-table__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${oracle.activeFromHeight}`">
-              {{ oracle.activeFromHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="oracle.activeFrom"/>
+          <block-time-cell
+            :height="oracle.activatedHeight"
+            :datetime="oracle.activated"/>
         </td>
         <td class="oracles-table__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${oracle.expirationHeight}`">
-              {{ oracle.expirationHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="oracle.expiration"/>
+          <block-time-cell
+            :height="oracle.expirationHeight"
+            :datetime="oracle.expiration"/>
         </td>
         <td class="oracles-table__data">
           {{ formatAePrice(oracle.queryFee) }}
@@ -66,7 +58,6 @@
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
 import HintTooltip from '@/components/HintTooltip'
 

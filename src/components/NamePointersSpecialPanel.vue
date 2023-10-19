@@ -16,10 +16,10 @@
             <app-link
               v-if="name.specialPointers.account"
               :to="`/accounts/${name.specialPointers.account}`">
-              <span class="name-pointers-special-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ name.specialPointers.account }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(name.specialPointers.account) }}
               </span>
             </app-link>
@@ -40,10 +40,10 @@
             <app-link
               v-if="name.specialPointers.channel"
               :to="`/state-channels/${name.specialPointers.channel}`">
-              <span class="name-pointers-special-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ name.specialPointers.channel }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(name.specialPointers.channel) }}
               </span>
             </app-link>
@@ -64,10 +64,10 @@
             <app-link
               v-if="name.specialPointers.contract"
               :to="`/contracts/${name.specialPointers.contract}`">
-              <span class="name-pointers-special-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ name.specialPointers.contract }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(name.specialPointers.contract) }}
               </span>
             </app-link>
@@ -87,10 +87,10 @@
             <app-link
               v-if="name.specialPointers.oracle"
               :to="`/oracles/${name.specialPointers.oracle}`">
-              <span class="name-pointers-special-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ name.specialPointers.oracle }}
               </span>
-              <span class="name-pointers-special-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(name.specialPointers.oracle) }}
               </span>
             </app-link>
@@ -121,19 +121,6 @@ const { name } = storeToRefs(useNameDetailsStore())
 .name-pointers-special-panel {
   &__data {
     text-align: right;
-  }
-
-  &__link-text {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__link-text-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 
   &__table-header {

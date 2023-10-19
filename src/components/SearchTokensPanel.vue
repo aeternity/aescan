@@ -7,10 +7,10 @@
       @next-clicked="loadNextTokens">
       <search-tokens-table
         :tokens="tokensResults"
-        class="search-tokens-panel__search-tokens-table"/>
+        class="u-hidden-mobile"/>
       <search-tokens-table-condensed
         :tokens="tokensResults"
-        class="search-tokens-panel__search-tokens-table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -37,20 +37,3 @@ async function loadNextTokens() {
   await fetchTokenResults({ queryParameters: tokensResults.value.next })
 }
 </script>
-
-<style scoped>
-.search-tokens-panel {
-  &__search-tokens-table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__search-tokens-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

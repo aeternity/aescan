@@ -5,11 +5,11 @@
       @prev-clicked="loadPrevAccountNames"
       @next-clicked="loadNextAccountNames">
       <account-names-table
-        class="account-names-panel__account-names-table"
+        class="account-names-panel__account-names-table u-hidden-mobile"
         :account-names="accountNames"/>
 
       <account-names-table-condensed
-        class="account-names-panel__account-names-table-condensed"
+        class="u-hidden-desktop"
         :account-names="accountNames"/>
     </paginated-content>
   </app-panel>
@@ -37,20 +37,9 @@ async function loadNextAccountNames() {
 </script>
 
 <style scoped>
-.account-names-panel {
-  &__account-names-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__account-names-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
+.account-names-panel__account-names-table {
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
   }
 }
 </style>

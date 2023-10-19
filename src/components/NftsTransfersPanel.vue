@@ -7,10 +7,10 @@
       @prev-clicked="loadPrevNftTransfers"
       @next-clicked="loadNextNftTransfers">
       <nfts-transfers-table
-        class="nfts-transfers-panel__table"
+        class="u-hidden-mobile"
         :nft-transfers="nftTransfers"/>
       <nfts-transfers-table-condensed
-        class="nfts-transfers-panel__table-condensed"
+        class="u-hidden-desktop"
         :nft-transfers="nftTransfers"/>
     </paginated-content>
   </app-panel>
@@ -35,20 +35,3 @@ async function loadNextNftTransfers() {
   await fetchNftTransfers({ queryParameters: nftTransfers.value.next })
 }
 </script>
-
-<style scoped>
-.nfts-transfers-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

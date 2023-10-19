@@ -45,13 +45,13 @@
 
       <keyblock-table
         v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__keyblock-table"
+        class="dashboard-keyblock-panel__keyblock-table u-hidden-mobile"
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
 
       <keyblock-table-condensed
         v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__keyblock-table-condensed"
+        class="dashboard-keyblock-panel__keyblock-table-condensed u-hidden-desktop"
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
     </div>
@@ -95,9 +95,7 @@ const {
   }
 
   &__keyblock-table {
-    display: none;
     @media (--desktop) {
-      display: revert;
       margin-bottom: var(--space-2);
     }
   }
@@ -106,7 +104,6 @@ const {
     margin: var(--space-4) 0;
     @media (--desktop) {
       margin: 0;
-      display: none;
     }
   }
 

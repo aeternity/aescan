@@ -7,12 +7,12 @@
       @next-clicked="loadNextActions">
       <name-history-table
         v-if="nameActions"
-        class="name-history-panel__name-history-table"
+        class="name-history-panel__name-history-table u-hidden-mobile"
         :actions="nameActions"/>
 
       <name-history-table-condensed
         v-if="nameActions"
-        class="name-history-panel__name-history-table-condensed"
+        class="u-hidden-desktop"
         :actions="nameActions"/>
     </paginated-content>
   </app-panel>
@@ -40,20 +40,9 @@ function loadNextActions() {
 </script>
 
 <style scoped>
-.name-history-panel {
-  &__name-history-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__name-history-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
+.name-history-panel__name-history-table {
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
   }
 }
 </style>

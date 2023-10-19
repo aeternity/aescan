@@ -16,10 +16,10 @@
             <app-link
               v-if="pointers.accountPubkey"
               :to="`/accounts/${pointers.accountPubkey}`">
-              <span class="transaction-pointers-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ pointers.accountPubkey }}
               </span>
-              <span class="transaction-pointers-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(pointers.accountPubkey) }}
               </span>
             </app-link>
@@ -50,10 +50,10 @@
             <app-link
               v-if="pointers.contractPubkey"
               :to="`/contracts/${pointers.contractPubkey}`">
-              <span class="transaction-pointers-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ pointers.contractPubkey }}
               </span>
-              <span class="transaction-pointers-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(pointers.contractPubkey) }}
               </span>
             </app-link>
@@ -109,19 +109,6 @@ const pointers = computed(() => {
   &__data {
     word-wrap: break-word;
     text-align: right;
-  }
-
-  &__link-text {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__link-text-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 
   &__row:last-of-type &__table-header {

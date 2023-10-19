@@ -10,10 +10,10 @@
       @next-clicked="loadNextTransactions">
       <microblock-transactions-table
         :transactions="transactions"
-        class="microblock-transactions-panel__table"/>
+        class="u-hidden-mobile"/>
       <microblock-transactions-table-condensed
         :transactions="transactions"
-        class="microblock-transactions-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -46,20 +46,3 @@ if (process.client) {
   })
 }
 </script>
-
-<style scoped>
-.microblock-transactions-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

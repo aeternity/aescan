@@ -5,11 +5,11 @@
       @prev-clicked="loadPrevAccountTokens"
       @next-clicked="loadNextAccountTokens">
       <account-tokens-table
-        class="account-tokens-panel__account-tokens-table"
+        class="u-hidden-mobile"
         :account-tokens="accountTokens"/>
 
       <account-tokens-table-condensed
-        class="account-tokens-panel__account-tokens-table-condensed"
+        class="account-tokens-panel__account-tokens-table-condensed u-hidden-desktop"
         :account-tokens="accountTokens"/>
     </paginated-content>
   </app-panel>
@@ -37,20 +37,9 @@ async function loadNextAccountTokens() {
 </script>
 
 <style scoped>
-.account-tokens-panel {
-  &__account-tokens-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__account-tokens-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
+.account-tokens-panel__account-tokens-table {
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
   }
 }
 </style>

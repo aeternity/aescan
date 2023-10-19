@@ -24,10 +24,10 @@
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.owner}`">
-              <span class="name-details-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ name.owner }}
               </span>
-              <span class="name-details-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(name.owner) }}
               </span>
             </app-link>
@@ -44,10 +44,10 @@
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
-              <span class="name-details-panel__link-text">
+              <span class="u-hidden-mobile">
                 {{ name.bidder }}
               </span>
-              <span class="name-details-panel__link-text-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(name.bidder) }}
               </span>
             </app-link>
@@ -180,19 +180,6 @@ const isNameInAuction = computed(() =>
 
   &__data {
     text-align: right;
-  }
-
-  &__link-text {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__link-text-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 
   &__name {

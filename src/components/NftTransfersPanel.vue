@@ -7,11 +7,11 @@
       @prev-clicked="loadPrevNftTransfers"
       @next-clicked="loadNextNftTransfers">
       <nft-transfers-table
-        class="nft-transfers-panel__table"
+        class="u-hidden-mobile"
         :nft-transfers="nftTransfers"/>
 
       <nft-transfers-table-condensed
-        class="nft-transfers-panel__table-condensed"
+        class="u-hidden-desktop"
         :nft-transfers="nftTransfers"/>
     </paginated-content>
   </app-panel>
@@ -47,20 +47,3 @@ if (process.client) {
   })
 }
 </script>
-
-<style scoped>
-.nft-transfers-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

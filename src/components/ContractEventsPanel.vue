@@ -9,13 +9,13 @@
         v-if="contractEvents"
         :contract-details="contractDetails"
         :contract-events="contractEvents"
-        class="contract-events-panel__table"/>
+        class="u-hidden-mobile"/>
 
       <contract-events-table-condensed
         v-if="contractEvents"
         :contract-details="contractDetails"
         :contract-events="contractEvents"
-        class="contract-events-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -40,20 +40,3 @@ function loadNextEvents() {
   fetchContractEvents({ queryParameters: contractEvents.value.next })
 }
 </script>
-
-<style scoped>
-.contract-events-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

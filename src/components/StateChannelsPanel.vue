@@ -10,10 +10,10 @@
       @next-clicked="loadNextStateChannels">
       <state-channels-table
         :state-channels="stateChannels"
-        class="state-channels-panel__table"/>
+        class="u-hidden-mobile"/>
       <state-channels-table-condensed
         :state-channels="stateChannels"
-        class="state-channels-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -56,20 +56,3 @@ if (process.client) {
   loadStateChannels()
 }
 </script>
-
-<style scoped>
-.state-channels-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

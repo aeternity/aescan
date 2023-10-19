@@ -9,10 +9,10 @@
       @next-clicked="loadNextNfts">
       <nfts-table
         :nfts="nfts"
-        class="nfts-panel__table"/>
+        class="u-hidden-mobile"/>
       <nfts-table-condensed
         :nfts="nfts"
-        class="nfts-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -45,20 +45,3 @@ if (process.client) {
 }
 
 </script>
-
-<style scoped>
-.nfts-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

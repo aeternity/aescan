@@ -81,6 +81,7 @@ function selectTab(tabIndex) {
     border-radius: 4px;
     margin-bottom: 3px;
     letter-spacing: 0.003em;
+    transition: none;
 
     @media (--desktop) {
       font-size: 16px;

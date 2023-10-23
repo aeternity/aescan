@@ -115,7 +115,7 @@ export function adaptNames(names, blockHeight) {
   })
 }
 
-export function adaptDashboardStateChannels(stateChannels, blockHeight) {
+export function adaptDashboardStateChannels(stateChannels) {
   return stateChannels.map(channel => {
     return {
       initiator: channel.initiator,
@@ -124,11 +124,8 @@ export function adaptDashboardStateChannels(stateChannels, blockHeight) {
       updateCount: channel.updatesCount,
       amount: formatAettosToAe(channel.amount),
       updatedHeight: channel.lastUpdatedHeight,
-      updated: formatBlockDiffAsDatetime(
-        channel.lastUpdatedHeight,
-        blockHeight,
-      ),
-      updateType: channel.lastUpdatedTxType,
+      updated: DateTime.fromMillis(channel.lastUpdatedTime),
+      lastTxType: channel.lastUpdatedTxType,
     }
   })
 }
@@ -227,14 +224,14 @@ export function adaptActiveNames(names) {
   }
 }
 
-export function adaptInAuctionNames(names, blockHeight) {
+export function adaptInAuctionNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
     highestBidder: name.info.lastBid.tx.accountId,
     bid: formatAettosToAe(name.info.lastBid.tx.nameFee),
     bidCount: name.info.bids.length,
     expirationHeight: name.info.auctionEnd,
-    expiration: formatBlockDiffAsDatetime(name.info.auctionEnd, blockHeight),
+    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
   }))
   return {
     next: names.next,
@@ -310,18 +307,13 @@ export function adaptName(name, blockHeight, blockTime) {
   return formattedName
 }
 
-export function adaptNameActions(actions, blockHeight) {
+export function adaptNameActions(actions) {
   const formattedData = actions.data.map(action => {
     return {
       type: action.type,
       hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
       createdHeight: action.payload.blockHeight || action.height,
-      created: action.payload?.microTime
-        ? DateTime.fromMillis(action.payload.microTime)
-        : formatBlockDiffAsDatetime(
-          action.payload.blockHeight || action.height,
-          blockHeight,
-        ),
+      created: DateTime.fromMillis(action.payload.microTime),
     }
   })
 
@@ -373,11 +365,11 @@ export function adaptContractDetails(
   }
 }
 
-export function adaptContractEvents(events, blockHeight) {
+export function adaptContractEvents(events) {
   const formattedData = events.data
     .map(event => {
       return {
-        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        created: DateTime.fromMillis(event.blockTime),
         createdHeight: event.height,
         eventName: event.eventName,
         data: event.args,
@@ -411,13 +403,13 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   return tokenDetails
 }
 
-export function adaptTokenEvents(events, blockHeight) {
+export function adaptTokenEvents(events) {
   const formattedData = events.data
     .map(event => {
       return {
         hash: event.callTxHash,
         name: event.eventName || 'N/A',
-        created: formatBlockDiffAsDatetime(event.height, blockHeight),
+        created: DateTime.fromMillis(event.blockTime),
         createdHeight: event.height,
         isDecoded: !!event.eventName,
         args: event.args,
@@ -466,12 +458,12 @@ export function adaptListedTokens(tokens) {
   }
 }
 
-export function adaptOracles(oracles, blockHeight) {
+export function adaptOracles(oracles) {
   const formattedData = oracles.data.map(oracle => {
     return {
       id: oracle.oracle,
-      activatedHeight: oracle.activeFrom,
-      activated: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
+      registeredHeight: oracle.activeFrom,
+      registered: DateTime.fromMillis(oracle.registerTime),
       expirationHeight: oracle.expireHeight,
       expiration: DateTime.fromMillis(oracle.approximateExpireTime),
       queryFee: formatAettosToAe(oracle.queryFee),
@@ -485,18 +477,13 @@ export function adaptOracles(oracles, blockHeight) {
   }
 }
 
-export function adaptOracleDetails(oracle, lastExtendedTx, blockHeight, lastQueryTx) {
+export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
     expiration: DateTime.fromMillis(oracle.approximateExpireTime),
     expirationHeight: oracle.expireHeight,
-    registered: oracle.activeFrom
-      ? formatBlockDiffAsDatetime(
-        oracle.activeFrom,
-        blockHeight,
-      )
-      : null,
+    registered: DateTime.fromMillis(oracle.registerTime),
     registeredHeight: oracle.activeFrom,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
@@ -533,7 +520,7 @@ export function adaptOracleEvents(events) {
   }
 }
 
-export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blockHeight) {
+export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx) {
   return {
     id: stateChannel.channel,
     isOpen: stateChannel.active,
@@ -545,18 +532,13 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx, blo
     lastKnownRound: stateChannel.round,
     aeLocked: formatAettosToAe(stateChannel.amount),
     lastUpdatedHeight: stateChannel.lastUpdatedHeight,
-    lastUpdated: stateChannel.lastUpdatedHeight
-      ? formatBlockDiffAsDatetime(
-        stateChannel.lastUpdatedHeight,
-        blockHeight,
-      )
-      : null,
+    lastUpdated: DateTime.fromMillis(stateChannel.lastUpdatedTime),
     lastTxType: stateChannel.lastUpdatedTxType,
   }
 }
 
-export function adaptStateChannels(channels, blockHeight) {
-  const formattedData = channels.data
+export function adaptStateChannels(stateChannels) {
+  const formattedData = stateChannels.data
     .map(channel => {
       return {
         id: channel.channel,
@@ -565,15 +547,15 @@ export function adaptStateChannels(channels, blockHeight) {
         responder: channel.responder,
         updateCount: channel.updatesCount,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
-        updated: formatBlockDiffAsDatetime(channel.lastUpdatedHeight, blockHeight),
         updatedHeight: channel.lastUpdatedHeight,
-        updateType: channel.lastUpdatedTxType,
+        updated: DateTime.fromMillis(channel.lastUpdatedTime),
+        lastTxType: channel.lastUpdatedTxType,
       }
     })
   return {
-    next: channels.next,
+    next: stateChannels.next,
     data: formattedData,
-    prev: channels.prev,
+    prev: stateChannels.prev,
   }
 }
 

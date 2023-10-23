@@ -79,7 +79,7 @@
             :height="channel.updatedHeight"
             :datetime="channel.updated"/>
         </td>
-        <td>{{ channel.updateType }}</td>
+        <td>{{ channel.lastTxType }}</td>
       </tr>
     </tbody>
   </table>

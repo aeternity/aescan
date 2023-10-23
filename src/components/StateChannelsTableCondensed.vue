@@ -108,7 +108,7 @@
             </app-tooltip>
           </th>
           <td class="state-channels-table-condensed__data">
-            {{ channel.updateType }}
+            {{ channel.lastTxType }}
           </td>
         </tr>
       </tbody>

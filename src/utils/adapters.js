@@ -123,8 +123,8 @@ export function adaptDashboardStateChannels(stateChannels) {
       channel: channel.channel,
       updateCount: channel.updatesCount,
       amount: formatAettosToAe(channel.amount),
-      lastUpdatedHeight: channel.lastUpdatedHeight,
-      lastUpdated: DateTime.fromMillis(channel.lastUpdatedTime),
+      updatedHeight: channel.lastUpdatedHeight,
+      updated: DateTime.fromMillis(channel.lastUpdatedTime),
       lastTxType: channel.lastUpdatedTxType,
     }
   })
@@ -464,8 +464,6 @@ export function adaptOracles(oracles) {
       id: oracle.oracle,
       registeredHeight: oracle.activeFrom,
       registered: DateTime.fromMillis(oracle.registerTime),
-      registeredHeight: oracle.activeFrom,
-      registered: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
       expirationHeight: oracle.expireHeight,
       expiration: DateTime.fromMillis(oracle.approximateExpireTime),
       queryFee: formatAettosToAe(oracle.queryFee),
@@ -549,8 +547,8 @@ export function adaptStateChannels(stateChannels) {
         responder: channel.responder,
         updateCount: channel.updatesCount,
         locked: formatAePrice(formatAettosToAe(channel.amount)),
-        lastUpdatedHeight: channel.lastUpdatedHeight,
-        lastUpdated: DateTime.fromMillis(channel.lastUpdatedTime),
+        updatedHeight: channel.lastUpdatedHeight,
+        updated: DateTime.fromMillis(channel.lastUpdatedTime),
         lastTxType: channel.lastUpdatedTxType,
       }
     })

@@ -31,8 +31,8 @@
           </th>
           <td class="oracles-table-condensed__data">
             <block-time-cell
-              :height="oracle.activatedHeight"
-              :datetime="oracle.activated"/>
+              :height="oracle.registeredHeight"
+              :datetime="oracle.registered"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">

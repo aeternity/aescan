@@ -15,8 +15,6 @@
 </template>
 <script setup>
 import AppPanel from '@/components/AppPanel'
-import DashboardStateChannelsSwiper from '@/components/DashboardStateChannelsSwiper'
-import DashboardStateChannelsTable from '@/components/DashboardStateChannelsTable'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 </script>
 

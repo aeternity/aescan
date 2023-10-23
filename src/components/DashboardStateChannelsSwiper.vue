@@ -85,11 +85,11 @@
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <app-link
-                :to="`/keyblocks/${channel.lastUpdatedHeight}`">
-                {{ channel.lastUpdatedHeight }}
+                :to="`/keyblocks/${channel.updatedHeight}`">
+                {{ channel.updatedHeight }}
               </app-link>
               -
-              <datetime-label :datetime="channel.lastUpdated"/>
+              <datetime-label :datetime="channel.updated"/>
             </td>
           </tr>
           <tr>

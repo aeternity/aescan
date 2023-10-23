@@ -4,7 +4,7 @@
       CONTRACT CALLS
     </template>
     <template #header>
-      <contracts-chart-controls
+      <chart-controls
         class="contracts-chart-panel__chart-controls"
         @selected="loadContractsStatistics"/>
     </template>
@@ -153,12 +153,12 @@ async function loadContractsStatistics({ interval, limit }) {
     @media (--desktop) {
       display: grid;
     }
-  }
 
-  &__controls--condensed {
-    margin-top: var(--space-4);
-    @media (--desktop) {
-      display: none;
+    &--condensed {
+      margin-top: var(--space-4);
+      @media (--desktop) {
+        display: none;
+      }
     }
   }
 }

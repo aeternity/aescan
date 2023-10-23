@@ -4,7 +4,7 @@
       TRANSACTIONS TREND
     </template>
     <template #header>
-      <transactions-chart-controls
+      <chart-controls
         class="transactions-chart-panel__chart-controls"
         @selected="loadTransactionsStatistics"/>
     </template>
@@ -153,12 +153,12 @@ async function loadTransactionsStatistics({ interval, limit }) {
     @media (--desktop) {
       display: grid;
     }
-  }
 
-  &__controls--condensed {
-    margin-top: var(--space-4);
-    @media (--desktop) {
-      display: none;
+    &--condensed {
+      margin-top: var(--space-4);
+      @media (--desktop) {
+        display: none;
+      }
     }
   }
 }

@@ -37,14 +37,6 @@
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
     </div>
-    <div class="header__survey">
-      Help us improve aeScan.
-      <app-link
-        to="https://aeternity.com/aescan-feedback-survey"
-        class="header__survey-link">
-        Fill out the survey.
-      </app-link>
-    </div>
   </header>
 </template>
 
@@ -86,7 +78,6 @@ function closeNavigation() {
 <style scoped>
 .header {
   background: var(--color-white);
-  flex: 0 0 auto;
 
   &__container {
     height: 100%;
@@ -152,25 +143,6 @@ function closeNavigation() {
 
   &__icon {
     margin-left: var(--space-1);
-  }
-
-  &__survey {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 24px;
-    background: var(--color-midnight);
-    color: var(--color-white);
-    font-family: var(--font-monospaced);
-    font-size: 11px;
-    line-height: 16px;
-    letter-spacing: 0.0015em;
-  }
-
-  &__survey-link {
-    color: var(--color-white);
-    text-decoration: underline;
-    margin-left: var(--space-0);
   }
 }
 </style>

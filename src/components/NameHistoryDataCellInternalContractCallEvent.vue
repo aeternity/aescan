@@ -1,5 +1,7 @@
 <template>
-  {{ payload.function }}
+  <app-chip size="sm">
+    {{ payload.function }}
+  </app-chip>
 </template>
 
 <script setup>

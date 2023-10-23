@@ -2,13 +2,14 @@
   <button
     :class="[
       'copy-button',
+      size ? `copy-button--${size}` : null,
       variant ? `copy-button--${variant}` : null,
       { 'copy-button--success': isCopySuccessful },
     ]"
     @click="copyText">
     <app-icon
       :name="iconName"
-      :size="20"/>
+      :size="size"/>
   </button>
 </template>
 
@@ -24,6 +25,11 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['sm'].includes(val),
+  },
   variant: {
     type: String,
     default: null,
@@ -34,8 +40,8 @@ const emit = defineEmits(['copy:started', 'copy:ended'])
 
 const isCopySuccessful = ref(false)
 const successAnimationTimer = ref(null)
-
 const iconName = computed(() => isCopySuccessful.value ? ICON_SUCCESS : ICON_COPY)
+const size = computed(() => props.size === 'md' ? 20 : 14)
 
 onBeforeUnmount(() => clearTimeout(successAnimationTimer.value))
 
@@ -43,8 +49,8 @@ function copyText() {
   navigator.clipboard.writeText(props.clipboardText)
   if (isCopySuccessful.value) {
     stopCopySuccessAnimation()
-    isCopySuccessful.value = true
   }
+  isCopySuccessful.value = true
 
   emit('copy:started')
   successAnimationTimer.value = setTimeout(
@@ -63,7 +69,7 @@ function stopCopySuccessAnimation() {
 
 <style scoped>
 .copy-button {
-  color: var(--color-fire);
+  color: var(--color-midnight-55);
   cursor: pointer;
   border: 0;
   background: transparent;
@@ -79,6 +85,11 @@ function stopCopySuccessAnimation() {
 
   &--success {
     animation: pulse 0.2s linear;
+  }
+
+  &--sm {
+    width: 14px;
+    height: 14px;
   }
 
   @keyframes pulse {

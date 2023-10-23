@@ -7,11 +7,11 @@
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
       <names-in-auction-table
-        class="names-in-auction-panel__names-in-auction-table"
+        class="names-in-auction-panel__names-in-auction-table u-hidden-mobile"
         :names="inAuctionNames"/>
 
       <names-in-auction-table-condensed
-        class="names-in-auction-panel__names-in-auction-table-condensed"
+        class="u-hidden-desktop"
         :names="inAuctionNames"/>
     </paginated-content>
   </app-panel>
@@ -39,20 +39,7 @@ function loadNextNames() {
 </script>
 
 <style scoped>
-.names-in-auction-panel {
-  &__names-in-auction-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__names-in-auction-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
+.names-in-auction-panel__names-in-auction-table {
+  display: none;
 }
 </style>

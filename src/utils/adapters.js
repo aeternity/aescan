@@ -130,12 +130,35 @@ export function adaptDashboardStateChannels(stateChannels) {
   })
 }
 
+export function adaptAccountActivities(activities) {
+  const formattedData = activities.data.map(activity => {
+    return {
+      hash: activity.payload?.hash || activity.payload?.txHash ||
+        activity.payload?.refTxHash || activity.payload?.callTxHash,
+      type: activity.type,
+      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime),
+      height: activity.payload?.blockHeight || activity.height,
+      payload: activity.payload,
+      hintKey:
+        activity.payload?.tx
+          ? activity.payload.tx.type.charAt(0).toLowerCase() + activity.payload.tx.type.slice(1)
+          : null,
+    }
+  })
+
+  return {
+    next: activities.next,
+    data: formattedData,
+    prev: activities.prev,
+  }
+}
+
 export function adaptAccountNames(names) {
   const formattedData = names.data.map(name => {
     return {
       name: name.name,
       expirationHeight: name.info.expireHeight,
-      expires: DateTime.fromMillis(name.info.approximateExpireTime),
+      expiration: DateTime.fromMillis(name.info.approximateExpireTime),
       pointers: Object.values(name.info.pointers),
     }
   })
@@ -324,6 +347,7 @@ export function adaptContractDetails(
   contractCallsCount,
   contractCreationTx,
   contractType,
+  tokenDetails,
   contractAccountBalance,
 ) {
   return {
@@ -337,6 +361,7 @@ export function adaptContractDetails(
     contractAccountBalance,
     callsCount: contractCallsCount,
     contractType,
+    tokenDetails,
   }
 }
 
@@ -348,6 +373,8 @@ export function adaptContractEvents(events) {
         createdHeight: event.height,
         eventName: event.eventName,
         data: event.args,
+        args: event.args,
+        isDecoded: !!event.eventName,
         callTxHash: event.callTxHash,
       }
     })
@@ -384,6 +411,7 @@ export function adaptTokenEvents(events) {
         name: event.eventName || 'N/A',
         created: DateTime.fromMillis(event.blockTime),
         createdHeight: event.height,
+        isDecoded: !!event.eventName,
         args: event.args,
       }
     })
@@ -423,17 +451,6 @@ export function adaptListedTokens(tokens) {
       }
     })
 
-  const isMainnet = useRuntimeConfig().public.NETWORK_NAME.toLowerCase() === 'mainnet'
-
-  if (isMainnet && !formattedData.some(token => token.contractId === LAEX_CONTRACT_ID)) {
-    formattedData.unshift({
-      contractId: LAEX_CONTRACT_ID,
-      name: 'LÆXON',
-      symbol: 'LAEX',
-      isAe: false,
-    })
-  }
-
   return {
     next: null,
     data: formattedData,
@@ -447,6 +464,8 @@ export function adaptOracles(oracles) {
       id: oracle.oracle,
       registeredHeight: oracle.activeFrom,
       registered: DateTime.fromMillis(oracle.registerTime),
+      registeredHeight: oracle.activeFrom,
+      registered: formatBlockDiffAsDatetime(oracle.activeFrom, blockHeight),
       expirationHeight: oracle.expireHeight,
       expiration: DateTime.fromMillis(oracle.approximateExpireTime),
       queryFee: formatAettosToAe(oracle.queryFee),
@@ -483,9 +502,9 @@ export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
       queriedAt: DateTime.fromMillis(event.query.blockTime),
-      queriedAtHeight: event.query.height,
+      queriedHeight: event.query.height,
       respondedAt: DateTime.fromMillis(event.blockTime),
-      respondedAtHeight: event.height,
+      respondedHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,
       queryId: event.query.queryId,
@@ -558,10 +577,29 @@ export function adaptNamesResults(names) {
   }
 }
 
-export function adaptNftDetails(nft) {
+export function adaptNftTransfers(transfers) {
+  const formattedData = transfers.data
+    .map(transfer => {
+      return {
+        txHash: transfer.txHash,
+        time: DateTime.fromMillis(transfer.microTime),
+        height: transfer.blockHeight,
+        tokenId: transfer.tokenId,
+        recipient: transfer.recipient,
+        sender: transfer.sender,
+      }
+    })
+  return {
+    next: transfers.next,
+    data: formattedData,
+    prev: transfers.prev,
+  }
+}
+
+export function adaptNft(nft) {
   return {
     ...nft,
-    tokenLimit: formatTokenLimit(nft.extensions, nft.limits.tokenLimit),
-    templateLimit: formatTemplateLimit(nft.extensions, nft.limits.templateLimit),
+    tokenLimit: formatTokenLimit(nft.extensions, nft.limits?.tokenLimit),
+    templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
   }
 }

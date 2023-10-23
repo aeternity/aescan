@@ -1,23 +1,20 @@
 <template>
   <app-panel class="dashboard-state-channels-panel">
-    <panel-header
+    <dashboard-panel-header
       level="h3"
-      title="State Channels"
+      title="STATE CHANNELS"
       icon-name="state-channel"
       show-all-link="/state-channels">
-      State Channels
-
       <template #tooltip>
         {{ stateChannelsHints.stateChannel }}
       </template>
-    </panel-header>
-    <dashboard-state-channels-table class="dashboard-state-channels-panel__table"/>
-    <dashboard-state-channels-swiper class="dashboard-state-channels-panel__swiper"/>
+    </dashboard-panel-header>
+    <dashboard-state-channels-table class="u-hidden-mobile"/>
+    <dashboard-state-channels-swiper class="u-hidden-desktop"/>
   </app-panel>
 </template>
 <script setup>
 import AppPanel from '@/components/AppPanel'
-import PanelHeader from '@/components/PanelHeader'
 import DashboardStateChannelsSwiper from '@/components/DashboardStateChannelsSwiper'
 import DashboardStateChannelsTable from '@/components/DashboardStateChannelsTable'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
@@ -29,19 +26,6 @@ import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
   padding: var(--space-3) var(--space-1);
   @media (--desktop) {
     padding: var(--space-4);
-  }
-
-  &__swiper {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
   }
 }
 </style>

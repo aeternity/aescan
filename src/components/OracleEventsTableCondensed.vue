@@ -30,9 +30,11 @@
             </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
-            <response-button
-              :is-collapsed="!isOpened.includes(index)"
-              @click="toggle(index)"/>
+            <expand-button
+              :is-expanded="isExpanded.includes(index)"
+              @click="toggle(index)">
+              Response available
+            </expand-button>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
@@ -45,19 +47,16 @@
             </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
-            <app-link
-              :to="`/keyblocks/${event.queriedAtHeight}`">
-              {{ event.queriedAtHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="event.queriedAt"/>
+            <block-time-cell
+              :height="event.queriedHeight"
+              :datetime="event.queriedAt"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
           <th
             :class="[
               'oracle-events-table-condensed__header',
-              {'oracle-events-table-condensed__header--expanded': isOpened.includes(index)}]">
+              {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             <app-tooltip>
               Respond Tx
               <template #tooltip>
@@ -68,7 +67,7 @@
           <td
             :class="[
               'oracle-events-table-condensed__data',
-              {'oracle-events-table-condensed__data--expanded': isOpened.includes(index)}]">
+              {'oracle-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
@@ -84,16 +83,13 @@
             </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
-            <app-link
-              :to="`/keyblocks/${event.respondedAtHeight}`">
-              {{ event.respondedAtHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="event.respondedAt"/>
+            <block-time-cell
+              :height="event.respondedHeight"
+              :datetime="event.respondedAt"/>
           </td>
         </tr>
         <tr
-          v-if="isOpened.includes(index)"
+          v-if="isExpanded.includes(index)"
           class="oracle-events-table-condensed__row">
           <td colspan="5">
             <oracle-events-query-panel :event="event"/>
@@ -114,18 +110,18 @@ const props = defineProps({
     required: true,
   },
 })
-const isOpened = ref([])
+const isExpanded = ref([])
 
 watch(() => props.oracleEvents, () => {
-  isOpened.value = []
+  isExpanded.value = []
 })
 
 function toggle(id) {
-  const index = isOpened.value.indexOf(id)
+  const index = isExpanded.value.indexOf(id)
   if (index > -1) {
-    isOpened.value.splice(index, 1)
+    isExpanded.value.splice(index, 1)
   } else {
-    isOpened.value.push(id)
+    isExpanded.value.push(id)
   }
 }
 </script>

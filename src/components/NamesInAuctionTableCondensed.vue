@@ -33,13 +33,9 @@
             </app-tooltip>
           </th>
           <td class="names-in-auction-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${name.expirationHeight}`">
-                {{ name.expirationHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="name.expiration"/>
+            <block-time-cell
+              :height="name.expirationHeight"
+              :datetime="name.expiration"/>
           </td>
         </tr>
         <tr class="names-in-auction-table-condensed__row">
@@ -84,7 +80,6 @@ import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { namesHints } from '@/utils/hints/namesHints'
 
 defineProps({

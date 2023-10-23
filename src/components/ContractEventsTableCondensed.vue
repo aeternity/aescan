@@ -1,7 +1,7 @@
 <template>
   <div>
     <table
-      v-for="event in contractEvents.data"
+      v-for="(event, index) in contractEvents.data"
       :key="event.callTxHash"
       class="contract-events-table-condensed__table">
       <tr class="contract-events-table-condensed__row">
@@ -29,13 +29,9 @@
           </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${event.createdHeight}`">
-              {{ event.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="event.created"/>
+          <block-time-cell
+            :height="event.createdHeight"
+            :datetime="event.created"/>
         </td>
       </tr>
       <tr class="contract-events-table-condensed__row">
@@ -52,7 +48,10 @@
         </td>
       </tr>
       <tr class="contract-events-table-condensed__row">
-        <th class="contract-events-table-condensed__header">
+        <th
+          :class="[
+            'contract-events-table-condensed__header',
+            {'contract-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
           <app-tooltip>
             Data
             <template #tooltip>
@@ -60,11 +59,30 @@
             </template>
           </app-tooltip>
         </th>
-        <td class="contract-events-table-condensed__data">
-          <copy-chip
-            class="contract-events-table-panel__copy-chip"
-            :clipboard-text="removeLineBreaks(event.data)"
-            :label="formatEllipseHash(removeLineBreaks(event.data))"/>
+        <td
+          v-if="event.isDecoded"
+          class="contract-events-table-condensed__cell">
+          <contract-event-cell
+            :event="event"
+            :contract-details="contractDetails"/>
+        </td>
+        <td
+          v-else
+          :class="[
+            'contract-events-table-condensed__data',
+            {'contract-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
+          <expand-button
+            :is-expanded="isExpanded.includes(index)"
+            @click="toggle(index)">
+            {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
+          </expand-button>
+        </td>
+      </tr>
+      <tr
+        v-if="isExpanded.includes(index)"
+        class="contract-events-table-condensed__row">
+        <td colspan="5">
+          <event-data-panel :args="event.args"/>
         </td>
       </tr>
     </table>
@@ -73,20 +91,33 @@
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
-import { formatEllipseHash } from '@/utils/format'
-import CopyChip from '@/components/CopyChip'
+import ExpandButton from '@/components/ExpandButton'
 
-const removeLineBreaks = str => {
-  return str.toString().replaceAll('\n', '')
-}
-
-defineProps({
+const props = defineProps({
+  contractDetails: {
+    type: Object,
+    required: true,
+  },
   contractEvents: {
     type: Object,
     required: true,
   },
 })
+
+const isExpanded = ref([])
+
+watch(() => props.contractEvents, () => {
+  isExpanded.value = []
+})
+
+function toggle(id) {
+  const index = isExpanded.value.indexOf(id)
+  if (index > -1) {
+    isExpanded.value.splice(index, 1)
+  } else {
+    isExpanded.value.push(id)
+  }
+}
 </script>
 
 <style scoped>
@@ -98,6 +129,10 @@ defineProps({
 
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    &--expanded {
+      border-bottom: 0;
+    }
   }
 
   &__row:last-of-type &__header {
@@ -106,6 +141,10 @@ defineProps({
 
   &__data {
     text-align: right;
+
+    &--expanded {
+      border-bottom: 0;
+    }
   }
 
   &__cell {

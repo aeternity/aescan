@@ -5,13 +5,14 @@
 
   <page-header>
     Transactions
-
     <template #tooltip>
       {{ transactionsHints.transaction }}
     </template>
   </page-header>
-
-  <transactions-panel v-if="!isLoading"/>
+  <template v-if="!isLoading">
+    <transactions-chart-panel class="transactions-panel"/>
+    <transactions-panel class="transactions-panel"/>
+  </template>
   <loader-panel v-else/>
 </template>
 
@@ -19,6 +20,20 @@
 import TransactionsPanel from '@/components/TransactionsPanel'
 import PageHeader from '@/components/PageHeader'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
+import TransactionsChartPanel from '@/components/TransactionsChartPanel'
 
 const { isLoading } = useLoading()
 </script>
+
+<style scoped>
+.transactions-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+</style>

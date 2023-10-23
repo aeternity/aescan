@@ -9,48 +9,68 @@
           </hint-tooltip>
         </th>
         <th>
-          Name
-          <hint-tooltip>
-            {{ tokensHints.eventName }}
-          </hint-tooltip>
-        </th>
-        <th>
           Date
           <hint-tooltip>
             {{ tokensHints.date }}
           </hint-tooltip>
         </th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ tokensHints.eventName }}
+          </hint-tooltip>
+        </th>
+
         <th>Data</th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        v-for="event in tokenEvents.data"
+      <template
+        v-for="(event, index) in tokenEvents.data"
         :key="event.hash">
-        <td class="tokens-event-table__hash">
-          <value-hash-ellipsed
-            :hash="event.hash"
-            :link-to="`/transactions/${event.hash}`"/>
-        </td>
-        <td>
-          {{ event.name }}
-        </td>
-        <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${event.createdHeight}`">
-              {{ event.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="event.created"/>
-        </td>
-        <td>
-          <token-events-data-cell
-            :name="event.name"
-            :data="event.data"
-            :args="event.args"/>
-        </td>
-      </tr>
+        <tr>
+          <td
+            class="tokens-event-table__hash"
+            :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            <value-hash-ellipsed
+              :hash="event.hash"
+              :link-to="`/transactions/${event.hash}`"/>
+          </td>
+          <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            <block-time-cell
+              :height="event.createdHeight"
+              :datetime="event.created"/>
+          </td>
+          <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            {{ event.name }}
+          </td>
+          <td v-if="event.isDecoded">
+            <token-events-data-cell
+              :name="event.name"
+              :data="event.data"
+              :args="event.args"/>
+          </td>
+          <td
+            v-else
+            :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            <expand-button
+              :is-expanded="isExpanded.includes(index)"
+              @click="toggle(index)">
+              {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguments' }}
+            </expand-button>
+          </td>
+        </tr>
+        <tr v-if="isExpanded.includes(index)">
+          <td
+            colspan="4"
+            :class="[
+              'token-events-table__arguments',
+              {'token-events-table__arguments--expanded': isExpanded.includes(index)}
+            ]">
+            <event-data-panel :args="event.args"/>
+          </td>
+        </tr>
+      </template>
     </tbody>
   </table>
 </template>
@@ -59,24 +79,48 @@
 
 import { tokensHints } from '@/utils/hints/tokensHints'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
+import EventDataPanel from '@/components/EventDataPanel'
+import ExpandButton from '@/components/ExpandButton'
 
-defineProps({
+const props = defineProps({
   tokenEvents: {
     type: Object,
     required: true,
   },
 })
+
+const isExpanded = ref([])
+
+watch(() => props.tokenEvents, () => {
+  isExpanded.value = []
+})
+
+function toggle(id) {
+  const index = isExpanded.value.indexOf(id)
+  if (index > -1) {
+    isExpanded.value.splice(index, 1)
+  } else {
+    isExpanded.value.push(id)
+  }
+}
 </script>
 
 <style scoped>
 .token-events-table {
+  &__data--expanded {
+    border-bottom: 0;
+  }
+
   &__hash {
     white-space: nowrap;
   }
 
-  &__args {
-    word-wrap: anywhere;
-    max-width: 450px;
+  &__arguments {
+    border-top: 0;
+
+    &--expanded {
+      padding-bottom: 0;
+    }
   }
 }
 </style>

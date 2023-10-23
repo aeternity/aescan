@@ -21,7 +21,9 @@
       class="contract-details__panel"
       :contract-details="contractDetails"/>
 
-    <app-tabs v-if="contractDetails">
+    <app-tabs
+      v-if="contractDetails"
+      v-model="activeTabIndex">
       <app-tab title="Call Transactions">
         <contract-call-transactions-panel/>
       </app-tab>
@@ -35,6 +37,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useRouter } from '#app'
 import ContractDetailsPanel from '@/components/ContractDetailsPanel'
 import PageHeader from '@/components/PageHeader'
 import { useContractDetailsStore } from '@/stores/contractDetails'
@@ -49,6 +52,35 @@ const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
+const { push, replace } = useRouter()
+
+const TAB_KEYS = ['call-transactions', 'events']
+
+const activeTabIndex = computed({
+  get() {
+    const { type: activeTabName } = route.query
+
+    if (activeTabName === undefined) {
+      return 0
+    }
+
+    return TAB_KEYS.indexOf(activeTabName)
+  },
+  set(index) {
+    const newRoute = {
+      query: {
+        type: TAB_KEYS[index],
+      },
+    }
+
+    if (activeTabIndex.value === index) {
+      // if navigating back
+      return replace(newRoute)
+    }
+
+    return push(newRoute)
+  },
+})
 
 const { isLoading } = useLoading()
 
@@ -67,7 +99,7 @@ if (error.value) {
 if (process.client && !error.value) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
-    queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}`,
+    queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
 }
 </script>

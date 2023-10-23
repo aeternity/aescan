@@ -28,34 +28,30 @@
         :key="auction.name">
         <td>
           <div>
-            <span class="auctions-table__label">Name:</span>
+            <span class="dashboard-auctions-table__label">Name:</span>
             <app-link
               :to="`/names/${auction.name}`"
-              class="auctions-table__chain-name u-ellipsis">
+              class="dashboard-auctions-table__chain-name u-ellipsis">
               {{ auction.name }}
             </app-link>
           </div>
           <div>
-            <span class="auctions-table__label">Highest Bidder: </span>
+            <span class="dashboard-auctions-table__label">Highest Bidder: </span>
             <value-hash-ellipsed
               :link-to="`/accounts/${auction.highestBidder}`"
               :hash="auction.highestBidder"/>
           </div>
         </td>
         <td>
-          <div class="auctions-table__value">
+          <div class="dashboard-auctions-table__value">
             {{ formatAePrice(auction.bid) }}
           </div>
         </td>
         <td>
-          <div class="auctions-table__blocks">
-            <app-link
-              :to="`/keyblocks/${auction.expirationHeight}`">
-              {{ auction.expirationHeight }}
-            </app-link>
-          </div>
-          <div>
-            <datetime-label :datetime="auction.expiration"/>
+          <div class="dashboard-auctions-table__blocks">
+            <block-time-cell
+              :height="auction.expirationHeight"
+              :datetime="auction.expiration"/>
           </div>
         </td>
       </tr>
@@ -69,13 +65,12 @@ import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>
-.auctions-table {
+.dashboard-auctions-table {
   &__chain-name {
     display: inline-block;
     width: 160px;

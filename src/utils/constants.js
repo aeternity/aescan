@@ -27,6 +27,10 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const ORACLE_STATES_OPTIONS = [
+  { stateQuery: 'active', label: 'Active' },
+  { stateQuery: 'inactive', label: 'Inactive' },
+]
 export const TOKEN_TYPES_OPTIONS = [
   { label: 'Listed', key: 'listedTokens' },
   { label: 'All Tokens', key: 'allTokens' },
@@ -72,4 +76,20 @@ export const TOKEN_SUPPLY_ACI = [
       payable: false,
     },
   },
+]
+export const SWAP_CONTRACT_CALLS = [
+  'swap_exact_tokens_for_tokens',
+  'swap_tokens_for_exact_tokens',
+  'swap_exact_ae_for_tokens',
+  'swap_tokens_for_exact_ae',
+  'swap_exact_tokens_for_ae',
+  'swap_ae_for_exact_tokens',
+]
+export const ADD_LIQUIDITY_CONTRACT_CALLS = [
+  'add_liquidity',
+  'add_liquidity_ae',
+]
+export const REMOVE_LIQUIDITY_CONTRACT_CALLS = [
+  'remove_liquidity',
+  'remove_liquidity_ae',
 ]

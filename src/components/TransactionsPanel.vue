@@ -11,12 +11,12 @@
       <template #header>
         <transactions-select v-model="selectedTxType"/>
       </template>
-      <transactions-table-condensed
-        :transactions="transactions"
-        class="transactions-panel__table-condensed"/>
       <transactions-table
         :transactions="transactions"
-        class="transactions-panel__table"/>
+        class="u-hidden-mobile"/>
+      <transactions-table-condensed
+        :transactions="transactions"
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -55,12 +55,12 @@ async function loadNextTransactions() {
   await fetchTransactions(transactions.value.next)
 }
 
-const loadTransactions = () => {
+async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
-  fetchTransactions(`/v2/txs?limit=${limit.value}${txType ? '&type=' + txType : ''}`)
-  fetchTransactionsCount(txType)
+  await fetchTransactions(`/v2/txs?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
+  await fetchTransactionsCount(selectedTxType.value.typeQuery)
   pageIndex.value = 1
 }
 
@@ -80,20 +80,3 @@ if (process.client) {
   loadTransactions()
 }
 </script>
-
-<style scoped>
-.transactions-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

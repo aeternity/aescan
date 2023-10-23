@@ -3,7 +3,6 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="accountTransactions"
-      :total-count="accountTransactionsCount"
       :limit="limit"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
@@ -13,11 +12,11 @@
       </template>
 
       <account-transactions-table
-        class="account-transactions-panel__account-transactions-table"
+        class="account-transactions-panel__account-transactions-table u-hidden-mobile"
         :account-transactions="accountTransactions"/>
 
       <account-transactions-table-condensed
-        class="account-transactions-panel__account-transactions-table-condensed"
+        class="u-hidden-desktop"
         :account-transactions="accountTransactions"/>
     </paginated-content>
   </app-panel>
@@ -35,18 +34,13 @@ import PaginatedContent from '@/components/PaginatedContent'
 
 const route = useRoute()
 const accountStore = useAccountStore()
-const { fetchAccountTransactions, fetchAccountTransactionsCount } = accountStore
-const { accountTransactions, accountTransactionsCount } = storeToRefs(accountStore)
+const { fetchAccountTransactions } = accountStore
+const { accountTransactions } = storeToRefs(accountStore)
 
 const selectedTxType = ref({ typeQuery: null, label: 'All types' })
 const pageIndex = ref(1)
 
 const limit = computed(() => isDesktop() ? 10 : 3)
-
-await useAsyncData(async() => {
-  await fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
-  return true
-})
 
 watch(selectedTxType, () => {
   fetchAccountTransactions({
@@ -54,7 +48,6 @@ watch(selectedTxType, () => {
     limit: limit.value,
     type: selectedTxType.value.typeQuery,
   })
-  fetchAccountTransactionsCount(route.params.id, selectedTxType.value.typeQuery)
   pageIndex.value = 1
 })
 
@@ -72,20 +65,9 @@ function loadNextTransactions() {
 </script>
 
 <style scoped>
-.account-transactions-panel {
-  &__account-transactions-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__account-transactions-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
+.account-transactions-panel__account-transactions-table {
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
   }
 }
 </style>

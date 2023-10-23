@@ -32,13 +32,9 @@
             </app-tooltip>
           </th>
           <td class="account-names-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${name.expirationHeight}`">
-                {{ name.expirationHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="name.expires"/>
+            <block-time-cell
+              :height="name.expirationHeight"
+              :datetime="name.expiration"/>
           </td>
         </tr>
         <tr class="account-names-table-condensed__row">
@@ -73,7 +69,6 @@
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { accountHints } from '@/utils/hints/accountHints'
 
 defineProps({

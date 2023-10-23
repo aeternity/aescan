@@ -9,11 +9,11 @@
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <contract-call-transactions-table
-        class="contract-call-transactions-panel__table"
+        class="u-hidden-mobile"
         :contract-call-transactions="contractCallTransactions"/>
 
       <contract-call-transactions-table-condensed
-        class="contract-call-transactions-panel__table-condensed"
+        class="u-hidden-desktop"
         :contract-call-transactions="contractCallTransactions"/>
     </paginated-content>
   </app-panel>
@@ -53,20 +53,3 @@ if (process.client) {
   })
 }
 </script>
-
-<style scoped>
-.contract-call-transactions-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

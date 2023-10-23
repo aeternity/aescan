@@ -28,37 +28,33 @@
         :key="name.name">
         <td>
           <div>
-            <span class="names-table__label">Name:</span>
+            <span class="dashboard-names-table__label">Name:</span>
             <app-link
               :to="`/names/${name.name}`"
-              class="names-table__chain-name u-ellipsis">
+              class="dashboard-names-table__chain-name u-ellipsis">
               {{ name.name }}
             </app-link>
           </div>
           <div>
-            <span class="names-table__label">Claimed by: </span>
+            <span class="dashboard-names-table__label">Claimed by: </span>
             <value-hash-ellipsed
               :link-to="`/accounts/${name.address}`"
               :hash="name.address"/>
           </div>
         </td>
         <td>
-          <div class="names-table__label">
+          <div class="dashboard-names-table__label">
             {{ name.isAuction ? 'Auction' : 'Fixed price' }}
           </div>
-          <div class="names-table__name-price">
+          <div class="dashboard-names-table__name-price">
             {{ formatNullable(formatAePrice(name.price)) }}
           </div>
         </td>
         <td>
-          <div class="names-table__blocks">
-            <app-link
-              :to="`/keyblocks/${name.activatedHeight}`">
-              {{ name.activatedHeight }}
-            </app-link>
-          </div>
-          <div>
-            <datetime-label :datetime="name.activated"/>
+          <div class="dashboard-names-table__blocks">
+            <block-time-cell
+              :height="name.activatedHeight"
+              :datetime="name.activated"/>
           </div>
         </td>
       </tr>
@@ -72,13 +68,12 @@ import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>
-.names-table {
+.dashboard-names-table {
   &__chain-name {
     display: inline-block;
     width: 160px;

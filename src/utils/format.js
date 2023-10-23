@@ -57,6 +57,14 @@ export function formatAePrice(price, maxDigits = 8) {
   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} AE`
 }
 
+export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
+  if (isNaN(tokenAmount) || tokenAmount === null) {
+    return tokenAmount
+  }
+
+  return (new BigNumber(tokenAmount)).dividedBy(10 ** numberOfDecimals).toNumber()
+}
+
 export function formatAettosToAe(aettosAmount) {
   if (isNaN(aettosAmount) || aettosAmount === null) {
     return aettosAmount

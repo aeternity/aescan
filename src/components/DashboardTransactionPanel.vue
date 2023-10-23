@@ -1,8 +1,8 @@
 <template>
   <app-panel class="dashboard-transactions-panel">
-    <panel-header
+    <dashboard-panel-header
       level="h5"
-      class="dashboard-transactions-panel__panel-header"
+      class="dashboard-transactions-panel__dashboard-panel-header"
       title="TRANSACTIONS"
       :show-all-link="microblockDetailsLink"
       icon-name="transactions">
@@ -16,7 +16,7 @@
           transactions of selected microblock
         </div>
       </template>
-    </panel-header>
+    </dashboard-panel-header>
 
     <div class="dashboard-transactions-panel__summary">
       Displaying
@@ -26,19 +26,18 @@
 
     <dashboard-microblock-transactions-table
       v-if="selectedMicroblockTransactions"
-      class="dashboard-transactions-panel__transactions-table"
+      class="u-hidden-mobile"
       :transactions="selectedMicroblockTransactions"/>
 
     <transactions-swiper
       v-if="selectedMicroblockTransactions"
-      class="dashboard-transactions-panel__transactions-swiper"
+      class="u-hidden-desktop"
       :transactions="selectedMicroblockTransactions"/>
   </app-panel>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
-import PanelHeader from '@/components/PanelHeader'
 import TransactionsSwiper from '@/components/TransactionsSwiper'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
@@ -62,21 +61,8 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
     padding: var(--space-3);
   }
 
-  &__panel-header {
+  &__dashboard-panel-header {
     margin-bottom: var(--space-3);
-  }
-
-  &__transactions-swiper {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
-  &__transactions-table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
   }
 
   &__summary {

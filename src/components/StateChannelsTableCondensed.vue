@@ -93,15 +93,9 @@
             </app-tooltip>
           </th>
           <td class="state-channels-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${channel.lastUpdatedHeight}`">
-                {{ channel.lastUpdatedHeight }}
-              </app-link>
-            </div>
-            <div>
-              <datetime-label :datetime="channel.lastUpdated"/>
-            </div>
+            <block-time-cell
+              :height="channel.updatedHeight"
+              :datetime="channel.updated"/>
           </td>
         </tr>
         <tr class="state-channels-table-condensed__row">

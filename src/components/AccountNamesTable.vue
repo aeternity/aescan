@@ -32,13 +32,9 @@
           </app-link>
         </td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${name.expirationHeight}`">
-              {{ name.expirationHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="name.expires"/>
+          <block-time-cell
+            :height="name.expirationHeight"
+            :datetime="name.expiration"/>
         </td>
         <td>
           <value-hash-ellipsed
@@ -55,7 +51,6 @@
 <script setup>
 import AppLink from '@/components/AppLink'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { accountHints } from '@/utils/hints/accountHints'
 import HintTooltip from '@/components/HintTooltip'
 

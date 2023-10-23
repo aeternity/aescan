@@ -76,7 +76,7 @@
           </div>
         </div>
       </div>
-      <hr class="footer__divider">
+      <hr class="footer__divider u-hidden-mobile">
       <footer-socials/>
     </div>
   </footer>
@@ -221,11 +221,8 @@ const links = {
   }
 
   &__divider {
-    display: none;
-
     @media (--desktop) {
       margin: 80px 0;
-      display: revert;
     }
   }
 }

@@ -4,20 +4,51 @@
       DETAILS
     </template>
     <template #header>
-      <div class="contract-details-panel__hash">
+      <div class="u-hidden-mobile">
         <copy-chip :label="contractDetails.id"/>
       </div>
-      <div class="contract-details-panel__hash-ellipse">
+      <div class="u-hidden-desktop">
         <copy-chip
           :label="formatEllipseHash(contractDetails.id)"
           :clipboard-text="contractDetails.id"/>
       </div>
-      <app-chip v-if="contractDetails?.contractType">
+      <app-chip
+        v-if="contractDetails?.contractType"
+        size="sm">
         {{ contractDetails.contractType }}
       </app-chip>
     </template>
     <table>
       <tbody>
+        <tr
+          v-if="contractDetails.contractType"
+          class="contract-details-panel__row">
+          <th class="contract-details-panel__table-header">
+            Token
+            <hint-tooltip>
+              {{ contractsHints.token }}
+            </hint-tooltip>
+          </th>
+          <td class="contract-details-panel__data">
+            <div
+              v-if="contractDetails.contractType === 'AEX-9'"
+              class="contract-details-panel__token-container">
+              <app-link
+                :to="`/tokens/${contractDetails.id}`"
+                class="contract-details-panel__token">
+                <token-symbol-icon
+                  :contract-id="contractDetails.id"
+                  class="contract-details-panel__icon"/>
+                {{ contractDetails.tokenDetails.symbol }}
+              </app-link>
+            </div>
+            <app-link
+              v-if="contractDetails.contractType === 'AEX-141'"
+              :to="`/nfts/${contractDetails.id}`">
+              {{ contractDetails.tokenDetails.name }}
+            </app-link>
+          </td>
+        </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Create Transaction
@@ -27,10 +58,10 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
-              <span class="contract-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ contractDetails.createTransactionHash }}
               </span>
-              <span class="contract-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(contractDetails.createTransactionHash) }}
               </span>
             </app-link>
@@ -63,10 +94,10 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
-              <span class="contract-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ contractDetails.createdBy }}
               </span>
-              <span class="contract-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(contractDetails.createdBy) }}
               </span>
             </app-link>
@@ -96,10 +127,10 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
-              <span class="contract-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ contractDetails.contractAccount }}
               </span>
-              <span class="contract-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(contractDetails.contractAccount) }}
               </span>
             </app-link>
@@ -170,6 +201,7 @@ import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/form
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '@/components/HintTooltip'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 
@@ -211,7 +243,25 @@ const contractMiddlewareUrl = computed(() =>
     }
   }
 
+  &__token-container {
+    height: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__token {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
+  }
+
   &__container {
+    height: 24px;
     display: inline-flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -221,19 +271,6 @@ const contractMiddlewareUrl = computed(() =>
     @media (--desktop) {
       justify-content: flex-end;
       margin-bottom: 0;
-    }
-  }
-
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
     }
   }
 }

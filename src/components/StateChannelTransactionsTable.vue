@@ -18,13 +18,9 @@
             :link-to="`/transactions/${transaction.hash}`"/>
         </td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${transaction.createdHeight}`">
-              {{ transaction.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="transaction.created"/>
+          <block-time-cell
+            :height="transaction.createdHeight"
+            :datetime="transaction.created"/>
         </td>
         <td>
           {{ transaction.type }}
@@ -41,7 +37,6 @@
 
 <script setup>
 import TransactionCell from '@/components/TransactionCell'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

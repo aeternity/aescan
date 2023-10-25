@@ -87,7 +87,7 @@ import ComingSoonTooltip from '@/components/ComingSoonTooltip'
     color: var(--color-midnight);
     display: block;
     padding: var(--space-3) 0;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 24px;
     letter-spacing: 0.002em;
 

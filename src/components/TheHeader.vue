@@ -36,13 +36,9 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
-      <div v-if="balance">
-        <!--        todo better condition-->
-        <app-identicon :id="aeSdk.address"/>
-        <value-hash-ellipsed
-          :hash="aeSdk.address"
-          link-to="/wallet"/>
-      </div>
+      <the-wallet-account
+        v-if="balance"
+        :sdk="aeSdk"/>
       <app-link
         v-else
         to="/wallet">

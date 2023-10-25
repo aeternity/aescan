@@ -36,6 +36,18 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
+      <div v-if="balance">
+        <!--        todo better condition-->
+        <app-identicon :id="aeSdk.address"/>
+        <value-hash-ellipsed
+          :hash="aeSdk.address"
+          link-to="/wallet"/>
+      </div>
+      <app-link
+        v-else
+        to="/wallet">
+        wallet
+      </app-link>
     </div>
     <div
       v-if="isSyncing"
@@ -46,8 +58,20 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
+import TheNavigation from '@/components/TheNavigation'
+import AppLink from '@/components/AppLink'
+import AppIcon from '@/components/AppIcon'
 import { useStatus } from '@/stores/status'
+import NetworkSelect from '@/components/NetworkSelect'
+import { useWalletStore } from '~/stores/wallet'
 
+const walletStore = useWalletStore()
+
+const {
+  aeSdk,
+  balance,
+} = storeToRefs(walletStore)
 const route = useRoute()
 const isNavigationOpen = ref(false)
 

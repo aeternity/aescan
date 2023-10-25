@@ -1,13 +1,16 @@
 <template>
-  <div class="">
-    Wallet
-    <wallet-connect-button/>
-    <br>
-    {{ walletInfo }}
-    <br>
-    {{ balance }}
-    <br>
-  </div>
+  <app-panel class="">
+    <div v-if="balance">
+      <br>
+      {{ walletInfo }}
+      <br>
+      {{ balance }}
+      <br>
+    </div>
+    <div v-else>
+      <wallet-connect-button/>
+    </div>
+  </app-panel>
 </template>
 
 <script setup>

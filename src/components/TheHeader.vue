@@ -37,13 +37,9 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isMobileMenuOpen }]"/>
-      <div v-if="balance">
-        <!--        todo better condition-->
-        <app-identicon :id="aeSdk.address"/>
-        <value-hash-ellipsed
-          :hash="aeSdk.address"
-          link-to="/wallet"/>
-      </div>
+      <the-wallet-account
+        v-if="balance"
+        :sdk="aeSdk"/>
       <app-link
         v-else
         to="/wallet">
@@ -91,6 +87,7 @@ import { MENU_HASH } from '@/utils/constants'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import NetworkSelect from '@/components/NetworkSelect'
 import { useWalletStore } from '~/stores/wallet'
+import TheWalletAccount from '~/components/TheWalletAccount'
 
 const walletStore = useWalletStore()
 

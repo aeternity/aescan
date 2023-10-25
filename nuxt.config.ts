@@ -32,6 +32,7 @@ export default defineNuxtConfig({
       WEBSOCKET_URL: process.env.WEBSOCKET_URL,
       DEX_BACKEND_URL: process.env.DEX_BACKEND_URL,
       NETWORK_NAME: process.env.NETWORK_NAME,
+      NETWORK_ID: process.env.NETWORK_ID,
       ALTERNATIVE_NETWORK_URL: process.env.ALTERNATIVE_NETWORK_URL,
       ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,
       AE_TOKEN_ID: process.env.AE_TOKEN_ID,
@@ -39,6 +40,7 @@ export default defineNuxtConfig({
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
     },
   },
+
   postcss: {
     plugins: {
       autoprefixer: {},

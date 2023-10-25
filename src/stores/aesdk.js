@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { Node, AeSdk } from '@aeternity/aepp-sdk'
+import { AeSdk, Node } from '@aeternity/aepp-sdk'
 
 export const useAesdk = defineStore('aesdk', () => {
   const { NODE_URL } = useRuntimeConfig().public

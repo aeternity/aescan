@@ -156,5 +156,32 @@ function updateIsDesktopResolution() {
     display: flex;
     align-items: center;
   }
+
+  &__link {
+    color: var(--color-midnight);
+    display: block;
+    padding: var(--space-3) 0;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 0.002em;
+
+    @media (--desktop) {
+      padding: 0;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--disabled {
+      color: var(--color-midnight-35);
+      cursor: default;
+      pointer-events: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
 </style>

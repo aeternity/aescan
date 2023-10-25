@@ -81,6 +81,7 @@ import { MENU_HASH } from '@/utils/constants'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import NetworkSelect from '@/components/NetworkSelect'
 import { useWalletStore } from '~/stores/wallet'
+import TheWalletAccount from '~/components/TheWalletAccount'
 
 const walletStore = useWalletStore()
 

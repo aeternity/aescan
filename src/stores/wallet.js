@@ -1,15 +1,18 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from '@aeternity/aepp-sdk'
+import { AE_AMOUNT_FORMATS, AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from '@aeternity/aepp-sdk'
 
 export const useWalletStore = defineStore('wallet', () => {
   const { NODE_URL, NETWORK_ID } = useRuntimeConfig().public
 
+  const walletInfo = ref(null)
   const aeSdk = ref(null)
   const detectedWallets = ref(null)
   const status = ref(null)
 
   async function initWallet() {
+    // todo reuse instance
+    const node = new Node(NODE_URL)
     try {
       const aeSdkOptions = {
         nodes: [{
@@ -19,6 +22,8 @@ export const useWalletStore = defineStore('wallet', () => {
         compilerUrl: 'https://compiler.aepps.com',
       }
 
+      // connect to Superhero Wallet
+      // AeSdkAepp instance can't be in deep reactive https://stackoverflow.com/a/69010240
       aeSdk.value = shallowReactive(new AeSdkAepp({
         name: 'æScan',
         ...aeSdkOptions,
@@ -73,6 +78,12 @@ export const useWalletStore = defineStore('wallet', () => {
       disconnect()
       status.value = 'denied'
     }
+
+  // todo infra envs
+  async function fetchAccountInfo() {
+    balance.value = await aeSdk.value.getBalance(aeSdk.value.address, {
+      format: AE_AMOUNT_FORMATS.AE,
+    })
   }
 
   function disconnect() {

@@ -161,7 +161,7 @@ function updateIsDesktopResolution() {
     color: var(--color-midnight);
     display: block;
     padding: var(--space-3) 0;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 24px;
     letter-spacing: 0.002em;
 

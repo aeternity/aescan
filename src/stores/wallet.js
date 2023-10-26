@@ -9,6 +9,8 @@ export const useWalletStore = defineStore('wallet', () => {
   const aeSdk = ref(null)
   const detectedWallets = ref(null)
   const status = ref(null)
+  const foundWallets = ref(null)
+  const status = ref(null)
 
   async function initWallet() {
     // todo reuse instance
@@ -22,8 +24,6 @@ export const useWalletStore = defineStore('wallet', () => {
         compilerUrl: 'https://compiler.aepps.com',
       }
 
-      // connect to Superhero Wallet
-      // AeSdkAepp instance can't be in deep reactive https://stackoverflow.com/a/69010240
       aeSdk.value = shallowReactive(new AeSdkAepp({
         name: 'æScan',
         ...aeSdkOptions,

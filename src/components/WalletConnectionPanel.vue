@@ -54,6 +54,7 @@
 </template>
 
 <script setup>
+// todo fix imports
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '@/stores/wallet'
 import AppButton from '@/components/AppButton'
@@ -95,7 +96,6 @@ const title = computed(() => {
       }
     }
   }
-
 
   &__loader-indicator {
     margin: var(--space-3) 0;

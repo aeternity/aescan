@@ -1,20 +1,25 @@
 <template>
-  <app-panel>
-    <br>
-    {{ walletInfo }}
-    <br>
-    {{ balance }}
-    <br>
-  </app-panel>
+  <account-details-panel
+    v-if="accountDetails"
+    class="account__account-details-panel"
+    :account-details="accountDetails"/>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '~/stores/wallet'
+import { useAccountStore } from '@/stores/accountDetails'
+import AccountDetailsPanel from '@/components/AccountDetailsPanel'
 
 const walletStore = useWalletStore()
 
 const {
-  walletInfo,
-  balance,
+  aeSdk,
 } = storeToRefs(walletStore)
+
+const accountStore = useAccountStore()
+const { accountDetails } = storeToRefs(accountStore)
+const { fetchAccount } = accountStore
+
+fetchAccount(aeSdk.value.address)
+
 </script>

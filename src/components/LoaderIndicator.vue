@@ -5,12 +5,20 @@
       alt="loading"
       src="@/assets/loader.svg"
       height="47">
-    <div>Loading</div>
+    <div>{{ label }}</div>
   </div>
 </template>
 
-<style scoped>
+<script setup>
+defineProps({
+  label: {
+    type: String,
+    default: 'Loading',
+  },
+})
+</script>
 
+<style scoped>
 .loader-indicator {
   display: flex;
   flex-direction: column;

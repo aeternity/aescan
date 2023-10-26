@@ -8,6 +8,8 @@ export const useWalletStore = defineStore('wallet', () => {
   const walletInfo = ref(null)
   const aeSdk = ref(null)
   const balance = ref(null)
+  const foundWallets = ref(null)
+  const status = ref(null)
 
   async function initWallet() {
     // todo reuse instance
@@ -20,8 +22,6 @@ export const useWalletStore = defineStore('wallet', () => {
         compilerUrl: 'https://compiler.aepps.com',
       }
 
-      // connect to Superhero Wallet
-      // AeSdkAepp instance can't be in deep reactive https://stackoverflow.com/a/69010240
       aeSdk.value = shallowReactive(new AeSdkAepp({
         name: 'AEPP',
         ...aeSdkOptions,
@@ -33,24 +33,37 @@ export const useWalletStore = defineStore('wallet', () => {
           await fetchAccountInfo()
         },
       }))
-      await scanForWallets()
+      await connect()
     } catch (error) {
       console.log('failed')
       throw error
     }
   }
 
-  async function scanForWallets() {
-    const foundWallet = await new Promise(resolve => {
+  async function scanWallets() {
+    status.value = 'scanning'
+    foundWallets.value = await new Promise(resolve => {
+      const timeout = setTimeout(() => {
+        status.value = 'not installed'
+
+        resolve(undefined)
+      }, 10000)
+
       const handleWallets = ({ newWallet }) => {
+        console.log('newWallet', newWallet)
+        status.value = 'found'
+        clearTimeout(timeout)
         stopScan()
         resolve(newWallet)
       }
       const scannerConnection = new BrowserWindowMessageConnection()
       const stopScan = walletDetector(scannerConnection, handleWallets)
     })
+  }
 
-    walletInfo.value = await aeSdk.value.connectToWallet(foundWallet.getConnection())
+  async function connect() {
+    walletInfo.value = await aeSdk.value.connectToWallet(foundWallets.value.getConnection())
+    status.value = 'connected'
     await aeSdk.value.subscribeAddress('subscribe', 'current')
     await fetchAccountInfo()
   }
@@ -70,6 +83,9 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   return {
+    foundWallets,
+    status,
+    scanWallets,
     initWallet,
     walletInfo,
     balance,

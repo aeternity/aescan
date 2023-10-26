@@ -1,17 +1,13 @@
 <template>
-  <button @click="init()">
+  <app-button @click="init()">
     Connect Wallet
-  </button>
+  </app-button>
 </template>
-<script setup>
 
+<script setup>
 import { useWalletStore } from '~/stores/wallet'
 
 const walletStore = useWalletStore()
-// const {
-//   initWallet,
-// } = storeToRefs(walletStore)
-
 const { initWallet } = walletStore
 
 async function init() {

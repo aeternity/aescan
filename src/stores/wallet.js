@@ -13,7 +13,9 @@ export const useWalletStore = defineStore('wallet', () => {
   const status = ref(null)
 
   async function initWallet() {
+    console.log('init')
     // todo reuse instance
+    // todo improve naming
     const node = new Node(NODE_URL)
     try {
       const aeSdkOptions = {
@@ -43,6 +45,8 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function scanWallets() {
+    console.log('scan')
+
     status.value = 'detecting'
 
     detectedWallets.value = await new Promise(resolve => {

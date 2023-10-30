@@ -11,7 +11,7 @@
 <script setup>
 defineProps({
   height: {
-    type: String,
+    type: Number,
     required: true,
   },
   datetime: {

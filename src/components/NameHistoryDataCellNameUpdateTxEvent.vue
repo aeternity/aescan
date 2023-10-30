@@ -14,8 +14,8 @@
 </template>
 
 <script setup>
-import AppChip from '~/components/AppChip'
-import ValueHashEllipsed from '~/components/ValueHashEllipsed'
+import AppChip from '@/components/AppChip'
+import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   payload: {

@@ -8,6 +8,9 @@
       :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
+      <template #header>
+        <transactions-select v-model="selectedTxType"/>
+      </template>
       <microblock-transactions-table
         :transactions="transactions"
         class="u-hidden-mobile"/>
@@ -20,13 +23,18 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
+import { useRouter } from '#app'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import PaginatedContent from '@/components/PaginatedContent'
+import TransactionsSelect from '~/components/TransactionsSelect'
+import { TX_TYPES_OPTIONS } from '~/utils/constants'
 
+const { push } = useRouter()
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockTransactions: transactions, microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblockTransactions } = microblockDetailsStore
 
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const route = useRoute()
 const pageIndex = ref(1)
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
@@ -39,10 +47,28 @@ function loadNextTransactions() {
   fetchMicroblockTransactions({ queryParameters: transactions.value.next })
 }
 
+async function loadTransactions() {
+  const { txType } = route.query
+  const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
+  selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
+  await fetchMicroblockTransactions({ queryParameters: `/v2/micro-blocks/${route.params.id}/txs/?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}` })
+  // await fetchTransactionsCount(selectedTxType.value.typeQuery)
+  pageIndex.value = 1
+}
+
 if (process.client) {
-  fetchMicroblockTransactions({
-    limit: limit.value,
-    microblockHash: route.params.id,
+  watch(route, (newRoute, prevRoute) => {
+    if (newRoute.name !== prevRoute.name) {
+      return
+    }
+    loadTransactions()
   })
+  watch(selectedTxType, () => {
+    const typeQuery = selectedTxType.value?.typeQuery
+    const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
+    push(`/microblocks/${route.params.id}${slug}`)
+  })
+
+  loadTransactions()
 }
 </script>

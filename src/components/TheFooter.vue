@@ -105,7 +105,7 @@ const links = {
     { label: 'Blog', url: 'https://blog.aeternity.com' },
     { label: 'Terms of Service', url: '/terms-of-service' },
     { label: 'Privacy Policy', url: '/privacy-policy' },
-    { label: 'Fill out the Survey', url: 'https://aeternity.com/aescan-feedback-survey' },
+    { label: 'Feedback Survey', url: 'https://aeternity.com/aescan-feedback-survey' },
   ],
   developers: [
     { label: 'Node API documentation', url: 'https://api-docs.aeternity.io' },

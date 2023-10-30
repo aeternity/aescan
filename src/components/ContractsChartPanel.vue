@@ -1,23 +1,23 @@
 <template>
   <app-panel>
     <template #heading>
-      TRANSACTIONS TREND
+      CONTRACT CALLS
     </template>
     <template #header>
       <chart-controls
-        class="transactions-chart-panel__chart-controls"
-        @selected="loadTransactionsStatistics"/>
+        class="contracts-chart-panel__chart-controls"
+        @selected="loadContractsStatistics"/>
     </template>
 
-    <div class="transactions-chart-panel__container">
+    <div class="contracts-chart-panel__container">
       <Line
         :options="chartOptions"
         :data="chartData"/>
     </div>
 
     <chart-controls
-      class="transactions-chart-panel__chart-controls--condensed"
-      @selected="loadTransactionsStatistics"/>
+      class="contracts-chart-panel__chart-controls--condensed"
+      @selected="loadContractsStatistics"/>
   </app-panel>
 </template>
 
@@ -35,13 +35,13 @@ import {
 } from 'chart.js'
 import { storeToRefs } from 'pinia'
 import { DateTime } from 'luxon'
-import { useTransactionsStore } from '@/stores/transactions'
+import { useContractsStore } from '@/stores/contracts'
 
-const transactionsStore = useTransactionsStore()
+const contractsStore = useContractsStore()
 const {
-  transactionsStatistics,
-} = storeToRefs(transactionsStore)
-const { fetchTransactionsStatistics } = transactionsStore
+  contractsStatistics,
+} = storeToRefs(contractsStore)
+const { fetchContractsStatistics } = contractsStore
 
 ChartJS.register(
   CategoryScale,
@@ -108,18 +108,18 @@ const chartOptions = {
 const selectedInterval = ref('')
 
 await useAsyncData(async() => {
-  await fetchTransactionsStatistics()
+  await fetchContractsStatistics()
   return true
 })
 
 const stats = computed(() => {
-  return transactionsStatistics.value?.map(stat => {
+  return contractsStatistics.value?.map(stat => {
     return stat.count
   })
 })
 
 const labels = computed(() => {
-  return transactionsStatistics.value?.map(stat => {
+  return contractsStatistics.value?.map(stat => {
     return formatLabel(stat.startDate)
   })
 })
@@ -134,15 +134,15 @@ function formatLabel(label) {
   return date.toFormat('MM-dd')
 }
 
-async function loadTransactionsStatistics({ interval, limit }) {
+async function loadContractsStatistics({ interval, limit }) {
   selectedInterval.value = interval
-  await fetchTransactionsStatistics(`?limit=${parseInt(limit) + 1}&interval_by=${interval}`)
+  await fetchContractsStatistics(`&limit=${parseInt(limit) + 1}&interval_by=${interval}`)
 }
 
 </script>
 
 <style scoped>
-.transactions-chart-panel {
+.contracts-chart-panel {
   &__container {
     position: relative;
     height: 250px;

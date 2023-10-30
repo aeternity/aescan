@@ -35,7 +35,7 @@
     "axios": "^1.2.1",
     "bignumber.js": "9.1.1",
     "camelcase-keys-deep": "^0.1.0",
-    "chart.js": "^4.4.0",
+    "chart.js": "4.3.0",
     "compression": "^1.7.4",
     "core-js": "^3.26.1",
     "express": "^4.18.2",
@@ -85,5 +85,6 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "packageManager": "yarn@4.0.1"
 }

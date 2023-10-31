@@ -6,8 +6,7 @@
   <page-header>
     Wallet Account
     <template #tooltip>
-      <!--      todo fix hint-->
-      {{ transactionsHints.transaction }}
+      {{ walletHints.wallet }}
     </template>
   </page-header>
 
@@ -18,14 +17,17 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '~/stores/wallet'
-import { transactionsHints } from '~/utils/hints/transactionsHints'
+import { walletHints } from '~/utils/hints/walletHints'
+// todo fix imports
 
 const walletStore = useWalletStore()
 const { scanWallets } = walletStore
-const { status, aeSdk } = storeToRefs(walletStore)
+const { status } = storeToRefs(walletStore)
+
+// todo status connecting
 
 onBeforeMount(async() => {
-  if (!aeSdk) {
+  if (status.value !== 'connected') {
     await scanWallets()
   }
 })

@@ -36,9 +36,17 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
-      <the-wallet-account
-        v-if="balance"
-        :sdk="aeSdk"/>
+      <VMenu v-if="balance">
+        <!--        todo fix condition-->
+        <the-wallet-account
+
+          :sdk="aeSdk"/>
+        <template #popper>
+          <button @click="exit">
+            Exit Wallet
+          </button>
+        </template>
+      </VMenu>
       <app-link
         v-else
         to="/wallet">
@@ -56,16 +64,15 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useStatus } from '@/stores/status'
+import { isDesktop } from '@/utils/screen'
 import { useWalletStore } from '~/stores/wallet'
-import TheWalletAccount from '~/components/TheWalletAccount'
+
+const route = useRoute()
+const { push } = useRouter()
 
 const walletStore = useWalletStore()
+const { aeSdk, balance } = storeToRefs(walletStore)
 
-const {
-  aeSdk,
-  balance,
-} = storeToRefs(walletStore)
-const route = useRoute()
 const isNavigationOpen = ref(false)
 
 const { isSyncing } = storeToRefs(useStatus())
@@ -77,6 +84,11 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', closeNavigation)
 })
+
+function exit() {
+  push('/')
+  aeSdk.value.disconnectWallet()
+}
 
 watch(() => route.fullPath, () => {
   closeNavigation()

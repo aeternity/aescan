@@ -25,8 +25,6 @@ import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from '#app'
 import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
-import PaginatedContent from '@/components/PaginatedContent'
-import TransactionsSelect from '~/components/TransactionsSelect'
 import { TX_TYPES_OPTIONS } from '~/utils/constants'
 
 const { push } = useRouter()
@@ -52,7 +50,6 @@ async function loadTransactions() {
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
   await fetchMicroblockTransactions({ queryParameters: `/v2/micro-blocks/${route.params.id}/txs/?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}` })
-  // await fetchTransactionsCount(selectedTxType.value.typeQuery)
   pageIndex.value = 1
 }
 

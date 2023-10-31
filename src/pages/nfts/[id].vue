@@ -35,7 +35,7 @@ import { useNftDetailsStore } from '@/stores/nftDetails'
 import NftDetailsPanel from '@/components/NftsDetailsPanel'
 import NftInventoryPanel from '@/components/NftsInventoryPanel'
 import NftOwnersPanel from '@/components/NftsOwnersPanel'
-import AppTabs from '~/components/AppTabs'
+import AppTabs from '@/components/AppTabs'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nft } = storeToRefs(nftDetailsStore)

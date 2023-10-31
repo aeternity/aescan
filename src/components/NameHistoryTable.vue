@@ -60,8 +60,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import HintTooltip from '@/components/HintTooltip'
-import BlockTimeCell from '~/components/BlockTimeCell'
 
 defineProps({
   actions: {

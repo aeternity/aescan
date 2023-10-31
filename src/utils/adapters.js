@@ -312,9 +312,9 @@ export function adaptNameActions(actions) {
     return {
       type: action.type,
       hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
-      createdHeight: action.payload.blockHeight || action.height,
+      createdHeight: action.height,
       payload: action.payload,
-      created: DateTime.fromMillis(action.payload.microTime),
+      created: DateTime.fromMillis(action.blockTime),
     }
   })
 

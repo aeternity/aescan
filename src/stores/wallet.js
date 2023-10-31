@@ -34,6 +34,11 @@ export const useWalletStore = defineStore('wallet', () => {
           console.info('onAddressChange ::', addresses)
           await fetchAccountInfo()
         },
+        onDisconnect() {
+          status.value = false
+          walletInfo.value = null
+          balance.value = null
+        },
       }))
       await connect()
     } catch (error) {

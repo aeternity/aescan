@@ -10,13 +10,10 @@ import { useWalletStore } from '~/stores/wallet'
 import { useAccountStore } from '@/stores/accountDetails'
 
 const walletStore = useWalletStore()
-
-const { aeSdk } = storeToRefs(walletStore)
-
 const accountStore = useAccountStore()
+const { aeSdk } = storeToRefs(walletStore)
 const { accountDetails } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
 
 fetchAccount(aeSdk.value.address)
-
 </script>

@@ -81,15 +81,13 @@ import { MENU_HASH } from '@/utils/constants'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import NetworkSelect from '@/components/NetworkSelect'
 import { useWalletStore } from '~/stores/wallet'
-import TheWalletAccount from '~/components/TheWalletAccount'
+
+const route = useRoute()
+const { push } = useRouter()
 
 const walletStore = useWalletStore()
+const { aeSdk, balance } = storeToRefs(walletStore)
 
-const {
-  aeSdk,
-  balance,
-} = storeToRefs(walletStore)
-const route = useRoute()
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const isOnline = useOnline()
@@ -109,6 +107,11 @@ watch(route, () => {
     closeNavigation()
   }
 })
+function exit() {
+  push('/')
+  aeSdk.value.disconnectWallet()
+}
+
 watch(() => route.fullPath, () => {
   if (route.hash !== MENU_HASH) {
     closeNavigation()

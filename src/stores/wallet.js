@@ -36,6 +36,11 @@ export const useWalletStore = defineStore('wallet', () => {
         onDisconnect() {
           status.value = 'disconnecting'
         },
+        onDisconnect() {
+          status.value = false
+          walletInfo.value = null
+          balance.value = null
+        },
       }))
       await connect()
     } catch (error) {

@@ -4,7 +4,6 @@
       v-model:page-index="pageIndex"
       :entities="transactions"
       pagination-style="history"
-      :total-count="microblockDetails.transactions_count"
       :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
@@ -29,7 +28,7 @@ import { TX_TYPES_OPTIONS } from '~/utils/constants'
 
 const { push } = useRouter()
 const microblockDetailsStore = useMicroblockDetailsStore()
-const { microblockTransactions: transactions, microblockDetails } = storeToRefs(microblockDetailsStore)
+const { microblockTransactions: transactions } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblockTransactions } = microblockDetailsStore
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
@@ -54,10 +53,7 @@ async function loadTransactions() {
 }
 
 if (process.client) {
-  watch(route, (newRoute, prevRoute) => {
-    if (newRoute.name !== prevRoute.name) {
-      return
-    }
+  watch(() => route.fullPath, () => {
     loadTransactions()
   })
   watch(selectedTxType, () => {

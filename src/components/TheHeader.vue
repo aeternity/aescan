@@ -37,9 +37,17 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isMobileMenuOpen }]"/>
-      <the-wallet-account
-        v-if="balance"
-        :sdk="aeSdk"/>
+      <VMenu v-if="balance">
+        <!--        todo fix condition-->
+        <the-wallet-account
+
+          :sdk="aeSdk"/>
+        <template #popper>
+          <button @click="exit">
+            Exit Wallet
+          </button>
+        </template>
+      </VMenu>
       <app-link
         v-else
         to="/wallet">
@@ -87,15 +95,13 @@ import { MENU_HASH } from '@/utils/constants'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import NetworkSelect from '@/components/NetworkSelect'
 import { useWalletStore } from '~/stores/wallet'
-import TheWalletAccount from '~/components/TheWalletAccount'
+
+const route = useRoute()
+const { push } = useRouter()
 
 const walletStore = useWalletStore()
+const { aeSdk, balance } = storeToRefs(walletStore)
 
-const {
-  aeSdk,
-  balance,
-} = storeToRefs(walletStore)
-const route = useRoute()
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const isOnline = useOnline()
@@ -115,6 +121,11 @@ watch(route, () => {
     closeNavigation()
   }
 })
+function exit() {
+  push('/')
+  aeSdk.value.disconnectWallet()
+}
+
 watch(() => route.fullPath, () => {
   if (route.hash !== MENU_HASH) {
     closeNavigation()

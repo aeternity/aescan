@@ -19,15 +19,14 @@
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '~/stores/wallet'
 import { transactionsHints } from '~/utils/hints/transactionsHints'
-import PageHeader from '~/components/PageHeader'
-import WalletAccountPanel from '~/components/WalletAccountPanel'
-import WalletConnectionPanel from '~/components/WalletConnectionPanel'
 
 const walletStore = useWalletStore()
 const { scanWallets } = walletStore
-const { status } = storeToRefs(walletStore)
+const { status, aeSdk } = storeToRefs(walletStore)
 
 onBeforeMount(async() => {
-  await scanWallets()
+  if (!aeSdk) {
+    await scanWallets()
+  }
 })
 </script>

@@ -8,13 +8,10 @@
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '~/stores/wallet'
 import { useAccountStore } from '@/stores/accountDetails'
-import AccountDetailsPanel from '@/components/AccountDetailsPanel'
 
 const walletStore = useWalletStore()
 
-const {
-  aeSdk,
-} = storeToRefs(walletStore)
+const { aeSdk } = storeToRefs(walletStore)
 
 const accountStore = useAccountStore()
 const { accountDetails } = storeToRefs(accountStore)

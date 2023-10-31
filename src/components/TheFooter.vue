@@ -105,12 +105,14 @@ const links = {
     { label: 'Blog', url: 'https://blog.aeternity.com' },
     { label: 'Terms of Service', url: '/terms-of-service' },
     { label: 'Privacy Policy', url: '/privacy-policy' },
+    { label: 'Feedback Survey', url: 'https://aeternity.com/aescan-feedback-survey' },
   ],
   developers: [
     { label: 'Node API documentation', url: 'https://api-docs.aeternity.io' },
     { label: 'Middleware API documentation', url: `${MIDDLEWARE_URL}/swagger` },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
     { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
+
   ],
 }
 </script>

@@ -11,7 +11,8 @@
       </app-link>
     </div>
     <template #menu>
-      <app-button @click="disconnectWallet">
+        <app-button
+           @click="disconnectWallet">
         Disconnect Wallet
       </app-button>
     </template>

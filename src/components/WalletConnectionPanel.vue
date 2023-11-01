@@ -1,24 +1,16 @@
 <template>
   <app-panel>
     <template
-      v-if="status !== 'scanning'"
+      v-if="!isLoading"
       #heading>
       {{ title }}
     </template>
     <!--    todo title-->
-    <!--    todo heading?-->
 
     <loader-indicator
-      v-if="status === 'scanning'"
-      label="Scanning for wallets"/>
-
-    <loader-indicator
-      v-if="status === 'connecting'"
-      label="Connecting"/>
-
-    <loader-indicator
-      v-if="status === 'disconnecting'"
-      label="Disconnecting"/>
+      v-if="isLoading"
+      class="wallet-connection-panel__loader-indicator"
+      :label="status"/>
 
     <p
       v-if="status === 'not detected'"
@@ -43,6 +35,7 @@
         v-if="status === 'denied'"
         @click="scanWallets()">
         Try again
+        <!--        todo fix try again-->
       </app-button>
     </div>
   </app-panel>
@@ -57,6 +50,10 @@ const walletStore = useWalletStore()
 
 const { status } = storeToRefs(walletStore)
 const { scanWallets } = walletStore
+
+const isLoading = computed(() => {
+  return status.value === 'detecting' || status.value === 'connecting' || status.value === 'disconnecting'
+})
 
 const title = computed(() => {
   if (status.value === 'not detected') {
@@ -89,6 +86,10 @@ const title = computed(() => {
     @media (--desktop) {
       justify-content: flex-start;
     }
+  }
+
+  &__loader-indicator {
+    margin: var(--space-3) 0;
   }
 }
 </style>

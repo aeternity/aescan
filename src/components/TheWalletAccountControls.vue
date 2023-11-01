@@ -32,8 +32,8 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
-import { formatEllipseHash } from '~/utils/format'
-import { useWalletStore } from '~/stores/wallet'
+import { formatEllipseHash } from '@/utils/format'
+import { useWalletStore } from '@/stores/wallet'
 
 const { push } = useRouter()
 
@@ -42,7 +42,6 @@ const { aeSdk, status } = storeToRefs(walletStore)
 const { disconnect } = walletStore
 
 function exit() {
-  // todo await?
   disconnect()
   push('/')
 }

@@ -1,14 +1,12 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { AE_AMOUNT_FORMATS, AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from '@aeternity/aepp-sdk'
+import { AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from '@aeternity/aepp-sdk'
 
 export const useWalletStore = defineStore('wallet', () => {
   const { NODE_URL, NETWORK_ID } = useRuntimeConfig().public
 
-  const walletInfo = ref(null)
   const aeSdk = ref(null)
-  const balance = ref(null)
-  const foundWallets = ref(null)
+  const detectedWallets = ref(null)
   const status = ref(null)
 
   async function initWallet() {
@@ -24,14 +22,11 @@ export const useWalletStore = defineStore('wallet', () => {
       aeSdk.value = shallowReactive(new AeSdkAepp({
         name: 'æScan',
         ...aeSdkOptions,
-        async onNetworkChange({ networkId }) {
-          await selectNode(networkId)
-        },
-        async onAddressChange() {
-          await fetchAccountBalance()
+        onNetworkChange({ networkId }) {
+          aeSdk.value.selectNode(networkId)
         },
         onDisconnect() {
-          resetState()
+          status.value = 'disconnecting'
         },
       }))
       await connect()
@@ -42,76 +37,57 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function scanWallets() {
+    if (detectedWallets.value) {
+      resetState()
+    }
     status.value = 'scanning'
 
-    foundWallets.value = await new Promise(resolve => {
+    detectedWallets.value = await new Promise(resolve => {
       const timeout = setTimeout(() => {
         resolve(undefined)
-        status.value = 'not installed'
+        status.value = 'not detected'
       }, 10000)
 
-      const handleDetect = ({ newWallet }) => {
-        status.value = 'found'
-        clearTimeout(timeout)
+      function setDetected({ newWallet }) {
         stopScan()
         resolve(newWallet)
+        clearTimeout(timeout)
+        status.value = 'detected'
       }
-      const browserWindow = new BrowserWindowMessageConnection()
 
-      const stopScan = walletDetector(browserWindow, handleDetect)
+      const browserWindow = new BrowserWindowMessageConnection()
+      const stopScan = walletDetector(browserWindow, setDetected)
     })
   }
 
   async function connect() {
     status.value = 'connecting'
     try {
-      walletInfo.value = await aeSdk.value.connectToWallet(foundWallets.value.getConnection())
-
+      await aeSdk.value.connectToWallet(detectedWallets.value.getConnection())
       await aeSdk.value.subscribeAddress('subscribe', 'current')
-      await fetchAccountBalance()
       status.value = 'connected'
     } catch (error) {
-      aeSdk.value.disconnectWallet()
+      disconnect()
       status.value = 'denied'
     }
   }
 
-  async function fetchAccountBalance() {
-    balance.value = await aeSdk.value.getBalance(aeSdk.value.address, {
-      format: AE_AMOUNT_FORMATS.AE,
-    })
-  }
-
-  async function selectNode(selectedNetworkId) {
-    // todo improve
-    aeSdk.value.selectNode(selectedNetworkId)
-    if (aeSdk.value.addresses().length) {
-      await fetchAccountBalance()
-    }
-  }
-
   function disconnect() {
-    status.value = 'disconnecting'
     aeSdk.value.disconnectWallet()
-    resetState()
   }
 
   function resetState() {
-    walletInfo.value = null
     aeSdk.value = null
-    balance.value = null
-    foundWallets.value = null
+    detectedWallets.value = null
     status.value = null
   }
 
   return {
-    foundWallets,
+    detectedWallets,
     status,
     scanWallets,
     initWallet,
     disconnect,
-    walletInfo,
-    balance,
     aeSdk,
   }
 })

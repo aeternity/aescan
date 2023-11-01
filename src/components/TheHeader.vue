@@ -37,9 +37,7 @@
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
 
-      <the-wallet-account-controls
-        :sdk="aeSdk"
-        :balance="balance"/>
+      <the-wallet-account-controls/>
     </div>
     <div
       v-if="isSyncing"
@@ -50,14 +48,11 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { isDesktop } from '@/utils/screen'
 import { useWalletStore } from '~/stores/wallet'
 import { useStatus } from '@/stores/status'
 
 const route = useRoute()
-const walletStore = useWalletStore()
-const { aeSdk, balance } = storeToRefs(walletStore)
 
 const {
   aeSdk,

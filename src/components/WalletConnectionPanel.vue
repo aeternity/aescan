@@ -5,6 +5,8 @@
       v-if="title">
       {{ title }}
     </template>
+    <!--    todo title-->
+    <!--    todo heading?-->
 
     <loader-indicator
       v-if="isProcessing"
@@ -47,6 +49,11 @@
       </p>
       <app-button
         @click="router.go()">
+        Try again
+      </app-button>
+      <app-button
+        v-if="status === 'denied'"
+        @click="scanWallets()">
         Try again
       </app-button>
     </template>

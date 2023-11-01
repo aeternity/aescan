@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { AE_AMOUNT_FORMATS, AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from '@aeternity/aepp-sdk'
+import { AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from '@aeternity/aepp-sdk'
 
 export const useWalletStore = defineStore('wallet', () => {
   const { NODE_URL, NETWORK_ID } = useRuntimeConfig().public
 
-  const walletInfo = ref(null)
   const aeSdk = ref(null)
   const detectedWallets = ref(null)
   const status = ref(null)
@@ -39,6 +38,9 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function scanWallets() {
+    if (detectedWallets.value) {
+      resetState()
+    }
     status.value = 'detecting'
 
 
@@ -70,7 +72,6 @@ export const useWalletStore = defineStore('wallet', () => {
     try {
       await aeSdk.value.connectToWallet(detectedWallets.value.getConnection())
       await aeSdk.value.subscribeAddress('subscribe', 'current')
-      await fetchAccountBalance()
       status.value = 'connected'
     } catch (error) {
       disconnect()
@@ -89,16 +90,12 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   function disconnect() {
-    status.value = 'disconnecting'
     aeSdk.value.disconnectWallet()
-    resetState()
   }
 
   function resetState() {
-    walletInfo.value = null
     aeSdk.value = null
-    balance.value = null
-    foundWallets.value = null
+    detectedWallets.value = null
     status.value = null
   }
 

@@ -24,6 +24,7 @@ defineProps({
   flex-direction: column;
   align-items: center;
   font-family: var(--font-monospaced);
+  text-transform: capitalize;
 
   &__image {
     margin-bottom: var(--space-2);

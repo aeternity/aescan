@@ -5,7 +5,6 @@
     :target="target"
     :class="[
       'button',
-      variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
     ]"
     :disabled="disabled"
@@ -172,7 +171,6 @@ defineProps({
     background: transparent;
     text-decoration: underline;
     color: var(--color-blue);
-
   }
 }
 </style>

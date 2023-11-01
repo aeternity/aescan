@@ -10,8 +10,8 @@
     </template>
   </page-header>
 
-  <wallet-account-panel v-if="status === 'connected'"/>
-  <wallet-connection-panel v-else/>
+  <wallet-connection-panel v-if="status !== 'connected'"/>
+  <wallet-account-panel v-else/>
 </template>
 
 <script setup>
@@ -23,8 +23,6 @@ import { walletHints } from '~/utils/hints/walletHints'
 const walletStore = useWalletStore()
 const { scanWallets } = walletStore
 const { status } = storeToRefs(walletStore)
-
-// todo status connecting
 
 onBeforeMount(async() => {
   if (status.value !== 'connected') {

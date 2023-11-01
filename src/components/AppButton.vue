@@ -3,9 +3,9 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    class="button"
     :class="[
       'button',
+      variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
     ]">
     <app-icon
@@ -45,6 +45,11 @@ defineProps({
     default: null,
     validator: val => ['sm'].includes(val),
   },
+  variant: {
+    type: String,
+    default: null,
+    validator: val => ['link'].includes(val),
+  },
   target: {
     type: String,
     default: '_blank',
@@ -80,6 +85,13 @@ defineProps({
   &--sm {
     border-radius: 0;
     padding: var(--space-2) var(--space-3);
+  }
+
+  &--link {
+    background: transparent;
+    text-decoration: underline;
+    color: var(--color-blue);
+
   }
 }
 </style>

@@ -55,6 +55,7 @@
         v-if="status === 'denied'"
         @click="scanWallets()">
         Try again
+        <!--        todo fix try again-->
       </app-button>
     </template>
   </app-panel>
@@ -77,6 +78,10 @@ const isProcessing = computed(() => {
   return status.value === 'detecting' || status.value === 'connecting' || status.value === 'disconnecting'
 })
 
+
+const isLoading = computed(() => {
+  return status.value === 'detecting' || status.value === 'connecting' || status.value === 'disconnecting'
+})
 
 const title = computed(() => {
   if (status.value === 'not detected') {
@@ -101,6 +106,10 @@ const title = computed(() => {
         margin-bottom: var(--space-6);
       }
     }
+  }
+
+  &__loader-indicator {
+    margin: var(--space-3) 0;
   }
 
   &__loader-indicator {

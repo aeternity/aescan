@@ -26,6 +26,8 @@ const { scanWallets } = walletStore
 
 const { isLoading } = useLoading()
 
+const { isLoading } = useLoading()
+
 onBeforeMount(async() => {
   if (status.value !== 'connected') {
     await scanWallets()

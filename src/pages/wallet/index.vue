@@ -16,9 +16,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useWalletStore } from '~/stores/wallet'
-import { walletHints } from '~/utils/hints/walletHints'
-// todo fix imports
+import { useWalletStore } from '@/stores/wallet'
+import { walletHints } from '@/utils/hints/walletHints'
 
 const walletStore = useWalletStore()
 const { scanWallets } = walletStore

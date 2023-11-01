@@ -8,7 +8,11 @@
       variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
     ]"
-    :disabled="disabled">
+    :disabled="disabled"
+    :class="[
+      'button',
+      size ? `button--${size}` : null,
+    ]">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -46,6 +50,11 @@ defineProps({
   to: {
     type: String,
     default: null,
+  },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['sm'].includes(val),
   },
   target: {
     type: String,
@@ -118,6 +127,11 @@ defineProps({
 
   &__icon {
     margin-right: var(--space-1);
+  }
+
+  &--sm {
+    border-radius: 0;
+    padding: var(--space-2) var(--space-3);
   }
 
   &--link {

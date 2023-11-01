@@ -36,22 +36,10 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
-      <VMenu v-if="balance">
-        <!--        todo fix condition-->
-        <the-wallet-account
 
-          :sdk="aeSdk"/>
-        <template #popper>
-          <button @click="exit">
-            Exit Wallet
-          </button>
-        </template>
-      </VMenu>
-      <app-link
-        v-else
-        to="/wallet">
-        wallet
-      </app-link>
+      <the-wallet-account-controls
+        :sdk="aeSdk"
+        :balance="balance"/>
     </div>
     <div
       v-if="isSyncing"
@@ -67,8 +55,6 @@ import { useStatus } from '@/stores/status'
 import { useWalletStore } from '~/stores/wallet'
 
 const route = useRoute()
-const { push } = useRouter()
-
 const walletStore = useWalletStore()
 const { aeSdk, balance } = storeToRefs(walletStore)
 
@@ -83,11 +69,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', closeNavigation)
 })
-
-function exit() {
-  push('/')
-  aeSdk.value.disconnectWallet()
-}
 
 watch(() => route.fullPath, () => {
   closeNavigation()

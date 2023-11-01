@@ -19,12 +19,13 @@
         </a>
       </template>
     </app-dropdown>
-    <!--    todo button-->
-    <app-link
-      v-else
+
+    <app-button
+      class="wallet-account-controls__button"
+      size="sm"
       to="/wallet">
       Connect Wallet
-    </app-link>
+    </app-button>
   </div>
 </template>
 <script setup>
@@ -56,6 +57,10 @@ function exit() {
   &__link {
     font-family: var(--font-monospaced);
     font-size: 13px;
+  }
+
+  &__button {
+    color: var(--color-white) !important;
   }
 }
 </style>

@@ -51,7 +51,7 @@ defineProps({
   size: {
     type: String,
     default: null,
-    validator: val => ['lg'].includes(val),
+    validator: val => ['lg', 'sm'].includes(val),
   },
   variant: {
     type: String,
@@ -98,6 +98,11 @@ defineProps({
 
   &__icon {
     margin-right: var(--space-1);
+  }
+
+  &--sm {
+    border-radius: 0;
+    padding: var(--space-2) var(--space-3);
   }
 }
 </style>

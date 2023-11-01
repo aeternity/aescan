@@ -20,7 +20,7 @@ export const useWalletStore = defineStore('wallet', () => {
       const aeSdkOptions = {
         nodes: [{
           name: NETWORK_ID,
-          instance: new Node('https://testnet.aeternity.io'),
+          instance: new Node(NODE_URL),
         }],
         compilerUrl: 'https://compiler.aepps.com',
       }
@@ -41,7 +41,6 @@ export const useWalletStore = defineStore('wallet', () => {
           balance.value = null
         },
       }))
-      console.log('aeSdk.value', aeSdk.value)
       await connect()
     } catch (error) {
       console.log('failed')
@@ -88,6 +87,7 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function connectToNode(selectedNetworkId) {
+    // todo improve
     aeSdk.value.selectNode(selectedNetworkId)
     if (aeSdk.value.addresses().length) {
       await fetchAccountInfo()

@@ -3,7 +3,7 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { AE_AMOUNT_FORMATS, AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from '@aeternity/aepp-sdk'
 
 export const useWalletStore = defineStore('wallet', () => {
-  const { NODE_URL } = useRuntimeConfig().public
+  const { NODE_URL, NETWORK_ID } = useRuntimeConfig().public
 
   const walletInfo = ref(null)
   const aeSdk = ref(null)
@@ -15,20 +15,21 @@ export const useWalletStore = defineStore('wallet', () => {
     console.log('init')
     // todo reuse instance
     // todo improve naming
-    const node = new Node(NODE_URL)
+
     try {
       const aeSdkOptions = {
-        nodes: [
-          { name: 'mainnet', instance: node },
-        ],
+        nodes: [{
+          name: NETWORK_ID,
+          instance: new Node('https://testnet.aeternity.io'),
+        }],
         compilerUrl: 'https://compiler.aepps.com',
       }
-
+      console.log('aeSdkOptions', aeSdkOptions)
       aeSdk.value = shallowReactive(new AeSdkAepp({
-        name: 'AEPP',
+        name: 'æScan',
         ...aeSdkOptions,
-        async onNetworkChange({ NETWORK_ID }) {
-          await connectToNode(NETWORK_ID)
+        async onNetworkChange({ networkId }) {
+          await connectToNode(networkId)
         },
         async onAddressChange(addresses) {
           console.info('onAddressChange ::', addresses)
@@ -40,6 +41,7 @@ export const useWalletStore = defineStore('wallet', () => {
           balance.value = null
         },
       }))
+      console.log('aeSdk.value', aeSdk.value)
       await connect()
     } catch (error) {
       console.log('failed')

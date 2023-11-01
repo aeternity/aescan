@@ -40,6 +40,8 @@ function loadNextNames() {
 
 <style scoped>
 .names-in-auction-panel__names-in-auction-table {
-  display: none;
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
+  }
 }
 </style>

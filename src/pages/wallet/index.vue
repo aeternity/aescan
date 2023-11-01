@@ -9,9 +9,11 @@
       {{ walletHints.wallet }}
     </template>
   </page-header>
-
-  <wallet-connection-panel v-if="status !== 'connected'"/>
-  <wallet-account-panel v-else/>
+  <template v-if="!isLoading">
+    <wallet-connection-panel v-if="status !== 'connected'"/>
+    <wallet-account-panel v-else/>
+  </template>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
@@ -22,6 +24,8 @@ import { walletHints } from '@/utils/hints/walletHints'
 const walletStore = useWalletStore()
 const { scanWallets } = walletStore
 const { status } = storeToRefs(walletStore)
+
+const { isLoading } = useLoading()
 
 onBeforeMount(async() => {
   if (status.value !== 'connected') {

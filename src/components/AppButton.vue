@@ -3,7 +3,11 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    class="button">
+    class="button"
+    :class="[
+      'button',
+      size ? `button--${size}` : null,
+    ]">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -36,6 +40,11 @@ defineProps({
     type: String,
     default: null,
   },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['sm'].includes(val),
+  },
   target: {
     type: String,
     default: '_blank',
@@ -66,6 +75,11 @@ defineProps({
 
   &__icon {
     margin-right: var(--space-1);
+  }
+
+  &--sm {
+    border-radius: 0;
+    padding: var(--space-2) var(--space-3);
   }
 }
 </style>

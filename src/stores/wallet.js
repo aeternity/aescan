@@ -14,7 +14,6 @@ export const useWalletStore = defineStore('wallet', () => {
   async function initWallet() {
     console.log('init')
     // todo reuse instance
-    // todo improve naming
 
     try {
       const aeSdkOptions = {
@@ -24,74 +23,82 @@ export const useWalletStore = defineStore('wallet', () => {
         }],
         compilerUrl: 'https://compiler.aepps.com',
       }
-      console.log('aeSdkOptions', aeSdkOptions)
+
       aeSdk.value = shallowReactive(new AeSdkAepp({
         name: 'æScan',
         ...aeSdkOptions,
         async onNetworkChange({ networkId }) {
-          await connectToNode(networkId)
+          await selectNode(networkId)
         },
-        async onAddressChange(addresses) {
-          console.info('onAddressChange ::', addresses)
-          await fetchAccountInfo()
+        async onAddressChange() {
+          await fetchAccountBalance()
         },
         onDisconnect() {
-          status.value = false
-          walletInfo.value = null
-          balance.value = null
+          status.value = 'disconnecting'
+          resetState()
         },
       }))
       await connect()
     } catch (error) {
-      console.log('failed')
+      status.value = 'failed'
       throw error
     }
   }
 
   async function scanWallets() {
-    console.log('scan')
-
     status.value = 'scanning'
+
     foundWallets.value = await new Promise(resolve => {
       const timeout = setTimeout(() => {
-        status.value = 'not installed'
         resolve(undefined)
+        status.value = 'not installed'
       }, 10000)
 
-      const handleWallets = ({ newWallet }) => {
+      const handleDetect = ({ newWallet }) => {
         status.value = 'found'
         clearTimeout(timeout)
         stopScan()
         resolve(newWallet)
       }
-      const scannerConnection = new BrowserWindowMessageConnection()
-      const stopScan = walletDetector(scannerConnection, handleWallets)
+      const browserWindow = new BrowserWindowMessageConnection()
+
+      const stopScan = walletDetector(browserWindow, handleDetect)
     })
   }
 
   async function connect() {
-    console.log('connect')
-
     walletInfo.value = await aeSdk.value.connectToWallet(foundWallets.value.getConnection())
-    await aeSdk.value.subscribeAddress('subscribe', 'current')
-    status.value = 'connected'
+    try {
+      await aeSdk.value.subscribeAddress('subscribe', 'current')
+      status.value = 'connected'
+    } catch (error) {
+      console.log('error', error)
+      if (e.message !== 'Operation rejected by user') {
+        status.value = 'denied'
+      }
+    }
 
-    await fetchAccountInfo()
+    await fetchAccountBalance()
   }
 
-  // todo infra envs
-  async function fetchAccountInfo() {
+  async function fetchAccountBalance() {
     balance.value = await aeSdk.value.getBalance(aeSdk.value.address, {
       format: AE_AMOUNT_FORMATS.AE,
     })
   }
 
-  async function connectToNode(selectedNetworkId) {
+  async function selectNode(selectedNetworkId) {
     // todo improve
     aeSdk.value.selectNode(selectedNetworkId)
     if (aeSdk.value.addresses().length) {
-      await fetchAccountInfo()
+      await fetchAccountBalance()
     }
+  }
+
+  function resetState() {
+    walletInfo.value = null
+    balance.value = null
+    status.value = null
   }
 
   return {

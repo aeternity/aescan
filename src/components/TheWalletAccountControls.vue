@@ -12,15 +12,18 @@
         </app-link>
       </div>
       <template #menu>
-        <!--        todo fix link-->
-        <a
+        <app-button
+
+          size="sm"
+          variant="link"
           @click="exit">
           Exit Wallet
-        </a>
+        </app-button>
       </template>
     </app-dropdown>
 
     <app-button
+      v-else
       class="wallet-account-controls__button"
       size="sm"
       to="/wallet">
@@ -42,6 +45,7 @@ function exit() {
   push('/')
   aeSdk.value.disconnectWallet()
   return false
+  // <!--        todo fix link-->
 }
 </script>
 

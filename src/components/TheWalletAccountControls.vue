@@ -63,6 +63,4 @@ function disconnectWallet() {
     color: var(--color-white) !important;
   }
 }
-}
-
 </style>

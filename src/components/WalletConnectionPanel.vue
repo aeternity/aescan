@@ -1,5 +1,5 @@
 <template>
-  <app-panel class="">
+  <app-panel>
     <template
       v-if="status !== 'scanning'"
       #heading>
@@ -10,21 +10,33 @@
       v-if="status === 'scanning'"
       label="Scanning for wallets"/>
 
+    <loader-indicator
+      v-if="status === 'connecting'"
+      label="Connecting"/>
+
+    <loader-indicator
+      v-if="status === 'disconnecting'"
+      label="Disconnecting"/>
+
     <p
       v-if="status === 'not installed'"
       class="wallet-connection-panel__paragraph">
       In order to display wallet account information, the native Superhero wallet has to be installed on this device.
     </p>
-
+    <p
+      v-if="status === 'denied'"
+      class="wallet-connection-panel__paragraph">
+      Connection with your wallet has failed. Please make sure that you are logged into your wallet.
+    </p>
     <div class="wallet-connection-panel__container">
+      <div v-if="status === 'found'">
+        <wallet-connect-button/>
+      </div>
       <app-button
         v-if="status === 'not installed'"
         to="https://wallet.superhero.com/">
         Download Superhero wallet
       </app-button>
-      <div v-if="status === 'found'">
-        <wallet-connect-button/>
-      </div>
     </div>
   </app-panel>
 </template>

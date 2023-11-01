@@ -57,7 +57,7 @@ defineProps({
     type: String,
     default: 'primary',
     validator: val =>
-      ['primary', 'light'].includes(val),
+      ['primary', 'light', 'link'].includes(val),
   },
 })
 </script>
@@ -103,6 +103,13 @@ defineProps({
   &--sm {
     border-radius: 0;
     padding: var(--space-2) var(--space-3);
+  }
+
+  &--link {
+    background: transparent;
+    text-decoration: underline;
+    color: var(--color-blue);
+
   }
 }
 </style>

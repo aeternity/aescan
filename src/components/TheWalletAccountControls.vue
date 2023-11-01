@@ -11,6 +11,7 @@
       </app-link>
     </div>
     <template #menu>
+        <!--        todo fix button-->
         <app-button
            @click="disconnectWallet">
         Disconnect Wallet

@@ -11,6 +11,7 @@
     :disabled="disabled"
     :class="[
       'button',
+      variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
     ]">
     <app-icon
@@ -55,6 +56,11 @@ defineProps({
     type: String,
     default: null,
     validator: val => ['sm'].includes(val),
+  },
+  variant: {
+    type: String,
+    default: null,
+    validator: val => ['link'].includes(val),
   },
   target: {
     type: String,

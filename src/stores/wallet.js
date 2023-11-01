@@ -42,7 +42,6 @@ export const useWalletStore = defineStore('wallet', () => {
           balance.value = null
         },
       }))
-      console.log('aeSdk.value', aeSdk.value)
       await connect()
     } catch (error) {
       status.value = 'failed'
@@ -97,6 +96,7 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   function disconnect() {
+    // todo improve
     aeSdk.value.disconnectWallet()
   }
 

@@ -1,55 +1,46 @@
 <template>
   <div>
-    <!--
-    todo
-    better
-    condition-->
-    <app-dropdown v-if="balance">
+    <app-dropdown v-if="status === 'connected'">
       <div class="wallet-account-controls">
         <app-identicon
-          :id="sdk.address"
+          :id="aeSdk.address"
           class="wallet-account-controls__identicon"/>
         <app-link
           class="wallet-account-controls__link"
           to="/wallet">
-          {{ formatEllipseHash(sdk.address) }}
+          {{ formatEllipseHash(aeSdk.address) }}
         </app-link>
       </div>
       <template #menu>
+        <!--        todo fix link-->
         <a
-          href="#"
           @click="exit">
           Exit Wallet
         </a>
       </template>
     </app-dropdown>
+    <!--    todo button-->
     <app-link
       v-else
       to="/wallet">
-      wallet
+      Connect Wallet
     </app-link>
   </div>
 </template>
 <script setup>
-
+import { storeToRefs } from 'pinia'
 import { formatEllipseHash } from '~/utils/format'
+import { useWalletStore } from '~/stores/wallet'
 
 const { push } = useRouter()
 
-const props = defineProps({
-  sdk: {
-    type: Object,
-    required: true,
-  },
-  balance: {
-    type: String,
-    default: null,
-  },
-})
+const walletStore = useWalletStore()
+const { aeSdk, status } = storeToRefs(walletStore)
 
 function exit() {
   push('/')
-  props.sdk.disconnectWallet()
+  aeSdk.value.disconnectWallet()
+  return false
 }
 </script>
 
@@ -72,6 +63,7 @@ function exit() {
 <style>
 .v-popper {
   display: inline-block;
+  /*todo fix selector*/
 
   &__popper {
     &.v-popper--theme-menu {

@@ -30,6 +30,7 @@ import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
 import { useWalletStore } from '~/stores/wallet'
 import { useAccountStore } from '@/stores/accountDetails'
+import { isDesktop } from '~/utils/screen'
 
 const walletStore = useWalletStore()
 const accountStore = useAccountStore()
@@ -76,8 +77,11 @@ const activeTabIndex = computed({
     return push(newRoute)
   },
 })
-
-fetchAccount(aeSdk.value.address)
+if (process.client) {
+  const limit = isDesktop() ? null : 3
+  await fetchAccount(aeSdk.value.address, { limit })
+  // todo loading
+}
 </script>
 
 <style scoped>

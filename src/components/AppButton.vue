@@ -5,8 +5,8 @@
     :target="target"
     :class="[
       'button',
-      variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
+      variant ? `button--${variant}` : null,
     ]">
     <app-icon
       v-if="iconName"
@@ -109,7 +109,6 @@ defineProps({
     background: transparent;
     text-decoration: underline;
     color: var(--color-blue);
-
   }
 }
 </style>

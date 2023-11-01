@@ -13,7 +13,6 @@
       </div>
       <template #menu>
         <app-button
-
           size="sm"
           variant="link"
           @click="exit">
@@ -40,12 +39,12 @@ const { push } = useRouter()
 
 const walletStore = useWalletStore()
 const { aeSdk, status } = storeToRefs(walletStore)
+const { disconnect } = walletStore
 
 function exit() {
+  // todo await?
+  disconnect()
   push('/')
-  aeSdk.value.disconnectWallet()
-  return false
-  // <!--        todo fix link-->
 }
 </script>
 

@@ -19,7 +19,7 @@
 
   <!--    todo button-->
     <app-button
-    v-else
+      v-else
     class="wallet-account-controls__button"
     to="/wallet">
     Connect Wallet

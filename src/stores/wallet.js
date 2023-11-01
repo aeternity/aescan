@@ -9,13 +9,10 @@ export const useWalletStore = defineStore('wallet', () => {
   const aeSdk = ref(null)
   const detectedWallets = ref(null)
   const status = ref(null)
-  const foundWallets = ref(null)
-  const status = ref(null)
 
   async function initWallet() {
     console.log('init')
     // todo reuse instance
-    // todo improve naming
 
     try {
       const aeSdkOptions = {
@@ -25,7 +22,7 @@ export const useWalletStore = defineStore('wallet', () => {
         }],
         compilerUrl: 'https://compiler.aepps.com',
       }
-      console.log('aeSdkOptions', aeSdkOptions)
+
       aeSdk.value = shallowReactive(new AeSdkAepp({
         name: 'æScan',
         ...aeSdkOptions,
@@ -36,11 +33,6 @@ export const useWalletStore = defineStore('wallet', () => {
         onDisconnect() {
           status.value = 'disconnecting'
         },
-        onDisconnect() {
-          status.value = false
-          walletInfo.value = null
-          balance.value = null
-        },
       }))
       await connect()
     } catch (error) {
@@ -50,9 +42,8 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function scanWallets() {
-    console.log('scan')
-
     status.value = 'detecting'
+
 
     detectedWallets.value = await new Promise(resolve => {
       const timeout = setTimeout(() => {
@@ -88,8 +79,7 @@ export const useWalletStore = defineStore('wallet', () => {
       status.value = 'denied'
     }
 
-  // todo infra envs
-  async function fetchAccountInfo() {
+  async function fetchAccountBalance() {
     balance.value = await aeSdk.value.getBalance(aeSdk.value.address, {
       format: AE_AMOUNT_FORMATS.AE,
     })
@@ -98,6 +88,12 @@ export const useWalletStore = defineStore('wallet', () => {
   function disconnect() {
     // todo improve
     aeSdk.value.disconnectWallet()
+  }
+
+  function resetState() {
+    walletInfo.value = null
+    balance.value = null
+    status.value = null
   }
 
   return {

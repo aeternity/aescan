@@ -54,7 +54,6 @@
 </template>
 
 <script setup>
-// todo fix imports
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '@/stores/wallet'
 import AppButton from '@/components/AppButton'

@@ -16,7 +16,7 @@ export const useWalletStore = defineStore('wallet', () => {
     console.log('init')
     // todo reuse instance
     // todo improve naming
-    const node = new Node(NODE_URL)
+
     try {
       const aeSdkOptions = {
         nodes: [{
@@ -25,7 +25,7 @@ export const useWalletStore = defineStore('wallet', () => {
         }],
         compilerUrl: 'https://compiler.aepps.com',
       }
-
+      console.log('aeSdkOptions', aeSdkOptions)
       aeSdk.value = shallowReactive(new AeSdkAepp({
         name: 'æScan',
         ...aeSdkOptions,
@@ -42,6 +42,7 @@ export const useWalletStore = defineStore('wallet', () => {
           balance.value = null
         },
       }))
+      console.log('aeSdk.value', aeSdk.value)
       await connect()
     } catch (error) {
       status.value = 'failed'

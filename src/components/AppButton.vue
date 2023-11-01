@@ -5,7 +5,6 @@
     :target="target"
     :class="[
       'button',
-      variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
     ]"
     :disabled="disabled"
@@ -164,8 +163,7 @@ defineProps({
     padding: 0;
 
     &:hover {
-      text-decoration: underline;
-    }
+      text-decoration: underline;}
   }
 }
 </style>

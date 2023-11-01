@@ -12,6 +12,7 @@
         </app-link>
       </div>
       <template #menu>
+        <!--        todo fix button-->
         <app-button
           size="sm"
           variant="link"

@@ -38,9 +38,7 @@
           'header__network-select',
           { 'header__network-select--open': isMobileMenuOpen }]"/>
 
-      <the-wallet-account-controls
-        :sdk="aeSdk"
-        :balance="balance"/>
+      <the-wallet-account-controls/>
     </div>
     <div
       v-if="isSyncing"
@@ -85,8 +83,6 @@ import NetworkSelect from '@/components/NetworkSelect'
 import { useWalletStore } from '~/stores/wallet'
 
 const route = useRoute()
-const walletStore = useWalletStore()
-const { aeSdk, balance } = storeToRefs(walletStore)
 
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())

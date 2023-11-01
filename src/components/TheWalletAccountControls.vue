@@ -7,7 +7,7 @@
       <app-link
         class="wallet-account-controls__link"
         to="/wallet">
-        {{ formatEllipseHash(aeSdk.address) }}
+          {{ formatEllipseHash(aeSdk.address) }}
       </app-link>
     </div>
     <template #menu>
@@ -17,7 +17,8 @@
     </template>
   </app-dropdown>
 
-  <app-button
+  <!--    todo button-->
+    <app-button
     v-else
     class="wallet-account-controls__button"
     to="/wallet">

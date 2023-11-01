@@ -83,8 +83,6 @@ import NetworkSelect from '@/components/NetworkSelect'
 import { useWalletStore } from '~/stores/wallet'
 
 const route = useRoute()
-const walletStore = useWalletStore()
-const { aeSdk, balance } = storeToRefs(walletStore)
 
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())

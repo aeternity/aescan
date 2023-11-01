@@ -56,6 +56,10 @@ function disconnectWallet() {
     font-family: var(--font-monospaced);
     font-size: 13px;
   }
+
+  &__button {
+    color: var(--color-white) !important;
+  }
 }
 </style>
 

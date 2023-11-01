@@ -63,23 +63,17 @@ function exit() {
 <style>
 .v-popper {
   display: inline-block;
-  /*todo fix selector*/
 
-  &__popper {
-    &.v-popper--theme-menu {
-      .v-popper__inner {
-        margin: 0 var(--space-2);
-        padding: var(--space-3);
-        color: var(--color-white);
-        word-break: break-word;
-        /* stylelint-disable  max-nesting-depth  */
-        /* as it is 3rd party component */
-        @media (--desktop) {
-          word-break: normal;
-        }
+  &__popper.v-popper--theme-menu {
+    .v-popper__inner {
+      margin: 0 var(--space-2);
+      padding: var(--space-3);
+      color: var(--color-white);
+      word-break: break-word;
+      @media (--desktop) {
+        word-break: normal;
       }
     }
   }
 }
-
 </style>

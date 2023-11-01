@@ -12,9 +12,6 @@ export const useWalletStore = defineStore('wallet', () => {
   const status = ref(null)
 
   async function initWallet() {
-    console.log('init')
-    // todo reuse instance
-
     try {
       const aeSdkOptions = {
         nodes: [{
@@ -34,7 +31,6 @@ export const useWalletStore = defineStore('wallet', () => {
           await fetchAccountBalance()
         },
         onDisconnect() {
-          status.value = 'disconnecting'
           resetState()
         },
       }))
@@ -67,18 +63,17 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function connect() {
-    walletInfo.value = await aeSdk.value.connectToWallet(foundWallets.value.getConnection())
+    status.value = 'connecting'
     try {
+      walletInfo.value = await aeSdk.value.connectToWallet(foundWallets.value.getConnection())
+
       await aeSdk.value.subscribeAddress('subscribe', 'current')
+      await fetchAccountBalance()
       status.value = 'connected'
     } catch (error) {
-      console.log('error', error)
-      if (e.message !== 'Operation rejected by user') {
-        status.value = 'denied'
-      }
+      aeSdk.value.disconnectWallet()
+      status.value = 'denied'
     }
-
-    await fetchAccountBalance()
   }
 
   async function fetchAccountBalance() {
@@ -95,9 +90,17 @@ export const useWalletStore = defineStore('wallet', () => {
     }
   }
 
+  function disconnect() {
+    status.value = 'disconnecting'
+    aeSdk.value.disconnectWallet()
+    resetState()
+  }
+
   function resetState() {
     walletInfo.value = null
+    aeSdk.value = null
     balance.value = null
+    foundWallets.value = null
     status.value = null
   }
 
@@ -106,6 +109,7 @@ export const useWalletStore = defineStore('wallet', () => {
     status,
     scanWallets,
     initWallet,
+    disconnect,
     walletInfo,
     balance,
     aeSdk,

@@ -28,9 +28,9 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
-import { useWalletStore } from '~/stores/wallet'
+import { useWalletStore } from '@/stores/wallet'
 import { useAccountStore } from '@/stores/accountDetails'
-import { isDesktop } from '~/utils/screen'
+import { isDesktop } from '@/utils/screen'
 
 const walletStore = useWalletStore()
 const accountStore = useAccountStore()

@@ -73,12 +73,6 @@ export const useWalletStore = defineStore('wallet', () => {
     aeSdk.value.disconnectWallet()
   }
 
-  function resetState() {
-    aeSdk.value = null
-    detectedWallets.value = null
-    status.value = null
-  }
-
   return {
     detectedWallets,
     status,

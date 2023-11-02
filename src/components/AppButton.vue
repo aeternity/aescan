@@ -5,7 +5,6 @@
     :target="target"
     :class="[
       'button',
-      size ? `button--${size}` : null,
       variant ? `button--${variant}` : null,
     ]">
     <app-icon
@@ -98,11 +97,6 @@ defineProps({
 
   &__icon {
     margin-right: var(--space-1);
-  }
-
-  &--sm {
-    border-radius: 0;
-    padding: var(--space-2) var(--space-3);
   }
 
   &--link {

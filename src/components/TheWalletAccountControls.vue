@@ -12,7 +12,6 @@
     </div>
     <template #menu>
       <app-button
-        size="sm"
         variant="link"
         @click="exit">
         Exit Wallet
@@ -22,8 +21,7 @@
 
   <app-button
     v-else
-    class="wallet-account-controls__button u-hidden-mobile"
-    size="sm"
+    class="wallet-account-controls__button"
     to="/wallet">
     Connect Wallet
   </app-button>

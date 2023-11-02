@@ -37,7 +37,7 @@
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
 
-      <the-wallet-account-controls/>
+      <the-wallet-account-controls class="u-hidden-mobile"/>
     </div>
     <div class="header__survey">
       Help us improve aeScan.

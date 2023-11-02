@@ -80,7 +80,6 @@ const activeTabIndex = computed({
 if (process.client) {
   const limit = isDesktop() ? null : 3
   await fetchAccount(aeSdk.value.address, { limit })
-  // todo loading
 }
 </script>
 

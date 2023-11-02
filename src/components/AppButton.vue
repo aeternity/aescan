@@ -51,11 +51,6 @@ defineProps({
     type: String,
     default: null,
   },
-  size: {
-    type: String,
-    default: null,
-    validator: val => ['sm'].includes(val),
-  },
   variant: {
     type: String,
     default: null,

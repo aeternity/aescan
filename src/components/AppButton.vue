@@ -17,7 +17,11 @@
   </app-link>
   <button
     v-else
-    class="button">
+    :class="[
+      'button',
+      size ? `button--${size}` : null,
+      variant ? `button--${variant}` : null,
+    ]">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -88,9 +92,14 @@ defineProps({
   }
 
   &--link {
+    font-weight: 400;
     background: transparent;
-    text-decoration: underline;
+    text-decoration: none;
     color: var(--color-blue);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

@@ -33,9 +33,8 @@
       </app-button>
       <app-button
         v-if="status === 'denied'"
-        @click="scanWallets()">
+        @click="router.go()">
         Try again
-        <!--        todo fix try again-->
       </app-button>
     </div>
   </app-panel>
@@ -49,7 +48,7 @@ import AppButton from '@/components/AppButton'
 const walletStore = useWalletStore()
 
 const { status } = storeToRefs(walletStore)
-const { scanWallets } = walletStore
+const router = useRouter()
 
 const isProcessing = computed(() => {
   return status.value === 'detecting' || status.value === 'connecting' || status.value === 'disconnecting'

@@ -60,10 +60,7 @@ async function loadTransactions() {
 }
 
 if (process.client) {
-  watch(() => route.fullPath, (newPath, oldPath) => {
-    if (newPath === oldPath) {
-      return
-    }
+  watch(() => route.fullPath, () => {
     loadTransactions()
   })
   watch(selectedTxType, () => {

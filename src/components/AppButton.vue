@@ -5,7 +5,6 @@
     :target="target"
     :class="[
       'button',
-      size ? `button--${size}` : null,
       variant ? `button--${variant}` : null,
     ]"
     :disabled="disabled">

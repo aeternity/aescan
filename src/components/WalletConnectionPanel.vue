@@ -1,14 +1,13 @@
 <template>
   <app-panel>
     <template
-      v-if="!isLoading"
+      v-if="title"
       #heading>
       {{ title }}
     </template>
-    <!--    todo title-->
 
     <loader-indicator
-      v-if="isLoading"
+      v-if="isProcessing"
       class="wallet-connection-panel__loader-indicator"
       :label="status"/>
 
@@ -22,6 +21,7 @@
       class="wallet-connection-panel__paragraph">
       Connection with your wallet has failed. Please make sure that you are logged into your wallet.
     </p>
+
     <div class="wallet-connection-panel__container">
       <div v-if="status === 'detected'">
         <wallet-connect-button/>
@@ -51,7 +51,7 @@ const walletStore = useWalletStore()
 const { status } = storeToRefs(walletStore)
 const { scanWallets } = walletStore
 
-const isLoading = computed(() => {
+const isProcessing = computed(() => {
   return status.value === 'detecting' || status.value === 'connecting' || status.value === 'disconnecting'
 })
 

@@ -1,35 +1,32 @@
 <template>
-  <div>
-    <app-dropdown v-if="status === 'connected'">
-      <div class="wallet-account-controls">
-        <app-identicon
-          :id="aeSdk.address"
-          class="wallet-account-controls__identicon"/>
-        <app-link
-          class="wallet-account-controls__link"
-          to="/wallet">
-          {{ formatEllipseHash(aeSdk.address) }}
-        </app-link>
-      </div>
-      <template #menu>
-        <!--        todo fix button-->
-        <app-button
-          size="sm"
-          variant="link"
-          @click="exit">
-          Exit Wallet
-        </app-button>
-      </template>
-    </app-dropdown>
+  <app-dropdown v-if="status === 'connected'">
+    <div class="wallet-account-controls">
+      <app-identicon
+        :id="aeSdk.address"
+        class="wallet-account-controls__identicon"/>
+      <app-link
+        class="wallet-account-controls__link"
+        to="/wallet">
+        {{ formatEllipseHash(aeSdk.address) }}
+      </app-link>
+    </div>
+    <template #menu>
+      <app-button
+        size="sm"
+        variant="link"
+        @click="exit">
+        Exit Wallet
+      </app-button>
+    </template>
+  </app-dropdown>
 
-    <app-button
-      v-else
-      class="wallet-account-controls__button"
-      size="sm"
-      to="/wallet">
-      Connect Wallet
-    </app-button>
-  </div>
+  <app-button
+    v-else
+    class="wallet-account-controls__button u-hidden-mobile"
+    size="sm"
+    to="/wallet">
+    Connect Wallet
+  </app-button>
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'

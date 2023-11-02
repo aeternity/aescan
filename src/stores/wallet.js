@@ -37,16 +37,13 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function scanWallets() {
-    // todo fix resetting state
-    if (detectedWallets.value) {
-      resetState()
-    }
     status.value = 'detecting'
 
     detectedWallets.value = await new Promise(resolve => {
       const timeout = setTimeout(() => {
         resolve(undefined)
         status.value = 'not detected'
+        disconnect()
       }, 10000)
 
       function setDetected({ newWallet }) {

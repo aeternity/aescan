@@ -11,7 +11,6 @@
 </template>
 
 <style>
-/*todo fix selectors*/
 .v-popper__popper.v-popper--theme-menu .v-popper__inner {
   margin: 0 var(--space-2);
   color: var(--color-midnight);

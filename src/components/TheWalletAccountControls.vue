@@ -62,21 +62,3 @@ function exit() {
   }
 }
 </style>
-
-<style>
-.v-popper {
-  display: inline-block;
-
-  &__popper.v-popper--theme-menu {
-    .v-popper__inner {
-      margin: 0 var(--space-2);
-      padding: var(--space-3);
-      color: var(--color-white);
-      word-break: break-word;
-      @media (--desktop) {
-        word-break: normal;
-      }
-    }
-  }
-}
-</style>

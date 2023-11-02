@@ -79,7 +79,7 @@ const isProcessing = computed(() => {
 })
 
 
-const isLoading = computed(() => {
+const isProcessing = computed(() => {
   return status.value === 'detecting' || status.value === 'connecting' || status.value === 'disconnecting'
 })
 

@@ -7,12 +7,11 @@
       <app-link
         class="wallet-account-controls__link"
         to="/wallet">
-          {{ formatEllipseHash(aeSdk.address) }}
+        {{ formatEllipseHash(aeSdk.address) }}
       </app-link>
     </div>
     <template #menu>
-        <!--        todo fix button-->
-        <app-button
+      <app-button
            @click="disconnectWallet">
         Disconnect Wallet
       </app-button>
@@ -20,9 +19,10 @@
   </app-dropdown>
 
   <!--    todo button-->
-    <app-button
-      v-else
-    class="wallet-account-controls__button"
+  <app-button
+    v-else
+    class="wallet-account-controls__button u-hidden-mobile"
+
     to="/wallet">
     Connect Wallet
   </app-button>

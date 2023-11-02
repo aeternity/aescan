@@ -149,9 +149,14 @@ defineProps({
   }
 
   &--link {
+    font-weight: 400;
     background: transparent;
-    text-decoration: underline;
+    text-decoration: none;
     color: var(--color-blue);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

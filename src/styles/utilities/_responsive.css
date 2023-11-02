@@ -5,8 +5,8 @@
 }
 
 .u-hidden-mobile {
-  display: none;
+  display: none !important;
   @media (--desktop) {
-    display: revert;
+    display: revert !important;
   }
 }

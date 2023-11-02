@@ -38,10 +38,6 @@ export const useWalletStore = defineStore('wallet', () => {
   }
 
   async function scanWallets() {
-    // todo fix resetting state
-    if (detectedWallets.value) {
-      resetState()
-    }
     status.value = 'detecting'
 
     detectedWallets.value = await new Promise(resolve => {

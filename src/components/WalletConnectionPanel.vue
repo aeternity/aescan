@@ -53,9 +53,8 @@
       </app-button>
       <app-button
         v-if="status === 'denied'"
-        @click="scanWallets()">
+        @click="router.go()">
         Try again
-        <!--        todo fix try again-->
       </app-button>
     </template>
   </app-panel>

@@ -93,3 +93,5 @@ export const REMOVE_LIQUIDITY_CONTRACT_CALLS = [
   'remove_liquidity',
   'remove_liquidity_ae',
 ]
+
+export const STATISTICS_DATA_BEGINNING = '2018-11-28'

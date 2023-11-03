@@ -10,11 +10,10 @@
       hide-input-icon
       :enable-time-picker="false"
       :partial-range="false"
-      :min-date="from"
+      :min-date="STATISTICS_DATA_BEGINNING"
       :max-date="today"
       placeholder="CUSTOM"
       :input-class-name="`range-picker__input ${selectedIndex === 'custom' ? 'range-picker__input--active' : ''}`"
-      @range-end="setActive"
       @update:model-value="$emit('updated', date)"/>
   </div>
 </template>
@@ -22,7 +21,9 @@
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
+import { STATISTICS_DATA_BEGINNING } from '~/utils/constants'
 
+// todo fix imports
 const date = ref()
 const datepicker = ref(null)
 const props = defineProps({
@@ -42,34 +43,22 @@ watch(() => props.isRangeSet, (newVal, oldVal) => {
   }
 })
 
-const from = '2018-11-28'
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
-function setActive() {
-  emit('activated')
-}
-
 function closeDatepicker() {
-  date.value = null
   if (datepicker) {
     datepicker.value.closeMenu()
   }
+  date.value = null
 }
 
-const emit = defineEmits(['updated', 'activated'])
+defineEmits(['updated'])
 </script>
 
 <style>
 .range-picker {
-  display: inline-flex;
-  /*todo fix differently*/
-
   &__container {
     grid-column: span 5;
-  }
-
-  & > div {
-    width: 100%;
   }
 
   &__input {
@@ -89,7 +78,6 @@ const emit = defineEmits(['updated', 'activated'])
     padding: var(--space-0) var(--space-1);
     background: var(--color-snow);
     color: var(--color-midnight);
-    /*todo fix mobile rangepicker styles*/
 
     @media (--desktop) {
       width: 68px;
@@ -110,15 +98,23 @@ const emit = defineEmits(['updated', 'activated'])
   }
 }
 
-.dp__range {
-  &_start {
-    background: var(--color-error) !important;
-    color: var(--color-white);
+.dp {
+  &__outer_menu_wrap {
+    @media (--desktop) {
+      width: 100%;
+    }
   }
 
-  &_end {
-    background: var(--color-error) !important;
-    color: var(--color-white);
+  &__range {
+    &_start {
+      background: var(--color-error) !important;
+      color: var(--color-white);
+    }
+
+    &_end {
+      background: var(--color-error) !important;
+      color: var(--color-white);
+    }
   }
 }
 </style>

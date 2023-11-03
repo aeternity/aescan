@@ -135,13 +135,9 @@ function formatLabel(label) {
 }
 
 async function loadTransactionsStatistics({ interval, limit, range }) {
-  console.log('range', range)
   selectedInterval.value = interval
-  if (range) {
-    await fetchTransactionsStatistics(`?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`)
-  } else {
-    await fetchTransactionsStatistics(`?limit=${parseInt(limit) + 1}&interval_by=${interval}`)
-  }
+  const params = range ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000` : `?interval_by=${interval}&limit=${limit}`
+  await fetchTransactionsStatistics(params)
 }
 
 </script>

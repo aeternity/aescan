@@ -5,14 +5,13 @@
       :key="index"
       class="chart-controls__button"
       :variant="selectedIndex === index ? 'error' : 'secondary'"
-      @click="select(index)">
+      @click="selectInterval(index)">
       {{ button.label }}
     </app-chip>
     <range-picker
       :selected-index="selectedIndex"
       :is-range-set="hasCustomDate"
-      @updated="selectRange"
-      @activated="setActive"/>
+      @updated="selectRange"/>
   </div>
 </template>
 
@@ -31,15 +30,14 @@ const buttons = [
 const selectedIndex = ref(0)
 const hasCustomDate = ref(true)
 
-function select(value) {
-  selectedIndex.value = value
-  emit('selected', buttons[value])
+function selectInterval(index) {
+  selectedIndex.value = index
+  emit('selected', buttons[index])
   hasCustomDate.value = false
 }
 
 function selectRange(dateRange) {
-  console.log('selectRange', dateRange)
-  // todo luxon formatting
+  selectedIndex.value = 'custom'
   const range = {
     range: {
       minStart: dateRange[0].toISOString().split('T')[0],
@@ -47,12 +45,7 @@ function selectRange(dateRange) {
     },
   }
   emit('selected', range)
-}
-
-function setActive() {
-  // todo move to select range
   hasCustomDate.value = true
-  selectedIndex.value = 'custom'
 }
 
 const emit = defineEmits(['selected'])

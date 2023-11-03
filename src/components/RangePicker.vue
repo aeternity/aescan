@@ -15,7 +15,7 @@
       placeholder="CUSTOM"
       :input-class-name="`range-picker__input ${selectedIndex === 'custom' ? 'range-picker__input--active' : ''}`"
       @range-end="setActive"
-      @update:model-value="$emit('updated')"/>
+      @update:model-value="$emit('updated', date)"/>
   </div>
 </template>
 <script setup>

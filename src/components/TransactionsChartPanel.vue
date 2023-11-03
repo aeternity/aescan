@@ -134,9 +134,14 @@ function formatLabel(label) {
   return date.toFormat('MM-dd')
 }
 
-async function loadTransactionsStatistics({ interval, limit }) {
+async function loadTransactionsStatistics({ interval, limit, range }) {
+  console.log('range', range)
   selectedInterval.value = interval
-  await fetchTransactionsStatistics(`?limit=${parseInt(limit) + 1}&interval_by=${interval}`)
+  if (range) {
+    await fetchTransactionsStatistics(`?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`)
+  } else {
+    await fetchTransactionsStatistics(`?limit=${parseInt(limit) + 1}&interval_by=${interval}`)
+  }
 }
 
 </script>
@@ -156,7 +161,7 @@ async function loadTransactionsStatistics({ interval, limit }) {
 
     /*todo fix this*/
 
-  &--condensed {
+    &--condensed {
       margin-top: var(--space-4);
       @media (--desktop) {
         display: none;

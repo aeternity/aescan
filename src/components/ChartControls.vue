@@ -11,7 +11,7 @@
     <range-picker
       :selected-index="selectedIndex"
       :is-range-set="hasCustomDate"
-      @updated="fetchIt"
+      @updated="selectRange"
       @activated="setActive"/>
   </div>
 </template>
@@ -37,13 +37,22 @@ function select(value) {
   hasCustomDate.value = false
 }
 
-function setActive() {
-  hasCustomDate.value = true
-  selectedIndex.value = 'custom'
+function selectRange(dateRange) {
+  console.log('selectRange', dateRange)
+  // todo luxon formatting
+  const range = {
+    range: {
+      minStart: dateRange[0].toISOString().split('T')[0],
+      maxStart: dateRange[1].toISOString().split('T')[0],
+    },
+  }
+  emit('selected', range)
 }
 
-function fetchIt(dateRange) {
-  console.log('fetchIt', dateRange)
+function setActive() {
+  // todo move to select range
+  hasCustomDate.value = true
+  selectedIndex.value = 'custom'
 }
 
 const emit = defineEmits(['selected'])

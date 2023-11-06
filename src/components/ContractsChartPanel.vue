@@ -14,7 +14,6 @@
         v-if="contractsStatistics"
         :statistics="contractsStatistics"
         :selected-interval="selectedInterval"/>
-      <!--      todo potrebjuju   :selected-interval="selectedInterval" ???-->
     </div>
 
     <chart-controls

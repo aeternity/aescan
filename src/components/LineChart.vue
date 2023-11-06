@@ -19,17 +19,38 @@ import {
 import { DateTime } from 'luxon'
 import { Line } from 'vue-chartjs'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-)
+const props = defineProps({
+  statistics: {
+    type: Array,
+    required: true,
+  },
+  selectedInterval: {
+    type: String,
+    required: true,
+  },
+})
 
-ChartJS.defaults.font.family = 'Roboto Mono'
+const stats = computed(() => {
+  return props.statistics.map(stat => {
+    return stat.count
+  })
+})
+
+const labels = computed(() => {
+  return props.statistics.map(stat => {
+    return formatLabel(stat.startDate)
+  })
+})
+
+function formatLabel(label) {
+  const date = DateTime.fromISO(label)
+
+  if (props.selectedInterval === 'month') {
+    return date.toFormat('yyyy-MM')
+  }
+
+  return date.toFormat('MM-dd')
+}
 
 const chartData = computed(() => {
   return {
@@ -81,36 +102,15 @@ const chartOptions = {
   },
 }
 
-const props = defineProps({
-  statistics: {
-    type: Array,
-    required: true,
-  },
-  selectedInterval: {
-    type: String,
-    required: true,
-  },
-})
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+)
 
-const stats = computed(() => {
-  return props.statistics.map(stat => {
-    return stat.count
-  })
-})
-
-const labels = computed(() => {
-  return props.statistics.map(stat => {
-    return formatLabel(stat.startDate)
-  })
-})
-
-function formatLabel(label) {
-  const date = DateTime.fromISO(label)
-
-  if (props.selectedInterval === 'month') {
-    return date.toFormat('yyyy-MM')
-  }
-
-  return date.toFormat('MM-dd')
-}
+ChartJS.defaults.font.family = 'Roboto Mono'
 </script>

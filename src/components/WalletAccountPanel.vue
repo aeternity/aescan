@@ -77,9 +77,13 @@ const activeTabIndex = computed({
     return push(newRoute)
   },
 })
+
 if (process.client) {
   const limit = isDesktop() ? null : 3
   await fetchAccount(aeSdk.value.address, { limit })
+  watch(() => aeSdk.value.address, async() => {
+    await fetchAccount(aeSdk.value.address, { limit })
+  })
 }
 </script>
 

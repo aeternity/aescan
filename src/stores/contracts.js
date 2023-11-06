@@ -24,9 +24,9 @@ export const useContractsStore = defineStore('contracts', () => {
 
   async function fetchContractsStatistics(slug) {
     contractsStatistics.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions?tx_type=contract_call${slug || '&limit=8&interval_by=day'}`)
-
-    contractsStatistics.value = data.data.slice(1).reverse()
+    // todo mainnet url
+    const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions?tx_type=contract_call${slug || '&limit=8&interval_by=day'}`)
+    contractsStatistics.value = data.data.reverse()
   }
 
   async function fetchContractsCount() {

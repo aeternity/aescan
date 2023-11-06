@@ -16,6 +16,7 @@
       @update:model-value="$emit('updated', date)"/>
   </div>
 </template>
+
 <script setup>
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'

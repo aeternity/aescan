@@ -40,10 +40,10 @@ await useAsyncData(async() => {
 
 async function loadContractsStatistics({ interval, limit, range }) {
   selectedInterval.value = interval
-  const params = range
+  const slug = range
     ? `&min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
     : `&interval_by=${interval}&limit=${limit}`
-  await fetchContractsStatistics(params)
+  await fetchContractsStatistics(slug)
 }
 
 </script>

@@ -4,15 +4,16 @@
       ref="datepicker"
       v-model="date"
       range
-      :clearable="false"
-      auto-apply
-      hide-input-icon
-      :enable-time-picker="false"
-      :partial-range="false"
+      min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
       :max-date="today"
+      auto-apply
+      hide-input-icon
+      :clearable="false"
+      :enable-time-picker="false"
+      :prevent-min-max-navigation="true"
       placeholder="CUSTOM"
-      :input-class-name="`range-picker__input ${selectedIndex === 'custom' ? 'range-picker__input--active' : ''}`"
+      :input-class-name="`range-picker__input ${isActive ? 'range-picker__input--active' : ''}`"
       @update:model-value="$emit('updated', date)"/>
   </div>
 </template>
@@ -26,7 +27,7 @@ import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 const date = ref()
 const datepicker = ref(null)
 const props = defineProps({
-  selectedIndex: {
+  isActive: {
     type: String,
     required: true,
   },
@@ -96,6 +97,7 @@ defineEmits(['updated'])
 }
 
 .dp {
+
   &__outer_menu_wrap {
     @media (--desktop) {
       width: 100%;
@@ -104,6 +106,8 @@ defineEmits(['updated'])
 
   &__range {
     &_start {
+      pointer-events: none !important;
+      cursor: not-allowed !important;
       background: var(--color-error) !important;
       color: var(--color-white);
     }

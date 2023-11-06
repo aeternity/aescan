@@ -10,7 +10,7 @@
         {{ button.label }}
       </app-chip>
       <range-picker
-        :selected-index="selectedIndex"
+        :is-active="selectedIndex === 'custom' "
         :is-range-set="hasCustomDate"
         @updated="selectRange"/>
     </div>
@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-
 import RangePicker from '@/components/RangePicker'
 
 const buttons = [

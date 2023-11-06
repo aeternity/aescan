@@ -1,9 +1,8 @@
 <template>
-  <div class="range-picker__container">
+  <div class="range-picker">
     <VueDatePicker
       ref="datepicker"
       v-model="date"
-      class="range-picker"
       range
       :clearable="false"
       auto-apply
@@ -21,9 +20,8 @@
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import { STATISTICS_DATA_BEGINNING } from '~/utils/constants'
+import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 
-// todo fix imports
 const date = ref()
 const datepicker = ref(null)
 const props = defineProps({
@@ -37,13 +35,13 @@ const props = defineProps({
   },
 })
 
+const today = DateTime.now().toFormat('yyyy-MM-dd')
+
 watch(() => props.isRangeSet, (newVal, oldVal) => {
   if (!newVal && oldVal) {
     closeDatepicker()
   }
 })
-
-const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 function closeDatepicker() {
   if (datepicker) {
@@ -57,9 +55,7 @@ defineEmits(['updated'])
 
 <style>
 .range-picker {
-  &__container {
-    grid-column: span 5;
-  }
+  grid-column: span 5;
 
   &__input {
     width: 100%;
@@ -87,10 +83,10 @@ defineEmits(['updated'])
     }
 
     &--active {
+      width: 100%;
       background: var(--color-error) !important;
       color: var(--color-white);
-      /*todo color?*/
-      width: 100%;
+
       @media (--desktop) {
         width: 208px;
       }

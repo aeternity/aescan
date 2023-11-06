@@ -34,7 +34,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsStatistics.value = null
     // https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions?min_start_date=2023-03-02&max_start_date=2023-03-03&direction=forward
     const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions${slug || '?limit=8&interval_by=day'}`)
-    transactionsStatistics.value = data.data.slice(1).reverse()
+    transactionsStatistics.value = data.data.reverse()
   }
 
   return {

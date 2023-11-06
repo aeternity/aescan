@@ -5,7 +5,7 @@
     </template>
     <template #header>
       <chart-controls
-        class="transactions-chart-panel__chart-controls"
+        class="u-hidden-mobile"
         @selected="loadTransactionsStatistics"/>
     </template>
 
@@ -16,7 +16,7 @@
     </div>
 
     <chart-controls
-      class="transactions-chart-panel__chart-controls--condensed"
+      class="transactions-chart-panel__chart-controls u-hidden-desktop"
       @selected="loadTransactionsStatistics"/>
   </app-panel>
 </template>
@@ -136,9 +136,13 @@ function formatLabel(label) {
 
 async function loadTransactionsStatistics({ interval, limit, range }) {
   selectedInterval.value = interval
-  const params = range ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000` : `?interval_by=${interval}&limit=${limit}`
+  const params = range
+    ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
+    : `?interval_by=${interval}&limit=${limit}`
   await fetchTransactionsStatistics(params)
 }
+
+// todo mainnet url
 
 </script>
 
@@ -150,19 +154,7 @@ async function loadTransactionsStatistics({ interval, limit, range }) {
   }
 
   &__chart-controls {
-    display: none;
-    @media (--desktop) {
-      display: flex;
-    }
-
-    /*todo fix this*/
-
-    &--condensed {
-      margin-top: var(--space-4);
-      @media (--desktop) {
-        display: none;
-      }
-    }
+    margin-top: var(--space-4);
   }
 }
 

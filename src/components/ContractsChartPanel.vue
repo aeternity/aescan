@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-
 import { storeToRefs } from 'pinia'
 import { useContractsStore } from '@/stores/contracts'
 import LineChart from '@/components/LineChart'

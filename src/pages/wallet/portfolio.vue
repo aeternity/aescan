@@ -20,6 +20,6 @@ import { walletHints } from '@/utils/hints/walletHints'
 
 <style scoped>
 .portfolio_stats {
-  margin-bottom: var(--space-4)
+  margin-bottom: var(--space-4);
 }
 </style>

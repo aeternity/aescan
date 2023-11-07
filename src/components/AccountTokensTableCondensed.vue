@@ -75,6 +75,7 @@ import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { tokensHints } from '@/utils/hints/tokensHints'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon'
 
 defineProps({
   accountTokens: {
@@ -106,6 +107,17 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
   }
 }
 </style>

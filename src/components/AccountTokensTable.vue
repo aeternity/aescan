@@ -60,6 +60,7 @@
 import AppLink from '@/components/AppLink'
 import { tokensHints } from '@/utils/hints/tokensHints'
 import HintTooltip from '@/components/HintTooltip'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon'
 
 defineProps({
   accountTokens: {
@@ -68,3 +69,18 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.account-token-tables {
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+</style>

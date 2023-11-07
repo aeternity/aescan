@@ -13,6 +13,11 @@
     <template #menu>
       <app-button
         variant="link"
+        to="/wallet/portfolio">
+        Portfolio
+      </app-button>
+      <app-button
+        variant="link"
         @click="exit">
         Exit Wallet
       </app-button>

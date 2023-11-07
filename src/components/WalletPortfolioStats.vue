@@ -31,10 +31,8 @@
 
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '~/stores/wallet'
-import { useAccountStore } from '~/stores/accountDetails'
 
 const walletStore = useWalletStore()
-const accountStore = useAccountStore()
 const { aeSdk } = storeToRefs(walletStore)
 </script>
 

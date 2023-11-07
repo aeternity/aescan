@@ -15,7 +15,12 @@
             </app-tooltip>
           </th>
           <td class="account-tokens-table-condensed__data">
-            <app-link :to="`/tokens/${token.contractId}`">
+            <app-link
+              :to="`/tokens/${token.contractId}`"
+              class="account-tokens-table-condensed__link">
+              <token-symbol-icon
+                class="account-tokens-table-condensed__icon"
+                :contract-id="token.contractId"/>
               {{ token.tokenSymbol }}
             </app-link>
           </td>
@@ -84,6 +89,7 @@ import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { tokensHints } from '@/utils/hints/tokensHints'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon'
 
 defineProps({
   accountTokens: {
@@ -115,6 +121,17 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
   }
 }
 </style>

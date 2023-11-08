@@ -41,10 +41,8 @@ await useAsyncData(async() => {
 
 async function loadTransactionsStatistics({ interval, limit, range }) {
   selectedInterval.value = interval
-  const slug = range
-    ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
-    : `?interval_by=${interval}&limit=${limit}`
-  await fetchTransactionsStatistics(slug)
+  // todo selected interval ?
+  await fetchTransactionsStatistics(interval, limit, range)
 }
 </script>
 

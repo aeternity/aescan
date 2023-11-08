@@ -10,7 +10,7 @@
         {{ button.label }}
       </app-chip>
       <range-picker
-        :is-active="selectedIndex === 'custom' "
+        :is-active="selectedIndex === 'custom'"
         :is-range-set="hasCustomDate"
         @updated="selectRange"/>
     </div>

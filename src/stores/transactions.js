@@ -30,11 +30,18 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsCount.value = data
   }
 
-  async function fetchTransactionsStatistics(slug) {
+  async function fetchTransactionsStatistics(interval = 'day', limit = 7, range) {
     transactionsStatistics.value = null
+
+    const slug = range
+      ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
+      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
+
     // todo mainnet url
-    const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions${slug || '?limit=7&interval_by=day'}`)
-    transactionsStatistics.value = data.data.reverse()
+    const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions${slug}`)
+
+    // remove last interval from the response not to show currently counted data from the last interval
+    transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
   return {

@@ -6,12 +6,25 @@ import { useTransactionDetailsStore } from '@/stores/transactionDetails'
 
 export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public
-  const { processSocketMessage } = useRecentBlocksStore()
+  const { processSocketMessage, updateBlockHeight } = useRecentBlocksStore()
   const { updateTransactionTypeData } = useTransactionDetailsStore()
 
   const webSocket = shallowRef()
+  const isSubscribedToTransactionDetails = ref(false)
   const isSubscribedToKeyblockDetails = ref(false)
   const subscribedTransactionId = ref(null)
+
+  watch(isSubscribedToTransactionDetails, newValue => {
+    if (!webSocket.value || webSocket.value.readyState !== WebSocket.OPEN) {
+      return
+    }
+    console.log('newValue', newValue)
+    if (newValue) {
+      webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "KeyBlocks"}')
+    } else {
+      webSocket.value.send('{"op":"Unsubscribe", "source": "node", "payload": "KeyBlocks"}')
+    }
+  })
 
   watch(isSubscribedToKeyblockDetails, newValue => {
     if (!webSocket.value || webSocket.value.readyState !== WebSocket.OPEN) {
@@ -73,8 +86,11 @@ export const useWebSocket = defineStore('webSocket', () => {
     const parsedData = camelcaseKeysDeep(JSON.parse(data))
     const isSpecificEntityMessage = parsedData.subscription === 'Object'
     const isSubscribedTransactionMessage = parsedData.payload?.hash === subscribedTransactionId.value
+    const isSubscribedKeyblockMessage = parsedData.subscription === 'KeyBlocks'
 
-    if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
+    if (isSubscribedKeyblockMessage) {
+      updateBlockHeight(parsedData.payload)
+    } else if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
       updateTransactionTypeData(parsedData.payload)
     } else {
       await processSocketMessage(parsedData)
@@ -82,6 +98,7 @@ export const useWebSocket = defineStore('webSocket', () => {
   }
 
   return {
+    isSubscribedToTransactionDetails,
     isSubscribedToKeyblockDetails,
     subscribedTransactionId,
     initializeWebSocket,

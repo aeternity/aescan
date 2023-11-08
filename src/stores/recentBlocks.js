@@ -19,6 +19,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const rawSelectedMicroblockTransactions = ref(null)
   const rawSelectedKeyblock = ref(null)
   const rawSelectedMicroblock = ref(null)
+  const blockHeight = ref(null)
 
   const selectedKeyblock = computed(() => {
     return adaptKeyblock(rawSelectedKeyblock.value || keyblocks.value?.[0])
@@ -57,9 +58,6 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const latestKeyblockTransactionsCount = computed(() => {
     return keyblocks.value?.[0].transactionsCount
   })
-  const blockHeight = computed(() => {
-    return keyblocks.value?.[0].height
-  })
 
   /* USER INTERACTION */
 
@@ -94,6 +92,11 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   async function fetchKeyblocks() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
     keyblocks.value = data.data
+    blockHeight.value = data.data[0].height
+  }
+
+  function updateBlockHeight(websocketMessage) {
+    blockHeight.value = websocketMessage.height
   }
 
   // correct transactions and microblock count in past keyblocks to account for microfork changes
@@ -191,5 +194,6 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     selectedMicroblock,
     selectedMicroblockTransactionsCount,
     selectedMicroblockTransactions,
+    updateBlockHeight,
   }
 })

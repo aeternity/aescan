@@ -53,7 +53,7 @@ const {
   fetchTransactionDetails,
 } = transactionDetailsStore
 const route = useRoute()
-const { subscribedTransactionId } = storeToRefs(useWebSocket())
+const { subscribedTransactionId, isSubscribedToTransactionDetails } = storeToRefs(useWebSocket())
 const { isLoading } = useLoading()
 
 await fetchTransactionDetails(route.params.id)
@@ -77,10 +77,12 @@ try {
 }
 
 if (process.client && !transactionTypeData.value) {
+  isSubscribedToTransactionDetails.value = true
   subscribedTransactionId.value = route.params.id
 
   onBeforeRouteUpdate(
     (_to, _from, next) => {
+      isSubscribedToTransactionDetails.value = false
       subscribedTransactionId.value = null
       next()
     },
@@ -88,6 +90,7 @@ if (process.client && !transactionTypeData.value) {
 
   onBeforeRouteLeave(
     (_to, _from, next) => {
+      isSubscribedToTransactionDetails.value = false
       subscribedTransactionId.value = null
       next()
     },

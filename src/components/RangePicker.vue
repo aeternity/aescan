@@ -60,6 +60,8 @@ defineEmits(['updated'])
   grid-column: span 5;
 
   &__input {
+    background: var(--color-snow);
+    color: var(--color-midnight);
     width: 100%;
     height: 28px;
     align-items: center;
@@ -74,14 +76,21 @@ defineEmits(['updated'])
     border: 0;
 
     padding: var(--space-0) var(--space-1);
-    background: var(--color-snow);
-    color: var(--color-midnight);
 
     @media (--desktop) {
       width: 68px;
       height: 32px;
       font-size: 14px;
       padding: var(--space-0) var(--space-1);
+    }
+
+    &::placeholder {
+      color: var(--color-midnight);
+      opacity: 1;
+    }
+
+    &::-ms-input-placeholder {
+      color: var(--color-midnight);
     }
 
     &--active {

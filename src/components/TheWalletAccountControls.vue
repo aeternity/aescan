@@ -31,7 +31,7 @@ import { storeToRefs } from 'pinia'
 import { formatEllipseHash } from '@/utils/format'
 import { useWalletStore } from '@/stores/wallet'
 
-const { push } = useRouter()
+const { go } = useRouter()
 
 const walletStore = useWalletStore()
 const { aeSdk, status } = storeToRefs(walletStore)
@@ -39,7 +39,7 @@ const { disconnect } = walletStore
 
 function exit() {
   disconnect()
-  push('/')
+  go()
 }
 </script>
 

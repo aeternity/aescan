@@ -1,9 +1,9 @@
 <template>
   <app-dropdown v-if="status === 'connected'">
     <div class="wallet-account-controls">
-      <img
-        :src="`https://avatars.z52da5wt.xyz/${aeSdk.address}`"
-        class="wallet-account-controls__identicon">
+      <app-identicon
+        :hash="aeSdk.address"
+        class="wallet-account-controls__identicon"/>
       <app-link
         class="wallet-account-controls__link"
         to="/wallet">
@@ -49,9 +49,7 @@ function exit() {
   align-items: center;
 
   &__identicon {
-    margin-right: var(--space-2);
-    display: inline-block;
-    border-radius: 50%;
+    margin-right: var(--space-1);
     width: 32px;
   }
 

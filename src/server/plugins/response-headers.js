@@ -6,7 +6,7 @@ const DEFAULT_HEADERS = {
   'Cache-control': 'no-cache',
   'Content-Security-Policy': 'default-src \'self\' *; font-src \'self\' data:; img-src \'self\' data:; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'; frame-src \'self\'; upgrade-insecure-requests; block-all-mixed-content',
   'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Referrer-Policy': 'origin',
   'X-Permitted-Cross-Domain-Policies': 'none',
   'Cross-Origin-Embedder-Policy': 'require-corp',
   'Cross-Origin-Opener-Policy': 'same-origin',

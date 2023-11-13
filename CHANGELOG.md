@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.9.0](https://github.com/aeternity/aescan/compare/0.8.0...0.9.0) (2023-11-06)
+
+
+### Features
+
+* Add tab navigation ([#530](https://github.com/aeternity/aescan/issues/530)) ([85927f4](https://github.com/aeternity/aescan/commit/85927f4748df5ffc8a39aa8dd907ea4bcc3060ac))
+* Consider using feat view related utility classnames ([#519](https://github.com/aeternity/aescan/issues/519)) ([eb9284d](https://github.com/aeternity/aescan/commit/eb9284df47a5b01af3c76607641f41ef4166029e))
+* Contract Calls Chart  ([#546](https://github.com/aeternity/aescan/issues/546)) ([7a7cf37](https://github.com/aeternity/aescan/commit/7a7cf37ca97156fd36a3c07a87eff419dbdcc8eb))
+* Create a cell component to display block height and time ([#529](https://github.com/aeternity/aescan/issues/529)) ([1bac63d](https://github.com/aeternity/aescan/commit/1bac63d171e153670eb3f682212e03f756ab43e4))
+* Implement counter in oracles page ([#527](https://github.com/aeternity/aescan/issues/527)) ([9489d33](https://github.com/aeternity/aescan/commit/9489d33f35495af9a40cb4c62b487a15b9630ef0))
+* Implement oracles filtering ([#520](https://github.com/aeternity/aescan/issues/520)) ([e18e09f](https://github.com/aeternity/aescan/commit/e18e09fac91f76a98d611c99dbfa7c3d066718ab))
+* Move survey to the footer  ([#547](https://github.com/aeternity/aescan/issues/547)) ([458c1ce](https://github.com/aeternity/aescan/commit/458c1ce66cdd2dec9651d3fe9e0937db973a86de))
+* Move time calculation to MDW ([#489](https://github.com/aeternity/aescan/issues/489)) ([bc2d7bd](https://github.com/aeternity/aescan/commit/bc2d7bd986248f82e8a927912c7719b58eb96f27))
+* Name History ([#524](https://github.com/aeternity/aescan/issues/524)) ([d4e4e9e](https://github.com/aeternity/aescan/commit/d4e4e9ed1e36943954edddf90f39ddcececd50b4))
+* Sort NFTs by creation time ([#526](https://github.com/aeternity/aescan/issues/526)) ([df5fa97](https://github.com/aeternity/aescan/commit/df5fa97b35595e614e407080ccfe8c72ed318b22))
+* Transactions trend chart ([#503](https://github.com/aeternity/aescan/issues/503)) ([1fe86ec](https://github.com/aeternity/aescan/commit/1fe86eceba83630e439a813225444f6c4fc3aa2a))
+
+
+### Bug Fixes
+
+* Build fix attempt 3 ([#559](https://github.com/aeternity/aescan/issues/559)) ([b6d1c1d](https://github.com/aeternity/aescan/commit/b6d1c1d35afb1d1d9ec1f38b9f973228c00d2bf3))
+* fix routing after upgrade ([#561](https://github.com/aeternity/aescan/issues/561)) ([9dbff7e](https://github.com/aeternity/aescan/commit/9dbff7eb3eb25ac065e61d5f7051948d347ed80c))
+
 ## [0.8.0](https://github.com/aeternity/aescan/compare/0.7.0...0.8.0) (2023-09-25)
 
 

@@ -18,7 +18,6 @@ export const useWebSocket = defineStore('webSocket', () => {
     if (!webSocket.value || webSocket.value.readyState !== WebSocket.OPEN) {
       return
     }
-    console.log('newValue', newValue)
     if (newValue) {
       webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "KeyBlocks"}')
     } else {

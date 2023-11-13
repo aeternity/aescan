@@ -4,7 +4,7 @@ const DEFAULT_HEADERS = {
   'X-XSS-Protection': '1; mode=block',
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'Cache-control': 'no-cache',
-  'Content-Security-Policy': 'default-src \'self\' *; font-src \'self\' data:; img-src \'self\' data:; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'; frame-src \'self\'; upgrade-insecure-requests; block-all-mixed-content',
+  'Content-Security-Policy': 'default-src \'self\' *; font-src \'self\' data:; img-src \'self\' * data:; script-src \'self\' \'sha256-BCCVwoZgDUk/cw+Ln2/t3z9bm8qy+sICaZP5BWQIyUg=\'; style-src \'self\' \'unsafe-inline\'; frame-src \'self\'; upgrade-insecure-requests; block-all-mixed-content',
   'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
   'Referrer-Policy': 'origin',
   'X-Permitted-Cross-Domain-Policies': 'none',

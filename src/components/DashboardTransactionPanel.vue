@@ -26,12 +26,12 @@
 
     <dashboard-microblock-transactions-table
       v-if="selectedMicroblockTransactions"
-      class="dashboard-transactions-panel__transactions-table"
+      class="u-hidden-mobile"
       :transactions="selectedMicroblockTransactions"/>
 
     <transactions-swiper
       v-if="selectedMicroblockTransactions"
-      class="dashboard-transactions-panel__transactions-swiper"
+      class="u-hidden-desktop"
       :transactions="selectedMicroblockTransactions"/>
   </app-panel>
 </template>
@@ -63,19 +63,6 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
   &__dashboard-panel-header {
     margin-bottom: var(--space-3);
-  }
-
-  &__transactions-swiper {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
-  &__transactions-table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
   }
 
   &__summary {

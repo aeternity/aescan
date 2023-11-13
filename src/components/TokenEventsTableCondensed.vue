@@ -43,13 +43,9 @@
             </app-tooltip>
           </th>
           <td class="token-events-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${event.createdHeight}`">
-                {{ event.createdHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="event.created"/>
+            <block-time-cell
+              :height="event.createdHeight"
+              :datetime="event.created"/>
           </td>
         </tr>
 
@@ -93,7 +89,6 @@
 </template>
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import TokenEventsDataCell from '@/components/TokenEventsDataCell'
 import { tokensHints } from '@/utils/hints/tokensHints'
 import ExpandButton from '@/components/ExpandButton'

@@ -102,7 +102,7 @@
               </app-tooltip>
             </th>
             <td class="dashboard-state-channels-swiper__data">
-              {{ channel.updateType }}
+              {{ channel.lastTxType }}
             </td>
           </tr>
         </tbody>

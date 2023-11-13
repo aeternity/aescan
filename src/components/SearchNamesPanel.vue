@@ -7,10 +7,10 @@
       @next-clicked="loadNextNames">
       <search-names-table
         :names="namesResults"
-        class="search-names-panel__search-names-table"/>
+        class="u-hidden-mobile"/>
       <search-names-table-condensed
         :names="namesResults"
-        class="search-names-panel__search-names-table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -38,20 +38,3 @@ async function loadNextNames() {
   await fetchNamesResults({ queryParameters: namesResults.value.next })
 }
 </script>
-
-<style scoped>
-.search-names-panel {
-  &__search-names-table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__search-names-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

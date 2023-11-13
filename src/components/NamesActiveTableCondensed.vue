@@ -32,10 +32,9 @@
             </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
-            <div>
-              {{ name.expirationHeight }}
-            </div>
-            <datetime-label :datetime="name.expiration"/>
+            <block-time-cell
+              :height="name.expirationHeight"
+              :datetime="name.expiration"/>
           </td>
         </tr>
         <tr class="names-active-table-condensed__row">
@@ -105,7 +104,6 @@
 import { namesHints } from '@/utils/hints/namesHints'
 import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 

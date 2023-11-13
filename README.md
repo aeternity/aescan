@@ -4,7 +4,8 @@
     </p>
 </a>
 
-<a href="https://aescan.io">æScan</a> is a blockchain explorer, analytics platform, and decentralized smart contract navigation platform based on æternity.
+<a href="https://aescan.io">æScan</a> is a blockchain explorer, analytics platform, and decentralized smart contract
+navigation platform based on æternity.
 </p>
 
 ## Table of contents
@@ -30,7 +31,8 @@ user experience with Server Side Rendering enabled.
 
 ## Getting started
 
-First, download an install [Node.js](https://nodejs.org/en/download). Version 16.10 or higher is required.
+First, download and install [Node.js](https://nodejs.org/en/download). Version 20.9.0
+or higher is required.
 
 Clone æScan repository
 

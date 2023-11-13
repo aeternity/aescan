@@ -16,7 +16,7 @@
       class="token-details__panel"
       :token-details="tokenDetails"/>
 
-    <app-tabs>
+    <app-tabs v-model="activeTabIndex">
       <app-tab title="Holders">
         <token-holders-panel/>
       </app-tab>
@@ -30,6 +30,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useRouter } from '#app'
 import TokenDetailsPanel from '@/components/TokenDetailsPanel'
 import TokenHoldersPanel from '@/components/TokenHoldersPanel'
 import PageHeader from '@/components/PageHeader'
@@ -40,12 +41,40 @@ import { tokensHints } from '@/utils/hints/tokensHints'
 import TokenEventsPanel from '@/components/TokenEventsPanel'
 
 const route = useRoute()
+const { push, replace } = useRouter()
 
 const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
 const { isLoading } = useLoading()
+const TAB_KEYS = ['holders', 'events']
+
+const activeTabIndex = computed({
+  get() {
+    const { type: activeTabName } = route.query
+
+    if (activeTabName === undefined) {
+      return 0
+    }
+
+    return TAB_KEYS.indexOf(activeTabName)
+  },
+  set(index) {
+    const newRoute = {
+      query: {
+        type: TAB_KEYS[index],
+      },
+    }
+
+    if (activeTabIndex.value === index) {
+      // if navigating back
+      return replace(newRoute)
+    }
+
+    return push(newRoute)
+  },
+})
 
 try {
   await fetchTokenDetails(route.params.id)

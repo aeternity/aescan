@@ -7,10 +7,10 @@
       @prev-clicked="loadPrevNftowners">
       <nfts-templates-owners-table
         :owners="nftOwners"
-        class="nfts-templates-owners-panel__table"/>
+        class="nfts-templates-owners-panel__table u-hidden-mobile"/>
       <nfts-templates-owners-table-condensed
         :owners="nftOwners"
-        class="nfts-templates-owners-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -46,17 +46,7 @@ async function loadPrevNftowners() {
   }
 
   &__table {
-    display: none;
     margin-bottom: var(--space-4);
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
   }
 }
 </style>

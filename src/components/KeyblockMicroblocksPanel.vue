@@ -10,10 +10,10 @@
       @next-clicked="loadNextMicroblocks">
       <keyblock-microblocks-table
         :microblocks="microblocks"
-        class="keyblock-microblock-panel__table"/>
+        class="keyblock-microblock-panel__table u-hidden-mobile"/>
       <keyblock-microblocks-table-condensed
         :microblocks="microblocks"
-        class="keyblock-microblock-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -49,19 +49,7 @@ const loadNextMicroblocks = () =>
 </script>
 
 <style scoped>
-.keyblock-microblock-panel {
-  &__table {
-    margin-bottom: var(--space-4);
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
+.keyblock-microblock-panel__table {
+  margin-bottom: var(--space-4);
 }
 </style>

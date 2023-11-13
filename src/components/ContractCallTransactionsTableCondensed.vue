@@ -29,13 +29,9 @@
           </app-tooltip>
         </th>
         <td class="contract-call-transactions-table-condensed__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${transaction.createdHeight}`">
-              {{ transaction.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="transaction.created"/>
+          <block-time-cell
+            :height="transaction.createdHeight"
+            :datetime="transaction.created"/>
         </td>
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">
@@ -78,7 +74,6 @@
 </template>
 
 <script setup>
-import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import AppChip from '@/components/AppChip'
 import { contractsHints } from '@/utils/hints/contractsHints'

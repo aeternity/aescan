@@ -16,8 +16,12 @@
           </th>
           <td class="name-history-table-condensed__data">
             <value-hash-ellipsed
+              v-if="action.hash"
               :hash="action.hash"
               :link-to="`/transactions/${action.hash}`"/>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
         <tr class="name-history-table-condensed__row">
@@ -30,13 +34,9 @@
             </app-tooltip>
           </th>
           <td class="name-history-table-condensed__data">
-            <div>
-              <app-link
-                :to="`/keyblocks/${action.createdHeight}`">
-                {{ action.createdHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="action.created"/>
+            <block-time-cell
+              :height="action.createdHeight"
+              :datetime="action.created"/>
           </td>
         </tr>
         <tr class="name-history-table-condensed__row">
@@ -49,7 +49,19 @@
             </app-tooltip>
           </th>
           <td class="name-history-table-condensed__data">
-            {{ action.type }}
+            <name-history-cell
+              :activity="action.type"
+              :payload="action.payload"/>
+          </td>
+        </tr>
+        <tr class="name-history-table-condensed__row">
+          <th class="name-history-table-condensed__header">
+            Data
+          </th>
+          <td class="name-history-table-condensed__data">
+            <name-history-data-cell
+              :activity="action.type"
+              :payload="action.payload"/>
           </td>
         </tr>
       </tbody>
@@ -61,7 +73,6 @@
 import { namesHints } from '@/utils/hints/namesHints'
 import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({
   actions: {

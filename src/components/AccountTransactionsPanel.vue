@@ -12,11 +12,11 @@
       </template>
 
       <account-transactions-table
-        class="account-transactions-panel__account-transactions-table"
+        class="account-transactions-panel__account-transactions-table u-hidden-mobile"
         :account-transactions="accountTransactions"/>
 
       <account-transactions-table-condensed
-        class="account-transactions-panel__account-transactions-table-condensed"
+        class="u-hidden-desktop"
         :account-transactions="accountTransactions"/>
     </paginated-content>
   </app-panel>
@@ -65,20 +65,9 @@ function loadNextTransactions() {
 </script>
 
 <style scoped>
-.account-transactions-panel {
-  &__account-transactions-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__account-transactions-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
+.account-transactions-panel__account-transactions-table {
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
   }
 }
 </style>

@@ -52,13 +52,9 @@
         </td>
         <td>
           <div class="dashboard-names-table__blocks">
-            <app-link
-              :to="`/keyblocks/${name.activatedHeight}`">
-              {{ name.activatedHeight }}
-            </app-link>
-          </div>
-          <div>
-            <datetime-label :datetime="name.activated"/>
+            <block-time-cell
+              :height="name.activatedHeight"
+              :datetime="name.activated"/>
           </div>
         </td>
       </tr>
@@ -72,7 +68,6 @@ import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
 import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>

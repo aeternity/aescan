@@ -38,13 +38,9 @@
             :hash="contract.contractId"/>
         </td>
         <td class="contracts-table__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${contract.createdHeight}`">
-              {{ contract.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="contract.created"/>
+          <block-time-cell
+            :height="contract.createdHeight"
+            :datetime="contract.created"/>
         </td>
         <td class="contracts-table__data">
           <value-hash-ellipsed
@@ -63,7 +59,6 @@
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import HintTooltip from '@/components/HintTooltip'
 
 defineProps({

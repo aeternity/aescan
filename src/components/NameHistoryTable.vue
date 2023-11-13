@@ -20,6 +20,9 @@
             {{ namesHints.activity }}
           </hint-tooltip>
         </th>
+        <th>
+          Data
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -28,22 +31,27 @@
         :key="action.hash">
         <td>
           <value-hash-ellipsed
+            v-if="action.hash"
             :hash="action.hash"
             :link-to="`/transactions/${action.hash}`"/>
+          <template v-else>
+            N/A
+          </template>
         </td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${action.createdHeight}`">
-              {{ action.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="action.created"/>
+          <block-time-cell
+            :height="action.createdHeight"
+            :datetime="action.created"/>
         </td>
         <td>
-          <div>
-            {{ action.type }}
-          </div>
+          <name-history-cell
+            :activity="action.type"
+            :payload="action.payload"/>
+        </td>
+        <td>
+          <name-history-data-cell
+            :activity="action.type"
+            :payload="action.payload"/>
         </td>
       </tr>
     </tbody>
@@ -51,10 +59,7 @@
 </template>
 
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
-import HintTooltip from '@/components/HintTooltip'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({
   actions: {

@@ -8,13 +8,13 @@
         v-if="tokenHolders"
         :token-holders="tokenHolders"
         :token-details="tokenDetails"
-        class="token-holders-panel__table"/>
+        class="u-hidden-mobile"/>
 
       <token-holders-table-condensed
         v-if="tokenHolders"
         :token-holders="tokenHolders"
         :token-details="tokenDetails"
-        class="token-holders-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -46,21 +46,3 @@ if (process.client) {
   })
 }
 </script>
-
-<style scoped>
-.token-holders-panel {
-  &__table {
-    display: none;
-    margin-bottom: var(--space-4);
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

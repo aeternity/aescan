@@ -27,6 +27,10 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const ORACLE_STATES_OPTIONS = [
+  { stateQuery: 'active', label: 'Active' },
+  { stateQuery: 'inactive', label: 'Inactive' },
+]
 export const TOKEN_TYPES_OPTIONS = [
   { label: 'Listed', key: 'listedTokens' },
   { label: 'All Tokens', key: 'allTokens' },

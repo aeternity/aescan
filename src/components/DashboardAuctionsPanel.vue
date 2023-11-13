@@ -11,8 +11,8 @@
         name. The shorter the name, the longer the auction lives.
       </template>
     </dashboard-panel-header>
-    <dashboard-auctions-table class="dashboard-auctions-panel__table"/>
-    <dashboard-auctions-swiper class="dashboard-auctions-panel__swiper"/>
+    <dashboard-auctions-table class="u-hidden-mobile"/>
+    <dashboard-auctions-swiper class="u-hidden-desktop"/>
   </app-panel>
 </template>
 
@@ -25,19 +25,6 @@ import AppPanel from '@/components/AppPanel'
   padding: var(--space-3) var(--space-1);
   @media (--desktop) {
     padding: var(--space-4);
-  }
-
-  &__swiper {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
   }
 }
 </style>

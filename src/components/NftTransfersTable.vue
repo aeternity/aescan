@@ -44,13 +44,10 @@
             :hash="transfer.txHash"/>
         </td>
         <td class="nft-transfers-table__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${transfer.height}`">
-              {{ transfer.height }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="transfer.time"/>
+          <block-time-cell
+            :height="transfer.height"
+            :datetime="transfer.time"/>
+          <div/>
         </td>
         <td class="nft-transfers-table__data">
           {{ transfer.tokenId }}

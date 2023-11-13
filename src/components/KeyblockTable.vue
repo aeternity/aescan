@@ -59,7 +59,7 @@
             {{ keyblocksHints.mined }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table__data ">
+        <td class="keyblock-table__data">
           <datetime-label :datetime="keyblock.mined"/>
         </td>
         <th class="keyblock-table__column-end">

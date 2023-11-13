@@ -5,7 +5,6 @@
 
   <page-header>
     Smart Contracts
-
     <template #tooltip>
       {{ contractsHints.contract }}
       <app-link
@@ -16,7 +15,10 @@
     </template>
   </page-header>
 
-  <contracts-panel v-if="!isLoading"/>
+  <template v-if="!isLoading">
+    <contracts-chart-panel class="contracts-panel"/>
+    <contracts-panel class="contracts-panel"/>
+  </template>
   <loader-panel v-else/>
 </template>
 
@@ -27,3 +29,16 @@ import { contractsHints } from '@/utils/hints/contractsHints'
 
 const { isLoading } = useLoading()
 </script>
+
+<style scoped>
+.contracts-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+</style>

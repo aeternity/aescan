@@ -4,10 +4,10 @@
       <app-link
         v-if="linkTo"
         :to="linkTo">
-        {{ formatEllipseHash(hash) }}
+        {{ translatedAddress }}
       </app-link>
       <app-tooltip v-else>
-        {{ formatEllipseHash(hash) }}
+        {{ translatedAddress }}
         <template #tooltip>
           {{ hash }}
         </template>
@@ -17,14 +17,14 @@
     <span class="value-hash-ellipsed--desktop">
       <app-tooltip v-if="linkTo">
         <app-link :to="linkTo">
-          {{ formatEllipseHash(hash) }}
+          {{ translatedAddress }}
         </app-link>
         <template #tooltip>
           {{ hash }}
         </template>
       </app-tooltip>
       <app-tooltip v-else>
-        {{ formatEllipseHash(hash) }}
+        {{ translatedAddress }}
         <template #tooltip>
           {{ hash }}
         </template>
@@ -34,11 +34,9 @@
 </template>
 
 <script setup>
-import AppTooltip from '@/components/AppTooltip'
 import { formatEllipseHash } from '@/utils/format'
-import AppLink from '@/components/AppLink'
 
-defineProps({
+const props = defineProps({
   hash: {
     type: String,
     required: true,
@@ -47,6 +45,14 @@ defineProps({
     type: String,
     default: null,
   },
+})
+
+const translatedAddress = computed(() => {
+  if (KNOWN_ADDRESSES.some(address => address.hash === props.hash)) {
+    return KNOWN_ADDRESSES.find(address => address.hash === props.hash).name
+  } else {
+    return formatEllipseHash(props.hash)
+  }
 })
 </script>
 

@@ -10,7 +10,13 @@
             </hint-tooltip>
           </th>
           <th>
-            Expires
+            Expire Block
+            <hint-tooltip>
+              {{ namesHints.expires }}
+            </hint-tooltip>
+          </th>
+          <th>
+            Expire Time
             <hint-tooltip>
               {{ namesHints.expires }}
             </hint-tooltip>
@@ -45,9 +51,10 @@
             </app-link>
           </td>
           <td>
-            <block-time-cell
-              :height="name.expirationHeight"
-              :datetime="name.expiration"/>
+            <block-height-label :height="name.expirationHeight"/>
+          </td>
+          <td>
+            <datetime-label :datetime="name.expiration"/>
           </td>
           <td>
             <div>

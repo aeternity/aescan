@@ -10,20 +10,8 @@ export const useWebSocket = defineStore('webSocket', () => {
   const { updateTransactionTypeData } = useTransactionDetailsStore()
 
   const webSocket = shallowRef()
-  const isSubscribedToTransactionDetails = ref(false)
   const isSubscribedToKeyblockDetails = ref(false)
   const subscribedTransactionId = ref(null)
-
-  watch(isSubscribedToTransactionDetails, newValue => {
-    if (!webSocket.value || webSocket.value.readyState !== WebSocket.OPEN) {
-      return
-    }
-    if (newValue) {
-      webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "KeyBlocks"}')
-    } else {
-      webSocket.value.send('{"op":"Unsubscribe", "source": "node", "payload": "KeyBlocks"}')
-    }
-  })
 
   watch(isSubscribedToKeyblockDetails, newValue => {
     if (!webSocket.value || webSocket.value.readyState !== WebSocket.OPEN) {
@@ -97,7 +85,6 @@ export const useWebSocket = defineStore('webSocket', () => {
   }
 
   return {
-    isSubscribedToTransactionDetails,
     isSubscribedToKeyblockDetails,
     subscribedTransactionId,
     initializeWebSocket,

@@ -9,9 +9,9 @@
           </hint-tooltip>
         </th>
         <th>
-          Expired Block
+          Expired Height
           <hint-tooltip>
-            {{ namesHints.expired }}
+            {{ namesHints.expiredHeight }}
           </hint-tooltip>
         </th>
         <th>
@@ -44,7 +44,7 @@
           </app-link>
         </td>
         <td>
-          <block-height-label :height="name.expirationHeight"/>
+          <keyblock-link :height="name.expirationHeight"/>
         </td>
         <td>
           <datetime-label :datetime="name.expiration"/>

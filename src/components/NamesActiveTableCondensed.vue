@@ -25,14 +25,14 @@
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
             <app-tooltip>
-              Expire Block
+              Expire Height
               <template #tooltip>
-                {{ namesHints.expires }}
+                {{ namesHints.expireHeight }}
               </template>
             </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
-            <block-height-label :height="name.expirationHeight"/>
+            <keyblock-link :height="name.expirationHeight"/>
           </td>
         </tr>
         <tr class="names-active-table-condensed__row">
@@ -40,7 +40,7 @@
             <app-tooltip>
               Expire Time
               <template #tooltip>
-                {{ namesHints.expires }}
+                {{ namesHints.expire }}
               </template>
             </app-tooltip>
           </th>

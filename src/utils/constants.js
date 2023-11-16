@@ -95,7 +95,7 @@ export const REMOVE_LIQUIDITY_CONTRACT_CALLS = [
 ]
 export const KNOWN_ADDRESSES = [
   { hash: 'ak_jgiBUko9fTwg5HQ8nHFoPbjR22TBcg9LK85qsv1mTkcjdszFa', name: 'CoinEx' },
-  { hash: 'ak_6sssiKcg7AywyJkfSdHz52RbDUq5cZe4V4hcvghXnrPz4H4Qg', name: 'Gateio' },
+  { hash: 'ak_6sssiKcg7AywyJkfSdHz52RbDUq5cZe4V4hcvghXnrPz4H4Qg', name: 'Gate.io' },
   { hash: 'ak_3oCNr4upswn5sRVpqdpuiCwxqwRU1tok2xLjLLy9vjvYRdVNd', name: 'MEXC' },
   { hash: 'ak_dMyzpooJ4oGnBVX35SCvHspJrq55HAAupCwPQTDZmRDT5SSSW', name: 'WeTrue.io' },
   { hash: 'ak_vKdT14HCiLCxuT3M7vf3QREyUbQTr1u6Pz49ba9EhaD6uDqWs', name: 'Huobi' },

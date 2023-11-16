@@ -114,7 +114,7 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatEllipseHash, formatKnownAddress, formatNullable, formatNumber } from '@/utils/format'
+import { formatAePrice, formatKnownAddress, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
 

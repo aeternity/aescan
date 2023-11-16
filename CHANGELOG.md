@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.10.0](https://github.com/aeternity/aescan/compare/0.9.0...0.10.0) (2023-11-16)
+
+
+### Features
+
+* add microblocks transactions filtering ([#562](https://github.com/aeternity/aescan/issues/562)) ([be078b7](https://github.com/aeternity/aescan/commit/be078b7b69f92302d0d2053cd28bf32a5806cd28))
+* Live update transaction details ([#569](https://github.com/aeternity/aescan/issues/569)) ([f80dda8](https://github.com/aeternity/aescan/commit/f80dda88613133d5088976f06058331ac09c06d6))
+
+
+### Bug Fixes
+
+* Layout fix ([#571](https://github.com/aeternity/aescan/issues/571)) ([74321b7](https://github.com/aeternity/aescan/commit/74321b7bebc65bc0ddfa8225709e11d70ab3fcf6))
+* microblocks tx counter at keyblock condensed ([#566](https://github.com/aeternity/aescan/issues/566)) ([1b29ddf](https://github.com/aeternity/aescan/commit/1b29ddf5c527c908b8b7acd3431c4b9351a4d58a))
+* On testnet some tokens have no name at all and clicking on their copy button looks broken ([#570](https://github.com/aeternity/aescan/issues/570)) ([cdc1c16](https://github.com/aeternity/aescan/commit/cdc1c16cae0558b28cf0275f034699964413901a))
+* Search does not work with hashes ([#584](https://github.com/aeternity/aescan/issues/584)) ([325a7a8](https://github.com/aeternity/aescan/commit/325a7a82531487f4001eee864fa4fdbf51258a07))
+
 ## [0.9.0](https://github.com/aeternity/aescan/compare/0.8.0...0.9.0) (2023-11-06)
 
 

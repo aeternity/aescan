@@ -6,11 +6,11 @@
     <template #header>
       <copy-chip
         :label="stateChannelDetails.id"
-        class="state-channel-details-panel__chip"/>
+        class="u-hidden-mobile"/>
       <copy-chip
         :label="formatEllipseHash(stateChannelDetails.id)"
         :clipboard-text="stateChannelDetails.id"
-        class="state-channel-details-panel__chip-ellipse"/>
+        class="u-hidden-desktop"/>
     </template>
 
     <table>
@@ -37,10 +37,10 @@
           </th>
           <td class="state-channel-details-panel__data">
             <app-link :to="`/transactions/${stateChannelDetails.createTransactionHash}`">
-              <span class="state-channel-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ stateChannelDetails.createTransactionHash }}
               </span>
-              <span class="state-channel-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(stateChannelDetails.createTransactionHash) }}
               </span>
             </app-link>
@@ -66,10 +66,10 @@
           </th>
           <td class="state-channel-details-panel__data">
             <app-link :to="`/accounts/${stateChannelDetails.initiator}`">
-              <span class="state-channel-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ stateChannelDetails.initiator }}
               </span>
-              <span class="state-channel-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(stateChannelDetails.initiator) }}
               </span>
             </app-link>
@@ -84,10 +84,10 @@
           </th>
           <td class="state-channel-details-panel__data">
             <app-link :to="`/accounts/${stateChannelDetails.responder}`">
-              <span class="state-channel-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ stateChannelDetails.responder }}
               </span>
-              <span class="state-channel-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(stateChannelDetails.responder) }}
               </span>
             </app-link>
@@ -221,21 +221,6 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v2/channels/${props.stateCh
   &__link {
     display: inline-flex;
     align-items: center;
-  }
-
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 }
 </style>

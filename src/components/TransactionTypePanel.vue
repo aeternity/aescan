@@ -14,11 +14,11 @@
       <template v-if="transactionData.type === 'PayingForTx'">
         <copy-chip
           :label="transactionData.payerId"
-          class="transaction-type-panel__copy-chip"/>
+          class="u-hidden-mobile"/>
         <copy-chip
           :label="formatEllipseHash(transactionData.payerId)"
           :clipboard-text="transactionData.payerId"
-          class="transaction-type-panel__copy-chip-ellipse"/>
+          class="u-hidden-desktop"/>
         <app-chip variant="primary">
           {{ transactionData.tx.tx.type }}
         </app-chip>
@@ -99,20 +99,6 @@ watch(props.transactionData, () => {
     &:empty {
       gap: 0;
       margin-bottom: 0;
-    }
-  }
-
-  &__copy-chip {
-    display: none;
-
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__copy-chip-ellipse {
-    @media (--desktop) {
-      display: none;
     }
   }
 

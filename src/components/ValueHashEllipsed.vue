@@ -1,6 +1,6 @@
 <template>
   <span>
-    <span class="value-hash-ellipsed">
+    <span class="u-hidden-desktop">
       <app-link
         v-if="linkTo"
         :to="linkTo">
@@ -14,7 +14,7 @@
       </app-tooltip>
     </span>
 
-    <span class="value-hash-ellipsed--desktop">
+    <span class="u-hidden-mobile">
       <app-tooltip v-if="linkTo">
         <app-link :to="linkTo">
           {{ formatKnownAddress(hash) }}
@@ -45,19 +45,3 @@ defineProps({
   },
 })
 </script>
-
-<style scoped>
-.value-hash-ellipsed {
-  display: inline-flex;
-  @media (--desktop) {
-    display: none;
-  }
-
-  &--desktop {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-}
-</style>

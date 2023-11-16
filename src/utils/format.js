@@ -131,7 +131,7 @@ export function formatIsAuction(name) {
   return name.length - suffixLength < auctionLength
 }
 
-export function formatKnownAddress(hash, isEllipsed = false) {
+export function formatKnownAddress(hash, isEllipsed = true) {
   if (KNOWN_ADDRESSES.some(address => address.hash === hash)) {
     return KNOWN_ADDRESSES.find(address => address.hash === hash).name
   } else if (isEllipsed) {

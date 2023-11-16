@@ -9,11 +9,11 @@
       </app-chip>
 
       <copy-chip
-        :label="formatKnownAddress(accountDetails.id)"
+        :label="formatKnownAddress(accountDetails.id, false)"
         :clipboard-text="accountDetails.id"
         class="u-hidden-mobile"/>
       <copy-chip
-        :label="formatKnownAddress(accountDetails.id, true)"
+        :label="formatKnownAddress(accountDetails.id)"
         :clipboard-text="accountDetails.id"
         class="u-hidden-desktop"/>
     </template>

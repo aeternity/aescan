@@ -130,3 +130,13 @@ export function formatIsAuction(name) {
   const suffixLength = 6
   return name.length - suffixLength < auctionLength
 }
+
+export function formatKnownAddress(hash, isEllipsed = false) {
+  if (KNOWN_ADDRESSES.some(address => address.hash === hash)) {
+    return KNOWN_ADDRESSES.find(address => address.hash === hash).name
+  } else if (isEllipsed) {
+    return formatEllipseHash(hash)
+  } else {
+    return hash
+  }
+}

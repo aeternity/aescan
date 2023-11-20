@@ -6,7 +6,7 @@ import { useTransactionDetailsStore } from '@/stores/transactionDetails'
 
 export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public
-  const { processSocketMessage } = useRecentBlocksStore()
+  const { processSocketMessage, updateBlockHeight } = useRecentBlocksStore()
   const { updateTransactionTypeData } = useTransactionDetailsStore()
 
   const webSocket = shallowRef()
@@ -73,8 +73,11 @@ export const useWebSocket = defineStore('webSocket', () => {
     const parsedData = camelcaseKeysDeep(JSON.parse(data))
     const isSpecificEntityMessage = parsedData.subscription === 'Object'
     const isSubscribedTransactionMessage = parsedData.payload?.hash === subscribedTransactionId.value
+    const isSubscribedKeyblockMessage = parsedData.subscription === 'KeyBlocks'
 
-    if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
+    if (isSubscribedKeyblockMessage) {
+      updateBlockHeight(parsedData.payload)
+    } else if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
       updateTransactionTypeData(parsedData.payload)
     } else {
       await processSocketMessage(parsedData)

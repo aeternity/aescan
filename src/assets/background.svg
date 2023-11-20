@@ -1,26 +1,26 @@
-<svg width="1512" height="1702" viewBox="0 0 1512 1702" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1440" height="1622" viewBox="0 0 1440 1622" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_6942_56220)">
-<rect width="1512" height="1702" fill="#F7F7F7"/>
+<rect width="1440" height="1621" transform="translate(0 0.601562)" fill="#DEDEDE"/>
 <g opacity="0.3">
-<rect x="919.486" y="-337.688" width="347.757" height="1550.16" transform="rotate(-60 919.486 -337.688)" fill="#C8C8C8"/>
-<rect width="347.757" height="1086.74" transform="matrix(0.5 -0.866025 -0.866025 -0.5 1052.88 195.002)" fill="#C8C8C8"/>
-<circle cx="173.879" cy="173.879" r="173.879" transform="matrix(0.5 -0.866025 -0.866025 -0.5 1203.46 281.941)" fill="#DEDEDE"/>
-<rect x="338.206" y="237.891" width="347.757" height="1550.16" transform="rotate(-60 338.206 237.891)" fill="#C8C8C8"/>
-<circle cx="425.145" cy="87.3072" r="173.879" transform="rotate(-60 425.145 87.3072)" fill="#DEDEDE"/>
-<rect width="347.757" height="1586.51" transform="matrix(0.5 -0.866025 -0.866025 -0.5 845.197 985.943)" fill="#C8C8C8"/>
-<circle cx="173.879" cy="173.879" r="173.879" transform="matrix(0.5 -0.866025 -0.866025 -0.5 995.78 1072.88)" fill="#DEDEDE"/>
-<rect x="130.525" y="1028.83" width="347.757" height="1550.16" transform="rotate(-60 130.525 1028.83)" fill="#C8C8C8"/>
-<circle cx="217.464" cy="878.25" r="173.879" transform="rotate(-60 217.464 878.25)" fill="#DEDEDE"/>
+<rect width="331.201" height="1476.36" transform="matrix(0.499988 -0.866032 0.866018 0.500012 875.703 -321.018)" fill="#B2B2B2"/>
+<rect width="331.201" height="1035" transform="matrix(0.499988 -0.866032 -0.866018 -0.500012 1002.74 186.324)" fill="#B2B2B2"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 -0.866018 -0.500013 1146.16 269.125)" fill="#C8C8C8"/>
+<rect width="331.201" height="1476.36" transform="matrix(0.499988 -0.866032 0.866018 0.500012 322.102 227.17)" fill="#B2B2B2"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 0.866018 0.500013 178.688 144.369)" fill="#C8C8C8"/>
+<rect width="331.201" height="1510.98" transform="matrix(0.499988 -0.866032 -0.866018 -0.500012 804.953 939.623)" fill="#B2B2B2"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 -0.866018 -0.500013 948.365 1022.42)" fill="#C8C8C8"/>
+<rect width="331.201" height="1476.36" transform="matrix(0.499988 -0.866032 0.866018 0.500012 124.311 980.469)" fill="#B2B2B2"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 0.866018 0.500013 -19.1035 897.668)" fill="#C8C8C8"/>
 </g>
-<rect y="712" width="1512" height="990" fill="url(#paint0_linear_6942_56220)"/>
+<rect y="678.717" width="1440" height="942.885" fill="url(#paint0_linear_6942_56220)"/>
 </g>
 <defs>
-<linearGradient id="paint0_linear_6942_56220" x1="756" y1="712" x2="756" y2="1702" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_6942_56220" x1="720" y1="678.717" x2="720" y2="1621.6" gradientUnits="userSpaceOnUse">
 <stop stop-color="#F7F7F7" stop-opacity="0"/>
 <stop offset="0.390625" stop-color="#F7F7F7"/>
 </linearGradient>
 <clipPath id="clip0_6942_56220">
-<rect width="1512" height="1702" fill="white"/>
+<rect width="1440" height="1621" fill="white" transform="translate(0 0.601562)"/>
 </clipPath>
 </defs>
 </svg>

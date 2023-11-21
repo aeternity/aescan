@@ -9,7 +9,7 @@ on:
 
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
-  ENV: "stg"
+  ENV: "stg.service"
   APP: "aescan"
 
 concurrency: aescan_staging_environment-${{ github.ref }}

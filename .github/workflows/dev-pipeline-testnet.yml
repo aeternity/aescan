@@ -6,7 +6,7 @@ on:
       - develop
     
 env:
-  ENV: "dev"
+  ENV: "dev.service"
   APP: "aescan-testnet"
 
 concurrency: aescan_develop_environment-${{ github.ref }}

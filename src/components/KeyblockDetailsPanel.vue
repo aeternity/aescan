@@ -4,7 +4,7 @@
       DETAILS
     </template>
     <template #header>
-      <div v-if="!keyblockDetails.notExistent">
+      <div v-if="!!keyblockDetails.isExistent">
         <copy-chip
           :label="keyblockDetails.hash"
           class="keyblock-details-panel__chip"/>
@@ -15,7 +15,7 @@
       </div>
     </template>
     <p
-      v-if="keyblockDetails.notExistent"
+      v-if="keyblockDetails.isExistent === false"
       class="keyblock-details-panel__not-existent">
       Requested keyblock has never been seen in the network.
       <br>
@@ -245,7 +245,7 @@ const isNextKeyblockMined = computed(() =>
   }
 
   &__not-existent {
-    margin: var(--space-3) 0;
+    margin: 0 0 var(--space-3) 0;
   }
 
   &__controls {

@@ -28,7 +28,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
       rawKeyblock.value = data
     } catch (error) {
       if (error.response?.status === 404) {
-        rawKeyblock.value = { notExistent: true }
+        rawKeyblock.value = { isExistent: false }
         return
       }
       throw error

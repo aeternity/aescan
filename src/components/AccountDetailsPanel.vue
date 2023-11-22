@@ -9,11 +9,10 @@
       </app-chip>
 
       <copy-chip
-        :label="formatKnownAddress(accountDetails.id, false)"
-        :clipboard-text="accountDetails.id"
+        :label="accountDetails.id"
         class="u-hidden-mobile"/>
       <copy-chip
-        :label="formatKnownAddress(accountDetails.id)"
+        :label="formatEllipseHash(accountDetails.id)"
         :clipboard-text="accountDetails.id"
         class="u-hidden-desktop"/>
     </template>
@@ -114,7 +113,7 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatKnownAddress, formatNullable, formatNumber } from '@/utils/format'
+import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
 

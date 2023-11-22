@@ -6,7 +6,7 @@ on:
       - develop
     
 env:
-  ENV: "dev.service"
+  ENV: "dev"
   APP: "aescan"
 
 concurrency: aescan_develop_environment-${{ github.ref }}
@@ -95,7 +95,7 @@ jobs:
 
       - name: Latest Develop Branch Deploy on Push
         if: github.event_name == 'push'
-        uses: aeternity/ae-github-actions/argocd-pr-sync@v4
+        uses: aeternity/ae-github-actions/argocd-pr-sync@v5
         with:
           git-sha: ${{ steps.git-sha.outputs.GIT_SHA }}
           url-prefix: develop

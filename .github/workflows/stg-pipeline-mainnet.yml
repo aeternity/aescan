@@ -9,7 +9,7 @@ on:
 
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
-  ENV: "stg.service"
+  ENV: "stg"
   APP: "aescan"
 
 concurrency: aescan_staging_environment-${{ github.ref }}
@@ -106,7 +106,7 @@ jobs:
           
       - name: Staging PR Sync
         if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
-        uses: aeternity/ae-github-actions/argocd-pr-sync@v4
+        uses: aeternity/ae-github-actions/argocd-pr-sync@v5
         with:
           git-sha: ${{ steps.git-sha.outputs.GIT_SHA }}
           url-prefix: pr-${{ env.PR_NUMBER }}
@@ -115,7 +115,7 @@ jobs:
 
       - name: Staging deploy
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
-        uses: aeternity/ae-github-actions/argocd-deploy@v4
+        uses: aeternity/ae-github-actions/argocd-deploy@v5
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}
           env: ${{ env.ENV }}
@@ -123,7 +123,7 @@ jobs:
 
       - name: Staging undeploy
         if: github.event_name == 'pull_request' && github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true
-        uses: aeternity/ae-github-actions/argocd-undeploy@v4
+        uses: aeternity/ae-github-actions/argocd-undeploy@v5
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}
           env: ${{ env.ENV }}

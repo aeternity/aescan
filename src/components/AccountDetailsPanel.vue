@@ -61,17 +61,6 @@
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            AENS Names
-            <hint-tooltip>
-              {{ accountHints.aensNames }}
-            </hint-tooltip>
-          </th>
-          <td class="account-details-panel__data">
-            {{ formatNumber(accountDetails.namesCount) }}
-          </td>
-        </tr>
-        <tr class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
             Nonce
             <hint-tooltip>
               {{ accountHints.nonce }}

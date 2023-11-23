@@ -30,17 +30,11 @@ import { TX_TYPES_OPTIONS } from '@/utils/constants'
 import { isDesktop } from '@/utils/screen'
 
 const transactionsStore = useTransactionsStore()
-const {
-  transactions,
-  transactionsCount,
-  isHydrated,
-  pageIndex,
-} = storeToRefs(transactionsStore)
-const { fetchTransactions, fetchTransactionsCount, setPageIndex } = transactionsStore
+const { transactions, transactionsCount, isHydrated, pageIndex, selectedTxType } = storeToRefs(transactionsStore)
+const { fetchTransactions, fetchTransactionsCount, setPageIndex, setSelectedTxType } = transactionsStore
 const route = useRoute()
 const { push } = useRouter()
 
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevTransactions() {
@@ -54,7 +48,7 @@ async function loadNextTransactions() {
 async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-  selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
+  setSelectedTxType(txTypeOption || TX_TYPES_OPTIONS[0])
   await fetchTransactions(`/v3/transactions?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
   await fetchTransactionsCount(selectedTxType.value.typeQuery)
   setPageIndex(1)

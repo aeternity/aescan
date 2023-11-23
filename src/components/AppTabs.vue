@@ -67,7 +67,6 @@ function selectTab(tabIndex) {
     width: 100%;
     gap: var(--space-0);
     list-style: none;
-    margin-bottom: 10px;
     overflow-x: auto;
   }
 
@@ -79,8 +78,7 @@ function selectTab(tabIndex) {
     padding: var(--space-1);
     background: var(--color-midnight-15);
     color: var(--color-midnight-55);
-    border-radius: 4px;
-    margin-bottom: 3px;
+    border-radius: 4px 4px 0 0;
     letter-spacing: 0.003em;
     transition: none;
     white-space: nowrap;
@@ -91,10 +89,7 @@ function selectTab(tabIndex) {
     }
 
     &--active {
-      margin-bottom: 0;
       color: var(--color-midnight);
-      border-radius: 4px;
-      border-bottom: 2.5px solid var(--color-fire);
       background: var(--color-white);
     }
   }

@@ -17,7 +17,7 @@
   </div>
 </template>
 <script setup>
-import { isAddressValid } from '@aeternity/aepp-sdk'
+import { isAddressValid, Encoding } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
@@ -56,27 +56,27 @@ async function search() {
 }
 
 function isAccountAddress(query) {
-  return isAddressValid(query) && query.startsWith('ak_')
+  return isAddressValid(query)
 }
 
 function isNameId(query) {
-  return isAddressValid(query) && query.startsWith('nm_')
+  return isAddressValid(query, Encoding.Name)
 }
 
 function isTransactionHash(query) {
-  return isAddressValid(query) && query.startsWith('th_')
+  return isAddressValid(query, Encoding.TxHash)
 }
 
 function isContractId(query) {
-  return isAddressValid(query) && query.startsWith('ct_')
+  return isAddressValid(query, Encoding.ContractAddress)
 }
 
 function isOracleId(query) {
-  return isAddressValid(query) && query.startsWith('ok_')
+  return isAddressValid(query, Encoding.OracleAddress)
 }
 
 function isStateChannelId(query) {
-  return isAddressValid(query) && query.startsWith('ch_')
+  return isAddressValid(query, Encoding.Channel)
 }
 
 async function isName(query) {
@@ -88,7 +88,7 @@ async function isName(query) {
 }
 
 function isKeyblockId(query) {
-  if (isAddressValid(query) && query.startsWith('kh_')) {
+  if (isAddressValid(query, Encoding.KeyBlockHash)) {
     return true
   }
   if (!isNaN(query)) {
@@ -98,7 +98,7 @@ function isKeyblockId(query) {
 }
 
 function isMicroblockId(query) {
-  return isAddressValid(query) && query.startsWith('mh_')
+  return isAddressValid(query, Encoding.MicroBlockHash)
 }
 </script>
 <style scoped>

@@ -15,6 +15,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const last24hsTransactionsTrend = ref(null)
   const last24hsAverageTransactionFees = ref(null)
   const feesTrend = ref(null)
+  const isHydrated = ref(null)
+  const pageIndex = ref(1)
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -25,6 +27,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/transactions?limit=10'}`)
+    isHydrated.value = true
     rawTransactions.value = data
   }
 
@@ -44,6 +47,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     feesTrend.value = data.feesTrend
   }
 
+  function setPageIndex(index) {
+    pageIndex.value = index
+  }
+
   return {
     transactionsCount,
     transactions,
@@ -55,5 +62,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
     last24hsTransactionsTrend,
     last24hsAverageTransactionFees,
     feesTrend,
+    isHydrated,
+    pageIndex,
+    setPageIndex,
   }
 })

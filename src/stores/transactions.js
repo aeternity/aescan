@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
+import { ref } from 'vue'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
+import { TX_TYPES_OPTIONS } from '~/utils/constants'
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -12,6 +14,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const transactionsStatistics = ref(null)
   const isHydrated = ref(null)
   const pageIndex = ref(1)
+  const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -43,6 +46,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageIndex.value = index
   }
 
+  function setSelectedTxType(txType) {
+    selectedTxType.value = txType
+  }
+
   return {
     rawTransactions,
     transactionsCount,
@@ -53,6 +60,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
     fetchTransactionsStatistics,
     isHydrated,
     pageIndex,
+    selectedTxType,
     setPageIndex,
+    setSelectedTxType,
   }
 })

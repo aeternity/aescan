@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
 import { useTransactionsStore } from '@/stores/transactions'

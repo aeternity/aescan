@@ -33,14 +33,15 @@ const transactionsStore = useTransactionsStore()
 const {
   transactions,
   transactionsCount,
+  isHydrated,
+  pageIndex,
 } = storeToRefs(transactionsStore)
-const { fetchTransactions, fetchTransactionsCount } = transactionsStore
+const { fetchTransactions, fetchTransactionsCount, setPageIndex } = transactionsStore
 const route = useRoute()
 const { push } = useRouter()
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-const pageIndex = ref(1)
 
 async function loadPrevTransactions() {
   await fetchTransactions(transactions.value.prev)
@@ -56,7 +57,7 @@ async function loadTransactions() {
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
   await fetchTransactions(`/v2/txs?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
   await fetchTransactionsCount(selectedTxType.value.typeQuery)
-  pageIndex.value = 1
+  setPageIndex(1)
 }
 
 if (process.client) {
@@ -69,6 +70,8 @@ if (process.client) {
     push(`/transactions${slug}`)
   })
 
-  loadTransactions()
+  if (!isHydrated.value) {
+    loadTransactions()
+  }
 }
 </script>

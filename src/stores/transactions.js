@@ -10,6 +10,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
+  const isHydrated = ref(null)
+  const pageIndex = ref(1)
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -20,6 +22,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?limit=10'}`)
+    isHydrated.value = true
     rawTransactions.value = data
   }
 
@@ -36,6 +39,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsStatistics.value = data.data.slice(1).reverse()
   }
 
+  function setPageIndex(index) {
+    pageIndex.value = index
+  }
+
   return {
     rawTransactions,
     transactionsCount,
@@ -44,5 +51,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
     fetchTransactionsCount,
     transactionsStatistics,
     fetchTransactionsStatistics,
+    isHydrated,
+    pageIndex,
+    setPageIndex,
   }
 })

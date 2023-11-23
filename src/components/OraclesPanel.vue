@@ -25,9 +25,6 @@ import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'nuxt/app'
 import { useOraclesStore } from '@/stores/oracles'
-import OraclesTableCondensed from '@/components/OraclesTableCondensed'
-import OraclesTable from '@/components/OraclesTable'
-import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
 const oraclesStore = useOraclesStore()
@@ -80,10 +77,7 @@ const selectedOracleState = computed({
 })
 
 if (process.client) {
-  watch(route, (newRoute, prevRoute) => {
-    if (newRoute.name !== prevRoute.name) {
-      return
-    }
+  watch(() => route.fullPath, () => {
     loadOracles()
   })
 

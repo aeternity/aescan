@@ -110,8 +110,10 @@ function logError(error) {
 </script>
 
 <style>
-#app {
+#__nuxt {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 </style>
 
@@ -124,7 +126,7 @@ function logError(error) {
 <style scoped>
 .app {
   &__footer {
-    flex-shrink: 0; /* force footer on bottom of a screen */
+    margin-top: auto;
   }
 }
 </style>

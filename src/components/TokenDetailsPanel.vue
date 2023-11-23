@@ -4,10 +4,12 @@
       DETAILS
     </template>
     <template #header>
-      <token-symbol-icon
-        :contract-id="tokenDetails.contractId"
-        class="token-details-panel__icon"/>
-      <copy-chip :label="tokenDetails.symbol"/>
+      <div class="token-details-panel__token">
+        <token-symbol-icon
+          :contract-id="tokenDetails.contractId"
+          class="token-details-panel__icon"/>
+        <copy-chip :label="tokenDetails.symbol"/>
+      </div>
     </template>
 
     <table>
@@ -226,12 +228,19 @@ const marketCap = computed(() =>
   }
 
   &__icon {
+    margin-right: var(--space-1);
     width: 28px;
     height: 28px;
     @media (--desktop) {
       width: 24px;
       height: 24px;
     }
+  }
+
+  &__token {
+    display: flex;
+    align-items: center;
+
   }
 }
 </style>

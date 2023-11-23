@@ -6,11 +6,11 @@
     <template #header>
       <copy-chip
         :label="microblockDetails.hash"
-        class="microblock-details-panel__chip"/>
+        class="u-hidden-mobile"/>
       <copy-chip
         :label="formatEllipseHash(microblockDetails.hash)"
         :clipboard-text="microblockDetails.hash"
-        class="microblock-details-panel__chip-ellipse"/>
+        class="u-hidden-desktop"/>
     </template>
     <table>
       <tbody>
@@ -23,10 +23,10 @@
           </th>
           <td class="microblock-details-panel__data">
             <app-link :to="`/keyblocks/${microblockDetails.prevKeyHash}`">
-              <span class="microblock-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ microblockDetails.prevKeyHash }}
               </span>
-              <span class="microblock-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(microblockDetails.prevKeyHash) }}
               </span>
             </app-link>
@@ -151,21 +151,6 @@ const microblockMiddlewareUrl = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
-    }
-  }
-
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
     }
   }
 }

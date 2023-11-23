@@ -6,11 +6,11 @@
     <template #header>
       <copy-chip
         :label="nftDetails.contractId"
-        class="nfts-details-panel__chip"/>
+        class="u-hidden-mobile"/>
       <copy-chip
         :label="formatEllipseHash(nftDetails.contractId)"
         :clipboard-text="nftDetails.contractId"
-        class="nfts-details-panel__chip-ellipse"/>
+        class="u-hidden-desktop"/>
     </template>
 
     <table>
@@ -144,21 +144,6 @@ defineProps({
     flex-wrap: wrap;
     gap: var(--space-1);
     justify-content: flex-end;
-  }
-
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 }
 </style>

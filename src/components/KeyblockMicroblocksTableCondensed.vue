@@ -44,7 +44,7 @@
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
             <div>
-              {{ microblock.microblockTransactionsCount }}
+              {{ microblock.transactionsCount }}
             </div>
           </td>
         </tr>

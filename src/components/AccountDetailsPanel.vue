@@ -10,11 +10,11 @@
 
       <copy-chip
         :label="accountDetails.id"
-        class="account-details-panel__copy-chip"/>
+        class="u-hidden-mobile"/>
       <copy-chip
         :label="formatEllipseHash(accountDetails.id)"
         :clipboard-text="accountDetails.id"
-        class="account-details-panel__copy-chip-ellipse"/>
+        class="u-hidden-desktop"/>
     </template>
     <p
       v-if="accountDetails.notExistent"
@@ -113,7 +113,7 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
+import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
 
@@ -159,20 +159,6 @@ const sanitizedPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
-  }
-
-  &__copy-chip {
-    display: none;
-
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__copy-chip-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 
   &__not-existent {

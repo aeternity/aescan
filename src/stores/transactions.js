@@ -40,7 +40,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     // todo mainnet url
     const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions${slug}`)
 
-    // remove last interval from the response not to show currently counted data from the last interval
+    // remove last interval from the response not to show current interval that is being built
     transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
   }
 

@@ -67,6 +67,7 @@ function selectTab(tabIndex) {
     width: 100%;
     gap: var(--space-0);
     list-style: none;
+    overflow-x: auto;
   }
 
   &__item {
@@ -80,6 +81,7 @@ function selectTab(tabIndex) {
     border-radius: 4px 4px 0 0;
     letter-spacing: 0.003em;
     transition: none;
+    white-space: nowrap;
 
     @media (--desktop) {
       font-size: 16px;

@@ -17,7 +17,7 @@
         class="u-hidden-desktop"/>
     </template>
     <p
-      v-if="accountDetails.notExistent"
+      v-if="accountDetails.isExistent === false"
       class="account-details-panel__not-existent">
       The account has never been seen in the network.
       <br>

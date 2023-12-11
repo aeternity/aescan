@@ -8,11 +8,11 @@
       @next-clicked="loadNextEvents">
       <oracle-events-table
         :oracle-events="oracleEvents"
-        class="oracle-events-panel__table"/>
+        class="oracle-events-panel__table u-hidden-mobile"/>
 
       <oracle-events-table-condensed
         :oracle-events="oracleEvents"
-        class="oracle-events-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -45,19 +45,8 @@ if (process.client) {
 </script>
 
 <style scoped>
-.oracle-events-panel {
-  &__table {
-    display: none;
-    margin-bottom: var(--space-4);
-    @media (--desktop) {
-      display: revert;
-    }
-  }
+.oracle-events-panel__table {
+  margin-bottom: var(--space-4);
 
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
 }
 </style>

@@ -73,17 +73,11 @@
         <td>{{ channel.updateCount }}</td>
         <td>{{ channel.locked }}</td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${channel.updatedHeight}`">
-              {{ channel.updatedHeight }}
-            </app-link>
-          </div>
-          <div>
-            <datetime-label :datetime="channel.updated "/>
-          </div>
+          <block-time-cell
+            :height="channel.updatedHeight"
+            :datetime="channel.updated"/>
         </td>
-        <td>{{ channel.updateType }}</td>
+        <td>{{ channel.lastTxType }}</td>
       </tr>
     </tbody>
   </table>

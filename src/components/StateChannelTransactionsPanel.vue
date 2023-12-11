@@ -11,11 +11,11 @@
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <state-channel-transactions-table
-        class="state-channel-transactions-panel__table"
+        class="u-hidden-mobile"
         :transactions="stateChannelTransactions"/>
 
       <state-channel-transactions-table-condensed
-        class="state-channel-transactions-panel__table-condensed"
+        class="u-hidden-desktop"
         :transactions="stateChannelTransactions"/>
     </paginated-content>
   </app-panel>
@@ -55,20 +55,3 @@ if (process.client) {
   })
 }
 </script>
-
-<style scoped>
-.state-channel-transactions-panel {
-  &__table {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
-}
-</style>

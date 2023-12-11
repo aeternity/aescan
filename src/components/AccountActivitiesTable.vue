@@ -48,13 +48,9 @@
           </template>
         </td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${activity.height}`">
-              {{ activity.height }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="activity.time"/>
+          <block-time-cell
+            :height="activity.height"
+            :datetime="activity.time"/>
         </td>
         <td>
           <account-activity-type-cell
@@ -80,7 +76,6 @@
 import AccountActivityCell from '@/components/AccountActivityCell'
 import AccountActivityTypeCell from '@/components/AccountActivityTypeCell'
 import AccountActivityDataCell from '@/components/AccountActivityDataCell'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { accountHints } from '@/utils/hints/accountHints'
 import HintTooltip from '@/components/HintTooltip'

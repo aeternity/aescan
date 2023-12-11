@@ -1,12 +1,10 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptOracleDetails, adaptOracleEvents } from '@/utils/adapters'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const { blockHeight } = storeToRefs(useRecentBlocksStore())
   const axios = useAxios()
 
   const oracleId = ref(null)
@@ -18,7 +16,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     ? adaptOracleDetails(
       rawOracle.value,
       lastExtendedTx.value,
-      blockHeight.value,
       lastQueryTx.value,
     )
     : null,
@@ -41,7 +38,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchOracle() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/oracles/${oracleId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/oracles/${oracleId.value}?tx_hash=true`)
     rawOracle.value = data
   }
 

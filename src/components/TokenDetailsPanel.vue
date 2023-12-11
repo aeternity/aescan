@@ -4,10 +4,12 @@
       DETAILS
     </template>
     <template #header>
-      <token-symbol-icon
-        :contract-id="tokenDetails.contractId"
-        class="token-details-panel__icon"/>
-      <copy-chip :label="tokenDetails.symbol"/>
+      <div class="token-details-panel__token">
+        <token-symbol-icon
+          :contract-id="tokenDetails.contractId"
+          class="token-details-panel__icon"/>
+        <copy-chip :label="tokenDetails.symbol"/>
+      </div>
     </template>
 
     <table>
@@ -69,10 +71,10 @@
           </th>
           <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contractId}`">
-              <span class="token-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ tokenDetails.contractId }}
               </span>
-              <span class="token-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(tokenDetails.contractId) }}
               </span>
             </app-link>
@@ -226,6 +228,7 @@ const marketCap = computed(() =>
   }
 
   &__icon {
+    margin-right: var(--space-1);
     width: 28px;
     height: 28px;
     @media (--desktop) {
@@ -234,17 +237,10 @@ const marketCap = computed(() =>
     }
   }
 
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: revert;
-    }
-  }
+  &__token {
+    display: flex;
+    align-items: center;
 
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 }
 </style>

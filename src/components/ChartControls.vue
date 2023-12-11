@@ -1,9 +1,9 @@
 <template>
-  <div class="transactions-chart-controls">
+  <div class="chart-controls">
     <app-chip
       v-for="(button, index) in buttons"
       :key="index"
-      class="transactions-chart-controls__button"
+      class="chart-controls__button"
       :variant="selectedIndex === index ? 'error' : 'secondary'"
       @click="select(index)">
       {{ button.label }}
@@ -32,7 +32,7 @@ const emit = defineEmits(['selected'])
 </script>
 
 <style scoped>
-.transactions-chart-controls {
+.chart-controls {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 8px;

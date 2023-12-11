@@ -36,13 +36,9 @@
             :link-to="`/transactions/${event.callTxHash}`"/>
         </td>
         <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
-          <div>
-            <app-link
-              :to="`/keyblocks/${event.createdHeight}`">
-              {{ event.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="event.created"/>
+          <block-time-cell
+            :height="event.createdHeight"
+            :datetime="event.created"/>
         </td>
         <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
           {{ event.eventName || 'N/A' }}
@@ -78,7 +74,6 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import EventDataPanel from '@/components/EventDataPanel'
 import ExpandButton from '@/components/ExpandButton'

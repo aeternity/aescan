@@ -37,13 +37,9 @@
               :link-to="`/transactions/${event.hash}`"/>
           </td>
           <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
-            <div>
-              <app-link
-                :to="`/keyblocks/${event.createdHeight}`">
-                {{ event.createdHeight }}
-              </app-link>
-            </div>
-            <datetime-label :datetime="event.created"/>
+            <block-time-cell
+              :height="event.createdHeight"
+              :datetime="event.created"/>
           </td>
           <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             {{ event.name }}

@@ -40,9 +40,8 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   )
 
   const tokenEvents = computed(() => {
-    const store = useRecentBlocksStore()
     return rawTokenEvents.value
-      ? adaptTokenEvents(rawTokenEvents.value, store.blockHeight)
+      ? adaptTokenEvents(rawTokenEvents.value)
       : null
   })
 

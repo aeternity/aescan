@@ -19,7 +19,7 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     return rawName.value?.hash || rawName.value?.info.lastBid.tx.nameId
   })
   const nameActions = computed(() => {
-    return rawNameActions.value ? adaptNameActions(rawNameActions.value, blockHeight.value) : null
+    return rawNameActions.value ? adaptNameActions(rawNameActions.value) : null
   })
   const hasNameHistory = computed(() => {
     return !!nameHash.value
@@ -33,7 +33,7 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
 
   async function fetchNameActions({ nameHash = null, queryParameters = null }) {
     rawNameActions.value = null
-    const defaultParameters = `/v2/accounts/${nameHash}/activities`
+    const defaultParameters = `/v2/names/${nameHash}/history`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawNameActions.value = data
   }

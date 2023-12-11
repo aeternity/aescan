@@ -8,6 +8,7 @@ export const useContractsStore = defineStore('contracts', () => {
   const axios = useAxios()
   const rawContracts = ref(null)
   const contractsCount = ref(null)
+  const contractsStatistics = ref(null)
 
   const contracts = computed(() =>
     rawContracts.value
@@ -20,6 +21,14 @@ export const useContractsStore = defineStore('contracts', () => {
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?type=contract_create&limit=10'}`)
     rawContracts.value = data
   }
+
+  async function fetchContractsStatistics(slug) {
+    contractsStatistics.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions?tx_type=contract_call${slug || '&limit=8&interval_by=day'}`)
+
+    contractsStatistics.value = data.data.slice(1).reverse()
+  }
+
   async function fetchContractsCount() {
     contractsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count?type=contract_create`)
@@ -30,7 +39,9 @@ export const useContractsStore = defineStore('contracts', () => {
     rawContracts,
     contractsCount,
     contracts,
+    contractsStatistics,
     fetchContracts,
     fetchContractsCount,
+    fetchContractsStatistics,
   }
 })

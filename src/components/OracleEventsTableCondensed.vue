@@ -47,12 +47,9 @@
             </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
-            <app-link
-              :to="`/keyblocks/${event.queriedAtHeight}`">
-              {{ event.queriedAtHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="event.queriedAt"/>
+            <block-time-cell
+              :height="event.queriedHeight"
+              :datetime="event.queriedAt"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
@@ -86,12 +83,9 @@
             </app-tooltip>
           </th>
           <td class="oracle-events-table-condensed__data">
-            <app-link
-              :to="`/keyblocks/${event.respondedAtHeight}`">
-              {{ event.respondedAtHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="event.respondedAt"/>
+            <block-time-cell
+              :height="event.respondedHeight"
+              :datetime="event.respondedAt"/>
           </td>
         </tr>
         <tr

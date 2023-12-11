@@ -14,7 +14,7 @@
       v-if="nft"
       class="nft-details__panel"
       :nft-details="nft"/>
-    <app-tabs>
+    <app-tabs v-model="activeTabIndex">
       <app-tab title="Transfers">
         <nfts-transfers-panel/>
       </app-tab>
@@ -35,16 +35,46 @@ import { useNftDetailsStore } from '@/stores/nftDetails'
 import NftDetailsPanel from '@/components/NftsDetailsPanel'
 import NftInventoryPanel from '@/components/NftsInventoryPanel'
 import NftOwnersPanel from '@/components/NftsOwnersPanel'
+import AppTabs from '@/components/AppTabs'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nft } = storeToRefs(nftDetailsStore)
 const { fetchNftDetails } = nftDetailsStore
 const route = useRoute()
+const { push, replace } = useRouter()
 
 const { isLoading } = useLoading()
 
 const hasTemplates = computed(() => {
   return nft.value?.extensions.includes('mintable_templates_limit')
+})
+
+const TAB_KEYS = ['transfers', 'inventory']
+
+const activeTabIndex = computed({
+  get() {
+    const { type: activeTabName } = route.query
+
+    if (activeTabName === undefined) {
+      return 0
+    }
+
+    return TAB_KEYS.indexOf(activeTabName)
+  },
+  set(index) {
+    const newRoute = {
+      query: {
+        type: TAB_KEYS[index],
+      },
+    }
+
+    if (activeTabIndex.value === index) {
+      // if navigating back
+      return replace(newRoute)
+    }
+
+    return push(newRoute)
+  },
 })
 
 try {

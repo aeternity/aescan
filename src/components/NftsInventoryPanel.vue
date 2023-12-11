@@ -8,10 +8,10 @@
       @prev-clicked="loadPrevNftInventory">
       <nfts-inventory-table
         :nft-inventory="nftInventory"
-        class="nfts-inventory-panel__table"/>
+        class="nfts-inventory-panel__table u-hidden-mobile"/>
       <nfts-inventory-table-condensed
         :nft-inventory="nftInventory"
-        class="nfts-inventory-panel__table-condensed"/>
+        class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -43,19 +43,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.nfts-inventory-panel {
-  &__table {
-    display: none;
-    margin-bottom: var(--space-4);
-    @media (--desktop) {
-      display: revert;
-    }
-  }
-
-  &__table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
-  }
+.nfts-inventory-panel__table {
+  margin-bottom: var(--space-4);
 }
 </style>

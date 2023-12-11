@@ -1,0 +1,12 @@
+.u-hidden-desktop {
+  @media (--desktop) {
+    display: none;
+  }
+}
+
+.u-hidden-mobile {
+  display: none;
+  @media (--desktop) {
+    display: revert;
+  }
+}

@@ -1,11 +1,11 @@
 <template>
   <app-panel>
     <template #heading>
-      TOTAL TRANSACTIONS
+      TRANSACTIONS TREND
     </template>
     <template #header>
-      <transactions-chart-controls
-        class="transactions-chart-panel__controls"
+      <chart-controls
+        class="transactions-chart-panel__chart-controls"
         @selected="loadTransactionsStatistics"/>
     </template>
 
@@ -15,8 +15,8 @@
         :data="chartData"/>
     </div>
 
-    <transactions-chart-controls
-      class="transactions-chart-panel__controls--condensed"
+    <chart-controls
+      class="transactions-chart-panel__chart-controls--condensed"
       @selected="loadTransactionsStatistics"/>
   </app-panel>
 </template>
@@ -36,7 +36,6 @@ import {
 import { storeToRefs } from 'pinia'
 import { DateTime } from 'luxon'
 import { useTransactionsStore } from '@/stores/transactions'
-import TransactionsChartControls from '@/components/TransactionsChartControls'
 
 const transactionsStore = useTransactionsStore()
 const {
@@ -149,17 +148,17 @@ async function loadTransactionsStatistics({ interval, limit }) {
     height: 250px;
   }
 
-  &__controls {
+  &__chart-controls {
     display: none;
     @media (--desktop) {
       display: grid;
     }
-  }
 
-  &__controls--condensed {
-    margin-top: var(--space-4);
-    @media (--desktop) {
-      display: none;
+    &--condensed {
+      margin-top: var(--space-4);
+      @media (--desktop) {
+        display: none;
+      }
     }
   }
 }

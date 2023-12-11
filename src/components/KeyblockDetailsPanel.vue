@@ -7,11 +7,11 @@
       <div v-if="!keyblockDetails.notExistent">
         <copy-chip
           :label="keyblockDetails.hash"
-          class="keyblock-details-panel__chip"/>
+          class="u-hidden-mobile"/>
         <copy-chip
           :label="formatEllipseHash(keyblockDetails.hash)"
           :clipboard-text="keyblockDetails.hash"
-          class="keyblock-details-panel__chip-ellipse"/>
+          class="u-hidden-desktop"/>
       </div>
     </template>
     <p
@@ -66,10 +66,10 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            <span class="keyblock-details-panel__hash">
+            <span class="u-hidden-mobile">
               {{ keyblockDetails.miner }}
             </span>
-            <span class="keyblock-details-panel__hash-ellipse">
+            <span class="u-hidden-desktop">
               {{ formatEllipseHash(keyblockDetails.miner) }}
             </span>
           </td>
@@ -83,10 +83,10 @@
           </th>
           <td class="keyblock-details-panel__data">
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
-              <span class="keyblock-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ keyblockDetails.beneficiary }}
               </span>
-              <span class="keyblock-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(keyblockDetails.beneficiary) }}
               </span>
             </app-link>
@@ -226,21 +226,6 @@ const isNextKeyblockMined = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
-    }
-  }
-
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
     }
   }
 

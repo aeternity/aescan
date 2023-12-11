@@ -6,12 +6,12 @@
       @next-clicked="loadNextNames">
       <names-active-table
         v-if="activeNames"
-        class="names-active-panel__names-active-table"
+        class="names-active-panel__names-active-table u-hidden-mobile"
         :names="activeNames"/>
 
       <names-active-table-condensed
         v-if="activeNames"
-        class="names-active-panel__names-active-table-condensed"
+        class="u-hidden-desktop"
         :names="activeNames"/>
     </paginated-content>
   </app-panel>
@@ -39,20 +39,9 @@ function loadNextNames() {
 </script>
 
 <style scoped>
-.names-active-panel {
-  &__names-active-table {
-    display: none;
-
-    @media (--desktop) {
-      display: revert;
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__names-active-table-condensed {
-    @media (--desktop) {
-      display: none;
-    }
+.names-active-panel__names-active-table {
+  @media (--desktop) {
+    margin-bottom: var(--space-4);
   }
 }
 </style>

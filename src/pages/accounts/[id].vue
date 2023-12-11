@@ -16,7 +16,9 @@
       :account-details="accountDetails"/>
 
     <client-only>
-      <app-tabs v-if="isTabsVisible">
+      <app-tabs
+        v-if="isTabsVisible"
+        v-model="activeTabIndex">
         <app-tab title="Activities">
           <account-activities-panel/>
         </app-tab>
@@ -39,7 +41,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRoute } from 'nuxt/app'
+import { useRoute, useRouter } from 'nuxt/app'
 import { useAccountStore } from '@/stores/accountDetails'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
@@ -52,7 +54,10 @@ import AccountDetailsPanel from '@/components/AccountDetailsPanel'
 import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'
 
+const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
+
 const { isLoading } = useLoading()
+const { push, replace } = useRouter()
 
 const accountStore = useAccountStore()
 const { accountDetails, accountTokens } = storeToRefs(accountStore)
@@ -66,6 +71,32 @@ const isTabsVisible = computed(() => process.client &&
 const isTokensTabSelected = computed(() => process.client &&
     accountDetails.value?.notExistent &&
     !!accountTokens.value?.data.length)
+
+const activeTabIndex = computed({
+  get() {
+    const { type: activeTabName } = route.query
+
+    if (activeTabName === undefined) {
+      return 0
+    }
+
+    return TAB_KEYS.indexOf(activeTabName)
+  },
+  set(index) {
+    const newRoute = {
+      query: {
+        type: TAB_KEYS[index],
+      },
+    }
+
+    if (activeTabIndex.value === index) {
+      // if navigating back
+      return replace(newRoute)
+    }
+
+    return push(newRoute)
+  },
+})
 
 if (process.client) {
   const limit = isDesktop() ? null : 3

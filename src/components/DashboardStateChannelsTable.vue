@@ -75,17 +75,11 @@
           {{ formatAePrice(channel.amount) }}
         </td>
         <td>
-          <div>
-            <app-link
-              :to="`/keyblocks/${channel.updatedHeight}`">
-              {{ channel.updatedHeight }}
-            </app-link>
-          </div>
-          <div>
-            <datetime-label :datetime="channel.updated"/>
-          </div>
+          <block-time-cell
+            :height="channel.updatedHeight"
+            :datetime="channel.updated"/>
         </td>
-        <td>{{ channel.updateType }}</td>
+        <td>{{ channel.lastTxType }}</td>
       </tr>
     </tbody>
   </table>
@@ -96,7 +90,6 @@ import { storeToRefs } from 'pinia'
 import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())

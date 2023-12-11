@@ -29,13 +29,9 @@
           </app-tooltip>
         </th>
         <td class="contract-events-table-condensed__data">
-          <div>
-            <app-link
-              :to="`/keyblocks/${event.createdHeight}`">
-              {{ event.createdHeight }}
-            </app-link>
-          </div>
-          <datetime-label :datetime="event.created"/>
+          <block-time-cell
+            :height="event.createdHeight"
+            :datetime="event.created"/>
         </td>
       </tr>
       <tr class="contract-events-table-condensed__row">
@@ -95,7 +91,6 @@
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({

@@ -1,5 +1,44 @@
 # Changelog
 
+## [0.10.0](https://github.com/aeternity/aescan/compare/0.9.0...0.10.0) (2023-11-16)
+
+
+### Features
+
+* add microblocks transactions filtering ([#562](https://github.com/aeternity/aescan/issues/562)) ([be078b7](https://github.com/aeternity/aescan/commit/be078b7b69f92302d0d2053cd28bf32a5806cd28))
+* Live update transaction details ([#569](https://github.com/aeternity/aescan/issues/569)) ([f80dda8](https://github.com/aeternity/aescan/commit/f80dda88613133d5088976f06058331ac09c06d6))
+
+
+### Bug Fixes
+
+* Layout fix ([#571](https://github.com/aeternity/aescan/issues/571)) ([74321b7](https://github.com/aeternity/aescan/commit/74321b7bebc65bc0ddfa8225709e11d70ab3fcf6))
+* microblocks tx counter at keyblock condensed ([#566](https://github.com/aeternity/aescan/issues/566)) ([1b29ddf](https://github.com/aeternity/aescan/commit/1b29ddf5c527c908b8b7acd3431c4b9351a4d58a))
+* On testnet some tokens have no name at all and clicking on their copy button looks broken ([#570](https://github.com/aeternity/aescan/issues/570)) ([cdc1c16](https://github.com/aeternity/aescan/commit/cdc1c16cae0558b28cf0275f034699964413901a))
+* Search does not work with hashes ([#584](https://github.com/aeternity/aescan/issues/584)) ([325a7a8](https://github.com/aeternity/aescan/commit/325a7a82531487f4001eee864fa4fdbf51258a07))
+
+## [0.9.0](https://github.com/aeternity/aescan/compare/0.8.0...0.9.0) (2023-11-06)
+
+
+### Features
+
+* Add tab navigation ([#530](https://github.com/aeternity/aescan/issues/530)) ([85927f4](https://github.com/aeternity/aescan/commit/85927f4748df5ffc8a39aa8dd907ea4bcc3060ac))
+* Consider using feat view related utility classnames ([#519](https://github.com/aeternity/aescan/issues/519)) ([eb9284d](https://github.com/aeternity/aescan/commit/eb9284df47a5b01af3c76607641f41ef4166029e))
+* Contract Calls Chart  ([#546](https://github.com/aeternity/aescan/issues/546)) ([7a7cf37](https://github.com/aeternity/aescan/commit/7a7cf37ca97156fd36a3c07a87eff419dbdcc8eb))
+* Create a cell component to display block height and time ([#529](https://github.com/aeternity/aescan/issues/529)) ([1bac63d](https://github.com/aeternity/aescan/commit/1bac63d171e153670eb3f682212e03f756ab43e4))
+* Implement counter in oracles page ([#527](https://github.com/aeternity/aescan/issues/527)) ([9489d33](https://github.com/aeternity/aescan/commit/9489d33f35495af9a40cb4c62b487a15b9630ef0))
+* Implement oracles filtering ([#520](https://github.com/aeternity/aescan/issues/520)) ([e18e09f](https://github.com/aeternity/aescan/commit/e18e09fac91f76a98d611c99dbfa7c3d066718ab))
+* Move survey to the footer  ([#547](https://github.com/aeternity/aescan/issues/547)) ([458c1ce](https://github.com/aeternity/aescan/commit/458c1ce66cdd2dec9651d3fe9e0937db973a86de))
+* Move time calculation to MDW ([#489](https://github.com/aeternity/aescan/issues/489)) ([bc2d7bd](https://github.com/aeternity/aescan/commit/bc2d7bd986248f82e8a927912c7719b58eb96f27))
+* Name History ([#524](https://github.com/aeternity/aescan/issues/524)) ([d4e4e9e](https://github.com/aeternity/aescan/commit/d4e4e9ed1e36943954edddf90f39ddcececd50b4))
+* Sort NFTs by creation time ([#526](https://github.com/aeternity/aescan/issues/526)) ([df5fa97](https://github.com/aeternity/aescan/commit/df5fa97b35595e614e407080ccfe8c72ed318b22))
+* Transactions trend chart ([#503](https://github.com/aeternity/aescan/issues/503)) ([1fe86ec](https://github.com/aeternity/aescan/commit/1fe86eceba83630e439a813225444f6c4fc3aa2a))
+
+
+### Bug Fixes
+
+* Build fix attempt 3 ([#559](https://github.com/aeternity/aescan/issues/559)) ([b6d1c1d](https://github.com/aeternity/aescan/commit/b6d1c1d35afb1d1d9ec1f38b9f973228c00d2bf3))
+* fix routing after upgrade ([#561](https://github.com/aeternity/aescan/issues/561)) ([9dbff7e](https://github.com/aeternity/aescan/commit/9dbff7eb3eb25ac065e61d5f7051948d347ed80c))
+
 ## [0.8.0](https://github.com/aeternity/aescan/compare/0.7.0...0.8.0) (2023-09-25)
 
 

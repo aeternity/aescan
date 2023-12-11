@@ -25,13 +25,8 @@
 import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
-import TransactionsTable from '@/components/TransactionsTable'
-import TransactionsTableCondensed from '@/components/TransactionsTableCondensed'
-import AppPanel from '@/components/AppPanel'
-import TransactionsSelect from '@/components/TransactionsSelect'
 import { useTransactionsStore } from '@/stores/transactions'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
-import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
 
 const transactionsStore = useTransactionsStore()
@@ -65,10 +60,7 @@ async function loadTransactions() {
 }
 
 if (process.client) {
-  watch(route, (newRoute, prevRoute) => {
-    if (newRoute.name !== prevRoute.name) {
-      return
-    }
+  watch(() => route.fullPath, () => {
     loadTransactions()
   })
   watch(selectedTxType, () => {

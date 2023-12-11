@@ -10,10 +10,10 @@
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           <app-link :to="`/accounts/${transactionData.senderId}`">
-            <span class="transaction-type-panel-spend-tx__hash">
+            <span class="u-hidden-mobile">
               {{ transactionData.senderId }}
             </span>
-            <span class="transaction-type-panel-spend-tx__hash-ellipse">
+            <span class="u-hidden-desktop">
               {{ formatEllipseHash(transactionData.senderId) }}
             </span>
           </app-link>
@@ -30,10 +30,10 @@
           <app-link
             v-if="!transactionData.recipient"
             :to="`/accounts/${transactionData.recipientId}`">
-            <span class="transaction-type-panel-spend-tx__hash">
+            <span class="u-hidden-mobile">
               {{ transactionData.recipientId }}
             </span>
-            <span class="transaction-type-panel-spend-tx__hash-ellipse">
+            <span class="u-hidden-desktop">
               {{ formatEllipseHash(transactionData.recipientId) }}
             </span>
           </app-link>
@@ -110,20 +110,6 @@ defineProps({
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__hash {
-    display: none;
-
-    @media (--desktop) {
-      display: inline;
-    }
-  }
-
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 }
 </style>

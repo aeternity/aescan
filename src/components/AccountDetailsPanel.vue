@@ -4,20 +4,22 @@
       DETAILS
     </template>
     <template #header>
-      <app-chip v-if="accountDetails.isGeneralized">
+      <app-chip
+        v-if="accountDetails.isGeneralized"
+        size="sm">
         Generalized
       </app-chip>
 
       <copy-chip
         :label="accountDetails.id"
-        class="account-details-panel__copy-chip"/>
+        class="u-hidden-mobile"/>
       <copy-chip
         :label="formatEllipseHash(accountDetails.id)"
         :clipboard-text="accountDetails.id"
-        class="account-details-panel__copy-chip-ellipse"/>
+        class="u-hidden-desktop"/>
     </template>
     <p
-      v-if="accountDetails.notExistent"
+      v-if="accountDetails.isExistent === false"
       class="account-details-panel__not-existent">
       The account has never been seen in the network.
       <br>
@@ -70,7 +72,24 @@
             {{ formatNumber(accountDetails.namesCount) }}
           </td>
         </tr>
-        <tr class="account-details-panel__row">
+        <tr
+          v-if="accountDetails.isGeneralized"
+          class="account-details-panel__row">
+          <th class="account-details-panel__table-header">
+            Contract Id
+            <hint-tooltip>
+              {{ accountHints.contractId }}
+            </hint-tooltip>
+          </th>
+          <td class="account-details-panel__data">
+            <app-link :to="`/contracts/${accountDetails.contractId}`">
+              {{ accountDetails.contractId }}
+            </app-link>
+          </td>
+        </tr>
+        <tr
+          v-else
+          class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             Nonce
             <hint-tooltip>
@@ -113,9 +132,10 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
+import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
+import AppChip from '~/components/AppChip'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public
@@ -159,20 +179,6 @@ const sanitizedPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
-  }
-
-  &__copy-chip {
-    display: none;
-
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__copy-chip-ellipse {
-    @media (--desktop) {
-      display: none;
-    }
   }
 
   &__not-existent {

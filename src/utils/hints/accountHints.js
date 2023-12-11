@@ -5,6 +5,7 @@ export const accountHints = {
   transactions: 'Amount of transactions where the account was involved.',
   aensNames: 'Amount of names owned by the account.',
   nonce: 'The nonce that was used to execute the last transaction for the account. The nonce is used to prevent replay attacks and keep transactions in order. If a transaction with a way higher nonce is broadcasted, it won\'t be executed until all transactions with lower nonces are executed.',
+  contractId: 'The contract that is attached to the account to create generalized account and takes over its authorization logic.',
   apiLinks: 'Node API link of the account.',
   hash: 'Transaction hash where the account was involved.',
   time: 'Keyblock height and exact date and time when the transaction was executed by inclusion into a microblock.',

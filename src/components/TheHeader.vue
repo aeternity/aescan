@@ -41,11 +41,7 @@
 </template>
 
 <script setup>
-import TheNavigation from '@/components/TheNavigation'
-import AppLink from '@/components/AppLink'
-import AppIcon from '@/components/AppIcon'
 import { isDesktop } from '@/utils/screen'
-import NetworkSelect from '@/components/NetworkSelect'
 
 const route = useRoute()
 const isNavigationOpen = ref(false)
@@ -62,7 +58,7 @@ onBeforeUnmount(() => {
   }
 })
 
-watch(route, () => {
+watch(() => route.fullPath, () => {
   closeNavigation()
 })
 

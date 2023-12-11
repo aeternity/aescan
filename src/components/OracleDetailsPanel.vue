@@ -6,11 +6,11 @@
     <template #header>
       <copy-chip
         :label="oracleDetails.id"
-        class="oracle-details-panel__chip"/>
+        class="u-hidden-mobile"/>
       <copy-chip
         :label="formatEllipseHash(oracleDetails.id)"
         :clipboard-text="oracleDetails.id"
-        class="oracle-details-panel__chip-ellipse"/>
+        class="u-hidden-desktop"/>
     </template>
 
     <table>
@@ -133,10 +133,10 @@
           <td class="oracle-details-panel__data">
             <app-link
               :to="`/accounts/${oracleDetails.operator}`">
-              <span class="oracle-details-panel__hash">
+              <span class="u-hidden-mobile">
                 {{ oracleDetails.operator }}
               </span>
-              <span class="oracle-details-panel__hash-ellipse">
+              <span class="u-hidden-desktop">
                 {{ formatEllipseHash(oracleDetails.operator) }}
               </span>
             </app-link>
@@ -223,21 +223,6 @@ const oracleMiddlewareUrl = computed(() =>
 
     &:first-child {
       margin-right: var(--space-3);
-    }
-  }
-
-  &__chip,
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__chip-ellipse,
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
     }
   }
 }

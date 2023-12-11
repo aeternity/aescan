@@ -83,7 +83,7 @@ export const useAccountStore = defineStore('account', () => {
       rawAccountDetails.value = data
     } catch (e) {
       if ([400, 404].includes(e.response.status)) {
-        rawAccountDetails.value = { id: accountId, notExistent: true }
+        rawAccountDetails.value = { id: accountId, isExistent: false }
       }
     }
   }

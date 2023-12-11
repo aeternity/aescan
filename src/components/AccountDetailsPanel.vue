@@ -4,7 +4,9 @@
       DETAILS
     </template>
     <template #header>
-      <app-chip v-if="accountDetails.isGeneralized">
+      <app-chip
+        v-if="accountDetails.isGeneralized"
+        size="sm">
         Generalized
       </app-chip>
 
@@ -70,7 +72,24 @@
             {{ formatNumber(accountDetails.namesCount) }}
           </td>
         </tr>
-        <tr class="account-details-panel__row">
+        <tr
+          v-if="accountDetails.isGeneralized"
+          class="account-details-panel__row">
+          <th class="account-details-panel__table-header">
+            Contract Id
+            <hint-tooltip>
+              {{ accountHints.contractId }}
+            </hint-tooltip>
+          </th>
+          <td class="account-details-panel__data">
+            <app-link :to="`/contracts/${accountDetails.contractId}`">
+              {{ accountDetails.contractId }}
+            </app-link>
+          </td>
+        </tr>
+        <tr
+          v-else
+          class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             Nonce
             <hint-tooltip>
@@ -116,6 +135,7 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
+import AppChip from '~/components/AppChip'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public

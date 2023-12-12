@@ -6233,7 +6233,7 @@ nuxt-simple-sitemap@2.6.1:
     radix3 "^1.0.1"
     ufo "^1.1.2"
 
-nuxt@^3.8.2:
+nuxt@^3.5.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.8.2.tgz#6db515d41e7745c725be7f34f692bdeabc53da07"
   integrity sha512-HUAyifmqTs2zcQBGvcby3KNs2pBAk+l7ZbLjD1oCNqQQ+wBuZ1qgLC4Ebu++y4g3o3Y8WAWSvpafbKRLQZziPw==

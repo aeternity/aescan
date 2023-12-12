@@ -38,14 +38,9 @@ const { isLoading } = useLoading()
   &:last-child {
     margin-bottom: 0;
   }
-}
-</style>
 
-<style scoped>
-.transactions {
   &__transactions-stats {
     margin-bottom: var(--space-2);
   }
 }
 </style>
-

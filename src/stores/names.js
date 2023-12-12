@@ -13,6 +13,7 @@ export const useNamesStore = defineStore('names', () => {
   const rawInAuctionNames = ref(null)
   const rawExpiredNames = ref(null)
   const rawRecentlyActivatedNames = ref(null)
+  const namesStatistics = ref(null)
 
   const activeNames = computed(() => {
     return rawActiveNames.value
@@ -73,6 +74,13 @@ export const useNamesStore = defineStore('names', () => {
     rawRecentlyActivatedNames.value = data.data
   }
 
+  async function fetchNamesStatistics(slug) {
+    namesStatistics.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/names${slug || '?limit=8&interval_by=day'}`)
+    namesStatistics.value = data.data.reverse()
+    // namesStatistics.value = data.data.slice(1).reverse()
+  }
+
   return {
     rawActiveNames,
     rawInAuctionNames,
@@ -83,10 +91,12 @@ export const useNamesStore = defineStore('names', () => {
     auctionsEndingSoon,
     expiredNames,
     recentlyActivatedNames,
+    namesStatistics,
     fetchNamesDetails,
     fetchActiveNames,
     fetchInAuctionNames,
     fetchExpiredNames,
     fetchRecentlyActivatedNames,
+    fetchNamesStatistics,
   }
 })

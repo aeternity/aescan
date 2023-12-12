@@ -5,7 +5,6 @@
 
   <page-header>
     Names
-
     <template #tooltip>
       {{ namesHints.name }}
       <app-link
@@ -16,6 +15,7 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
+    <names-chart-panel class="names_names-panel"/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Active">
         <names-active-panel/>
@@ -82,3 +82,12 @@ if (process.client) {
   fetchNamesDetails({ limit })
 }
 </script>
+
+<style scoped>
+.names_names-panel {
+  margin-bottom: var(--space-4);
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

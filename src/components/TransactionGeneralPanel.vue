@@ -6,11 +6,11 @@
     <template #header>
       <copy-chip
         :label="transactionDetails.hash"
-        class="transaction-general-panel__hash"/>
+        class="u-hidden-mobile"/>
       <copy-chip
         :label="formatEllipseHash(transactionDetails.hash)"
         :clipboard-text="transactionDetails.hash"
-        class="transaction-general-panel__hash-ellipse"/>
+        class="u-hidden-desktop"/>
       <app-chip
         variant="primary"
         size="sm">
@@ -77,12 +77,12 @@
           <td class="transaction-general-panel__data">
             <app-link
               :to="`/microblocks/${transactionDetails.blockHash}`"
-              class="transaction-general-panel__hash">
+              class="u-hidden-mobile">
               {{ transactionDetails.blockHash }}
             </app-link>
             <app-link
               :to="`/microblocks/${transactionDetails.blockHash}`"
-              class="transaction-general-panel__hash-ellipse">
+              class="u-hidden-desktop">
               {{ formatEllipseHash(transactionDetails.blockHash) }}
             </app-link>
           </td>
@@ -217,19 +217,6 @@ const transactionMiddlewareUrl = computed(() => {
 
     &:first-child {
       margin-right: var(--space-3);
-    }
-  }
-
-  &__hash {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-
-  &__hash-ellipse {
-    @media (--desktop) {
-      display: none;
     }
   }
 }

@@ -1,30 +1,30 @@
 <template>
   <span>
-    <span class="value-hash-ellipsed">
+    <span class="u-hidden-desktop">
       <app-link
         v-if="linkTo"
         :to="linkTo">
-        {{ formatEllipseHash(hash) }}
+        {{ formatKnownAddress(hash) }}
       </app-link>
       <app-tooltip v-else>
-        {{ formatEllipseHash(hash) }}
+        {{ formatKnownAddress(hash) }}
         <template #tooltip>
           {{ hash }}
         </template>
       </app-tooltip>
     </span>
 
-    <span class="value-hash-ellipsed--desktop">
+    <span class="u-hidden-mobile">
       <app-tooltip v-if="linkTo">
         <app-link :to="linkTo">
-          {{ formatEllipseHash(hash) }}
+          {{ formatKnownAddress(hash) }}
         </app-link>
         <template #tooltip>
           {{ hash }}
         </template>
       </app-tooltip>
       <app-tooltip v-else>
-        {{ formatEllipseHash(hash) }}
+        {{ formatKnownAddress(hash) }}
         <template #tooltip>
           {{ hash }}
         </template>
@@ -34,10 +34,6 @@
 </template>
 
 <script setup>
-import AppTooltip from '@/components/AppTooltip'
-import { formatEllipseHash } from '@/utils/format'
-import AppLink from '@/components/AppLink'
-
 defineProps({
   hash: {
     type: String,
@@ -49,19 +45,3 @@ defineProps({
   },
 })
 </script>
-
-<style scoped>
-.value-hash-ellipsed {
-  display: inline-flex;
-  @media (--desktop) {
-    display: none;
-  }
-
-  &--desktop {
-    display: none;
-    @media (--desktop) {
-      display: inline-flex;
-    }
-  }
-}
-</style>

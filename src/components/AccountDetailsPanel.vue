@@ -80,7 +80,6 @@
           v-else
           class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-
             Nonce
             <hint-tooltip>
               {{ accountHints.nonce }}

@@ -43,7 +43,7 @@
     "luxon": "^3.4.4",
     "memory-cache": "^0.2.0",
     "pinia": "^2.1.7",
-    "swiper": "^8.4.5",
+    "swiper": "^11.0.5",
     "vue": "^3.3.11",
     "vue-chartjs": "^5.2.0",
     "vue-multiselect": "^3.0.0-beta.1",

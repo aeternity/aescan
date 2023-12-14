@@ -32,6 +32,7 @@ import AppPanel from '@/components/AppPanel'
 .not-found-panel {
   &__paragraph {
     margin-bottom: var(--space-3);
+
     @media (--desktop) {
       &:last-of-type {
         margin-bottom: var(--space-6);

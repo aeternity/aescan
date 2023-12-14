@@ -22,6 +22,7 @@ import AppPanel from '@/components/AppPanel'
 <style scoped>
 .dashboard-names-panel {
   padding: var(--space-3) var(--space-1);
+
   @media (--desktop) {
     padding: var(--space-4);
   }

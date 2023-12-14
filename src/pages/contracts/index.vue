@@ -33,6 +33,7 @@ const { isLoading } = useLoading()
 <style scoped>
 .contracts-panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

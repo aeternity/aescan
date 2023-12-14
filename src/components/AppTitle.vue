@@ -8,6 +8,7 @@
 .title {
   color: var(--color-midnight);
   margin-bottom: var(--space-5);
+
   @media (--desktop) {
     margin-bottom: 0;
   }

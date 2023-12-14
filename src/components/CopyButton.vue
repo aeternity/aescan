@@ -77,7 +77,7 @@ function stopCopySuccessAnimation() {
   margin: 0;
   padding: 0;
   text-transform: none;
-  -webkit-appearance: button;
+  appearance: button;
 
   &--light {
     color: var(--color-white);

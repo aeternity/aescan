@@ -107,6 +107,7 @@ if (process.client) {
 <style scoped>
 .account__account-details-panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

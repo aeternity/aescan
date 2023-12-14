@@ -47,6 +47,7 @@ import MarketStats from '@/components/MarketStats'
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 var(--space-3) 0;
+
     @media (--desktop) {
       padding: 0;
     }
@@ -55,6 +56,7 @@ import MarketStats from '@/components/MarketStats'
   &__heading {
     color: var(--color-white);
     margin-bottom: var(--space-2);
+
     @media (--desktop) {
       margin-bottom: var(--space-3);
     }
@@ -76,6 +78,7 @@ import MarketStats from '@/components/MarketStats'
   &__search-bar {
     margin-bottom: var(--space-4);
     width: 100%;
+
     @media (--desktop) {
       margin-bottom: 0;
     }
@@ -83,6 +86,7 @@ import MarketStats from '@/components/MarketStats'
 
   &__market-stats {
     margin-bottom: var(--space-6);
+
     @media (--desktop) {
       margin-bottom: var(--space-4);
     }

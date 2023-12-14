@@ -94,6 +94,7 @@ try {
 <style scoped>
 .token-details__panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

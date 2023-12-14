@@ -230,6 +230,7 @@
 
   &__subheading {
     margin-bottom: var(--space-6);
+
     @media (--desktop ) {
       margin-bottom: var(--space-5);
     }

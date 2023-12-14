@@ -195,6 +195,7 @@ onBeforeUnmount(() => {
   &__slot-header {
     margin-top: var(--space-3);
     width: 100%;
+
     @media (--desktop) {
       margin-top: 0;
       width: auto;

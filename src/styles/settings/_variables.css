@@ -3,7 +3,7 @@
   --color-blue: #003dff;
   --color-success: #66e773;
   --color-error: #dc0000;
-  --color-white: #ffffff;
+  --color-white: #fff;
   --color-snow: #f7f7f7;
   --color-midnight-15: #dedede;
   --color-midnight-25: #C8C8C8;
@@ -19,7 +19,7 @@
   --space-5: 32px;
   --space-6: 40px;
   --space-7: 60px;
-  --font-primary: ClashDisplay, Arial, sans-serif;
+  --font-primary: clashdisplay, arial, sans-serif;
   --font-monospaced: 'Roboto Mono', monospaced, sans-serif;
   --container-width: 1280px;
 }

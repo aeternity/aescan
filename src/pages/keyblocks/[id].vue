@@ -56,6 +56,7 @@ await useAsyncData(async() => {
 <style scoped>
 .keyblock-details__keyblock-details-panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

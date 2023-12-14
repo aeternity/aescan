@@ -59,6 +59,7 @@ if (error.value) {
 <style scoped>
 .microblock-details__microblock-details-panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

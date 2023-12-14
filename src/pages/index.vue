@@ -169,6 +169,7 @@ onBeforeUnmount(() => {
 
   &__heading {
     margin: 0 var(--space-1);
+
     @media (--desktop) {
       margin: 0;
     }
@@ -176,12 +177,14 @@ onBeforeUnmount(() => {
 
   &__paragraph {
     margin: var(--space-3) var(--space-1) var(--space-4);
+
     @media (--desktop) {
       margin: var(--space-3) 0 var(--space-6);
     }
 
     &--horizontal {
       margin: 0 var(--space-1);
+
       @media (--desktop) {
         margin: 0;
       }

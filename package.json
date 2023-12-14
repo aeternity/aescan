@@ -28,8 +28,8 @@
   "dependencies": {
     "@aeternity/aepp-sdk": "^13.2.2",
     "@download/blockies": "^1.0.3",
-    "@sentry/tracing": "^7.86.0",
-    "@sentry/vue": "^7.86.0",
+    "@sentry/tracing": "^7.87.0",
+    "@sentry/vue": "^7.87.0",
     "@vueuse/core": "^10.7.0",
     "@vueuse/head": "^2.0.0",
     "axios": "^1.6.2",
@@ -77,6 +77,7 @@
     "stylelint": "^16.0.2",
     "stylelint-config-recommended": "^14.0.0",
     "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^35.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
     "vite-plugin-html": "^3.2.0"

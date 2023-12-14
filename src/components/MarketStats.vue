@@ -77,6 +77,7 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
     color: var(--color-white);
     margin-bottom: var(--space-3);
     display: none;
+
     @media (--desktop) {
       display: block;
     }
@@ -113,6 +114,7 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
     display: flex;
     font-weight: 400;
     flex-direction: column;
+
     @media (--desktop) {
       align-items: center;
       flex-direction: row;
@@ -125,6 +127,7 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
 
   &__chip {
     margin: var(--space-1) auto 0 0;
+
     @media (--desktop) {
       margin: 0 0 0 var(--space-1);
     }

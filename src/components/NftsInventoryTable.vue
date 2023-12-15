@@ -70,7 +70,7 @@
 <script setup>
 
 import { storeToRefs } from 'pinia'
-import { nftsHints } from '@/utils/hints/nftHints'
+import { nftsHints } from '@/utils/hints/nftsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 

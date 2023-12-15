@@ -38,7 +38,7 @@
   </div>
 </template>
 <script setup>
-import { nftsHints } from '@/utils/hints/nftHints'
+import { nftsHints } from '@/utils/hints/nftsHints'
 
 defineProps({
   owners: {

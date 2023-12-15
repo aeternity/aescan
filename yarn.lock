@@ -1674,7 +1674,7 @@
     "@sentry/types" "7.88.0"
     "@sentry/utils" "7.88.0"
 
-"@sentry/tracing@^7.87.0":
+"@sentry/tracing@^7.88.0":
   version "7.88.0"
   resolved "https://registry.yarnpkg.com/@sentry/tracing/-/tracing-7.88.0.tgz#40b5da6fbd17e5c2ba3bd26ae015f6d99c998d73"
   integrity sha512-Lj4hhLraalN4w3swXkP2do1hcaQVOuLvO6eJJbcwf10b+P4CcdlwAnqvxOOCNxA5VzG4/K2BqQ8LRU4S0Ulj9A==
@@ -1693,7 +1693,7 @@
   dependencies:
     "@sentry/types" "7.88.0"
 
-"@sentry/vue@^7.87.0":
+"@sentry/vue@^7.88.0":
   version "7.88.0"
   resolved "https://registry.yarnpkg.com/@sentry/vue/-/vue-7.88.0.tgz#9d3ecce154923e737df3208dc12c402320d3c191"
   integrity sha512-mXCz+c0SVqtGLTt5IBK4MXlLCsEWZONQsiWY+cbIcyl1PseI4aDRTPYFQJa4ezKWR2ochxv3VwUQUj6AzJSm/g==
@@ -4086,7 +4086,7 @@ eslint-plugin-es@^4.1.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-import@^2.26.0, eslint-plugin-import@^2.28.1, eslint-plugin-import@^2.29.0:
+eslint-plugin-import@^2.26.0, eslint-plugin-import@^2.28.1, eslint-plugin-import@^2.29.1:
   version "2.29.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.29.1.tgz#d45b37b5ef5901d639c15270d74d46d161150643"
   integrity sha512-BbPC0cuExzhiMo4Ff1BTVwHpjjv28C5R+btTOGaCRC7UEz801up0JadwkeSk5Ued6TG34uaczuVuH6qyy5YUxw==
@@ -8883,7 +8883,7 @@ vite-plugin-vue-inspector@^4.0.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vite@^5.0.8:
+vite@^5.0.9:
   version "5.0.9"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.0.9.tgz#2ac49a37b5accba29d945fcee9a0b7b862423cd4"
   integrity sha512-wVqMd5kp28QWGgfYPDfrj771VyHTJ4UDlCteLH7bJDGDEamaz5hV8IX6h1brSGgnnyf9lI2RnzXq/JmD0c2wwg==
@@ -8950,7 +8950,7 @@ vue-bundle-renderer@^2.0.0:
   dependencies:
     ufo "^1.2.0"
 
-vue-chartjs@^5.2.0:
+vue-chartjs@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-5.3.0.tgz#59920a07d72f37a2375d495256e486b92813bf6e"
   integrity sha512-8XqX0JU8vFZ+WA2/knz4z3ThClduni2Nm0BMe2u0mXgTfd9pXrmJ07QBI+WAij5P/aPmPMX54HCE1seWL37ZdQ==

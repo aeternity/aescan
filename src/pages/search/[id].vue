@@ -32,7 +32,7 @@ import SearchNftPanel from '~/components/SearchNftsPanel'
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const TAB_KEYS = ['names', 'tokens']
+const TAB_KEYS = ['names', 'tokens', 'nfts']
 
 const activeTabIndex = computed({
   get() {

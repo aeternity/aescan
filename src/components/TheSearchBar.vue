@@ -3,7 +3,7 @@
     <input
       v-model="query"
       class="search-bar__input"
-      placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
+      placeholder="Search anything on aeScan"
       type="search"
       autofocus
       @keyup.enter="search">
@@ -17,7 +17,7 @@
   </div>
 </template>
 <script setup>
-import { isAddressValid, Encoding } from '@aeternity/aepp-sdk'
+import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'

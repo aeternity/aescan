@@ -14,6 +14,9 @@
       <app-tab title="Tokens">
         <search-tokens-panel/>
       </app-tab>
+      <app-tab title="NFTs">
+        <search-nft-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -23,6 +26,8 @@
 import PageHeader from '@/components/PageHeader'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
+import SearchNftPanel from '~/components/SearchNftsPanel'
+// todo fix imports
 
 const route = useRoute()
 const { push, replace } = useRouter()

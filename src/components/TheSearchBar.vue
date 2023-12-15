@@ -3,7 +3,7 @@
     <input
       v-model="query"
       class="search-bar__input"
-      placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
+      placeholder="Search anything on aeScan"
       type="search"
       autofocus
       @keyup.enter="search">

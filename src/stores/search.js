@@ -8,6 +8,7 @@ export const useSearchStore = defineStore('search', () => {
 
   const rawNamesResults = ref([])
   const tokensResults = ref([])
+  const nftsResults = ref([])
 
   const namesResults = computed(() => {
     return rawNamesResults.value
@@ -29,10 +30,20 @@ export const useSearchStore = defineStore('search', () => {
     tokensResults.value = data
   }
 
+  async function fetchNftsResults({ query, limit, queryParameters } = {}) {
+    nftsResults.value = null
+    const defaultParameters = `/v2/aex141?prefix=${query}&limit=${limit ?? 10}&direction=forward`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    console.log('data', data)
+    nftsResults.value = data
+  }
+
   return {
     namesResults,
     tokensResults,
+    nftsResults,
     fetchTokenResults,
     fetchNamesResults,
+    fetchNftsResults,
   }
 })

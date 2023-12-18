@@ -64,13 +64,17 @@ const { accountDetails, accountTokens } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
 const route = useRoute()
 
+const isAccountExistent = computed(() => {
+  return accountDetails.value && !(accountDetails.value?.isExistent === false)
+})
+
 const isTabsVisible = computed(() => process.client &&
-    ((accountDetails.value && !!accountDetails.value.isExistent) ||
-        !!accountTokens.value?.data.length))
+    (isAccountExistent.value || !!accountTokens.value?.data.length),
+)
 
 const isTokensTabSelected = computed(() => process.client &&
-    accountDetails.value?.isExistent === false &&
-    !!accountTokens.value?.data.length)
+    !isAccountExistent.value && !!accountTokens.value?.data.length,
+)
 
 const activeTabIndex = computed({
   get() {

@@ -18,6 +18,8 @@
 // todo animations
 // todo naming
 // todo hover styles
+// todo disabled
+// todo whitespacing
 const structure = ref([{
   name: 'Blockchain',
   active: false,
@@ -30,6 +32,14 @@ const structure = ref([{
       name: 'Names',
       path: '/names',
     },
+    {
+      name: 'Smart Contracts',
+      path: '/contracts',
+    },
+    {
+      name: 'Oracles',
+      path: '/oracles',
+    },
   ],
 },
 {
@@ -37,8 +47,40 @@ const structure = ref([{
   active: false,
   submenu: [
     {
-      name: 'NFTs',
-      path: '/validators',
+      name: 'AEX9 Tokens',
+      path: '/tokens',
+    },
+    {
+      name: 'AEX141 Tokens (NFTs)',
+      path: '/nfts',
+    },
+    {
+      name: 'DEX Trades',
+      path: '/trades',
+    },
+  ],
+},
+{
+  name: 'Analytics',
+  active: false,
+  submenu: [
+    {
+      name: 'Top Accounts',
+      path: '/tokens',
+    },
+    {
+      name: 'Charts',
+      path: '/charts',
+    },
+  ],
+},
+{
+  name: 'Developers',
+  active: false,
+  submenu: [
+    {
+      name: 'Contract Verification',
+      path: '/verification',
     },
   ],
 }])

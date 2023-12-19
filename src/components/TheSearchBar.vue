@@ -131,7 +131,7 @@ function isMicroblockId(query) {
     border: none;
     background-color: var(--color-white);
     margin-right: var(--space-1);
-    font-size: 14px;
+    font-size: 16px;
     appearance: none;
     font-family: var(--font-monospaced);
 

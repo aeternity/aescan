@@ -11,12 +11,13 @@
         v-for="submenu in menu.submenu"
         :key="submenu.name"
         class="menu-item__item">
-        <a
+        <app-link
+          :to="submenu.path"
           :class="[
             'menu-item__link',
             {'menu-item__link--disabled': submenu.isDisabled}]">
           {{ submenu.name }}
-        </a>
+        </app-link>
       </li>
     </ul>
   </div>
@@ -36,14 +37,15 @@ defineProps({
   &__list {
     padding: var(--space-0);
     position: static;
-    background: #fff;
+    background: var(--color-white);
 
     @media (--desktop) {
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      box-shadow: 0 6px 30px #0000001a;
       position: absolute;
       top: 60px;
+      border-radius: 8px;
+      border: 1px solid var(--color-midnight-15);
+      box-shadow: 0 6px 30px #0000001a;
+      z-index: 2;
     }
 
     &--collapsed {

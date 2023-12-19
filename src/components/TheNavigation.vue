@@ -15,15 +15,11 @@
 </template>
 
 <script setup>
-// todo whitespacing
 // todo animations
-// todo hover styles
 // todo styles cleanup
-// todo variables
 // todo after resize
 // todo caret
-// fix imports
-// bigger font
+
 const menuOptions = ref([{
   name: 'Blockchain',
   isActive: false,
@@ -118,6 +114,7 @@ function close() {
     display: flex;
     flex-direction: column;
     height: 100%;
+    cursor: pointer;
 
     @media (--desktop) {
       flex-direction: row;

@@ -1,112 +1,71 @@
 <template>
-  <div>
-    <ul class="navigation">
-      <li class="navigation__item">
-        <app-link
-          class="navigation__link"
-          to="/transactions">
-          Transactions
-        </app-link>
-      </li>
-      <li class="navigation__item">
-        <app-link
-          class="navigation__link"
-          to="/names">
-          Names
-        </app-link>
-      </li>
-      <li class="navigation__item">
-        <app-link
-          class="navigation__link"
-          to="/contracts">
-          Smart Contracts
-        </app-link>
-      </li>
-      <li class="navigation__item">
-        <app-link
-          class="navigation__link"
-          to="/tokens">
-          Tokens
-        </app-link>
-      </li>
-      <li class="navigation__item">
-        <app-link
-          class="navigation__link"
-          to="/oracles">
-          Oracles
-        </app-link>
-      </li>
-      <li class="navigation__item">
-        <app-link
-          class="navigation__link"
-          to="/state-channels">
-          State Channels
-        </app-link>
-      </li>
-      <li class="navigation__item">
-        <app-link
-          class="navigation__link"
-          to="/nfts">
-          NFTs
-        </app-link>
-      </li>
-      <li class="navigation__item">
-        <coming-soon-tooltip>
-          <app-link
-            class="navigation__link navigation__link--disabled"
-            target="_self"
-            to="#">
-            Hyperchains
-          </app-link>
-        </coming-soon-tooltip>
+  <nav>
+    <ul class="navigation__list">
+      <li
+        v-for="item in structure"
+        :key="item.name"
+        @click="toggle(item.name)"
+        @mouseover="open(item.name)"
+        @mouseleave="close">
+        <menu-item :item="item"/>
       </li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <script setup>
-import AppLink from '@/components/AppLink'
-import ComingSoonTooltip from '@/components/ComingSoonTooltip'
+
+// todo animations
+// todo naming
+// todo hover styles
+const structure = ref([{
+  name: 'Blockchain',
+  active: false,
+  submenu: [
+    {
+      name: 'Transactions',
+      path: '/transactions',
+    },
+    {
+      name: 'Names',
+      path: '/names',
+    },
+  ],
+},
+{
+  name: 'Tokens',
+  active: false,
+  submenu: [
+    {
+      name: 'NFTs',
+      path: '/validators',
+    },
+  ],
+}])
+
+function open(name) {
+  structure.value.find(item => item.name === name).active = true
+}
+
+function toggle(name) {
+  close()
+  structure.value.find(item => item.name === name).active = !structure.value.find(item => item.name === name).active
+}
+
+function close() {
+  structure.value.forEach(item => item.active = false)
+}
 </script>
 
 <style scoped>
 .navigation {
-  display: flex;
-  flex-direction: column;
-
-  @media (--desktop) {
-    gap: var(--space-5);
-    flex-direction: row;
-  }
-
-  &__item {
-    text-align: center;
-  }
-
-  &__link {
-    color: var(--color-midnight);
-    display: block;
-    padding: var(--space-3) 0;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.002em;
+  &__list {
+    display: flex;
+    flex-direction: column;
 
     @media (--desktop) {
-      padding: 0;
-    }
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &--disabled {
-      color: var(--color-midnight-35);
-      cursor: default;
-      pointer-events: none;
-
-      &:hover {
-        text-decoration: none;
-      }
+      gap: var(--space-5);
+      flex-direction: row;
     }
   }
 }

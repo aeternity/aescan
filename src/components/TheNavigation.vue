@@ -14,9 +14,7 @@
 </template>
 
 <script setup>
-
 // todo animations
-// todo naming
 // todo hover styles
 // todo whitespacing
 // todo styles cleanup

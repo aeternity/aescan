@@ -3,12 +3,20 @@
     <div class="menu-item__label">
       {{ item.name }}
     </div>
-    <ul :class="[ 'submenu',{'open': item.active}]">
+    <ul
+      :class="[
+        'menu-item__list',
+        {'menu-item__list--collapsed': !item.active}]">
       <li
         v-for="subitem in item.submenu"
         :key="subitem.name"
         class="menu-item__item">
-        <a :class="['menu-item__link', {'menu-item__link--disabled': subitem.disabled}]">{{ subitem.name }}</a>
+        <a
+          :class="[
+            'menu-item__link',
+            {'menu-item__link--disabled': subitem.disabled}]">
+          {{ subitem.name }}
+        </a>
       </li>
     </ul>
   </div>
@@ -34,18 +42,23 @@ defineProps({
     padding: var(--space-3) 0;
   }
 
-  &__link {
-    /*color: var(--color-midnight);*/
-    padding: var(--space-3) 0;
-    /*display: block;*/
-    /*width: 100%;*/
+  &__list {
+    display: block;
+    position: static;
     @media (--desktop) {
-      /*width: 170px;*/
-      /*display: list-item;*/
-      position: relative;
+      position: absolute;
+      top: 50px;
     }
 
+    &--collapsed {
+      display: none;
+    }
+  }
+
+  &__link {
+    padding: var(--space-3) 0;
     @media (--desktop) {
+      position: relative;
       padding: 0;
     }
 
@@ -64,22 +77,4 @@ defineProps({
     }
   }
 }
-
-.submenu {
-  display: none;
-}
-
-.open {
-  display: block;
-}
-
-ul {
-  position: static;
-  @media (--desktop) {
-    display: none;
-    position: absolute;
-    top: 43px;
-  }
-}
-
 </style>

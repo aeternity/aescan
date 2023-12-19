@@ -4,9 +4,8 @@
       {{ menu.name }}
     </div>
     <ul
-      :class="[
-        'menu-item__list',
-        {'menu-item__list--collapsed': !menu.isActive}]">
+      v-show="menu.isActive"
+      class="menu-item__list">
       <li
         v-for="submenu in menu.submenu"
         :key="submenu.name"
@@ -33,11 +32,12 @@ defineProps({
 </script>
 
 <style scoped>
+
 .menu-item {
   &__list {
-    padding: var(--space-0);
-    position: static;
     background: var(--color-white);
+    padding: var(--space-0);
+    animation: fade-in-up .2s ease;
 
     @media (--desktop) {
       position: absolute;
@@ -46,10 +46,6 @@ defineProps({
       border: 1px solid var(--color-midnight-15);
       box-shadow: 0 6px 30px #0000001a;
       z-index: 2;
-    }
-
-    &--collapsed {
-      display: none;
     }
   }
 
@@ -65,9 +61,10 @@ defineProps({
   }
 
   &__link {
+    cursor: pointer;
+
     &:hover {
       text-decoration: underline;
-      cursor: pointer;
     }
 
     &--disabled {

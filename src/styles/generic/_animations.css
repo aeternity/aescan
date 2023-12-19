@@ -38,3 +38,14 @@
     box-shadow: 0 0 0 0 rgb(245 39 78 / 0%);
   }
 }
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10%, 0)
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0)
+  }
+}

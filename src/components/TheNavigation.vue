@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-// todo animations
 // todo styles cleanup
 // todo after resize
 // todo caret

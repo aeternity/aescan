@@ -20,6 +20,8 @@
 // todo hover styles
 // todo whitespacing
 // todo styles cleanup
+// todo active  /disabled
+// fix imports
 const structure = ref([{
   name: 'Blockchain',
   active: false,
@@ -99,7 +101,9 @@ function toggle(name) {
 }
 
 function close() {
-  structure.value.forEach(item => item.active = false)
+  structure.value.forEach(item => {
+    item.active = false
+  })
 }
 </script>
 

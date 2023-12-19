@@ -30,7 +30,7 @@
         </app-tab>
         <app-tab
           title="Tokens"
-          :is-preselected="isTokensTabSelected">
+          :is-preselected="isTokensTabPreselected">
           <account-tokens-panel/>
         </app-tab>
       </app-tabs>
@@ -72,7 +72,7 @@ const isTabsVisible = computed(() => process.client &&
     (isAccountExistent.value || !!accountTokens.value?.data.length),
 )
 
-const isTokensTabSelected = computed(() => process.client &&
+const isTokensTabPreselected = computed(() => process.client &&
     !isAccountExistent.value && !!accountTokens.value?.data.length,
 )
 

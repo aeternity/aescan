@@ -1,9 +1,10 @@
 <template>
-  <nav>
+  <nav class="navigation">
     <ul class="navigation__list">
       <li
         v-for="menu in menuOptions"
         :key="menu.name"
+        class="navigation__item"
         @click="toggle(menu.name)"
         @mouseover="open(menu.name)"
         @mouseleave="close">
@@ -14,12 +15,15 @@
 </template>
 
 <script setup>
+// todo whitespacing
 // todo animations
 // todo hover styles
-// todo whitespacing
 // todo styles cleanup
-// todo isActive  /isDisabled
+// todo variables
+// todo after resize
+// todo caret
 // fix imports
+// bigger font
 const menuOptions = ref([{
   name: 'Blockchain',
   isActive: false,
@@ -94,8 +98,11 @@ function open(name) {
 }
 
 function toggle(name) {
+  console.log('toggle name', name)
+  console.log('menuOptions.value.find(item => item.name === name)', menuOptions.value.find(item => item.name === name))
   close()
-  menuOptions.value.find(item => item.name === name).isActive = !menuOptions.value.find(item => item.name === name).isActive
+  menuOptions.value.find(item => item.name === name).isActive =
+      !menuOptions.value.find(item => item.name === name).isActive
 }
 
 function close() {
@@ -110,11 +117,18 @@ function close() {
   &__list {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     @media (--desktop) {
-      gap: var(--space-5);
       flex-direction: row;
+      align-items: center;
     }
+  }
+
+  &__item {
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 }
 </style>

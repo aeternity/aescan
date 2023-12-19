@@ -107,9 +107,11 @@ function closeNavigation() {
     }
 
     @media (--desktop) {
+      height: 100%;
       flex-basis: auto;
       display: flex;
       justify-content: flex-start;
+      align-items: center;
     }
   }
 

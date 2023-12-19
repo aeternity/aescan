@@ -1,12 +1,12 @@
 <template>
   <div class="menu-item">
-    <div class="menu-item__label">
+    <div class="menu-item__label h4">
       {{ menu.name }}
     </div>
     <ul
       :class="[
         'menu-item__list',
-        {'menu-item__list--collapsed': !menu.active}]">
+        {'menu-item__list--collapsed': !menu.isActive}]">
       <li
         v-for="submenu in menu.submenu"
         :key="submenu.name"
@@ -29,24 +29,21 @@ defineProps({
     required: true,
   },
 })
-
 </script>
 
 <style scoped>
 .menu-item {
-  background: #fff;
-
-  &__item {
-    background: #fff;
-    padding: var(--space-3) 0;
-  }
-
   &__list {
-    display: block;
+    padding: var(--space-0);
     position: static;
+    background: #fff;
+
     @media (--desktop) {
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      box-shadow: 0 6px 30px #0000001a;
       position: absolute;
-      top: 50px;
+      top: 60px;
     }
 
     &--collapsed {
@@ -54,15 +51,21 @@ defineProps({
     }
   }
 
-  &__link {
-    padding: var(--space-3) 0;
-    @media (--desktop) {
-      position: relative;
-      padding: 0;
-    }
+  &__label {
+    padding: 0 var(--space-3);
+  }
 
+  &__item {
+    padding: var(--space-0) var(--space-3);
+    @media (--desktop) {
+      padding: var(--space-3) var(--space-1);
+    }
+  }
+
+  &__link {
     &:hover {
       text-decoration: underline;
+      cursor: pointer;
     }
 
     &--disabled {

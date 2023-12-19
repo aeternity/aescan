@@ -18,8 +18,8 @@
 // todo animations
 // todo naming
 // todo hover styles
-// todo disabled
 // todo whitespacing
+// todo styles cleanup
 const structure = ref([{
   name: 'Blockchain',
   active: false,
@@ -57,6 +57,7 @@ const structure = ref([{
     {
       name: 'DEX Trades',
       path: '/trades',
+      disabled: true,
     },
   ],
 },
@@ -67,10 +68,12 @@ const structure = ref([{
     {
       name: 'Top Accounts',
       path: '/tokens',
+      disabled: true,
     },
     {
       name: 'Charts',
       path: '/charts',
+      disabled: true,
     },
   ],
 },
@@ -81,6 +84,7 @@ const structure = ref([{
     {
       name: 'Contract Verification',
       path: '/verification',
+      disabled: true,
     },
   ],
 }])

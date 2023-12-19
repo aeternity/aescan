@@ -8,7 +8,7 @@
         v-for="subitem in item.submenu"
         :key="subitem.name"
         class="menu-item__item">
-        <a class="navigation__link">{{ subitem.name }}</a>
+        <a :class="['menu-item__link', {'menu-item__link--disabled': subitem.disabled}]">{{ subitem.name }}</a>
       </li>
     </ul>
   </div>
@@ -35,13 +35,13 @@ defineProps({
   }
 
   &__link {
-    color: var(--color-midnight);
+    /*color: var(--color-midnight);*/
     padding: var(--space-3) 0;
-    display: block;
-    width: 100%;
+    /*display: block;*/
+    /*width: 100%;*/
     @media (--desktop) {
-      width: 170px;
-      display: list-item;
+      /*width: 170px;*/
+      /*display: list-item;*/
       position: relative;
     }
 

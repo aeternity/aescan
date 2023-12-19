@@ -2,12 +2,12 @@
   <nav>
     <ul class="navigation__list">
       <li
-        v-for="item in structure"
-        :key="item.name"
-        @click="toggle(item.name)"
-        @mouseover="open(item.name)"
+        v-for="menu in menuOptions"
+        :key="menu.name"
+        @click="toggle(menu.name)"
+        @mouseover="open(menu.name)"
         @mouseleave="close">
-        <menu-item :item="item"/>
+        <menu-item :menu="menu"/>
       </li>
     </ul>
   </nav>
@@ -18,11 +18,11 @@
 // todo hover styles
 // todo whitespacing
 // todo styles cleanup
-// todo active  /disabled
+// todo isActive  /isDisabled
 // fix imports
-const structure = ref([{
+const menuOptions = ref([{
   name: 'Blockchain',
-  active: false,
+  isActive: false,
   submenu: [
     {
       name: 'Transactions',
@@ -44,7 +44,7 @@ const structure = ref([{
 },
 {
   name: 'Tokens',
-  active: false,
+  isActive: false,
   submenu: [
     {
       name: 'AEX9 Tokens',
@@ -57,50 +57,50 @@ const structure = ref([{
     {
       name: 'DEX Trades',
       path: '/trades',
-      disabled: true,
+      isDisabled: true,
     },
   ],
 },
 {
   name: 'Analytics',
-  active: false,
+  isActive: false,
   submenu: [
     {
       name: 'Top Accounts',
       path: '/tokens',
-      disabled: true,
+      isDisabled: true,
     },
     {
       name: 'Charts',
       path: '/charts',
-      disabled: true,
+      isDisabled: true,
     },
   ],
 },
 {
   name: 'Developers',
-  active: false,
+  isActive: false,
   submenu: [
     {
       name: 'Contract Verification',
       path: '/verification',
-      disabled: true,
+      isDisabled: true,
     },
   ],
 }])
 
 function open(name) {
-  structure.value.find(item => item.name === name).active = true
+  menuOptions.value.find(item => item.name === name).isActive = true
 }
 
 function toggle(name) {
   close()
-  structure.value.find(item => item.name === name).active = !structure.value.find(item => item.name === name).active
+  menuOptions.value.find(item => item.name === name).isActive = !menuOptions.value.find(item => item.name === name).isActive
 }
 
 function close() {
-  structure.value.forEach(item => {
-    item.active = false
+  menuOptions.value.forEach(item => {
+    item.isActive = false
   })
 }
 </script>

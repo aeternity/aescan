@@ -1,21 +1,21 @@
 <template>
   <div class="menu-item">
     <div class="menu-item__label">
-      {{ item.name }}
+      {{ menu.name }}
     </div>
     <ul
       :class="[
         'menu-item__list',
-        {'menu-item__list--collapsed': !item.active}]">
+        {'menu-item__list--collapsed': !menu.active}]">
       <li
-        v-for="subitem in item.submenu"
-        :key="subitem.name"
+        v-for="submenu in menu.submenu"
+        :key="submenu.name"
         class="menu-item__item">
         <a
           :class="[
             'menu-item__link',
-            {'menu-item__link--disabled': subitem.disabled}]">
-          {{ subitem.name }}
+            {'menu-item__link--disabled': submenu.isDisabled}]">
+          {{ submenu.name }}
         </a>
       </li>
     </ul>
@@ -24,7 +24,7 @@
 
 <script setup>
 defineProps({
-  item: {
+  menu: {
     type: Object,
     required: true,
   },
@@ -33,7 +33,6 @@ defineProps({
 </script>
 
 <style scoped>
-
 .menu-item {
   background: #fff;
 

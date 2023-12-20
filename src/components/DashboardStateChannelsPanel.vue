@@ -22,6 +22,7 @@ import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 .dashboard-state-channels-panel {
   width: 100%;
   padding: var(--space-3) var(--space-1);
+
   @media (--desktop) {
     padding: var(--space-4);
   }

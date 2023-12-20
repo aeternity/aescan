@@ -59,6 +59,7 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = sto
 
   &__dashboard-panel-header {
     margin-bottom: var(--space-2);
+
     @media (--desktop) {
       margin-bottom: var(--space-3);
     }
@@ -74,6 +75,7 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = sto
     font-family: var(--font-monospaced);
     font-size: 14px;
     line-height: 20px;
+
     @media (--desktop) {
       margin-bottom: 0;
       display: none;
@@ -82,6 +84,7 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = sto
 
   &__summary--desktop {
     display: none;
+
     @media (--desktop) {
       display: block;
     }

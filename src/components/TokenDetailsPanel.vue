@@ -231,6 +231,7 @@ const marketCap = computed(() =>
     margin-right: var(--space-1);
     width: 28px;
     height: 28px;
+
     @media (--desktop) {
       width: 24px;
       height: 24px;

@@ -27,6 +27,7 @@
 
   &__header {
     padding: var(--space-1) 0 0 0;
+
     @media (--desktop) {
       display: flex;
       justify-content: space-between;

@@ -50,6 +50,7 @@ function loadNextActivities() {
 <style scoped>
 .account-activities-panel {
   padding: var(--space-4) var(--space-1);
+
   @media (--desktop) {
     padding: var(--space-4);
   }

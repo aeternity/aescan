@@ -52,9 +52,5 @@ async function loadTransactionsStatistics({ interval, limit, range }) {
     position: relative;
     height: 250px;
   }
-
-  &__chart-controls {
-    margin-top: var(--space-4);
-  }
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
-  <app-panel
-    v-if="inAuctionNames"
-    class="names-in-auction-panel">
+  <app-panel class="names-in-auction-panel">
     <paginated-content
       :entities="inAuctionNames"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
       <names-in-auction-table
+        v-if="inAuctionNames"
         class="names-in-auction-panel__names-in-auction-table u-hidden-mobile"
         :names="inAuctionNames"/>
 
       <names-in-auction-table-condensed
+        v-if="inAuctionNames"
         class="u-hidden-desktop"
         :names="inAuctionNames"/>
     </paginated-content>

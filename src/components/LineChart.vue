@@ -38,11 +38,11 @@ const stats = computed(() => {
 
 const labels = computed(() => {
   return props.statistics.map(stat => {
-    return formatLabel(stat.startDate)
+    return formatDate(stat.startDate)
   })
 })
 
-function formatLabel(label) {
+function formatDate(label) {
   const date = DateTime.fromISO(label)
 
   if (props.selectedInterval === 'month') {
@@ -50,6 +50,14 @@ function formatLabel(label) {
   }
 
   return date.toFormat('MM-dd')
+}
+
+function formatNumberFractions(number) {
+  return number.toLocaleString('en-US', {
+    maximumFractionDigits: 2,
+    notation: 'compact',
+    compactDisplay: 'short',
+  })
 }
 
 const chartData = computed(() => {
@@ -90,6 +98,11 @@ const chartOptions = {
     y: {
       border: {
         display: false,
+      },
+      ticks: {
+        callback: function(value) {
+          return formatNumberFractions(value)
+        },
       },
     },
     x: {

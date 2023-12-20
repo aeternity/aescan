@@ -99,6 +99,7 @@ defineProps({
 .keyblock-table {
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
+
     @media (--desktop) {
       padding: var(--space-2) 0 var(--space-1);
     }
@@ -106,6 +107,7 @@ defineProps({
 
   &__data {
     text-align: right;
+
     @media (--desktop) {
       padding: var(--space-2) 0 var(--space-1);
     }

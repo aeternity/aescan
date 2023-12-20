@@ -135,6 +135,7 @@ function closeNavigation() {
     margin-left: auto;
     cursor: pointer;
     color: var(--color-midnight);
+
     @media (--desktop) {
       display: none;
     }

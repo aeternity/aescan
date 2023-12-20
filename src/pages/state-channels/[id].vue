@@ -62,6 +62,7 @@ if (error.value) {
 <style scoped>
 .state-channel-details__state-channel-details-panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

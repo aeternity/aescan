@@ -1,6 +1,6 @@
 .u-hidden-desktop {
   @media (--desktop) {
-    display: none;
+    display: none !important;
   }
 }
 

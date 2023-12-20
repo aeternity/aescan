@@ -17,7 +17,6 @@ export const useAccountStore = defineStore('account', () => {
 
   const rawAccountDetails = ref(null)
   const totalAccountTransactionsCount = ref(null)
-  const accountNamesCount = ref(null)
   const selectedKeyblock = ref(null)
   const selectedMicroblock = ref(null)
   const selectedKeyblockMicroblocks = ref(null)
@@ -34,7 +33,6 @@ export const useAccountStore = defineStore('account', () => {
         ...rawAccountDetails.value,
         balance: formatAettosToAe(rawAccountDetails.value.balance),
         totalTransactionsCount: totalAccountTransactionsCount.value,
-        namesCount: accountNamesCount.value,
         isGeneralized: rawAccountDetails.value.kind === 'generalized',
       }
       : null,
@@ -70,7 +68,6 @@ export const useAccountStore = defineStore('account', () => {
         fetchAccountTransactions({ accountId, limit }),
         fetchTotalAccountTransactionsCount(accountId),
         fetchAccountNames({ accountId, limit }),
-        fetchAccountNamesCount(accountId),
         fetchAccountActivities({ accountId, limit }),
       ]),
     ])
@@ -83,7 +80,7 @@ export const useAccountStore = defineStore('account', () => {
       rawAccountDetails.value = data
     } catch (e) {
       if ([400, 404].includes(e.response.status)) {
-        rawAccountDetails.value = { id: accountId, notExistent: true }
+        rawAccountDetails.value = { id: accountId, isExistent: false }
       }
     }
   }
@@ -126,11 +123,6 @@ export const useAccountStore = defineStore('account', () => {
     )
   }
 
-  async function fetchAccountNamesCount(accountId) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names?owned_by=${accountId}&state=active`)
-    accountNamesCount.value = data.data.length
-  }
-
   async function fetchAccountActivities({ accountId, limit, queryParameters } = {}) {
     rawAccountActivities.value = null
     const defaultParameters = `/v2/accounts/${accountId}/activities?limit=${limit ?? 10}`
@@ -166,7 +158,6 @@ export const useAccountStore = defineStore('account', () => {
   return {
     rawAccountDetails,
     totalAccountTransactionsCount,
-    accountNamesCount,
     selectedKeyblock,
     selectedMicroblock,
     selectedKeyblockMicroblocks,

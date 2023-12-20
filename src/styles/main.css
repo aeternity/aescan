@@ -1,22 +1,19 @@
 /* structured according to ITCSS */
-@import "settings/_variables.css";
-
-@import "generic/_animations.css";
-@import "generic/_fonts.css";
-@import "generic/_reset.css";
-
-@import "elements/_a.css";
-@import "elements/_body.css";
-@import "elements/_dl.css";
-@import "elements/_h.css";
-@import "elements/_hr.css";
-@import "elements/_html.css";
-@import "elements/_p.css";
-@import "elements/_q.css";
-@import "elements/_table.css";
-
-@import "utilities/_ellipsis.css";
-@import "utilities/_responsive.css";
+@import url("settings/_variables.css");
+@import url("generic/_animations.css");
+@import url("generic/_fonts.css");
+@import url("generic/_reset.css");
+@import url("elements/_a.css");
+@import url("elements/_body.css");
+@import url("elements/_dl.css");
+@import url("elements/_h.css");
+@import url("elements/_hr.css");
+@import url("elements/_html.css");
+@import url("elements/_p.css");
+@import url("elements/_q.css");
+@import url("elements/_table.css");
+@import url("utilities/_ellipsis.css");
+@import url("utilities/_responsive.css");
 
 /* 3rd party components */
-@import 'floating-vue/dist/style.css';
+@import url('floating-vue/dist/style.css');

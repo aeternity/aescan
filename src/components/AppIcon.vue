@@ -28,10 +28,10 @@ watch(
 
 <style>
 .icon {
-  fill: currentColor;
+  fill: currentcolor;
 
   & *[stroke] {
-    stroke: currentColor;
+    stroke: currentcolor;
   }
 }
 </style>

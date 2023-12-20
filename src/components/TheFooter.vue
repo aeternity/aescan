@@ -146,6 +146,7 @@ const links = {
     font-family: var(--font-monospaced);
 
     margin: var(--space-4) 0;
+
     @media (--desktop) {
       margin: 0 0 120px;
     }

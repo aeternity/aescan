@@ -11,7 +11,7 @@ import {
   formatTokenLimit,
 } from '@/utils/format'
 
-import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
+import { MINUTES_PER_BLOCK, REVOKED_PERIOD, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
@@ -287,6 +287,7 @@ export function adaptName(name, blockHeight, blockTime) {
       name.info.expireHeight ?? name.info.auctionEnd,
       blockHeight,
     ),
+    isRevoked: name.active === false && name.info.expireHeight + REVOKED_PERIOD > blockHeight,
     specialPointers: {
       account: name.info?.pointers?.accountPubkey,
       channel: name.info?.pointers?.channel,

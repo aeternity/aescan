@@ -57,6 +57,7 @@ defineProps({
   &__title {
     display: flex;
     align-items: center;
+
     @media (--desktop) {
       margin-bottom: var(--space-0);
     }

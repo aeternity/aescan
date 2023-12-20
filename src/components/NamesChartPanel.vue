@@ -150,12 +150,14 @@ async function loadNamesStatistics({ interval, limit }) {
 
   &__chart-controls {
     display: none;
+
     @media (--desktop) {
       display: grid;
     }
 
     &--condensed {
       margin-top: var(--space-4);
+
       @media (--desktop) {
         display: none;
       }

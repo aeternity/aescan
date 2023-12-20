@@ -86,6 +86,7 @@ if (process.client) {
 <style scoped>
 .names_names-panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

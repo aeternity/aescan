@@ -8,23 +8,6 @@
         <tr class="search-nfts-table-condensed__row">
           <th class="search-nfts-table-condensed__header">
             <app-tooltip>
-              Symbol
-              <template #tooltip>
-                {{ nftsHints.symbol }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="search-nfts-table-condensed__data">
-            <app-link
-              :to="`/nfts/${nft.contractId}`"
-              class="search-nfts-table-condensed__link">
-              {{ nft.symbol }}
-            </app-link>
-          </td>
-        </tr>
-        <tr class="search-nfts-table-condensed__row">
-          <th class="search-nfts-table-condensed__header">
-            <app-tooltip>
               Collection Name
               <template #tooltip>
                 {{ nftsHints.collectionName }}
@@ -32,7 +15,11 @@
             </app-tooltip>
           </th>
           <td class="search-nfts-table-condensed__data">
-            {{ nft.name }}
+            <app-link
+              :to="`/nfts/${nft.contractId}`"
+              class="search-nfts-table-condensed__link">
+              {{ nft.name }}
+            </app-link>
           </td>
         </tr>
         <tr class="search-nfts-table-condensed__row">
@@ -47,7 +34,7 @@
           <td class="search-nfts-table-condensed__data">
             <value-hash-ellipsed
               :link-to="`/contracts/${nft.contractId}`"
-              :hash="nft.contractId "/>
+              :hash="nft.contractId"/>
           </td>
         </tr>
       </tbody>

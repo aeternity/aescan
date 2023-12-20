@@ -3,12 +3,6 @@
     <thead>
       <tr>
         <th>
-          Symbol
-          <hint-tooltip>
-            {{ nftsHints.symbol }}
-          </hint-tooltip>
-        </th>
-        <th>
           Collection Name
           <hint-tooltip>
             {{ nftsHints.collectionName }}
@@ -30,10 +24,9 @@
           <app-link
             :to="`/nfts/${nft.contractId}`"
             class="search-nfts-table__link">
-            {{ nft.symbol }}
+            {{ nft.name }}
           </app-link>
         </td>
-        <td>{{ nft.name }}</td>
         <td>
           <value-hash-ellipsed
             :link-to="`/contracts/${nft.contractId}`"

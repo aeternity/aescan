@@ -1,19 +1,21 @@
 <template>
   <app-chip
-    ref="container"
+    ref="copyChip"
     class="copy-chip"
     size="sm"
     :variant="!isCopyAnimationActive ? 'dark' : 'success'">
-    <div class="copy-chip__text">
-      {{ textToDisplay }}
-    </div>
+    <div class="copy-chip__container">
+      <div class="copy-chip__text">
+        {{ textToDisplay }}
+      </div>
 
-    <copy-button
-      v-show="!isCopyAnimationActive"
-      :clipboard-text="clipboardText || label"
-      variant="light"
-      @copy:started="activateCopyAnimation"
-      @copy:ended="deactivateCopyAnimation"/>
+      <copy-button
+        v-show="!isCopyAnimationActive"
+        :clipboard-text="clipboardText || label"
+        variant="light"
+        @copy:started="activateCopyAnimation"
+        @copy:ended="deactivateCopyAnimation"/>
+    </div>
   </app-chip>
 </template>
 
@@ -33,7 +35,7 @@ const props = defineProps({
 })
 
 const isCopyAnimationActive = ref(false)
-const container = ref(null)
+const copyChip = ref(null)
 
 const textToDisplay = computed(() =>
   isCopyAnimationActive.value ? 'Copied!' : props.label,
@@ -41,18 +43,22 @@ const textToDisplay = computed(() =>
 
 function activateCopyAnimation() {
   isCopyAnimationActive.value = true
-  container.value.$el.style.width = `${container.value.$el.clientWidth}px`
+  copyChip.value.$el.style.width = `${copyChip.value.$el.clientWidth}px`
 }
 
 function deactivateCopyAnimation() {
   isCopyAnimationActive.value = false
-  container.value.$el.style.width = ''
+  copyChip.value.$el.style.width = ''
 }
 </script>
 
 <style scoped>
 .copy-chip {
   min-width: 72px;
+
+  &__container {
+    display: flex;
+  }
 
   &__text {
     margin-right: var(--space-1);

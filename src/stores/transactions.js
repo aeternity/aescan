@@ -37,8 +37,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
       ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
 
-    // todo mainnet url
-    const { data } = await axios.get(`https://staging.mdw.mainnet.aeternity.io/mdw/v3/statistics/transactions${slug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug}`)
 
     // remove last interval from the response not to show current interval that is being built
     transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()

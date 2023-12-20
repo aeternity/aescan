@@ -5,20 +5,20 @@
     </template>
     <template #header>
       <chart-controls
-        class="u-hidden-mobile"
-        @selected="loadTransactionsStatistics"/>
+          class="u-hidden-mobile"
+          @selected="loadTransactionsStatistics"/>
     </template>
 
     <div class="transactions-chart-panel__container">
       <line-chart
-        v-if="transactionsStatistics"
-        :statistics="transactionsStatistics"
-        :selected-interval="selectedInterval"/>
+          v-if="transactionsStatistics"
+          :statistics="transactionsStatistics"
+          :selected-interval="selectedInterval"/>
     </div>
 
     <chart-controls
-      class="transactions-chart-panel__chart-controls u-hidden-desktop"
-      @selected="loadTransactionsStatistics"/>
+        class="transactions-chart-panel__chart-controls u-hidden-desktop"
+        @selected="loadTransactionsStatistics"/>
   </app-panel>
 </template>
 
@@ -29,19 +29,18 @@ import { useTransactionsStore } from '@/stores/transactions'
 import LineChart from '@/components/LineChart'
 
 const transactionsStore = useTransactionsStore()
-const { transactionsStatistics } = storeToRefs(transactionsStore)
-const { fetchTransactionsStatistics } = transactionsStore
+const {transactionsStatistics} = storeToRefs(transactionsStore)
+const {fetchTransactionsStatistics} = transactionsStore
 
 const selectedInterval = ref('')
 
-await useAsyncData(async() => {
+await useAsyncData(async () => {
   await fetchTransactionsStatistics()
   return true
 })
 
-async function loadTransactionsStatistics({ interval, limit, range }) {
+async function loadTransactionsStatistics({interval, limit, range}) {
   selectedInterval.value = interval
-  // todo selected interval ?
   await fetchTransactionsStatistics(interval, limit, range)
 }
 </script>

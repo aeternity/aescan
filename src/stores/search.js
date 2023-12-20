@@ -34,7 +34,6 @@ export const useSearchStore = defineStore('search', () => {
     nftsResults.value = null
     const defaultParameters = `/v2/aex141?prefix=${query}&limit=${limit ?? 10}&direction=forward`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    console.log('data', data)
     nftsResults.value = data
   }
 

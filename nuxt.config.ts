@@ -42,9 +42,10 @@ export default defineNuxtConfig({
   postcss: {
     plugins: {
       autoprefixer: {},
-      'postcss-custom-media': {
-        importFrom: 'src/styles/settings/_variables.css',
+      '@csstools/postcss-global-data': {
+        files: ['src/styles/settings/_variables.css'],
       },
+      'postcss-custom-media': {},
       'postcss-import': {},
       'postcss-nested': {},
     },

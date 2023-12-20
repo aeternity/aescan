@@ -6,6 +6,7 @@
 
 .u-hidden-mobile {
   display: none !important;
+
   @media (--desktop) {
     display: revert !important;
   }

@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { Pagination } from 'swiper'
+import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/pagination'

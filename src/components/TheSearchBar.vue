@@ -17,7 +17,7 @@
   </div>
 </template>
 <script setup>
-import { isAddressValid, Encoding } from '@aeternity/aepp-sdk'
+import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
@@ -139,17 +139,9 @@ function isMicroblockId(query) {
       outline: none;
     }
 
-    &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-      color: var(--color-midnight-35);
-    }
-
-    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    &::placeholder {
       color: var(--color-midnight-35);
       opacity: 1;
-    }
-
-    &::placeholder { /* Most modern browsers support this now. */
-      color: var(--color-midnight-35);
     }
   }
 }

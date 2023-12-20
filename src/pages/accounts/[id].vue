@@ -30,7 +30,7 @@
         </app-tab>
         <app-tab
           title="Tokens"
-          :is-preselected="isTokensTabSelected">
+          :is-preselected="isTokensTabPreselected">
           <account-tokens-panel/>
         </app-tab>
       </app-tabs>
@@ -64,13 +64,17 @@ const { accountDetails, accountTokens } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
 const route = useRoute()
 
-const isTabsVisible = computed(() => process.client &&
-    ((accountDetails.value && !!accountDetails.value.isExistent) ||
-        !!accountTokens.value?.data.length))
+const isAccountExistent = computed(() => {
+  return accountDetails.value && !(accountDetails.value?.isExistent === false)
+})
 
-const isTokensTabSelected = computed(() => process.client &&
-    accountDetails.value?.isExistent === false &&
-    !!accountTokens.value?.data.length)
+const isTabsVisible = computed(() => process.client &&
+    (isAccountExistent.value || !!accountTokens.value?.data.length),
+)
+
+const isTokensTabPreselected = computed(() => process.client &&
+    !isAccountExistent.value && !!accountTokens.value?.data.length,
+)
 
 const activeTabIndex = computed({
   get() {
@@ -107,6 +111,7 @@ if (process.client) {
 <style scoped>
 .account__account-details-panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

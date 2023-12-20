@@ -114,6 +114,7 @@ function close() {
     flex-direction: column;
     height: 100%;
     cursor: pointer;
+    margin-bottom: var(--space-4);
 
     @media (--desktop) {
       flex-direction: row;

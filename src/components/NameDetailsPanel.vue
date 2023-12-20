@@ -150,6 +150,8 @@ const nameStatusLabel = computed(() => {
 const nameStatusHint = computed(() => {
   if (isNameInAuction.value) {
     return 'ends'
+  } else if (isNameRevoked.value) {
+    return 'revoked'
   } else if (isNameExpired.value) {
     return 'expired'
   } else if (isNameActive.value) {
@@ -158,6 +160,9 @@ const nameStatusHint = computed(() => {
 })
 const isNameExpired = computed(() =>
   name.value.status === 'name' && !name.value.active,
+)
+const isNameRevoked = computed(() =>
+  isNameExpired.value && name.value.isRevoked === true,
 )
 const isNameActive = computed(() =>
   name.value.active && name.value.activated,

@@ -17,7 +17,7 @@
     </div>
 
     <chart-controls
-      class="contracts-chart-panel__chart-controls u-hidden-desktop"
+      class="contracts-chart-panel__controls u-hidden-desktop"
       @selected="loadContractsStatistics"/>
   </app-panel>
 </template>
@@ -50,6 +50,10 @@ async function loadContractsStatistics({ interval, limit, range }) {
   &__container {
     position: relative;
     height: 250px;
+  }
+
+  &__controls {
+    margin-top: var(--space-4);
   }
 }
 </style>

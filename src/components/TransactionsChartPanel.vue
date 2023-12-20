@@ -17,7 +17,7 @@
     </div>
 
     <chart-controls
-      class="transactions-chart-panel__chart-controls u-hidden-desktop"
+      class="transactions-chart-panel__controls u-hidden-desktop"
       @selected="loadTransactionsStatistics"/>
   </app-panel>
 </template>
@@ -50,6 +50,10 @@ async function loadTransactionsStatistics({ interval, limit, range }) {
   &__container {
     position: relative;
     height: 250px;
+  }
+
+  &__controls {
+    margin-top: var(--space-4);
   }
 }
 </style>

@@ -26,8 +26,7 @@
 import PageHeader from '@/components/PageHeader'
 import AppTabs from '@/components/AppTabs'
 import AppTab from '@/components/AppTab'
-import SearchNftPanel from '~/components/SearchNftsPanel'
-// todo fix imports
+import SearchNftPanel from '@/components/SearchNftsPanel'
 
 const route = useRoute()
 const { push, replace } = useRouter()

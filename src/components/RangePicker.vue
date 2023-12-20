@@ -89,10 +89,6 @@ defineEmits(['updated'])
       opacity: 1;
     }
 
-    &::-ms-input-placeholder {
-      color: var(--color-midnight);
-    }
-
     &--active {
       width: 100%;
       background: var(--color-error) !important;
@@ -106,7 +102,6 @@ defineEmits(['updated'])
 }
 
 .dp {
-
   &__outer_menu_wrap {
     @media (--desktop) {
       width: 100%;

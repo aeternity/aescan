@@ -20,11 +20,11 @@ import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { useTransactionsStore } from '@/stores/transactions'
 import { formatNumber } from '@/utils/format'
 
-const {fetchTotalTransactionsCount} = useBlockchainStatsStore()
-const {fetchLast24hsTransactionsCount} = useTransactionsStore()
+const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
+const { fetchLast24hsTransactionsCount } = useTransactionsStore()
 
-const {transactionsCount} = storeToRefs(useBlockchainStatsStore())
-const {last24hsTransactionsCount} = storeToRefs(useTransactionsStore())
+const { transactionsCount } = storeToRefs(useBlockchainStatsStore())
+const { last24hsTransactionsCount } = storeToRefs(useTransactionsStore())
 
 await fetchTotalTransactionsCount()
 await fetchLast24hsTransactionsCount()

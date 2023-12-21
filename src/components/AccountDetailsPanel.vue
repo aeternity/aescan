@@ -124,7 +124,7 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
-import AppChip from '~/components/AppChip'
+import AppChip from '@/components/AppChip'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public

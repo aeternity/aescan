@@ -15,10 +15,6 @@
 </template>
 
 <script setup>
-// todo styles cleanup
-// todo after resize
-// todo caret
-
 const menuOptions = ref([{
   name: 'Blockchain',
   isActive: false,
@@ -93,8 +89,6 @@ function open(name) {
 }
 
 function toggle(name) {
-  console.log('toggle name', name)
-  console.log('menuOptions.value.find(item => item.name === name)', menuOptions.value.find(item => item.name === name))
   close()
   menuOptions.value.find(item => item.name === name).isActive =
       !menuOptions.value.find(item => item.name === name).isActive
@@ -119,6 +113,7 @@ function close() {
     @media (--desktop) {
       flex-direction: row;
       align-items: center;
+      margin-bottom: 0;
     }
   }
 

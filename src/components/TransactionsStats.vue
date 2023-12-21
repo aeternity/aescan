@@ -46,6 +46,7 @@ await fetchLast24hsTransactions()
   &__panel {
     padding: var(--space-4);
     width: 100%;
+
     @media (--desktop) {
       width: 50%;
     }

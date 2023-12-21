@@ -1,8 +1,11 @@
 <template>
   <div class="menu-item">
-    <div class="menu-item__label ">
+    <header class="menu-item__header ">
       {{ menu.name }}
-    </div>
+      <app-icon
+        :class="['menu-item__icon', {'menu-item__icon--active': menu.isActive}]"
+        name="caret-down"/>
+    </header>
     <ul
       v-show="menu.isActive"
       class="menu-item__list">
@@ -21,7 +24,6 @@
 
         <coming-soon-tooltip v-else>
           <app-link
-
             :to="submenu.path"
             :class="[
               'menu-item__link',
@@ -35,6 +37,8 @@
 </template>
 
 <script setup>
+import AppIcon from '~/components/AppIcon'
+
 defineProps({
   menu: {
     type: Object,
@@ -47,15 +51,26 @@ defineProps({
 .menu-item {
   width: 100%;
 
-  &__label {
-    padding: 0 var(--space-3) var(--space-1) var(--space-3);
+  &__header {
+    padding: 0 var(--space-4) var(--space-1) var(--space-4);
     font-size: 20px;
     line-height: 28px;
+    display: flex;
+    justify-content: space-between;
 
     @media (--desktop) {
+
       padding: 0 var(--space-3);
       font-size: 20px;
       line-height: 28px;
+    }
+  }
+
+  &__icon {
+    margin: 6px 0 0 var(--space-0);
+
+    &--active {
+      transform: rotate(180deg);
     }
   }
 

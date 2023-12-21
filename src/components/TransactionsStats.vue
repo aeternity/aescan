@@ -1,13 +1,13 @@
 <template>
   <div class="transaction-stats">
     <app-panel class="transaction-stats__panel">
-      <h5>TRANSACTIONS</h5>
+      <h5>TOTAL TRANSACTIONS</h5>
       <div class="transaction-stats__value">
         {{ formatNumber(transactionsCount) }}
       </div>
     </app-panel>
     <app-panel class="transaction-stats__panel">
-      <h5>TRANSACTIONS LAST 24H</h5>
+      <h5>TRANSACTIONS IN LAST 24H</h5>
       <div class="transaction-stats__value">
         {{ formatNumber(last24hsTransactions) }}
       </div>
@@ -37,6 +37,7 @@ await fetchLast24hsTransactions()
   flex-direction: column;
   gap: var(--space-2);
   width: 100%;
+  margin-bottom: var(--space-2);
 
   @media (--desktop) {
     flex-direction: row;

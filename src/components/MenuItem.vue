@@ -40,6 +40,7 @@ defineProps({
     padding: 0 var(--space-3) var(--space-1) var(--space-3);
     font-size: 28px;
     line-height: 36px;
+
     @media (--desktop) {
       font-size: 20px;
       line-height: 28px;
@@ -64,6 +65,7 @@ defineProps({
 
   &__item {
     padding: var(--space-0) var(--space-3);
+
     @media (--desktop) {
       padding: var(--space-3) var(--space-1);
     }

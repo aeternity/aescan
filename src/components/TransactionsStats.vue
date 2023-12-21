@@ -9,10 +9,7 @@
     <app-panel class="transaction-stats__panel">
       <h5>TRANSACTIONS LAST 24H</h5>
       <div class="transaction-stats__value">
-        {{ formatNumber(lastDayTransactionsCount) }}
-        <app-chip :variant="chipVariant">
-          {{ formatNullable(lastDayTransactionsIncrement) }} %
-        </app-chip>
+        {{ formatNumber(last24hsTransactions) }}
       </div>
     </app-panel>
   </div>
@@ -21,18 +18,16 @@
 import { storeToRefs } from 'pinia'
 import { useBlockchainStatsStore } from '~/stores/blockchainStats'
 import { useTransactionsStore } from '~/stores/transactions'
-import { formatNullable, formatNumber } from '~/utils/format'
+import { formatNumber } from '~/utils/format'
 
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
-const { fetchDailyTransactions } = useTransactionsStore()
+const { fetchLast24hsTransactions } = useTransactionsStore()
 
 const { transactionsCount } = storeToRefs(useBlockchainStatsStore())
-const { lastDayTransactionsIncrement, lastDayTransactionsCount } = storeToRefs(useTransactionsStore())
+const { last24hsTransactions } = storeToRefs(useTransactionsStore())
 
 await fetchTotalTransactionsCount()
-await fetchDailyTransactions()
-
-const chipVariant = computed(() => lastDayTransactionsIncrement.value > 0 ? 'success' : 'error')
+await fetchLast24hsTransactions()
 
 </script>
 

@@ -1,15 +1,15 @@
 <template>
-  <div class="transaction-stats">
-    <app-panel class="transaction-stats__panel">
+  <div class="transaction-statistics">
+    <app-panel class="transaction-statistics__panel">
       <h5>TOTAL TRANSACTIONS</h5>
-      <div class="transaction-stats__value">
+      <div class="transaction-statistics__value">
         {{ formatNumber(transactionsCount) }}
       </div>
     </app-panel>
-    <app-panel class="transaction-stats__panel">
+    <app-panel class="transaction-statistics__panel">
       <h5>TRANSACTIONS IN LAST 24H</h5>
-      <div class="transaction-stats__value">
-        {{ formatNumber(last24hsTransactions) }}
+      <div class="transaction-statistics__value">
+        {{ formatNumber(last24hsTransactionsCount) }}
       </div>
     </app-panel>
   </div>
@@ -21,18 +21,18 @@ import { useTransactionsStore } from '~/stores/transactions'
 import { formatNumber } from '~/utils/format'
 
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
-const { fetchLast24hsTransactions } = useTransactionsStore()
+const { fetchLast24hsTransactionsCount } = useTransactionsStore()
 
 const { transactionsCount } = storeToRefs(useBlockchainStatsStore())
-const { last24hsTransactions } = storeToRefs(useTransactionsStore())
+const { last24hsTransactionsCount } = storeToRefs(useTransactionsStore())
 
 await fetchTotalTransactionsCount()
-await fetchLast24hsTransactions()
+await fetchLast24hsTransactionsCount()
 
 </script>
 
 <style scoped>
-.transaction-stats {
+.transaction-statistics {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);

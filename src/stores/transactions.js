@@ -10,7 +10,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
-  const last24hsTransactions = ref(null)
+  const last24hsTransactionsCount = ref(null)
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -31,10 +31,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsCount.value = data
   }
 
-  async function fetchLast24hsTransactions() {
-    last24hsTransactions.value = null
+  async function fetchLast24hsTransactionsCount() {
+    last24hsTransactionsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/stats`)
-    last24hsTransactions.value = data.last24hsTransactions
+    last24hsTransactionsCount.value = data.last24hsTransactionsCount
   }
 
   async function fetchTransactionsStatistics(slug) {
@@ -50,7 +50,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     fetchTransactionsCount,
     transactionsStatistics,
     fetchTransactionsStatistics,
-    fetchLast24hsTransactions,
-    last24hsTransactions,
+    fetchLast24hsTransactionsCount,
+    last24hsTransactionsCount,
   }
 })

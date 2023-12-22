@@ -59,7 +59,6 @@ defineProps({
     justify-content: space-between;
 
     @media (--desktop) {
-
       padding: 0 var(--space-3);
       font-size: 20px;
       line-height: 28px;

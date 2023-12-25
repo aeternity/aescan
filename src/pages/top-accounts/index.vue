@@ -5,9 +5,8 @@
 
   <page-header>
     Top Accounts
-    <!--todo hints-->
     <template #tooltip>
-      {{ tokensHints.token }}
+      {{ topAccountsHints.topAccounts }}
     </template>
   </page-header>
   <top-accounts-panel v-if="!isLoading"/>
@@ -16,7 +15,7 @@
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
-import { tokensHints } from '@/utils/hints/tokensHints'
+import { topAccountsHints } from '~/utils/hints/topAccountsHints'
 
 const { isLoading } = useLoading()
 </script>

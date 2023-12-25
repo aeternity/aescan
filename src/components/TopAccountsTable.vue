@@ -4,19 +4,19 @@
       <th>
         Rank
         <hint-tooltip>
-          {{ stateChannelsHints.stateChannelId }}
+          {{ topAccountsHints.rank }}
         </hint-tooltip>
       </th>
       <th>
         Account
         <hint-tooltip>
-          {{ stateChannelsHints.stateChannelId }}
+          {{ topAccountsHints.account }}
         </hint-tooltip>
       </th>
       <th>
         % Of Circulating
         <hint-tooltip>
-          {{ stateChannelsHints.stateChannelId }}
+          {{ topAccountsHints.percentage }}
         </hint-tooltip>
       </th>
     </tr>
@@ -35,7 +35,7 @@
   </table>
 </template>
 <script setup>
-import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
+import { topAccountsHints } from '@/utils/hints/topAccountsHints'
 
 defineProps({
   topAccounts: {

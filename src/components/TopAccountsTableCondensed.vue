@@ -1,5 +1,4 @@
 <template>
-  <!--  todo hints-->
   <div>
     <table
       v-for="account in topAccounts"
@@ -11,7 +10,7 @@
             <app-tooltip>
               Rank
               <template #tooltip>
-                {{ stateChannelsHints.stateChannelId }}
+                {{ topAccountsHints.rank }}
               </template>
             </app-tooltip>
           </th>
@@ -24,7 +23,7 @@
             <app-tooltip>
               Account
               <template #tooltip>
-                {{ stateChannelsHints.status }}
+                {{ topAccountsHints.account }}
               </template>
             </app-tooltip>
           </th>
@@ -40,7 +39,7 @@
             <app-tooltip>
               % Of Circulating
               <template #tooltip>
-                {{ stateChannelsHints.participants }}
+                {{ topAccountsHints.percentage }}
               </template>
             </app-tooltip>
           </th>
@@ -53,6 +52,8 @@
   </div>
 </template>
 <script setup>
+
+import { topAccountsHints } from '../utils/hints/topAccountsHints'
 
 defineProps({
   topAccounts: {

@@ -1,4 +1,4 @@
-import { useBlockchainStatsStore } from '~/stores/blockchainStats'
+import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 
 export const useTopAccountsStore = defineStore('topAccounts', () => {
   const axios = useAxios()

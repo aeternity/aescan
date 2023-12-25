@@ -1,33 +1,22 @@
 <template>
   <app-panel>
-    <table>
-      <tr>
-        <th>Rank</th>
-        <th>Account</th>
-        <th>% Of Circulating</th>
-      </tr>
-      <tr
-        v-for="account in topAccounts"
-        :key="account.account">
-        <td>{{ account.rank }}.</td>
-        <td>
-          <app-link
-            :to="`/accounts/${account.account}`">
-            {{ account.account }}
-          </app-link>
-        </td>
-        <td>{{ account.percentage }} %</td>
-      </tr>
-    </table>
+    <top-accounts-table
+      :top-accounts="topAccounts"
+      class="u-hidden-mobile"/>
+    <top-accounts-table-condensed
+      :top-accounts="topAccounts"
+      class="u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
 import { useTopAccountsStore } from '~/stores/topAccounts'
 import { useBlockchainStatsStore } from '~/stores/blockchainStats'
+import TopAccountsTable from '~/components/TopAccountsTable'
+import TopAccountsTableCondensed from '~/components/TopAccountsTableCondensed'
 
 const topAccountsStore = useTopAccountsStore()
-const { topAccounts, distribution } = storeToRefs(topAccountsStore)
+const { topAccounts } = storeToRefs(topAccountsStore)
 const { fetchTopAccounts } = useTopAccountsStore()
 const { fetchTotalStats } = useBlockchainStatsStore()
 

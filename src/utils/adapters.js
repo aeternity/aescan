@@ -603,3 +603,13 @@ export function adaptNft(nft) {
     templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
   }
 }
+
+export function adaptTopAccounts(topAccounts, distribution) {
+  return topAccounts.map((account, index) => {
+    return {
+      rank: index + 1,
+      account: account.account,
+      percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(2),
+    }
+  })
+}

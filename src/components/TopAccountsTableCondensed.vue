@@ -53,7 +53,7 @@
 </template>
 <script setup>
 
-import { topAccountsHints } from '../utils/hints/topAccountsHints'
+import { topAccountsHints } from '@/utils/hints/topAccountsHints'
 
 defineProps({
   topAccounts: {

@@ -1,6 +1,5 @@
 <template>
   <!--  todo hints-->
-  <!--  todo imports-->
   <div>
     <table
       v-for="account in topAccounts"

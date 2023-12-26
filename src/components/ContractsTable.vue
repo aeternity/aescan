@@ -26,6 +26,7 @@
             {{ contractsHints.creator }}
           </hint-tooltip>
         </th>
+        <th>Verified</th>
       </tr>
     </thead>
     <tbody>
@@ -52,6 +53,12 @@
             :link-to="`/accounts/${contract.createdBy}`"
             :hash="contract.createdBy"/>
         </td>
+        <td>
+          <app-icon
+            size="24"
+            class="contracts-table__icon"
+            name="verified"/>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -75,6 +82,10 @@ defineProps({
 
   &__data {
     vertical-align: top;
+  }
+
+  &__icon {
+    color: var(--color-success);
   }
 }
 </style>

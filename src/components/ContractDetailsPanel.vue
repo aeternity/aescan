@@ -49,6 +49,7 @@
             </app-link>
           </td>
         </tr>
+
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Create Transaction
@@ -65,6 +66,21 @@
                 {{ formatEllipseHash(contractDetails.createTransactionHash) }}
               </span>
             </app-link>
+          </td>
+        </tr>
+        <tr
+
+          class="contract-details-panel__row">
+          <th class="contract-details-panel__table-header">
+            Verified
+            <hint-tooltip>
+              {{ contractsHints.token }}
+            </hint-tooltip>
+          </th>
+          <td class="contract-details-panel__data">
+            <app-chip variant="success">
+              Yes
+            </app-chip>
           </td>
         </tr>
         <tr class="contract-details-panel__row">

@@ -2450,6 +2450,11 @@ acorn-import-attributes@^1.9.2:
   resolved "https://registry.yarnpkg.com/acorn-import-attributes/-/acorn-import-attributes-1.9.5.tgz#7eb1557b1ba05ef18b5ed0ec67591bfab04688ef"
   integrity sha512-n02Vykv5uA3eHGM/Z2dQrcD56kL8TyDb2p1+0P83PClMnC/nc+anbQRhIOWnSq4Ke/KvDPrY3C9hDtC/A3eHnQ==
 
+ace-builds@^1.32.2:
+  version "1.32.2"
+  resolved "https://registry.yarnpkg.com/ace-builds/-/ace-builds-1.32.2.tgz#d6b0d052506b0599ee9c711b366ee83656284d19"
+  integrity sha512-mnJAc803p+7eeDt07r6XI7ufV7VdkpPq4gJZT8Jb3QsowkaBTVy4tdBgPrVT0WbXLm0toyEQXURKSVNj/7dfJQ==
+
 acorn-jsx@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-2.0.1.tgz#0edf9878a5866bca625f52955a1ed9e7d8c5117e"

@@ -6,6 +6,7 @@
     :class="[
       'button',
       variant ? `button--${variant}` : null,
+      size ? `button--${size}` : null,
     ]"
     :disabled="disabled">
     <app-icon

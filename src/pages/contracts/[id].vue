@@ -35,6 +35,9 @@
         :has-verified-icon="isVerified">
         <contract-verified-panel/>
       </app-tab>
+      <app-tab title="Verified Contract">
+        <verified-contract-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>

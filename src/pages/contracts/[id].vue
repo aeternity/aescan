@@ -5,7 +5,6 @@
 
   <page-header>
     Smart Contract
-
     <template #tooltip>
       {{ contractsHints.contract }}
       <app-link
@@ -30,6 +29,9 @@
       <app-tab title="Events">
         <contract-events-panel/>
       </app-tab>
+      <app-tab title="Verified Contract">
+        <verified-contract-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -47,6 +49,7 @@ import ContractEventsPanel from '@/components/ContractEventsPanel'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
+import VerifiedContractPanel from '~/components/VerifiedContractPanel'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
@@ -54,7 +57,7 @@ const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const TAB_KEYS = ['call-transactions', 'events']
+const TAB_KEYS = ['call-transactions', 'events', 'verified-contract']
 
 const activeTabIndex = computed({
   get() {

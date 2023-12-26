@@ -3,7 +3,11 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    class="button">
+    :class="[
+      'button',
+      variant ? `button--${variant}` : null,
+      size ? `button--${size}` : null,
+    ]">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -13,7 +17,11 @@
   </app-link>
   <button
     v-else
-    class="button">
+    :class="[
+      'button',
+      variant ? `button--${variant}` : null,
+      size ? `button--${size}` : null,
+    ]">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -40,6 +48,17 @@ defineProps({
     type: String,
     default: '_blank',
   },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['lg'].includes(val),
+  },
+  variant: {
+    type: String,
+    default: 'primary',
+    validator: val =>
+      ['primary', 'light'].includes(val),
+  },
 })
 </script>
 
@@ -56,13 +75,26 @@ defineProps({
   text-decoration: none;
   letter-spacing: 0.015em;
 
-  background: var(--color-fire);
-  color: var(--color-white);
+  padding: var(--space-0) var(--space-1);
 
-  border-radius: 48px;
-  border: none;
+  border-radius: 4px;
 
-  padding: var(--space-3) var(--space-5);
+  &--lg {
+    border-radius: 48px;
+    padding: var(--space-3) var(--space-5);
+  }
+
+  &--primary {
+    background: var(--color-fire);
+    color: var(--color-white);
+    border: none;
+  }
+
+  &--light {
+    background: var(--color-white);
+    color: var(--color-midnight);
+    border: 1px solid var(--color-midnight);
+  }
 
   &__icon {
     margin-right: var(--space-1);

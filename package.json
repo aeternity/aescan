@@ -21,7 +21,7 @@
     "lint": "yarn lint:js && yarn lint:style",
     "lint:ci": "yarn lint:js --max-warnings=0 && yarn lint:style --mw 0",
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix",
-    "lint:js": "eslint",
+    "lint:js": "eslint --ext .ts,.js,.vue src",
     "lint:style": "stylelint \"./src/**/*.vue\" \"src/**/*.css\"",
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install",
     "reset": "yarn reinstall && yarn dev",
@@ -52,12 +52,11 @@
     "vue": "^3.4.31",
     "vue-chartjs": "^5.3.1",
     "vue-multiselect": "^3.0.0",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.0",
   },
   "devDependencies": {
     "@csstools/postcss-global-data": "^2.1.1",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@nuxtjs/partytown": "^1.5.0",
     "@nuxtjs/plausible": "^1.0.0",
     "@pinia/nuxt": "^0.5.1",
     "@vitejs/plugin-vue": "^5.0.5",

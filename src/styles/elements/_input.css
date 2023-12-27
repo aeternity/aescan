@@ -1,0 +1,14 @@
+input[type='text'] {
+  border-radius: 8px;
+  height: 36px;
+  font-size: 12px;
+  line-height: 20px;
+
+
+  border-color: var(--color-midnight);
+  border-width: 1px;
+
+  @media (--desktop) {
+    font-size: 14px;
+  }
+}

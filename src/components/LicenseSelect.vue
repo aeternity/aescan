@@ -2,10 +2,9 @@
   <app-select
       v-model="selectedLicense"
       :options="LICENSE_TYPE_OPTIONS"
-      track-by="stateQuery"
+      track-by="key"
       label="label"
-      placeholder="Select Oracle State"
-      :searchable="false"
+      placeholder="Select Compiler Version"
       :hide-selected="true"/>
 </template>
 

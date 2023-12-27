@@ -39,7 +39,9 @@
             class="file-upload__button"
             title="remove file"
             @click="removeFile(files.indexOf(file))">
-            <app-icon name="cross"/>
+            <app-icon
+              name="cross"
+              size="18"/>
           </button>
         </div>
       </div>
@@ -115,24 +117,29 @@ function removeFile(index) {
   }
 
   &__label {
-    font-size: 20px;
+    font-size: 16px;
     display: block;
     cursor: pointer;
   }
 
   &__preview {
-    margin-top: 2rem;
+    margin-top: var(--space-3);
   }
 
   &__preview-card {
     display: flex;
     justify-content: space-between;
-    border: 1px solid #a2a2a2;
+    border: 1px solid var(--color-midnight-35);
+    background: var(--color-white);
     margin: var(--space-0);
     padding: var(--space-0);
   }
 
   &__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     border: none;
     background: transparent;
     cursor: pointer;

@@ -1,6 +1,9 @@
 <template>
   <div
-    :class="['file-upload', {'file-upload--dragover' :isDragging }]"
+    :class="[
+      'file-upload',
+      {'file-upload--dragover' :isDragging
+      }]"
     @dragover="dragover"
     @dragleave="dragleave"
     @drop="drop">
@@ -28,9 +31,8 @@
         :key="file.name"
         class="file-upload__preview-card">
         <div>
-          <p>
-            {{ file.name }} - {{ Math.round(file.size / 1000) + 'kb' }}
-          </p>
+          <input type="radio">
+          {{ file.name }} - {{ Math.round(file.size / 1000) + 'kb' }}
         </div>
         <div>
           <button
@@ -96,7 +98,7 @@ function removeFile(index) {
 
 <style scoped>
 .file-upload {
-  padding: 4rem;
+  padding: var(--space-6);
   background: var(--color-snow);
   border: 2px dashed var(--color-midnight-35);
 
@@ -119,15 +121,15 @@ function removeFile(index) {
   }
 
   &__preview {
-    display: flex;
     margin-top: 2rem;
   }
 
   &__preview-card {
     display: flex;
+    justify-content: space-between;
     border: 1px solid #a2a2a2;
-    padding: 5px;
-    margin-left: 5px;
+    margin: var(--space-0);
+    padding: var(--space-0);
   }
 
   &__button {

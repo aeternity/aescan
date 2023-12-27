@@ -15,8 +15,30 @@
     </template>
   </page-header>
   <app-panel>
-    <file-upload/>
+    <h3>1. Specify the contract details</h3>
+    <p>
+      Lorem ipsum dolor sit ametSource code verification provides transparency for users interacting with smart
+      contracts. By uploading the source code.
+
+      Please be informed that advanced settings (e.g. bytecodeHash: "none" or viaIR: "true") can be accessed via
+      Solidity (Standard-Json-Input) verification method. More information can be found under Solidity's "Compiler Input
+      and Output JSON Description" documentation section.
+
+      *required field
+    </p>
+    <!--      smart contract details form -->
+
+    <contract-verification-form/>
   </app-panel>
 </template>
 
-<script/>
+<script>
+import { defineComponent } from 'vue'
+import CompilerSelect from '~/components/CompilerSelect'
+import LicenseSelect from '~/components/LicenseSelect'
+import ContractVerificationForm from '~/components/ContractVerificationForm'
+
+export default defineComponent({
+  components: { ContractVerificationForm, LicenseSelect, CompilerSelect },
+})
+</script>

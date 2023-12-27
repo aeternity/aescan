@@ -15,18 +15,17 @@
     </template>
   </page-header>
   <app-panel>
-    <h3>1. Specify the contract details</h3>
-    <p>
-      Lorem ipsum dolor sit ametSource code verification provides transparency for users interacting with smart
-      contracts. By uploading the source code.
-
-      Please be informed that advanced settings (e.g. bytecodeHash: "none" or viaIR: "true") can be accessed via
-      Solidity (Standard-Json-Input) verification method. More information can be found under Solidity's "Compiler Input
-      and Output JSON Description" documentation section.
-
-      *required field
+    <p class="paragraph">
+      Source code verification provides transparency for users interacting with Smart Contracts.
     </p>
-    <!--      smart contract details form -->
+    <p class="paragraph">
+      By uploading the source code, æScan will match the compiled code with that on the blockchain.
+    </p>
+    <p class="paragraph">
+      Just like contracts, a "Smart Contract" should provide end users with more information on what they are "digitally
+      signing" for and give users an opportunity to audit the code to independently verify that it actually does what it
+      is supposed to do.
+    </p>
 
     <contract-verification-form/>
   </app-panel>
@@ -36,3 +35,13 @@
 
 import ContractVerificationForm from '~/components/ContractVerificationForm'
 </script>
+
+<style>
+.paragraph {
+  margin-bottom: var(--space-1);
+
+  &:last-of-type {
+    margin-bottom: var(--space-5);
+  }
+}
+</style>

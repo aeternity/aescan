@@ -1,8 +1,9 @@
 input[type='text'] {
   border-radius: 8px;
-  height: 36px;
   font-size: 12px;
   line-height: 20px;
+  min-height: 40px;
+  padding: 8px;
 
 
   border-color: var(--color-midnight);

@@ -51,6 +51,7 @@
   justify-content: space-around;
   align-items: center;
   margin-bottom: 1rem;
+
   @media (--desktop) {
     flex-direction: row;
   }

@@ -32,13 +32,7 @@
   </app-panel>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import CompilerSelect from '~/components/CompilerSelect'
-import LicenseSelect from '~/components/LicenseSelect'
-import ContractVerificationForm from '~/components/ContractVerificationForm'
+<script setup>
 
-export default defineComponent({
-  components: { ContractVerificationForm, LicenseSelect, CompilerSelect },
-})
+import ContractVerificationForm from '~/components/ContractVerificationForm'
 </script>

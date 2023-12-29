@@ -9,14 +9,11 @@
       {{ transactionData.name }}
     </app-link>
   </span>
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.nameFee)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(transactionData.nameFee)"/>
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatAettosToAe } from '@/utils/format'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import AppLink from '@/components/AppLink'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

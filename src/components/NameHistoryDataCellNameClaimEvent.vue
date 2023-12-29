@@ -4,9 +4,7 @@
     :link-to="`/accounts/${payload.tx.accountId}`"/>
 
   <app-tooltip>
-    <app-chip size="sm">
-      {{ formatAePrice(formatAettosToAe(payload.tx.nameFee), null) }}
-    </app-chip>
+    <price-label :price="formatAettosToAe(payload.tx.nameFee)"/>
     <template #tooltip>
       Fee
     </template>

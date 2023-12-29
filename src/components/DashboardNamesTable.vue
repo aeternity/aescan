@@ -47,7 +47,7 @@
             {{ name.isAuction ? 'Auction' : 'Fixed price' }}
           </div>
           <div class="dashboard-names-table__name-price">
-            {{ formatNullable(formatAePrice(name.price)) }}
+            <price-label :price="name.price"/>
           </div>
         </td>
         <td>
@@ -66,7 +66,6 @@ import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
-import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())

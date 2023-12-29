@@ -35,7 +35,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.nameFee), null) }}
+          <price-label :price="formatAettosToAe(transactionData.nameFee)"/>
         </td>
       </tr>
     </tbody>
@@ -45,7 +45,7 @@
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

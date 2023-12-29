@@ -5,14 +5,10 @@
 
   <transaction-arrow-right-icon/>
 
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(eventData[1])) }}
-  </app-chip>
+  <price-label :price="eventData[1]"/>
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 

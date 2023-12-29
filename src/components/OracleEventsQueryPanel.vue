@@ -20,7 +20,9 @@
           {{ oraclesHints.queryFee }}
         </hint-tooltip>
       </dt>
-      <dd>{{ formatAePrice(event.queryFee) }}</dd>
+      <dd>
+        <price-label :price="event.queryFee"/>
+      </dd>
 
       <dt class="oracle-events-query-panel_term">
         Query:

@@ -54,7 +54,7 @@
             </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
-            {{ formatAePrice(stateChannelDetails.initialAmount, null) }}
+            <price-label :price="stateChannelDetails.initialAmount"/>
           </td>
         </tr>
         <tr class="state-channel-details-panel__row">
@@ -123,7 +123,7 @@
             </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
-            {{ formatAePrice(stateChannelDetails.aeLocked, null) }}
+            <price-label :price="stateChannelDetails.aeLocked"/>
           </td>
         </tr>
         <tr class="state-channel-details-panel__row">
@@ -198,7 +198,6 @@
 </template>
 
 <script setup>
-import { formatAePrice } from '@/utils/format'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'

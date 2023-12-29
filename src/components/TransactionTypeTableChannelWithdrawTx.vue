@@ -46,7 +46,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
+          <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>
     </tbody>
@@ -56,7 +56,7 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

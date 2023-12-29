@@ -46,7 +46,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
+          <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -114,9 +114,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          {{ transactionData.gas }}
+          <price-label :price="transactionData.gas"/>
           /
-          {{ formatAePrice(formatAettosToAe(transactionData.gasPrice), null) }}
+          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -133,9 +133,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          {{ formatNullable(transactionData.gasUsed) }}
+          <price-label :price="formatNullable(transactionData.gasUsed)"/>
           /
-          {{ formatNullable(formatAePrice(formatAettosToAe(gasCosts), null)) }}
+          <price-label :price="formatNullable(formatAettosToAe(gasCosts))"/>
         </td>
       </tr>
     </tbody>
@@ -146,7 +146,7 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAettosToAe, formatNullable } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 
 const isCollapsed = ref(true)

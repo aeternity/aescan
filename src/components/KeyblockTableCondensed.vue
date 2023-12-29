@@ -61,7 +61,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ formatNullable(formatAePrice(stats?.blockReward)) }}
+          <price-label :price="formatNullable(stats?.blockReward)"/>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
@@ -72,7 +72,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ formatNullable(formatAePrice(stats?.devReward, null)) }}
+          <price-label :price="formatNullable(stats?.devReward, null)"/>
         </td>
       </tr>
     </tbody>
@@ -81,7 +81,7 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import { formatAePrice, formatNullable } from '@/utils/format'
+import { formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

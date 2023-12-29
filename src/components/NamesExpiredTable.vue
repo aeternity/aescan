@@ -55,11 +55,10 @@
             :link-to="`/accounts/${name.lastBuyer}`"/>
         </td>
         <td>
-          <app-chip
-            variant="secondary"
-            class="names-expired-table__price-label">
-            {{ formatAePrice(name.fee) }}
-          </app-chip>
+
+          <price-label
+            class="names-expired-table__price-label"
+            :price="name.fee"/>
         </td>
         <td>
           <value-hash-ellipsed
@@ -72,9 +71,7 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 
@@ -89,7 +86,6 @@ defineProps({
 <style scoped>
 .names-expired-table {
   &__price-label {
-    font-weight: 700;
     margin-top: var(--space-0);
   }
 

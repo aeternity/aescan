@@ -22,12 +22,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.channelReserve),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.channelReserve)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -42,12 +37,7 @@
             {{ transactionData.initiatorId }}
           </app-link>
           /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.initiatorAmount),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.initiatorAmount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -73,12 +63,7 @@
             {{ transactionData.responderId }}
           </app-link>
           /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.responderAmount),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.responderAmount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -110,7 +95,7 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

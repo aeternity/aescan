@@ -63,7 +63,9 @@
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            {{ formatAePrice(name.bid) }}
+            <price-label
+              class="name-details-panel__data"
+              :price="name.bid"/>
           </td>
         </tr>
         <tr
@@ -151,7 +153,7 @@ import AppChip from '@/components/AppChip'
 import CopyChip from '@/components/CopyChip'
 import HintTooltip from '@/components/HintTooltip'
 import { useNameDetailsStore } from '@/stores/nameDetails'
-import { formatAePrice, formatEllipseHash } from '@/utils/format'
+import { formatEllipseHash } from '@/utils/format'
 
 const { name } = storeToRefs(useNameDetailsStore())
 

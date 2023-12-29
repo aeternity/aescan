@@ -1,16 +1,19 @@
 <template>
   <div class="price-label">
     <token-symbol-icon
+      v-if="hasIcon"
       class="icon"
       :contract-id="contractId"/>
     {{ formatNullable(formatAePrice(price, maxDigits, currency)) }}
   </div>
 </template>
 
-<!--todo has icon -->
+<!--todo find nullable + move to adapters -->
 <!--todo alignment -->
+<!--todo undefined?-->
 
 <script setup>
+import { useRuntimeConfig } from 'nuxt/app'
 import { formatNullable } from '~/utils/format'
 
 defineProps({
@@ -26,12 +29,14 @@ defineProps({
     type: String,
     default: undefined,
   },
+  hasIcon: {
+    type: Boolean,
+    default: true,
+  },
   contractId: {
     type: String,
-    default: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
+    default: () => useRuntimeConfig().public.AE_TOKEN_ID,
   },
-  // todo better default
-  // todo undefined?
 })
 </script>
 
@@ -44,8 +49,8 @@ defineProps({
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   margin-right: var(--space-1);
 }
 </style>

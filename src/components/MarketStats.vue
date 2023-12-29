@@ -34,8 +34,17 @@
           Distribution:
         </div>
         <div class="market-stats__value">
-          {{ formatNullable(formatAePrice(distribution, 0)) }} /
-          {{ formatAePrice(MAX_AE_DISTRIBUTION, 0) }} ({{
+          <price-label
+            :has-icon="false"
+            :price="distribution"
+            :max-digits="0"/>
+          /
+          <price-label
+            :has-icon="false"
+            :price="MAX_AE_DISTRIBUTION"
+            :max-digits="0"/>
+          <!--todo margin right-->
+          ({{
             formatNullable(distributionPercentage)
           }}%)
         </div>
@@ -48,7 +57,7 @@
 import { storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
-import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
+import { formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import AppChip from '@/components/AppChip'
 

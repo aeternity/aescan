@@ -32,7 +32,12 @@
             :link-to="`/accounts/${holder.address}`"/>
         </td>
         <td>
-          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
+          <price-label
+            :price="holder.amount"
+            currency="WTT"
+            :contract-id="holder.contractId"/>
+        <!--          todo param currency-->
+        <!--          todo condensed-->
         </td>
         <td>
           {{ formatPercentage(holder.percentage) }}

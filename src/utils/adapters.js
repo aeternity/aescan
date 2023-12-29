@@ -435,6 +435,7 @@ export function adaptTokenEvents(events) {
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
   const formattedData = tokenHolders.data.map(holder => ({
     address: holder.accountId,
+    contractId: holder.contractId,
     amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
     percentage: (new BigNumber(holder.amount)
       .dividedBy(10 ** (tokenDetails.decimals - 2)))

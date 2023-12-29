@@ -145,7 +145,7 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatNullable, formatNumber } from '@/utils/format'
+import { formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
 import AppChip from '@/components/AppChip'
@@ -166,7 +166,7 @@ const accountNodeUrl = computed(() =>
 )
 const sanitizedPrice = computed(() =>
   price.value
-    ? `$${formatNullable(formatNumber(props.accountDetails.balance * price.value, 2, 2))}`
+    ? `$${formatNumber(props.accountDetails.balance * price.value, 2, 2)}`
     : '---',
 )
 </script>

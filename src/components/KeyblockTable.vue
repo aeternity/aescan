@@ -48,7 +48,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          {{ formatNullable(formatAePrice(stats?.blockReward)) }}
+          <price-label :price="formatNullable(stats?.blockReward)"/>
         </td>
       </tr>
 
@@ -69,7 +69,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          {{ formatNullable(formatAePrice(stats?.devReward, null)) }}
+          <price-label :price="formatNullable(stats?.devReward, null)"/>
         </td>
       </tr>
     </tbody>
@@ -78,7 +78,7 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import { formatAePrice, formatNullable } from '@/utils/format'
+import { formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'
 

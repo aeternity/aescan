@@ -75,9 +75,9 @@
           Gas Price
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          {{ formatNullable(transactionData.gas) }}
+          <price-label :price="formatNullable(transactionData.gas)"/>
           /
-          {{ formatAePrice(formatAettosToAe(transactionData.gasPrice), null) }}
+          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
@@ -95,9 +95,9 @@
           Gas Costs
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          {{ formatNullable(transactionData.gasUsed) }}
+          <price-label :price="formatNullable(transactionData.gasUsed)"/>
           /
-          {{ formatNullable(formatAePrice(formatAettosToAe(gasCosts), null)) }}
+          <price-label :price="formatNullable(formatAettosToAe(gasCosts))"/>
         </td>
       </tr>
     </tbody>
@@ -108,7 +108,7 @@
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAettosToAe, formatNullable } from '@/utils/format'
 
 const props = defineProps({
   transactionData: {

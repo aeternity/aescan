@@ -71,7 +71,9 @@
           </div>
         </td>
         <td>{{ channel.updateCount }}</td>
-        <td>{{ channel.locked }}</td>
+        <td>
+          <price-label :price="channel.locked"/>
+        </td>
         <td>
           <block-time-cell
             :height="channel.updatedHeight"

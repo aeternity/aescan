@@ -15,13 +15,11 @@
     :hash="transactionDetails.recipientId"
     :link-to="`/accounts/${transactionDetails.recipientId}`"/>
 
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionDetails.amount)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(transactionDetails.amount)"/>
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

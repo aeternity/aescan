@@ -107,7 +107,7 @@
             Beneficiary Reward
           </th>
           <td>
-            {{ formatAePrice(keyblockDetails.blockReward, null) }}
+            <price-label :price="keyblockDetails.blockReward"/>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -118,7 +118,7 @@
             BRI Reward
           </th>
           <td>
-            {{ formatAePrice(keyblockDetails.devReward, null) }}
+            <price-label :price="keyblockDetails.devReward"/>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -182,7 +182,7 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import PaginationButton from '@/components/PaginationButton'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatEllipseHash, formatNumber } from '@/utils/format'
+import { formatEllipseHash, formatNumber } from '@/utils/format'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

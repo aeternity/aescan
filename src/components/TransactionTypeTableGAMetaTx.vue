@@ -35,12 +35,7 @@
           Amount
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
-          {{
-            formatAePrice(
-              formatAettosToAe(innerTransactionDetails.amount, null),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(innerTransactionDetails.amount, null)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-meta-tx__row">
@@ -61,7 +56,7 @@
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAettosToAe, formatNullable } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 
 const props = defineProps({

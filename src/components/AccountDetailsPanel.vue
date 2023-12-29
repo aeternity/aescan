@@ -45,7 +45,7 @@
             Balance
           </th>
           <td>
-            {{ formatAePrice(accountDetails.balance, null) }}
+            <price-label :price="accountDetails.balance"/>
           </td>
         </tr>
 
@@ -145,10 +145,11 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
+import { formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
 import AppChip from '@/components/AppChip'
+import PriceLabel from '~/components/PriceLabel'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public

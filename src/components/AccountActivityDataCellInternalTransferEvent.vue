@@ -1,12 +1,9 @@
 <template>
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(activity.payload.amount)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(activity.payload.amount)"/>
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   activity: {

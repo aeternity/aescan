@@ -133,9 +133,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <price-label :price="formatNullable(transactionData.gasUsed)"/>
+          <price-label :price="transactionData.gasUsed"/>
           /
-          <price-label :price="formatNullable(formatAettosToAe(gasCosts))"/>
+          <price-label :price="formatAettosToAe(gasCosts)"/>
         </td>
       </tr>
     </tbody>

@@ -4,20 +4,20 @@
       <value-hash-ellipsed
         :hash="args[0]"
         :link-to="`/accounts/${args[0]}`"/>
-      <app-chip class="token-events-data-cell__chip">
-        {{ formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4) }}
-        {{ tokenDetails.symbol }}
-      </app-chip>
+      <price-label
+        :price="formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4)"
+        :currency="tokenDetails.symbol"
+        :contract-id="tokenDetails.contractId"/>
     </template>
 
     <template v-else-if="name === 'Burn'">
       <value-hash-ellipsed
         :hash="args[0]"
         :link-to="`/accounts/${args[0]}`"/>
-      <app-chip class="token-events-data-cell__chip">
-        {{ formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4) }}
-        {{ tokenDetails.symbol }}
-      </app-chip>
+      <price-label
+        :price="formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4)"
+        :currency="tokenDetails.symbol"
+        :contract-id="tokenDetails.contractId"/>
     </template>
 
     <template v-else-if="name === 'Transfer'">
@@ -28,10 +28,11 @@
       <value-hash-ellipsed
         :hash="args[1]"
         :link-to="`/accounts/${args[1]}`"/>
-      <app-chip class="token-events-data-cell__chip">
-        {{ formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4) }}
-        {{ tokenDetails.symbol }}
-      </app-chip>
+      <!--      todo format number? -->
+      <price-label
+        :price="formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4)"
+        :currency="tokenDetails.symbol"
+        :contract-id="tokenDetails.contractId"/>
     </template>
 
     <template v-else-if="name === 'Allowance'">
@@ -42,10 +43,10 @@
       <value-hash-ellipsed
         :hash="args[1]"
         :link-to="`/accounts/${args[1]}`"/>
-      <app-chip class="token-events-data-cell__chip">
-        {{ formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4) }}
-        {{ tokenDetails.symbol }}
-      </app-chip>
+      <price-label
+        :price="formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4)"
+        :currency="tokenDetails.symbol"
+        :contract-id="tokenDetails.contractId"/>
     </template>
     <template v-else>
       N/A

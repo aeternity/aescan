@@ -74,9 +74,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          <price-label :price="formatNullable(transactionData.gas)"/>
+          <price-label :price="transactionData.gas"/>
           /
-          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
+          <price-label :price="transactionData.gasPrice"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
@@ -93,9 +93,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          <price-label :price="formatNullable(transactionData.gasUsed)"/>
+          <price-label :price="transactionData.gasUsed"/>
           /
-          <price-label :price="formatNullable(formatAettosToAe(gasCosts))"/>
+          <price-label :price="formatAettosToAe(gasCosts)"/>
         </td>
       </tr>
     </tbody>

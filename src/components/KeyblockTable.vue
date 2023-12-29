@@ -48,7 +48,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          <price-label :price="formatNullable(stats?.blockReward)"/>
+          <price-label :price="stats?.blockReward"/>
         </td>
       </tr>
 

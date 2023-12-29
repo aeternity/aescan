@@ -36,7 +36,10 @@
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
-            {{ formatAePrice(tokenDetails.price) }} ({{ fiatPrice }})
+            <div class="token-details-panel__container">
+              <price-label :price="tokenDetails.price"/>
+              ({{ fiatPrice }})
+            </div>
           </td>
         </tr>
         <tr class="token-details-panel__row">
@@ -139,7 +142,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { formatAePrice, formatNumber } from '@/utils/format'
+import { formatNumber } from '@/utils/format'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 import { tokensHints } from '@/utils/hints/tokensHints'
 

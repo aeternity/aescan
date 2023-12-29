@@ -32,9 +32,15 @@
             :link-to="`/accounts/${holder.address}`"/>
         </td>
         <td>
-          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
+          <price-label
+            :price="holder.amount"
+            currency="WTT"
+            :contract-id="holder.contractId"/>
+        <!--          todo param currency-->
+        <!--          todo condensed-->
         </td>
         <td>
+          <!--          todo move to format-->
           <template v-if="Math.abs(holder.percentage) >= 0.00001">
             {{ formatNumber(Math.abs(holder.percentage)) }}
           </template>

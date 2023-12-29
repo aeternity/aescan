@@ -61,7 +61,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          <price-label :price="formatNullable(stats?.blockReward)"/>
+          <price-label :price="stats?.blockReward"/>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
@@ -72,7 +72,7 @@
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          <price-label :price="formatNullable(stats?.devReward)"/>
+          <price-label :price="stats?.devReward"/>
         </td>
       </tr>
     </tbody>
@@ -82,7 +82,6 @@
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import DatetimeLabel from '@/components/DatetimeLabel'
-import { formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

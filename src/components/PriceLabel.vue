@@ -2,15 +2,13 @@
   <div class="price-label">
     <token-symbol-icon
       class="icon"
-      contract-id="ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa"/>
-    {{ formatNullable(formatAePrice(price, maxDigits)) }}
+      :contract-id="contractId"/>
+    {{ formatNullable(formatAePrice(price, maxDigits, currency)) }}
   </div>
 </template>
 
-<!--todo close to zero-->
-<!--todo format nullable-->
-<!--todo check wraps-->
 <!--todo has icon -->
+<!--todo alignment -->
 
 <script setup>
 import { formatNullable } from '~/utils/format'
@@ -24,6 +22,16 @@ defineProps({
     type: Number,
     default: undefined,
   },
+  currency: {
+    type: String,
+    default: undefined,
+  },
+  contractId: {
+    type: String,
+    default: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa',
+  },
+  // todo better default
+  // todo undefined?
 })
 </script>
 
@@ -32,6 +40,7 @@ defineProps({
   display: inline-flex;
   flex-direction: row;
   align-items: center;
+  height: 20px;
 }
 
 .icon {

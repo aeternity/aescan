@@ -52,9 +52,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-spend-tx__data">
-          <price-label
-            :price="formatAettosToAe(transactionData.amount)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-spend-tx__row">

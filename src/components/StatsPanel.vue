@@ -96,16 +96,13 @@
         <price-label
           class="stats-panel__value"
           :price="burnedCount"
-          :max-digits="0"
           :has-icon="false"/>
       </div>
-      <!--      todo null vs 0-->
       <div>
         Circulating:
         <price-label
           class="stats-panel__value"
           :price="totalTokenSupply"
-          :max-digits="0"
           :has-icon="false"/>
       </div>
       <template #tooltip>

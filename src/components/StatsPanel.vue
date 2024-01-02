@@ -99,6 +99,7 @@
           :max-digits="0"
           :has-icon="false"/>
       </div>
+      <!--      todo null vs 0-->
       <div>
         Circulating:
         <price-label

@@ -37,6 +37,7 @@ defineProps({
     type: String,
     default: () => useRuntimeConfig().public.AE_TOKEN_ID,
   },
+  // todo contract id rename and move to adapters
 })
 </script>
 

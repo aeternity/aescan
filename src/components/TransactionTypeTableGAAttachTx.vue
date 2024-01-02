@@ -76,7 +76,9 @@
         <td class="transaction-type-panel-ga-attach-tx__data">
           <price-label :price="transactionData.gas"/>
           /
-          <price-label :price="transactionData.gasPrice"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.gasPrice)"
+            :max-digits="null"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
@@ -91,11 +93,14 @@
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasCost }}
           </hint-tooltip>
+        <!--          todo fix alignment-->
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <price-label :price="transactionData.gasUsed"/>
           /
-          <price-label :price="formatAettosToAe(gasCosts)"/>
+          <price-label
+            :price="formatAettosToAe(gasCosts)"
+            :max-digits="null"/>
         </td>
       </tr>
     </tbody>

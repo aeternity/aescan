@@ -46,7 +46,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <price-label :price="formatAettosToAe(transactionData.amount)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.amount)"
+            :max-digits="null"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -116,7 +118,9 @@
         <td class="transaction-type-panel-contract-call-tx__data">
           <price-label :price="transactionData.gas"/>
           /
-          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.gasPrice)"
+            :max-digits="null"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -135,7 +139,9 @@
         <td class="transaction-type-panel-contract-call-tx__data">
           <price-label :price="transactionData.gasUsed"/>
           /
-          <price-label :price="formatAettosToAe(gasCosts)"/>
+          <price-label
+            :price="formatAettosToAe(gasCosts)"
+            :max-digits="null"/>
         </td>
       </tr>
     </tbody>

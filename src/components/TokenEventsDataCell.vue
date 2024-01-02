@@ -5,7 +5,8 @@
         :hash="args[0]"
         :link-to="`/accounts/${args[0]}`"/>
       <price-label
-        :price="formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4)"
+        :price="args[1] / 10 ** tokenDetails.decimals"
+        :max-digits="4"
         :currency="tokenDetails.symbol"
         :contract-id="tokenDetails.contractId"/>
     </template>
@@ -15,7 +16,8 @@
         :hash="args[0]"
         :link-to="`/accounts/${args[0]}`"/>
       <price-label
-        :price="formatNumber(args[1] / 10 ** tokenDetails.decimals, 0, 4)"
+        :price="args[1] / 10 ** tokenDetails.decimals"
+        :max-digits="4"
         :currency="tokenDetails.symbol"
         :contract-id="tokenDetails.contractId"/>
     </template>
@@ -28,9 +30,9 @@
       <value-hash-ellipsed
         :hash="args[1]"
         :link-to="`/accounts/${args[1]}`"/>
-      <!--      todo format number? -->
       <price-label
-        :price="formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4)"
+        :price="args[2] / 10 ** tokenDetails.decimals"
+        :max-digits="4"
         :currency="tokenDetails.symbol"
         :contract-id="tokenDetails.contractId"/>
     </template>
@@ -44,7 +46,8 @@
         :hash="args[1]"
         :link-to="`/accounts/${args[1]}`"/>
       <price-label
-        :price="formatNumber(args[2] / 10 ** tokenDetails.decimals, 0, 4)"
+        :price="args[2] / 10 ** tokenDetails.decimals"
+        :max-digits="4"
         :currency="tokenDetails.symbol"
         :contract-id="tokenDetails.contractId"/>
     </template>

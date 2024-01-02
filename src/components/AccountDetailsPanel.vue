@@ -36,7 +36,9 @@
             </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
-            <price-label :price="accountDetails.balance"/>
+            <price-label
+              :price="accountDetails.balance"
+              :max-digits="null"/>
           </td>
         </tr>
         <tr class="account-details-panel__row">

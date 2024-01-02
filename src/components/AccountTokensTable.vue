@@ -3,9 +3,15 @@
     <thead>
       <tr>
         <th>
-          Symbol
+          Amount
           <hint-tooltip>
-            {{ tokensHints.tokenSymbol }}
+            {{ tokensHints.amount }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Value
+          <hint-tooltip>
+            {{ tokensHints.value }}
           </hint-tooltip>
         </th>
         <th>
@@ -20,18 +26,6 @@
             {{ tokensHints.smartContractId }}
           </hint-tooltip>
         </th>
-        <th>
-          Amount
-          <hint-tooltip>
-            {{ tokensHints.amount }}
-          </hint-tooltip>
-        </th>
-        <th>
-          Value
-          <hint-tooltip>
-            {{ tokensHints.value }}
-          </hint-tooltip>
-        </th>
       </tr>
     </thead>
     <tbody>
@@ -39,23 +33,25 @@
         v-for="token in accountTokens?.data"
         :key="token.contractId">
         <td>
-          <app-link :to="`/tokens/${token.contractId}`">
-            {{ token.tokenSymbol }}
-          </app-link>
+          <!--          todo condensed-->
+          <price-label
+            :price="token.amount"
+            :contract-id="token.contractId"
+            :currency="token.tokenSymbol"/>
         </td>
         <td>
-          {{ token.tokenName }}
+          <!--          todo format close to zero this-->
+          {{ token.value !== null ? `$${formatNumber(token.value, null, null, 7)}` : 'N/A' }}
+        </td>
+        <td>
+          <app-link :to="`/tokens/${token.contractId}`">
+            {{ token.tokenName }}
+          </app-link>
         </td>
         <td>
           <value-hash-ellipsed
             :link-to="`/contracts/${token.contractId}`"
-            :hash="token.contractId "/>
-        </td>
-        <td>
-          {{ formatNumber(token.amount) }}
-        </td>
-        <td>
-          {{ token.value !== null ? `$${formatNumber(token.value,null,null, 7)}` : 'N/A' }}
+            :hash="token.contractId"/>
         </td>
       </tr>
     </tbody>

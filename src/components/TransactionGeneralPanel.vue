@@ -121,7 +121,9 @@
             Fee
           </th>
           <td>
-            <price-label :price="formatAettosToAe(transactionDetails.fee)"/>
+            <price-label
+              :price="formatAettosToAe(transactionDetails.fee)"
+              :max-digits="null"/>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">

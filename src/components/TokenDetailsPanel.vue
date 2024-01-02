@@ -67,7 +67,10 @@
             Total supply
           </th>
           <td>
-            {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}
+            <price-label
+              :price="tokenDetails.totalSupply"
+              :currency="tokenDetails.symbol"
+              :contract-id="tokenDetails.contractId"/>
           </td>
         </tr>
         <tr class="token-details-panel__row">

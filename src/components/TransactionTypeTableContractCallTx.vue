@@ -100,11 +100,13 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <price-label :price="transactionData.gas"/>
-          /
-          <price-label
-            :price="formatAettosToAe(transactionData.gasPrice)"
-            :max-digits="null"/>
+          <div class="transaction-type-panel-contract-call-tx__container">
+            <price-label :price="transactionData.gas"/>
+            /
+            <price-label
+              :price="formatAettosToAe(transactionData.gasPrice)"
+              :max-digits="null"/>
+          </div>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -121,11 +123,13 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <price-label :price="transactionData.gasUsed"/>
-          /
-          <price-label
-            :price="formatAettosToAe(gasCosts)"
-            :max-digits="null"/>
+          <div class="transaction-type-panel-contract-call-tx__container">
+            <price-label :price="transactionData.gasUsed"/>
+            /
+            <price-label
+              :price="formatAettosToAe(gasCosts)"
+              :max-digits="null"/>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -168,6 +172,12 @@ const gasCosts = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--space-0);
   }
 }
 </style>

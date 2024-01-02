@@ -9,7 +9,6 @@
 </template>
 
 <!--todo find nullable + move to adapters -->
-<!--todo alignment -->
 <!--todo undefined?-->
 
 <script setup>

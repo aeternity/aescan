@@ -36,7 +36,6 @@
             :price="holder.amount"
             :currency="tokenDetails.symbol"
             :contract-id="holder.contractId"/>
-        <!--          todo param currency-->
         </td>
         <td>
           {{ formatPercentage(holder.percentage) }}
@@ -47,7 +46,6 @@
 </template>
 
 <script setup>
-import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({

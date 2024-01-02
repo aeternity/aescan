@@ -9,7 +9,7 @@
 </template>
 
 <!--todo find nullable + move to adapters -->
-<!--todo undefined?-->
+<!--todo formatAettosToAe in adapters-->
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
@@ -36,7 +36,6 @@ defineProps({
     type: String,
     default: () => useRuntimeConfig().public.AE_TOKEN_ID,
   },
-  // todo contract id rename and move to adapters
 })
 </script>
 

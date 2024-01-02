@@ -29,7 +29,10 @@
           </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
-          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
+          <price-label
+            :price="holder.amount"
+            :currency="tokenDetails.symbol"
+            :contract-id="holder.contractId"/>
         </td>
       </tr>
       <tr class="token-holders-table-condensed__row">

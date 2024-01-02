@@ -52,7 +52,9 @@
           Amount
         </th>
         <td class="transaction-type-panel-spend-tx__data">
-          <price-label :price="formatAettosToAe(transactionData.amount)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.amount)"
+            :max-digits="null"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-spend-tx__row">

@@ -34,10 +34,9 @@
         <td>
           <price-label
             :price="holder.amount"
-            currency="WTT"
+            :currency="tokenDetails.symbol"
             :contract-id="holder.contractId"/>
         <!--          todo param currency-->
-        <!--          todo condensed-->
         </td>
         <td>
           {{ formatPercentage(holder.percentage) }}

@@ -5,7 +5,7 @@
 
   <transaction-arrow-right-icon/>
 
-  <price-label :price="eventData[1]"/>
+  <price-label :price="formatAettosToAe(eventData[1])"/>
 </template>
 
 <script setup>

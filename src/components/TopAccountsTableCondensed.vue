@@ -37,6 +37,19 @@
         <tr class="top-accounts-table-condensed__row">
           <th class="top-accounts-table-condensed__header">
             <app-tooltip>
+              Balance
+              <template #tooltip>
+                {{ topAccountsHints.balance }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="top-accounts-table-condensed__data">
+            {{ account.balance }}
+          </td>
+        </tr>
+        <tr class="top-accounts-table-condensed__row">
+          <th class="top-accounts-table-condensed__header">
+            <app-tooltip>
               % Of Circulating
               <template #tooltip>
                 {{ topAccountsHints.percentage }}

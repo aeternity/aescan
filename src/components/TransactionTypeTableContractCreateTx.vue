@@ -46,9 +46,7 @@
           Amount
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <price-label
-            :price="formatAettosToAe(transactionData.amount)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
@@ -79,9 +77,7 @@
           <div class="transaction-type-panel-contract-create-tx__container">
             <price-label :price="transactionData.gas"/>
             /
-            <price-label
-              :price="formatAettosToAe(transactionData.gasPrice)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
           </div>
         </td>
       </tr>
@@ -103,9 +99,7 @@
           <div class="transaction-type-panel-contract-create-tx__container">
             <price-label :price="transactionData.gasUsed"/>
             /
-            <price-label
-              :price="formatAettosToAe(gasCosts)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(gasCosts)"/>
           </div>
         </td>
       </tr>

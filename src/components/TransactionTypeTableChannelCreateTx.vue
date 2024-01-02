@@ -22,9 +22,7 @@
           Channel Reserve
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <price-label
-            :price="formatAettosToAe(transactionData.channelReserve)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.channelReserve)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -40,9 +38,7 @@
               {{ transactionData.initiatorId }}
             </app-link>
             /
-            <price-label
-              :price="formatAettosToAe(transactionData.initiatorAmount)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(transactionData.initiatorAmount)"/>
           </div>
         </td>
       </tr>
@@ -70,9 +66,7 @@
               {{ transactionData.responderId }}
             </app-link>
             /
-            <price-label
-              :price="formatAettosToAe(transactionData.responderAmount)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(transactionData.responderAmount)"/>
           </div>
         </td>
       </tr>

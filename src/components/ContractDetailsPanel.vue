@@ -171,9 +171,7 @@
             Smart Contract's Account Balance
           </th>
           <td>
-            <price-label
-              :price="formatAettosToAe(contractDetails.contractAccountBalance)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(contractDetails.contractAccountBalance)"/>
           </td>
         </tr>
         <tr class="contract-details-panel__row">

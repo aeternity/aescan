@@ -22,7 +22,7 @@ defineProps({
   },
   maxDigits: {
     type: Number,
-    default: undefined,
+    default: null,
   },
   currency: {
     type: String,

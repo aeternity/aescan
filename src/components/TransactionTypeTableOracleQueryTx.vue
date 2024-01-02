@@ -57,9 +57,7 @@
           Query Fee
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <price-label
-            :price="formatAettosToAe(transactionData.queryFee)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.queryFee)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">

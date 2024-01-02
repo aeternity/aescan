@@ -627,6 +627,7 @@ export function adaptTopAccounts(topAccounts, distribution) {
     return {
       rank: index + 1,
       account: account.account,
+      balance: formatAePrice(formatAettosToAe(account.balance)),
       percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(2),
     }
   })

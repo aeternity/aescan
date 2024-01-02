@@ -14,6 +14,12 @@
         </hint-tooltip>
       </th>
       <th>
+        Balance
+        <hint-tooltip>
+          {{ topAccountsHints.balance }}
+        </hint-tooltip>
+      </th>
+      <th>
         % Of Circulating
         <hint-tooltip>
           {{ topAccountsHints.percentage }}
@@ -24,12 +30,14 @@
       v-for="account in topAccounts"
       :key="account.account">
       <td>{{ account.rank }}.</td>
+
       <td>
         <app-link
           :to="`/accounts/${account.account}`">
           {{ account.account }}
         </app-link>
       </td>
+      <td>{{ account.balance }}</td>
       <td>{{ account.percentage }} %</td>
     </tr>
   </table>

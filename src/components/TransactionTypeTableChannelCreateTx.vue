@@ -35,13 +35,15 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/accounts/${transactionData.initiatorId}`">
-            {{ transactionData.initiatorId }}
-          </app-link>
-          /
-          <price-label
-            :price="formatAettosToAe(transactionData.initiatorAmount)"
-            :max-digits="null"/>
+          <div class="transaction-type-panel-channel-create-tx__container">
+            <app-link :to="`/accounts/${transactionData.initiatorId}`">
+              {{ transactionData.initiatorId }}
+            </app-link>
+            /
+            <price-label
+              :price="formatAettosToAe(transactionData.initiatorAmount)"
+              :max-digits="null"/>
+          </div>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -63,13 +65,15 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/accounts/${transactionData.responderId}`">
-            {{ transactionData.responderId }}
-          </app-link>
-          /
-          <price-label
-            :price="formatAettosToAe(transactionData.responderAmount)"
-            :max-digits="null"/>
+          <div class="transaction-type-panel-channel-create-tx__container">
+            <app-link :to="`/accounts/${transactionData.responderId}`">
+              {{ transactionData.responderId }}
+            </app-link>
+            /
+            <price-label
+              :price="formatAettosToAe(transactionData.responderAmount)"
+              :max-digits="null"/>
+          </div>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -128,6 +132,12 @@ defineProps({
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--space-0);
   }
 }
 </style>

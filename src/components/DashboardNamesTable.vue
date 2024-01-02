@@ -46,7 +46,7 @@
           <div class="dashboard-names-table__label">
             {{ name.isAuction ? 'Auction' : 'Fixed price' }}
           </div>
-          <div class="dashboard-names-table__name-price">
+          <div>
             <price-label :price="name.price"/>
           </div>
         </td>
@@ -81,10 +81,6 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
   &__label {
     display: inline-block;
     margin: 0 var(--space-0) var(--space-0) 0;
-  }
-
-  &__name-price {
-    font-weight: 700;
   }
 
   &__blocks {

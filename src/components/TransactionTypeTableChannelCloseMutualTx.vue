@@ -39,13 +39,15 @@
           Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
-          <app-link :to="`/accounts/${transactionData.channel.responder}`">
-            {{ transactionData.channel.responder }}
-          </app-link>
-          /
-          <price-label
-            :price="formatAettosToAe(transactionData.responderAmountFinal)"
-            :max-digits="null"/>
+          <div class="transaction-type-panel-channel-close-mutual-tx__container">
+            <app-link :to="`/accounts/${transactionData.channel.responder}`">
+              {{ transactionData.channel.responder }}
+            </app-link>
+            /
+            <price-label
+              :price="formatAettosToAe(transactionData.responderAmountFinal)"
+              :max-digits="null"/>
+          </div>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
@@ -98,6 +100,12 @@ defineProps({
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--space-0);
   }
 }
 </style>

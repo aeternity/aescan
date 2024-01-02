@@ -43,9 +43,7 @@
           </div>
         </td>
         <td>
-          <div class="dashboard-auctions-table__value">
-            <price-label :price="auction.bid"/>
-          </div>
+          <price-label :price="auction.bid"/>
         </td>
         <td>
           <div class="dashboard-auctions-table__blocks">
@@ -78,10 +76,6 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
   &__label {
     display: inline-block;
     margin: 0 var(--space-0) var(--space-0) 0;
-  }
-
-  &__value {
-    font-weight: 700;
   }
 
   &__blocks {

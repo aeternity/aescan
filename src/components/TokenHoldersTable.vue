@@ -36,17 +36,9 @@
             :price="holder.amount"
             :currency="tokenDetails.symbol"
             :contract-id="holder.contractId"/>
-        <!--          todo param currency-->
         </td>
         <td>
-          <!--          todo move to format-->
-          <template v-if="Math.abs(holder.percentage) >= 0.00001">
-            {{ formatNumber(Math.abs(holder.percentage)) }}
-          </template>
-          <template v-else>
-            ~0
-          </template>
-          %
+          {{ holder.percentage }}
         </td>
       </tr>
     </tbody>
@@ -54,7 +46,6 @@
 </template>
 
 <script setup>
-import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({

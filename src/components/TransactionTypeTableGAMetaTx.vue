@@ -35,7 +35,9 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
-          <price-label :price="formatAettosToAe(innerTransactionDetails.amount, null)"/>
+          <price-label
+            :price="formatAettosToAe(innerTransactionDetails.amount)"
+            :max-digits="null"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-meta-tx__row">

@@ -182,8 +182,10 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
       contractId: token.contractId,
       amount,
       value: tokenAePrice !== null
-        ? (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber()
-        : null,
+        ? `$${formatNumber(
+          (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber(),
+          null, null, 7)}`
+        : 'N/A',
     }
   })
   return {

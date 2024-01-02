@@ -33,15 +33,13 @@
         v-for="token in accountTokens?.data"
         :key="token.contractId">
         <td>
-          <!--          todo condensed-->
           <price-label
             :price="token.amount"
             :contract-id="token.contractId"
             :currency="token.tokenSymbol"/>
         </td>
         <td>
-          <!--          todo format close to zero this-->
-          {{ token.value !== null ? `$${formatNumber(token.value, null, null, 7)}` : 'N/A' }}
+          {{ token.value }}
         </td>
         <td>
           <app-link :to="`/tokens/${token.contractId}`">

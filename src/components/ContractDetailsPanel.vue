@@ -155,9 +155,7 @@
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
-            <price-label
-              :price="formatAettosToAe(contractDetails.contractAccountBalance)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(contractDetails.contractAccountBalance)"/>
           </td>
         </tr>
         <tr class="contract-details-panel__row">

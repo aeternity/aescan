@@ -37,13 +37,11 @@
           <div class="market-stats__container">
             <price-label
               :has-icon="false"
-              :price="distribution"
-              :max-digits="0"/>
+              :price="distribution"/>
             /
             <price-label
               :has-icon="false"
-              :price="MAX_AE_DISTRIBUTION"
-              :max-digits="0"/>
+              :price="MAX_AE_DISTRIBUTION"/>
             ({{ formatNullable(distributionPercentage) }}%)
           </div>
         </div>

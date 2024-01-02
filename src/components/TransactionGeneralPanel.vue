@@ -110,9 +110,7 @@
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
-            <price-label
-              :price="formatAettosToAe(transactionDetails.fee)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(transactionDetails.fee)"/>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">

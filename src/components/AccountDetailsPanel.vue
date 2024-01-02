@@ -37,8 +37,7 @@
           </th>
           <td class="account-details-panel__data">
             <price-label
-              :price="accountDetails.balance"
-              :max-digits="null"/>
+              :price="accountDetails.balance"/>
           </td>
         </tr>
         <tr class="account-details-panel__row">

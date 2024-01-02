@@ -37,9 +37,7 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          <price-label
-            :price="formatAettosToAe(transactionData.nameFee)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.nameFee)"/>
         </td>
       </tr>
     </tbody>

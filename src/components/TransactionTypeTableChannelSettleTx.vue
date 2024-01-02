@@ -26,9 +26,7 @@
             {{ transactionData.channel.initiator }}
           </app-link>
           /
-          <price-label
-            :price="formatAettosToAe(transactionData.initiatorAmountFinal)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
@@ -43,9 +41,7 @@
             {{ transactionData.channel.responder }}
           </app-link>
           /
-          <price-label
-            :price="formatAettosToAe(transactionData.responderAmountFinal)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">

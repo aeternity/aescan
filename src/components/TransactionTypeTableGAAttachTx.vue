@@ -78,9 +78,7 @@
           <div class="transaction-type-panel-ga-attach-tx__container">
             <price-label :price="transactionData.gas"/>
             /
-            <price-label
-              :price="formatAettosToAe(transactionData.gasPrice)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
           </div>
         </td>
       </tr>
@@ -102,9 +100,7 @@
           <div class="transaction-type-panel-ga-attach-tx__container">
             <price-label :price="transactionData.gasUsed"/>
             /
-            <price-label
-              :price="formatAettosToAe(gasCosts)"
-              :max-digits="null"/>
+            <price-label :price="formatAettosToAe(gasCosts)"/>
           </div>
         </td>
       </tr>

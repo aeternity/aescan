@@ -46,8 +46,7 @@
           </th>
           <td>
             <price-label
-              :price="accountDetails.balance"
-              :max-digits="null"/>
+              :price="accountDetails.balance"/>
           </td>
         </tr>
 

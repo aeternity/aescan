@@ -46,9 +46,7 @@
           Amount
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
-          <price-label
-            :price="formatAettosToAe(transactionData.amount)"
-            :max-digits="null"/>
+          <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>
     </tbody>

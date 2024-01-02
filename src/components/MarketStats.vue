@@ -32,19 +32,18 @@
           Distribution:
         </div>
         <div class="market-stats__value">
-          <price-label
-            :has-icon="false"
-            :price="distribution"
-            :max-digits="0"/>
-          /
-          <price-label
-            :has-icon="false"
-            :price="MAX_AE_DISTRIBUTION"
-            :max-digits="0"/>
-          <!--todo margin right-->
-          ({{
-            formatNullable(distributionPercentage)
-          }}%)
+          <div class="market-stats__container">
+            <price-label
+              :has-icon="false"
+              :price="distribution"
+              :max-digits="0"/>
+            /
+            <price-label
+              :has-icon="false"
+              :price="MAX_AE_DISTRIBUTION"
+              :max-digits="0"/>
+            ({{ formatNullable(distributionPercentage) }}%)
+          </div>
         </div>
       </li>
     </ul>
@@ -135,6 +134,10 @@ const {
     @media (--desktop) {
       margin: 0 0 0 var(--space-1);
     }
+  }
+
+  &__container {
+    gap: 8px;
   }
 }
 </style>

@@ -8,9 +8,6 @@
   </div>
 </template>
 
-<!--todo find nullable + move to adapters -->
-<!--todo formatAettosToAe in adapters-->
-
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
 import { formatNullable } from '~/utils/format'

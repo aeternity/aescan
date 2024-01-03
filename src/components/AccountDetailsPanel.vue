@@ -45,8 +45,7 @@
             Balance
           </th>
           <td>
-            <price-label
-              :price="accountDetails.balance"/>
+            <price-label :price="accountDetails.balance"/>
           </td>
         </tr>
 

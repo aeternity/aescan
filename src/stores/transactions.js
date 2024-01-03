@@ -30,10 +30,17 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsCount.value = data
   }
 
-  async function fetchTransactionsStatistics(slug) {
+  async function fetchTransactionsStatistics(interval = 'day', limit = 7, range) {
     transactionsStatistics.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug || '?limit=8&interval_by=day'}`)
-    transactionsStatistics.value = data.data.slice(1).reverse()
+
+    const slug = range
+      ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
+      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
+
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug}`)
+
+    // remove last interval from the response not to show current interval that is being built
+    transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
   return {

@@ -5,9 +5,10 @@
     </template>
     <template #header>
       <chart-controls
-        class="names-chart-panel__chart-controls"
+        class="u-hidden-mobile"
         @selected="loadNamesStatistics"/>
     </template>
+
     <div class="names-chart-panel__container">
       <line-chart
         v-if="namesStatistics"
@@ -16,16 +17,13 @@
     </div>
 
     <chart-controls
-      class="names-chart-panel__chart-controls--condensed"
+      class="names-chart-panel__chart__controls u-hidden-desktop"
       @selected="loadNamesStatistics"/>
   </app-panel>
 </template>
 
 <script setup>
-
-import { storeToRefs } from 'pinia'
 import { useNamesStore } from '@/stores/names'
-import LineChart from '@/components/LineChart'
 
 const namesStore = useNamesStore()
 const { namesStatistics } = storeToRefs(namesStore)
@@ -55,5 +53,4 @@ async function loadNamesStatistics({ interval, limit, range }) {
     margin-top: var(--space-4);
   }
 }
-
 </style>

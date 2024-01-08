@@ -4,7 +4,9 @@
       DETAILS
     </template>
     <template #header>
-      <app-chip v-if="accountDetails.isGeneralized">
+      <app-chip
+        v-if="accountDetails.isGeneralized"
+        size="sm">
         Generalized
       </app-chip>
 
@@ -17,7 +19,7 @@
         class="u-hidden-desktop"/>
     </template>
     <p
-      v-if="accountDetails.notExistent"
+      v-if="accountDetails.isExistent === false"
       class="account-details-panel__not-existent">
       The account has never been seen in the network.
       <br>
@@ -59,18 +61,24 @@
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
           </td>
         </tr>
-        <tr class="account-details-panel__row">
+        <tr
+          v-if="accountDetails.isGeneralized"
+          class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            AENS Names
+            Contract Id
             <hint-tooltip>
-              {{ accountHints.aensNames }}
+              {{ accountHints.contractId }}
             </hint-tooltip>
           </th>
           <td class="account-details-panel__data">
-            {{ formatNumber(accountDetails.namesCount) }}
+            <app-link :to="`/contracts/${accountDetails.contractId}`">
+              {{ accountDetails.contractId }}
+            </app-link>
           </td>
         </tr>
-        <tr class="account-details-panel__row">
+        <tr
+          v-else
+          class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             Nonce
             <hint-tooltip>
@@ -116,6 +124,7 @@ import AppLink from '@/components/AppLink'
 import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
+import AppChip from '@/components/AppChip'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public

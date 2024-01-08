@@ -20,6 +20,7 @@
     padding: 120px var(--space-1) var(--space-6);
     max-width: var(--container-width);
     margin: 0 auto;
+
     @media (--desktop) {
       padding: 120px 0 var(--space-6);
     }

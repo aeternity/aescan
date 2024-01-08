@@ -57,6 +57,7 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 <style scoped>
 .dashboard-transactions-panel {
   padding: var(--space-3) var(--space-1);
+
   @media (--desktop) {
     padding: var(--space-3);
   }
@@ -71,6 +72,7 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
     font-family: var(--font-monospaced);
     font-size: 14px;
     line-height: 20px;
+
     @media (--desktop) {
       margin-bottom: 0;
       display: none;
@@ -80,6 +82,7 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
   &__summary--desktop {
     margin-right: var(--space-3);
     display: none;
+
     @media (--desktop) {
       display: block;
     }

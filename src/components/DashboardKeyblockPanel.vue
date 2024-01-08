@@ -89,6 +89,7 @@ const {
 
   &__dashboard-panel-header {
     margin-bottom: var(--space-2);
+
     @media (--desktop) {
       margin-bottom: var(--space-4);
     }
@@ -102,6 +103,7 @@ const {
 
   &__keyblock-table-condensed {
     margin: var(--space-4) 0;
+
     @media (--desktop) {
       margin: 0;
     }
@@ -109,6 +111,7 @@ const {
 
   &__keyblock-sequence {
     margin-bottom: var(--space-3);
+
     @media (--desktop) {
       margin-bottom: var(--space-4);
     }
@@ -121,6 +124,7 @@ const {
     display: block;
 
     margin-bottom: var(--space-1);
+
     @media (--desktop) {
       margin-bottom: 0;
       display: none;

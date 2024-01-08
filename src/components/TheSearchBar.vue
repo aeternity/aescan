@@ -3,7 +3,7 @@
     <input
       v-model="query"
       class="search-bar__input"
-      placeholder="Search accounts, transactions, names, contracts, oracles, state channels, keyblocks, and microblocks"
+      placeholder="Search anything on aeScan"
       type="search"
       autofocus
       @keyup.enter="search">
@@ -17,7 +17,7 @@
   </div>
 </template>
 <script setup>
-import { isAddressValid, Encoding } from '@aeternity/aepp-sdk'
+import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
@@ -131,25 +131,21 @@ function isMicroblockId(query) {
     border: none;
     background-color: var(--color-white);
     margin-right: var(--space-1);
-    font-size: 14px;
+    font-size: 16px;
     appearance: none;
     font-family: var(--font-monospaced);
+
+    @media (--desktop) {
+      font-size: 14px;
+    }
 
     &:focus {
       outline: none;
     }
 
-    &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-      color: var(--color-midnight-35);
-    }
-
-    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    &::placeholder {
       color: var(--color-midnight-35);
       opacity: 1;
-    }
-
-    &::placeholder { /* Most modern browsers support this now. */
-      color: var(--color-midnight-35);
     }
   }
 }

@@ -84,6 +84,7 @@ if (hasNameHistory && process.client) {
 .name-details {
   &__panel {
     margin-bottom: var(--space-4);
+
     @media (--desktop) {
       margin-bottom: var(--space-6);
     }

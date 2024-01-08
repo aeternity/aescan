@@ -93,6 +93,9 @@ export const REMOVE_LIQUIDITY_CONTRACT_CALLS = [
   'remove_liquidity',
   'remove_liquidity_ae',
 ]
+
+export const STATISTICS_DATA_BEGINNING = '2018-11-28'
+
 export const KNOWN_ADDRESSES = [
   { hash: 'ak_jgiBUko9fTwg5HQ8nHFoPbjR22TBcg9LK85qsv1mTkcjdszFa', name: 'CoinEx' },
   { hash: 'ak_6sssiKcg7AywyJkfSdHz52RbDUq5cZe4V4hcvghXnrPz4H4Qg', name: 'Gate.io' },
@@ -109,3 +112,4 @@ export const KNOWN_ADDRESSES = [
   { hash: 'ct_azbNZ1XrPjXfqBqbAh1ffLNTQ1sbnuUDFvJrXjYz7JQA1saQ3', name: 'Superhero DEX' },
   { hash: 'ct_2mfj3FoZxnhkSw5RZMcP8BfPoB1QR4QiYGNCdkAvLZ1zfF6paW', name: 'Superhero DEX' },
 ]
+export const REVOKED_PERIOD = 2016

@@ -14,6 +14,7 @@ h1,
   font-size: 28px;
   line-height: 36px;
   letter-spacing: 1.2px;
+
   @media (--desktop) {
     font-size: 40px;
     line-height: 48px;
@@ -25,6 +26,7 @@ h2,
   font-size: 28px;
   line-height: 36px;
   letter-spacing: 0.84px;
+
   @media (--desktop) {
     font-size: 28px;
     line-height: 36px;
@@ -35,6 +37,7 @@ h3,
 .h3 {
   font-size: 16px;
   line-height: 24px;
+
   @media (--desktop) {
     font-size: 20px;
     line-height: 28px;
@@ -46,6 +49,7 @@ h4,
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.6px;
+
   @media (--desktop) {
     font-size: 16px;
     line-height: 24px;
@@ -57,6 +61,7 @@ h5,
 .h5 {
   font-size: 16px;
   line-height: 24px;
+
   @media (--desktop) {
     font-size: 16px;
     line-height: 24px;

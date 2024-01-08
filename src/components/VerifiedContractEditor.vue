@@ -1,28 +1,17 @@
 <template>
-  <component
-    :is="VAceEditor"
-    v-model:value="content"
-    lang="typescript"
-    theme="chrome"
-    style="height: 400px"
-    :readonly="true"
+  <monaco-editor
+    v-model="content"
+    class="editor"
+    lang="aes"
     :options="{
+      lineHeight: 20,
       fontFamily: 'Roboto Mono',
-      printMargin: false,
+      fontSize: 16,
+      readOnly: true,
     }"/>
 </template>
+
 <script setup>
-import { markRaw, onMounted, ref } from 'vue'
-
-const VAceEditor = ref('div') // Stores dynamic loaded component. Before `vue3-ace-editor` is loaded, a `div` is used as a placeholder
-
-onMounted(async() => { // onMounted is a client-only lifecycle hook
-  await import('ace-builds')
-  await import('ace-builds/src-noconflict/mode-typescript')
-  await import('ace-builds/src-noconflict/theme-chrome')
-  VAceEditor.value = markRaw((await import('vue3-ace-editor')).VAceEditor)
-})
-
 const content = '// ISC License\n' +
     '//\n' +
     '// Copyright (c) 2022, aeternity developers\n' +
@@ -283,3 +272,9 @@ const content = '// ISC License\n' +
     '      FixedTTL(height) => height\n' +
     '      RelativeTTL(relative_ttl) => Chain.block_height + relative_ttl'
 </script>
+
+<style>
+.editor {
+  height: 400px;
+}
+</style>

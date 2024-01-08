@@ -30,7 +30,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const { data } = await axios.get(url)
     transactionsCount.value = data
   }
-  
+
   async function fetchLast24hsTransactionsCount() {
     last24hsTransactionsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/stats`)

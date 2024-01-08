@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-simple-sitemap',
+    'nuxt-monaco-editor',
   ],
   imports: {
     dirs: ['./stores'],
@@ -78,5 +79,11 @@ export default defineNuxtConfig({
         },
       },
     ],
+  },
+  monacoEditor: {
+    locale: 'en',
+    componentName: {
+      codeEditor: 'MonacoEditor',
+    },
   },
 })

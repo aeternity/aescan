@@ -7607,6 +7607,16 @@ monaco-editor@^0.50.0:
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.50.0.tgz#44e62b124c8aed224e1d310bbbe6ffd6d5122413"
   integrity sha512-8CclLCmrRRh+sul7C08BmPBP3P8wVWfBHomsTcndxg5NRCEPfu/mc2AGU8k37ajjDVXcXFc12ORAMUkmk+lkFA==
 
+monaco-editor-nls@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor-nls/-/monaco-editor-nls-3.1.0.tgz#64086be3b0ee6791ac6bd99c9b1b45ad819c26ee"
+  integrity sha512-GdzgKRAiwXlGI/ude/HbzP8ukml28yUoZ7rx/xsSsmYf9W13jTyWjXjoMK/+pjL6JorAThH2WkCYaDoCnIX7Jg==
+
+monaco-editor@^0.45.0:
+  version "0.45.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.45.0.tgz#6939123a6254aea9fea2d647697f846306dd4448"
+  integrity sha512-mjv1G1ZzfEE3k9HZN0dQ2olMdwIfaeAAjFiwNprLfYNRSz7ctv9XuCT7gPtBGrMUeV1/iZzYKj17Khu1hxoHOA==
+
 mri@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mri/-/mri-1.2.0.tgz#6721480fec2a11a4889861115a48b6cbe7cc8f0b"
@@ -7869,10 +7879,30 @@ nuxi@^3.12.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
-nuxt-booster@^3.0.16:
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/nuxt-booster/-/nuxt-booster-3.0.16.tgz#a8ba71ef342e65986135250ceca79e1b70c6a17e"
-  integrity sha512-QIAfAbhTcm6Rf5ZVkPMF3TNqTKrziLbVWwLJSI0n6Gt+weDsXdfRmdJYGe/RnBZIFwq4GG8OHRwZJMTPN0SQ1Q==
+nuxt-simple-sitemap@4.1.17:
+  version "4.1.17"
+  resolved "https://registry.yarnpkg.com/nuxt-simple-sitemap/-/nuxt-simple-sitemap-4.1.17.tgz#878f11e1c602504be5cc3c1ef04aae6f864b00b5"
+  integrity sha512-GsO+UxxDfeQveCGlqFcR0fl80LhSI49LrUhgra317fXmifecG0erwBxycTy8AZ05L7A0XCo3Llo3N0/cDg1tYg==
+  dependencies:
+    "@nuxt/devtools-kit" "^1.0.5"
+    "@nuxt/devtools-ui-kit" "^1.0.5"
+    "@nuxt/kit" "^3.8.2"
+    chalk "^5.3.0"
+    defu "^6.1.3"
+    nuxt-site-config "^1.6.7"
+    nuxt-site-config-kit "^1.6.7"
+    ofetch "^1.3.3"
+    pathe "^1.1.1"
+    radix3 "^1.1.0"
+    semver "^7.5.4"
+    sirv "^2.0.3"
+    site-config-stack "^1.6.7"
+    ufo "^1.3.2"
+
+nuxt-site-config-kit@1.6.7, nuxt-site-config-kit@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/nuxt-site-config-kit/-/nuxt-site-config-kit-1.6.7.tgz#eaeacfd94e352237b56a35ce64e54f2c30d56a44"
+  integrity sha512-dq7W5ra1KRRi8gW/v8j3e7rNCN8jEZHXnGZ9Ao4r7JZvyHpJyntQYcftcI2N7VViT+6xWdIE7ge4oma7+gvjVQ==
   dependencies:
     "@nuxt/image" "1.7.0"
     "@nuxtjs/fontaine" "0.4.2"
@@ -10619,6 +10649,16 @@ vite-plugin-static-copy@^1.0.3:
     fs-extra "^11.1.0"
     picocolors "^1.0.0"
 
+vite-plugin-static-copy@^0.17.0:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-static-copy/-/vite-plugin-static-copy-0.17.1.tgz#0de35c4a4c760d5f344b5559d0a8d7d417a52093"
+  integrity sha512-9h3iaVs0bqnqZOM5YHJXGHqdC5VAVlTZ2ARYsuNpzhEJUHmFqXY7dAK4ZFpjEQ4WLFKcaN8yWbczr81n01U4sQ==
+  dependencies:
+    chokidar "^3.5.3"
+    fast-glob "^3.2.11"
+    fs-extra "^11.1.0"
+    picocolors "^1.0.0"
+
 vite-plugin-vue-inspector@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/vite-plugin-vue-inspector/-/vite-plugin-vue-inspector-5.1.2.tgz#e25fbda2382bff13b095e6de587b4f2f7e9cfafb"
@@ -10774,13 +10814,6 @@ vue-router@^4.4.0:
   integrity sha512-HB+t2p611aIZraV2aPSRNXf0Z/oLZFrlygJm+sZbdJaW6lcFqEDQwnzUBXn+DApw+/QzDU/I9TeWx9izEjTmsA==
   dependencies:
     "@vue/devtools-api" "^6.5.1"
-
-vue3-ace-editor@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/vue3-ace-editor/-/vue3-ace-editor-2.2.4.tgz#1f2a787f91cf7979f27fab29e0e0604bb3ee1c17"
-  integrity sha512-FZkEyfpbH068BwjhMyNROxfEI8135Sc+x8ouxkMdCNkuj/Tuw83VP/gStFQqZHqljyX9/VfMTCdTqtOnJZGN8g==
-  dependencies:
-    resize-observer-polyfill "^1.5.1"
 
 vue-virtual-scroller@2.0.0-beta.8:
   version "2.0.0-beta.8"

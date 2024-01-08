@@ -46,10 +46,10 @@ function formatDate(label) {
   const date = DateTime.fromISO(label)
 
   if (props.selectedInterval === 'month') {
-    return date.toFormat('yyyy-MM')
+    return date.toFormat('yyyy/MM')
   }
 
-  return date.toFormat('MM-dd')
+  return date.toFormat('MM/dd')
 }
 
 function formatNumberFractions(number) {
@@ -101,7 +101,9 @@ const chartOptions = {
       },
       ticks: {
         callback: function(value) {
-          return formatNumberFractions(value)
+          if (value % 1 === 0) {
+            return formatNumberFractions(value)
+          }
         },
       },
     },

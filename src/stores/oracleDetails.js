@@ -40,11 +40,13 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   async function fetchOracle() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/oracles/${oracleId.value}?tx_hash=true`)
     rawOracle.value = data
+    console.log('1 rawOracle.value', rawOracle.value)
   }
 
   async function fetchLastExtendedTx() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs?direction=backward&limit=1&type=oracle_extend&oracle=${oracleId.value}`)
     lastExtendedTx.value = data.data?.[0]
+    console.log('3 lastExtendedTx.value', lastExtendedTx.value)
   }
 
   async function fetchOracleEvents(queryParameters = null) {
@@ -57,6 +59,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     } catch (e) {
       rawEvents.value = null
     }
+    console.log('2 rawEvents.value', rawEvents.value)
   }
 
   return {

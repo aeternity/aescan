@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
+    'nuxt-monaco-editor',
   ],
   imports: {
     dirs: ['./stores'],
@@ -94,6 +95,12 @@ export default defineNuxtConfig({
         url: 'https://sentry.dev.service.aepps.com/',
       }),
     ],
+  },
+  monacoEditor: {
+    locale: 'en',
+    componentName: {
+      codeEditor: 'MonacoEditor',
+    },
   },
   monacoEditor: {
     locale: 'en',

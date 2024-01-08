@@ -29,11 +29,7 @@ const { isLoading } = useLoading()
 
 <style scoped>
 .transactions-panel {
-  margin-bottom: var(--space-4);
-
-  @media (--desktop) {
-    margin-bottom: var(--space-6);
-  }
+  margin-bottom: var(--space-2);
 
   &:last-child {
     margin-bottom: 0;

@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #heading>
-      TRANSACTIONS TREND
+      NAMES ACTIVATED TREND
     </template>
     <template #header>
       <chart-controls

@@ -100,10 +100,9 @@ const chartOptions = {
         display: false,
       },
       ticks: {
+        precision: 0,
         callback: function(value) {
-          if (value % 1 === 0) {
-            return formatNumberFractions(value)
-          }
+          return formatNumberFractions(value)
         },
       },
     },

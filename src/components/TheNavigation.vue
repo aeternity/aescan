@@ -35,6 +35,15 @@ const menuOptions = ref([{
       name: 'Oracles',
       path: '/oracles',
     },
+    {
+      name: 'State Channels',
+      path: '/state-channels',
+    },
+    {
+      name: 'Hyperchains',
+      path: '/hyperchains',
+      isDisabled: true,
+    },
   ],
 },
 {
@@ -62,7 +71,7 @@ const menuOptions = ref([{
   submenu: [
     {
       name: 'Top Accounts',
-      path: '/tokens',
+      path: '/top-accounts',
       isDisabled: true,
     },
     {

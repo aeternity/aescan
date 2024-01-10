@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="dropArea"
     :class="[
       'file-upload',
       {'file-upload--dragover' :isDragging
@@ -7,61 +8,25 @@
     @dragover="dragover"
     @dragleave="dragleave"
     @drop="drop">
-    <input
-      id="file"
-      ref="fileInput"
-      type="file"
-      multiple
-      name="file"
-      class="file-upload__input"
-      accept=".aes"
-      @change="addFile">
-
     <label
+      v-if="!tree"
       for="file"
       class="file-upload__label">
       {{ isDragging ? 'Release to drop files here.' : 'Drop files here or click here to upload.' }}
     </label>
 
-    <div
-      v-if="files.length"
-      class="file-upload__preview">
-      <div
-        v-for="file in files"
-        :key="file.name"
-        class="file-upload__preview-card">
-        <div>
-          <input type="radio">
-          {{ file.name }} - {{ Math.round(file.size / 1000) + 'kb' }}
-        </div>
-        <div>
-          <button
-            class="file-upload__button"
-            title="remove file"
-            @click="removeFile(files.indexOf(file))">
-            <app-icon
-              name="cross"
-              size="18"/>
-          </button>
-        </div>
-      </div>
-    </div>
+    <contracts-file-list
+      v-for="subtree in tree"
+      :node="subtree"/>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
+const dropArea = ref()
+const tree = ref()
 const isDragging = ref(false)
-const files = ref([])
-const fileInput = ref()
-
-function drop(event) {
-  event.preventDefault()
-  fileInput.value.files = event.dataTransfer.files
-  addFile()
-  isDragging.value = false
-}
 
 function dragover(event) {
   event.preventDefault()
@@ -72,29 +37,60 @@ function dragleave() {
   isDragging.value = false
 }
 
-function addFile() {
-  files.value.push(...fileInput.value.files)
+function drop(event) {
+  console.log('event', event)
+  const items = event.dataTransfer.items
+
+  event.preventDefault()
+  console.log('items', items)
+
+  getFilesDataTransferItems(items).then(files => {
+    console.log('files', files)
+    const rawOutput = JSON.stringify(files)
+    tree.value = files
+  })
 }
 
-function removeFile(index) {
-  files.value.splice(index, 1)
-}
+function getFilesDataTransferItems(dataTransferItems) {
+  function traverseFileTreePromise(item, path = '', folder) {
+    return new Promise(resolve => {
+      if (item.isFile) {
+        item.file(file => {
+          file.filepath = file.name // save full path
+          folder.push(file)
+          resolve(file)
+        })
+      } else if (item.isDirectory) {
+        const dirReader = item.createReader()
+        dirReader.readEntries(entries => {
+          const entriesPromises = []
+          const subfolder = []
 
-// function uploadFiles() {
-//   const formData = new FormData()
-//   files.value.forEach(file => {
-//     formData.append('selectedFiles', file)
-//   })
-//
-//   axios({
-//     method: 'POST',
-//     url: 'http://path/to/api/upload-files',
-//     data: formData,
-//     headers: {
-//       'Content-Type': 'multipart/form-data',
-//     },
-//   });
-// }
+          folder.push({ name: item.name, subfolder })
+          for (const entr of entries) {
+            entriesPromises.push(
+              traverseFileTreePromise(entr, path || '' + item.name + '/', subfolder),
+            )
+          }
+          resolve(Promise.all(entriesPromises))
+        })
+      }
+    })
+  }
+
+  const files = []
+  return new Promise((resolve, reject) => {
+    const entriesPromises = []
+    for (const it of dataTransferItems) {
+      entriesPromises.push(
+        traverseFileTreePromise(it.webkitGetAsEntry(), null, files),
+      )
+    }
+    Promise.all(entriesPromises).then(entries => {
+      resolve(files)
+    })
+  })
+}
 
 </script>
 

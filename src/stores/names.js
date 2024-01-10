@@ -74,13 +74,6 @@ export const useNamesStore = defineStore('names', () => {
     rawRecentlyActivatedNames.value = data.data
   }
 
-  // async function fetchNamesStatistics(slug) {
-  //   namesStatistics.value = null
-  //   const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/names${slug || '?limit=8&interval_by=day'}`)
-  //   namesStatistics.value = data.data.reverse()
-  //   // namesStatistics.value = data.data.slice(1).reverse()
-  // }
-
   async function fetchNamesStatistics(interval = 'day', limit = 7, range) {
     namesStatistics.value = null
 

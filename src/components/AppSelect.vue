@@ -89,7 +89,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__single {
     color: var(--color-midnight);
-    font-size: 12px;
+    font-size: 16px;
     line-height: 20px;
 
     @media (--desktop) {
@@ -141,7 +141,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   }
 
   &__input {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 20px;
 
     @media (--desktop) {

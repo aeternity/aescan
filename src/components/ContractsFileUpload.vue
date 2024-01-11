@@ -21,6 +21,10 @@
       v-for="(file, index) in selectedFiles"
       :key="index"
       class="contracts-file-upload__preview-card">
+      <input
+        type="radio"
+        name="main-file">
+
       {{ file.webkitRelativePath || file.name }}
       <button
         class="contracts-file-upload__button"
@@ -134,7 +138,6 @@ function getDirectoryFiles(dirEntry, files) {
     })
   })
 }
-
 </script>
 
 <style scoped>
@@ -162,24 +165,26 @@ function getDirectoryFiles(dirEntry, files) {
   }
 
   &__button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
 
-  &__preview {
-    margin-top: var(--space-3);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    background: none;
+    padding: 0;
   }
 
   &__preview-card {
+    font-family: var(--font-monospaced);
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     border: 1px solid var(--color-gray);
     background: var(--color-white);
     margin: var(--space-0);
     padding: var(--space-0);
   }
-
 }
 </style>

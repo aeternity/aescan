@@ -16,6 +16,9 @@
     <h2>Contract Verification Failed</h2>
     <p>
       Reason: <span class="error">Missing dependency</span>
+      <app-button to="/contract-verification">
+        Retry verification
+      </app-button>
     </p>
   </app-panel>
 </template>

@@ -29,7 +29,7 @@
       <app-tab title="Events">
         <contract-events-panel/>
       </app-tab>
-      <app-tab title="Verified Contract">
+      <app-tab title="Contract">
         <verified-contract-panel/>
       </app-tab>
     </app-tabs>
@@ -50,6 +50,7 @@ import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
 import VerifiedContractPanel from '~/components/VerifiedContractPanel'
+import VerifiedIcon from '~/components/VerifiedIcon'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)

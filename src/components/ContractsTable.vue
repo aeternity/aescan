@@ -54,10 +54,7 @@
             :hash="contract.createdBy"/>
         </td>
         <td>
-          <app-icon
-            size="24"
-            class="contracts-table__icon"
-            name="verified"/>
+          <verified-icon/>
         </td>
       </tr>
     </tbody>
@@ -67,6 +64,7 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'
+import VerifiedIcon from '~/components/VerifiedIcon'
 
 defineProps({
   contracts: {
@@ -82,10 +80,6 @@ defineProps({
 
   &__data {
     vertical-align: top;
-  }
-
-  &__icon {
-    color: var(--color-success);
   }
 }
 </style>

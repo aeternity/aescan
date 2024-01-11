@@ -77,10 +77,7 @@
           </th>
           <td class="contracts-table-condensed__data">
             <!--            todo componentize-->
-            <app-icon
-              size="24"
-              class="contracts-table-condensed__icon"
-              name="verified"/>
+            <verified-icon/>
           </td>
         </tr>
       </tbody>
@@ -91,6 +88,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { contractsHints } from '@/utils/hints/contractsHints'
+import VerifiedIcon from '~/components/VerifiedIcon'
 
 defineProps({
   contracts: {
@@ -117,10 +115,6 @@ defineProps({
 
   &__data {
     text-align: right;
-  }
-
-  &__icon {
-    color: var(--color-success);
   }
 }
 </style>

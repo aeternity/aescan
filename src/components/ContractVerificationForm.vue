@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="validateForm">
     <div class="row">
       <div>
         <div class="form-field">
@@ -7,25 +7,46 @@
           <br>
           <input
             id="id"
+            v-model="form.id"
             placeholder="ct_..."
             required
             type="text"
             name="id">
+          <p
+            v-if="errors.id"
+            class="field-error">
+            {{ errors.id }}
+          </p>
         </div>
 
         <div class="form-field">
           <label for="license">Compiler Version</label>
-          <license-select id="license"/>
+          <license-select
+            id="license"
+            v-model="form.license"/>
+          <p
+            v-if="errors.license"
+            class="field-error">
+            {{ errors.license }}
+          </p>
         </div>
 
         <div class="form-field">
           <label for="compiler">License Type</label>
-          <compiler-select id="compiler"/>
+          <compiler-select
+            id="compiler"
+            v-model="form.compiler"/>
+          <p
+            v-if="errors.compiler"
+            class="field-error">
+            {{ errors.compiler }}
+          </p>
         </div>
 
         <div class="form-field">
           <input
             id="consent"
+            v-model="form.consent"
             required
             type="checkbox"
             name="lname">
@@ -35,11 +56,19 @@
               terms of service
             </app-link>
           </label>
+          <p
+            v-if="errors.consent"
+            class="field-error">
+            {{ errors.consent }}
+          </p>
         </div>
       </div>
       <div>
         <contracts-file-upload class="form-field"/>
         <div class="form-field form-field__container">
+          <button @click="validateForm">
+            Validate
+          </button>
           <app-button
             to="/contract-verification/result"
             type="submit">
@@ -52,6 +81,34 @@
 </template>
 <script setup>
 
+const form = ref({
+  id: '',
+  license: null,
+  compiler: null,
+  consent: false,
+})
+
+const errors = ref({})
+
+const validateForm = () => {
+  errors.value = {}
+
+  if (!form.value.id.trim()) {
+    errors.value.id = 'ID is required'
+  }
+
+  if (!form.value.license) {
+    errors.value.license = 'License is required'
+  }
+
+  if (!form.value.compiler) {
+    errors.value.compiler = 'Compiler is required'
+  }
+
+  if (!form.value.consent) {
+    errors.value.consent = 'Consent is required'
+  }
+}
 </script>
 <style scoped>
 .row {
@@ -77,5 +134,9 @@ input[type="text"] {
     display: flex;
     justify-content: flex-end;
   }
+}
+
+.field-error {
+  color: red;
 }
 </style>

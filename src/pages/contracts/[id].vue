@@ -35,7 +35,7 @@
         :has-verified-icon="isVerified">
         <contract-verified-panel/>
       </app-tab>
-      <app-tab title="Verified Contract">
+      <app-tab title="Contract">
         <verified-contract-panel/>
       </app-tab>
     </app-tabs>

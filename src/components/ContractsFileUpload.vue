@@ -171,7 +171,6 @@ function getDirectoryFiles(dirEntry, files) {
     margin-left: auto;
 
     border: none;
-    background: transparent;
     cursor: pointer;
     background: none;
     padding: 0;

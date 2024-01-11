@@ -57,13 +57,12 @@ function addFilesToSelectedFiles() {
 }
 
 function addFilesToFileInput() {
-  const list = new DataTransfer()
+  const fileList = new DataTransfer()
   selectedFiles.value.forEach(file => {
-    return list.items.add(file)
+    return fileList.items.add(file)
   })
 
-  const myFileList = list.files
-  fileInput.value.files = myFileList
+  fileInput.value.files = fileList.files
 }
 
 function removeFile(index) {

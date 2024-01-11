@@ -57,10 +57,7 @@
             :hash="contract.createdBy"/>
         </td>
         <td>
-          <app-icon
-            size="24"
-            class="contracts-table__icon"
-            name="verified"/>
+          <verified-icon/>
         </td>
       </tr>
     </tbody>

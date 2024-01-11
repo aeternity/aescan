@@ -1,6 +1,5 @@
 <template>
   <div
-    ref="dropArea"
     :class="[
       'file-upload',
       {'file-upload--dragover' :isDragging
@@ -8,25 +7,68 @@
     @dragover="dragover"
     @dragleave="dragleave"
     @drop="drop">
+    <input
+      id="file"
+      ref="fileInput"
+      type="file"
+      multiple
+      name="file"
+      class="file-upload__input"
+      accept=".aes"
+      @change="addFilesToSelectedFiles">
+
+    <div
+      v-for="(file, index) in selectedFiles"
+      :key="index"
+      class="file-upload__preview-card">
+      {{ file.webkitRelativePath || file.name }}
+      <button
+        class="file-upload__button"
+        @click="removeFile(index)">
+        <app-icon
+          name="cross"
+          size="18"/>
+      </button>
+    </div>
+
     <label
-      v-if="!tree"
+      v-if="!selectedFiles.length"
       for="file"
       class="file-upload__label">
-      {{ isDragging ? 'Release to drop files here.' : 'Drop files here or click here to upload.' }}
+      {{ label }}
     </label>
-
-    <contracts-file-list
-      v-for="subtree in tree"
-      :node="subtree"/>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-const dropArea = ref()
-const tree = ref()
+const fileInput = ref()
 const isDragging = ref(false)
+const selectedFiles = ref([])
+
+const label = computed(() => isDragging.value
+  ? 'Release to drop files here.'
+  : 'Drop files here or click here to upload.',
+)
+
+function addFilesToSelectedFiles() {
+  selectedFiles.value.push(...fileInput.value.files)
+}
+
+function addFilesToFileInput() {
+  const list = new DataTransfer()
+  selectedFiles.value.forEach(file => {
+    return list.items.add(file)
+  })
+
+  const myFileList = list.files
+  fileInput.value.files = myFileList
+}
+
+function removeFile(index) {
+  selectedFiles.value.splice(index, 1)
+}
 
 function dragover(event) {
   event.preventDefault()
@@ -38,56 +80,59 @@ function dragleave() {
 }
 
 function drop(event) {
-  console.log('event', event)
-  const items = event.dataTransfer.items
-
   event.preventDefault()
-  console.log('items', items)
+  getFilesDataTransferItems(event.dataTransfer.items).then(() =>
+    addFilesToFileInput(),
+  )
+  isDragging.value = false
+}
 
-  getFilesDataTransferItems(items).then(files => {
-    console.log('files', files)
-    const rawOutput = JSON.stringify(files)
-    tree.value = files
+async function getFilesDataTransferItems(dataTransferItems) {
+  const files = []
+  const entriesPromises = []
+
+  for (const item of dataTransferItems) {
+    entriesPromises.push(getFileEntry(item.webkitGetAsEntry(), files))
+  }
+
+  await Promise.all(entriesPromises)
+
+  return files
+}
+
+function getFileEntry(entry, files) {
+  if (entry.isFile) {
+    return getSingleFile(entry, files)
+  } else if (entry.isDirectory) {
+    return getDirectoryFiles(entry, files)
+  }
+}
+
+function getSingleFile(fileEntry, files) {
+  return new Promise(resolve => {
+    fileEntry.file(file => {
+      files.push(file)
+      selectedFiles.value.push(file)
+      resolve(file)
+    })
   })
 }
 
-function getFilesDataTransferItems(dataTransferItems) {
-  function traverseFileTreePromise(item, path = '', folder) {
-    return new Promise(resolve => {
-      if (item.isFile) {
-        item.file(file => {
-          file.filepath = file.name // save full path
-          folder.push(file)
-          resolve(file)
-        })
-      } else if (item.isDirectory) {
-        const dirReader = item.createReader()
-        dirReader.readEntries(entries => {
-          const entriesPromises = []
-          const subfolder = []
+function getDirectoryFiles(dirEntry, files) {
+  const dirReader = dirEntry.createReader()
 
-          folder.push({ name: item.name, subfolder })
-          for (const entr of entries) {
-            entriesPromises.push(
-              traverseFileTreePromise(entr, path || '' + item.name + '/', subfolder),
-            )
-          }
-          resolve(Promise.all(entriesPromises))
-        })
+  return new Promise(resolve => {
+    dirReader.readEntries(entries => {
+      const entriesPromises = []
+      const subfolder = []
+
+      files.push({ name: dirEntry.name, subfolder })
+
+      for (const entry of entries) {
+        entriesPromises.push(getFileEntry(entry, subfolder))
       }
-    })
-  }
 
-  const files = []
-  return new Promise((resolve, reject) => {
-    const entriesPromises = []
-    for (const it of dataTransferItems) {
-      entriesPromises.push(
-        traverseFileTreePromise(it.webkitGetAsEntry(), null, files),
-      )
-    }
-    Promise.all(entriesPromises).then(entries => {
-      resolve(files)
+      Promise.all(entriesPromises).then(resolve)
     })
   })
 }
@@ -118,6 +163,13 @@ function getFilesDataTransferItems(dataTransferItems) {
     cursor: pointer;
   }
 
+  &__button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
   &__preview {
     margin-top: var(--space-3);
   }
@@ -125,20 +177,11 @@ function getFilesDataTransferItems(dataTransferItems) {
   &__preview-card {
     display: flex;
     justify-content: space-between;
-    border: 1px solid var(--color-midnight-35);
+    border: 1px solid var(--color-gray);
     background: var(--color-white);
     margin: var(--space-0);
     padding: var(--space-0);
   }
 
-  &__button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    border: none;
-    background: transparent;
-    cursor: pointer;
-  }
 }
 </style>

@@ -80,10 +80,7 @@
           </th>
           <td class="contracts-table-condensed__data">
             <!--            todo componentize-->
-            <app-icon
-              size="24"
-              class="contracts-table-condensed__icon"
-              name="verified"/>
+            <verified-icon/>
           </td>
         </tr>
       </tbody>

@@ -3,7 +3,7 @@
     <div class="row">
       <div>
         <div class="form-field">
-          <label for="id">Smart contract ID</label>
+          <label for="id">Smart contract ID *</label>
           <br>
           <input
             id="id"
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-field">
-          <label for="license">Compiler Version</label>
+          <label for="license">Compiler Version *</label>
           <license-select
             id="license"
             v-model="form.license"/>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-field">
-          <label for="compiler">License Type</label>
+          <label for="compiler">License Type *</label>
           <compiler-select
             id="compiler"
             v-model="form.compiler"/>

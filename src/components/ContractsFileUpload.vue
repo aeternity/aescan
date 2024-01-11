@@ -1,8 +1,8 @@
 <template>
   <div
     :class="[
-      'file-upload',
-      {'file-upload--dragover' :isDragging
+      'contracts-file-upload',
+      {'contracts-file-upload--dragover' :isDragging
       }]"
     @dragover="dragover"
     @dragleave="dragleave"
@@ -13,17 +13,17 @@
       type="file"
       multiple
       name="file"
-      class="file-upload__input"
+      class="contracts-file-upload__input"
       accept=".aes"
       @change="addFilesToSelectedFiles">
 
     <div
       v-for="(file, index) in selectedFiles"
       :key="index"
-      class="file-upload__preview-card">
+      class="contracts-file-upload__preview-card">
       {{ file.webkitRelativePath || file.name }}
       <button
-        class="file-upload__button"
+        class="contracts-file-upload__button"
         @click="removeFile(index)">
         <app-icon
           name="cross"
@@ -34,7 +34,7 @@
     <label
       v-if="!selectedFiles.length"
       for="file"
-      class="file-upload__label">
+      class="contracts-file-upload__label">
       {{ label }}
     </label>
   </div>
@@ -140,7 +140,7 @@ function getDirectoryFiles(dirEntry, files) {
 </script>
 
 <style scoped>
-.file-upload {
+.contracts-file-upload {
   padding: var(--space-6);
   background: var(--color-snow);
   border: 2px dashed var(--color-midnight-35);

@@ -65,6 +65,23 @@
               :hash="contract.createdBy"/>
           </td>
         </tr>
+        <tr class="contracts-table-condensed__row">
+          <th class="contracts-table-condensed__header">
+            <app-tooltip>
+              Verified
+              <template #tooltip>
+                <!--                todo hint-->
+                {{ contractsHints.verified }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="contracts-table-condensed__data">
+            <app-icon
+              size="24"
+              class="contracts-table-condensed__icon"
+              name="verified"/>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -99,6 +116,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__icon {
+    color: var(--color-success);
   }
 }
 </style>

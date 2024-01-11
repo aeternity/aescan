@@ -38,7 +38,7 @@
         </div>
       </div>
       <div>
-        <file-upload class="form-field"/>
+        <contracts-file-upload class="form-field"/>
         <div class="form-field form-field__container">
           <app-button
             to="/contract-verification/result"

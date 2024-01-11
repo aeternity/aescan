@@ -32,7 +32,6 @@
     </div>
 
     <label
-      v-if="!selectedFiles.length"
       for="file"
       class="contracts-file-upload__label">
       {{ label }}

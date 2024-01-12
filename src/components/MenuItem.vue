@@ -37,8 +37,6 @@
 </template>
 
 <script setup>
-import AppIcon from '~/components/AppIcon'
-
 defineProps({
   menu: {
     type: Object,
@@ -53,15 +51,13 @@ defineProps({
 
   &__header {
     padding: 0 var(--space-4) var(--space-1) var(--space-4);
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 24px;
     display: flex;
     justify-content: space-between;
 
     @media (--desktop) {
       padding: 0 var(--space-3);
-      font-size: 20px;
-      line-height: 28px;
     }
   }
 
@@ -87,6 +83,7 @@ defineProps({
       border: 1px solid var(--color-midnight-15);
       box-shadow: 0 6px 30px #0000001a;
       padding: var(--space-0);
+      min-width: 220px;
     }
   }
 
@@ -94,7 +91,7 @@ defineProps({
     padding: var(--space-0) var(--space-3);
 
     @media (--desktop) {
-      padding: var(--space-3) var(--space-1);
+      padding: var(--space-2) var(--space-1);
     }
   }
 

@@ -24,6 +24,13 @@
           Highest Bid
           <hint-tooltip>
             {{ namesHints.highestBid }}
+          <!--            todo hints-->
+          </hint-tooltip>
+        </th>
+        <th>
+          Highest Bidder
+          <hint-tooltip>
+            {{ namesHints.highestBidder }}
           </hint-tooltip>
         </th>
         <th>
@@ -50,16 +57,18 @@
           <datetime-label :datetime="name.expiration"/>
         </td>
         <td>
-          <div>
-            <value-hash-ellipsed
-              :hash="name.highestBidder"
-              :link-to="`/accounts/${name.highestBidder}`"/>
-          </div>
           <app-chip
             variant="secondary"
             class="names-in-auction-table__price-label">
             {{ formatAePrice(name.bid) }}
           </app-chip>
+        </td>
+        <td>
+          <div>
+            <value-hash-ellipsed
+              :hash="name.highestBidder"
+              :link-to="`/accounts/${name.highestBidder}`"/>
+          </div>
         </td>
         <td>
           {{ name.bidCount }}

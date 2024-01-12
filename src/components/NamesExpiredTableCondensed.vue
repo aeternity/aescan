@@ -63,6 +63,18 @@
               class="names-expired-table-condensed__last-buyer"
               :hash="name.lastBuyer"
               :link-to="`/accounts/${name.lastBuyer}`"/>
+          </td>
+        </tr>
+        <tr class="names-expired-table-condensed__row">
+          <th class="names-expired-table-condensed__header">
+            <app-tooltip>
+              Last Price
+              <template #tooltip>
+                {{ namesHints.lastPrice }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="names-expired-table-condensed__data">
             <app-chip variant="secondary">
               {{ formatAePrice(name.fee) }}
             </app-chip>

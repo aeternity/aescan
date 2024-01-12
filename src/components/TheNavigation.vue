@@ -6,8 +6,8 @@
         :key="menu.name"
         class="navigation__item"
         @click="toggle(menu.name)"
-        @mouseover="open(menu.name)"
-        @mouseleave="close">
+        @mouseover="aaa ? open(menu.name) : null"
+        @mouseleave="aaa ? close() : null">
         <menu-item :menu="menu"/>
       </li>
     </ul>
@@ -15,6 +15,8 @@
 </template>
 
 <script setup>
+import { isDesktop } from '@/utils/screen'
+
 const menuOptions = ref([{
   name: 'Blockchain',
   isActive: false,
@@ -104,9 +106,24 @@ function toggle(name) {
 }
 
 function close() {
+  console.log('close')
   menuOptions.value.forEach(item => {
     item.isActive = false
   })
+}
+
+onMounted(() => {
+  window.addEventListener('resize', doit)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', doit)
+})
+
+const aaa = ref(null)
+
+function doit() {
+  aaa.value = isDesktop()
 }
 </script>
 

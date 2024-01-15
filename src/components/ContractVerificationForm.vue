@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="validateForm">
+    files: {{ form.sourceFiles }}
     <div class="row">
       <div>
         <div class="form-field">
@@ -64,14 +65,22 @@
         </div>
       </div>
       <div>
-        <contracts-file-upload class="form-field"/>
+        <contracts-file-upload
+          class="form-field"
+          @update-file="updateIt"/>
         <div class="form-field form-field__container">
           <button @click="validateForm">
             Validate
           </button>
+          <!--          <app-button-->
+          <!--            to="/contract-verification/result"-->
+          <!--            type="submit">-->
+          <!--            Submit-->
+          <!--          </app-button>-->
           <app-button
-            to="/contract-verification/result"
-            type="submit">
+            type="submit"
+
+            @click="postIt()">
             Submit
           </app-button>
         </div>
@@ -81,14 +90,35 @@
 </template>
 <script setup>
 
+import { useContractVerificationStore } from '~/stores/contractVerification'
+
+const verificationStore = useContractVerificationStore()
+const { verifyContract } = verificationStore
+
 const form = ref({
-  id: '',
-  license: null,
-  compiler: null,
+  id: 'ct_qUjKpdWm5Qz58CoWnayqd5EBFtb1SxQMNuZji2b9ArqcyCvNm',
+  license: 'MIT',
+  compiler: '7.0.4',
   consent: false,
+  entryFile: 'hamster.aes',
+  sourceFiles: null,
 })
 
 const errors = ref({})
+
+function updateIt(file) {
+  form.value.sourceFiles = file
+}
+
+function postIt() {
+  verifyContract(
+    form.value.id,
+    form.value.license,
+    form.value.compiler,
+    form.value.entryFile,
+    form.value.sourceFiles,
+  )
+}
 
 const validateForm = () => {
   errors.value = {}

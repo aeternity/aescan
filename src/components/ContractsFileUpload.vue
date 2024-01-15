@@ -50,6 +50,8 @@ const fileInput = ref()
 const isDragging = ref(false)
 const selectedFiles = ref([])
 
+const emit = defineEmits(['update-file'])
+
 const label = computed(() => isDragging.value
   ? 'Release to drop files here.'
   : 'Drop files here or click here to upload.',
@@ -66,7 +68,11 @@ function addFilesToFileInput() {
   })
 
   fileInput.value.files = fileList.files
+  emit('update-file', fileInput.value.files)
 }
+
+// todo reuse selectedFiles.value
+// is fileInput.value.files necessary
 
 function removeFile(index) {
   selectedFiles.value.splice(index, 1)

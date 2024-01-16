@@ -9,6 +9,8 @@
           { 'tabs__item--active': activeTabIndex === index },
         ]"
         @click="selectTab(index)">
+        <verified-icon v-if="tab.hasVerifiedIcon"/>
+
         {{ tab.title }}
         <verified-icon v-if="tab.hasVerifiedIcon"/>
       </li>

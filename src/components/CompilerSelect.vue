@@ -1,17 +1,31 @@
 <template>
   <app-select
     v-model="selectedVersion"
-    :options="COMPILER_VERSION_OPTIONS"
+    :options="compilerOptions"
     track-by="key"
-    label="label"
+    label="value"
     placeholder="Select Compiler Version"
     :hide-selected="true"/>
 </template>
 
 <script setup>
 import { useVModel } from '@vueuse/core'
+import { storeToRefs } from 'pinia'
 import AppSelect from '@/components/AppSelect'
-import { COMPILER_VERSION_OPTIONS } from '@/utils/constants'
+
+import { useContractVerificationStore } from '~/stores/contractVerification'
+
+const verificationStore = useContractVerificationStore()
+const { compilerOptions } = storeToRefs(verificationStore)
+const { fetchCompilerOptions } = verificationStore
+
+// await fetchCompilerOptions()
+
+await useAsyncData(async() => {
+  await fetchCompilerOptions()
+  return true
+  // todo move another place
+})
 
 const props = defineProps({
   modelValue: {

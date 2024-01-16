@@ -35,10 +35,7 @@ export const TOKEN_TYPES_OPTIONS = [
   { label: 'Listed', key: 'listedTokens' },
   { label: 'All Tokens', key: 'allTokens' },
 ]
-export const COMPILER_VERSION_OPTIONS = [
-  { key: 'a', label: 'Version A' },
-  { key: 'b', label: 'Version B' },
-]
+
 export const LICENSE_TYPE_OPTIONS = [
   { label: 'License A', key: 'a' },
   { label: 'License B', key: 'b' },

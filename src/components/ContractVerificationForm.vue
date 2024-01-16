@@ -22,9 +22,10 @@
 
         <div class="form-field">
           <label for="license">Compiler Version *</label>
-          <license-select
-            id="license"
-            v-model="form.license"/>
+          <compiler-select
+            id="compiler"
+            v-model="form.compiler"/>
+
           <p
             v-if="errors.license"
             class="field-error">
@@ -34,9 +35,9 @@
 
         <div class="form-field">
           <label for="compiler">License Type *</label>
-          <compiler-select
-            id="compiler"
-            v-model="form.compiler"/>
+          <license-select
+            id="license"
+            v-model="form.license"/>
           <p
             v-if="errors.compiler"
             class="field-error">

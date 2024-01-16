@@ -4,6 +4,7 @@ import useAxios from '@/composables/useAxios'
 export const useContractVerificationStore = defineStore('useContractVerificationStore', () => {
   const axios = useAxios()
   const result = ref(null)
+  const compilerOptions = ref(null)
 
   async function verifyContract(contractId, license, compiler, entryFile, sourceFiles) {
     result.value = null
@@ -25,7 +26,20 @@ export const useContractVerificationStore = defineStore('useContractVerification
     result.value = data
   }
 
+  async function fetchCompilerOptions() {
+    compilerOptions.value = null
+    const { data } = await axios.get('http://localhost:3000/compilers/')
+    console.log('data.compilers', data.compilers)
+    const compilersObject = data.compilers.map((item, index) => {
+      return { key: index, value: item }
+    })
+    // todo move to adaptors
+    compilerOptions.value = compilersObject
+  }
+
   return {
     verifyContract,
+    fetchCompilerOptions,
+    compilerOptions,
   }
 })

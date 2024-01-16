@@ -29,8 +29,13 @@
       <app-tab title="Events">
         <contract-events-panel/>
       </app-tab>
-      <app-tab title="Contract">
-        <verified-contract-panel/>
+      <app-tab
+        title="Contract"
+        :has-verified-icon="isVerified">
+        <verified-contract-panel
+          v-if="verificationDetails"
+          :is-verified="isVerified"
+          :verification-details="verificationDetails"/>
       </app-tab>
     </app-tabs>
   </template>
@@ -50,13 +55,20 @@ import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
 import VerifiedContractPanel from '~/components/VerifiedContractPanel'
-import VerifiedIcon from '~/components/VerifiedIcon'
+import { useContractVerifiedStore } from '~/stores/contractVerified'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
-const route = useRoute()
 const { push, replace } = useRouter()
+
+const route = useRoute()
+
+const contractVerifiedStore = useContractVerifiedStore()
+const { isVerified, verificationDetails } = storeToRefs(contractVerifiedStore)
+const { fetchIsContractVerified } = contractVerifiedStore
+
+await fetchIsContractVerified(route.params.id)
 
 const TAB_KEYS = ['call-transactions', 'events', 'verified-contract']
 

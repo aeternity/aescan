@@ -5,7 +5,7 @@
         License
       </th>
       <td class="verified-contract-table-condensed__data">
-        emVersion, MIT license
+        {{ verificationDetails.license }}
       </td>
     </tr>
     <tr class="verified-contract-table-condensed__row">
@@ -13,12 +13,20 @@
         Compiler Version
       </th>
       <td class="verified-contract-table-condensed__data">
-        v3.06.8
+        {{ verificationDetails.compiler }}
       </td>
     </tr>
   </table>
 </template>
-<script>
+
+<script setup>
+
+defineProps({
+  verificationDetails: {
+    required: true,
+    type: Object,
+  },
+})
 
 </script>
 

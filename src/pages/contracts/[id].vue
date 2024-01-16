@@ -35,8 +35,13 @@
         :has-verified-icon="isVerified">
         <contract-verified-panel/>
       </app-tab>
-      <app-tab title="Contract">
-        <verified-contract-panel/>
+      <app-tab
+        title="Contract"
+        :has-verified-icon="isVerified">
+        <verified-contract-panel
+          v-if="verificationDetails"
+          :is-verified="isVerified"
+          :verification-details="verificationDetails"/>
       </app-tab>
     </app-tabs>
   </template>
@@ -59,6 +64,14 @@ const { isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
 const route = useRoute()
+
+const route = useRoute()
+
+const contractVerifiedStore = useContractVerifiedStore()
+const { isVerified, verificationDetails } = storeToRefs(contractVerifiedStore)
+const { fetchIsContractVerified } = contractVerifiedStore
+
+await fetchIsContractVerified(route.params.id)
 
 const TAB_KEYS = ['call-transactions', 'events', 'contract-verified']
 

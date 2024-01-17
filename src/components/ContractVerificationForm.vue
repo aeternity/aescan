@@ -25,7 +25,6 @@
           <compiler-select
             id="compiler"
             v-model="form.compiler"/>
-
           <p
             v-if="errors.license"
             class="field-error">
@@ -35,9 +34,13 @@
 
         <div class="form-field">
           <label for="compiler">License Type *</label>
-          <license-select
+
+          <input
             id="license"
-            v-model="form.license"/>
+            v-model="form.license"
+            required
+            type="text"
+            name="license">
           <p
             v-if="errors.compiler"
             class="field-error">
@@ -68,7 +71,8 @@
       <div>
         <contracts-file-upload
           class="form-field"
-          @update-file="updateIt"/>
+          @update-file="updateIt"
+          @entry-file-selected="updateEntryFile"/>
         <div class="form-field form-field__container">
           <button @click="validateForm">
             Validate
@@ -88,20 +92,21 @@
       </div>
     </div>
   </form>
+  form {{ form }}
 </template>
-<script setup>
 
+<script setup>
 import { useContractVerificationStore } from '~/stores/contractVerification'
 
 const verificationStore = useContractVerificationStore()
 const { verifyContract } = verificationStore
 
 const form = ref({
-  id: 'ct_qUjKpdWm5Qz58CoWnayqd5EBFtb1SxQMNuZji2b9ArqcyCvNm',
-  license: 'MIT',
-  compiler: '7.0.4',
+  id: '',
+  license: '',
+  compiler: '',
   consent: false,
-  entryFile: 'hamster.aes',
+  entryFile: '',
   sourceFiles: null,
 })
 
@@ -111,17 +116,27 @@ function updateIt(file) {
   form.value.sourceFiles = file
 }
 
-function postIt() {
-  verifyContract(
-    form.value.id,
-    form.value.license,
-    form.value.compiler,
-    form.value.entryFile,
-    form.value.sourceFiles,
-  )
+function updateEntryFile(fileName) {
+  form.value.entryFile = fileName
 }
 
-const validateForm = () => {
+function postIt() {
+  validateForm()
+  const isValid = Object.keys(errors.value).length === 0
+  console.log('isValid', isValid)
+  if (isValid) {
+    verifyContract(
+      form.value.id,
+      form.value.license,
+      form.value.compiler.value,
+      form.value.entryFile,
+      form.value.sourceFiles,
+    )
+  }
+}
+
+function validateForm() {
+  // todo computed
   errors.value = {}
 
   if (!form.value.id.trim()) {

@@ -23,7 +23,8 @@
       class="contracts-file-upload__preview-card">
       <input
         type="radio"
-        name="main-file">
+        name="entry-file"
+        @input="selectEntryFile(file.name)">
 
       {{ file.webkitRelativePath || file.name }}
       <button
@@ -50,12 +51,17 @@ const fileInput = ref()
 const isDragging = ref(false)
 const selectedFiles = ref([])
 
-const emit = defineEmits(['update-file'])
+const emit = defineEmits(['update-file', 'entry-file-selected'])
 
 const label = computed(() => isDragging.value
   ? 'Release to drop files here.'
   : 'Drop files here or click here to upload.',
 )
+
+function selectEntryFile(fileName) {
+  emit('entry-file-selected', fileName)
+  // todo improve filename
+}
 
 function addFilesToSelectedFiles() {
   selectedFiles.value.push(...fileInput.value.files)

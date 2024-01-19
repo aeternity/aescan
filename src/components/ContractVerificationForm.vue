@@ -74,9 +74,6 @@
           @update-file="updateIt"
           @entry-file-selected="updateEntryFile"/>
         <div class="form-field form-field__container">
-          <button @click="validateForm">
-            Validate
-          </button>
           <!--          <app-button-->
           <!--            to="/contract-verification/result"-->
           <!--            type="submit">-->
@@ -84,7 +81,6 @@
           <!--          </app-button>-->
           <app-button
             type="submit"
-
             @click="postIt()">
             Submit
           </app-button>
@@ -100,6 +96,7 @@ import { useContractVerificationStore } from '~/stores/contractVerification'
 
 const verificationStore = useContractVerificationStore()
 const { verifyContract } = verificationStore
+const { push } = useRouter()
 
 const form = ref({
   id: '',
@@ -120,18 +117,21 @@ function updateEntryFile(fileName) {
   form.value.entryFile = fileName
 }
 
-function postIt() {
+async function postIt() {
   validateForm()
   const isValid = Object.keys(errors.value).length === 0
   console.log('isValid', isValid)
+  // todo strip text inputs
   if (isValid) {
-    verifyContract(
+    const result = await verifyContract(
       form.value.id,
       form.value.license,
       form.value.compiler.value,
       form.value.entryFile,
       form.value.sourceFiles,
     )
+    console.log('aaa result', result)
+    push('/contract-verification/result')
   }
 }
 

@@ -33,7 +33,6 @@
 
 <script setup>
 
-import ContractVerificationForm from '~/components/ContractVerificationForm'
 </script>
 
 <style>

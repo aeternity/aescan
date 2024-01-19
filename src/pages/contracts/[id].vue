@@ -46,7 +46,7 @@
 import { storeToRefs } from 'pinia'
 
 import { useContractDetailsStore } from '@/stores/contractDetails'
-import { useContractVerifiedStore } from '@/stores/contractVerified'
+import { useContractVerifiedStore } from '@/stores/verified'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 

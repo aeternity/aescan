@@ -8,21 +8,36 @@
       <h3>Contract Code</h3>
       <div>
         <app-button variant="light">
-          Show Bytcode
-        </app-button>
-        <app-button variant="light">
           Export
         </app-button>
       </div>
     </header>
-    <verified-contract-editor :verification-details="verificationDetails"/>
+    <verified-contract-editor
+      :code="contractCode.source[0].content"
+      lang="aes"/>
+    <h3>ACI</h3>
+    <verified-contract-editor
+      :code="verificationDetails.aci"
+      lang="json"/>
   </app-panel>
   <div v-else>
     Not verified: HINT
   </div>
+
+  <!--  todo print loop-->
 </template>
 
 <script setup>
+
+import { storeToRefs } from 'pinia'
+import { useContractVerifiedStore } from '~/stores/verified'
+
+const contractVerifiedStore = useContractVerifiedStore()
+const { contractCode } = storeToRefs(contractVerifiedStore)
+const { fetchContractCode } = contractVerifiedStore
+const route = useRoute()
+await fetchContractCode(route.params.id)
+
 defineProps({
   verificationDetails: {
     required: true,

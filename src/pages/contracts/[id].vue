@@ -55,9 +55,6 @@ import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
-import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
-import VerifiedContractPanel from '@/components/VerifiedContractPanel'
-import { useContractVerifiedStore } from '@/stores/contractVerified'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
@@ -73,6 +70,8 @@ const route = useRoute()
 const contractVerifiedStore = useContractVerifiedStore()
 const { isVerified, verificationDetails } = storeToRefs(contractVerifiedStore)
 const { fetchIsContractVerified } = contractVerifiedStore
+const { push, replace } = useRouter()
+const route = useRoute()
 
 await fetchIsContractVerified(route.params.id)
 

@@ -88,7 +88,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { contractsHints } from '@/utils/hints/contractsHints'
-import VerifiedIcon from '~/components/VerifiedIcon'
+import VerifiedIcon from '@/components/VerifiedIcon'
 
 defineProps({
   contracts: {

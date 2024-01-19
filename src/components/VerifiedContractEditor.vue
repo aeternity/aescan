@@ -16,10 +16,9 @@
 <script setup>
 
 import { storeToRefs } from 'pinia'
-import { useContractVerifiedStore } from '~/stores/contractVerified'
+import { useContractVerifiedStore } from '@/stores/contractVerified'
 
 const route = useRoute()
-
 const contractVerifiedStore = useContractVerifiedStore()
 const { contractCode } = storeToRefs(contractVerifiedStore)
 const { fetchContractCode } = contractVerifiedStore

@@ -44,29 +44,20 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRouter } from '#app'
-import ContractDetailsPanel from '@/components/ContractDetailsPanel'
-import PageHeader from '@/components/PageHeader'
+
 import { useContractDetailsStore } from '@/stores/contractDetails'
-import AppTabs from '@/components/AppTabs'
-import AppTab from '@/components/AppTab'
-import ContractEventsPanel from '@/components/ContractEventsPanel'
+import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
-import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
-import VerifiedContractPanel from '@/components/VerifiedContractPanel'
-import { useContractVerifiedStore } from '@/stores/contractVerified'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
-const { push, replace } = useRouter()
-
-const route = useRoute()
-
 const contractVerifiedStore = useContractVerifiedStore()
 const { isVerified, verificationDetails } = storeToRefs(contractVerifiedStore)
 const { fetchIsContractVerified } = contractVerifiedStore
+const { push, replace } = useRouter()
+const route = useRoute()
 
 await fetchIsContractVerified(route.params.id)
 

@@ -1,37 +1,30 @@
 <template>
   <monaco-editor
-    v-model="contractCode.source[0].content "
+    v-model="codeModel"
     class="editor"
-    lang="aes"
+    :lang="lang"
+
     :options="{
       lineHeight: 20,
       fontFamily: 'Roboto Mono',
       fontSize: 16,
       readOnly: true,
+      autoIndent: true
     }"/>
-  <!--  todo loop-->
-  <!--  todo print aci-->
 </template>
 
 <script setup>
-
-import { storeToRefs } from 'pinia'
-import { useContractVerifiedStore } from '@/stores/verified'
-
-const route = useRoute()
-const contractVerifiedStore = useContractVerifiedStore()
-const { contractCode } = storeToRefs(contractVerifiedStore)
-const { fetchContractCode } = contractVerifiedStore
-
-await fetchContractCode(route.params.id)
-
-defineProps({
-  verificationDetails: {
+const props = defineProps({
+  code: {
     required: true,
-    type: Object,
+    type: String,
+  },
+  lang: {
+    required: true,
+    type: String,
   },
 })
-
+const codeModel = ref(props.code)
 </script>
 
 <style>

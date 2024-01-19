@@ -16,6 +16,22 @@
         {{ verificationDetails.compiler }}
       </td>
     </tr>
+    <tr class="verified-contract-table-condensed__row">
+      <th class="verified-contract-table-condensed__header">
+        Entry File
+      </th>
+      <td class="verified-contract-table-condensed__data">
+        {{ verificationDetails.entryFile }}
+      </td>
+    </tr>
+    <tr class="verified-contract-table-condensed__row">
+      <th class="verified-contract-table-condensed__header">
+        Verified At
+      </th>
+      <td class="verified-contract-table-condensed__data">
+        {{ verificationDetails.verifiedAt }}
+      </td>
+    </tr>
   </table>
 </template>
 

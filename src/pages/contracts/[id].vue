@@ -54,8 +54,8 @@ import ContractEventsPanel from '@/components/ContractEventsPanel'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
-import VerifiedContractPanel from '~/components/VerifiedContractPanel'
-import { useContractVerifiedStore } from '~/stores/contractVerified'
+import VerifiedContractPanel from '@/components/VerifiedContractPanel'
+import { useContractVerifiedStore } from '@/stores/contractVerified'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)

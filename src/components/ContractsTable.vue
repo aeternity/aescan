@@ -64,7 +64,7 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'
-import VerifiedIcon from '~/components/VerifiedIcon'
+import VerifiedIcon from '@/components/VerifiedIcon'
 
 defineProps({
   contracts: {

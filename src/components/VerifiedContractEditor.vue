@@ -16,7 +16,7 @@
 <script setup>
 
 import { storeToRefs } from 'pinia'
-import { useContractVerifiedStore } from '@/stores/contractVerified'
+import { useContractVerifiedStore } from '@/stores/verified'
 
 const route = useRoute()
 const contractVerifiedStore = useContractVerifiedStore()

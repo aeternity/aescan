@@ -1,60 +1,66 @@
 <template>
-  <app-button
-    v-if="selectedFiles.length > 0"
-    class="contracts-file-upload__button"
-    variant="link"
-    @click="clear">
-    <app-icon
-      name="cross"
-      size="18"/>
-    clear files
-  </app-button>
-  <div
-    :class="[
-      'contracts-file-upload',
-      {'contracts-file-upload--dragover' :isDragging }]"
-    @dragover="dragover"
-    @dragleave="dragleave"
-    @drop="drop">
-    <input
-      id="file"
-      ref="fileInput"
-      type="file"
-      multiple
-      name="file"
-      class="contracts-file-upload__input"
-      accept=".aes"
-      @change="addFilesToSelectedFiles">
-    <table v-if="selectedFiles.length > 0">
-      <tr>
-        <th>File</th>
-        <th>Select Entry File</th>
-      </tr>
-      <tr
-        v-for="(file, index) in selectedFiles"
-        :key="index">
-        <td>
-          {{ file.webkitRelativePath || file.name }}
-        </td>
-        <td>
-          <input
-            type="radio"
-            name="entry-file"
-            @input="selectEntryFile(file.name)">
-        </td>
-      </tr>
-    </table>
+  <div>
+    <header class="contracts-file-upload__header">
+      <label>
+        <!--    todo id for label-->
+        Contract Files
+        <hint-tooltip>
+          Field is required
+        </hint-tooltip>
+      </label>
+      <app-button
+        v-if="selectedFiles.length > 0"
+        class="contracts-file-upload__button"
+        variant="link"
+        @click="clear">
+        <app-icon
+          name="cross"
+          size="18"/>
+        clear files
+      </app-button>
+    </header>
+    <div
+      :class="[
+        'contracts-file-upload',
+        {'contracts-file-upload--dragover' :isDragging }]"
+      @dragover="dragover"
+      @dragleave="dragleave"
+      @drop="drop">
+      <input
+        id="file"
+        ref="fileInput"
+        type="file"
+        multiple
+        name="file"
+        class="contracts-file-upload__input"
+        accept=".aes"
+        @change="addFilesToSelectedFiles">
+      <table v-if="selectedFiles.length > 0">
+        <tr>
+          <th>File</th>
+          <th>Select Entry File</th>
+        </tr>
+        <tr
+          v-for="(file, index) in selectedFiles"
+          :key="index">
+          <td>
+            {{ file.webkitRelativePath || file.name }}
+          </td>
+          <td>
+            <input
+              type="radio"
+              name="entry-file"
+              @input="selectEntryFile(file.name)">
+          </td>
+        </tr>
+      </table>
 
-    <!--    <div-->
-    <!--      v-for="(file, index) in selectedFiles"-->
-    <!--      :key="index"-->
-    <!--      class="contracts-file-upload__preview-card"/>-->
-
-    <label
-      for="file"
-      class="contracts-file-upload__label">
-      {{ label }}
-    </label>
+      <label
+        for="file"
+        class="contracts-file-upload__label">
+        {{ label }}
+      </label>
+    </div>
   </div>
 </template>
 
@@ -65,7 +71,7 @@ const fileInput = ref()
 const isDragging = ref(false)
 const selectedFiles = ref([])
 
-const emit = defineEmits(['update-file', 'entry-file-selected'])
+const emit = defineEmits(['file-list-updated', 'entry-file-selected'])
 
 const label = computed(() => isDragging.value
   ? 'Release to drop files here.'
@@ -79,7 +85,7 @@ function selectEntryFile(fileName) {
 
 function addFilesToSelectedFiles() {
   selectedFiles.value.push(...fileInput.value.files)
-  emit('update-file', fileInput.value.files)
+  emit('file-list-updated', fileInput.value.files)
 }
 
 function addFilesToFileInput() {
@@ -89,7 +95,7 @@ function addFilesToFileInput() {
   })
 
   fileInput.value.files = fileList.files
-  emit('update-file', fileInput.value.files)
+  emit('file-list-updated', fileInput.value.files)
 }
 
 // todo reuse selectedFiles.value
@@ -176,6 +182,11 @@ function getDirectoryFiles(dirEntry, files) {
 
   &--dragover {
     border: 2px solid var(--color-success);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
   }
 
   &__input {

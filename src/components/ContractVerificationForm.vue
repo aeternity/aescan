@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="validateForm">
+  <form @submit.prevent="validate">
     <!--    todo html valid-->
     <div class="row">
       <div>
@@ -12,12 +12,11 @@
             v-model="form.id"
             placeholder="ct_..."
             required
-            type="text"
-            name="id">
+            type="text">
           <!--          todo componentize-->
           <p
             v-if="errors.id"
-            class="field-error">
+            class="form-field__error">
             {{ errors.id }}
           </p>
         </div>
@@ -29,7 +28,7 @@
             v-model="form.compiler"/>
           <p
             v-if="errors.license"
-            class="field-error">
+            class="form-field__error">
             {{ errors.license }}
           </p>
         </div>
@@ -40,32 +39,11 @@
             id="license"
             v-model="form.license"
             required
-            type="text"
-            name="license">
+            type="text">
           <p
             v-if="errors.compiler"
-            class="field-error">
+            class="form-field__error">
             {{ errors.compiler }}
-          </p>
-        </div>
-
-        <div class="form-field">
-          <input
-            id="consent"
-            v-model="form.consent"
-            required
-            type="checkbox"
-            name="lname">
-          <label for="consent">
-            I agree to the
-            <app-link to="/terms-of-service">
-              terms of service
-            </app-link>
-          </label>
-          <p
-            v-if="errors.consent"
-            class="field-error">
-            {{ errors.consent }}
           </p>
         </div>
       </div>
@@ -74,14 +52,46 @@
           class="form-field"
           @update-file="updateIt"
           @entry-file-selected="updateEntryFile"/>
-        <div class="form-field form-field__container">
-          <app-button
-            type="submit"
-            @click="postIt()">
-            Submit
-          </app-button>
+        <p
+          v-if="errors.sourceFiles"
+          class="form-field__error">
+          {{ errors.sourceFiles }}
+        </p>
+        <p
+          v-if="errors.entryFile"
+          class="form-field__error">
+          {{ errors.entryFile }}
+        </p>
+      </div>
+    </div>
+    <div class="form-field form-field__container">
+      <div>
+        <div>
+          <input
+            id="consent"
+            v-model="form.consent"
+            required
+            type="checkbox">
+          <label for="consent">
+            I agree to the
+            <app-link to="/terms-of-service">
+              terms of service
+            </app-link>
+          </label>
+        </div>
+        <div>
+          <p
+            v-if="errors.consent"
+            class="form-field__error">
+            {{ errors.consent }}
+          </p>
         </div>
       </div>
+      <app-button
+        type="submit"
+        @click="submit()">
+        Submit
+      </app-button>
     </div>
   </form>
   form {{ form }}
@@ -118,15 +128,14 @@ function updateEntryFile(fileName) {
   form.value.entryFile = fileName
 }
 
-async function postIt() {
-  validateForm()
+async function submit() {
+  validate()
   const isValid = Object.keys(errors.value).length === 0
   console.log('isValid', isValid)
-  // todo strip text inputs
   if (isValid) {
     const result = await verifyContract(
-      form.value.id,
-      form.value.license,
+      form.value.id.trim(),
+      form.value.license.trim(),
       form.value.compiler.value,
       form.value.entryFile,
       form.value.sourceFiles,
@@ -136,24 +145,31 @@ async function postIt() {
   }
 }
 
-function validateForm() {
-  // todo computed
+function validate() {
   errors.value = {}
 
-  if (!form.value.id.trim()) {
+  if (!form.value.id) {
     errors.value.id = 'ID is required'
   }
 
   if (!form.value.license) {
-    errors.value.license = 'License is required'
+    errors.value.license = 'Please fill license'
   }
 
   if (!form.value.compiler) {
-    errors.value.compiler = 'Compiler is required'
+    errors.value.compiler = 'Please select compiler'
   }
 
   if (!form.value.consent) {
-    errors.value.consent = 'Consent is required'
+    errors.value.consent = 'Please agree with terms and conditions'
+  }
+
+  if (!form.value.entryFile) {
+    errors.value.entryFile = 'Please select entry file'
+  }
+
+  if (!form.value.sourceFiles) {
+    errors.value.sourceFiles = 'Please select contract files'
   }
 }
 </script>
@@ -179,11 +195,13 @@ input[type="text"] {
 
   &__container {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
+  }
+
+  &__error {
+    color: red;
   }
 }
 
-.field-error {
-  color: red;
-}
 </style>

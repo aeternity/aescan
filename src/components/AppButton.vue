@@ -3,7 +3,8 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    class="button">
+    :class="['button', [`button--${variant}`]]">
+
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -13,7 +14,7 @@
   </app-link>
   <button
     v-else
-    class="button">
+    :class="['button', [`button--${variant}`]]">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -39,6 +40,15 @@ defineProps({
   target: {
     type: String,
     default: '_blank',
+  },
+  variant: {
+    type: String,
+    default: '_blank',
+  },
+  direction: {
+    type: String,
+    default: null,
+    validator: val => ['link'].includes(val),
   },
 })
 </script>
@@ -66,6 +76,19 @@ defineProps({
 
   &__icon {
     margin-right: var(--space-1);
+  }
+
+  &--link {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-weight: 400;
+
+    background: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

@@ -71,7 +71,10 @@ const fileInput = ref()
 const isDragging = ref(false)
 const selectedFiles = ref([])
 
-const emit = defineEmits(['file-list-updated', 'entry-file-selected'])
+const emit = defineEmits([
+  'update:file-list',
+  'update:entry-file',
+])
 
 const label = computed(() => isDragging.value
   ? 'Release to drop files here.'
@@ -79,13 +82,13 @@ const label = computed(() => isDragging.value
 )
 
 function selectEntryFile(fileName) {
-  emit('entry-file-selected', fileName)
+  emit('update:entry-file', fileName)
   // todo improve filename
 }
 
 function addFilesToSelectedFiles() {
   selectedFiles.value.push(...fileInput.value.files)
-  emit('file-list-updated', fileInput.value.files)
+  emit('update:file-list', fileInput.value.files)
 }
 
 function addFilesToFileInput() {
@@ -95,7 +98,7 @@ function addFilesToFileInput() {
   })
 
   fileInput.value.files = fileList.files
-  emit('file-list-updated', fileInput.value.files)
+  emit('update:file-list', fileInput.value.files)
 }
 
 // todo reuse selectedFiles.value

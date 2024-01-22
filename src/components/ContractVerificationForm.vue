@@ -65,9 +65,9 @@
       </div>
       <div>
         <contracts-file-upload
-          class="contract-verification-form"
-          @file-list-updated="updateSourceFiles"
-          @entry-file-selected="updateEntryFile"/>
+          v-model:file-list="form.sourceFiles"
+          v-model:entry-file="form.entryFile"
+          class="contract-verification-form"/>
         <p
           v-if="errors.sourceFiles"
           class="contract-verification-form__error">
@@ -111,7 +111,7 @@
       </app-button>
     </div>
   </form>
-
+  form {{ form }}
   <div v-for="file in form.sourceFiles">
     {{ file.name }}
   </div>
@@ -134,15 +134,6 @@ const form = ref({
 })
 
 const errors = ref({})
-
-// todo move to model
-function updateSourceFiles(file) {
-  form.value.sourceFiles = file
-}
-
-function updateEntryFile(fileName) {
-  form.value.entryFile = fileName
-}
 
 async function submit() {
   validate()

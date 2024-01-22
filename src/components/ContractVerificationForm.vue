@@ -4,8 +4,12 @@
     <div class="contract-verification-form__row">
       <div>
         <div class="contract-verification-form">
-          <!--          todo hint-->
-          <label for="id">Smart contract ID *</label>
+          <label for="id">
+            Smart contract ID
+            <hint-tooltip>
+              Field is required
+            </hint-tooltip>
+          </label>
           <br>
           <input
             id="id"
@@ -23,7 +27,12 @@
         </div>
 
         <div class="contract-verification-form">
-          <label for="license">Compiler Version *</label>
+          <label for="license">
+            Compiler Version
+            <hint-tooltip>
+              Field is required
+            </hint-tooltip>
+          </label>
           <compiler-select
             id="compiler"
             v-model="form.compiler"/>
@@ -35,7 +44,12 @@
         </div>
 
         <div class="contract-verification-form">
-          <label for="compiler">License Type *</label>
+          <label for="compiler">
+            License Type
+            <hint-tooltip>
+              Field is required
+            </hint-tooltip>
+          </label>
           <input
             id="license"
             v-model="form.license"
@@ -52,7 +66,7 @@
       <div>
         <contracts-file-upload
           class="contract-verification-form"
-          @update-file="updateIt"
+          @file-list-updated="updateSourceFiles"
           @entry-file-selected="updateEntryFile"/>
         <p
           v-if="errors.sourceFiles"
@@ -97,9 +111,7 @@
       </app-button>
     </div>
   </form>
-  form {{ form }}
-  <br>
-  files: {{ form.sourceFiles }}
+
   <div v-for="file in form.sourceFiles">
     {{ file.name }}
   </div>
@@ -123,7 +135,8 @@ const form = ref({
 
 const errors = ref({})
 
-function updateIt(file) {
+// todo move to model
+function updateSourceFiles(file) {
   form.value.sourceFiles = file
 }
 
@@ -134,16 +147,14 @@ function updateEntryFile(fileName) {
 async function submit() {
   validate()
   const isValid = Object.keys(errors.value).length === 0
-  console.log('isValid', isValid)
   if (isValid) {
-    const result = await verifyContract(
+    await verifyContract(
       form.value.id.trim(),
       form.value.license.trim(),
       form.value.compiler.value,
       form.value.entryFile,
       form.value.sourceFiles,
     )
-    console.log('aaa result', result)
     push('/contract-verification/result')
   }
 }
@@ -164,7 +175,7 @@ function validate() {
   }
 
   if (!form.value.consent) {
-    errors.value.consent = 'Please agree with terms and conditions'
+    errors.value.consent = 'Please agree with terms of service'
   }
 
   if (!form.value.entryFile) {

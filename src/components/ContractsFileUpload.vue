@@ -1,9 +1,18 @@
 <template>
+  <app-button
+    v-if="selectedFiles.length > 0"
+    class="contracts-file-upload__button"
+    variant="link"
+    @click="clear">
+    <app-icon
+      name="cross"
+      size="18"/>
+    clear files
+  </app-button>
   <div
     :class="[
       'contracts-file-upload',
-      {'contracts-file-upload--dragover' :isDragging
-      }]"
+      {'contracts-file-upload--dragover' :isDragging }]"
     @dragover="dragover"
     @dragleave="dragleave"
     @drop="drop">
@@ -16,25 +25,30 @@
       class="contracts-file-upload__input"
       accept=".aes"
       @change="addFilesToSelectedFiles">
+    <table v-if="selectedFiles.length > 0">
+      <tr>
+        <th>File</th>
+        <th>Select Entry File</th>
+      </tr>
+      <tr
+        v-for="(file, index) in selectedFiles"
+        :key="index">
+        <td>
+          {{ file.webkitRelativePath || file.name }}
+        </td>
+        <td>
+          <input
+            type="radio"
+            name="entry-file"
+            @input="selectEntryFile(file.name)">
+        </td>
+      </tr>
+    </table>
 
-    <div
-      v-for="(file, index) in selectedFiles"
-      :key="index"
-      class="contracts-file-upload__preview-card">
-      <input
-        type="radio"
-        name="entry-file"
-        @input="selectEntryFile(file.name)">
-
-      {{ file.webkitRelativePath || file.name }}
-      <button
-        class="contracts-file-upload__button"
-        @click="removeFile(index)">
-        <app-icon
-          name="cross"
-          size="18"/>
-      </button>
-    </div>
+    <!--    <div-->
+    <!--      v-for="(file, index) in selectedFiles"-->
+    <!--      :key="index"-->
+    <!--      class="contracts-file-upload__preview-card"/>-->
 
     <label
       for="file"
@@ -65,6 +79,7 @@ function selectEntryFile(fileName) {
 
 function addFilesToSelectedFiles() {
   selectedFiles.value.push(...fileInput.value.files)
+  emit('update-file', fileInput.value.files)
 }
 
 function addFilesToFileInput() {
@@ -80,8 +95,16 @@ function addFilesToFileInput() {
 // todo reuse selectedFiles.value
 // is fileInput.value.files necessary
 
-function removeFile(index) {
-  selectedFiles.value.splice(index, 1)
+function clear() {
+  selectedFiles.value = []
+}
+
+function drop(event) {
+  event.preventDefault()
+  getFilesDataTransferItems(event.dataTransfer.items).then(() =>
+    addFilesToFileInput(),
+  )
+  isDragging.value = false
 }
 
 function dragover(event) {
@@ -90,14 +113,6 @@ function dragover(event) {
 }
 
 function dragleave() {
-  isDragging.value = false
-}
-
-function drop(event) {
-  event.preventDefault()
-  getFilesDataTransferItems(event.dataTransfer.items).then(() =>
-    addFilesToFileInput(),
-  )
   isDragging.value = false
 }
 
@@ -127,6 +142,7 @@ function getSingleFile(fileEntry, files) {
     fileEntry.file(file => {
       files.push(file)
       selectedFiles.value.push(file)
+      // todo return instead of push
       resolve(file)
     })
   })

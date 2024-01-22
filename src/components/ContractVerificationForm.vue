@@ -1,9 +1,10 @@
 <template>
   <form @submit.prevent="validateForm">
-    files: {{ form.sourceFiles }}
+    <!--    todo html valid-->
     <div class="row">
       <div>
         <div class="form-field">
+          <!--          todo hint-->
           <label for="id">Smart contract ID *</label>
           <br>
           <input
@@ -13,6 +14,7 @@
             required
             type="text"
             name="id">
+          <!--          todo componentize-->
           <p
             v-if="errors.id"
             class="field-error">
@@ -34,7 +36,6 @@
 
         <div class="form-field">
           <label for="compiler">License Type *</label>
-
           <input
             id="license"
             v-model="form.license"
@@ -74,11 +75,6 @@
           @update-file="updateIt"
           @entry-file-selected="updateEntryFile"/>
         <div class="form-field form-field__container">
-          <!--          <app-button-->
-          <!--            to="/contract-verification/result"-->
-          <!--            type="submit">-->
-          <!--            Submit-->
-          <!--          </app-button>-->
           <app-button
             type="submit"
             @click="postIt()">
@@ -89,6 +85,11 @@
     </div>
   </form>
   form {{ form }}
+  <br>
+  files: {{ form.sourceFiles }}
+  <div v-for="file in form.sourceFiles">
+    {{ file.name }}
+  </div>
 </template>
 
 <script setup>

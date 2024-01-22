@@ -62,7 +62,7 @@ defineProps({
   }
 
   &__icon {
-    margin: 6px 0 0 var(--space-0);
+    margin: 3px 0 0 var(--space-0);
 
     &--active {
       transform: rotate(180deg);

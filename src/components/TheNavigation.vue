@@ -6,8 +6,8 @@
         :key="menu.name"
         class="navigation__item"
         @click="toggle(menu.name)"
-        @mouseover="aaa ? open(menu.name) : null"
-        @mouseleave="aaa ? close() : null">
+        @mouseover="isDesktopResolution ? open(menu.name) : null"
+        @mouseleave="isDesktopResolution ? closeAll() : null">
         <menu-item :menu="menu"/>
       </li>
     </ul>
@@ -99,31 +99,39 @@ function open(name) {
   menuOptions.value.find(item => item.name === name).isActive = true
 }
 
+const activeItemName = computed(() => {
+  const activeItem = menuOptions.value.find(item => item.isActive)
+  return activeItem ? activeItem.name : null
+})
+
 function toggle(name) {
-  close()
-  menuOptions.value.find(item => item.name === name).isActive =
-      !menuOptions.value.find(item => item.name === name).isActive
+  if (activeItemName.value !== name) {
+    closeAll()
+    open(name)
+  } else {
+    closeAll()
+  }
 }
 
-function close() {
-  console.log('close')
+function closeAll() {
   menuOptions.value.forEach(item => {
     item.isActive = false
   })
 }
 
 onMounted(() => {
-  window.addEventListener('resize', doit)
+  updateIsDesktopResolution()
+  window.addEventListener('resize', updateIsDesktopResolution)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', doit)
+  window.removeEventListener('resize', updateIsDesktopResolution)
 })
 
-const aaa = ref(null)
+const isDesktopResolution = ref(null)
 
-function doit() {
-  aaa.value = isDesktop()
+function updateIsDesktopResolution() {
+  isDesktopResolution.value = isDesktop()
 }
 </script>
 

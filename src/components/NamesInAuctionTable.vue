@@ -9,22 +9,15 @@
           </hint-tooltip>
         </th>
         <th>
-          End Height
+          Ends
           <hint-tooltip>
-            {{ namesHints.endHeight }}
-          </hint-tooltip>
-        </th>
-        <th>
-          End Time
-          <hint-tooltip>
-            {{ namesHints.end }}
+            {{ namesHints.ends }}
           </hint-tooltip>
         </th>
         <th>
           Highest Bid
           <hint-tooltip>
             {{ namesHints.highestBid }}
-          <!--            todo hints-->
           </hint-tooltip>
         </th>
         <th>
@@ -51,10 +44,9 @@
           </app-link>
         </td>
         <td>
-          <keyblock-link :height="name.expirationHeight"/>
-        </td>
-        <td>
-          <datetime-label :datetime="name.expiration"/>
+          <block-time-cell
+            :height="name.expirationHeight"
+            :datetime="name.expiration"/>
         </td>
         <td>
           <app-chip
@@ -79,9 +71,7 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 

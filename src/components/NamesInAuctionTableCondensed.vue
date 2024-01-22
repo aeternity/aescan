@@ -26,27 +26,16 @@
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
             <app-tooltip>
-              End Height
+              Ends
               <template #tooltip>
-                {{ namesHints.endHeight }}
+                {{ namesHints.ends }}
               </template>
             </app-tooltip>
           </th>
           <td class="names-in-auction-table-condensed__data">
-            <keyblock-link :height="name.expirationHeight"/>
-          </td>
-        </tr>
-        <tr class="names-in-auction-table-condensed__row">
-          <th class="names-in-auction-table-condensed__header">
-            <app-tooltip>
-              End Time
-              <template #tooltip>
-                {{ namesHints.end }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="names-in-auction-table-condensed__data">
-            <datetime-label :datetime="name.expiration"/>
+            <block-time-cell
+              :height="name.expirationHeight"
+              :datetime="name.expiration"/>
           </td>
         </tr>
         <tr class="names-in-auction-table-condensed__row">

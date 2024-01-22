@@ -21,6 +21,12 @@
           </hint-tooltip>
         </th>
         <th>
+          Last Price
+          <hint-tooltip>
+            {{ namesHints.lastPrice }}
+          </hint-tooltip>
+        </th>
+        <th>
           Last Owner
           <hint-tooltip>
             {{ namesHints.lastOwner }}
@@ -43,12 +49,12 @@
             :datetime="name.expiration"/>
         </td>
         <td>
-          <div>
-            <value-hash-ellipsed
-              v-if="name.lastBuyer"
-              :hash="name.lastBuyer"
-              :link-to="`/accounts/${name.lastBuyer}`"/>
-          </div>
+          <value-hash-ellipsed
+            v-if="name.lastBuyer"
+            :hash="name.lastBuyer"
+            :link-to="`/accounts/${name.lastBuyer}`"/>
+        </td>
+        <td>
           <app-chip
             variant="secondary"
             class="names-expired-table__price-label">

@@ -1,9 +1,9 @@
 <template>
   <form @submit.prevent="validate">
     <!--    todo html valid-->
-    <div class="row">
+    <div class="contract-verification-form__row">
       <div>
-        <div class="form-field">
+        <div class="contract-verification-form">
           <!--          todo hint-->
           <label for="id">Smart contract ID *</label>
           <br>
@@ -12,59 +12,61 @@
             v-model="form.id"
             placeholder="ct_..."
             required
-            type="text">
-          <!--          todo componentize-->
+            type="text"
+            class="contract-verification-form__text-input">
+          <!--     todo componentize-->
           <p
             v-if="errors.id"
-            class="form-field__error">
+            class="contract-verification-form__error">
             {{ errors.id }}
           </p>
         </div>
 
-        <div class="form-field">
+        <div class="contract-verification-form">
           <label for="license">Compiler Version *</label>
           <compiler-select
             id="compiler"
             v-model="form.compiler"/>
           <p
             v-if="errors.license"
-            class="form-field__error">
+            class="contract-verification-form__error">
             {{ errors.license }}
           </p>
         </div>
 
-        <div class="form-field">
+        <div class="contract-verification-form">
           <label for="compiler">License Type *</label>
           <input
             id="license"
             v-model="form.license"
             required
-            type="text">
+            type="text"
+            class="contract-verification-form__text-input">
           <p
             v-if="errors.compiler"
-            class="form-field__error">
+            class="contract-verification-form__error">
             {{ errors.compiler }}
           </p>
         </div>
       </div>
       <div>
         <contracts-file-upload
-          class="form-field"
+          class="contract-verification-form"
           @update-file="updateIt"
           @entry-file-selected="updateEntryFile"/>
         <p
           v-if="errors.sourceFiles"
-          class="form-field__error">
+          class="contract-verification-form__error">
           {{ errors.sourceFiles }}
         </p>
         <p
           v-if="errors.entryFile"
-          class="form-field__error">
+          class="contract-verification-form__error">
           {{ errors.entryFile }}
         </p>
       </div>
     </div>
-    <div class="form-field form-field__container">
+    <div class="contract-verification-form contract-verification-form__container">
       <div>
         <div>
           <input
@@ -82,13 +84,14 @@
         <div>
           <p
             v-if="errors.consent"
-            class="form-field__error">
+            class="contract-verification-form__error">
             {{ errors.consent }}
           </p>
         </div>
       </div>
+      <!--      todo add type submit-->
       <app-button
-        type="submit"
+        class="contract-verification-form__submit"
         @click="submit()">
         Submit
       </app-button>
@@ -173,25 +176,27 @@ function validate() {
   }
 }
 </script>
+
 <style scoped>
-.row {
-  display: flex;
-  flex-direction: column;
 
-  justify-content: space-around;
-  margin-bottom: var(--space-3);
-
-  @media (--desktop) {
-    flex-direction: row;
-  }
-}
-
-input[type="text"] {
-  width: 100%;
-}
-
-.form-field {
+.contract-verification-form {
   margin-bottom: var(--space-1);
+
+  &__text-input {
+    width: 100%;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+    margin-bottom: var(--space-3);
+
+    @media (--desktop) {
+      flex-direction: row;
+    }
+  }
 
   &__container {
     display: flex;
@@ -200,8 +205,11 @@ input[type="text"] {
   }
 
   &__error {
-    color: red;
+    color: var(--color-fire);
+  }
+
+  &__submit {
+    margin-left: var(--space-2);
   }
 }
-
 </style>

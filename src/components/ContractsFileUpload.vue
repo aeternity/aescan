@@ -9,7 +9,7 @@
         </hint-tooltip>
       </label>
       <app-button
-        v-if="selectedFiles.length > 0"
+        v-if="hasSelectedFiles"
         class="contracts-file-upload__button"
         variant="link"
         @click="clear">
@@ -35,7 +35,7 @@
         class="contracts-file-upload__input"
         accept=".aes"
         @change="addFilesToSelectedFiles">
-      <table v-if="selectedFiles.length > 0">
+      <table v-if="hasSelectedFiles">
         <tr>
           <th>File</th>
           <th>Select Entry File</th>
@@ -81,9 +81,11 @@ const label = computed(() => isDragging.value
   : 'Drop files here or click here to upload.',
 )
 
+const hasSelectedFiles = computed(() => selectedFiles.value && selectedFiles.value.length > 0)
+
 function selectEntryFile(fileName) {
   emit('update:entry-file', fileName)
-  // todo improve filename
+  // todo improve filename with path
 }
 
 function addFilesToSelectedFiles() {
@@ -182,6 +184,7 @@ function getDirectoryFiles(dirEntry, files) {
   padding: var(--space-6);
   background: var(--color-snow);
   border: 2px dashed var(--color-midnight-35);
+  border-radius: 8px;
 
   &--dragover {
     border: 2px solid var(--color-success);
@@ -216,16 +219,6 @@ function getDirectoryFiles(dirEntry, files) {
     cursor: pointer;
     background: none;
     padding: 0;
-  }
-
-  &__preview-card {
-    font-family: var(--font-monospaced);
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--color-gray);
-    background: var(--color-white);
-    margin: var(--space-0);
-    padding: var(--space-0);
   }
 }
 </style>

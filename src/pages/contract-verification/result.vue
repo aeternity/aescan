@@ -2,17 +2,25 @@
   <Head>
     <Title>Smart Contract Verification</Title>
   </Head>
-  <app-panel v-if="checkResult">
+
+  <page-header>
+    <!--    {{ pageHeader }}-->
+    <template #tooltip>
+      <!--            {{ contractsHints.contract }}-->
+      <!--      todo hint-->
+    </template>
+  </page-header>
+
+  <app-panel>
     <loader-indicator
-      v-if="checkResult.data.status === 'new'"
+      v-if="verificationStatus?.data.status === 'processing'"
+      label="Processing"/>
+
+    <loader-indicator
+      v-if="verificationStatus?.data.status === 'new'"
       label="Verifying"/>
-    {{ checkResult.data.status }}
-    <hr>
-    result {{ result }}
-    <hr>
-    checkResult {{ checkResult }}
-    <hr>
-    <div v-if="checkResult.data.status === 'success'">
+
+    <div v-if="verificationStatus?.data.status === 'success'">
       <h2>Smart Contract Verified</h2>
       <p>
         Success! Your smart contract has been verified. See
@@ -21,10 +29,12 @@
         </app-link>
       </p>
     </div>
-    <div v-if="checkResult.data.status === 'fail'">
+    <div v-if="verificationStatus?.data.status === 'fail' || result.statusText === 'Conflict'">
       <h2>Contract Verification Failed</h2>
       <p>
-        Reason: <span class="error">Missing dependency</span>
+        <span class="error">
+          {{ result.data.message || verificationStatus?.data.message }}
+        </span>
         <app-button to="/contract-verification">
           Retry verification
         </app-button>
@@ -41,25 +51,26 @@ import { useContractVerificationStore } from '~/stores/contractVerification'
 const timer = ref(null)
 
 const verificationStore = useContractVerificationStore()
-const { fetchVerificationCheck } = verificationStore
-const { result, id, checkResult } = storeToRefs(verificationStore)
+const { fetchVerificationStatus } = verificationStore
+const { result, id, verificationStatus } = storeToRefs(verificationStore)
 
-// fetchVerificationCheck(id.value, result.value.data.submissionId)
+// fetchVerificationStatus(id.value, result.value.data.submissionId)
 // todo move to store
-
+// todo navigate out
 onMounted(() => {
-  myAsyncFunction()
-  timer.value = setInterval(myAsyncFunction, 5000)
+  if (result.value.statusText !== 'Conflict') {
+    loadVerificationStatus()
+    timer.value = setInterval(loadVerificationStatus, 5000)
+  }
 })
 
-const myAsyncFunction = async() => {
-  await fetchVerificationCheck(id.value, result.value.data.submissionId)
+const loadVerificationStatus = async() => {
+  await fetchVerificationStatus(id.value, result.value.data.submissionId)
 }
 
-watch(checkResult, newVal => {
-  console.log('newVal.data.status', newVal.data.status)
-  if (newVal.data.status === 'fail' || newVal.data.status === 'success') {
-    console.log('clearit')
+watch(verificationStatus, newStatus => {
+  console.log('newVal.data.status', newStatus.data.status)
+  if (newStatus.data.status === 'fail' || newStatus.data.status === 'success') {
     clearInterval(timer.value)
     timer.value = null
   }

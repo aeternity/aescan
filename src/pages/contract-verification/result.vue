@@ -6,12 +6,12 @@
     <loader-indicator
       v-if="checkResult.data.status === 'new'"
       label="Verifying"/>
-    <!--    {{ checkResult.data.status }}-->
-    <!--    <hr>-->
-    <!--    result {{ result }}-->
-    <!--    <hr>-->
-    <!--    checkResult {{ checkResult }}-->
-    <!--    <hr>-->
+    {{ checkResult.data.status }}
+    <hr>
+    result {{ result }}
+    <hr>
+    checkResult {{ checkResult }}
+    <hr>
     <div v-if="checkResult.data.status === 'success'">
       <h2>Smart Contract Verified</h2>
       <p>

@@ -3,7 +3,7 @@
     <!--    todo html valid-->
     <div class="contract-verification-form__row">
       <div>
-        <div class="contract-verification-form">
+        <div class="contract-verification-form__field">
           <label for="id">
             Smart contract ID
             <hint-tooltip>
@@ -15,7 +15,6 @@
             id="id"
             v-model="form.id"
             placeholder="ct_..."
-            required
             type="text"
             class="contract-verification-form__text-input">
           <!--     todo componentize-->
@@ -26,7 +25,7 @@
           </p>
         </div>
 
-        <div class="contract-verification-form">
+        <div class="contract-verification-form__field">
           <label for="license">
             Compiler Version
             <hint-tooltip>
@@ -37,13 +36,13 @@
             id="compiler"
             v-model="form.compiler"/>
           <p
-            v-if="errors.license"
+            v-if="errors.compiler"
             class="contract-verification-form__error">
-            {{ errors.license }}
+            {{ errors.compiler }}
           </p>
         </div>
 
-        <div class="contract-verification-form">
+        <div class="contract-verification-form__field">
           <label for="compiler">
             License Type
             <hint-tooltip>
@@ -53,13 +52,12 @@
           <input
             id="license"
             v-model="form.license"
-            required
             type="text"
             class="contract-verification-form__text-input">
           <p
-            v-if="errors.compiler"
+            v-if="errors.license"
             class="contract-verification-form__error">
-            {{ errors.compiler }}
+            {{ errors.license }}
           </p>
         </div>
       </div>
@@ -67,7 +65,7 @@
         <contracts-file-upload
           v-model:file-list="form.sourceFiles"
           v-model:entry-file="form.entryFile"
-          class="contract-verification-form"/>
+          class="contract-verification-form__field"/>
         <p
           v-if="errors.sourceFiles"
           class="contract-verification-form__error">
@@ -80,13 +78,13 @@
         </p>
       </div>
     </div>
+    <!--    todo class?-->
     <div class="contract-verification-form contract-verification-form__container">
       <div>
         <div>
           <input
             id="consent"
             v-model="form.consent"
-            required
             type="checkbox">
           <label for="consent">
             I agree to the
@@ -111,6 +109,7 @@
       </app-button>
     </div>
   </form>
+
   form {{ form }}
   <div v-for="file in form.sourceFiles">
     {{ file.name }}
@@ -119,6 +118,7 @@
 
 <script setup>
 import { useContractVerificationStore } from '~/stores/contractVerification'
+// todo fix imports
 
 const verificationStore = useContractVerificationStore()
 const { verifyContract } = verificationStore
@@ -146,6 +146,8 @@ async function submit() {
       form.value.entryFile,
       form.value.sourceFiles,
     )
+    console.log('isValid', isValid)
+    console.log('push')
     push('/contract-verification/result')
   }
 }
@@ -180,9 +182,10 @@ function validate() {
 </script>
 
 <style scoped>
-
 .contract-verification-form {
-  margin-bottom: var(--space-1);
+  &__field {
+    margin-bottom: var(--space-1);
+  }
 
   &__text-input {
     width: 100%;
@@ -191,7 +194,6 @@ function validate() {
   &__row {
     display: flex;
     flex-direction: column;
-
     justify-content: space-around;
     margin-bottom: var(--space-3);
 

@@ -8,27 +8,39 @@ export const useContractVerificationStore = defineStore('useContractVerification
   const compilerOptions = ref(null)
   const id = ref(null)
 
+  // todo change url
+
   async function verifyContract(contractId, license, compiler, entryFile, sourceFiles) {
-    result.value = null
     id.value = null
+    result.value = null
+
     const form = new FormData()
     form.append('license', license)
     form.append('compiler', compiler)
     form.append('entryFile', entryFile)
-    form.append('sourceFiles', sourceFiles[0])
 
-    const data = await axios.post(`http://localhost:3000/contracts/${contractId}`, form)
+    for (let i = 0; i < sourceFiles.length; i++) {
+      form.append('sourceFiles', sourceFiles.item(i))
+    }
 
-    console.log('verifyContract data', data)
-    result.value = data
+    let data
+
+    try {
+      data = await axios.post(`http://localhost:3000/contracts/${contractId}`, form)
+      console.log('111 data', data)
+    } catch (e) {
+      console.log('111 e', e.response)
+      data = e.response
+    }
+
     id.value = contractId
-    // todo is result neccesary
-    return data
+    result.value = data
+    console.log('result.value', result.value)
   }
 
   async function fetchVerificationCheck(contractId, submissionId) {
-    // const data = await axios.get(`http://localhost:3000/contracts/${contractId}/check/${submissionId}`)
     let data
+    // todo without let
     try {
       data = await axios.get(`http://localhost:3000/contracts/${contractId}/check/${submissionId}`)
       console.log('111 data', data)
@@ -47,7 +59,6 @@ export const useContractVerificationStore = defineStore('useContractVerification
     const compilersObject = data.compilers.map((item, index) => {
       return { key: index, value: item }
     })
-    // todo move to adaptors
     compilerOptions.value = compilersObject
   }
 

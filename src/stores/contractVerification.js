@@ -12,7 +12,9 @@ export const useContractVerificationStore = defineStore('useContractVerification
 
   async function verifyContract(contractId, license, compiler, entryFile, sourceFiles) {
     id.value = null
-    result.value = null
+    result.value = null // todo verification result
+    verificationStatus.value = null
+    console.log('e? verifyContract')
 
     const form = new FormData()
     form.append('license', license)
@@ -39,6 +41,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
   }
 
   async function fetchVerificationStatus(contractId, submissionId) {
+    verificationStatus.value = null
     let data
     // todo without let
     try {

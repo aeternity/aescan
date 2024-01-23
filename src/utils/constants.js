@@ -93,3 +93,23 @@ export const REMOVE_LIQUIDITY_CONTRACT_CALLS = [
   'remove_liquidity',
   'remove_liquidity_ae',
 ]
+
+export const STATISTICS_DATA_BEGINNING = '2018-11-28'
+
+export const KNOWN_ADDRESSES = [
+  { hash: 'ak_jgiBUko9fTwg5HQ8nHFoPbjR22TBcg9LK85qsv1mTkcjdszFa', name: 'CoinEx' },
+  { hash: 'ak_6sssiKcg7AywyJkfSdHz52RbDUq5cZe4V4hcvghXnrPz4H4Qg', name: 'Gate.io' },
+  { hash: 'ak_3oCNr4upswn5sRVpqdpuiCwxqwRU1tok2xLjLLy9vjvYRdVNd', name: 'MEXC' },
+  { hash: 'ak_dMyzpooJ4oGnBVX35SCvHspJrq55HAAupCwPQTDZmRDT5SSSW', name: 'WeTrue.io' },
+  { hash: 'ak_vKdT14HCiLCxuT3M7vf3QREyUbQTr1u6Pz49ba9EhaD6uDqWs', name: 'Huobi' },
+  { hash: 'ak_dnzaNnchT7f3YT3CtrQ7GUjqGT6VaHzPxpf2efHWPuEAWKcht', name: 'Binance' },
+  { hash: 'ak_wftXwsMheVNA33YWiYLqFNnSSDnYsV9ynqRSnZT8P3kgZG9bn', name: 'Hotbit' },
+  { hash: 'ak_wM8yFU8eSETXU7VSN48HMDmevGoCMiuveQZgkPuRn1nTiRqyv', name: 'WoolyPooly' },
+  { hash: 'ak_dArxCkAsk1mZB1L9CX3cdz1GDN4hN84L3Q8dMLHN4v8cU85TF', name: '2miners' },
+  { hash: 'ak_9MsbDuBTtKegKpj5uSxfPwmJ4YiN6bBdtXici682DgPk8ycpM', name: '2miners.solo' },
+  { hash: 'ak_2KAcA2Pp1nrR8Wkt3FtCkReGzAi8vJ9Snxa4PcmrthVx8AhPe8', name: 'BRI' },
+  { hash: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa', name: 'Superhero DEX' },
+  { hash: 'ct_azbNZ1XrPjXfqBqbAh1ffLNTQ1sbnuUDFvJrXjYz7JQA1saQ3', name: 'Superhero DEX' },
+  { hash: 'ct_2mfj3FoZxnhkSw5RZMcP8BfPoB1QR4QiYGNCdkAvLZ1zfF6paW', name: 'Superhero DEX' },
+]
+export const REVOKED_PERIOD = 2016

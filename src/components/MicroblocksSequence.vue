@@ -89,7 +89,7 @@ watch(
     position: absolute;
     right: 0;
     top: 0;
-    background-image: linear-gradient(90deg, rgba(247, 247, 247, 0) 0, rgba(247, 247, 247, 1) 100%);
+    background-image: linear-gradient(90deg, rgb(247 247 247 / 0%) 0, rgb(247 247 247 / 100%) 100%);
 
     @media (--desktop) {
       width: 200px;

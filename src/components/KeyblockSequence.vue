@@ -39,6 +39,7 @@ defineProps({
 <style scoped>
 .keyblock-sequence {
   position: relative;
+
   @media (--desktop) {
     padding: var(--space-1) 0;
   }
@@ -109,7 +110,7 @@ defineProps({
     position: absolute;
     right: -8px;
     top: 0;
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 1) 100%);
+    background-image: linear-gradient(90deg, rgb(255 255 255 / 0%) 0, rgb(255 255 255 / 100%) 100%);
 
     @media (--desktop) {
       width: 200px;

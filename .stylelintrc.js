@@ -1,19 +1,12 @@
 module.exports = {
   "defaultSeverity": "warning",
   extends: [
+    "stylelint-config-standard",
     "stylelint-config-recommended",
     "stylelint-config-html/vue",
     "stylelint-config-recommended-vue",
   ],
   "rules": {
-    "block-opening-brace-space-before": "always",
-    "selector-list-comma-newline-after": "always",
-    "block-opening-brace-newline-after": "always",
-    "block-closing-brace-newline-before": "always",
-    "block-closing-brace-newline-after": "always",
-    "declaration-block-trailing-semicolon": "always",
-    "declaration-colon-newline-after": "always-multi-line",
-    "declaration-block-semicolon-newline-after": "always",
     "declaration-block-no-duplicate-properties": true,
     "selector-pseudo-element-colon-notation": "single",
     "comment-whitespace-inside": null,

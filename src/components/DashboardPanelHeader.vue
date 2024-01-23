@@ -68,6 +68,7 @@ defineProps({
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+
     @media (--desktop) {
       flex-direction: row;
       align-items: center;
@@ -96,6 +97,7 @@ defineProps({
     line-height: 20px;
     font-weight: 500;
     white-space: nowrap;
+
     @media (--desktop) {
       font-size: 16px;
       line-height: 24px;

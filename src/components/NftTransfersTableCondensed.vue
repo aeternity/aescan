@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-import { nftsHints } from '@/utils/hints/nftHints'
+import { nftsHints } from '@/utils/hints/nftsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

@@ -110,6 +110,7 @@ function logError(error) {
 </script>
 
 <style>
+/* stylelint-disable selector-id-pattern*/
 #__nuxt {
   height: 100%;
   display: flex;

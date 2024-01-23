@@ -35,6 +35,7 @@ import HintTooltip from '@/components/HintTooltip'
 
   &__search-bar {
     width: 100%;
+
     @media (--desktop) {
       width: 50%;
       margin-bottom: var(--space-0);

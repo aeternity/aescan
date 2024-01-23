@@ -89,15 +89,16 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__single {
     color: var(--color-midnight);
-    font-size: 12px;
+    font-size: 16px;
     line-height: 20px;
+
     @media (--desktop) {
       font-size: 14px;
     }
   }
 
   &__content-wrapper {
-    box-shadow: 2px 2px 14px 5px rgba(78, 78, 86, 0.2);
+    box-shadow: 2px 2px 14px 5px rgb(78 78 86 / 20%);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
@@ -116,6 +117,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     color: solid var(--color-midnight);
     font-size: 12px;
     line-height: 20px;
+
     @media (--desktop) {
       font-size: 14px;
     }
@@ -139,8 +141,9 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   }
 
   &__input {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 20px;
+
     @media (--desktop) {
       font-size: 14px;
     }
@@ -158,7 +161,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &--active {
     .multiselect__tags {
-      box-shadow: 2px 2px 14px 5px rgba(78, 78, 86, 0.2);
+      box-shadow: 2px 2px 14px 5px rgb(78 78 86 / 20%);
       border-radius: 8px;
     }
   }

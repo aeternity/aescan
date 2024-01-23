@@ -29,7 +29,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { nftsHints } from '@/utils/hints/nftHints'
+import { nftsHints } from '@/utils/hints/nftsHints'
 import PageHeader from '@/components/PageHeader'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import NftDetailsPanel from '@/components/NftsDetailsPanel'
@@ -95,6 +95,7 @@ try {
 <style scoped>
 .nft-details__panel {
   margin-bottom: var(--space-4);
+
   @media (--desktop) {
     margin-bottom: var(--space-6);
   }

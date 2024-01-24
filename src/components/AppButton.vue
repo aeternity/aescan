@@ -79,7 +79,7 @@ defineProps({
   }
 
   &--link {
-    color: var(--color-blue);
+    color: var(--color-fire);
     text-decoration: none;
     font-weight: 400;
 

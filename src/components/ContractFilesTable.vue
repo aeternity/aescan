@@ -6,20 +6,26 @@
     </tr>
     <tr
       v-for="(file, index) in files"
-      :key="index">
-      <td>
+      :key="index"
+      class="tr">
+      <!--      todo larger font-->
+      <td
+        :class="[
+          'contract-files-table__cell',
+          {'contract-files-table__cell--entry': index === entryFile.index}]"
+        @click="emitEntryFile(file.name, index)">
         {{ file.webkitRelativePath || file.name }}
-      </td>
-      <td>
-        <button v-if="index === entryFile.index">
+        <app-chip v-if="index === entryFile.index">
           entry file
-        </button>
-        <div
+        </app-chip>
+        <app-button
           v-if="index !== entryFile.index"
-          @click="emitEntryFile(file.name, index)">
+          variant="link"
+          class="contract-files-table__button">
           select as entry
-        </div>
+        </app-button>
       </td>
+      <td @click="emitEntryFile(file.name, index)"/>
     </tr>
   </table>
 </template>
@@ -37,11 +43,25 @@ defineProps({
   },
 })
 
-const emit = defineEmits([
-  'select-entry-file',
-])
+// todo rename to list
+
+const emit = defineEmits(['select-entry-file'])
 
 const emitEntryFile = (fileName, index) => {
   emit('select-entry-file', fileName, index)
 }
 </script>
+
+<style scoped>
+.contract-files-table__cell--entry {
+  font-weight: bold;
+}
+
+.contract-files-table__button {
+  visibility: hidden;
+}
+
+.contract-files-table__cell:hover .contract-files-table__button {
+  visibility: visible;
+}
+</style>

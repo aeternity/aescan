@@ -3,8 +3,6 @@ input[type='text'] {
   font-size: 12px;
   line-height: 20px;
   min-height: 40px;
-  padding: 8px;
-
 
   border-color: var(--color-midnight);
   border-width: 1px;

@@ -2,7 +2,6 @@
   <div>
     <header class="contracts-file-upload__header">
       <span>
-        <!--    todo id for label-->
         Contract Files
         <hint-tooltip>
           Field is required

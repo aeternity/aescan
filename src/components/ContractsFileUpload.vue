@@ -1,8 +1,6 @@
 <template>
   <div>
     <header class="contracts-file-upload__header">
-      <!--      todo hint entry file-->
-      <!--      todo fix width-->
       <span>
         Contract Files
         <hint-tooltip>
@@ -39,32 +37,11 @@
         class="contracts-file-upload__input"
         accept=".aes"
         @change="addFilesToList">
-      <!--      todo componentize table-->
-      <table v-if="hasSelectedFiles">
-        <tr>
-          <th>File</th>
-          <th>Select Entry File</th>
-        </tr>
-        <tr
-          v-for="(file, index) in selectedFiles"
-          :key="index">
-          <td>
-            {{ file.webkitRelativePath || file.name }}
-          </td>
-          <td>
-            <i v-if="index === entryFile.index">
-              <small>
-                entry file
-              </small>
-            </i>
-            <div
-              v-if="index !== entryFile.index"
-              @click="selectEntryFile(file.name, index)">
-              select as entry
-            </div>
-          </td>
-        </tr>
-      </table>
+      <contract-files-table
+        v-if="hasSelectedFiles"
+        :files="selectedFiles"
+        :entry-file="entryFile"
+        @select-entry-file="selectEntryFile"/>
 
       <label
         for="file"
@@ -87,6 +64,7 @@
 </template>
 
 <script setup>
+
 const fileInput = ref()
 const selectedFiles = ref([])
 const entryFile = ref({})
@@ -147,6 +125,7 @@ function clear() {
 }
 
 function selectEntryFile(entryFileName, entryFileIndex) {
+  console.log('selectEntryFile', entryFileName, entryFileIndex)
   entryFile.value = { index: entryFileIndex, name: entryFileName }
   emit('update:entry-file', entryFileName)
   // todo improve filename with path
@@ -209,7 +188,6 @@ function getDirectoryFiles(dirEntry, files) {
 .contracts-file-upload {
   width: 100%;
   padding: var(--space-6);
-
   border: 2px dashed var(--color-midnight-35);
   border-radius: 8px;
 

@@ -3,18 +3,18 @@ import useAxios from '@/composables/useAxios'
 
 export const useContractVerificationStore = defineStore('useContractVerificationStore', () => {
   const axios = useAxios()
-  const result = ref(null)
+  const verificationResult = ref(null)
   const verificationStatus = ref(null)
   const compilerOptions = ref(null)
   const id = ref(null)
+  const submissionId = ref(null)
 
   // todo change url
 
   async function verifyContract(contractId, license, compiler, entryFile, sourceFiles) {
     id.value = null
-    result.value = null // todo verification result
+    verificationResult.value = null
     verificationStatus.value = null
-    console.log('e? verifyContract')
 
     const form = new FormData()
     form.append('license', license)
@@ -30,19 +30,16 @@ export const useContractVerificationStore = defineStore('useContractVerification
     })
 
     id.value = contractId
-    result.value = data
-    console.log('verifyContract result', result.value)
+    verificationResult.value = data
+    submissionId.value = data.data.submissionId
   }
 
-  async function fetchVerificationStatus(contractId, submissionId) {
-    // verificationStatus.value = null
-
-    const data = await axios.get(`http://localhost:3000/contracts/${contractId}/check/${submissionId}`).catch(e => {
+  async function fetchVerificationStatus() {
+    const data = await axios.get(`http://localhost:3000/contracts/${id.value}/check/${submissionId.value}`).catch(e => {
       return e.response
     })
 
     verificationStatus.value = data
-    console.log(' fetchVerificationStatus verificationStatus', verificationStatus.value)
   }
 
   async function fetchCompilerOptions() {
@@ -56,7 +53,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
 
   return {
     fetchVerificationStatus,
-    result,
+    verificationResult,
     verificationStatus,
     verifyContract,
     fetchCompilerOptions,

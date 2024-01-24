@@ -17,15 +17,6 @@ import { useContractVerificationStore } from '~/stores/contractVerification'
 
 const verificationStore = useContractVerificationStore()
 const { compilerOptions } = storeToRefs(verificationStore)
-const { fetchCompilerOptions } = verificationStore
-
-// await fetchCompilerOptions()
-
-await useAsyncData(async() => {
-  await fetchCompilerOptions()
-  return true
-  // todo move another place
-})
 
 const props = defineProps({
   modelValue: {

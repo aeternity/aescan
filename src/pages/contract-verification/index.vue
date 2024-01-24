@@ -5,14 +5,6 @@
 
   <page-header>
     Smart Contract Verification
-    <template #tooltip>
-      {{ contractsHints.contract }}
-      <app-link
-        variant="primary"
-        to="https://docs.aeternity.com/protocol/contracts/">
-        Learn more
-      </app-link>
-    </template>
   </page-header>
   <app-panel>
     <p class="paragraph">
@@ -32,7 +24,15 @@
 </template>
 
 <script setup>
+import { useContractVerificationStore } from '~/stores/contractVerification'
 
+const verificationStore = useContractVerificationStore()
+const { fetchCompilerOptions } = verificationStore
+
+await useAsyncData(async() => {
+  await fetchCompilerOptions()
+  return true
+})
 </script>
 
 <style>

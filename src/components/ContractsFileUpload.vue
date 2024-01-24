@@ -9,17 +9,6 @@
           Selecting entry file is required. Entry file is the main file of Smart Contract including child files.
         </hint-tooltip>
       </span>
-      <app-button
-        v-if="hasSelectedFiles"
-        class="contracts-file-upload__button"
-        variant="link"
-        @click="clear">
-        <app-icon
-          name="cross"
-          size="18"/>
-        clear files
-        <!--        todo styles-->
-      </app-button>
     </header>
     <div
       :class="[
@@ -43,11 +32,21 @@
         :entry-file="entryFile"
         @select-entry-file="selectEntryFile"/>
 
-      <label
-        for="file"
-        class="contracts-file-upload__label">
+      <span class="contracts-file-upload__label">
         {{ label }}
-      </label>
+
+        <app-button
+          v-if="hasSelectedFiles"
+          class="contracts-file-upload__button"
+          variant="link"
+          @click="clear">
+          <app-icon
+            class="contracts-file-upload__icon"
+            name="cross"
+            size="18"/>
+          clear files
+        </app-button>
+      </span>
     </div>
   </div>
   <!--  <h4>selectedFiles {{ selectedFiles }}</h4>-->
@@ -64,7 +63,6 @@
 </template>
 
 <script setup>
-
 const fileInput = ref()
 const selectedFiles = ref([])
 const entryFile = ref({})
@@ -91,15 +89,20 @@ function addIt() {
 }
 
 function addFilesToList(fileList) {
-  const size = fileList.length
+  const isFirstAddition = !selectedFiles.value.length
   // todo filelist as ref
   selectedFiles.value = fileList
-
   emit('update:file-list', fileList)
-
-  if (!size) {
+  if (isFirstAddition) {
     selectEntryFile(fileList[0].name, 0)
   }
+}
+
+function selectEntryFile(entryFileName, entryFileIndex) {
+  entryFile.value = { index: entryFileIndex, name: entryFileName }
+  emit('update:entry-file', entryFileName)
+  // todo improve filename with path
+  // todo emit to model
 }
 
 function drop(event) {
@@ -112,6 +115,10 @@ function drop(event) {
   isDragging.value = false
 }
 
+function clear() {
+  selectedFiles.value = []
+}
+
 function dragover(event) {
   event.preventDefault()
   isDragging.value = true
@@ -119,17 +126,6 @@ function dragover(event) {
 
 function dragleave() {
   isDragging.value = false
-}
-
-function clear() {
-  selectedFiles.value = []
-}
-
-function selectEntryFile(entryFileName, entryFileIndex) {
-  entryFile.value = { index: entryFileIndex, name: entryFileName }
-  emit('update:entry-file', entryFileName)
-  // todo improve filename with path
-  // todo emit to model
 }
 
 function getFileEntry(entry, files) {
@@ -169,15 +165,14 @@ function getDirectoryFiles(dirEntry, files) {
 }
 
 async function getFilesDataTransferItems(dataTransferItems) {
-  const files = []
   const entriesPromises = []
+  const files = []
 
   for (const item of dataTransferItems) {
     entriesPromises.push(getFileEntry(item.webkitGetAsEntry(), files))
   }
 
   await Promise.all(entriesPromises)
-
   return files
 }
 </script>
@@ -211,8 +206,8 @@ async function getFilesDataTransferItems(dataTransferItems) {
   }
 
   &__label {
+    display: flex;
     font-size: 16px;
-    display: block;
     cursor: pointer;
   }
 
@@ -226,6 +221,10 @@ async function getFilesDataTransferItems(dataTransferItems) {
     cursor: pointer;
     background: none;
     padding: 0;
+  }
+
+  &__icon {
+    color: var(--color-fire)
   }
 }
 </style>

@@ -11,11 +11,9 @@
         {{ file.webkitRelativePath || file.name }}
       </td>
       <td>
-        <i v-if="index === entryFile.index">
-          <small>
-            entry file
-          </small>
-        </i>
+        <button v-if="index === entryFile.index">
+          entry file
+        </button>
         <div
           v-if="index !== entryFile.index"
           @click="emitEntryFile(file.name, index)">

@@ -36,7 +36,7 @@
         name="file"
         class="contracts-file-upload__input"
         accept=".aes"
-        @change="addFilesToList">
+        @change="addIt">
       <contract-files-table
         v-if="hasSelectedFiles"
         :files="selectedFiles"
@@ -78,34 +78,36 @@ const emit = defineEmits([
 const label = computed(() => isDragging.value
   ? 'Release to drop files here.'
   : 'Drop files here or click here to upload.',
+  // todo add more files or clear
 )
 
 const hasSelectedFiles = computed(() => {
   return selectedFiles.value.length > 0
 })
 
-function addFilesToList(files) {
-  // todo conditional by style of input?
+function addIt() {
+  addFilesToList(fileInput.value.files)
+  // todo make sure its adding
+}
 
-  selectedFiles.value.push(...fileInput.value.files)
-
-  const fileList = new DataTransfer()
-  const size = fileList.files.length
-  files.forEach(file => fileList.items.add(file))
+function addFilesToList(fileList) {
+  const size = fileList.length
   // todo filelist as ref
-  selectedFiles.value = fileList.files
+  selectedFiles.value = fileList
 
-  emit('update:file-list', fileList.files)
+  emit('update:file-list', fileList)
 
   if (!size) {
-    selectEntryFile(fileList.files[0].name, 0)
+    selectEntryFile(fileList[0].name, 0)
   }
 }
 
 function drop(event) {
   event.preventDefault()
   getFilesDataTransferItems(event.dataTransfer.items).then(fileEntries => {
-    return addFilesToList(fileEntries)
+    const fileList = new DataTransfer()
+    fileEntries.forEach(file => fileList.items.add(file))
+    addFilesToList(fileList.files)
   })
   isDragging.value = false
 }

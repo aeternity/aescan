@@ -1,6 +1,8 @@
 <template>
   <div>
     <header class="contracts-file-upload__header">
+      <!--      todo hint entry file-->
+      <!--      todo fix width-->
       <span>
         Contract Files
         <hint-tooltip>
@@ -16,6 +18,7 @@
           name="cross"
           size="18"/>
         clear files
+        <!--        todo styles-->
       </app-button>
     </header>
     <div
@@ -61,14 +64,23 @@
       </label>
     </div>
   </div>
+  <!--  <h4>selectedFiles {{ selectedFiles }}</h4>-->
+  <!--  <div v-for="file in selectedFiles">-->
+  <!--    {{ file.name }}-->
+  <!--  </div>-->
+  <!--  <br>-->
+  <!--  <div v-if="fileInput">-->
+  <!--    <h4> fileInput {{ fileInput.files }}</h4>-->
+  <!--    <div v-for="file in fileInput.files">-->
+  <!--      {{ file.name }}-->
+  <!--    </div>-->
+  <!--  </div>-->
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
 const fileInput = ref()
-const isDragging = ref(false)
 const selectedFiles = ref([])
+const isDragging = ref(false)
 
 const emit = defineEmits([
   'update:file-list',
@@ -82,37 +94,22 @@ const label = computed(() => isDragging.value
 
 const hasSelectedFiles = computed(() => selectedFiles.value && selectedFiles.value.length > 0)
 
-function selectEntryFile(fileName) {
-  emit('update:entry-file', fileName)
-  // todo improve filename with path
-}
-
 function addFilesToSelectedFiles() {
+  // todo conditional by style of input?
   selectedFiles.value.push(...fileInput.value.files)
-  emit('update:file-list', fileInput.value.files)
-}
 
-function addFilesToFileInput() {
   const fileList = new DataTransfer()
   selectedFiles.value.forEach(file => {
     return fileList.items.add(file)
   })
 
-  fileInput.value.files = fileList.files
-  emit('update:file-list', fileInput.value.files)
-}
-
-// todo reuse selectedFiles.value
-// is fileInput.value.files necessary
-
-function clear() {
-  selectedFiles.value = []
+  emit('update:file-list', fileList.files)
 }
 
 function drop(event) {
   event.preventDefault()
   getFilesDataTransferItems(event.dataTransfer.items).then(() =>
-    addFilesToFileInput(),
+    addFilesToSelectedFiles(),
   )
   isDragging.value = false
 }
@@ -124,6 +121,15 @@ function dragover(event) {
 
 function dragleave() {
   isDragging.value = false
+}
+
+function clear() {
+  selectedFiles.value = []
+}
+
+function selectEntryFile(fileName) {
+  emit('update:entry-file', fileName)
+  // todo improve filename with path
 }
 
 async function getFilesDataTransferItems(dataTransferItems) {
@@ -181,7 +187,7 @@ function getDirectoryFiles(dirEntry, files) {
 <style scoped>
 .contracts-file-upload {
   padding: var(--space-6);
-  background: var(--color-snow);
+
   border: 2px dashed var(--color-midnight-35);
   border-radius: 8px;
 

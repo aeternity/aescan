@@ -35,7 +35,6 @@
             id="compiler"
             v-model="form.compiler"
             class="contract-verification-form__compiler-select"/>
-          <!--          todo input inside-->
           <p
             v-if="errors.compiler"
             class="contract-verification-form__error">
@@ -104,6 +103,7 @@
         </div>
       </div>
       <!--      todo add type submit-->
+      <!--      unite placeholder-->
       <app-button
         class="contract-verification-form__submit"
         @click="submit()">

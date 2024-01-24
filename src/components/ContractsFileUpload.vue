@@ -1,13 +1,13 @@
 <template>
   <div>
     <header class="contracts-file-upload__header">
-      <label>
+      <span>
         <!--    todo id for label-->
         Contract Files
         <hint-tooltip>
           Field is required
         </hint-tooltip>
-      </label>
+      </span>
       <app-button
         v-if="hasSelectedFiles"
         class="contracts-file-upload__button"

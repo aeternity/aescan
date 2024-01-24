@@ -4,10 +4,6 @@
   </Head>
   <page-header>
     {{ title }}
-    <template #tooltip>
-      <!--            {{ contractsHints.contract }}-->
-      <!--      todo hint-->
-    </template>
   </page-header>
 
   <app-panel>
@@ -21,11 +17,14 @@
 
     <div v-if="status === 'success'">
       <p class="contract-verification-result__paragraph">
-        Success! Your smart contract has been verified. See
-        <app-link :to="`/contracts/${id}`">
-          Smart Contract detail
-        </app-link>
+        Success! Your Smart Contract has been successfully verified.
       </p>
+      <app-link
+        :to="`/contracts/${id}`"
+        class="contract-verification-result__link">
+        Smart Contract detail
+        <verified-icon/>
+      </app-link>
 
       <app-button to="/contract-verification">
         Verify another Smart Contract
@@ -51,11 +50,10 @@ const timer = ref(null)
 
 const verificationStore = useContractVerificationStore()
 const { fetchVerificationStatus } = verificationStore
-const { result, id, verificationStatus } = storeToRefs(verificationStore)
+const { verificationResult, id, verificationStatus } = storeToRefs(verificationStore)
 
-// todo move to store
 onMounted(() => {
-  if (result.value.statusText !== 'Conflict') {
+  if (verificationResult.value.statusText !== 'Conflict') {
     loadVerificationStatus()
     timer.value = setInterval(loadVerificationStatus, 5000)
   }
@@ -66,16 +64,23 @@ onBeforeUnmount(() => {
 })
 
 const status = computed(() => {
-  return verificationStatus.value?.data.status || result.value.statusText
+  return verificationStatus.value?.data.status || verificationResult.value.statusText
 })
 
 const message = computed(() => {
-  return verificationStatus.value?.data.message || result.value.data.message
+  return verificationStatus.value?.data.message || verificationResult.value.data.message
 })
 
 const loadVerificationStatus = async() => {
-  await fetchVerificationStatus(id.value, result.value.data.submissionId)
+  await fetchVerificationStatus()
 }
+
+watch(verificationStatus, newStatus => {
+  if (newStatus.data.status === 'fail' || newStatus.data.status === 'success') {
+    clearInterval(timer.value)
+    timer.value = null
+  }
+})
 
 const title = computed(() => {
   if (status.value === 'success') {
@@ -87,17 +92,17 @@ const title = computed(() => {
   return 'Smart Contract Verification Result'
 })
 
-watch(verificationStatus, newStatus => {
-  if (newStatus.data.status === 'fail' || newStatus.data.status === 'success') {
-    clearInterval(timer.value)
-    timer.value = null
-  }
-})
 </script>
 
 <style scoped>
 .contract-verification-result {
   &__paragraph {
+    display: block;
+    margin-bottom: var(--space-3);
+  }
+
+  &__link {
+    display: flex;
     margin-bottom: var(--space-3);
   }
 }

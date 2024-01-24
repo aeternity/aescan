@@ -17,7 +17,6 @@
             placeholder="ct_..."
             type="text"
             class="contract-verification-form__text-input">
-          <!--     todo componentize-->
           <p
             v-if="errors.id"
             class="contract-verification-form__error">
@@ -35,6 +34,8 @@
           <compiler-select
             id="compiler"
             v-model="form.compiler"/>
+          <!--          todo width-->
+          <!--          todo input inside-->
           <p
             v-if="errors.compiler"
             class="contract-verification-form__error">
@@ -146,8 +147,6 @@ async function submit() {
       form.value.entryFile,
       form.value.sourceFiles,
     )
-    console.log('isValid', isValid)
-    console.log('push')
     push('/contract-verification/result')
   }
 }

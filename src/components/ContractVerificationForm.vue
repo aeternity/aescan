@@ -5,18 +5,18 @@
       <div>
         <div class="contract-verification-form__field">
           <label for="id">
-            Smart contract ID
+            Smart Contract ID
             <hint-tooltip>
               Field is required
             </hint-tooltip>
           </label>
           <br>
-          <input
+          <text-input
             id="id"
             v-model="form.id"
             placeholder="ct_..."
             type="text"
-            class="contract-verification-form__text-input">
+            class="contract-verification-form__text-input"/>
           <p
             v-if="errors.id"
             class="contract-verification-form__error">
@@ -50,11 +50,11 @@
               Field is required
             </hint-tooltip>
           </label>
-          <input
+          <text-input
             id="license"
             v-model="form.license"
             type="text"
-            class="contract-verification-form__text-input">
+            class="contract-verification-form__text-input"/>
           <p
             v-if="errors.license"
             class="contract-verification-form__error">

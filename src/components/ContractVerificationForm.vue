@@ -33,8 +33,8 @@
           </label>
           <compiler-select
             id="compiler"
-            v-model="form.compiler"/>
-          <!--          todo width-->
+            v-model="form.compiler"
+            class="contract-verification-form__compiler-select"/>
           <!--          todo input inside-->
           <p
             v-if="errors.compiler"
@@ -81,6 +81,7 @@
     </div>
     <!--    todo class?-->
     <div class="contract-verification-form contract-verification-form__container">
+      <!--     todo wraps-->
       <div>
         <div>
           <input
@@ -213,6 +214,10 @@ function validate() {
 
   &__submit {
     margin-left: var(--space-2);
+  }
+
+  &__compiler-select {
+    width: 100%;
   }
 }
 </style>

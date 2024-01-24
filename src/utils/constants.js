@@ -36,10 +36,6 @@ export const TOKEN_TYPES_OPTIONS = [
   { label: 'All Tokens', key: 'allTokens' },
 ]
 
-export const LICENSE_TYPE_OPTIONS = [
-  { label: 'License A', key: 'a' },
-  { label: 'License B', key: 'b' },
-]
 export const MAX_AE_DISTRIBUTION = 536306702.49932
 export const SPECIAL_POINTERS_PRESET_KEYS = ['accountPubkey', 'oraclePubkey', 'contractPubkey', 'channel']
 export const DATETIME_UNITS = [

@@ -43,7 +43,6 @@ const emit = defineEmits([
   'select-entry-file',
 ])
 
-// Methods
 const emitEntryFile = (fileName, index) => {
   emit('select-entry-file', fileName, index)
 }

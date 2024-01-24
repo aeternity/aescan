@@ -84,18 +84,17 @@ const hasSelectedFiles = computed(() => {
   return selectedFiles.value.length > 0
 })
 
-function addFilesToList() {
+function addFilesToList(files) {
   // todo conditional by style of input?
-  // todo filelist as ref
 
   selectedFiles.value.push(...fileInput.value.files)
 
   const fileList = new DataTransfer()
   const size = fileList.files.length
+  files.forEach(file => fileList.items.add(file))
+  // todo filelist as ref
+  selectedFiles.value = fileList.files
 
-  selectedFiles.value.forEach(file => {
-    return fileList.items.add(file)
-  })
   emit('update:file-list', fileList.files)
 
   if (!size) {
@@ -105,9 +104,9 @@ function addFilesToList() {
 
 function drop(event) {
   event.preventDefault()
-  getFilesDataTransferItems(event.dataTransfer.items).then(() =>
-    addFilesToList(),
-  )
+  getFilesDataTransferItems(event.dataTransfer.items).then(fileEntries => {
+    return addFilesToList(fileEntries)
+  })
   isDragging.value = false
 }
 
@@ -125,24 +124,10 @@ function clear() {
 }
 
 function selectEntryFile(entryFileName, entryFileIndex) {
-  console.log('selectEntryFile', entryFileName, entryFileIndex)
   entryFile.value = { index: entryFileIndex, name: entryFileName }
   emit('update:entry-file', entryFileName)
   // todo improve filename with path
   // todo emit to model
-}
-
-async function getFilesDataTransferItems(dataTransferItems) {
-  const files = []
-  const entriesPromises = []
-
-  for (const item of dataTransferItems) {
-    entriesPromises.push(getFileEntry(item.webkitGetAsEntry(), files))
-  }
-
-  await Promise.all(entriesPromises)
-
-  return files
 }
 
 function getFileEntry(entry, files) {
@@ -157,8 +142,6 @@ function getSingleFile(fileEntry, files) {
   return new Promise(resolve => {
     fileEntry.file(file => {
       files.push(file)
-      selectedFiles.value.push(file)
-      // todo return instead of push
       resolve(file)
     })
   })
@@ -181,6 +164,19 @@ function getDirectoryFiles(dirEntry, files) {
       Promise.all(entriesPromises).then(resolve)
     })
   })
+}
+
+async function getFilesDataTransferItems(dataTransferItems) {
+  const files = []
+  const entriesPromises = []
+
+  for (const item of dataTransferItems) {
+    entriesPromises.push(getFileEntry(item.webkitGetAsEntry(), files))
+  }
+
+  await Promise.all(entriesPromises)
+
+  return files
 }
 </script>
 

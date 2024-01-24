@@ -6,7 +6,9 @@
       <span>
         Contract Files
         <hint-tooltip>
-          Field is required
+          Uploading file is required.
+          <br>
+          Selecting entry file is required. Entry file is the main file of Smart Contract including child files.
         </hint-tooltip>
       </span>
       <app-button
@@ -36,7 +38,8 @@
         name="file"
         class="contracts-file-upload__input"
         accept=".aes"
-        @change="addFilesToSelectedFiles">
+        @change="addFilesToList">
+      <!--      todo componentize table-->
       <table v-if="hasSelectedFiles">
         <tr>
           <th>File</th>
@@ -49,10 +52,16 @@
             {{ file.webkitRelativePath || file.name }}
           </td>
           <td>
-            <input
-              type="radio"
-              name="entry-file"
-              @input="selectEntryFile(file.name)">
+            <i v-if="index === entryFile.index">
+              <small>
+                entry file
+              </small>
+            </i>
+            <div
+              v-if="index !== entryFile.index"
+              @click="selectEntryFile(file.name, index)">
+              select as entry
+            </div>
           </td>
         </tr>
       </table>
@@ -80,6 +89,7 @@
 <script setup>
 const fileInput = ref()
 const selectedFiles = ref([])
+const entryFile = ref({})
 const isDragging = ref(false)
 
 const emit = defineEmits([
@@ -92,24 +102,33 @@ const label = computed(() => isDragging.value
   : 'Drop files here or click here to upload.',
 )
 
-const hasSelectedFiles = computed(() => selectedFiles.value && selectedFiles.value.length > 0)
+const hasSelectedFiles = computed(() => {
+  return selectedFiles.value.length > 0
+})
 
-function addFilesToSelectedFiles() {
+function addFilesToList() {
   // todo conditional by style of input?
+  // todo filelist as ref
+
   selectedFiles.value.push(...fileInput.value.files)
 
   const fileList = new DataTransfer()
+  const size = fileList.files.length
+
   selectedFiles.value.forEach(file => {
     return fileList.items.add(file)
   })
-
   emit('update:file-list', fileList.files)
+
+  if (!size) {
+    selectEntryFile(fileList.files[0].name, 0)
+  }
 }
 
 function drop(event) {
   event.preventDefault()
   getFilesDataTransferItems(event.dataTransfer.items).then(() =>
-    addFilesToSelectedFiles(),
+    addFilesToList(),
   )
   isDragging.value = false
 }
@@ -127,9 +146,11 @@ function clear() {
   selectedFiles.value = []
 }
 
-function selectEntryFile(fileName) {
-  emit('update:entry-file', fileName)
+function selectEntryFile(entryFileName, entryFileIndex) {
+  entryFile.value = { index: entryFileIndex, name: entryFileName }
+  emit('update:entry-file', entryFileName)
   // todo improve filename with path
+  // todo emit to model
 }
 
 async function getFilesDataTransferItems(dataTransferItems) {
@@ -186,10 +207,15 @@ function getDirectoryFiles(dirEntry, files) {
 
 <style scoped>
 .contracts-file-upload {
+  width: 100%;
   padding: var(--space-6);
 
   border: 2px dashed var(--color-midnight-35);
   border-radius: 8px;
+
+  @media (--desktop) {
+    width: 363px;
+  }
 
   &--dragover {
     border: 2px solid var(--color-success);

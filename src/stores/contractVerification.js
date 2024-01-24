@@ -25,15 +25,9 @@ export const useContractVerificationStore = defineStore('useContractVerification
       form.append('sourceFiles', sourceFiles.item(i))
     }
 
-    let data
-
-    try {
-      data = await axios.post(`http://localhost:3000/contracts/${contractId}`, form)
-      console.log('verifyContract data', data)
-    } catch (e) {
-      console.log('verifyContract e', e.response)
-      data = e.response
-    }
+    const data = await axios.post(`http://localhost:3000/contracts/${contractId}`, form).catch(e => {
+      return e.response
+    })
 
     id.value = contractId
     result.value = data
@@ -41,16 +35,11 @@ export const useContractVerificationStore = defineStore('useContractVerification
   }
 
   async function fetchVerificationStatus(contractId, submissionId) {
-    verificationStatus.value = null
-    let data
-    // todo without let
-    try {
-      data = await axios.get(`http://localhost:3000/contracts/${contractId}/check/${submissionId}`)
-      console.log('fetchVerificationStatus data', data)
-    } catch (e) {
-      console.log('fetchVerificationStatus e', e.response)
-      data = e.response
-    }
+    // verificationStatus.value = null
+
+    const data = await axios.get(`http://localhost:3000/contracts/${contractId}/check/${submissionId}`).catch(e => {
+      return e.response
+    })
 
     verificationStatus.value = data
     console.log(' fetchVerificationStatus verificationStatus', verificationStatus.value)

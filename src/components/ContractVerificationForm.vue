@@ -25,7 +25,7 @@
         </div>
 
         <div class="contract-verification-form__field">
-          <label for="license">
+          <label for="compiler">
             Compiler Version
             <hint-tooltip>
               Field is required
@@ -49,11 +49,7 @@
               Field is required
             </hint-tooltip>
           </label>
-          <text-input
-            id="license"
-            v-model="form.license"
-            type="text"
-            class="contract-verification-form__text-input"/>
+          <license-select v-model="form.license"/>
           <p
             v-if="errors.license"
             class="contract-verification-form__error">
@@ -120,6 +116,7 @@
 
 <script setup>
 import { useContractVerificationStore } from '~/stores/contractVerification'
+import LicenseSelect from '~/components/LicenseSelect'
 // todo fix imports
 
 const verificationStore = useContractVerificationStore()
@@ -143,7 +140,7 @@ async function submit() {
   if (isValid) {
     await verifyContract(
       form.value.id.trim(),
-      form.value.license.trim(),
+      form.value.license.value,
       form.value.compiler.value,
       form.value.entryFile,
       form.value.sourceFiles,

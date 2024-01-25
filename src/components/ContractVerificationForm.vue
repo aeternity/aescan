@@ -10,8 +10,7 @@
               Field is required
             </hint-tooltip>
           </label>
-          <br>
-          <!--          todo unwrap-->
+          <!--      todo unite placeholder and tex input and select-->
           <text-input
             id="id"
             v-model="form.id"
@@ -60,7 +59,7 @@
       </div>
       <div>
         <contracts-file-upload
-          v-model:file-list="form.sourceFiles"
+          v-model:selected-files="form.sourceFiles"
           v-model:entry-file="form.entryFile"
           class="contract-verification-form__field"/>
         <p
@@ -75,9 +74,7 @@
         </p>
       </div>
     </div>
-    <!--    todo class?-->
-    <div class="contract-verification-form contract-verification-form__container">
-      <!--     todo wraps-->
+    <div class="contract-verification-form__controls">
       <div>
         <div>
           <input
@@ -91,16 +88,14 @@
             </app-link>
           </label>
         </div>
-        <div>
-          <p
-            v-if="errors.consent"
-            class="contract-verification-form__error">
-            {{ errors.consent }}
-          </p>
-        </div>
+        <p
+          v-if="errors.consent"
+          class="contract-verification-form__error">
+          {{ errors.consent }}
+        </p>
       </div>
       <!--      todo add type submit-->
-      <!--      todo unite placeholder-->
+
       <app-button
         class="contract-verification-form__submit"
         @click="submit()">
@@ -200,10 +195,13 @@ function validate() {
     }
   }
 
-  &__container {
+  &__controls {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    @media (--desktop) {
+      justify-content: flex-end;
+    }
   }
 
   &__error {

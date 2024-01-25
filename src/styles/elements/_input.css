@@ -1,14 +1,20 @@
 input[type='text'] {
   border-radius: 8px;
-  font-size: 12px;
   line-height: 20px;
   min-height: 40px;
-
   border-color: var(--color-midnight);
   border-width: 1px;
 
+  font-size: 16px;
+  font-family: var(--font-monospaced);
+
   @media (--desktop) {
     font-size: 14px;
+  }
+
+  &::placeholder {
+    color: var(--color-midnight-35);
+    opacity: 1;
   }
 }
 

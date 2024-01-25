@@ -12,8 +12,8 @@
     </header>
     <div
       :class="[
-        'contracts-file-upload',
-        {'contracts-file-upload--dragover' :isDragging }]"
+        'contracts-file-upload__drop-area',
+        {'contracts-file-upload__drop-area--dragover' :isDragging }]"
       @dragover="dragover"
       @dragleave="dragleave"
       @drop="drop">
@@ -79,6 +79,7 @@ const label = computed(() => isDragging.value
   ? 'Release to drop files here.'
   : 'Drop files here or click here to upload.',
 )
+// todo make it look like a link
 
 const hasSelectedFiles = computed(() => {
   return selectedFiles.value.length > 0
@@ -178,17 +179,19 @@ async function getDataTransferItems(dataTransferItems) {
 
 <style scoped>
 .contracts-file-upload {
-  width: 100%;
-  padding: var(--space-6);
-  border: 2px dashed var(--color-midnight-35);
-  border-radius: 8px;
+  &__drop-area {
+    width: 100%;
+    padding: var(--space-5);
+    border: 2px dashed var(--color-midnight-35);
+    border-radius: 8px;
 
-  @media (--desktop) {
-    width: 563px;
-  }
+    @media (--desktop) {
+      width: 600px;
+    }
 
-  &--dragover {
-    border: 2px solid var(--color-success);
+    &--dragover {
+      border: 2px solid var(--color-success);
+    }
   }
 
   &__header {

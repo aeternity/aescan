@@ -34,7 +34,7 @@
           <compiler-select
             id="compiler"
             v-model="form.compiler"
-            class="contract-verification-form__compiler-select"/>
+            class="contract-verification-form__select"/>
           <p
             v-if="errors.compiler"
             class="contract-verification-form__error">
@@ -44,12 +44,14 @@
 
         <div class="contract-verification-form__field">
           <label for="compiler">
-            License Type
+            License
             <hint-tooltip>
               Field is required
             </hint-tooltip>
           </label>
-          <license-select v-model="form.license"/>
+          <license-select
+            v-model="form.license"
+            class="contract-verification-form__select"/>
           <p
             v-if="errors.license"
             class="contract-verification-form__error">

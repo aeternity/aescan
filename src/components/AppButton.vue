@@ -43,12 +43,8 @@ defineProps({
   },
   variant: {
     type: String,
-    default: '_blank',
-  },
-  direction: {
-    type: String,
     default: null,
-    validator: val => ['link'].includes(val),
+    validator: val => ['link', 'link-error'].includes(val),
   },
 })
 </script>
@@ -79,6 +75,19 @@ defineProps({
   }
 
   &--link {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-weight: 400;
+
+    background: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &--link-error {
     color: var(--color-fire);
     text-decoration: none;
     font-weight: 400;

@@ -1,23 +1,23 @@
 <template>
-  <ul class="file-list">
+  <ul class="contract-file-list">
     <li
       v-for="(file, index) in files"
       :key="index"
-      class="file-list__item">
+      class="contract-file-list__item">
       <span
-        :class="[
-          'file-list__item__name',
-          {'file-list__item__name--entry': index === entryFile.index}]"
-        @click="emitEntryFile(file.name, index)">
+        class="contract-file-list__label"
+        @click="selectEntryFile(file.name, index)">
         {{ file.webkitRelativePath || file.name }}
-        <app-chip v-if="index === entryFile.index">
+        <app-chip
+          v-if="index === entryFile.index"
+          size="sm">
           entry file
         </app-chip>
         <app-button
-          v-if="index !== entryFile.index"
+          v-else
           variant="link"
-          class="file-list__item__button">
-          select as entry
+          class="contract-file-list__button">
+          select as entry file
         </app-button>
       </span>
     </li>
@@ -39,23 +39,34 @@ defineProps({
 
 const emit = defineEmits(['select-entry-file'])
 
-const emitEntryFile = (fileName, index) => {
+function selectEntryFile(fileName, index) {
   emit('select-entry-file', fileName, index)
 }
 </script>
 
 <style scoped>
-.file-list {
+.contract-file-list {
+  margin-bottom: var(--space-6);
+
+  &__button {
+    font-size: 12px;
+    @media (--desktop) {
+      visibility: hidden;
+    }
+  }
+
   &__item {
+    display: flex;
+    align-items: center;
+    height: 46px;
     font-family: var(--font-monospaced);
     font-weight: 400;
     font-size: 16px;
-    padding: 8px 0;
-    text-align: left;
+    padding: var(--space-1) 0;
     border-bottom: 1px solid var(--color-midnight-25);
-    vertical-align: middle;
+    cursor: pointer;
 
-    :last-of-type {
+    &:last-child {
       border-bottom: 0;
     }
 
@@ -63,23 +74,13 @@ const emitEntryFile = (fileName, index) => {
       padding: 10px var(--space-0) var(--space-1);
     }
 
-    &__name--entry {
-      font-weight: bold;
-    }
-
-    /*todo fix link and hover*/
-
-    &__button {
+    &:hover .contract-file-list__button {
       visibility: visible;
-
-      @media (--desktop) {
-        visibility: hidden;
-      }
-
-      &:hover {
-        visibility: visible;
-      }
     }
+  }
+
+  &__label--entry {
+    font-weight: bold;
   }
 }
 </style>

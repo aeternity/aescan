@@ -26,21 +26,21 @@
         class="contracts-file-upload__input"
         accept=".aes"
         @change="addFilesFromFileInput">
-      <contract-files-list
+      <contract-file-list
         v-if="hasSelectedFiles"
         :files="selectedFiles"
         :entry-file="entryFile"
         @select-entry-file="selectEntryFile"/>
 
+      <!--      todo hover style-->
       <label
         class="contracts-file-upload__label"
         for="file">
         {{ label }}
-
         <app-button
           v-if="hasSelectedFiles"
           class="contracts-file-upload__button"
-          variant="link"
+          variant="link-error"
           @click="clear">
           <app-icon
             class="contracts-file-upload__icon"
@@ -115,6 +115,7 @@ function drop(event) {
 
 function clear() {
   selectedFiles.value = []
+  emit('update:selected-files', selectedFiles.value)
 }
 
 function dragover(event) {
@@ -205,6 +206,8 @@ async function getDataTransferItems(dataTransferItems) {
 
   &__label {
     display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 16px;
     cursor: pointer;
   }
@@ -222,7 +225,7 @@ async function getDataTransferItems(dataTransferItems) {
   }
 
   &__icon {
-    color: var(--color-fire)
+    color: var(--color-fire) !important;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <app-icon
-    size="24"
+    :size="24"
     class="verified-icon"
     name="verified"/>
 </template>

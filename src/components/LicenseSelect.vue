@@ -4,7 +4,7 @@
       :options="LICENSE_OPTIONS"
       track-by="key"
       label="label"
-      placeholder="Select Compiler Version"
+      placeholder="Select License"
       :hide-selected="true"/>
 </template>
 

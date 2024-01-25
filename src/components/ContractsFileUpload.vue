@@ -71,14 +71,13 @@ const entryFile = ref({})
 const isDragging = ref(false)
 
 const emit = defineEmits([
-  'update:file-list',
+  'update:selected-files',
   'update:entry-file',
 ])
 
 const label = computed(() => isDragging.value
   ? 'Release to drop files here.'
   : 'Drop files here or click here to upload.',
-  // todo add more files or clear
 )
 
 const hasSelectedFiles = computed(() => {
@@ -90,12 +89,10 @@ function addFilesFromFileInput() {
 }
 
 function addFilesToList(fileList) {
-  const isFirstaddFilesFromFileInpution = !selectedFiles.value.length
-  // todo filelist as ref
+  const isFirstFilesAddition = !selectedFiles.value.length
   selectedFiles.value = [...selectedFiles.value, ...fileList]
-  console.log('selectedFiles.value', selectedFiles.value)
-  emit('update:file-list', fileList)
-  if (isFirstaddFilesFromFileInpution) {
+  emit('update:selected-files', selectedFiles.value)
+  if (isFirstFilesAddition) {
     selectEntryFile(fileList[0].name, 0)
   }
 }
@@ -108,7 +105,7 @@ function selectEntryFile(entryFileName, entryFileIndex) {
 
 function drop(event) {
   event.preventDefault()
-  getFilesDataTransferItems(event.dataTransfer.items).then(fileEntries => {
+  getDataTransferItems(event.dataTransfer.items).then(fileEntries => {
     const fileList = new DataTransfer()
     fileEntries.forEach(file => fileList.items.add(file))
     addFilesToList(fileList.files)
@@ -165,7 +162,7 @@ function getDirectoryFiles(dirEntry, files) {
   })
 }
 
-async function getFilesDataTransferItems(dataTransferItems) {
+async function getDataTransferItems(dataTransferItems) {
   const entriesPromises = []
   const files = []
 

@@ -67,6 +67,8 @@ const emitEntryFile = (fileName, index) => {
       font-weight: bold;
     }
 
+    /*todo fix link and hover*/
+
     &__button {
       visibility: visible;
 

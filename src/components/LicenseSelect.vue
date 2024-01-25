@@ -11,7 +11,7 @@
 <script setup>
 import { useVModel } from '@vueuse/core'
 import AppSelect from '@/components/AppSelect'
-import { LICENSE_OPTIONS } from "~/utils/constants";
+import { LICENSE_OPTIONS } from "@/utils/constants";
 
 
 const props = defineProps({

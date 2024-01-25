@@ -15,15 +15,15 @@ export const useContractVerificationStore = defineStore('useContractVerification
     id.value = null
     verificationResult.value = null
     verificationStatus.value = null
-
+    console.log('sourceFiles', sourceFiles)
     const form = new FormData()
     form.append('license', license)
     form.append('compiler', compiler)
     form.append('entryFile', entryFile)
 
-    for (let i = 0; i < sourceFiles.length; i++) {
-      form.append('sourceFiles', sourceFiles.item(i))
-    }
+    sourceFiles.forEach(file => {
+      form.append('sourceFiles', file)
+    })
 
     const data = await axios.post(`http://localhost:3000/contracts/${contractId}`, form).catch(e => {
       return e.response

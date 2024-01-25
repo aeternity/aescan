@@ -1,6 +1,5 @@
 <template>
-  <form @submit.prevent="validate">
-    <!--    todo html valid-->
+  <form @submit.prevent="verify">
     <div class="contract-verification-form__row">
       <div>
         <div class="contract-verification-form__field">
@@ -96,26 +95,18 @@
           {{ errors.consent }}
         </p>
       </div>
-      <!--      todo add type submit-->
-
       <app-button
         class="contract-verification-form__submit"
-        @click="submit()">
-        Submit
+        type="submit"
+        @click="verify()">
+        Verify Smart Contract
       </app-button>
     </div>
   </form>
-
-  form {{ form }}
-  <div v-for="file in form.sourceFiles">
-    {{ file.name }}
-  </div>
 </template>
 
 <script setup>
-import { useContractVerificationStore } from '~/stores/contractVerification'
-import LicenseSelect from '~/components/LicenseSelect'
-// todo fix imports
+import { useContractVerificationStore } from '@/stores/contractVerification'
 
 const verificationStore = useContractVerificationStore()
 const { verifyContract } = verificationStore
@@ -132,13 +123,13 @@ const form = ref({
 
 const errors = ref({})
 
-async function submit() {
+async function verify() {
   validate()
   const isValid = Object.keys(errors.value).length === 0
   if (isValid) {
     await verifyContract(
       form.value.id.trim(),
-      form.value.license.value,
+      form.value.license.label,
       form.value.compiler.value,
       form.value.entryFile,
       form.value.sourceFiles,

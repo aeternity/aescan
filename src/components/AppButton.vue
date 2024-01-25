@@ -14,6 +14,7 @@
   </app-link>
   <button
     v-else
+    :type="type"
     :class="['button', [`button--${variant}`]]">
     <app-icon
       v-if="iconName"
@@ -45,6 +46,10 @@ defineProps({
     type: String,
     default: null,
     validator: val => ['link', 'link-error'].includes(val),
+  },
+  type: {
+    type: String,
+    default: 'button',
   },
 })
 </script>

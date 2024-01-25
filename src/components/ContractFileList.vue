@@ -50,6 +50,7 @@ function selectEntryFile(fileName, index) {
 
   &__button {
     font-size: 12px;
+
     @media (--desktop) {
       visibility: hidden;
     }

@@ -192,6 +192,7 @@ function validate() {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     @media (--desktop) {
       justify-content: flex-end;
     }

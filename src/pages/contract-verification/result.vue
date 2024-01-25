@@ -96,7 +96,7 @@ const title = computed(() => {
   if (status.value === 'fail' || status.value === 'Conflict') {
     return 'Contract Verification Failed'
   }
-  return 'Smart Contract Verification Result'
+  return 'Smart Contract Verification'
 })
 
 </script>

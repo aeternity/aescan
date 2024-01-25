@@ -11,6 +11,7 @@
             </hint-tooltip>
           </label>
           <br>
+          <!--          todo unwrap-->
           <text-input
             id="id"
             v-model="form.id"
@@ -99,7 +100,7 @@
         </div>
       </div>
       <!--      todo add type submit-->
-      <!--      unite placeholder-->
+      <!--      todo unite placeholder-->
       <app-button
         class="contract-verification-form__submit"
         @click="submit()">

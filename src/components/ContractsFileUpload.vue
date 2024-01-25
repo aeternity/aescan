@@ -25,14 +25,16 @@
         name="file"
         class="contracts-file-upload__input"
         accept=".aes"
-        @change="addIt">
+        @change="addFilesFromFileInput">
       <contract-files-table
         v-if="hasSelectedFiles"
         :files="selectedFiles"
         :entry-file="entryFile"
         @select-entry-file="selectEntryFile"/>
 
-      <span class="contracts-file-upload__label">
+      <label
+        class="contracts-file-upload__label"
+        for="file">
         {{ label }}
 
         <app-button
@@ -46,7 +48,7 @@
             size="18"/>
           clear files
         </app-button>
-      </span>
+      </label>
     </div>
   </div>
   <!--  <h4>selectedFiles {{ selectedFiles }}</h4>-->
@@ -83,17 +85,17 @@ const hasSelectedFiles = computed(() => {
   return selectedFiles.value.length > 0
 })
 
-function addIt() {
+function addFilesFromFileInput() {
   addFilesToList(fileInput.value.files)
-  // todo make sure its adding
 }
 
 function addFilesToList(fileList) {
-  const isFirstAddition = !selectedFiles.value.length
+  const isFirstaddFilesFromFileInpution = !selectedFiles.value.length
   // todo filelist as ref
-  selectedFiles.value = fileList
+  selectedFiles.value = [...selectedFiles.value, ...fileList]
+  console.log('selectedFiles.value', selectedFiles.value)
   emit('update:file-list', fileList)
-  if (isFirstAddition) {
+  if (isFirstaddFilesFromFileInpution) {
     selectEntryFile(fileList[0].name, 0)
   }
 }
@@ -102,7 +104,6 @@ function selectEntryFile(entryFileName, entryFileIndex) {
   entryFile.value = { index: entryFileIndex, name: entryFileName }
   emit('update:entry-file', entryFileName)
   // todo improve filename with path
-  // todo emit to model
 }
 
 function drop(event) {

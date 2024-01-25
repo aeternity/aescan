@@ -4,7 +4,7 @@
     :options="compilerOptions"
     track-by="key"
     label="value"
-    placeholder="Select Compiler Version"
+    placeholder="Select Compiler version"
     :hide-selected="true"/>
 </template>
 

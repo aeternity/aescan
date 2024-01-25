@@ -26,7 +26,7 @@
         class="contracts-file-upload__input"
         accept=".aes"
         @change="addFilesFromFileInput">
-      <contract-files-table
+      <contract-files-list
         v-if="hasSelectedFiles"
         :files="selectedFiles"
         :entry-file="entryFile"
@@ -186,7 +186,7 @@ async function getFilesDataTransferItems(dataTransferItems) {
   border-radius: 8px;
 
   @media (--desktop) {
-    width: 363px;
+    width: 563px;
   }
 
   &--dragover {

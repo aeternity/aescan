@@ -51,17 +51,6 @@
       </label>
     </div>
   </div>
-  <!--  <h4>selectedFiles {{ selectedFiles }}</h4>-->
-  <!--  <div v-for="file in selectedFiles">-->
-  <!--    {{ file.name }}-->
-  <!--  </div>-->
-  <!--  <br>-->
-  <!--  <div v-if="fileInput">-->
-  <!--    <h4> fileInput {{ fileInput.files }}</h4>-->
-  <!--    <div v-for="file in fileInput.files">-->
-  <!--      {{ file.name }}-->
-  <!--    </div>-->
-  <!--  </div>-->
 </template>
 
 <script setup>

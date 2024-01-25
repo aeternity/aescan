@@ -24,12 +24,12 @@
 </template>
 
 <script setup>
-import { useContractVerificationStore } from '~/stores/contractVerification'
+import { useContractVerificationStore } from '@/stores/contractVerification'
 
 const verificationStore = useContractVerificationStore()
-const { fetchCompilerOptions } = verificationStore
+const {fetchCompilerOptions} = verificationStore
 
-await useAsyncData(async() => {
+await useAsyncData(async () => {
   await fetchCompilerOptions()
   return true
 })

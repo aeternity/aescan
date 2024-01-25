@@ -35,6 +35,13 @@
       <p class="contract-verification-result__paragraph">
         {{ message }}
       </p>
+      <app-link
+        v-if="status === 'Conflict'"
+        :to="`/contracts/${id}`"
+        class="contract-verification-result__link">
+        Smart Contract detail
+        <verified-icon/>
+      </app-link>
       <app-button to="/contract-verification">
         Retry verification
       </app-button>
@@ -44,7 +51,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useContractVerificationStore } from '~/stores/contractVerification'
+import { useContractVerificationStore } from '@/stores/contractVerification'
 
 const timer = ref(null)
 

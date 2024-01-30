@@ -213,7 +213,7 @@ async function getDataTransferItems(dataTransferItems) {
   }
 
   &__icon {
-    color: var(--color-fire) !important;
+    color: var(--color-fire);
   }
 
   &__link {

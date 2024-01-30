@@ -90,6 +90,7 @@ export function adaptContracts(contracts) {
       createdHeight: contract.blockHeight,
       hash: contract.hash,
       createdBy: contract.tx.callerId,
+      isVerified: contract.isVerified,
     }
   })
   return {

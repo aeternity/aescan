@@ -70,14 +70,6 @@ onBeforeUnmount(() => {
   clearInterval(timer.value)
 })
 
-const status = computed(() => {
-  return verificationStatus.value?.data.status || verificationResult.value.statusText
-})
-
-const message = computed(() => {
-  return verificationStatus.value?.data.message || verificationResult.value.data.message
-})
-
 const loadVerificationStatus = async() => {
   await fetchVerificationStatus()
 }
@@ -87,6 +79,14 @@ watch(verificationStatus, newStatus => {
     clearInterval(timer.value)
     timer.value = null
   }
+})
+
+const status = computed(() => {
+  return verificationStatus.value?.data.status || verificationResult.value.statusText
+})
+
+const message = computed(() => {
+  return verificationStatus.value?.data.message || verificationResult.value.data.message
 })
 
 const title = computed(() => {

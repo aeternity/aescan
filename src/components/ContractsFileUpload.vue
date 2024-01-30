@@ -90,7 +90,7 @@ function addFilesToList(fileList) {
 function selectEntryFile(entryFileName, entryFileIndex) {
   entryFile.value = { index: entryFileIndex, name: entryFileName }
   emit('update:entry-file', entryFileName)
-  // todo improve filename with path
+  // todo improve filename with path with multiple contracts
 }
 
 function drop(event) {

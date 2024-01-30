@@ -22,6 +22,7 @@ defineEmits(['update:modelValue'])
 
 <style scoped>
 .text-input {
-  padding: 8px;
+  min-height: 40px;
+  padding: var(--space-1);
 }
 </style>

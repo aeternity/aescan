@@ -9,7 +9,7 @@
               Field is required
             </hint-tooltip>
           </label>
-          <!--      todo unite placeholder and tex input and select-->
+
           <text-input
             id="id"
             v-model="form.id"
@@ -206,8 +206,11 @@ function validate() {
     margin-left: var(--space-2);
   }
 
-  &__compiler-select {
+  &__select {
     width: 100%;
+    @media (--desktop) {
+      width: 372px;
+    }
   }
 }
 </style>

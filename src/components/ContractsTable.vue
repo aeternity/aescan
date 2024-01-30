@@ -26,7 +26,6 @@
             {{ contractsHints.creator }}
           </hint-tooltip>
         </th>
-        <th>Verified</th>
       </tr>
     </thead>
     <tbody>
@@ -34,9 +33,12 @@
         v-for="contract in contracts.data"
         :key="contract.contractId">
         <td class="contracts-table__data">
-          <value-hash-ellipsed
-            :link-to="`/contracts/${contract.contractId}`"
-            :hash="contract.contractId"/>
+          <div class="contracts-table__container">
+            <value-hash-ellipsed
+              :link-to="`/contracts/${contract.contractId}`"
+              :hash="contract.contractId"/>
+            <verified-icon v-if="contract.isVerified"/>
+          </div>
         </td>
         <td class="contracts-table__data">
           <block-time-cell
@@ -52,9 +54,6 @@
           <value-hash-ellipsed
             :link-to="`/accounts/${contract.createdBy}`"
             :hash="contract.createdBy"/>
-        </td>
-        <td>
-          <verified-icon/>
         </td>
       </tr>
     </tbody>
@@ -80,6 +79,11 @@ defineProps({
 
   &__data {
     vertical-align: top;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
   }
 }
 </style>

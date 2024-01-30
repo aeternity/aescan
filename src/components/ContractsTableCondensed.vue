@@ -15,9 +15,12 @@
             </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
-            <value-hash-ellipsed
-              :link-to="`/contracts/${contract.contractId}`"
-              :hash="contract.contractId"/>
+            <div class="contracts-table-condensed__container">
+              <value-hash-ellipsed
+                :link-to="`/contracts/${contract.contractId}`"
+                :hash="contract.contractId"/>
+              <verified-icon v-if="contract.isVerified"/>
+            </div>
           </td>
         </tr>
         <tr class="contracts-table-condensed__row">
@@ -65,21 +68,6 @@
               :hash="contract.createdBy"/>
           </td>
         </tr>
-        <tr class="contracts-table-condensed__row">
-          <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Verified
-              <template #tooltip>
-                <!--                todo hint-->
-                {{ contractsHints.verified }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="contracts-table-condensed__data">
-            <!--            todo componentize-->
-            <verified-icon/>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -115,6 +103,12 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 </style>

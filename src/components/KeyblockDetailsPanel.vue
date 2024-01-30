@@ -256,11 +256,5 @@ const isNextKeyblockMined = computed(() =>
       }
     }
   }
-
-  &__keyblock-link--disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
-    pointer-events: none;
-  }
 }
 </style>

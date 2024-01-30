@@ -9,8 +9,9 @@
           { 'tabs__item--active': activeTabIndex === index },
         ]"
         @click="selectTab(index)">
-        <verified-icon v-if="tab.hasVerifiedIcon"/>
-
+        <verified-icon
+          v-if="tab.hasVerifiedIcon"
+          class="tabs__icon"/>
         {{ tab.title }}
       </li>
     </ul>
@@ -73,6 +74,8 @@ function selectTab(tabIndex) {
   }
 
   &__item {
+    display: flex;
+    align-items: center;
     font-weight: 500;
     font-size: 14px;
     line-height: 22px;
@@ -94,6 +97,10 @@ function selectTab(tabIndex) {
       color: var(--color-midnight);
       background: var(--color-white);
     }
+  }
+
+  &__icon {
+    margin-right: var(--space-0);
   }
 }
 </style>

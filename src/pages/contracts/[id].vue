@@ -32,10 +32,7 @@
       <app-tab
         title="Contract"
         :has-verified-icon="isVerified">
-        <verified-contract-panel
-          v-if="verificationDetails"
-          :is-verified="isVerified"
-          :verification-details="verificationDetails"/>
+        <verified-contract-panel/>
       </app-tab>
     </app-tabs>
   </template>

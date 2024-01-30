@@ -68,13 +68,13 @@
             </app-link>
           </td>
         </tr>
-        <tr
-
-          class="contract-details-panel__row">
+        <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Verified
+            <!--            todo fix is verified condition-->
             <hint-tooltip>
               {{ contractsHints.token }}
+            <!--              todo hint-->
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">

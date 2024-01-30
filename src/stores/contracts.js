@@ -17,15 +17,13 @@ export const useContractsStore = defineStore('contracts', () => {
   )
 
   async function fetchContracts(queryParameters = null) {
-    rawContracts.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?type=contract_create&limit=10'}`)
 
-    rawContracts.value = data
-    // todo improve
-
-    await Promise.all(rawContracts.value.data.map(async contract => {
+    await Promise.all(data.data.map(async contract => {
       contract.isVerified = await fetchIsContractVerified(contract.tx.contractId)
     }))
+
+    rawContracts.value = data
   }
 
   async function fetchContractsStatistics(interval = 'day', limit = 7, range) {

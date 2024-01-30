@@ -6,14 +6,18 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const axios = useAxios()
   const verificationDetails = ref(null)
   const contractCode = ref(null)
+  const isVerified = computed(() => !!verificationDetails?.value)
 
-  const isVerified = computed(() => !!verificationDetails?.value.verifiedAt)
-
+  // todo rename
   async function fetchIsContractVerified(contractId) {
     verificationDetails.value = null
-    const { data } = await axios.get(`http://localhost:3000/contracts/${contractId}`)
-    console.log('data', data)
-    verificationDetails.value = data
+
+    try {
+      const { data } = await axios.get(`http://localhost:3000/contracts/${contractId}`)
+      verificationDetails.value = data
+    } catch (error) {
+      verificationDetails.value = null
+    }
   }
 
   async function fetchContractCode(contractId) {

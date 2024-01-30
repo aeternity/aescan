@@ -68,21 +68,6 @@
               :hash="contract.createdBy"/>
           </td>
         </tr>
-        <tr class="contracts-table-condensed__row">
-          <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Verified
-              <template #tooltip>
-                <!--                todo hint-->
-                {{ contractsHints.verified }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="contracts-table-condensed__data">
-            <!--            todo componentize-->
-            <verified-icon/>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>

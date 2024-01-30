@@ -26,7 +26,6 @@
             {{ contractsHints.creator }}
           </hint-tooltip>
         </th>
-        <th>Verified</th>
       </tr>
     </thead>
     <tbody>
@@ -55,9 +54,6 @@
           <value-hash-ellipsed
             :link-to="`/accounts/${contract.createdBy}`"
             :hash="contract.createdBy"/>
-        </td>
-        <td>
-          <verified-icon/>
         </td>
       </tr>
     </tbody>

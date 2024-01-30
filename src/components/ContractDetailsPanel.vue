@@ -68,10 +68,11 @@
             </app-link>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
+        <tr
+          v-if="isVerified"
+          class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Verified
-            <!--            todo fix is verified condition-->
             <hint-tooltip>
               {{ contractsHints.token }}
             <!--              todo hint-->
@@ -224,6 +225,10 @@ const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 const props = defineProps({
   contractDetails: {
     type: Object,
+    required: true,
+  },
+  isVerified: {
+    type: Boolean,
     required: true,
   },
 })

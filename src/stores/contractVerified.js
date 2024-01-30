@@ -8,8 +8,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const contractCode = ref(null)
   const isVerified = computed(() => !!verificationDetails?.value)
 
-  // todo rename
-  async function fetchIsContractVerified(contractId) {
+  async function fetchVerificationDetail(contractId) {
     verificationDetails.value = null
 
     try {
@@ -31,6 +30,6 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     verificationDetails,
     contractCode,
     fetchContractCode,
-    fetchIsContractVerified,
+    fetchVerificationDetail,
   }
 })

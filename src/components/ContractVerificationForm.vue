@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="verify">
+  <form @submit.prevent="validate">
     <div class="contract-verification-form__row">
       <div>
         <div class="contract-verification-form__field">

@@ -49,7 +49,7 @@
 import { storeToRefs } from 'pinia'
 
 import { useContractDetailsStore } from '@/stores/contractDetails'
-import { useContractVerifiedStore } from '@/stores/verified'
+import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 
@@ -65,12 +65,10 @@ const route = useRoute()
 const route = useRoute()
 
 const contractVerifiedStore = useContractVerifiedStore()
-const { isVerified, verificationDetails } = storeToRefs(contractVerifiedStore)
-const { fetchIsContractVerified } = contractVerifiedStore
+const { isVerified } = storeToRefs(contractVerifiedStore)
+const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
 const route = useRoute()
-
-await fetchIsContractVerified(route.params.id)
 
 const TAB_KEYS = ['call-transactions', 'events', 'contract-verified']
 
@@ -101,6 +99,9 @@ const activeTabIndex = computed({
 })
 
 const { isLoading } = useLoading()
+
+// todo fix loading
+await fetchVerificationDetail(route.params.id)
 
 const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
 

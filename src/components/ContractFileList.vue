@@ -4,9 +4,7 @@
       v-for="(file, index) in files"
       :key="index"
       class="contract-file-list__item">
-      <span
-        class="contract-file-list__label"
-        @click="selectEntryFile(file.name, index)">
+      <span @click="selectEntryFile(file.name, index)">
         {{ file.webkitRelativePath || file.name }}
         <app-chip
           v-if="index === entryFile.index"
@@ -78,10 +76,6 @@ function selectEntryFile(fileName, index) {
     &:hover .contract-file-list__button {
       visibility: visible;
     }
-  }
-
-  &__label--entry {
-    font-weight: bold;
   }
 }
 </style>

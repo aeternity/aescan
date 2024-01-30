@@ -208,6 +208,7 @@ function validate() {
 
   &__select {
     width: 100%;
+
     @media (--desktop) {
       width: 372px;
     }

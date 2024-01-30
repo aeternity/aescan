@@ -32,11 +32,13 @@
         :entry-file="entryFile"
         @select-entry-file="selectEntryFile"/>
 
-      <!--      todo hover style-->
       <label
         class="contracts-file-upload__label"
         for="file">
-        {{ label }}
+        <template v-if="isDragging">Release to drop files here.</template>
+        <template v-else>
+          Drop files to area or <a class="contracts-file-upload__link">click here</a> to upload.
+        </template>
         <app-button
           v-if="hasSelectedFiles"
           class="contracts-file-upload__button"
@@ -63,12 +65,6 @@ const emit = defineEmits([
   'update:selected-files',
   'update:entry-file',
 ])
-
-const label = computed(() => isDragging.value
-  ? 'Release to drop files here.'
-  : 'Drop files here or click here to upload.',
-)
-// todo make it look like a link
 
 const hasSelectedFiles = computed(() => {
   return selectedFiles.value.length > 0
@@ -218,6 +214,10 @@ async function getDataTransferItems(dataTransferItems) {
 
   &__icon {
     color: var(--color-fire) !important;
+  }
+
+  &__link {
+    margin: 0 var(--space-0);
   }
 }
 </style>

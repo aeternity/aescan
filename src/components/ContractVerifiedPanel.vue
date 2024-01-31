@@ -21,7 +21,9 @@
             </app-chip>
           </div>
           <div>
-            <app-button variant="light">
+            <app-button
+              variant="light"
+              @click="downloadFile(code.content,code.filePath)">
               Export
             </app-button>
           </div>

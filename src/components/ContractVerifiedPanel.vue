@@ -2,15 +2,17 @@
   <app-panel>
     <template v-if="isVerified">
       <h3>Verification details</h3>
-      <verified-contract-table
+      <contract-verified-table
         :verification-details="verificationDetails"
         :is-verified="isVerified"/>
-      <h3>Contract Code</h3>
+      <h3 class="contract-verified-panel__title">
+        Contract Code
+      </h3>
       <div
         v-for="code in contractCode.source"
         :key="code.filePath">
-        <header class="verification-contract-panel__header">
-          <div>
+        <header class="contract-verified-panel__header">
+          <div class="contract-verified-panel__container">
             <h4>{{ code.filePath }}</h4>
             <app-chip
               v-if="code.isEntryFile"
@@ -24,12 +26,16 @@
             </app-button>
           </div>
         </header>
-        <verified-contract-editor
+        <code-editor
+          class="contract-verified-panel__code-editor"
           :code="code.content"
           lang="aes"/>
       </div>
-      <h3>ACI</h3>
-      <verified-contract-editor
+      <h3 class="contract-verified-panel__title">
+        ACI
+      </h3>
+      <code-editor
+        class="contract-verified-panel__code-editor"
         :code="verificationDetails.aci"
         lang="json"/>
     </template>
@@ -41,7 +47,6 @@
       to verify it.
     </blank-state>
   </app-panel>
-  <!--  todo print loop-->
 </template>
 
 <script setup>
@@ -60,12 +65,24 @@ if (isVerified.value) {
 </script>
 
 <style scoped>
-/*//todo fix naming*/
-.verification-contract-panel {
+.contract-verified-panel {
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 8px
+  }
+
+  &__code-editor {
+    margin: var(--space-2) 0 var(--space-5);
+  }
+
+  &__title {
     margin-bottom: var(--space-1);
   }
 }

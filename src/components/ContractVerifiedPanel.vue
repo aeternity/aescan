@@ -52,7 +52,7 @@
 <script setup>
 
 import { storeToRefs } from 'pinia'
-import { useContractVerifiedStore } from '~/stores/contractVerified'
+import { useContractVerifiedStore } from '@/stores/contractVerified'
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { contractCode, verificationDetails, isVerified } = storeToRefs(contractVerifiedStore)

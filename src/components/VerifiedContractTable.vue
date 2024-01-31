@@ -32,6 +32,14 @@
         {{ verificationDetails.verifiedAt }}
       </td>
     </tr>
+    <tr class="verified-contract-table-condensed__row">
+      <th class="verified-contract-table-condensed__header">
+        Entrypoint
+      </th>
+      <td class="verified-contract-table-condensed__data">
+        {{ verificationDetails.initCallParameters }}
+      </td>
+    </tr>
   </table>
 </template>
 

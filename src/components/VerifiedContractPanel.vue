@@ -5,17 +5,29 @@
       <verified-contract-table
         :verification-details="verificationDetails"
         :is-verified="isVerified"/>
-      <header class="verification-contract-panel__header">
-        <h3>Contract Code</h3>
-        <div>
-          <app-button variant="light">
-            Export
-          </app-button>
-        </div>
-      </header>
-      <verified-contract-editor
-        :code="contractCode.source[0].content"
-        lang="aes"/>
+      <h3>Contract Code</h3>
+      <div
+        v-for="code in contractCode.source"
+        :key="code.filePath">
+        <header class="verification-contract-panel__header">
+          <div>
+            <h4>{{ code.filePath }}</h4>
+            <app-chip
+              v-if="code.isEntryFile"
+              size="sm">
+              entry file
+            </app-chip>
+          </div>
+          <div>
+            <app-button variant="light">
+              Export
+            </app-button>
+          </div>
+        </header>
+        <verified-contract-editor
+          :code="code.content"
+          lang="aes"/>
+      </div>
       <h3>ACI</h3>
       <verified-contract-editor
         :code="verificationDetails.aci"

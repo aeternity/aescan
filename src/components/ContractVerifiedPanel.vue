@@ -20,6 +20,11 @@
               entry file
             </app-chip>
           </div>
+          <div>
+            <app-button variant="light">
+              Export
+            </app-button>
+          </div>
         </header>
         <code-editor
           class="contract-verified-panel__code-editor"
@@ -60,6 +65,7 @@
 </template>
 
 <script setup>
+
 import { storeToRefs } from 'pinia'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { useContractDetailsStore } from '@/stores/contractDetails'

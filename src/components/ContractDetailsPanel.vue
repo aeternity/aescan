@@ -75,8 +75,7 @@
           <th class="contract-details-panel__table-header">
             Verified
             <hint-tooltip>
-              {{ contractsHints.token }}
-            <!--              todo hint-->
+              {{ contractsHints.verified }}
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">

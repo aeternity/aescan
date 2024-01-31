@@ -100,9 +100,6 @@ const activeTabIndex = computed({
 
 const { isLoading } = useLoading()
 
-// todo fix loading
-await fetchVerificationDetail(route.params.id)
-
 const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
 
 if (error.value) {

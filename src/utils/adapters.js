@@ -604,3 +604,14 @@ export function adaptNft(nft) {
     templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
   }
 }
+
+export function adaptVerificationDetail(verificationDetail) {
+  return {
+    license: verificationDetail.license,
+    compiler: verificationDetail.compiler,
+    entryFile: verificationDetail.entryFile,
+    initCallParameters: verificationDetail.initCallParameters,
+    aci: verificationDetail.aci,
+    verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
+  }
+}

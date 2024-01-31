@@ -41,7 +41,7 @@
         </hint-tooltip>
       </th>
       <td class="contract-verified-table-condensed__data">
-        {{ verificationDetails.verifiedAt }}
+        <datetime-label :datetime="verificationDetails.verifiedAt"/>
       </td>
     </tr>
     <tr class="contract-verified-table-condensed__row">

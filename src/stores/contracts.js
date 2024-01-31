@@ -29,8 +29,6 @@ export const useContractsStore = defineStore('contracts', () => {
   async function fetchContractsStatistics(interval = 'day', limit = 7, range) {
     contractsStatistics.value = null
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions?tx_type=contract_call${slug || '&limit=8&interval_by=day'}`)
-
     const slug = range
       ? `&min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
       : `&interval_by=${interval}&limit=${limit}`

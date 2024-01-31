@@ -28,10 +28,17 @@ const props = defineProps({
 const codeModel = ref(props.code)
 </script>
 
-<style>
+<style scoped>
 .code-editor {
   height: 400px;
   border: 1px solid var(--color-midnight);
   border-radius: 8px
+}
+</style>
+
+<style>
+.monaco-editor,
+.monaco-editor .overflow-guard {
+  border-radius: 8px;
 }
 </style>

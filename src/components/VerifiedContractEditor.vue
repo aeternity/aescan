@@ -9,7 +9,7 @@
       fontFamily: 'Roboto Mono',
       fontSize: 16,
       readOnly: true,
-      autoIndent: true
+      wordWrap: 'on'
     }"/>
 </template>
 

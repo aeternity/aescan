@@ -31,4 +31,5 @@ export const contractsHints = {
   gasPrice: 'Price for one unit of gas.',
   gasUsed: 'Amount of gas that was consumed by this transaction.',
   gasCost: 'The amount of AE paid for the execution of the contract entrypoint.',
+  verified: 'Indicates whether the Smart Contract has been verified.',
 }

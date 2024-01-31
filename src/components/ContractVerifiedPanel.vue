@@ -21,7 +21,9 @@
             </app-chip>
           </div>
           <div>
-            <app-button variant="light">
+            <app-button
+              variant="light"
+              @click="downloadFile(code.content,code.filePath)">
               Export
             </app-button>
           </div>
@@ -60,6 +62,17 @@ const { fetchContractCode } = contractVerifiedStore
 const route = useRoute()
 if (isVerified.value) {
   await fetchContractCode(route.params.id)
+}
+
+function downloadFile(content, name) {
+  const blob = new Blob([content], { type: 'text/plain' })
+  const url = window.URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.setAttribute('download', name)
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }
 
 </script>

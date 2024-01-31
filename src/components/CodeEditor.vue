@@ -1,7 +1,7 @@
 <template>
   <monaco-editor
     v-model="codeModel"
-    class="editor"
+    class="code-editor"
     :lang="lang"
     :options="{
       lineHeight: 20,
@@ -11,8 +11,9 @@
       wordWrap: 'on',
     }"/>
 </template>
-
 <script setup>
+import { ref } from 'vue'
+
 const props = defineProps({
   code: {
     required: true,
@@ -23,11 +24,12 @@ const props = defineProps({
     type: String,
   },
 })
+
 const codeModel = ref(props.code)
 </script>
 
 <style>
-.editor {
+.code-editor {
   height: 400px;
   border: 1px solid var(--color-midnight);
   border-radius: 8px

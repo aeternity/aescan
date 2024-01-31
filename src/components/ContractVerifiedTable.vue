@@ -3,6 +3,9 @@
     <tr class="contract-verified-table-condensed__row">
       <th class="contract-verified-table-condensed__header">
         License
+        <hint-tooltip>
+          {{ contractVerifiedHints.license }}
+        </hint-tooltip>
       </th>
       <td class="contract-verified-table-condensed__data">
         {{ verificationDetails.license }}
@@ -11,6 +14,9 @@
     <tr class="contract-verified-table-condensed__row">
       <th class="contract-verified-table-condensed__header">
         Compiler Version
+        <hint-tooltip>
+          {{ contractVerifiedHints.compiler }}
+        </hint-tooltip>
       </th>
       <td class="contract-verified-table-condensed__data">
         {{ verificationDetails.compiler }}
@@ -19,6 +25,9 @@
     <tr class="contract-verified-table-condensed__row">
       <th class="contract-verified-table-condensed__header">
         Entry File
+        <hint-tooltip>
+          {{ contractVerifiedHints.entryFile }}
+        </hint-tooltip>
       </th>
       <td class="contract-verified-table-condensed__data">
         {{ verificationDetails.entryFile }}
@@ -27,6 +36,9 @@
     <tr class="contract-verified-table-condensed__row">
       <th class="contract-verified-table-condensed__header">
         Verified At
+        <hint-tooltip>
+          {{ contractVerifiedHints.verifiedAt }}
+        </hint-tooltip>
       </th>
       <td class="contract-verified-table-condensed__data">
         {{ verificationDetails.verifiedAt }}
@@ -35,6 +47,9 @@
     <tr class="contract-verified-table-condensed__row">
       <th class="contract-verified-table-condensed__header">
         Entrypoint
+        <hint-tooltip>
+          {{ contractVerifiedHints.initCallParameters }}
+        </hint-tooltip>
       </th>
       <td class="contract-verified-table-condensed__data">
         {{ verificationDetails.initCallParameters }}
@@ -44,6 +59,9 @@
 </template>
 
 <script setup>
+
+import { contractVerifiedHints } from '~/utils/hints/contractVerifiedHints'
+import HintTooltip from '~/components/HintTooltip'
 
 defineProps({
   verificationDetails: {

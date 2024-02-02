@@ -1,6 +1,6 @@
 export const contractsHints = {
   contract: 'A smart contract is a program that runs on the æternity blockchain. It\'s a collection of code (its functions) and data (its state) that resides at a specific address (contract id) on the æternity blockchain. Each smart contract has an account associated to it. Functions can be executed by any account via ContractCallTx and may change the smart contract\'s state. Smart contracts on the æternity blockchain are written in Sophia, a typed functional programming language.',
-  contractId: 'Unique identifier for a smart contract instance that lives on the blockchain.',
+  contractId: 'Unique identifier for a smart contract instance that lives on the blockchain. The green icon indicates whether the Smart Contract has been verified.',
   contractCreated: 'Keyblock height and exact date and time when the smart contract was created.',
   contractTxHash: 'The transaction hash of a ContractCreateTx that was executed to create the smart contract on the blockchain.',
   token: 'The token which is represented by the AEX-X classified smart contract.',
@@ -31,5 +31,4 @@ export const contractsHints = {
   gasPrice: 'Price for one unit of gas.',
   gasUsed: 'Amount of gas that was consumed by this transaction.',
   gasCost: 'The amount of AE paid for the execution of the contract entrypoint.',
-  verified: 'Indicates whether the Smart Contract has been verified.',
 }

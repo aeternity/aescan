@@ -34,10 +34,11 @@
         :key="contract.contractId">
         <td class="contracts-table__data">
           <div class="contracts-table__container">
+            <verified-icon v-if="contract.isVerified"/>
+
             <value-hash-ellipsed
               :link-to="`/contracts/${contract.contractId}`"
               :hash="contract.contractId"/>
-            <verified-icon v-if="contract.isVerified"/>
           </div>
         </td>
         <td class="contracts-table__data">

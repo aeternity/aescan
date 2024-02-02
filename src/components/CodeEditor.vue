@@ -40,7 +40,7 @@ const codeModel = ref(props.code)
 
 <style>
 .code-editor .monaco-editor {
-  border-radius: 8px;
+    border-radius: 8px;
 
   .overflow-guard {
     border-radius: 8px;
@@ -69,6 +69,32 @@ const codeModel = ref(props.code)
   .mtk1 .bracket-highlighting-1,
   .mtk7 {
     color: var(--color-success);
+  }
+
+  }
+
+  .monaco-editor .line-numbers {
+    color: var(--color-midnight-25)
+  }
+
+  .mtk1 {
+    color: var(--color-midnight);
+  }
+
+  .mtk20 {
+    color: var(--color-fire)
+  }
+
+  .mtk6,
+  .mtk5,
+  .mtk1 .bracket-highlighting-3,
+  .mtk1 .bracket-highlighting-0 {
+    color: var(--color-blue)
+  }
+
+  .mtk1 .bracket-highlighting-1,
+  .mtk7 {
+    color: var(--color-success)
   }
 
 }

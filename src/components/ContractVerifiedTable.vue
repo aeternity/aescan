@@ -60,8 +60,8 @@
 
 <script setup>
 
-import { contractVerifiedHints } from '~/utils/hints/contractVerifiedHints'
-import HintTooltip from '~/components/HintTooltip'
+import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
+import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   verificationDetails: {

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import useAxios from '@/composables/useAxios'
-import { adaptVerificationDetail } from '~/utils/adapters'
+import { adaptVerificationDetail } from '@/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const axios = useAxios()

@@ -37,8 +37,35 @@ const codeModel = ref(props.code)
 </style>
 
 <style>
-.monaco-editor,
-.monaco-editor .overflow-guard {
-  border-radius: 8px;
+.code-editor {
+  .monaco-editor,
+  .monaco-editor .overflow-guard {
+    border-radius: 8px;
+  }
+
+  .monaco-editor .line-numbers {
+    color: var(--color-midnight-25)
+  }
+
+  .mtk1 {
+    color: var(--color-midnight);
+  }
+
+  .mtk20 {
+    color: var(--color-fire)
+  }
+
+  .mtk6,
+  .mtk5,
+  .mtk1 .bracket-highlighting-3,
+  .mtk1 .bracket-highlighting-0 {
+    color: var(--color-blue)
+  }
+
+  .mtk1 .bracket-highlighting-1,
+  .mtk7 {
+    color: var(--color-success)
+  }
+
 }
 </style>

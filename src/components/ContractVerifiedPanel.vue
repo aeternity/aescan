@@ -8,7 +8,7 @@
       <h3 class="contract-verified-panel__title">
         Contract Code
       </h3>
-      <div
+      <template
         v-for="code in contractCode.source"
         :key="code.filePath">
         <header class="contract-verified-panel__header">
@@ -20,22 +20,22 @@
               entry file
             </app-chip>
           </div>
-          <div>
-            <app-button
-              variant="light"
-              @click="downloadFile(code.content,code.filePath)">
-              Export
-            </app-button>
-          </div>
         </header>
         <code-editor
           class="contract-verified-panel__code-editor"
           :code="code.content"
           lang="aes"/>
-      </div>
-      <h3 class="contract-verified-panel__title">
-        ACI
-      </h3>
+      </template>
+      <header class="contract-verified-panel__header">
+        <h3>
+          ACI
+        </h3>
+        <app-button
+          variant="light"
+          @click="downloadFile(verificationDetails.aci)">
+          Export
+        </app-button>
+      </header>
       <code-editor
         class="contract-verified-panel__code-editor"
         :code="verificationDetails.aci"
@@ -52,7 +52,6 @@
 </template>
 
 <script setup>
-
 import { storeToRefs } from 'pinia'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 
@@ -64,12 +63,12 @@ if (isVerified.value) {
   await fetchContractCode(route.params.id)
 }
 
-function downloadFile(content, name) {
+function downloadFile(content) {
   const blob = new Blob([content], { type: 'text/plain' })
   const url = window.URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.setAttribute('download', name)
+  link.setAttribute('download', 'bytecode.aci')
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)

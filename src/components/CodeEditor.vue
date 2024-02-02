@@ -73,7 +73,7 @@ const codeModel = ref(props.code)
 
   }
 
-  .monaco-editor .line-numbers {
+  .line-numbers {
     color: var(--color-midnight-25)
   }
 
@@ -92,6 +92,7 @@ const codeModel = ref(props.code)
     color: var(--color-blue)
   }
 
+  .bracket-highlighting-1,
   .mtk1 .bracket-highlighting-1,
   .mtk7 {
     color: var(--color-success)

@@ -9,7 +9,8 @@
       fontSize: 16,
       readOnly: true,
       wordWrap: 'on',
-      scrollBeyondLastLine: false
+      scrollBeyondLastLine: false,
+      renderLineHighlight: 'none'
     }"/>
 </template>
 <script setup>
@@ -38,13 +39,13 @@ const codeModel = ref(props.code)
 </style>
 
 <style>
-.code-editor {
-  .monaco-editor,
-  .monaco-editor .overflow-guard {
+.code-editor .monaco-editor {
+  &,
+  .overflow-guard {
     border-radius: 8px;
   }
 
-  .monaco-editor .line-numbers {
+  .line-numbers {
     color: var(--color-midnight-25)
   }
 
@@ -63,6 +64,7 @@ const codeModel = ref(props.code)
     color: var(--color-blue)
   }
 
+  .bracket-highlighting-1,
   .mtk1 .bracket-highlighting-1,
   .mtk7 {
     color: var(--color-success)

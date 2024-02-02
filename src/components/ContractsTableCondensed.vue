@@ -16,10 +16,11 @@
           </th>
           <td class="contracts-table-condensed__data">
             <div class="contracts-table-condensed__container">
+              <verified-icon v-if="contract.isVerified"/>
+
               <value-hash-ellipsed
                 :link-to="`/contracts/${contract.contractId}`"
                 :hash="contract.contractId"/>
-              <verified-icon v-if="contract.isVerified"/>
             </div>
           </td>
         </tr>
@@ -109,6 +110,7 @@ defineProps({
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: var(--space-0)
   }
 }
 </style>

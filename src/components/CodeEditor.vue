@@ -9,6 +9,7 @@
       fontSize: 16,
       readOnly: true,
       wordWrap: 'on',
+      scrollBeyondLastLine: false
     }"/>
 </template>
 <script setup>

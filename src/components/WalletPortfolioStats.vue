@@ -42,6 +42,7 @@ const { aeSdk } = storeToRefs(walletStore)
   flex-direction: column;
   gap: var(--space-2);
   width: 100%;
+
   @media (--desktop) {
     flex-direction: row;
   }
@@ -49,6 +50,7 @@ const { aeSdk } = storeToRefs(walletStore)
   &__panel {
     padding: var(--space-4);
     width: 100%;
+
     @media (--desktop) {
       width: 50%;
     }

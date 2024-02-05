@@ -71,6 +71,7 @@ const title = computed(() => {
 .wallet-connection-panel {
   &__paragraph {
     margin-bottom: var(--space-5);
+
     @media (--desktop) {
       &:last-of-type {
         margin-bottom: var(--space-6);

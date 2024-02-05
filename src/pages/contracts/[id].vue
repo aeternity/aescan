@@ -31,7 +31,7 @@
         <contract-events-panel/>
       </app-tab>
       <app-tab
-        title="Contract"
+        title="Verification"
         :has-verified-icon="isVerified">
         <contract-verified-panel/>
       </app-tab>
@@ -70,7 +70,7 @@ const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
 const route = useRoute()
 
-const TAB_KEYS = ['call-transactions', 'events', 'contract-verified']
+const TAB_KEYS = ['call-transactions', 'events', 'contract-verified', 'contract-read']
 
 const activeTabIndex = computed({
   get() {

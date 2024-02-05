@@ -31,7 +31,7 @@ user experience with Server Side Rendering enabled.
 
 ## Getting started
 
-First, download and install [Node.js](https://nodejs.org/en/download). Version 18
+First, download and install [Node.js](https://nodejs.org/en/download). Version 20
 or higher is required.
 
 Clone æScan repository

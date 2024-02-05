@@ -49,6 +49,7 @@ defineProps({
       color: var(--color-white);
       border: none;
       word-break: break-word;
+
       @media (--desktop) {
         word-break: normal;
       }

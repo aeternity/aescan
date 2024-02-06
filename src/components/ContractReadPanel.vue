@@ -9,9 +9,11 @@
     <div
       v-for="(aciFunction, index) in aciFunctions"
       :key="index"
-      class="contract-read-panel__container">
+      class="contract-read-panel__accordion">
       <header
-        :class="['contract-read-panel__header', {'contract-read-panel__header--expanded' : aciFunction.isExpanded }]"
+        :class="[
+          'contract-read-panel__header',
+          {'contract-read-panel__header--expanded' : aciFunction.isExpanded }]"
         @click="toggle(index)">
         {{ aciFunction.name }}
       </header>
@@ -51,7 +53,7 @@ function toggle(index) {
     margin-bottom: var(--space-2);
   }
 
-  &__container {
+  &__accordion {
     border: 1px solid var(--color-gray);
     border-radius: 8px;
     margin-bottom: var(--space-4);

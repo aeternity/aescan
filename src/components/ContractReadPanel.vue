@@ -47,6 +47,7 @@
     <app-button>
       Connect Wallet
     </app-button>
+    <the-wallet-account-controls class="u-hidden-mobile"/>
     <div
       v-for="(aciFunction, index) in aciStatefulFunctions"
       :key="index"
@@ -102,8 +103,11 @@ import { BigNumber } from 'bignumber.js'
 import { useContractVerifiedStore } from '~/stores/contractVerified'
 import { useAesdk } from '~/stores/aesdk'
 import { useContractDetailsStore } from '@/stores/contractDetails'
+import { useWalletStore } from '~/stores/wallet'
 
-const { aeSdk } = storeToRefs(useAesdk())
+const { aeSdk: sdk } = storeToRefs(useAesdk())
+
+const { aeSdk } = storeToRefs(useWalletStore())
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { verificationDetails } = storeToRefs(contractVerifiedStore)
@@ -129,8 +133,8 @@ onMounted(() => {
 
   const result2 = Object.groupBy(functions, myCallback)
   console.log('result2', result2)
-  aciFunctions.value = result2.false
-  aciStatefulFunctions.value = result2.true
+  aciFunctions.value = result2.true
+  aciStatefulFunctions.value = result2.false
 })
 
 function toggle(index) {
@@ -138,11 +142,15 @@ function toggle(index) {
 }
 
 async function fetchFunctionResponse(functionName, index) {
-  console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
-  const contractInstance = await aeSdk.value.initializeContract({
+  // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
+  console.log('fetchFunctionResponse')
+  console.log('aeSdk.value', aeSdk.value)
+
+  const contractInstance = await sdk.value.initializeContract({
     aci: [JSON.parse(verificationDetails.value.aci)[3]],
     address: contractDetails.value.id,
   })
+  console.log('contractInstance', contractInstance)
   const contractCallResult = await contractInstance[functionName]({ callStatic: true })
   console.log('contractCallResult?.decodedResult', contractCallResult.decodedResult)
   response.value = { [index]: new BigNumber(contractCallResult) }
@@ -150,11 +158,15 @@ async function fetchFunctionResponse(functionName, index) {
 }
 
 async function fetchCall(functionName, index) {
-  console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
+  // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
+  console.log('fetchCall')
+  console.log('aeSdk.value', aeSdk.value)
   const contractInstance = await aeSdk.value.initializeContract({
     aci: [JSON.parse(verificationDetails.value.aci)[3]],
     address: contractDetails.value.id,
   })
+  console.log('contractInstance', contractInstance)
+  console.log('form.value', form.value)
   const contractCallResult = await contractInstance[functionName](form.value['add_test_value-one'], form.value['add_test_value-two'])
   console.log('contractCallResult?.decodedResult', contractCallResult.decodedResult)
   response.value = { [index]: new BigNumber(contractCallResult) }

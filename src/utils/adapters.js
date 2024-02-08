@@ -7,6 +7,7 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatIsStatefulFunction,
   formatNameStatus,
   formatTemplateLimit,
   formatTokenLimit,

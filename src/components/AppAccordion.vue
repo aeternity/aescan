@@ -4,18 +4,18 @@
       'accordion',
       { 'accordion--disabled' : isDisabled }]">
     <div
-      v-for="(item, index) in items"
+      v-for="(item, index) in accordionItems"
       :key="index"
       class="accordion__item">
       <header
         :class="[
           'accordion__header',
-          {'accordion__header--expanded' : accordionMap[index] }]"
+          {'accordion__header--expanded' : item.isExpanded }]"
         @click="toggle(index)">
         {{ item.name }}
       </header>
       <div
-        v-show="accordionMap[index]"
+        v-show="item.isExpanded"
         class="accordion__content">
         <slot
           :item="{item, index}"
@@ -39,13 +39,11 @@ const props = defineProps({
   },
 })
 
-const accordionItems = ref(props.items)
-
-const accordionMap = ref(Array(accordionItems.value.length).fill(true))
-// todo glue together
 // todo switch to false
-const toggle = index => {
-  accordionMap.value[index] = !accordionMap.value[index]
+const accordionItems = ref(props.items.map(item => ({ ...item, isExpanded: true })))
+
+function toggle(index) {
+  accordionItems.value[index].isExpanded = !accordionItems.value[index].isExpanded
 }
 </script>
 

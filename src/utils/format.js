@@ -140,3 +140,7 @@ export function formatKnownAddress(hash, isEllipsed = true) {
     return hash
   }
 }
+
+export function formatIsStatefulFunction(aciFunction) {
+  return !!aciFunction.stateful
+}

@@ -1,10 +1,12 @@
 <template>
   <app-panel>
     <h3 class="contract-read-panel__title">
-      Read Smart Contract Information
+      Write Smart Contract Information
     </h3>
+
+    <the-wallet-account-controls class="u-hidden-mobile"/>
     <div
-      v-for="(aciFunction, index) in aciFunctions"
+      v-for="(aciFunction, index) in aciStatefulFunctions"
       :key="index"
       class="contract-read-panel__accordion">
       <header
@@ -21,7 +23,7 @@
           {{ aciFunction.returns }}
         </p>
         <hr>
-        <form @submit.prevent="fetchFunctionResponse(aciFunction.name, index)">
+        <form @submit.prevent="fetchCall(aciFunction.name, index)">
           <input
             v-for="argument in aciFunction.arguments"
             :id="aciFunction.name + '-' + argument.name"
@@ -41,42 +43,44 @@
       </div>
     </div>
   </app-panel>
-  accordionMap {{ accordionMap }}
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
 import { BigNumber } from 'bignumber.js'
 import { useContractVerifiedStore } from '~/stores/contractVerified'
-import { useAesdk } from '~/stores/aesdk'
 import { useContractDetailsStore } from '@/stores/contractDetails'
+import { useWalletStore } from '~/stores/wallet'
 
-const { aeSdk } = storeToRefs(useAesdk())
+const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
 
 const contractVerifiedStore = useContractVerifiedStore()
-const { verificationDetails, aciFunctions } = storeToRefs(contractVerifiedStore)
+const { verificationDetails, aciStatefulFunctions } = storeToRefs(contractVerifiedStore)
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
 
 const response = ref([])
 const form = ref({})
-const accordionMap = ref(Array(aciFunctions.value.length).fill(true))
+const accordionMap = ref(Array(aciStatefulFunctions.value.length).fill(true))
+
+// todo switch to false
 
 function toggle(index) {
-  accordionMap.value[index] = !aciFunctions.value[index]
+  accordionMap.value[index] = !aciStatefulFunctions.value[index]
 }
 
-async function fetchFunctionResponse(functionName, index) {
+async function fetchCall(functionName, index) {
   // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
-  console.log('fetchFunctionResponse')
-
-  const contractInstance = await aeSdk.value.initializeContract({
+  console.log('fetchCall')
+  console.log('walletSdk.value', walletSdk.value)
+  const contractInstance = await walletSdk.value.initializeContract({
     aci: [JSON.parse(verificationDetails.value.aci)[3]],
     address: contractDetails.value.id,
   })
   console.log('contractInstance', contractInstance)
-  const contractCallResult = await contractInstance[functionName]({ callStatic: true })
+  console.log('form.value', form.value)
+  const contractCallResult = await contractInstance[functionName](form.value['add_test_value-one'], form.value['add_test_value-two'])
   console.log('contractCallResult?.decodedResult', contractCallResult.decodedResult)
   response.value = { [index]: new BigNumber(contractCallResult) }
   console.log('response', response.value)

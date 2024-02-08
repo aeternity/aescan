@@ -6,6 +6,7 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatIsStatefulFunction,
   formatNameStatus,
   formatTemplateLimit,
   formatTokenLimit,
@@ -614,4 +615,18 @@ export function adaptVerificationDetail(verificationDetail) {
     aci: verificationDetail.aci,
     verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
   }
+}
+
+export function adaptAciFunctions(aci) {
+  const aciObject = JSON.parse(aci)[3].contract.functions
+  const aaa = Object.groupBy(aciObject, formatIsStatefulFunction).false
+  console.log('aaa', aaa)
+  return aaa
+}
+
+export function adaptAciStatefulFunctions(aci) {
+  const aciObject = JSON.parse(aci)[3].contract.functions
+  const bbb = Object.groupBy(aciObject, formatIsStatefulFunction).true
+  console.log('bbb', bbb)
+  return bbb
 }

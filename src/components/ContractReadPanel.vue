@@ -5,15 +5,12 @@
     </h3>
     <!-- todo reduce nesting-->
     <app-accordion :items="aciFunctions">
-      <template
-        #item="{item}">
-        {{ item }}
-
+      <template #item="{item}">
         <p>
           {{ item.item.returns }}
         </p>
         <hr>
-        <form @submit.prevent="fetchFunctionResponse(item.item.name, item.index)">
+        <form @submit.prevent="fetchFunctionResponse(item.item, item.index)">
           <input
             v-for="argument in item.item.arguments"
             :id="item.item.name + '-' + argument.name"
@@ -27,7 +24,7 @@
         </form>
         <hr>
         <span v-if="response[item.index]">
-          Response {{ response }}
+          Response: {{ response[item.index] }}
         </span>
       </template>
     </app-accordion>
@@ -48,7 +45,7 @@ const { aeSdk } = storeToRefs(useAesdk())
 const response = ref([])
 const form = ref({})
 
-async function fetchFunctionResponse(functionName, index) {
+async function fetchFunctionResponse(fu, index) {
   // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
   console.log('fetchFunctionResponse')
 
@@ -57,9 +54,20 @@ async function fetchFunctionResponse(functionName, index) {
     address: contractDetails.value.id,
   })
   console.log('contractInstance', contractInstance)
-  const contractCallResult = await contractInstance[functionName]({ callStatic: true })
+  const contractCallResult = await contractInstance[fu.name]({ callStatic: true })
   console.log('contractCallResult?.decodedResult', contractCallResult.decodedResult)
-  response.value = { [index]: new BigNumber(contractCallResult) }
-  console.log('response', response.value)
+  // todo conditional formatting
+  response.value = { [index]: formatResponse(contractCallResult.decodedResult, fu.returns) }
+  console.log('response', response.value, fu.returns)
+}
+
+function formatResponse(value, type) {
+  if (type === 'int') {
+    return new BigNumber(value)
+  }
+  if (type === 'address') {
+    return value
+  }
+  return value
 }
 </script>

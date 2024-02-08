@@ -11,8 +11,6 @@ export const useContractVerificationStore = defineStore('useContractVerification
   const id = ref(null)
   const submissionId = ref(null)
 
-  // todo change url
-
   async function verifyContract(contractId, license, compiler, entryFile, sourceFiles) {
     id.value = null
     verificationResult.value = null
@@ -59,5 +57,6 @@ export const useContractVerificationStore = defineStore('useContractVerification
     fetchCompilerOptions,
     compilerOptions,
     id,
+    submissionId,
   }
 })

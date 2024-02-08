@@ -31,7 +31,7 @@
       </app-button>
     </div>
 
-    <div v-if="status === 'fail' || status === 'Conflict'">
+    <div v-if="hasError">
       <p class="contract-verification-result__paragraph">
         {{ message }}
       </p>
@@ -57,10 +57,10 @@ const timer = ref(null)
 
 const verificationStore = useContractVerificationStore()
 const { fetchVerificationStatus } = verificationStore
-const { verificationResult, id, verificationStatus } = storeToRefs(verificationStore)
+const { verificationResult, id, verificationStatus, submissionId } = storeToRefs(verificationStore)
 
 onMounted(() => {
-  if (verificationResult.value.statusText !== 'Conflict') {
+  if (!hasError.value) {
     loadVerificationStatus()
     timer.value = setInterval(loadVerificationStatus, 5000)
   }
@@ -87,6 +87,10 @@ const status = computed(() => {
 
 const message = computed(() => {
   return verificationStatus.value?.data.message || verificationResult.value.data.message
+})
+
+const hasError = computed(() => {
+  return status.value === 'fail' || status.value === 'Conflict'
 })
 
 const title = computed(() => {

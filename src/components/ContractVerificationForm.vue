@@ -129,7 +129,7 @@ async function verify() {
   if (isValid) {
     await verifyContract(
       form.value.id.trim(),
-      form.value.license.label,
+      form.value.license.key,
       form.value.compiler.value,
       form.value.entryFile,
       form.value.sourceFiles,

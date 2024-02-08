@@ -5,43 +5,34 @@
     </h3>
 
     <the-wallet-account-controls class="u-hidden-mobile"/>
-    <!--    todo componentize accordion-->
-    <div
-      v-for="(aciFunction, index) in aciStatefulFunctions"
-      :key="index"
-      class="contract-read-panel__accordion">
-      <header
-        :class="[
-          'contract-read-panel__header',
-          {'contract-read-panel__header--expanded' : accordionMap[index] }]"
-        @click="toggle(index)">
-        {{ aciFunction.name }}
-      </header>
-      <div
-        v-show="accordionMap[index]"
-        class="contract-read-panel__content">
+
+    <app-accordion :items="aciStatefulFunctions">
+      <template
+        #item="{item}">
+        {{ item }}
+
         <p>
-          {{ aciFunction.returns }}
+          {{ item.item.returns }}
         </p>
         <hr>
-        <form @submit.prevent="fetchCall(aciFunction.name, index)">
+        <form @submit.prevent="fetchCall(item.item.name, item.index)">
           <input
-            v-for="argument in aciFunction.arguments"
-            :id="aciFunction.name + '-' + argument.name"
-            v-model="form[aciFunction.name + '-' + argument.name]"
-            :name="aciFunction.name + '-' + argument.name"
+            v-for="argument in item.item.arguments"
+            :id="item.item.name + '-' + argument.name"
+            v-model="form[item.item.name + '-' + argument.name]"
+            :name="item.item.name + '-' + argument.name"
             :placeholder="argument.type"
             type="text">
           <button type="submit">
-            Send Transaction
+            Call Locally
           </button>
         </form>
         <hr>
-        <span v-if="response[index]">
+        <span v-if="response[item.index]">
           Response {{ response }}
         </span>
-      </div>
-    </div>
+      </template>
+    </app-accordion>
   </app-panel>
 </template>
 
@@ -58,13 +49,6 @@ const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
 
 const response = ref([])
 const form = ref({})
-const accordionMap = ref(Array(aciStatefulFunctions.value.length).fill(true))
-
-// todo switch to false
-
-function toggle(index) {
-  accordionMap.value[index] = !aciStatefulFunctions.value[index]
-}
 
 async function fetchCall(functionName, index) {
   // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
@@ -82,33 +66,3 @@ async function fetchCall(functionName, index) {
   console.log('response', response.value)
 }
 </script>
-
-<style scoped>
-.contract-read-panel {
-  &__title {
-    margin-bottom: var(--space-2);
-  }
-
-  &__accordion {
-    border: 1px solid var(--color-gray);
-    border-radius: 8px;
-    margin-bottom: var(--space-4);
-  }
-
-  &__header {
-    background: var(--color-snow);
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-
-    &--expanded {
-      border-bottom: 1px solid var(--color-gray);
-      border-radius: 8px 8px 0 0;
-    }
-  }
-
-  &__content {
-    padding: 8px;
-  }
-}
-</style>

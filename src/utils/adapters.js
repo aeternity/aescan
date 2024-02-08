@@ -618,11 +618,11 @@ export function adaptVerificationDetail(verificationDetail) {
 }
 
 export function adaptAciFunctions(aci) {
-  const aciObject = JSON.parse(aci)[3].contract.functions
-  return Object.groupBy(aciObject, formatIsStatefulFunction).false
+  const functions = JSON.parse(aci).find(item => item && item.contract)
+  return Object.groupBy(functions.contract.functions, formatIsStatefulFunction).false
 }
 
 export function adaptAciStatefulFunctions(aci) {
-  const aciObject = JSON.parse(aci)[3].contract.functions
-  return Object.groupBy(aciObject, formatIsStatefulFunction).true
+  const functions = JSON.parse(aci).find(item => item && item.contract)
+  return Object.groupBy(functions.contract.functions, formatIsStatefulFunction).true
 }

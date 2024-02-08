@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel v-if="aciFunctions">
     <h3 class="contract-read-panel__title">
       Read Smart Contract Information
     </h3>
@@ -14,6 +14,7 @@
           <input
             v-for="argument in item.item.arguments"
             :id="item.item.name + '-' + argument.name"
+            :key="item.item.name"
             v-model="form[item.item.name + '-' + argument.name]"
             :name="item.item.name + '-' + argument.name"
             :placeholder="argument.type"

@@ -57,7 +57,7 @@ const timer = ref(null)
 
 const verificationStore = useContractVerificationStore()
 const { fetchVerificationStatus } = verificationStore
-const { verificationResult, id, verificationStatus, submissionId } = storeToRefs(verificationStore)
+const { verificationResult, id, verificationStatus } = storeToRefs(verificationStore)
 
 onMounted(() => {
   if (!hasError.value) {

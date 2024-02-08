@@ -57,6 +57,5 @@ export const useContractVerificationStore = defineStore('useContractVerification
     fetchCompilerOptions,
     compilerOptions,
     id,
-    submissionId,
   }
 })

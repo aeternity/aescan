@@ -4,7 +4,8 @@ import useAxios from '@/composables/useAxios'
 import { adaptContracts } from '@/utils/adapters'
 
 export const useContractsStore = defineStore('contracts', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL, CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
+
   const axios = useAxios()
   const rawContracts = ref(null)
   const contractsCount = ref(null)
@@ -47,7 +48,7 @@ export const useContractsStore = defineStore('contracts', () => {
 
   async function fetchIsContractVerified(contractId) {
     try {
-      const { data } = await axios.get(`http://localhost:3000/contracts/${contractId}`)
+      const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`)
       return !!data
     } catch (error) {
       return false

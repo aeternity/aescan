@@ -3,20 +3,19 @@
     <h3 class="contract-read-panel__title">
       Read Smart Contract Information
     </h3>
-    <!-- todo reduce nesting-->
     <app-accordion :items="aciFunctions">
-      <template #item="{item}">
+      <template #content="{content: {item: aciItem, index}}">
         <p>
-          {{ item.item.returns }}
+          {{ aciItem.returns }}
         </p>
         <hr>
-        <form @submit.prevent="fetchFunctionResponse(item.item, item.index)">
+        <form @submit.prevent="fetchFunctionResponse(aciItem, index)">
           <input
-            v-for="argument in item.item.arguments"
-            :id="item.item.name + '-' + argument.name"
-            :key="item.item.name"
-            v-model="form[item.item.name + '-' + argument.name]"
-            :name="item.item.name + '-' + argument.name"
+            v-for="argument in aciItem.arguments"
+            :id="aciItem.name + '-' + argument.name"
+            :key="aciItem.name"
+            v-model="form[aciItem.name + '-' + argument.name]"
+            :name="aciItem.name + '-' + argument.name"
             :placeholder="argument.type"
             type="text">
           <button type="submit">
@@ -24,8 +23,8 @@
           </button>
         </form>
         <hr>
-        <span v-if="response[item.index]">
-          Response: {{ response[item.index] }}
+        <span v-if="response[index]">
+          Response: {{ response[index] }}
         </span>
       </template>
     </app-accordion>
@@ -46,8 +45,7 @@ const { aeSdk } = storeToRefs(useAesdk())
 const response = ref([])
 const form = ref({})
 
-async function fetchFunctionResponse(fu, index) {
-  // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
+async function fetchFunctionResponse(aciItem, index) {
   console.log('fetchFunctionResponse')
 
   const contractInstance = await aeSdk.value.initializeContract({
@@ -55,11 +53,10 @@ async function fetchFunctionResponse(fu, index) {
     address: contractDetails.value.id,
   })
   console.log('contractInstance', contractInstance)
-  const contractCallResult = await contractInstance[fu.name]({ callStatic: true })
+  const contractCallResult = await contractInstance[aciItem.name]({ callStatic: true })
   console.log('contractCallResult?.decodedResult', contractCallResult.decodedResult)
-  // todo conditional formatting
-  response.value = { [index]: formatResponse(contractCallResult.decodedResult, fu.returns) }
-  console.log('response', response.value, fu.returns)
+  response.value = { [index]: formatResponse(contractCallResult.decodedResult, aciItem.returns) }
+  console.log('response', response.value, aciItem.returns)
 }
 
 function formatResponse(value, type) {

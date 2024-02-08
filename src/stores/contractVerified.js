@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
-import { adaptVerificationDetail } from '@/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
@@ -15,6 +14,18 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const verificationDetails = computed(() =>
     rawVerificationDetails.value
       ? adaptVerificationDetail(rawVerificationDetails.value)
+      : null,
+  )
+
+  const aciFunctions = computed(() =>
+    verificationDetails.value
+      ? adaptAciFunctions(verificationDetails.value.aci)
+      : null,
+  )
+
+  const aciStatefulFunctions = computed(() =>
+    verificationDetails.value
+      ? adaptAciStatefulFunctions(verificationDetails.value.aci)
       : null,
   )
 
@@ -41,5 +52,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     contractCode,
     fetchContractCode,
     fetchVerificationDetail,
+    aciFunctions,
+    aciStatefulFunctions,
   }
 })

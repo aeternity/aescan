@@ -7,6 +7,8 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatIsStatefulFunction,
+  formatNameStatus,
   formatNameState,
   formatNumber,
   formatPercentage,

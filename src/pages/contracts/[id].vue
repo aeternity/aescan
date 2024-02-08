@@ -41,11 +41,11 @@
         :has-verified-icon="isVerified">
         <verified-contract-panel/>
       </app-tab>
-      <app-tab
-        v-if="isVerified"
-        title="Write Contract">
-        <contract-write-panel/>
-      </app-tab>
+      <!--      <app-tab-->
+      <!--        v-if="isVerified"-->
+      <!--        title="Write Contract">-->
+      <!--        <contract-write-panel/>-->
+      <!--      </app-tab>-->
     </app-tabs>
   </template>
   <loader-panel v-else/>

@@ -1,10 +1,10 @@
 <template>
-  <app-panel>
+  <app-panel v-if="aciStatefulFunctions">
     <h3 class="contract-read-panel__title">
       Write Smart Contract Information
     </h3>
 
-    <the-wallet-account-controls class="u-hidden-mobile"/>
+    <the-wallet-account-controls/>
 
     <app-accordion :items="aciStatefulFunctions">
       <template
@@ -19,6 +19,7 @@
           <input
             v-for="argument in item.item.arguments"
             :id="item.item.name + '-' + argument.name"
+            :key="item.item.name"
             v-model="form[item.item.name + '-' + argument.name]"
             :name="item.item.name + '-' + argument.name"
             :placeholder="argument.type"

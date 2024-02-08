@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
+import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 
 export const useContractVerificationStore = defineStore('useContractVerificationStore', () => {
+  const { CONTRACT_VERIFICATION_SERVICE } = useRuntimeConfig().public
   const axios = useAxios()
   const verificationResult = ref(null)
   const verificationStatus = ref(null)
@@ -23,7 +25,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
       form.append('sourceFiles', file)
     })
 
-    const data = await axios.post(`http://localhost:3000/contracts/${contractId}`, form).catch(e => {
+    const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE}/contracts/${contractId}`, form).catch(e => {
       return e.response
     })
 
@@ -33,7 +35,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
   }
 
   async function fetchVerificationStatus() {
-    const data = await axios.get(`http://localhost:3000/contracts/${id.value}/check/${submissionId.value}`).catch(e => {
+    const data = await axios.get(`${CONTRACT_VERIFICATION_SERVICE}/contracts/${id.value}/check/${submissionId.value}`).catch(e => {
       return e.response
     })
 
@@ -42,7 +44,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
 
   async function fetchCompilerOptions() {
     compilerOptions.value = null
-    const { data } = await axios.get('http://localhost:3000/compilers')
+    const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE}/compilers`)
     const compilersObject = data.compilers.map((item, index) => {
       return { key: index, value: item }
     })

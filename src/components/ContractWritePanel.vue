@@ -3,36 +3,33 @@
     <h3 class="contract-read-panel__title">
       Write Smart Contract Information
     </h3>
-    walletSdk {{ !walletSdk }}
     <the-wallet-account-controls/>
 
     <app-accordion
       :is-disabled="!walletSdk"
       :items="aciStatefulFunctions">
-      <template
-        #item="{item}">
-        {{ item }}
-
+      <template #content="{content: {item: aciItem, index}}">
         <p>
-          {{ item.item.returns }}
+          {{ aciItem.returns }}
         </p>
         <hr>
-        <form @submit.prevent="fetchCall(item.item.name, item.index)">
+        <form @submit.prevent="fetchCall(aciItem, index)">
           <input
-            v-for="argument in item.item.arguments"
-            :id="item.item.name + '-' + argument.name"
-            :key="item.item.name"
-            v-model="form[item.item.name + '-' + argument.name]"
-            :name="item.item.name + '-' + argument.name"
+            v-for="argument in aciItem.arguments"
+            :id="aciItem.name + '-' + argument.name"
+            :key="aciItem.name"
+            v-model="form[aciItem.name + '-' + argument.name]"
+            :name="aciItem.name + '-' + argument.name"
             :placeholder="argument.type"
             type="text">
           <button type="submit">
             Call Locally
           </button>
+          <!--          // todo loeader-->
         </form>
         <hr>
-        <span v-if="response[item.index]">
-          Response {{ response }}
+        <span v-if="response[index]">
+          Response: {{ response[index] }}
         </span>
       </template>
     </app-accordion>

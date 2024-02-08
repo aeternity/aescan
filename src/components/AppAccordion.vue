@@ -18,8 +18,8 @@
         v-show="item.isExpanded"
         class="accordion__content">
         <slot
-          :item="{item, index}"
-          name="item"/>
+          :content="{item, index}"
+          name="content"/>
       </div>
     </div>
   </div>

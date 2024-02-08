@@ -29,9 +29,8 @@
             :name="aciFunction.name + '-' + argument.name"
             :placeholder="argument.type"
             type="text">
-          <button
-            type="submit">
-            {{ aciFunction.stateful ? 'Call Locally' : 'Send Transaction' }}
+          <button type="submit">
+            Call Locally
           </button>
         </form>
         <hr>
@@ -47,17 +46,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { BigNumber } from 'bignumber.js'
-import { useContractVerifiedStore } from '~/stores/contractVerified'
-import { useAesdk } from '~/stores/aesdk'
+import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { useContractDetailsStore } from '@/stores/contractDetails'
+import { useAesdk } from '@/stores/aesdk'
 
+const { verificationDetails, aciFunctions } = storeToRefs(useContractVerifiedStore())
+const { contractDetails } = storeToRefs(useContractDetailsStore())
 const { aeSdk } = storeToRefs(useAesdk())
-
-const contractVerifiedStore = useContractVerifiedStore()
-const { verificationDetails, aciFunctions } = storeToRefs(contractVerifiedStore)
-
-const contractDetailsStore = useContractDetailsStore()
-const { contractDetails } = storeToRefs(contractDetailsStore)
 
 const response = ref([])
 const form = ref({})

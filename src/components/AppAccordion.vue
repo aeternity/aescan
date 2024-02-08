@@ -1,5 +1,8 @@
 <template>
-  <div class="accordion">
+  <div
+    :class="[
+      'accordion',
+      { 'accordion--disabled' : isDisabled }]">
     <div
       v-for="(item, index) in items"
       :key="index"
@@ -30,6 +33,10 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  isDisabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const accordionItems = ref(props.items)
@@ -44,6 +51,11 @@ const toggle = index => {
 
 <style scoped>
 .accordion {
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &__item {
     border: 1px solid var(--color-gray);
     border-radius: 8px;

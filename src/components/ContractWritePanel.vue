@@ -3,10 +3,12 @@
     <h3 class="contract-read-panel__title">
       Write Smart Contract Information
     </h3>
-
+    walletSdk {{ !walletSdk }}
     <the-wallet-account-controls/>
 
-    <app-accordion :items="aciStatefulFunctions">
+    <app-accordion
+      :is-disabled="!walletSdk"
+      :items="aciStatefulFunctions">
       <template
         #item="{item}">
         {{ item }}

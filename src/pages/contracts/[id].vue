@@ -36,11 +36,14 @@
         <contract-verified-panel/>
       </app-tab>
       <app-tab
+        v-if="isVerified"
         title="Contract"
         :has-verified-icon="isVerified">
         <verified-contract-panel/>
       </app-tab>
-      <app-tab title="Write Contract">
+      <app-tab
+        v-if="isVerified"
+        title="Write Contract">
         <contract-write-panel/>
       </app-tab>
     </app-tabs>

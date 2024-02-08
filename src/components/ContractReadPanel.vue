@@ -3,30 +3,22 @@
     <h3 class="contract-read-panel__title">
       Read Smart Contract Information
     </h3>
-    <div
-      v-for="(aciFunction, index) in aciFunctions"
-      :key="index"
-      class="contract-read-panel__accordion">
-      <header
-        :class="[
-          'contract-read-panel__header',
-          {'contract-read-panel__header--expanded' : accordionMap[index] }]"
-        @click="toggle(index)">
-        {{ aciFunction.name }}
-      </header>
-      <div
-        v-show="accordionMap[index]"
-        class="contract-read-panel__content">
+    <!-- todo reduce nesting-->
+    <app-accordion :items="aciFunctions">
+      <template
+        #item="{item}">
+        {{ item }}
+
         <p>
-          {{ aciFunction.returns }}
+          {{ item.item.returns }}
         </p>
         <hr>
-        <form @submit.prevent="fetchFunctionResponse(aciFunction.name, index)">
+        <form @submit.prevent="fetchFunctionResponse(item.item.name, item.index)">
           <input
-            v-for="argument in aciFunction.arguments"
-            :id="aciFunction.name + '-' + argument.name"
-            v-model="form[aciFunction.name + '-' + argument.name]"
-            :name="aciFunction.name + '-' + argument.name"
+            v-for="argument in item.item.arguments"
+            :id="item.item.name + '-' + argument.name"
+            v-model="form[item.item.name + '-' + argument.name]"
+            :name="item.item.name + '-' + argument.name"
             :placeholder="argument.type"
             type="text">
           <button type="submit">
@@ -34,13 +26,12 @@
           </button>
         </form>
         <hr>
-        <span v-if="response[index]">
+        <span v-if="response[item.index]">
           Response {{ response }}
         </span>
-      </div>
-    </div>
+      </template>
+    </app-accordion>
   </app-panel>
-  accordionMap {{ accordionMap }}
 </template>
 
 <script setup>
@@ -56,11 +47,6 @@ const { aeSdk } = storeToRefs(useAesdk())
 
 const response = ref([])
 const form = ref({})
-const accordionMap = ref(Array(aciFunctions.value.length).fill(true))
-
-function toggle(index) {
-  accordionMap.value[index] = !aciFunctions.value[index]
-}
 
 async function fetchFunctionResponse(functionName, index) {
   // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
@@ -77,33 +63,3 @@ async function fetchFunctionResponse(functionName, index) {
   console.log('response', response.value)
 }
 </script>
-
-<style scoped>
-.contract-read-panel {
-  &__title {
-    margin-bottom: var(--space-2);
-  }
-
-  &__accordion {
-    border: 1px solid var(--color-gray);
-    border-radius: 8px;
-    margin-bottom: var(--space-4);
-  }
-
-  &__header {
-    background: var(--color-snow);
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-
-    &--expanded {
-      border-bottom: 1px solid var(--color-gray);
-      border-radius: 8px 8px 0 0;
-    }
-  }
-
-  &__content {
-    padding: 8px;
-  }
-}
-</style>

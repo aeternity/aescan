@@ -89,7 +89,7 @@ import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { tokensHints } from '@/utils/hints/tokensHints'
-import TokenSymbolIcon from '~/components/TokenSymbolIcon'
+import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({
   accountTokens: {

@@ -144,3 +144,16 @@ export function formatKnownAddress(hash, isEllipsed = true) {
 export function formatIsStatefulFunction(aciFunction) {
   return !!aciFunction.stateful
 }
+
+export function formatEntrypointResponse(value, type) {
+  if (type === 'int') {
+    return new BigNumber(value)
+  }
+  if (type === 'address') {
+    return value
+  }
+  if (type === 'bool') {
+    return value.toString()
+  }
+  return value
+}

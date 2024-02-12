@@ -23,14 +23,17 @@
             :placeholder="argument.type"
             type="text">
           <button type="submit">
-            Call Locally
+            Query
           </button>
-          <!--          // todo loeader-->
         </form>
         <hr>
         <span v-if="response[index]">
-          Return value: {{ response[index] }}
+          <span :class="[{'error': response[index].responseType === 'error' }]">
+            {{ response[index].responseType === 'success' ? 'Return value' : 'Error' }}:
+            {{ response[index].message }}
+          </span>
         </span>
+        <loader-indicator-small v-if="loadingIndex === index"/>
       </template>
     </app-accordion>
   </app-panel>
@@ -38,7 +41,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { BigNumber } from 'bignumber.js'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useWalletStore } from '@/stores/wallet'
@@ -49,30 +51,35 @@ const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
 
 const response = ref([])
 const form = ref({})
+const loadingIndex = ref(null)
 
 async function fetchCall(aciItem, index) {
-  const functionName = aciItem.name
-  console.log('fetchCall')
+  loadingIndex.value = index
+  let contractCallResult
+  const args = getArguments(aciItem)
+
   const contractInstance = await walletSdk.value.initializeContract({
-    aci: [JSON.parse(verificationDetails.value.aci)[3]],
+    aci: [JSON.parse(verificationDetails.value.aci).find(item => item.contract)],
     address: contractDetails.value.id,
   })
-  console.log('functionName', functionName)
-  console.log('form.value', form.value)
-  console.log('add_test_value-one', form.value['add_test_value-one'])
 
-  const contractCallResult = await contractInstance[functionName](form.value['add_test_value-one'], form.value['add_test_value-two'])
-  response.value[index] = formatResponse(contractCallResult.decodedResult, aciItem.returns)
-  console.log('response', response.value)
+  try {
+    contractCallResult = await contractInstance[aciItem.name](...args)
+    response.value[index] = {
+      responseType: 'success',
+      message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
+    }
+  } catch (error) {
+    response.value[index] = {
+      responseType: 'error',
+      message: error,
+    }
+  }
+  loadingIndex.value = null
 }
 
-function formatResponse(value, type) {
-  if (type === 'int') {
-    return new BigNumber(value)
-  }
-  if (type === 'address') {
-    return value
-  }
-  return value
+function getArguments(aciItem) {
+  const argumentNames = aciItem.arguments.map(argument => aciItem.name + '-' + argument.name)
+  return argumentNames.map(name => form.value[name])
 }
 </script>

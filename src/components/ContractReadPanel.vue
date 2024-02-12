@@ -16,7 +16,7 @@
             :key="aciItem.name"
             v-model="form[aciItem.name + '-' + argument.name]"
             :name="aciItem.name + '-' + argument.name"
-            :placeholder="argument.type"
+            :placeholder="argument.type.toString()"
             type="text">
           <button type="submit">
             Query
@@ -24,8 +24,10 @@
         </form>
         <hr>
         <span v-if="response[index]">
-          <!--          todo label return vs error-->
-          Return value: {{ response[index] }}
+          <span :class="[{'error': response[index].responseType === 'error' }]">
+            {{ response[index].responseType === 'success' ? 'Return value' : 'Error' }}:
+            {{ response[index].message }}
+          </span>
         </span>
         <loader-indicator-small v-if="loadingIndex === index"/>
       </template>
@@ -51,21 +53,31 @@ const loadingIndex = ref(null)
 async function fetchFunctionResponse(aciItem, index) {
   loadingIndex.value = index
 
+  // todo JSON.parse(aci).find(item => item && item.contract)
   const contractInstance = await aeSdk.value.initializeContract({
     aci: [JSON.parse(verificationDetails.value.aci)[3]],
     address: contractDetails.value.id,
   })
 
+  const argsNames = aciItem.arguments.map(arg => aciItem.name + '-' + arg.name)
+  const args = argsNames.map(argName => form.value[argName])
   let contractCallResult
+
   try {
-    contractCallResult = await contractInstance[aciItem.name]({ callStatic: true })
-    response.value[index] = formatResponse(contractCallResult.decodedResult, aciItem.returns)
+    contractCallResult = await contractInstance[aciItem.name](...args)
+    response.value[index] = {
+      responseType: 'success',
+      message: formatResponse(contractCallResult.decodedResult, aciItem.returns),
+    }
   } catch (error) {
     console.log('Error in fetchFunctionResponse:', error)
-    // todo signalize error in UI
-    response.value[index] = error
-  }
 
+    response.value[index] = {
+      responseType: 'error',
+      message: error,
+    }
+  }
+  console.log('response.value', response.value)
   loadingIndex.value = null
 }
 
@@ -76,6 +88,15 @@ function formatResponse(value, type) {
   if (type === 'address') {
     return value
   }
+  if (type === 'bool') {
+    return value.toString()
+  }
   return value
 }
 </script>
+
+<style scoped>
+.error {
+  color: red;
+}
+</style>

@@ -19,13 +19,15 @@
             :placeholder="argument.type"
             type="text">
           <button type="submit">
-            Call Locally
+            Query
           </button>
         </form>
         <hr>
         <span v-if="response[index]">
-          Response: {{ response[index] }}
+          <!--          todo label return vs error-->
+          Return value: {{ response[index] }}
         </span>
+        <loader-indicator-small v-if="loadingIndex === index"/>
       </template>
     </app-accordion>
   </app-panel>
@@ -44,19 +46,27 @@ const { aeSdk } = storeToRefs(useAesdk())
 
 const response = ref([])
 const form = ref({})
+const loadingIndex = ref(null)
 
 async function fetchFunctionResponse(aciItem, index) {
-  console.log('fetchFunctionResponse')
+  loadingIndex.value = index
 
   const contractInstance = await aeSdk.value.initializeContract({
     aci: [JSON.parse(verificationDetails.value.aci)[3]],
     address: contractDetails.value.id,
   })
-  console.log('contractInstance', contractInstance)
-  const contractCallResult = await contractInstance[aciItem.name]({ callStatic: true })
-  console.log('contractCallResult?.decodedResult', contractCallResult.decodedResult)
-  response.value = { [index]: formatResponse(contractCallResult.decodedResult, aciItem.returns) }
-  console.log('response', response.value, aciItem.returns)
+
+  let contractCallResult
+  try {
+    contractCallResult = await contractInstance[aciItem.name]({ callStatic: true })
+    response.value[index] = formatResponse(contractCallResult.decodedResult, aciItem.returns)
+  } catch (error) {
+    console.log('Error in fetchFunctionResponse:', error)
+    // todo signalize error in UI
+    response.value[index] = error
+  }
+
+  loadingIndex.value = null
 }
 
 function formatResponse(value, type) {

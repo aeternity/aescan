@@ -12,7 +12,9 @@
           'accordion__header',
           {'accordion__header--expanded' : item.isExpanded }]"
         @click="toggle(index)">
-        {{ item.name }}
+        <h4>
+          {{ item.name }}
+        </h4>
       </header>
       <div
         v-show="item.isExpanded"

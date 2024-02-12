@@ -4,6 +4,7 @@
       Write Smart Contract Information
     </h3>
     <the-wallet-account-controls/>
+    <!--    todo print hint-->
 
     <app-accordion
       :is-disabled="!walletSdk"
@@ -12,21 +13,18 @@
         <p>
           {{ aciItem.returns }}
         </p>
-        <hr>
         <form @submit.prevent="fetchCall(aciItem, index)">
           <input
-            v-for="argument in aciItem.arguments"
-            :id="aciItem.name + '-' + argument.name"
-            :key="aciItem.name"
+            v-for="(argument, inputIndex) in aciItem.arguments"
+            :key="inputIndex"
             v-model="form[aciItem.name + '-' + argument.name]"
-            :name="aciItem.name + '-' + argument.name"
+            class="input"
             :placeholder="argument.type"
             type="text">
           <button type="submit">
             Query
           </button>
         </form>
-        <hr>
         <span v-if="response[index]">
           <span :class="[{'error': response[index].responseType === 'error' }]">
             {{ response[index].responseType === 'success' ? 'Return value' : 'Error' }}:
@@ -83,3 +81,13 @@ function getArguments(aciItem) {
   return argumentNames.map(name => form.value[name])
 }
 </script>
+
+<style scoped>
+.error {
+  color: red;
+}
+
+.input {
+  display: block;
+}
+</style>

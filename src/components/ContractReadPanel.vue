@@ -16,7 +16,7 @@
             :key="aciItem.name"
             v-model="form[aciItem.name + '-' + argument.name]"
             :name="aciItem.name + '-' + argument.name"
-            :placeholder="argument.type.toString()"
+            :placeholder="argument.type"
             type="text">
           <button type="submit">
             Query
@@ -35,9 +35,10 @@
   </app-panel>
 </template>
 
+<!--todo rename to entrypoint-->
+
 <script setup>
 import { storeToRefs } from 'pinia'
-import { BigNumber } from 'bignumber.js'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useAesdk } from '@/stores/aesdk'
@@ -49,50 +50,40 @@ const { aeSdk } = storeToRefs(useAesdk())
 const response = ref([])
 const form = ref({})
 const loadingIndex = ref(null)
+// todo JSON.parse(aci).find(item => item && item.contract)
+// todo separate
 
 async function fetchFunctionResponse(aciItem, index) {
   loadingIndex.value = index
+  let contractCallResult
+  const args = getArguments(aciItem)
 
-  // todo JSON.parse(aci).find(item => item && item.contract)
   const contractInstance = await aeSdk.value.initializeContract({
-    aci: [JSON.parse(verificationDetails.value.aci)[3]],
+    aci: [JSON.parse(verificationDetails.value.aci).find(item => item.contract)],
     address: contractDetails.value.id,
   })
-
-  const argsNames = aciItem.arguments.map(arg => aciItem.name + '-' + arg.name)
-  const args = argsNames.map(argName => form.value[argName])
-  let contractCallResult
 
   try {
     contractCallResult = await contractInstance[aciItem.name](...args)
     response.value[index] = {
       responseType: 'success',
-      message: formatResponse(contractCallResult.decodedResult, aciItem.returns),
+      message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
     }
   } catch (error) {
-    console.log('Error in fetchFunctionResponse:', error)
-
     response.value[index] = {
       responseType: 'error',
       message: error,
     }
   }
-  console.log('response.value', response.value)
   loadingIndex.value = null
 }
 
-function formatResponse(value, type) {
-  if (type === 'int') {
-    return new BigNumber(value)
-  }
-  if (type === 'address') {
-    return value
-  }
-  if (type === 'bool') {
-    return value.toString()
-  }
-  return value
+function getArguments(aciItem) {
+  // todo computed
+  const argumentNames = aciItem.arguments.map(argument => aciItem.name + '-' + argument.name)
+  return argumentNames.map(name => form.value[name])
 }
+
 </script>
 
 <style scoped>

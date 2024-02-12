@@ -17,15 +17,22 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
       : null,
   )
 
-  const aciFunctions = computed(() =>
+  // todo rename
+  const aciObject = computed(() =>
     verificationDetails.value
-      ? adaptAciFunctions(verificationDetails.value.aci)
+      ? JSON.parse(verificationDetails.value.aci).find(item => item.contract)
       : null,
   )
 
-  const aciStatefulFunctions = computed(() =>
+  const aciReadFunctions = computed(() =>
     verificationDetails.value
-      ? adaptAciStatefulFunctions(verificationDetails.value.aci)
+      ? adaptAciReadFunctions(aciObject.value)
+      : null,
+  )
+
+  const aciWriteFunctions = computed(() =>
+    verificationDetails.value
+      ? adaptAciWriteFunctions(aciObject.value)
       : null,
   )
 
@@ -52,7 +59,8 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     contractCode,
     fetchContractCode,
     fetchVerificationDetail,
-    aciFunctions,
-    aciStatefulFunctions,
+    aciReadFunctions,
+    aciWriteFunctions,
+    aciObject,
   }
 })

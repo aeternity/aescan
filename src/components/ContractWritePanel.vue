@@ -29,7 +29,7 @@
         </form>
         <hr>
         <span v-if="response[index]">
-          Response: {{ response[index] }}
+          Return value: {{ response[index] }}
         </span>
       </template>
     </app-accordion>
@@ -51,18 +51,23 @@ const response = ref([])
 const form = ref({})
 
 async function fetchCall(functionName, index) {
-  // console.log('JSON.parse(verificationDetails.value.aci)[3]', JSON.parse(verificationDetails.value.aci)[3])
   console.log('fetchCall')
-  console.log('walletSdk.value', walletSdk.value)
   const contractInstance = await walletSdk.value.initializeContract({
     aci: [JSON.parse(verificationDetails.value.aci)[3]],
     address: contractDetails.value.id,
   })
-  console.log('contractInstance', contractInstance)
-  console.log('form.value', form.value)
   const contractCallResult = await contractInstance[functionName](form.value['add_test_value-one'], form.value['add_test_value-two'])
-  console.log('contractCallResult?.decodedResult', contractCallResult.decodedResult)
-  response.value = { [index]: new BigNumber(contractCallResult) }
+  response.value[index] = formatResponse(contractCallResult.decodedResult, aciItem.returns)
   console.log('response', response.value)
+}
+
+function formatResponse(value, type) {
+  if (type === 'int') {
+    return new BigNumber(value)
+  }
+  if (type === 'address') {
+    return value
+  }
+  return value
 }
 </script>

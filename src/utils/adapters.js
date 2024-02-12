@@ -617,12 +617,10 @@ export function adaptVerificationDetail(verificationDetail) {
   }
 }
 
-export function adaptAciFunctions(aci) {
-  const functions = JSON.parse(aci).find(item => item && item.contract)
-  return Object.groupBy(functions.contract.functions, formatIsStatefulFunction).false
+export function adaptAciReadFunctions(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulFunction).false
 }
 
-export function adaptAciStatefulFunctions(aci) {
-  const functions = JSON.parse(aci).find(item => item && item.contract)
-  return Object.groupBy(functions.contract.functions, formatIsStatefulFunction).true
+export function adaptAciWriteFunctions(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulFunction).true
 }

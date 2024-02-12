@@ -50,12 +50,17 @@ const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
 const response = ref([])
 const form = ref({})
 
-async function fetchCall(functionName, index) {
+async function fetchCall(aciItem, index) {
+  const functionName = aciItem.name
   console.log('fetchCall')
   const contractInstance = await walletSdk.value.initializeContract({
     aci: [JSON.parse(verificationDetails.value.aci)[3]],
     address: contractDetails.value.id,
   })
+  console.log('functionName', functionName)
+  console.log('form.value', form.value)
+  console.log('add_test_value-one', form.value['add_test_value-one'])
+
   const contractCallResult = await contractInstance[functionName](form.value['add_test_value-one'], form.value['add_test_value-two'])
   response.value[index] = formatResponse(contractCallResult.decodedResult, aciItem.returns)
   console.log('response', response.value)

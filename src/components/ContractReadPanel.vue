@@ -19,7 +19,10 @@ import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useAesdk } from '@/stores/aesdk'
 
-const { aciReadEntrypoints, aciObject } = storeToRefs(useContractVerifiedStore())
+const contractVerifiedStore = useContractVerifiedStore()
+const { aciReadEntrypoints, aciObject } = storeToRefs(contractVerifiedStore)
+const { getEntrypointResponse, parseArguments } = contractVerifiedStore
+
 const { contractDetails } = storeToRefs(useContractDetailsStore())
 const { aeSdk } = storeToRefs(useAesdk())
 
@@ -34,34 +37,12 @@ async function getContractInstance() {
 }
 
 async function fetchEntrypointResponse(aciItem, index, form) {
-  console.log('aciItem, index', aciItem, index, form)
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
   const contractInstance = await getContractInstance()
   response.value[index] = await getEntrypointResponse(contractInstance, aciItem, args)
   loadingIndex.value = null
 }
-
-async function getEntrypointResponse(contractInstance, aciItem, args) {
-  try {
-    const contractCallResult = await contractInstance[aciItem.name](...args)
-    return {
-      responseType: 'success',
-      message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
-    }
-  } catch (error) {
-    return {
-      responseType: 'error',
-      message: error,
-    }
-  }
-}
-
-function parseArguments(aciItem, form) {
-  const argumentNames = aciItem.arguments.map(argument => aciItem.name + '-' + argument.name)
-  return argumentNames.map(name => form.value[name])
-}
-
 </script>
 
 <style scoped>

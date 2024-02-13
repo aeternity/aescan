@@ -52,12 +52,34 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     contractCode.value = data
   }
 
+  async function getEntrypointResponse(contractInstance, aciItem, args) {
+    try {
+      const contractCallResult = await contractInstance[aciItem.name](...args)
+      return {
+        responseType: 'success',
+        message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
+      }
+    } catch (error) {
+      return {
+        responseType: 'error',
+        message: error,
+      }
+    }
+  }
+
+  function parseArguments(aciItem, form) {
+    const argumentNames = aciItem.arguments.map(argument => aciItem.name + '-' + argument.name)
+    return argumentNames.map(name => form.value[name])
+  }
+
   return {
     isVerified,
     verificationDetails,
     contractCode,
     fetchContractCode,
     fetchVerificationDetail,
+    getEntrypointResponse,
+    parseArguments,
     aciReadEntrypoints,
     aciWriteEntrypoints,
     aciObject,

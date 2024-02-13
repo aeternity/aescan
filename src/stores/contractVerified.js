@@ -17,7 +17,6 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
       : null,
   )
 
-  // todo rename
   const aciObject = computed(() =>
     verificationDetails.value
       ? JSON.parse(verificationDetails.value.aci).find(item => item.contract)

@@ -16,13 +16,16 @@
           {{ item.name }}
         </h4>
       </header>
-      <div
-        v-show="item.isExpanded"
-        class="accordion__content">
-        <slot
-          :content="{item, index}"
-          name="content"/>
-      </div>
+
+      <transition name="accordion__content">
+        <div
+          v-show="item.isExpanded"
+          class="accordion__content">
+          <slot
+            :content="{item, index}"
+            name="content"/>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -41,8 +44,7 @@ const props = defineProps({
   },
 })
 
-// todo switch to false
-const accordionItems = ref(props.items.map(item => ({ ...item, isExpanded: true })))
+const accordionItems = ref(props.items.map(item => ({ ...item, isExpanded: false })))
 
 function toggle(index) {
   accordionItems.value[index].isExpanded = !accordionItems.value[index].isExpanded
@@ -76,10 +78,20 @@ function toggle(index) {
 
   &__content {
     padding: var(--space-1);
+
+    &-enter-active, &-leave-active {
+      transition: max-height 0.08s ease;
+    }
+
+    &-enter-from, &-leave-to {
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    &-enter-to, &-leave-from {
+      max-height: 1000px;
+      overflow: hidden;
+    }
   }
-
-  /*todo animate*/
-
 }
-
 </style>

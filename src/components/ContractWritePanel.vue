@@ -76,7 +76,7 @@ function parseArguments(aciItem, form) {
     display: flex;
     align-items: center;
     gap: var(--space-1);
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-3);
   }
 
   &__title {

@@ -31,13 +31,13 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
 
   const aciReadEntrypoints = computed(() =>
     verificationDetails.value
-      ? adaptAciReadEntrypoints(aciObject.value)
+      ? adaptReadEntrypoints(aciObject.value)
       : null,
   )
 
   const aciWriteEntrypoints = computed(() =>
     verificationDetails.value
-      ? adaptAciWriteEntrypoints(aciObject.value)
+      ? adaptWriteEntrypoints(aciObject.value)
       : null,
   )
 
@@ -88,7 +88,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   }
 
   function parseArguments(aciItem, form) {
-    const argumentNames = aciItem.arguments.map(argument => aciItem.name + '-' + argument.name)
+    const argumentNames = aciItem.arguments.map(argument => `${aciItem.name}-${argument.name}`)
     return argumentNames.map(name => form.value[name])
   }
 

@@ -617,10 +617,10 @@ export function adaptVerificationDetail(verificationDetail) {
   }
 }
 
-export function adaptAciReadEntrypoints(aci) {
+export function adaptReadEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
 }
 
-export function adaptAciWriteEntrypoints(aci) {
+export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
 }

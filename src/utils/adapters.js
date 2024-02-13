@@ -6,7 +6,7 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
-  formatIsStatefulFunction,
+  formatIsStatefulEntrypoint,
   formatNameStatus,
   formatTemplateLimit,
   formatTokenLimit,
@@ -617,10 +617,10 @@ export function adaptVerificationDetail(verificationDetail) {
   }
 }
 
-export function adaptAciReadFunctions(aci) {
-  return Object.groupBy(aci.contract.functions, formatIsStatefulFunction).false
+export function adaptAciReadEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
 }
 
-export function adaptAciWriteFunctions(aci) {
-  return Object.groupBy(aci.contract.functions, formatIsStatefulFunction).true
+export function adaptAciWriteEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
 }

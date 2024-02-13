@@ -6,7 +6,9 @@
       </h3>
       <div class="contract-write-panel__container">
         <the-wallet-account-controls/>
-        <hint-tooltip>{{ contractVerifiedHints.connectWallet }}</hint-tooltip>
+        <hint-tooltip>
+          {{ contractVerifiedHints.connectWallet }}
+        </hint-tooltip>
       </div>
       <contract-entrypoint-accordion
         :is-disabled="!walletSdk"
@@ -26,9 +28,12 @@ import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useWalletStore } from '@/stores/wallet'
 import { contractVerifiedHints } from '~/utils/hints/contractVerifiedHints'
 
-const { aciWriteEntrypoints, aciObject } = storeToRefs(useContractVerifiedStore())
 const { contractDetails } = storeToRefs(useContractDetailsStore())
 const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
+
+const contractVerifiedStore = useContractVerifiedStore()
+const { aciWriteEntrypoints, aciObject } = storeToRefs(contractVerifiedStore)
+const { getEntrypointResponse, parseArguments } = contractVerifiedStore
 
 const response = ref([])
 const loadingIndex = ref(null)
@@ -41,32 +46,11 @@ async function getContractInstance() {
 }
 
 async function fetchEntrypointResponse(aciItem, index, form) {
-  console.log('aciItem, index', aciItem, index, form)
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
   const contractInstance = await getContractInstance()
   response.value[index] = await getEntrypointResponse(contractInstance, aciItem, args)
   loadingIndex.value = null
-}
-
-async function getEntrypointResponse(contractInstance, aciItem, args) {
-  try {
-    const contractCallResult = await contractInstance[aciItem.name](...args)
-    return {
-      responseType: 'success',
-      message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
-    }
-  } catch (error) {
-    return {
-      responseType: 'error',
-      message: error,
-    }
-  }
-}
-
-function parseArguments(aciItem, form) {
-  const argumentNames = aciItem.arguments.map(argument => aciItem.name + '-' + argument.name)
-  return argumentNames.map(name => form.value[name])
 }
 </script>
 

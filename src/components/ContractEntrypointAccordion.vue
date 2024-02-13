@@ -1,8 +1,9 @@
 <template>
-  <!--  todo blank state-->
-  <app-accordion :items="entrypoints">
+  <app-accordion
+    :items="entrypoints"
+    :is-disabled="isDisabled">
     <template #content="{content: {item: aciItem, index}}">
-      <div class="contract-read-panel__container">
+      <div class="contract-entrypoint-accordion__container">
         <p>
           return type: <i>{{ aciItem.returns }}</i>
         </p>
@@ -14,7 +15,7 @@
           v-model="form[aciItem.name + '-' + argument.name]"
           :placeholder="argument.type"
           type="text"
-          class="contract-read-panel__input"/>
+          class="contract-entrypoint-accordion__input"/>
 
         <loader-indicator-small v-if="loadingIndex === index"/>
 
@@ -28,8 +29,8 @@
         <p
           v-if="response[index]"
           :class="[
-            'contract-read-panel__response',
-            {'contract-read-panel__response--error': response[index].responseType === 'error' }
+            'contract-entrypoint-accordion__response',
+            {'contract-entrypoint-accordion__response--error': response[index].responseType === 'error' }
           ]">
           {{ response[index].responseType === 'success' ? 'Return value' : 'Error' }}:
           {{ response[index].message }}
@@ -38,8 +39,8 @@
     </template>
   </app-accordion>
 </template>
-<script setup>
 
+<script setup>
 const form = ref({})
 
 defineProps({
@@ -61,18 +62,15 @@ defineProps({
   },
 })
 
-const emit = defineEmits([
-  'clicked',
-])
+const emit = defineEmits(['clicked'])
 
 function doIt(aciItem, index) {
   emit('clicked', aciItem, index, form)
 }
-
 </script>
 
 <style scoped>
-.contract-read-panel {
+.contract-entrypoint-accordion {
   &__container {
     display: flex;
     flex-direction: column;

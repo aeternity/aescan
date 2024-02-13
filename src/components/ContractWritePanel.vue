@@ -1,102 +1,68 @@
 <template>
-  <app-panel v-if="aciWriteFunctions">
+  <app-panel>
     <h3 class="contract-read-panel__title">
       Write Smart Contract Information
     </h3>
     <the-wallet-account-controls/>
     <!--    todo print hint-->
 
-    <app-accordion
+    <contract-entrypoint-accordion
+      v-if="aciWriteEntrypoints"
       :is-disabled="!walletSdk"
-      :items="aciWriteFunctions">
-      <template #content="{content: {item: aciItem, index}}">
-        <div class="contract-read-panel__container">
-          <p>
-            return type: <i>{{ aciItem.returns }}</i>
-          </p>
-          <input
-            v-for="(argument, inputIndex) in aciItem.arguments"
-            :key="inputIndex"
-            v-model="form[aciItem.name + '-' + argument.name]"
-            class="contract-read-panel__input"
-            :placeholder="argument.type"
-            type="text">
-
-          <loader-indicator-small v-if="loadingIndex === index"/>
-
-          <app-button
-            v-else
-            type="submit"
-            @click="fetchCall(aciItem, index)">
-            Query
-          </app-button>
-
-          <p
-            v-if="response[index]"
-            :class="[
-              'contract-read-panel__response',
-              {'contract-read-panel__response--error': response[index].responseType === 'error' }
-            ]">
-            {{ response[index].responseType === 'success' ? 'Return value' : 'Error' }}:
-            {{ response[index].message }}
-          </p>
-        </div>
-      </template>
-    </app-accordion>
+      :entrypoints="aciWriteEntrypoints"
+      :loading-index="loadingIndex"
+      :response="response"
+      @clicked="fetchEntrypointResponse"/>
+    <blank-state v-else/>
   </app-panel>
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useWalletStore } from '@/stores/wallet'
 
-const { aciWriteFunctions, aciObject } = storeToRefs(useContractVerifiedStore())
+const { aciWriteEntrypoints, aciObject } = storeToRefs(useContractVerifiedStore())
 const { contractDetails } = storeToRefs(useContractDetailsStore())
 const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
 
 const response = ref([])
-const form = ref({})
 const loadingIndex = ref(null)
 
-async function fetchCall(aciItem, index) {
-  loadingIndex.value = index
-  let contractCallResult
-  const args = getArguments(aciItem)
-
-  const contractInstance = await walletSdk.value.initializeContract({
+async function getContractInstance() {
+  return await walletSdk.value.initializeContract({
     aci: [aciObject.value],
     address: contractDetails.value.id,
   })
+}
 
+async function fetchEntrypointResponse(aciItem, index, form) {
+  console.log('aciItem, index', aciItem, index, form)
+  loadingIndex.value = index
+  const args = parseArguments(aciItem, form)
+  const contractInstance = await getContractInstance()
+  response.value[index] = await getEntrypointResponse(contractInstance, aciItem, args)
+  loadingIndex.value = null
+}
+
+async function getEntrypointResponse(contractInstance, aciItem, args) {
   try {
-    contractCallResult = await contractInstance[aciItem.name](...args)
-    response.value[index] = {
+    const contractCallResult = await contractInstance[aciItem.name](...args)
+    return {
       responseType: 'success',
       message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
     }
   } catch (error) {
-    response.value[index] = {
+    return {
       responseType: 'error',
       message: error,
     }
   }
-  loadingIndex.value = null
 }
 
-function getArguments(aciItem) {
+function parseArguments(aciItem, form) {
   const argumentNames = aciItem.arguments.map(argument => aciItem.name + '-' + argument.name)
   return argumentNames.map(name => form.value[name])
 }
 </script>
-
-<style scoped>
-.error {
-  color: red;
-}
-
-.input {
-  display: block;
-}
-</style>

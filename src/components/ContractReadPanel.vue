@@ -8,7 +8,7 @@
         :entrypoints="aciReadEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
-        @clicked="fetchEntrypointResponse"/>
+        @clicked="getEntrypointResponse"/>
     </template>
     <blank-state v-else/>
   </app-panel>
@@ -16,31 +16,19 @@
 
 <script setup>
 import { useContractVerifiedStore } from '@/stores/contractVerified'
-import { useContractDetailsStore } from '@/stores/contractDetails'
-import { useAesdk } from '@/stores/aesdk'
 
 const contractVerifiedStore = useContractVerifiedStore()
-const { aciReadEntrypoints, aciObject } = storeToRefs(contractVerifiedStore)
-const { getEntrypointResponse, parseArguments } = contractVerifiedStore
-
-const { contractDetails } = storeToRefs(useContractDetailsStore())
-const { aeSdk } = storeToRefs(useAesdk())
+const { aciReadEntrypoints } = storeToRefs(contractVerifiedStore)
+const { fetchEntrypointResponse, parseArguments, getReadContractInstance } = contractVerifiedStore
 
 const response = ref([])
 const loadingIndex = ref(null)
 
-async function getContractInstance() {
-  return await aeSdk.value.initializeContract({
-    aci: [aciObject.value],
-    address: contractDetails.value.id,
-  })
-}
-
-async function fetchEntrypointResponse(aciItem, index, form) {
+async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
-  const contractInstance = await getContractInstance()
-  response.value[index] = await getEntrypointResponse(contractInstance, aciItem, args)
+  const contractInstance = await getReadContractInstance()
+  response.value[index] = await fetchEntrypointResponse(contractInstance, aciItem, args)
   loadingIndex.value = null
 }
 </script>

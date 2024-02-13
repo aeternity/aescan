@@ -15,41 +15,28 @@
         :entrypoints="aciWriteEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
-        @clicked="fetchEntrypointResponse"/>
+        @clicked="getEntrypointResponse"/>
     </template>
     <blank-state v-else/>
   </app-panel>
 </template>
 
 <script setup>
-
 import { useContractVerifiedStore } from '@/stores/contractVerified'
-import { useContractDetailsStore } from '@/stores/contractDetails'
-import { useWalletStore } from '@/stores/wallet'
-import { contractVerifiedHints } from '~/utils/hints/contractVerifiedHints'
-
-const { contractDetails } = storeToRefs(useContractDetailsStore())
-const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
+import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()
-const { aciWriteEntrypoints, aciObject } = storeToRefs(contractVerifiedStore)
-const { getEntrypointResponse, parseArguments } = contractVerifiedStore
+const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
+const { fetchEntrypointResponse, parseArguments, getWriteContractInstance, walletSdk } = contractVerifiedStore
 
 const response = ref([])
 const loadingIndex = ref(null)
 
-async function getContractInstance() {
-  return await walletSdk.value.initializeContract({
-    aci: [aciObject.value],
-    address: contractDetails.value.id,
-  })
-}
-
-async function fetchEntrypointResponse(aciItem, index, form) {
+async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
-  const contractInstance = await getContractInstance()
-  response.value[index] = await getEntrypointResponse(contractInstance, aciItem, args)
+  const contractInstance = await getWriteContractInstance()
+  response.value[index] = await fetchEntrypointResponse(contractInstance, aciItem, args)
   loadingIndex.value = null
 }
 </script>

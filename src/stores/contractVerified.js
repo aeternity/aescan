@@ -24,15 +24,15 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
       : null,
   )
 
-  const aciReadFunctions = computed(() =>
+  const aciReadEntrypoints = computed(() =>
     verificationDetails.value
-      ? adaptAciReadFunctions(aciObject.value)
+      ? adaptAciReadEntrypoints(aciObject.value)
       : null,
   )
 
-  const aciWriteFunctions = computed(() =>
+  const aciWriteEntrypoints = computed(() =>
     verificationDetails.value
-      ? adaptAciWriteFunctions(aciObject.value)
+      ? adaptAciWriteEntrypoints(aciObject.value)
       : null,
   )
 
@@ -59,8 +59,8 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     contractCode,
     fetchContractCode,
     fetchVerificationDetail,
-    aciReadFunctions,
-    aciWriteFunctions,
+    aciReadEntrypoints,
+    aciWriteEntrypoints,
     aciObject,
   }
 })

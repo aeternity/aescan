@@ -1,6 +1,5 @@
 <template>
   <header class="header">
-    ENV VARIABLE: {{ CONTRACT_VERIFICATION_SERVICE_URL }}
     <div
       :class="[
         'header__container',

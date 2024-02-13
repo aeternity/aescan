@@ -77,14 +77,16 @@ function toggle(index) {
   }
 
   &__content {
-    padding: var(--space-1);
+    padding: var(--space-1) 0;
+    margin: 0 var(--space-1);
 
     &-enter-active, &-leave-active {
-      transition: max-height 0.08s ease;
+      transition: max-height 0.08s ease, padding 0.08s ease;
     }
 
     &-enter-from, &-leave-to {
       max-height: 0;
+      padding: 0;
       overflow: hidden;
     }
 

@@ -1,15 +1,15 @@
 <template>
   <app-panel>
-    <h3 class="contract-read-panel__title">
-      Read Smart Contract Information
-    </h3>
-    <contract-entrypoint-accordion
-      v-if="aciReadEntrypoints"
-
-      :entrypoints="aciReadEntrypoints"
-      :loading-index="loadingIndex"
-      :response="response"
-      @clicked="fetchEntrypointResponse"/>
+    <template v-if="aciReadEntrypoints">
+      <h3 class="contract-read-panel__title">
+        Read Smart Contract Information
+      </h3>
+      <contract-entrypoint-accordion
+        :entrypoints="aciReadEntrypoints"
+        :loading-index="loadingIndex"
+        :response="response"
+        @clicked="fetchEntrypointResponse"/>
+    </template>
     <blank-state v-else/>
   </app-panel>
 </template>
@@ -63,3 +63,9 @@ function parseArguments(aciItem, form) {
 }
 
 </script>
+
+<style scoped>
+.contract-read-panel__title {
+  margin-bottom: var(--space-2);
+}
+</style>

@@ -1,18 +1,20 @@
 <template>
   <app-panel>
-    <h3 class="contract-read-panel__title">
-      Write Smart Contract Information
-    </h3>
-    <the-wallet-account-controls/>
-    <!--    todo print hint-->
-
-    <contract-entrypoint-accordion
-      v-if="aciWriteEntrypoints"
-      :is-disabled="!walletSdk"
-      :entrypoints="aciWriteEntrypoints"
-      :loading-index="loadingIndex"
-      :response="response"
-      @clicked="fetchEntrypointResponse"/>
+    <template v-if="aciWriteEntrypoints">
+      <h3 class="contract-write-panel__title">
+        Write Smart Contract Information
+      </h3>
+      <div class="contract-write-panel__container">
+        <the-wallet-account-controls/>
+        <hint-tooltip>{{ contractVerifiedHints.connectWallet }}</hint-tooltip>
+      </div>
+      <contract-entrypoint-accordion
+        :is-disabled="!walletSdk"
+        :entrypoints="aciWriteEntrypoints"
+        :loading-index="loadingIndex"
+        :response="response"
+        @clicked="fetchEntrypointResponse"/>
+    </template>
     <blank-state v-else/>
   </app-panel>
 </template>
@@ -22,6 +24,7 @@
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useWalletStore } from '@/stores/wallet'
+import { contractVerifiedHints } from '~/utils/hints/contractVerifiedHints'
 
 const { aciWriteEntrypoints, aciObject } = storeToRefs(useContractVerifiedStore())
 const { contractDetails } = storeToRefs(useContractDetailsStore())
@@ -66,3 +69,18 @@ function parseArguments(aciItem, form) {
   return argumentNames.map(name => form.value[name])
 }
 </script>
+
+<style scoped>
+.contract-write-panel {
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-bottom: var(--space-2);
+  }
+
+  &__title {
+    margin-bottom: var(--space-2);
+  }
+}
+</style>

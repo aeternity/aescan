@@ -40,7 +40,8 @@ const codeModel = ref(props.code)
 
 <style>
 .code-editor .monaco-editor {
-  &,
+  border-radius: 8px;
+
   .overflow-guard {
     border-radius: 8px;
   }

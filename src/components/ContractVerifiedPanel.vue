@@ -40,6 +40,14 @@
         class="contract-verified-panel__code-editor"
         :code="verificationDetails.aci"
         lang="json"/>
+      <header class="contract-verified-panel__header">
+        <h3>
+          Bytecode
+        </h3>
+      </header>
+      <code-editor
+        class="contract-verified-panel__code-editor"
+        :code="contractDetails.bytecode"/>
     </template>
     <blank-state v-else>
       Smart Contract is not verified. Go to
@@ -54,10 +62,14 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
+import { useContractDetailsStore } from '@/stores/contractDetails'
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { contractCode, verificationDetails, isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchContractCode } = contractVerifiedStore
+
+const { contractDetails } = storeToRefs(useContractDetailsStore())
+
 const route = useRoute()
 if (isVerified.value) {
   await fetchContractCode(route.params.id)
@@ -68,7 +80,7 @@ function downloadFile(content) {
   const url = window.URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.setAttribute('download', 'bytecode.aci')
+  link.setAttribute('download', 'contract.aci')
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)

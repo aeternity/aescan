@@ -8,6 +8,10 @@
 
   <app-panel>
     <loader-indicator
+      v-if="status === 'pending'"
+      label="pending"/>
+
+    <loader-indicator
       v-if="status === 'processing'"
       label="Processing"/>
 
@@ -22,8 +26,8 @@
       <app-link
         :to="`/contracts/${id}`"
         class="contract-verification-result__link">
-        Smart Contract detail
         <verified-icon/>
+        Smart Contract detail
       </app-link>
 
       <app-button to="/contract-verification">
@@ -31,17 +35,26 @@
       </app-button>
     </div>
 
-    <div v-if="hasError">
+    <div v-if="status === 409">
       <p class="contract-verification-result__paragraph">
         {{ message }}
       </p>
       <app-link
-        v-if="status === 'Conflict'"
         :to="`/contracts/${id}`"
         class="contract-verification-result__link">
-        Smart Contract detail
         <verified-icon/>
+        Smart Contract detail
       </app-link>
+
+      <app-button to="/contract-verification">
+        Verify another Smart Contract
+      </app-button>
+    </div>
+
+    <div v-if="status === 'fail'">
+      <p class="contract-verification-result__paragraph">
+        {{ message }}
+      </p>
       <app-button to="/contract-verification">
         Retry verification
       </app-button>
@@ -57,10 +70,10 @@ const timer = ref(null)
 
 const verificationStore = useContractVerificationStore()
 const { fetchVerificationStatus } = verificationStore
-const { verificationResult, id, verificationStatus } = storeToRefs(verificationStore)
+const { id, verificationResult, verificationStatus } = storeToRefs(verificationStore)
 
 onMounted(() => {
-  if (!hasError.value) {
+  if (status.value !== 'fail' && status.value !== 409) {
     loadVerificationStatus()
     timer.value = setInterval(loadVerificationStatus, 5000)
   }
@@ -82,22 +95,18 @@ watch(verificationStatus, newStatus => {
 })
 
 const status = computed(() => {
-  return verificationStatus.value?.data.status || verificationResult.value.statusText
+  return verificationResult.value.data.statusCode || verificationStatus.value?.data.status
 })
 
 const message = computed(() => {
-  return verificationStatus.value?.data.message || verificationResult.value.data.message
-})
-
-const hasError = computed(() => {
-  return status.value === 'fail' || status.value === 'Conflict'
+  return verificationResult.value.data.message || verificationStatus.value?.data.message
 })
 
 const title = computed(() => {
   if (status.value === 'success') {
     return 'Smart Contract Verified'
   }
-  if (status.value === 'fail' || status.value === 'Conflict') {
+  if (status.value === 'fail') {
     return 'Contract Verification Failed'
   }
   return 'Smart Contract Verification'

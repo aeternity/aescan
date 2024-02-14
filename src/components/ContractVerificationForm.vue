@@ -97,7 +97,8 @@
       </div>
       <app-button
         class="contract-verification-form__submit"
-        type="submit">
+        type="submit"
+        :disabled="isSubmitting">
         Verify Smart Contract
       </app-button>
     </div>
@@ -121,11 +122,14 @@ const form = ref({
 })
 
 const errors = ref({})
+const isSubmitting = ref(false)
 
 async function verify() {
   validate()
   const isValid = Object.keys(errors.value).length === 0
   if (isValid) {
+    isSubmitting.value = true
+
     await verifyContract(
       form.value.id.trim(),
       form.value.license.key,

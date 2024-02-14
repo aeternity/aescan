@@ -3,7 +3,8 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    :class="['button', [`button--${variant}`]]">
+    :class="['button', [`button--${variant}`]]"
+    :disabled="disabled">
 
     <app-icon
       v-if="iconName"
@@ -15,7 +16,8 @@
   <button
     v-else
     :type="type"
-    :class="['button', [`button--${variant}`]]">
+    :class="['button', [`button--${variant}`]]"
+    :disabled="disabled">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -51,6 +53,10 @@ defineProps({
     type: String,
     default: 'button',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
@@ -74,6 +80,11 @@ defineProps({
   border: none;
 
   padding: var(--space-3) var(--space-5);
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
 
   &__icon {
     margin-right: var(--space-1);

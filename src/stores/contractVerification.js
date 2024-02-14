@@ -14,6 +14,8 @@ export const useContractVerificationStore = defineStore('useContractVerification
   async function verifyContract(contractId, license, compiler, entryFile, sourceFiles) {
     id.value = null
     verificationResult.value = null
+    submissionId.value = null
+    verificationStatus.value = null
     const form = new FormData()
     form.append('license', license)
     form.append('compiler', compiler)

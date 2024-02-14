@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="validate">
+  <form @submit.prevent="verify">
     <div class="contract-verification-form__row">
       <div>
         <div class="contract-verification-form__field">
@@ -97,8 +97,7 @@
       </div>
       <app-button
         class="contract-verification-form__submit"
-        type="submit"
-        @click="verify()">
+        type="submit">
         Verify Smart Contract
       </app-button>
     </div>

@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
-      
+
       - name: Set up Docker Buildx
         id: buildx
         # Use the action from the master, as we've seen some inconsistencies with @v1
@@ -56,14 +56,14 @@ jobs:
           images: aeternity/aescan
           tags: |
             type=ref,event=pr
-      
+
       - name: Get commit sha on PR Sync
-        if: github.event_name == 'pull_request' && github.event.action == 'synchronize'  
+        if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
         id: git-sha
         shell: bash
         run: |
           echo GIT_SHA=$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
-      
+
       - name: Create dotenv
         run: |
           echo APP_VERSION=$(git describe --tags)-preview >> .env
@@ -97,13 +97,13 @@ jobs:
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
           persist-credentials: false
           fetch-depth: 0
-      
+
       - name: Chekc the initial PR deployment status before make a PR Sync.
         if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
         uses: aeternity/ae-github-actions/deploy-status@v7
         with:
           url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
-          
+
       - name: Staging PR Sync
         if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
         uses: aeternity/ae-github-actions/argocd-pr-sync@v5
@@ -135,7 +135,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: Deployed to https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
+          msg: Deployed to https://pr-${{ env.PR_NUMBER }}-aescan.${{ env.ENV }}.service.aepps.com and https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
           check_for_duplicate_msg: true
 
       - name: Push changes

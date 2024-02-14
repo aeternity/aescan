@@ -43,8 +43,6 @@
 <script setup>
 import { isDesktop } from '@/utils/screen'
 
-const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
-
 const route = useRoute()
 const isNavigationOpen = ref(false)
 

@@ -6,7 +6,7 @@
           <label for="id">
             Smart Contract ID
             <hint-tooltip>
-              Field is required
+              {{ contractVerificationHints.required }}
             </hint-tooltip>
           </label>
 
@@ -27,7 +27,7 @@
           <label for="compiler">
             Compiler Version
             <hint-tooltip>
-              Field is required
+              {{ contractVerificationHints.required }}
             </hint-tooltip>
           </label>
           <compiler-select
@@ -45,7 +45,7 @@
           <label for="compiler">
             License
             <hint-tooltip>
-              Field is required
+              {{ contractVerificationHints.required }}
             </hint-tooltip>
           </label>
           <license-select
@@ -107,6 +107,7 @@
 
 <script setup>
 import { useContractVerificationStore } from '@/stores/contractVerification'
+import { contractVerificationHints } from '@/utils/hints/contractVerificationHints'
 
 const verificationStore = useContractVerificationStore()
 const { verifyContract } = verificationStore

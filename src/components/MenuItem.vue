@@ -88,7 +88,7 @@ defineProps({
   }
 
   &__item {
-    padding: var(--space-0) var(--space-3);
+    padding: var(--space-0) var(--space-3) var(--space-0) var(--space-4);
 
     @media (--desktop) {
       padding: var(--space-2) var(--space-1);

@@ -69,7 +69,6 @@ const menuOptions = ref([{
     {
       name: 'Smart Contract Verification',
       path: '/verification',
-      isDisabled: true,
     },
   ],
 }])

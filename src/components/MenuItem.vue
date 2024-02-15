@@ -50,14 +50,18 @@ defineProps({
   width: 100%;
 
   &__header {
-    padding: 0 var(--space-4) var(--space-1) var(--space-4);
-    font-size: 16px;
-    line-height: 24px;
     display: flex;
     justify-content: space-between;
 
+    padding: 0 var(--space-4) var(--space-1) var(--space-4);
+
+    font-size: 20px;
+    line-height: 28px;
+
     @media (--desktop) {
       padding: 0 var(--space-3);
+      font-size: 16px;
+      line-height: 24px;
     }
   }
 

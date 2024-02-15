@@ -41,21 +41,15 @@
 </template>
 
 <script setup>
-import { isDesktop } from '@/utils/screen'
-
 const route = useRoute()
 const isNavigationOpen = ref(false)
 
 onMounted(() => {
-  if (isDesktop()) {
-    window.addEventListener('resize', closeNavigation())
-  }
+  window.addEventListener('resize', closeNavigation)
 })
 
 onBeforeUnmount(() => {
-  if (isDesktop()) {
-    window.removeEventListener('resize', closeNavigation())
-  }
+  window.removeEventListener('resize', closeNavigation)
 })
 
 watch(() => route.fullPath, () => {
@@ -107,9 +101,11 @@ function closeNavigation() {
     }
 
     @media (--desktop) {
+      height: 100%;
       flex-basis: auto;
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
+      align-items: center;
     }
   }
 

@@ -9,11 +9,11 @@
         Contract Code
       </h3>
       <template
-        v-for="code in contractCode.source"
-        :key="code.filePath">
+        v-for="(code, index) in contractCode.source"
+        :key="index">
         <header class="contract-verified-panel__header">
           <div class="contract-verified-panel__container">
-            <h4>{{ code.filePath }}</h4>
+            <h4>file {{ index + 1 }} of {{ contractCode.source.length }}: {{ code.filePath }}</h4>
             <app-chip
               v-if="code.isEntryFile"
               size="sm">

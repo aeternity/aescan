@@ -63,22 +63,6 @@ const menuOptions = ref([{
   ],
 },
 {
-  name: 'Analytics',
-  isActive: false,
-  submenu: [
-    {
-      name: 'Top Accounts',
-      path: '/top-accounts',
-      isDisabled: true,
-    },
-    {
-      name: 'Charts',
-      path: '/charts',
-      isDisabled: true,
-    },
-  ],
-},
-{
   name: 'Developers',
   isActive: false,
   submenu: [

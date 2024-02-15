@@ -67,7 +67,7 @@ const menuOptions = ref([{
   isActive: false,
   submenu: [
     {
-      name: 'Contract Verification',
+      name: 'Smart Contract Verification',
       path: '/verification',
       isDisabled: true,
     },

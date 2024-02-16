@@ -7,6 +7,8 @@
   </page-header>
 
   <app-panel>
+    <loader-indicator v-if="status === 'loading'"/>
+
     <loader-indicator
       v-if="status === 'pending'"
       label="pending"/>
@@ -51,7 +53,7 @@
       </app-button>
     </div>
 
-    <div v-if="status === 'fail'">
+    <div v-if="status === 'fail' || status === 422">
       <p class="contract-verification-result__paragraph">
         {{ message }}
       </p>
@@ -73,7 +75,7 @@ const { fetchVerificationStatus } = verificationStore
 const { id, verificationResult, verificationStatus } = storeToRefs(verificationStore)
 
 onMounted(() => {
-  if (status.value !== 'fail' && status.value !== 409) {
+  if (status.value !== 'fail' && status.value !== 409 && status.value !== 422) {
     loadVerificationStatus()
     timer.value = setInterval(loadVerificationStatus, 5000)
   }
@@ -95,18 +97,22 @@ watch(verificationStatus, newStatus => {
 })
 
 const status = computed(() => {
-  return verificationResult.value.data.statusCode || verificationStatus.value?.data.status
+  return verificationResult.value.data.statusCode ||
+      verificationResult.value.data.status ||
+      verificationStatus.value?.data.status
 })
 
 const message = computed(() => {
-  return verificationResult.value.data.message || verificationStatus.value?.data.message
+  return verificationResult.value.data.message ||
+      verificationResult.value.data.error ||
+      verificationStatus.value?.data.message
 })
 
 const title = computed(() => {
   if (status.value === 'success') {
     return 'Smart Contract Verified'
   }
-  if (status.value === 'fail') {
+  if (status.value === 'fail' || status.value !== 422) {
     return 'Contract Verification Failed'
   }
   return 'Smart Contract Verification'

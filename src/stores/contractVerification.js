@@ -25,18 +25,21 @@ export const useContractVerificationStore = defineStore('useContractVerification
       form.append('sourceFiles', file)
     })
 
-    const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch(e => {
-      return e.response
+    const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch(error => {
+      console.log('error', error)
+      return error.response
     })
 
     id.value = contractId
     verificationResult.value = data
+    console.log('verificationResult.value', verificationResult.value)
+
     submissionId.value = data.data.submissionId
   }
 
   async function fetchVerificationStatus() {
-    const data = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${id.value}/check/${submissionId.value}`).catch(e => {
-      return e.response
+    const data = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${id.value}/check/${submissionId.value}`).catch(error => {
+      return error.response
     })
 
     verificationStatus.value = data

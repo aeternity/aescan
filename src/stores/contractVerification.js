@@ -26,13 +26,11 @@ export const useContractVerificationStore = defineStore('useContractVerification
     })
 
     const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch(error => {
-      console.log('error', error)
       return error.response
     })
 
     id.value = contractId
     verificationResult.value = data
-    console.log('verificationResult.value', verificationResult.value)
 
     submissionId.value = data.data.submissionId
   }

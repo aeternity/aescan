@@ -604,7 +604,7 @@ export function adaptNft(nft) {
   }
 }
 
-export function adaptVerificationStatus(verificationStatus) {
+export function adaptVerificationResult(verificationStatus) {
   function translateCodeToStatus(code) {
     if (code === 400 || code === 422) {
       return 'fail'

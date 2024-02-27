@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
-import { adaptVerificationStatus } from '~/utils/adapters'
+import { adaptVerificationResult } from '@/utils/adapters'
 
 export const useContractVerificationStore = defineStore('useContractVerificationStore', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
@@ -31,7 +31,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
       return error.response
     })
     id.value = contractId
-    verificationResult.value = adaptVerificationStatus(data.data)
+    verificationResult.value = adaptVerificationResult(data.data)
     submissionId.value = data.data.submissionId
   }
 

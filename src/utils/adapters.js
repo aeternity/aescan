@@ -603,3 +603,20 @@ export function adaptNft(nft) {
     templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
   }
 }
+
+export function adaptVerificationStatus(verificationStatus) {
+  function translateCodeToStatus(code) {
+    if (code === 400 || code === 422) {
+      return 'fail'
+    }
+    if (code === 409) {
+      return 'conflict'
+    }
+    return null
+  }
+
+  return {
+    ...verificationStatus,
+    status: translateCodeToStatus(verificationStatus.statusCode),
+  }
+}

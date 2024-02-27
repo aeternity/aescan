@@ -37,9 +37,9 @@
       </app-button>
     </div>
 
-    <div v-if="status === 409">
+    <div v-if="status === 'conflict'">
       <p class="contract-verification-result__paragraph">
-        {{ message }}
+        {{ printMessage(message) }}
       </p>
       <app-link
         :to="`/contracts/${id}`"
@@ -53,9 +53,9 @@
       </app-button>
     </div>
 
-    <div v-if="status === 'fail' || status === 422">
+    <div v-if="status === 'fail'">
       <p class="contract-verification-result__paragraph">
-        {{ message }}
+        {{ printMessage(message) }}
       </p>
       <app-button to="/contract-verification">
         Retry verification
@@ -75,7 +75,7 @@ const { fetchVerificationStatus } = verificationStore
 const { id, verificationResult, verificationStatus } = storeToRefs(verificationStore)
 
 onMounted(() => {
-  if (status.value !== 'fail' && status.value !== 409 && status.value !== 422) {
+  if (status.value !== 'fail' && status.value !== 'conflict') {
     loadVerificationStatus()
     timer.value = setInterval(loadVerificationStatus, 5000)
   }
@@ -90,33 +90,36 @@ const loadVerificationStatus = async() => {
 }
 
 watch(verificationStatus, newStatus => {
-  if (newStatus.data.status === 'fail' || newStatus.data.status === 'success') {
+  if (newStatus.status === 'fail' || newStatus.status === 'success') {
     clearInterval(timer.value)
     timer.value = null
   }
 })
 
 const status = computed(() => {
-  return verificationResult.value.data.statusCode ||
-      verificationResult.value.data.status ||
-      verificationStatus.value?.data.status
+  return verificationResult.value.status || verificationStatus.value?.status || 'pending'
 })
 
 const message = computed(() => {
-  return verificationResult.value.data.message ||
-      verificationResult.value.data.error ||
-      verificationStatus.value?.data.message
+  return verificationResult.value.message || verificationStatus.value.message
 })
 
 const title = computed(() => {
   if (status.value === 'success') {
     return 'Smart Contract Verified'
   }
-  if (status.value === 'fail' || status.value !== 422) {
+  if (status.value === 'fail') {
     return 'Contract Verification Failed'
   }
   return 'Smart Contract Verification'
 })
+
+function printMessage(message) {
+  if (Array.isArray(message)) {
+    return message.join('\n')
+  }
+  return message
+}
 
 </script>
 

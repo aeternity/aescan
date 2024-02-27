@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
+import { adaptVerificationStatus } from '~/utils/adapters'
 
 export const useContractVerificationStore = defineStore('useContractVerificationStore', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
@@ -16,6 +17,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
     verificationResult.value = null
     submissionId.value = null
     verificationStatus.value = null
+
     const form = new FormData()
     form.append('license', license)
     form.append('compiler', compiler)
@@ -28,10 +30,8 @@ export const useContractVerificationStore = defineStore('useContractVerification
     const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch(error => {
       return error.response
     })
-
     id.value = contractId
-    verificationResult.value = data
-
+    verificationResult.value = adaptVerificationStatus(data.data)
     submissionId.value = data.data.submissionId
   }
 
@@ -39,8 +39,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
     const data = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${id.value}/check/${submissionId.value}`).catch(error => {
       return error.response
     })
-
-    verificationStatus.value = data
+    verificationStatus.value = data.data
   }
 
   async function fetchCompilerOptions() {

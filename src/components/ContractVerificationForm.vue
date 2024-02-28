@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="verify">
     <div class="contract-verification-form__row">
-      <div>
+      <div class="contract-verification-form__column">
         <div class="contract-verification-form__field">
           <label for="id">
             Smart Contract ID
@@ -58,7 +58,7 @@
           </p>
         </div>
       </div>
-      <div>
+      <div class="contract-verification-form__column">
         <contracts-file-upload
           v-model:selected-files="form.sourceFiles"
           v-model:entry-file="form.entryFile"
@@ -177,19 +177,20 @@ function validate() {
     margin-bottom: var(--space-1);
   }
 
-  &__text-input {
-    width: 100%;
-  }
-
   &__row {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: var(--space-4);
     margin-bottom: var(--space-3);
 
     @media (--desktop) {
       flex-direction: row;
     }
+  }
+
+  &__column {
+    width: 100%;
   }
 
   &__controls {
@@ -212,10 +213,10 @@ function validate() {
 
   &__select {
     width: 100%;
+  }
 
-    @media (--desktop) {
-      width: 372px;
-    }
+  &__text-input {
+    width: 100%;
   }
 }
 </style>

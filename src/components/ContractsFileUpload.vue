@@ -180,10 +180,6 @@ async function getDataTransferItems(dataTransferItems) {
     border: 2px dashed var(--color-midnight-35);
     border-radius: 8px;
 
-    @media (--desktop) {
-      width: 600px;
-    }
-
     &--dragover {
       border: 2px solid var(--color-success);
     }

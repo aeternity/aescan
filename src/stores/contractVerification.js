@@ -23,7 +23,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
     form.append('compiler', compiler)
     form.append('entryFile', entryFile)
 
-    sourceFiles.forEach(file => {
+    Array.from(sourceFiles).forEach(file => {
       form.append('sourceFiles', file)
     })
 

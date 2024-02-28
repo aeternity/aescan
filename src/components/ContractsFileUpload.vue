@@ -25,7 +25,7 @@
         name="file"
         class="contracts-file-upload__input"
         accept=".aes"
-        @change="addFilesFromFileInput">
+        @change="addInputFilesToSelectedFiles">
       <contract-file-list
         v-if="hasSelectedFiles"
         :files="selectedFiles"
@@ -70,33 +70,42 @@ const hasSelectedFiles = computed(() => {
   return selectedFiles.value.length > 0
 })
 
-function addFilesFromFileInput() {
-  addFilesToList(fileInput.value.files)
+function addInputFilesToSelectedFiles() {
+  const isFirstFilesAddition = !hasSelectedFiles.value
+
+  selectedFiles.value.push(...fileInput.value.files)
+  emit('update:selected-files', fileInput.value.files)
+
+  if (isFirstFilesAddition) {
+    selectEntryFile(selectedFiles.value[0].name, 0)
+  }
 }
 
-function addFilesToList(fileList) {
-  const isFirstFilesAddition = !selectedFiles.value.length
-  selectedFiles.value = [...selectedFiles.value, ...fileList]
-  emit('update:selected-files', selectedFiles.value)
+function addDroppedFilesToSelectedFiles(isFirstFilesAddition) {
+  const fileList = new DataTransfer()
+  selectedFiles.value.forEach(file => {
+    return fileList.items.add(file)
+  })
+  emit('update:selected-files', fileList.files)
+
   if (isFirstFilesAddition) {
-    selectEntryFile(fileList[0].name, 0)
+    selectEntryFile(selectedFiles.value[0].name, 0)
   }
+}
+
+function drop(event) {
+  event.preventDefault()
+  const isFirstFilesAddition = !hasSelectedFiles.value
+
+  getDataTransferItems(event.dataTransfer.items).then(() => {
+    addDroppedFilesToSelectedFiles(isFirstFilesAddition)
+  })
+  isDragging.value = false
 }
 
 function selectEntryFile(entryFileName, entryFileIndex) {
   entryFile.value = { index: entryFileIndex, name: entryFileName }
   emit('update:entry-file', entryFileName)
-  // todo improve filename with path with multiple contracts
-}
-
-function drop(event) {
-  event.preventDefault()
-  getDataTransferItems(event.dataTransfer.items).then(fileEntries => {
-    const fileList = new DataTransfer()
-    fileEntries.forEach(file => fileList.items.add(file))
-    addFilesToList(fileList.files)
-  })
-  isDragging.value = false
 }
 
 function clear() {
@@ -125,6 +134,7 @@ function getSingleFile(fileEntry, files) {
   return new Promise(resolve => {
     fileEntry.file(file => {
       files.push(file)
+      selectedFiles.value.push(file)
       resolve(file)
     })
   })

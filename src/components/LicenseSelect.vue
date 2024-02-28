@@ -16,7 +16,7 @@ import { LICENSE_OPTIONS } from "@/utils/constants";
 
 const props = defineProps({
   modelValue: {
-    type: Object,
+    type: String,
     required: true,
   },
 })

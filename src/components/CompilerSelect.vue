@@ -20,7 +20,7 @@ const { compilerOptions } = storeToRefs(verificationStore)
 
 const props = defineProps({
   modelValue: {
-    type: Object,
+    type: String,
     required: true,
   },
 })

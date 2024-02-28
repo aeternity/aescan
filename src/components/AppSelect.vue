@@ -178,6 +178,14 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__placeholder {
     color: var(--color-midnight-35);
+    font-size: 16px;
+    line-height: 20px;
+    padding-top: 0;
+    padding-left: var(--space-0);
+
+    @media (--desktop) {
+      font-size: 14px;
+    }
   }
 }
 </style>

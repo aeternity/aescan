@@ -85,7 +85,7 @@
           <label for="consent">
             I agree to the
             <app-link to="/terms-of-service">
-              terms of service
+              Terms of Service
             </app-link>
           </label>
         </div>
@@ -115,11 +115,11 @@ const { push } = useRouter()
 
 const form = ref({
   id: '',
-  license: '',
   compiler: '',
-  consent: false,
+  license: '',
   entryFile: '',
   sourceFiles: null,
+  consent: false,
 })
 
 const errors = ref({})
@@ -133,8 +133,8 @@ async function verify() {
 
     await verifyContract(
       form.value.id.trim(),
-      form.value.license.key,
       form.value.compiler.value,
+      form.value.license.key,
       form.value.entryFile,
       form.value.sourceFiles,
     )
@@ -146,19 +146,15 @@ function validate() {
   errors.value = {}
 
   if (!form.value.id) {
-    errors.value.id = 'ID is required'
-  }
-
-  if (!form.value.license) {
-    errors.value.license = 'Please fill license'
+    errors.value.id = 'Please fill Smart Contract ID'
   }
 
   if (!form.value.compiler) {
-    errors.value.compiler = 'Please select compiler'
+    errors.value.compiler = 'Please select Compiler Version'
   }
 
-  if (!form.value.consent) {
-    errors.value.consent = 'Please agree with terms of service'
+  if (!form.value.license) {
+    errors.value.license = 'Please select License'
   }
 
   if (!form.value.entryFile) {
@@ -168,7 +164,12 @@ function validate() {
   if (!form.value.sourceFiles) {
     errors.value.sourceFiles = 'Please select contract files'
   }
+
+  if (!form.value.consent) {
+    errors.value.consent = 'Please agree with Terms of Service'
+  }
 }
+
 </script>
 
 <style scoped>

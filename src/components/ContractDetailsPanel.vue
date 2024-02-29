@@ -69,21 +69,6 @@
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="isVerified"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            Verified
-            <hint-tooltip>
-              {{ contractsHints.verified }}
-            </hint-tooltip>
-          </th>
-          <td class="contract-details-panel__data">
-            <app-chip variant="success">
-              Yes
-            </app-chip>
-          </td>
-        </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Created Height

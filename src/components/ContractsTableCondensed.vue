@@ -110,7 +110,7 @@ defineProps({
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: var(--space-0)
+    gap: var(--space-0);
   }
 }
 </style>

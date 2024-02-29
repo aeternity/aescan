@@ -21,7 +21,7 @@
       v-if="status === 'new'"
       label="Verifying"/>
 
-    <div v-if="status === 'success'">
+    <template v-if="status === 'success'">
       <p class="contract-verification-result__paragraph">
         Success! Your Smart Contract has been successfully verified.
       </p>
@@ -35,9 +35,9 @@
       <app-button to="/contract-verification">
         Verify another Smart Contract
       </app-button>
-    </div>
+    </template>
 
-    <div v-if="status === 'conflict'">
+    <template v-if="status === 'conflict'">
       <p class="contract-verification-result__paragraph">
         {{ printMessage(message) }}
       </p>
@@ -51,16 +51,21 @@
       <app-button to="/contract-verification">
         Verify another Smart Contract
       </app-button>
-    </div>
+    </template>
 
-    <div v-if="status === 'fail'">
+    <template v-if="status === 'fail'">
+      <h2 class="contract-verification-result__header h3">
+        Contract Verification Failed
+      </h2>
+
       <p class="contract-verification-result__paragraph">
         {{ printMessage(message) }}
       </p>
+
       <app-button to="/contract-verification">
         Retry verification
       </app-button>
-    </div>
+    </template>
   </app-panel>
 </template>
 
@@ -105,13 +110,7 @@ const message = computed(() => {
 })
 
 const title = computed(() => {
-  if (status.value === 'success') {
-    return 'Smart Contract Verified'
-  }
-  if (status.value === 'fail') {
-    return 'Contract Verification Failed'
-  }
-  return 'Smart Contract Verification'
+  return status.value === 'success' ? 'Smart Contract Verified' : 'Smart Contract Verification'
 })
 
 function printMessage(message) {
@@ -125,6 +124,10 @@ function printMessage(message) {
 
 <style scoped>
 .contract-verification-result {
+  &__header {
+    margin-bottom: var(--space-3);
+  }
+
   &__paragraph {
     display: block;
     margin-bottom: var(--space-3);

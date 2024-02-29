@@ -28,8 +28,8 @@
       <app-link
         :to="`/contracts/${id}`"
         class="contract-verification-result__link">
-        <verified-icon/>
         Smart Contract detail
+        <verified-icon/>
       </app-link>
 
       <app-button to="/contract-verification">
@@ -44,8 +44,8 @@
       <app-link
         :to="`/contracts/${id}`"
         class="contract-verification-result__link">
-        <verified-icon/>
         Smart Contract detail
+        <verified-icon/>
       </app-link>
 
       <app-button to="/contract-verification">

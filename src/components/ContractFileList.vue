@@ -44,7 +44,6 @@ function selectEntryFile(fileName, index) {
 </script>
 
 <style scoped>
-
 .contract-file-list {
   margin-bottom: var(--space-6);
 

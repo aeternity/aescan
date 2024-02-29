@@ -8,6 +8,7 @@
         {{ file.webkitRelativePath || file.name }}
         <app-chip
           v-if="index === entryFile.index"
+          class="contract-file-list__chip"
           size="sm">
           entry file
         </app-chip>
@@ -43,10 +44,12 @@ function selectEntryFile(fileName, index) {
 </script>
 
 <style scoped>
+
 .contract-file-list {
   margin-bottom: var(--space-6);
 
   &__button {
+    display: inline-flex;
     font-size: 12px;
     height: 28px;
 
@@ -77,6 +80,10 @@ function selectEntryFile(fileName, index) {
     &:hover .contract-file-list__button {
       visibility: visible;
     }
+  }
+
+  &__chip {
+    font-size: 12px;
   }
 }
 </style>

@@ -27,8 +27,6 @@ export const useContractVerificationStore = defineStore('useContractVerification
       form.append('sourceFiles', file)
     })
 
-    console.log('form', form)
-
     const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch(error => {
       return error.response
     })

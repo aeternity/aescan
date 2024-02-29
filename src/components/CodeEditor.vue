@@ -6,7 +6,7 @@
     :options="{
       lineHeight: 20,
       fontFamily: 'Roboto Mono',
-      fontSize: 16,
+      fontSize: 14,
       readOnly: true,
       wordWrap: 'on',
       scrollBeyondLastLine: false,

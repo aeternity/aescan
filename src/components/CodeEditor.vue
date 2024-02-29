@@ -55,7 +55,7 @@ const codeModel = ref(props.code)
   }
 
   .mtk20 {
-    color: var(--color-fire)
+    color: var(--color-fire);
   }
 
   .mtk6,

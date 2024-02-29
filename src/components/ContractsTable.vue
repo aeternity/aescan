@@ -85,7 +85,7 @@ defineProps({
   &__container {
     display: flex;
     align-items: center;
-    gap: var(--space-0)
+    gap: var(--space-0);
   }
 }
 </style>

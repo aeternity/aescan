@@ -48,6 +48,7 @@ function selectEntryFile(fileName, index) {
 
   &__button {
     font-size: 12px;
+    height: 28px;
 
     @media (--desktop) {
       visibility: hidden;
@@ -57,7 +58,7 @@ function selectEntryFile(fileName, index) {
   &__item {
     display: flex;
     align-items: center;
-    height: 46px;
+    min-height: 46px;
     font-family: var(--font-monospaced);
     font-weight: 400;
     font-size: 16px;

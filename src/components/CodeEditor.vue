@@ -68,7 +68,7 @@ const codeModel = ref(props.code)
   .bracket-highlighting-1,
   .mtk1 .bracket-highlighting-1,
   .mtk7 {
-    color: var(--color-success)
+    color: var(--color-success);
   }
 
 }

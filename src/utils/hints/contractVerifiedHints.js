@@ -1,5 +1,5 @@
 export const contractVerifiedHints = {
-  license: 'License information for the contract.',
+  license: 'License information of the smart contract.',
   compiler: 'Compiler version used for the smart contract.',
   entryFile: 'Main file of the smart contract source code',
   verifiedAt: 'Timestamp when the contract was verified.',

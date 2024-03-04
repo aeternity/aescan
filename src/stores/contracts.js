@@ -25,10 +25,12 @@ const verifiedContracts = await fetchVerifiedContracts(data)
         contract.isVerified = !!verifiedContracts.find(verifiedContract => verifiedContract === contract.tx.contractId)
       })
     }
-    await Promise.all(data.data.map(async contract => {
-      contract.isVerified = await fetchIsContractVerified(contract.tx.contractId)
-    }))
-
+    const verifiedContracts = await fetchVerfiedContracts(data)
+    if (verifiedContracts) {
+      data.data.forEach(contract => {
+        contract.isVerified = !!verifiedContracts.find(verifiedContract => verifiedContract === contract.tx.contractId)
+      })
+    }
     rawContracts.value = data
   }
 

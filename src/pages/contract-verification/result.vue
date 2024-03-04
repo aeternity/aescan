@@ -7,8 +7,6 @@
   </page-header>
 
   <app-panel>
-    <loader-indicator v-if="status === 'loading'"/>
-
     <loader-indicator
       v-if="status === 'pending'"
       label="pending"/>
@@ -135,6 +133,7 @@ function printMessage(message) {
 
   &__link {
     display: flex;
+    gap: var(--space-0);
     margin-bottom: var(--space-3);
   }
 }

@@ -20,7 +20,7 @@ export const useContractsStore = defineStore('contracts', () => {
   async function fetchContracts(queryParameters = null) {
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?type=contract_create&limit=10'}`)
 
-    const verifiedContracts = await fetchVerfiedContracts(data)
+    const verifiedContracts = await fetchVerifiedContracts(data)
     if (verifiedContracts) {
       data.data.forEach(contract => {
         contract.isVerified = !!verifiedContracts.find(verifiedContract => verifiedContract === contract.tx.contractId)
@@ -48,7 +48,7 @@ export const useContractsStore = defineStore('contracts', () => {
     contractsCount.value = data
   }
 
-  async function fetchVerfiedContracts(contracts) {
+  async function fetchVerifiedContracts(contracts) {
     const slug = contracts.data.map(contract => contract.tx.contractId).join('&ids=')
     try {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts?ids=${slug}`)

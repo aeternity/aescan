@@ -75,6 +75,8 @@ const activityType = computed(() => {
 
   case 'Aex9TransferEvent':
     return 'AEX-9'
+  case 'Aex141TransferEvent':
+    return 'AEX-141'
   case 'InternalContractCallEvent':
     if (
       SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {

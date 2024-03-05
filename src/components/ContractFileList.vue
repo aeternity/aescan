@@ -4,7 +4,7 @@
       v-for="(file, index) in files"
       :key="index"
       class="contract-file-list__item">
-      <span @click="selectEntryFile(file.name, index)">
+      <span @click="selectEntryFile(file, index)">
         {{ file.webkitRelativePath || file.name }}
         <app-chip
           v-if="index === entryFile.index"
@@ -38,8 +38,8 @@ defineProps({
 
 const emit = defineEmits(['select-entry-file'])
 
-function selectEntryFile(fileName, index) {
-  emit('select-entry-file', fileName, index)
+function selectEntryFile(file, index) {
+  emit('select-entry-file', file, index)
 }
 </script>
 

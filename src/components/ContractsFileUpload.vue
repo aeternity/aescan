@@ -89,7 +89,7 @@ function addDroppedFilesToSelectedFiles(isFirstFilesAddition) {
   emit('update:selected-files', fileList.files)
 
   if (isFirstFilesAddition) {
-    selectEntryFile(selectedFiles.value[0].name, 0)
+    selectEntryFile(selectedFiles.value[0], 0)
   }
 }
 
@@ -103,9 +103,10 @@ function drop(event) {
   isDragging.value = false
 }
 
-function selectEntryFile(entryFileName, entryFileIndex) {
-  entryFile.value = { index: entryFileIndex, name: entryFileName }
-  emit('update:entry-file', entryFileName)
+function selectEntryFile(file, index) {
+  const name = file.webkitRelativePath || file.name
+  entryFile.value = { index, name }
+  emit('update:entry-file', name)
 }
 
 function clear() {

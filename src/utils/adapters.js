@@ -445,7 +445,6 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
 
 export function adaptListedTokens(tokens) {
   const formattedData = tokens
-    .filter(token => token.listed === true)
     .map(token => {
       return {
         contractId: token.address,

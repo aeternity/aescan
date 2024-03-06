@@ -18,12 +18,15 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useRouter } from '#app'
 import { useWalletStore } from '@/stores/wallet'
 import { walletHints } from '@/utils/hints/walletHints'
 
+const { push } = useRouter()
+
 const walletStore = useWalletStore()
-const { scanWallets } = walletStore
-const { status } = storeToRefs(walletStore)
+const { scanWallets, setBackLink } = walletStore
+const { status, backLink } = storeToRefs(walletStore)
 
 const { isLoading } = useLoading()
 
@@ -32,4 +35,11 @@ onBeforeMount(async() => {
     await scanWallets()
   }
 })
+watch(status, newStatus => {
+  if (newStatus === 'connected' && backLink.value) {
+    push(backLink.value)
+    setBackLink(null)
+  }
+})
+
 </script>

@@ -8,6 +8,7 @@ export const useWalletStore = defineStore('wallet', () => {
   const aeSdk = ref(null)
   const detectedWallets = ref(null)
   const status = ref(null)
+  const backLink = ref(null)
 
   async function initWallet() {
     try {
@@ -73,6 +74,10 @@ export const useWalletStore = defineStore('wallet', () => {
     aeSdk.value.disconnectWallet()
   }
 
+  function setBackLink(link) {
+    backLink.value = link
+  }
+
   return {
     detectedWallets,
     status,
@@ -80,5 +85,7 @@ export const useWalletStore = defineStore('wallet', () => {
     initWallet,
     disconnect,
     aeSdk,
+    backLink,
+    setBackLink,
   }
 })

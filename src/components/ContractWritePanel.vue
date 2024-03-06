@@ -5,7 +5,9 @@
         Write Smart Contract Information
       </h3>
       <div class="contract-write-panel__container">
-        <the-wallet-account-controls :backlink="route.fullPath"/>
+        <wallet-account-controls
+          :backlink="route.fullPath"
+          :has-menu="false"/>
         <hint-tooltip>
           {{ contractVerifiedHints.connectWallet }}
         </hint-tooltip>

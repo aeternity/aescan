@@ -23,7 +23,7 @@
     v-else
     class="wallet-account-controls__button u-hidden-mobile"
 
-    to="/wallet">
+    @click="goToConnection()">
     Connect Wallet
   </app-button>
 </template>
@@ -32,11 +32,22 @@ import { storeToRefs } from 'pinia'
 import { formatEllipseHash } from '@/utils/format'
 import { useWalletStore } from '@/stores/wallet'
 
-const { go } = useRouter()
+const props = defineProps({
+  backlink: {
+    type: String,
+    default: null,
+  },
+})
 
+const { go } = useRouter()
 const walletStore = useWalletStore()
 const { aeSdk, status } = storeToRefs(walletStore)
-const { disconnect } = walletStore
+const { disconnect, setBackLink } = walletStore
+
+function goToConnection() {
+  setBackLink(props.backlink)
+  push('/wallet')
+}
 
 function disconnectWallet() {
   disconnect()

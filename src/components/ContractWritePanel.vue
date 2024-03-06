@@ -5,7 +5,7 @@
         Write Smart Contract Information
       </h3>
       <div class="contract-write-panel__container">
-        <the-wallet-account-controls/>
+        <the-wallet-account-controls :backlink="route.fullPath"/>
         <hint-tooltip>
           {{ contractVerifiedHints.connectWallet }}
         </hint-tooltip>
@@ -28,6 +28,8 @@ import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 const contractVerifiedStore = useContractVerifiedStore()
 const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
 const { fetchEntrypointResponse, parseArguments, getWriteContractInstance, walletSdk } = contractVerifiedStore
+
+const route = useRoute()
 
 const response = ref([])
 const loadingIndex = ref(null)

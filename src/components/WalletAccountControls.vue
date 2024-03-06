@@ -10,7 +10,9 @@
         {{ formatEllipseHash(aeSdk.address) }}
       </app-link>
     </div>
-    <template #menu>
+    <template
+      v-if="hasMenu"
+      #menu>
       <app-button
            @click="disconnectWallet">
         Disconnect Wallet
@@ -36,6 +38,10 @@ const props = defineProps({
   backlink: {
     type: String,
     default: null,
+  },
+  hasMenu: {
+    type: Boolean,
+    default: true,
   },
 })
 

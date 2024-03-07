@@ -8,7 +8,7 @@
         :entrypoints="aciReadEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
-        @clicked="getEntrypointResponse"/>
+        @query-clicked="getEntrypointResponse"/>
     </template>
     <blank-state v-else/>
   </app-panel>
@@ -19,7 +19,12 @@ import { useContractVerifiedStore } from '@/stores/contractVerified'
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { aciReadEntrypoints } = storeToRefs(contractVerifiedStore)
-const { fetchEntrypointResponse, parseArguments, getReadContractInstance } = contractVerifiedStore
+const {
+  fetchEntrypointResponse,
+  getReadContractInstance,
+  parseArguments,
+  parseResponse,
+} = contractVerifiedStore
 
 const response = ref([])
 const loadingIndex = ref(null)
@@ -28,9 +33,11 @@ async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
   const contractInstance = await getReadContractInstance()
-  response.value[index] = await fetchEntrypointResponse(contractInstance, aciItem, args)
+  const fetchedResponse = await fetchEntrypointResponse(contractInstance, aciItem, args)
+  response.value[index] = parseResponse(fetchedResponse)
   loadingIndex.value = null
 }
+
 </script>
 
 <style scoped>

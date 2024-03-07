@@ -22,7 +22,7 @@
         <app-button
           v-else
           type="submit"
-          @click="doIt(aciItem, index, form)">
+          @click="query(aciItem, index, form)">
           Query
         </app-button>
 
@@ -64,7 +64,7 @@ defineProps({
 
 const emit = defineEmits(['clicked'])
 
-function doIt(aciItem, index) {
+function query(aciItem, index) {
   emit('clicked', aciItem, index, form)
 }
 </script>

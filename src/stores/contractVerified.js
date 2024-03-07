@@ -92,6 +92,17 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     return argumentNames.map(name => form.value[name])
   }
 
+  function parseResponse(object) {
+    for (const key in object) {
+      if (typeof object[key] === 'bigint') {
+        object[key] = Number(object[key])
+      } else if (typeof object[key] === 'object') {
+        parseResponse(object[key])
+      }
+    }
+    return object
+  }
+
   return {
     isVerified,
     verificationDetails,
@@ -102,6 +113,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     getReadContractInstance,
     getWriteContractInstance,
     parseArguments,
+    parseResponse,
     aciReadEntrypoints,
     aciWriteEntrypoints,
     walletSdk,

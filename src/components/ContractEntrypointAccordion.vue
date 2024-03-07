@@ -48,10 +48,6 @@ defineProps({
     type: Array,
     required: true,
   },
-  isDisabled: {
-    type: Boolean,
-    default: false,
-  },
   response: {
     type: Object,
     default: null,
@@ -60,12 +56,16 @@ defineProps({
     type: Number,
     default: null,
   },
+  isDisabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 
-const emit = defineEmits(['clicked'])
+const emit = defineEmits(['query-clicked'])
 
 function query(aciItem, index) {
-  emit('clicked', aciItem, index, form)
+  emit('query-clicked', aciItem, index, form)
 }
 </script>
 

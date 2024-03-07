@@ -17,7 +17,7 @@
         :entrypoints="aciWriteEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
-        @clicked="getEntrypointResponse"/>
+        @query-clicked="getEntrypointResponse"/>
     </template>
     <blank-state v-else/>
   </app-panel>
@@ -29,7 +29,13 @@ import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
-const { fetchEntrypointResponse, parseArguments, getWriteContractInstance, walletSdk } = contractVerifiedStore
+const {
+  fetchEntrypointResponse,
+  parseArguments,
+  parseResponse,
+  getWriteContractInstance,
+  walletSdk,
+} = contractVerifiedStore
 
 const route = useRoute()
 
@@ -40,7 +46,8 @@ async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
   const contractInstance = await getWriteContractInstance()
-  response.value[index] = await fetchEntrypointResponse(contractInstance, aciItem, args)
+  const fetchedResponse = await fetchEntrypointResponse(contractInstance, aciItem, args)
+  response.value[index] = parseResponse(fetchedResponse)
   loadingIndex.value = null
 }
 </script>

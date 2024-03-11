@@ -22,7 +22,7 @@
       'button',
       variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
-    ]">
+    ]"
     :type="type"
     :disabled="disabled">
     <app-icon
@@ -58,8 +58,13 @@ defineProps({
   },
   variant: {
     type: String,
-    default: null,
-    validator: val => ['link', 'link-error', 'primary', 'light'].includes(val),
+    default: 'primary',
+    validator: val => [
+      'link',
+      'link-error',
+      'primary',
+      'light']
+      .includes(val),
   },
   type: {
     type: String,

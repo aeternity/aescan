@@ -91,6 +91,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     color: var(--color-midnight);
     font-size: 16px;
     line-height: 20px;
+    padding-left: var(--space-0);
 
     @media (--desktop) {
       font-size: 14px;
@@ -172,6 +173,18 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
     .multiselect__select {
       background: transparent;
+    }
+  }
+
+  &__placeholder {
+    color: var(--color-midnight-35);
+    font-size: 16px;
+    line-height: 20px;
+    padding-top: 0;
+    padding-left: var(--space-0);
+
+    @media (--desktop) {
+      font-size: 14px;
     }
   }
 }

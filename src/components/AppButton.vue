@@ -126,6 +126,7 @@ defineProps({
 
     background: transparent;
     padding: 0;
+    border: none;
 
     &:hover {
       text-decoration: underline;
@@ -139,6 +140,7 @@ defineProps({
 
     background: transparent;
     padding: 0;
+    border: none;
 
     &:hover {
       text-decoration: underline;

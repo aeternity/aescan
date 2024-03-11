@@ -48,7 +48,7 @@ export const useContractsStore = defineStore('contracts', () => {
     contractsCount.value = data
   }
 
-  async function fetchVerfiedContracts(contracts) {
+  async function fetchVerifiedContracts(contracts) {
     const slug = contracts.data.map(contract => contract.tx.contractId).join('&ids=')
     try {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts?ids=${slug}`)

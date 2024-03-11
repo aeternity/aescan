@@ -616,7 +616,6 @@ export function adaptVerificationDetail(verificationDetail) {
   }
 }
 
-
 export function adaptReadEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
 }

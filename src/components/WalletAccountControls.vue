@@ -2,7 +2,7 @@
   <app-dropdown v-if="status === 'connected'">
     <div class="wallet-account-controls">
       <app-identicon
-        :id="aeSdk.address"
+        :hash="aeSdk.address"
         class="wallet-account-controls__identicon"/>
       <app-link
         class="wallet-account-controls__link"
@@ -15,11 +15,6 @@
       #menu>
       <app-button
         variant="link"
-        to="/wallet/portfolio">
-        Portfolio
-      </app-button>
-      <app-button
-        variant="link"
         @click="exit">
         Exit Wallet
       </app-button>
@@ -28,7 +23,6 @@
 
   <app-button
     v-else
-    class="wallet-account-controls__button"
     @click="goToConnection()">
     Connect Wallet
   </app-button>
@@ -72,15 +66,12 @@ function exit() {
 
   &__identicon {
     margin-right: var(--space-2);
+    width: 36px;
   }
 
   &__link {
     font-family: var(--font-monospaced);
-    font-size: 13px;
   }
 
-  &__button {
-    color: var(--color-white);
-  }
 }
 </style>

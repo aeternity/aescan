@@ -16,7 +16,7 @@ export default defineNitroPlugin(nitroApp => {
     'Content-Security-Policy': [
       'default-src \'self\' *',
       'font-src \'self\' data:',
-      'img-src \'self\' data:',
+      'img-src * data:',
       'script-src \'self\' \'unsafe-inline\'',
       'style-src \'self\' \'unsafe-inline\'',
       'frame-src \'self\'',
@@ -26,7 +26,7 @@ export default defineNitroPlugin(nitroApp => {
     'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Permitted-Cross-Domain-Policies': 'none',
-    'Cross-Origin-Embedder-Policy': 'require-corp',
+  'Cross-Origin-Embedder-Policy': 'unsafe-none',
     'Cross-Origin-Opener-Policy': 'same-origin',
     'Cross-Origin-Resource-Policy': 'cross-origin',
   }

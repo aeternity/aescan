@@ -58,12 +58,12 @@ function selectCustomInterval(dateCustomInterval) {
   &__container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 8px;
-    row-gap: 8px;
+    column-gap: var(--space-1);
+    row-gap: var(--space-1);
 
     @media (--desktop) {
       display: flex;
-      gap: 8px;
+      gap: var(--space-1);
       flex-grow: 1;
       flex-wrap: nowrap;
     }

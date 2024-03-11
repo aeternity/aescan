@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@aeternity/aepp-sdk": "^13.3.2",
-    "@download/blockies": "^1.0.3",
     "@vuepic/vue-datepicker": "^8.3.1",
     "@sentry/tracing": "^7.108.0",
     "@sentry/vue": "^7.108.0",

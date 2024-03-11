@@ -71,7 +71,6 @@ const title = computed(() => {
 .wallet-connection-panel {
   &__paragraph {
     margin-bottom: var(--space-5);
-
     @media (--desktop) {
       &:last-of-type {
         margin-bottom: var(--space-6);
@@ -82,7 +81,6 @@ const title = computed(() => {
   &__container {
     display: flex;
     justify-content: center;
-
     @media (--desktop) {
       justify-content: flex-start;
     }

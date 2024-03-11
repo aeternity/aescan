@@ -22,6 +22,12 @@
             </hint-tooltip>
           </th>
           <th>
+            Price
+            <hint-tooltip>
+              {{ namesHints.price }}
+            </hint-tooltip>
+          </th>
+          <th>
             Owner
             <hint-tooltip>
               {{ namesHints.owner }}
@@ -50,11 +56,11 @@
               :datetime="name.expiration"/>
           </td>
           <td>
-            <div>
-              <value-hash-ellipsed
-                :hash="name.buyer"
-                :link-to="`/accounts/${name.buyer}`"/>
-            </div>
+            <value-hash-ellipsed
+              :hash="name.buyer"
+              :link-to="`/accounts/${name.buyer}`"/>
+          </td>
+          <td>
             <app-chip
               variant="secondary"
               class="names-active-table__price-label">

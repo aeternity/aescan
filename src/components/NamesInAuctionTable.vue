@@ -21,6 +21,12 @@
           </hint-tooltip>
         </th>
         <th>
+          Highest Bidder
+          <hint-tooltip>
+            {{ namesHints.highestBidder }}
+          </hint-tooltip>
+        </th>
+        <th>
           Bid Count
           <hint-tooltip>
             {{ namesHints.bidCount }}
@@ -43,16 +49,18 @@
             :datetime="name.expiration"/>
         </td>
         <td>
-          <div>
-            <value-hash-ellipsed
-              :hash="name.highestBidder"
-              :link-to="`/accounts/${name.highestBidder}`"/>
-          </div>
           <app-chip
             variant="secondary"
             class="names-in-auction-table__price-label">
             {{ formatAePrice(name.bid) }}
           </app-chip>
+        </td>
+        <td>
+          <div>
+            <value-hash-ellipsed
+              :hash="name.highestBidder"
+              :link-to="`/accounts/${name.highestBidder}`"/>
+          </div>
         </td>
         <td>
           {{ name.bidCount }}
@@ -63,9 +71,7 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 

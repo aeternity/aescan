@@ -98,7 +98,8 @@
       <app-button
         class="contract-verification-form__submit"
         type="submit"
-        :disabled="isSubmitting">
+        :disabled="isSubmitting"
+        size="lg">
         Verify Smart Contract
       </app-button>
     </div>

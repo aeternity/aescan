@@ -10,6 +10,9 @@
       <h5>TRANSACTIONS IN LAST 24H</h5>
       <div class="transaction-statistics__value">
         {{ formatNumber(last24hsTransactionsCount) }}
+        <app-chip :variant="chipVariant">
+          {{ last24hsTransactionsTrend }} %
+        </app-chip>
       </div>
     </app-panel>
   </div>
@@ -24,10 +27,12 @@ const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 const { fetchLast24hsTransactionsCount } = useTransactionsStore()
 
 const { transactionsCount } = storeToRefs(useBlockchainStatsStore())
-const { last24hsTransactionsCount } = storeToRefs(useTransactionsStore())
+const { last24hsTransactionsCount, last24hsTransactionsTrend } = storeToRefs(useTransactionsStore())
 
 await fetchTotalTransactionsCount()
 await fetchLast24hsTransactionsCount()
+
+const chipVariant = computed(() => last24hsTransactionsTrend.value > 0 ? 'success' : 'error')
 
 </script>
 

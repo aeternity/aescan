@@ -59,7 +59,6 @@ function exit() {
 
   &__link {
     font-family: var(--font-monospaced);
-    font-size: 13px;
   }
 
   &__button {

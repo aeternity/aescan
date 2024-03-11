@@ -1,5 +1,7 @@
 <template>
-  <app-button @click="initWallet()">
+  <app-button
+    size="lg"
+    @click="initWallet()">
     Connect Wallet
   </app-button>
 </template>

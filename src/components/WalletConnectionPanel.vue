@@ -28,11 +28,13 @@
       </div>
       <app-button
         v-if="status === 'not detected'"
+        size="lg"
         to="https://wallet.superhero.com/">
         Download Superhero wallet
       </app-button>
       <app-button
         v-if="status === 'denied'"
+        size="lg"
         @click="router.go()">
         Try again
       </app-button>

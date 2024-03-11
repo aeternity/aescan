@@ -49,7 +49,6 @@
             </app-link>
           </td>
         </tr>
-
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             Create Transaction
@@ -209,10 +208,6 @@ const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 const props = defineProps({
   contractDetails: {
     type: Object,
-    required: true,
-  },
-  isVerified: {
-    type: Boolean,
     required: true,
   },
 })

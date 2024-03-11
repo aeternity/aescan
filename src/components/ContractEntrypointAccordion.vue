@@ -75,7 +75,7 @@ function query(aciItem, index) {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: var(--space-1);
   }
 
   &__response {

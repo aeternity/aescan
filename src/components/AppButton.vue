@@ -51,11 +51,6 @@ defineProps({
     type: String,
     default: null,
   },
-  variant: {
-    type: String,
-    default: null,
-    validator: val => ['link'].includes(val),
-  },
   target: {
     type: String,
     default: '_blank',

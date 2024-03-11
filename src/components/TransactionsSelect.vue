@@ -4,8 +4,8 @@
     :options="TX_TYPES_OPTIONS"
     track-by="typeQuery"
     label="label"
-    :hide-selected="true"
-    placeholder="Select Tx Type"/>
+    placeholder="Select Tx Type"
+    :hide-selected="true"/>
 </template>
 
 <script setup>

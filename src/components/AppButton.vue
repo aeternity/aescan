@@ -7,7 +7,8 @@
       'button',
       variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
-    ]">
+    ]"
+    :disabled="disabled">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -22,6 +23,8 @@
       variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
     ]">
+    :type="type"
+    :disabled="disabled">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -55,9 +58,16 @@ defineProps({
   },
   variant: {
     type: String,
-    default: 'primary',
-    validator: val =>
-      ['primary', 'light'].includes(val),
+    default: null,
+    validator: val => ['link', 'link-error', 'primary', 'light'].includes(val),
+  },
+  type: {
+    type: String,
+    default: 'button',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 })
 </script>
@@ -96,8 +106,39 @@ defineProps({
     border: 1px solid var(--color-midnight);
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
   &__icon {
     margin-right: var(--space-1);
+  }
+
+  &--link {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-weight: 400;
+
+    background: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &--link-error {
+    color: var(--color-fire);
+    text-decoration: none;
+    font-weight: 400;
+
+    background: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

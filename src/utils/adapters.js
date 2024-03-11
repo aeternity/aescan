@@ -444,7 +444,6 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
 
 export function adaptListedTokens(tokens) {
   const formattedData = tokens
-    .filter(token => token.listed === true)
     .map(token => {
       return {
         contractId: token.address,
@@ -613,5 +612,22 @@ export function adaptVerificationDetail(verificationDetail) {
     initCallParameters: verificationDetail.initCallParameters,
     aci: verificationDetail.aci,
     verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
+  }
+}
+
+export function adaptVerificationResult(verificationStatus) {
+  function translateCodeToStatus(code) {
+    if (code === 400 || code === 422) {
+      return 'fail'
+    }
+    if (code === 409) {
+      return 'conflict'
+    }
+    return null
+  }
+
+  return {
+    ...verificationStatus,
+    status: translateCodeToStatus(verificationStatus.statusCode),
   }
 }

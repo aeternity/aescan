@@ -69,16 +69,13 @@ function disconnectWallet() {
   &__identicon {
     margin-right: var(--space-1);
     width: 32px;
+    width: 36px;
   }
 
   &__link {
     font-family: var(--font-monospaced);
-    font-size: 13px;
   }
 
-  &__button {
-    color: var(--color-white);
-  }
 }
 </style>
 

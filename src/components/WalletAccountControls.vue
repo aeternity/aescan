@@ -80,7 +80,7 @@ function exit() {
   }
 
   &__button {
-    color: var(--color-white) !important;
+    color: var(--color-white);
   }
 }
 </style>

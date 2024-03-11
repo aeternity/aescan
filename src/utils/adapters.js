@@ -90,6 +90,7 @@ export function adaptContracts(contracts) {
       createdHeight: contract.blockHeight,
       hash: contract.hash,
       createdBy: contract.tx.callerId,
+      isVerified: contract.isVerified,
     }
   })
   return {
@@ -600,6 +601,17 @@ export function adaptNft(nft) {
     ...nft,
     tokenLimit: formatTokenLimit(nft.extensions, nft.limits?.tokenLimit),
     templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
+  }
+}
+
+export function adaptVerificationDetail(verificationDetail) {
+  return {
+    license: verificationDetail.license,
+    compiler: verificationDetail.compiler,
+    entryFile: verificationDetail.entryFile,
+    initCallParameters: verificationDetail.initCallParameters,
+    aci: verificationDetail.aci,
+    verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
   }
 }
 

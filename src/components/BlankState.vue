@@ -1,6 +1,6 @@
 <template>
   <div class="blank-state">
-    There is no data available
+    <slot>There is no data available</slot>
   </div>
 </template>
 

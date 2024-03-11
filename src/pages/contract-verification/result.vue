@@ -30,7 +30,9 @@
         <verified-icon/>
       </app-link>
 
-      <app-button to="/contract-verification">
+      <app-button
+        to="/contract-verification"
+        size="lg">
         Verify another Smart Contract
       </app-button>
     </template>
@@ -46,7 +48,9 @@
         <verified-icon/>
       </app-link>
 
-      <app-button to="/contract-verification">
+      <app-button
+        to="/contract-verification"
+        size="lg">
         Verify another Smart Contract
       </app-button>
     </template>
@@ -60,7 +64,9 @@
         {{ printMessage(message) }}
       </p>
 
-      <app-button to="/contract-verification">
+      <app-button
+        to="/contract-verification"
+        size="lg">
         Retry verification
       </app-button>
     </template>

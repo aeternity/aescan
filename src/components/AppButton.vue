@@ -3,9 +3,12 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    :class="['button', [`button--${variant}`]]"
+    :class="[
+      'button',
+      variant ? `button--${variant}` : null,
+      size ? `button--${size}` : null,
+    ]"
     :disabled="disabled">
-
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -15,8 +18,12 @@
   </app-link>
   <button
     v-else
+    :class="[
+      'button',
+      variant ? `button--${variant}` : null,
+      size ? `button--${size}` : null,
+    ]"
     :type="type"
-    :class="['button', [`button--${variant}`]]"
     :disabled="disabled">
     <app-icon
       v-if="iconName"
@@ -44,10 +51,20 @@ defineProps({
     type: String,
     default: '_blank',
   },
-  variant: {
+  size: {
     type: String,
     default: null,
-    validator: val => ['link', 'link-error'].includes(val),
+    validator: val => ['lg'].includes(val),
+  },
+  variant: {
+    type: String,
+    default: 'primary',
+    validator: val => [
+      'link',
+      'link-error',
+      'primary',
+      'light']
+      .includes(val),
   },
   type: {
     type: String,
@@ -73,13 +90,26 @@ defineProps({
   text-decoration: none;
   letter-spacing: 0.015em;
 
-  background: var(--color-fire);
-  color: var(--color-white);
+  padding: var(--space-0) var(--space-1);
 
-  border-radius: 48px;
-  border: none;
+  border-radius: 4px;
 
-  padding: var(--space-3) var(--space-5);
+  &--lg {
+    border-radius: 48px;
+    padding: var(--space-3) var(--space-5);
+  }
+
+  &--primary {
+    background: var(--color-fire);
+    color: var(--color-white);
+    border: none;
+  }
+
+  &--light {
+    background: var(--color-white);
+    color: var(--color-midnight);
+    border: 1px solid var(--color-midnight);
+  }
 
   &:disabled {
     cursor: not-allowed;

@@ -6167,6 +6167,16 @@ mlly@^1.2.0, mlly@^1.3.0, mlly@^1.4.0, mlly@^1.4.2:
     pkg-types "^1.0.3"
     ufo "^1.3.0"
 
+monaco-editor-nls@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor-nls/-/monaco-editor-nls-3.1.0.tgz#64086be3b0ee6791ac6bd99c9b1b45ad819c26ee"
+  integrity sha512-GdzgKRAiwXlGI/ude/HbzP8ukml28yUoZ7rx/xsSsmYf9W13jTyWjXjoMK/+pjL6JorAThH2WkCYaDoCnIX7Jg==
+
+monaco-editor@^0.45.0:
+  version "0.45.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.45.0.tgz#6939123a6254aea9fea2d647697f846306dd4448"
+  integrity sha512-mjv1G1ZzfEE3k9HZN0dQ2olMdwIfaeAAjFiwNprLfYNRSz7ctv9XuCT7gPtBGrMUeV1/iZzYKj17Khu1hxoHOA==
+
 mri@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mri/-/mri-1.2.0.tgz#6721480fec2a11a4889861115a48b6cbe7cc8f0b"
@@ -6501,6 +6511,16 @@ nuxi@^3.10.0:
   integrity sha512-veZXw2NuaQ1PrpvHrnQ1dPgkAjv0WqPlvFReg5Iubum0QVGWdJJvGuNsltDQyPcZ7X7mhMXq9SLIpokK4kpvKA==
   optionalDependencies:
     fsevents "~2.3.3"
+
+nuxt-monaco-editor@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/nuxt-monaco-editor/-/nuxt-monaco-editor-1.2.6.tgz#c22f959fcf9d02806e66ba384e7832971f7529b3"
+  integrity sha512-SRQC9IdnwkIyw7C29CjUjSQePfnn+DYuqb4QcY5N7UEYBHxeiulS8EGqK0jQEOlXsald860L4Psio+bT9O+MCQ==
+  dependencies:
+    "@nuxt/kit" "^3.8.1"
+    defu "^6.1.3"
+    monaco-editor-nls "^3.1.0"
+    vite-plugin-static-copy "^0.17.0"
 
 nuxt-simple-sitemap@4.1.17:
   version "4.1.17"
@@ -8889,6 +8909,16 @@ vite-plugin-inspect@^0.8.1:
     open "^9.1.0"
     picocolors "^1.0.0"
     sirv "^2.0.3"
+
+vite-plugin-static-copy@^0.17.0:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-static-copy/-/vite-plugin-static-copy-0.17.1.tgz#0de35c4a4c760d5f344b5559d0a8d7d417a52093"
+  integrity sha512-9h3iaVs0bqnqZOM5YHJXGHqdC5VAVlTZ2ARYsuNpzhEJUHmFqXY7dAK4ZFpjEQ4WLFKcaN8yWbczr81n01U4sQ==
+  dependencies:
+    chokidar "^3.5.3"
+    fast-glob "^3.2.11"
+    fs-extra "^11.1.0"
+    picocolors "^1.0.0"
 
 vite-plugin-vue-inspector@^4.0.2:
   version "4.0.2"

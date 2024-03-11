@@ -16,6 +16,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  hasVerifiedIcon: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const isActive = ref(false)
@@ -25,6 +29,7 @@ registerTab({
   title: props.title,
   isPreselected: props.isPreselected,
   isActive,
+  hasVerifiedIcon: props.hasVerifiedIcon,
 })
 </script>
 

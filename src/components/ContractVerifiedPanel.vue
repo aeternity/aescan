@@ -99,7 +99,7 @@ function downloadFile(content) {
   &__container {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-1);
   }
 
   &__code-editor {

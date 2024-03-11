@@ -616,10 +616,28 @@ export function adaptVerificationDetail(verificationDetail) {
   }
 }
 
+
 export function adaptReadEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
 }
 
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
+}
+
+export function adaptVerificationResult(verificationStatus) {
+  function translateCodeToStatus(code) {
+    if (code === 400 || code === 422) {
+      return 'fail'
+    }
+    if (code === 409) {
+      return 'conflict'
+    }
+    return null
+  }
+
+  return {
+    ...verificationStatus,
+    status: translateCodeToStatus(verificationStatus.statusCode),
+  }
 }

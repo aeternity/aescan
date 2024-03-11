@@ -36,7 +36,6 @@
     "@vuepic/vue-datepicker": "^9.0.0",
     "@vueuse/core": "^10.11.0",
     "@vueuse/head": "^2.0.0",
-    "ace-builds": "^1.32.2",
     "axios": "^1.7.2",
     "bignumber.js": "9.1.2",
     "camelcase-keys-deep": "^0.1.0",

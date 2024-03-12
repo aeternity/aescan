@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.13.0](https://github.com/aeternity/aescan/compare/0.11.0...0.13.0) (2024-03-12)
+
+
+### Features
+
+* Add smart contract verification ([#665](https://github.com/aeternity/aescan/issues/665)) ([835697b](https://github.com/aeternity/aescan/commit/835697b3fec31b386dab5244fc5fadc71c4e8b44))
+* Add smart contract verification ([#665](https://github.com/aeternity/aescan/issues/665)) ([442f622](https://github.com/aeternity/aescan/commit/442f62200597f637e159502b55f3a2256eef79a8))
+* Add smart contract verified ([#663](https://github.com/aeternity/aescan/issues/663)) ([432dd45](https://github.com/aeternity/aescan/commit/432dd45b75e7657b15eedacd5a532dd75843b7af))
+* Add smart contract verified ([#663](https://github.com/aeternity/aescan/issues/663)) ([b86857d](https://github.com/aeternity/aescan/commit/b86857d0d0b30ce90dea46ef71e46c2a99812678))
+* New menu structure  ([#627](https://github.com/aeternity/aescan/issues/627)) ([c2fc9b2](https://github.com/aeternity/aescan/commit/c2fc9b28f7cc2a7a52596275dd1072a646f458fa))
+* New menu structure  ([#627](https://github.com/aeternity/aescan/issues/627)) ([9d2427e](https://github.com/aeternity/aescan/commit/9d2427e6090eca1280b4dd95dadb80cdd1caa02b))
+* transaction trend in the last 24 hours ([#673](https://github.com/aeternity/aescan/issues/673)) ([8a0f329](https://github.com/aeternity/aescan/commit/8a0f329c54afe897653d1e0b1e58f3ac18578837))
+* transaction trend in the last 24 hours ([#673](https://github.com/aeternity/aescan/issues/673)) ([a06c9bb](https://github.com/aeternity/aescan/commit/a06c9bb6a5544efbdb94a22895fef2a5de4b4afc))
+* transaction trend in the last 24 hours ([#673](https://github.com/aeternity/aescan/issues/673)) ([3a0e243](https://github.com/aeternity/aescan/commit/3a0e2433e4376e2b019638b4f08e2f68f2b9efdb))
+* upgrade node version to v20 ([#656](https://github.com/aeternity/aescan/issues/656)) ([465c3da](https://github.com/aeternity/aescan/commit/465c3daf669ef49c8da05dc286df9225e1e0910a))
+
+
+### Bug Fixes
+
+* fetching listed tokens ([#670](https://github.com/aeternity/aescan/issues/670)) ([4e67b2b](https://github.com/aeternity/aescan/commit/4e67b2bdb9c940beeb20f7aab1bc961a6f1fff55))
+* fetching listed tokens ([#670](https://github.com/aeternity/aescan/issues/670)) ([568d53c](https://github.com/aeternity/aescan/commit/568d53cf76a821f593ced8698e6adac82dbcdd26))
+* If user look at the activity of the selected account, then in the third step the view will break ([#672](https://github.com/aeternity/aescan/issues/672)) ([72e2176](https://github.com/aeternity/aescan/commit/72e2176a493566ccd1f7602bef453bab141f1f07))
+* When transaction is unavailable the app shows 500 error  ([#675](https://github.com/aeternity/aescan/issues/675)) ([af475f3](https://github.com/aeternity/aescan/commit/af475f3549a284d0a1aa82fee9ba09ae82c50c72))
+
 ## [0.11.0](https://github.com/aeternity/aescan/compare/0.10.0...0.11.0) (2024-01-22)
 
 

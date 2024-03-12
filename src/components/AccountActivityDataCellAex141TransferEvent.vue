@@ -1,7 +1,7 @@
 <template>
   <value-hash-ellipsed
-    :hash="activityPayload.contractId"
-    :link-to="`/contracts/${activityPayload.contractId}`"/>
+    :hash="activityPayload.recipientId"
+    :link-to="`/accounts/${activityPayload.recipientId}`"/>
 
   <app-chip size="sm">
     {{ activityPayload.tokenName }}

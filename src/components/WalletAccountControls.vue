@@ -1,5 +1,7 @@
 <template>
-  <app-dropdown v-if="status === 'connected'">
+  <app-dropdown
+    v-if="status === 'connected'"
+    :is-disabled="!hasMenu">
     <div class="wallet-account-controls">
       <app-identicon
         :hash="aeSdk.address"

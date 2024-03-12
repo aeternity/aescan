@@ -1,5 +1,5 @@
 <template>
-  <VMenu  placement="bottom">
+  <VMenu placement="bottom" :disabled="isDisabled">
        <span>
       <slot/>
     </span>
@@ -9,6 +9,15 @@
     </template>
   </VMenu>
 </template>
+
+<script setup>
+defineProps({
+  isDisabled: {
+    type: Boolean,
+    default: false,
+  },
+})
+</script>
 
 <style>
 .v-popper__popper.v-popper--theme-menu .v-popper__inner {

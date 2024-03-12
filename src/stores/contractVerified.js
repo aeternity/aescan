@@ -93,6 +93,13 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   }
 
   function parseResponse(object) {
+    if (object instanceof Map) {
+      for (const item of object.entries()) {
+        if (typeof item[1] === 'bigint') {
+          object.set(item[0], Number(item[1]))
+        }
+      }
+    }
     for (const key in object) {
       if (typeof object[key] === 'bigint') {
         object[key] = Number(object[key])

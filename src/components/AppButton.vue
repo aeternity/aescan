@@ -84,6 +84,7 @@ defineProps({
   text-align: center;
   cursor: pointer;
 
+  font-family: var(--font-primary);
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;

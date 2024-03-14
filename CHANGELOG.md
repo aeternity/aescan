@@ -6,12 +6,18 @@
 ### Features
 
 * New menu structure  ([#627](https://github.com/aeternity/aescan/issues/627)) ([9d2427e](https://github.com/aeternity/aescan/commit/9d2427e6090eca1280b4dd95dadb80cdd1caa02b))
-* upgrade node version to v20 ([#656](https://github.com/aeternity/aescan/issues/656)) ([465c3da](https://github.com/aeternity/aescan/commit/465c3daf669ef49c8da05dc286df9225e1e0910a))
+* Add smart contract verification (#665) (442f622)
+* Add smart contract verified (#663) (b86857d)
+* transaction trend in the last 24 hours (#673) (a06c9bb)
+
 
 
 ### Bug Fixes
 
 * fetching listed tokens ([#670](https://github.com/aeternity/aescan/issues/670)) ([568d53c](https://github.com/aeternity/aescan/commit/568d53cf76a821f593ced8698e6adac82dbcdd26))
+* If user look at the activity of the selected account, then in the third step the view will break (#672) (72e2176)
+* When transaction is unavailable the app shows 500 error (#675) (af475f3)
+
 
 ## [0.11.0](https://github.com/aeternity/aescan/compare/0.10.0...0.11.0) (2024-01-22)
 

@@ -8,10 +8,11 @@
     </h4>
     <event-definition-list :arguments="args"/>
     <app-button
-      v-if="isVerified && !encodedEvents"
+      v-if="!isButtonHidden"
       @click="decode">
       Decode
     </app-button>
+    <loader-indicator-small v-if="isLoading"/>
 
     <template v-if="encodedEvents">
       <h4 class="event-panel__heading">
@@ -55,15 +56,20 @@ const props = defineProps({
 })
 
 const encodedEvents = ref(null)
+const isLoading = ref(null)
+
+const isButtonHidden = computed(() => !isVerified.value || encodedEvents.value || isLoading.value)
 
 async function decode() {
   if (!isVerified.value) {
     return
   }
+  isLoading.value = true
   const contract = await getReadContractInstance()
   const tx = await aeSdk.value.api.getTransactionInfoByHash(props.callTxHash)
   const decodedUsingContract = contract.$decodeEvents(tx.callInfo.log)
   encodedEvents.value = parseResponse(decodedUsingContract).reverse()
+  isLoading.value = false
 }
 </script>
 
@@ -82,6 +88,7 @@ async function decode() {
 
   &__name {
     font-weight: 600;
+    margin-bottom: var(--space-0);
   }
 }
 </style>

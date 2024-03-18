@@ -115,6 +115,8 @@ export const KNOWN_ADDRESSES = [
 ]
 export const REVOKED_PERIOD = 2016
 
+export const SYNCING_BLOCK_THRESHOLD = 5
+
 export const LICENSE_OPTIONS = [
   { label: 'No License', key: 'None' },
   { label: 'The Unlicense', key: 'Unlicense' },

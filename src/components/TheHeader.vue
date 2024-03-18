@@ -37,12 +37,22 @@
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
     </div>
+    <div
+      v-if="isSyncing"
+      class="header__warning">
+      The blockchain status is currently being synced. The data accuracy might be affected. Please check again
+      later.
+    </div>
   </header>
 </template>
 
 <script setup>
+import { useStatus } from '@/stores/status'
+
 const route = useRoute()
 const isNavigationOpen = ref(false)
+
+const { isSyncing } = storeToRefs(useStatus())
 
 onMounted(() => {
   window.addEventListener('resize', closeNavigation)
@@ -68,13 +78,18 @@ function closeNavigation() {
 <style scoped>
 .header {
   background: var(--color-white);
+  display: flex;
+  flex-direction: column;
 
   &__container {
     height: 100%;
+    width: 100%;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+
     margin: 0 auto;
     padding: var(--space-2) var(--space-3);
     column-gap: var(--space-5);
@@ -84,8 +99,7 @@ function closeNavigation() {
     }
 
     @media (--desktop) {
-      width: 100%;
-      padding: 15px 0;
+      padding: var(--space-3) 0;
       max-width: var(--container-width);
     }
   }
@@ -136,6 +150,19 @@ function closeNavigation() {
 
   &__icon {
     margin-left: var(--space-1);
+  }
+
+  &__warning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-fire);
+    color: var(--color-white);
+    font-family: var(--font-monospaced);
+    padding: var(--space-0) var(--space-3);
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.0015em;
   }
 }
 </style>

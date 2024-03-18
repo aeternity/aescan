@@ -46,7 +46,7 @@ const { name } = storeToRefs(useNameDetailsStore())
 .name-pointers-custom-panel {
   &__header {
     padding: var(--space-1) 0;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid var(--color-midnight-25);
   }
 }
 </style>

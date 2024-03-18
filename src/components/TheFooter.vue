@@ -52,7 +52,7 @@
               class="footer__version">
               NODE VERSION
               <app-link :to="NODE_RELEASES_URL">
-                v{{ nodeVersion }}
+                v{{ nodeStatus.nodeVersion }}
               </app-link>
             </div>
             <div
@@ -95,7 +95,7 @@ import AppTooltip from '@/components/AppTooltip'
 import FooterSocials from '@/components/FooterSocials'
 import { useStatus } from '@/stores/status'
 
-const { middlewareStatus, nodeVersion, isSyncing } = storeToRefs(useStatus())
+const { middlewareStatus, nodeStatus, isSyncing } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const { APP_VERSION } = useAppConfig()
 

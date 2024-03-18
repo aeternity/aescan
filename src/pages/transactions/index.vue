@@ -10,7 +10,7 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
-    <transactions-stats class="transactions__transactions-stats"/>
+    <transactions-stats class="transactions-panel"/>
     <transactions-chart-panel class="transactions-panel"/>
     <transactions-panel class="transactions-panel"/>
   </template>
@@ -33,10 +33,6 @@ const { isLoading } = useLoading()
 
   &:last-child {
     margin-bottom: 0;
-  }
-
-  &__transactions-stats {
-    margin-bottom: var(--space-2);
   }
 }
 </style>

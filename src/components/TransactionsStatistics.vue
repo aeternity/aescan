@@ -29,8 +29,10 @@ const { fetchLast24hsTransactionsCount } = useTransactionsStore()
 const { transactionsCount } = storeToRefs(useBlockchainStatsStore())
 const { last24hsTransactionsCount, last24hsTransactionsTrend } = storeToRefs(useTransactionsStore())
 
-await fetchTotalTransactionsCount()
-await fetchLast24hsTransactionsCount()
+if (process.client) {
+  await fetchTotalTransactionsCount()
+  await fetchLast24hsTransactionsCount()
+}
 
 const chipVariant = computed(() => last24hsTransactionsTrend.value > 0 ? 'success' : 'error')
 

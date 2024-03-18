@@ -121,11 +121,10 @@ defineProps({
   }
 
   &--link {
-    color: var(--color-blue);
-    text-decoration: none;
     font-weight: 400;
-
     background: transparent;
+    text-decoration: none;
+    color: var(--color-blue);
     padding: 0;
 
     &:hover {

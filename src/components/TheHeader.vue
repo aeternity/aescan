@@ -36,12 +36,15 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
+
+      <the-wallet-account-controls class="u-hidden-mobile"/>
     </div>
   </header>
 </template>
 
 <script setup>
 const route = useRoute()
+
 const isNavigationOpen = ref(false)
 
 onMounted(() => {

@@ -39,7 +39,12 @@
         v-for="token in accountTokens?.data"
         :key="token.contractId">
         <td>
-          <app-link :to="`/tokens/${token.contractId}`">
+          <app-link
+            :to="`/tokens/${token.contractId}`"
+            class="account-token-tables__link">
+            <token-symbol-icon
+              class="account-token-tables__icon"
+              :contract-id="token.contractId"/>
             {{ token.tokenSymbol }}
           </app-link>
         </td>
@@ -55,7 +60,7 @@
           {{ formatNumber(token.amount) }}
         </td>
         <td>
-          {{ token.value !== null ? `$${formatNumber(token.value,null,null, 7)}` : 'N/A' }}
+          {{ token.value !== null ? `$${formatNumber(token.value, null, null, 7)}` : 'N/A' }}
         </td>
       </tr>
     </tbody>
@@ -66,6 +71,7 @@
 import AppLink from '@/components/AppLink'
 import { tokensHints } from '@/utils/hints/tokensHints'
 import HintTooltip from '@/components/HintTooltip'
+import TokenSymbolIcon from '~/components/TokenSymbolIcon'
 
 defineProps({
   accountTokens: {
@@ -74,3 +80,18 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.account-token-tables {
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+</style>

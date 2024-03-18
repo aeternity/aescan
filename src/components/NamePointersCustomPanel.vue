@@ -19,7 +19,7 @@
         <tr
           v-for="(pointer, index) in name.customPointers"
           :key="index">
-          <th>{{ pointer.key }}</th>
+          <td>{{ pointer.key }}</td>
           <td>
             <value-hash-ellipsed
               :hash="pointer.pointer"
@@ -46,6 +46,7 @@ const { name } = storeToRefs(useNameDetailsStore())
 .name-pointers-custom-panel {
   &__header {
     padding: var(--space-1) 0;
+    border-bottom: 1px solid red;
   }
 }
 </style>

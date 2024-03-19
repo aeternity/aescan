@@ -11,10 +11,8 @@
       </app-link>
     </div>
     <template #menu>
-      <app-button
-        variant="link"
-        @click="exit">
-        Exit Wallet
+      <app-button @click="disconnectWallet">
+        Disconnect Wallet
       </app-button>
     </template>
   </app-dropdown>
@@ -37,7 +35,7 @@ const walletStore = useWalletStore()
 const { aeSdk, status } = storeToRefs(walletStore)
 const { disconnect } = walletStore
 
-function exit() {
+function disconnectWallet() {
   disconnect()
   go()
 }

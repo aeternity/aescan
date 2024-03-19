@@ -108,7 +108,7 @@ defineProps({
   &--light {
     background: var(--color-white);
     color: var(--color-midnight);
-    border: 1px solid var(--color-midnight);
+    border: 1px solid var(--color-midnight-55);
   }
 
   &:disabled {

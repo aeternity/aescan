@@ -14,7 +14,7 @@
     <p
       v-if="status === 'not detected'"
       class="wallet-connection-panel__paragraph">
-      In order to display wallet account information, the native Superhero wallet has to be installed on this device.
+      In order to display wallet account information, Superhero wallet has to be installed on this device.
     </p>
     <p
       v-if="status === 'denied'"

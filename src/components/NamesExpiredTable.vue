@@ -55,7 +55,6 @@
             :link-to="`/accounts/${name.lastBuyer}`"/>
         </td>
         <td>
-
           <price-label
             class="names-expired-table__price-label"
             :price="name.fee"/>

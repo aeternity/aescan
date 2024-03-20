@@ -50,8 +50,8 @@
         </td>
         <td>
           <price-label
-              :price="name.bid"
-              class="names-in-auction-table__price-label"/>
+            :price="name.bid"
+            class="names-in-auction-table__price-label"/>
         </td>
         <td>
           <div>

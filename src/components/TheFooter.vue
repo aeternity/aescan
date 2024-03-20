@@ -87,7 +87,6 @@ import { storeToRefs } from 'pinia'
 import FooterList from '@/components/FooterList'
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
-import FooterSocials from '@/components/FooterSocials'
 import { useStatus } from '@/stores/status'
 
 const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())

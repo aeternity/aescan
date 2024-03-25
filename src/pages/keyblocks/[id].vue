@@ -10,7 +10,6 @@
       {{ keyblocksHints.keyblock }}
     </template>
   </page-header>
-
   <template v-if="!isLoading">
     <keyblock-details-panel
       v-if="keyblockDetails"
@@ -44,7 +43,7 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const isKeyblockExistent = computed(() => keyblockDetails.value && !!keyblockDetails.value.isExistent)
+const isKeyblockExistent = computed(() => keyblockDetails.value && keyblockDetails.value.isExistent !== false)
 
 await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)

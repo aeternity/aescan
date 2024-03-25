@@ -8,6 +8,9 @@
       {{ formatAePrice(formatAettosToAe(activityPayload.internalTx.amount)) }}
     </app-chip>
   </template>
+  <app-chip size="sm">
+    {{ activityPayload.function }}
+  </app-chip>
 </template>
 
 <script setup>

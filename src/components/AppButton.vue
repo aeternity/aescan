@@ -124,6 +124,7 @@ defineProps({
     color: var(--color-blue);
     text-decoration: none;
     font-weight: 400;
+    border: 0;
 
     background: transparent;
     padding: 0;

@@ -70,7 +70,23 @@
           </hint-tooltip>
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          {{ formatNullable(transactionData.arguments) }}
+          <template v-if="isArgumentsLong">
+            <div v-show="isCollapsed">
+              {{ shortArguments }}
+            </div>
+            <div v-show="!isCollapsed">
+              {{ formatNullable(transactionData.arguments) }}
+            </div>
+            <app-button
+              v-show="isArgumentsLong"
+              variant="link"
+              @click="toggleCollapse">
+              {{ isCollapsed ? 'Show more' : 'Show less' }}
+            </app-button>
+          </template>
+          <template v-else>
+            {{ formatNullable(transactionData.arguments) }}
+          </template>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -132,6 +148,14 @@ import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
 import AppChip from '@/components/AppChip'
+
+const isCollapsed = ref(true)
+const isArgumentsLong = computed(() => JSON.stringify(props.transactionData.arguments).length > 300)
+const shortArguments = computed(() => isArgumentsLong.value ? JSON.stringify(props.transactionData.arguments).substr(0, 300) + '...' : props.transactionData.arguments)
+
+function toggleCollapse() {
+  isCollapsed.value = !isCollapsed.value
+}
 
 const props = defineProps({
   transactionData: {

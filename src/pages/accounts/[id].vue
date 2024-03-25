@@ -65,7 +65,7 @@ const { fetchAccount } = accountStore
 const route = useRoute()
 
 const isAccountExistent = computed(() => {
-  return accountDetails.value && !(accountDetails.value?.isExistent === false)
+  return accountDetails.value && accountDetails.value.isExistent !== false
 })
 
 const isTabsVisible = computed(() => process.client &&

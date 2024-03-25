@@ -33,7 +33,7 @@ const codeModel = ref(props.code)
 <style scoped>
 .code-editor {
   height: 400px;
-  border: 1px solid var(--color-midnight);
+  border: 1px solid var(--color-midnight-55);
   border-radius: 8px
 }
 </style>

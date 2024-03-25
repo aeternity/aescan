@@ -13,8 +13,6 @@
 
 <script setup>
 import { formatNumber, formatReduceDecimals } from '@/utils/format'
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const props = defineProps({
   contractDetails: {
@@ -30,11 +28,11 @@ const props = defineProps({
 const eventData = computed(() => props.event.data)
 const tokenValue = computed(() => {
   if (!props.contractDetails.tokenDetails || props.contractDetails.contractType === 'AEX-141') {
-    return eventData.value[0]
+    return eventData.value[1]
   }
 
   return formatNumber(
-    formatReduceDecimals(eventData.value[0], props.contractDetails.tokenDetails.decimals),
+    formatReduceDecimals(eventData.value[1], props.contractDetails.tokenDetails.decimals),
   ) + ` ${props.contractDetails.tokenDetails.symbol}`
 })
 </script>

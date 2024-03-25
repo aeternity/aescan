@@ -108,7 +108,7 @@ defineProps({
   &--light {
     background: var(--color-white);
     color: var(--color-midnight);
-    border: 1px solid var(--color-midnight);
+    border: 1px solid var(--color-midnight-55);
   }
 
   &:disabled {
@@ -124,6 +124,7 @@ defineProps({
     color: var(--color-blue);
     text-decoration: none;
     font-weight: 400;
+    border: 0;
 
     background: transparent;
     padding: 0;

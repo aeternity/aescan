@@ -108,7 +108,7 @@ function isMicroblockId(query) {
   align-items: center;
   height: 40px;
   background: var(--color-white);
-  border: 1px solid var(--color-midnight);
+  border: 1px solid var(--color-midnight-55);
   border-radius: 8px;
 
   &__submit {

@@ -82,7 +82,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__tags {
     border-radius: 8px;
-    border-color: var(--color-midnight);
+    border-color: var(--color-midnight-55);
     border-width: 1px;
     cursor: pointer;
   }

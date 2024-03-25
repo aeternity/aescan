@@ -38,7 +38,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchOracle() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/oracles/${oracleId.value}?tx_hash=true`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/oracles/${oracleId.value}?tx_hash=true`)
     rawOracle.value = data
   }
 
@@ -49,7 +49,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
 
   async function fetchOracleEvents(queryParameters = null) {
     rawEvents.value = null
-    const defaultParameters = `/v2/oracles/${oracleId.value}/responses`
+    const defaultParameters = `/v3/oracles/${oracleId.value}/responses`
 
     try {
       const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)

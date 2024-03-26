@@ -120,7 +120,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   async function fetchDeltaStats() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/deltastats?limit=20`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/deltastats?limit=20`)
     deltaStats.value = data.data
   }
 

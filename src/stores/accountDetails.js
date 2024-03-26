@@ -125,7 +125,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountActivities({ accountId, limit, queryParameters } = {}) {
     rawAccountActivities.value = null
-    const defaultParameters = `/v2/accounts/${accountId}/activities?limit=${limit ?? 10}`
+    const defaultParameters = `/v3/accounts/${accountId}/activities?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountActivities.value = data
   }

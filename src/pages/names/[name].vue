@@ -76,7 +76,7 @@ try {
 
 if (hasNameHistory && process.client) {
   const limit = isDesktop() ? 10 : 3
-  fetchNameActions({ queryParameters: `/v2/accounts/${nameHash.value}/activities?limit=${limit}` })
+  fetchNameActions({ queryParameters: `/v3/accounts/${nameHash.value}/activities?limit=${limit}` })
 }
 </script>
 

@@ -199,7 +199,7 @@ const oracleNodeUrl = computed(() =>
 )
 
 const oracleMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/oracles/${props.oracleDetails.id}`,
+  `${MIDDLEWARE_URL}/v3/oracles/${props.oracleDetails.id}`,
 )
 </script>
 

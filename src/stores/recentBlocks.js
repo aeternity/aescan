@@ -115,7 +115,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       return
     }
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/micro-blocks/${selectedMicroblock.value.hash}/txs?limit=${VISIBLE_TRANSACTIONS_LIMIT}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/micro-blocks/${selectedMicroblock.value.hash}/transactions?limit=${VISIBLE_TRANSACTIONS_LIMIT}`)
     rawSelectedMicroblockTransactions.value = data
   }
 

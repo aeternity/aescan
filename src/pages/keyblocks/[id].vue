@@ -10,7 +10,6 @@
       {{ keyblocksHints.keyblock }}
     </template>
   </page-header>
-
   <template v-if="!isLoading">
     <keyblock-details-panel
       v-if="keyblockDetails"

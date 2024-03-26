@@ -24,7 +24,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   async function fetchKeyblockDetails(keyblockId) {
     rawKeyblock.value = null
     try {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${keyblockId}`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/${keyblockId}`)
       rawKeyblock.value = data
     } catch (error) {
       if (error.response?.status === 404) {
@@ -37,7 +37,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
 
   async function fetchKeyblockMicroblocks({ queryParameters, limit, keyblockHash } = {}) {
     rawKeyblockMicroblocks.value = null
-    const defaultParameters = `/v2/key-blocks/${keyblockHash}/micro-blocks?limit=${limit ?? 10}`
+    const defaultParameters = `/v3/key-blocks/${keyblockHash}/micro-blocks?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawKeyblockMicroblocks.value = data
   }
@@ -50,7 +50,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
 
   async function isKeyblockAvailable(keyblockHash) {
     try {
-      await axios.get(`${MIDDLEWARE_URL}/v2/key-blocks/${keyblockHash}`)
+      await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/${keyblockHash}`)
       return true
     } catch (error) {
       if (error.response.status === 404) {

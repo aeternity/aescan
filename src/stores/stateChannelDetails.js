@@ -39,12 +39,12 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   }
 
   async function fetchStateChannel() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/channels/${stateChannelId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/channels/${stateChannelId.value}`)
     rawStateChannel.value = data
   }
 
   async function fetchStateChannelCreateTx() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/channels/${stateChannelId.value}/updates?direction=forward&limit=1`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/channels/${stateChannelId.value}/updates?direction=forward&limit=1`)
     rawStateChannelCreateTx.value = data.data[0]
   }
 

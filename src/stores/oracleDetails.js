@@ -43,7 +43,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchLastExtendedTx() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs?direction=backward&limit=1&type=oracle_extend&oracle=${oracleId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${oracleId.value}`)
     lastExtendedTx.value = data.data?.[0]
   }
 

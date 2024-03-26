@@ -139,7 +139,7 @@ export const useAccountStore = defineStore('account', () => {
       return
     }
 
-    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v2/txs`)
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
     transactionsUrl.searchParams.append('limit', limit ?? 10)
 

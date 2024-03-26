@@ -21,7 +21,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?limit=10'}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/transactions?limit=10'}`)
     rawTransactions.value = data
   }
 

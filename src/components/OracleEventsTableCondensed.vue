@@ -53,10 +53,7 @@
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
-          <th
-            :class="[
-              'oracle-events-table-condensed__header',
-              {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
+          <th class="oracle-events-table-condensed__header">
             <app-tooltip>
               Respond Tx
               <template #tooltip>
@@ -64,17 +61,17 @@
               </template>
             </app-tooltip>
           </th>
-          <td
-            :class="[
-              'oracle-events-table-condensed__data',
-              {'oracle-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
+          <td class="oracle-events-table-condensed__data">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
-          <th class="oracle-events-table-condensed__header">
+          <th
+            :class="[
+              'oracle-events-table-condensed__header',
+              {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             <app-tooltip>
               Responded At
               <template #tooltip>
@@ -82,7 +79,10 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="oracle-events-table-condensed__data">
+          <td
+            :class="[
+              'oracle-events-table-condensed__data',
+              {'oracle-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.respondedHeight"
               :datetime="event.respondedAt"/>
@@ -141,16 +141,17 @@ function toggle(id) {
     }
   }
 
-  &__row:last-of-type &__header {
-    border-bottom: 0;
-  }
-
   &__data {
     text-align: right;
 
     &--expanded {
       border-bottom: 0;
+      padding-bottom: 0;
     }
+  }
+
+  &__row:last-of-type &__header {
+    border-bottom: 0;
   }
 }
 </style>

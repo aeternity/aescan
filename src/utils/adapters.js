@@ -6,6 +6,7 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatIsStatefulEntrypoint,
   formatNameStatus,
   formatTemplateLimit,
   formatTokenLimit,
@@ -613,6 +614,14 @@ export function adaptVerificationDetail(verificationDetail) {
     aci: verificationDetail.aci,
     verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
   }
+}
+
+export function adaptReadEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
+}
+
+export function adaptWriteEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
 }
 
 export function adaptVerificationResult(verificationStatus) {

@@ -54,7 +54,7 @@ defineProps({
   size: {
     type: String,
     default: null,
-    validator: val => ['lg'].includes(val),
+    validator: val => ['lg', 'sm'].includes(val),
   },
   variant: {
     type: String,
@@ -91,7 +91,6 @@ defineProps({
   letter-spacing: 0.015em;
 
   padding: var(--space-0) var(--space-1);
-
   border-radius: 4px;
 
   &--lg {
@@ -128,6 +127,7 @@ defineProps({
 
     background: transparent;
     padding: 0;
+    border: none;
 
     &:hover {
       text-decoration: underline;
@@ -141,6 +141,7 @@ defineProps({
 
     background: transparent;
     padding: 0;
+    border: none;
 
     &:hover {
       text-decoration: underline;

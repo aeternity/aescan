@@ -16,23 +16,22 @@ import { computed, ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import AppSelect from '@/components/AppSelect'
 
-const config = useRuntimeConfig()
-
+const { NETWORK_NAME, ALTERNATIVE_NETWORK_NAME, ALTERNATIVE_NETWORK_URL } = useRuntimeConfig().public
 const selectedNetwork = ref({
-  name: config.public.NETWORK_NAME,
+  name: NETWORK_NAME,
 })
 const networks = ref([
   {
-    name: config.public.NETWORK_NAME,
+    name: NETWORK_NAME,
     url: null,
   },
   {
-    name: config.public.ALTERNATIVE_NETWORK_NAME,
-    url: config.public.ALTERNATIVE_NETWORK_URL,
+    name: ALTERNATIVE_NETWORK_NAME,
+    url: ALTERNATIVE_NETWORK_URL,
   },
 ])
 
-const hasAlternativeNetwork = computed(() => !!config.public.ALTERNATIVE_NETWORK_URL)
+const hasAlternativeNetwork = computed(() => !!ALTERNATIVE_NETWORK_URL)
 const navigate = selectedOption => window.location.replace(selectedOption.url)
 </script>
 

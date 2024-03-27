@@ -194,7 +194,7 @@ const keyblockNodeUrl = computed(() =>
   `${NODE_URL}/v3/key-blocks/hash/${props.keyblockDetails.hash}`,
 )
 const keyblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/key-blocks/${props.keyblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/v3/key-blocks/${props.keyblockDetails.hash}`,
 )
 const isNextKeyblockMined = computed(() =>
   props.keyblockDetails.height < latestBlockHeight.value,

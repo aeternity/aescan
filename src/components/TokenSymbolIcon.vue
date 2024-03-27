@@ -17,7 +17,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { LAEX_CONTRACT_ID } from '@/utils/constants'
 
-const config = useRuntimeConfig()
+const { AE_TOKEN_ID } = useRuntimeConfig().public
 
 const props = defineProps({
   contractId: {
@@ -26,7 +26,7 @@ const props = defineProps({
   },
 })
 
-const isAe = computed(() => props.contractId === config.public.AE_TOKEN_ID)
+const isAe = computed(() => props.contractId === AE_TOKEN_ID)
 
 const isLaex = computed(() => props.contractId === LAEX_CONTRACT_ID)
 </script>

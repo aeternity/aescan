@@ -21,7 +21,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?limit=10'}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/transactions?limit=10'}`)
     rawTransactions.value = data
   }
 
@@ -34,7 +34,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchLast24hsTransactionsCount() {
     last24hsTransactionsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/stats`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     last24hsTransactionsCount.value = data.last24hsTransactions
     last24hsTransactionsTrend.value = data.last24hsTransactions !== 0
       ? formatNumber((100 * data.transactionsTrend / data.last24hsTransactions), 0, 2)

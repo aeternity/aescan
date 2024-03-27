@@ -216,7 +216,7 @@ const contractNodeUrl = computed(() =>
   `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
 )
 const contractMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/contracts/${props.contractDetails.id}`,
+  `${MIDDLEWARE_URL}/v3/contracts/${props.contractDetails.id}`,
 )
 </script>
 

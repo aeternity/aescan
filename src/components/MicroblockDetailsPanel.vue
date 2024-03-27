@@ -122,7 +122,7 @@ const microblockNodeUrl = computed(() =>
   `${NODE_URL}/v3/micro-blocks/hash/${props.microblockDetails.hash}/header`,
 )
 const microblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/micro-blocks/${props.microblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/v3/micro-blocks/${props.microblockDetails.hash}`,
 )
 </script>
 

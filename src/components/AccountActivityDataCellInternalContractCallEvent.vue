@@ -2,6 +2,15 @@
   <value-hash-ellipsed
     :hash="activityPayload.contractId"
     :link-to="`/contracts/${activityPayload.contractId}`"/>
+  <template v-if="activityPayload.function === 'Chain.spend'">
+    <transaction-arrow-right-icon/>
+    <app-chip size="sm">
+      {{ formatAePrice(formatAettosToAe(activityPayload.internalTx.amount)) }}
+    </app-chip>
+  </template>
+  <app-chip size="sm">
+    {{ activityPayload.function }}
+  </app-chip>
 </template>
 
 <script setup>

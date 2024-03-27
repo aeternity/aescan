@@ -40,7 +40,7 @@ export const useTokensStore = defineStore('tokens', () => {
 
   async function fetchListedTokens() {
     rawListedTokens.value = null
-    const { data } = await axios.get(`${DEX_BACKEND_URL}/tokens`)
+    const { data } = await axios.get(`${DEX_BACKEND_URL}/tokens/listed`)
     rawListedTokens.value = data
   }
 

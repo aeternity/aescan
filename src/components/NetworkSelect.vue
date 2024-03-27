@@ -16,7 +16,12 @@ import { computed, ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import AppSelect from '@/components/AppSelect'
 
-const { NETWORK_NAME, ALTERNATIVE_NETWORK_NAME, ALTERNATIVE_NETWORK_URL } = useRuntimeConfig().public
+const {
+  NETWORK_NAME,
+  ALTERNATIVE_NETWORK_NAME,
+  ALTERNATIVE_NETWORK_URL,
+} = useRuntimeConfig().public
+
 const selectedNetwork = ref({
   name: NETWORK_NAME,
 })

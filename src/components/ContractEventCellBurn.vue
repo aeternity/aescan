@@ -1,12 +1,18 @@
 <template>
-  <app-chip size="sm">
-    {{ tokenValue }}
-  </app-chip>
+  <value-hash-ellipsed
+    :hash="contractDetails.id"
+    :link-to="`/contracts/${contractDetails.id}`"/>
+
+  <transaction-arrow-right-icon/>
+
+  <price-label
+    :price="formatAettosToAe(tokenValue)"
+    :contract-id="contractDetails.tokenDetails.contractId"
+    :currency="contractDetails.symbol"/>
 </template>
 
 <script setup>
 import { formatNumber, formatReduceDecimals } from '@/utils/format'
-import AppChip from '@/components/AppChip'
 
 const props = defineProps({
   contractDetails: {

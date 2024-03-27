@@ -55,10 +55,20 @@
       title="KEYBLOCK REWARD"
       icon-name="keyblock-reward">
       <div>
-        Beneficiary: <span class="stats-panel__value">{{ formatNullable(formatAePrice(latestReward, 2)) }}</span>
+        Beneficiary:
+        <price-label
+          class="stats-panel__value"
+          :price="latestReward"
+          :max-digits="2"
+          :has-icon="false"/>
       </div>
       <div>
-        BRI: <span class="stats-panel__value">{{ formatNullable(formatAePrice(latestBri, 2)) }}</span>
+        BRI:
+        <price-label
+          class="stats-panel__value"
+          :price="latestBri"
+          :max-digits="2"
+          :has-icon="false"/>
       </div>
       <template #tooltip>
         For each mined keyblock a reward is distributed. The amount of Æ distributed depends on the inflation curve.
@@ -83,15 +93,17 @@
       icon-name="supply">
       <div>
         Burned:
-        <span class="stats-panel__value">
-          {{ formatNullable(formatAePrice(burnedCount, 0)) }}
-        </span>
+        <price-label
+          class="stats-panel__value"
+          :price="burnedCount"
+          :has-icon="false"/>
       </div>
       <div>
         Circulating:
-        <span class="stats-panel__value">
-          {{ formatNullable(formatAePrice(totalTokenSupply, 0)) }}
-        </span>
+        <price-label
+          class="stats-panel__value"
+          :price="totalTokenSupply"
+          :has-icon="false"/>
       </div>
       <template #tooltip>
         Circulating supply is the distributed amount of Æ minus the burned amount of Æ. The protocol automatically burns
@@ -109,7 +121,12 @@
         Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(stateChannelsCount)) }}</span>
       </div>
       <div>
-        Locked: <span class="stats-panel__value">{{ formatNullable(formatAePrice(stateChannelsLockedValue, 2)) }}</span>
+        Locked:
+        <price-label
+          class="stats-panel__value"
+          :price="stateChannelsLockedValue"
+          :max-digits="2"
+          :has-icon="false"/>
       </div>
       <template #tooltip>
         By utilizing
@@ -197,7 +214,7 @@ import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import StatsTile from '@/components/StatsTile'
-import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
+import { formatNullable, formatNumber } from '@/utils/format'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 

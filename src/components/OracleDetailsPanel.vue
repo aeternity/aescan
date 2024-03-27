@@ -98,7 +98,7 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            {{ formatAePrice(oracleDetails.fee, null) }}
+            <price-label :price="oracleDetails.fee"/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -176,7 +176,6 @@
 </template>
 
 <script setup>
-import { formatAePrice } from '@/utils/format'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 import HintTooltip from '@/components/HintTooltip'
 import AppLink from '@/components/AppLink'

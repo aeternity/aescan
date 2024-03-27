@@ -144,7 +144,7 @@
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
-            {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
+            <price-label :price="formatAettosToAe(contractDetails.contractAccountBalance)"/>
           </td>
         </tr>
         <tr class="contract-details-panel__row">
@@ -197,7 +197,7 @@ import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import CopyChip from '@/components/CopyChip'
 import AppChip from '@/components/AppChip'
-import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
+import { formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import DatetimeLabel from '@/components/DatetimeLabel'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '@/components/HintTooltip'

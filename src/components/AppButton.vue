@@ -47,15 +47,6 @@ defineProps({
     type: String,
     default: null,
   },
-  target: {
-    type: String,
-    default: '_blank',
-  },
-  size: {
-    type: String,
-    default: null,
-    validator: val => ['lg'].includes(val),
-  },
   variant: {
     type: String,
     default: 'primary',
@@ -65,6 +56,15 @@ defineProps({
       'primary',
       'light']
       .includes(val),
+  },
+  target: {
+    type: String,
+    default: '_blank',
+  },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['lg'].includes(val),
   },
   type: {
     type: String,
@@ -90,7 +90,7 @@ defineProps({
   text-decoration: none;
   letter-spacing: 0.015em;
 
-  padding: var(--space-0) var(--space-1);
+  padding: var(--space-1);
 
   border-radius: 4px;
 

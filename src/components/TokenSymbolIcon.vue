@@ -11,7 +11,7 @@
 
   <app-identicon
     v-else
-    :id="contractId"/>
+    :hash="contractId"/>
 </template>
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'

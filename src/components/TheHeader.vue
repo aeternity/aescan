@@ -40,7 +40,7 @@
     <div
       v-if="isSyncing"
       class="header__warning">
-      Some services are currently being synced and data accuracy might be affected. Please check again.
+      Some services are currently being synced and data accuracy might be affected. Please check again later.
     </div>
   </header>
 </template>

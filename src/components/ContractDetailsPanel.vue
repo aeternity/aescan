@@ -1,8 +1,5 @@
 <template>
   <app-panel class="contract-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <div class="u-hidden-mobile">
         <copy-chip :label="contractDetails.id"/>
@@ -24,10 +21,10 @@
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Token
             <hint-tooltip>
               {{ contractsHints.token }}
             </hint-tooltip>
+            Token
           </th>
           <td class="contract-details-panel__data">
             <div
@@ -51,10 +48,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Create Transaction
             <hint-tooltip>
               {{ contractsHints.contractTxHash }}
             </hint-tooltip>
+            Create Transaction
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
@@ -69,10 +66,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Created
             <hint-tooltip>
               {{ contractsHints.contractCreated }}
             </hint-tooltip>
+            Created
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
@@ -87,10 +84,10 @@
           v-if="contractDetails.createdBy"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Created By
             <hint-tooltip>
               {{ contractsHints.contractCreator }}
             </hint-tooltip>
+            Created By
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
@@ -107,10 +104,10 @@
           v-if="contractDetails.bytecode"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Bytecode
             <hint-tooltip>
               {{ contractsHints.bytecode }}
             </hint-tooltip>
+            Bytecode
           </th>
           <td class="contract-details-panel__data">
             <copy-chip
@@ -120,10 +117,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract’s Account
             <hint-tooltip>
               {{ contractsHints.contractsAccount }}
             </hint-tooltip>
+            Smart Contract’s Account
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
@@ -138,10 +135,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract's Account Balance
             <hint-tooltip>
               {{ contractsHints.contractsAccountBalance }}
             </hint-tooltip>
+            Smart Contract's Account Balance
           </th>
           <td class="contract-details-panel__data">
             {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
@@ -149,10 +146,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract Calls
             <hint-tooltip>
               {{ contractsHints.contractCalls }}
             </hint-tooltip>
+            Smart Contract Calls
           </th>
           <td class="contract-details-panel__data">
             {{ contractDetails.callsCount }}
@@ -160,10 +157,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ contractsHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
           <td class="contract-details-panel__data">
             <div class="contract-details-panel__container">
@@ -223,11 +220,14 @@ const contractMiddlewareUrl = computed(() =>
 <style scoped>
 .contract-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__row:last-of-type &__table-header {

@@ -1,8 +1,5 @@
 <template>
   <app-panel class="oracle-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <copy-chip
         :label="oracleDetails.id"
@@ -17,10 +14,10 @@
       <tbody>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Registered
             <hint-tooltip>
               {{ oraclesHints.registered }}
             </hint-tooltip>
+            Registered
           </th>
           <td class="oracle-details-panel__data">
             <app-link
@@ -33,10 +30,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Last Extended
             <hint-tooltip>
               {{ oraclesHints.lastExtended }}
             </hint-tooltip>
+            Last Extended
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastExtended">
@@ -54,10 +51,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Last Queried
             <hint-tooltip>
               {{ oraclesHints.lastQueried }}
             </hint-tooltip>
+            Last Queried
           </th>
           <td class="oracle-details-panel__data">
             <template v-if="oracleDetails.lastQueried">
@@ -75,10 +72,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Expiration
             <hint-tooltip>
               {{ oraclesHints.expiration }}
             </hint-tooltip>
+            Expiration
           </th>
           <td class="oracle-details-panel__data">
             <app-link
@@ -92,10 +89,10 @@
         <tr
           class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query Fee
             <hint-tooltip>
               {{ oraclesHints.queryFee }}
             </hint-tooltip>
+            Query Fee
           </th>
           <td class="oracle-details-panel__data">
             {{ formatAePrice(oracleDetails.fee, null) }}
@@ -103,10 +100,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Query Format
             <hint-tooltip>
               {{ oraclesHints.queryFormat }}
             </hint-tooltip>
+            Query Format
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.queryFormat }}
@@ -114,10 +111,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Response Format
             <hint-tooltip>
               {{ oraclesHints.responseFormat }}
             </hint-tooltip>
+            Response Format
           </th>
           <td class="oracle-details-panel__data">
             {{ oracleDetails.responseFormat }}
@@ -125,10 +122,10 @@
         </tr>
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
-            Operator
             <hint-tooltip>
               {{ oraclesHints.operator }}
             </hint-tooltip>
+            Operator
           </th>
           <td class="oracle-details-panel__data">
             <app-link
@@ -144,10 +141,10 @@
         </tr>
         <tr>
           <th class="contract-details-panel__table-header">
-            API links
             <hint-tooltip>
               {{ oraclesHints.apiLinks }}
             </hint-tooltip>
+            API links
           </th>
           <td class="oracle-details-panel__data">
             <div class="oracle-details-panel__container">
@@ -206,11 +203,14 @@ const oracleMiddlewareUrl = computed(() =>
 <style scoped>
 .oracle-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__row:last-of-type &__table-header {

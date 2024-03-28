@@ -2,9 +2,6 @@
   <app-panel
     v-if="name"
     class="name-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <copy-chip
         class="name-details-panel__name"
@@ -17,10 +14,10 @@
           v-if="name.status !== 'auction'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ isNameExpired ? "Last Owner" : "Owner" }}
             <hint-tooltip>
               {{ isNameExpired ? namesHints.lastOwner : namesHints.owner }}
             </hint-tooltip>
+            {{ isNameExpired ? "Last Owner" : "Owner" }}
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.owner}`">
@@ -37,10 +34,10 @@
           v-if="name.bidder"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Highest Bidder
             <hint-tooltip>
               {{ namesHints.bidder }}
             </hint-tooltip>
+            Highest Bidder
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
@@ -57,10 +54,10 @@
           v-if="name.bid"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Highest Bid
             <hint-tooltip>
               {{ namesHints.bid }}
             </hint-tooltip>
+            Highest Bid
           </th>
           <td class="name-details-panel__data">
             {{ formatAePrice(name.bid) }}
@@ -70,10 +67,10 @@
           v-if="isNameActive"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned Since
             <hint-tooltip>
               {{ namesHints.ownedSince }}
             </hint-tooltip>
+            Owned Since
           </th>
           <td class="name-details-panel__data">
             <datetime-label :datetime="name.activated"/>
@@ -81,10 +78,10 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ nameStatusLabel }}
             <hint-tooltip>
               {{ namesHints[nameStatusHint] }}
             </hint-tooltip>
+            {{ nameStatusLabel }}
           </th>
           <td class="name-details-panel__data">
             <app-link
@@ -98,10 +95,10 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Status
             <hint-tooltip>
               {{ namesHints.status }}
             </hint-tooltip>
+            Status
           </th>
           <td class="name-details-panel__data">
             <app-chip :variant="labelVariant">
@@ -176,6 +173,9 @@ const isNameInAuction = computed(() =>
 <style scoped>
 .name-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
@@ -184,7 +184,7 @@ const isNameInAuction = computed(() =>
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__name {

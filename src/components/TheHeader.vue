@@ -40,8 +40,7 @@
     <div
       v-if="isSyncing"
       class="header__warning">
-      The blockchain status is currently being synced. The data accuracy might be affected. Please check again
-      later.
+      Some services are currently being synced and data accuracy might be affected. Please check again.
     </div>
   </header>
 </template>

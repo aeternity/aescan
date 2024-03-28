@@ -41,6 +41,7 @@ import HintTooltip from '@/components/HintTooltip'
   &__address {
     font-family: var(--font-monospaced);
     margin: 0 0 var(--space-6);
+
     @media (--desktop) {
       margin: 0;
     }

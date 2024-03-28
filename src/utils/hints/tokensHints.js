@@ -5,7 +5,6 @@ export const tokensHints = {
   smartContractId: 'Identifier of the smart contract that implements the AEX-9 fungible token standard.',
   price: 'Price of the token in AE and USD.',
   value: 'The total value of the tokens in USD. Prices of the tokens are sourced from Superhero DEX.',
-  marketCap: 'Total market value of the token calculated by multiplying the current price by the total circulating supply.',
   totalSupply: 'Amount of tokens in circulation.',
   decimals: 'The decimal granularity of each token.',
   extensions: 'Extensions that are implemented for this token according to the creator of the smart contract.',

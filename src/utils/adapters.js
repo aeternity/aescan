@@ -399,10 +399,6 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
     tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
   }
 
-  if (tokenDetails.totalSupply && price) {
-    tokenDetails.marketCap = (new BigNumber(tokenDetails.totalSupply)).multipliedBy(price).toNumber()
-  }
-
   return tokenDetails
 }
 

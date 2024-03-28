@@ -198,6 +198,7 @@ const marketCap = computed(() =>
       width: 400px;
     }
     border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
   }
 
   &__data {

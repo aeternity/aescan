@@ -221,6 +221,7 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v3/channels/${props.stateCh
       width: 400px;
     }
     border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
   }
 
   &__data {

@@ -36,6 +36,8 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isNavigationOpen }]"/>
+
+      <wallet-account-controls class="u-hidden-mobile"/>
     </div>
     <div
       v-if="isSyncing"
@@ -49,6 +51,7 @@
 import { useStatus } from '@/stores/status'
 
 const route = useRoute()
+
 const isNavigationOpen = ref(false)
 
 const { isSyncing } = storeToRefs(useStatus())

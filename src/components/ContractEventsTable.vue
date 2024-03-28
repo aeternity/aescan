@@ -65,7 +65,10 @@
             'contract-events-table__arguments',
             {'contract-events-table__arguments--expanded': isExpanded.includes(index)}
           ]">
-          <event-data-panel :args="event.args"/>
+          <event-panel
+            :args="event.args"
+            :call-tx-hash="event.callTxHash"
+            :log-id="event.logIdx"/>
         </td>
       </tr>
     </template>
@@ -75,7 +78,6 @@
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import EventDataPanel from '@/components/EventDataPanel'
 import ExpandButton from '@/components/ExpandButton'
 import ContractEventCell from '@/components/ContractEventCell'
 

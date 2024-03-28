@@ -14,6 +14,9 @@
         Learn more
       </app-link>
     </template>
+    <template #address>
+      {{ stateChannelDetails.id }}
+    </template>
   </page-header>
 
   <template v-if="!isLoading">

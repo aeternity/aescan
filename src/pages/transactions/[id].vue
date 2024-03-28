@@ -9,6 +9,9 @@
     <template #tooltip>
       {{ transactionsHints.transaction }}
     </template>
+    <template #address>
+      {{ transactionDetails.hash }}
+    </template>
   </page-header>
 
   <loader-panel

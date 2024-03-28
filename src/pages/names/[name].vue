@@ -14,6 +14,9 @@
         Learn more
       </app-link>
     </template>
+    <template #address>
+      {{ name.name }}
+    </template>
   </page-header>
 
   <template v-if="!isLoading">

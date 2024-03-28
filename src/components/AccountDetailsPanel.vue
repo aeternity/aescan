@@ -1,8 +1,5 @@
 <template>
   <app-panel class="account-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <app-chip
         v-if="accountDetails.isGeneralized"
@@ -149,7 +146,11 @@ const sanitizedPrice = computed(() =>
 <style scoped>
 .account-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
   }
 
   &__row:last-of-type &__table-header {
@@ -157,7 +158,7 @@ const sanitizedPrice = computed(() =>
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__container {

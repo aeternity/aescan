@@ -1,8 +1,5 @@
 <template>
   <app-panel class="name-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <copy-chip
         class="name-details-panel__name"
@@ -15,10 +12,10 @@
           v-if="state !== 'auction'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ state === 'expired' ? "Last Owner" : "Owner" }}
             <hint-tooltip>
               {{ state === 'expired' ? namesHints.lastOwner : namesHints.owner }}
             </hint-tooltip>
+            {{ isNameExpired ? "Last Owner" : "Owner" }}
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.owner}`">
@@ -35,10 +32,10 @@
           v-if="name.bidder"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Highest Bidder
             <hint-tooltip>
               {{ namesHints.bidder }}
             </hint-tooltip>
+            Highest Bidder
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
@@ -55,10 +52,10 @@
           v-if="name.bid"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Highest Bid
             <hint-tooltip>
               {{ namesHints.bid }}
             </hint-tooltip>
+            Highest Bid
           </th>
           <td class="name-details-panel__data">
             {{ formatAePrice(name.bid) }}
@@ -84,10 +81,10 @@
           v-if="state === 'active'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned Since
             <hint-tooltip>
               {{ namesHints.ownedSinceTime }}
             </hint-tooltip>
+            Owned Since
           </th>
           <td class="name-details-panel__data">
             <timestamp-label
@@ -97,10 +94,10 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ stateLabel }} Height
             <hint-tooltip>
               {{ namesHints[state + 'Height'] }}
             </hint-tooltip>
+            {{ nameStatusLabel }} Height
           </th>
           <td class="name-details-panel__data">
             <app-link
@@ -124,10 +121,10 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Status
             <hint-tooltip>
               {{ namesHints.state }}
             </hint-tooltip>
+            Status
           </th>
           <td class="name-details-panel__data">
             <app-chip :variant="labelVariant">
@@ -181,6 +178,9 @@ const stateText = computed(() => {
 <style scoped>
 .name-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
@@ -189,7 +189,7 @@ const stateText = computed(() => {
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__name {

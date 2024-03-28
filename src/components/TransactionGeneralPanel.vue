@@ -1,8 +1,5 @@
 <template>
   <app-panel class="transaction-general-panel">
-    <template #heading>
-      GENERAL DETAILS
-    </template>
     <template #header>
       <copy-chip
         :label="transactionDetails.hash"
@@ -22,10 +19,21 @@
       <tbody>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Height
             <hint-tooltip>
               {{ transactionsHints.keyblockHeight }}
             </hint-tooltip>
+            Transaction Type
+          </th>
+          <td class="transaction-general-panel__data">
+            {{ transactionDetails.type }}
+          </td>
+        </tr>
+        <tr class="transaction-general-panel__row">
+          <th class="transaction-general-panel__table-header">
+            <hint-tooltip>
+              {{ transactionsHints.keyblockHeight }}
+            </hint-tooltip>
+            Keyblock Height
           </th>
           <td class="transaction-general-panel__data">
             <app-link
@@ -36,10 +44,10 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Keyblock Confirmations
             <hint-tooltip>
               {{ transactionsHints.keyblockConfirmations }}
             </hint-tooltip>
+            Keyblock Confirmations
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.confirmations }}
@@ -47,10 +55,10 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Status
             <hint-tooltip>
               {{ transactionsHints.status }}
             </hint-tooltip>
+            Status
           </th>
           <td class="transaction-general-panel__data">
             <app-chip
@@ -69,10 +77,10 @@
           v-if="transactionDetails.blockHash"
           class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Microblock Hash
             <hint-tooltip>
               {{ transactionsHints.microblockHash }}
             </hint-tooltip>
+            Microblock Hash
           </th>
           <td class="transaction-general-panel__data">
             <app-link
@@ -91,10 +99,10 @@
           v-if="transactionDetails.created"
           class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Created
             <hint-tooltip>
               {{ transactionsHints.createdTime }}
             </hint-tooltip>
+            Created
           </th>
           <td class="transaction-general-panel__data">
             <timestamp-label
@@ -104,10 +112,10 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Fee
             <hint-tooltip>
               {{ transactionsHints.fee }}
             </hint-tooltip>
+            Fee
           </th>
           <td class="transaction-general-panel__data">
             {{ formatAePrice(formatAettosToAe(transactionDetails.fee), null) }}
@@ -115,10 +123,10 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Nonce
             <hint-tooltip>
               {{ transactionsHints.nonce }}
             </hint-tooltip>
+            Nonce
           </th>
           <td class="transaction-general-panel__data">
             {{ transactionDetails.nonce }}
@@ -126,10 +134,10 @@
         </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ transactionsHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
           <td class="transaction-general-panel__data">
             <div class="transaction-general-panel__container">
@@ -201,11 +209,14 @@ const transactionMiddlewareUrl = computed(() => {
   }
 
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__row:last-of-type &__table-header {

@@ -1,8 +1,5 @@
 <template>
   <app-panel class="nfts-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <copy-chip
         :label="nftDetails.contractId"
@@ -17,10 +14,10 @@
       <tbody>
         <tr class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Collection Name
             <hint-tooltip>
               {{ nftsHints.collectionName }}
             </hint-tooltip>
+            Collection Name
           </th>
           <td class="nfts-details-panel__data">
             {{ nftDetails.name }}
@@ -28,10 +25,10 @@
         </tr>
         <tr class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Owners
             <hint-tooltip>
               {{ nftsHints.owners }}
             </hint-tooltip>
+            Owners
           </th>
           <td class="nfts-details-panel__data">
             {{ nftDetails.nftOwners }}
@@ -39,10 +36,10 @@
         </tr>
         <tr class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Amount
             <hint-tooltip>
               {{ nftsHints.amount }}
             </hint-tooltip>
+            Amount
           </th>
           <td class="nfts-details-panel__data">
             {{ nftDetails.nftsAmount }}
@@ -51,10 +48,10 @@
         <tr
           class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Extensions
             <hint-tooltip>
               {{ nftsHints.extensions }}
             </hint-tooltip>
+            Extensions
           </th>
           <td class="nfts-details-panel__data">
             <div
@@ -76,10 +73,10 @@
           v-if="nftDetails.tokenLimit !== null"
           class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Token limit
             <hint-tooltip>
               {{ nftsHints.tokenLimit }}
             </hint-tooltip>
+            Token limit
           </th>
           <td class="nfts-details-panel__data">
             {{ nftDetails.tokenLimit }}
@@ -119,11 +116,14 @@ defineProps({
 <style scoped>
 .nfts-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__row:last-of-type &__table-header {
@@ -143,7 +143,6 @@ defineProps({
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);
-    justify-content: flex-end;
   }
 }
 </style>

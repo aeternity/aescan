@@ -1,8 +1,5 @@
 <template>
   <app-panel class="keyblock-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <div v-if="!!keyblockDetails.isExistent">
         <copy-chip
@@ -25,10 +22,10 @@
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Height
             <hint-tooltip>
               {{ keyblocksHints.height }}
             </hint-tooltip>
+            Height
           </th>
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__controls">
@@ -49,10 +46,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Time
             <hint-tooltip>
               {{ keyblocksHints.mined }}
             </hint-tooltip>
+            Time
           </th>
           <td class="keyblock-details-panel__data">
             <timestamp-label
@@ -62,10 +59,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Miner
             <hint-tooltip>
               {{ keyblocksHints.miner }}
             </hint-tooltip>
+            Miner
           </th>
           <td class="keyblock-details-panel__data">
             <span class="u-hidden-mobile">
@@ -78,10 +75,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Beneficiary
             <hint-tooltip>
               {{ keyblocksHints.beneficiary }}
             </hint-tooltip>
+            Beneficiary
           </th>
           <td class="keyblock-details-panel__data">
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
@@ -96,10 +93,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Beneficiary Reward
             <hint-tooltip>
               {{ keyblocksHints.beneficiaryReward }}
             </hint-tooltip>
+            Beneficiary Reward
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.blockReward, null) }}
@@ -107,10 +104,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            BRI Reward
             <hint-tooltip>
               {{ keyblocksHints.briReward }}
             </hint-tooltip>
+            BRI Reward
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatAePrice(keyblockDetails.devReward, null) }}
@@ -118,10 +115,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Microblocks Count
             <hint-tooltip>
               {{ keyblocksHints.microblockCount }}
             </hint-tooltip>
+            Microblocks Count
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.microBlocksCount) }}
@@ -129,10 +126,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Transactions Count
             <hint-tooltip>
               {{ keyblocksHints.transactionsCount }}
             </hint-tooltip>
+            Transactions Count
           </th>
           <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.transactionsCount) }}
@@ -140,10 +137,10 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ keyblocksHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
           <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__container">
@@ -206,6 +203,9 @@ const isNextKeyblockMined = computed(() =>
 <style scoped>
 .keyblock-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
@@ -214,12 +214,13 @@ const isNextKeyblockMined = computed(() =>
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
+
+  /*todo remove*/
 
   &__container {
     display: flex;
-    justify-content: flex-end;
   }
 
   &__link {
@@ -237,7 +238,6 @@ const isNextKeyblockMined = computed(() =>
 
   &__controls {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
   }
 

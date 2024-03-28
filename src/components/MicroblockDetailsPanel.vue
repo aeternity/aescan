@@ -1,8 +1,5 @@
 <template>
   <app-panel class="microblock-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
     <template #header>
       <copy-chip
         :label="microblockDetails.hash"
@@ -16,10 +13,10 @@
       <tbody>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Keyblock
             <hint-tooltip>
               {{ microblocksHints.keyblock }}
             </hint-tooltip>
+            Keyblock
           </th>
           <td class="microblock-details-panel__data">
             <app-link :to="`/keyblocks/${microblockDetails.prevKeyHash}`">
@@ -34,10 +31,10 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Height
             <hint-tooltip>
               {{ microblocksHints.microblockHeight }}
             </hint-tooltip>
+            Height
           </th>
           <td class="microblock-details-panel__data">
             <app-link :to="`/keyblocks/${microblockDetails.height}`">
@@ -47,10 +44,10 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Timestamp
             <hint-tooltip>
               {{ microblocksHints.time }}
             </hint-tooltip>
+            Created Height
           </th>
           <td class="microblock-details-panel__data">
             <timestamp-label
@@ -60,10 +57,10 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Transactions Count
             <hint-tooltip>
               {{ microblocksHints.transactionsCount }}
             </hint-tooltip>
+            Transactions Count
           </th>
           <td class="microblock-details-panel__data">
             {{ formatNumber(microblockDetails.transactionsCount) }}
@@ -71,10 +68,10 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ microblocksHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
           <td class="microblock-details-panel__data">
             <div class="microblock-details-panel__container">
@@ -131,6 +128,9 @@ const microblockMiddlewareUrl = computed(() =>
 <style scoped>
 .microblock-details-panel {
   &__table-header {
+    @media (--desktop) {
+      width: 400px;
+    }
     border-bottom: 1px solid var(--color-midnight-25);
   }
 
@@ -139,12 +139,11 @@ const microblockMiddlewareUrl = computed(() =>
   }
 
   &__data {
-    text-align: right;
+    text-align: left;
   }
 
   &__container {
     display: flex;
-    justify-content: flex-end;
   }
 
   &__link {

@@ -8,15 +8,15 @@ export const useChartsStore = defineStore('charts', () => {
 
   const transactionsStatistics = ref(null)
 
-  async function fetchTransactionsStatistics(interval = 'day', limit = 7, range, txType) {
+  async function fetchTransactionsStatistics(interval = 'month', limit = 100, range, txType) {
     transactionsStatistics.value = null
 
-    const slug = range
+    const timeSlug = range
       ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
 
-    const aaa = txType ? slug + '&tx_type=' + txType : slug
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${aaa}`)
+    const slug = txType ? timeSlug + '&tx_type=' + txType : timeSlug
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug}`)
 
     // remove last interval from the response not to show current interval that is being built
     transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()

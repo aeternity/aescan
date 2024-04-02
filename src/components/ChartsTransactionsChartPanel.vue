@@ -4,27 +4,28 @@
       TRANSACTIONS TREND
     </template>
     <template #header>
+      <!--      //todo preselect-->
       <transactions-select
         v-model="selectedTxType"
+        size="sm"
         class="select u-hidden-mobile"/>
 
+      <!--      todo model-->
       <chart-controls
         class="u-hidden-mobile"
+        :preselected-interval-index="4"
         @selected="loadTransactionsStatistics"/>
     </template>
 
     <div class="transactions-chart-panel__container">
       <line-chart
-        v-if="transactionsStatistics && transactionsStatistics.length > 0"
         :statistics="transactionsStatistics"
         :selected-interval="selectedInterval"/>
-      <blank-state v-if="transactionsStatistics && transactionsStatistics.length === 0"/>
-      <loader-indicator v-if="transactionsStatistics=== null"/>
-      <!--      //todo blank everywhere-->
     </div>
 
     <chart-controls
       class="transactions-chart-panel__controls u-hidden-desktop"
+      :preselected-interval-index="4"
       @selected="loadTransactionsStatistics"/>
     <transactions-select
       v-model="selectedTxType"
@@ -43,7 +44,7 @@ const { transactionsStatistics } = storeToRefs(chartsStore)
 const { fetchTransactionsStatistics } = chartsStore
 
 const selectedTxType = ref('')
-const selectedInterval = ref('')
+const selectedInterval = ref('month')
 const selectedLimit = ref('')
 const selectedRange = ref('')
 
@@ -78,8 +79,12 @@ async function loadTransactionsStatistics({ interval, limit, range }) {
 
 .transactions-chart-panel {
   &__container {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     height: 250px;
+    position: relative;
   }
 
   &__controls {

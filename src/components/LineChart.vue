@@ -1,7 +1,12 @@
 <template>
   <Line
+    v-if="hasChart"
     :options="chartOptions"
     :data="chartData"/>
+  <blank-state
+    v-if="isEmpty"
+    class="line-chart__blank-state"/>
+  <loader-indicator v-if="isLoading"/>
 </template>
 
 <script setup>
@@ -19,10 +24,14 @@ import {
 import { DateTime } from 'luxon'
 import { Line } from 'vue-chartjs'
 
+const hasChart = computed(() => props.statistics?.length > 0)
+const isEmpty = computed(() => props.statistics?.length === 0)
+const isLoading = computed(() => props.statistics === null)
+
 const props = defineProps({
   statistics: {
     type: Array,
-    required: true,
+    default: null,
   },
   selectedInterval: {
     type: String,
@@ -44,7 +53,6 @@ const labels = computed(() => {
 
 function formatDate(label) {
   const date = DateTime.fromISO(label)
-
   if (props.selectedInterval === 'month') {
     return date.toFormat('yyyy/MM')
   }
@@ -128,3 +136,9 @@ ChartJS.register(
 
 ChartJS.defaults.font.family = 'Roboto Mono'
 </script>
+
+<style scoped>
+.line-chart__blank-state {
+  width: 100%;
+}
+</style>

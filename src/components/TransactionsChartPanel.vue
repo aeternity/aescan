@@ -32,7 +32,7 @@ const transactionsStore = useTransactionsStore()
 const { transactionsStatistics } = storeToRefs(transactionsStore)
 const { fetchTransactionsStatistics } = transactionsStore
 
-const selectedInterval = ref('')
+const selectedInterval = ref('day')
 
 if (process.client) {
   await fetchTransactionsStatistics()

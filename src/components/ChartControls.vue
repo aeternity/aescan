@@ -2,12 +2,12 @@
   <div>
     <div class="chart-controls__container">
       <app-chip
-        v-for="(button, index) in buttons"
+        v-for="(option, index) in intervalOptions"
         :key="index"
         class="chart-controls__button"
         :variant="selectedIndex === index ? 'error' : 'secondary'"
         @click="selectInterval(index)">
-        {{ button.label }}
+        {{ option.label }}
       </app-chip>
       <range-picker
         :is-active="selectedIndex === 'custom'"
@@ -20,7 +20,14 @@
 <script setup>
 import RangePicker from '@/components/RangePicker'
 
-const buttons = [
+const props = defineProps({
+  preselectedIntervalIndex: {
+    type: Number,
+    default: 0,
+  },
+})
+
+const intervalOptions = [
   { interval: 'day', limit: '7', label: '1W' },
   { interval: 'day', limit: '30', label: '1M' },
   { interval: 'day', limit: '90', label: '3M' },
@@ -28,7 +35,7 @@ const buttons = [
   { interval: 'month', limit: '100', label: 'ALL' },
 ]
 
-const selectedIndex = ref(0)
+const selectedIndex = ref(props.preselectedIntervalIndex)
 
 const hasCustomDate = computed(() => {
   return selectedIndex.value === 'custom'
@@ -36,7 +43,7 @@ const hasCustomDate = computed(() => {
 
 function selectInterval(index) {
   selectedIndex.value = index
-  emit('selected', buttons[index])
+  emit('selected', intervalOptions[index])
 }
 
 function selectRange(dateRange) {

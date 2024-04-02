@@ -4,29 +4,30 @@
       TRANSACTIONS TREND
     </template>
     <template #header>
-      <!--      //todo preselect-->
+      selectedTime {{ selectedTime }}
+
       <transactions-select
         v-model="selectedTxType"
         size="sm"
         class="select u-hidden-mobile"/>
 
-      <!--      todo model-->
       <chart-controls
+        v-model="selectedTime"
         class="u-hidden-mobile"
-        :preselected-interval-index="4"
-        @selected="loadTransactionsStatistics"/>
+        :preselected-interval-index="intervalOptions[4]"/>
+      <!--      //todo preselect-->
     </template>
 
     <div class="transactions-chart-panel__container">
       <line-chart
         :statistics="transactionsStatistics"
-        :selected-interval="selectedInterval"/>
+        :selected-interval="selectedTime.interval"/>
     </div>
 
     <chart-controls
+      v-model="selectedTime"
       class="transactions-chart-panel__controls u-hidden-desktop"
-      :preselected-interval-index="4"
-      @selected="loadTransactionsStatistics"/>
+      :preselected-interval-index="intervalOptions[4]"/>
     <transactions-select
       v-model="selectedTxType"
       class="select u-hidden-desktop"/>
@@ -34,41 +35,39 @@
 </template>
 
 <script setup>
-
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
-import LineChart from '@/components/LineChart'
 
 const chartsStore = useChartsStore()
 const { transactionsStatistics } = storeToRefs(chartsStore)
 const { fetchTransactionsStatistics } = chartsStore
 
+const selectedTime = ref('')
 const selectedTxType = ref('')
-const selectedInterval = ref('month')
-const selectedLimit = ref('')
-const selectedRange = ref('')
+// const selectedInterval = ref('month')
+
+const intervalOptions = [
+  { interval: 'day', limit: '7', label: '1W' },
+  { interval: 'day', limit: '30', label: '1M' },
+  { interval: 'day', limit: '90', label: '3M' },
+  { interval: 'month', limit: '12', label: '1Y' },
+  { interval: 'month', limit: '100', label: 'ALL' },
+]
+// todo add to constants
 
 if (process.client) {
   await fetchTransactionsStatistics()
 
-  watch(selectedTxType, async() => {
+  watch([selectedTime, selectedTxType], async() => {
+    // todo destruct
+    console.log('selected changed', selectedTime.value)
+
     await fetchTransactionsStatistics(
-      selectedInterval.value,
-      selectedLimit.value,
-      selectedRange.value,
+      selectedTime.value.interval,
+      selectedTime.value.limit,
+      selectedTime.value.range,
       selectedTxType.value.typeQuery)
   })
-}
-
-async function loadTransactionsStatistics({ interval, limit, range }) {
-  selectedInterval.value = interval
-  selectedLimit.value = limit
-  selectedRange.value = range
-  await fetchTransactionsStatistics(
-    selectedInterval.value,
-    selectedLimit.value,
-    selectedRange.value,
-    selectedTxType.value.typeQuery)
 }
 </script>
 

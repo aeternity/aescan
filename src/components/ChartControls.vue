@@ -1,27 +1,27 @@
 <template>
-  <div>
-    <div class="chart-controls__container">
-      <app-chip
-        v-for="(option, index) in intervalOptions"
-        :key="index"
-        class="chart-controls__button"
-        :variant="selectedIndex === index ? 'error' : 'secondary'"
-        @click="selectInterval(index)">
-        {{ option.label }}
-      </app-chip>
-      <range-picker
-        :is-active="selectedIndex === 'custom'"
-        :is-range-set="hasCustomDate"
-        @updated="selectRange"/>
-    </div>
+  <div class="chart-controls__container">
+    <app-chip
+      v-for="(option, index) in intervalOptions"
+      :key="index"
+      class="chart-controls__button"
+      :variant="selectedIndex === index ? 'error' : 'secondary'"
+      @click="selectInterval(index)">
+      {{ option.label }}
+    </app-chip>
+    <range-picker
+      :is-active="selectedIndex === 'custom'"
+      :is-range-set="hasCustomDate"
+      @updated="selectRange"/>
   </div>
 </template>
 
 <script setup>
-import RangePicker from '@/components/RangePicker'
+import { useVModel } from '@vueuse/core'
+
+const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
-  preselectedIntervalIndex: {
+  modelValue: {
     type: Number,
     default: 0,
   },
@@ -36,6 +36,8 @@ const intervalOptions = [
 ]
 
 const selectedIndex = ref(props.preselectedIntervalIndex)
+// todo add type
+const selectedAAA = useVModel(props, 'modelValue', emit)
 
 const hasCustomDate = computed(() => {
   return selectedIndex.value === 'custom'
@@ -43,7 +45,7 @@ const hasCustomDate = computed(() => {
 
 function selectInterval(index) {
   selectedIndex.value = index
-  emit('selected', intervalOptions[index])
+  selectedAAA.value = intervalOptions[index]
 }
 
 function selectRange(dateRange) {
@@ -54,10 +56,9 @@ function selectRange(dateRange) {
       maxStart: dateRange[1].toISOString().split('T')[0],
     },
   }
-  emit('selected', range)
+  selectedAAA.value = range
 }
 
-const emit = defineEmits(['selected'])
 </script>
 
 <style scoped>

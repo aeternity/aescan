@@ -8,7 +8,7 @@ export const useChartsStore = defineStore('charts', () => {
 
   const transactionsStatistics = ref(null)
 
-  async function fetchTransactionsStatistics(interval = 'month', limit = 100, range, txType) {
+  async function fetchTransactionsStatistics(interval, limit, range, txType) {
     transactionsStatistics.value = null
 
     const timeSlug = range

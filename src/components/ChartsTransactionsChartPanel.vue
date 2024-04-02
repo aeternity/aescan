@@ -4,21 +4,18 @@
       TRANSACTIONS TREND
     </template>
     <template #header>
-      selectedTime {{ selectedTime }}
-
+      <!--      selectedTime {{ selectedTime }}-->
       <transactions-select
         v-model="selectedTxType"
         size="sm"
-        class="select u-hidden-mobile"/>
+        class="charts-transactions-chart-panel__select u-hidden-mobile"/>
 
       <chart-controls
         v-model="selectedTime"
-        class="u-hidden-mobile"
-        :preselected-interval-index="intervalOptions[4]"/>
-      <!--      //todo preselect-->
+        class="u-hidden-mobile"/>
     </template>
 
-    <div class="transactions-chart-panel__container">
+    <div class="charts-transactions-chart-panel__container">
       <line-chart
         :statistics="transactionsStatistics"
         :selected-interval="selectedTime.interval"/>
@@ -26,8 +23,7 @@
 
     <chart-controls
       v-model="selectedTime"
-      class="transactions-chart-panel__controls u-hidden-desktop"
-      :preselected-interval-index="intervalOptions[4]"/>
+      class="charts-transactions-chart-panel__controls u-hidden-desktop"/>
     <transactions-select
       v-model="selectedTxType"
       class="select u-hidden-desktop"/>
@@ -37,46 +33,36 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
+import { CHART_INTERVALS_OPTIONS } from '~/utils/constants'
 
 const chartsStore = useChartsStore()
 const { transactionsStatistics } = storeToRefs(chartsStore)
 const { fetchTransactionsStatistics } = chartsStore
 
-const selectedTime = ref('')
-const selectedTxType = ref('')
-// const selectedInterval = ref('month')
-
-const intervalOptions = [
-  { interval: 'day', limit: '7', label: '1W' },
-  { interval: 'day', limit: '30', label: '1M' },
-  { interval: 'day', limit: '90', label: '3M' },
-  { interval: 'month', limit: '12', label: '1Y' },
-  { interval: 'month', limit: '100', label: 'ALL' },
-]
-// todo add to constants
+const selectedTime = ref(CHART_INTERVALS_OPTIONS[4])
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 if (process.client) {
-  await fetchTransactionsStatistics()
-
+  await loadTransactionStatistics()
+  // todo expand concept
   watch([selectedTime, selectedTxType], async() => {
-    // todo destruct
     console.log('selected changed', selectedTime.value)
-
-    await fetchTransactionsStatistics(
-      selectedTime.value.interval,
-      selectedTime.value.limit,
-      selectedTime.value.range,
-      selectedTxType.value.typeQuery)
+    await loadTransactionStatistics()
   })
+}
+
+async function loadTransactionStatistics() {
+  await fetchTransactionsStatistics(
+    selectedTime.value.interval,
+    selectedTime.value.limit,
+    selectedTime.value.range,
+    selectedTxType.value.typeQuery)
 }
 </script>
 
 <style scoped>
-.select {
-  width: 210px;
-}
-
-.transactions-chart-panel {
+/*todo rename component*/
+.charts-transactions-chart-panel {
   &__container {
     display: flex;
     align-items: center;
@@ -88,6 +74,10 @@ if (process.client) {
 
   &__controls {
     margin-top: var(--space-4);
+  }
+
+  &__select {
+    width: 210px;
   }
 }
 </style>

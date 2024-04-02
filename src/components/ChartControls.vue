@@ -1,17 +1,20 @@
 <template>
-  <div class="chart-controls__container">
-    <app-chip
-      v-for="(option, index) in intervalOptions"
-      :key="index"
-      class="chart-controls__button"
-      :variant="selectedIndex === index ? 'error' : 'secondary'"
-      @click="selectInterval(index)">
-      {{ option.label }}
-    </app-chip>
-    <range-picker
-      :is-active="selectedIndex === 'custom'"
-      :is-range-set="hasCustomDate"
-      @updated="selectRange"/>
+  <!--  index: {{ selectedIndex }}-->
+  <div>
+    <div class="chart-controls__container">
+      <app-chip
+        v-for="(option, index) in CHART_INTERVALS_OPTIONS"
+        :key="index"
+        class="chart-controls__button"
+        :variant="selectedIndex === index ? 'error' : 'secondary'"
+        @click="selectInterval(index)">
+        {{ option.label }}
+      </app-chip>
+      <range-picker
+        :is-active="selectedIndex === 'custom'"
+        :is-range-set="hasCustomDate"
+        @updated="selectRange"/>
+    </div>
   </div>
 </template>
 
@@ -27,17 +30,11 @@ const props = defineProps({
   },
 })
 
-const intervalOptions = [
-  { interval: 'day', limit: '7', label: '1W' },
-  { interval: 'day', limit: '30', label: '1M' },
-  { interval: 'day', limit: '90', label: '3M' },
-  { interval: 'month', limit: '12', label: '1Y' },
-  { interval: 'month', limit: '100', label: 'ALL' },
-]
-
-const selectedIndex = ref(props.preselectedIntervalIndex)
 // todo add type
-const selectedAAA = useVModel(props, 'modelValue', emit)
+const selectedTime = useVModel(props, 'modelValue', emit)
+
+const selectedIndex = computed(() =>
+  CHART_INTERVALS_OPTIONS.findIndex(interval => interval.label === selectedTime.value.label))
 
 const hasCustomDate = computed(() => {
   return selectedIndex.value === 'custom'
@@ -45,7 +42,7 @@ const hasCustomDate = computed(() => {
 
 function selectInterval(index) {
   selectedIndex.value = index
-  selectedAAA.value = intervalOptions[index]
+  selectedTime.value = CHART_INTERVALS_OPTIONS[index]
 }
 
 function selectRange(dateRange) {
@@ -56,7 +53,7 @@ function selectRange(dateRange) {
       maxStart: dateRange[1].toISOString().split('T')[0],
     },
   }
-  selectedAAA.value = range
+  selectedTime.value = range
 }
 
 </script>

@@ -15,7 +15,7 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
-    <names-chart-panel class="names_names-panel"/>
+    <names-chart-panel class="names__names-panel"/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Active">
         <names-active-panel/>
@@ -84,7 +84,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.names_names-panel {
+.names__names-panel {
   margin-bottom: var(--space-4);
 
   @media (--desktop) {

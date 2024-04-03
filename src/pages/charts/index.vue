@@ -6,26 +6,21 @@
   <page-header>
     Charts
     <template #tooltip>
-      {{ stateChannelsHints.stateChannel }}
-      <app-link
-        variant="primary"
-        to="https://aeternity.com/state-channels">
-        Learn more
-      </app-link>
+      {{ chartsHints.charts }}
     </template>
   </page-header>
 
-  <div class="page">
-    <nav>
+  <div class="charts">
+    <nav class="charts__navigation">
       <app-panel>
         <app-link to="/charts">
           Transactions
         </app-link>
       </app-panel>
     </nav>
-    <div class="container">
+    <div class="charts__container">
       <template v-if="!isLoading">
-        <charts-transactions-chart-panel class="transactions-panel"/>
+        <charts-transactions-chart-panel/>
       </template>
       <loader-panel v-else/>
     </div>
@@ -33,25 +28,27 @@
 </template>
 
 <script setup>
+import { chartsHints } from '../../utils/hints/chartsHints'
+
 const { isLoading } = useLoading()
 </script>
 
 <style scoped>
-.page {
+.charts {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-1);
 
   @media (--desktop) {
     flex-direction: row;
   }
-}
 
-.container {
-  flex-grow: 1;
-}
+  &__container {
+    flex-grow: 1;
+  }
 
-nav {
-  width: 200px;
+  &__navigation {
+    width: 200px;
+  }
 }
 </style>

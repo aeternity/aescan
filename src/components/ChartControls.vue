@@ -2,15 +2,15 @@
   <div>
     <div class="chart-controls__container">
       <app-chip
-        v-for="(option, index) in CHART_INTERVALS_OPTIONS"
-        :key="index"
+        v-for="option in CHART_INTERVALS_OPTIONS"
+        :key="option.label"
         class="chart-controls__button"
-        :variant="selectedIndex === index ? 'error' : 'secondary'"
-        @click="selectInterval(index)">
+        :variant="isIntervalSelected(option) ? 'error' : 'secondary'"
+        @click="selectInterval(option)">
         {{ option.label }}
       </app-chip>
       <range-picker
-        :is-range-set="hasCustomDate"
+        :is-range-selected="isRangeSelected"
         @updated="selectRange"/>
     </div>
   </div>
@@ -30,16 +30,15 @@ const props = defineProps({
 
 const selectedTime = useVModel(props, 'modelValue', emit)
 
-const selectedIndex = computed(() =>
-  CHART_INTERVALS_OPTIONS.findIndex(interval => interval.label === selectedTime.value.label))
-// todo move index to interval options
-// todo custom index in here
-// todo add type
+const isRangeSelected = computed(() =>
+  Object.keys(selectedTime.value).includes('range'))
 
-const hasCustomDate = computed(() => Object.keys(selectedTime.value).includes('range'))
+function isIntervalSelected(option) {
+  return selectedTime.value.label === option.label
+}
 
-function selectInterval(index) {
-  selectedTime.value = CHART_INTERVALS_OPTIONS[index]
+function selectInterval(option) {
+  selectedTime.value = option
 }
 
 function selectRange(dateRange) {

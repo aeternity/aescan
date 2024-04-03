@@ -147,9 +147,9 @@ ChartJS.defaults.font.family = 'Roboto Mono'
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.line-chart__blank-state {
-  width: 100%;
+  &__blank-state {
+    width: 100%;
+  }
 }
 </style>

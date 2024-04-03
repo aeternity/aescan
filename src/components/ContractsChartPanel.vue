@@ -33,7 +33,6 @@ const { fetchContractsStatistics } = contractsStore
 
 const selectedTime = ref(CHART_INTERVALS_OPTIONS[0])
 
-// todo async data or process.client
 await useAsyncData(async() => {
   await loadContractsStatistics()
   return true

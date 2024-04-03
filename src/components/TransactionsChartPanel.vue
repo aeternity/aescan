@@ -29,12 +29,14 @@ const { fetchTransactionsStatistics } = transactionsStore
 
 const selectedTime = ref(CHART_INTERVALS_OPTIONS[0])
 
-if (process.client) {
+await useAsyncData(async() => {
   await loadTransactionStatistics()
-  watch(selectedTime, async() => {
-    await loadTransactionStatistics()
-  })
-}
+  return true
+})
+
+watch([selectedTime], async() => {
+  await loadTransactionStatistics()
+})
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(

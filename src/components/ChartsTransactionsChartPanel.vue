@@ -41,12 +41,14 @@ const { fetchTransactionsStatistics } = chartsStore
 const selectedTime = ref(CHART_INTERVALS_OPTIONS[4])
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
-if (process.client) {
+await useAsyncData(async() => {
   await loadTransactionStatistics()
-  watch([selectedTime, selectedTxType], async() => {
-    await loadTransactionStatistics()
-  })
-}
+  return true
+})
+
+watch([selectedTime, selectedTxType], async() => {
+  await loadTransactionStatistics()
+})
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
@@ -58,7 +60,6 @@ async function loadTransactionStatistics() {
 </script>
 
 <style scoped>
-/*todo rename component*/
 .charts-transactions-chart-panel {
   &__controls {
     margin-top: var(--space-4);

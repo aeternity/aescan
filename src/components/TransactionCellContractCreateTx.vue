@@ -3,11 +3,13 @@
     :hash="transactionData.ownerId"
     :link-to="`/accounts/${transactionData.ownerId}`"/>
 
-  <transaction-arrow-right-icon/>
+  <template v-if="transactionData.contractId">
+    <transaction-arrow-right-icon/>
 
-  <value-hash-ellipsed
-    :hash="transactionData.contractId"
-    :link-to="`/contracts/${transactionData.contractId}`"/>
+    <value-hash-ellipsed
+      :hash="transactionData.contractId"
+      :link-to="`/contracts/${transactionData.contractId}`"/>
+  </template>
 </template>
 
 <script setup>

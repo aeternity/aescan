@@ -1,12 +1,15 @@
 <template>
-  <Line
-    v-if="hasChart"
-    :options="chartOptions"
-    :data="chartData"/>
-  <blank-state
-    v-if="isEmpty"
-    class="line-chart__blank-state"/>
-  <loader-indicator v-if="isLoading"/>
+  <div class="line-chart">
+    <Line
+      v-if="hasChart"
+
+      :options="chartOptions"
+      :data="chartData"/>
+    <blank-state
+      v-if="isEmpty"
+      class="line-chart__blank-state"/>
+    <loader-indicator v-if="isLoading"/>
+  </div>
 </template>
 
 <script setup>
@@ -138,6 +141,17 @@ ChartJS.defaults.font.family = 'Roboto Mono'
 </script>
 
 <style scoped>
+.line-chart {
+  height: 250px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*todo move styles*/
+
+}
+
 .line-chart__blank-state {
   width: 100%;
 }

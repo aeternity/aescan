@@ -5,20 +5,19 @@
     </template>
     <template #header>
       <chart-controls
-        class="u-hidden-mobile"
-        @selected="loadContractsStatistics"/>
+        v-model="selectedTime"
+        class="u-hidden-mobile"/>
     </template>
 
     <div class="contracts-chart-panel__container">
       <line-chart
-        v-if="contractsStatistics"
         :statistics="contractsStatistics"
-        :selected-interval="selectedInterval"/>
+        :selected-interval="selectedTime.interval"/>
     </div>
 
     <chart-controls
-      class="contracts-chart-panel__controls u-hidden-desktop"
-      @selected="loadContractsStatistics"/>
+      v-model="selectedTime"
+      class="contracts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
@@ -26,21 +25,29 @@
 import { storeToRefs } from 'pinia'
 import { useContractsStore } from '@/stores/contracts'
 import LineChart from '@/components/LineChart'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const contractsStore = useContractsStore()
 const { contractsStatistics } = storeToRefs(contractsStore)
 const { fetchContractsStatistics } = contractsStore
 
-const selectedInterval = ref('')
+const selectedTime = ref(CHART_INTERVALS_OPTIONS[0])
 
+// todo async data or process.client
 await useAsyncData(async() => {
-  await fetchContractsStatistics()
+  await loadContractsStatistics()
   return true
 })
 
-async function loadContractsStatistics({ interval, limit, range }) {
-  selectedInterval.value = interval
-  await fetchContractsStatistics(interval, limit, range)
+watch(selectedTime, async() => {
+  await loadContractsStatistics()
+})
+
+async function loadContractsStatistics() {
+  await fetchContractsStatistics(
+    selectedTime.value.interval,
+    selectedTime.value.limit,
+    selectedTime.value.range)
 }
 
 </script>

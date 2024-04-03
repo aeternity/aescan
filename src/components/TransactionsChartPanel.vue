@@ -5,52 +5,47 @@
     </template>
     <template #header>
       <chart-controls
-        class="u-hidden-mobile"
-        @selected="loadTransactionsStatistics"/>
+        v-model="selectedTime"
+        class="u-hidden-mobile"/>
     </template>
 
-    <div class="transactions-chart-panel__container">
-      <line-chart
-        v-if="transactionsStatistics"
-        :statistics="transactionsStatistics"
-        :selected-interval="selectedInterval"/>
-    </div>
+    <line-chart
+      :statistics="transactionsStatistics"
+      :selected-interval="selectedTime.interval"/>
 
     <chart-controls
-      class="transactions-chart-panel__controls u-hidden-desktop"
-      @selected="loadTransactionsStatistics"/>
+      v-model="selectedTime"
+      class="transactions-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
-
-import { storeToRefs } from 'pinia'
 import { useTransactionsStore } from '@/stores/transactions'
-import LineChart from '@/components/LineChart'
-
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
+// TODO FIX IMPORTS
 const transactionsStore = useTransactionsStore()
 const { transactionsStatistics } = storeToRefs(transactionsStore)
 const { fetchTransactionsStatistics } = transactionsStore
 
-const selectedInterval = ref('day')
+const selectedTime = ref(CHART_INTERVALS_OPTIONS[0])
 
 if (process.client) {
-  await fetchTransactionsStatistics()
+  await loadTransactionStatistics()
+  watch(selectedTime, async() => {
+    await loadTransactionStatistics()
+  })
 }
 
-async function loadTransactionsStatistics({ interval, limit, range }) {
-  selectedInterval.value = interval
-  await fetchTransactionsStatistics(interval, limit, range)
+async function loadTransactionStatistics() {
+  await fetchTransactionsStatistics(
+    selectedTime.value.interval,
+    selectedTime.value.limit,
+    selectedTime.value.range)
 }
 </script>
 
 <style scoped>
 .transactions-chart-panel {
-  &__container {
-    position: relative;
-    height: 250px;
-  }
-
   &__controls {
     margin-top: var(--space-4);
   }

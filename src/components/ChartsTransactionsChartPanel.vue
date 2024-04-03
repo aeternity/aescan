@@ -4,7 +4,6 @@
       TRANSACTIONS TREND
     </template>
     <template #header>
-      <!--      selectedTime {{ selectedTime }}-->
       <transactions-select
         v-model="selectedTxType"
         size="sm"
@@ -15,15 +14,17 @@
         class="u-hidden-mobile"/>
     </template>
 
-    <div class="charts-transactions-chart-panel__container">
-      <line-chart
-        :statistics="transactionsStatistics"
-        :selected-interval="selectedTime.interval"/>
-    </div>
+    <line-chart
+      :statistics="transactionsStatistics"
+      :selected-interval="selectedTime.interval"/>
+    <!--      todo is selected-interval needed?-->
+    <!--    todo fix custom-->
 
     <chart-controls
       v-model="selectedTime"
-      class="charts-transactions-chart-panel__controls u-hidden-desktop"/>
+      class="charts-transactions-chart-panel__controls
+      charts-transactions-chart-panel__controls--mobile
+      u-hidden-desktop"/>
     <transactions-select
       v-model="selectedTxType"
       class="select u-hidden-desktop"/>
@@ -33,7 +34,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_OPTIONS } from '~/utils/constants'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()
 const { transactionsStatistics } = storeToRefs(chartsStore)
@@ -46,7 +47,6 @@ if (process.client) {
   await loadTransactionStatistics()
   // todo expand concept
   watch([selectedTime, selectedTxType], async() => {
-    console.log('selected changed', selectedTime.value)
     await loadTransactionStatistics()
   })
 }
@@ -63,17 +63,13 @@ async function loadTransactionStatistics() {
 <style scoped>
 /*todo rename component*/
 .charts-transactions-chart-panel {
-  &__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: 250px;
-    position: relative;
-  }
 
   &__controls {
     margin-top: var(--space-4);
+
+    &--mobile {
+      margin-bottom: var(--space-2);
+    }
   }
 
   &__select {

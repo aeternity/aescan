@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
-import { SYNCING_BLOCK_THRESHOLD } from '~/utils/constants'
+import { SYNCING_BLOCK_THRESHOLD } from '@/utils/constants'
 
 export const useStatus = defineStore('status', () => {
   const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public

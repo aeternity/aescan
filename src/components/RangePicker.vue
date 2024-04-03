@@ -13,7 +13,7 @@
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       placeholder="CUSTOM"
-      :input-class-name="`range-picker__input ${isActive ? 'range-picker__input--active' : ''}`"
+      :input-class-name="`range-picker__input ${isRangeSet ? 'range-picker__input--active' : ''}`"
       @update:model-value="$emit('updated', date)"/>
   </div>
 </template>
@@ -27,10 +27,6 @@ import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 const date = ref()
 const datepicker = ref(null)
 const props = defineProps({
-  isActive: {
-    type: String,
-    required: true,
-  },
   isRangeSet: {
     type: Boolean,
     required: true,

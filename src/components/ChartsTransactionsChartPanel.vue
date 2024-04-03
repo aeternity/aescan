@@ -7,7 +7,9 @@
       <transactions-select
         v-model="selectedTxType"
         size="sm"
-        class="charts-transactions-chart-panel__select u-hidden-mobile"/>
+        class="charts-transactions-chart-panel__select
+        charts-transactions-chart-panel__select--desktop
+        u-hidden-mobile"/>
 
       <chart-controls
         v-model="selectedTime"
@@ -15,16 +17,12 @@
     </template>
 
     <line-chart
-      :statistics="transactionsStatistics"
-      :selected-interval="selectedTime.interval"/>
-    <!--      todo is selected-interval needed?-->
-    <!--    todo fix custom-->
+      :data="transactionsStatistics"
+      :interval="selectedTime.interval"/>
 
     <chart-controls
       v-model="selectedTime"
-      class="charts-transactions-chart-panel__controls
-      charts-transactions-chart-panel__controls--mobile
-      u-hidden-desktop"/>
+      class="charts-transactions-chart-panel__controls u-hidden-desktop"/>
     <transactions-select
       v-model="selectedTxType"
       class="select u-hidden-desktop"/>
@@ -45,7 +43,6 @@ const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 if (process.client) {
   await loadTransactionStatistics()
-  // todo expand concept
   watch([selectedTime, selectedTxType], async() => {
     await loadTransactionStatistics()
   })
@@ -63,12 +60,12 @@ async function loadTransactionStatistics() {
 <style scoped>
 /*todo rename component*/
 .charts-transactions-chart-panel {
-
   &__controls {
     margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
 
-    &--mobile {
-      margin-bottom: var(--space-2);
+    &--desktop {
+      margin-bottom: 0;
     }
   }
 

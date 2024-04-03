@@ -10,8 +10,8 @@
     </template>
 
     <line-chart
-      :statistics="transactionsStatistics"
-      :selected-interval="selectedTime.interval"/>
+      :data="transactionsStatistics"
+      :interval="selectedTime.interval"/>
 
     <chart-controls
       v-model="selectedTime"
@@ -22,7 +22,7 @@
 <script setup>
 import { useTransactionsStore } from '@/stores/transactions'
 import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
-// TODO FIX IMPORTS
+
 const transactionsStore = useTransactionsStore()
 const { transactionsStatistics } = storeToRefs(transactionsStore)
 const { fetchTransactionsStatistics } = transactionsStore

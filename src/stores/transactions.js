@@ -41,7 +41,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
       : '---'
   }
 
-  async function fetchTransactionsStatistics(interval = 'day', limit = 7, range) {
+  async function fetchTransactionsStatistics(interval, limit, range) {
     transactionsStatistics.value = null
 
     const slug = range

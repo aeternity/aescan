@@ -11,9 +11,8 @@
 
     <div class="names-chart-panel__container">
       <line-chart
-
-        :statistics="namesStatistics"
-        :selected-interval="selectedTime.interval"/>
+        :data="namesStatistics"
+        :interval="selectedTime.interval"/>
     </div>
 
     <chart-controls
@@ -43,7 +42,6 @@ if (process.client) {
   })
 }
 
-// TODO REMOVE DEFAULT FROM STORE
 async function loadNamesStatistics() {
   await fetchNamesStatistics(
     selectedTime.value.interval,

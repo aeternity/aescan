@@ -29,7 +29,7 @@ export const useContractsStore = defineStore('contracts', () => {
     rawContracts.value = data
   }
 
-  async function fetchContractsStatistics(interval = 'day', limit = 7, range) {
+  async function fetchContractsStatistics(interval, limit, range) {
     contractsStatistics.value = null
 
     const slug = range

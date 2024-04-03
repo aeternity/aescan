@@ -1,5 +1,4 @@
 <template>
-  <!--  index: {{ selectedIndex }}-->
   <div>
     <div class="chart-controls__container">
       <app-chip
@@ -11,7 +10,6 @@
         {{ option.label }}
       </app-chip>
       <range-picker
-        :is-active="selectedIndex === 'custom'"
         :is-range-set="hasCustomDate"
         @updated="selectRange"/>
     </div>
@@ -30,23 +28,21 @@ const props = defineProps({
   },
 })
 
-// todo add type
 const selectedTime = useVModel(props, 'modelValue', emit)
 
 const selectedIndex = computed(() =>
   CHART_INTERVALS_OPTIONS.findIndex(interval => interval.label === selectedTime.value.label))
+// todo move index to interval options
+// todo custom index in here
+// todo add type
 
-const hasCustomDate = computed(() => {
-  return selectedIndex.value === 'custom'
-})
+const hasCustomDate = computed(() => Object.keys(selectedTime.value).includes('range'))
 
 function selectInterval(index) {
-  selectedIndex.value = index
   selectedTime.value = CHART_INTERVALS_OPTIONS[index]
 }
 
 function selectRange(dateRange) {
-  selectedIndex.value = 'custom'
   const range = {
     range: {
       minStart: dateRange[0].toISOString().split('T')[0],

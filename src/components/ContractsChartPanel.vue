@@ -11,8 +11,8 @@
 
     <div class="contracts-chart-panel__container">
       <line-chart
-        :statistics="contractsStatistics"
-        :selected-interval="selectedTime.interval"/>
+        :data="contractsStatistics"
+        :interval="selectedTime.interval"/>
     </div>
 
     <chart-controls

@@ -74,7 +74,7 @@ export const useNamesStore = defineStore('names', () => {
     rawRecentlyActivatedNames.value = data.data
   }
 
-  async function fetchNamesStatistics(interval = 'day', limit = 7, range) {
+  async function fetchNamesStatistics(interval, limit, range) {
     namesStatistics.value = null
 
     const slug = range

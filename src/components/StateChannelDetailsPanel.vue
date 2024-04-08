@@ -128,20 +128,35 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
+            Last Updated Height
+            <!--            todo fix hint-->
+            <hint-tooltip>
+              {{ stateChannelsHints.lastUpdated }}
+            </hint-tooltip>
+          </th>
+          <td class="state-channel-details-panel__data">
+            <app-link
+              v-if="stateChannelDetails.lastUpdatedHeight"
+              :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
+              {{ stateChannelDetails.lastUpdatedHeight }}
+            </app-link>
+            <template v-else>
+              ---
+            </template>
+          </td>
+        </tr>
+        <tr class="state-channel-details-panel__row">
+          <th class="state-channel-details-panel__table-header">
             Last Updated
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
-            <template v-if="stateChannelDetails.lastUpdated">
-              <app-link
-                :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
-                {{ stateChannelDetails.lastUpdatedHeight }}
-              </app-link>
-              -
-              <datetime-label :datetime="stateChannelDetails.lastUpdated"/>
-            </template>
+            <datetime-label
+              v-if="stateChannelDetails.lastUpdated"
+              :datetime="stateChannelDetails.lastUpdated"
+              :is-verbose="true"/>
             <template v-else>
               ---
             </template>

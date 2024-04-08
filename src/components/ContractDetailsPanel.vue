@@ -69,8 +69,9 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Created
+            Created Height
             <hint-tooltip>
+              <!--              todo fix hint-->
               {{ contractsHints.contractCreated }}
             </hint-tooltip>
           </th>
@@ -78,9 +79,19 @@
             <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
               {{ contractDetails.creationHeight }}
             </app-link>
-            (
-            <datetime-label :datetime="contractDetails.creationDate"/>
-            )
+          </td>
+        </tr>
+        <tr class="contract-details-panel__row">
+          <th class="contract-details-panel__table-header">
+            Created
+            <hint-tooltip>
+              {{ contractsHints.contractCreated }}
+            </hint-tooltip>
+          </th>
+          <td class="contract-details-panel__data">
+            <datetime-label
+              :datetime="contractDetails.creationDate"
+              :is-verbose="true"/>
           </td>
         </tr>
         <tr

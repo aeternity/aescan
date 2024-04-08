@@ -304,6 +304,7 @@ export function adaptName(name, blockHeight, blockTime) {
     formattedName.activated = blockCreatedTime.minus({
       minutes: heightDiff * MINUTES_PER_BLOCK,
     })
+    formattedName.activatedHeight = name.info.activeFrom
   }
 
   return formattedName

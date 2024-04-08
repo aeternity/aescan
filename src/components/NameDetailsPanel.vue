@@ -70,13 +70,46 @@
           v-if="isNameActive"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned Since
+            Owned Since Height
             <hint-tooltip>
               {{ namesHints.ownedSince }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <datetime-label :datetime="name.activated"/>
+            <app-link
+              :to="`/keyblocks/${name.expirationHeight}`">
+              {{ name.activatedHeight }}
+            </app-link>
+          </td>
+        </tr>
+        <tr
+          v-if="isNameActive"
+          class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            Owned Since
+            <hint-tooltip>
+              <!--              todo change hint-->
+              {{ namesHints.ownedSince }}
+            </hint-tooltip>
+          </th>
+          <td class="name-details-panel__data">
+            <datetime-label
+              :datetime="name.activated"
+              :is-verbose="true"/>
+          </td>
+        </tr>
+        <tr class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            {{ nameStatusLabel }} Height
+            <hint-tooltip>
+              {{ namesHints[nameStatusHint] }}
+            </hint-tooltip>
+          </th>
+          <td class="name-details-panel__data">
+            <app-link
+              :to="`/keyblocks/${name.expirationHeight}`">
+              {{ name.expirationHeight }}
+            </app-link>
           </td>
         </tr>
         <tr class="name-details-panel__row">
@@ -87,13 +120,9 @@
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <app-link
-              :to="`/keyblocks/${name.expirationHeight}`">
-              {{ name.expirationHeight }}
-            </app-link>
-            (
-            <datetime-label :datetime="name.expiration"/>
-            )
+            <datetime-label
+              :datetime="name.expiration"
+              :is-verbose="true"/>
           </td>
         </tr>
         <tr class="name-details-panel__row">

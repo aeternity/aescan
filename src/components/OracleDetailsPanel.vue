@@ -23,12 +23,15 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
+            <!--            todo icon-->
             <app-link
               :to="`/keyblocks/${oracleDetails.registeredHeight}`">
               {{ oracleDetails.registeredHeight }}
             </app-link>
             -
-            <datetime-label :datetime="oracleDetails.registered"/>
+            <datetime-label
+              :datetime="oracleDetails.registered"
+              :is-verbose="true"/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -45,7 +48,9 @@
                 {{ oracleDetails.lastExtendedHeight }}
               </app-link>
               -
-              <datetime-label :datetime="oracleDetails.lastExtended"/>
+              <datetime-label
+                :datetime="oracleDetails.lastExtended"
+                :is-verbose="true"/>
             </template>
             <template v-else>
               ---
@@ -66,7 +71,9 @@
                 {{ oracleDetails.lastQueryHeight }}
               </app-link>
               -
-              <datetime-label :datetime="oracleDetails.lastQueried"/>
+              <datetime-label
+                :datetime="oracleDetails.lastQueried"
+                :is-verbose="true"/>
             </template>
             <template v-else>
               ---
@@ -86,7 +93,9 @@
               {{ oracleDetails.expirationHeight }}
             </app-link>
             -
-            <datetime-label :datetime="oracleDetails.expiration"/>
+            <datetime-label
+              :datetime="oracleDetails.expiration"
+              :is-verbose="true"/>
           </td>
         </tr>
         <tr

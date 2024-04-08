@@ -1,7 +1,12 @@
 <template>
   <div class="datetime-label">
     <client-only>
-      {{ labelTime }}
+      <template v-if="isVerbose">
+        {{ relativeUpdated }} ({{ absolute }})
+      </template>
+      <template v-else>
+        {{ labelTime }}
+      </template>
     </client-only>
   </div>
 </template>
@@ -19,6 +24,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  isVerbose: {
+    type: Boolean,
+    required: true,
+  },
 })
 
 const relativeUpdated = ref(null)
@@ -27,6 +36,7 @@ const intervalRef = ref(null)
 const absolute = computed(() => {
   return props.datetime.toLocaleString(DateTime.DATETIME_SHORT)
 })
+
 const labelTime = computed(() => {
   return timeFormat.value === 'absolute'
     ? absolute.value

@@ -22,7 +22,7 @@
       <tbody>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
-            Keyblock Height
+            Height
             <hint-tooltip>
               {{ transactionsHints.keyblockHeight }}
             </hint-tooltip>
@@ -97,7 +97,9 @@
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
-            <datetime-label :datetime="transactionDetails.created"/>
+            <datetime-label
+              :datetime="transactionDetails.created"
+              :is-verbose="true"/>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">

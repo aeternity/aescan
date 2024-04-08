@@ -21,7 +21,7 @@
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <app-link :to="`/contracts/${transactionData.contractId}`">
-            {{ transactionData.contractId }}
+            {{ formatNullable(transactionData.contractId) }}
           </app-link>
         </td>
       </tr>

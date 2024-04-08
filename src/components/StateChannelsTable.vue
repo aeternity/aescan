@@ -33,7 +33,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Last Updated
+          <time-switch-button>Last Updated</time-switch-button>
           <hint-tooltip>
             {{ stateChannelsHints.lastUpdated }}
           </hint-tooltip>

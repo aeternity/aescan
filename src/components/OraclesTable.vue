@@ -9,13 +9,13 @@
           </hint-tooltip>
         </th>
         <th>
-          Registered
+          <time-switch-button>Registered</time-switch-button>
           <hint-tooltip>
             {{ oraclesHints.registered }}
           </hint-tooltip>
         </th>
         <th>
-          Expiration
+          <time-switch-button>Expiration</time-switch-button>
           <hint-tooltip>
             {{ oraclesHints.expiration }}
           </hint-tooltip>

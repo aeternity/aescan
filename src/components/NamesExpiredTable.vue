@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Expired
+          <time-switch-button>Expired</time-switch-button>
           <hint-tooltip>
             {{ namesHints.expired }}
           </hint-tooltip>

@@ -25,7 +25,7 @@
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
             <app-tooltip>
-              Expired
+              <time-switch-button>Expired</time-switch-button>
               <template #tooltip>
                 {{ namesHints.expired }}
               </template>

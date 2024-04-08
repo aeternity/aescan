@@ -51,7 +51,7 @@
           <tr>
             <th>
               <app-tooltip>
-                Activated
+                <time-switch-button>Activated</time-switch-button>
                 <template #tooltip>
                   {{ namesHints.activationTime }}
                 </template>

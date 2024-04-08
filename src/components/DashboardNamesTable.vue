@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Activated
+          <time-switch-button>Activated</time-switch-button>
           <hint-tooltip>
             {{ namesHints.activationTime }}
           </hint-tooltip>

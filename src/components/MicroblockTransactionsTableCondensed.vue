@@ -23,7 +23,7 @@
         <tr class="microblock-transactions-table-condensed__row">
           <th class="microblock-transactions-table-condensed__header">
             <app-tooltip>
-              Time
+              <time-switch-button/>
               <template #tooltip>
                 {{ microblocksHints.transactionTime }}
               </template>

@@ -40,7 +40,7 @@
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
             <app-tooltip>
-              Queried At
+              <time-switch-button>Queried At</time-switch-button>
               <template #tooltip>
                 {{ oraclesHints.queriedAt }}
               </template>
@@ -73,7 +73,7 @@
               'oracle-events-table-condensed__header',
               {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             <app-tooltip>
-              Responded At
+              <time-switch-button>Responded At</time-switch-button>
               <template #tooltip>
                 {{ oraclesHints.queriedAt }}
               </template>

@@ -3,7 +3,9 @@
     <thead>
       <tr>
         <th>Hash</th>
-        <th>Created</th>
+        <th>
+          <time-switch-button>Created</time-switch-button>
+        </th>
         <th>Type</th>
         <th>Data</th>
       </tr>

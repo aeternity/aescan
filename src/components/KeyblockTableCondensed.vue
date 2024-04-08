@@ -30,7 +30,7 @@
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
-          Mined
+          <time-switch-button>Mined</time-switch-button>
           <hint-tooltip class="keyblock-table-condensed__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>

@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Created
+          <time-switch-button>Created</time-switch-button>
           <hint-tooltip>
             {{ contractsHints.created }}
           </hint-tooltip>

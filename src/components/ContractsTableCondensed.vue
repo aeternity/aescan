@@ -26,7 +26,7 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             <app-tooltip>
-              Created
+              <time-switch-button>Created</time-switch-button>
               <template #tooltip>
                 {{ contractsHints.created }}
               </template>

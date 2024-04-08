@@ -23,7 +23,7 @@
         <tr class="account-transactions-table-condensed__row">
           <th class="account-transactions-table-condensed__header">
             <app-tooltip>
-              Time
+              <time-switch-button/>
               <template #tooltip>
                 {{ accountHints.time }}
               </template>

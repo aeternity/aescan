@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Ends
+          <time-switch-button>Ends</time-switch-button>
           <hint-tooltip>
             {{ namesHints.ends }}
           </hint-tooltip>

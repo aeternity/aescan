@@ -10,7 +10,6 @@
         </th>
         <th>
           <time-switch-button>Created</time-switch-button>
-          <!--          todo hint-->
           <hint-tooltip>
             {{ transactionsHints.created }}
           </hint-tooltip>

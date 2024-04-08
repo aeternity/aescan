@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Time
+          <time-switch-button/>
           <hint-tooltip>
             {{ namesHints.eventTime }}
           </hint-tooltip>

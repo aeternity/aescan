@@ -25,7 +25,7 @@
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
             <app-tooltip>
-              Expires
+              <time-switch-button>Expires</time-switch-button>
               <template #tooltip>
                 {{ namesHints.expires }}
               </template>

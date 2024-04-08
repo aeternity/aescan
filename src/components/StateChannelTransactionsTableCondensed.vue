@@ -17,7 +17,7 @@
         </tr>
         <tr class="state-channel-transactions-table-condensed__row">
           <th class="state-channel-transactions-table-condensed__header">
-            Time
+            <time-switch-button/>
           </th>
           <td class="state-channel-transactions-table-condensed__data">
             <block-time-cell

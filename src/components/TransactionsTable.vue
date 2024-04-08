@@ -9,7 +9,8 @@
           </hint-tooltip>
         </th>
         <th>
-          Created
+          <time-switch-button>Created</time-switch-button>
+          <!--          todo hint-->
           <hint-tooltip>
             {{ transactionsHints.created }}
           </hint-tooltip>

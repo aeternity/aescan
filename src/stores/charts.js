@@ -7,6 +7,7 @@ export const useChartsStore = defineStore('charts', () => {
   const axios = useAxios()
 
   const transactionsStatistics = ref(null)
+  const keyblocksStatistics = ref(null)
 
   async function fetchTransactionsStatistics(interval, limit, customInterval, txType) {
     transactionsStatistics.value = null
@@ -23,8 +24,23 @@ export const useChartsStore = defineStore('charts', () => {
     transactionsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
+  async function fetchKeyblocksStatistics(interval, limit, range) {
+    keyblocksStatistics.value = null
+
+    const timeSlug = range
+      ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
+      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
+
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/blocks${timeSlug}`)
+
+    // remove last interval from the response not to show current interval that is being built
+    keyblocksStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
+  }
+
   return {
+    keyblocksStatistics,
     transactionsStatistics,
+    fetchKeyblocksStatistics,
     fetchTransactionsStatistics,
   }
 })

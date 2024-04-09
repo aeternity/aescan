@@ -9,18 +9,15 @@
       {{ chartsHints.charts }}
     </template>
   </page-header>
+  <!--  todo loading-->
+  <!--  todo reuse layout-->
+  <!--  todo fix imports-->
 
   <div class="charts">
-    <nav class="charts__navigation">
-      <app-panel>
-        <app-link to="/charts">
-          Transactions
-        </app-link>
-      </app-panel>
-    </nav>
+    <charts-navigation/>
     <div class="charts__container">
       <template v-if="!isLoading">
-        <charts-transactions-chart-panel/>
+        <charts-keyblocks-chart-panel/>
       </template>
       <loader-panel v-else/>
     </div>
@@ -28,7 +25,7 @@
 </template>
 
 <script setup>
-import { chartsHints } from '@/utils/hints/chartsHints'
+import { chartsHints } from '../../utils/hints/chartsHints'
 
 const { isLoading } = useLoading()
 </script>
@@ -45,10 +42,6 @@ const { isLoading } = useLoading()
 
   &__container {
     flex-grow: 1;
-  }
-
-  &__navigation {
-    width: 200px;
   }
 }
 </style>

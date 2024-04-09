@@ -72,7 +72,7 @@
           <th class="name-details-panel__table-header">
             Owned Since Height
             <hint-tooltip>
-              {{ namesHints.ownedSince }}
+              {{ namesHints.ownedSinceHeight }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
@@ -88,8 +88,7 @@
           <th class="name-details-panel__table-header">
             Owned Since
             <hint-tooltip>
-              <!--              todo change hint-->
-              {{ namesHints.ownedSince }}
+              {{ namesHints.ownedSinceTime }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
@@ -102,7 +101,7 @@
           <th class="name-details-panel__table-header">
             {{ nameStatusLabel }} Height
             <hint-tooltip>
-              {{ namesHints[nameStatusHint] }}
+              {{ namesHints[nameStatusHint + 'Height'] }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
@@ -116,7 +115,7 @@
           <th class="name-details-panel__table-header">
             {{ nameStatusLabel }}
             <hint-tooltip>
-              {{ namesHints[nameStatusHint] }}
+              {{ namesHints[nameStatusHint + 'Time'] }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">

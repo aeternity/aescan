@@ -49,7 +49,6 @@
           <th class="microblock-details-panel__table-header">
             Timestamp
             <hint-tooltip>
-              <!--              todo hint name-->
               {{ microblocksHints.time }}
             </hint-tooltip>
           </th>

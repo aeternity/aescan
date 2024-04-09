@@ -129,9 +129,8 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             Last Updated Height
-            <!--            todo fix hint-->
             <hint-tooltip>
-              {{ stateChannelsHints.lastUpdated }}
+              {{ stateChannelsHints.lastUpdatedHeight }}
             </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">

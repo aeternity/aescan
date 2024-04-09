@@ -71,8 +71,7 @@
           <th class="contract-details-panel__table-header">
             Created Height
             <hint-tooltip>
-              <!--              todo fix hint-->
-              {{ contractsHints.contractCreated }}
+              {{ contractsHints.contractCreatedHeight }}
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">

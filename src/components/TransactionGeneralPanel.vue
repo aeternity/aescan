@@ -93,7 +93,7 @@
           <th class="transaction-general-panel__table-header">
             Created
             <hint-tooltip>
-              {{ transactionsHints.created }}
+              {{ transactionsHints.createdTime }}
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">

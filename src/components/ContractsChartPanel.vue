@@ -46,7 +46,7 @@ async function loadContractsStatistics() {
   await fetchContractsStatistics(
     selectedTime.value.interval,
     selectedTime.value.limit,
-    selectedTime.value.range)
+    selectedTime.value.customInterval)
 }
 
 </script>

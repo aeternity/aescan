@@ -46,7 +46,7 @@ async function loadNamesStatistics() {
   await fetchNamesStatistics(
     selectedTime.value.interval,
     selectedTime.value.limit,
-    selectedTime.value.range)
+    selectedTime.value.customInterval)
 }
 </script>
 

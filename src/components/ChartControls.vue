@@ -10,8 +10,8 @@
         {{ option.label }}
       </app-chip>
       <range-picker
-        :is-range-selected="isRangeSelected"
-        @updated="selectRange"/>
+        :is-range-selected="isCustomIntervalSelected"
+        @updated="selectCustomInterval"/>
     </div>
   </div>
 </template>
@@ -30,8 +30,8 @@ const props = defineProps({
 
 const selectedTime = useVModel(props, 'modelValue', emit)
 
-const isRangeSelected = computed(() =>
-  Object.keys(selectedTime.value).includes('range'))
+const isCustomIntervalSelected = computed(() =>
+  Object.keys(selectedTime.value).includes('customInterval'))
 
 function isIntervalSelected(option) {
   return selectedTime.value.label === option.label
@@ -41,14 +41,14 @@ function selectInterval(option) {
   selectedTime.value = option
 }
 
-function selectRange(dateRange) {
-  const range = {
-    range: {
-      minStart: dateRange[0].toISOString().split('T')[0],
-      maxStart: dateRange[1].toISOString().split('T')[0],
+function selectCustomInterval(dateCustomInterval) {
+  const customInterval = {
+    customInterval: {
+      minStart: dateCustomInterval[0].toISOString().split('T')[0],
+      maxStart: dateCustomInterval[1].toISOString().split('T')[0],
     },
   }
-  selectedTime.value = range
+  selectedTime.value = customInterval
 }
 
 </script>

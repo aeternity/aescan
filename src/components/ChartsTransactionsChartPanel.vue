@@ -54,7 +54,7 @@ async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
     selectedTime.value.interval,
     selectedTime.value.limit,
-    selectedTime.value.range,
+    selectedTime.value.customInterval,
     selectedTxType.value.typeQuery)
 }
 </script>

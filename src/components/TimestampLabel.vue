@@ -90,6 +90,5 @@ function update() {
 .timestamp-label {
   display: inline-flex;
   align-items: center;
-  align-items: center;
 }
 </style>

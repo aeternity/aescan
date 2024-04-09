@@ -50,7 +50,7 @@
         <td>
           <block-time-cell
             :height="activity.height"
-            :datetime="activity.time"/>
+            :timestamp="activity.time"/>
         </td>
         <td>
           <account-activity-type-cell

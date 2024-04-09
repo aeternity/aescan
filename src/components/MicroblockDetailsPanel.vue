@@ -54,9 +54,9 @@
             </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
-            <datetime-label
-              :datetime="microblockDetails.time"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="microblockDetails.time"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="microblock-details-panel__row">
@@ -111,7 +111,6 @@ import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import { formatEllipseHash, formatNumber } from '@/utils/format'
-import DatetimeLabel from '~/components/DatetimeLabel'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

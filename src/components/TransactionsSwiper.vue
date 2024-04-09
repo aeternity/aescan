@@ -18,7 +18,7 @@
               <time-switch-button>Created</time-switch-button>
             </th>
             <td class="transactions-swiper__data">
-              <datetime-label :datetime="transaction.created"/>
+              <timestamp-label :timestamp="transaction.created"/>
             </td>
           </tr>
           <tr>
@@ -44,7 +44,6 @@
 </template>
 
 <script setup>
-import DatetimeLabel from '@/components/DatetimeLabel'
 import TransactionCell from '@/components/TransactionCell'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

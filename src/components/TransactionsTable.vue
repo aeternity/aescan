@@ -40,7 +40,7 @@
         <td class="transactions-table__data">
           <block-time-cell
             :height="transaction.createdHeight"
-            :datetime="transaction.created"/>
+            :timestamp="transaction.created"/>
         </td>
         <td class="transactions-table__data">
           {{ transaction.type }}

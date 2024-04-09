@@ -43,7 +43,7 @@
         <td class="contracts-table__data">
           <block-time-cell
             :height="contract.createdHeight"
-            :datetime="contract.created"/>
+            :timestamp="contract.created"/>
         </td>
         <td class="contracts-table__data">
           <value-hash-ellipsed

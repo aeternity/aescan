@@ -89,9 +89,9 @@
             </hint-tooltip>
           </th>
           <td class="contract-details-panel__data">
-            <datetime-label
-              :datetime="contractDetails.creationDate"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="contractDetails.creationDate"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr
@@ -209,7 +209,6 @@ import AppLink from '@/components/AppLink'
 import CopyChip from '@/components/CopyChip'
 import AppChip from '@/components/AppChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '@/components/HintTooltip'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'

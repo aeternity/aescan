@@ -45,7 +45,7 @@
           <td class="token-events-table-condensed__data">
             <block-time-cell
               :height="event.createdHeight"
-              :datetime="event.created"/>
+              :timestamp="event.created"/>
           </td>
         </tr>
 

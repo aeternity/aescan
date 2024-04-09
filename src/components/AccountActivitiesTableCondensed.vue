@@ -36,7 +36,7 @@
           <td class="account-activities-table-condensed__data">
             <block-time-cell
               :height="activity.height"
-              :datetime="activity.time"/>
+              :timestamp="activity.time"/>
           </td>
         </tr>
         <tr class="account-activities-table-condensed__row">

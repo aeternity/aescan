@@ -55,10 +55,9 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            <!--            todo rename timestamp-->
-            <datetime-label
-              :datetime="keyblockDetails.mined"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="keyblockDetails.mined"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">

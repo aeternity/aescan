@@ -31,7 +31,7 @@
         <td class="contract-call-transactions-table-condensed__data">
           <block-time-cell
             :height="transaction.createdHeight"
-            :datetime="transaction.created"/>
+            :timestamp="transaction.created"/>
         </td>
       </tr>
       <tr class="contract-call-transactions-table-condensed__row">

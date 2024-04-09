@@ -153,10 +153,10 @@
             </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
-            <datetime-label
+            <timestamp-label
               v-if="stateChannelDetails.lastUpdated"
-              :datetime="stateChannelDetails.lastUpdated"
-              :is-verbose="true"/>
+              :timestamp="stateChannelDetails.lastUpdated"
+              :is-extended="true"/>
             <template v-else>
               ---
             </template>
@@ -205,7 +205,6 @@ import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 

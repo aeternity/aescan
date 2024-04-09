@@ -97,9 +97,9 @@
             </hint-tooltip>
           </th>
           <td class="transaction-general-panel__data">
-            <datetime-label
-              :datetime="transactionDetails.created"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="transactionDetails.created"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">
@@ -166,7 +166,6 @@ import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import CopyChip from '@/components/CopyChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

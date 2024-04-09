@@ -36,7 +36,7 @@
           <td class="name-history-table-condensed__data">
             <block-time-cell
               :height="action.createdHeight"
-              :datetime="action.created"/>
+              :timestamp="action.created"/>
           </td>
         </tr>
         <tr class="name-history-table-condensed__row">

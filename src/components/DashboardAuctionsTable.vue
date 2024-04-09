@@ -51,7 +51,7 @@
           <div class="dashboard-auctions-table__blocks">
             <block-time-cell
               :height="auction.expirationHeight"
-              :datetime="auction.expiration"/>
+              :timestamp="auction.expiration"/>
           </div>
         </td>
       </tr>

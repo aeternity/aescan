@@ -35,7 +35,7 @@
           <td class="contracts-table-condensed__data">
             <block-time-cell
               :height="contract.createdHeight"
-              :datetime="contract.created"/>
+              :timestamp="contract.created"/>
           </td>
         </tr>
         <tr class="contracts-table-condensed__row">

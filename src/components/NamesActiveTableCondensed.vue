@@ -34,7 +34,7 @@
           <td class="names-active-table-condensed__data">
             <block-time-cell
               :height="name.expirationHeight"
-              :datetime="name.expiration"/>
+              :timestamp="name.expiration"/>
           </td>
         </tr>
         <tr class="names-active-table-condensed__row">

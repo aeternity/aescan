@@ -54,7 +54,7 @@
           <div class="dashboard-names-table__blocks">
             <block-time-cell
               :height="name.activatedHeight"
-              :datetime="name.activated"/>
+              :timestamp="name.activated"/>
           </div>
         </td>
       </tr>

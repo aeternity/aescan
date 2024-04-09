@@ -32,7 +32,7 @@
           <td class="oracles-table-condensed__data">
             <block-time-cell
               :height="oracle.registeredHeight"
-              :datetime="oracle.registered"/>
+              :timestamp="oracle.registered"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">
@@ -47,7 +47,7 @@
           <td class="oracles-table-condensed__data">
             <block-time-cell
               :height="oracle.expirationHeight"
-              :datetime="oracle.expiration"/>
+              :timestamp="oracle.expiration"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">

@@ -41,7 +41,7 @@
         <td>
           <block-time-cell
             :height="action.createdHeight"
-            :datetime="action.created"/>
+            :timestamp="action.created"/>
         </td>
         <td>
           <name-history-cell

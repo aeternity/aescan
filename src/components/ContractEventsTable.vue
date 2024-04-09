@@ -38,7 +38,7 @@
         <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
           <block-time-cell
             :height="event.createdHeight"
-            :datetime="event.created"/>
+            :timestamp="event.created"/>
         </td>
         <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
           {{ event.eventName || 'N/A' }}

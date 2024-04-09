@@ -95,7 +95,7 @@
           <td class="state-channels-table-condensed__data">
             <block-time-cell
               :height="channel.updatedHeight"
-              :datetime="channel.updated"/>
+              :timestamp="channel.updated"/>
           </td>
         </tr>
         <tr class="state-channels-table-condensed__row">

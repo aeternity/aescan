@@ -93,9 +93,9 @@
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <datetime-label
-              :datetime="name.activated"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="name.activated"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="name-details-panel__row">
@@ -120,9 +120,9 @@
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <datetime-label
-              :datetime="name.expiration"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="name.expiration"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="name-details-panel__row">
@@ -153,7 +153,6 @@ import CopyChip from '@/components/CopyChip'
 import HintTooltip from '@/components/HintTooltip'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatAePrice, formatEllipseHash } from '@/utils/format'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { name } = storeToRefs(useNameDetailsStore())
 

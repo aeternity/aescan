@@ -77,7 +77,7 @@
         <td>
           <block-time-cell
             :height="channel.updatedHeight"
-            :datetime="channel.updated"/>
+            :timestamp="channel.updated"/>
         </td>
         <td>{{ channel.lastTxType }}</td>
       </tr>

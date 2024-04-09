@@ -1,7 +1,7 @@
 <template>
-  <div class="datetime-label">
+  <div class="timestamp-label">
     <client-only>
-      <template v-if="isVerbose">
+      <template v-if="isExtended">
         {{ relativeUpdated }} ({{ absolute }})
       </template>
       <template v-else>
@@ -20,13 +20,13 @@ import { useAppStore } from '@/stores/app'
 const { timeFormat } = storeToRefs(useAppStore())
 
 const props = defineProps({
-  datetime: {
+  timestamp: {
     type: Object,
     required: true,
   },
-  isVerbose: {
+  isExtended: {
     type: Boolean,
-    required: true,
+    default: false,
   },
 })
 
@@ -34,7 +34,7 @@ const relativeUpdated = ref(null)
 const intervalRef = ref(null)
 
 const absolute = computed(() => {
-  return props.datetime.toLocaleString(DateTime.DATETIME_SHORT)
+  return props.timestamp.toLocaleString(DateTime.DATETIME_SHORT)
 })
 
 const labelTime = computed(() => {
@@ -50,7 +50,7 @@ const dynamicInterval = computed(() => {
 })
 
 const expirationDuration = computed(() => {
-  return props.datetime.diffNow().shiftTo(...DATETIME_UNITS)
+  return props.timestamp.diffNow().shiftTo(...DATETIME_UNITS)
 })
 
 const highestUnit = computed(() => {
@@ -76,7 +76,7 @@ onBeforeUnmount(() => {
 
 function update() {
   if (isPast.value) {
-    relativeUpdated.value = props.datetime.setLocale('en-US').toRelative()
+    relativeUpdated.value = props.timestamp.setLocale('en-US').toRelative()
   } else if (isNow.value) {
     relativeUpdated.value = 'now'
   } else {
@@ -86,7 +86,7 @@ function update() {
 </script>
 
 <style scoped>
-.datetime-label {
+.timestamp-label {
   display: inline-flex;
 }
 </style>

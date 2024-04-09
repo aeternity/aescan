@@ -5,7 +5,7 @@
       {{ height }}
     </app-link>
   </div>
-  <datetime-label :datetime="datetime"/>
+  <timestamp-label :timestamp="timestamp"/>
 </template>
 
 <script setup>
@@ -14,7 +14,7 @@ defineProps({
     type: Number,
     required: true,
   },
-  datetime: {
+  timestamp: {
     type: Object,
     required: true,
   },

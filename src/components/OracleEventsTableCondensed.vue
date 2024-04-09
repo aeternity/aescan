@@ -49,7 +49,7 @@
           <td class="oracle-events-table-condensed__data">
             <block-time-cell
               :height="event.queriedHeight"
-              :datetime="event.queriedAt"/>
+              :timestamp="event.queriedAt"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
@@ -85,7 +85,7 @@
               {'oracle-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.respondedHeight"
-              :datetime="event.respondedAt"/>
+              :timestamp="event.respondedAt"/>
           </td>
         </tr>
         <tr

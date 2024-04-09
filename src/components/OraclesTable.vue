@@ -40,12 +40,12 @@
         <td class="oracles-table__data">
           <block-time-cell
             :height="oracle.registeredHeight"
-            :datetime="oracle.registered"/>
+            :timestamp="oracle.registered"/>
         </td>
         <td class="oracles-table__data">
           <block-time-cell
             :height="oracle.expirationHeight"
-            :datetime="oracle.expiration"/>
+            :timestamp="oracle.expiration"/>
         </td>
         <td class="oracles-table__data">
           {{ formatAePrice(oracle.queryFee) }}

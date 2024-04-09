@@ -39,7 +39,7 @@
           <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.createdHeight"
-              :datetime="event.created"/>
+              :timestamp="event.created"/>
           </td>
           <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             {{ event.name }}

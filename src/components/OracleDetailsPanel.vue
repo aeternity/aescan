@@ -29,9 +29,9 @@
               {{ oracleDetails.registeredHeight }}
             </app-link>
             -
-            <datetime-label
-              :datetime="oracleDetails.registered"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="oracleDetails.registered"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -48,9 +48,9 @@
                 {{ oracleDetails.lastExtendedHeight }}
               </app-link>
               -
-              <datetime-label
-                :datetime="oracleDetails.lastExtended"
-                :is-verbose="true"/>
+              <timestamp-label
+                :timestamp="oracleDetails.lastExtended"
+                :is-extended="true"/>
             </template>
             <template v-else>
               ---
@@ -71,9 +71,9 @@
                 {{ oracleDetails.lastQueryHeight }}
               </app-link>
               -
-              <datetime-label
-                :datetime="oracleDetails.lastQueried"
-                :is-verbose="true"/>
+              <timestamp-label
+                :timestamp="oracleDetails.lastQueried"
+                :is-extended="true"/>
             </template>
             <template v-else>
               ---
@@ -93,9 +93,9 @@
               {{ oracleDetails.expirationHeight }}
             </app-link>
             -
-            <datetime-label
-              :datetime="oracleDetails.expiration"
-              :is-verbose="true"/>
+            <timestamp-label
+              :timestamp="oracleDetails.expiration"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr
@@ -191,7 +191,6 @@ import HintTooltip from '@/components/HintTooltip'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import AppIcon from '@/components/AppIcon'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

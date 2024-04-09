@@ -29,7 +29,7 @@
           :hash="microblock.hash"/>
       </td>
       <td>
-        <datetime-label :datetime="microblock.time"/>
+        <timestamp-label :timestamp="microblock.time"/>
       </td>
       <td>
         {{ microblock.transactionsCount }}
@@ -39,7 +39,6 @@
 </template>
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({
   microblocks: {

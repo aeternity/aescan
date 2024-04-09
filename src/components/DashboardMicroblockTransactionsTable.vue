@@ -20,7 +20,7 @@
             :link-to="`/transactions/${transaction.hash}`"/>
         </td>
         <td>
-          <datetime-label :datetime="transaction.created"/>
+          <timestamp-label :timestamp="transaction.created"/>
         </td>
         <td>{{ transaction.type }}</td>
         <td>
@@ -34,7 +34,6 @@
 </template>
 
 <script setup>
-import DatetimeLabel from '@/components/DatetimeLabel'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 

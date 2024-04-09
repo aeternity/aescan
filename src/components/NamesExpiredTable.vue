@@ -46,7 +46,7 @@
         <td>
           <block-time-cell
             :height="name.expirationHeight"
-            :datetime="name.expiration"/>
+            :timestamp="name.expiration"/>
         </td>
         <td>
           <value-hash-ellipsed

@@ -52,15 +52,20 @@
               class="footer__version">
               NODE VERSION
               <app-link :to="NODE_RELEASES_URL">
-                v{{ nodeVersion }}
+                v{{ nodeStatus.nodeVersion }}
               </app-link>
             </div>
             <div
               class="footer__version">
               MIDDLEWARE VERSION
               <app-link :to="MDW_RELEASES_URL">
-                v{{ middlewareVersion }}
+                v{{ middlewareStatus.mdwVersion }}
               </app-link>
+              <span
+                v-if="isSyncing"
+                class="footer__warning">
+                (syncing)
+              </span>
             </div>
           </div>
           <div class="footer__link-container">
@@ -89,7 +94,7 @@ import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
 import { useStatus } from '@/stores/status'
 
-const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
+const { middlewareStatus, nodeStatus, isSyncing } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const { APP_VERSION } = useAppConfig()
 
@@ -226,6 +231,10 @@ const links = {
     @media (--desktop) {
       margin: 80px 0;
     }
+  }
+
+  &__warning {
+    color: var(--color-fire)
   }
 }
 </style>

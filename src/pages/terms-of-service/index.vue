@@ -12,7 +12,7 @@
     </p>
 
     <p class="terms-of-service__paragraph">
-      Terms and Conditions last updated on <span class=" terms-of-service__highlighted">May 9th 2023</span>
+      Terms and Conditions last updated on <span class=" terms-of-service__highlighted">April 12th 2024</span>
     </p>
     <p class="terms-of-service__paragraph">
       BY ACCESSING OR USING æScan SERVICES, YOU AGREE TO BE BOUND BY THESE TERMS OF SERVICE AND ALL TERMS
@@ -130,7 +130,56 @@
     </p>
 
     <h2 class="terms-of-service__subheading">
-      6. Modification of Terms and Conditions
+      6. User-generated Content
+    </h2>
+
+    <p class="terms-of-service__paragraph">
+      Responsibility regarding user-generated content - You bear sole responsibility for the content you post, upload,
+      link to, or otherwise share via the service, and for any resulting harm, regardless of its form. We do not accept
+      responsibility for any public display or misuse of your user-generated content. We retain the right
+      (but not the obligation)
+      to refuse or remove any user-generated content that, in our sole discretion, violates any æScan terms or policies.
+    </p>
+
+    <p class="terms-of-service__paragraph">
+      Content ownership & posting rights - When posting content that you did not create or do not hold rights to,
+      you affirm that you are accountable for it, committing to submit only content for which you have posting rights
+      and to adhere fully to any third-party licenses associated with the content you post.
+    </p>
+
+    <p class="terms-of-service__paragraph">
+      Grant of license to us - In order to perform actions such as hosting, publishing, and sharing your content,
+      we require legal permission. Therefore, you hereby grant us and our legal successors the authority to store,
+      parse, and display your content, as well as to create incidental copies as needed for website rendering
+      and service provision.
+    </p>
+
+    <p class="terms-of-service__paragraph">
+      Moral rights - You maintain all moral rights to your content that you upload, publish, or submit through any
+      part of the service, including integrity and attribution rights. However, you waive these rights and agree
+      not to enforce them against us, facilitating our reasonable exercise of the rights outlined in
+      the previous section.
+    </p>
+
+    <p class="terms-of-service__paragraph">
+      In instances where this agreement is not enforceable by applicable law, you grant æScan the necessary rights
+      to utilize your content without attribution and to make reasonable adaptations as required for website
+      rendering and service provision.
+    </p>
+
+    <p class="terms-of-service__paragraph">
+      In using our services, you may view content or utilize services provided by third parties, including links
+      to web pages and services of such parties. We do not control, endorse or adopt any third party content and
+      will have no responsibility for third-party content, including, without limitation, material that may be
+      misleading, incomplete, erroneous, offensive, indecent or otherwise objectionable in your jurisdiction.
+      In addition, your business dealings or correspondence with such third parties are solely between you and
+      the third parties. We are not responsible or liable for any loss or damage of any sort incurred as the
+      result of any such dealings, and you understand that your use of third party content, and your
+      interactions with third parties, is at your own risk.
+    </p>
+
+    <h2 class="terms-of-service__subheading">
+      7. Modification of Terms and Conditions
     </h2>
     <p class="terms-of-service__paragraph">
       Aeternity Establishment reserves the right to modify these terms and conditions at any time, without prior
@@ -142,7 +191,7 @@
     </p>
 
     <h2 class="terms-of-service__subheading">
-      7. Governing Law and Jurisdiction
+      8. Governing Law and Jurisdiction
     </h2>
     <p class="terms-of-service__paragraph">
       These terms and conditions shall be governed by and construed in accordance with the laws of the
@@ -154,7 +203,7 @@
     </p>
 
     <h2 class="terms-of-service__subheading">
-      8. Termination of Access
+      9. Termination of Access
     </h2>
     <p class="terms-of-service__paragraph">
       Aeternity Establishment reserves the right to terminate your access to æScan at any time, for any
@@ -163,7 +212,7 @@
     </p>
 
     <h2 class="terms-of-service__subheading">
-      9. User Conduct
+      10. User Conduct
     </h2>
     <p class="terms-of-service__paragraph">
       By using æScan, you agree to conduct yourself in a responsible and lawful manner. You agree not to
@@ -177,7 +226,7 @@
     </p>
 
     <h2 class="terms-of-service__subheading">
-      10. Third-Party Links
+      11. Third-Party Links
     </h2>
     <p class="terms-of-service__paragraph">
       æScan may contain links to third-party websites or resources that are not owned or controlled by
@@ -191,7 +240,7 @@
     </p>
 
     <h2 class="terms-of-service__subheading">
-      11. Disclaimer of Warranties
+      12. Disclaimer of Warranties
     </h2>
     <p class="terms-of-service__paragraph">
       æScan is provided on an "as is" and "as available" basis, without any warranties of any kind, either
@@ -206,7 +255,7 @@
     </p>
 
     <h2 class="terms-of-service__subheading">
-      12. Entire Agreement
+      13. Entire Agreement
     </h2>
     <p class="terms-of-service__paragraph">
       These terms and conditions, together with the Privacy Policy, constitute the entire agreement

@@ -15,7 +15,7 @@ export const useDashboardStateChannelsStore = defineStore('dashboardStateChannel
   )
 
   async function fetchStateChannels() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/channels?&limit=4`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/channels?&limit=4`)
     rawStateChannels.value = data.data
   }
 

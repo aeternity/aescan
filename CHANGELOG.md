@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.1](https://github.com/aeternity/aescan/compare/0.11.0...0.11.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* microblocks tabs visibility ([9d20189](https://github.com/aeternity/aescan/commit/9d20189acbc9316b96221bbc9f2e5f47aac6a8a6))
+
 ## [0.11.0](https://github.com/aeternity/aescan/compare/0.10.0...0.11.0) (2024-01-22)
 
 

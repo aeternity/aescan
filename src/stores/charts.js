@@ -15,7 +15,7 @@ export const useChartsStore = defineStore('charts', () => {
       ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
 
-    const typeSlug = txType ? '&tx_type=' + txType : null
+    const typeSlug = txType ? '&tx_type=' + txType : ''
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${intervalSlug + typeSlug}`)
 

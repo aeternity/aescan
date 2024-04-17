@@ -3,7 +3,7 @@
     {{ activity.payload.tx.name }}
   </app-link>
   <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(activity.payload.tx.nameFee)) }}
+    {{ formatAePrice(formatAettosToAe(activity.payload.tx.fee)) }}
   </app-chip>
 </template>
 

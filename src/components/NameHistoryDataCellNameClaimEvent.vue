@@ -5,7 +5,7 @@
 
   <app-tooltip>
     <app-chip size="sm">
-      {{ formatAePrice(formatAettosToAe(payload.tx.nameFee), null) }}
+      {{ formatAePrice(formatAettosToAe(payload.tx.fee), null) }}
     </app-chip>
     <template #tooltip>
       Fee

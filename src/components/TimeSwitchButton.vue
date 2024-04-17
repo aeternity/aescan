@@ -18,7 +18,7 @@ const suffix = computed(() => {
 })
 </script>
 
-<style scoped>
+<style module>
 .time-switch-button {
   font-family: var(--font-primary);
   font-weight: 500;

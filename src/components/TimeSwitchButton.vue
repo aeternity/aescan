@@ -23,12 +23,12 @@ const suffix = computed(() => {
   font-family: var(--font-primary);
   font-weight: 500;
 
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 14px !important;
+  line-height: 22px !important;
 
   @media (--desktop) {
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 16px !important;
+    line-height: 18px !important;
   }
 }
 </style>

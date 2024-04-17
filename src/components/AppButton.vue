@@ -77,7 +77,7 @@ defineProps({
 })
 </script>
 
-<style module>
+<style scoped>
 .button {
   display: inline-flex;
   align-items: center;

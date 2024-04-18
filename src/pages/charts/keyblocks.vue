@@ -11,7 +11,6 @@
   </page-header>
   <!--  todo loading-->
   <!--  todo reuse layout-->
-  <!--  todo fix imports-->
 
   <div class="charts">
     <charts-navigation/>
@@ -25,7 +24,7 @@
 </template>
 
 <script setup>
-import { chartsHints } from '../../utils/hints/chartsHints'
+import { chartsHints } from '@/utils/hints/chartsHints'
 
 const { isLoading } = useLoading()
 </script>

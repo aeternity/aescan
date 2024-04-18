@@ -12,16 +12,16 @@
         u-hidden-mobile"/>
 
       <chart-controls
-        v-model="selectedTime"
+        v-model="selectedRange"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="transactionsStatistics"
-      :interval="selectedTime.interval"/>
+      :interval="selectedRange.interval"/>
 
     <chart-controls
-      v-model="selectedTime"
+      v-model="selectedRange"
       class="charts-transactions-chart-panel__controls u-hidden-desktop"/>
     <transactions-select
       v-model="selectedTxType"
@@ -38,7 +38,7 @@ const chartsStore = useChartsStore()
 const { transactionsStatistics } = storeToRefs(chartsStore)
 const { fetchTransactionsStatistics } = chartsStore
 
-const selectedTime = ref(CHART_INTERVALS_OPTIONS[4])
+const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {
@@ -46,15 +46,15 @@ await useAsyncData(async() => {
   return true
 })
 
-watch([selectedTime, selectedTxType], async() => {
+watch([selectedRange, selectedTxType], async() => {
   await loadTransactionStatistics()
 })
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
-    selectedTime.value.interval,
-    selectedTime.value.limit,
-    selectedTime.value.customInterval,
+    selectedRange.value.interval,
+    selectedRange.value.limit,
+    selectedRange.value.customInterval,
     selectedTxType.value.typeQuery)
 }
 </script>

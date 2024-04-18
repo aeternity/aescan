@@ -28,17 +28,17 @@ const props = defineProps({
   },
 })
 
-const selectedTime = useVModel(props, 'modelValue', emit)
+const selectedRange = useVModel(props, 'modelValue', emit)
 
 const isCustomIntervalSelected = computed(() =>
-  Object.keys(selectedTime.value).includes('customInterval'))
+  Object.keys(selectedRange.value).includes('customInterval'))
 
 function isIntervalSelected(option) {
-  return selectedTime.value.label === option.label
+  return selectedRange.value.label === option.label
 }
 
 function selectInterval(option) {
-  selectedTime.value = option
+  selectedRange.value = option
 }
 
 function selectCustomInterval(dateCustomInterval) {
@@ -48,7 +48,7 @@ function selectCustomInterval(dateCustomInterval) {
       maxStart: dateCustomInterval[1].toISOString().split('T')[0],
     },
   }
-  selectedTime.value = customInterval
+  selectedRange.value = customInterval
 }
 
 </script>

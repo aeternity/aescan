@@ -5,18 +5,18 @@
     </template>
     <template #header>
       <chart-controls
-        v-model="selectedTime"
+        v-model="selectedRange"
         class="u-hidden-mobile"/>
     </template>
 
     <div class="contracts-chart-panel__container">
       <line-chart
         :data="contractsStatistics"
-        :interval="selectedTime.interval"/>
+        :interval="selectedRange.interval"/>
     </div>
 
     <chart-controls
-      v-model="selectedTime"
+      v-model="selectedRange"
       class="contracts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -31,22 +31,22 @@ const contractsStore = useContractsStore()
 const { contractsStatistics } = storeToRefs(contractsStore)
 const { fetchContractsStatistics } = contractsStore
 
-const selectedTime = ref(CHART_INTERVALS_OPTIONS[0])
+const selectedRange = ref(CHART_INTERVALS_OPTIONS[0])
 
 await useAsyncData(async() => {
   await loadContractsStatistics()
   return true
 })
 
-watch(selectedTime, async() => {
+watch(selectedRange, async() => {
   await loadContractsStatistics()
 })
 
 async function loadContractsStatistics() {
   await fetchContractsStatistics(
-    selectedTime.value.interval,
-    selectedTime.value.limit,
-    selectedTime.value.customInterval)
+    selectedRange.value.interval,
+    selectedRange.value.limit,
+    selectedRange.value.customInterval)
 }
 
 </script>

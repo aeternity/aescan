@@ -5,16 +5,16 @@
     </template>
     <template #header>
       <chart-controls
-        v-model="selectedTime"
+        v-model="selectedRange"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="keyblocksStatistics"
-      :interval="selectedTime.interval"/>
+      :interval="selectedRange.interval"/>
 
     <chart-controls
-      v-model="selectedTime"
+      v-model="selectedRange"
       class="charts-keyblocks-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -28,22 +28,22 @@ const chartsStore = useChartsStore()
 const { keyblocksStatistics } = storeToRefs(chartsStore)
 const { fetchKeyblocksStatistics } = chartsStore
 
-const selectedTime = ref(CHART_INTERVALS_OPTIONS[4])
+const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadKeyblockStatistics()
   return true
 })
 
-watch(selectedTime, async() => {
+watch(selectedRange, async() => {
   await loadKeyblockStatistics()
 })
 
 async function loadKeyblockStatistics() {
   await fetchKeyblocksStatistics(
-    selectedTime.value.interval,
-    selectedTime.value.limit,
-    selectedTime.value.customInterval)
+    selectedRange.value.interval,
+    selectedRange.value.limit,
+    selectedRange.value.customInterval)
 }
 </script>
 

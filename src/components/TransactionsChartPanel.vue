@@ -34,7 +34,7 @@ await useAsyncData(async() => {
   return true
 })
 
-watch([selectedTime], async() => {
+watch(selectedTime, async() => {
   await loadTransactionStatistics()
 })
 

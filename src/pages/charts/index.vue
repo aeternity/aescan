@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { chartsHints } from '../../utils/hints/chartsHints'
+import { chartsHints } from '@/utils/hints/chartsHints'
 
 const { isLoading } = useLoading()
 </script>

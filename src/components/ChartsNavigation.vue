@@ -18,6 +18,7 @@
 <style scoped>
 .charts-navigation {
   width: 100%;
+
   @media (--desktop) {
     width: 200px;
 

@@ -57,9 +57,5 @@ async function loadKeyblockStatistics() {
       margin-bottom: 0;
     }
   }
-
-  &__select {
-    width: 210px;
-  }
 }
 </style>

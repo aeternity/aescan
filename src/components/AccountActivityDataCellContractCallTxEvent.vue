@@ -6,8 +6,9 @@
   <app-chip size="sm">
     {{ activity.payload.tx.function }}
   </app-chip>
+
   <app-chip
-    v-if="activity.payload.tx.function === 'add_vote'"
+    v-if="activity.payload.tx.amount !== 0"
     size="sm">
     {{ formatAePrice(formatAettosToAe(activity.payload.tx.amount)) }}
   </app-chip>

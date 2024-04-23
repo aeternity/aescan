@@ -4,8 +4,10 @@
     :link-to="`/accounts/${payload.tx.accountId}`"/>
 
   <app-tooltip>
-    <app-chip size="sm">
-      {{ formatAePrice(formatAettosToAe(payload.tx.fee), null) }}
+    <app-chip
+      v-if="formatAettosToAe(payload.tx.nameFee)"
+      size="sm">
+      {{ formatAePrice(formatAettosToAe(payload.tx.nameFee), null) }}
     </app-chip>
     <template #tooltip>
       Fee

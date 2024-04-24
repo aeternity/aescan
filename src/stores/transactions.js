@@ -36,9 +36,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     last24hsTransactionsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     last24hsTransactionsCount.value = data.last24hsTransactions
-    last24hsTransactionsTrend.value = data.last24hsTransactions !== 0
-      ? formatNumber((100 * data.transactionsTrend / data.last24hsTransactions), 0, 2)
-      : '---'
+    last24hsTransactionsTrend.value = data.transactionsTrend
   }
 
   async function fetchTransactionsStatistics(interval = 'day', limit = 7, range) {

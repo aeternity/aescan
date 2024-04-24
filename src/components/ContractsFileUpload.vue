@@ -103,7 +103,7 @@ function drop(event) {
 }
 
 function selectEntryFile(file, index) {
-  const name = file.webkitRelativePath || file.name
+  const name = file.webkitRelativePath
   entryFile.value = { index, name }
   emit('update:entry-file', name)
 }
@@ -133,6 +133,10 @@ function getFileEntry(entry, files) {
 function getSingleFile(fileEntry, files) {
   return new Promise(resolve => {
     fileEntry.file(file => {
+      // chrome workaround to manually set webkitRelativePath
+      Object.defineProperty(file, 'webkitRelativePath', {
+        value: fileEntry.fullPath.substring(1),
+      })
       files.push(file)
       selectedFiles.value.push(file)
       resolve(file)

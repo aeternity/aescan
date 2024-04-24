@@ -24,7 +24,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
     form.append('entryFile', entryFile)
 
     Array.from(sourceFiles).forEach(file => {
-      form.append('sourceFiles', file)
+      form.append('sourceFiles', file, file.webkitRelativePath)
     })
 
     const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch(error => {

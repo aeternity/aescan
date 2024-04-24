@@ -67,7 +67,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   }
 
   async function fetchStateChannelTransactionsCount() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count?id=${stateChannelId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count?id=${stateChannelId.value}`)
     stateChannelTransactionsCount.value = data + 1
   }
 

@@ -26,7 +26,7 @@
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install"
   },
   "dependencies": {
-    "@aeternity/aepp-sdk": "^13.2.2",
+    "@aeternity/aepp-sdk": "^13.3.2",
     "@download/blockies": "^1.0.3",
     "@vuepic/vue-datepicker": "^8.3.1",
     "@sentry/tracing": "^7.108.0",

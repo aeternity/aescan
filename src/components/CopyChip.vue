@@ -6,10 +6,15 @@
     :variant="!isCopyAnimationActive ? 'dark' : 'success'">
     <div class="copy-chip__container">
       <div class="copy-chip__text">
-        {{ textToDisplay }}
+        <template v-if="!!textToDisplay">
+          {{ textToDisplay }}
+        </template>
+        <not-available-label
+          v-else
+          class="copy-chip__not-available-label"/>
       </div>
-
       <copy-button
+        v-if="textToDisplay !== ''"
         v-show="!isCopyAnimationActive"
         :clipboard-text="clipboardText || label"
         variant="light"
@@ -54,7 +59,7 @@ function deactivateCopyAnimation() {
 
 <style scoped>
 .copy-chip {
-  min-width: 72px;
+  min-width: 45px;
 
   &__container {
     display: flex;
@@ -65,6 +70,10 @@ function deactivateCopyAnimation() {
     display: flex;
     flex-grow: 1;
     justify-content: center;
+  }
+
+  &__not-available-label {
+    color: var(--color-white);
   }
 }
 </style>

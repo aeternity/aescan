@@ -22,7 +22,10 @@
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
-            {{ tokenDetails.name }}
+            <template v-if="!!tokenDetails.name">
+              {{ tokenDetails.name }}
+            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
         <tr

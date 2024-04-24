@@ -6,11 +6,9 @@
     :variant="!isCopyAnimationActive ? 'dark' : 'success'">
     <div class="copy-chip__container">
       <div class="copy-chip__text">
-        <template v-if="!!textToDisplay">
-          {{ textToDisplay }}
-        </template>
+        {{ textToDisplay }}
         <not-available-label
-          v-else
+          v-if="!textToDisplay"
           class="copy-chip__not-available-label"/>
       </div>
       <copy-button

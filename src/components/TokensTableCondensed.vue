@@ -21,10 +21,8 @@
               <token-symbol-icon
                 :contract-id="token.contractId"
                 class="tokens-table-condensed__icon"/>
-              <template v-if="!!token.symbol">
-                {{ token.symbol }}
-              </template>
-              <not-available-label v-else/>
+              {{ token.symbol }}
+              <not-available-label v-if="!token.symbol"/>
             </app-link>
           </td>
         </tr>
@@ -39,10 +37,8 @@
             </app-tooltip>
           </th>
           <td class="tokens-table-condensed__data">
-            <template v-if="!!token.name">
-              {{ token.name }}
-            </template>
-            <not-available-label v-else/>
+            {{ token.name }}
+            <not-available-label v-if="!token.name"/>
           </td>
         </tr>
         <tr class="tokens-table-condensed__row">

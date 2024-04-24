@@ -39,7 +39,8 @@
                 <token-symbol-icon
                   :contract-id="contractDetails.id"
                   class="contract-details-panel__icon"/>
-                {{ contractDetails.tokenDetails.symbol }}
+                {{ contractDetails.tokenDetails.name }}
+                <not-available-label v-if="!contractDetails.tokenDetails.name"/>
               </app-link>
             </div>
             <app-link

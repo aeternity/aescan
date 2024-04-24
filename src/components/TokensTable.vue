@@ -33,17 +33,13 @@
             <token-symbol-icon
               :contract-id="token.contractId"
               class="tokens-table__icon"/>
-            <template v-if="!!token.symbol">
-              {{ token.symbol }}
-            </template>
-            <not-available-label v-else/>
+            {{ token.symbol }}
+            <not-available-label v-if="!token.symbol"/>
           </app-link>
         </td>
         <td>
-          <template v-if="!!token.name">
-            {{ token.name }}
-          </template>
-          <not-available-label v-else/>
+          {{ token.name }}
+          <not-available-label v-if="!token.name"/>
         </td>
         <td>
           <value-hash-ellipsed

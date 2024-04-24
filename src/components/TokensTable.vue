@@ -33,10 +33,18 @@
             <token-symbol-icon
               :contract-id="token.contractId"
               class="tokens-table__icon"/>
-            {{ token.symbol }}
+            <template v-if="!!token.symbol">
+              {{ token.symbol }}
+            </template>
+            <not-available-label v-else/>
           </app-link>
         </td>
-        <td>{{ token.name }}</td>
+        <td>
+          <template v-if="!!token.name">
+            {{ token.name }}
+          </template>
+          <not-available-label v-else/>
+        </td>
         <td>
           <value-hash-ellipsed
             :link-to="`/contracts/${token.contractId}`"

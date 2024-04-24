@@ -8,7 +8,9 @@
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <template #header>
-        <token-select v-model="selectedTokenName"/>
+        <token-select
+          v-if="NETWORK_NAME !== 'TESTNET'"
+          v-model="selectedTokenName"/>
       </template>
       <tokens-table
         v-if="selectedTokens"
@@ -25,6 +27,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed, watch } from 'vue'
+import { useRuntimeConfig } from 'nuxt/app'
 import { useTokensStore } from '@/stores/tokens'
 import TokensTableCondensed from '@/components/TokensTableCondensed'
 import TokensTable from '@/components/TokensTable'
@@ -35,6 +38,8 @@ import { isDesktop } from '@/utils/screen'
 const tokensStore = useTokensStore()
 const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(tokensStore)
 const { fetchTokens, fetchTokensCount } = useTokensStore()
+
+const { NETWORK_NAME } = useRuntimeConfig().public
 
 const pageIndex = ref(1)
 

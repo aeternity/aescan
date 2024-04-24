@@ -11,12 +11,14 @@ export const useTokensStore = defineStore('tokens', () => {
   const allTokens = ref(null)
   const selectedTokenName = ref(null)
   const allTokensCount = ref(null)
+  const { NETWORK_NAME } = useRuntimeConfig().public
 
   const selectedTokens = computed(() => {
-    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value : allTokens.value
+    return selectedTokenName.value?.key === 'listedTokens' && NETWORK_NAME !== 'TESTNET' ? listedTokens.value : allTokens.value
   })
+
   const selectedTokensCount = computed(() => {
-    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value?.data.length : allTokensCount.value
+    return selectedTokenName.value?.key === 'listedTokens' && NETWORK_NAME !== 'TESTNET' ? listedTokens.value?.data.length : allTokensCount.value
   })
 
   const listedTokens = computed(() =>

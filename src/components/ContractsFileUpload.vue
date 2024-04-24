@@ -74,7 +74,7 @@ function addInputFilesToSelectedFiles() {
   const isFirstFilesAddition = !hasSelectedFiles.value
 
   selectedFiles.value.push(...fileInput.value.files)
-  emit('update:selected-files', fileInput.value.files)
+  emit('update:selected-files', selectedFiles.value)
   if (isFirstFilesAddition) {
     selectEntryFile(selectedFiles.value[0], 0)
   }

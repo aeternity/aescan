@@ -27,7 +27,9 @@
           </app-link>
         </td>
       </tr>
-      <tr class="transaction-type-panel-name-claim-tx__row">
+      <tr
+        v-if="transactionData.nameFee"
+        class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
           Activation Price
           <hint-tooltip>

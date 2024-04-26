@@ -44,7 +44,7 @@ export const useContractsStore = defineStore('contracts', () => {
 
   async function fetchContractsCount() {
     contractsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count?type=contract_create`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count?type=contract_create`)
     contractsCount.value = data
   }
 

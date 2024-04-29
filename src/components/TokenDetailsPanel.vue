@@ -47,7 +47,10 @@
             </hint-tooltip>
           </th>
           <td class="token-details-panel__data">
-            {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}
+            <template v-if="tokenDetails.totalSupply">
+              {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}
+            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
         <tr class="token-details-panel__row">

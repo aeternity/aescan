@@ -42,7 +42,7 @@
             class="keyblock-table__value-hash-ellipsed"/>
         </td>
         <th class="keyblock-table__header keyblock-table__column-end">
-          Beneficiary-Reward
+          Beneficiary Reward
           <hint-tooltip class="keyblock-table__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
@@ -63,13 +63,13 @@
           <datetime-label :datetime="keyblock.mined"/>
         </td>
         <th class="keyblock-table__column-end">
-          BRI-Reward
+          BRI Reward
           <hint-tooltip class="keyblock-table__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          {{ formatNullable(formatAePrice(stats?.devReward)) }}
+          {{ formatNullable(formatAePrice(stats?.devReward, null)) }}
         </td>
       </tr>
     </tbody>

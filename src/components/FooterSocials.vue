@@ -55,10 +55,12 @@ const socials = [
   grid-template-columns: repeat(4, 30px);
   grid-row-gap: var(--space-4);
   justify-content: space-between;
+  min-height: 105px;
 
   @media (--desktop) {
     grid-auto-flow: column;
     grid-template-columns: revert;
+    min-height: 40px;
   }
 
   &__icon {

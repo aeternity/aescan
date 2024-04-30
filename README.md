@@ -31,7 +31,7 @@ user experience with Server Side Rendering enabled.
 
 ## Getting started
 
-First, download and install [Node.js](https://nodejs.org/en/download). Version 18
+First, download and install [Node.js](https://nodejs.org/en/download). Version 20
 or higher is required.
 
 Clone æScan repository
@@ -99,12 +99,12 @@ Three different deployment stages are available to test or use æScan:
     </tr>
     <tr>
         <td>Development</td>
-        <td>https://aescan.dev.aepps.com</td>
+        <td>https://aescan.dev.service.aepps.com</td>
         <td>Development environment deployed automatically after every push to the develop branch.</td>
     </tr>
     <tr>
         <td>PR preview</td>
-        <td>https://pr-[PR-id]-aescan.stg.aepps.com</td>
+        <td>https://pr-[PR-id]-aescan.stg.service.aepps.com</td>
         <td>Pull Request preview deployed automatically after every commit to an open pull request.</td>
     </tr>
 </table>

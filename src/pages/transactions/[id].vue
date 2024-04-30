@@ -56,8 +56,6 @@ const route = useRoute()
 const { subscribedTransactionId } = storeToRefs(useWebSocket())
 const { isLoading } = useLoading()
 
-await fetchTransactionDetails(route.params.id)
-
 const isSyncing = computed(() => isLoading.value || !transactionTypeData.value)
 
 try {

@@ -34,10 +34,9 @@ const { fetchTransactionsStatistics } = transactionsStore
 
 const selectedInterval = ref('')
 
-await useAsyncData(async() => {
+if (process.client) {
   await fetchTransactionsStatistics()
-  return true
-})
+}
 
 async function loadTransactionsStatistics({ interval, limit, range }) {
   selectedInterval.value = interval

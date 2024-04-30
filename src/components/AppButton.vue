@@ -3,7 +3,12 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    class="button">
+    :class="[
+      'button',
+      variant ? `button--${variant}` : null,
+      size ? `button--${size}` : null,
+    ]"
+    :disabled="disabled">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -13,7 +18,13 @@
   </app-link>
   <button
     v-else
-    class="button">
+    :class="[
+      'button',
+      variant ? `button--${variant}` : null,
+      size ? `button--${size}` : null,
+    ]"
+    :type="type"
+    :disabled="disabled">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -40,6 +51,29 @@ defineProps({
     type: String,
     default: '_blank',
   },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['lg'].includes(val),
+  },
+  variant: {
+    type: String,
+    default: 'primary',
+    validator: val => [
+      'link',
+      'link-error',
+      'primary',
+      'light']
+      .includes(val),
+  },
+  type: {
+    type: String,
+    default: 'button',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
@@ -56,16 +90,61 @@ defineProps({
   text-decoration: none;
   letter-spacing: 0.015em;
 
-  background: var(--color-fire);
-  color: var(--color-white);
+  padding: var(--space-0) var(--space-1);
 
-  border-radius: 48px;
-  border: none;
+  border-radius: 4px;
 
-  padding: var(--space-3) var(--space-5);
+  &--lg {
+    border-radius: 48px;
+    padding: var(--space-3) var(--space-5);
+  }
+
+  &--primary {
+    background: var(--color-fire);
+    color: var(--color-white);
+    border: none;
+  }
+
+  &--light {
+    background: var(--color-white);
+    color: var(--color-midnight);
+    border: 1px solid var(--color-midnight-55);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
 
   &__icon {
     margin-right: var(--space-1);
+  }
+
+  &--link {
+    color: var(--color-blue);
+    text-decoration: none;
+    font-weight: 400;
+    border: 0;
+
+    background: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &--link-error {
+    color: var(--color-fire);
+    text-decoration: none;
+    font-weight: 400;
+
+    background: transparent;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 </style>

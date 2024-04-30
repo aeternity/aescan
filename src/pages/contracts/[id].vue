@@ -5,7 +5,6 @@
 
   <page-header>
     Smart Contract
-
     <template #tooltip>
       {{ contractsHints.contract }}
       <app-link
@@ -19,6 +18,7 @@
   <template v-if="!isLoading">
     <contract-details-panel
       class="contract-details__panel"
+      :is-verified="isVerified"
       :contract-details="contractDetails"/>
 
     <app-tabs
@@ -30,6 +30,11 @@
       <app-tab title="Events">
         <contract-events-panel/>
       </app-tab>
+      <app-tab
+        title="Contract"
+        :has-verified-icon="isVerified">
+        <contract-verified-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -37,24 +42,22 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRouter } from '#app'
-import ContractDetailsPanel from '@/components/ContractDetailsPanel'
-import PageHeader from '@/components/PageHeader'
+
 import { useContractDetailsStore } from '@/stores/contractDetails'
-import AppTabs from '@/components/AppTabs'
-import AppTab from '@/components/AppTab'
-import ContractEventsPanel from '@/components/ContractEventsPanel'
+import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
-import ContractCallTransactionsPanel from '@/components/ContractCallTransactionsPanel'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
-const route = useRoute()
+const contractVerifiedStore = useContractVerifiedStore()
+const { isVerified } = storeToRefs(contractVerifiedStore)
+const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
+const route = useRoute()
 
-const TAB_KEYS = ['call-transactions', 'events']
+const TAB_KEYS = ['call-transactions', 'events', 'contract-verified']
 
 const activeTabIndex = computed({
   get() {
@@ -101,7 +104,9 @@ if (process.client && !error.value) {
   await useAsyncData(() => fetchContractEvents({
     queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
+  await fetchVerificationDetail(route.params.id)
 }
+
 </script>
 
 <style scoped>

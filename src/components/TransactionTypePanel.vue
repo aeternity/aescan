@@ -19,7 +19,9 @@
           :label="formatEllipseHash(transactionData.payerId)"
           :clipboard-text="transactionData.payerId"
           class="u-hidden-desktop"/>
-        <app-chip variant="primary">
+        <app-chip
+          variant="primary"
+          size="sm">
           {{ transactionData.tx.tx.type }}
         </app-chip>
       </template>

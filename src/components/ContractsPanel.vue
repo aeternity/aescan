@@ -43,7 +43,7 @@ const loadNextContracts = () => {
 }
 
 const loadContracts = () => {
-  fetchContracts(`/v2/txs?type=contract_create&limit=${limit.value}`)
+  fetchContracts(`/v3/transactions?type=contract_create&limit=${limit.value}`)
   fetchContractsCount()
   pageIndex.value = 1
 }

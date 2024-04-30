@@ -11,15 +11,29 @@
 * revert listed tokens do not appear  ([#701](https://github.com/aeternity/aescan/issues/701)) ([917856b](https://github.com/aeternity/aescan/commit/917856b99bf0c98eec83e437cda591f2544f1fdd))
 * smart contract verification terms conditions ([#723](https://github.com/aeternity/aescan/issues/723)) ([ab51619](https://github.com/aeternity/aescan/commit/ab51619ccd4e67017fc3cd01ee34e3cbb34b5f96))
 * upgrade all dependencies ([#718](https://github.com/aeternity/aescan/issues/718)) ([4ec85a2](https://github.com/aeternity/aescan/commit/4ec85a2509a8ae89ae7dae1deb12dced1301405e))
-* upgrade sdk to 13.3.2 ([#743](https://github.com/aeternity/aescan/issues/743)) ([b9c4101](https://github.com/aeternity/aescan/commit/b9c4101eb520c087bc0edb63949093edb364ee24))
 * Warning about MDW out of sync  ([#684](https://github.com/aeternity/aescan/issues/684)) ([1c9b7e5](https://github.com/aeternity/aescan/commit/1c9b7e5e01ddf2ccbcbe4cccda2974a867b2aa6f))
+* making call arguments collapsible ([#567](https://github.com/aeternity/aescan/issues/567)) ([e6f837e](https://github.com/aeternity/aescan/commit/e6f837ef8eb5a67dfb9e7faaca781f64b4414cd0))
+* update readme urls ([#698](https://github.com/aeternity/aescan/issues/698)) ([48beaa4](https://github.com/aeternity/aescan/commit/48beaa48fd98de60b658e0e4ff3f2c0cc8ceee07))
+* Update borders color ([#687](https://github.com/aeternity/aescan/issues/687)) ([b9ea0f8](https://github.com/aeternity/aescan/commit/b9ea0f8ba7dcf020c4d41c4d481a74e14f1cdfa4))
+* contract events arguments mismatch ([#686](https://github.com/aeternity/aescan/issues/686)) ([5d4474d](https://github.com/aeternity/aescan/commit/5d4474dac7a74b8f6f566f7f3d48aa7199c86223))
+* transaction trend in the last 24 hours ([#673](https://github.com/aeternity/aescan/issues/673)) ([8a0f329](https://github.com/aeternity/aescan/commit/8a0f329c54afe897653d1e0b1e58f3ac18578837))
+* Add smart contract verified ([#663](https://github.com/aeternity/aescan/issues/663)) ([432dd45](https://github.com/aeternity/aescan/commit/432dd45b75e7657b15eedacd5a532dd75843b7af))
+* Add smart contract verification ([#665](https://github.com/aeternity/aescan/issues/665)) ([835697b](https://github.com/aeternity/aescan/commit/835697b3fec31b386dab5244fc5fadc71c4e8b44))
+* New menu structure ([#627](https://github.com/aeternity/aescan/issues/627)) ([c2fc9b2](https://github.com/aeternity/aescan/commit/c2fc9b28f7cc2a7a52596275dd1072a646f458fa))
+* upgrade node version to v20 ([#656](https://github.com/aeternity/aescan/issues/656)) ([465c3da](https://github.com/aeternity/aescan/commit/465c3daf669ef49c8da05dc286df9225e1e0910a))
+* upgrade sdk to 13.3.2 ([#743](https://github.com/aeternity/aescan/issues/743)) ([b9c4101](https://github.com/aeternity/aescan/commit/b9c4101eb520c087bc0edb63949093edb364ee24))
 
 
 ### Bug Fixes
 
-* file selection path ([#746](https://github.com/aeternity/aescan/issues/746)) ([e70231c](https://github.com/aeternity/aescan/commit/e70231c4652c46427adef5e8f0590fabbe5a53cb))
 * Older button becomes broken in payingfor tx + UI fixes ([#708](https://github.com/aeternity/aescan/issues/708)) ([85e55cc](https://github.com/aeternity/aescan/commit/85e55cc641b563d46bf6e23099fae41ef0a8973d))
 * Separate direct file selection does not add files ([#731](https://github.com/aeternity/aescan/issues/731)) ([c611acf](https://github.com/aeternity/aescan/commit/c611acf8f1f5f2f46dd9e24cefcc76096028732c))
+* The full file path is not visible when Contract Files are uploaded ([#735](https://github.com/aeternity/aescan/issues/735)) ([3e08d3b](https://github.com/aeternity/aescan/commit/3e08d3b6346425299738aac18542bd095b46bd30))
+* Aligning in Custom pointers to chain names ([#682](https://github.com/aeternity/aescan/issues/682)) ([6d49a4c](https://github.com/aeternity/aescan/commit/6d49a4cab4312ef6c2618daa65e3075b0d85190a))
+* Improve transaction stats loading ([#683](https://github.com/aeternity/aescan/issues/683)) ([ee5a6eb](https://github.com/aeternity/aescan/commit/ee5a6ebbab3f9dd71dad0cb5807c3ed49fded20d))
+* When transaction is unavailable the app shows 500 error ([#675](https://github.com/aeternity/aescan/issues/675)) ([af475f3](https://github.com/aeternity/aescan/commit/af475f3549a284d0a1aa82fee9ba09ae82c50c72))
+* If user look at the activity of the selected account, then in the third step the view will break ([#672](https://github.com/aeternity/aescan/issues/672)) ([72e2176](https://github.com/aeternity/aescan/commit/72e2176a493566ccd1f7602bef453bab141f1f07))
+* fetching listed tokens ([#670](https://github.com/aeternity/aescan/issues/670)) ([4e67b2b](https://github.com/aeternity/aescan/commit/4e67b2bdb9c940beeb20f7aab1bc961a6f1fff55))
 * The full file path is not visible when Contract Files are uploaded ([#735](https://github.com/aeternity/aescan/issues/735)) ([3e08d3b](https://github.com/aeternity/aescan/commit/3e08d3b6346425299738aac18542bd095b46bd30))
 
 ## [0.11.1](https://github.com/aeternity/aescan/compare/0.11.0...0.11.1) (2024-03-25)

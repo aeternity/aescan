@@ -42,13 +42,7 @@
           </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
-          <template v-if="Math.abs(holder.percentage) >= 0.00001">
-            {{ formatNumber(Math.abs(holder.percentage)) }}
-          </template>
-          <template v-else>
-            ~0
-          </template>
-          %
+          {{ formatPercentage(holder.percentage) }}
         </td>
       </tr>
     </table>
@@ -69,6 +63,18 @@ defineProps({
     required: true,
   },
 })
+
+function formatPercentage(percentage) {
+  if (Math.abs(percentage) >= 0.00001) {
+    return `${formatNumber(Math.abs(percentage))} %`
+  }
+  if (Math.abs(percentage) === 0) {
+    return '0 %'
+  }
+  if (Math.abs(percentage) < 0.00001) {
+    return '~0 %'
+  }
+}
 </script>
 
 <style scoped>

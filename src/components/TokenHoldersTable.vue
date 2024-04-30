@@ -35,13 +35,7 @@
           {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
         </td>
         <td>
-          <template v-if="Math.abs(holder.percentage) >= 0.00001">
-            {{ formatNumber(Math.abs(holder.percentage)) }}
-          </template>
-          <template v-else>
-            ~0
-          </template>
-          %
+          {{ formatPercentage(holder.percentage) }}
         </td>
       </tr>
     </tbody>
@@ -62,4 +56,16 @@ defineProps({
     required: true,
   },
 })
+
+function formatPercentage(percentage) {
+  if (Math.abs(percentage) >= 0.00001) {
+    return `${formatNumber(Math.abs(percentage))} %`
+  }
+  if (Math.abs(percentage) === 0) {
+    return '0 %'
+  }
+  if (Math.abs(percentage) < 0.00001) {
+    return '~0 %'
+  }
+}
 </script>

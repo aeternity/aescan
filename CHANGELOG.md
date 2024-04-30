@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.12.0](https://github.com/aeternity/aescan/compare/0.11.1...0.12.0) (2024-04-30)
+
+
+### Features
+
+* Hide token market cap  ([#711](https://github.com/aeternity/aescan/issues/711)) ([1e4d0b1](https://github.com/aeternity/aescan/commit/1e4d0b15ca5d5bbc1a6b6016cc3a24fc20284199))
+* internal Chain.spend values ([#700](https://github.com/aeternity/aescan/issues/700)) ([0b20a49](https://github.com/aeternity/aescan/commit/0b20a4934af2fdfbdf7da71edcf1883196399b8a))
+* Migrate to v3 endpoints pt1 ([#703](https://github.com/aeternity/aescan/issues/703)) ([99863de](https://github.com/aeternity/aescan/commit/99863dedbfc514aa83e48f1d0b1c2e72becb35f4))
+* revert listed tokens do not appear  ([#701](https://github.com/aeternity/aescan/issues/701)) ([917856b](https://github.com/aeternity/aescan/commit/917856b99bf0c98eec83e437cda591f2544f1fdd))
+* smart contract verification terms conditions ([#723](https://github.com/aeternity/aescan/issues/723)) ([ab51619](https://github.com/aeternity/aescan/commit/ab51619ccd4e67017fc3cd01ee34e3cbb34b5f96))
+* upgrade all dependencies ([#718](https://github.com/aeternity/aescan/issues/718)) ([4ec85a2](https://github.com/aeternity/aescan/commit/4ec85a2509a8ae89ae7dae1deb12dced1301405e))
+* upgrade sdk to 13.3.2 ([#743](https://github.com/aeternity/aescan/issues/743)) ([b9c4101](https://github.com/aeternity/aescan/commit/b9c4101eb520c087bc0edb63949093edb364ee24))
+* Warning about MDW out of sync  ([#684](https://github.com/aeternity/aescan/issues/684)) ([1c9b7e5](https://github.com/aeternity/aescan/commit/1c9b7e5e01ddf2ccbcbe4cccda2974a867b2aa6f))
+
+
+### Bug Fixes
+
+* file selection path ([#746](https://github.com/aeternity/aescan/issues/746)) ([e70231c](https://github.com/aeternity/aescan/commit/e70231c4652c46427adef5e8f0590fabbe5a53cb))
+* Older button becomes broken in payingfor tx + UI fixes ([#708](https://github.com/aeternity/aescan/issues/708)) ([85e55cc](https://github.com/aeternity/aescan/commit/85e55cc641b563d46bf6e23099fae41ef0a8973d))
+* Separate direct file selection does not add files ([#731](https://github.com/aeternity/aescan/issues/731)) ([c611acf](https://github.com/aeternity/aescan/commit/c611acf8f1f5f2f46dd9e24cefcc76096028732c))
+* The full file path is not visible when Contract Files are uploaded ([#735](https://github.com/aeternity/aescan/issues/735)) ([3e08d3b](https://github.com/aeternity/aescan/commit/3e08d3b6346425299738aac18542bd095b46bd30))
+
 ## [0.11.1](https://github.com/aeternity/aescan/compare/0.11.0...0.11.1) (2024-03-25)
 
 

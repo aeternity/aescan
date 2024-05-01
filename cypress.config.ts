@@ -5,6 +5,7 @@ export default defineConfig({
     url: 'http://localhost:8080',
   },
   e2e: {
+    experimentalRunAllSpecs: true,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

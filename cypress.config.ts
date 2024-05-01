@@ -3,6 +3,7 @@ import { defineConfig } from 'cypress'
 export default defineConfig({
   env: {
     url: 'http://localhost:8080',
+    // todo pass variable
   },
   e2e: {
     experimentalRunAllSpecs: true,

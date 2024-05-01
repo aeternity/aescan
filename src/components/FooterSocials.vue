@@ -43,8 +43,8 @@ const socials = [
     url: 'https://blog.aeternity.com/',
   },
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/aeternity',
+    name: 'X',
+    url: 'https://x.com/aeternity',
   },
 ]
 </script>

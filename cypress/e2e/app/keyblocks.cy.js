@@ -4,6 +4,7 @@ describe('keyblock', () => {
   it('should get keyblock id', () => {
     cy.visit(Cypress.env('url'))
     cy.get('.stats-panel__value').should('be.visible')
+    // todo no need hook
     cy.get('[data-cy=keyblock-height]').invoke('text').then(text => {
       keyblockId = text
     })

@@ -31,6 +31,7 @@
         <span class="stats-panel__value">
           <app-link
             v-if="blockHeight"
+            data-cy="keyblock-height"
             :to="`/keyblocks/${blockHeight}`">
             {{ blockHeight }}
           </app-link>

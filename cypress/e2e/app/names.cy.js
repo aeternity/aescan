@@ -9,5 +9,6 @@ describe('names', () => {
 
     cy.contains('.tabs__item', 'Expired').click()
     cy.get('.names-expired-panel').should('be.visible')
+    // todo navigation test
   })
 })

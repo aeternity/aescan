@@ -73,8 +73,11 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
       aci: TOKEN_SUPPLY_ACI,
       address: tokenId.value,
     })
+    console.log('0 contractInstance', contractInstance)
     const contractCallResult = await contractInstance.total_supply()
+    console.log('0 contractCallResult', contractCallResult)
     rawTotalSupply.value = contractCallResult?.decodedResult
+    console.log('0 rawTotalSupply.value', rawTotalSupply.value)
   }
 
   async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {

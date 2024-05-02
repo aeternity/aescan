@@ -1,5 +1,5 @@
-describe('contracts', () => {
-  it('should display contracts', () => {
+describe('account detail', () => {
+  it('should display account detail', () => {
     // todo parametrize per env
     cy.visit(`${Cypress.env('url')}/accounts/ak_gZ55FLJoGEfF5gJ2xJU7j9uSH3fEjoTZq3ygQG8gYA4no6GFW`)
 

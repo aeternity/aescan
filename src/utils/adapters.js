@@ -390,6 +390,7 @@ export function adaptContractEvents(events) {
 }
 
 export function adaptTokenDetails(token, totalSupply = null, price = null) {
+  console.log('1 totalSupply', totalSupply)
   const tokenDetails = {
     ...token,
     ...(price && { price }),
@@ -398,7 +399,7 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   if (token && totalSupply) {
     tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
   }
-
+  console.log('1 tokenDetails', tokenDetails)
   return tokenDetails
 }
 

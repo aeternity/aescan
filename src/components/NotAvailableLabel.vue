@@ -7,7 +7,6 @@
   </app-tooltip>
 </template>
 
-<script setup lang="ts"></script>
 <style scoped>
 .not-available-label {
   display: inline-flex;

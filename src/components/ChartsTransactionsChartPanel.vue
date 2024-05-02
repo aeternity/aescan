@@ -71,7 +71,7 @@ async function loadTransactionStatistics() {
   }
 
   &__select {
-    width: 210px;
+    width: 230px;
   }
 }
 </style>

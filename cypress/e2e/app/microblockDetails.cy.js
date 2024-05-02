@@ -1,4 +1,4 @@
-describe('keyblock', () => {
+describe('keyblock details', () => {
   let keyblockId = ''
 
   it('should get keyblock id', () => {
@@ -10,7 +10,7 @@ describe('keyblock', () => {
     })
   })
 
-  it('should display keyblock detail page', () => {
+  it('should display keyblock detail', () => {
     cy.visit(`${Cypress.env('url')}/keyblocks/${keyblockId}`)
     cy.get('.keyblock-details-panel__controls').should('be.visible')
     cy.get('.keyblock-microblock-panel').should('be.visible')

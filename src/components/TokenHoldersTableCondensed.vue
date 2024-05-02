@@ -65,13 +65,17 @@ defineProps({
 })
 
 function formatPercentage(percentage) {
-  if (Math.abs(percentage) >= 0.00001) {
-    return `${formatNumber(Math.abs(percentage))} %`
+  console.log('percentage', percentage)
+  console.log('percentage >= 0.00001', percentage >= 0.00001)
+  console.log('percentage === 0', percentage === 0)
+  console.log('percentage < 0.00001', percentage < 0.00001)
+  if (percentage >= 0.00001) {
+    return `${formatNumber(percentage)} %`
   }
-  if (Math.abs(percentage) === 0) {
+  if (percentage === 0) {
     return '0 %'
   }
-  if (Math.abs(percentage) < 0.00001) {
+  if (percentage < 0.00001) {
     return '~0 %'
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <price-label
-      :price="formatAettosToAe(tokenValue)"
-      :contract-id="contractDetails.tokenDetails.contractId"
-      :currency="contractDetails.symbol"/>
+    :price="formatAettosToAe(tokenValue)"
+    :contract-id="contractDetails.tokenDetails.contractId"
+    :currency="contractDetails.symbol"/>
 </template>
 
 <script setup>

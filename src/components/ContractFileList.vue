@@ -5,7 +5,7 @@
       :key="index"
       class="contract-file-list__item">
       <span @click="selectEntryFile(file, index)">
-        {{ file.webkitRelativePath || file.name }}
+        {{ file.webkitRelativePath }}
         <app-chip
           v-if="index === entryFile.index"
           class="contract-file-list__chip"

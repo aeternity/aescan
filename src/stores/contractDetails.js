@@ -67,13 +67,13 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
   async function fetchContractCallsCount() {
     contractCallsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count/${contractId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count/${contractId.value}`)
     contractCallsCount.value = Object.values(data?.contractCallTx ?? {}).reduce((sum, value) => sum + value, 0)
   }
 
   async function fetchContractCreationTx() {
     contractCreationTx.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs?limit=1&contract=${contractId.value}&direction=forward`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions?limit=1&contract=${contractId.value}&direction=forward`)
     contractCreationTx.value = data?.data[0]
   }
 
@@ -106,7 +106,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
       return
     }
 
-    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v2/txs`)
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
     transactionsUrl.searchParams.append('limit', limit ?? 10)
     transactionsUrl.searchParams.append('type', 'contract_call')

@@ -11,8 +11,7 @@
       class="menu-item__list">
       <li
         v-for="submenu in menu.submenu"
-        :key="submenu.name"
-        class="menu-item__item">
+        :key="submenu.name">
         <app-link
           v-if="!submenu.isDisabled"
           :to="submenu.path"
@@ -91,20 +90,19 @@ defineProps({
     }
   }
 
-  &__item {
-    padding: var(--space-0) var(--space-3) var(--space-0) var(--space-4);
-
-    @media (--desktop) {
-      padding: var(--space-2) var(--space-1);
-    }
-  }
-
   &__link {
+    display: inline-block;
+    width: 100%;
+    padding: var(--space-0) var(--space-3) var(--space-0) var(--space-4);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.002em;
     color: var(--color-midnight);
     cursor: pointer;
+
+    @media (--desktop) {
+      padding: var(--space-2) var(--space-1);
+    }
 
     &:hover {
       text-decoration: underline;

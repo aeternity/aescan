@@ -55,7 +55,7 @@
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
-          Beneficiary-Reward
+          Beneficiary Reward
           <hint-tooltip class="keyblock-table-condensed__tooltip">
             {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
@@ -66,13 +66,13 @@
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
-          BRI-Reward
+          BRI Reward
           <hint-tooltip class="keyblock-table-condensed__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ formatNullable(formatAePrice(stats?.devReward)) }}
+          {{ formatNullable(formatAePrice(stats?.devReward, null)) }}
         </td>
       </tr>
     </tbody>

@@ -11,7 +11,9 @@
   </page-header>
   <template v-if="!isLoading">
     <transactions-stats class="transactions-panel"/>
-    <transactions-chart-panel class="transactions-panel"/>
+    <transactions-chart-panel
+      :has-select="false"
+      class="transactions-panel"/>
     <transactions-panel class="transactions-panel"/>
   </template>
   <loader-panel v-else/>

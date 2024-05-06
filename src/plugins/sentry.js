@@ -2,14 +2,14 @@
 import * as Sentry from '@sentry/vue'
 import { BrowserTracing } from '@sentry/tracing'
 
-export default defineNuxtPlugin(({ vueApp }) => {
+export default defineNuxtPlugin(({vueApp}) => {
   if (process.server) {
     return
   }
 
-  const config = useRuntimeConfig()
+  const {SENTRY_DSN, APP_DOMAIN} = useRuntimeConfig().public
 
-  if (!config.public.SENTRY_DSN || !config.public.APP_DOMAIN) {
+  if (!SENTRY_DSN || !APP_DOMAIN) {
     console.warn('Sentry configuration is not set therefore it will not be initialized.')
     return
   }
@@ -18,11 +18,11 @@ export default defineNuxtPlugin(({ vueApp }) => {
 
   Sentry.init({
     app: vueApp,
-    dsn: config.public.SENTRY_DSN,
+    dsn: SENTRY_DSN,
     integrations: [
       new BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-        tracingOrigins: [config.public.APP_DOMAIN, /^\//],
+        tracingOrigins: [APP_DOMAIN, /^\//],
       }),
     ],
     beforeSend: (event) => {

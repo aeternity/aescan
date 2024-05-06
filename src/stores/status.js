@@ -11,7 +11,7 @@ export const useStatus = defineStore('status', () => {
   const nodeStatus = ref(null)
 
   async function fetchMdwStatus() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/status`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/status`)
     middlewareStatus.value = data
   }
 

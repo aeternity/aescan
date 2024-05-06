@@ -6,7 +6,12 @@
         {{ relativeUpdated }} ({{ absolute }})
       </template>
       <template v-else>
-        {{ labelTime }}
+        <app-tooltip>
+          {{ labelTime }}
+          <template #tooltip>
+            {{ tooltipTime }}
+          </template>
+        </app-tooltip>
       </template>
     </client-only>
   </div>
@@ -42,6 +47,12 @@ const labelTime = computed(() => {
   return timeFormat.value === 'absolute'
     ? absolute.value
     : relativeUpdated.value
+})
+
+const tooltipTime = computed(() => {
+  return timeFormat.value === 'absolute'
+    ? relativeUpdated.value
+    : absolute.value
 })
 
 const dynamicInterval = computed(() => {

@@ -23,7 +23,7 @@
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             <app-tooltip>
-              <time-switch-button>Registered</time-switch-button>
+              <time-toggle-button>Registered</time-toggle-button>
               <template #tooltip>
                 {{ oraclesHints.registered }}
               </template>
@@ -38,7 +38,7 @@
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             <app-tooltip>
-              <time-switch-button>Expiration</time-switch-button>
+              <time-toggle-button>Expiration</time-toggle-button>
               <template #tooltip>
                 {{ oraclesHints.expiration }}
               </template>

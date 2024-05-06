@@ -51,7 +51,7 @@
           <tr>
             <th>
               <app-tooltip>
-                <time-switch-button>Ending</time-switch-button>
+                <time-toggle-button>Ending</time-toggle-button>
                 <template #tooltip>
                   {{ namesHints.ends }}
                 </template>

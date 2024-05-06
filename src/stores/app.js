@@ -1,12 +1,12 @@
 export const useAppStore = defineStore('app', () => {
   const timeFormat = ref('relative')
 
-  function switchTimeFormat() {
+  function toggleTimeFormat() {
     timeFormat.value = timeFormat.value === 'absolute' ? 'relative' : 'absolute'
   }
 
   return {
     timeFormat,
-    switchTimeFormat,
+    toggleTimeFormat,
   }
 })

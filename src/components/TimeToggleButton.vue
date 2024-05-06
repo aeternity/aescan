@@ -1,8 +1,8 @@
 <template>
   <app-button
-    class="time-switch-button"
+    class="time-toggle-button"
     variant="link"
-    @click="switchTimeFormat">
+    @click="toggleTimeFormat">
     <slot/>
     {{ suffix }}
   </app-button>
@@ -11,7 +11,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app'
 
-const { switchTimeFormat } = useAppStore()
+const { toggleTimeFormat } = useAppStore()
 const { timeFormat } = storeToRefs(useAppStore())
 const suffix = computed(() => {
   return timeFormat.value === 'relative' ? 'Age' : 'Time'
@@ -19,7 +19,7 @@ const suffix = computed(() => {
 </script>
 
 <style setup>
-.time-switch-button {
+.time-toggle-button {
   font-weight: 500 !important;
 
   font-size: 14px !important;

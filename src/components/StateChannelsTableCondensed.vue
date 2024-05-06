@@ -86,7 +86,7 @@
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
             <app-tooltip>
-              <time-switch-button>Last Updated</time-switch-button>
+              <time-toggle-button>Last Updated</time-toggle-button>
               <template #tooltip>
                 {{ stateChannelsHints.lastUpdated }}
               </template>

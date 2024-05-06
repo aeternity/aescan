@@ -26,7 +26,7 @@
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
             <app-tooltip>
-              <time-switch-button>Ends</time-switch-button>
+              <time-toggle-button>Ends</time-toggle-button>
               <template #tooltip>
                 {{ namesHints.ends }}
               </template>

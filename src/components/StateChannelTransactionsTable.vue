@@ -4,7 +4,7 @@
       <tr>
         <th>Hash</th>
         <th>
-          <time-switch-button/>
+          <time-toggle-button/>
         </th>
         <th>Type</th>
         <th>Data</th>

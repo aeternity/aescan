@@ -8,7 +8,7 @@
         </hint-tooltip>
       </th>
       <th>
-        <time-switch-button>Created</time-switch-button>
+        <time-toggle-button>Created</time-toggle-button>
         <hint-tooltip>
           {{ contractsHints.eventsCreated }}
         </hint-tooltip>

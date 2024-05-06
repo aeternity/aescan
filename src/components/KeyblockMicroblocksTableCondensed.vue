@@ -23,7 +23,7 @@
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
             <app-tooltip>
-              <time-switch-button/>
+              <time-toggle-button/>
               <template #tooltip>
                 {{ keyblocksHints.time }}
               </template>

@@ -25,7 +25,7 @@
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
             <app-tooltip>
-              <time-switch-button>Expires</time-switch-button>
+              <time-toggle-button>Expires</time-toggle-button>
               <template #tooltip>
                 {{ accountHints.expires }}
               </template>

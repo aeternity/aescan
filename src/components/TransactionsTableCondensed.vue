@@ -23,7 +23,7 @@
         <tr class="transactions-table-condensed__row">
           <th class="transactions-table-condensed__header">
             <app-tooltip>
-              <time-switch-button>Created</time-switch-button>
+              <time-toggle-button>Created</time-toggle-button>
               <template #tooltip>
                 {{ transactionsHints.created }}
               </template>

@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          <time-switch-button/>
+          <time-toggle-button/>
           <hint-tooltip>
             {{ tokensHints.date }}
           </hint-tooltip>

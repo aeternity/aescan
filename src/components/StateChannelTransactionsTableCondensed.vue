@@ -17,7 +17,7 @@
         </tr>
         <tr class="state-channel-transactions-table-condensed__row">
           <th class="state-channel-transactions-table-condensed__header">
-            <time-switch-button/>
+            <time-toggle-button/>
           </th>
           <td class="state-channel-transactions-table-condensed__data">
             <block-time-cell

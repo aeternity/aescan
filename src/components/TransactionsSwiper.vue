@@ -15,7 +15,7 @@
           </tr>
           <tr>
             <th class="transactions-swiper__header">
-              <time-switch-button>Created</time-switch-button>
+              <time-toggle-button>Created</time-toggle-button>
             </th>
             <td class="transactions-swiper__data">
               <timestamp-label :timestamp="transaction.created"/>

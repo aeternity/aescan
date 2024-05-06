@@ -27,7 +27,7 @@
         <tr class="account-activities-table-condensed__row">
           <th class="account-activities-table-condensed__header">
             <app-tooltip>
-              <time-switch-button/>
+              <time-toggle-button/>
               <template #tooltip>
                 {{ accountHints.activityTime }}
               </template>

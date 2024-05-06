@@ -23,7 +23,7 @@
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
             <app-tooltip>
-              <time-switch-button/>
+              <time-toggle-button/>
               <template #tooltip>
                 {{ nftsHints.transferTime }}
               </template>

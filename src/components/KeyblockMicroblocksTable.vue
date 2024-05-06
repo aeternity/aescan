@@ -8,7 +8,7 @@
         </hint-tooltip>
       </th>
       <th>
-        <time-switch-button/>
+        <time-toggle-button/>
         <hint-tooltip>
           {{ keyblocksHints.time }}
         </hint-tooltip>

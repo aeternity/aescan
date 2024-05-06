@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          <time-switch-button>Expires</time-switch-button>
+          <time-toggle-button>Expires</time-toggle-button>
           <hint-tooltip>
             {{ namesHints.ends }}
           </hint-tooltip>

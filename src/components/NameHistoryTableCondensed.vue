@@ -27,7 +27,7 @@
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
             <app-tooltip>
-              <time-switch-button/>
+              <time-toggle-button/>
               <template #tooltip>
                 {{ namesHints.eventTime }}
               </template>

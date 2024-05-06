@@ -36,7 +36,7 @@
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
             <app-tooltip>
-              <time-switch-button/>
+              <time-toggle-button/>
               <template #tooltip>
                 {{ tokensHints.date }}
               </template>

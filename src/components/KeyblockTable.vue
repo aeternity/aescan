@@ -54,7 +54,7 @@
 
       <tr>
         <th class="keyblock-table__column-start">
-          <time-switch-button>Mined</time-switch-button>
+          <time-toggle-button>Mined</time-toggle-button>
           <hint-tooltip class="keyblock-table__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>

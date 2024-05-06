@@ -77,7 +77,7 @@
           <tr>
             <th class="dashboard-state-channels-swiper__header">
               <app-tooltip>
-                <time-switch-button>Last Updated</time-switch-button>
+                <time-toggle-button>Last Updated</time-toggle-button>
                 <template #tooltip>
                   {{ stateChannelsHints.lastUpdated }}
                 </template>

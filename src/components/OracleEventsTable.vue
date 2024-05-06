@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          <time-switch-button>Queried At</time-switch-button>
+          <time-toggle-button>Queried At</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.queriedAt }}
           </hint-tooltip>
@@ -27,7 +27,7 @@
           </hint-tooltip>
         </th>
         <th>
-          <time-switch-button>Responded At</time-switch-button>
+          <time-toggle-button>Responded At</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.respondedAt }}
           </hint-tooltip>

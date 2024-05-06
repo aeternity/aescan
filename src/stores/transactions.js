@@ -41,19 +41,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
       : '---'
   }
 
-  async function fetchTransactionsStatistics(interval, limit, customInterval) {
-    transactionsStatistics.value = null
-
-    const slug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
-      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
-
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug}`)
-
-    // remove last interval from the response not to show current interval that is being built
-    transactionsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
-  }
-
   return {
     transactionsCount,
     transactions,

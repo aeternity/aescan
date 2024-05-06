@@ -4,6 +4,14 @@
       TRANSACTIONS TREND
     </template>
     <template #header>
+      <transactions-select
+        v-if="hasSelect"
+        v-model="selectedTxType"
+        size="sm"
+        class="charts-transactions-chart-panel__select
+        charts-transactions-chart-panel__select--desktop
+        u-hidden-mobile"/>
+
       <chart-controls
         v-model="selectedRange"
         class="u-hidden-mobile"/>
@@ -16,25 +24,38 @@
     <chart-controls
       v-model="selectedRange"
       class="transactions-chart-panel__controls u-hidden-desktop"/>
+    <transactions-select
+      v-if="hasSelect"
+      v-model="selectedTxType"
+      class="select u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
-import { useTransactionsStore } from '@/stores/transactions'
+import { storeToRefs } from 'pinia'
+import { useChartsStore } from '@/stores/charts'
 import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
-const transactionsStore = useTransactionsStore()
-const { transactionsStatistics } = storeToRefs(transactionsStore)
-const { fetchTransactionsStatistics } = transactionsStore
+const chartsStore = useChartsStore()
+const { transactionsStatistics } = storeToRefs(chartsStore)
+const { fetchTransactionsStatistics } = chartsStore
 
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[0])
+const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {
   await loadTransactionStatistics()
   return true
 })
 
-watch(selectedRange, async() => {
+const props = defineProps({
+  hasSelect: {
+    required: true,
+    type: Object,
+  },
+})
+
+watch([selectedRange, selectedTxType], async() => {
   await loadTransactionStatistics()
 })
 
@@ -42,7 +63,8 @@ async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
     selectedRange.value.interval,
     selectedRange.value.limit,
-    selectedRange.value.customInterval)
+    selectedRange.value.customInterval,
+    props.hasSelect ? selectedTxType.value.typeQuery : null)
 }
 </script>
 
@@ -50,6 +72,15 @@ async function loadTransactionStatistics() {
 .transactions-chart-panel {
   &__controls {
     margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+
+    &--desktop {
+      margin-bottom: 0;
+    }
+  }
+
+  &__select {
+    width: 230px;
   }
 }
 </style>

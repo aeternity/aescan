@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <charts-keyblocks-chart-panel v-if="!isLoading"/>
+      <keyblocks-chart-panel v-if="!isLoading"/>
       <loader-panel v-else/>
     </template>
   </NuxtLayout>

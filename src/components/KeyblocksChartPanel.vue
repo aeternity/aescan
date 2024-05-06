@@ -15,7 +15,7 @@
 
     <chart-controls
       v-model="selectedRange"
-      class="charts-keyblocks-chart-panel__controls u-hidden-desktop"/>
+      class="keyblocks-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
@@ -48,7 +48,7 @@ async function loadKeyblockStatistics() {
 </script>
 
 <style scoped>
-.charts-keyblocks-chart-panel {
+.keyblocks-chart-panel {
   &__controls {
     margin-top: var(--space-4);
     margin-bottom: var(--space-2);

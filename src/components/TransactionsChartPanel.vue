@@ -50,8 +50,6 @@ await useAsyncData(async() => {
   return true
 })
 
-watch(selectedRange, async() => {
-
 const props = defineProps({
   hasSelect: {
     required: true,

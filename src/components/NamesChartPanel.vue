@@ -5,40 +5,48 @@
     </template>
     <template #header>
       <chart-controls
-        class="u-hidden-mobile"
-        @selected="loadNamesStatistics"/>
+        v-model="selectedRange"
+        class="u-hidden-mobile"/>
     </template>
 
     <div class="names-chart-panel__container">
       <line-chart
-        v-if="namesStatistics"
-        :statistics="namesStatistics"
-        :selected-interval="selectedInterval"/>
+        :data="namesStatistics"
+        :interval="selectedRange.interval"/>
     </div>
 
     <chart-controls
-      class="names-chart-panel__chart__controls u-hidden-desktop"
-      @selected="loadNamesStatistics"/>
+      v-model="selectedRange"
+      class="names-chart-panel__chart__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
 import { useNamesStore } from '@/stores/names'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const namesStore = useNamesStore()
 const { namesStatistics } = storeToRefs(namesStore)
 const { fetchNamesStatistics } = namesStore
 
-const selectedInterval = ref('')
+const selectedRange = ref(CHART_INTERVALS_OPTIONS[0])
 
 await useAsyncData(async() => {
-  await fetchNamesStatistics()
+  await loadNamesStatistics()
   return true
 })
 
-async function loadNamesStatistics({ interval, limit, range }) {
-  selectedInterval.value = interval
-  await fetchNamesStatistics(interval, limit, range)
+if (process.client) {
+  watch(selectedRange, async() => {
+    await loadNamesStatistics()
+  })
+}
+
+async function loadNamesStatistics() {
+  await fetchNamesStatistics(
+    selectedRange.value.interval,
+    selectedRange.value.limit,
+    selectedRange.value.customInterval)
 }
 </script>
 

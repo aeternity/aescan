@@ -74,17 +74,17 @@ export const useNamesStore = defineStore('names', () => {
     rawRecentlyActivatedNames.value = data.data
   }
 
-  async function fetchNamesStatistics(interval = 'day', limit = 7, range) {
+  async function fetchNamesStatistics(interval, limit, customInterval) {
     namesStatistics.value = null
 
-    const slug = range
-      ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=100`
+    const slug = customInterval
+      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
       : `?interval_by=${interval}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/names${slug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    namesStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
+    namesStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
   return {

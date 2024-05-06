@@ -27,6 +27,13 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const CHART_INTERVALS_OPTIONS = [
+  { interval: 'day', limit: '7', label: '1W' },
+  { interval: 'day', limit: '30', label: '1M' },
+  { interval: 'day', limit: '90', label: '3M' },
+  { interval: 'month', limit: '12', label: '1Y' },
+  { interval: 'month', limit: '100', label: 'ALL' },
+]
 export const ORACLE_STATES_OPTIONS = [
   { stateQuery: 'active', label: 'Active' },
   { stateQuery: 'inactive', label: 'Inactive' },

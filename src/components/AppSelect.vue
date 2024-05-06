@@ -9,7 +9,10 @@
     :disabled="disabled"
     :searchable="searchable"
     :hide-selected="hideSelected"
-    :preselect-first="preselectFirst">
+    :preselect-first="preselectFirst"
+    :class="[
+      size ? `multiselect--${size}` : null,
+    ]">
     <template
       v-for="(_, slot) of $slots"
       #[slot]="scope">
@@ -63,6 +66,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['sm'].includes(val),
+  },
   modelValue: undefined,
 })
 const emit = defineEmits(['update:modelValue'])
@@ -89,13 +97,9 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__single {
     color: var(--color-midnight);
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     padding-left: var(--space-0);
-
-    @media (--desktop) {
-      font-size: 14px;
-    }
   }
 
   &__content-wrapper {
@@ -110,18 +114,13 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   }
 
   &__option {
-    height: 36px;
     display: flex;
     align-items: center;
     border: solid var(--color-midnight-35);
     border-width: 1px 0;
     color: solid var(--color-midnight);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20px;
-
-    @media (--desktop) {
-      font-size: 14px;
-    }
 
     &:last-child {
       border-width: 1px 0 0;
@@ -142,15 +141,12 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   }
 
   &__input {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
-
-    @media (--desktop) {
-      font-size: 14px;
-    }
   }
 
   &__select {
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,13 +174,31 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &__placeholder {
     color: var(--color-midnight-35);
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
-    padding-top: 0;
     padding-left: var(--space-0);
+    padding-top: var(--space-0);
+    margin-bottom: var(--space-0);
+  }
 
-    @media (--desktop) {
-      font-size: 14px;
+  &--sm {
+    .multiselect__tags {
+      min-height: 28px;
+      padding: 0 40px 0 8px;
+    }
+
+    .multiselect__single {
+      padding-top: var(--space-0);
+      margin-bottom: var(--space-0);
+    }
+
+    .multiselect__input {
+      padding-top: var(--space-0);
+      margin-bottom: var(--space-0);
+    }
+
+    .multiselect__select {
+      height: 29px;
     }
   }
 }

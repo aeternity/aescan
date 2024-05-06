@@ -5,6 +5,7 @@
     track-by="typeQuery"
     label="label"
     placeholder="Select Tx Type"
+    :size="size"
     :hide-selected="true"/>
 </template>
 
@@ -17,6 +18,10 @@ const props = defineProps({
   modelValue: {
     type: Object,
     required: true,
+  },
+  size: {
+    type: String,
+    default: null,
   },
 })
 

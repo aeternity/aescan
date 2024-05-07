@@ -36,14 +36,9 @@
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
 
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
-
 const chartsStore = useChartsStore()
 const { transactionsStatistics } = storeToRefs(chartsStore)
 const { fetchTransactionsStatistics } = chartsStore
-
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {
   await loadTransactionStatistics()
@@ -53,9 +48,16 @@ await useAsyncData(async() => {
 const props = defineProps({
   hasSelect: {
     required: true,
+    type: Boolean,
+  },
+  range: {
+    required: true,
     type: Object,
   },
 })
+
+const selectedRange = ref(props.range)
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 watch([selectedRange, selectedTxType], async() => {
   await loadTransactionStatistics()

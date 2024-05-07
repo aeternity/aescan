@@ -52,14 +52,14 @@
               class="footer__version">
               NODE VERSION
               <app-link :to="NODE_RELEASES_URL">
-                v{{ nodeStatus.nodeVersion }}
+                v{{ nodeStatus?.nodeVersion }}
               </app-link>
             </div>
             <div
               class="footer__version">
               MIDDLEWARE VERSION
               <app-link :to="MDW_RELEASES_URL">
-                v{{ middlewareStatus.mdwVersion }}
+                v{{ middlewareStatus?.mdwVersion }}
               </app-link>
               <span
                 v-if="isSyncing"

@@ -21,7 +21,6 @@
 
   @media (--desktop) {
     width: 200px;
-
   }
 
   &__panel {
@@ -41,10 +40,8 @@
 
       @media (--desktop) {
         margin-bottom: var(--space-1);
-
       }
     }
   }
-
 }
 </style>

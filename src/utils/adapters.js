@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
+import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import {
   formatAettosToAe,
   formatBlockDiffAsDatetime,
@@ -265,10 +266,15 @@ export function adaptCustomPointers(allPointers) {
     delete customPointers[specialPointerKey]
   })
 
+  const hasRawPointers = Object.values(allPointers)
+    .some(v => isAddressValid(v, Encoding.Bytearray))
+
   return Object.entries(customPointers).map(pointer => {
+    console.log('pointer[0]', pointer[0])
+
     return {
       key: formatDecodeBase64(pointer[0]),
-      pointer: pointer[1],
+      pointer: hasRawPointers ? decode(pointer[1]).toString() : pointer[1],
     }
   })
 }

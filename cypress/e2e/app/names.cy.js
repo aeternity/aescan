@@ -1,6 +1,6 @@
 describe('names', () => {
   it('should display names', () => {
-    cy.visit(`${Cypress.env('url')}/names`)
+    cy.visit('/names')
     cy.get('.names-chart-panel__container').should('be.visible')
     cy.get('.names-active-panel').should('be.visible')
 

@@ -1,6 +1,6 @@
 describe('contract detail', () => {
   it('should display contract detail', () => {
-    cy.visit(`${Cypress.env('url')}/contracts/ct_s5ZB6cGCqS5QbUboQBK8CWwpknKRSajrt8b1EQRp4t4R5D47e`)
+    cy.visit(`/contracts/${Cypress.env('contractAddress')}`)
 
     cy.get('.contract-details-panel').should('be.visible')
     cy.get('.contract-call-transactions-panel').should('be.visible')

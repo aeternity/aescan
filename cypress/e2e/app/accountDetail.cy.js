@@ -1,7 +1,7 @@
 describe('account detail', () => {
   it('should display account detail', () => {
     // todo parametrize per env
-    cy.visit(`${Cypress.env('url')}/accounts/ak_gZ55FLJoGEfF5gJ2xJU7j9uSH3fEjoTZq3ygQG8gYA4no6GFW`)
+    cy.visit(`/accounts/${Cypress.env('accountAddress')}`)
 
     cy.get('.account-details-panel').should('be.visible')
     cy.get('.account-activities-panel').should('be.visible')

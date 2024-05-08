@@ -1,8 +1,18 @@
-describe('microblock details', () => {
-  it('should display microblock detail', () => {
-    cy.visit(`${Cypress.env('url')}/microblocks/mh_27HKqcut9U9xDwEAf3Lz6evTxY4rfy7odKeSnQaqu45iQesjyj`)
+describe('keyblock details', () => {
+  let keyblockId = ''
 
-    cy.get('.microblock-details-panel').should('be.visible')
-    cy.get('.microblock-transactions-panel').should('be.visible')
+  it('should get keyblock id', () => {
+    cy.visit('/')
+    cy.get('.stats-panel__value').should('be.visible')
+    // todo no need hook
+    cy.get('[data-cy=keyblock-height]').invoke('text').then(text => {
+      keyblockId = text
+    })
+  })
+
+  it('should display keyblock detail', () => {
+    cy.visit(`/keyblocks/${keyblockId}`)
+    cy.get('.keyblock-details-panel__controls').should('be.visible')
+    cy.get('.keyblock-microblock-panel').should('be.visible')
   })
 })

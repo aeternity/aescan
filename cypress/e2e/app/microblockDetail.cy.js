@@ -1,18 +1,8 @@
-describe('keyblock details', () => {
-  let keyblockId = ''
+describe('microblock details', () => {
+  it('should display microblock detail', () => {
+    cy.visit(`/microblocks/${Cypress.env('microblockAddress')}`)
 
-  it('should get keyblock id', () => {
-    cy.visit(Cypress.env('url'))
-    cy.get('.stats-panel__value').should('be.visible')
-    // todo no need hook
-    cy.get('[data-cy=keyblock-height]').invoke('text').then(text => {
-      keyblockId = text
-    })
-  })
-
-  it('should display keyblock detail', () => {
-    cy.visit(`${Cypress.env('url')}/keyblocks/${keyblockId}`)
-    cy.get('.keyblock-details-panel__controls').should('be.visible')
-    cy.get('.keyblock-microblock-panel').should('be.visible')
+    cy.get('.microblock-details-panel').should('be.visible')
+    cy.get('.microblock-transactions-panel').should('be.visible')
   })
 })

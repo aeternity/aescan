@@ -14,8 +14,8 @@
 
     <p class="privacy-policy__paragraph">
       This Privacy policy applies to your access to and use of all æScan Services (our
-      “Services”) provided by Aeternity Establishment, Dr. Grass Str. 12, FL-9490 Vaduz, PEID
-      / Steuernummer: 2528358, Vat-Nr.: 60 351 (“Company,” “we,” or “us”).
+      “Services”) provided by Aeternity Foundation, Sofia district (capital), Sofia 1164, Lozenets
+      district, bul. "Hristo Smirnenski" 70 / info@aeternity.com / Company-Nr.: 177240621 (“Company,” “we,” or “us”).
     </p>
     <p class="privacy-policy__paragraph">
       æScan is committed to the protection of your Personal Data and takes the matter of
@@ -113,7 +113,7 @@
       provider(s) may be linked to and combined with information that is collected about
       you while you are using æScan. These service provider(s) are contractually restricted
       from using information they receive from æScan other than to provide assistance to
-      Aeternity Establishment.
+      Aeternity Foundation.
     </p>
 
     <h3> (d) Web Server site visits logging </h3>
@@ -192,7 +192,7 @@
       7. Withdrawing Consent
     </h2>
     <p class="privacy-policy__paragraph">
-      Please note that it is obligatory for the Aeternity Establishment to process your
+      Please note that it is obligatory for the Aeternity Foundation to process your
       Personal Data for the Core Purpose as stated above, without which some services or
       features provided by æScan may be affected.
     </p>

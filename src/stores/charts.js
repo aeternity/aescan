@@ -23,7 +23,7 @@ export const useChartsStore = defineStore('charts', () => {
     // remove last interval from the response not to show current interval that is being built
     transactionsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }
-  
+
   async function fetchKeyblocksStatistics(interval, limit, customInterval) {
     keyblocksStatistics.value = null
 

@@ -1,10 +1,20 @@
-name: Code validation
+name: E2E Tests
 
 on:
   push:
     branches:
       - main
       - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04

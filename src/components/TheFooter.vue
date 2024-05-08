@@ -105,7 +105,7 @@ const MDW_RELEASES_URL = 'https://github.com/aeternity/ae_mdw/releases'
 const links = {
   about: [
     { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
-    { label: 'æternity Crypto Foundation', url: 'https://aeternity-foundation.org' },
+    { label: 'Aeternity Foundation', url: 'https://aeternity.foundation' },
     { label: 'Blog', url: 'https://blog.aeternity.com' },
     { label: 'Terms of Service', url: '/terms-of-service' },
     { label: 'Privacy Policy', url: '/privacy-policy' },

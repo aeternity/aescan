@@ -4,13 +4,20 @@
       v-if="hasIcon"
       class="price-label__icon"
       :contract-id="contractId"/>
-    {{ formatNullable(formatAePrice(price, maxDigits, currency)) }}
+    <app-tooltip>
+      {{ formatNullable(formatAePrice(price, maxDigits, currency)) }}
+
+      <template #tooltip>
+        {{ formatNullable(formatAePrice(price, null, currency)) }}
+      </template>
+    </app-tooltip>
   </div>
 </template>
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
-import { formatNullable } from '~/utils/format'
+import { formatNullable } from '@/utils/format'
+import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   price: {
@@ -19,7 +26,7 @@ defineProps({
   },
   maxDigits: {
     type: Number,
-    default: null,
+    required: true,
   },
   currency: {
     type: String,

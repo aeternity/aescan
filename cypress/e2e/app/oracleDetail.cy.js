@@ -1,4 +1,4 @@
-describe('oracle Detail', () => {
+describe('oracle detail', () => {
   it('should display oracle detail', () => {
     cy.visit(`/oracles/${Cypress.env('oracleAddress')}`)
     cy.get('.oracle-details-panel').should('be.visible')

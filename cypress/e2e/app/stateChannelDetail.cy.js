@@ -1,7 +1,7 @@
 describe('state channel detail', () => {
-  it('should display oracles', () => {
-    cy.visit(`/state-channel/${Cypress.env('transactionAddress')}`)
-    cy.get('.state-channel-details-panel').should('be.visible')
-    cy.get('.state-channel-transactions-panel').should('be.visible')
+  it('should display state channel detail', () => {
+    cy.visit(`/state-channels/${Cypress.env('stateChannelAddress')}`)
+    cy.get('.state-channel-details-panel table').should('be.visible')
+    cy.get('.state-channel-transactions-panel table').should('be.visible')
   })
 })

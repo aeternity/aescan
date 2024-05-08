@@ -52,14 +52,14 @@
               class="footer__version">
               NODE VERSION
               <app-link :to="NODE_RELEASES_URL">
-                v{{ nodeStatus.nodeVersion }}
+                v{{ nodeStatus?.nodeVersion }}
               </app-link>
             </div>
             <div
               class="footer__version">
               MIDDLEWARE VERSION
               <app-link :to="MDW_RELEASES_URL">
-                v{{ middlewareStatus.mdwVersion }}
+                v{{ middlewareStatus?.mdwVersion }}
               </app-link>
               <span
                 v-if="isSyncing"
@@ -116,7 +116,6 @@ const links = {
     { label: 'Middleware API documentation', url: `${MIDDLEWARE_URL}/swagger` },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
     { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
-
   ],
 }
 </script>

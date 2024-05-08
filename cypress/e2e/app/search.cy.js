@@ -1,6 +1,6 @@
 describe('search', () => {
   it('should display search', () => {
-    cy.visit(Cypress.env('url'))
+    cy.visit('/')
 
     cy.get('.stats-panel').should('be.visible')
       // todo don't rely on stats panel

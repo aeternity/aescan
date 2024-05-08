@@ -1,6 +1,6 @@
 describe('nft detail', () => {
   it('should display nft detail', () => {
-    cy.visit(`${Cypress.env('url')}/nfts/ct_2UVjVLvt2NycqbfJWywixyYm68iVvkiVS9wubiQRjp9WeQtfpK`)
+    cy.visit(`/nfts/${Cypress.env('nftAddress')}`)
 
     cy.get('.nfts-details-panel').should('be.visible')
     cy.get('.nfts-transfers-table').should('be.visible')

@@ -1,6 +1,6 @@
-describe('name details', () => {
+describe('name detail', () => {
   it('should display name detail', () => {
-    cy.visit(`${Cypress.env('url')}/names/fooooooooooo.chain`)
+    cy.visit(`/names/${Cypress.env('name')}`)
 
     cy.get('.name-details-panel').should('be.visible')
     cy.get('.name-pointers-special-panel').should('be.visible')

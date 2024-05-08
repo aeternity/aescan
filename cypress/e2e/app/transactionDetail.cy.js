@@ -1,8 +1,10 @@
 describe('transaction detail', () => {
   it('transaction detail', () => {
-    cy.visit(`${Cypress.env('url')}/transactions/th_2Yafj84tsuxskvJnzqGcvthrpDUX8gZE84RXVUwXvkSJxmxbc1`)
+    cy.visit(`/transactions/${Cypress.env('transactionAddress')}`)
     cy.get('.transaction-general-panel').should('be.visible')
     cy.get('.transaction-type-panel').should('be.visible')
     // todo meta and paying for and generalized
+    // todo testnet and mainnet
+    // todo mobile and desktop
   })
 })

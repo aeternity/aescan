@@ -1,10 +1,19 @@
-name: Code validation
+name: E2E Tests
 
 on:
-  push:
+  pull_request:
     branches:
       - main
       - develop
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+env:
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
@@ -13,3 +22,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        with:
+          config: baseUrl=https://pr-${{ env.PR_NUMBER }}-aescan-testnet.stg.service.aepps.com

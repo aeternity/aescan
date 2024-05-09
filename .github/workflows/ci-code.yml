@@ -1,4 +1,4 @@
-name: Code validation
+name: Lint
 
 on:
   push:

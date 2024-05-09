@@ -40,11 +40,6 @@ const chartsStore = useChartsStore()
 const { transactionsStatistics } = storeToRefs(chartsStore)
 const { fetchTransactionsStatistics } = chartsStore
 
-await useAsyncData(async() => {
-  await loadTransactionStatistics()
-  return true
-})
-
 const props = defineProps({
   hasSelect: {
     required: true,
@@ -58,6 +53,11 @@ const props = defineProps({
 
 const selectedRange = ref(props.range)
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+
+await useAsyncData(async() => {
+  await loadTransactionStatistics()
+  return true
+})
 
 watch([selectedRange, selectedTxType], async() => {
   await loadTransactionStatistics()

@@ -74,7 +74,6 @@ defineProps({
 
 <style scoped>
 .contract-verified-table {
-
   padding: 0 var(--space-1) var(--space-7);
   margin-bottom: var(--space-5);
 
@@ -89,6 +88,5 @@ defineProps({
   &__data {
     text-align: right;
   }
-
 }
 </style>

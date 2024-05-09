@@ -1,7 +1,8 @@
 describe('names', () => {
   it('should display names', () => {
     cy.visit('/names')
-    cy.get('.names-chart-panel__container').should('be.visible')
+
+    cy.get('.line-chart').should('be.visible')
     cy.get('.names-active-table').should('be.visible')
 
     cy.contains('.tabs__item', 'In Auction').click()

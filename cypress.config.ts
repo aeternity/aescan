@@ -11,15 +11,13 @@ export default defineConfig({
     tokenAddress: 'ct_2qyFRzXzTyPCtPKZQ32EPXqxxAcgiWqtADV3amcBVVPYQRKZm7',
     stateChannelAddress: 'ch_2Qo4r6u3Bq1ZMnPL7GpjLLsATaEgMK5BnYnoi68hzLL5QuKbev',
     name: 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.chain',
+    keyblockId: '947025',
   },
   e2e: {
     baseUrl: 'http://localhost:8080',
     experimentalRunAllSpecs: true,
-    setupNodeEvents(on, config) {
-      // console.log('config.env', config.env)
-    },
   },
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 30000,
+  defaultCommandTimeout: 20000,
 })

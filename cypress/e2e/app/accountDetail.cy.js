@@ -13,6 +13,5 @@ describe('account detail', () => {
 
     cy.contains('.tabs__item', 'Tokens').click()
     cy.get('.account-tokens-panel table').should('be.visible')
-    // todo check content
   })
 })

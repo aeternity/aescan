@@ -1,15 +1,9 @@
 name: E2E Tests
 
 on:
-  pull_request:
-    branches:
-      - main
-      - develop
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
+  workflow_run:
+    workflows: ["Pull Request Preview pipelines Testnet"]
+    types: [completed]
 
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}

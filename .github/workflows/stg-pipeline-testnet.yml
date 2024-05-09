@@ -17,7 +17,6 @@ concurrency: aescan_staging_environment-${{ github.ref }}
 jobs:
   main:
     runs-on: ubuntu-latest
-    name: build
     steps:
       - uses: actions/checkout@v3
         with:

@@ -16,7 +16,7 @@ const useAxios = () => {
       return Promise.reject(error)
     })
 
-    if (!DEBUG_MODE || DEBUG_MODE === 'false') {
+    if (!DEBUG_MODE) {
       return axiosInstance.value
     }
 

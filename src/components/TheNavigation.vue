@@ -77,8 +77,12 @@ const menuOptions = ref([{
   isActive: false,
   submenu: [
     {
-      name: 'Charts',
-      path: '/charts',
+      name: 'Transactions',
+      path: '/charts/transactions',
+    },
+    {
+      name: 'Keyblocks',
+      path: '/charts/keyblocks',
     },
   ],
 }])

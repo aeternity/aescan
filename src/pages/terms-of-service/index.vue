@@ -22,7 +22,7 @@
     <p class="terms-of-service__paragraph">
       These Terms of Service and any terms expressly incorporated herein (“Terms”) apply to your access to and use
       of all services (our “Services”) provided by Aeternity Foundation, Sofia district (capital), Sofia 1164, Lozenets
-      district, bul. "Hristo Smirnenski" 70 / info@aeternity.com / Company-Nr.: 177240621 (“Company,” “we,” or “us”).
+      district, bul. "Hristo Smirnenski" 70, info@aeternity.com, Company-Nr.: 177240621 (“Company,” “we,” or “us”).
     </p>
 
     <h2 class="terms-of-service__subheading">

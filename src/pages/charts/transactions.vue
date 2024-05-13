@@ -16,10 +16,8 @@
     </template>
     <template #detail>
       <transactions-chart-panel
-        v-if="!isLoading"
         :has-select="true"
         :range="CHART_INTERVALS_OPTIONS[4]"/>
-      <loader-panel v-else/>
     </template>
   </NuxtLayout>
 </template>
@@ -27,6 +25,4 @@
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
 import { CHART_INTERVALS_OPTIONS } from '~/utils/constants'
-
-const { isLoading } = useLoading()
 </script>

@@ -15,8 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <contracts-chart-panel v-if="!isLoading"/>
-      <loader-panel v-else/>
+      <contracts-chart-panel/>
     </template>
   </NuxtLayout>
 </template>
@@ -24,5 +23,4 @@
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
 
-const { isLoading } = useLoading()
 </script>

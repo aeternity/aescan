@@ -45,7 +45,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     fetchTransactions,
     fetchTransactionsCount,
     transactionsStatistics,
-    fetchTransactionsStatistics,
     fetchLast24hsTransactionsCount,
     last24hsTransactionsCount,
     last24hsTransactionsTrend,

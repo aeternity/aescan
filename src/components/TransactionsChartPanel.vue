@@ -24,6 +24,7 @@
     <chart-controls
       v-model="selectedRange"
       class="transactions-chart-panel__controls u-hidden-desktop"/>
+
     <transactions-select
       v-if="hasSelect"
       v-model="selectedTxType"
@@ -34,25 +35,28 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()
 const { transactionsStatistics } = storeToRefs(chartsStore)
 const { fetchTransactionsStatistics } = chartsStore
 
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
+const props = defineProps({
+  hasSelect: {
+    required: true,
+    type: Boolean,
+  },
+  range: {
+    required: true,
+    type: Object,
+  },
+})
+
+const selectedRange = ref(props.range)
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {
   await loadTransactionStatistics()
   return true
-})
-
-const props = defineProps({
-  hasSelect: {
-    required: true,
-    type: Object,
-  },
 })
 
 watch([selectedRange, selectedTxType], async() => {

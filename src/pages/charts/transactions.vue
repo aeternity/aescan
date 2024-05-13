@@ -24,5 +24,5 @@
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
-import { CHART_INTERVALS_OPTIONS } from '~/utils/constants'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 </script>

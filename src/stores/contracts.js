@@ -29,17 +29,17 @@ export const useContractsStore = defineStore('contracts', () => {
     rawContracts.value = data
   }
 
-  async function fetchContractsStatistics(interval = 'day', limit = 7, range) {
+  async function fetchContractsStatistics(interval, limit, customInterval) {
     contractsStatistics.value = null
 
-    const slug = range
-      ? `&min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
+    const slug = customInterval
+      ? `&min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `&interval_by=${interval}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions?tx_type=contract_call${slug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    contractsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
+    contractsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
   async function fetchContractsCount() {

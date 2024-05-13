@@ -71,6 +71,20 @@ const menuOptions = ref([{
       path: '/contract-verification',
     },
   ],
+},
+{
+  name: 'Charts',
+  isActive: false,
+  submenu: [
+    {
+      name: 'Transactions',
+      path: '/charts/transactions',
+    },
+    {
+      name: 'Keyblocks',
+      path: '/charts/keyblocks',
+    },
+  ],
 }])
 
 function open(name) {

@@ -4,55 +4,87 @@
       TRANSACTIONS TREND
     </template>
     <template #header>
+      <transactions-select
+        v-if="hasSelect"
+        v-model="selectedTxType"
+        size="sm"
+        class="charts-transactions-chart-panel__select
+        charts-transactions-chart-panel__select--desktop
+        u-hidden-mobile"/>
+
       <chart-controls
-        class="u-hidden-mobile"
-        @selected="loadTransactionsStatistics"/>
+        v-model="selectedRange"
+        class="u-hidden-mobile"/>
     </template>
 
-    <div class="transactions-chart-panel__container">
-      <line-chart
-        v-if="transactionsStatistics"
-        :statistics="transactionsStatistics"
-        :selected-interval="selectedInterval"/>
-    </div>
+    <line-chart
+      :data="transactionsStatistics"
+      :interval="selectedRange.interval"/>
 
     <chart-controls
-      class="transactions-chart-panel__controls u-hidden-desktop"
-      @selected="loadTransactionsStatistics"/>
+      v-model="selectedRange"
+      class="transactions-chart-panel__controls u-hidden-desktop"/>
+
+    <transactions-select
+      v-if="hasSelect"
+      v-model="selectedTxType"
+      class="select u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
-
 import { storeToRefs } from 'pinia'
-import { useTransactionsStore } from '@/stores/transactions'
-import LineChart from '@/components/LineChart'
+import { useChartsStore } from '@/stores/charts'
 
-const transactionsStore = useTransactionsStore()
-const { transactionsStatistics } = storeToRefs(transactionsStore)
-const { fetchTransactionsStatistics } = transactionsStore
+const chartsStore = useChartsStore()
+const { transactionsStatistics } = storeToRefs(chartsStore)
+const { fetchTransactionsStatistics } = chartsStore
 
-const selectedInterval = ref('')
+const props = defineProps({
+  hasSelect: {
+    required: true,
+    type: Boolean,
+  },
+  range: {
+    required: true,
+    type: Object,
+  },
+})
 
-if (process.client) {
-  await fetchTransactionsStatistics()
-}
+const selectedRange = ref(props.range)
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
-async function loadTransactionsStatistics({ interval, limit, range }) {
-  selectedInterval.value = interval
-  await fetchTransactionsStatistics(interval, limit, range)
+await useAsyncData(async() => {
+  await loadTransactionStatistics()
+  return true
+})
+
+watch([selectedRange, selectedTxType], async() => {
+  await loadTransactionStatistics()
+})
+
+async function loadTransactionStatistics() {
+  await fetchTransactionsStatistics(
+    selectedRange.value.interval,
+    selectedRange.value.limit,
+    selectedRange.value.customInterval,
+    props.hasSelect ? selectedTxType.value.typeQuery : null)
 }
 </script>
 
 <style scoped>
 .transactions-chart-panel {
-  &__container {
-    position: relative;
-    height: 250px;
-  }
-
   &__controls {
     margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+
+    &--desktop {
+      margin-bottom: 0;
+    }
+  }
+
+  &__select {
+    width: 230px;
   }
 }
 </style>

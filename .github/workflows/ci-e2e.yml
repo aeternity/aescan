@@ -1,0 +1,20 @@
+name: E2E Tests
+
+on:
+  workflow_run:
+    workflows: ["Pull Request Preview pipelines Testnet"]
+    types: [completed]
+
+env:
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          config: baseUrl=https://pr-${{ env.PR_NUMBER }}-aescan-testnet.stg.service.aepps.com

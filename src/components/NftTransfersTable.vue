@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Time
+          <time-toggle-button/>
           <hint-tooltip>
             {{ nftsHints.transferTime }}
           </hint-tooltip>
@@ -46,7 +46,7 @@
         <td class="nft-transfers-table__data">
           <block-time-cell
             :height="transfer.height"
-            :datetime="transfer.time"/>
+            :timestamp="transfer.time"/>
           <div/>
         </td>
         <td class="nft-transfers-table__data">

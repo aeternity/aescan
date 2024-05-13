@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Activated
+          <time-toggle-button>Activated</time-toggle-button>
           <hint-tooltip>
             {{ namesHints.activationTime }}
           </hint-tooltip>
@@ -54,7 +54,7 @@
           <div class="dashboard-names-table__blocks">
             <block-time-cell
               :height="name.activatedHeight"
-              :datetime="name.activated"/>
+              :timestamp="name.activated"/>
           </div>
         </td>
       </tr>

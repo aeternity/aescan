@@ -40,7 +40,7 @@
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
             <app-tooltip>
-              Queried At
+              <time-toggle-button>Queried At</time-toggle-button>
               <template #tooltip>
                 {{ oraclesHints.queriedAt }}
               </template>
@@ -49,7 +49,7 @@
           <td class="oracle-events-table-condensed__data">
             <block-time-cell
               :height="event.queriedHeight"
-              :datetime="event.queriedAt"/>
+              :timestamp="event.queriedAt"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
@@ -73,7 +73,7 @@
               'oracle-events-table-condensed__header',
               {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             <app-tooltip>
-              Responded At
+              <time-toggle-button>Responded At</time-toggle-button>
               <template #tooltip>
                 {{ oraclesHints.queriedAt }}
               </template>
@@ -85,7 +85,7 @@
               {'oracle-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.respondedHeight"
-              :datetime="event.respondedAt"/>
+              :timestamp="event.respondedAt"/>
           </td>
         </tr>
         <tr

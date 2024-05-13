@@ -47,13 +47,15 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Time
+            Timestamp
             <hint-tooltip>
               {{ microblocksHints.time }}
             </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
-            <datetime-label :datetime="microblockDetails.time"/>
+            <timestamp-label
+              :timestamp="microblockDetails.time"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="microblock-details-panel__row">

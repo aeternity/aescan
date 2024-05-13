@@ -2,6 +2,7 @@ export const transactionsHints = {
   transaction: 'A transaction is a cryptographically signed instruction from an account. An account will initiate a transaction to update the state of the æternity blockchain. The simplest transaction is transferring AE coins from one account to another. The purpose and the parties involved in the transactions vary depending on their type.',
   hash: 'Unique identifier of the transaction.',
   created: 'Keyblock height and exact date and time when the transaction was executed by inclusion into a microblock.',
+  createdTime: 'Exact date and time when the transaction was executed by inclusion into a microblock.',
   type: 'The type of the transaction depends on its purpose in the æternity ecosystem.',
   data: 'The data displayed differs for each tx type.',
   spendTx: 'Transfers AE from one account to another.',

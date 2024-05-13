@@ -23,13 +23,13 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useContractsStore } from '@/stores/contracts'
+import { useChartsStore } from '@/stores/charts'
 import LineChart from '@/components/LineChart'
 import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
-const contractsStore = useContractsStore()
-const { contractsStatistics } = storeToRefs(contractsStore)
-const { fetchContractsStatistics } = contractsStore
+const chartsStore = useChartsStore()
+const { contractsStatistics } = storeToRefs(chartsStore)
+const { fetchContractsStatistics } = chartsStore
 
 const selectedRange = ref(CHART_INTERVALS_OPTIONS[0])
 

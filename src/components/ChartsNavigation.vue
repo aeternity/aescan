@@ -11,6 +11,11 @@
         class="charts-navigation__link">
         Keyblocks
       </app-link>
+      <app-link
+        to="/charts/contracts"
+        class="charts-navigation__link">
+        Contracts
+      </app-link>
     </app-panel>
   </nav>
 </template>

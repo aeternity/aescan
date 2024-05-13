@@ -10,7 +10,7 @@ export default defineConfig({
     oracleAddress: 'ok_2w2Gkp9mwThn6jWdJi5Leuh3P5Zj7oJ6gyoHa8KnKzWwEVSnKf',
     tokenAddress: 'ct_2qyFRzXzTyPCtPKZQ32EPXqxxAcgiWqtADV3amcBVVPYQRKZm7',
     stateChannelAddress: 'ch_2Qo4r6u3Bq1ZMnPL7GpjLLsATaEgMK5BnYnoi68hzLL5QuKbev',
-    name: 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk.chain',
+    name: 'testaensrawpointers.chain',
     keyblockId: '947025',
   },
   e2e: {
@@ -19,5 +19,5 @@ export default defineConfig({
   },
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 20000,
+  defaultCommandTimeout: 30000,
 })

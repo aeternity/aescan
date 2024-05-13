@@ -8,8 +8,8 @@
         v-if="hasSelect"
         v-model="selectedTxType"
         size="sm"
-        class="charts-transactions-chart-panel__select
-        charts-transactions-chart-panel__select--desktop
+        class="transactions-chart-panel__select
+        transactions-chart-panel__select--desktop
         u-hidden-mobile"/>
 
       <chart-controls

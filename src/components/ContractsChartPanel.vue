@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #heading>
-      CONTRACT CALLS
+      SMART CONTRACT CALLS
     </template>
     <template #header>
       <chart-controls

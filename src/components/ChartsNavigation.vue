@@ -14,7 +14,7 @@
       <app-link
         to="/charts/contracts"
         class="charts-navigation__link">
-        Contracts
+        Smart Contracts
       </app-link>
     </app-panel>
   </nav>

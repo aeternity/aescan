@@ -15,7 +15,7 @@
     <p class="privacy-policy__paragraph">
       This Privacy policy applies to your access to and use of all æScan Services (our
       “Services”) provided by Aeternity Foundation, Sofia district (capital), Sofia 1164, Lozenets
-      district, bul. "Hristo Smirnenski" 70 / info@aeternity.com / Company-Nr.: 177240621 (“Company,” “we,” or “us”).
+      district, bul. "Hristo Smirnenski" 70, info@aeternity.com, Company-Nr.: 177240621 (“Company,” “we,” or “us”).
     </p>
     <p class="privacy-policy__paragraph">
       æScan is committed to the protection of your Personal Data and takes the matter of

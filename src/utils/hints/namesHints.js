@@ -19,7 +19,7 @@ export const namesHints = {
   expiredHeight: 'Keyblock height  when the name has been detached from the account. Name passed revoked period and can be claimed again.',
   revoked: 'Keyblock height and estimated date and time when the name has been detached from the account. Name is in revoked state and can be claimed again after a fixed timeout of 2016 keyblocks after expiration.',
   revokedTime: 'Estimated date and time when the name has been detached from the account.',
-  revokedHeight: 'Keyblock height  when the name has been detached from the account. Name is in revoked state and can be claimed again after a fixed timeout of 2016 keyblocks after expiration.',
+  revokedHeight: 'Keyblock height when the name has been detached from the account. Name is in revoked state and can be claimed again after a fixed timeout of 2016 keyblocks after expiration.',
   lastBuyer: 'Account that previously paid to claim the name.',
   lastPrice: 'Price paid to claim the name.',
   lastOwner: 'Last owner of the name.',

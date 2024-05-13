@@ -3,6 +3,5 @@ describe('tokens', () => {
     cy.visit('/tokens')
 
     cy.get('.tokens-panel').should('be.visible')
-    // todo change after fix
   })
 })

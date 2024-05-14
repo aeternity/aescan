@@ -270,10 +270,13 @@ export function adaptCustomPointers(allPointers) {
     .some(v => isAddressValid(v, Encoding.Bytearray))
 
   return Object.entries(customPointers).map(pointer => {
-    console.log('pointer[0]', pointer[0])
+    const key = formatDecodeBase64(
+      // uppercase first letter as compensation for camelcaseKeysDeep
+      pointer[0].charAt(0).toUpperCase() + pointer[0].slice(1),
+    )
 
     return {
-      key: formatDecodeBase64(pointer[0]),
+      key,
       pointer: hasRawPointers ? decode(pointer[1]).toString() : pointer[1],
       hasRawPointers,
     }

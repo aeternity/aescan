@@ -396,7 +396,7 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
     ...(price && { price }),
   }
 
-  if (token && totalSupply) {
+  if (token && totalSupply !== null) {
     tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
   }
 

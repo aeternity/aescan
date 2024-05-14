@@ -22,14 +22,21 @@
 </template>
 
 <script setup>
-import { useNamesStore } from '@/stores/names'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
+import { storeToRefs } from 'pinia'
+import { useChartsStore } from '@/stores/charts'
 
-const namesStore = useNamesStore()
-const { namesStatistics } = storeToRefs(namesStore)
-const { fetchNamesStatistics } = namesStore
+const chartsStore = useChartsStore()
+const { namesStatistics } = storeToRefs(chartsStore)
+const { fetchNamesStatistics } = chartsStore
 
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[0])
+const props = defineProps({
+  range: {
+    required: true,
+    type: Object,
+  },
+})
+
+const selectedRange = ref(props.range)
 
 await useAsyncData(async() => {
   await loadNamesStatistics()

@@ -59,9 +59,11 @@ await useAsyncData(async() => {
   return true
 })
 
-watch([selectedRange, selectedTxType], async() => {
-  await loadTransactionStatistics()
-})
+if (process.client) {
+  watch([selectedRange, selectedTxType], async() => {
+    await loadTransactionStatistics()
+  })
+}
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(

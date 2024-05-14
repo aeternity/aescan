@@ -275,6 +275,7 @@ export function adaptCustomPointers(allPointers) {
     return {
       key: formatDecodeBase64(pointer[0]),
       pointer: hasRawPointers ? decode(pointer[1]).toString() : pointer[1],
+      hasRawPointers,
     }
   })
 }

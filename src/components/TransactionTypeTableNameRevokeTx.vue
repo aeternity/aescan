@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-name-revoke-tx__row">
         <th class="transaction-type-panel-name-revoke-tx__table-header">
-          Name
           <hint-tooltip>
             {{ namesHints.name }}
           </hint-tooltip>
+          Name
         </th>
         <td class="transaction-type-panel-name-revoke-tx__data">
           <app-link
@@ -21,10 +21,10 @@
       </tr>
       <tr class="transaction-type-panel-name-revoke-tx__row">
         <th class="transaction-type-panel-name-revoke-tx__table-header">
-          Last Owner
           <hint-tooltip>
             {{ namesHints.lastOwner }}
           </hint-tooltip>
+          Last Owner
         </th>
         <td class="transaction-type-panel-name-revoke-tx__data">
           <app-link :to="`/accounts/${transactionData.accountId}`">
@@ -57,11 +57,13 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
-          Name
           <hint-tooltip>
             {{ namesHints.name }}
           </hint-tooltip>
+          Name
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
           <app-link :to="`/names/${transactionData.name}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
-          Claimer
           <hint-tooltip>
             {{ namesHints.claimer }}
           </hint-tooltip>
+          Claimer
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
           <app-link :to="`/accounts/${transactionData.accountId}`">
@@ -31,10 +31,10 @@
         v-if="transactionData.nameFee"
         class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
-          Activation Price
           <hint-tooltip>
             {{ namesHints.activationPrice }}
           </hint-tooltip>
+          Activation Price
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.nameFee), null) }}
@@ -65,11 +65,13 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

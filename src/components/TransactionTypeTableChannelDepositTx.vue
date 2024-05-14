@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-channel-deposit-tx__row">
         <th class="transaction-type-panel-channel-deposit-tx__table-header">
-          Channel ID
           <hint-tooltip>
             {{ stateChannelsHints.stateChannelId }}
           </hint-tooltip>
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-deposit-tx__row">
         <th class="transaction-type-panel-channel-deposit-tx__table-header">
-          Round
           <hint-tooltip>
             {{ stateChannelsHints.depositRound }}
           </hint-tooltip>
+          Round
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           {{ transactionData.round }}
@@ -27,10 +27,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-deposit-tx__row">
         <th class="transaction-type-panel-channel-deposit-tx__table-header">
-          Depositor
           <hint-tooltip>
             {{ stateChannelsHints.depositor }}
           </hint-tooltip>
+          Depositor
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           <app-link :to="`/accounts/${transactionData.fromId}`">
@@ -40,10 +40,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-deposit-tx__row">
         <th class="transaction-type-panel-channel-deposit-tx__table-header">
-          Amount
           <hint-tooltip>
             {{ stateChannelsHints.depositAmount }}
           </hint-tooltip>
+          Amount
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
@@ -74,11 +74,13 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

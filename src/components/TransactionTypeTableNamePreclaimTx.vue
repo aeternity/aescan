@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-name-preclaim-tx__row">
         <th class="transaction-type-panel-name-preclaim-tx__table-header">
-          Claimer
           <hint-tooltip>
             {{ namesHints.preclaimer }}
           </hint-tooltip>
+          Claimer
         </th>
         <td class="transaction-type-panel-name-preclaim-tx__data">
           <app-link :to="`/accounts/${transactionData.accountId}`">
@@ -38,11 +38,13 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Status
           <hint-tooltip>
             {{ contractsHints.status }}
           </hint-tooltip>
+          Status
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <transaction-type-status-label :status="transactionData.returnType"/>
@@ -14,10 +14,10 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Smart Contract
           <hint-tooltip>
             {{ contractsHints.contractId }}
           </hint-tooltip>
+          Smart Contract
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <app-link :to="`/contracts/${transactionData.contractId}`">
@@ -27,10 +27,10 @@
       </tr>
       <tr>
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Created By
           <hint-tooltip>
             {{ contractsHints.createdBy }}
           </hint-tooltip>
+          Created By
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <app-link :to="`/accounts/${transactionData.ownerId}`">
@@ -40,10 +40,10 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Amount
           <hint-tooltip>
             {{ contractsHints.amount }}
           </hint-tooltip>
+          Amount
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
@@ -51,10 +51,10 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Arguments
           <hint-tooltip>
             {{ contractsHints.arguments }}
           </hint-tooltip>
+          Arguments
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatNullable(transactionData.args) }}
@@ -62,16 +62,16 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Gas Limit
           <hint-tooltip>
             {{ contractsHints.gasLimit }}
           </hint-tooltip>
+          Gas Limit
           /
           <wbr>
-          Gas Price
           <hint-tooltip>
             {{ contractsHints.gasPrice }}
           </hint-tooltip>
+          Gas Price
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ transactionData.gas }}
@@ -81,16 +81,17 @@
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
         <th class="transaction-type-panel-contract-create-tx__table-header">
-          Gas Used
           <hint-tooltip>
             {{ contractsHints.gasUsed }}
           </hint-tooltip>
+          Gas Used
+
           /
           <wbr>
-          Gas Costs
           <hint-tooltip>
             {{ contractsHints.gasCost }}
           </hint-tooltip>
+          Gas Costs
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           {{ formatNullable(transactionData.gasUsed) }}
@@ -128,11 +129,13 @@ const gasCosts = computed(() =>
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

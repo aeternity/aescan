@@ -21,10 +21,10 @@
       </tr>
       <tr class="transaction-type-panel-name-update-tx__row">
         <th class="transaction-type-panel-name-update-tx__table-header">
-          Owner
           <hint-tooltip>
             {{ namesHints.owner }}
           </hint-tooltip>
+          Owner
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
           <app-link :to="`/accounts/${transactionData.accountId}`">
@@ -34,10 +34,10 @@
       </tr>
       <tr class="transaction-type-panel-name-update-tx__row">
         <th class="transaction-type-panel-name-update-tx__table-header">
-          Name TTL
           <hint-tooltip>
             {{ namesHints.nameTtl }}
           </hint-tooltip>
+          Name TTL
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
           {{ transactionData.nameTtl }}
@@ -68,11 +68,13 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

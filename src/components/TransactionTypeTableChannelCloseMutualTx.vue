@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Channel ID
           <hint-tooltip>
             {{ stateChannelsHints.stateChannelId }}
           </hint-tooltip>
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Initiator / Amount
           <hint-tooltip>
             {{ stateChannelsHints.initiatorCloseAmount }}
           </hint-tooltip>
+          Initiator / Amount
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
@@ -36,10 +36,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Responder / Amount
           <hint-tooltip>
             {{ stateChannelsHints.responderCloseAmount }}
           </hint-tooltip>
+          Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
@@ -56,10 +56,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
         <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
-          Sent By
           <hint-tooltip>
             {{ stateChannelsHints.sentBy }}
           </hint-tooltip>
+          Sent By
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link :to="`/accounts/${transactionData.fromId}`">
@@ -92,11 +92,13 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

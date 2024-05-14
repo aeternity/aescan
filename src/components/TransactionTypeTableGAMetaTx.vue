@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
-          Sender
           <hint-tooltip>
             {{ transactionsHints.sender }}
           </hint-tooltip>
+          Sender
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           <app-link :to="`/accounts/${innerTransactionDetails.senderId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
-          Recipient
           <hint-tooltip>
             {{ transactionsHints.recipient }}
           </hint-tooltip>
+          Recipient
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           <app-link :to="`/accounts/${innerTransactionDetails.recipientId}`">
@@ -29,10 +29,10 @@
       </tr>
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
-          Amount
           <hint-tooltip>
             {{ transactionsHints.amount }}
           </hint-tooltip>
+          Amount
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           {{
@@ -45,10 +45,10 @@
       </tr>
       <tr class="transaction-type-panel-ga-meta-tx__row">
         <th class="transaction-type-panel-ga-meta-tx__table-header">
-          Payload
           <hint-tooltip>
             {{ transactionsHints.payload }}
           </hint-tooltip>
+          Payload
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
           {{ payload }}
@@ -88,11 +88,13 @@ const payload = computed(() =>
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

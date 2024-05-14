@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Oracle
           <hint-tooltip>
             {{ oraclesHints.oracleId }}
           </hint-tooltip>
+          Oracle
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           <app-link :to="`/oracles/${transactionData.oracleId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Oracle TTL / Type
           <hint-tooltip>
             {{ oraclesHints.oracleTtl }}
           </hint-tooltip>
+          Oracle TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.oracleTtl.value }}
@@ -29,10 +29,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Query Fee
           <hint-tooltip>
             {{ oraclesHints.queryFee }}
           </hint-tooltip>
+          Query Fee
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.queryFee), null) }}
@@ -40,10 +40,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Query Format
           <hint-tooltip>
             {{ oraclesHints.queryFormat }}
           </hint-tooltip>
+          Query Format
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.queryFormat }}
@@ -51,10 +51,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
         <th class="transaction-type-panel-oracle-register-tx__table-header">
-          Response Format
           <hint-tooltip>
             {{ oraclesHints.responseFormat }}
           </hint-tooltip>
+          Response Format
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
           {{ transactionData.responseFormat }}
@@ -84,11 +84,13 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

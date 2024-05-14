@@ -390,7 +390,6 @@ export function adaptContractEvents(events) {
 }
 
 export function adaptTokenDetails(token, totalSupply = null, price = null) {
-  console.log('1 totalSupply', totalSupply)
   const tokenDetails = {
     ...token,
     ...(price && { price }),
@@ -399,7 +398,6 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
   if (token && totalSupply) {
     tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
   }
-  console.log('1 tokenDetails', tokenDetails)
   return tokenDetails
 }
 
@@ -424,8 +422,6 @@ export function adaptTokenEvents(events) {
 }
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
-  console.log('tokenDetails', tokenDetails)
-  console.log('tokenHolders', tokenHolders)
   const formattedData = tokenHolders.data.map(holder => ({
     address: holder.accountId,
     amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),

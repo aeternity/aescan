@@ -45,21 +45,21 @@
               class="footer__version">
               ÆSCAN VERSION
               <app-link :to="APP_RELEASES_URL">
-                v{{ APP_VERSION }}
+                {{ APP_VERSION }}
               </app-link>
             </div>
             <div
               class="footer__version">
               NODE VERSION
               <app-link :to="NODE_RELEASES_URL">
-                v{{ nodeStatus.nodeVersion }}
+                {{ formatNullable(nodeStatus?.nodeVersion) }}
               </app-link>
             </div>
             <div
               class="footer__version">
               MIDDLEWARE VERSION
               <app-link :to="MDW_RELEASES_URL">
-                v{{ middlewareStatus.mdwVersion }}
+                {{ formatNullable(middlewareStatus?.mdwVersion) }}
               </app-link>
               <span
                 v-if="isSyncing"

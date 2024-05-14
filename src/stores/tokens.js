@@ -5,7 +5,7 @@ import useAxios from '@/composables/useAxios'
 import { adaptListedTokens } from '@/utils/adapters'
 
 export const useTokensStore = defineStore('tokens', () => {
-  const { MIDDLEWARE_URL, DEX_BACKEND_URL } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL, DEX_BACKEND_URL, NETWORK_NAME } = useRuntimeConfig().public
   const axios = useAxios()
   const rawListedTokens = ref(null)
   const allTokens = ref(null)
@@ -13,7 +13,7 @@ export const useTokensStore = defineStore('tokens', () => {
   const allTokensCount = ref(null)
 
   const selectedTokens = computed(() => {
-    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value : allTokens.value
+    return selectedTokenName.value?.key === 'listedTokens' && NETWORK_NAME !== 'TESTNET' ? listedTokens.value : allTokens.value
   })
   const selectedTokensCount = computed(() => {
     return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value?.data.length : allTokensCount.value

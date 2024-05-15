@@ -1,22 +1,24 @@
 <template>
   <app-panel class="transaction-general-panel">
-    <template #header>
-      <copy-chip
-        :label="transactionDetails.hash"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(transactionDetails.hash)"
-        :clipboard-text="transactionDetails.hash"
-        class="u-hidden-desktop"/>
-      <app-chip
-        variant="primary"
-        size="sm">
-        {{ transactionDetails.type }}
-      </app-chip>
-    </template>
-
     <table>
       <tbody>
+        <tr class="transaction-general-panel__row">
+          <th class="transaction-general-panel__table-header">
+            <hint-tooltip>
+              {{ transactionsHints.keyblockHeight }}
+            </hint-tooltip>
+            Hash
+          </th>
+          <td class="transaction-general-panel__data">
+            <copy-chip
+              :label="transactionDetails.hash"
+              class="u-hidden-mobile"/>
+            <copy-chip
+              :label="formatEllipseHash(transactionDetails.hash)"
+              :clipboard-text="transactionDetails.hash"
+              class="u-hidden-desktop"/>
+          </td>
+        </tr>
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             <hint-tooltip>

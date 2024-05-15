@@ -6,9 +6,6 @@
       <h2 class="panel__heading h3">
         <slot name="heading"/>
       </h2>
-      <div class="panel__container">
-        <slot name="header"/>
-      </div>
     </header>
     <slot/>
   </div>

@@ -1,20 +1,5 @@
 <template>
   <app-panel class="account-details-panel">
-    <template #header>
-      <app-chip
-        v-if="accountDetails.isGeneralized"
-        size="sm">
-        Generalized
-      </app-chip>
-
-      <copy-chip
-        :label="accountDetails.id"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(accountDetails.id)"
-        :clipboard-text="accountDetails.id"
-        class="u-hidden-desktop"/>
-    </template>
     <p
       v-if="accountDetails.isExistent === false"
       class="account-details-panel__not-existent">
@@ -27,34 +12,59 @@
       <tbody>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Balance
             <hint-tooltip>
               {{ accountHints.balance }}
             </hint-tooltip>
+            Account Address
           </th>
-          <td class="account-details-panel__data">
-            {{ formatAePrice(accountDetails.balance, null) }}
+          <td>
+            <app-chip
+              v-if="accountDetails.isGeneralized"
+              size="sm">
+              Generalized
+            </app-chip>
+            <!--            todo generalized-->
+
+            <copy-chip
+              :label="accountDetails.id"
+              class="u-hidden-mobile"/>
+            <copy-chip
+              :label="formatEllipseHash(accountDetails.id)"
+              :clipboard-text="accountDetails.id"
+              class="u-hidden-desktop"/>
           </td>
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Value
+            <hint-tooltip>
+              {{ accountHints.balance }}
+            </hint-tooltip>
+            Balance
+          </th>
+          <td>
+            {{ formatAePrice(accountDetails.balance, null) }}
+          </td>
+        </tr>
+
+        <tr class="account-details-panel__row">
+          <th class="account-details-panel__table-header">
             <hint-tooltip>
               {{ accountHints.value }}
             </hint-tooltip>
+            Value
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ sanitizedPrice }}
           </td>
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Transactions
             <hint-tooltip>
               {{ accountHints.transactions }}
             </hint-tooltip>
+            Transactions
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
           </td>
         </tr>
@@ -62,12 +72,12 @@
           v-if="accountDetails.isGeneralized"
           class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Contract Id
             <hint-tooltip>
               {{ accountHints.contractId }}
             </hint-tooltip>
+            Contract Id
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <app-link :to="`/contracts/${accountDetails.contractId}`">
               {{ accountDetails.contractId }}
             </app-link>
@@ -77,24 +87,25 @@
           v-else
           class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Nonce
             <hint-tooltip>
               {{ accountHints.nonce }}
             </hint-tooltip>
+            Nonce
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ accountDetails.nonce }}
           </td>
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ accountHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <div class="account-details-panel__container">
+              <!--              todo containers-->
               <app-link
                 :to="accountNodeUrl"
                 class="account-details-panel__link">
@@ -155,10 +166,6 @@ const sanitizedPrice = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__data {
-    text-align: left;
   }
 
   &__container {

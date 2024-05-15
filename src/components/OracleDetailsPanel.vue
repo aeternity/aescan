@@ -1,15 +1,5 @@
 <template>
   <app-panel class="oracle-details-panel">
-    <template #header>
-      <copy-chip
-        :label="oracleDetails.id"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(oracleDetails.id)"
-        :clipboard-text="oracleDetails.id"
-        class="u-hidden-desktop"/>
-    </template>
-
     <table>
       <tbody>
         <tr class="oracle-details-panel__row">
@@ -17,9 +7,27 @@
             <hint-tooltip>
               {{ oraclesHints.registered }}
             </hint-tooltip>
+            Oracle ID
+          <!--            todo hints-->
+          </th>
+          <td>
+            <copy-chip
+              :label="oracleDetails.id"
+              class="u-hidden-mobile"/>
+            <copy-chip
+              :label="formatEllipseHash(oracleDetails.id)"
+              :clipboard-text="oracleDetails.id"
+              class="u-hidden-desktop"/>
+          </td>
+        </tr>
+        <tr class="oracle-details-panel__row">
+          <th class="oracle-details-panel__table-header">
+            <hint-tooltip>
+              {{ oraclesHints.registered }}
+            </hint-tooltip>
             Registered
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             <div class="oracle-details-panel__container">
               <app-link
                 class="oracle-details-panel__block"
@@ -41,7 +49,7 @@
             </hint-tooltip>
             Last Extended
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             <div
               v-if="oracleDetails.lastExtended"
               class="oracle-details-panel__container">
@@ -68,7 +76,7 @@
             </hint-tooltip>
             Last Queried
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             <div
               v-if="oracleDetails.lastQueried"
               class="oracle-details-panel__container">
@@ -95,7 +103,7 @@
             </hint-tooltip>
             Expiration
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             <div
               class="oracle-details-panel__container">
               <app-link
@@ -119,7 +127,7 @@
             </hint-tooltip>
             Query Fee
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             {{ formatAePrice(oracleDetails.fee, null) }}
           </td>
         </tr>
@@ -130,7 +138,7 @@
             </hint-tooltip>
             Query Format
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             {{ oracleDetails.queryFormat }}
           </td>
         </tr>
@@ -141,7 +149,7 @@
             </hint-tooltip>
             Response Format
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             {{ oracleDetails.responseFormat }}
           </td>
         </tr>
@@ -152,7 +160,7 @@
             </hint-tooltip>
             Operator
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             <app-link
               :to="`/accounts/${oracleDetails.operator}`">
               <span class="u-hidden-mobile">
@@ -171,7 +179,7 @@
             </hint-tooltip>
             API links
           </th>
-          <td class="oracle-details-panel__data">
+          <td>
             <div class="oracle-details-panel__container">
               <app-link
                 :to="oracleNodeUrl"
@@ -232,10 +240,6 @@ const oracleMiddlewareUrl = computed(() =>
     }
     border-bottom: 1px solid var(--color-midnight-25);
     font-weight: normal;
-  }
-
-  &__data {
-    text-align: left;
   }
 
   &__row:last-of-type &__table-header {

@@ -1,22 +1,32 @@
 <template>
   <app-panel class="contract-details-panel">
-    <template #header>
-      <div class="u-hidden-mobile">
-        <copy-chip :label="contractDetails.id"/>
-      </div>
-      <div class="u-hidden-desktop">
-        <copy-chip
-          :label="formatEllipseHash(contractDetails.id)"
-          :clipboard-text="contractDetails.id"/>
-      </div>
-      <app-chip
-        v-if="contractDetails?.contractType"
-        size="sm">
-        {{ contractDetails.contractType }}
-      </app-chip>
-    </template>
     <table>
       <tbody>
+        <tr class="contract-details-panel__row">
+          <th class="contract-details-panel__table-header">
+            <hint-tooltip>
+              {{ contractsHints.contractTxHash }}
+            </hint-tooltip>
+            Smart Contract
+          </th>
+          <td class="contract-details-panel__data">
+            <div class="u-hidden-mobile">
+              <copy-chip :label="contractDetails.id"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(contractDetails.id)"
+                :clipboard-text="contractDetails.id"/>
+            </div>
+            <app-chip
+              v-if="contractDetails?.contractType"
+              size="sm">
+              {{ contractDetails.contractType }}
+            </app-chip>
+          <!--            todo contract type-->
+          </td>
+        </tr>
+
         <tr
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
@@ -80,10 +90,10 @@
         </tr>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Created
             <hint-tooltip>
               {{ contractsHints.contractCreated }}
             </hint-tooltip>
+            Created
           </th>
           <td class="contract-details-panel__data">
             <timestamp-label

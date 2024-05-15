@@ -1,14 +1,5 @@
 <template>
   <app-panel class="microblock-details-panel">
-    <template #header>
-      <copy-chip
-        :label="microblockDetails.hash"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(microblockDetails.hash)"
-        :clipboard-text="microblockDetails.hash"
-        class="u-hidden-desktop"/>
-    </template>
     <table>
       <tbody>
         <tr class="microblock-details-panel__row">
@@ -16,9 +7,26 @@
             <hint-tooltip>
               {{ microblocksHints.keyblock }}
             </hint-tooltip>
+            Microblock ID
+          </th>
+          <td>
+            <copy-chip
+              :label="microblockDetails.hash"
+              class="u-hidden-mobile"/>
+            <copy-chip
+              :label="formatEllipseHash(microblockDetails.hash)"
+              :clipboard-text="microblockDetails.hash"
+              class="u-hidden-desktop"/>
+          </td>
+        </tr>
+        <tr class="microblock-details-panel__row">
+          <th class="microblock-details-panel__table-header">
+            <hint-tooltip>
+              {{ microblocksHints.keyblock }}
+            </hint-tooltip>
             Keyblock
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             <app-link :to="`/keyblocks/${microblockDetails.prevKeyHash}`">
               <span class="u-hidden-mobile">
                 {{ microblockDetails.prevKeyHash }}
@@ -36,7 +44,7 @@
             </hint-tooltip>
             Height
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             <app-link :to="`/keyblocks/${microblockDetails.height}`">
               {{ microblockDetails.height }}
             </app-link>
@@ -49,7 +57,7 @@
             </hint-tooltip>
             Created Height
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="microblockDetails.time"
               :is-extended="true"/>
@@ -62,7 +70,7 @@
             </hint-tooltip>
             Transactions Count
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             {{ formatNumber(microblockDetails.transactionsCount) }}
           </td>
         </tr>
@@ -73,7 +81,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             <div class="microblock-details-panel__container">
               <app-link
                 :to="microblockNodeUrl"
@@ -128,19 +136,15 @@ const microblockMiddlewareUrl = computed(() =>
 <style scoped>
 .microblock-details-panel {
   &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
     @media (--desktop) {
       width: 400px;
     }
-    border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__data {
-    text-align: left;
   }
 
   &__container {

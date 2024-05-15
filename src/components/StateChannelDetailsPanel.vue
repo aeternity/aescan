@@ -1,15 +1,5 @@
 <template>
   <app-panel class="state-channel-details-panel">
-    <template #header>
-      <copy-chip
-        :label="stateChannelDetails.id"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(stateChannelDetails.id)"
-        :clipboard-text="stateChannelDetails.id"
-        class="u-hidden-desktop"/>
-    </template>
-
     <table>
       <tbody>
         <tr class="state-channel-details-panel__row">
@@ -17,9 +7,26 @@
             <hint-tooltip>
               {{ stateChannelsHints.status }}
             </hint-tooltip>
+            State Channel ID
+          </th>
+          <td>
+            <copy-chip
+              :label="stateChannelDetails.id"
+              class="u-hidden-mobile"/>
+            <copy-chip
+              :label="formatEllipseHash(stateChannelDetails.id)"
+              :clipboard-text="stateChannelDetails.id"
+              class="u-hidden-desktop"/>
+          </td>
+        </tr>
+        <tr class="state-channel-details-panel__row">
+          <th class="state-channel-details-panel__table-header">
+            <hint-tooltip>
+              {{ stateChannelsHints.status }}
+            </hint-tooltip>
             Status
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-chip :variant="stateChannelDetails.isOpen ? 'success' : 'primary'">
               {{ stateChannelDetails.isOpen ? 'Open' : 'Closed' }}
             </app-chip>
@@ -32,7 +39,7 @@
             </hint-tooltip>
             Create Transaction
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link :to="`/transactions/${stateChannelDetails.createTransactionHash}`">
               <span class="u-hidden-mobile">
                 {{ stateChannelDetails.createTransactionHash }}
@@ -50,7 +57,7 @@
             </hint-tooltip>
             Initial Amount
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ formatAePrice(stateChannelDetails.initialAmount, null) }}
           </td>
         </tr>
@@ -61,7 +68,7 @@
             </hint-tooltip>
             Initiator
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${stateChannelDetails.initiator}`">
               <span class="u-hidden-mobile">
                 {{ stateChannelDetails.initiator }}
@@ -79,7 +86,7 @@
             </hint-tooltip>
             Responder
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${stateChannelDetails.responder}`">
               <span class="u-hidden-mobile">
                 {{ stateChannelDetails.responder }}
@@ -97,7 +104,7 @@
             </hint-tooltip>
             On-Chain TXs
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ formatNumber(stateChannelDetails.onChainUpdates) }}
           </td>
         </tr>
@@ -108,7 +115,7 @@
             </hint-tooltip>
             Last Known Round
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ formatNumber(stateChannelDetails.lastKnownRound) }}
           </td>
         </tr>
@@ -119,7 +126,7 @@
             </hint-tooltip>
             Locked
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ formatAePrice(stateChannelDetails.aeLocked, null) }}
           </td>
         </tr>
@@ -130,7 +137,7 @@
             </hint-tooltip>
             Last Updated Height
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link
               v-if="stateChannelDetails.lastUpdatedHeight"
               :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
@@ -148,7 +155,7 @@
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <timestamp-label
               v-if="stateChannelDetails.lastUpdated"
               :timestamp="stateChannelDetails.lastUpdated"
@@ -165,7 +172,7 @@
             </hint-tooltip>
             Last TX Type
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ stateChannelDetails.lastTxType }}
           </td>
         </tr>
@@ -176,7 +183,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <div class="state-channel-details-panel__container">
               <app-link
                 :to="stateChannelMiddlewareUrl"
@@ -222,10 +229,6 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v3/channels/${props.stateCh
     }
     border-bottom: 1px solid var(--color-midnight-25);
     font-weight: normal;
-  }
-
-  &__data {
-    text-align: left;
   }
 
   &__row:last-of-type &__table-header {

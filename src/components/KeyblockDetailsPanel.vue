@@ -1,16 +1,5 @@
 <template>
   <app-panel class="keyblock-details-panel">
-    <template #header>
-      <div v-if="!!keyblockDetails.isExistent">
-        <copy-chip
-          :label="keyblockDetails.hash"
-          class="u-hidden-mobile"/>
-        <copy-chip
-          :label="formatEllipseHash(keyblockDetails.hash)"
-          :clipboard-text="keyblockDetails.hash"
-          class="u-hidden-desktop"/>
-      </div>
-    </template>
     <p
       v-if="keyblockDetails.isExistent === false"
       class="keyblock-details-panel__not-existent">
@@ -27,7 +16,7 @@
             </hint-tooltip>
             Height
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <div class="keyblock-details-panel__controls">
               <pagination-button
                 class="keyblock-details-panel__button--prev"
@@ -47,11 +36,28 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             <hint-tooltip>
+              {{ keyblocksHints.height }}
+            </hint-tooltip>
+            Keyblock ID
+          </th>
+          <td>
+            <copy-chip
+              :label="keyblockDetails.hash"
+              class="u-hidden-mobile"/>
+            <copy-chip
+              :label="formatEllipseHash(keyblockDetails.hash)"
+              :clipboard-text="keyblockDetails.hash"
+              class="u-hidden-desktop"/>
+          </td>
+        </tr>
+        <tr class="keyblock-details-panel__row">
+          <th class="keyblock-details-panel__table-header">
+            <hint-tooltip>
               {{ keyblocksHints.mined }}
             </hint-tooltip>
             Time
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="keyblockDetails.mined"
               :is-extended="true"/>
@@ -64,7 +70,7 @@
             </hint-tooltip>
             Miner
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <span class="u-hidden-mobile">
               {{ keyblockDetails.miner }}
             </span>
@@ -80,7 +86,7 @@
             </hint-tooltip>
             Beneficiary
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
               <span class="u-hidden-mobile">
                 {{ keyblockDetails.beneficiary }}
@@ -98,7 +104,7 @@
             </hint-tooltip>
             Beneficiary Reward
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatAePrice(keyblockDetails.blockReward, null) }}
           </td>
         </tr>
@@ -109,7 +115,7 @@
             </hint-tooltip>
             BRI Reward
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatAePrice(keyblockDetails.devReward, null) }}
           </td>
         </tr>
@@ -120,7 +126,7 @@
             </hint-tooltip>
             Microblocks Count
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatNumber(keyblockDetails.microBlocksCount) }}
           </td>
         </tr>
@@ -131,7 +137,7 @@
             </hint-tooltip>
             Transactions Count
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatNumber(keyblockDetails.transactionsCount) }}
           </td>
         </tr>
@@ -142,7 +148,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <div class="keyblock-details-panel__container">
               <app-link
                 :to="keyblockNodeUrl"
@@ -203,22 +209,17 @@ const isNextKeyblockMined = computed(() =>
 <style scoped>
 .keyblock-details-panel {
   &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
+
     @media (--desktop) {
       width: 400px;
     }
-    border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }
-
-  &__data {
-    text-align: left;
-  }
-
-  /*todo remove*/
 
   &__container {
     display: flex;

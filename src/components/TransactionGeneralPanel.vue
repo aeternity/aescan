@@ -143,25 +143,23 @@
             API Links
           </th>
           <td>
-            <div class="transaction-general-panel__container">
-              <app-link
-                :to="transactionNodeUrl"
-                class="transaction-general-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
-              <app-link
-                v-if="transactionDetails.isMined"
-                :to="transactionMiddlewareUrl"
-                class="transaction-general-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              :to="transactionNodeUrl"
+              class="transaction-general-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
+            <app-link
+              v-if="transactionDetails.isMined"
+              :to="transactionMiddlewareUrl"
+              class="transaction-general-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>
@@ -208,10 +206,6 @@ const transactionMiddlewareUrl = computed(() => {
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__container {
-    display: flex;
   }
 
   &__link {

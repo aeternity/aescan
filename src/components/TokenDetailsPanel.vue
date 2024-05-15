@@ -125,25 +125,23 @@
             API Links
           </th>
           <td>
-            <div class="token-details-panel__container">
-              <app-link
-                v-if="tokenDexUrl"
-                :to="tokenDexUrl"
-                class="token-details-panel__link">
-                <app-icon
-                  name="file-dex"
-                  :size="22"/>
-                DEX
-              </app-link>
-              <app-link
-                :to="tokenMiddlewareUrl"
-                class="token-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              v-if="tokenDexUrl"
+              :to="tokenDexUrl"
+              class="token-details-panel__link">
+              <app-icon
+                name="file-dex"
+                :size="22"/>
+              DEX
+            </app-link>
+            <app-link
+              :to="tokenMiddlewareUrl"
+              class="token-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>

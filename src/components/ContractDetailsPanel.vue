@@ -180,24 +180,22 @@
             API Links
           </th>
           <td class="contract-details-panel__data">
-            <div class="contract-details-panel__container">
-              <app-link
-                :to="contractNodeUrl"
-                class="contract-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
-              <app-link
-                :to="contractMiddlewareUrl"
-                class="contract-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              :to="contractNodeUrl"
+              class="contract-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
+            <app-link
+              :to="contractMiddlewareUrl"
+              class="contract-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>

@@ -104,17 +104,14 @@
             API Links
           </th>
           <td>
-            <div class="account-details-panel__container">
-              <!--              todo containers-->
-              <app-link
-                :to="accountNodeUrl"
-                class="account-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
-            </div>
+            <app-link
+              :to="accountNodeUrl"
+              class="account-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
           </td>
         </tr>
       </tbody>
@@ -166,10 +163,6 @@ const sanitizedPrice = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__container {
-    display: flex;
   }
 
   &__link {

@@ -27,18 +27,16 @@
             Registered
           </th>
           <td>
-            <div class="oracle-details-panel__container">
-              <app-link
-                class="oracle-details-panel__block"
-                :to="`/keyblocks/${oracleDetails.registeredHeight}`">
-                {{ oracleDetails.registeredHeight }}
-              </app-link>
-              -
-              <timestamp-label
-                class="oracle-details-panel__timestamp"
-                :timestamp="oracleDetails.registered"
-                :is-extended="true"/>
-            </div>
+            <app-link
+              class="oracle-details-panel__block"
+              :to="`/keyblocks/${oracleDetails.registeredHeight}`">
+              {{ oracleDetails.registeredHeight }}
+            </app-link>
+            -
+            <timestamp-label
+              class="oracle-details-panel__timestamp"
+              :timestamp="oracleDetails.registered"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -252,10 +250,6 @@ const oracleMiddlewareUrl = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
-  }
-
-  &__container {
-    display: flex;
   }
 
   &__block {

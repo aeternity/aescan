@@ -150,25 +150,23 @@
             API Links
           </th>
           <td>
-            <div class="keyblock-details-panel__container">
-              <app-link
-                :to="keyblockNodeUrl"
-                class="keyblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
+            <app-link
+              :to="keyblockNodeUrl"
+              class="keyblock-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
 
-              <app-link
-                :to="keyblockMiddlewareUrl"
-                class="keyblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              :to="keyblockMiddlewareUrl"
+              class="keyblock-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>
@@ -219,10 +217,6 @@ const isNextKeyblockMined = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__container {
-    display: flex;
   }
 
   &__link {

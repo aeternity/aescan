@@ -183,16 +183,14 @@
             API Links
           </th>
           <td>
-            <div class="state-channel-details-panel__container">
-              <app-link
-                :to="stateChannelMiddlewareUrl"
-                class="state-channel-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              :to="stateChannelMiddlewareUrl"
+              class="state-channel-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>

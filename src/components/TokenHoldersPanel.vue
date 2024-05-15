@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel class="token-holders-panel">
     <paginated-content
       :entities="tokenHolders"
       @prev-clicked="loadPrevHolders"

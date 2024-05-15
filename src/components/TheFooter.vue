@@ -116,7 +116,6 @@ const links = {
     { label: 'Middleware API documentation', url: `${MIDDLEWARE_URL}/swagger` },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
     { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
-
   ],
 }
 </script>

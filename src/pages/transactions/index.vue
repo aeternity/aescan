@@ -10,7 +10,7 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
-    <transactions-stats class="transactions-panel"/>
+    <transactions-statistics class="transactions-panel"/>
     <transactions-chart-panel
       :has-select="false"
       :range="CHART_INTERVALS_OPTIONS[0]"

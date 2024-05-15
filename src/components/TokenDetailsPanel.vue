@@ -23,6 +23,7 @@
           </th>
           <td class="token-details-panel__data">
             {{ tokenDetails.name }}
+            <not-available-label v-if="!tokenDetails.name"/>
           </td>
         </tr>
         <tr

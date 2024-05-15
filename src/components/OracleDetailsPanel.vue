@@ -235,11 +235,10 @@ const oracleMiddlewareUrl = computed(() =>
 <style scoped>
 .oracle-details-panel {
   &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
     @media (--desktop) {
       width: 400px;
     }
-    border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
   }
 
   &__row:last-of-type &__table-header {

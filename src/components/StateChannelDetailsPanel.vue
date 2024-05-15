@@ -150,7 +150,6 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
-            Last Updated
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
@@ -224,11 +223,11 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v3/channels/${props.stateCh
 <style scoped>
 .state-channel-details-panel {
   &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
+
     @media (--desktop) {
       width: 400px;
     }
-    border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
   }
 
   &__row:last-of-type &__table-header {

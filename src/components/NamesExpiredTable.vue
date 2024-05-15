@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Expired
+          <time-toggle-button>Expired</time-toggle-button>
           <hint-tooltip>
             {{ namesHints.expired }}
           </hint-tooltip>
@@ -46,7 +46,7 @@
         <td>
           <block-time-cell
             :height="name.expirationHeight"
-            :datetime="name.expiration"/>
+            :timestamp="name.expiration"/>
         </td>
         <td>
           <value-hash-ellipsed

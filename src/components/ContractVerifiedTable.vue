@@ -35,13 +35,13 @@
     </tr>
     <tr class="contract-verified-table__row">
       <th class="contract-verified-table__header">
-        Verified At
+        <time-toggle-button>Verified At</time-toggle-button>
         <hint-tooltip>
           {{ contractVerifiedHints.verifiedAt }}
         </hint-tooltip>
       </th>
       <td class="contract-verified-table__data">
-        <datetime-label :datetime="verificationDetails.verifiedAt"/>
+        <timestamp-label :timestamp="verificationDetails.verifiedAt"/>
       </td>
     </tr>
     <tr class="contract-verified-table__row">

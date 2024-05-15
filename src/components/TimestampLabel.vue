@@ -1,61 +1,78 @@
 <template>
-  <div class="datetime-label">
+  <div class="timestamp-label">
     <client-only>
-      <app-tooltip>
-        {{ labelTime }}
-        <template #tooltip>
-          {{ tooltipTime }}
-        </template>
-      </app-tooltip>
+      <template v-if="isExtended">
+        <app-icon name="clock"/>
+        {{ relativeUpdated }} ({{ absolute }})
+      </template>
+      <template v-else>
+        <app-tooltip>
+          {{ labelTime }}
+          <template #tooltip>
+            {{ tooltipTime }}
+          </template>
+        </app-tooltip>
+      </template>
     </client-only>
   </div>
 </template>
 
 <script setup>
 import { DateTime, Duration } from 'luxon'
-import AppTooltip from '@/components/AppTooltip'
 import { DATETIME_UNITS } from '@/utils/constants'
 
+import { useAppStore } from '@/stores/app'
+
+const { timeFormat } = storeToRefs(useAppStore())
+
 const props = defineProps({
-  datetime: {
+  timestamp: {
     type: Object,
     required: true,
+  },
+  isExtended: {
+    type: Boolean,
+    default: false,
   },
 })
 
 const relativeUpdated = ref(null)
 const intervalRef = ref(null)
 
-const isOlderThanThreshold = computed(() => {
-  return props.datetime.diffNow().as('year') < -1
-})
 const absolute = computed(() => {
-  return props.datetime.toLocaleString(DateTime.DATETIME_SHORT)
+  return props.timestamp.toLocaleString(DateTime.DATETIME_SHORT)
 })
+
 const labelTime = computed(() => {
-  return isOlderThanThreshold.value
+  return timeFormat.value === 'absolute'
     ? absolute.value
     : relativeUpdated.value
 })
+
 const tooltipTime = computed(() => {
-  return isOlderThanThreshold.value
+  return timeFormat.value === 'absolute'
     ? relativeUpdated.value
     : absolute.value
 })
+
 const dynamicInterval = computed(() => {
   const highestUnitIndex = DATETIME_UNITS.indexOf(highestUnit.value)
   const updateIntervalUnit = DATETIME_UNITS[highestUnitIndex + 1] || 'seconds'
   return Duration.fromObject({ [updateIntervalUnit]: 1 }).toMillis()
 })
+
 const expirationDuration = computed(() => {
-  return props.datetime.diffNow().shiftTo(...DATETIME_UNITS)
+  return props.timestamp.diffNow().shiftTo(...DATETIME_UNITS)
 })
+
 const highestUnit = computed(() => {
   return DATETIME_UNITS.find(unit => expirationDuration.value.get(unit) !== 0) || 'seconds'
 })
+
 const isPast = computed(() => {
   return expirationDuration.value.as('milliseconds') < 0
 })
+
 const isNow = computed(() => {
   return expirationDuration.value.as('milliseconds') === 0
 })
@@ -71,7 +88,7 @@ onBeforeUnmount(() => {
 
 function update() {
   if (isPast.value) {
-    relativeUpdated.value = props.datetime.setLocale('en-US').toRelative()
+    relativeUpdated.value = props.timestamp.setLocale('en-US').toRelative()
   } else if (isNow.value) {
     relativeUpdated.value = 'now'
   } else {
@@ -81,7 +98,8 @@ function update() {
 </script>
 
 <style scoped>
-.datetime-label {
+.timestamp-label {
   display: inline-flex;
+  align-items: center;
 }
 </style>

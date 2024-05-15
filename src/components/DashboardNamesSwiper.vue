@@ -51,7 +51,7 @@
           <tr>
             <th>
               <app-tooltip>
-                Activated
+                <time-toggle-button>Activated</time-toggle-button>
                 <template #tooltip>
                   {{ namesHints.activationTime }}
                 </template>
@@ -63,7 +63,7 @@
                 {{ name.activatedHeight }}
               </app-link>
               -
-              <datetime-label :datetime="name.activated"/>
+              <timestamp-label :timestamp="name.activated"/>
             </td>
           </tr>
         </tbody>
@@ -79,7 +79,6 @@ import { formatAePrice, formatNullable } from '@/utils/format'
 import { namesHints } from '@/utils/hints/namesHints'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>

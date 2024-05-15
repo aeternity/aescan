@@ -4,7 +4,7 @@ import { compileTemplate } from 'vue/compiler-sfc'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   srcDir: './src',
-  css: ['@/styles/main.css'],
+  css: ['@/assets/styles/main.css'],
   devServer: {
     port: 8080,
   },
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     plugins: {
       autoprefixer: {},
       '@csstools/postcss-global-data': {
-        files: ['src/styles/settings/_variables.css'],
+        files: ['src/assets/styles/settings/_variables.css'],
       },
       'postcss-custom-media': {},
       'postcss-import': {},

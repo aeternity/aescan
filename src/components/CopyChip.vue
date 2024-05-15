@@ -7,10 +7,14 @@
     <div class="copy-chip__container">
       <div class="copy-chip__text">
         {{ textToDisplay }}
+        <not-available-label
+          v-if="!textToDisplay"
+          class="copy-chip__not-available-label"/>
       </div>
-
       <copy-button
+        v-if="!!textToDisplay"
         v-show="!isCopyAnimationActive"
+        class="copy-chip__copy-button"
         :clipboard-text="clipboardText || label"
         variant="light"
         @copy:started="activateCopyAnimation"
@@ -54,17 +58,24 @@ function deactivateCopyAnimation() {
 
 <style scoped>
 .copy-chip {
-  min-width: 72px;
+  min-width: 39px;
 
   &__container {
     display: flex;
   }
 
   &__text {
-    margin-right: var(--space-1);
     display: flex;
     flex-grow: 1;
     justify-content: center;
+  }
+
+  &__not-available-label {
+    color: var(--color-white) !important;
+  }
+
+  &__copy-button {
+    margin-left: var(--space-1);
   }
 }
 </style>

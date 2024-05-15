@@ -31,7 +31,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   )
 
   const tokenHolders = computed(() =>
-    tokenDetails.value?.totalSupply && rawTokenHolders.value
+    tokenDetails.value && rawTokenHolders.value
       ? adaptTokenHolders(
         rawTokenHolders.value,
         tokenDetails.value,

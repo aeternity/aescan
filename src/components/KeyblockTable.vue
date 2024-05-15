@@ -54,13 +54,13 @@
 
       <tr>
         <th class="keyblock-table__column-start">
-          Mined
+          <time-toggle-button>Mined</time-toggle-button>
           <hint-tooltip class="keyblock-table__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table__data">
-          <datetime-label :datetime="keyblock.mined"/>
+          <timestamp-label :timestamp="keyblock.mined"/>
         </td>
         <th class="keyblock-table__column-end">
           BRI Reward
@@ -78,7 +78,6 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { formatAePrice, formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'

@@ -10,14 +10,14 @@
             Hash
           </th>
           <td>
-            <copy-chip
-              :label="transactionDetails.hash"
-              class="u-hidden-mobile"/>
-
-            <copy-chip
-              :label="formatEllipseHash(transactionDetails.hash)"
-              :clipboard-text="transactionDetails.hash"
-              class="u-hidden-desktop"/>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="transactionDetails.hash"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(transactionDetails.hash)"
+                :clipboard-text="transactionDetails.hash"/>
+            </div>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">

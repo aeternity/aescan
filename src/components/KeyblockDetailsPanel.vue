@@ -17,13 +17,14 @@
             Keyblock Hash
           </th>
           <td>
-            <copy-chip
-              :label="keyblockDetails.hash"
-              class="u-hidden-mobile"/>
-            <copy-chip
-              :label="formatEllipseHash(keyblockDetails.hash)"
-              :clipboard-text="keyblockDetails.hash"
-              class="u-hidden-desktop"/>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="keyblockDetails.hash"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(keyblockDetails.hash)"
+                :clipboard-text="keyblockDetails.hash"/>
+            </div>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">

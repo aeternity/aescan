@@ -10,13 +10,14 @@
             Contract ID
           </th>
           <td>
-            <copy-chip
-              :label="nftDetails.contractId"
-              class="u-hidden-mobile"/>
-            <copy-chip
-              :label="formatEllipseHash(nftDetails.contractId)"
-              :clipboard-text="nftDetails.contractId"
-              class="u-hidden-desktop"/>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="nftDetails.contractId"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(nftDetails.contractId)"
+                :clipboard-text="nftDetails.contractId"/>
+            </div>
           </td>
         </tr>
         <tr class="nfts-details-panel__row">

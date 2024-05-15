@@ -10,13 +10,14 @@
             State Channel ID
           </th>
           <td>
-            <copy-chip
-              :label="stateChannelDetails.id"
-              class="u-hidden-mobile"/>
-            <copy-chip
-              :label="formatEllipseHash(stateChannelDetails.id)"
-              :clipboard-text="stateChannelDetails.id"
-              class="u-hidden-desktop"/>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="stateChannelDetails.id"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(stateChannelDetails.id)"
+                :clipboard-text="stateChannelDetails.id"/>
+            </div>
           </td>
         </tr>
         <tr class="state-channel-details-panel__row">

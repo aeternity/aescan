@@ -18,20 +18,14 @@
             Account Address
           </th>
           <td>
-            <app-chip
-              v-if="accountDetails.isGeneralized"
-              size="sm">
-              Generalized
-            </app-chip>
-            <!--            todo generalized-->
-
-            <copy-chip
-              :label="accountDetails.id"
-              class="u-hidden-mobile"/>
-            <copy-chip
-              :label="formatEllipseHash(accountDetails.id)"
-              :clipboard-text="accountDetails.id"
-              class="u-hidden-desktop"/>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="accountDetails.id"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(accountDetails.id)"
+                :clipboard-text="accountDetails.id"/>
+            </div>
           </td>
         </tr>
         <tr class="account-details-panel__row">
@@ -66,6 +60,22 @@
           </th>
           <td>
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
+          </td>
+        </tr>
+        <tr
+          v-if="accountDetails.isGeneralized"
+          class="account-details-panel__row">
+          <th class="account-details-panel__table-header">
+            <hint-tooltip>
+              {{ accountHints.generalized }}
+            </hint-tooltip>
+            Is Generalized
+          </th>
+          <td>
+            <app-chip
+              size="sm">
+              Generalized
+            </app-chip>
           </td>
         </tr>
         <tr

@@ -10,13 +10,15 @@
             Oracle ID
           </th>
           <td>
-            <copy-chip
-              :label="oracleDetails.id"
-              class="u-hidden-mobile"/>
-            <copy-chip
-              :label="formatEllipseHash(oracleDetails.id)"
-              :clipboard-text="oracleDetails.id"
-              class="u-hidden-desktop"/>
+            <div class="u-hidden-mobile">
+              <copy-chip
+                :label="oracleDetails.id"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(oracleDetails.id)"
+                :clipboard-text="oracleDetails.id"/>
+            </div>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -177,24 +179,22 @@
             API links
           </th>
           <td>
-            <div class="oracle-details-panel__container">
-              <app-link
-                :to="oracleNodeUrl"
-                class="oracle-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
-              <app-link
-                :to="oracleMiddlewareUrl"
-                class="oracle-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              :to="oracleNodeUrl"
+              class="oracle-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
+            <app-link
+              :to="oracleMiddlewareUrl"
+              class="oracle-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>

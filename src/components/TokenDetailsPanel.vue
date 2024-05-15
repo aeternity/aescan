@@ -212,6 +212,7 @@ const fiatPrice = computed(() =>
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
+
     @media (--desktop) {
       gap: 0 var(--space-2);
     }

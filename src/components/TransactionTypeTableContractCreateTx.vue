@@ -131,7 +131,7 @@ const gasCosts = computed(() =>
     border-bottom: 1px solid var(--color-midnight-25);
 
     @media (--desktop) {
-      width: 400px;
+      width: var(--detail-column-width);
     }
   }
 

@@ -140,7 +140,7 @@ const microblockMiddlewareUrl = computed(() =>
     font-weight: normal;
 
     @media (--desktop) {
-      width: 400px;
+      width: var(--detail-column-width);
     }
   }
 

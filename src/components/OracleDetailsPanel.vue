@@ -5,10 +5,9 @@
         <tr class="oracle-details-panel__row">
           <th class="oracle-details-panel__table-header">
             <hint-tooltip>
-              {{ oraclesHints.registered }}
+              {{ oraclesHints.oracleId }}
             </hint-tooltip>
             Oracle ID
-          <!--            todo hints-->
           </th>
           <td>
             <copy-chip

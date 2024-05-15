@@ -5,7 +5,7 @@
         <tr class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
             <hint-tooltip>
-              {{ nftsHints.collectionName }}
+              {{ nftsHints.smartContractId }}
             </hint-tooltip>
             Contract ID
           </th>
@@ -124,7 +124,6 @@ defineProps({
 .nfts-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
 
     @media (--desktop) {
       width: 400px;
@@ -143,6 +142,8 @@ defineProps({
       margin-right: var(--space-3);
     }
   }
+
+  /*todo extensions*/
 
   &__extensions {
     display: flex;

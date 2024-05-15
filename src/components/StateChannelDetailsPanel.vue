@@ -5,7 +5,7 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             <hint-tooltip>
-              {{ stateChannelsHints.status }}
+              {{ stateChannelsHints.stateChannelId }}
             </hint-tooltip>
             State Channel ID
           </th>

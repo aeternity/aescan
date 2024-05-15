@@ -45,11 +45,13 @@ const { name } = storeToRefs(useNameDetailsStore())
 
 <style scoped>
 .name-pointers-custom-panel {
-  /*todo fix*/
-
   &__header {
     padding: var(--space-1) 0;
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 }
 </style>

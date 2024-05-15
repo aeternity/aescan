@@ -5,7 +5,7 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             <hint-tooltip>
-              {{ tokensHints.tokenName }}
+              {{ tokensHints.tokenSymbol }}
             </hint-tooltip>
             Symbol
           </th>

@@ -12,7 +12,7 @@
               {{ namesHints.accountPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
               v-if="pointers.account_pubkey"
               :to="`/accounts/${pointers.account_pubkey}`">
@@ -35,7 +35,7 @@
               {{ namesHints.channelPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             {{ formatNullable(pointers.channel) }}
           </td>
         </tr>
@@ -46,7 +46,7 @@
               {{ namesHints.contractPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
               v-if="pointers.contract_pubkey"
               :to="`/contracts/${pointers.contract_pubkey}`">
@@ -69,7 +69,7 @@
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             {{ formatNullable(pointers.oracle_pubkey) }}
           </td>
         </tr>
@@ -104,11 +104,9 @@ const pointers = computed(() => {
 .transaction-pointers-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
-  }
-
-  &__data {
-    word-wrap: break-word;
-    text-align: right;
+    @media (--desktop) {
+      width: 400px;
+    }
   }
 
   &__row:last-of-type &__table-header {

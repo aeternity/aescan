@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-name-update-tx__row">
         <th class="transaction-type-panel-name-update-tx__table-header">
-          Name
           <hint-tooltip>
-            {{ namesHints.name }}
+            {{ namesHints.nameId }}
           </hint-tooltip>
+          Name
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
           <app-link

@@ -5,7 +5,7 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[nameStatusHint + 'Height'] }}
+              {{ namesHints.nameId }}
             </hint-tooltip>
             Name
           </th>

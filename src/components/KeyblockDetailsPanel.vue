@@ -12,6 +12,23 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             <hint-tooltip>
+              {{ keyblocksHints.keyblockHash }}
+            </hint-tooltip>
+            Keyblock Hash
+          </th>
+          <td>
+            <copy-chip
+              :label="keyblockDetails.hash"
+              class="u-hidden-mobile"/>
+            <copy-chip
+              :label="formatEllipseHash(keyblockDetails.hash)"
+              :clipboard-text="keyblockDetails.hash"
+              class="u-hidden-desktop"/>
+          </td>
+        </tr>
+        <tr class="keyblock-details-panel__row">
+          <th class="keyblock-details-panel__table-header">
+            <hint-tooltip>
               {{ keyblocksHints.height }}
             </hint-tooltip>
             Height
@@ -33,23 +50,7 @@
             </div>
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            <hint-tooltip>
-              {{ keyblocksHints.height }}
-            </hint-tooltip>
-            Keyblock ID
-          </th>
-          <td>
-            <copy-chip
-              :label="keyblockDetails.hash"
-              class="u-hidden-mobile"/>
-            <copy-chip
-              :label="formatEllipseHash(keyblockDetails.hash)"
-              :clipboard-text="keyblockDetails.hash"
-              class="u-hidden-desktop"/>
-          </td>
-        </tr>
+
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             <hint-tooltip>

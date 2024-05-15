@@ -4,7 +4,7 @@
       <tr class="transaction-type-panel-name-claim-tx__row">
         <th class="transaction-type-panel-name-claim-tx__table-header">
           <hint-tooltip>
-            {{ namesHints.name }}
+            {{ namesHints.nameId }}
           </hint-tooltip>
           Name
         </th>

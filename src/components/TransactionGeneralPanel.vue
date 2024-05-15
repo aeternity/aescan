@@ -5,7 +5,7 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             <hint-tooltip>
-              {{ transactionsHints.keyblockHeight }}
+              {{ transactionsHints.hash }}
             </hint-tooltip>
             Hash
           </th>

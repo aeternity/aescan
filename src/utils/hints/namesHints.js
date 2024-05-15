@@ -1,6 +1,6 @@
 export const namesHints = {
   name: 'The æternity naming system (AENS) is a distributed, open, and built-in naming system on the æternity blockchain. Each .chain name is a unique, transferrable identifier that provides a way for users to map human-readable names to blockchain resources such as accounts, smart contracts, oracles, or state channels.',
-  nameInAuction: 'Unique identifier that may be configured to point to accounts, contracts, or oracles. names shorter than 13 characters are always auctioned.',
+  nameId: 'Unique identifier that may be configured to point to accounts, contracts, or oracles. names shorter than 13 characters are always auctioned.',
   expires: 'Keyblock height and estimated date and time when the name will be detached from the account. After expiration, the name enters into a revoked state and can be claimed again after a fixed timeout of 2016 keyblocks.',
   expiresTime: 'Estimated date and time when the name will be detached from the account.',
   expiresHeight: 'Keyblock height when the name will be detached from the account. After expiration, the name enters into a revoked state and can be claimed again after a fixed timeout of 2016 keyblocks.',
@@ -13,7 +13,7 @@ export const namesHints = {
   bidCount: 'Amount of bids in the auction.',
   ends: 'Keyblock height and estimated date and time when the auction ends.',
   endsTime: 'Estimated date and time when the auction ends.',
-  endsHeight: 'Keyblock height when the auction ends.',
+  endsHeight: 'Keyblock height when the a\\uction ends.',
   expired: 'Keyblock height and estimated date and time when the name has been detached from the account. Name passed revoked period and can be claimed again.',
   expiredTime: 'Estimated date and time when the name has been detached from the account. Name passed revoked period and can be claimed again.',
   expiredHeight: 'Keyblock height  when the name has been detached from the account. Name passed revoked period and can be claimed again.',

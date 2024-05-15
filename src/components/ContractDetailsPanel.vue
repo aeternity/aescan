@@ -5,9 +5,9 @@
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             <hint-tooltip>
-              {{ contractsHints.contractTxHash }}
+              {{ contractsHints.contractId }}
             </hint-tooltip>
-            Smart Contract
+            Smart Contract ID
           </th>
           <td class="contract-details-panel__data">
             <div class="u-hidden-mobile">

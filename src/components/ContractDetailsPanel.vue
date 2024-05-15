@@ -9,7 +9,7 @@
             </hint-tooltip>
             Smart Contract ID
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <div class="u-hidden-mobile">
               <copy-chip :label="contractDetails.id"/>
             </div>
@@ -30,12 +30,12 @@
             </hint-tooltip>
             Token
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <div class="contract-details-panel__container">
               <app-link
                 v-if="contractDetails.contractType === 'AEX-9'"
                 :to="`/tokens/${contractDetails.id}`"
-                class="contract-details-panel__token">
+                class="contract-details-panel__link">
                 <token-symbol-icon
                   :contract-id="contractDetails.id"
                   class="contract-details-panel__icon"/>
@@ -60,7 +60,7 @@
             </hint-tooltip>
             Create Transaction
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
               <span class="u-hidden-mobile">
                 {{ contractDetails.createTransactionHash }}
@@ -78,7 +78,7 @@
             </hint-tooltip>
             Created Height
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
               {{ contractDetails.creationHeight }}
             </app-link>
@@ -91,7 +91,7 @@
             </hint-tooltip>
             Created
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="contractDetails.creationDate"
               :is-extended="true"/>
@@ -106,7 +106,7 @@
             </hint-tooltip>
             Created By
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
               <span class="u-hidden-mobile">
                 {{ contractDetails.createdBy }}
@@ -126,7 +126,7 @@
             </hint-tooltip>
             Bytecode
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <copy-chip
               :label="formatEllipseHash(contractDetails.bytecode)"
               :clipboard-text="contractDetails.bytecode"/>
@@ -139,7 +139,7 @@
             </hint-tooltip>
             Smart Contract’s Account
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
               <span class="u-hidden-mobile">
                 {{ contractDetails.contractAccount }}
@@ -157,7 +157,7 @@
             </hint-tooltip>
             Smart Contract's Account Balance
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             {{ formatAePrice(formatAettosToAe(contractDetails.contractAccountBalance), null) }}
           </td>
         </tr>
@@ -168,7 +168,7 @@
             </hint-tooltip>
             Smart Contract Calls
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             {{ contractDetails.callsCount }}
           </td>
         </tr>
@@ -179,7 +179,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link
               :to="contractNodeUrl"
               class="contract-details-panel__link">
@@ -253,8 +253,6 @@ const contractMiddlewareUrl = computed(() =>
     display: flex;
   }
 
-  /*todo container and whitespacing*/
-
   &__link {
     display: inline-flex;
     align-items: center;
@@ -262,13 +260,6 @@ const contractMiddlewareUrl = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
-  }
-
-  /*todo link*/
-
-  &__token {
-    display: flex;
-    align-items: center;
   }
 
   &__icon {

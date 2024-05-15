@@ -143,12 +143,14 @@ defineProps({
     }
   }
 
-  /*todo extensions*/
-
   &__extensions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);
+
+    @media (--desktop) {
+      gap: 0 var(--space-1);
+    }
   }
 }
 </style>

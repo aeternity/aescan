@@ -10,10 +10,12 @@
             Symbol
           </th>
           <td>
-            <token-symbol-icon
-              :contract-id="tokenDetails.contractId"
-              class="token-details-panel__icon"/>
-            <copy-chip :label="tokenDetails.symbol"/>
+            <div class="token-details-panel__link">
+              <token-symbol-icon
+                :contract-id="tokenDetails.contractId"
+                class="token-details-panel__icon"/>
+              <copy-chip :label="tokenDetails.symbol"/>
+            </div>
           </td>
         </tr>
         <tr class="token-details-panel__row">
@@ -197,10 +199,6 @@ const fiatPrice = computed(() =>
     border-bottom: 0;
   }
 
-  &__container {
-    display: flex;
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;
@@ -209,10 +207,10 @@ const fiatPrice = computed(() =>
   &__extensions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    gap: var(--space-1);
 
     @media (--desktop) {
-      gap: 0 var(--space-2);
+      gap: 0 var(--space-1);
     }
   }
 

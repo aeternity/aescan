@@ -23,9 +23,7 @@
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix",
     "lint:js": "eslint --ext .ts,.js,.vue src",
     "lint:style": "stylelint \"./src/**/*.vue\" \"src/**/*.css\"",
-    "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install",
-    "e2e:run": "cypress run",
-    "e2e:open": "cypress open"
+    "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install"
   },
   "dependencies": {
     "@aeternity/aepp-sdk": "^13.3.2",

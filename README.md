@@ -135,7 +135,7 @@ get involved!
 Stay up-to-date on the latest developments in the æternity ecosystem by following us on social media.
 
 - [Forum](https://forum.aeternity.com/)
-  - [X](https://x.com/aeternity)
+- [X](https://x.com/aeternity)
 - [Youtube](https://www.youtube.com/@aeternityblockchain)
 - [Reddit](https://www.reddit.com/r/Aeternity/)
 - [Linkedin](https://www.linkedin.com/company/aeternity)

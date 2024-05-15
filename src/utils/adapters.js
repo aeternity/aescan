@@ -265,9 +265,10 @@ export function adaptCustomPointers(allPointers) {
     // separate special and custom pointers
     delete customPointers[specialPointerKey]
   })
-
-  const hasRawPointers = Object.values(allPointers)
-    .some(v => isAddressValid(v, Encoding.Bytearray))
+  const hasRawPointers = allPointers
+    ? Object.values(allPointers)
+      .some(v => isAddressValid(v, Encoding.Bytearray))
+    : null
 
   return Object.entries(customPointers).map(pointer => {
     const key = formatDecodeBase64(
@@ -307,7 +308,7 @@ export function adaptName(name, blockHeight, blockTime) {
     },
     customPointers,
   }
-
+  console.log('formattedName', formattedName)
   if (name.status === 'name' && name.active) {
     const blockCreatedTime = DateTime.fromMillis(blockTime)
     const heightDiff = blockHeight - name.info.activeFrom
@@ -316,7 +317,7 @@ export function adaptName(name, blockHeight, blockTime) {
     })
     formattedName.activatedHeight = name.info.activeFrom
   }
-
+  console.log('formattedName', formattedName)
   return formattedName
 }
 

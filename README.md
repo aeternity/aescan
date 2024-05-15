@@ -118,8 +118,7 @@ on a yearly basis.
 
 ## Testing
 
-This project uses [Applitools Visual AI](https://cypress.io/) for e2e testing.
-Locally can be run by ```cypress open```
+This project uses [Cypress](https://cypress.io/) for e2e testing. Tests can be executed using the command ```yarn e2e:open```.
 
 ## Contribution
 

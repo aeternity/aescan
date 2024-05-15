@@ -5,7 +5,6 @@
 
   <page-header>
     AENS Name
-
     <template #tooltip>
       {{ namesHints.name }}
       <app-link
@@ -13,9 +12,6 @@
         to="https://docs.aeternity.com/protocol/AENS/">
         Learn more
       </app-link>
-    </template>
-    <template #address>
-      {{ name.name }}
     </template>
   </page-header>
 

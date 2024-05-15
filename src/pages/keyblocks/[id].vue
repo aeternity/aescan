@@ -5,12 +5,8 @@
 
   <page-header>
     Keyblock
-
     <template #tooltip>
       {{ keyblocksHints.keyblock }}
-    </template>
-    <template #address>
-      {{ keyblockDetails.hash }}
     </template>
   </page-header>
 

@@ -157,11 +157,12 @@ const sanitizedPrice = computed(() =>
 <style scoped>
 .account-details-panel {
   &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
+
     @media (--desktop) {
       width: 400px;
     }
-    border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
   }
 
   &__row:last-of-type &__table-header {
@@ -170,7 +171,6 @@ const sanitizedPrice = computed(() =>
 
   &__container {
     display: flex;
-    justify-content: flex-end;
   }
 
   &__link {

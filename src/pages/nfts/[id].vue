@@ -8,9 +8,6 @@
     <template #tooltip>
       {{ nftsHints.nft }}
     </template>
-    <template #address>
-      {{ nft.contractId }}
-    </template>
   </page-header>
   <template v-if="!isLoading">
     <nft-details-panel

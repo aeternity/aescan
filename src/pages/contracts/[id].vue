@@ -13,9 +13,6 @@
         Learn more
       </app-link>
     </template>
-    <template #address>
-      {{ contractDetails.id }}
-    </template>
   </page-header>
 
   <template v-if="!isLoading">

@@ -14,9 +14,6 @@
         Learn more
       </app-link>
     </template>
-    <template #address>
-      {{ oracleDetails.id }}
-    </template>
   </page-header>
 
   <template v-if="!isLoading">

@@ -9,10 +9,11 @@
             </hint-tooltip>
             Hash
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <copy-chip
               :label="transactionDetails.hash"
               class="u-hidden-mobile"/>
+
             <copy-chip
               :label="formatEllipseHash(transactionDetails.hash)"
               :clipboard-text="transactionDetails.hash"
@@ -26,7 +27,7 @@
             </hint-tooltip>
             Transaction Type
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             {{ transactionDetails.type }}
           </td>
         </tr>
@@ -37,7 +38,7 @@
             </hint-tooltip>
             Keyblock Height
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <app-link
               :to="`/keyblocks/${transactionDetails.blockHeight}`">
               {{ transactionDetails.blockHeight }}
@@ -51,7 +52,7 @@
             </hint-tooltip>
             Keyblock Confirmations
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             {{ transactionDetails.confirmations }}
           </td>
         </tr>
@@ -62,7 +63,7 @@
             </hint-tooltip>
             Status
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <app-chip
               v-if="transactionDetails.isMined"
               variant="success">
@@ -84,7 +85,7 @@
             </hint-tooltip>
             Microblock Hash
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <app-link
               :to="`/microblocks/${transactionDetails.blockHash}`"
               class="u-hidden-mobile">
@@ -106,7 +107,7 @@
             </hint-tooltip>
             Created
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <timestamp-label
               :timestamp="transactionDetails.created"
               :is-extended="true"/>
@@ -119,7 +120,7 @@
             </hint-tooltip>
             Fee
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             {{ formatAePrice(formatAettosToAe(transactionDetails.fee), null) }}
           </td>
         </tr>
@@ -130,7 +131,7 @@
             </hint-tooltip>
             Nonce
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             {{ transactionDetails.nonce }}
           </td>
         </tr>
@@ -141,7 +142,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <div class="transaction-general-panel__container">
               <app-link
                 :to="transactionNodeUrl"
@@ -197,33 +198,21 @@ const transactionMiddlewareUrl = computed(() => {
 
 <style scoped>
 .transaction-general-panel {
-  &__container {
-    display: inline-flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-1);
-    margin-bottom: var(--space-1);
-
-    @media (--desktop) {
-      justify-content: flex-end;
-      margin-bottom: 0;
-    }
-  }
-
   &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
+
     @media (--desktop) {
       width: 400px;
     }
-    border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
-  }
-
-  &__data {
-    text-align: left;
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: flex;
   }
 
   &__link {

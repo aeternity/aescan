@@ -8,9 +8,6 @@
     <template #tooltip>
       {{ accountHints.account }}
     </template>
-    <template #address>
-      {{ accountDetails.id }}
-    </template>
   </page-header>
 
   <template v-if="!isLoading">

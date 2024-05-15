@@ -5,12 +5,8 @@
 
   <page-header>
     Transaction
-
     <template #tooltip>
       {{ transactionsHints.transaction }}
-    </template>
-    <template #address>
-      {{ transactionDetails.hash }}
     </template>
   </page-header>
 

@@ -5,7 +5,6 @@
 
   <page-header>
     State Channel
-
     <template #tooltip>
       {{ stateChannelsHints.stateChannel }}
       <app-link
@@ -13,9 +12,6 @@
         to="https://aeternity.com/state-channels">
         Learn more
       </app-link>
-    </template>
-    <template #address>
-      {{ stateChannelDetails.id }}
     </template>
   </page-header>
 

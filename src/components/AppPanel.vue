@@ -36,19 +36,5 @@
   &__heading {
     margin-bottom: var(--space-1);
   }
-
-  &__container {
-    padding: var(--space-1) 0;
-    display: flex;
-    gap: var(--space-1);
-
-    @media (--desktop) {
-      padding: 0;
-    }
-
-    &:empty {
-      padding: 0;
-    }
-  }
 }
 </style>

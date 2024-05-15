@@ -187,10 +187,11 @@ const fiatPrice = computed(() =>
 
 <style scoped>
 .token-details-panel {
-  border-bottom: 1px solid var(--color-midnight-25);
-  font-weight: normal;
 
   &__table-header {
+    border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
+
     @media (--desktop) {
       width: 400px;
     }
@@ -201,16 +202,7 @@ const fiatPrice = computed(() =>
   }
 
   &__container {
-    display: inline-flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-1);
-    margin-bottom: var(--space-1);
-
-    @media (--desktop) {
-      justify-content: flex-end;
-      margin-bottom: 0;
-    }
+    display: flex;
   }
 
   &__link {
@@ -221,8 +213,10 @@ const fiatPrice = computed(() =>
   &__extensions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-1);
-    justify-content: flex-end;
+    gap: var(--space-2);
+    @media (--desktop) {
+      gap: 0 var(--space-2);
+    }
   }
 
   &__icon {

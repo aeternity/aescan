@@ -5,12 +5,8 @@
 
   <page-header>
     Token
-
     <template #tooltip>
       {{ tokensHints.token }}
-    </template>
-    <template #address>
-      {{ tokenDetails.symbol }}
     </template>
   </page-header>
 

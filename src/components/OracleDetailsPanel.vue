@@ -256,13 +256,7 @@ const oracleMiddlewareUrl = computed(() =>
   }
 
   &__container {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    @media (--desktop) {
-      flex-direction: row;
-    }
+    display: flex;
   }
 
   &__block {

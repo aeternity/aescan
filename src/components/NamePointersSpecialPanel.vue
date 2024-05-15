@@ -123,6 +123,8 @@ const { name } = storeToRefs(useNameDetailsStore())
     text-align: right;
   }
 
+  /*todo fix*/
+
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
   }

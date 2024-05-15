@@ -18,12 +18,6 @@
                 :label="formatEllipseHash(contractDetails.id)"
                 :clipboard-text="contractDetails.id"/>
             </div>
-            <app-chip
-              v-if="contractDetails?.contractType"
-              size="sm">
-              {{ contractDetails.contractType }}
-            </app-chip>
-          <!--            todo contract type-->
           </td>
         </tr>
 
@@ -37,10 +31,9 @@
             Token
           </th>
           <td class="contract-details-panel__data">
-            <div
-              v-if="contractDetails.contractType === 'AEX-9'"
-              class="contract-details-panel__token-container">
+            <div class="contract-details-panel__container">
               <app-link
+                v-if="contractDetails.contractType === 'AEX-9'"
                 :to="`/tokens/${contractDetails.id}`"
                 class="contract-details-panel__token">
                 <token-symbol-icon
@@ -49,12 +42,15 @@
                 {{ contractDetails.tokenDetails.symbol }}
                 <not-available-label v-if="!contractDetails.tokenDetails.symbol"/>
               </app-link>
+              <app-link
+                v-if="contractDetails.contractType === 'AEX-141'"
+                :to="`/nfts/${contractDetails.id}`">
+                {{ contractDetails.tokenDetails.name }}
+              </app-link>
+              <app-chip size="sm">
+                {{ contractDetails.contractType }}
+              </app-chip>
             </div>
-            <app-link
-              v-if="contractDetails.contractType === 'AEX-141'"
-              :to="`/nfts/${contractDetails.id}`">
-              {{ contractDetails.tokenDetails.name }}
-            </app-link>
           </td>
         </tr>
         <tr class="contract-details-panel__row">
@@ -255,6 +251,12 @@ const contractMiddlewareUrl = computed(() =>
     border-bottom: 0;
   }
 
+  &__container {
+    display: flex;
+  }
+
+  /*todo container and whitespacing*/
+
   &__link {
     display: inline-flex;
     align-items: center;
@@ -264,11 +266,7 @@ const contractMiddlewareUrl = computed(() =>
     }
   }
 
-  &__token-container {
-    height: 24px;
-    display: flex;
-    justify-content: flex-end;
-  }
+  /*todo link*/
 
   &__token {
     display: flex;
@@ -279,20 +277,6 @@ const contractMiddlewareUrl = computed(() =>
     width: 24px;
     height: 24px;
     margin-right: var(--space-1);
-  }
-
-  &__container {
-    height: 24px;
-    display: inline-flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-1);
-    margin-bottom: var(--space-1);
-
-    @media (--desktop) {
-      justify-content: flex-end;
-      margin-bottom: 0;
-    }
   }
 }
 </style>

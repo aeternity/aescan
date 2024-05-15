@@ -5,15 +5,11 @@
 
   <page-header>
     Microblock
-
     <template #tooltip>
       {{ microblocksHints.microblock }}
     </template>
-
-    <template #address>
-      {{ microblockDetails.hash }}
-    </template>
   </page-header>
+
   <template v-if="!isLoading">
     <microblock-details-panel
       class="microblock-details__microblock-details-panel"

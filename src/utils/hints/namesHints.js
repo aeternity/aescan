@@ -13,7 +13,7 @@ export const namesHints = {
   bidCount: 'Amount of bids in the auction.',
   ends: 'Keyblock height and estimated date and time when the auction ends.',
   endsTime: 'Estimated date and time when the auction ends.',
-  endsHeight: 'Keyblock height when the a\\uction ends.',
+  endsHeight: 'Keyblock height when the auction ends.',
   expired: 'Keyblock height and estimated date and time when the name has been detached from the account. Name passed revoked period and can be claimed again.',
   expiredTime: 'Estimated date and time when the name has been detached from the account. Name passed revoked period and can be claimed again.',
   expiredHeight: 'Keyblock height  when the name has been detached from the account. Name passed revoked period and can be claimed again.',

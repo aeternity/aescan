@@ -271,15 +271,10 @@ export function adaptCustomPointers(allPointers) {
     : null
 
   return Object.entries(customPointers).map(pointer => {
-    const key = formatDecodeBase64(
-      // uppercase first letter as compensation for camelcaseKeysDeep
-      pointer[0].charAt(0).toUpperCase() + pointer[0].slice(1),
-    )
-
     return {
-      key,
+      key: formatDecodeBase64(pointer[0]),
       pointer: hasRawPointers ? decode(pointer[1]).toString() : pointer[1],
-      hasRawPointers,
+      isRawPointer: hasRawPointers,
     }
   })
 }
@@ -301,14 +296,13 @@ export function adaptName(name, blockHeight, blockTime) {
     ),
     isRevoked: name.active === false && name.info.expireHeight + REVOKED_PERIOD > blockHeight,
     specialPointers: {
-      account: name.info?.pointers?.accountPubkey,
+      account: name.info?.pointers?.account_pubkey,
       channel: name.info?.pointers?.channel,
-      contract: name.info?.pointers?.contractPubkey,
-      oracle: name.info?.pointers?.oraclePubkey,
+      contract: name.info?.pointers?.contract_pubkey,
+      oracle: name.info?.pointers?.oracle_pubkey,
     },
     customPointers,
   }
-  console.log('formattedName', formattedName)
   if (name.status === 'name' && name.active) {
     const blockCreatedTime = DateTime.fromMillis(blockTime)
     const heightDiff = blockHeight - name.info.activeFrom
@@ -317,7 +311,6 @@ export function adaptName(name, blockHeight, blockTime) {
     })
     formattedName.activatedHeight = name.info.activeFrom
   }
-  console.log('formattedName', formattedName)
   return formattedName
 }
 

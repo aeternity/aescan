@@ -22,7 +22,7 @@
           <td>{{ pointer.key }}</td>
           <td>
             <value-hash-ellipsed
-              v-if="!pointer.hasRawPointers"
+              v-if="!pointer.isRawPointer"
               :hash="pointer.pointer"
               :link-to="`/accounts/${pointer.pointer}`"/>
             <template v-else>

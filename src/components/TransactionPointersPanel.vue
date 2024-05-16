@@ -14,13 +14,13 @@
           </th>
           <td class="transaction-pointers-panel__data">
             <app-link
-              v-if="pointers.accountPubkey"
-              :to="`/accounts/${pointers.accountPubkey}`">
+              v-if="pointers.account_pubkey"
+              :to="`/accounts/${pointers.account_pubkey}`">
               <span class="u-hidden-mobile">
-                {{ pointers.accountPubkey }}
+                {{ pointers.account_pubkey }}
               </span>
               <span class="u-hidden-desktop">
-                {{ formatEllipseHash(pointers.accountPubkey) }}
+                {{ formatEllipseHash(pointers.account_pubkey) }}
               </span>
             </app-link>
             <template v-else>
@@ -48,13 +48,13 @@
           </th>
           <td class="transaction-pointers-panel__data">
             <app-link
-              v-if="pointers.contractPubkey"
-              :to="`/contracts/${pointers.contractPubkey}`">
+              v-if="pointers.contract_pubkey"
+              :to="`/contracts/${pointers.contract_pubkey}`">
               <span class="u-hidden-mobile">
-                {{ pointers.contractPubkey }}
+                {{ pointers.contract_pubkey }}
               </span>
               <span class="u-hidden-desktop">
-                {{ formatEllipseHash(pointers.contractPubkey) }}
+                {{ formatEllipseHash(pointers.contract_pubkey) }}
               </span>
             </app-link>
             <template v-else>
@@ -70,7 +70,7 @@
             </hint-tooltip>
           </th>
           <td class="transaction-pointers-panel__data">
-            {{ formatNullable(pointers.oraclePubkey) }}
+            {{ formatNullable(pointers.oracle_pubkey) }}
           </td>
         </tr>
       </tbody>

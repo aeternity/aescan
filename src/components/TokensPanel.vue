@@ -7,7 +7,7 @@
       :limit="limit"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
-      <template #header>
+      <template #end>
         <token-select
           v-if="NETWORK_NAME !== 'TESTNET'"
           v-model="selectedTokenName"/>

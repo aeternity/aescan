@@ -7,7 +7,7 @@
       :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
-      <template #header>
+      <template #end>
         <transactions-select v-model="selectedTxType"/>
       </template>
       <microblock-transactions-table

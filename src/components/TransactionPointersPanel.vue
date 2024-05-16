@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-pointers-panel">
-    <template #heading>
+    <template #title>
       NAME POINTERS
     </template>
-    <table class="transaction-pointers-panel__table">
+    <table>
       <tbody>
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">

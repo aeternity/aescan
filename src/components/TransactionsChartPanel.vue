@@ -1,9 +1,9 @@
 <template>
   <app-panel>
-    <template #heading>
+    <template #title>
       TRANSACTIONS TREND
     </template>
-    <template #header>
+    <template #end>
       <transactions-select
         v-if="hasSelect"
         v-model="selectedTxType"

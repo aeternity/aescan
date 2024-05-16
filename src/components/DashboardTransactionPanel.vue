@@ -9,7 +9,7 @@
       <template #tooltip>
         {{ transactionsHints.transaction }}
       </template>
-      <template #header>
+      <template #end>
         <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
           Displaying
           {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}

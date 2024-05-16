@@ -1,6 +1,6 @@
 <template>
   <app-panel class="name-pointers-custom-panel">
-    <template #heading>
+    <template #title>
       CUSTOM POINTERS
       <hint-tooltip>
         {{ namesHints.customPointers }}

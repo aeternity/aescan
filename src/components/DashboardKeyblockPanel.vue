@@ -6,7 +6,7 @@
         class="dashboard-keyblock-panel__dashboard-panel-header"
         title="KEYBLOCKS"
         icon-name="latest-keyblock">
-        <template #header>
+        <template #end>
           <div class="dashboard-keyblock-panel__summary dashboard-keyblock-panel__summary--desktop">
             Microblocks in selected keyblock:
             <span class="dashboard-keyblock-panel__count">

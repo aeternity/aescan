@@ -7,7 +7,7 @@
       :total-count="getOraclesCount(selectedOracleState.stateQuery)"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
-      <template #header>
+      <template #end>
         <oracles-select v-model="selectedOracleState"/>
       </template>
       <oracles-table

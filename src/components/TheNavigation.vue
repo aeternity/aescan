@@ -84,6 +84,10 @@ const menuOptions = ref([{
       name: 'Keyblocks',
       path: '/charts/keyblocks',
     },
+    {
+      name: 'Smart Contracts',
+      path: '/charts/contracts',
+    },
   ],
 }])
 

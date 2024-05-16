@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #heading>
-      CONTRACT CALLS
+      SMART CONTRACT CALLS
     </template>
     <template #header>
       <chart-controls
@@ -23,15 +23,21 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useContractsStore } from '@/stores/contracts'
+import { useChartsStore } from '@/stores/charts'
 import LineChart from '@/components/LineChart'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
-const contractsStore = useContractsStore()
-const { contractsStatistics } = storeToRefs(contractsStore)
-const { fetchContractsStatistics } = contractsStore
+const chartsStore = useChartsStore()
+const { contractsStatistics } = storeToRefs(chartsStore)
+const { fetchContractsStatistics } = chartsStore
 
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[0])
+const props = defineProps({
+  range: {
+    required: true,
+    type: Object,
+  },
+})
+
+const selectedRange = ref(props.range)
 
 await useAsyncData(async() => {
   await loadContractsStatistics()

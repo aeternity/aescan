@@ -1,5 +1,6 @@
 export const accountHints = {
   account: 'An account is an abstract cryptographic entity that can execute transactions and send or receive funds on the æternity blockchain. An account can also be converted into a so-called Generalized Account where a smart contract will be attached to the account and take over its authorization logic, thus enabling a variety of different use cases.',
+  address: 'Unique identifier of an account.',
   balance: 'Amount of AE owned by the account.',
   value: 'USD value of AE owned by the account.',
   transactions: 'Amount of transactions where the account was involved.',

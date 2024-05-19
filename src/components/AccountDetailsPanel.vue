@@ -1,8 +1,18 @@
 <template>
   <app-panel class="account-details-panel">
+    <div class="u-hidden-mobile">
+      <copy-chip :label="accountDetails.id"/>
+    </div>
+    <div class="u-hidden-desktop">
+      <copy-chip
+        :label="formatEllipseHash(accountDetails.id)"
+        :clipboard-text="accountDetails.id"/>
+    </div>
+
     <p
       v-if="accountDetails.isExistent === false"
       class="account-details-panel__not-existent">
+      <br>
       The account has never been seen in the network.
       <br>
       Details will be displayed once the account is directly involved in a native transaction, but the account can
@@ -13,9 +23,9 @@
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
             <hint-tooltip>
-              {{ accountHints.balance }}
+              {{ accountHints.address }}
             </hint-tooltip>
-            Account Address
+            Address
           </th>
           <td>
             <div class="u-hidden-mobile">
@@ -136,7 +146,7 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
+import { formatAePrice, formatEllipseHash, formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
 import AppChip from '@/components/AppChip'

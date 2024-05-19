@@ -49,8 +49,10 @@ const { name } = storeToRefs(useNameDetailsStore())
     padding: var(--space-1) 0;
     border-bottom: 1px solid var(--color-midnight-25);
 
-    @media (--desktop) {
-      width: var(--detail-column-width);
+    &:first-child {
+      @media (--desktop) {
+        width: var(--detail-column-width);
+      }
     }
   }
 }

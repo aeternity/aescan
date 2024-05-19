@@ -7,7 +7,7 @@
             <hint-tooltip>
               {{ transactionsHints.hash }}
             </hint-tooltip>
-            Hash
+            Transaction ID
           </th>
           <td>
             <div class="u-hidden-mobile">

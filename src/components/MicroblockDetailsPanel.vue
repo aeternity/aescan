@@ -5,18 +5,19 @@
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             <hint-tooltip>
-              {{ microblocksHints.keyblock }}
+              {{ microblocksHints.microblockId }}
             </hint-tooltip>
             Microblock ID
           </th>
           <td>
-            <copy-chip
-              :label="microblockDetails.hash"
-              class="u-hidden-mobile"/>
-            <copy-chip
-              :label="formatEllipseHash(microblockDetails.hash)"
-              :clipboard-text="microblockDetails.hash"
-              class="u-hidden-desktop"/>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="microblockDetails.hash"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(microblockDetails.hash)"
+                :clipboard-text="microblockDetails.hash"/>
+            </div>
           </td>
         </tr>
         <tr class="microblock-details-panel__row">

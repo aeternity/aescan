@@ -1,23 +1,23 @@
 <template>
   <app-panel class="account-details-panel">
-    <div class="u-hidden-mobile">
-      <copy-chip :label="accountDetails.id"/>
-    </div>
-    <div class="u-hidden-desktop">
-      <copy-chip
-        :label="formatEllipseHash(accountDetails.id)"
-        :clipboard-text="accountDetails.id"/>
-    </div>
+    <template v-if="accountDetails.isExistent === false">
+      <div class="u-hidden-mobile">
+        <copy-chip :label="accountDetails.id"/>
+      </div>
+      <div class="u-hidden-desktop">
+        <copy-chip
+          :label="formatEllipseHash(accountDetails.id)"
+          :clipboard-text="accountDetails.id"/>
+      </div>
 
-    <p
-      v-if="accountDetails.isExistent === false"
-      class="account-details-panel__not-existent">
-      <br>
-      The account has never been seen in the network.
-      <br>
-      Details will be displayed once the account is directly involved in a native transaction, but the account can
-      already receive custom tokens.
-    </p>
+      <p class="account-details-panel__not-existent">
+        <br>
+        The account has never been seen in the network.
+        <br>
+        Details will be displayed once the account is directly involved in a native transaction, but the account can
+        already receive custom tokens.
+      </p>
+    </template>
     <table v-else>
       <tbody>
         <tr class="account-details-panel__row">

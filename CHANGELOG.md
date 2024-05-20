@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.13.0](https://github.com/aeternity/aescan/compare/0.12.0...0.13.0) (2024-05-20)
+
+
+### Features
+
+* Blocks chart page ([#721](https://github.com/aeternity/aescan/issues/721)) ([46d504a](https://github.com/aeternity/aescan/commit/46d504aaa0d5e1fd04d91f1bf644fb3fecf58768))
+* Contract calls chart page ([#782](https://github.com/aeternity/aescan/issues/782)) ([a1ddc72](https://github.com/aeternity/aescan/commit/a1ddc72799518dab90e32cbb944177fc3ddacc49))
+* Display all testnet tokens ([#783](https://github.com/aeternity/aescan/issues/783)) ([faecd05](https://github.com/aeternity/aescan/commit/faecd05d590d87341c47d368c5e1e6e4136dfe66))
+* E2E testing ([#780](https://github.com/aeternity/aescan/issues/780)) ([0a8f912](https://github.com/aeternity/aescan/commit/0a8f912862aa9781649c1c38d4e8073e7870afc9))
+* Raw data pointer support for Ceres ([#761](https://github.com/aeternity/aescan/issues/761)) ([5190403](https://github.com/aeternity/aescan/commit/5190403f276a8dd864ba4e769abf594330b23271))
+* Some time-related labels are not aligned properly on mobile ([#788](https://github.com/aeternity/aescan/issues/788)) ([0254de1](https://github.com/aeternity/aescan/commit/0254de117da172df01679444afbfbdf73060b2fc))
+* Time format switch ([#720](https://github.com/aeternity/aescan/issues/720)) ([b986617](https://github.com/aeternity/aescan/commit/b986617482043f7ec615ca292e5a6c24c417caeb))
+* Transactions chart page ([#719](https://github.com/aeternity/aescan/issues/719)) ([ba1f59e](https://github.com/aeternity/aescan/commit/ba1f59eef7c902d8d8be650642752053a3771466))
+* Update Keyblock Reward tooltip and footer ([#760](https://github.com/aeternity/aescan/issues/760)) ([0d017ed](https://github.com/aeternity/aescan/commit/0d017edc72e1e4dfbb1ed93f24d15fd35a3b2826))
+* Update terms and conditions entity ([#759](https://github.com/aeternity/aescan/issues/759)) ([8325f42](https://github.com/aeternity/aescan/commit/8325f42fb86604c4cadbc2f5ebf445e00ca00318))
+
+
+### Bug Fixes
+
+* nft template listing ([#792](https://github.com/aeternity/aescan/issues/792)) ([8625ca6](https://github.com/aeternity/aescan/commit/8625ca6416e332831ec7db6e0c777a654a9378d4))
+* remove invisible noise in background-hero.svg ([#779](https://github.com/aeternity/aescan/issues/779)) ([ef48878](https://github.com/aeternity/aescan/commit/ef48878034606ebfffe28b34f4e0e08be287eab8))
+* Replace twitter icon for X ([#747](https://github.com/aeternity/aescan/issues/747)) ([b650cdf](https://github.com/aeternity/aescan/commit/b650cdf1d87b460fecff4db6006f2f824a2a549c))
+* Sanitize unhandled version values ([#753](https://github.com/aeternity/aescan/issues/753)) ([90afed8](https://github.com/aeternity/aescan/commit/90afed83a41ad991c42130b599e6f510d58bd748))
+
 ## [0.12.0](https://github.com/aeternity/aescan/compare/0.11.1...0.12.0) (2024-04-30)
 
 

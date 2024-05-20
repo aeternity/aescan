@@ -37,15 +37,16 @@
             {{ nft.templateId }}
           </td>
           <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
-            {{ nft.edition.supply }}
+            {{ nft.edition?.supply }}
           </td>
           <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
-            {{ nft.edition.limit }}
+            {{ nft.edition?.limit }}
           </td>
           <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
-              :link-to="`/transactions/${nft.edition.limitTxHash}`"
-              :hash="nft.edition.limitTxHash"/>
+              v-if="nft.txHash"
+              :link-to="`/transactions/${nft.txHash}`"
+              :hash="nft.txHash"/>
           </td>
           <td :class="[{'nfts-inventory-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
@@ -86,7 +87,7 @@ const props = defineProps({
 
 const isExpanded = ref([])
 
-watch(() => props.oracleEvents, () => {
+watch(() => props.nftInventory, () => {
   isExpanded.value = []
 })
 

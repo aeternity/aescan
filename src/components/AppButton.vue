@@ -122,6 +122,7 @@ defineProps({
 
   &--link {
     color: var(--color-blue);
+    text-align: left;
     text-decoration: none;
     font-weight: 400;
     border: 0;

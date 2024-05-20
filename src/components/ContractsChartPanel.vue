@@ -1,46 +1,58 @@
 <template>
   <app-panel>
     <template #heading>
-      CONTRACT CALLS
+      SMART CONTRACT CALLS
     </template>
     <template #header>
       <chart-controls
-        class="u-hidden-mobile"
-        @selected="loadContractsStatistics"/>
+        v-model="selectedRange"
+        class="u-hidden-mobile"/>
     </template>
 
     <div class="contracts-chart-panel__container">
       <line-chart
-        v-if="contractsStatistics"
-        :statistics="contractsStatistics"
-        :selected-interval="selectedInterval"/>
+        :data="contractsStatistics"
+        :interval="selectedRange.interval"/>
     </div>
 
     <chart-controls
-      class="contracts-chart-panel__controls u-hidden-desktop"
-      @selected="loadContractsStatistics"/>
+      v-model="selectedRange"
+      class="contracts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useContractsStore } from '@/stores/contracts'
+import { useChartsStore } from '@/stores/charts'
 import LineChart from '@/components/LineChart'
 
-const contractsStore = useContractsStore()
-const { contractsStatistics } = storeToRefs(contractsStore)
-const { fetchContractsStatistics } = contractsStore
+const chartsStore = useChartsStore()
+const { contractsStatistics } = storeToRefs(chartsStore)
+const { fetchContractsStatistics } = chartsStore
 
-const selectedInterval = ref('')
+const props = defineProps({
+  range: {
+    required: true,
+    type: Object,
+  },
+})
+
+const selectedRange = ref(props.range)
 
 await useAsyncData(async() => {
-  await fetchContractsStatistics()
+  await loadContractsStatistics()
   return true
 })
 
-async function loadContractsStatistics({ interval, limit, range }) {
-  selectedInterval.value = interval
-  await fetchContractsStatistics(interval, limit, range)
+watch(selectedRange, async() => {
+  await loadContractsStatistics()
+})
+
+async function loadContractsStatistics() {
+  await fetchContractsStatistics(
+    selectedRange.value.interval,
+    selectedRange.value.limit,
+    selectedRange.value.customInterval)
 }
 
 </script>

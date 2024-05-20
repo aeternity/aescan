@@ -116,9 +116,9 @@ Supports [evergreen](https://nuxt.com/blog/v3#the-browser-and-nodejs-support) br
 The core browser set targets the 2 most recent major versions of Chrome, Firefox, and Edge on a monthly basis and Safari
 on a yearly basis.
 
-## Tooling
+## Testing
 
-This project uses [Applitools Visual AI](https://applitools.com/) as part of its automated testing.
+This project uses [Cypress](https://cypress.io/) for e2e testing. Tests can be executed using the command ```yarn e2e:open```.
 
 ## Contribution
 
@@ -134,7 +134,7 @@ get involved!
 Stay up-to-date on the latest developments in the æternity ecosystem by following us on social media.
 
 - [Forum](https://forum.aeternity.com/)
-- [Twitter](https://twitter.com/aeternity)
+- [X](https://x.com/aeternity)
 - [Youtube](https://www.youtube.com/@aeternityblockchain)
 - [Reddit](https://www.reddit.com/r/Aeternity/)
 - [Linkedin](https://www.linkedin.com/company/aeternity)

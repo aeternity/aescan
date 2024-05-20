@@ -16,7 +16,9 @@
   </page-header>
 
   <template v-if="!isLoading">
-    <contracts-chart-panel class="contracts-panel"/>
+    <contracts-chart-panel
+      class="contracts-panel"
+      :range="CHART_INTERVALS_OPTIONS[0]"/>
     <contracts-panel class="contracts-panel"/>
   </template>
   <loader-panel v-else/>
@@ -26,6 +28,7 @@
 import ContractsPanel from '@/components/ContractsPanel'
 import PageHeader from '@/components/PageHeader'
 import { contractsHints } from '@/utils/hints/contractsHints'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

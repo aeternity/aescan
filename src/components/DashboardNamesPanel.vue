@@ -1,5 +1,5 @@
 <template>
-  <app-panel class="names-panel">
+  <app-panel class="dashboard-names-panel">
     <dashboard-panel-header
       level="h3"
       title="NAMES RECENTLY ACTIVATED"

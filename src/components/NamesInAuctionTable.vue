@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Ends
+          <time-toggle-button>Ends</time-toggle-button>
           <hint-tooltip>
             {{ namesHints.ends }}
           </hint-tooltip>
@@ -46,7 +46,7 @@
         <td>
           <block-time-cell
             :height="name.expirationHeight"
-            :datetime="name.expiration"/>
+            :timestamp="name.expiration"/>
         </td>
         <td>
           <app-chip

@@ -10,19 +10,19 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
-    <transactions-stats class="transactions-panel"/>
-    <transactions-chart-panel class="transactions-panel"/>
+    <transactions-statistics class="transactions-panel"/>
+    <transactions-chart-panel
+      :has-select="false"
+      :range="CHART_INTERVALS_OPTIONS[0]"
+      class="transactions-panel"/>
     <transactions-panel class="transactions-panel"/>
   </template>
   <loader-panel v-else/>
 </template>
 
 <script setup>
-import TransactionsPanel from '@/components/TransactionsPanel'
-import PageHeader from '@/components/PageHeader'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import TransactionsChartPanel from '@/components/TransactionsChartPanel'
-import TransactionsStats from '@/components/TransactionsStatistics'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

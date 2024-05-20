@@ -21,8 +21,8 @@
 
     <p class="terms-of-service__paragraph">
       These Terms of Service and any terms expressly incorporated herein (“Terms”) apply to your access to and use
-      of all services (our “Services”) provided by Aeternity Establishment, Dr. Grass Str. 12, FL-9490 Vaduz, PEID
-      / Steuernummer: 2528358, Vat-Nr.: 60 351 (“Company,” “we,” or “us”).
+      of all services (our “Services”) provided by Aeternity Foundation, Sofia district (capital), Sofia 1164, Lozenets
+      district, bul. "Hristo Smirnenski" 70, info@aeternity.com, Company-Nr.: 177240621 (“Company,” “we,” or “us”).
     </p>
 
     <h2 class="terms-of-service__subheading">
@@ -45,7 +45,7 @@
     </h2>
     <p class="terms-of-service__paragraph">
       All content on æScan, including text, graphics, logos, and software, is the property of Aeternity
-      Establishment or its licensors and is protected by copyright, trademark, and other intellectual property
+      Foundation or its licensors and is protected by copyright, trademark, and other intellectual property
       laws. You may not copy, modify, distribute, or create derivative works based on any content present on æScan
       without prior written consent.
     </p>
@@ -97,7 +97,7 @@
       risk.
     </p>
     <p class="terms-of-service__paragraph">
-      Aeternity Establishment is not responsible for any errors or omissions in the information on the site, or
+      Aeternity Foundation is not responsible for any errors or omissions in the information on the site, or
       for any loss or damage that may arise from your use of the site or its content. You should always conduct
       your own research and verification before making any decisions based on the information provided on æScan.
     </p>
@@ -106,7 +106,7 @@
       4. Limitation of Liability
     </h2>
     <p class="terms-of-service__paragraph">
-      In no event shall Aeternity Establishment or its affiliates, directors, officers, employees, or agents be
+      In no event shall Aeternity Foundation or its affiliates, directors, officers, employees, or agents be
       liable for any direct, indirect, incidental, special, or consequential damages arising out of or in
       connection with your use of æScan.
     </p>
@@ -120,7 +120,7 @@
       5. Indemnification
     </h2>
     <p class="terms-of-service__paragraph">
-      You agree to indemnify and hold harmless Aeternity Establishment and its affiliates, directors, officers,
+      You agree to indemnify and hold harmless Aeternity Foundation and its affiliates, directors, officers,
       employees, and agents from and against any and all claims, liabilities, damages, losses, or expenses,
       including reasonable attorneys' fees, arising out of or in connection with your use of æScan.
     </p>
@@ -182,7 +182,7 @@
       7. Modification of Terms and Conditions
     </h2>
     <p class="terms-of-service__paragraph">
-      Aeternity Establishment reserves the right to modify these terms and conditions at any time, without prior
+      Aeternity Foundation reserves the right to modify these terms and conditions at any time, without prior
       notice. Your continued use of æScan following any such modification constitutes your acceptance of the
       modified terms and conditions.
     </p>
@@ -206,7 +206,7 @@
       9. Termination of Access
     </h2>
     <p class="terms-of-service__paragraph">
-      Aeternity Establishment reserves the right to terminate your access to æScan at any time, for any
+      Aeternity Foundation reserves the right to terminate your access to æScan at any time, for any
       reason, without prior notice to you. In the event of such termination, these terms and conditions shall
       continue to remain in force.
     </p>
@@ -230,11 +230,11 @@
     </h2>
     <p class="terms-of-service__paragraph">
       æScan may contain links to third-party websites or resources that are not owned or controlled by
-      æScan. Aeternity Establishment has no control over and assumes no responsibility for the content, privacy
+      æScan. Aeternity Foundation has no control over and assumes no responsibility for the content, privacy
       policies, or practices of any third-party websites or resources.
     </p>
     <p class="terms-of-service__paragraph">
-      You acknowledge and agree that Aeternity Establishment is not responsible or liable for any damage
+      You acknowledge and agree that Aeternity Foundation is not responsible or liable for any damage
       or loss caused or alleged to be caused by or in connection with your use of or reliance on any such content,
       goods, or services available on or through any such website or resource.
     </p>
@@ -244,13 +244,13 @@
     </h2>
     <p class="terms-of-service__paragraph">
       æScan is provided on an "as is" and "as available" basis, without any warranties of any kind, either
-      express or implied. Aeternity Establishment makes no representations or warranties of any kind, whether
+      express or implied. Aeternity Foundation makes no representations or warranties of any kind, whether
       express or implied, as to the operation of the site, the information, content, materials, or products
       included on the site, or the results that may be obtained from using the site.
     </p>
     <p class="terms-of-service__paragraph">
-      Aeternity Establishment does not warrant that æScan will be uninterrupted, timely, secure, or
-      error-free, nor does Aeternity Establishment make any warranty as to the accuracy, completeness, or
+      Aeternity Foundation does not warrant that æScan will be uninterrupted, timely, secure, or
+      error-free, nor does Aeternity Foundation make any warranty as to the accuracy, completeness, or
       reliability of any information, content, materials, or products included on the site.
     </p>
 
@@ -259,9 +259,9 @@
     </h2>
     <p class="terms-of-service__paragraph">
       These terms and conditions, together with the Privacy Policy, constitute the entire agreement
-      between you and Aeternity Establishment with respect to your use of æScan, and supersede all prior or
+      between you and Aeternity Foundation with respect to your use of æScan, and supersede all prior or
       contemporaneous communications and proposals, whether oral or written, between you and Aeternity
-      Establishment.
+      Foundation.
     </p>
   </div>
 </template>

@@ -70,20 +70,38 @@
           v-if="isNameActive"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned Since
+            Owned Since Height
             <hint-tooltip>
-              {{ namesHints.ownedSince }}
+              {{ namesHints.ownedSinceHeight }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
-            <datetime-label :datetime="name.activated"/>
+            <app-link
+              :to="`/keyblocks/${name.expirationHeight}`">
+              {{ name.activatedHeight }}
+            </app-link>
+          </td>
+        </tr>
+        <tr
+          v-if="isNameActive"
+          class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            Owned Since
+            <hint-tooltip>
+              {{ namesHints.ownedSinceTime }}
+            </hint-tooltip>
+          </th>
+          <td class="name-details-panel__data">
+            <timestamp-label
+              :timestamp="name.activated"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ nameStatusLabel }}
+            {{ nameStatusLabel }} Height
             <hint-tooltip>
-              {{ namesHints[nameStatusHint] }}
+              {{ namesHints[nameStatusHint + 'Height'] }}
             </hint-tooltip>
           </th>
           <td class="name-details-panel__data">
@@ -91,9 +109,19 @@
               :to="`/keyblocks/${name.expirationHeight}`">
               {{ name.expirationHeight }}
             </app-link>
-            (
-            <datetime-label :datetime="name.expiration"/>
-            )
+          </td>
+        </tr>
+        <tr class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            {{ nameStatusLabel }}
+            <hint-tooltip>
+              {{ namesHints[nameStatusHint + 'Time'] }}
+            </hint-tooltip>
+          </th>
+          <td class="name-details-panel__data">
+            <timestamp-label
+              :timestamp="name.expiration"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="name-details-panel__row">
@@ -124,7 +152,6 @@ import CopyChip from '@/components/CopyChip'
 import HintTooltip from '@/components/HintTooltip'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatAePrice, formatEllipseHash } from '@/utils/format'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { name } = storeToRefs(useNameDetailsStore())
 

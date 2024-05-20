@@ -55,7 +55,9 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            <datetime-label :datetime="keyblockDetails.mined"/>
+            <timestamp-label
+              :timestamp="keyblockDetails.mined"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">

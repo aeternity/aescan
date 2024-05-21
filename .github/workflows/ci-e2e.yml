@@ -1,6 +1,11 @@
 name: E2E Tests
 
 on:
+  pull_request:
+    branches:
+      - develop
+      - release/*
+    types: [ opened, synchronize, closed ]
   workflow_run:
     workflows: ["Pull Request Preview pipelines Testnet"]
     types: [completed]

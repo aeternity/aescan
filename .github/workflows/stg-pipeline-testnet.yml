@@ -12,7 +12,7 @@ env:
   ENV: "stg"
   APP: "aescan-testnet"
 
-#concurrency: aescan_staging_environment-${{ github.ref }}
+concurrency: aescan_staging_environment-${{ github.ref }}
 
 jobs:
   main:

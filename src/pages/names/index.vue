@@ -44,7 +44,7 @@ import { useNamesStore } from '@/stores/names'
 import PageHeader from '@/components/PageHeader'
 import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
-import { CHART_INTERVALS_OPTIONS } from '~/utils/constants'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const TAB_KEYS = ['active', 'in-auction', 'expired']
 

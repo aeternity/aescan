@@ -88,6 +88,7 @@ export default defineNuxtConfig({
         url: 'https://sentry.dev.service.aepps.com/',
       }),
       sentryVitePlugin({
+        authToken: process.env.SENTRY_AUTH_TOKEN,
         org: 'sentry',
         project: 'aescan-production',
         url: 'https://sentry.dev.service.aepps.com/',

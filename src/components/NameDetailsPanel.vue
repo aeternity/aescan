@@ -106,8 +106,8 @@
           </th>
           <td class="name-details-panel__data">
             <app-link
-              :to="`/keyblocks/${name.expirationHeight || name.acutionEndsHeight}`">
-              {{ name.auctionEndsHeight || name.expirationHeight }}
+              :to="`/keyblocks/${name.expirationHeight}`">
+              {{ name.expirationHeight }}
             </app-link>
           </td>
         </tr>
@@ -120,7 +120,7 @@
           </th>
           <td class="name-details-panel__data">
             <timestamp-label
-              :timestamp="name.auctionEnds || name.expiration"
+              :timestamp="name.expiration"
               :is-extended="true"/>
           </td>
         </tr>

@@ -282,8 +282,6 @@ export function adaptCustomPointers(allPointers) {
 export function adaptName(name, blockHeight, blockTime) {
   const lastBid = name?.auction?.lastBid || name?.info?.lastBid
   const customPointers = adaptCustomPointers(name.info?.pointers)
-  const endHeight = name.auction?.auctionEnd || name?.info?.auctionEnd
-  const ends = name.auction?.approximateAuctionEndTime || name.info?.approximateAuctionEndTime
   const formattedName = {
     name: name.name,
     active: name.active,
@@ -291,17 +289,11 @@ export function adaptName(name, blockHeight, blockTime) {
     bidder: lastBid?.tx?.accountId,
     bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
     status: name.status,
-    expirationHeight: name.info.expireHeight,
-    expiration: name.info.expireHeight
-      ? formatBlockDiffAsDatetime(
-        name.info.expireHeight,
-        blockHeight,
-      )
-      : null,
-    auctionEndsHeight: endHeight,
-    auctionEnds: ends
-      ? DateTime.fromMillis(ends)
-      : null,
+    expirationHeight: name.info.expireHeight ?? name.info.auctionEnd,
+    expiration: formatBlockDiffAsDatetime(
+      name.info.expireHeight ?? name.info.auctionEnd,
+      blockHeight,
+    ),
     isRevoked: name.active === false && name.info.expireHeight + REVOKED_PERIOD > blockHeight,
     specialPointers: {
       account: name.info?.pointers?.account_pubkey,
@@ -311,6 +303,7 @@ export function adaptName(name, blockHeight, blockTime) {
     },
     customPointers,
   }
+
   if (name.status === 'name' && name.active) {
     const blockCreatedTime = DateTime.fromMillis(blockTime)
     const heightDiff = blockHeight - name.info.activeFrom

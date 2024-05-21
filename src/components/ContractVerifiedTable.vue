@@ -1,5 +1,5 @@
 <template>
-  <table class="contract-verified-table__table">
+  <table class="contract-verified-table">
     <tr class="contract-verified-table__row">
       <th class="contract-verified-table__header">
         License
@@ -74,10 +74,8 @@ defineProps({
 
 <style scoped>
 .contract-verified-table {
-  &__table {
-    padding: 0 var(--space-1) var(--space-7);
-    margin-bottom: var(--space-5);
-  }
+  padding: 0 var(--space-1) var(--space-7);
+  margin-bottom: var(--space-5);
 
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
@@ -90,6 +88,5 @@ defineProps({
   &__data {
     text-align: right;
   }
-
 }
 </style>

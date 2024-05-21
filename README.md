@@ -116,9 +116,9 @@ Supports [evergreen](https://nuxt.com/blog/v3#the-browser-and-nodejs-support) br
 The core browser set targets the 2 most recent major versions of Chrome, Firefox, and Edge on a monthly basis and Safari
 on a yearly basis.
 
-## Tooling
+## Testing
 
-This project uses [Applitools Visual AI](https://applitools.com/) as part of its automated testing.
+This project uses [Cypress](https://cypress.io/) for e2e testing. Tests can be executed using the command ```yarn e2e:open```.
 
 ## Contribution
 

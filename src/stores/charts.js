@@ -74,5 +74,8 @@ export const useChartsStore = defineStore('charts', () => {
     fetchTransactionsStatistics,
     fetchContractsStatistics,
     fetchNamesStatistics,
+    fetchKeyblocksStatistics,
+    fetchTransactionsStatistics,
+    fetchContractsStatistics,
   }
 })

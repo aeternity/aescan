@@ -22,6 +22,7 @@
                 :contract-id="token.contractId"
                 class="tokens-table-condensed__icon"/>
               {{ token.symbol }}
+              <not-available-label v-if="!token.symbol"/>
             </app-link>
           </td>
         </tr>
@@ -37,6 +38,7 @@
           </th>
           <td class="tokens-table-condensed__data">
             {{ token.name }}
+            <not-available-label v-if="!token.name"/>
           </td>
         </tr>
         <tr class="tokens-table-condensed__row">

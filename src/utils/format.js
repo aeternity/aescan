@@ -107,7 +107,6 @@ export function formatNameStatus(name) {
 }
 
 export function formatNameState(name, blockHeight) {
-  console.log('name', name)
   const isInAuction = () =>
     name.status === 'auction'
 
@@ -116,11 +115,10 @@ export function formatNameState(name, blockHeight) {
 
   const isRevoked = () =>
     isExpired() && name.active === false && name.info.expireHeight + REVOKED_PERIOD > blockHeight
-  // todo reuse block height
+
   const isActive = () =>
     name.active
 
-  // todo js match
   if (isInAuction()) {
     return 'auction'
   } else if (isRevoked()) {

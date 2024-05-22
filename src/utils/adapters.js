@@ -7,12 +7,13 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatNameState,
   formatNameStatus,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
 
-import { MINUTES_PER_BLOCK, REVOKED_PERIOD, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
+import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
@@ -284,25 +285,31 @@ export function adaptName(name, blockHeight, blockTime) {
   const customPointers = adaptCustomPointers(name.info?.pointers)
   const endHeight = name.auction?.auctionEnd || name?.info?.auctionEnd
   const ends = name.auction?.approximateAuctionEndTime || name.info?.approximateAuctionEndTime
-  const formattedName = {
+  const state = formatNameState(name, blockHeight)
+  const blockCreatedTime = DateTime.fromMillis(blockTime)
+  const activated = state === 'active'
+    ? blockCreatedTime.minus({
+      minutes: blockHeight - name.info.activeFrom * MINUTES_PER_BLOCK,
+    })
+    : null
+
+  return {
+    state,
     name: name.name,
     active: name.active,
     owner: name.info?.ownership?.current,
     bidder: lastBid?.tx?.accountId,
     bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
-    status: name.status,
+    activatedHeight: state === 'active' ? name.info.activeFrom : null,
+    activated,
     expirationHeight: name.info.expireHeight,
-    expiration: name.info.expireHeight
-      ? formatBlockDiffAsDatetime(
-        name.info.expireHeight,
-        blockHeight,
-      )
+    expiration: name.info.approximateExpireTime
+      ? DateTime.fromMillis(name.info.approximateExpireTime)
       : null,
     auctionEndsHeight: endHeight,
     auctionEnds: ends
       ? DateTime.fromMillis(ends)
       : null,
-    isRevoked: name.active === false && name.info.expireHeight + REVOKED_PERIOD > blockHeight,
     specialPointers: {
       account: name.info?.pointers?.account_pubkey,
       channel: name.info?.pointers?.channel,
@@ -311,15 +318,6 @@ export function adaptName(name, blockHeight, blockTime) {
     },
     customPointers,
   }
-  if (name.status === 'name' && name.active) {
-    const blockCreatedTime = DateTime.fromMillis(blockTime)
-    const heightDiff = blockHeight - name.info.activeFrom
-    formattedName.activated = blockCreatedTime.minus({
-      minutes: heightDiff * MINUTES_PER_BLOCK,
-    })
-    formattedName.activatedHeight = name.info.activeFrom
-  }
-  return formattedName
 }
 
 export function adaptNameActions(actions) {

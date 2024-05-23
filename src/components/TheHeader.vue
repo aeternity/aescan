@@ -50,7 +50,6 @@ import { storeToRefs } from 'pinia'
 import TheNavigation from '@/components/TheNavigation'
 import AppLink from '@/components/AppLink'
 import AppIcon from '@/components/AppIcon'
-import { isDesktop } from '@/utils/screen'
 import NetworkSelect from '@/components/NetworkSelect'
 import { useUiStore } from '@/stores/ui'
 import { useStatus } from '@/stores/status'
@@ -70,6 +69,11 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', closeNavigation)
 })
 
+watch(route, () => {
+  if (route.hash !== MENU_HASH) {
+    closeNavigation()
+  }
+})
 watch(() => route.fullPath, () => {
   if (route.hash !== MENU_HASH) {
     closeNavigation()

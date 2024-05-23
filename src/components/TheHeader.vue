@@ -48,18 +48,10 @@
 </template>
 
 <script setup>
-import { isDesktop } from '@/utils/screen'
-import { useWalletStore } from '~/stores/wallet'
 import { useStatus } from '@/stores/status'
 
 const route = useRoute()
 
-const {
-  aeSdk,
-  balance,
-} = storeToRefs(walletStore)
-
-const route = useRoute()
 const isNavigationOpen = ref(false)
 
 const { isSyncing } = storeToRefs(useStatus())

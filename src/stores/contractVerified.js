@@ -5,6 +5,7 @@ import useAxios from '@/composables/useAxios'
 import { useWalletStore } from '@/stores/wallet'
 import { useAesdk } from '@/stores/aesdk'
 import { useContractDetailsStore } from '@/stores/contractDetails'
+import { adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '~/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public

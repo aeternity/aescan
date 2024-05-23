@@ -3,10 +3,6 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    :class="[
-      'button',
-      size ? `button--${size}` : null,
-    ]"
     :disabled="disabled"
     :class="[
       'button',
@@ -148,7 +144,8 @@ defineProps({
     padding: 0;
 
     &:hover {
-      text-decoration: underline;}
+      text-decoration: underline;
+    }
   }
 }
 </style>

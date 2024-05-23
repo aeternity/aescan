@@ -58,13 +58,14 @@ if (process.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
   })
+
   watch(selectedTxType, () => {
     const typeQuery = selectedTxType.value?.typeQuery
     const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
     push(`/transactions${slug}`)
   })
 
-  if (!isHydrated.value) {
+  if (!isHydrated?.value) {
     loadTransactions()
   }
 }

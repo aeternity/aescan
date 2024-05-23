@@ -16,6 +16,7 @@ concurrency: aescan_staging_environment-${{ github.ref }}
 
 jobs:
   main:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -147,7 +148,7 @@ jobs:
   end-to-end-tests:
     needs: main
     runs-on: ubuntu-22.04
-    name: Run E2E Tests
+    name: E2E Tests
     timeout-minutes: 10
     steps:
       - name: Wait for 4 minutes

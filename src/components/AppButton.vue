@@ -3,10 +3,6 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    :class="[
-      'button',
-      size ? `button--${size}` : null,
-    ]"
     :disabled="disabled"
     :class="[
       'button',
@@ -155,17 +151,6 @@ defineProps({
   &--sm {
     border-radius: 0;
     padding: var(--space-2) var(--space-3);
-  }
-
-  &--link {
-    font-weight: 400;
-    background: transparent;
-    text-decoration: none;
-    color: var(--color-blue);
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 </style>

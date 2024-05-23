@@ -50,7 +50,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useStatus } from '@/stores/status'
-import { isDesktop } from '@/utils/screen'
 
 const route = useRoute()
 

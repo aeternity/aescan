@@ -70,30 +70,5 @@ const codeModel = ref(props.code)
   .mtk7 {
     color: var(--color-success);
   }
-
-  .line-numbers {
-    color: var(--color-midnight-25)
-  }
-
-  .mtk1 {
-    color: var(--color-midnight);
-  }
-
-  .mtk20 {
-    color: var(--color-fire);
-  }
-
-  .mtk6,
-  .mtk5,
-  .mtk1 .bracket-highlighting-3,
-  .mtk1 .bracket-highlighting-0 {
-    color: var(--color-blue);
-  }
-
-  .bracket-highlighting-1,
-  .mtk1 .bracket-highlighting-1,
-  .mtk7 {
-    color: var(--color-success);
-  }
 }
 </style>

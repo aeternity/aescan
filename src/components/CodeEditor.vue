@@ -71,8 +71,6 @@ const codeModel = ref(props.code)
     color: var(--color-success);
   }
 
-  }
-
   .line-numbers {
     color: var(--color-midnight-25)
   }
@@ -97,6 +95,5 @@ const codeModel = ref(props.code)
   .mtk7 {
     color: var(--color-success);
   }
-
 }
 </style>

@@ -48,7 +48,7 @@ async function loadNextTransactions() {
 async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-  selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
+  setSelectedTxType(txTypeOption || TX_TYPES_OPTIONS[0])
   await fetchTransactions(`/v3/transactions?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
   await fetchTransactionsCount(selectedTxType.value.typeQuery)
   setPageIndex(1)

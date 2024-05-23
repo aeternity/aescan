@@ -125,7 +125,6 @@ defineProps({
     text-align: left;
     text-decoration: none;
     font-weight: 400;
-    border: 0;
 
     background: transparent;
     padding: 0;
@@ -144,17 +143,6 @@ defineProps({
     background: transparent;
     padding: 0;
     border: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  &--link {
-    font-weight: 400;
-    background: transparent;
-    text-decoration: none;
-    color: var(--color-blue);
 
     &:hover {
       text-decoration: underline;

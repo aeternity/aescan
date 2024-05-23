@@ -11,7 +11,6 @@
       </div>
 
       <p class="account-details-panel__not-existent">
-        <br>
         The account has never been seen in the network.
         <br>
         Details will be displayed once the account is directly involved in a native transaction, but the account can

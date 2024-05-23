@@ -11,7 +11,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
-  const transactionsStatistics = ref(null)
   const isHydrated = ref(null)
   const pageIndex = ref(1)
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
@@ -58,8 +57,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactions,
     fetchTransactions,
     fetchTransactionsCount,
-    transactionsStatistics,
-    fetchTransactionsStatistics,
     isHydrated,
     pageIndex,
     selectedTxType,

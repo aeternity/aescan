@@ -672,3 +672,11 @@ export function adaptTopAccounts(topAccounts, distribution) {
       }
     })
 }
+
+export function adaptReadEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
+}
+
+export function adaptWriteEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
+}

@@ -27,7 +27,7 @@
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
             <app-tooltip>
-              Time
+              <time-toggle-button/>
               <template #tooltip>
                 {{ namesHints.eventTime }}
               </template>
@@ -36,7 +36,7 @@
           <td class="name-history-table-condensed__data">
             <block-time-cell
               :height="action.createdHeight"
-              :datetime="action.created"/>
+              :timestamp="action.created"/>
           </td>
         </tr>
         <tr class="name-history-table-condensed__row">

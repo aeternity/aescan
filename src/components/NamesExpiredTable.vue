@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Expired
+          <time-toggle-button>Expired</time-toggle-button>
           <hint-tooltip>
             {{ namesHints.expired }}
           </hint-tooltip>
@@ -18,6 +18,12 @@
           Last Buyer
           <hint-tooltip>
             {{ namesHints.lastBuyer }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Last Price
+          <hint-tooltip>
+            {{ namesHints.lastPrice }}
           </hint-tooltip>
         </th>
         <th>
@@ -40,15 +46,15 @@
         <td>
           <block-time-cell
             :height="name.expirationHeight"
-            :datetime="name.expiration"/>
+            :timestamp="name.expiration"/>
         </td>
         <td>
-          <div>
-            <value-hash-ellipsed
-              v-if="name.lastBuyer"
-              :hash="name.lastBuyer"
-              :link-to="`/accounts/${name.lastBuyer}`"/>
-          </div>
+          <value-hash-ellipsed
+            v-if="name.lastBuyer"
+            :hash="name.lastBuyer"
+            :link-to="`/accounts/${name.lastBuyer}`"/>
+        </td>
+        <td>
           <app-chip
             variant="secondary"
             class="names-expired-table__price-label">

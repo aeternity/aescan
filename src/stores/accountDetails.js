@@ -87,7 +87,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchTotalAccountTransactionsCount(accountId) {
     totalAccountTransactionsCount.value = null
-    const txCountUrl = new URL(`${MIDDLEWARE_URL}/v2/txs/count`)
+    const txCountUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions/count`)
     txCountUrl.searchParams.append('id', accountId)
     const { data } = await axios.get(txCountUrl.toString())
     totalAccountTransactionsCount.value = data
@@ -125,7 +125,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountActivities({ accountId, limit, queryParameters } = {}) {
     rawAccountActivities.value = null
-    const defaultParameters = `/v2/accounts/${accountId}/activities?limit=${limit ?? 10}`
+    const defaultParameters = `/v3/accounts/${accountId}/activities?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountActivities.value = data
   }
@@ -139,7 +139,7 @@ export const useAccountStore = defineStore('account', () => {
       return
     }
 
-    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v2/txs`)
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
     transactionsUrl.searchParams.append('limit', limit ?? 10)
 

@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Ends
+          <time-toggle-button>Ends</time-toggle-button>
           <hint-tooltip>
             {{ namesHints.ends }}
           </hint-tooltip>
@@ -18,6 +18,12 @@
           Highest Bid
           <hint-tooltip>
             {{ namesHints.highestBid }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Highest Bidder
+          <hint-tooltip>
+            {{ namesHints.highestBidder }}
           </hint-tooltip>
         </th>
         <th>
@@ -40,7 +46,14 @@
         <td>
           <block-time-cell
             :height="name.expirationHeight"
-            :datetime="name.expiration"/>
+            :timestamp="name.expiration"/>
+        </td>
+        <td>
+          <app-chip
+            variant="secondary"
+            class="names-in-auction-table__price-label">
+            {{ formatAePrice(name.bid) }}
+          </app-chip>
         </td>
         <td>
           <div>
@@ -48,11 +61,6 @@
               :hash="name.highestBidder"
               :link-to="`/accounts/${name.highestBidder}`"/>
           </div>
-          <app-chip
-            variant="secondary"
-            class="names-in-auction-table__price-label">
-            {{ formatAePrice(name.bid) }}
-          </app-chip>
         </td>
         <td>
           {{ name.bidCount }}
@@ -63,9 +71,7 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 

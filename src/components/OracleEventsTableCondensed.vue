@@ -40,7 +40,7 @@
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
             <app-tooltip>
-              Queried At
+              <time-toggle-button>Queried At</time-toggle-button>
               <template #tooltip>
                 {{ oraclesHints.queriedAt }}
               </template>
@@ -49,7 +49,22 @@
           <td class="oracle-events-table-condensed__data">
             <block-time-cell
               :height="event.queriedHeight"
-              :datetime="event.queriedAt"/>
+              :timestamp="event.queriedAt"/>
+          </td>
+        </tr>
+        <tr class="oracle-events-table-condensed__row">
+          <th class="oracle-events-table-condensed__header">
+            <app-tooltip>
+              Respond Tx
+              <template #tooltip>
+                {{ oraclesHints.respondTx }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="oracle-events-table-condensed__data">
+            <value-hash-ellipsed
+              :hash="event.respondTx"
+              :link-to="`/transactions/${event.respondTx}`"/>
           </td>
         </tr>
         <tr class="oracle-events-table-condensed__row">
@@ -58,9 +73,9 @@
               'oracle-events-table-condensed__header',
               {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             <app-tooltip>
-              Respond Tx
+              <time-toggle-button>Responded At</time-toggle-button>
               <template #tooltip>
-                {{ oraclesHints.respondTx }}
+                {{ oraclesHints.queriedAt }}
               </template>
             </app-tooltip>
           </th>
@@ -68,24 +83,9 @@
             :class="[
               'oracle-events-table-condensed__data',
               {'oracle-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
-            <value-hash-ellipsed
-              :hash="event.respondTx"
-              :link-to="`/transactions/${event.respondTx}`"/>
-          </td>
-        </tr>
-        <tr class="oracle-events-table-condensed__row">
-          <th class="oracle-events-table-condensed__header">
-            <app-tooltip>
-              Responded At
-              <template #tooltip>
-                {{ oraclesHints.queriedAt }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="oracle-events-table-condensed__data">
             <block-time-cell
               :height="event.respondedHeight"
-              :datetime="event.respondedAt"/>
+              :timestamp="event.respondedAt"/>
           </td>
         </tr>
         <tr
@@ -141,16 +141,17 @@ function toggle(id) {
     }
   }
 
-  &__row:last-of-type &__header {
-    border-bottom: 0;
-  }
-
   &__data {
     text-align: right;
 
     &--expanded {
       border-bottom: 0;
+      padding-bottom: 0;
     }
+  }
+
+  &__row:last-of-type &__header {
+    border-bottom: 0;
   }
 }
 </style>

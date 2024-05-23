@@ -1,5 +1,99 @@
 # Changelog
 
+## [0.13.0](https://github.com/aeternity/aescan/compare/0.12.0...0.13.0) (2024-05-20)
+
+
+### Features
+
+* Blocks chart page ([#721](https://github.com/aeternity/aescan/issues/721)) ([46d504a](https://github.com/aeternity/aescan/commit/46d504aaa0d5e1fd04d91f1bf644fb3fecf58768))
+* Contract calls chart page ([#782](https://github.com/aeternity/aescan/issues/782)) ([a1ddc72](https://github.com/aeternity/aescan/commit/a1ddc72799518dab90e32cbb944177fc3ddacc49))
+* Display all testnet tokens ([#783](https://github.com/aeternity/aescan/issues/783)) ([faecd05](https://github.com/aeternity/aescan/commit/faecd05d590d87341c47d368c5e1e6e4136dfe66))
+* E2E testing ([#780](https://github.com/aeternity/aescan/issues/780)) ([0a8f912](https://github.com/aeternity/aescan/commit/0a8f912862aa9781649c1c38d4e8073e7870afc9))
+* Raw data pointer support for Ceres ([#761](https://github.com/aeternity/aescan/issues/761)) ([5190403](https://github.com/aeternity/aescan/commit/5190403f276a8dd864ba4e769abf594330b23271))
+* Some time-related labels are not aligned properly on mobile ([#788](https://github.com/aeternity/aescan/issues/788)) ([0254de1](https://github.com/aeternity/aescan/commit/0254de117da172df01679444afbfbdf73060b2fc))
+* Time format switch ([#720](https://github.com/aeternity/aescan/issues/720)) ([b986617](https://github.com/aeternity/aescan/commit/b986617482043f7ec615ca292e5a6c24c417caeb))
+* Transactions chart page ([#719](https://github.com/aeternity/aescan/issues/719)) ([ba1f59e](https://github.com/aeternity/aescan/commit/ba1f59eef7c902d8d8be650642752053a3771466))
+* Update Keyblock Reward tooltip and footer ([#760](https://github.com/aeternity/aescan/issues/760)) ([0d017ed](https://github.com/aeternity/aescan/commit/0d017edc72e1e4dfbb1ed93f24d15fd35a3b2826))
+* Update terms and conditions entity ([#759](https://github.com/aeternity/aescan/issues/759)) ([8325f42](https://github.com/aeternity/aescan/commit/8325f42fb86604c4cadbc2f5ebf445e00ca00318))
+
+
+### Bug Fixes
+
+* nft template listing ([#792](https://github.com/aeternity/aescan/issues/792)) ([8625ca6](https://github.com/aeternity/aescan/commit/8625ca6416e332831ec7db6e0c777a654a9378d4))
+* remove invisible noise in background-hero.svg ([#779](https://github.com/aeternity/aescan/issues/779)) ([ef48878](https://github.com/aeternity/aescan/commit/ef48878034606ebfffe28b34f4e0e08be287eab8))
+* Replace twitter icon for X ([#747](https://github.com/aeternity/aescan/issues/747)) ([b650cdf](https://github.com/aeternity/aescan/commit/b650cdf1d87b460fecff4db6006f2f824a2a549c))
+* Sanitize unhandled version values ([#753](https://github.com/aeternity/aescan/issues/753)) ([90afed8](https://github.com/aeternity/aescan/commit/90afed83a41ad991c42130b599e6f510d58bd748))
+
+## [0.12.0](https://github.com/aeternity/aescan/compare/0.11.1...0.12.0) (2024-04-30)
+
+
+### Features
+
+* Hide token market cap  ([#711](https://github.com/aeternity/aescan/issues/711)) ([1e4d0b1](https://github.com/aeternity/aescan/commit/1e4d0b15ca5d5bbc1a6b6016cc3a24fc20284199))
+* internal Chain.spend values ([#700](https://github.com/aeternity/aescan/issues/700)) ([0b20a49](https://github.com/aeternity/aescan/commit/0b20a4934af2fdfbdf7da71edcf1883196399b8a))
+* Migrate to v3 endpoints pt1 ([#703](https://github.com/aeternity/aescan/issues/703)) ([99863de](https://github.com/aeternity/aescan/commit/99863dedbfc514aa83e48f1d0b1c2e72becb35f4))
+* revert listed tokens do not appear  ([#701](https://github.com/aeternity/aescan/issues/701)) ([917856b](https://github.com/aeternity/aescan/commit/917856b99bf0c98eec83e437cda591f2544f1fdd))
+* smart contract verification terms conditions ([#723](https://github.com/aeternity/aescan/issues/723)) ([ab51619](https://github.com/aeternity/aescan/commit/ab51619ccd4e67017fc3cd01ee34e3cbb34b5f96))
+* upgrade all dependencies ([#718](https://github.com/aeternity/aescan/issues/718)) ([4ec85a2](https://github.com/aeternity/aescan/commit/4ec85a2509a8ae89ae7dae1deb12dced1301405e))
+* Warning about MDW out of sync  ([#684](https://github.com/aeternity/aescan/issues/684)) ([1c9b7e5](https://github.com/aeternity/aescan/commit/1c9b7e5e01ddf2ccbcbe4cccda2974a867b2aa6f))
+* making call arguments collapsible ([#567](https://github.com/aeternity/aescan/issues/567)) ([e6f837e](https://github.com/aeternity/aescan/commit/e6f837ef8eb5a67dfb9e7faaca781f64b4414cd0))
+* update readme urls ([#698](https://github.com/aeternity/aescan/issues/698)) ([48beaa4](https://github.com/aeternity/aescan/commit/48beaa48fd98de60b658e0e4ff3f2c0cc8ceee07))
+* Update borders color ([#687](https://github.com/aeternity/aescan/issues/687)) ([b9ea0f8](https://github.com/aeternity/aescan/commit/b9ea0f8ba7dcf020c4d41c4d481a74e14f1cdfa4))
+* contract events arguments mismatch ([#686](https://github.com/aeternity/aescan/issues/686)) ([5d4474d](https://github.com/aeternity/aescan/commit/5d4474dac7a74b8f6f566f7f3d48aa7199c86223))
+* transaction trend in the last 24 hours ([#673](https://github.com/aeternity/aescan/issues/673)) ([8a0f329](https://github.com/aeternity/aescan/commit/8a0f329c54afe897653d1e0b1e58f3ac18578837))
+* Add smart contract verified ([#663](https://github.com/aeternity/aescan/issues/663)) ([432dd45](https://github.com/aeternity/aescan/commit/432dd45b75e7657b15eedacd5a532dd75843b7af))
+* Add smart contract verification ([#665](https://github.com/aeternity/aescan/issues/665)) ([835697b](https://github.com/aeternity/aescan/commit/835697b3fec31b386dab5244fc5fadc71c4e8b44))
+* New menu structure ([#627](https://github.com/aeternity/aescan/issues/627)) ([c2fc9b2](https://github.com/aeternity/aescan/commit/c2fc9b28f7cc2a7a52596275dd1072a646f458fa))
+* upgrade node version to v20 ([#656](https://github.com/aeternity/aescan/issues/656)) ([465c3da](https://github.com/aeternity/aescan/commit/465c3daf669ef49c8da05dc286df9225e1e0910a))
+* upgrade sdk to 13.3.2 ([#743](https://github.com/aeternity/aescan/issues/743)) ([b9c4101](https://github.com/aeternity/aescan/commit/b9c4101eb520c087bc0edb63949093edb364ee24))
+
+
+### Bug Fixes
+
+* Older button becomes broken in payingfor tx + UI fixes ([#708](https://github.com/aeternity/aescan/issues/708)) ([85e55cc](https://github.com/aeternity/aescan/commit/85e55cc641b563d46bf6e23099fae41ef0a8973d))
+* Separate direct file selection does not add files ([#731](https://github.com/aeternity/aescan/issues/731)) ([c611acf](https://github.com/aeternity/aescan/commit/c611acf8f1f5f2f46dd9e24cefcc76096028732c))
+* The full file path is not visible when Contract Files are uploaded ([#735](https://github.com/aeternity/aescan/issues/735)) ([3e08d3b](https://github.com/aeternity/aescan/commit/3e08d3b6346425299738aac18542bd095b46bd30))
+* Aligning in Custom pointers to chain names ([#682](https://github.com/aeternity/aescan/issues/682)) ([6d49a4c](https://github.com/aeternity/aescan/commit/6d49a4cab4312ef6c2618daa65e3075b0d85190a))
+* Improve transaction stats loading ([#683](https://github.com/aeternity/aescan/issues/683)) ([ee5a6eb](https://github.com/aeternity/aescan/commit/ee5a6ebbab3f9dd71dad0cb5807c3ed49fded20d))
+* When transaction is unavailable the app shows 500 error ([#675](https://github.com/aeternity/aescan/issues/675)) ([af475f3](https://github.com/aeternity/aescan/commit/af475f3549a284d0a1aa82fee9ba09ae82c50c72))
+* If user look at the activity of the selected account, then in the third step the view will break ([#672](https://github.com/aeternity/aescan/issues/672)) ([72e2176](https://github.com/aeternity/aescan/commit/72e2176a493566ccd1f7602bef453bab141f1f07))
+* fetching listed tokens ([#670](https://github.com/aeternity/aescan/issues/670)) ([4e67b2b](https://github.com/aeternity/aescan/commit/4e67b2bdb9c940beeb20f7aab1bc961a6f1fff55))
+* The full file path is not visible when Contract Files are uploaded ([#735](https://github.com/aeternity/aescan/issues/735)) ([3e08d3b](https://github.com/aeternity/aescan/commit/3e08d3b6346425299738aac18542bd095b46bd30))
+
+## [0.11.1](https://github.com/aeternity/aescan/compare/0.11.0...0.11.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* microblocks tabs visibility ([9d20189](https://github.com/aeternity/aescan/commit/9d20189acbc9316b96221bbc9f2e5f47aac6a8a6))
+
+## [0.11.0](https://github.com/aeternity/aescan/compare/0.10.0...0.11.0) (2024-01-22)
+
+
+### Features
+
+* add contract id to generalized account ([#598](https://github.com/aeternity/aescan/issues/598)) ([878e7e6](https://github.com/aeternity/aescan/commit/878e7e6eb0ddba22e96793174626c8f43dd97cb8))
+* Add custom date picker to charts 2 ([#611](https://github.com/aeternity/aescan/issues/611)) ([25f1b15](https://github.com/aeternity/aescan/commit/25f1b1531a3e725aaf00e1b5a2bd8a24f0405b9b))
+* Add dedicated columns to name tables ([#631](https://github.com/aeternity/aescan/issues/631)) ([fd5a31b](https://github.com/aeternity/aescan/commit/fd5a31b0d87cf3300651a35ce5586eb79d51c153))
+* Names charts ([#641](https://github.com/aeternity/aescan/issues/641)) ([e7350de](https://github.com/aeternity/aescan/commit/e7350de10b46554a2dab78261f6f6b69537e40c4))
+* show hint if AENS name is in revoked state 2 ([#609](https://github.com/aeternity/aescan/issues/609)) ([3df75d5](https://github.com/aeternity/aescan/commit/3df75d598143c1ec5b452f28b2c3fa6d8bb173b4))
+* Transaction stats 2 ([#618](https://github.com/aeternity/aescan/issues/618)) ([5161569](https://github.com/aeternity/aescan/commit/5161569da9a2842bdcea7adfc32889c5e5d8d0aa))
+* translate known addresses ([#573](https://github.com/aeternity/aescan/issues/573)) ([2bda957](https://github.com/aeternity/aescan/commit/2bda957fb2b08a7e6b9394752f3ce39f6bd6c847))
+* Update npm packages ([#622](https://github.com/aeternity/aescan/issues/622)) ([254b2d0](https://github.com/aeternity/aescan/commit/254b2d08a82fa10d4b45041b1ee7104edc141f38))
+* Update tabs design without space between the content ([#590](https://github.com/aeternity/aescan/issues/590)) ([aadf7a3](https://github.com/aeternity/aescan/commit/aadf7a31014d86cbccc5956cb0b656026f5db64d))
+
+
+### Bug Fixes
+
+* Account tabs overflow  ([#602](https://github.com/aeternity/aescan/issues/602)) ([1004010](https://github.com/aeternity/aescan/commit/1004010e56ce482c932878a8309c92813a8f56bb))
+* add search by nft and shorten search placehodler ([#626](https://github.com/aeternity/aescan/issues/626)) ([8f94d04](https://github.com/aeternity/aescan/commit/8f94d040514edafc3a5bd4a0c112c2c99fcc9f73))
+* double labels ([#604](https://github.com/aeternity/aescan/issues/604)) ([c15ebb6](https://github.com/aeternity/aescan/commit/c15ebb620bf1e77a276e13d6a69fea11d6466ca4))
+* In Auction names pagination bug ([#613](https://github.com/aeternity/aescan/issues/613)) ([d81dcf9](https://github.com/aeternity/aescan/commit/d81dcf90202fb6e0b20875880d3343ec26d5c378))
+* Refactor notExistent variables ([#599](https://github.com/aeternity/aescan/issues/599)) ([a115b2d](https://github.com/aeternity/aescan/commit/a115b2d7eadb25c0055ae09903084ec8a342c18a))
+* remove unused attempt for account names counter ([#600](https://github.com/aeternity/aescan/issues/600)) ([365b494](https://github.com/aeternity/aescan/commit/365b494576fe7bf6687bf6c7c001c4fe354ff0da))
+* search by hashes ([#591](https://github.com/aeternity/aescan/issues/591)) ([7269822](https://github.com/aeternity/aescan/commit/7269822dd28c3fbda1de075f8d06becb0b45af33))
+* Zoom is applied on Transaction page on mobile ([#640](https://github.com/aeternity/aescan/issues/640)) ([f217990](https://github.com/aeternity/aescan/commit/f217990a75d4ce89a7509df87da746b3386fae3e))
+
 ## [0.10.0](https://github.com/aeternity/aescan/compare/0.9.0...0.10.0) (2023-11-16)
 
 

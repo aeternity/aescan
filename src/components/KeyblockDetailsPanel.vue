@@ -55,7 +55,9 @@
             </hint-tooltip>
           </th>
           <td class="keyblock-details-panel__data">
-            <datetime-label :datetime="keyblockDetails.mined"/>
+            <timestamp-label
+              :timestamp="keyblockDetails.mined"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -194,7 +196,7 @@ const keyblockNodeUrl = computed(() =>
   `${NODE_URL}/v3/key-blocks/hash/${props.keyblockDetails.hash}`,
 )
 const keyblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/key-blocks/${props.keyblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/v3/key-blocks/${props.keyblockDetails.hash}`,
 )
 const isNextKeyblockMined = computed(() =>
   props.keyblockDetails.height < latestBlockHeight.value,
@@ -255,12 +257,6 @@ const isNextKeyblockMined = computed(() =>
         margin-right: var(--space-3);
       }
     }
-  }
-
-  &__keyblock-link--disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
-    pointer-events: none;
   }
 }
 </style>

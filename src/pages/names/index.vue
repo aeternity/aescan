@@ -5,7 +5,6 @@
 
   <page-header>
     Names
-
     <template #tooltip>
       {{ namesHints.name }}
       <app-link
@@ -16,6 +15,9 @@
     </template>
   </page-header>
   <template v-if="!isLoading">
+    <names-chart-panel
+      class="names__names-panel"
+      :range="CHART_INTERVALS_OPTIONS[0]"/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Active">
         <names-active-panel/>
@@ -42,6 +44,7 @@ import { useNamesStore } from '@/stores/names'
 import PageHeader from '@/components/PageHeader'
 import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
+import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 
 const TAB_KEYS = ['active', 'in-auction', 'expired']
 
@@ -82,3 +85,13 @@ if (process.client) {
   fetchNamesDetails({ limit })
 }
 </script>
+
+<style scoped>
+.names__names-panel {
+  margin-bottom: var(--space-4);
+
+  @media (--desktop) {
+    margin-bottom: var(--space-6);
+  }
+}
+</style>

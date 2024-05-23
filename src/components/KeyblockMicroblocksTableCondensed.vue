@@ -23,14 +23,14 @@
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
             <app-tooltip>
-              Time
+              <time-toggle-button/>
               <template #tooltip>
                 {{ keyblocksHints.time }}
               </template>
             </app-tooltip>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
-            <datetime-label :datetime="microblock.time"/>
+            <timestamp-label :timestamp="microblock.time"/>
           </td>
         </tr>
         <tr class="keyblock-microblocks-table-condensed__row">
@@ -54,7 +54,6 @@
 </template>
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 defineProps({
   microblocks: {

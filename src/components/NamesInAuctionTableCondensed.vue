@@ -26,7 +26,7 @@
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
             <app-tooltip>
-              Ends
+              <time-toggle-button>Ends</time-toggle-button>
               <template #tooltip>
                 {{ namesHints.ends }}
               </template>
@@ -35,7 +35,7 @@
           <td class="names-in-auction-table-condensed__data">
             <block-time-cell
               :height="name.expirationHeight"
-              :datetime="name.expiration"/>
+              :timestamp="name.expiration"/>
           </td>
         </tr>
         <tr class="names-in-auction-table-condensed__row">
@@ -48,13 +48,25 @@
             </app-tooltip>
           </th>
           <td class="names-in-auction-table-condensed__data">
+            <app-chip variant="secondary">
+              {{ formatAePrice(name.bid) }}
+            </app-chip>
+          </td>
+        </tr>
+        <tr class="names-in-auction-table-condensed__row">
+          <th class="names-in-auction-table-condensed__header">
+            <app-tooltip>
+              Highest Bidder
+              <template #tooltip>
+                {{ namesHints.highestBidder }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="names-in-auction-table-condensed__data">
             <value-hash-ellipsed
               :hash="name.highestBidder"
               :link-to="`/accounts/${name.highestBidder}`"
               class="names-in-auction-table-condensed__highest-bid"/>
-            <app-chip variant="secondary">
-              {{ formatAePrice(name.bid) }}
-            </app-chip>
           </td>
         </tr>
         <tr class="names-in-auction-table-condensed__row">

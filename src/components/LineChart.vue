@@ -1,7 +1,14 @@
 <template>
-  <Line
-    :options="chartOptions"
-    :data="chartData"/>
+  <div class="line-chart">
+    <Line
+      v-if="hasChart"
+      :options="chartOptions"
+      :data="chartData"/>
+    <blank-state
+      v-if="isEmpty"
+      class="line-chart__blank-state"/>
+    <loader-indicator v-if="isLoading"/>
+  </div>
 </template>
 
 <script setup>
@@ -19,37 +26,40 @@ import {
 import { DateTime } from 'luxon'
 import { Line } from 'vue-chartjs'
 
+const hasChart = computed(() => props.data?.length > 0)
+const isEmpty = computed(() => props.data?.length === 0)
+const isLoading = computed(() => props.data === null)
+
 const props = defineProps({
-  statistics: {
+  data: {
     type: Array,
-    required: true,
+    default: null,
   },
-  selectedInterval: {
+  interval: {
     type: String,
     required: true,
   },
 })
 
 const stats = computed(() => {
-  return props.statistics.map(stat => {
+  return props.data.map(stat => {
     return stat.count
   })
 })
 
 const labels = computed(() => {
-  return props.statistics.map(stat => {
+  return props.data.map(stat => {
     return formatDate(stat.startDate)
   })
 })
 
 function formatDate(label) {
   const date = DateTime.fromISO(label)
-
-  if (props.selectedInterval === 'month') {
-    return date.toFormat('yyyy-MM')
+  if (props.interval === 'month') {
+    return date.toFormat('yyyy/MM')
   }
 
-  return date.toFormat('MM-dd')
+  return date.toFormat('MM/dd')
 }
 
 function formatNumberFractions(number) {
@@ -100,6 +110,7 @@ const chartOptions = {
         display: false,
       },
       ticks: {
+        precision: 0,
         callback: function(value) {
           return formatNumberFractions(value)
         },
@@ -127,3 +138,18 @@ ChartJS.register(
 
 ChartJS.defaults.font.family = 'Roboto Mono'
 </script>
+
+<style scoped>
+.line-chart {
+  height: 250px;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__blank-state {
+    width: 100%;
+  }
+}
+</style>

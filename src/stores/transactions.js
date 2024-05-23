@@ -16,6 +16,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const pageIndex = ref(1)
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
   const last24hsTransactionsCount = ref(null)
+  const last24hsTransactionsTrend = ref(null)
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -25,35 +26,23 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?limit=10'}`)
+     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/transactions?limit=10'}`)
     isHydrated.value = true
     rawTransactions.value = data
   }
 
   async function fetchTransactionsCount(txType = null) {
     transactionsCount.value = null
-    const url = txType ? `${MIDDLEWARE_URL}/v2/txs/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v2/txs/count`
+    const url = txType ? `${MIDDLEWARE_URL}/v3/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v3/transactions/count`
     const { data } = await axios.get(url)
     transactionsCount.value = data
   }
 
   async function fetchLast24hsTransactionsCount() {
     last24hsTransactionsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/stats`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     last24hsTransactionsCount.value = data.last24hsTransactions
-  }
-
-  async function fetchTransactionsStatistics(interval = 'day', limit = 7, range) {
-    transactionsStatistics.value = null
-
-    const slug = range
-      ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
-      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
-
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug}`)
-
-    // remove last interval from the response not to show current interval that is being built
-    transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
+    last24hsTransactionsTrend.value = data.transactionsTrend
   }
 
   function setPageIndex(index) {
@@ -78,5 +67,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     setSelectedTxType,
     fetchLast24hsTransactionsCount,
     last24hsTransactionsCount,
+    last24hsTransactionsTrend,
   }
 })

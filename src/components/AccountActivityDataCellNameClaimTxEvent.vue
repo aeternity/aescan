@@ -2,7 +2,9 @@
   <app-link :to="`/names/${activity.payload.tx.name}`">
     {{ activity.payload.tx.name }}
   </app-link>
-  <app-chip size="sm">
+  <app-chip
+    v-if="activity.payload.tx.nameFee"
+    size="sm">
     {{ formatAePrice(formatAettosToAe(activity.payload.tx.nameFee)) }}
   </app-chip>
 </template>

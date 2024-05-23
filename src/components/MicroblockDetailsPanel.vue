@@ -47,13 +47,15 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Time
+            Timestamp
             <hint-tooltip>
               {{ microblocksHints.time }}
             </hint-tooltip>
           </th>
           <td class="microblock-details-panel__data">
-            <datetime-label :datetime="microblockDetails.time"/>
+            <timestamp-label
+              :timestamp="microblockDetails.time"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="microblock-details-panel__row">
@@ -122,7 +124,7 @@ const microblockNodeUrl = computed(() =>
   `${NODE_URL}/v3/micro-blocks/hash/${props.microblockDetails.hash}/header`,
 )
 const microblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/micro-blocks/${props.microblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/v3/micro-blocks/${props.microblockDetails.hash}`,
 )
 </script>
 

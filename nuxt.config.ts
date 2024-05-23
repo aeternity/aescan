@@ -4,7 +4,7 @@ import { compileTemplate } from 'vue/compiler-sfc'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   srcDir: './src',
-  css: ['@/styles/main.css'],
+  css: ['@/assets/styles/main.css'],
   devServer: {
     port: 8080,
   },
@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-simple-sitemap',
+    'nuxt-monaco-editor',
   ],
   imports: {
     dirs: ['./stores'],
@@ -36,6 +37,7 @@ export default defineNuxtConfig({
       ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,
       AE_TOKEN_ID: process.env.AE_TOKEN_ID,
       DEBUG_MODE: process.env.DEBUG_MODE,
+      CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
     },
   },
@@ -43,7 +45,7 @@ export default defineNuxtConfig({
     plugins: {
       autoprefixer: {},
       '@csstools/postcss-global-data': {
-        files: ['src/styles/settings/_variables.css'],
+        files: ['src/assets/styles/settings/_variables.css'],
       },
       'postcss-custom-media': {},
       'postcss-import': {},
@@ -78,5 +80,11 @@ export default defineNuxtConfig({
         },
       },
     ],
+  },
+  monacoEditor: {
+    locale: 'en',
+    componentName: {
+      codeEditor: 'MonacoEditor',
+    },
   },
 })

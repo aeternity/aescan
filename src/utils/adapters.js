@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
+import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import {
   formatAettosToAe,
   formatBlockDiffAsDatetime,
@@ -90,6 +91,7 @@ export function adaptContracts(contracts) {
       createdHeight: contract.blockHeight,
       hash: contract.hash,
       createdBy: contract.tx.callerId,
+      isVerified: contract.isVerified,
     }
   })
   return {
@@ -263,11 +265,16 @@ export function adaptCustomPointers(allPointers) {
     // separate special and custom pointers
     delete customPointers[specialPointerKey]
   })
+  const hasRawPointers = allPointers
+    ? Object.values(allPointers)
+      .some(v => isAddressValid(v, Encoding.Bytearray))
+    : null
 
   return Object.entries(customPointers).map(pointer => {
     return {
       key: formatDecodeBase64(pointer[0]),
-      pointer: pointer[1],
+      pointer: hasRawPointers ? decode(pointer[1]).toString() : pointer[1],
+      isRawPointer: hasRawPointers,
     }
   })
 }
@@ -289,10 +296,10 @@ export function adaptName(name, blockHeight, blockTime) {
     ),
     isRevoked: name.active === false && name.info.expireHeight + REVOKED_PERIOD > blockHeight,
     specialPointers: {
-      account: name.info?.pointers?.accountPubkey,
+      account: name.info?.pointers?.account_pubkey,
       channel: name.info?.pointers?.channel,
-      contract: name.info?.pointers?.contractPubkey,
-      oracle: name.info?.pointers?.oraclePubkey,
+      contract: name.info?.pointers?.contract_pubkey,
+      oracle: name.info?.pointers?.oracle_pubkey,
     },
     customPointers,
   }
@@ -303,8 +310,8 @@ export function adaptName(name, blockHeight, blockTime) {
     formattedName.activated = blockCreatedTime.minus({
       minutes: heightDiff * MINUTES_PER_BLOCK,
     })
+    formattedName.activatedHeight = name.info.activeFrom
   }
-
   return formattedName
 }
 
@@ -394,12 +401,8 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
     ...(price && { price }),
   }
 
-  if (token && totalSupply) {
+  if (token && totalSupply !== null) {
     tokenDetails.totalSupply = (new BigNumber(totalSupply)).dividedBy(10 ** token.decimals).toNumber()
-  }
-
-  if (tokenDetails.totalSupply && price) {
-    tokenDetails.marketCap = (new BigNumber(tokenDetails.totalSupply)).multipliedBy(price).toNumber()
   }
 
   return tokenDetails
@@ -443,7 +446,6 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
 
 export function adaptListedTokens(tokens) {
   const formattedData = tokens
-    .filter(token => token.listed === true)
     .map(token => {
       return {
         contractId: token.address,
@@ -601,5 +603,33 @@ export function adaptNft(nft) {
     ...nft,
     tokenLimit: formatTokenLimit(nft.extensions, nft.limits?.tokenLimit),
     templateLimit: formatTemplateLimit(nft.extensions, nft.limits?.templateLimit),
+  }
+}
+
+export function adaptVerificationDetail(verificationDetail) {
+  return {
+    license: verificationDetail.license,
+    compiler: verificationDetail.compiler,
+    entryFile: verificationDetail.entryFile,
+    initCallParameters: verificationDetail.initCallParameters,
+    aci: verificationDetail.aci,
+    verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
+  }
+}
+
+export function adaptVerificationResult(verificationStatus) {
+  function translateCodeToStatus(code) {
+    if (code === 400 || code === 422) {
+      return 'fail'
+    }
+    if (code === 409) {
+      return 'conflict'
+    }
+    return null
+  }
+
+  return {
+    ...verificationStatus,
+    status: translateCodeToStatus(verificationStatus.statusCode),
   }
 }

@@ -25,7 +25,7 @@
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
             <app-tooltip>
-              Expires
+              <time-toggle-button>Expires</time-toggle-button>
               <template #tooltip>
                 {{ namesHints.expires }}
               </template>
@@ -34,7 +34,7 @@
           <td class="names-active-table-condensed__data">
             <block-time-cell
               :height="name.expirationHeight"
-              :datetime="name.expiration"/>
+              :timestamp="name.expiration"/>
           </td>
         </tr>
         <tr class="names-active-table-condensed__row">
@@ -52,6 +52,18 @@
               :hash="name.buyer"
               :link-to="`/accounts/${name.buyer}`"
               class="names-active-table-condensed__buyer"/>
+          </td>
+        </tr>
+        <tr class="names-active-table-condensed__row">
+          <th class="names-active-table-condensed__header">
+            <app-tooltip>
+              Price
+              <template #tooltip>
+                {{ namesHints.price }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="names-active-table-condensed__data">
             <app-chip variant="secondary">
               {{ formatAePrice(name.fee) }}
             </app-chip>

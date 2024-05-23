@@ -23,12 +23,18 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            <app-link
-              :to="`/keyblocks/${oracleDetails.registeredHeight}`">
-              {{ oracleDetails.registeredHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="oracleDetails.registered"/>
+            <div class="oracle-details-panel__container">
+              <app-link
+                class="oracle-details-panel__block"
+                :to="`/keyblocks/${oracleDetails.registeredHeight}`">
+                {{ oracleDetails.registeredHeight }}
+              </app-link>
+              -
+              <timestamp-label
+                class="oracle-details-panel__timestamp"
+                :timestamp="oracleDetails.registered"
+                :is-extended="true"/>
+            </div>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -39,14 +45,20 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            <template v-if="oracleDetails.lastExtended">
+            <div
+              v-if="oracleDetails.lastExtended"
+              class="oracle-details-panel__container">
               <app-link
+                class="oracle-details-panel__block"
                 :to="`/keyblocks/${oracleDetails.lastExtendedHeight}`">
                 {{ oracleDetails.lastExtendedHeight }}
               </app-link>
               -
-              <datetime-label :datetime="oracleDetails.lastExtended"/>
-            </template>
+              <timestamp-label
+                class="oracle-details-panel__timestamp"
+                :timestamp="oracleDetails.lastExtended"
+                :is-extended="true"/>
+            </div>
             <template v-else>
               ---
             </template>
@@ -60,14 +72,20 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            <template v-if="oracleDetails.lastQueried">
+            <div
+              v-if="oracleDetails.lastQueried"
+              class="oracle-details-panel__container">
               <app-link
+                class="oracle-details-panel__block"
                 :to="`/keyblocks/${oracleDetails.lastQueryHeight}`">
                 {{ oracleDetails.lastQueryHeight }}
               </app-link>
               -
-              <datetime-label :datetime="oracleDetails.lastQueried"/>
-            </template>
+              <timestamp-label
+                class="oracle-details-panel__timestamp"
+                :timestamp="oracleDetails.lastQueried"
+                :is-extended="true"/>
+            </div>
             <template v-else>
               ---
             </template>
@@ -81,12 +99,19 @@
             </hint-tooltip>
           </th>
           <td class="oracle-details-panel__data">
-            <app-link
-              :to="`/keyblocks/${oracleDetails.expirationHeight}`">
-              {{ oracleDetails.expirationHeight }}
-            </app-link>
-            -
-            <datetime-label :datetime="oracleDetails.expiration"/>
+            <div
+              class="oracle-details-panel__container">
+              <app-link
+                class="oracle-details-panel__block"
+                :to="`/keyblocks/${oracleDetails.expirationHeight}`">
+                {{ oracleDetails.expirationHeight }}
+              </app-link>
+              -
+              <timestamp-label
+                class="oracle-details-panel__timestamp"
+                :timestamp="oracleDetails.expiration"
+                :is-extended="true"/>
+            </div>
           </td>
         </tr>
         <tr
@@ -182,7 +207,6 @@ import HintTooltip from '@/components/HintTooltip'
 import AppLink from '@/components/AppLink'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import AppIcon from '@/components/AppIcon'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -199,7 +223,7 @@ const oracleNodeUrl = computed(() =>
 )
 
 const oracleMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/oracles/${props.oracleDetails.id}`,
+  `${MIDDLEWARE_URL}/v3/oracles/${props.oracleDetails.id}`,
 )
 </script>
 
@@ -224,6 +248,24 @@ const oracleMiddlewareUrl = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__container {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    @media (--desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__block {
+    margin-right: var(--space-0);
+  }
+
+  &__timestamp {
+    margin-left: var(--space-0);
   }
 }
 </style>

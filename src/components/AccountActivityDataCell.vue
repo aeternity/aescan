@@ -42,7 +42,8 @@ const isActivityCell = computed(() => {
       props.activity.type === 'NamePreclaimTxEvent' ||
       props.activity.type === 'InternalContractCallEvent' ||
       props.activity.type === 'InternalTransferEvent' ||
-      props.activity.type === 'Aex9TransferEvent') {
+      props.activity.type === 'Aex9TransferEvent' ||
+      props.activity.type === 'Aex141TransferEvent') {
     return true
   } else {
     return false

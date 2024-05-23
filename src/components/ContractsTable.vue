@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Created
+          <time-toggle-button>Created</time-toggle-button>
           <hint-tooltip>
             {{ contractsHints.created }}
           </hint-tooltip>
@@ -33,14 +33,17 @@
         v-for="contract in contracts.data"
         :key="contract.contractId">
         <td class="contracts-table__data">
-          <value-hash-ellipsed
-            :link-to="`/contracts/${contract.contractId}`"
-            :hash="contract.contractId"/>
+          <div class="contracts-table__container">
+            <value-hash-ellipsed
+              :link-to="`/contracts/${contract.contractId}`"
+              :hash="contract.contractId"/>
+            <verified-icon v-if="contract.isVerified"/>
+          </div>
         </td>
         <td class="contracts-table__data">
           <block-time-cell
             :height="contract.createdHeight"
-            :datetime="contract.created"/>
+            :timestamp="contract.created"/>
         </td>
         <td class="contracts-table__data">
           <value-hash-ellipsed
@@ -60,6 +63,7 @@
 import { contractsHints } from '@/utils/hints/contractsHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'
+import VerifiedIcon from '@/components/VerifiedIcon'
 
 defineProps({
   contracts: {
@@ -75,6 +79,12 @@ defineProps({
 
   &__data {
     vertical-align: top;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-0);
   }
 }
 </style>

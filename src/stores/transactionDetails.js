@@ -39,10 +39,10 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
 
   async function fetchTransactionTypeData(transactionId) {
     try {
-      const { data: transactionData } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/${transactionId}`)
+      const { data: transactionData } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/${transactionId}`)
 
       if (transactionData.tx.channelId) {
-        const { data: channelData } = await axios.get(`${MIDDLEWARE_URL}/v2/channels/${transactionData.tx.channelId}`)
+        const { data: channelData } = await axios.get(`${MIDDLEWARE_URL}/v3/channels/${transactionData.tx.channelId}`)
 
         transactionData.tx.channel = channelData
       }

@@ -15,15 +15,18 @@
             </app-tooltip>
           </th>
           <td class="contracts-table-condensed__data">
-            <value-hash-ellipsed
-              :link-to="`/contracts/${contract.contractId}`"
-              :hash="contract.contractId"/>
+            <div class="contracts-table-condensed__container">
+              <value-hash-ellipsed
+                :link-to="`/contracts/${contract.contractId}`"
+                :hash="contract.contractId"/>
+              <verified-icon v-if="contract.isVerified"/>
+            </div>
           </td>
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             <app-tooltip>
-              Created
+              <time-toggle-button>Created</time-toggle-button>
               <template #tooltip>
                 {{ contractsHints.created }}
               </template>
@@ -32,7 +35,7 @@
           <td class="contracts-table-condensed__data">
             <block-time-cell
               :height="contract.createdHeight"
-              :datetime="contract.created"/>
+              :timestamp="contract.created"/>
           </td>
         </tr>
         <tr class="contracts-table-condensed__row">
@@ -73,6 +76,7 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { contractsHints } from '@/utils/hints/contractsHints'
+import VerifiedIcon from '@/components/VerifiedIcon'
 
 defineProps({
   contracts: {
@@ -99,6 +103,13 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-0);
   }
 }
 </style>

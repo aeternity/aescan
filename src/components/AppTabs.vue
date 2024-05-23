@@ -10,6 +10,7 @@
         ]"
         @click="selectTab(index)">
         {{ tab.title }}
+        <verified-icon v-if="tab.hasVerifiedIcon"/>
       </li>
     </ul>
     <slot/>
@@ -71,6 +72,9 @@ function selectTab(tabIndex) {
   }
 
   &__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-0);
     font-weight: 500;
     font-size: 14px;
     line-height: 22px;

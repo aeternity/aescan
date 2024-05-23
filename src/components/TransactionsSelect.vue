@@ -4,8 +4,9 @@
     :options="TX_TYPES_OPTIONS"
     track-by="typeQuery"
     label="label"
-    :hide-selected="true"
-    placeholder="Select Tx Type"/>
+    placeholder="Select Tx Type"
+    :size="size"
+    :hide-selected="true"/>
 </template>
 
 <script setup>
@@ -17,6 +18,10 @@ const props = defineProps({
   modelValue: {
     type: Object,
     required: true,
+  },
+  size: {
+    type: String,
+    default: null,
   },
 })
 

@@ -23,7 +23,7 @@
         <tr class="account-transactions-table-condensed__row">
           <th class="account-transactions-table-condensed__header">
             <app-tooltip>
-              Time
+              <time-toggle-button/>
               <template #tooltip>
                 {{ accountHints.time }}
               </template>
@@ -32,7 +32,7 @@
           <td class="account-transactions-table-condensed__data">
             <block-time-cell
               :height="transaction.createdHeight"
-              :datetime="transaction.created"/>
+              :timestamp="transaction.created"/>
           </td>
         </tr>
         <tr class="account-transactions-table-condensed__row">

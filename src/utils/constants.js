@@ -27,6 +27,13 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const CHART_INTERVALS_OPTIONS = [
+  { interval: 'day', limit: '7', label: '1W' },
+  { interval: 'day', limit: '30', label: '1M' },
+  { interval: 'day', limit: '90', label: '3M' },
+  { interval: 'month', limit: '12', label: '1Y' },
+  { interval: 'month', limit: '100', label: 'ALL' },
+]
 export const ORACLE_STATES_OPTIONS = [
   { stateQuery: 'active', label: 'Active' },
   { stateQuery: 'inactive', label: 'Inactive' },
@@ -35,8 +42,9 @@ export const TOKEN_TYPES_OPTIONS = [
   { label: 'Listed', key: 'listedTokens' },
   { label: 'All Tokens', key: 'allTokens' },
 ]
+
 export const MAX_AE_DISTRIBUTION = 536306702.49932
-export const SPECIAL_POINTERS_PRESET_KEYS = ['accountPubkey', 'oraclePubkey', 'contractPubkey', 'channel']
+export const SPECIAL_POINTERS_PRESET_KEYS = ['account_pubkey', 'oracle_pubkey', 'contract_pubkey', 'channel']
 export const DATETIME_UNITS = [
   'years',
   'months',
@@ -113,3 +121,22 @@ export const KNOWN_ADDRESSES = [
   { hash: 'ct_2mfj3FoZxnhkSw5RZMcP8BfPoB1QR4QiYGNCdkAvLZ1zfF6paW', name: 'Superhero DEX' },
 ]
 export const REVOKED_PERIOD = 2016
+
+export const SYNCING_BLOCK_THRESHOLD = 5
+
+export const LICENSE_OPTIONS = [
+  { label: 'No License', key: 'None' },
+  { label: 'The Unlicense', key: 'Unlicense' },
+  { label: 'MIT License', key: 'MIT' },
+  { label: 'GNU General Public License v2.0', key: 'GNU GPLv2' },
+  { label: 'GNU General Public License v3.0', key: 'GNU GPLv3' },
+  { label: 'GNU Lesser General Public License v2.1', key: 'GNU LGPLv2.1' },
+  { label: 'GNU Lesser General Public License v3.0', key: 'GNU LGPLv3' },
+  { label: 'BSD 2-clause "Simplified" license', key: 'BSD-2-Clause' },
+  { label: 'BSD 3-clause "New" Or "Revised" license', key: 'BSD-3-Clause' },
+  { label: 'Mozilla Public License 2.0', key: 'MPL-2.0' },
+  { label: 'Open Software License 3.0', key: 'OSL-3.0' },
+  { label: 'Apache 2.0', key: 'Apache-2.0' },
+  { label: 'GNU Affero General Public License', key: 'GNU AGPLv3' },
+  { label: 'Business Source License', key: 'BSL 1.1' },
+]

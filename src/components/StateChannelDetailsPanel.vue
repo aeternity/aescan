@@ -128,20 +128,34 @@
         </tr>
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
+            Last Updated Height
+            <hint-tooltip>
+              {{ stateChannelsHints.lastUpdatedHeight }}
+            </hint-tooltip>
+          </th>
+          <td class="state-channel-details-panel__data">
+            <app-link
+              v-if="stateChannelDetails.lastUpdatedHeight"
+              :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
+              {{ stateChannelDetails.lastUpdatedHeight }}
+            </app-link>
+            <template v-else>
+              ---
+            </template>
+          </td>
+        </tr>
+        <tr class="state-channel-details-panel__row">
+          <th class="state-channel-details-panel__table-header">
             Last Updated
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
           </th>
           <td class="state-channel-details-panel__data">
-            <template v-if="stateChannelDetails.lastUpdated">
-              <app-link
-                :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
-                {{ stateChannelDetails.lastUpdatedHeight }}
-              </app-link>
-              -
-              <datetime-label :datetime="stateChannelDetails.lastUpdated"/>
-            </template>
+            <timestamp-label
+              v-if="stateChannelDetails.lastUpdated"
+              :timestamp="stateChannelDetails.lastUpdated"
+              :is-extended="true"/>
             <template v-else>
               ---
             </template>
@@ -190,7 +204,6 @@ import AppLink from '@/components/AppLink'
 import AppChip from '@/components/AppChip'
 import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
@@ -201,7 +214,7 @@ const props = defineProps({
   },
 })
 
-const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v2/channels/${props.stateChannelDetails.id}`
+const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v3/channels/${props.stateChannelDetails.id}`
 </script>
 
 <style scoped>

@@ -46,6 +46,7 @@
     "floating-vue": "^5.2.2",
     "luxon": "^3.4.4",
     "memory-cache": "^0.2.0",
+    "nuxt-booster": "^3.0.15",
     "pinia": "^2.1.7",
     "swiper": "^11.0.7",
     "vue": "^3.4.21",

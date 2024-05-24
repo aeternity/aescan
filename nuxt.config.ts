@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import { compileTemplate } from 'vue/compiler-sfc'
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -11,7 +12,6 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/plausible',
-    'nuxt-simple-sitemap',
     'nuxt-monaco-editor',
   ],
   imports: {
@@ -26,6 +26,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
       SENTRY_DSN: process.env.SENTRY_DSN,
       APP_DOMAIN: process.env.APP_DOMAIN,
       MIDDLEWARE_URL: process.env.MIDDLEWARE_URL,
@@ -52,6 +53,7 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+  sourcemap: true,
   vite: {
     build: { target: 'es2020' },
     optimizeDeps: {
@@ -79,6 +81,18 @@ export default defineNuxtConfig({
           return `${code}\nexport default { render: render }`
         },
       },
+      sentryVitePlugin({
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+        org: 'sentry',
+        project: 'aescan-develop',
+        url: 'https://sentry.dev.service.aepps.com/',
+      }),
+      sentryVitePlugin({
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+        org: 'sentry',
+        project: 'aescan-production',
+        url: 'https://sentry.dev.service.aepps.com/',
+      }),
     ],
   },
   monacoEditor: {

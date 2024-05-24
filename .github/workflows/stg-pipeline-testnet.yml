@@ -151,8 +151,10 @@ jobs:
     name: E2E Tests
     timeout-minutes: 10
     steps:
-      - name: Wait for 4 minutes
-        run: sleep 240
+      - name: Check the PR deployment status before run E2E tests.
+        uses: aeternity/ae-github-actions/deploy-status@v7
+        with:
+          url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.aepps.com
       - name: Checkout
         uses: actions/checkout@v4
       - name: Cypress run

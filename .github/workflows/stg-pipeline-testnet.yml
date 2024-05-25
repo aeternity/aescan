@@ -149,7 +149,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Check the PR deployment status before run E2E tests.
-        uses: aeternity/ae-github-actions/deploy-status@v7
+        uses: aeternity/ae-github-actions/deploy-status@v7.1.0
         with:
           url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
           timeout: 300

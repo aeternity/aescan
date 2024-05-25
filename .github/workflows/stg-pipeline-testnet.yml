@@ -151,7 +151,7 @@ jobs:
       - name: Check the PR deployment status before run E2E tests.
         uses: aeternity/ae-github-actions/deploy-status@v7
         with:
-          url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.aepps.com
+          url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
           timeout: 300
           interval: 5
       - name: Checkout
@@ -159,4 +159,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          config: baseUrl=https://pr-${{ env.PR_NUMBER }}-aescan-testnet.stg.service.aepps.com
+          config: baseUrl=https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com

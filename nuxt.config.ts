@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
-    '@nuxtjs/partytown',
+    'nuxt-booster',
   ],
   imports: {
     dirs: ['./stores'],
@@ -96,27 +96,37 @@ export default defineNuxtConfig({
       }),
     ],
   },
-  partytown: {
-    forward: ['$plausible', '$plausible.push'],
-  },
-  app: {
-    head: {
-      script: [
-        { innerHTML: 'window.$plausible = [];' },
-        // Update this
-        {
-          src: 'https://plausible.io/js/script.js',
-          defer: true,
-          type: 'text/partytown',
-          'data-domain': 'your-domains',
-        },
-      ],
-    },
-  },
   monacoEditor: {
     locale: 'en',
     componentName: {
       codeEditor: 'MonacoEditor',
+    },
+  },
+
+  booster: {
+    componentAutoImport: false,
+    componentPrefix: undefined,
+    detection: {
+      performance: true,
+      browserSupport: true,
+    },
+    performanceMetrics: {
+      device: {
+        hardwareConcurrency: { min: 2, max: 48 },
+        deviceMemory: { min: 2 },
+      },
+      timing: {
+        fcp: 800,
+        dcl: 1200,
+      },
+    },
+
+    /**
+         * IntersectionObserver rootMargin for Compoennts and Assets
+         */
+    lazyOffset: {
+      component: '0%',
+      asset: '0%',
     },
   },
 })

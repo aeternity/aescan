@@ -77,7 +77,7 @@
           <tr>
             <th class="dashboard-state-channels-swiper__header">
               <app-tooltip>
-                Last Updated
+                <time-toggle-button>Last Updated</time-toggle-button>
                 <template #tooltip>
                   {{ stateChannelsHints.lastUpdated }}
                 </template>
@@ -89,7 +89,7 @@
                 {{ channel.updatedHeight }}
               </app-link>
               -
-              <datetime-label :datetime="channel.updated"/>
+              <timestamp-label :timestamp="channel.updated"/>
             </td>
           </tr>
           <tr>
@@ -117,7 +117,6 @@ import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 import { formatAePrice } from '@/utils/format'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())

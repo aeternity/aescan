@@ -27,6 +27,13 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
+export const CHART_INTERVALS_OPTIONS = [
+  { interval: 'day', limit: '7', label: '1W' },
+  { interval: 'day', limit: '30', label: '1M' },
+  { interval: 'day', limit: '90', label: '3M' },
+  { interval: 'month', limit: '12', label: '1Y' },
+  { interval: 'month', limit: '100', label: 'ALL' },
+]
 export const ORACLE_STATES_OPTIONS = [
   { stateQuery: 'active', label: 'Active' },
   { stateQuery: 'inactive', label: 'Inactive' },
@@ -37,7 +44,7 @@ export const TOKEN_TYPES_OPTIONS = [
 ]
 
 export const MAX_AE_DISTRIBUTION = 536306702.49932
-export const SPECIAL_POINTERS_PRESET_KEYS = ['accountPubkey', 'oraclePubkey', 'contractPubkey', 'channel']
+export const SPECIAL_POINTERS_PRESET_KEYS = ['account_pubkey', 'oracle_pubkey', 'contract_pubkey', 'channel']
 export const DATETIME_UNITS = [
   'years',
   'months',
@@ -119,6 +126,7 @@ export const SYNCING_BLOCK_THRESHOLD = 5
 
 export const LICENSE_OPTIONS = [
   { label: 'No License', key: 'None' },
+  { label: 'ISC License', key: 'ISC' },
   { label: 'The Unlicense', key: 'Unlicense' },
   { label: 'MIT License', key: 'MIT' },
   { label: 'GNU General Public License v2.0', key: 'GNU GPLv2' },

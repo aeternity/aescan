@@ -32,7 +32,7 @@
           <td class="contract-call-transactions-table-condensed__data">
             <block-time-cell
               :height="transfer.height"
-              :datetime="transfer.time"/>
+              :timestamp="transfer.time"/>
           </td>
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">

@@ -26,7 +26,7 @@
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
             <app-tooltip>
-              Created
+              <time-toggle-button>Created</time-toggle-button>
               <template #tooltip>
                 {{ contractsHints.created }}
               </template>
@@ -35,7 +35,7 @@
           <td class="contracts-table-condensed__data">
             <block-time-cell
               :height="contract.createdHeight"
-              :datetime="contract.created"/>
+              :timestamp="contract.created"/>
           </td>
         </tr>
         <tr class="contracts-table-condensed__row">

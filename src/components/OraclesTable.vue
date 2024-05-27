@@ -9,13 +9,13 @@
           </hint-tooltip>
         </th>
         <th>
-          Registered
+          <time-toggle-button>Registered</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.registered }}
           </hint-tooltip>
         </th>
         <th>
-          Expiration
+          <time-toggle-button>Expiration</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.expiration }}
           </hint-tooltip>
@@ -40,12 +40,12 @@
         <td class="oracles-table__data">
           <block-time-cell
             :height="oracle.registeredHeight"
-            :datetime="oracle.registered"/>
+            :timestamp="oracle.registered"/>
         </td>
         <td class="oracles-table__data">
           <block-time-cell
             :height="oracle.expirationHeight"
-            :datetime="oracle.expiration"/>
+            :timestamp="oracle.expiration"/>
         </td>
         <td class="oracles-table__data">
           {{ formatAePrice(oracle.queryFee) }}

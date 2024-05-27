@@ -33,7 +33,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Last Updated
+          <time-toggle-button>Last Updated</time-toggle-button>
           <hint-tooltip>
             {{ stateChannelsHints.lastUpdated }}
           </hint-tooltip>
@@ -75,7 +75,7 @@
         <td>
           <block-time-cell
             :height="channel.updatedHeight"
-            :datetime="channel.updated"/>
+            :timestamp="channel.updated"/>
         </td>
         <td>{{ channel.lastTxType }}</td>
       </tr>

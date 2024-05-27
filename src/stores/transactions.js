@@ -27,7 +27,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactionsCount(txType = null) {
     transactionsCount.value = null
-    const url = txType ? `${MIDDLEWARE_URL}/v2/txs/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v2/txs/count`
+    const url = txType ? `${MIDDLEWARE_URL}/v3/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v3/transactions/count`
     const { data } = await axios.get(url)
     transactionsCount.value = data
   }
@@ -36,22 +36,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     last24hsTransactionsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     last24hsTransactionsCount.value = data.last24hsTransactions
-    last24hsTransactionsTrend.value = data.last24hsTransactions !== 0
-      ? formatNumber((100 * data.transactionsTrend / data.last24hsTransactions), 0, 2)
-      : '---'
-  }
-
-  async function fetchTransactionsStatistics(interval = 'day', limit = 7, range) {
-    transactionsStatistics.value = null
-
-    const slug = range
-      ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
-      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
-
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug}`)
-
-    // remove last interval from the response not to show current interval that is being built
-    transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
+    last24hsTransactionsTrend.value = data.transactionsTrend
   }
 
   return {
@@ -60,7 +45,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     fetchTransactions,
     fetchTransactionsCount,
     transactionsStatistics,
-    fetchTransactionsStatistics,
     fetchLast24hsTransactionsCount,
     last24hsTransactionsCount,
     last24hsTransactionsTrend,

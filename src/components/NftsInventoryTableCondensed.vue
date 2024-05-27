@@ -28,7 +28,7 @@
             </app-tooltip>
           </th>
           <td class="nfts-inventory-table-condensed__data">
-            {{ nft.edition.supply }}
+            {{ nft.edition?.supply }}
           </td>
         </tr>
         <tr class="nfts-inventory-table-condensed__row">
@@ -41,7 +41,7 @@
             </app-tooltip>
           </th>
           <td class="nfts-inventory-table-condensed__data">
-            {{ nft.edition.limit }}
+            {{ nft.edition?.limit }}
           </td>
         </tr>
 
@@ -56,8 +56,9 @@
           </th>
           <td class="nfts-inventory-table-condensed__data">
             <value-hash-ellipsed
-              :link-to="`/transactions/${nft.edition.limitTxHash}`"
-              :hash="nft.edition.limitTxHash"/>
+              v-if="nft?.txHash"
+              :link-to="`/transactions/${nft.txHash}`"
+              :hash="nft.txHash"/>
           </td>
         </tr>
 

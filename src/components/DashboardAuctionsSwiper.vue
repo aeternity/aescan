@@ -51,7 +51,7 @@
           <tr>
             <th>
               <app-tooltip>
-                Ending
+                <time-toggle-button>Ending</time-toggle-button>
                 <template #tooltip>
                   {{ namesHints.ends }}
                 </template>
@@ -63,7 +63,7 @@
                 {{ auction.expirationHeight }}
               </app-link>
               -
-              <datetime-label :datetime="auction.expiration"/>
+              <timestamp-label :timestamp="auction.expiration"/>
             </td>
           </tr>
         </tbody>
@@ -80,7 +80,6 @@ import { formatAePrice } from '@/utils/format'
 import { namesHints } from '@/utils/hints/namesHints'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>

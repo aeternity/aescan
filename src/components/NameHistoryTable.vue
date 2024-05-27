@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Time
+          <time-toggle-button/>
           <hint-tooltip>
             {{ namesHints.eventTime }}
           </hint-tooltip>
@@ -41,7 +41,7 @@
         <td>
           <block-time-cell
             :height="action.createdHeight"
-            :datetime="action.created"/>
+            :timestamp="action.created"/>
         </td>
         <td>
           <name-history-cell

@@ -3,7 +3,9 @@
     <thead>
       <tr>
         <th>Hash</th>
-        <th>Time</th>
+        <th>
+          <time-toggle-button/>
+        </th>
         <th>Type</th>
         <th>Data</th>
       </tr>
@@ -20,7 +22,7 @@
         <td>
           <block-time-cell
             :height="transaction.createdHeight"
-            :datetime="transaction.created"/>
+            :timestamp="transaction.created"/>
         </td>
         <td>
           {{ transaction.type }}

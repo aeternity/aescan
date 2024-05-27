@@ -65,14 +65,14 @@
         The beneficiary receives 89,10% and the
         <app-link
           variant="primary"
-          to="https://blog.aeternity.com/block-reward-initiative-voting-results-d6d091f13f64">
+          to="https://blog.aeternity.com/2019/05/01/aeternitys-first-on-chain-governance-vote-decentralization-2-0/">
           BRI
         </app-link>
         (Block Reward Initiative) gets 10,90% to fund activities of the
         <app-link
           variant="primary"
-          to="https://www.aeternity-foundation.org/">
-          æternity crypto foundation
+          to="https://aeternity.foundation/">
+          Aeternity Foundation
         </app-link>
         .
       </template>

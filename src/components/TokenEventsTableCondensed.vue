@@ -36,7 +36,7 @@
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
             <app-tooltip>
-              Date
+              <time-toggle-button/>
               <template #tooltip>
                 {{ tokensHints.date }}
               </template>
@@ -45,7 +45,7 @@
           <td class="token-events-table-condensed__data">
             <block-time-cell
               :height="event.createdHeight"
-              :datetime="event.created"/>
+              :timestamp="event.created"/>
           </td>
         </tr>
 

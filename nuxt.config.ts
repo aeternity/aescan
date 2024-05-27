@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
     'nuxt-booster',
-    '@nuxtjs/partytown',
   ],
   imports: {
     dirs: ['./stores'],
@@ -135,8 +134,4 @@ export default defineNuxtConfig({
     },
 
   },
-  partytown: {
-    forward: ['$plausible', '$plausible.push'],
-  },
-
 })

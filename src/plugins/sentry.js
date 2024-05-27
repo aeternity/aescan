@@ -14,20 +14,6 @@ async function lazyLoadSentryIntegrations() {
   }));
 }
 
-function getSentryIntegrations() {
-  if (process.server) {
-    return
-  }
-
-  const router = useRouter();
-  const browserTracing = new Sentry.BrowserTracing({
-    routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-  });
-
-  return [browserTracing];
-}
-
-
 export default defineNuxtPlugin(({vueApp}) => {
   if (process.server) {
     return
@@ -46,7 +32,6 @@ export default defineNuxtPlugin(({vueApp}) => {
     app: vueApp,
     dsn: SENTRY_DSN,
     integrations: [
-      getSentryIntegrations(),
       new BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
         tracingOrigins: [APP_DOMAIN, /^\//],

@@ -35,9 +35,11 @@ await useAsyncData(async() => {
   return true
 })
 
-watch(selectedRange, async() => {
-  await loadKeyblockStatistics()
-})
+if (process.client) {
+  watch(selectedRange, async() => {
+    await loadKeyblockStatistics()
+  })
+}
 
 async function loadKeyblockStatistics() {
   await fetchKeyblocksStatistics(

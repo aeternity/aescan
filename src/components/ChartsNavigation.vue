@@ -16,6 +16,11 @@
         class="charts-navigation__link">
         Smart Contracts
       </app-link>
+      <app-link
+        to="/charts/names"
+        class="charts-navigation__link">
+        Names
+      </app-link>
     </app-panel>
   </nav>
 </template>

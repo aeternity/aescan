@@ -1,92 +1,90 @@
 <template>
-  <div>
-    <Head>
-      <Meta
-        name="description"
-        :content="APP_DESCRIPTION"/>
-      <Meta
-        name="keywords"
-        :content="APP_KEYWORDS"/>
-      <Link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicon-apple-180.png"/>
-      <Link
-        rel="icon"
-        type="image/png"
-        sizes="512x512"
-        href="/favicon-512.png"/>
-      <Link
-        rel="icon"
-        type="image/png"
-        sizes="96x96"
-        href="/favicon-96.png"/>
-      <Link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon-32.png"/>
-      <Meta
-        property="og:type"
-        content="website"/>
-      <Meta
-        property="og:title"
-        :content="APP_TITLE"/>
-      <Meta
-        property="og:description"
-        :content="APP_DESCRIPTION"/>
-      <Meta
-        property="og:image"
-        :content="`${APP_URL}/social-cover.png`"/>
-      <Meta
-        property="og:image:width"
-        content="1200"/>
-      <Meta
-        property="og:image:height"
-        content="600"/>
-      <Meta
-        property="og:image:alt"
-        :content="APP_TITLE"/>
-      <Meta
-        property="og:url"
-        :content="APP_URL"/>
-      <Meta
-        name="twitter:card"
-        content="summary_large_image"/>
-      <Meta
-        name="twitter:site"
-        :content="APP_CREATOR"/>
-      <Meta
-        name="twitter:creator"
-        :content="APP_CREATOR"/>
-    </Head>
+  <Head>
+    <Meta
+      name="description"
+      :content="APP_DESCRIPTION"/>
+    <Meta
+      name="keywords"
+      :content="APP_KEYWORDS"/>
+    <Link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon-apple-180.png"/>
+    <Link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/favicon-512.png"/>
+    <Link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/favicon-96.png"/>
+    <Link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32.png"/>
+    <Meta
+      property="og:type"
+      content="website"/>
+    <Meta
+      property="og:title"
+      :content="APP_TITLE"/>
+    <Meta
+      property="og:description"
+      :content="APP_DESCRIPTION"/>
+    <Meta
+      property="og:image"
+      :content="`${APP_URL}/social-cover.png`"/>
+    <Meta
+      property="og:image:width"
+      content="1200"/>
+    <Meta
+      property="og:image:height"
+      content="600"/>
+    <Meta
+      property="og:image:alt"
+      :content="APP_TITLE"/>
+    <Meta
+      property="og:url"
+      :content="APP_URL"/>
+    <Meta
+      name="twitter:card"
+      content="summary_large_image"/>
+    <Meta
+      name="twitter:site"
+      :content="APP_CREATOR"/>
+    <Meta
+      name="twitter:creator"
+      :content="APP_CREATOR"/>
+  </Head>
 
-    <NuxtErrorBoundary>
+  <NuxtErrorBoundary>
+    <the-header/>
+    <div class="error">
+      <div class="error__parallax">
+        <component
+          :is="errorComponent(error)"
+          v-if="error"
+          :error="error"/>
+      </div>
+    </div>
+    <the-footer/>
+
+    <template #error="{ error: innerError }">
       <the-header/>
       <div class="error">
         <div class="error__parallax">
           <component
-            :is="errorComponent(error)"
-            v-if="error"
-            :error="error"/>
+            :is="errorComponent(innerError)"
+            v-if="error && innerError"
+            :error="innerError"/>
         </div>
       </div>
       <the-footer/>
-
-      <template #error="{ error: innerError }">
-        <the-header/>
-        <div class="error">
-          <div class="error__parallax">
-            <component
-              :is="errorComponent(innerError)"
-              v-if="error && innerError"
-              :error="innerError"/>
-          </div>
-        </div>
-        <the-footer/>
-      </template>
-    </NuxtErrorBoundary>
-  </div>
+    </template>
+  </NuxtErrorBoundary>
 </template>
 
 <script setup>

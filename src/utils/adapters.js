@@ -303,6 +303,7 @@ export function adaptName(name, blockHeight, blockTime) {
     },
     customPointers,
   }
+
   if (name.status === 'name' && name.active) {
     const blockCreatedTime = DateTime.fromMillis(blockTime)
     const heightDiff = blockHeight - name.info.activeFrom

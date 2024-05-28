@@ -104,7 +104,7 @@
           </th>
           <td class="name-details-panel__data">
             <app-link
-              :to="`/keyblocks/${ name.acutionEndsHeight || name.expirationHeight}`">
+              :to="`/keyblocks/${name.acutionEndsHeight || name.expirationHeight}`">
               {{ name.auctionEndsHeight || name.expirationHeight }}
             </app-link>
           </td>

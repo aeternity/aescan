@@ -107,25 +107,19 @@ export function formatNameStatus(name) {
 }
 
 export function formatNameState(name, blockHeight) {
-  const isInAuction = () =>
-    name.status === 'auction'
+  const isInAuction = name.status === 'auction'
+  const isActive = () => name.active
+  const isExpired = name.status === 'name' && !name.active
+  const isRevoked = isExpired && name.active === false &&
+    name.info.expireHeight + REVOKED_PERIOD > blockHeight
 
-  const isExpired = () =>
-    name.status === 'name' && !name.active
-
-  const isRevoked = () =>
-    isExpired() && name.active === false && name.info.expireHeight + REVOKED_PERIOD > blockHeight
-
-  const isActive = () =>
-    name.active
-
-  if (isInAuction()) {
+  if (isInAuction) {
     return 'auction'
-  } else if (isRevoked()) {
+  } else if (isRevoked) {
     return 'revoked'
-  } else if (isExpired()) {
+  } else if (isExpired) {
     return 'expired'
-  } else if (isActive()) {
+  } else if (isActive) {
     return 'active'
   }
 }

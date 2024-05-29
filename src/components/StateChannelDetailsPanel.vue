@@ -154,6 +154,7 @@
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
+            Last Updated
           </th>
           <td>
             <timestamp-label

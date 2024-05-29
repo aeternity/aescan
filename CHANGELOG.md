@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.14.0](https://github.com/aeternity/aescan/compare/0.13.0...0.14.0) (2024-05-28)
+
+
+### Features
+
+* Add ISC license ([#789](https://github.com/aeternity/aescan/issues/789)) ([129bf68](https://github.com/aeternity/aescan/commit/129bf68c323275ea05d73907d39cafd5c6e34778))
+* enable source maps in production ([#790](https://github.com/aeternity/aescan/issues/790)) ([f4c3b5d](https://github.com/aeternity/aescan/commit/f4c3b5dabe7df9f4b9bfce208eb3a1a9f2fac01e))
+* Names chart page ([#784](https://github.com/aeternity/aescan/issues/784)) ([42d931c](https://github.com/aeternity/aescan/commit/42d931c42fee459f2fb6bf72d4fca5087d2255b1))
+
+
+### Bug Fixes
+
+* contract calls count ([#815](https://github.com/aeternity/aescan/issues/815)) ([67779ab](https://github.com/aeternity/aescan/commit/67779ab3475ebb3ebd3e2b3008fac09cb4c9bc29))
+* Not found pages break the UI ([#796](https://github.com/aeternity/aescan/issues/796)) ([cce1f67](https://github.com/aeternity/aescan/commit/cce1f67403065e24516f0b3fdb72f4700a915c0d))
+* sentry config ([#814](https://github.com/aeternity/aescan/issues/814)) ([43c35d5](https://github.com/aeternity/aescan/commit/43c35d50b2ce911b726c84e9a52a02b3b634b185))
+
 ## [0.13.0](https://github.com/aeternity/aescan/compare/0.12.0...0.13.0) (2024-05-20)
 
 

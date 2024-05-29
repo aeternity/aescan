@@ -108,7 +108,7 @@ export function formatNameStatus(name) {
 
 export function formatNameState(name, blockHeight) {
   const isInAuction = name.status === 'auction'
-  const isActive = () => name.active
+  const isActive = name.active
   const isExpired = name.status === 'name' && !name.active
   const isRevoked = isExpired && name.active === false &&
     name.info.expireHeight + REVOKED_PERIOD > blockHeight

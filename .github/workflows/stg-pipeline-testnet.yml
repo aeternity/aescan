@@ -79,9 +79,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
-          # Note the mode=max here
-          # More: https://github.com/moby/buildkit#--export-cache-options
-          # And: https://github.com/docker/buildx#--cache-tonametypetypekeyvalue
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
 
       - name: Move cache
@@ -151,11 +148,15 @@ jobs:
     name: E2E Tests
     timeout-minutes: 10
     steps:
-      - name: Wait for 4 minutes
-        run: sleep 240
+      - name: Check the PR deployment status before run E2E tests.
+        uses: aeternity/ae-github-actions/deploy-status@v7.1.0
+        with:
+          url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
+          timeout: 300
+          interval: 5
       - name: Checkout
         uses: actions/checkout@v4
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          config: baseUrl=https://pr-${{ env.PR_NUMBER }}-aescan-testnet.stg.service.aepps.com
+          config: baseUrl=https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com

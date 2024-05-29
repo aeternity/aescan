@@ -20,7 +20,7 @@
             <hint-tooltip>
               {{ state === 'expired' ? namesHints.lastOwner : namesHints.owner }}
             </hint-tooltip>
-            {{ isNameExpired ? "Last Owner" : "Owner" }}
+            {{ state === 'expired' ? "Last Owner" : "Owner" }}
           </th>
           <td>
             <app-link :to="`/accounts/${name.owner}`">
@@ -102,7 +102,7 @@
             <hint-tooltip>
               {{ namesHints[state + 'Height'] }}
             </hint-tooltip>
-            {{ nameStatusLabel }} Height
+            {{ stateLabel }} Height
           </th>
           <td>
             <app-link
@@ -116,7 +116,7 @@
             <hint-tooltip>
               {{ namesHints[state + 'Time'] }}
             </hint-tooltip>
-            {{ nameStatusLabel }}
+            {{ stateLabel }}
           </th>
           <td>
             <timestamp-label

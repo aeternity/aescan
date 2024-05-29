@@ -68,14 +68,6 @@ const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
 const route = useRoute()
 
-const route = useRoute()
-
-const contractVerifiedStore = useContractVerifiedStore()
-const { isVerified } = storeToRefs(contractVerifiedStore)
-const { fetchVerificationDetail } = contractVerifiedStore
-const { push, replace } = useRouter()
-const route = useRoute()
-
 const TAB_KEYS = ['call-transactions', 'events', 'contract-verified', 'contract-read', 'contract-write']
 
 const activeTabIndex = computed({

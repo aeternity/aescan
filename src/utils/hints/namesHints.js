@@ -28,7 +28,7 @@ export const namesHints = {
   ownedSince: 'Keyblock height and estimated date and time when the account became the owner of the name.',
   ownedSinceTime: 'Estimated date and time when the account became the owner of the name.',
   ownedSinceHeight: 'Keyblock height when the account became the owner of the name.',
-  status: 'Current state of the name. The possible states are: Active, In Auction or Expired.',
+  state: 'Current state of the name. The possible states are: Active, In Auction or Expired.',
   customPointers: 'User-defined pointers with custom keys.',
   accountPointer: 'The account that the name points to.',
   channelPointer: 'The state channel that the name points to.',

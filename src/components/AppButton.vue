@@ -63,7 +63,8 @@ defineProps({
       'link',
       'link-error',
       'primary',
-      'light', 'link']
+      'light',
+      'link']
       .includes(val),
   },
   type: {
@@ -126,7 +127,6 @@ defineProps({
     text-align: left;
     text-decoration: none;
     font-weight: 400;
-    border: 0;
 
     background: transparent;
     padding: 0;
@@ -151,15 +151,9 @@ defineProps({
     }
   }
 
-  &--link {
-    font-weight: 400;
-    background: transparent;
-    text-decoration: none;
-    color: var(--color-blue);
-
-    &:hover {
-      text-decoration: underline;
-    }
+  &--sm {
+    border-radius: 0;
+    padding: var(--space-2) var(--space-3);
   }
 }
 </style>

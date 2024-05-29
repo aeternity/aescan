@@ -26,6 +26,22 @@
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
             <hint-tooltip>
+              {{ contractsHints.type }}
+            </hint-tooltip>
+            Type
+          </th>
+          <td>
+            <app-chip size="sm">
+              {{ contractDetails.contractType }}
+            </app-chip>
+          </td>
+        </tr>
+
+        <tr
+          v-if="contractDetails.contractType"
+          class="contract-details-panel__row">
+          <th class="contract-details-panel__table-header">
+            <hint-tooltip>
               {{ contractsHints.token }}
             </hint-tooltip>
             Token
@@ -47,9 +63,6 @@
                 :to="`/nfts/${contractDetails.id}`">
                 {{ contractDetails.tokenDetails.name }}
               </app-link>
-              <app-chip size="sm">
-                {{ contractDetails.contractType }}
-              </app-chip>
             </div>
           </td>
         </tr>
@@ -208,11 +221,11 @@ import AppPanel from '@/components/AppPanel'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import CopyChip from '@/components/CopyChip'
-import AppChip from '@/components/AppChip'
 import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '@/components/HintTooltip'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
+import AppChip from '~/components/AppChip'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

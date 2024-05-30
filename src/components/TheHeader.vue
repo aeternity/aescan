@@ -42,23 +42,25 @@
       class="header__warning">
       Some services are currently being synced and data accuracy might be affected. Please check again later.
     </div>
+    <div
+      v-if="!isOnline"
+      class="header__warning">
+      You are currently offline. Please check your connection.
+    </div>
   </header>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import TheNavigation from '@/components/TheNavigation'
-import AppLink from '@/components/AppLink'
-import AppIcon from '@/components/AppIcon'
-import NetworkSelect from '@/components/NetworkSelect'
 import { useUiStore } from '@/stores/ui'
+import { useOnline } from '@vueuse/core'
 import { useStatus } from '@/stores/status'
 import { MENU_HASH } from '@/utils/constants'
 
 const route = useRoute()
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
-
+const isOnline = useOnline()
 const { isSyncing } = storeToRefs(useStatus())
 
 onMounted(() => {

@@ -202,6 +202,10 @@ const fiatPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 
   &__extensions {

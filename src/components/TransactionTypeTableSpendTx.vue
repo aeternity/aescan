@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
-          Sender
           <hint-tooltip>
             {{ transactionsHints.sender }}
           </hint-tooltip>
+          Sender
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           <app-link :to="`/accounts/${transactionData.senderId}`">
@@ -21,10 +21,10 @@
       </tr>
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
-          Recipient
           <hint-tooltip>
             {{ transactionsHints.recipient }}
           </hint-tooltip>
+          Recipient
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           <app-link
@@ -46,10 +46,10 @@
       </tr>
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
-          Amount
           <hint-tooltip>
             {{ transactionsHints.amount }}
           </hint-tooltip>
+          Amount
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
@@ -57,10 +57,10 @@
       </tr>
       <tr class="transaction-type-panel-spend-tx__row">
         <th class="transaction-type-panel-spend-tx__table-header">
-          Payload
           <hint-tooltip>
             {{ transactionsHints.payload }}
           </hint-tooltip>
+          Payload
         </th>
         <td class="transaction-type-panel-spend-tx__data">
           {{ decode(transactionData.payload) }}
@@ -86,11 +86,6 @@ defineProps({
 
 <style scoped>
 .transaction-type-panel-spend-tx {
-  &__header {
-    display: flex;
-    justify-content: space-between;
-  }
-
   &__label-link {
     text-decoration: none;
   }
@@ -101,11 +96,14 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

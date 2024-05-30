@@ -1,5 +1,6 @@
 export const contractsHints = {
   contract: 'A smart contract is a program that runs on the æternity blockchain. It\'s a collection of code (its functions) and data (its state) that resides at a specific address (contract id) on the æternity blockchain. Each smart contract has an account associated to it. Functions can be executed by any account via ContractCallTx and may change the smart contract\'s state. Smart contracts on the æternity blockchain are written in Sophia, a typed functional programming language.',
+  type: 'Contract implements interface of AEX-X classified smart contract. AEX-9 stands for token, AEX-141 stands for NFT.',
   contractId: 'Unique identifier of a smart contract instance that lives on the blockchain. The green icon indicates whether the smart contract has been verified.',
   contractCreatedHeight: 'Keyblock height when the smart contract was created.',
   contractCreated: 'Exact date and time when the smart contract was created.',

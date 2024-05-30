@@ -11,13 +11,21 @@ export const useStatus = defineStore('status', () => {
   const nodeStatus = ref(null)
 
   async function fetchMdwStatus() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/status`)
-    middlewareStatus.value = data
+    try {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/status`)
+      middlewareStatus.value = data
+    } catch (e) {
+      middlewareStatus.value = false
+    }
   }
 
   async function fetchNodeStatus() {
-    const { data } = await axios.get(`${NODE_URL}/v3/status`)
-    nodeStatus.value = data
+    try {
+      const { data } = await axios.get(`${NODE_URL}/v3/status`)
+      nodeStatus.value = data
+    } catch (e) {
+      nodeStatus.value = false
+    }
   }
 
   const isSyncing = computed(() => {

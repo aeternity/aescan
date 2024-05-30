@@ -47,6 +47,21 @@
       class="header__warning">
       You are currently offline. Please check your connection.
     </div>
+    <div
+      v-if="nodeStatus === false"
+      class="header__warning">
+      The Node is currently unavailable. Please check again later.
+    </div>
+    <div
+      v-if="middlewareStatus === false"
+      class="header__warning">
+      The Middleware is currently unavailable. Please check again later.
+    </div>
+    <div
+      v-if="isMarketCapAvailable === false"
+      class="header__warning">
+      Market Cap data are currently not available. Fiat price might not be up to date. Please check again later.
+    </div>
   </header>
 </template>
 
@@ -56,12 +71,14 @@ import { useUiStore } from '@/stores/ui'
 import { useOnline } from '@vueuse/core'
 import { useStatus } from '@/stores/status'
 import { MENU_HASH } from '@/utils/constants'
+import { useMarketStatsStore } from '@/stores/marketStats'
 
 const route = useRoute()
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const isOnline = useOnline()
-const { isSyncing } = storeToRefs(useStatus())
+const { isSyncing, nodeStatus, middlewareStatus } = storeToRefs(useStatus())
+const { isMarketCapAvailable } = storeToRefs(useMarketStatsStore())
 
 onMounted(() => {
   window.addEventListener('resize', closeNavigation)

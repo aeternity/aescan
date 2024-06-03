@@ -127,12 +127,6 @@ export function formatNameState(name, blockHeight) {
   }
 }
 
-export function formatIsAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
-}
-
 export function formatPercentage(percentage) {
   if (percentage >= 0.00001) {
     return `${formatNumber(percentage)} %`
@@ -144,6 +138,25 @@ export function formatPercentage(percentage) {
     return '~0 %'
   }
 }
+
+export function formatNameState(name, blockHeight) {
+  const isInAuction = name.status === 'auction'
+  const isActive = name.active
+  const isExpired = name.status === 'name' && !name.active
+  const isRevoked = isExpired && name.active === false &&
+    name.info.expireHeight + REVOKED_PERIOD > blockHeight
+
+  if (isInAuction) {
+    return 'auction'
+  } else if (isRevoked) {
+    return 'revoked'
+  } else if (isExpired) {
+    return 'expired'
+  } else if (isActive) {
+    return 'active'
+  }
+}
+
 
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {

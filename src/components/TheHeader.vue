@@ -48,11 +48,9 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { useStatus } from '@/stores/status'
 
 const route = useRoute()
-
 const isNavigationOpen = ref(false)
 
 const { isSyncing } = storeToRefs(useStatus())

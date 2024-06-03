@@ -3,12 +3,12 @@
     v-if="!!to"
     :to="to"
     :target="target"
-    :disabled="disabled"
     :class="[
       'button',
       variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
-    ]">
+    ]"
+    :disabled="disabled">
     <app-icon
       v-if="iconName"
       :name="iconName"
@@ -47,6 +47,15 @@ defineProps({
     type: String,
     default: null,
   },
+  target: {
+    type: String,
+    default: '_blank',
+  },
+  size: {
+    type: String,
+    default: null,
+    validator: val => ['lg'].includes(val),
+  },
   variant: {
     type: String,
     default: 'primary',
@@ -56,15 +65,6 @@ defineProps({
       'primary',
       'light']
       .includes(val),
-  },
-  target: {
-    type: String,
-    default: '_blank',
-  },
-  size: {
-    type: String,
-    default: null,
-    validator: val => ['lg'].includes(val),
   },
   type: {
     type: String,
@@ -90,7 +90,7 @@ defineProps({
   text-decoration: none;
   letter-spacing: 0.015em;
 
-  padding: var(--space-1);
+  padding: var(--space-0) var(--space-1);
 
   border-radius: 4px;
 
@@ -146,11 +146,6 @@ defineProps({
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  &--sm {
-    border-radius: 0;
-    padding: var(--space-2) var(--space-3);
   }
 }
 </style>

@@ -96,13 +96,21 @@ export function formatDecodeByteArray(bytesArray) {
   return String.fromCharCode(...bytesArray)
 }
 
-export function formatNameStatus(name) {
-  if (name.payload.auctionEnd) {
-    return 'In Auction'
-  } else if (name.payload.active) {
-    return 'Active'
-  } else {
-    return 'Expired'
+export function formatNameState(name, blockHeight) {
+  const isInAuction = name.status === 'auction'
+  const isActive = name.active
+  const isExpired = name.status === 'name' && !name.active
+  const isRevoked = isExpired && name.active === false &&
+    name.info.expireHeight + REVOKED_PERIOD > blockHeight
+
+  if (isInAuction) {
+    return 'auction'
+  } else if (isRevoked) {
+    return 'revoked'
+  } else if (isExpired) {
+    return 'expired'
+  } else if (isActive) {
+    return 'active'
   }
 }
 

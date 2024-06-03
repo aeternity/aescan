@@ -6,7 +6,7 @@
   <page-header>
     AE Coin
     <template #tooltip>
-      {{ tokensHints.token }}
+      {{ aeCoinHints.aeCoin }}
     </template>
   </page-header>
   <template v-if="!isLoading">
@@ -17,7 +17,7 @@
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
-import { tokensHints } from '@/utils/hints/tokensHints'
+import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 
 const { isLoading } = useLoading()
 </script>

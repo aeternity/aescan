@@ -5,13 +5,14 @@
         <tr class="ae-coin-panel__row">
           <th class="ae-coin-panel__table-header">
             <hint-tooltip>
-              {{ tokensHints.tokenSymbol }}
+              {{ aeCoinHints.tokenSymbol }}
             </hint-tooltip>
             Symbol
           </th>
           <td>
             <div class="ae-coin-panel__link">
               <img
+                class="ae-coin-panel__icon"
                 alt="æ token"
                 src="@/assets/ae-token.svg">
               <copy-chip label="AE"/>
@@ -21,30 +22,29 @@
         <tr class="ae-coin-panel__row">
           <th class="ae-coin-panel__table-header">
             <hint-tooltip>
-              {{ tokensHints.tokenName }}
+              {{ aeCoinHints.price }}
             </hint-tooltip>
             Price
           </th>
           <td>
-            {{ price }}
+            {{ formatNullable(price) }}
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
           <th class="ae-coin-panel__table-header">
             <hint-tooltip>
-              {{ tokensHints.tokenName }}
+              {{ aeCoinHints.totalSupply }}
             </hint-tooltip>
             Total Supply
           </th>
           <td>
             {{ formatNullable(formatAePrice(MAX_AE_DISTRIBUTION), 0) }}
-          <!--            todo rename token-->
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
           <th class="ae-coin-panel__table-header">
             <hint-tooltip>
-              {{ tokensHints.tokenName }}
+              {{ aeCoinHints.circulating }}
             </hint-tooltip>
             Circulating Supply
           </th>
@@ -55,7 +55,7 @@
         <tr class="ae-coin-panel__row">
           <th class="ae-coin-panel__table-header">
             <hint-tooltip>
-              {{ tokensHints.tokenName }}
+              {{ aeCoinHints.decimals }}
             </hint-tooltip>
             Decimals
           </th>
@@ -71,14 +71,14 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
-import { tokensHints } from '@/utils/hints/tokensHints'
-import { useBlockchainStatsStore } from '~/stores/blockchainStats'
-import { MAX_AE_DISTRIBUTION } from '~/utils/constants'
+import { useBlockchainStatsStore } from '@/stores/blockchainStats'
+import { formatAePrice, formatNullable } from '@/utils/format'
+import { aeCoinHints } from '@/utils/hints/aeCoinHints'
+import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 
-const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())
 const { fetchMarketStats } = useMarketStatsStore()
+
 const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
 const { fetchTotalStats } = useBlockchainStatsStore()
 
@@ -86,29 +86,6 @@ await useAsyncData(() => Promise.all([
   fetchTotalStats(),
   fetchMarketStats(),
 ]))
-
-const props = defineProps({
-  tokenDetails: {
-    type: Object,
-    required: true,
-  },
-})
-
-const tokenMiddlewareUrl = computed(() =>
-  `${config.MIDDLEWARE_URL}/v2/aex9/${props.tokenDetails.contractId}`,
-)
-
-const tokenDexUrl = computed(() =>
-  props.tokenDetails.price
-    ? `${config.DEX_BACKEND_URL}/tokens/by-address/${props.tokenDetails.contractId}`
-    : null,
-)
-
-const fiatPrice = computed(() =>
-  props.tokenDetails.price && price.value
-    ? `$${formatNumber(price.value * props.tokenDetails.price, null, null, 7)}`
-    : '---',
-)
 </script>
 
 <style scoped>
@@ -128,16 +105,6 @@ const fiatPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
-  }
-
-  &__extensions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1);
-
-    @media (--desktop) {
-      gap: 0 var(--space-1);
-    }
   }
 
   &__icon {

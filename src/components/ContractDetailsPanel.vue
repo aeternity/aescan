@@ -10,14 +10,14 @@
             Smart Contract ID
           </th>
           <td>
-      <div class="u-hidden-mobile">
-        <copy-chip :label="contractDetails.id"/>
-      </div>
-      <div class="u-hidden-desktop">
-        <copy-chip
-          :label="formatEllipseHash(contractDetails.id)"
-          :clipboard-text="contractDetails.id"/>
-      </div>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="contractDetails.id"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(contractDetails.id)"
+                :clipboard-text="contractDetails.id"/>
+            </div>
           </td>
         </tr>
 
@@ -58,11 +58,11 @@
                 {{ contractDetails.tokenDetails.symbol }}
                 <not-available-label v-if="!contractDetails.tokenDetails.symbol"/>
               </app-link>
-            <app-link
-              v-if="contractDetails.contractType === 'AEX-141'"
-              :to="`/nfts/${contractDetails.id}`">
-              {{ contractDetails.tokenDetails.name }}
-            </app-link>
+              <app-link
+                v-if="contractDetails.contractType === 'AEX-141'"
+                :to="`/nfts/${contractDetails.id}`">
+                {{ contractDetails.tokenDetails.name }}
+              </app-link>
             </div>
           </td>
         </tr>
@@ -193,22 +193,22 @@
             API Links
           </th>
           <td>
-              <app-link
-                :to="contractNodeUrl"
-                class="contract-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
-              <app-link
-                :to="contractMiddlewareUrl"
-                class="contract-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
+            <app-link
+              :to="contractNodeUrl"
+              class="contract-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
+            <app-link
+              :to="contractMiddlewareUrl"
+              class="contract-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>

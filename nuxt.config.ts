@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 import {compileTemplate} from 'vue/compiler-sfc'
-import {sentryVitePlugin} from '@sentry/vite-plugin'
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -37,13 +37,13 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
-      SENTRY_DSN: process.env.SENTRY_DSN,
-      APP_DOMAIN: process.env.APP_DOMAIN,
-      MIDDLEWARE_URL: process.env.MIDDLEWARE_URL,
-      NODE_URL: process.env.NODE_URL,
-      WEBSOCKET_URL: process.env.WEBSOCKET_URL,
-      DEX_BACKEND_URL: process.env.DEX_BACKEND_URL,
-      NETWORK_NAME: process.env.NETWORK_NAME,
+            SENTRY_DSN: process.env.SENTRY_DSN,
+            APP_DOMAIN: process.env.APP_DOMAIN,
+            MIDDLEWARE_URL: process.env.MIDDLEWARE_URL,
+            NODE_URL: process.env.NODE_URL,
+            WEBSOCKET_URL: process.env.WEBSOCKET_URL,
+            DEX_BACKEND_URL: process.env.DEX_BACKEND_URL,
+            NETWORK_NAME: process.env.NETWORK_NAME,
       NETWORK_ID: process.env.NETWORK_ID,
       ALTERNATIVE_NETWORK_URL: process.env.ALTERNATIVE_NETWORK_URL,
       ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,

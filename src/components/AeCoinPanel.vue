@@ -27,7 +27,7 @@
             Price
           </th>
           <td>
-            {{ formatNullable(price) }}
+            $ {{ formatNullable(price) }}
           </td>
         </tr>
         <tr class="ae-coin-panel__row">

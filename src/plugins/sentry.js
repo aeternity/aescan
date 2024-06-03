@@ -11,6 +11,19 @@ async function lazyLoadSentryIntegrations() {
   });
 }
 
+async function lazyLoadSentryIntegrations() {
+  if (process.server) {
+    return
+  }
+
+  const {Replay} = await import("@sentry/vue");
+  Sentry.addIntegration(new Replay({
+    maskAllText: false,
+    blockAllMedia: false,
+  }));
+}
+
+
 export default defineNuxtPlugin(({vueApp}) => {
   if (process.server) {
     return

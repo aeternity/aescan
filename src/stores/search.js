@@ -6,21 +6,15 @@ export const useSearchStore = defineStore('search', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
-  const rawNamesResults = ref([])
+  const namesResults = ref([])
   const tokensResults = ref([])
   const nftsResults = ref([])
 
-  const namesResults = computed(() => {
-    return rawNamesResults.value
-      ? adaptNamesResults(rawNamesResults.value)
-      : null
-  })
-
   async function fetchNamesResults({ query, limit, queryParameters } = {}) {
-    rawNamesResults.value = null
-    const defaultParameters = `/v2/names/search?prefix=${query}&limit=${limit ?? 10}&direction=forward`
+    namesResults.value = null
+    const defaultParameters = `/v3/names?prefix=${query}&limit=${limit ?? 10}&by=name`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawNamesResults.value = data
+    namesResults.value = data
   }
 
   async function fetchTokenResults({ query, limit, queryParameters } = {}) {

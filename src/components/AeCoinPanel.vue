@@ -44,7 +44,6 @@
           </th>
           <td>
             {{ formatNullable(formatAePrice(MAX_AE_DISTRIBUTION), 0) }}
-          <!--            todo rename token-->
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
@@ -122,16 +121,6 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
   &__link {
     display: inline-flex;
     align-items: center;
-  }
-
-  &__extensions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-1);
-
-    @media (--desktop) {
-      gap: 0 var(--space-1);
-    }
   }
 
   &__icon {

@@ -28,6 +28,11 @@
           </th>
           <td>
             $ {{ formatNullable(price) }}
+            <app-chip
+              class="market-stats__chip"
+              :variant="priceChipVariant">
+              {{ priceChangeSign }}{{ formatNullable(priceChange) }} %
+            </app-chip>
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
@@ -76,7 +81,7 @@ import { formatAePrice, formatNullable } from '@/utils/format'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 
-const { price } = storeToRefs(useMarketStatsStore())
+const { price, priceChange } = storeToRefs(useMarketStatsStore())
 const { fetchMarketStats } = useMarketStatsStore()
 
 const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
@@ -86,6 +91,9 @@ await useAsyncData(() => Promise.all([
   fetchTotalStats(),
   fetchMarketStats(),
 ]))
+
+const priceChangeSign = computed(() => priceChange.value > 0 ? '+' : '')
+const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'error')
 </script>
 
 <style scoped>

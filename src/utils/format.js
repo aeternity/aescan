@@ -120,6 +120,24 @@ export function formatNameState(name, blockHeight) {
   }
 }
 
+export function formatNameState(name, blockHeight) {
+  const isInAuction = name.status === 'auction'
+  const isActive = name.active
+  const isExpired = name.status === 'name' && !name.active
+  const isRevoked = isExpired && name.active === false &&
+    name.info.expireHeight + REVOKED_PERIOD > blockHeight
+
+  if (isInAuction) {
+    return 'auction'
+  } else if (isRevoked) {
+    return 'revoked'
+  } else if (isExpired) {
+    return 'expired'
+  } else if (isActive) {
+    return 'active'
+  }
+}
+
 export function formatIsAuction(name) {
   const auctionLength = 13
   const suffixLength = 6
@@ -144,11 +162,6 @@ export function formatNameState(name, blockHeight) {
   }
 }
 
-export function formatIsAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
-}
 
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {

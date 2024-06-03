@@ -40,21 +40,4 @@ function loadPrevTransactions() {
 function loadNextTransactions() {
   fetchTransactions(transactions.value.next)
 }
-
-//
-//
-// function loadPrevHolders() {
-//   fetchTransactions({ queryParameters: transactions.value.prev })
-// }
-//
-// function loadNextHolders() {
-//   fetchTransactions({ queryParameters: transactions.value.next })
-// }
-//
-// if (process.client) {
-//   const limit = computed(() => isDesktop() ? 10 : 3)
-//   fetchTransactions({
-//     limit: limit.value,
-//   })
-// }
 </script>

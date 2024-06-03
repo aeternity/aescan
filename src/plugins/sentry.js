@@ -2,6 +2,19 @@
 import * as Sentry from '@sentry/vue'
 import { BrowserTracing } from '@sentry/tracing'
 
+async function lazyLoadSentryIntegrations() {
+  if (process.server) {
+    return
+  }
+
+  const {Replay} = await import("@sentry/vue");
+  Sentry.addIntegration(new Replay({
+    maskAllText: false,
+    blockAllMedia: false,
+  }));
+}
+
+
 export default defineNuxtPlugin(({vueApp}) => {
   if (process.server) {
     return
@@ -25,6 +38,7 @@ export default defineNuxtPlugin(({vueApp}) => {
         tracingOrigins: [APP_DOMAIN, /^\//],
       }),
     ],
+
     beforeSend: (event) => {
       if (window.location.hostname.startsWith('localhost')) {
         return null
@@ -34,4 +48,5 @@ export default defineNuxtPlugin(({vueApp}) => {
     tracesSampleRate: 1.0,
     logErrors: true,
   })
+  lazyLoadSentryIntegrations();
 })

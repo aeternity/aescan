@@ -10,7 +10,7 @@
             <app-tooltip>
               Name
               <template #tooltip>
-                {{ namesHints.nameInAuction }}
+                {{ namesHints.nameId }}
               </template>
             </app-tooltip>
           </th>

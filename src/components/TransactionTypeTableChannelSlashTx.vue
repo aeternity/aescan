@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
-          Channel ID
           <hint-tooltip>
             {{ stateChannelsHints.stateChannelId }}
           </hint-tooltip>
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
-          Round
           <hint-tooltip>
             {{ stateChannelsHints.slashedRound }}
           </hint-tooltip>
+          Round
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           {{ transactionData.round }}
@@ -27,10 +27,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-slash-tx__row">
         <th class="transaction-type-panel-channel-slash-tx__table-header">
-          Slashed By
           <hint-tooltip>
             {{ stateChannelsHints.slashedBy }}
           </hint-tooltip>
+          Slashed By
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
           <app-link :to="`/accounts/${transactionData.fromId}`">
@@ -62,11 +62,14 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

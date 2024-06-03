@@ -6,7 +6,7 @@
           <th>
             Name
             <hint-tooltip>
-              {{ namesHints.name }}
+              {{ namesHints.nameId }}
             </hint-tooltip>
           </th>
           <th>

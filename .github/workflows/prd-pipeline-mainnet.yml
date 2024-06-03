@@ -1,4 +1,4 @@
-name: Production pipelines - mainnet
+name: Production Mainnet
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     environment: production
-    name: Production Pipeline æScan Frontend
+    name: build
     steps:
       - uses: actions/checkout@v3
         with:

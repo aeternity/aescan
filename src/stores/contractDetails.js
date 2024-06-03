@@ -67,8 +67,8 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
   async function fetchContractCallsCount() {
     contractCallsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count/${contractId.value}`)
-    contractCallsCount.value = Object.values(data?.contractCallTx ?? {}).reduce((sum, value) => sum + value, 0)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count?id=${contractId.value}`)
+    contractCallsCount.value = data
   }
 
   async function fetchContractCreationTx() {

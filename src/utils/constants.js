@@ -126,6 +126,7 @@ export const SYNCING_BLOCK_THRESHOLD = 5
 
 export const LICENSE_OPTIONS = [
   { label: 'No License', key: 'None' },
+  { label: 'ISC License', key: 'ISC' },
   { label: 'The Unlicense', key: 'Unlicense' },
   { label: 'MIT License', key: 'MIT' },
   { label: 'GNU General Public License v2.0', key: 'GNU GPLv2' },

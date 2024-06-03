@@ -3,12 +3,12 @@
     v-if="!!to"
     :to="to"
     :target="target"
+    :disabled="disabled"
     :class="[
       'button',
       variant ? `button--${variant}` : null,
       size ? `button--${size}` : null,
-    ]"
-    :disabled="disabled">
+    ]">
     <app-icon
       v-if="iconName"
       :name="iconName"

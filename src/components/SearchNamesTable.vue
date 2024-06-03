@@ -25,7 +25,7 @@
             {{ name.name }}
           </app-link>
         </td>
-        <td>{{ name.status ? 'Active' : 'Expired' }}</td>
+        <td>{{ name.active ? 'Active' : 'Expired' }}</td>
       </tr>
     </tbody>
   </table>

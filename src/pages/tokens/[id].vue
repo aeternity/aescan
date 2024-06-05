@@ -5,7 +5,6 @@
 
   <page-header>
     Token
-
     <template #tooltip>
       {{ tokensHints.token }}
     </template>

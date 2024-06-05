@@ -1,7 +1,12 @@
 import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
 import { BigNumber } from 'bignumber.js'
-import { MAXIMUM_FRACTION_DIGITS, MINUTES_PER_BLOCK, NUMBER_FRACTION_THRESHOLD } from '@/utils/constants'
+import {
+  MAXIMUM_FRACTION_DIGITS,
+  MINUTES_PER_BLOCK,
+  NUMBER_FRACTION_THRESHOLD,
+  REVOKED_PERIOD,
+} from '@/utils/constants'
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
@@ -91,14 +96,28 @@ export function formatDecodeByteArray(bytesArray) {
   return String.fromCharCode(...bytesArray)
 }
 
-export function formatNameStatus(name) {
-  if (name.payload.auctionEnd) {
-    return 'In Auction'
-  } else if (name.payload.active) {
-    return 'Active'
-  } else {
-    return 'Expired'
+export function formatNameState(name, blockHeight) {
+  const isInAuction = name.status === 'auction'
+  const isActive = name.active
+  const isExpired = name.status === 'name' && !name.active
+  const isRevoked = isExpired && name.active === false &&
+    name.info.expireHeight + REVOKED_PERIOD > blockHeight
+
+  if (isInAuction) {
+    return 'auction'
+  } else if (isRevoked) {
+    return 'revoked'
+  } else if (isExpired) {
+    return 'expired'
+  } else if (isActive) {
+    return 'active'
   }
+}
+
+export function formatIsAuction(name) {
+  const auctionLength = 13
+  const suffixLength = 6
+  return name.length - suffixLength < auctionLength
 }
 
 export function formatTokenLimit(extensions, tokenLimit) {
@@ -123,12 +142,6 @@ export function formatTemplateLimit(extensions, templateLimit) {
   } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
     return 'Unlimited'
   }
-}
-
-export function formatIsAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
 }
 
 export function formatKnownAddress(hash, isEllipsed = true) {

@@ -5,7 +5,6 @@
 
   <page-header>
     AENS Name
-
     <template #tooltip>
       {{ namesHints.name }}
       <app-link

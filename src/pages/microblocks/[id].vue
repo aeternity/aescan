@@ -5,11 +5,11 @@
 
   <page-header>
     Microblock
-
     <template #tooltip>
       {{ microblocksHints.microblock }}
     </template>
   </page-header>
+
   <template v-if="!isLoading">
     <microblock-details-panel
       class="microblock-details__microblock-details-panel"

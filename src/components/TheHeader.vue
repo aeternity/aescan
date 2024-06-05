@@ -42,24 +42,43 @@
       class="header__warning">
       Some services are currently being synced and data accuracy might be affected. Please check again later.
     </div>
+    <div
+      v-if="!isOnline"
+      class="header__warning">
+      You are currently offline. Please check your connection.
+    </div>
+    <div
+      v-if="nodeStatus === false"
+      class="header__warning">
+      The Node is currently unavailable. Please check again later.
+    </div>
+    <div
+      v-if="middlewareStatus === false"
+      class="header__warning">
+      The Middleware is currently unavailable. Please check again later.
+    </div>
+    <div
+      v-if="isMarketCapAvailable === false"
+      class="header__warning">
+      Market Cap data are currently not available. Fiat price might not be up to date. Please check again later.
+    </div>
   </header>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import TheNavigation from '@/components/TheNavigation'
-import AppLink from '@/components/AppLink'
-import AppIcon from '@/components/AppIcon'
-import NetworkSelect from '@/components/NetworkSelect'
+import { useOnline } from '@vueuse/core'
 import { useUiStore } from '@/stores/ui'
 import { useStatus } from '@/stores/status'
 import { MENU_HASH } from '@/utils/constants'
+import { useMarketStatsStore } from '@/stores/marketStats'
 
 const route = useRoute()
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
-
-const { isSyncing } = storeToRefs(useStatus())
+const isOnline = useOnline()
+const { isSyncing, nodeStatus, middlewareStatus } = storeToRefs(useStatus())
+const { isMarketCapAvailable } = storeToRefs(useMarketStatsStore())
 
 onMounted(() => {
   window.addEventListener('resize', closeNavigation)

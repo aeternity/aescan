@@ -1,10 +1,12 @@
 export const accountHints = {
   account: 'An account is an abstract cryptographic entity that can execute transactions and send or receive funds on the æternity blockchain. An account can also be converted into a so-called Generalized Account where a smart contract will be attached to the account and take over its authorization logic, thus enabling a variety of different use cases.',
+  address: 'Unique identifier of an account.',
   balance: 'Amount of AE owned by the account.',
   value: 'USD value of AE owned by the account.',
   transactions: 'Amount of transactions where the account was involved.',
   nonce: 'The nonce that was used to execute the last transaction for the account. The nonce is used to prevent replay attacks and keep transactions in order. If a transaction with a way higher nonce is broadcasted, it won\'t be executed until all transactions with lower nonces are executed.',
   contractId: 'The contract that is attached to the account to create generalized account and takes over its authorization logic.',
+  generalized: 'Account that is generalized has smart contract for authorization logic attached.',
   apiLinks: 'Node API link of the account.',
   hash: 'Transaction hash where the account was involved.',
   time: 'Keyblock height and exact date and time when the transaction was executed by inclusion into a microblock.',

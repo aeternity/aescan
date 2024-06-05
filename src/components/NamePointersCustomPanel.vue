@@ -1,6 +1,6 @@
 <template>
   <app-panel class="name-pointers-custom-panel">
-    <template #heading>
+    <template #title>
       CUSTOM POINTERS
       <hint-tooltip>
         {{ namesHints.customPointers }}
@@ -48,6 +48,12 @@ const { name } = storeToRefs(useNameDetailsStore())
   &__header {
     padding: var(--space-1) 0;
     border-bottom: 1px solid var(--color-midnight-25);
+
+    &:first-child {
+      @media (--desktop) {
+        width: var(--detail-column-width);
+      }
+    }
   }
 }
 </style>

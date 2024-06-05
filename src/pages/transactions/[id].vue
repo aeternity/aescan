@@ -5,7 +5,6 @@
 
   <page-header>
     Transaction
-
     <template #tooltip>
       {{ transactionsHints.transaction }}
     </template>

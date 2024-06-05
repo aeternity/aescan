@@ -10,7 +10,7 @@
             <app-tooltip>
               Name
               <template #tooltip>
-                {{ namesHints.name }}
+                {{ namesHints.nameId }}
               </template>
             </app-tooltip>
           </th>
@@ -30,7 +30,7 @@
             </app-tooltip>
           </th>
           <td class="search-names-table-condensed__data">
-            {{ name.status }}
+            {{ name.active ? 'Active' : 'Expired' }}
           </td>
         </tr>
       </tbody>

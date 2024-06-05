@@ -3,7 +3,7 @@
     <div
       :class="[
         'header__container',
-        { 'header__container--open': isNavigationOpen },
+        { 'header__container--open': isMobileMenuOpen },
       ]">
       <app-link
         to="/"
@@ -17,7 +17,7 @@
         class="header__hamburger"
         @click="toggleNavigation">
         <app-icon
-          v-if="isNavigationOpen"
+          v-if="isMobileMenuOpen"
           name="cross"
           :size="34"/>
         <app-icon
@@ -29,13 +29,13 @@
       <the-navigation
         :class="[
           'header__navigation',
-          { 'header__navigation--open': isNavigationOpen },
+          { 'header__navigation--open': isMobileMenuOpen },
         ]"/>
 
       <network-select
         :class="[
           'header__network-select',
-          { 'header__network-select--open': isNavigationOpen }]"/>
+          { 'header__network-select--open': isMobileMenuOpen }]"/>
 
       <the-wallet-account-controls class="u-hidden-mobile"/>
     </div>
@@ -44,16 +44,43 @@
       class="header__warning">
       Some services are currently being synced and data accuracy might be affected. Please check again later.
     </div>
+    <div
+      v-if="!isOnline"
+      class="header__warning">
+      You are currently offline. Please check your connection.
+    </div>
+    <div
+      v-if="nodeStatus === false"
+      class="header__warning">
+      The Node is currently unavailable. Please check again later.
+    </div>
+    <div
+      v-if="middlewareStatus === false"
+      class="header__warning">
+      The Middleware is currently unavailable. Please check again later.
+    </div>
+    <div
+      v-if="isMarketCapAvailable === false"
+      class="header__warning">
+      Market Cap data are currently not available. Fiat price might not be up to date. Please check again later.
+    </div>
   </header>
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
+import { useOnline } from '@vueuse/core'
+import { useUiStore } from '@/stores/ui'
 import { useStatus } from '@/stores/status'
+import { MENU_HASH } from '@/utils/constants'
+import { useMarketStatsStore } from '@/stores/marketStats'
 
 const route = useRoute()
-const isNavigationOpen = ref(false)
-
-const { isSyncing } = storeToRefs(useStatus())
+const router = useRouter()
+const { isMobileMenuOpen } = storeToRefs(useUiStore())
+const isOnline = useOnline()
+const { isSyncing, nodeStatus, middlewareStatus } = storeToRefs(useStatus())
+const { isMarketCapAvailable } = storeToRefs(useMarketStatsStore())
 
 onMounted(() => {
   window.addEventListener('resize', closeNavigation)
@@ -63,16 +90,27 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', closeNavigation)
 })
 
+watch(route, () => {
+  if (route.hash !== MENU_HASH) {
+    closeNavigation()
+  }
+})
 watch(() => route.fullPath, () => {
-  closeNavigation()
+  if (route.hash !== MENU_HASH) {
+    closeNavigation()
+  }
 })
 
 function toggleNavigation() {
-  isNavigationOpen.value = !isNavigationOpen.value
+  if (!isMobileMenuOpen.value && router.options.history.state.back === null) {
+    router.push({ hash: MENU_HASH })
+  }
+
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
 function closeNavigation() {
-  isNavigationOpen.value = false
+  isMobileMenuOpen.value = false
 }
 </script>
 

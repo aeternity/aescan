@@ -67,8 +67,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     selectedTxType,
     setPageIndex,
     setSelectedTxType,
-    fetchLast24hsTransactionsCount,
-    transactionsStatistics,
     fetchLast24hsTransactionsStatistics,
     last24hsTransactionsCount,
     last24hsTransactionsTrend,

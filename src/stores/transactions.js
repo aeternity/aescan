@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
+import { formatAePrice, formatAettosToAe } from '~/utils/format'
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -12,6 +13,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const transactionsStatistics = ref(null)
   const last24hsTransactionsCount = ref(null)
   const last24hsTransactionsTrend = ref(null)
+  const last24hsAverageTransactionFees = ref(null)
+  const feesTrend = ref(null)
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -32,11 +35,13 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsCount.value = data
   }
 
-  async function fetchLast24hsTransactionsCount() {
+  async function fetchLast24hsTransactionsStatistics() {
     last24hsTransactionsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     last24hsTransactionsCount.value = data.last24hsTransactions
     last24hsTransactionsTrend.value = data.transactionsTrend
+    last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)
+    feesTrend.value = data.feesTrend
   }
 
   return {
@@ -45,8 +50,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     fetchTransactions,
     fetchTransactionsCount,
     transactionsStatistics,
-    fetchLast24hsTransactionsCount,
+    fetchLast24hsTransactionsStatistics,
     last24hsTransactionsCount,
     last24hsTransactionsTrend,
+    last24hsAverageTransactionFees,
+    feesTrend,
   }
 })

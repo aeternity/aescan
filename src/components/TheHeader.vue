@@ -9,6 +9,7 @@
         to="/"
         @click="closeNavigation">
         <img
+          width="134"
           alt="æScan logo"
           src="@/assets/logo.svg">
       </app-link>

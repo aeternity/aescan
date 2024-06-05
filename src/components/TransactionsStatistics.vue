@@ -16,7 +16,7 @@
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
-      <h5>AVG TRANSACTION FEE</h5>
+      <h5>AVG TRANSACTION FEE (LAST 24H)</h5>
       <div class="transaction-statistics__value">
         {{ last24hsAverageTransactionFees }}
         <app-chip :variant="getChipVariant(feesTrend)">

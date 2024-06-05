@@ -1,6 +1,6 @@
 <template>
   <app-panel class="name-pointers-special-panel">
-    <template #heading>
+    <template #title>
       SPECIAL POINTERS
     </template>
     <table>
@@ -12,7 +12,7 @@
               {{ namesHints.accountPointer }}
             </hint-tooltip>
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.account"
               :to="`/accounts/${name.specialPointers.account}`">
@@ -36,7 +36,7 @@
               {{ namesHints.channelPointer }}
             </hint-tooltip>
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.channel"
               :to="`/state-channels/${name.specialPointers.channel}`">
@@ -60,7 +60,7 @@
               {{ namesHints.contractPointer }}
             </hint-tooltip>
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.contract"
               :to="`/contracts/${name.specialPointers.contract}`">
@@ -83,7 +83,7 @@
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.oracle"
               :to="`/oracles/${name.specialPointers.oracle}`">
@@ -119,12 +119,12 @@ const { name } = storeToRefs(useNameDetailsStore())
 
 <style scoped>
 .name-pointers-special-panel {
-  &__data {
-    text-align: right;
-  }
-
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {

@@ -5,7 +5,7 @@
         <th>
           Name
           <hint-tooltip>
-            {{ namesHints.nameInAuction }}
+            {{ namesHints.nameId }}
           </hint-tooltip>
         </th>
         <th>

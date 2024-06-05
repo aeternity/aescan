@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Oracle
           <hint-tooltip>
             {{ oraclesHints.oracleId }}
           </hint-tooltip>
+          Oracle
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           <app-link :to="`/oracles/${transactionData.oracleId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Query ID
           <hint-tooltip>
             {{ oraclesHints.queryId }}
           </hint-tooltip>
+          Query ID
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.queryId }}
@@ -27,10 +27,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Response
           <hint-tooltip>
             {{ oraclesHints.response }}
           </hint-tooltip>
+          Response
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ formatDecodeByteArray(transactionData.response) }}
@@ -38,10 +38,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-respond-tx__row">
         <th class="transaction-type-panel-oracle-respond-tx__table-header">
-          Response TTL / Type
           <hint-tooltip>
             {{ oraclesHints.responseTtl }}
           </hint-tooltip>
+          Response TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
           {{ transactionData.responseTtl.value }}
@@ -73,11 +73,14 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

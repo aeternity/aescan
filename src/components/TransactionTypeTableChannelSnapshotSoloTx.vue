@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
-          Channel ID
           <hint-tooltip>
             {{ stateChannelsHints.stateChannelId }}
           </hint-tooltip>
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
-          Round
           <hint-tooltip>
             {{ stateChannelsHints.snapshotRound }}
           </hint-tooltip>
+          Round
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           {{ transactionData.round }}
@@ -27,10 +27,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
-          Initiator
           <hint-tooltip>
             {{ stateChannelsHints.initiator }}
           </hint-tooltip>
+          Initiator
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
@@ -40,10 +40,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
-          Responder
           <hint-tooltip>
             {{ stateChannelsHints.responder }}
           </hint-tooltip>
+          Responder
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
@@ -53,10 +53,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-snapshot-solo-tx__row">
         <th class="transaction-type-panel-channel-snapshot-solo-tx__table-header">
-          Snapshotted By
           <hint-tooltip>
             {{ stateChannelsHints.snapshottedBy }}
           </hint-tooltip>
+          Snapshotted By
         </th>
         <td class="transaction-type-panel-channel-snapshot-solo-tx__data">
           <app-link :to="`/accounts/${transactionData.fromId}`">
@@ -88,11 +88,14 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

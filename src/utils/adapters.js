@@ -9,7 +9,6 @@ import {
   formatIsAuction,
   formatIsStatefulEntrypoint,
   formatNameState,
-  formatNameStatus,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
@@ -567,22 +566,6 @@ export function adaptStateChannels(stateChannels) {
     next: stateChannels.next,
     data: formattedData,
     prev: stateChannels.prev,
-  }
-}
-
-export function adaptNamesResults(names) {
-  const formattedData = names.data
-    .map(name => {
-      return {
-        name: name.payload.name,
-        status: formatNameStatus(name),
-      }
-    })
-
-  return {
-    next: names.next,
-    data: formattedData,
-    prev: names.prev,
   }
 }
 

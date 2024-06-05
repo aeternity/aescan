@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-pointers-panel">
-    <template #heading>
+    <template #title>
       NAME POINTERS
     </template>
-    <table class="transaction-pointers-panel__table">
+    <table>
       <tbody>
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">
@@ -12,7 +12,7 @@
               {{ namesHints.accountPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
               v-if="pointers.account_pubkey"
               :to="`/accounts/${pointers.account_pubkey}`">
@@ -35,7 +35,7 @@
               {{ namesHints.channelPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             {{ formatNullable(pointers.channel) }}
           </td>
         </tr>
@@ -46,7 +46,7 @@
               {{ namesHints.contractPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
               v-if="pointers.contract_pubkey"
               :to="`/contracts/${pointers.contract_pubkey}`">
@@ -69,7 +69,7 @@
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             {{ formatNullable(pointers.oracle_pubkey) }}
           </td>
         </tr>
@@ -104,11 +104,10 @@ const pointers = computed(() => {
 .transaction-pointers-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
-  }
 
-  &__data {
-    word-wrap: break-word;
-    text-align: right;
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {

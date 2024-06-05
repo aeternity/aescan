@@ -15,6 +15,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   const price = ref(null)
   const priceChange = ref(null)
   const marketCap = ref(null)
+  const isMarketCapAvailable = ref(null)
 
   const blockchainStatsStore = useBlockchainStatsStore()
 
@@ -38,8 +39,13 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
 
   async function fetchPrice() {
     if (!cache.get(CACHE_KEY_PRICE_DATA)) {
-      const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/simple/price?ids=aeternity&vs_currencies=usd&include_24hr_change=true`)
-      cache.put(CACHE_KEY_PRICE_DATA, data.aeternity, MARKET_STATS_CACHE_TTL)
+      try {
+        const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/simple/price?ids=aeternity&vs_currencies=usd&include_24hr_change=true`)
+        cache.put(CACHE_KEY_PRICE_DATA, data.aeternity, MARKET_STATS_CACHE_TTL)
+        isMarketCapAvailable.value = true
+      } catch (e) {
+        isMarketCapAvailable.value = false
+      }
     }
 
     const cachedAeternityPriceData = cache.get(CACHE_KEY_PRICE_DATA)
@@ -64,5 +70,6 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     marketCap,
     distribution,
     distributionPercentage,
+    isMarketCapAvailable,
   }
 })

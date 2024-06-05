@@ -4,10 +4,10 @@
       <div class="footer__body">
         <div class="footer__column">
           <img
+            width="134"
             class="footer__logo-aescan"
             alt="æScan logo"
             src="@/assets/logo.svg">
-
           <header class="footer__header">
             <app-tooltip>
               <div class="footer__powered-by">

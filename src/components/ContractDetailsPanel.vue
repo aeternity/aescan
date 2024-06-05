@@ -225,7 +225,7 @@ import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/form
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '@/components/HintTooltip'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
-import AppChip from '~/components/AppChip'
+import AppChip from '@/components/AppChip'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

@@ -92,7 +92,15 @@ await useAsyncData(() => Promise.all([
   fetchMarketStats(),
 ]))
 
-const priceChangeSign = computed(() => priceChange.value > 0 ? '+' : '')
+const priceChangeSign = computed(() => {
+  if (priceChange.value > 0) {
+    return '+'
+  } else if (priceChange.value === 0) {
+    return ''
+  } else if (priceChange.value < 0) {
+    return '-'
+  }
+})
 const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'error')
 </script>
 

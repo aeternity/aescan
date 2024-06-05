@@ -7,7 +7,7 @@
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
-      <h5>TRANSACTIONS IN LAST 24H</h5>
+      <h5>TRANSACTIONS (LAST 24H)</h5>
       <div class="transaction-statistics__value">
         {{ formatNumber(last24hsTransactionsCount) }}
         <app-chip :variant="getChipVariant(last24hsTransactionsTrend)">

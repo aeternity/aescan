@@ -67,8 +67,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useUiStore } from '@/stores/ui'
 import { useOnline } from '@vueuse/core'
+import { useUiStore } from '@/stores/ui'
 import { useStatus } from '@/stores/status'
 import { MENU_HASH } from '@/utils/constants'
 import { useMarketStatsStore } from '@/stores/marketStats'

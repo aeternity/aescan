@@ -77,12 +77,17 @@
 
 <script setup>
 import { useHead } from '@vueuse/head'
+import { storeToRefs } from 'pinia'
 import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 import Error from '@/error'
 import { initializeStores } from '@/stores'
 import { useWebSocket } from '@/stores/webSocket'
+import { useUiStore } from '@/stores/ui'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
+
+const { isMobileMenuOpen } = storeToRefs(useUiStore())
+const router = useRouter()
 
 await useAsyncData(() => initializeStores())
 
@@ -104,9 +109,29 @@ if (import.meta.env.MODE !== 'production') {
   })
 }
 
-function logError(error) {
-  console.error(error)
-}
+const detectedHistoryNavigation = ref(null)
+
+router.options.history.listen((_to, _from, meta) => {
+  if (meta.type !== 'pop') {
+    return
+  }
+
+  detectedHistoryNavigation.value = meta.direction
+})
+
+router.beforeEach((_to, from, next, abort) => {
+  if (detectedHistoryNavigation.value === 'back') {
+    detectedHistoryNavigation.value = null
+
+    if (isMobileMenuOpen.value && from.hash !== MENU_HASH) {
+      isMobileMenuOpen.value = false
+      abort()
+      return
+    }
+  }
+
+  next()
+})
 </script>
 
 <style>

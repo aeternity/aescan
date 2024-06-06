@@ -16,6 +16,10 @@
       <app-tab title="Transactions">
         <ae-coin-transactions-panel/>
       </app-tab>
+      <app-tab title="Markets">
+        <ae-coin-markets-panel/>
+      </app-tab>
+      <!--      add tab functionality-->
     </app-tabs>
   </template>
   <loader-panel v-else/>

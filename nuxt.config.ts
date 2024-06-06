@@ -9,6 +9,17 @@ export default defineNuxtConfig({
   devServer: {
     port: 8080,
   },
+  routeRules: {
+    '/tokens/ae/': {
+      cors: true,
+      headers: {
+        'access-control-allow-methods': 'GET',
+        'access-control-allow-origin': '*',
+        'content-security-policy': '*',
+
+      },
+    },
+  },
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/plausible',

@@ -10,18 +10,14 @@
       <h5>TRANSACTIONS (LAST 24H)</h5>
       <div class="transaction-statistics__value">
         {{ formatNumber(last24hsTransactionsCount) }}
-        <app-chip :variant="getChipVariant(last24hsTransactionsTrend)">
-          {{ last24hsTransactionsTrend }} %
-        </app-chip>
+        <trend-chip :delta="last24hsTransactionsTrend"/>
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
       <h5>AVG TRANSACTION FEE (LAST 24H)</h5>
       <div class="transaction-statistics__value">
         {{ last24hsAverageTransactionFees }}
-        <app-chip :variant="getChipVariant(feesTrend)">
-          {{ feesTrend }} %
-        </app-chip>
+        <trend-chip :delta="feesTrend"/>
       </div>
     </app-panel>
   </div>
@@ -47,11 +43,6 @@ if (process.client) {
   await fetchTotalTransactionsCount()
   await fetchLast24hsTransactionsStatistics()
 }
-
-function getChipVariant(percentage) {
-  return percentage > 0 ? 'success' : 'error'
-}
-
 </script>
 
 <style scoped>

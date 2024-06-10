@@ -28,11 +28,7 @@
           </th>
           <td>
             $ {{ formatNullable(price) }}
-            <app-chip
-              class="market-stats__chip"
-              :variant="priceChipVariant">
-              {{ priceChangeSign }}{{ formatNullable(priceChange) }} %
-            </app-chip>
+            <trend-chip :delta="priceChange"/>
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
@@ -92,16 +88,6 @@ await useAsyncData(() => Promise.all([
   fetchMarketStats(),
 ]))
 
-const priceChangeSign = computed(() => {
-  if (priceChange.value > 0) {
-    return '+'
-  } else if (priceChange.value === 0) {
-    return ''
-  } else if (priceChange.value < 0) {
-    return '-'
-  }
-})
-const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'error')
 </script>
 
 <style scoped>

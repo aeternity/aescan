@@ -621,3 +621,41 @@ export function adaptVerificationResult(verificationStatus) {
     status: translateCodeToStatus(verificationStatus.statusCode),
   }
 }
+
+export function adaptMarketStatsGate(stats) {
+  return {
+    price: stats[0].high24h,
+    volume: stats[0].baseVolume,
+  }
+}
+
+export function adaptMarketStatsMexc(stats) {
+  return {
+    price: stats.lastPrice,
+    volume: stats.volume,
+  }
+}
+
+export function adaptMarketStatsCoinStore(stats) {
+  const aaa = stats.data.find(item => item.symbol === 'AEUSDT')
+  return {
+    price: aaa.high,
+    volume: aaa.volume,
+  }
+}
+
+export function adaptMarketStatsHotCoin(stats) {
+  const bbb = stats.ticker.find(item => item.symbol === 'ae_usdt')
+  return {
+    price: bbb.high,
+    volume: bbb.volume,
+  }
+}
+
+export function adaptMarketStatsCoinW(stats) {
+  console.log('adaptMarketStatsCoinW', stats)
+  return {
+    price: stats?.aeUsdt?.last,
+    volume: stats?.aeUsdt?.baseVolume,
+  }
+}

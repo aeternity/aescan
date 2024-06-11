@@ -1,6 +1,13 @@
 import { defineStore } from 'pinia'
 import useAxios from '@/composables/useAxios'
 import { MARKET_STATS_COINSTORE_ADDRESS, MARKET_STATS_HOTCOIN_ADDRESS } from '~/utils/constants'
+import {
+  adaptMarketStatsCoinStore,
+  adaptMarketStatsCoinW,
+  adaptMarketStatsGate,
+  adaptMarketStatsHotCoin,
+  adaptMarketStatsMexc,
+} from '@/utils/adapters'
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()
@@ -12,7 +19,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
       fetchGate(),
       fetchMexc(),
       fetchHotcoin(),
-      fetchCoinstore(),
+      fetchCoinStore(),
       fetchCoinW(),
     ])
   }
@@ -20,7 +27,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchGate() {
     try {
       const { data } = await axios.get('/proxy/gate')
-      rawMarketstats.value.gate = data[0]
+      rawMarketstats.value.gate = adaptMarketStatsGate(data)
     } catch (e) {
       console.log('eee', e)
     }
@@ -29,17 +36,16 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchMexc() {
     try {
       const { data } = await axios.get('/proxy/mexc')
-      rawMarketstats.value.mexc = data
+      rawMarketstats.value.mexc = adaptMarketStatsMexc(data)
     } catch (e) {
       console.log('e', e)
     }
   }
 
-  async function fetchCoinstore() {
+  async function fetchCoinStore() {
     try {
       const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
-      rawMarketstats.value.coinStore = data.data.find(item => item.symbol === 'AEUSDT')
-      // coinStore.value = data.data.find(item => item.symbol === 'AEUSDT')
+      rawMarketstats.value.coinStore = adaptMarketStatsCoinStore(data)
     } catch (e) {
       console.log('e', e)
     }
@@ -48,8 +54,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchHotcoin() {
     try {
       const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
-      rawMarketstats.value.hotCoin = data.ticker.find(item => item.symbol === 'ae_usdt')
-      // hotCoin.value = data.ticker.find(item => item.symbol === 'ae_usdt')
+      rawMarketstats.value.hotCoin = adaptMarketStatsHotCoin(data)
     } catch (e) {
       console.log('e', e)
     }
@@ -58,13 +63,12 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchCoinW() {
     try {
       const { data } = await axios.get('/proxy/coinw')
-      console.log('data.data', data.data)
-      console.log('data.data.aeUsdt', data.data.aeUsdt)
-      console.log('data.data.aeUsdt[1]', data.data.aeUsdt[1])
-      rawMarketstats.value.coinW = data.data.aeUsdt[1]
+      console.log('coinw data', data)
+      rawMarketstats.value.coinW = adaptMarketStatsCoinW(data)
       console.log('rawMarketstats.value.coinW', rawMarketstats.value.coinW)
     } catch (e) {
-      console.log('e', e)
+      rawMarketstats.value.coinW = null
+      // todo fix unavailable
     }
   }
 

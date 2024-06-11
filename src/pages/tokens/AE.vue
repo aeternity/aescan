@@ -23,7 +23,6 @@
 
 <script setup>
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
-import AeCoinTransactionsPanel from '~/pages/tokens/AeCoinTransactionsPanel'
 
 const { isLoading } = useLoading()
 </script>

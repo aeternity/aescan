@@ -1,5 +1,9 @@
-export const MARKET_STATS_ADDRESS = 'https://api.coingecko.com/api/v3'
-export const MEXC = 'https://api.mexc.com/api/v3'
+export const MARKET_STATS_COINGECKO_ADDRESS = 'https://api.coingecko.com/api/v3'
+export const MARKET_STATS_GATE_ADDRESS = 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT'
+export const MARKET_STATS_MEXC_ADDRESS = 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT'
+export const MARKET_STATS_COINSTORE_ADDRESS = 'https://api.coinstore.com/api/v1/market/tickers'
+export const MARKET_STATS_HOTCOIN_ADDRESS = 'https://api.hotcoinfin.com/v1/market/ticker'
+export const MARKET_STATS_COINW_ADDRESS = 'https://api.coinw.com/api/v1/public?command=returnTicker'
 export const MINUTES_PER_BLOCK = 3
 export const TX_TYPES_OPTIONS = [
   { typeQuery: null, label: 'All types' },

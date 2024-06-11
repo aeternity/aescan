@@ -66,7 +66,11 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
       const { data } = await axios.get('/api2')
       console.log('data.data', data.data)
 
-      coinW.value = data.data.find(item => item.key === 'aeUsdt')
+      coinW.value = Object.entries(data.data).map(pair => {
+        console.log('pair[0]', pair[0])
+        return pair[0] === 'aeUsdt'
+      })
+      console.log('coinW.value', coinW.value)
     } catch (e) {
       console.log('e', e)
     }

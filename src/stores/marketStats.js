@@ -4,8 +4,8 @@ import useAxios from '@/composables/useAxios'
 import {
   CACHE_KEY_MARKET_DATA,
   CACHE_KEY_PRICE_DATA,
-  MARKET_STATS_ADDRESS,
   MARKET_STATS_CACHE_TTL,
+  MARKET_STATS_COINGECKO_ADDRESS,
   MAX_AE_DISTRIBUTION,
 } from '@/utils/constants'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
@@ -40,7 +40,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   async function fetchPrice() {
     if (!cache.get(CACHE_KEY_PRICE_DATA)) {
       try {
-        const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/simple/price?ids=aeternity&vs_currencies=usd&include_24hr_change=true`)
+        const { data } = await axios.get(`${MARKET_STATS_COINGECKO_ADDRESS}/simple/price?ids=aeternity&vs_currencies=usd&include_24hr_change=true`)
         cache.put(CACHE_KEY_PRICE_DATA, data.aeternity, MARKET_STATS_CACHE_TTL)
         isMarketCapAvailable.value = true
       } catch (e) {
@@ -55,7 +55,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
 
   async function fetchCoinStats() {
     if (!cache.get(CACHE_KEY_MARKET_DATA)) {
-      const { data } = await axios.get(`${MARKET_STATS_ADDRESS}/coins/aeternity`)
+      const { data } = await axios.get(`${MARKET_STATS_COINGECKO_ADDRESS}/coins/aeternity`)
       cache.put(CACHE_KEY_MARKET_DATA, data.marketData, MARKET_STATS_CACHE_TTL)
     }
 

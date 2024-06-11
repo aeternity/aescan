@@ -59,6 +59,8 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
     try {
       const { data } = await axios.get('/proxy/coinw')
       console.log('data.data', data.data)
+      console.log('data.data.aeUsdt', data.data.aeUsdt)
+      console.log('data.data.aeUsdt[1]', data.data.aeUsdt[1])
       rawMarketstats.value.coinW = data.data.aeUsdt[1]
       console.log('rawMarketstats.value.coinW', rawMarketstats.value.coinW)
     } catch (e) {

@@ -11,8 +11,13 @@
   </page-header>
 
   <template v-if="!isLoading">
-    <ae-coin-panel class="ae-coin__panel"/>
-    <app-tabs>
+    <ae-coin-panel
+      class="ae-coin__panel"
+      :price="price"
+      :price-change="priceChange"
+      :total-token-supply="totalTokenSupply"/>
+
+    <app-tabs v-model="activeTabIndex">
       <app-tab title="Transactions">
         <ae-coin-transactions-panel/>
       </app-tab>
@@ -26,9 +31,67 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
+import { useMarketStatsStore } from '~/stores/marketStats'
+import { useBlockchainStatsStore } from '~/stores/blockchainStats'
+
+const route = useRoute()
+const { push, replace } = useRouter()
+
+const { price, priceChange } = storeToRefs(useMarketStatsStore())
+const { fetchMarketStats } = useMarketStatsStore()
+
+const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
+const { fetchTotalStats } = useBlockchainStatsStore()
 
 const { isLoading } = useLoading()
+const TAB_KEYS = ['transactions', 'markets']
+
+const activeTabIndex = computed({
+  get() {
+    const { type: activeTabName } = route.query
+
+    if (activeTabName === undefined) {
+      return 0
+    }
+
+    return TAB_KEYS.indexOf(activeTabName)
+  },
+  set(index) {
+    const newRoute = {
+      query: {
+        type: TAB_KEYS[index],
+      },
+    }
+
+    if (activeTabIndex.value === index) {
+      // if navigating back
+      return replace(newRoute)
+    }
+
+    return push(newRoute)
+  },
+})
+
+// try {
+//   await fetchTokenDetails(route.params.id)
+// } catch (error) {
+//   if ([400, 404].includes(error.response?.status)) {
+//     throw showError({
+//       data: {
+//         entityId: route.params.id,
+//         entityName: 'Token',
+//       },
+//       statusMessage: 'EntityDetailsNotFound',
+//     })
+//   }
+// }
+
+await useAsyncData(() => Promise.allSettled([
+  fetchTotalStats(),
+  fetchMarketStats(),
+]))
 </script>
 
 <style scoped>

@@ -9,9 +9,6 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   const hotCoin = ref(null)
   const coinStore = ref(null)
   const coinW = ref(null)
-  axios.defaults.headers.post['Access-Control-Allow-Methods'] = '*'
-  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
-  axios.defaults.headers.post['Content-Security-Policy'] = '*'
 
   function fetchMarketStats() {
     return Promise.allSettled([

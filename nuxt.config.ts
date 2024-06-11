@@ -9,15 +9,12 @@ export default defineNuxtConfig({
   devServer: {
     port: 8080,
   },
-  routeRules: {
-    '/tokens/ae/': {
-      cors: true,
-      headers: {
-        'access-control-allow-methods': 'GET',
-        'access-control-allow-origin': '*',
-        'content-security-policy': '*',
+  nitro: {
 
-      },
+    routeRules: {
+      '/api/**': { proxy: 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT', cors: true },
+      '/api2/**': { proxy: 'https://api.coinw.com/api/v1/public?command=returnTicker', cors: true },
+      '/api3/**': { proxy: 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT', cors: true },
     },
   },
   modules: [

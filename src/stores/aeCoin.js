@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import useAxios from '@/composables/useAxios'
-import { MEXC } from '~/utils/constants'
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()
@@ -15,7 +14,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   axios.defaults.headers.post['Content-Security-Policy'] = '*'
 
   function fetchMarketStats() {
-    return Promise.all([
+    return Promise.allSettled([
       fetchGate(),
       fetchMexc(),
       fetchHotcoin(),
@@ -27,10 +26,8 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchGate() {
     gate.value = null
     try {
-      const data = await axios.get('https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT')
-      console.log('fetchGate data', data)
-
-      gate.value = data
+      const { data } = await axios.get('/api3')
+      gate.value = data[0]
     } catch (e) {
       console.log('eee', e)
     }
@@ -39,20 +36,8 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchMexc() {
     mexc.value = null
     try {
-      const data = await axios.get(`${MEXC}/ticker/24hr?symbol=AEUSDT`)
-      console.log('fetchMexc data', data)
+      const { data } = await axios.get('/api')
       mexc.value = data
-    } catch (e) {
-      console.log('e', e)
-    }
-  }
-
-  async function fetchHotcoin() {
-    hotCoin.value = null
-    try {
-      const { data } = await axios.get('https://api.hotcoinfin.com/v1/market/ticker')
-      const aePair = data.ticker.find(item => item.symbol === 'ae_usdt')
-      hotCoin.value = aePair
     } catch (e) {
       console.log('e', e)
     }
@@ -62,8 +47,17 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
     hotCoin.value = null
     try {
       const { data } = await axios.get('https://api.coinstore.com/api/v1/market/tickers')
-      const aePair = data.data.find(item => item.symbol === 'AEUSDT')
-      coinStore.value = aePair
+      coinStore.value = data.data.find(item => item.symbol === 'AEUSDT')
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+  async function fetchHotcoin() {
+    hotCoin.value = null
+    try {
+      const { data } = await axios.get('https://api.hotcoinfin.com/v1/market/ticker')
+      hotCoin.value = data.ticker.find(item => item.symbol === 'ae_usdt')
     } catch (e) {
       console.log('e', e)
     }
@@ -72,7 +66,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchCoinW() {
     coinW.value = null
     try {
-      const data = await axios.get('https://api.coinw.com/api/v1/public?command=returnTicker')
+      const data = await axios.get('/api2')
       console.log('fetchCoinW data', data)
       coinW.value = data
     } catch (e) {

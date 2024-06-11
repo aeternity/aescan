@@ -2,13 +2,32 @@
   <!--  todo condensed table-->
   <app-panel class="ae-coin-transactions-panel">
     <table>
-      <!--      todo add hints-->
       <!--      todo add tests-->
       <tr>
-        <th>Market Name</th>
-        <th>Token Pair</th>
-        <th>Price</th>
-        <th>Volume (24h)</th>
+        <th>
+          Market Name
+          <hint-tooltip>
+            {{ aeCoinHints.marketName }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Token Pair
+          <hint-tooltip>
+            {{ aeCoinHints.pair }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Price
+          <hint-tooltip>
+            {{ aeCoinHints.marketPrice }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Volume (24h)
+          <hint-tooltip>
+            {{ aeCoinHints.volume }}
+          </hint-tooltip>
+        </th>
       </tr>
       <!--      todo chaining? -->
       <tr
@@ -26,6 +45,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useAeCoinStore } from '~/stores/aeCoin'
+import { aeCoinHints } from '~/utils/hints/aeCoinHints'
 
 const aeCoinStore = useAeCoinStore()
 const { fetchMarketStats } = aeCoinStore

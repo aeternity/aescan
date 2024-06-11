@@ -4,14 +4,11 @@ import { MARKET_STATS_COINSTORE_ADDRESS, MARKET_STATS_HOTCOIN_ADDRESS } from '~/
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()
-
-  const gate = ref(null)
-  const mexc = ref(null)
-  const hotCoin = ref(null)
-  const coinStore = ref(null)
   const coinW = ref(null)
+  const rawMarketstats = ref({})
 
   function fetchMarketStats() {
+    rawMarketstats.value = {}
     return Promise.allSettled([
       fetchGate(),
       fetchMexc(),
@@ -22,63 +19,56 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   }
 
   async function fetchGate() {
-    gate.value = null
     try {
       const { data } = await axios.get('/proxy/gate')
-      gate.value = data[0]
+      rawMarketstats.value.gate = data[0]
     } catch (e) {
       console.log('eee', e)
     }
   }
 
   async function fetchMexc() {
-    mexc.value = null
     try {
       const { data } = await axios.get('/proxy/mexc')
-      mexc.value = data
+      rawMarketstats.value.mexc = data
     } catch (e) {
       console.log('e', e)
     }
   }
 
   async function fetchCoinstore() {
-    hotCoin.value = null
     try {
       const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
-      coinStore.value = data.data.find(item => item.symbol === 'AEUSDT')
+      rawMarketstats.value.coinStore = data.data.find(item => item.symbol === 'AEUSDT')
+      // coinStore.value = data.data.find(item => item.symbol === 'AEUSDT')
     } catch (e) {
       console.log('e', e)
     }
   }
 
   async function fetchHotcoin() {
-    hotCoin.value = null
     try {
       const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
-      hotCoin.value = data.ticker.find(item => item.symbol === 'ae_usdt')
+      rawMarketstats.value.hotCoin = data.ticker.find(item => item.symbol === 'ae_usdt')
+      // hotCoin.value = data.ticker.find(item => item.symbol === 'ae_usdt')
     } catch (e) {
       console.log('e', e)
     }
   }
 
   async function fetchCoinW() {
-    coinW.value = null
     try {
       const { data } = await axios.get('/proxy/coinw')
       console.log('data.data', data.data)
-      coinW.value = data.data.aeUsdt
-      console.log('coinW.value', coinW.value)
+      rawMarketstats.value.coinW = data.data.aeUsdt[1]
+      console.log('rawMarketstats.value.coinW', rawMarketstats.value.coinW)
     } catch (e) {
       console.log('e', e)
     }
   }
 
   return {
-    gate,
-    mexc,
-    hotCoin,
-    coinStore,
-    coinW,
+    rawMarketstats,
     fetchMarketStats,
   }
 })

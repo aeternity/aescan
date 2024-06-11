@@ -1,5 +1,8 @@
 <template>
-  <app-panel class="ae-coin-transactions-panel">
+  <!--  todo condition-->
+  <app-panel
+    v-if="rawMarketstats"
+    class="ae-coin-transactions-panel">
     <table>
       <!--      todo add hints-->
       <!--      todo add tests-->
@@ -12,32 +15,32 @@
       <tr>
         <td>Gate</td>
         <td>AE_USDT</td>
-        <td>${{ gate?.high24h }}</td>
-        <td>${{ gate?.baseVolume }}</td>
+        <td>${{ rawMarketstats?.gate?.high24h }}</td>
+        <td>${{ rawMarketstats?.gate?.baseVolume }}</td>
       </tr>
       <tr>
         <td>MEXC</td>
         <td>AE_USDT</td>
-        <td>${{ mexc?.lastPrice }}</td>
-        <td>${{ mexc?.volume }}</td>
+        <td>${{ rawMarketstats?.mexc?.lastPrice }}</td>
+        <td>${{ rawMarketstats?.mexc?.volume }}</td>
       </tr>
       <tr>
         <td>HotCoin</td>
         <td>AE_USDT</td>
-        <td>${{ hotCoin?.high }}</td>
-        <td>${{ hotCoin?.vol }}</td>
+        <td>${{ rawMarketstats?.hotCoin?.high }}</td>
+        <td>${{ rawMarketstats?.hotCoin?.vol }}</td>
       </tr>
       <tr>
         <td>CoinStore</td>
         <td>AE_USDT</td>
-        <td>${{ coinStore?.high }}</td>
-        <td>${{ coinStore?.volume }}</td>
+        <td>${{ rawMarketstats?.coinStore?.high }}</td>
+        <td>${{ rawMarketstats?.coinStore?.volume }}</td>
       </tr>
       <tr>
         <td>CoinW</td>
         <td>AE_USDT</td>
-        <td>${{ coinW?.high }}</td>
-        <td>${{ coinW?.volume }}</td>
+        <td>${{ rawMarketstats?.coinW?.high }}</td>
+        <td>${{ rawMarketstats?.coinW?.volume }}</td>
       </tr>
     </table>
   </app-panel>
@@ -49,7 +52,7 @@ import { useAeCoinStore } from '~/stores/aeCoin'
 
 const aeCoinStore = useAeCoinStore()
 const { fetchMarketStats } = aeCoinStore
-const { gate, mexc, hotCoin, coinStore, coinW } = storeToRefs(aeCoinStore)
+const { rawMarketstats } = storeToRefs(aeCoinStore)
 
 await useAsyncData(async() => {
   await fetchMarketStats()

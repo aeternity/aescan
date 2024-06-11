@@ -11,10 +11,10 @@ import {
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()
-  const rawMarketstats = ref({})
+  const aeCoinMarketStats = ref({})
 
   function fetchMarketStats() {
-    rawMarketstats.value = {}
+    aeCoinMarketStats.value = {}
     return Promise.allSettled([
       fetchGate(),
       fetchMexc(),
@@ -25,55 +25,32 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   }
 
   async function fetchGate() {
-    try {
-      const { data } = await axios.get('/proxy/gate')
-      rawMarketstats.value.gate = adaptMarketStatsGate(data)
-    } catch (e) {
-      console.log('eee', e)
-    }
+    const { data } = await axios.get('/proxy/gate')
+    aeCoinMarketStats.value.gate = adaptMarketStatsGate(data)
   }
 
   async function fetchMexc() {
-    try {
-      const { data } = await axios.get('/proxy/mexc')
-      rawMarketstats.value.mexc = adaptMarketStatsMexc(data)
-    } catch (e) {
-      console.log('e', e)
-    }
+    const { data } = await axios.get('/proxy/mexc')
+    aeCoinMarketStats.value.mexc = adaptMarketStatsMexc(data)
   }
 
   async function fetchCoinStore() {
-    try {
-      const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
-      rawMarketstats.value.coinStore = adaptMarketStatsCoinStore(data)
-    } catch (e) {
-      console.log('e', e)
-    }
+    const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
+    aeCoinMarketStats.value.coinStore = adaptMarketStatsCoinStore(data)
   }
 
   async function fetchHotcoin() {
-    try {
-      const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
-      rawMarketstats.value.hotCoin = adaptMarketStatsHotCoin(data)
-    } catch (e) {
-      console.log('e', e)
-    }
+    const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
+    aeCoinMarketStats.value.hotCoin = adaptMarketStatsHotCoin(data)
   }
 
   async function fetchCoinW() {
-    try {
-      const { data } = await axios.get('/proxy/coinw')
-      console.log('coinw data', data)
-      rawMarketstats.value.coinW = adaptMarketStatsCoinW(data)
-      console.log('rawMarketstats.value.coinW', rawMarketstats.value.coinW)
-    } catch (e) {
-      rawMarketstats.value.coinW = null
-      // todo fix unavailable
-    }
+    const { data } = await axios.get('/proxy/coinw')
+    aeCoinMarketStats.value.coinW = adaptMarketStatsCoinW(data)
   }
 
   return {
-    rawMarketstats,
+    aeCoinMarketStats,
     fetchMarketStats,
   }
 })

@@ -63,8 +63,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchCoinW() {
     coinW.value = null
     try {
-      const data = await axios.get('/api2')
-      console.log('fetchCoinW data', data)
+      const { data } = await axios.get('/api2')
       coinW.value = data
     } catch (e) {
       console.log('e', e)

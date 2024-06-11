@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import useAxios from '@/composables/useAxios'
+import { MARKET_STATS_COINSTORE_ADDRESS, MARKET_STATS_HOTCOIN_ADDRESS } from '~/utils/constants'
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()
@@ -23,7 +24,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchGate() {
     gate.value = null
     try {
-      const { data } = await axios.get('/api3')
+      const { data } = await axios.get('/proxy/gate')
       gate.value = data[0]
     } catch (e) {
       console.log('eee', e)
@@ -33,7 +34,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchMexc() {
     mexc.value = null
     try {
-      const { data } = await axios.get('/api')
+      const { data } = await axios.get('/proxy/mexc')
       mexc.value = data
     } catch (e) {
       console.log('e', e)
@@ -43,7 +44,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchCoinstore() {
     hotCoin.value = null
     try {
-      const { data } = await axios.get('https://api.coinstore.com/api/v1/market/tickers')
+      const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
       coinStore.value = data.data.find(item => item.symbol === 'AEUSDT')
     } catch (e) {
       console.log('e', e)
@@ -53,7 +54,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchHotcoin() {
     hotCoin.value = null
     try {
-      const { data } = await axios.get('https://api.hotcoinfin.com/v1/market/ticker')
+      const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
       hotCoin.value = data.ticker.find(item => item.symbol === 'ae_usdt')
     } catch (e) {
       console.log('e', e)
@@ -63,10 +64,10 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchCoinW() {
     coinW.value = null
     try {
-      const { data } = await axios.get('/api2')
+      const { data } = await axios.get('/proxy/coinw')
       console.log('data.data', data.data)
 
-      coinW.value = Object.entries(data.data).map(pair => {
+      coinW.value = Object.entries(data.data).find(pair => {
         console.log('pair[0]', pair[0])
         return pair[0] === 'aeUsdt'
       })

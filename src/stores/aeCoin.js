@@ -4,7 +4,6 @@ import { MARKET_STATS_COINSTORE_ADDRESS, MARKET_STATS_HOTCOIN_ADDRESS } from '~/
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()
-  const coinW = ref(null)
   const rawMarketstats = ref({})
 
   function fetchMarketStats() {

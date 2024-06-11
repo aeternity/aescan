@@ -1,25 +1,23 @@
 <template>
-  <!--  todo condition-->
   <!--  todo condensed table-->
-  <app-panel
-    class="ae-coin-transactions-panel">
+  <app-panel class="ae-coin-transactions-panel">
     <table>
       <!--      todo add hints-->
       <!--      todo add tests-->
       <tr>
-        <th>Exchange name</th>
-        <th>Token pair</th>
+        <th>Market Name</th>
+        <th>Token Pair</th>
         <th>Price</th>
         <th>Volume (24h)</th>
       </tr>
-      <!--      todo stat to market-->
+      <!--      todo chaining? -->
       <tr
-        v-for="(stat, index) in aeCoinMarketStats"
+        v-for="(market, index) in aeCoinMarketStats"
         :key="index">
-        <td>{{ stat.name }}</td>
+        <td>{{ market?.name || '---' }}</td>
         <td>AE / USDT</td>
-        <td>{{ stat.price }}</td>
-        <td>{{ stat.volume }}</td>
+        <td>$ {{ market?.price }}</td>
+        <td>$ {{ market?.volume }}</td>
       </tr>
     </table>
   </app-panel>

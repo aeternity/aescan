@@ -14,7 +14,14 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   const aeCoinMarketStats = ref({})
 
   function fetchMarketStats() {
-    aeCoinMarketStats.value = {}
+    aeCoinMarketStats.value = {
+      gate: null,
+      mexc: null,
+      coinStore: null,
+      hotCoin: null,
+      coinW: null,
+    }
+    // todo default like this?
     return Promise.allSettled([
       fetchGate(),
       fetchMexc(),
@@ -45,10 +52,13 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   }
 
   async function fetchCoinW() {
-    const { data } = await axios.get('/proxy/coinw')
+    const data = await axios.get('/proxy/coinw')
+    console.log('data', data)
     aeCoinMarketStats.value.coinW = adaptMarketStatsCoinW(data)
   }
 
+  // todo move everything to the store
+  // todo caching
   return {
     aeCoinMarketStats,
     fetchMarketStats,

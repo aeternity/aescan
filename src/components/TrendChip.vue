@@ -15,5 +15,6 @@ const props = defineProps({
 const priceChangeSign = computed(() => {
   return props.delta > 0 ? '+' : ''
 })
-const priceChipVariant = computed(() => props.delta => 0 ? 'success' : 'error')
+
+const priceChipVariant = computed(() => props.delta >= 0 ? 'success' : 'error')
 </script>

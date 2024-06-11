@@ -4,20 +4,15 @@ const DEFAULT_HEADERS = {
   'X-XSS-Protection': '1; mode=block',
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
   'Cache-control': 'no-cache',
-  'Content-Security-Policy': '*',
+  'Content-Security-Policy': 'default-src \'self\' *; font-src \'self\' data:; img-src \'self\' data:; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'; frame-src \'self\'; upgrade-insecure-requests; block-all-mixed-content',
   'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
-  'Referrer-Policy': 'unsafe-url',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-Permitted-Cross-Domain-Policies': 'none',
-  'Cross-Origin-Embedder-Policy': 'unsafe-none',
-  'Cross-Origin-Opener-Policy': 'cross-origin',
+  'Cross-Origin-Embedder-Policy': 'require-corp',
+  'Cross-Origin-Opener-Policy': 'same-origin',
   'Cross-Origin-Resource-Policy': 'cross-origin',
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': '*',
-  'Access-Control-Allow-Headers': 'X-Custom-Header',
-
 }
 
-// todo fix headers
 export default defineNitroPlugin(nitroApp => {
   nitroApp.hooks.hook('render:response', response => {
     delete response.headers['x-powered-by']

@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-import { useTransactionsStore } from '~/stores/transactions'
-import { isDesktop } from '~/utils/screen'
+import { useTransactionsStore } from '@/stores/transactions'
+import { isDesktop } from '@/utils/screen'
 
 const transactionsStore = useTransactionsStore()
 const { fetchTransactions } = transactionsStore

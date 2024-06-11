@@ -75,9 +75,18 @@ import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 
 const props = defineProps({
-  price: {},
-  priceChange: {},
-  totalTokenSupply: {},
+  price: {
+    type: Number,
+    required: true,
+  },
+  priceChange: {
+    type: Number,
+    required: true,
+  },
+  totalTokenSupply: {
+    type: Number,
+    required: true,
+  },
 })
 
 </script>

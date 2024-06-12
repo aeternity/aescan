@@ -24,7 +24,6 @@
       <app-tab title="Markets">
         <ae-coin-markets-panel/>
       </app-tab>
-      <!--      add tab functionality-->
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -33,8 +32,8 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
-import { useMarketStatsStore } from '~/stores/marketStats'
-import { useBlockchainStatsStore } from '~/stores/blockchainStats'
+import { useMarketStatsStore } from '@/stores/marketStats'
+import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 
 const route = useRoute()
 const { push, replace } = useRouter()
@@ -73,20 +72,6 @@ const activeTabIndex = computed({
     return push(newRoute)
   },
 })
-
-// try {
-//   await fetchTokenDetails(route.params.id)
-// } catch (error) {
-//   if ([400, 404].includes(error.response?.status)) {
-//     throw showError({
-//       data: {
-//         entityId: route.params.id,
-//         entityName: 'Token',
-//       },
-//       statusMessage: 'EntityDetailsNotFound',
-//     })
-//   }
-// }
 
 await useAsyncData(() => Promise.allSettled([
   fetchTotalStats(),

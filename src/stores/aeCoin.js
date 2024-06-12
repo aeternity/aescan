@@ -6,7 +6,7 @@ import {
   MARKET_STATS_CACHE_TTL,
   MARKET_STATS_COINSTORE_ADDRESS,
   MARKET_STATS_HOTCOIN_ADDRESS,
-} from '~/utils/constants'
+} from '@/utils/constants'
 import {
   adaptMarketStatsCoinStore,
   adaptMarketStatsCoinW,

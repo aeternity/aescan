@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import cache from 'memory-cache'
 import useAxios from '@/composables/useAxios'
 import {
-  CACHE_KEY_MARKET_DATA,
+  CACHE_KEY_COINGECKO_MARKET_DATA,
   CACHE_KEY_PRICE_DATA,
   MARKET_STATS_CACHE_TTL,
   MARKET_STATS_COINGECKO_ADDRESS,
@@ -54,12 +54,12 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   }
 
   async function fetchCoinStats() {
-    if (!cache.get(CACHE_KEY_MARKET_DATA)) {
+    if (!cache.get(CACHE_KEY_COINGECKO_MARKET_DATA)) {
       const { data } = await axios.get(`${MARKET_STATS_COINGECKO_ADDRESS}/coins/aeternity`)
-      cache.put(CACHE_KEY_MARKET_DATA, data.marketData, MARKET_STATS_CACHE_TTL)
+      cache.put(CACHE_KEY_COINGECKO_MARKET_DATA, data.marketData, MARKET_STATS_CACHE_TTL)
     }
 
-    const cachedAeternityMarketData = cache.get(CACHE_KEY_MARKET_DATA)
+    const cachedAeternityMarketData = cache.get(CACHE_KEY_COINGECKO_MARKET_DATA)
     marketCap.value = cachedAeternityMarketData.marketCap.usd
   }
 

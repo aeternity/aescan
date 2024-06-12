@@ -1,5 +1,4 @@
 <template>
-  <!--      todo add tests-->
   <app-panel class="ae-coin-transactions-panel">
     <loader-indicator v-if="isLoading"/>
     <template v-else>

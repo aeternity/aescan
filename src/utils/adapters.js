@@ -654,7 +654,6 @@ export function adaptMarketStatsHotCoin(stats) {
 
 export function adaptMarketStatsCoinW(stats) {
   return {
-
     price: stats.aeUsdt.last,
     volume: stats.aeUsdt.baseVolume,
   }

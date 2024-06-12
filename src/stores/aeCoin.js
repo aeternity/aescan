@@ -78,11 +78,9 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchCoinW() {
     if (!cache.get(CACHE_KEY_COINW_MARKET_DATA)) {
       const { data } = await axios.get('/proxy/coinw')
-      console.log('data', data)
       cache.put(CACHE_KEY_COINW_MARKET_DATA, adaptMarketStatsCoinW(data), MARKET_STATS_CACHE_TTL)
     }
     coinW.value = cache.get(CACHE_KEY_COINW_MARKET_DATA)
-    console.log('coinW.value', coinW.value)
   }
 
   return {

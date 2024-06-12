@@ -8,8 +8,6 @@ import {
   formatDecodeBase64,
   formatIsAuction,
   formatNameState,
-  formatNullable,
-  formatNumber,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
@@ -626,42 +624,38 @@ export function adaptVerificationResult(verificationStatus) {
 
 export function adaptMarketStatsGate(stats) {
   return {
-    name: 'Gate',
-    price: formatNullable(formatNumber(stats?.[0].last)),
-    volume: formatNullable(formatNumber(stats?.[0].baseVolume)),
+    price: stats[0].last,
+    volume: stats[0].baseVolume,
   }
 }
 
 export function adaptMarketStatsMexc(stats) {
   return {
-    name: 'Mexc',
-    price: formatNullable(formatNumber(stats?.lastPrice)),
-    volume: formatNullable(formatNumber(stats?.volume)),
+    price: stats.lastPrice,
+    volume: stats.volume,
   }
 }
 
 export function adaptMarketStatsCoinStore(stats) {
   const tokenPair = stats ? stats.data.find(item => item.symbol === 'AEUSDT') : null
   return {
-    name: 'CoinStore',
-    price: formatNullable(formatNumber(tokenPair?.close)),
-    volume: formatNullable(formatNumber(tokenPair?.volume)),
+    price: tokenPair.close,
+    volume: tokenPair.volume,
   }
 }
 
 export function adaptMarketStatsHotCoin(stats) {
   const tokenPair = stats ? stats.ticker.find(item => item.symbol === 'ae_usdt') : null
   return {
-    name: 'HotCoin',
-    price: formatNullable(formatNumber(tokenPair?.last)),
-    volume: formatNullable(formatNumber(tokenPair?.vol)),
+    price: tokenPair.last,
+    volume: tokenPair.vol,
   }
 }
 
 export function adaptMarketStatsCoinW(stats) {
   return {
-    name: 'CoinW',
-    price: formatNullable(formatNumber(stats?.aeUsdt?.last)),
-    volume: formatNullable(formatNumber(stats?.aeUsdt?.baseVolume)),
+
+    price: stats.aeUsdt.last,
+    volume: stats.aeUsdt.baseVolume,
   }
 }

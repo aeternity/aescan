@@ -11,21 +11,18 @@ import {
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()
-  const aeCoinMarketStats = ref({})
+
+  const gate = ref(null)
+  const mexc = ref(null)
+  const hotCoin = ref(null)
+  const coinStore = ref(null)
+  const coinW = ref(null)
 
   function fetchMarketStats() {
-    aeCoinMarketStats.value = {
-      gate: null,
-      mexc: null,
-      coinStore: null,
-      hotCoin: null,
-      coinW: null,
-    }
-    // todo default like this?
     return Promise.allSettled([
       fetchGate(),
       fetchMexc(),
-      fetchHotcoin(),
+      fetchHotCoin(),
       fetchCoinStore(),
       fetchCoinW(),
     ])
@@ -33,34 +30,38 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
 
   async function fetchGate() {
     const { data } = await axios.get('/proxy/gate')
-    aeCoinMarketStats.value.gate = adaptMarketStatsGate(data)
+    console.log('fetchGate', data)
+    gate.value = adaptMarketStatsGate(data)
   }
 
   async function fetchMexc() {
     const { data } = await axios.get('/proxy/mexc')
-    aeCoinMarketStats.value.mexc = adaptMarketStatsMexc(data)
+    mexc.value = adaptMarketStatsMexc(data)
   }
 
   async function fetchCoinStore() {
     const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
-    aeCoinMarketStats.value.coinStore = adaptMarketStatsCoinStore(data)
+    coinStore.value = adaptMarketStatsCoinStore(data)
   }
 
-  async function fetchHotcoin() {
+  async function fetchHotCoin() {
     const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
-    aeCoinMarketStats.value.hotCoin = adaptMarketStatsHotCoin(data)
+    hotCoin.value = adaptMarketStatsHotCoin(data)
   }
 
   async function fetchCoinW() {
-    const data = await axios.get('/proxy/coinw')
-    console.log('data', data)
-    aeCoinMarketStats.value.coinW = adaptMarketStatsCoinW(data)
+    const { data } = await axios.get('/proxy/coinw')
+    coinW.value = adaptMarketStatsCoinW(data)
   }
 
   // todo move everything to the store
   // todo caching
   return {
-    aeCoinMarketStats,
+    gate,
+    mexc,
+    hotCoin,
+    coinStore,
+    coinW,
     fetchMarketStats,
   }
 })

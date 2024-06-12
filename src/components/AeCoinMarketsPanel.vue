@@ -29,14 +29,37 @@
           </hint-tooltip>
         </th>
       </tr>
-      <!--      todo chaining? -->
-      <tr
-        v-for="(market, index) in aeCoinMarketStats"
-        :key="index">
-        <td>{{ market?.name || '---' }}</td>
+      <!--      todo chaining vs loading? -->
+      <tr>
+        <td>Gate</td>
         <td>AE / USDT</td>
-        <td>$ {{ market?.price }}</td>
-        <td>$ {{ market?.volume }}</td>
+        <td>$ {{ formatNullable(formatNumber(gate?.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(gate?.volume)) }}</td>
+      </tr>
+
+      <tr>
+        <td>Mexc</td>
+        <td>AE / USDT</td>
+        <td>$ {{ formatNullable(formatNumber(mexc?.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(mexc?.volume)) }}</td>
+      </tr>
+      <tr>
+        <td>HotCoin</td>
+        <td>AE / USDT</td>
+        <td>$ {{ formatNullable(formatNumber(hotCoin?.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(hotCoin?.volume)) }}</td>
+      </tr>
+      <tr>
+        <td>CoinStore</td>
+        <td>AE / USDT</td>
+        <td>$ {{ formatNullable(formatNumber(coinStore?.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinStore?.volume)) }}</td>
+      </tr>
+      <tr>
+        <td>CoinW</td>
+        <td>AE / USDT</td>
+        <td>$ {{ formatNullable(formatNumber(coinW?.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinW?.volume)) }}</td>
       </tr>
     </table>
   </app-panel>
@@ -46,11 +69,17 @@
 import { storeToRefs } from 'pinia'
 import { useAeCoinStore } from '~/stores/aeCoin'
 import { aeCoinHints } from '~/utils/hints/aeCoinHints'
+import { formatNullable, formatNumber } from '~/utils/format'
 
 const aeCoinStore = useAeCoinStore()
 const { fetchMarketStats } = aeCoinStore
-const { aeCoinMarketStats } = storeToRefs(aeCoinStore)
-// todo shorten name
+const {
+  gate,
+  mexc,
+  hotCoin,
+  coinStore,
+  coinW,
+} = storeToRefs(aeCoinStore)
 
 await useAsyncData(async() => {
   await fetchMarketStats()

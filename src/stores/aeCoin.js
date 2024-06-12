@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
+import cache from 'memory-cache'
 import useAxios from '@/composables/useAxios'
-import { MARKET_STATS_COINSTORE_ADDRESS, MARKET_STATS_HOTCOIN_ADDRESS } from '~/utils/constants'
+import { MARKET_STATS_CACHE_TTL, MARKET_STATS_COINSTORE_ADDRESS, MARKET_STATS_HOTCOIN_ADDRESS } from '~/utils/constants'
 import {
   adaptMarketStatsCoinStore,
   adaptMarketStatsCoinW,
@@ -34,28 +35,43 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   }
 
   async function fetchGate() {
-    const { data } = await axios.get('/proxy/gate')
-    gate.value = adaptMarketStatsGate(data)
+    if (!cache.get('gate-market-data')) {
+      const { data } = await axios.get('/proxy/gate')
+      cache.put('gate-market-data', adaptMarketStatsGate(data), MARKET_STATS_CACHE_TTL)
+    }
+    gate.value = cache.get('gate-market-data')
   }
 
   async function fetchMexc() {
-    const { data } = await axios.get('/proxy/mexc')
-    mexc.value = adaptMarketStatsMexc(data)
+    if (!cache.get('mexc-market-data')) {
+      const { data } = await axios.get('/proxy/mexc')
+      cache.put('mexc-market-data', adaptMarketStatsMexc(data), MARKET_STATS_CACHE_TTL)
+    }
+    mexc.value = cache.get('mexc-market-data')
   }
 
   async function fetchCoinStore() {
-    const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
-    coinStore.value = adaptMarketStatsCoinStore(data)
+    if (!cache.get('coinStore-market-data')) {
+      const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
+      cache.put('coinStore-market-data', adaptMarketStatsCoinStore(data), MARKET_STATS_CACHE_TTL)
+    }
+    coinStore.value = cache.get('coinStore-market-data')
   }
 
   async function fetchHotCoin() {
-    const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
-    hotCoin.value = adaptMarketStatsHotCoin(data)
+    if (!cache.get('hotCoin-market-data')) {
+      const { data } = await axios.get(MARKET_STATS_HOTCOIN_ADDRESS)
+      cache.put('hotCoin-market-data', adaptMarketStatsHotCoin(data), MARKET_STATS_CACHE_TTL)
+    }
+    hotCoin.value = cache.get('hotCoin-market-data')
   }
 
   async function fetchCoinW() {
-    const { data } = await axios.get('/proxy/coinw')
-    coinW.value = adaptMarketStatsCoinW(data)
+    if (!cache.get('coinW-market-data')) {
+      const { data } = await axios.get('/proxy/coinw')
+      cache.put('coinW-market-data', adaptMarketStatsCoinW(data), MARKET_STATS_CACHE_TTL)
+    }
+    coinW.value = cache.get('coinW-market-data')
   }
 
   // todo move everything to the store

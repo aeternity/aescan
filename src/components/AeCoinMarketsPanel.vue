@@ -1,12 +1,10 @@
 <template>
   <!--      todo add tests-->
   <app-panel class="ae-coin-transactions-panel">
-    <loader-indicator
-      v-if="isLoading"
-      class="paginated-content__loader-indicator"/>
+    <loader-indicator v-if="isLoading"/>
     <template v-else>
       <ae-coin-markets-table
-        class="token-events-panel__table u-hidden-mobile"
+        class="u-hidden-mobile"
         :gate="gate"
         :mexc="mexc"
         :hot-coin="hotCoin"

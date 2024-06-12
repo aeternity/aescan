@@ -27,7 +27,7 @@
       </th>
     </tr>
     <tr>
-      <td>Gate</td>
+      <td>Gate.io</td>
       <td>AE / USDT</td>
       <td>$ {{ formatNullable(formatNumber(gate?.price)) }}</td>
       <td>$ {{ formatNullable(formatNumber(gate?.volume)) }}</td>

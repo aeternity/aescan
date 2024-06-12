@@ -637,7 +637,7 @@ export function adaptMarketStatsMexc(stats) {
 }
 
 export function adaptMarketStatsCoinStore(stats) {
-  const tokenPair = stats ? stats.data.find(item => item.symbol === 'AEUSDT') : null
+  const tokenPair = stats.data.find(item => item.symbol === 'AEUSDT')
   return {
     price: tokenPair.close,
     volume: tokenPair.volume,
@@ -645,7 +645,7 @@ export function adaptMarketStatsCoinStore(stats) {
 }
 
 export function adaptMarketStatsHotCoin(stats) {
-  const tokenPair = stats ? stats.ticker.find(item => item.symbol === 'ae_usdt') : null
+  const tokenPair = stats.ticker.find(item => item.symbol === 'ae_usdt')
   return {
     price: tokenPair.last,
     volume: tokenPair.vol,
@@ -653,6 +653,7 @@ export function adaptMarketStatsHotCoin(stats) {
 }
 
 export function adaptMarketStatsCoinW(stats) {
+  console.log('stats.data.aeUsdt', stats.data.aeUsdt)
   return {
     price: stats.data.aeUsdt.last,
     volume: stats.data.aeUsdt.baseVolume,

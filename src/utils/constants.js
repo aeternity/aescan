@@ -67,6 +67,7 @@ export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
 export const CACHE_KEY_COINGECKO_MARKET_DATA = 'coingecko-market-data'
 export const CACHE_KEY_GATE_MARKET_DATA = 'gate-market-data'
 export const CACHE_KEY_MEXC_MARKET_DATA = 'mexc-market-data'
+export const CACHE_KEY_COINSTORE_MARKET_DATA = 'coinStore-market-data'
 export const CACHE_KEY_HOTCOIN_MARKET_DATA = 'hotCoin-market-data'
 export const CACHE_KEY_COINW_MARKET_DATA = 'coinW-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'

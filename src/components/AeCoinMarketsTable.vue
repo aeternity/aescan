@@ -60,6 +60,8 @@
 </template>
 
 <script setup>
+import { aeCoinHints } from '@/utils/hints/aeCoinHints'
+
 defineProps({
   gate: {
     type: Object,

@@ -2,7 +2,11 @@ import { defineStore } from 'pinia'
 import cache from 'memory-cache'
 import useAxios from '@/composables/useAxios'
 import {
+  CACHE_KEY_COINSTORE_MARKET_DATA,
+  CACHE_KEY_COINW_MARKET_DATA,
+  CACHE_KEY_GATE_MARKET_DATA,
   CACHE_KEY_HOTCOIN_MARKET_DATA,
+  CACHE_KEY_MEXC_MARKET_DATA,
   MARKET_STATS_CACHE_TTL,
   MARKET_STATS_COINSTORE_ADDRESS,
   MARKET_STATS_HOTCOIN_ADDRESS,
@@ -48,19 +52,19 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   }
 
   async function fetchMexc() {
-    if (!cache.get('mexc-market-data')) {
+    if (!cache.get(CACHE_KEY_MEXC_MARKET_DATA)) {
       const { data } = await axios.get('/proxy/mexc')
-      cache.put('mexc-market-data', adaptMarketStatsMexc(data), MARKET_STATS_CACHE_TTL)
+      cache.put(CACHE_KEY_MEXC_MARKET_DATA, adaptMarketStatsMexc(data), MARKET_STATS_CACHE_TTL)
     }
-    mexc.value = cache.get('mexc-market-data')
+    mexc.value = cache.get(CACHE_KEY_MEXC_MARKET_DATA)
   }
 
   async function fetchCoinStore() {
-    if (!cache.get(CACHE_KEY_MEXC_MARKET_DATA)) {
+    if (!cache.get(CACHE_KEY_COINSTORE_MARKET_DATA)) {
       const { data } = await axios.get(MARKET_STATS_COINSTORE_ADDRESS)
-      cache.put(CACHE_KEY_MEXC_MARKET_DATA, adaptMarketStatsCoinStore(data), MARKET_STATS_CACHE_TTL)
+      cache.put(CACHE_KEY_COINSTORE_MARKET_DATA, adaptMarketStatsCoinStore(data), MARKET_STATS_CACHE_TTL)
     }
-    coinStore.value = cache.get(CACHE_KEY_MEXC_MARKET_DATA)
+    coinStore.value = cache.get(CACHE_KEY_COINSTORE_MARKET_DATA)
   }
 
   async function fetchHotCoin() {
@@ -74,9 +78,11 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   async function fetchCoinW() {
     if (!cache.get(CACHE_KEY_COINW_MARKET_DATA)) {
       const { data } = await axios.get('/proxy/coinw')
+      console.log('data', data)
       cache.put(CACHE_KEY_COINW_MARKET_DATA, adaptMarketStatsCoinW(data), MARKET_STATS_CACHE_TTL)
     }
     coinW.value = cache.get(CACHE_KEY_COINW_MARKET_DATA)
+    console.log('coinW.value', coinW.value)
   }
 
   return {

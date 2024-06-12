@@ -18,19 +18,23 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   const coinStore = ref(null)
   const coinW = ref(null)
 
+  const isLoading = ref(true)
+
   function fetchMarketStats() {
+    isLoading.value = true
     return Promise.allSettled([
       fetchGate(),
       fetchMexc(),
       fetchHotCoin(),
       fetchCoinStore(),
       fetchCoinW(),
-    ])
+    ]).then(() => {
+      isLoading.value = false
+    })
   }
 
   async function fetchGate() {
     const { data } = await axios.get('/proxy/gate')
-    console.log('fetchGate', data)
     gate.value = adaptMarketStatsGate(data)
   }
 
@@ -55,13 +59,13 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   }
 
   // todo move everything to the store
-  // todo caching
   return {
     gate,
     mexc,
     hotCoin,
     coinStore,
     coinW,
+    isLoading,
     fetchMarketStats,
   }
 })

@@ -136,10 +136,6 @@ router.beforeEach((_to, from, next, abort) => {
 
   next()
 })
-
-function logError(error) {
-  console.error(error)
-}
 </script>
 
 <style>

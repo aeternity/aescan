@@ -74,7 +74,7 @@ import { formatAePrice, formatNullable } from '@/utils/format'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 
-const props = defineProps({
+defineProps({
   price: {
     type: Number,
     required: true,

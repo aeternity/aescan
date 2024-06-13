@@ -17,6 +17,8 @@
 <script setup>
 import { useDexTradesStore } from '@/stores/dexTrades'
 
+import { useDexTradesStore } from '~/stores/dexTrades'
+
 const dexTradesStore = useDexTradesStore()
 const { trades } = storeToRefs(dexTradesStore)
 const { fetchDexTrades } = dexTradesStore
@@ -39,4 +41,5 @@ if (process.client) {
     limit: limit.value,
   })
 }
+
 </script>

@@ -4,7 +4,7 @@
   </Head>
 
   <page-header>
-    Top 100 Accounts
+    Top 200 Accounts
     <template #tooltip>
       {{ topAccountsHints.topAccounts }}
     </template>

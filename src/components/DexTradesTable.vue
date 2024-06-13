@@ -10,7 +10,9 @@
       <td>Value</td>
     </tr>
 
-    <tr v-for="trade in trades.data">
+    <tr
+      v-for="trade in trades.data"
+      :key="trade.txHash">
       <td>
         <value-hash-ellipsed
           :link-to="`/transactions/${trade.txHash}`"

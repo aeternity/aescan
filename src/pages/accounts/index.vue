@@ -1,10 +1,10 @@
 <template>
   <Head>
-    <Title>Top Accounts</Title>
+    <Title>Accounts</Title>
   </Head>
 
   <page-header>
-    Top Accounts
+    Top 100 Accounts
     <template #tooltip>
       {{ topAccountsHints.topAccounts }}
     </template>
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/PageHeader'
+import PageHeader from '~/components/PageHeader'
 import { topAccountsHints } from '~/utils/hints/topAccountsHints'
 
 const { isLoading } = useLoading()

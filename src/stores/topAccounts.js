@@ -20,7 +20,7 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
 
   async function fetchTopAccounts() {
     rawTopAccounts.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/wealth`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/wealth?limit=100`)
     rawTopAccounts.value = data
   }
 

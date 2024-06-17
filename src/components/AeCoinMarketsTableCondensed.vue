@@ -234,7 +234,7 @@
             </hint-tooltip>
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(coinStore?.coinW)) }}
+            $ {{ formatNullable(formatNumber(coinW?.price)) }}
           </td>
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
@@ -245,7 +245,7 @@
             </hint-tooltip>
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(coinStore?.coinW)) }}
+            $ {{ formatNullable(formatNumber(coinW?.volume)) }}
           </td>
         </tr>
       </tbody>

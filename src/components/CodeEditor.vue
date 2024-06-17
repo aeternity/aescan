@@ -22,7 +22,7 @@ const props = defineProps({
     type: String,
   },
   lang: {
-    required: true,
+    default: null,
     type: String,
   },
 })
@@ -70,6 +70,5 @@ const codeModel = ref(props.code)
   .mtk7 {
     color: var(--color-success);
   }
-
 }
 </style>

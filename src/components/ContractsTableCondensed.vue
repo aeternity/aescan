@@ -111,5 +111,9 @@ defineProps({
     justify-content: flex-end;
     gap: var(--space-0);
   }
+
+  &__icon {
+    color: var(--color-success);
+  }
 }
 </style>

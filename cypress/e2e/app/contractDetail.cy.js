@@ -8,7 +8,7 @@ describe('contract detail', () => {
     cy.contains('.tabs__item', 'Events').click()
     cy.get('.contract-events-panel .paginated-content').should('be.visible')
 
-    cy.contains('.tabs__item', 'Contract').click()
+    cy.contains('.tabs__item', 'Verification').click()
     cy.get('.contract-verified-table').should('be.visible')
     cy.get('.code-editor').should('be.visible')
   })

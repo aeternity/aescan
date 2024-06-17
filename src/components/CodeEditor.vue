@@ -22,7 +22,7 @@ const props = defineProps({
     type: String,
   },
   lang: {
-    required: true,
+    default: null,
     type: String,
   },
 })

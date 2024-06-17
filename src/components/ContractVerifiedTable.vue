@@ -35,7 +35,7 @@
     </tr>
     <tr class="contract-verified-table__row">
       <th class="contract-verified-table__header">
-        <time-toggle-button>Verified At</time-toggle-button>
+        <time-toggle-button>Verified</time-toggle-button>
         <hint-tooltip>
           {{ contractVerifiedHints.verifiedAt }}
         </hint-tooltip>

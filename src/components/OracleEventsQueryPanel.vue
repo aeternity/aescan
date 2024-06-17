@@ -5,46 +5,46 @@
     </div>
     <dl>
       <dt class="oracle-events-query-panel_term">
-        Query ID:
         <hint-tooltip variant="dark">
           {{ oraclesHints.queryId }}
         </hint-tooltip>
+        Query ID
       </dt>
       <dd class="oracle-events-query-panel__description">
         {{ event.queryId }}
       </dd>
 
       <dt class="oracle-events-query-panel_term">
-        Query Fee:
         <hint-tooltip variant="dark">
           {{ oraclesHints.queryFee }}
         </hint-tooltip>
+        Query Fee
       </dt>
       <dd>{{ formatAePrice(event.queryFee) }}</dd>
 
       <dt class="oracle-events-query-panel_term">
-        Query:
         <hint-tooltip variant="dark">
           {{ oraclesHints.queryContent }}
         </hint-tooltip>
+        Query
       </dt>
       <dd class="oracle-events-query-panel__description">
         {{ event.query }}
       </dd>
 
       <dt class="oracle-events-query-panel_term">
-        Response TTL:
         <hint-tooltip variant="dark">
           {{ oraclesHints.responseTtl }}
         </hint-tooltip>
+        Response TTL
       </dt>
       <dd>{{ event.responseTtl }}</dd>
 
       <dt class="oracle-events-query-panel_term">
-        Response:
         <hint-tooltip variant="dark">
           {{ oraclesHints.response }}
         </hint-tooltip>
+        Response
       </dt>
       <dd class="oracle-events-query-panel__description">
         {{ event.response }}

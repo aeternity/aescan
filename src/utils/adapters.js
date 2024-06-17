@@ -621,3 +621,26 @@ export function adaptVerificationResult(verificationStatus) {
     status: translateCodeToStatus(verificationStatus.statusCode),
   }
 }
+
+export function adaptTrades(trades, tradesTxs, decimals) {
+  console.log('decimals', decimals)
+
+  // return trades
+  const formattedData = trades.data
+    .map(trade => {
+      return {
+        txHash: trade.txHash,
+        amounts: trade.amounts,
+        toToken: trade.toToken,
+        fromToken: trade.fromToken,
+        timestamp: DateTime.fromMillis(tradesTxs[trade.txHash].timestamp),
+        height: tradesTxs[trade.txHash].blockHeight,
+        decimals: decimals[trade.txHash],
+      }
+    })
+  return {
+    next: trades.next,
+    data: formattedData,
+    prev: trades.prev,
+  }
+}

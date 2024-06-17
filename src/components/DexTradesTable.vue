@@ -18,7 +18,11 @@
           :link-to="`/transactions/${trade.txHash}`"
           :hash="trade.txHash"/>
       </td>
-      <td>a</td>
+      <td>
+        <block-time-cell
+          :height="trade.height"
+          :timestamp="trade.timestamp"/>
+      </td>
       <td>
         <app-chip :variant="getChipVariant(trade.amounts)">
           {{ getAction(trade.amounts) }}

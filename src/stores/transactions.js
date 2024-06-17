@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
-import { formatAePrice, formatAettosToAe } from '~/utils/format'
+import { formatAePrice, formatAettosToAe } from '@/utils/format'
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

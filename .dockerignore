@@ -1,0 +1,7 @@
+*
+!src
+!index.html
+!nuxt.config.ts
+!package.json
+!tsconfig.json
+!yarn.lock

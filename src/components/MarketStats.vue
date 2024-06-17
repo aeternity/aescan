@@ -12,11 +12,7 @@
         </div>
         <div class="market-stats__value">
           $ {{ formatNullable(price) }}
-          <app-chip
-            class="market-stats__chip"
-            :variant="priceChipVariant">
-            {{ priceChangeSign }}{{ formatNullable(priceChange) }} %
-          </app-chip>
+          <trend-chip :delta="priceChange"/>
         </div>
       </li>
       <li
@@ -56,7 +52,7 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 import { formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import AppChip from '@/components/AppChip'
+import TrendChip from '@/components/TrendChip'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 const selectedNetwork = `${NETWORK_NAME
@@ -72,9 +68,6 @@ const {
   distribution,
   distributionPercentage,
 } = storeToRefs(useMarketStatsStore())
-
-const priceChangeSign = computed(() => priceChange.value > 0 ? '+' : '')
-const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'error')
 </script>
 
 <style scoped>

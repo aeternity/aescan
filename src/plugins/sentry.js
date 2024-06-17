@@ -14,7 +14,6 @@ async function lazyLoadSentryIntegrations() {
   }));
 }
 
-
 export default defineNuxtPlugin(({vueApp}) => {
   if (process.server) {
     return

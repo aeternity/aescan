@@ -39,6 +39,7 @@
               <pagination-button
                 class="keyblock-details-panel__button--prev"
                 direction="left"
+                :disabled="keyblockDetails.height === 0"
                 @click="$router.push(`/keyblocks/${keyblockDetails.height - 1}`)"/>
 
               {{ keyblockDetails.height }}

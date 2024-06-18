@@ -3,13 +3,18 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
 import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import {
+  formatAeContractArgumentIndex,
+  formatAeContractIndex,
   formatAettosToAe,
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
+  formatDexActionName,
+  formatInAmountIndex,
   formatIsAuction,
   formatNameState,
   formatNumber,
   formatPercentage,
+  formatOutAmountIndex,
   formatTemplateLimit,
   formatTokenLimit,
   formatTradeRate,

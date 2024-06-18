@@ -2,6 +2,7 @@
   <Head>
     <Title>Dex Tracker</Title>
   </Head>
+  <!--  todo hint-->
 
   <page-header>
     Dex Tracker
@@ -10,12 +11,13 @@
     </template>
   </page-header>
 
-  <dex-trades-panel/>
+  <dex-trades-panel v-if="!isLoading"/>
+  <loading-panel v-else/>
 </template>
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
-// todo const { isLoading } = useLoading()
+const { isLoading } = useLoading()
 </script>

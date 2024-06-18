@@ -16,24 +16,24 @@ import { useDexTradesStore } from '~/stores/dexTrades'
 
 const dexTradesStore = useDexTradesStore()
 const { trades } = storeToRefs(dexTradesStore)
-const { fetchTrades } = dexTradesStore
+const { fetchDexTrades } = dexTradesStore
 
 await useAsyncData(async() => {
-  await fetchTrades()
+  await fetchDexTrades()
   return true
 })
 
 function loadPrevEvents() {
-  fetchTrades({ queryParameters: trades.value.prev })
+  fetchDexTrades({ queryParameters: trades.value.prev })
 }
 
 function loadNextEvents() {
-  fetchTrades({ queryParameters: trades.value.next })
+  fetchDexTrades({ queryParameters: trades.value.next })
 }
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
-  await fetchTrades({
+  await fetchDexTrades({
     limit: limit.value,
   })
 }

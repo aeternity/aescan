@@ -5,20 +5,22 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
   const rawTopAccounts = ref(null)
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const blockchainStatsStore = useBlockchainStatsStore()
+  const { fetchTotalStats } = useBlockchainStatsStore()
 
   const topAccounts = computed(() =>
-    rawTopAccounts.value && distribution.value
-      ? adaptTopAccounts(rawTopAccounts.value, distribution.value)
+    rawTopAccounts.value && blockchainStatsStore.totalTokenSupply
+      ? adaptTopAccounts(rawTopAccounts.value, blockchainStatsStore.totalTokenSupply)
       : null,
   )
 
-  const distribution = computed(() =>
-    blockchainStatsStore.totalTokenSupply && blockchainStatsStore.burnedCount
-      ? Number(blockchainStatsStore.totalTokenSupply) + Number(blockchainStatsStore.burnedCount)
-      : null,
-  )
+  function fetchTopAccounts() {
+    return Promise.allSettled([
+      fetchAccounts(),
+      fetchTotalStats(),
+    ])
+  }
 
-  async function fetchTopAccounts() {
+  async function fetchAccounts() {
     rawTopAccounts.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/wealth`)
     rawTopAccounts.value = data

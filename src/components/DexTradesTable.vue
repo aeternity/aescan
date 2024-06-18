@@ -10,9 +10,11 @@
         <time-toggle-button>Executed</time-toggle-button>
       </th>
       <th>Action</th>
-      <th>Token Amount (Out)</th>
-      <th/>
       <th>Token Amount (In)</th>
+
+      <th/>
+      <th>Token Amount (Out)</th>
+
       <th>Swapped Rate</th>
       <th>Value</th>
     </tr>
@@ -35,21 +37,22 @@
           {{ trade.action }}
         </app-chip>
       </td>
-      <td>
-        {{ formatNumber(trade.toAmount) }}
-        <app-link
-          :to="`tokens/${trade.toContract}`">
-          {{ trade.toToken }}
-        </app-link>
-      </td>
-      <td>
-        <transaction-arrow-left-icon/>
-      </td>
+
       <td>
         {{ formatNumber(trade.fromAmount) }}
         <app-link
           :to="`/tokens/${trade.fromContract}`">
           {{ trade.fromToken }}
+        </app-link>
+      </td>
+      <td>
+        <transaction-arrow-right-icon/>
+      </td>
+      <td>
+        {{ formatNumber(trade.toAmount) }}
+        <app-link
+          :to="`tokens/${trade.toContract}`">
+          {{ trade.toToken }}
         </app-link>
       </td>
       <td>{{ trade.rate }}</td>

@@ -3,5 +3,5 @@ export const topAccountsHints = {
   rank: 'Rank of the account in the top accounts list.',
   balance: 'Amount of AE tokens held by the account.',
   account: 'Account address.',
-  percentage: 'Percentage of the total supply of AE coins that the account holds.',
+  percentage: 'Percentage of the circulating supply of AE coins that the account holds.',
 }

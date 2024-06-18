@@ -14,8 +14,8 @@
 </template>
 
 <script setup>
-import PageHeader from '~/components/PageHeader'
-import { topAccountsHints } from '~/utils/hints/topAccountsHints'
+import PageHeader from '@/components/PageHeader'
+import { topAccountsHints } from '@/utils/hints/topAccountsHints'
 
 const { isLoading } = useLoading()
 </script>

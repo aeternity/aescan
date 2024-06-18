@@ -8,25 +8,10 @@ export const useDexTradesStore = defineStore('dexTrades', () => {
 
   const axios = useAxios()
   const rawTrades = ref(null)
-  const tradeTxs = ref({})
-  const decimals = ref({})
+  const tradeTxs = ref(null)
+  const decimals = ref(null)
   const { price } = storeToRefs(useMarketStatsStore())
   const { fetchMarketStats } = useMarketStatsStore()
-
-  async function fetchDexTrades({ queryParameters, limit } = {}) {
-    // todo can go in promise
-    rawTrades.value = null
-    decimals.value = {}
-    tradeTxs.value = {}
-
-    await fetchTrades({ queryParameters, limit }).then(() => {
-      return fetchMarketStats()
-    }).then(() => {
-      return fetchTradeTx()
-    }).then(() => {
-      return fetchTradeContracts()
-    })
-  }
 
   const trades = computed(() =>
     rawTrades.value && tradeTxs.value && decimals.value && price.value
@@ -34,18 +19,24 @@ export const useDexTradesStore = defineStore('dexTrades', () => {
       : null,
   )
 
-  async function fetchTrades({ queryParameters, limit } = {}) {
+  async function fetchDexTrades({ queryParameters, limit } = {}) {
+    await fetchMarketStats()
+    rawTrades.value = null
     const defaultParameters = `/v3/dex/swaps?limit=${limit ?? 10}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
 
     rawTrades.value = data
+
+    await fetchTradeTx()
+    await fetchTradeContracts()
     // console.log('price', price.value)
     // console.log('tradeTxs.value', tradeTxs.value)
     // console.log('decimals.value', decimals.value)
   }
 
   async function fetchTradeTx() {
+    tradeTxs.value = {}
     await Promise.all(
       rawTrades.value.data.map(async trade => {
         const data = await fetchExecuted(trade.txHash)
@@ -54,13 +45,13 @@ export const useDexTradesStore = defineStore('dexTrades', () => {
           blockHeight: data.blockHeight,
           timestamp: data.microTime,
           contractArguments: data.tx.arguments,
-          // todo clear the value here
         }
       }),
     )
   }
 
   async function fetchTradeContracts() {
+    decimals.value = {}
     const contracts = []
     // todo refactor using map
     Object.entries(tradeTxs.value).forEach(([contractId, contract]) => {

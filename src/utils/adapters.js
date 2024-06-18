@@ -642,10 +642,10 @@ export function adaptTrades(trades, tradesTxs, decimals, price) {
 
     .map(trade => {
       const action = formatDexActionName(trade.amounts)
-      const cons = tradesTxs[trade.txHash].contractArguments[formatAeContractArgumentIndex(action)].value
+      const contracts = tradesTxs[trade.txHash].contractArguments[formatAeContractArgumentIndex(action)].value
       // todo fix indexes
-      const fromContract = cons[0].value
-      const toContract = cons[1].value
+      const fromContract = contracts[0].value
+      const toContract = contracts[1].value
       const fromDecimals = decimals[fromContract]
       const toDecimals = decimals[toContract]
       const aeValue = trade.amounts[formatAeContractIndex(action)]
@@ -666,7 +666,7 @@ export function adaptTrades(trades, tradesTxs, decimals, price) {
         action,
         timestamp: DateTime.fromMillis(tradesTxs[trade.txHash].timestamp),
         height: tradesTxs[trade.txHash].blockHeight,
-        value: formatNumber(aeValue / (10 ** decimals[cons[formatAeContractIndex(action)].value]) * price),
+        value: formatNumber(aeValue / (10 ** decimals[contracts[formatAeContractIndex(action)].value]) * price),
         // todo variable decimals
       }
     })

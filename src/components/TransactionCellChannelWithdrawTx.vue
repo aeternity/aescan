@@ -9,14 +9,11 @@
     :hash="transactionData.channelId"
     :link-to="`/state-channels/${transactionData.channelId}`"/>
 
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.amount)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(transactionData.amount)"/>
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatAettosToAe } from '@/utils/format'
 import TransactionArrowLeftIcon from '@/components/TransactionArrowLeftIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 

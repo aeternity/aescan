@@ -1,13 +1,9 @@
 <template>
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.initiatorAmountFinal)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
 
   <transaction-plus-icon/>
 
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.responderAmountFinal)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
 
   <value-hash-ellipsed
     :hash="transactionData.channelId"
@@ -15,8 +11,7 @@
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatAettosToAe } from '@/utils/format'
 import TransactionPlusIcon from '@/components/TransactionPlusIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 

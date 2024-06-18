@@ -8,6 +8,7 @@ import {
   formatDecodeBase64,
   formatIsAuction,
   formatNameState,
+  formatNumber,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
@@ -182,8 +183,10 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
       contractId: token.contractId,
       amount,
       value: tokenAePrice !== null
-        ? (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber()
-        : null,
+        ? `$${formatNumber(
+          (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber(),
+          null, null, 7)}`
+        : 'N/A',
     }
   })
   return {
@@ -433,13 +436,20 @@ export function adaptTokenEvents(events) {
 }
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
-  const formattedData = tokenHolders.data.map(holder => ({
-    address: holder.accountId,
-    amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
-    percentage: (new BigNumber(holder.amount)
-      .dividedBy(10 ** (tokenDetails.decimals - 2)))
-      .dividedBy(tokenDetails.totalSupply).toNumber(),
-  }))
+  const formattedData = tokenHolders.data
+    .map(holder => {
+      const percentage = (new BigNumber(holder.amount)
+        .dividedBy(10 ** (tokenDetails.decimals - 2)))
+        .dividedBy(tokenDetails.totalSupply).toNumber()
+      return {
+        address: holder.accountId,
+        contractId: holder.contractId,
+        amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
+        percentage: Math.abs(percentage) >= 0.00001
+          ? `${formatNumber(Math.abs(percentage))} %`
+          : '~0',
+      }
+    })
 
   return {
     next: tokenHolders.next,
@@ -554,7 +564,7 @@ export function adaptStateChannels(stateChannels) {
         initiator: channel.initiator,
         responder: channel.responder,
         updateCount: channel.updatesCount,
-        locked: formatAePrice(formatAettosToAe(channel.amount)),
+        locked: formatAettosToAe(channel.amount),
         updatedHeight: channel.lastUpdatedHeight,
         updated: DateTime.fromMillis(channel.lastUpdatedTime),
         lastTxType: channel.lastUpdatedTxType,

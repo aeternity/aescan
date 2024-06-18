@@ -64,9 +64,7 @@
             </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
-            <app-chip variant="secondary">
-              {{ formatAePrice(name.fee) }}
-            </app-chip>
+            <price-label :price="name.fee"/>
           </td>
         </tr>
         <tr class="names-active-table-condensed__row">
@@ -114,9 +112,7 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

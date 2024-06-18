@@ -32,7 +32,10 @@
             :link-to="`/accounts/${holder.address}`"/>
         </td>
         <td>
-          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
+          <price-label
+            :price="holder.amount"
+            :currency="tokenDetails.symbol"
+            :contract-id="holder.contractId"/>
         </td>
         <td>
           {{ formatPercentage(holder.percentage) }}
@@ -43,7 +46,6 @@
 </template>
 
 <script setup>
-import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({

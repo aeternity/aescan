@@ -48,7 +48,7 @@
             :timestamp="oracle.expiration"/>
         </td>
         <td class="oracles-table__data">
-          {{ formatAePrice(oracle.queryFee) }}
+          <price-label :price="oracle.queryFee"/>
         </td>
       </tr>
     </tbody>
@@ -58,7 +58,6 @@
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { formatAePrice } from '@/utils/format'
 import HintTooltip from '@/components/HintTooltip'
 
 defineProps({

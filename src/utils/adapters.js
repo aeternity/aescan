@@ -3,11 +3,16 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
 import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import {
+  formatAeContractArgumentIndex,
+  formatAeContractIndex,
   formatAettosToAe,
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
+  formatDexActionName,
+  formatInAmountIndex,
   formatIsAuction,
   formatNameState,
+  formatOutAmountIndex,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
@@ -622,20 +627,47 @@ export function adaptVerificationResult(verificationStatus) {
   }
 }
 
-export function adaptTrades(trades, tradesTxs, decimals) {
-  console.log('decimals', decimals)
+export function adaptTrades(trades, tradesTxs, decimals, price) {
+  // console.log('decimals', decimals)
 
-  // return trades
+  function getInAmount(amounts, action, decimals) {
+    return amounts[formatInAmountIndex(action)] / (10 ** decimals)
+  }
+
+  function getOutAmount(amounts, action, decimals) {
+    return amounts[formatOutAmountIndex(action)] / (10 ** decimals)
+  }
+
   const formattedData = trades.data
+
     .map(trade => {
+      const action = formatDexActionName(trade.amounts)
+      const cons = tradesTxs[trade.txHash].contractArguments[formatAeContractArgumentIndex(action)].value
+      // todo fix indexes
+      const fromContract = cons[0].value
+      const toContract = cons[1].value
+      const fromDecimals = decimals[fromContract]
+      const toDecimals = decimals[toContract]
+      const aeValue = trade.amounts[formatAeContractIndex(action)]
+      // console.log('getAeContractIndex(action)', formatAeContractIndex(action))
+      // console.log('decimals', decimals)
       return {
         txHash: trade.txHash,
         amounts: trade.amounts,
         toToken: trade.toToken,
         fromToken: trade.fromToken,
+        toAmount: getInAmount(trade.amounts, action, fromDecimals),
+        fromAmount: getOutAmount(trade.amounts, action, toDecimals),
+        toContract,
+        fromContract,
+        rate: formatNumber(
+          getOutAmount(trade.amounts, action, toDecimals) / getInAmount(trade.amounts, action, fromDecimals),
+        ),
+        action,
         timestamp: DateTime.fromMillis(tradesTxs[trade.txHash].timestamp),
         height: tradesTxs[trade.txHash].blockHeight,
-        decimals: decimals[trade.txHash],
+        value: formatNumber(aeValue / (10 ** decimals[cons[formatAeContractIndex(action)].value]) * price),
+        // todo variable decimals
       }
     })
   return {

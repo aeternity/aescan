@@ -1,13 +1,20 @@
 <template>
   <table>
+    <!--    todo hints-->
+    <!--    todo mobile view-->
+    <!--    todo test-->
+    <!--    todo naming-->
     <tr>
-      <td>Hash</td>
-      <td>Executed</td>
-      <td>Action</td>
-      <td>Token Amount (Out)</td>
-      <td>Token Amount (In)</td>
-      <td>Swapped Rate</td>
-      <td>Value</td>
+      <th>Hash</th>
+      <th>
+        <time-toggle-button>Executed</time-toggle-button>
+      </th>
+      <th>Action</th>
+      <th>Token Amount (Out)</th>
+      <th/>
+      <th>Token Amount (In)</th>
+      <th>Swapped Rate</th>
+      <th>Value</th>
     </tr>
 
     <tr
@@ -24,20 +31,34 @@
           :timestamp="trade.timestamp"/>
       </td>
       <td>
-        <app-chip :variant="getChipVariant(trade.amounts)">
-          {{ getAction(trade.amounts) }}
+        <app-chip :variant="getChipVariant(trade.action)">
+          {{ trade.action }}
         </app-chip>
       </td>
-      <td>{{ formatNumber(trade.amounts[getInIndex(trade.amounts)]) }} {{ trade.toToken }}</td>
-      <td>{{ formatNumber(trade.amounts[getOutIndex(trade.amounts)]) }} {{ trade.fromToken }}</td>
-      <td>a</td>
-      <td>{{ trade.amounts }}</td>
+      <td>
+        {{ formatNumber(trade.toAmount) }}
+        <app-link
+          :to="`tokens/${trade.toContract}`">
+          {{ trade.toToken }}
+        </app-link>
+      </td>
+      <td>
+        <transaction-arrow-left-icon/>
+      </td>
+      <td>
+        {{ formatNumber(trade.fromAmount) }}
+        <app-link
+          :to="`/tokens/${trade.fromContract}`">
+          {{ trade.fromToken }}
+        </app-link>
+      </td>
+      <td>{{ trade.rate }}</td>
+      <td>$ {{ trade.value }}</td>
     </tr>
   </table>
 </template>
 
 <script setup>
-import ValueHashEllipsed from '~/components/ValueHashEllipsed'
 
 defineProps({
   trades: {
@@ -46,58 +67,13 @@ defineProps({
   },
 })
 
-function getAction(amounts) {
-  if (amounts[0] === 0) {
-    // return 'swap_exact_ae_for_tokens'
-    return 'BUY'
+function getChipVariant(action) {
+  const variants = {
+    BUY: 'error',
+    SELL: 'success',
+    SWAP: 'primary',
   }
-  if (amounts[1] === 0 && amounts[2] === 0) {
-    // return 'swap_ae_for_exact_tokens'
-    return 'SELL'
-  }
-  if (amounts[3] === 0) {
-    // return 'swap_ae_for_exact_tokens'
-    return 'SWAP'
-  }
-  return null
+  return variants[action]
 }
 
-function getInIndex(amounts) {
-  const action = getAction(amounts)
-  if (action === 'BUY') {
-    return 1
-  }
-  if (action === 'SELL') {
-    return 3
-  }
-  if (action === 'SWAP') {
-    return 2
-  }
-}
-
-function getOutIndex(amounts) {
-  const action = getAction(amounts)
-  if (action === 'BUY') {
-    return 2
-  }
-  if (action === 'SELL') {
-    return 0
-  }
-  if (action === 'SWAP') {
-    return 0
-  }
-}
-
-function getChipVariant(amounts) {
-  const action = getAction(amounts)
-  if (action === 'BUY') {
-    return 'error'
-  }
-  if (action === 'SELL') {
-    return 'success'
-  }
-  if (action === 'SWAP') {
-    return 'primary'
-  }
-}
 </script>

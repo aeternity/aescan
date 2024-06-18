@@ -153,3 +153,54 @@ export function formatKnownAddress(hash, isEllipsed = true) {
     return hash
   }
 }
+
+export function formatDexActionName(amounts) {
+  if (amounts[0] === 0) {
+    return 'BUY'
+  }
+  if (amounts[1] === 0 && amounts[2] === 0) {
+    return 'SELL'
+  }
+  if (amounts[3] === 0) {
+    return 'SWAP'
+  }
+  return null
+}
+
+export function formatInAmountIndex(action) {
+  const actionToIndexInMap = {
+    BUY: 1,
+    SELL: 3,
+    SWAP: 2,
+  }
+  return actionToIndexInMap[action]
+}
+
+export function formatOutAmountIndex(action) {
+  const actionToIndexOutMap = {
+    BUY: 2,
+    SELL: 0,
+    SWAP: 0,
+  }
+
+  return actionToIndexOutMap[action]
+}
+
+export function formatAeContractArgumentIndex(action) {
+  const actionToIndexInMap = {
+    BUY: 2,
+    SELL: 1,
+    SWAP: 3, // todo check
+  }
+  return actionToIndexInMap[action]
+}
+
+export function formatAeContractIndex(action) {
+  const actionToIndexOutMap = {
+    BUY: 1,
+    SELL: 0,
+    SWAP: 2,
+  }
+
+  return actionToIndexOutMap[action]
+}

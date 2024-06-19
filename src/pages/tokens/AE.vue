@@ -57,6 +57,7 @@ const { isLoading } = useLoading()
     display: flex;
     align-items: center;
     margin-bottom: var(--space-5);
+
     @media (--desktop) {
       margin-bottom: 0;
     }

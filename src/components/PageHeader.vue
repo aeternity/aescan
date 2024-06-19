@@ -1,15 +1,17 @@
 <template>
   <header class="page-header">
-    <app-title>
-      <slot/>
-
-      <hint-tooltip
-        v-if="$slots.tooltip"
-        class="page-header__tooltip"
-        variant="dark">
-        <slot name="tooltip"/>
-      </hint-tooltip>
-    </app-title>
+    <div class="page-header__container">
+      <app-title>
+        <slot/>
+        <hint-tooltip
+          v-if="$slots.tooltip"
+          class="page-header__tooltip"
+          variant="dark">
+          <slot name="tooltip"/>
+        </hint-tooltip>
+      </app-title>
+      <slot name="end"/>
+    </div>
     <the-search-bar class="page-header__search-bar"/>
   </header>
 </template>
@@ -31,6 +33,10 @@ import HintTooltip from '@/components/HintTooltip'
 
   @media (--desktop) {
     margin: 0 0 var(--space-6);
+  }
+
+  &__container {
+    display: flex;
   }
 
   &__search-bar {

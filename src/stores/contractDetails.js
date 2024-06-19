@@ -117,7 +117,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
   }
 
   async function fetchIsContractAex9() {
-    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId.value}`)).data
+    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${contractId.value}`)).data
     contractType.value = 'AEX-9'
   }
 

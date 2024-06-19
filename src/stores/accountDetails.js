@@ -102,7 +102,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {
     rawAccountTokens.value = null
-    const defaultParameters = `/v2/aex9/account-balances/${accountId}?limit=${limit ?? 10}`
+    const defaultParameters = `/v3/aex9/account-balances/${accountId}?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountTokens.value = data
 

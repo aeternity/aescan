@@ -85,7 +85,7 @@ export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) 
 }
 
 export function formatNullable(value) {
-  return value || '---'
+  return typeof value === 'number' ? value : '---'
 }
 
 export function formatDecodeBase64(base64String) {

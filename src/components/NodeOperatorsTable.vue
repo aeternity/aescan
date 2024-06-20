@@ -12,7 +12,7 @@
     </tr>
     <tr
       v-for="node in nodeOperators"
-      :key="node.genesisHash">
+      :key="node.networkId">
       <td>
         <value-hash-ellipsed
           :hash="node.genesisHash"

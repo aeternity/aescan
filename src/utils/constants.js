@@ -1,4 +1,5 @@
 export const MARKET_STATS_ADDRESS = 'https://api.coingecko.com/api/v3'
+export const NODES_ADDRESS = 'http://138.68.22.27:3113/v2/debug/network'
 export const MINUTES_PER_BLOCK = 3
 export const TX_TYPES_OPTIONS = [
   { typeQuery: null, label: 'All types' },

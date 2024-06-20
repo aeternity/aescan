@@ -42,7 +42,7 @@ const menuOptions = ref([{
       path: '/state-channels',
     },
     {
-      name: 'Node Operators',
+      name: 'Node',
       path: '/nodes',
     },
     {

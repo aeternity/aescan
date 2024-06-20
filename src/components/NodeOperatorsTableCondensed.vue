@@ -1,7 +1,7 @@
 <template>
   <div>
     <table
-      v-for="node in nodeOperators"
+      v-for="(node, index) in nodeOperators"
       :key="node.networkId"
       class="node-operators-table-condensed__table">
       <tbody>
@@ -15,9 +15,7 @@
             </app-tooltip>
           </th>
           <td class="node-operators-table-condensed__data">
-            <value-hash-ellipsed
-              :hash="node.genesisHash"
-              :link-to="`/keyblocks/${node.genesisHash}`"/>
+            {{ index }}
           </td>
         </tr>
 
@@ -57,7 +55,7 @@
             </app-tooltip>
           </th>
           <td class="node-operators-table-condensed__data">
-            {{ node.networkId }}
+            {{ formatNullable(node.networkId) }}
           </td>
         </tr>
         <tr class="node-operators-table-condensed__row">
@@ -70,7 +68,7 @@
             </app-tooltip>
           </th>
           <td class="node-operators-table-condensed__data">
-            {{ node.nodeVersion }}
+            {{ formatNullable(node.nodeVersion) }}
           </td>
         </tr>
         <tr class="node-operators-table-condensed__row">
@@ -83,7 +81,7 @@
             </app-tooltip>
           </th>
           <td class="node-operators-table-condensed__data">
-            {{ node.nodeRevision }}
+            {{ formatNullable(node.nodeRevision) }}
           </td>
         </tr>
         <tr class="node-operators-table-condensed__row">
@@ -96,7 +94,7 @@
             </app-tooltip>
           </th>
           <td class="node-operators-table-condensed__data">
-            {{ node.nodeVendor }}
+            {{ formatNullable(node.nodeVendor) }}
           </td>
         </tr>
         <tr class="node-operators-table-condensed__row">
@@ -109,7 +107,7 @@
             </app-tooltip>
           </th>
           <td class="node-operators-table-condensed__data">
-            {{ node.nodeOs }}
+            {{ formatNullable(node.nodeOs) }}
           </td>
         </tr>
       </tbody>
@@ -146,15 +144,5 @@ defineProps({
     text-align: right;
   }
 
-  &__icon {
-    width: 20px;
-    height: 20px;
-    margin-right: var(--space-1);
-  }
-
-  &__link {
-    display: inline-flex;
-    align-items: center;
-  }
 }
 </style>

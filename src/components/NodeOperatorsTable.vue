@@ -11,22 +11,22 @@
       <th>OS</th>
     </tr>
     <tr
-      v-for="node in nodeOperators"
+      v-for="(node, index) in nodeOperators"
       :key="node.networkId">
-      <td>
-        <value-hash-ellipsed
-          :hash="node.genesisHash"
-          :link-to="`/keyblocks/${node.genesisHash}`"/>
+      <td class="node-operators-table__hash">
+        {{ index }}
       </td>
       <td>
         {{ node.host }}
       </td>
       <td>{{ node.port }}</td>
-      <td>{{ node.networkId }}</td>
-      <td>{{ node.nodeVersion }}</td>
-      <td>{{ node.nodeRevision }}</td>
-      <td>{{ node.nodeVendor }}</td>
-      <td>{{ node.nodeOs }}</td>
+      <td>{{ formatNullable(node.networkId) }}</td>
+      <td>{{ formatNullable(node.nodeVersion) }}</td>
+      <td class="node-operators-table__hash">
+        {{ formatNullable(node.nodeRevision) }}
+      </td>
+      <td>{{ formatNullable(node.nodeVendor) }}</td>
+      <td>{{ formatNullable(node.nodeOs) }}</td>
     </tr>
   </table>
 </template>
@@ -39,3 +39,9 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.node-operators-table__hash {
+  word-break: break-all;
+}
+</style>

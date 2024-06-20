@@ -10,7 +10,6 @@ export const useNodeOperators = defineStore('nodeOperators', () => {
     nodeOperators.value = null
     const { data } = await axios.get('http://138.68.22.27:3113/v2/debug/network')
     nodeOperators.value = data
-    console.log('nodeOperators.value', nodeOperators.value)
   }
 
   return {

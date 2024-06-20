@@ -10,11 +10,11 @@
       aaa
     </template>
   </page-header>
-  <node-operator-panel/>
-  <!--  <oracles-panel />-->
-  <!--  <loader-panel v-else/>-->
+  <node-operators-panel v-if="!isLoading"/>
+  <loader-panel v-else/>
 </template>
 
 <script setup>
 
+const { isLoading } = useLoading()
 </script>

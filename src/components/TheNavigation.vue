@@ -74,6 +74,10 @@ const menuOptions = ref([{
       name: 'Smart Contract Verification',
       path: '/contract-verification',
     },
+    {
+      name: 'Node Operators',
+      path: '/node-operators',
+    },
   ],
 },
 {

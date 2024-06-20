@@ -1,12 +1,12 @@
 <template>
   <div>
     <table
-      v-for="(node, index) in nodeOperators"
+      v-for="(node, index) in nodes"
       :key="node.networkId"
-      class="node-operators-table-condensed__table">
+      class="nodes-table-condensed__table">
       <tbody>
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               Node Id
               <template #tooltip>
@@ -14,13 +14,13 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ index }}
           </td>
         </tr>
 
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               Host
               <template #tooltip>
@@ -28,12 +28,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ node.host }}
           </td>
         </tr>
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               Port
               <template #tooltip>
@@ -41,12 +41,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ node.port }}
           </td>
         </tr>
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               Network Id
               <template #tooltip>
@@ -54,12 +54,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ formatNullable(node.networkId) }}
           </td>
         </tr>
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               Node Version
               <template #tooltip>
@@ -67,12 +67,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeVersion) }}
           </td>
         </tr>
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               Node Revision
               <template #tooltip>
@@ -80,12 +80,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeRevision) }}
           </td>
         </tr>
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               Node Vendor
               <template #tooltip>
@@ -93,12 +93,12 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeVendor) }}
           </td>
         </tr>
-        <tr class="node-operators-table-condensed__row">
-          <th class="node-operators-table-condensed__header">
+        <tr class="nodes-table-condensed__row">
+          <th class="nodes-table-condensed__header">
             <app-tooltip>
               OS
               <template #tooltip>
@@ -106,7 +106,7 @@
               </template>
             </app-tooltip>
           </th>
-          <td class="node-operators-table-condensed__data">
+          <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeOs) }}
           </td>
         </tr>
@@ -118,7 +118,7 @@
 import { tokensHints } from '~/utils/hints/tokensHints'
 
 defineProps({
-  nodeOperators: {
+  nodes: {
     type: Array,
     required: true,
   },
@@ -126,7 +126,7 @@ defineProps({
 </script>
 
 <style scoped>
-.node-operators-table-condensed {
+.nodes-table-condensed {
   &__table {
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);

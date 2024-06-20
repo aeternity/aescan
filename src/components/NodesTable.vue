@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="nodes-table">
     <tr>
       <th>Node Id</th>
       <th>Host</th>
@@ -11,9 +11,9 @@
       <th>OS</th>
     </tr>
     <tr
-      v-for="(node, index) in nodeOperators"
+      v-for="(node, index) in nodes"
       :key="node.networkId">
-      <td class="node-operators-table__hash">
+      <td class="nodes-table__hash">
         {{ index }}
       </td>
       <td>
@@ -22,7 +22,7 @@
       <td>{{ node.port }}</td>
       <td>{{ formatNullable(node.networkId) }}</td>
       <td>{{ formatNullable(node.nodeVersion) }}</td>
-      <td class="node-operators-table__hash">
+      <td class="nodes-table__hash">
         {{ formatNullable(node.nodeRevision) }}
       </td>
       <td>{{ formatNullable(node.nodeVendor) }}</td>
@@ -33,7 +33,7 @@
 
 <script setup>
 defineProps({
-  nodeOperators: {
+  nodes: {
     type: Array,
     required: true,
   },
@@ -41,7 +41,7 @@ defineProps({
 </script>
 
 <style scoped>
-.node-operators-table__hash {
+.nodes-table__hash {
   word-break: break-all;
 }
 </style>

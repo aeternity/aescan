@@ -42,10 +42,15 @@ const menuOptions = ref([{
       path: '/state-channels',
     },
     {
+      name: 'Node Operators',
+      path: '/nodes',
+    },
+    {
       name: 'Hyperchains',
       path: '/hyperchains',
       isDisabled: true,
     },
+
   ],
 },
 {
@@ -74,10 +79,7 @@ const menuOptions = ref([{
       name: 'Smart Contract Verification',
       path: '/contract-verification',
     },
-    {
-      name: 'Node Operators',
-      path: '/node-operators',
-    },
+
   ],
 },
 {

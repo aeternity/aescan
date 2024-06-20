@@ -1,16 +1,16 @@
 <template>
   <Head>
-    <Title>Node Operators</Title>
+    <Title>Nodes</Title>
   </Head>
 
   <page-header>
-    Node Operators
+    Nodes
 
     <template #tooltip>
       aaa
     </template>
   </page-header>
-  <node-operators-panel v-if="!isLoading"/>
+  <nodes-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>
 

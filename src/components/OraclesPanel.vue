@@ -83,5 +83,4 @@ if (process.client) {
 
   loadOracles()
 }
-
 </script>

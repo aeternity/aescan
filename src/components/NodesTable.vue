@@ -1,14 +1,54 @@
 <template>
   <table class="nodes-table">
     <tr>
-      <th>Node Id</th>
-      <th>Host</th>
-      <th>Port</th>
-      <th>Network Id</th>
-      <th>Node Version</th>
-      <th>Node Revision</th>
-      <th>Node Vendor</th>
-      <th>OS</th>
+      <th>
+        Node Id
+        <hint-tooltip>
+          {{ nodesHints.nodeId }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Host
+        <hint-tooltip>
+          {{ nodesHints.host }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Port
+        <hint-tooltip>
+          {{ nodesHints.port }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Network Id
+        <hint-tooltip>
+          {{ nodesHints.networkId }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Node Version
+        <hint-tooltip>
+          {{ nodesHints.nodeVersion }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Node Revision
+        <hint-tooltip>
+          {{ nodesHints.nodeRevision }}
+        </hint-tooltip>
+      </th>
+      <th>
+        Node Vendor
+        <hint-tooltip>
+          {{ nodesHints.nodeVendor }}
+        </hint-tooltip>
+      </th>
+      <th>
+        OS
+        <hint-tooltip>
+          {{ nodesHints.os }}
+        </hint-tooltip>
+      </th>
     </tr>
     <tr
       v-for="(node, index) in nodes"
@@ -32,6 +72,8 @@
 </template>
 
 <script setup>
+import { nodesHints } from '@/utils/hints/nodesHints'
+
 defineProps({
   nodes: {
     type: Array,

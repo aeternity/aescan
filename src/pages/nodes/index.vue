@@ -7,7 +7,7 @@
     Nodes
 
     <template #tooltip>
-      aaa
+      {{ nodesHints.nodes }}
     </template>
   </page-header>
   <nodes-panel v-if="!isLoading"/>
@@ -15,6 +15,8 @@
 </template>
 
 <script setup>
+
+import { nodesHints } from '@/utils/hints/nodesHints'
 
 const { isLoading } = useLoading()
 </script>

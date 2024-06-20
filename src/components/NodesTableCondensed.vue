@@ -10,7 +10,7 @@
             <app-tooltip>
               Node Id
               <template #tooltip>
-                {{ tokensHints.tokenSymbol }}
+                {{ nodesHints.nodeId }}
               </template>
             </app-tooltip>
           </th>
@@ -24,7 +24,7 @@
             <app-tooltip>
               Host
               <template #tooltip>
-                {{ tokensHints.tokenName }}
+                {{ nodesHints.host }}
               </template>
             </app-tooltip>
           </th>
@@ -37,7 +37,7 @@
             <app-tooltip>
               Port
               <template #tooltip>
-                {{ tokensHints.smartContractId }}
+                {{ nodesHints.port }}
               </template>
             </app-tooltip>
           </th>
@@ -50,7 +50,7 @@
             <app-tooltip>
               Network Id
               <template #tooltip>
-                {{ tokensHints.smartContractId }}
+                {{ nodesHints.networkId }}
               </template>
             </app-tooltip>
           </th>
@@ -63,7 +63,7 @@
             <app-tooltip>
               Node Version
               <template #tooltip>
-                {{ tokensHints.smartContractId }}
+                {{ nodesHints.nodeVersion }}
               </template>
             </app-tooltip>
           </th>
@@ -76,7 +76,7 @@
             <app-tooltip>
               Node Revision
               <template #tooltip>
-                {{ tokensHints.smartContractId }}
+                {{ nodesHints.nodeRevision }}
               </template>
             </app-tooltip>
           </th>
@@ -89,7 +89,7 @@
             <app-tooltip>
               Node Vendor
               <template #tooltip>
-                {{ tokensHints.smartContractId }}
+                {{ nodesHints.nodeVendor }}
               </template>
             </app-tooltip>
           </th>
@@ -102,7 +102,7 @@
             <app-tooltip>
               OS
               <template #tooltip>
-                {{ tokensHints.smartContractId }}
+                {{ nodesHints.os }}
               </template>
             </app-tooltip>
           </th>
@@ -115,7 +115,7 @@
   </div>
 </template>
 <script setup>
-import { tokensHints } from '~/utils/hints/tokensHints'
+import { nodesHints } from '../utils/hints/nodesHints'
 
 defineProps({
   nodes: {

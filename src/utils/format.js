@@ -84,8 +84,14 @@ export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) 
   return now.plus({ minutes: heightDiff * MINUTES_PER_BLOCK })
 }
 
-export function formatNullable(value) {
-  return typeof value === 'number' ? value : '---'
+export function formatNullable() {
+  if (value === 0) {
+    return value
+  }
+  if (!value) {
+    return '---'
+  }
+  return value || '---'
 }
 
 export function formatDecodeBase64(base64String) {

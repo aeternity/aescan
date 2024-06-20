@@ -50,7 +50,6 @@ const menuOptions = ref([{
       path: '/hyperchains',
       isDisabled: true,
     },
-
   ],
 },
 {
@@ -79,7 +78,6 @@ const menuOptions = ref([{
       name: 'Smart Contract Verification',
       path: '/contract-verification',
     },
-
   ],
 },
 {

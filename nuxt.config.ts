@@ -9,6 +9,11 @@ export default defineNuxtConfig({
   devServer: {
     port: 8080,
   },
+  nitro: {
+    routeRules: {
+      '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
+    },
+  },
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/plausible',

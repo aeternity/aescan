@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import useAxios from '@/composables/useAxios'
-import { NODES_ADDRESS } from '@/utils/constants'
 
 export const useNodes = defineStore('nodes', () => {
   const axios = useAxios()
@@ -9,7 +8,7 @@ export const useNodes = defineStore('nodes', () => {
 
   async function fetchNodes() {
     nodes.value = null
-    const { data } = await axios.get(NODES_ADDRESS)
+    const { data } = await axios.get('/proxy/nodes')
     nodes.value = data
   }
 

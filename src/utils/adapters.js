@@ -658,7 +658,7 @@ export function adaptMarketStatsCoinW(stats) {
     volume: stats.data.aeUsdt.baseVolume,
   }
 }
-  
+
 export function adaptTopAccounts(topAccounts, distribution) {
   return topAccounts
     .slice(0, 100)

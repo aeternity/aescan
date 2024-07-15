@@ -622,6 +622,43 @@ export function adaptVerificationResult(verificationStatus) {
   }
 }
 
+export function adaptMarketStatsGate(stats) {
+  return {
+    price: stats[0].last,
+    volume: stats[0].baseVolume,
+  }
+}
+
+export function adaptMarketStatsMexc(stats) {
+  return {
+    price: stats.lastPrice,
+    volume: stats.volume,
+  }
+}
+
+export function adaptMarketStatsCoinStore(stats) {
+  const tokenPair = stats.data.find(item => item.symbol === 'AEUSDT')
+  return {
+    price: tokenPair.close,
+    volume: tokenPair.volume,
+  }
+}
+
+export function adaptMarketStatsHotCoin(stats) {
+  const tokenPair = stats.ticker.find(item => item.symbol === 'ae_usdt')
+  return {
+    price: tokenPair.last,
+    volume: tokenPair.vol,
+  }
+}
+
+export function adaptMarketStatsCoinW(stats) {
+  return {
+    price: stats.data.aeUsdt.last,
+    volume: stats.data.aeUsdt.baseVolume,
+  }
+}
+
 export function adaptTopAccounts(topAccounts, distribution) {
   return topAccounts
     .slice(0, 100)

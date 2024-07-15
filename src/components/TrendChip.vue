@@ -16,16 +16,15 @@ const priceChangeSign = computed(() => {
   return props.delta > 0 ? '+' : ''
 })
 
-const priceChipVariant = computed(
-  () => {
-    if (props.delta > 0) {
-      return 'success'
-    }
-    if (props.delta < 0) {
-      return 'error'
-    }
-    if (props.delta === 0) {
-      return 'primary'
-    }
-  })
+const priceChipVariant = computed(() => {
+  if (props.delta > 0) {
+    return 'success'
+  }
+  if (props.delta < 0) {
+    return 'error'
+  }
+  if (props.delta === 0) {
+    return 'primary'
+  }
+})
 </script>

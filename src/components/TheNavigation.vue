@@ -22,6 +22,10 @@ const menuOptions = ref([{
   isActive: false,
   submenu: [
     {
+      name: 'Accounts',
+      path: '/accounts',
+    },
+    {
       name: 'Transactions',
       path: '/transactions',
     },

@@ -12,7 +12,9 @@
         </div>
         <div class="market-stats__value">
           $ {{ formatNullable(price) }}
-          <trend-chip :delta="priceChange"/>
+          <trend-chip
+            :delta="priceChange"
+            class="market-stats__chip"/>
         </div>
       </li>
       <li

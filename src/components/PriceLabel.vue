@@ -4,13 +4,15 @@
       v-if="hasIcon"
       class="price-label__icon"
       :contract-id="contractId"/>
-    <app-tooltip>
-      {{ formatNullable(formatAePrice(price, maxDigits, currency)) }}
-
+    <app-tooltip v-if="isPriceRounded">
+      {{ priceRounded }}
       <template #tooltip>
-        {{ formatNullable(formatAePrice(price, null, currency)) }}
+        {{ price }}
       </template>
     </app-tooltip>
+    <template v-else>
+      {{ price }}
+    </template>
   </div>
 </template>
 
@@ -19,7 +21,7 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { formatNullable } from '@/utils/format'
 import AppTooltip from '@/components/AppTooltip'
 
-defineProps({
+const props = defineProps({
   price: {
     type: Number,
     default: null,
@@ -41,6 +43,16 @@ defineProps({
     default: () => useRuntimeConfig().public.AE_TOKEN_ID,
   },
 })
+
+const isPriceRounded = computed(() =>
+  priceRounded.value !== price.value,
+)
+const priceRounded = computed(() =>
+  formatNullable(formatAePrice(props.price, props.maxDigits, props.currency)),
+)
+const price = computed(() =>
+  formatNullable(formatAePrice(props.price, null, props.currency)),
+)
 </script>
 
 <style scoped>

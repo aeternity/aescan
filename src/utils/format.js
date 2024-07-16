@@ -56,7 +56,14 @@ export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
   decimals = decimals?.replace(/0+$/, '')
 
   if (!decimals) {
-    return integers === '0' ? `~${integers} ${currency}` : `${formatNumber(integers)} ${currency}`
+    if (price === 0) {
+      return `0 ${currency}`
+    }
+    if (integers === '0') {
+      return `~${integers} ${currency}`
+    } else {
+      return `${formatNumber(integers)} ${currency}`
+    }
   }
 
   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} ${currency}`

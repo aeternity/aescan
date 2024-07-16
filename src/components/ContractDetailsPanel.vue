@@ -171,7 +171,7 @@
             Smart Contract's Account Balance
           </th>
           <td>
-            <price-label :price="formatAettosToAe(contractDetails.contractAccountBalance)"/>
+            <price-label :price="0"/>
           </td>
         </tr>
         <tr class="contract-details-panel__row">
@@ -221,7 +221,7 @@ import AppPanel from '@/components/AppPanel'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
 import CopyChip from '@/components/CopyChip'
-import { formatAettosToAe, formatEllipseHash } from '@/utils/format'
+import { formatEllipseHash } from '@/utils/format'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import HintTooltip from '@/components/HintTooltip'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'

@@ -1,7 +1,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-1);
 }
 
 
@@ -12,14 +12,13 @@ th {
   line-height: 22px;
 
   vertical-align: middle;
-  padding: 7px 0;
+  padding: 7px 7px 7px 0;
 
 
   @media (--desktop) {
     font-size: 16px;
     line-height: 18px;
-    vertical-align: top;
-    padding: 10px 0 var(--space-1);
+    padding: 10px 10px var(--space-1) 0;
   }
 }
 

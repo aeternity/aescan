@@ -5,7 +5,6 @@
 
   <page-header>
     Keyblock
-
     <template #tooltip>
       {{ keyblocksHints.keyblock }}
     </template>

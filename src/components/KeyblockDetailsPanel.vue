@@ -1,19 +1,5 @@
 <template>
   <app-panel class="keyblock-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
-    <template #header>
-      <div v-if="!!keyblockDetails.isExistent">
-        <copy-chip
-          :label="keyblockDetails.hash"
-          class="u-hidden-mobile"/>
-        <copy-chip
-          :label="formatEllipseHash(keyblockDetails.hash)"
-          :clipboard-text="keyblockDetails.hash"
-          class="u-hidden-desktop"/>
-      </div>
-    </template>
     <p
       v-if="keyblockDetails.isExistent === false"
       class="keyblock-details-panel__not-existent">
@@ -25,16 +11,35 @@
       <tbody>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Height
+            <hint-tooltip>
+              {{ keyblocksHints.keyblockHash }}
+            </hint-tooltip>
+            Keyblock Hash
+          </th>
+          <td>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="keyblockDetails.hash"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(keyblockDetails.hash)"
+                :clipboard-text="keyblockDetails.hash"/>
+            </div>
+          </td>
+        </tr>
+        <tr class="keyblock-details-panel__row">
+          <th class="keyblock-details-panel__table-header">
             <hint-tooltip>
               {{ keyblocksHints.height }}
             </hint-tooltip>
+            Height
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <div class="keyblock-details-panel__controls">
               <pagination-button
                 class="keyblock-details-panel__button--prev"
                 direction="left"
+                :disabled="keyblockDetails.height === 0"
                 @click="$router.push(`/keyblocks/${keyblockDetails.height - 1}`)"/>
 
               {{ keyblockDetails.height }}
@@ -47,14 +52,15 @@
             </div>
           </td>
         </tr>
+
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Time
             <hint-tooltip>
               {{ keyblocksHints.mined }}
             </hint-tooltip>
+            Time
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="keyblockDetails.mined"
               :is-extended="true"/>
@@ -62,12 +68,12 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Miner
             <hint-tooltip>
               {{ keyblocksHints.miner }}
             </hint-tooltip>
+            Miner
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <span class="u-hidden-mobile">
               {{ keyblockDetails.miner }}
             </span>
@@ -78,12 +84,12 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Beneficiary
             <hint-tooltip>
               {{ keyblocksHints.beneficiary }}
             </hint-tooltip>
+            Beneficiary
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
               <span class="u-hidden-mobile">
                 {{ keyblockDetails.beneficiary }}
@@ -96,75 +102,73 @@
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Beneficiary Reward
             <hint-tooltip>
               {{ keyblocksHints.beneficiaryReward }}
             </hint-tooltip>
+            Beneficiary Reward
           </th>
-          <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.blockReward, null) }}
+          <td>
+            {{ formatNullable(formatAePrice(keyblockDetails.blockReward, null)) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            BRI Reward
             <hint-tooltip>
               {{ keyblocksHints.briReward }}
             </hint-tooltip>
+            BRI Reward
           </th>
-          <td class="keyblock-details-panel__data">
-            {{ formatAePrice(keyblockDetails.devReward, null) }}
+          <td>
+            {{ formatNullable(formatAePrice(keyblockDetails.devReward, null)) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Microblocks Count
             <hint-tooltip>
               {{ keyblocksHints.microblockCount }}
             </hint-tooltip>
+            Microblocks Count
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatNumber(keyblockDetails.microBlocksCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            Transactions Count
             <hint-tooltip>
               {{ keyblocksHints.transactionsCount }}
             </hint-tooltip>
+            Transactions Count
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatNumber(keyblockDetails.transactionsCount) }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ keyblocksHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
-          <td class="keyblock-details-panel__data">
-            <div class="keyblock-details-panel__container">
-              <app-link
-                :to="keyblockNodeUrl"
-                class="keyblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
+          <td>
+            <app-link
+              :to="keyblockNodeUrl"
+              class="keyblock-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
 
-              <app-link
-                :to="keyblockMiddlewareUrl"
-                class="keyblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              :to="keyblockMiddlewareUrl"
+              class="keyblock-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>
@@ -207,19 +211,14 @@ const isNextKeyblockMined = computed(() =>
 .keyblock-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__data {
-    text-align: right;
-  }
-
-  &__container {
-    display: flex;
-    justify-content: flex-end;
   }
 
   &__link {
@@ -237,7 +236,6 @@ const isNextKeyblockMined = computed(() =>
 
   &__controls {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
   }
 

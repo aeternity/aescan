@@ -1,28 +1,28 @@
 module.exports = {
-  root: true,
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    ecmaVersion: 2020,
-    extraFileExtensions: ['.vue'],
-    ecmaFeatures: {
-      jsx: false,
-    },
-  },
-  globals: {
-    defineProps: 'readonly',
-    defineEmits: 'readonly',
-    defineExpose: 'readonly',
-    withDefaults: 'readonly',
-  },
-  extends: [
-    'standard',
-    'plugin:vue/base',
-    'plugin:vue/vue3-recommended',
-    'plugin:import/recommended',
-    'eslint:recommended',
-    '@nuxtjs/eslint-config-typescript',
-  ],
-  plugins: ['prettier'],
+  files: ["src/*.ts", "src/*.js", "src/*.vue"],
+  // parser: 'vue-eslint-parser',
+  // parserOptions: {
+  //   ecmaVersion: 2020,
+  //   extraFileExtensions: ['.vue'],
+  //   ecmaFeatures: {
+  //     jsx: false,
+  //   },
+  // },
+  // globals: {
+  //   defineProps: 'readonly',
+  //   defineEmits: 'readonly',
+  //   defineExpose: 'readonly',
+  //   withDefaults: 'readonly',
+  // },
+  // extends: [
+  //   'standard',
+  //   'plugin:vue/base',
+  //   'plugin:vue/vue3-recommended',
+  //   'plugin:import/recommended',
+  //   'eslint:recommended',
+  //   '@nuxtjs/eslint-config-typescript',
+  // ],
+  // plugins: ['prettier'],
   rules: {
     'no-console': 'off',
     quotes: ['error', 'single'],
@@ -64,7 +64,7 @@ module.exports = {
     }],
     'vue/max-attributes-per-line': ['error', {
       singleline: 1,
-      multiline: { max: 1 },
+      multiline: {max: 1},
     }],
     'vue/require-v-for-key': 'error',
     'vue/no-v-html': 0,
@@ -72,6 +72,6 @@ module.exports = {
     camelcase: ['error', {
       properties: 'never',
     }],
-    'max-len': ['error', { code: 120, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true }],
+    'max-len': ['error', {code: 120, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true}],
   },
 }

@@ -1,18 +1,18 @@
 <template>
   <app-panel class="name-pointers-special-panel">
-    <template #heading>
+    <template #title>
       SPECIAL POINTERS
     </template>
     <table>
       <tbody>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Account
             <hint-tooltip>
               {{ namesHints.accountPointer }}
             </hint-tooltip>
+            Account
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.account"
               :to="`/accounts/${name.specialPointers.account}`">
@@ -31,12 +31,12 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            State Channel
             <hint-tooltip>
               {{ namesHints.channelPointer }}
             </hint-tooltip>
+            State Channel
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.channel"
               :to="`/state-channels/${name.specialPointers.channel}`">
@@ -55,12 +55,12 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Smart Contract
             <hint-tooltip>
               {{ namesHints.contractPointer }}
             </hint-tooltip>
+            Smart Contract
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.contract"
               :to="`/contracts/${name.specialPointers.contract}`">
@@ -78,12 +78,12 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Oracle
             <hint-tooltip>
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
+            Oracle
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.oracle"
               :to="`/oracles/${name.specialPointers.oracle}`">
@@ -119,12 +119,12 @@ const { name } = storeToRefs(useNameDetailsStore())
 
 <style scoped>
 .name-pointers-special-panel {
-  &__data {
-    text-align: right;
-  }
-
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {

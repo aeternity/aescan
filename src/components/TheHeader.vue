@@ -1,68 +1,68 @@
 <template>
   <header class="header">
     <div
-      :class="[
+        :class="[
         'header__container',
         { 'header__container--open': isMobileMenuOpen },
       ]">
       <app-link
-        to="/"
-        @click="closeNavigation">
+          to="/"
+          @click="closeNavigation">
         <img
-          width="134"
-          alt="æScan logo"
-          src="@/assets/logo.svg">
+            width="134"
+            alt="æScan logo"
+            src="@/assets/logo.svg">
       </app-link>
 
       <div
-        class="header__hamburger"
-        @click="toggleNavigation">
+          class="header__hamburger"
+          @click="toggleNavigation">
         <app-icon
-          v-if="isMobileMenuOpen"
-          name="cross"
-          :size="34"/>
+            v-if="isMobileMenuOpen"
+            name="cross"
+            :size="34"/>
         <app-icon
-          v-else
-          name="menu"
-          :size="24"/>
+            v-else
+            name="menu"
+            :size="24"/>
       </div>
 
       <the-navigation
-        :class="[
+          :class="[
           'header__navigation',
           { 'header__navigation--open': isMobileMenuOpen },
         ]"/>
 
       <network-select
-        :class="[
+          :class="[
           'header__network-select',
           { 'header__network-select--open': isMobileMenuOpen }]"/>
 
       <the-wallet-account-controls class="u-hidden-mobile"/>
     </div>
     <div
-      v-if="isSyncing"
-      class="header__warning">
+        v-if="isSyncing"
+        class="header__warning">
       Some services are currently being synced and data accuracy might be affected. Please check again later.
     </div>
     <div
-      v-if="!isOnline"
-      class="header__warning">
+        v-if="!isOnline"
+        class="header__warning">
       You are currently offline. Please check your connection.
     </div>
     <div
-      v-if="nodeStatus === false"
-      class="header__warning">
+        v-if="nodeStatus === false"
+        class="header__warning">
       The Node is currently unavailable. Please check again later.
     </div>
     <div
-      v-if="middlewareStatus === false"
-      class="header__warning">
+        v-if="middlewareStatus === false"
+        class="header__warning">
       The Middleware is currently unavailable. Please check again later.
     </div>
     <div
-      v-if="isMarketCapAvailable === false"
-      class="header__warning">
+        v-if="isMarketCapAvailable === false"
+        class="header__warning">
       Market Cap data are currently not available. Fiat price might not be up to date. Please check again later.
     </div>
   </header>
@@ -78,14 +78,11 @@ import { useMarketStatsStore } from '@/stores/marketStats'
 
 const route = useRoute()
 
-const isNavigationOpen = ref(false)
-
-const { isSyncing } = storeToRefs(useStatus())
 const router = useRouter()
-const { isMobileMenuOpen } = storeToRefs(useUiStore())
+const {isMobileMenuOpen} = storeToRefs(useUiStore())
 const isOnline = useOnline()
-const { isSyncing, nodeStatus, middlewareStatus } = storeToRefs(useStatus())
-const { isMarketCapAvailable } = storeToRefs(useMarketStatsStore())
+const {isSyncing, nodeStatus, middlewareStatus} = storeToRefs(useStatus())
+const {isMarketCapAvailable} = storeToRefs(useMarketStatsStore())
 
 onMounted(() => {
   window.addEventListener('resize', closeNavigation)
@@ -108,7 +105,7 @@ watch(() => route.fullPath, () => {
 
 function toggleNavigation() {
   if (!isMobileMenuOpen.value && router.options.history.state.back === null) {
-    router.push({ hash: MENU_HASH })
+    router.push({hash: MENU_HASH})
   }
 
   isMobileMenuOpen.value = !isMobileMenuOpen.value

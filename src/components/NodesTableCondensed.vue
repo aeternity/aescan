@@ -61,7 +61,7 @@
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
             <app-tooltip>
-              Node Version
+              Version
               <template #tooltip>
                 {{ nodesHints.nodeVersion }}
               </template>
@@ -74,7 +74,7 @@
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
             <app-tooltip>
-              Node Revision
+              Revision
               <template #tooltip>
                 {{ nodesHints.nodeRevision }}
               </template>
@@ -87,7 +87,7 @@
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
             <app-tooltip>
-              Node Vendor
+              Vendor
               <template #tooltip>
                 {{ nodesHints.nodeVendor }}
               </template>
@@ -142,7 +142,7 @@ defineProps({
 
   &__data {
     text-align: right;
+    word-break: break-all;
   }
-
 }
 </style>

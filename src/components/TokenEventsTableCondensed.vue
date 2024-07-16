@@ -72,7 +72,7 @@
             <expand-button
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
-              {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguements' }}
+              {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguments' }}
             </expand-button>
           </td>
         </tr>

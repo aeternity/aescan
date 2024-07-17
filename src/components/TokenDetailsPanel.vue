@@ -169,7 +169,7 @@ const props = defineProps({
 })
 
 const tokenMiddlewareUrl = computed(() =>
-  `${config.MIDDLEWARE_URL}/v2/aex9/${props.tokenDetails.contractId}`,
+  `${config.MIDDLEWARE_URL}/v3/aex9/${props.tokenDetails.contractId}`,
 )
 
 const tokenDexUrl = computed(() =>
@@ -202,6 +202,10 @@ const fiatPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 
   &__extensions {

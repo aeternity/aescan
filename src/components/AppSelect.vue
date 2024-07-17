@@ -89,6 +89,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   }
 
   &__tags {
+    padding: 10px var(--space-6) 0 var(--space-1);
     border-radius: 8px;
     border-color: var(--color-midnight-55);
     border-width: 1px;
@@ -177,14 +178,14 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     font-size: 14px;
     line-height: 20px;
     padding-left: var(--space-0);
-    padding-top: var(--space-0);
+    padding-top: 0;
     margin-bottom: var(--space-0);
   }
 
   &--sm {
     .multiselect__tags {
       min-height: 28px;
-      padding: 0 40px 0 8px;
+      padding: 0 var(--space-6) 0 var(--space-1);
     }
 
     .multiselect__single {

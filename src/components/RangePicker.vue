@@ -9,7 +9,7 @@
         :max-date="today"
         auto-apply
         hide-input-icon
-        :clearable="false"
+        :clearable="false" e
         :enable-time-picker="false"
         :prevent-min-max-navigation="true"
         placeholder="CUSTOM"

@@ -1,20 +1,20 @@
 <template>
   <div class="range-picker">
     <VueDatePicker
-      ref="datepicker"
-      v-model="date"
-      range
-      min-range="1"
-      :min-date="STATISTICS_DATA_BEGINNING"
-      :max-date="today"
-      auto-apply
-      hide-input-icon
-      :clearable="false"
-      :enable-time-picker="false"
-      :prevent-min-max-navigation="true"
-      placeholder="CUSTOM"
-      :input-class-name="`range-picker__input ${isRangeSelected ? 'range-picker__input--active' : ''}`"
-      @update:model-value="$emit('updated', date)"/>
+        ref="datepicker"
+        v-model="date"
+        range
+        min-range="1"
+        :min-date="STATISTICS_DATA_BEGINNING"
+        :max-date="today"
+        auto-apply
+        hide-input-icon
+        :clearable="false"
+        :enable-time-picker="false"
+        :prevent-min-max-navigation="true"
+        placeholder="CUSTOM"
+        :ui="{input: `range-picker__input ${isRangeSelected ? 'range-picker__input--active' : ''}`}"
+        @update:model-value="$emit('updated', date)"/>
   </div>
 </template>
 

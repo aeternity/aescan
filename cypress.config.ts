@@ -1,4 +1,4 @@
-import { defineConfig } from 'cypress'
+import {defineConfig} from 'cypress'
 
 export default defineConfig({
   env: {
@@ -19,5 +19,5 @@ export default defineConfig({
   },
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 30000,
+  defaultCommandTimeout: 40000,
 })

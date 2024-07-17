@@ -6,11 +6,9 @@ async function lazyLoadSentryIntegrations() {
     return
   }
 
-  const {Replay} = await import("@sentry/vue");
-  Sentry.addIntegration(new Replay({
-    maskAllText: false,
-    blockAllMedia: false,
-  }));
+  import("@sentry/browser").then((lazyLoadedSentry) => {
+    Sentry.addIntegration(lazyLoadedSentry.replayIntegration());
+  });
 }
 
 export default defineNuxtPlugin(({vueApp}) => {

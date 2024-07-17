@@ -85,6 +85,12 @@ export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) 
 }
 
 export function formatNullable(value) {
+  if (value === 0) {
+    return value
+  }
+  if (!value) {
+    return '---'
+  }
   return value || '---'
 }
 

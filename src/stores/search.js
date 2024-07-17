@@ -19,14 +19,14 @@ export const useSearchStore = defineStore('search', () => {
 
   async function fetchTokenResults({ query, limit, queryParameters } = {}) {
     tokensResults.value = null
-    const defaultParameters = `/v2/aex9?prefix=${query}&limit=${limit ?? 10}&direction=forward`
+    const defaultParameters = `/v3/aex9?prefix=${query}&limit=${limit ?? 10}&direction=forward`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     tokensResults.value = data
   }
 
   async function fetchNftsResults({ query, limit, queryParameters } = {}) {
     nftsResults.value = null
-    const defaultParameters = `/v2/aex141?prefix=${query}&limit=${limit ?? 10}&direction=forward`
+    const defaultParameters = `/v3/aex141?prefix=${query}&limit=${limit ?? 10}&direction=forward`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     nftsResults.value = data
   }

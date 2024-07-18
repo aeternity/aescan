@@ -22,6 +22,10 @@ const menuOptions = ref([{
   isActive: false,
   submenu: [
     {
+      name: 'Accounts',
+      path: '/accounts',
+    },
+    {
       name: 'Transactions',
       path: '/transactions',
     },
@@ -40,6 +44,10 @@ const menuOptions = ref([{
     {
       name: 'State Channels',
       path: '/state-channels',
+    },
+    {
+      name: 'Nodes',
+      path: '/nodes',
     },
     {
       name: 'Hyperchains',

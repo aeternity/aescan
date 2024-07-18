@@ -109,6 +109,10 @@ if (import.meta.env.MODE !== 'production') {
   })
 }
 
+function logError(error) {
+  console.error(error)
+}
+
 const detectedHistoryNavigation = ref(null)
 
 router.options.history.listen((_to, _from, meta) => {

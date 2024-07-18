@@ -1,5 +1,5 @@
 <template>
-  <VMenu>
+  <VMenu  placement="bottom">
     <span>
       <slot/>
     </span>

@@ -7,10 +7,10 @@
       <tbody>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Account
             <hint-tooltip>
               {{ namesHints.accountPointer }}
             </hint-tooltip>
+            Account
           </th>
           <td>
             <app-link
@@ -31,10 +31,10 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            State Channel
             <hint-tooltip>
               {{ namesHints.channelPointer }}
             </hint-tooltip>
+            State Channel
           </th>
           <td>
             <app-link
@@ -55,10 +55,10 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Smart Contract
             <hint-tooltip>
               {{ namesHints.contractPointer }}
             </hint-tooltip>
+            Smart Contract
           </th>
           <td>
             <app-link
@@ -78,10 +78,10 @@
         </tr>
         <tr class="name-pointers-special-panel__row">
           <th class="name-pointers-special-panel__table-header">
-            Oracle
             <hint-tooltip>
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
+            Oracle
           </th>
           <td>
             <app-link

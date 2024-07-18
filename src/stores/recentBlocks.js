@@ -9,9 +9,9 @@ import { VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_MICROBLOCKS_LIMIT, VISIBLE_TRANSACTION
 const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSequence?.[0].hash
 
 export const useRecentBlocksStore = defineStore('recentBlocks', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const {MIDDLEWARE_URL} = useRuntimeConfig().public
   const axios = useAxios()
-  const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
+  const {fetchTotalTransactionsCount} = useBlockchainStatsStore()
 
   const deltaStats = ref(null)
   const keyblocks = ref(null)
@@ -90,7 +90,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   /* HANDLING COMMUNICATION OVER REST API */
 
   async function fetchKeyblocks() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
+    const {data} = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks?limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
     keyblocks.value = data.data
     blockHeight.value = data.data[0].height
   }
@@ -106,7 +106,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   async function fetchSelectedKeyblockMicroblocks(hash) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/${hash}/micro-blocks?limit=${VISIBLE_MICROBLOCKS_LIMIT}`)
+    const {data} = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/${hash}/micro-blocks?limit=${VISIBLE_MICROBLOCKS_LIMIT}`)
     selectedKeyblockMicroblocks.value = data.data
   }
 
@@ -115,7 +115,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       return
     }
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/micro-blocks/${selectedMicroblock.value.hash}/transactions?limit=${VISIBLE_TRANSACTIONS_LIMIT}`)
+    const {data} = await axios.get(`${MIDDLEWARE_URL}/v3/micro-blocks/${selectedMicroblock.value.hash}/transactions?limit=${VISIBLE_TRANSACTIONS_LIMIT}`)
     rawSelectedMicroblockTransactions.value = data
   }
 
@@ -171,7 +171,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   function clearCurrentlySelectedMicroblock() {
-    rawSelectedMicroblockTransactions.value = { data: [] }
+    rawSelectedMicroblockTransactions.value = {data: []}
   }
 
   return {

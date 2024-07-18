@@ -1,9 +1,8 @@
 <template>
   <app-panel>
     <template
-      v-if="title"
-      #heading>
-      {{ title }}
+    >
+      aaaa
     </template>
 
     <loader-indicator
@@ -24,6 +23,9 @@
 
     <div class="wallet-connection-panel__container">
       <div v-if="status === 'detected'">
+        <p class="wallet-connection-panel__paragraph">
+          Superhero wallet detected
+        </p>
         <wallet-connect-button/>
       </div>
       <app-button
@@ -47,7 +49,7 @@ import AppButton from '@/components/AppButton'
 
 const walletStore = useWalletStore()
 
-const { status } = storeToRefs(walletStore)
+const {status} = storeToRefs(walletStore)
 const router = useRouter()
 
 const isProcessing = computed(() => {

@@ -9,6 +9,7 @@ import {
   formatIsAuction,
   formatNameState,
   formatNumber,
+  formatPercentage,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
@@ -445,9 +446,7 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
         address: holder.accountId,
         contractId: holder.contractId,
         amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
-        percentage: Math.abs(percentage) >= 0.00001
-          ? `${formatNumber(Math.abs(percentage))} %`
-          : '~0',
+        percentage: formatPercentage(percentage),
       }
     })
 

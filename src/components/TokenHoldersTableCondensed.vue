@@ -45,7 +45,7 @@
           </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
-          {{ formatPercentage(holder.percentage) }}
+          {{ holder.percentage }}
         </td>
       </tr>
     </table>
@@ -53,7 +53,6 @@
 </template>
 
 <script setup>
-import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
@@ -67,17 +66,6 @@ defineProps({
   },
 })
 
-function formatPercentage(percentage) {
-  if (percentage >= 0.00001) {
-    return `${formatNumber(percentage)} %`
-  }
-  if (percentage === 0) {
-    return '0 %'
-  }
-  if (percentage < 0.00001) {
-    return '~0 %'
-  }
-}
 </script>
 
 <style scoped>

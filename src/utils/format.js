@@ -133,6 +133,18 @@ export function formatIsAuction(name) {
   return name.length - suffixLength < auctionLength
 }
 
+export function formatPercentage(percentage) {
+  if (percentage >= 0.00001) {
+    return `${formatNumber(percentage)} %`
+  }
+  if (percentage === 0) {
+    return '0 %'
+  }
+  if (percentage < 0.00001) {
+    return '~0 %'
+  }
+}
+
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
     return tokenLimit

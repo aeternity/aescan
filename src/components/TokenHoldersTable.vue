@@ -38,7 +38,7 @@
             :contract-id="holder.contractId"/>
         </td>
         <td>
-          {{ formatPercentage(holder.percentage) }}
+          {{ holder.percentage }}
         </td>
       </tr>
     </tbody>
@@ -58,16 +58,4 @@ defineProps({
     required: true,
   },
 })
-
-function formatPercentage(percentage) {
-  if (percentage >= 0.00001) {
-    return `${formatNumber(percentage)} %`
-  }
-  if (percentage === 0) {
-    return '0 %'
-  }
-  if (percentage < 0.00001) {
-    return '~0 %'
-  }
-}
 </script>

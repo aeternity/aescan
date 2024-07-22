@@ -24,6 +24,7 @@ export const useWalletStore = defineStore('wallet', () => {
         ...aeSdkOptions,
         onNetworkChange({ networkId }) {
           aeSdk.value.selectNode(networkId)
+          scanWallets()
         },
         onDisconnect() {
           status.value = 'disconnecting'
@@ -49,9 +50,13 @@ export const useWalletStore = defineStore('wallet', () => {
       function setDetected({ newWallet }) {
         stopScan()
         resolve(newWallet)
-        clearTimeout(timeout)
-        status.value = 'detected'
+        if (newWallet.info.networkId === NETWORK_ID) {
+          status.value = 'detected'
+        } else {
+          status.value = 'not connected'
+        }
       }
+
 
       const stopScan = walletDetector(new BrowserWindowMessageConnection(), setDetected)
     })

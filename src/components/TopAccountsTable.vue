@@ -37,7 +37,10 @@
           {{ account.account }}
         </app-link>
       </td>
-      <td>{{ account.balance }}</td>
+      <td>
+        <price-label :price=" account.balance "/>
+      </td>
+
       <td>{{ account.percentage }} %</td>
     </tr>
   </table>

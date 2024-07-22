@@ -9,14 +9,14 @@
     :hash="eventData[1]"
     :link-to="`/accounts/${eventData[1]}`"/>
 
-  <app-chip size="sm">
-    {{ tokenValue }}
-  </app-chip>
+  <price-label
+    :price="formatAettosToAe(tokenValue)"
+    :contract-id="contractDetails.tokenDetails.contractId"
+    :currency="contractDetails.symbol"/>
 </template>
 
 <script setup>
 import { formatNumber, formatReduceDecimals } from '@/utils/format'
-import AppChip from '@/components/AppChip'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 

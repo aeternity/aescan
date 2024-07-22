@@ -49,11 +49,9 @@
             :timestamp="name.expiration"/>
         </td>
         <td>
-          <app-chip
-            variant="secondary"
-            class="names-in-auction-table__price-label">
-            {{ formatAePrice(name.bid) }}
-          </app-chip>
+          <price-label
+            :price="name.bid"
+            class="names-in-auction-table__price-label"/>
         </td>
         <td>
           <div>
@@ -86,7 +84,6 @@ defineProps({
 <style scoped>
 .names-in-auction-table {
   &__price-label {
-    font-weight: 700;
     margin-top: var(--space-0);
   }
 }

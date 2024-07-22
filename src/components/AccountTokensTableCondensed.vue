@@ -30,14 +30,46 @@
             <app-tooltip>
               Name
               <template #tooltip>
+                {{ tokensHints.amount }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="account-tokens-table-condensed__data">
+            <price-label
+              :price="token.amount"
+              :contract-id="token.contractId"
+              :currency="token.tokenSymbol"/>
+          </td>
+        </tr>
+        <tr class="account-tokens-table-condensed__row">
+          <th class="account-tokens-table-condensed__header">
+            <app-tooltip>
+              Value
+              <template #tooltip>
+                {{ tokensHints.value }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="account-tokens-table-condensed__data">
+            {{ token.value }}
+          </td>
+        </tr>
+        <tr class="account-tokens-table-condensed__row">
+          <th class="account-tokens-table-condensed__header">
+            <app-tooltip>
+              Name
+              <template #tooltip>
                 {{ tokensHints.tokenName }}
               </template>
             </app-tooltip>
           </th>
           <td class="account-tokens-table-condensed__data">
-            {{ token.tokenName }}
+            <app-link :to="`/tokens/${token.contractId}`">
+              {{ token.tokenName }}
+            </app-link>
           </td>
         </tr>
+
         <tr class="account-tokens-table-condensed__row">
           <th class="account-tokens-table-condensed__header">
             <app-tooltip>
@@ -51,32 +83,6 @@
             <value-hash-ellipsed
               :hash="token.contractId"
               :link-to="`/contracts/${token.contractId}`"/>
-          </td>
-        </tr>
-        <tr class="account-tokens-table-condensed__row">
-          <th class="account-tokens-table-condensed__header">
-            <app-tooltip>
-              Amount
-              <template #tooltip>
-                {{ tokensHints.amount }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="account-tokens-table-condensed__data">
-            {{ formatNumber(token.amount) }}
-          </td>
-        </tr>
-        <tr class="account-tokens-table-condensed__row">
-          <th class="account-tokens-table-condensed__header">
-            <app-tooltip>
-              Value
-              <template #tooltip>
-                {{ tokensHints.value }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="account-tokens-table-condensed__data">
-            {{ token.value !== null ? `$${formatNumber(token.value, null, null, 7)}` : 'N/A' }}
           </td>
         </tr>
       </tbody>

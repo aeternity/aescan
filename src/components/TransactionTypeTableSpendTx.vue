@@ -52,7 +52,7 @@
           Amount
         </th>
         <td class="transaction-type-panel-spend-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
+          <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-spend-tx__row">
@@ -73,7 +73,7 @@
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import { formatAePrice, formatAettosToAe, formatEllipseHash } from '@/utils/format'
+import { formatAettosToAe, formatEllipseHash } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 
 defineProps({

@@ -7,9 +7,7 @@
     v-else
     :hash="activity.payload.tx.senderId"
     :link-to="`/accounts/${activity.payload.tx.senderId}`"/>
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(activity.payload.tx.amount)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(activity.payload.tx.amount)"/>
 </template>
 
 <script setup>

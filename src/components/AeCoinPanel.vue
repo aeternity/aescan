@@ -39,7 +39,7 @@
             Total Supply
           </th>
           <td>
-            {{ formatNullable(formatAePrice(MAX_AE_DISTRIBUTION), 0) }}
+            <price-label :price="MAX_AE_DISTRIBUTION"/>
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
@@ -50,7 +50,7 @@
             Circulating Supply
           </th>
           <td>
-            {{ formatNullable(formatAePrice(totalTokenSupply), 0) }}
+            <price-label :price="totalTokenSupply"/>
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { formatAePrice, formatNullable } from '@/utils/format'
+import { formatNullable } from '@/utils/format'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 

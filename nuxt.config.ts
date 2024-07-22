@@ -9,6 +9,8 @@ export default defineNuxtConfig({
   devServer: {
     port: 8080,
   },
+
+
   nitro: {
     routeRules: {
       '/proxy/nodes': {proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true},
@@ -89,6 +91,7 @@ export default defineNuxtConfig({
             transformAssetUrls: false,
           })
 
+
           return `${code}\nexport default { render: render }`
         },
       },
@@ -106,10 +109,15 @@ export default defineNuxtConfig({
       }),
     ],
   },
+
   monacoEditor: {
     locale: 'en',
     componentName: {
       codeEditor: 'MonacoEditor',
     },
   },
+
+
+  compatibilityDate: '2024-07-16',
+
 })

@@ -1,10 +1,5 @@
 <template>
   <app-panel>
-    <template
-    >
-      aaaa
-    </template>
-
     <loader-indicator
       v-if="isProcessing"
       class="wallet-connection-panel__loader-indicator"

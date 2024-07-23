@@ -44,12 +44,13 @@ export const useWalletStore = defineStore('wallet', () => {
       const timeout = setTimeout(() => {
         resolve(undefined)
         status.value = 'not detected'
-        disconnect()
+        // disconnect()
       }, 10000)
 
       function setDetected({ newWallet }) {
         stopScan()
         resolve(newWallet)
+        clearTimeout(timeout)
         if (newWallet.info.networkId === NETWORK_ID) {
           status.value = 'detected'
         } else {

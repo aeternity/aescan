@@ -1,9 +1,11 @@
 <template>
   <app-panel>
-    <template #title>
+    <template
+      #title
+      v-if="title">
       {{ title }}
     </template>
-    
+
     <loader-indicator
       v-if="isProcessing"
       class="wallet-connection-panel__loader-indicator"
@@ -17,7 +19,7 @@
     </template>
 
 
-    <template v-if="status === 'not selected'">
+    <template v-if="status === 'not connected'">
       <p class="wallet-connection-panel__paragraph">
         Superhero wallet detected, but it's selected network does not match.
         <br>

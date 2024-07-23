@@ -21,7 +21,7 @@
 
     <template v-if="status === 'not connected'">
       <p class="wallet-connection-panel__paragraph">
-        Superhero wallet detected, but it's selected network does not match.
+        Superhero wallet detected, but its selected network does not match.
         <br>
         Please select {{ NETWORK_NAME }} in Superhero wallet and try again.
         <br>

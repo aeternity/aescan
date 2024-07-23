@@ -16,7 +16,7 @@ export default defineNitroPlugin(nitroApp => {
     'Content-Security-Policy': [
       'default-src \'self\' *',
       'font-src \'self\' data:',
-      'img-src \'self\' *',
+      'img-src \'self\' data: https://avatars.z52da5wt.xyz; default-src \'self\'',
       'script-src \'self\' \'unsafe-inline\'',
       'style-src \'self\' \'unsafe-inline\'',
       'frame-src \'self\'',

@@ -1,6 +1,8 @@
 <template>
-  <VMenu placement="bottom">
-    <slot/>
+  <VMenu  placement="bottom">
+    <span>
+      <slot/>
+    </span>
 
     <template #popper>
       <slot name="menu"/>

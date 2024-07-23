@@ -31,7 +31,7 @@ td {
   vertical-align: middle;
 
   @media (--desktop) {
-    padding: 10px var(--space-0) var(--space-1);
+    padding: 10px var(--space-0) var(--space-1) 0;
   }
 }
 

@@ -6,56 +6,51 @@ import {sentryVitePlugin} from '@sentry/vite-plugin'
 export default defineNuxtConfig({
   srcDir: './src',
   css: ['@/assets/styles/main.css'],
-
   devServer: {
     port: 8080,
   },
-
   nitro: {
     routeRules: {
+      "/proxy/avatar/**": {proxy: 'https://avatars.z52da5wt.xyz/**', cors: true,},
       '/proxy/nodes': {proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true},
       '/proxy/gate': {proxy: 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT', cors: true},
       '/proxy/mexc': {proxy: 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT', cors: true},
       '/proxy/coinw': {proxy: 'https://api.coinw.com/api/v1/public?command=returnTicker', cors: true},
     },
   },
-
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
     'nuxt-booster',
   ],
-
   imports: {
     dirs: ['./stores'],
   },
-
   plausible: {
     apiHost: 'https://plausible.dev.service.aepps.com',
     trackLocalhost: false,
   },
-
   appConfig: {
     APP_VERSION: process.env.APP_VERSION,
   },
-
   runtimeConfig: {
     public: {
-            SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
-            SENTRY_DSN: process.env.SENTRY_DSN,
-            APP_DOMAIN: process.env.APP_DOMAIN,
-            MIDDLEWARE_URL: process.env.MIDDLEWARE_URL,
-            NODE_URL: process.env.NODE_URL,
-            WEBSOCKET_URL: process.env.WEBSOCKET_URL,
-            DEX_BACKEND_URL: process.env.DEX_BACKEND_URL,
-            NETWORK_NAME: process.env.NETWORK_NAME,
-            ALTERNATIVE_NETWORK_URL: process.env.ALTERNATIVE_NETWORK_URL,
-            ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,
-            AE_TOKEN_ID: process.env.AE_TOKEN_ID,
-            DEBUG_MODE: process.env.DEBUG_MODE,
-            CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
-            SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
+      SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
+      SENTRY_DSN: process.env.SENTRY_DSN,
+      APP_DOMAIN: process.env.APP_DOMAIN,
+      MIDDLEWARE_URL: process.env.MIDDLEWARE_URL,
+      NODE_URL: process.env.NODE_URL,
+      WEBSOCKET_URL: process.env.WEBSOCKET_URL,
+      DEX_BACKEND_URL: process.env.DEX_BACKEND_URL,
+      NETWORK_NAME: process.env.NETWORK_NAME,
+      NETWORK_ID: process.env.NETWORK_ID,
+      ALTERNATIVE_NETWORK_URL: process.env.ALTERNATIVE_NETWORK_URL,
+      ALTERNATIVE_NETWORK_NAME: process.env.ALTERNATIVE_NETWORK_NAME,
+      AE_TOKEN_ID: process.env.AE_TOKEN_ID,
+      DEBUG_MODE: process.env.DEBUG_MODE,
+      CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
+      SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
     },
   },
 
@@ -70,9 +65,7 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
-
   sourcemap: true,
-
   vite: {
     build: {target: 'es2020'},
     optimizeDeps: {
@@ -96,6 +89,7 @@ export default defineNuxtConfig({
             source: await fs.readFile(path, 'utf-8'),
             transformAssetUrls: false,
           })
+
 
           return `${code}\nexport default { render: render }`
         },
@@ -122,5 +116,7 @@ export default defineNuxtConfig({
     },
   },
 
+
   compatibilityDate: '2024-07-16',
+
 })

@@ -9,10 +9,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 8080,
   },
-
-
   nitro: {
     routeRules: {
+      "/proxy/avatar/**": {proxy: 'https://avatars.z52da5wt.xyz/**', cors: true,},
       '/proxy/nodes': {proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true},
       '/proxy/gate': {proxy: 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT', cors: true},
       '/proxy/mexc': {proxy: 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT', cors: true},

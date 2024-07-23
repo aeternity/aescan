@@ -21,7 +21,7 @@
     "lint": "yarn lint:js && yarn lint:style",
     "lint:ci": "yarn lint:js --max-warnings=0 && yarn lint:style --mw 0",
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix",
-    "lint:js": "eslint --ext .ts,.js,.vue src",
+    "lint:js": "eslint",
     "lint:style": "stylelint \"./src/**/*.vue\" \"src/**/*.css\"",
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install",
     "reset": "yarn reinstall && yarn dev",

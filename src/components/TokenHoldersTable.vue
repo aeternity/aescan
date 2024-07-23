@@ -32,10 +32,13 @@
             :link-to="`/accounts/${holder.address}`"/>
         </td>
         <td>
-          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
+          <price-label
+            :price="holder.amount"
+            :currency="tokenDetails.symbol"
+            :contract-id="holder.contractId"/>
         </td>
         <td>
-          {{ formatPercentage(holder.percentage) }}
+          {{ holder.percentage }}
         </td>
       </tr>
     </tbody>
@@ -43,7 +46,6 @@
 </template>
 
 <script setup>
-import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
@@ -56,16 +58,4 @@ defineProps({
     required: true,
   },
 })
-
-function formatPercentage(percentage) {
-  if (percentage >= 0.00001) {
-    return `${formatNumber(percentage)} %`
-  }
-  if (percentage === 0) {
-    return '0 %'
-  }
-  if (percentage < 0.00001) {
-    return '~0 %'
-  }
-}
 </script>

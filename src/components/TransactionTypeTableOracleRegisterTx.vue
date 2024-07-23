@@ -35,7 +35,7 @@
           Query Fee
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.queryFee), null) }}
+          <price-label :price="formatAettosToAe(transactionData.queryFee)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-register-tx__row">
@@ -66,7 +66,7 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAettosToAe, formatNullable } from '@/utils/format'
 
 defineProps({
   transactionData: {

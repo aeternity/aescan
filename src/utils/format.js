@@ -35,13 +35,13 @@ export function formatNumber(
   }).format(number)
 }
 
-export function formatAePrice(price, maxDigits = 8) {
+export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
   if (isNaN(price) || price === null) {
     return price
   }
 
   if (maxDigits === null) {
-    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)} AE`
+    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)} ${currency}`
   }
 
   const truncatedPrice = new BigNumber(price).toFixed(
@@ -56,10 +56,17 @@ export function formatAePrice(price, maxDigits = 8) {
   decimals = decimals?.replace(/0+$/, '')
 
   if (!decimals) {
-    return integers === '0' ? `~${integers} AE` : `${formatNumber(integers)} AE`
+    if (price === 0) {
+      return `0 ${currency}`
+    }
+    if (integers === '0') {
+      return `~${integers} ${currency}`
+    } else {
+      return `${formatNumber(integers)} ${currency}`
+    }
   }
 
-  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} AE`
+  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} ${currency}`
 }
 
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
@@ -162,6 +169,19 @@ export function formatNameState(name, blockHeight) {
   }
 }
 
+
+
+export function formatPercentage(percentage) {
+  if (percentage >= 0.00001) {
+    return `${formatNumber(percentage)} %`
+  }
+  if (percentage === 0) {
+    return '0 %'
+  }
+  if (percentage < 0.00001) {
+    return '~0 %'
+  }
+}
 
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {

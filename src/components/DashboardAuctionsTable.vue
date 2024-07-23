@@ -43,9 +43,7 @@
           </div>
         </td>
         <td>
-          <div class="dashboard-auctions-table__value">
-            {{ formatAePrice(auction.bid) }}
-          </div>
+          <price-label :price="auction.bid"/>
         </td>
         <td>
           <div class="dashboard-auctions-table__blocks">
@@ -63,7 +61,6 @@ import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { namesHints } from '@/utils/hints/namesHints'
 import { useNamesStore } from '@/stores/names'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
@@ -79,10 +76,6 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
   &__label {
     display: inline-block;
     margin: 0 var(--space-0) var(--space-0) 0;
-  }
-
-  &__value {
-    font-weight: 700;
   }
 
   &__blocks {

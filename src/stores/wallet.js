@@ -44,14 +44,17 @@ export const useWalletStore = defineStore('wallet', () => {
       const timeout = setTimeout(() => {
         resolve(undefined)
         status.value = 'not detected'
-        disconnect()
       }, 10000)
 
       function setDetected({ newWallet }) {
         stopScan()
         resolve(newWallet)
         clearTimeout(timeout)
-        status.value = 'detected'
+        if (newWallet.info.networkId === NETWORK_ID) {
+          status.value = 'detected'
+        } else {
+          status.value = 'not connected'
+        }
       }
 
       const stopScan = walletDetector(new BrowserWindowMessageConnection(), setDetected)
@@ -73,7 +76,7 @@ export const useWalletStore = defineStore('wallet', () => {
   function disconnect() {
     aeSdk.value.disconnectWallet()
   }
-
+  
   function setBackLink(link) {
     backLink.value = link
   }

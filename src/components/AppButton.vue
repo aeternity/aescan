@@ -90,7 +90,7 @@ defineProps({
   text-decoration: none;
   letter-spacing: 0.015em;
 
-  padding: var(--space-0) var(--space-1);
+  padding: var(--space-1);
 
   border-radius: 4px;
 

@@ -1,8 +1,8 @@
 <template>
   <app-panel>
     <template
-      v-if="title"
-      #heading>
+      #title
+      v-if="title">
       {{ title }}
     </template>
 
@@ -11,32 +11,45 @@
       class="wallet-connection-panel__loader-indicator"
       :label="status"/>
 
-    <p
-      v-if="status === 'not detected'"
-      class="wallet-connection-panel__paragraph">
-      In order to display wallet account information, the native Superhero wallet has to be installed on this device.
-    </p>
-    <p
-      v-if="status === 'denied'"
-      class="wallet-connection-panel__paragraph">
-      Connection with your wallet has failed. Please make sure that you are logged into your wallet.
-    </p>
+    <template v-if="status === 'detected'">
+      <p class="wallet-connection-panel__paragraph">
+        Superhero wallet detected
+      </p>
+      <wallet-connect-button/>
+    </template>
 
-    <div class="wallet-connection-panel__container">
-      <div v-if="status === 'detected'">
-        <wallet-connect-button/>
-      </div>
-      <app-button
-        v-if="status === 'not detected'"
-        to="https://wallet.superhero.com/">
+
+    <template v-if="status === 'not connected'">
+      <p class="wallet-connection-panel__paragraph">
+        Superhero wallet detected, but its selected network does not match.
+        <br>
+        Please select {{ NETWORK_NAME }} in Superhero wallet and try again.
+        <br>
+      </p>
+      <app-button @click="router.go()">
+        Try again
+      </app-button>
+    </template>
+
+    <template v-if="status === 'not detected'">
+      <p class="wallet-connection-panel__paragraph">
+        Wallet not detected. In order to display wallet account information, install Superhero wallet.
+      </p>
+      <app-button to="https://wallet.superhero.com/">
         Download Superhero wallet
       </app-button>
+    </template>
+
+
+    <template v-if="status === 'denied'">
+      <p class="wallet-connection-panel__paragraph">
+        Connection with your wallet has failed. Please make sure that you are logged into your wallet.
+      </p>
       <app-button
-        v-if="status === 'denied'"
         @click="router.go()">
         Try again
       </app-button>
-    </div>
+    </template>
   </app-panel>
 </template>
 
@@ -44,7 +57,9 @@
 import { storeToRefs } from 'pinia'
 import { useWalletStore } from '@/stores/wallet'
 import AppButton from '@/components/AppButton'
+import { useRuntimeConfig } from "nuxt/app";
 
+const { NETWORK_NAME } = useRuntimeConfig().public
 const walletStore = useWalletStore()
 
 const { status } = storeToRefs(walletStore)
@@ -76,15 +91,6 @@ const title = computed(() => {
       &:last-of-type {
         margin-bottom: var(--space-6);
       }
-    }
-  }
-
-  &__container {
-    display: flex;
-    justify-content: center;
-
-    @media (--desktop) {
-      justify-content: flex-start;
     }
   }
 

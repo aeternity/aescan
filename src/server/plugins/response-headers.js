@@ -22,7 +22,7 @@ export default defineNitroPlugin(nitroApp => {
     'Content-Security-Policy': [
       'default-src \'self\' *',
       'font-src \'self\' data:',
-      'img-src \'self\' data: https://avatars.z52da5wt.xyz',
+      'img-src \'self\' data:',
       'script-src \'self\' \'unsafe-inline\'',
       'style-src \'self\' \'unsafe-inline\'',
       'frame-src \'self\'',
@@ -30,7 +30,6 @@ export default defineNitroPlugin(nitroApp => {
       'block-all-mixed-content',
     ].join('; '),
   }
-
 
   nitroApp.hooks.hook('render:response', response => {
     delete response.headers['x-powered-by']

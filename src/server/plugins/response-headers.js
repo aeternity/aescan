@@ -29,7 +29,7 @@ export default defineNitroPlugin(nitroApp => {
       ...allowHttp ? [] : ['upgrade-insecure-requests'],
       'block-all-mixed-content',
     ].join('; '),
-
+  }
 
 
   nitroApp.hooks.hook('render:response', response => {

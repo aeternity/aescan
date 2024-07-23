@@ -13,23 +13,24 @@ export default defineNitroPlugin(nitroApp => {
     'X-XSS-Protection': '1; mode=block',
     'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
     'Cache-control': 'no-cache',
-    'Content-Security-Policy': [
-      'default-src \'self\' *',
-      'font-src \'self\' data:',
-      'img-src \'self\' data: https://avatars.z52da5wt.xyz; default-src \'self\'',
-      'script-src \'self\' \'unsafe-inline\'',
-      'style-src \'self\' \'unsafe-inline\'',
-      'frame-src \'self\'',
-      ...allowHttp ? [] : ['upgrade-insecure-requests'],
-      'block-all-mixed-content',
-    ].join('; '),
     'Permissions-Policy': 'camera=(), geolocation=(), microphone=()',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Permitted-Cross-Domain-Policies': 'none',
     'Cross-Origin-Embedder-Policy': 'require-corp',
     'Cross-Origin-Opener-Policy': 'same-origin',
     'Cross-Origin-Resource-Policy': 'cross-origin',
-  }
+    'Content-Security-Policy': [
+      'default-src \'self\' *',
+      'font-src \'self\' data:',
+      'img-src \'self\' data: https://avatars.z52da5wt.xyz',
+      'script-src \'self\' \'unsafe-inline\'',
+      'style-src \'self\' \'unsafe-inline\'',
+      'frame-src \'self\'',
+      ...allowHttp ? [] : ['upgrade-insecure-requests'],
+      'block-all-mixed-content',
+    ].join('; '),
+
+
 
   nitroApp.hooks.hook('render:response', response => {
     delete response.headers['x-powered-by']

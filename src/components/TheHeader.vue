@@ -72,18 +72,11 @@
 import { storeToRefs } from 'pinia'
 import { useOnline } from '@vueuse/core'
 import { useUiStore } from '@/stores/ui'
-import { storeToRefs } from 'pinia'
-import TheNavigation from '@/components/TheNavigation'
-import AppLink from '@/components/AppLink'
-import AppIcon from '@/components/AppIcon'
 import { useStatus } from '@/stores/status'
 import { MENU_HASH } from '@/utils/constants'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import NetworkSelect from '@/components/NetworkSelect'
-import { useWalletStore } from '~/stores/wallet'
 
 const route = useRoute()
-
 const router = useRouter()
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const isOnline = useOnline()
@@ -103,11 +96,6 @@ watch(route, () => {
     closeNavigation()
   }
 })
-function exit() {
-  push('/')
-  aeSdk.value.disconnectWallet()
-}
-
 watch(() => route.fullPath, () => {
   if (route.hash !== MENU_HASH) {
     closeNavigation()

@@ -96,11 +96,6 @@ watch(route, () => {
     closeNavigation()
   }
 })
-watch(() => route.fullPath, () => {
-  if (route.hash !== MENU_HASH) {
-    closeNavigation()
-  }
-})
 
 function toggleNavigation() {
   if (!isMobileMenuOpen.value && router.options.history.state.back === null) {

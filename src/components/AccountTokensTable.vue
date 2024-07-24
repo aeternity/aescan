@@ -9,17 +9,18 @@
           </hint-tooltip>
         </th>
         <th>
-          Value
-          <hint-tooltip>
-            {{ tokensHints.value }}
-          </hint-tooltip>
-        </th>
-        <th>
           Name
           <hint-tooltip>
             {{ tokensHints.tokenName }}
           </hint-tooltip>
         </th>
+        <th>
+          Value
+          <hint-tooltip>
+            {{ tokensHints.value }}
+          </hint-tooltip>
+        </th>
+
         <th>
           Smart Contract
           <hint-tooltip>
@@ -39,12 +40,12 @@
             :currency="token.tokenSymbol"/>
         </td>
         <td>
-          {{ token.value }}
-        </td>
-        <td>
           <app-link :to="`/tokens/${token.contractId}`">
             {{ token.tokenName }}
           </app-link>
+        </td>
+        <td>
+          {{ token.value }}
         </td>
         <td>
           <value-hash-ellipsed
@@ -68,18 +69,3 @@ defineProps({
   },
 })
 </script>
-
-<style scoped>
-.account-token-tables {
-  &__icon {
-    width: 24px;
-    height: 24px;
-    margin-right: var(--space-1);
-  }
-
-  &__link {
-    display: inline-flex;
-    align-items: center;
-  }
-}
-</style>

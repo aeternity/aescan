@@ -60,7 +60,6 @@
 import AppLink from '@/components/AppLink'
 import { tokensHints } from '@/utils/hints/tokensHints'
 import HintTooltip from '@/components/HintTooltip'
-import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({
   accountTokens: {

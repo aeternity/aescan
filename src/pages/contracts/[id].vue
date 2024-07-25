@@ -37,8 +37,7 @@
       </app-tab>
       <app-tab
         v-if="isVerified"
-        title="Read Contract"
-        :has-verified-icon="isVerified">
+        title="Read Contract">
         <contract-read-panel/>
       </app-tab>
       <app-tab

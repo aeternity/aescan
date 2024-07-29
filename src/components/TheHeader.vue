@@ -37,8 +37,7 @@
         :class="[
           'header__network-select',
           { 'header__network-select--open': isMobileMenuOpen }]"/>
-
-      <wallet-account-controls class="u-hidden-mobile"/>
+      <the-wallet-account-controls class="u-hidden-mobile"/>
     </div>
     <div
       v-if="isSyncing"

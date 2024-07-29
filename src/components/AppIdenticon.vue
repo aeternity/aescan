@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="`https://avatars.z52da5wt.xyz/${hash}`"
+    :src="`/proxy/avatar/${hash}`"
     class="identicon">
 </template>
 

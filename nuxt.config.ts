@@ -52,17 +52,17 @@ export default defineNuxtConfig({
       CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
     },
+  },
 
-    postcss: {
-      plugins: {
-        autoprefixer: {},
-        '@csstools/postcss-global-data': {
-          files: ['src/assets/styles/settings/_variables.css'],
-        },
-        'postcss-custom-media': {},
-        'postcss-import': {},
-        'postcss-nested': {},
+  postcss: {
+    plugins: {
+      autoprefixer: {},
+      '@csstools/postcss-global-data': {
+        files: ['src/assets/styles/settings/_variables.css'],
       },
+      'postcss-custom-media': {},
+      'postcss-import': {},
+      'postcss-nested': {},
     },
   },
   sourcemap: true,
@@ -108,6 +108,7 @@ export default defineNuxtConfig({
       }),
     ],
   },
+
   monacoEditor: {
     locale: 'en',
     componentName: {

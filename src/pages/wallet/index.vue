@@ -27,16 +27,10 @@ const { push } = useRouter()
 const walletStore = useWalletStore()
 const { scanWallets, setBackLink } = walletStore
 const { status, backLink } = storeToRefs(walletStore)
-import { useWalletStore } from '@/stores/wallet'
-import { walletHints } from '@/utils/hints/walletHints'
-
-const walletStore = useWalletStore()
-const { scanWallets } = walletStore
-const { status } = storeToRefs(walletStore)
 
 const { isLoading } = useLoading()
 
-onBeforeMount(async() => {
+onBeforeMount(async () => {
   if (status.value !== 'connected') {
     await scanWallets()
   }

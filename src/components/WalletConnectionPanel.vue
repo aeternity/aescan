@@ -18,6 +18,7 @@
       <wallet-connect-button/>
     </template>
 
+
     <template v-if="status === 'not connected'">
       <p class="wallet-connection-panel__paragraph">
         Superhero wallet detected, but its selected network does not match.
@@ -38,6 +39,7 @@
         Download Superhero wallet
       </app-button>
     </template>
+
 
     <template v-if="status === 'denied'">
       <p class="wallet-connection-panel__paragraph">
@@ -67,6 +69,7 @@ const router = useRouter()
 const isProcessing = computed(() => {
   return status.value === 'detecting' || status.value === 'connecting' || status.value === 'disconnecting'
 })
+
 
 const title = computed(() => {
   if (status.value === 'not detected') {

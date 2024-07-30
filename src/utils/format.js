@@ -109,24 +109,6 @@ export function formatDecodeByteArray(bytesArray) {
   return String.fromCharCode(...bytesArray)
 }
 
-export function formatPercentage(percentage) {
-  if (percentage >= 0.00001) {
-    return `${formatNumber(percentage)} %`
-  }
-  if (percentage === 0) {
-    return '0 %'
-  }
-  if (percentage < 0.00001) {
-    return '~0 %'
-  }
-}
-
-export function formatIsAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
-}
-
 export function formatNameState(name, blockHeight) {
   const isInAuction = name.status === 'auction'
   const isActive = name.active
@@ -142,6 +124,24 @@ export function formatNameState(name, blockHeight) {
     return 'expired'
   } else if (isActive) {
     return 'active'
+  }
+}
+
+export function formatIsAuction(name) {
+  const auctionLength = 13
+  const suffixLength = 6
+  return name.length - suffixLength < auctionLength
+}
+
+export function formatPercentage(percentage) {
+  if (percentage >= 0.00001) {
+    return `${formatNumber(percentage)} %`
+  }
+  if (percentage === 0) {
+    return '0 %'
+  }
+  if (percentage < 0.00001) {
+    return '~0 %'
   }
 }
 

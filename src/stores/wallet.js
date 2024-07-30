@@ -45,7 +45,6 @@ export const useWalletStore = defineStore('wallet', () => {
       const timeout = setTimeout(() => {
         resolve(undefined)
         status.value = 'not detected'
-        // disconnect()
       }, 10000)
 
       function setDetected({ newWallet }) {

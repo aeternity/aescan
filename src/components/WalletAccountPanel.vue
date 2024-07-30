@@ -83,7 +83,8 @@ if (process.client) {
   await fetchAccount(aeSdk.value.address, { limit })
   watch(() => aeSdk.value.address, async() => {
     await fetchAccount(aeSdk.value.address, { limit })
-  })}
+  })
+}
 </script>
 
 <style scoped>

@@ -1,12 +1,10 @@
 <template>
   <app-panel>
     <template
-      v-if="title"
-      #title>
+      #title
+      v-if="title">
       {{ title }}
     </template>
-    <!--    todo title-->
-    <!--    todo heading?-->
 
     <loader-indicator
       v-if="isProcessing"
@@ -49,20 +47,15 @@
         @click="router.go()">
         Try again
       </app-button>
-      <app-button
-        v-if="status === 'denied'"
-        @click="router.go()">
-        Try again
-      </app-button>
     </template>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRuntimeConfig } from 'nuxt/app'
 import { useWalletStore } from '@/stores/wallet'
 import AppButton from '@/components/AppButton'
+import { useRuntimeConfig } from "nuxt/app";
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 
@@ -99,6 +92,7 @@ const title = computed(() => {
       }
     }
   }
+
 
   &__loader-indicator {
     margin: var(--space-3) 0;

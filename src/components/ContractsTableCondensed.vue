@@ -5,69 +5,69 @@
       :key="contract.contractId"
       class="contracts-table-condensed__table">
       <tbody>
-        <tr class="contracts-table-condensed__row">
-          <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Smart Contract ID
-              <template #tooltip>
-                {{ contractsHints.contractId }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="contracts-table-condensed__data">
-            <div class="contracts-table-condensed__container">
-              <value-hash-ellipsed
-                :link-to="`/contracts/${contract.contractId}`"
-                :hash="contract.contractId"/>
-              <verified-icon v-if="contract.isVerified"/>
-            </div>
-          </td>
-        </tr>
-        <tr class="contracts-table-condensed__row">
-          <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Created</time-toggle-button>
-              <template #tooltip>
-                {{ contractsHints.created }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="contracts-table-condensed__data">
-            <block-time-cell
-              :height="contract.createdHeight"
-              :timestamp="contract.created"/>
-          </td>
-        </tr>
-        <tr class="contracts-table-condensed__row">
-          <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Create Transaction
-              <template #tooltip>
-                {{ contractsHints.hash }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="contracts-table-condensed__data">
+      <tr class="contracts-table-condensed__row">
+        <th class="contracts-table-condensed__header">
+          <app-tooltip>
+            Smart Contract ID
+            <template #tooltip>
+              {{ contractsHints.contractId }}
+            </template>
+          </app-tooltip>
+        </th>
+        <td class="contracts-table-condensed__data">
+          <div class="contracts-table-condensed__container">
             <value-hash-ellipsed
-              :link-to="`/transactions/${contract.hash}`"
-              :hash="contract.hash"/>
-          </td>
-        </tr>
-        <tr class="contracts-table-condensed__row">
-          <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Created By
-              <template #tooltip>
-                {{ contractsHints.creator }}
-              </template>
-            </app-tooltip>
-          </th>
-          <td class="contracts-table-condensed__data">
-            <value-hash-ellipsed
-              :link-to="`/accounts/${contract.createdBy}`"
-              :hash="contract.createdBy"/>
-          </td>
-        </tr>
+              :link-to="`/contracts/${contract.contractId}`"
+              :hash="contract.contractId"/>
+            <verified-icon v-if="contract.isVerified"/>
+          </div>
+        </td>
+      </tr>
+      <tr class="contracts-table-condensed__row">
+        <th class="contracts-table-condensed__header">
+          <app-tooltip>
+            <time-toggle-button>Created</time-toggle-button>
+            <template #tooltip>
+              {{ contractsHints.created }}
+            </template>
+          </app-tooltip>
+        </th>
+        <td class="contracts-table-condensed__data">
+          <block-time-cell
+            :height="contract.createdHeight"
+            :timestamp="contract.created"/>
+        </td>
+      </tr>
+      <tr class="contracts-table-condensed__row">
+        <th class="contracts-table-condensed__header">
+          <app-tooltip>
+            Create Transaction
+            <template #tooltip>
+              {{ contractsHints.hash }}
+            </template>
+          </app-tooltip>
+        </th>
+        <td class="contracts-table-condensed__data">
+          <value-hash-ellipsed
+            :link-to="`/transactions/${contract.hash}`"
+            :hash="contract.hash"/>
+        </td>
+      </tr>
+      <tr class="contracts-table-condensed__row">
+        <th class="contracts-table-condensed__header">
+          <app-tooltip>
+            Created By
+            <template #tooltip>
+              {{ contractsHints.creator }}
+            </template>
+          </app-tooltip>
+        </th>
+        <td class="contracts-table-condensed__data">
+          <value-hash-ellipsed
+            :link-to="`/accounts/${contract.createdBy}`"
+            :hash="contract.createdBy"/>
+        </td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -110,10 +110,6 @@ defineProps({
     align-items: center;
     justify-content: flex-end;
     gap: var(--space-0);
-  }
-
-  &__icon {
-    color: var(--color-success);
   }
 }
 </style>

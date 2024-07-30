@@ -22,7 +22,7 @@ export default defineNitroPlugin(nitroApp => {
     'Content-Security-Policy': [
       'default-src \'self\' *',
       'font-src \'self\' data:',
-      'img-src * data:',
+      'img-src \'self\' data:',
       'script-src \'self\' \'unsafe-inline\'',
       'style-src \'self\' \'unsafe-inline\'',
       'frame-src \'self\'',

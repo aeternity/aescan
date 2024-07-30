@@ -15,8 +15,7 @@
     <template
       v-if="hasMenu"
       #menu>
-      <app-button
-        @click="disconnectWallet">
+      <app-button @click="disconnectWallet">
         Disconnect Wallet
       </app-button>
     </template>
@@ -25,7 +24,6 @@
   <app-button
     v-else
     class="wallet-account-controls__button u-hidden-mobile"
-
     @click="goToConnection()">
     Connect Wallet
   </app-button>
@@ -46,7 +44,7 @@ const props = defineProps({
   },
 })
 
-const { go } = useRouter()
+const { go, push } = useRouter()
 const walletStore = useWalletStore()
 const { aeSdk, status } = storeToRefs(walletStore)
 const { disconnect, setBackLink } = walletStore

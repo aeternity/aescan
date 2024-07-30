@@ -121,6 +121,12 @@ export function formatPercentage(percentage) {
   }
 }
 
+export function formatIsAuction(name) {
+  const auctionLength = 13
+  const suffixLength = 6
+  return name.length - suffixLength < auctionLength
+}
+
 export function formatNameState(name, blockHeight) {
   const isInAuction = name.status === 'auction'
   const isActive = name.active

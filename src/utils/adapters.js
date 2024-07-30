@@ -6,6 +6,7 @@ import {
   formatAettosToAe,
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
+  formatIsAuction,
   formatNameState,
   formatNumber,
   formatPercentage,

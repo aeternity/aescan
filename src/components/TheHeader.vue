@@ -91,7 +91,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', closeNavigation)
 })
 
-watch(route, () => {
+
+watch(() => route.fullPath, () => {
   if (route.hash !== MENU_HASH) {
     closeNavigation()
   }

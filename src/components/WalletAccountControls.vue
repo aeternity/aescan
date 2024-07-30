@@ -22,7 +22,6 @@
     </template>
   </app-dropdown>
 
-  <!--    todo button-->
   <app-button
     v-else
     class="wallet-account-controls__button u-hidden-mobile"
@@ -76,9 +75,6 @@ function disconnectWallet() {
   &__link {
     font-family: var(--font-monospaced);
   }
-
-}
-</style>
 
   &__button {
     color: var(--color-white) !important;

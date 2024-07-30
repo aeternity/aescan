@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { useRouter } from '#app'
 import { useWalletStore } from '@/stores/wallet'
 import { walletHints } from '@/utils/hints/walletHints'
@@ -26,8 +25,6 @@ const { push } = useRouter()
 
 const walletStore = useWalletStore()
 const { scanWallets } = walletStore
-
-const { isLoading } = useLoading()
 
 const { isLoading } = useLoading()
 

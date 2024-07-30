@@ -16,7 +16,7 @@
       v-if="hasMenu"
       #menu>
       <app-button
-           @click="disconnectWallet">
+        @click="disconnectWallet">
         Disconnect Wallet
       </app-button>
     </template>
@@ -70,7 +70,6 @@ function disconnectWallet() {
 
   &__identicon {
     margin-right: var(--space-1);
-    width: 32px;
     width: 36px;
   }
 

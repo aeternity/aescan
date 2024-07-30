@@ -73,16 +73,6 @@ export const useWalletStore = defineStore('wallet', () => {
       disconnect()
       status.value = 'denied'
     }
-
-  async function fetchAccountBalance() {
-    balance.value = await aeSdk.value.getBalance(aeSdk.value.address, {
-      format: AE_AMOUNT_FORMATS.AE,
-    })
-  }
-
-  function disconnect() {
-    // todo improve
-    aeSdk.value.disconnectWallet()
   }
 
   function disconnect() {

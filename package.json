@@ -30,10 +30,10 @@
   },
   "dependencies": {
     "@aeternity/aepp-sdk": "^13.2.2",
-    "@vuepic/vue-datepicker": "^9.0.0",
     "@sentry/tracing": "^7.114.0",
     "@sentry/vite-plugin": "^2.21.1",
     "@sentry/vue": "^8.17.0",
+    "@vuepic/vue-datepicker": "^9.0.0",
     "@vueuse/core": "^10.11.0",
     "@vueuse/head": "^2.0.0",
     "axios": "^1.7.2",

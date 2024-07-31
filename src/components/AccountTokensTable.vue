@@ -3,15 +3,9 @@
     <thead>
       <tr>
         <th>
-          Amount
+          Symbol
           <hint-tooltip>
-            {{ tokensHints.amount }}
-          </hint-tooltip>
-        </th>
-        <th>
-          Value
-          <hint-tooltip>
-            {{ tokensHints.value }}
+            {{ tokensHints.tokenSymbol }}
           </hint-tooltip>
         </th>
         <th>
@@ -26,6 +20,18 @@
             {{ tokensHints.smartContractId }}
           </hint-tooltip>
         </th>
+        <th>
+          Amount
+          <hint-tooltip>
+            {{ tokensHints.amount }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Value
+          <hint-tooltip>
+            {{ tokensHints.value }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -33,23 +39,28 @@
         v-for="token in accountTokens?.data"
         :key="token.contractId">
         <td>
-          <price-label
-            :price="token.amount"
-            :contract-id="token.contractId"
-            :currency="token.tokenSymbol"/>
-        </td>
-        <td>
-          {{ token.value }}
-        </td>
-        <td>
-          <app-link :to="`/tokens/${token.contractId}`">
-            {{ token.tokenName }}
+          <app-link
+            :to="`/tokens/${token.contractId}`"
+            class="account-token-tables__link">
+            <token-symbol-icon
+              class="account-token-tables__icon"
+              :contract-id="token.contractId"/>
+            {{ token.tokenSymbol }}
           </app-link>
+        </td>
+        <td>
+          {{ token.tokenName }}
         </td>
         <td>
           <value-hash-ellipsed
             :link-to="`/contracts/${token.contractId}`"
-            :hash="token.contractId"/>
+            :hash="token.contractId "/>
+        </td>
+        <td>
+          {{ formatNumber(token.amount) }}
+        </td>
+        <td>
+          {{ token.value !== null ? `$${formatNumber(token.value, null, null, 7)}` : 'N/A' }}
         </td>
       </tr>
     </tbody>
@@ -60,6 +71,7 @@
 import AppLink from '@/components/AppLink'
 import { tokensHints } from '@/utils/hints/tokensHints'
 import HintTooltip from '@/components/HintTooltip'
+import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 
 defineProps({
   accountTokens: {
@@ -68,3 +80,18 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.account-token-tables {
+  &__icon {
+    width: 24px;
+    height: 24px;
+    margin-right: var(--space-1);
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+</style>

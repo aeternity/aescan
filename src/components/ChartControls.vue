@@ -2,55 +2,55 @@
   <div>
     <div class="chart-controls__container">
       <app-chip
-        v-for="option in CHART_INTERVALS_OPTIONS"
-        :key="option.label"
+        v-for="(button, index) in buttons"
+        :key="index"
         class="chart-controls__button"
-        :variant="isIntervalSelected(option) ? 'error' : 'secondary'"
-        @click="selectInterval(option)">
-        {{ option.label }}
+        :variant="selectedIndex === index ? 'error' : 'secondary'"
+        @click="selectInterval(index)">
+        {{ button.label }}
       </app-chip>
       <range-picker
-        :is-range-selected="isCustomIntervalSelected"
-        @updated="selectCustomInterval"/>
+        :is-active="selectedIndex === 'custom'"
+        :is-range-set="hasCustomDate"
+        @updated="selectRange"/>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useVModel } from '@vueuse/core'
+import RangePicker from '@/components/RangePicker'
 
-const emit = defineEmits(['update:modelValue'])
+const buttons = [
+  { interval: 'day', limit: '7', label: '1W' },
+  { interval: 'day', limit: '30', label: '1M' },
+  { interval: 'day', limit: '90', label: '3M' },
+  { interval: 'month', limit: '12', label: '1Y' },
+  { interval: 'month', limit: '100', label: 'ALL' },
+]
 
-const props = defineProps({
-  modelValue: {
-    type: Number,
-    default: 0,
-  },
+const selectedIndex = ref(0)
+
+const hasCustomDate = computed(() => {
+  return selectedIndex.value === 'custom'
 })
 
-const selectedRange = useVModel(props, 'modelValue', emit)
-
-const isCustomIntervalSelected = computed(() =>
-  Object.keys(selectedRange.value).includes('customInterval'))
-
-function isIntervalSelected(option) {
-  return selectedRange.value.label === option.label
+function selectInterval(index) {
+  selectedIndex.value = index
+  emit('selected', buttons[index])
 }
 
-function selectInterval(option) {
-  selectedRange.value = option
-}
-
-function selectCustomInterval(dateCustomInterval) {
-  const customInterval = {
-    customInterval: {
-      minStart: dateCustomInterval[0].toISOString().split('T')[0],
-      maxStart: dateCustomInterval[1].toISOString().split('T')[0],
+function selectRange(dateRange) {
+  selectedIndex.value = 'custom'
+  const range = {
+    range: {
+      minStart: dateRange[0].toISOString().split('T')[0],
+      maxStart: dateRange[1].toISOString().split('T')[0],
     },
   }
-  selectedRange.value = customInterval
+  emit('selected', range)
 }
 
+const emit = defineEmits(['selected'])
 </script>
 
 <style scoped>

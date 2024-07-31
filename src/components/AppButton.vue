@@ -54,7 +54,7 @@ defineProps({
   size: {
     type: String,
     default: null,
-    validator: val => ['lg', 'sm'].includes(val),
+    validator: val => ['lg'].includes(val),
   },
   variant: {
     type: String,
@@ -90,7 +90,8 @@ defineProps({
   text-decoration: none;
   letter-spacing: 0.015em;
 
-  padding: var(--space-0) var(--space-1);
+  padding: var(--space-1);
+
   border-radius: 4px;
 
   &--lg {
@@ -107,7 +108,7 @@ defineProps({
   &--light {
     background: var(--color-white);
     color: var(--color-midnight);
-    border: 1px solid var(--color-midnight);
+    border: 1px solid var(--color-midnight-55);
   }
 
   &:disabled {
@@ -121,12 +122,13 @@ defineProps({
 
   &--link {
     color: var(--color-blue);
+    text-align: left;
     text-decoration: none;
     font-weight: 400;
+    border: 0;
 
     background: transparent;
     padding: 0;
-    border: none;
 
     &:hover {
       text-decoration: underline;
@@ -140,7 +142,6 @@ defineProps({
 
     background: transparent;
     padding: 0;
-    border: none;
 
     &:hover {
       text-decoration: underline;

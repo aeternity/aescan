@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
 import { useTransactionsStore } from '@/stores/transactions'
@@ -30,17 +30,12 @@ import { TX_TYPES_OPTIONS } from '@/utils/constants'
 import { isDesktop } from '@/utils/screen'
 
 const transactionsStore = useTransactionsStore()
-const {
-  transactions,
-  transactionsCount,
-} = storeToRefs(transactionsStore)
-const { fetchTransactions, fetchTransactionsCount } = transactionsStore
+const { transactions, transactionsCount, isHydrated, pageIndex, selectedTxType } = storeToRefs(transactionsStore)
+const { fetchTransactions, fetchTransactionsCount, setPageIndex, setSelectedTxType } = transactionsStore
 const route = useRoute()
 const { push } = useRouter()
 
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-const pageIndex = ref(1)
 
 async function loadPrevTransactions() {
   await fetchTransactions(transactions.value.prev)
@@ -53,22 +48,25 @@ async function loadNextTransactions() {
 async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-  selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
-  await fetchTransactions(`/v2/txs?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
+  setSelectedTxType(txTypeOption || TX_TYPES_OPTIONS[0])
+  await fetchTransactions(`/v3/transactions?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
   await fetchTransactionsCount(selectedTxType.value.typeQuery)
-  pageIndex.value = 1
+  setPageIndex(1)
 }
 
 if (process.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
   })
+
   watch(selectedTxType, () => {
     const typeQuery = selectedTxType.value?.typeQuery
     const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
     push(`/transactions${slug}`)
   })
 
-  loadTransactions()
+  if (!isHydrated?.value) {
+    loadTransactions()
+  }
 }
 </script>

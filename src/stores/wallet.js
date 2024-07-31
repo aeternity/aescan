@@ -15,6 +15,7 @@ export const useWalletStore = defineStore('wallet', () => {
       const aeSdkOptions = {
         nodes: [{
           name: NETWORK_ID,
+// todo fix
           instance: new Node(NODE_URL, { ignoreVersion: true }),
         }],
         compilerUrl: 'https://compiler.aepps.com',
@@ -25,6 +26,7 @@ export const useWalletStore = defineStore('wallet', () => {
         ...aeSdkOptions,
         onNetworkChange({ networkId }) {
           aeSdk.value.selectNode(networkId)
+          scanWallets()
         },
         onDisconnect() {
           status.value = 'disconnecting'
@@ -44,14 +46,17 @@ export const useWalletStore = defineStore('wallet', () => {
       const timeout = setTimeout(() => {
         resolve(undefined)
         status.value = 'not detected'
-        disconnect()
       }, 10000)
 
       function setDetected({ newWallet }) {
         stopScan()
         resolve(newWallet)
         clearTimeout(timeout)
-        status.value = 'detected'
+        if (newWallet.info.networkId === NETWORK_ID) {
+          status.value = 'detected'
+        } else {
+          status.value = 'not connected'
+        }
       }
 
       const stopScan = walletDetector(new BrowserWindowMessageConnection(), setDetected)

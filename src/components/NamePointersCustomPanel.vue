@@ -1,6 +1,6 @@
 <template>
   <app-panel class="name-pointers-custom-panel">
-    <template #heading>
+    <template #title>
       CUSTOM POINTERS
       <hint-tooltip>
         {{ namesHints.customPointers }}
@@ -19,11 +19,15 @@
         <tr
           v-for="(pointer, index) in name.customPointers"
           :key="index">
-          <th>{{ pointer.key }}</th>
+          <td>{{ pointer.key }}</td>
           <td>
             <value-hash-ellipsed
+              v-if="!pointer.isRawPointer"
               :hash="pointer.pointer"
               :link-to="`/accounts/${pointer.pointer}`"/>
+            <template v-else>
+              {{ pointer.pointer }}
+            </template>
           </td>
         </tr>
       </tbody>
@@ -34,10 +38,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { namesHints } from '@/utils/hints/namesHints'
-import HintTooltip from '@/components/HintTooltip'
-import AppPanel from '@/components/AppPanel'
 import { useNameDetailsStore } from '@/stores/nameDetails'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const { name } = storeToRefs(useNameDetailsStore())
 </script>
@@ -46,6 +47,13 @@ const { name } = storeToRefs(useNameDetailsStore())
 .name-pointers-custom-panel {
   &__header {
     padding: var(--space-1) 0;
+    border-bottom: 1px solid var(--color-midnight-25);
+
+    &:first-child {
+      @media (--desktop) {
+        width: var(--detail-column-width);
+      }
+    }
   }
 }
 </style>

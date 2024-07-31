@@ -1,6 +1,6 @@
 <template>
   <app-button @click="initWallet()">
-    Connect Wallet
+    Connect to Superhero Wallet
   </app-button>
 </template>
 

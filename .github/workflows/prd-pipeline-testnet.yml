@@ -1,4 +1,4 @@
-name: Production pipelines - testnet
+name: Production Testnet
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     environment: production
-    name: Production Pipeline æScan Frontend Testnet
+    name: build
     steps:
       - uses: actions/checkout@v3
         with:

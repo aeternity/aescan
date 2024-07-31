@@ -27,7 +27,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Last Updated
+          <time-toggle-button>Last Updated</time-toggle-button>
           <hint-tooltip>
             {{ stateChannelsHints.lastUpdated }}
           </hint-tooltip>
@@ -72,12 +72,12 @@
           {{ channel.updateCount }}
         </td>
         <td>
-          {{ formatAePrice(channel.amount) }}
+          <price-label :price="channel.amount"/>
         </td>
         <td>
           <block-time-cell
             :height="channel.updatedHeight"
-            :datetime="channel.updated"/>
+            :timestamp="channel.updated"/>
         </td>
         <td>{{ channel.lastTxType }}</td>
       </tr>
@@ -88,7 +88,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 

@@ -4,10 +4,10 @@
       <div class="footer__body">
         <div class="footer__column">
           <img
+            width="134"
             class="footer__logo-aescan"
             alt="æScan logo"
             src="@/assets/logo.svg">
-
           <header class="footer__header">
             <app-tooltip>
               <div class="footer__powered-by">
@@ -45,22 +45,27 @@
               class="footer__version">
               ÆSCAN VERSION
               <app-link :to="APP_RELEASES_URL">
-                v{{ APP_VERSION }}
+                {{ APP_VERSION }}
               </app-link>
             </div>
             <div
               class="footer__version">
               NODE VERSION
               <app-link :to="NODE_RELEASES_URL">
-                v{{ nodeVersion }}
+                {{ formatNullable(nodeStatus?.nodeVersion) }}
               </app-link>
             </div>
             <div
               class="footer__version">
               MIDDLEWARE VERSION
               <app-link :to="MDW_RELEASES_URL">
-                v{{ middlewareVersion }}
+                {{ formatNullable(middlewareStatus?.mdwVersion) }}
               </app-link>
+              <span
+                v-if="isSyncing"
+                class="footer__warning">
+                (syncing)
+              </span>
             </div>
           </div>
           <div class="footer__link-container">
@@ -87,10 +92,9 @@ import { storeToRefs } from 'pinia'
 import FooterList from '@/components/FooterList'
 import AppLink from '@/components/AppLink'
 import AppTooltip from '@/components/AppTooltip'
-import FooterSocials from '@/components/FooterSocials'
 import { useStatus } from '@/stores/status'
 
-const { middlewareVersion, nodeVersion } = storeToRefs(useStatus())
+const { middlewareStatus, nodeStatus, isSyncing } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const { APP_VERSION } = useAppConfig()
 
@@ -101,7 +105,7 @@ const MDW_RELEASES_URL = 'https://github.com/aeternity/ae_mdw/releases'
 const links = {
   about: [
     { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
-    { label: 'æternity Crypto Foundation', url: 'https://aeternity-foundation.org' },
+    { label: 'Aeternity Foundation', url: 'https://aeternity.foundation' },
     { label: 'Blog', url: 'https://blog.aeternity.com' },
     { label: 'Terms of Service', url: '/terms-of-service' },
     { label: 'Privacy Policy', url: '/privacy-policy' },
@@ -112,7 +116,6 @@ const links = {
     { label: 'Middleware API documentation', url: `${MIDDLEWARE_URL}/swagger` },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
     { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
-
   ],
 }
 </script>
@@ -227,6 +230,10 @@ const links = {
     @media (--desktop) {
       margin: 80px 0;
     }
+  }
+
+  &__warning {
+    color: var(--color-fire)
   }
 }
 </style>

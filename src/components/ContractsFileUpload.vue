@@ -73,8 +73,15 @@ const hasSelectedFiles = computed(() => {
 function addInputFilesToSelectedFiles() {
   const isFirstFilesAddition = !hasSelectedFiles.value
 
+  // chrome workaround to manually set webkitRelativePath
+  Array.from(fileInput.value.files).forEach(file => {
+    Object.defineProperty(file, 'webkitRelativePath', {
+      value: file.name,
+    })
+  })
+
   selectedFiles.value.push(...fileInput.value.files)
-  emit('update:selected-files', fileInput.value.files)
+  emit('update:selected-files', selectedFiles.value)
   if (isFirstFilesAddition) {
     selectEntryFile(selectedFiles.value[0], 0)
   }
@@ -82,9 +89,7 @@ function addInputFilesToSelectedFiles() {
 
 function addDroppedFilesToSelectedFiles(isFirstFilesAddition) {
   const fileList = new DataTransfer()
-  selectedFiles.value.forEach(file => {
-    return fileList.items.add(file)
-  })
+  selectedFiles.value.forEach(file => fileList.items.add(file))
   emit('update:selected-files', fileList.files)
 
   if (isFirstFilesAddition) {
@@ -103,7 +108,7 @@ function drop(event) {
 }
 
 function selectEntryFile(file, index) {
-  const name = file.webkitRelativePath || file.name
+  const name = file.webkitRelativePath
   entryFile.value = { index, name }
   emit('update:entry-file', name)
 }
@@ -133,6 +138,10 @@ function getFileEntry(entry, files) {
 function getSingleFile(fileEntry, files) {
   return new Promise(resolve => {
     fileEntry.file(file => {
+      // chrome workaround to manually set webkitRelativePath
+      Object.defineProperty(file, 'webkitRelativePath', {
+        value: fileEntry.fullPath.substring(1),
+      })
       files.push(file)
       selectedFiles.value.push(file)
       resolve(file)

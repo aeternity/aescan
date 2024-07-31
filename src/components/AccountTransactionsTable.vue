@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Time
+          <time-toggle-button/>
           <hint-tooltip>
             {{ accountHints.time }}
           </hint-tooltip>
@@ -40,7 +40,7 @@
         <td>
           <block-time-cell
             :height="transaction.createdHeight"
-            :datetime="transaction.created"/>
+            :timestamp="transaction.created"/>
         </td>
         <td>
           {{ transaction.type }}

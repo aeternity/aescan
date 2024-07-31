@@ -30,13 +30,13 @@
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
-          Mined
+          <time-toggle-button>Mined</time-toggle-button>
           <hint-tooltip class="keyblock-table-condensed__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          <datetime-label :datetime="keyblock.mined"/>
+          <timestamp-label :timestamp="keyblock.mined"/>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
@@ -55,24 +55,24 @@
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
-          Beneficiary-Reward
+          Beneficiary Reward
           <hint-tooltip class="keyblock-table-condensed__tooltip">
             {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ formatNullable(formatAePrice(stats?.blockReward)) }}
+          <price-label :price="stats?.blockReward"/>
         </td>
       </tr>
       <tr class="keyblock-table-condensed__row">
         <th class="keyblock-table-condensed__header">
-          BRI-Reward
+          BRI Reward
           <hint-tooltip class="keyblock-table-condensed__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
         <td class="keyblock-table-condensed__data">
-          {{ formatNullable(formatAePrice(stats?.devReward)) }}
+          <price-label :price="formatNullable(stats?.devReward, null)"/>
         </td>
       </tr>
     </tbody>
@@ -81,8 +81,7 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import DatetimeLabel from '@/components/DatetimeLabel'
-import { formatAePrice, formatNullable } from '@/utils/format'
+import { formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

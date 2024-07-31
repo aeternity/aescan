@@ -1,7 +1,7 @@
 input[type='text'] {
   border-radius: 8px;
   line-height: 20px;
-  border-color: var(--color-midnight);
+  border-color: var(--color-midnight-55);
   border-width: 1px;
 
   font-size: 16px;
@@ -20,4 +20,3 @@ input[type='text'] {
 input[type='checkbox'] {
   margin: 0;
 }
-

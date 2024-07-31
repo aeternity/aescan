@@ -1,22 +1,39 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
+import { SYNCING_BLOCK_THRESHOLD } from '@/utils/constants'
 
 export const useStatus = defineStore('status', () => {
   const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
+
   const axios = useAxios()
-  const middlewareVersion = ref(null)
-  const nodeVersion = ref(null)
+  const middlewareStatus = ref(null)
+  const nodeStatus = ref(null)
 
   async function fetchMdwStatus() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/status`)
-    middlewareVersion.value = data.mdwVersion
+    try {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/status`)
+      middlewareStatus.value = data
+    } catch (e) {
+      middlewareStatus.value = false
+    }
   }
 
   async function fetchNodeStatus() {
-    const { data } = await axios.get(`${NODE_URL}/v3/status`)
-    nodeVersion.value = data.nodeVersion
+    try {
+      const { data } = await axios.get(`${NODE_URL}/v3/status`)
+      nodeStatus.value = data
+    } catch (e) {
+      nodeStatus.value = false
+    }
   }
+
+  const isSyncing = computed(() => {
+    return middlewareStatus.value && nodeStatus.value
+      ? middlewareStatus.value.mdwSyncing &&
+      (nodeStatus.value.topBlockHeight - middlewareStatus.value.nodeHeight) > SYNCING_BLOCK_THRESHOLD
+      : null
+  })
 
   function fetchStatus() {
     return Promise.all([
@@ -26,8 +43,9 @@ export const useStatus = defineStore('status', () => {
   }
 
   return {
-    middlewareVersion,
-    nodeVersion,
+    middlewareStatus,
+    nodeStatus,
+    isSyncing,
     fetchStatus,
   }
 })

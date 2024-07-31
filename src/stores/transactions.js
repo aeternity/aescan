@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
+import { ref } from 'vue'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
+import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { TX_TYPES_OPTIONS } from '~/utils/constants'
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -11,6 +14,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
   const last24hsTransactionsCount = ref(null)
+  const last24hsTransactionsTrend = ref(null)
+  const last24hsAverageTransactionFees = ref(null)
+  const feesTrend = ref(null)
+  const isHydrated = ref(null)
+  const pageIndex = ref(1)
+  const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -20,34 +29,33 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v2/txs?limit=10'}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/transactions?limit=10'}`)
+    isHydrated.value = true
     rawTransactions.value = data
   }
 
   async function fetchTransactionsCount(txType = null) {
     transactionsCount.value = null
-    const url = txType ? `${MIDDLEWARE_URL}/v2/txs/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v2/txs/count`
+    const url = txType ? `${MIDDLEWARE_URL}/v3/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v3/transactions/count`
     const { data } = await axios.get(url)
     transactionsCount.value = data
   }
 
-  async function fetchLast24hsTransactionsCount() {
+  async function fetchLast24hsTransactionsStatistics() {
     last24hsTransactionsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/stats`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     last24hsTransactionsCount.value = data.last24hsTransactions
+    last24hsTransactionsTrend.value = data.transactionsTrend
+    last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)
+    feesTrend.value = data.feesTrend
   }
 
-  async function fetchTransactionsStatistics(interval = 'day', limit = 7, range) {
-    transactionsStatistics.value = null
+  function setPageIndex(index) {
+    pageIndex.value = index
+  }
 
-    const slug = range
-      ? `?min_start_date=${range.minStart}&max_start_date=${range.maxStart}&limit=1000`
-      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
-
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${slug}`)
-
-    // remove last interval from the response not to show current interval that is being built
-    transactionsStatistics.value = range ? data.data.reverse() : data.data.slice(1).reverse()
+  function setSelectedTxType(txType) {
+    selectedTxType.value = txType
   }
 
   return {
@@ -56,8 +64,15 @@ export const useTransactionsStore = defineStore('transactions', () => {
     fetchTransactions,
     fetchTransactionsCount,
     transactionsStatistics,
-    fetchTransactionsStatistics,
-    fetchLast24hsTransactionsCount,
+    fetchLast24hsTransactionsStatistics,
     last24hsTransactionsCount,
+    last24hsTransactionsTrend,
+    last24hsAverageTransactionFees,
+    feesTrend,
+    isHydrated,
+    pageIndex,
+    selectedTxType,
+    setPageIndex,
+    setSelectedTxType,
   }
 })

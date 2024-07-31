@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Oracle
           <hint-tooltip>
             {{ oraclesHints.oracleId }}
           </hint-tooltip>
+          Oracle
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           <app-link :to="`/oracles/${transactionData.oracleId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Sender
           <hint-tooltip>
             {{ oraclesHints.sender }}
           </hint-tooltip>
+          Sender
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           <app-link :to="`/accounts/${transactionData.senderId}`">
@@ -29,10 +29,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query ID
           <hint-tooltip>
             {{ oraclesHints.queryId }}
           </hint-tooltip>
+          Query ID
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ formatNullable(transactionData.queryId) }}
@@ -40,10 +40,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query
           <hint-tooltip>
             {{ oraclesHints.queryContent }}
           </hint-tooltip>
+          Query
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.query }}
@@ -51,21 +51,21 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query Fee
           <hint-tooltip>
             {{ oraclesHints.queryFee }}
           </hint-tooltip>
+          Query Fee
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.queryFee), null) }}
+          <price-label :price="formatAettosToAe(transactionData.queryFee)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Query TTL / Type
           <hint-tooltip>
             {{ oraclesHints.queryTtl }}
           </hint-tooltip>
+          Query TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.queryTtl.value }}
@@ -75,10 +75,10 @@
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
         <th class="transaction-type-panel-oracle-query-tx__table-header">
-          Response TTL / Type
           <hint-tooltip>
             {{ oraclesHints.responseTtl }}
           </hint-tooltip>
+          Response TTL / Type
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
           {{ transactionData.responseTtl.value }}
@@ -93,7 +93,7 @@
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAettosToAe, formatNullable } from '@/utils/format'
 
 defineProps({
   transactionData: {
@@ -111,11 +111,14 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

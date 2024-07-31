@@ -7,9 +7,17 @@
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
-      <h5>TRANSACTIONS IN LAST 24H</h5>
+      <h5>TRANSACTIONS (LAST 24H)</h5>
       <div class="transaction-statistics__value">
         {{ formatNumber(last24hsTransactionsCount) }}
+        <trend-chip :delta="last24hsTransactionsTrend"/>
+      </div>
+    </app-panel>
+    <app-panel class="transaction-statistics__panel">
+      <h5>AVG TRANSACTION FEE (LAST 24H)</h5>
+      <div class="transaction-statistics__value">
+        {{ last24hsAverageTransactionFees }}
+        <trend-chip :delta="feesTrend"/>
       </div>
     </app-panel>
   </div>
@@ -21,14 +29,20 @@ import { useTransactionsStore } from '@/stores/transactions'
 import { formatNumber } from '@/utils/format'
 
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
-const { fetchLast24hsTransactionsCount } = useTransactionsStore()
+const { fetchLast24hsTransactionsStatistics } = useTransactionsStore()
 
 const { transactionsCount } = storeToRefs(useBlockchainStatsStore())
-const { last24hsTransactionsCount } = storeToRefs(useTransactionsStore())
+const {
+  last24hsTransactionsCount,
+  last24hsTransactionsTrend,
+  last24hsAverageTransactionFees,
+  feesTrend,
+} = storeToRefs(useTransactionsStore())
 
-await fetchTotalTransactionsCount()
-await fetchLast24hsTransactionsCount()
-
+if (process.client) {
+  await fetchTotalTransactionsCount()
+  await fetchLast24hsTransactionsStatistics()
+}
 </script>
 
 <style scoped>

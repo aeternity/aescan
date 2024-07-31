@@ -1,15 +1,24 @@
 /* eslint-disable */
 import * as Sentry from '@sentry/vue'
-import { BrowserTracing } from '@sentry/tracing'
 
-export default defineNuxtPlugin(({ vueApp }) => {
+async function lazyLoadSentryIntegrations() {
   if (process.server) {
     return
   }
 
-  const config = useRuntimeConfig()
+  import("@sentry/browser").then((lazyLoadedSentry) => {
+    Sentry.addIntegration(lazyLoadedSentry.replayIntegration());
+  });
+}
 
-  if (!config.public.SENTRY_DSN || !config.public.APP_DOMAIN) {
+export default defineNuxtPlugin(({vueApp}) => {
+  if (process.server) {
+    return
+  }
+
+  const {SENTRY_DSN, APP_DOMAIN} = useRuntimeConfig().public
+
+  if (!SENTRY_DSN || !APP_DOMAIN) {
     console.warn('Sentry configuration is not set therefore it will not be initialized.')
     return
   }
@@ -18,13 +27,10 @@ export default defineNuxtPlugin(({ vueApp }) => {
 
   Sentry.init({
     app: vueApp,
-    dsn: config.public.SENTRY_DSN,
-    integrations: [
-      new BrowserTracing({
-        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-        tracingOrigins: [config.public.APP_DOMAIN, /^\//],
-      }),
-    ],
+    dsn: SENTRY_DSN,
+    integrations: [Sentry.browserTracingIntegration({router})],
+    tracePropagationTargets: [APP_DOMAIN, /^\//],
+
     beforeSend: (event) => {
       if (window.location.hostname.startsWith('localhost')) {
         return null
@@ -34,4 +40,5 @@ export default defineNuxtPlugin(({ vueApp }) => {
     tracesSampleRate: 1.0,
     logErrors: true,
   })
+  lazyLoadSentryIntegrations();
 })

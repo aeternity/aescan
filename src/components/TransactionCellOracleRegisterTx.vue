@@ -4,9 +4,7 @@
     :link-to="`/oracles/${transactionData.oracleId}`"/>
 
   <app-tooltip>
-    <app-chip size="sm">
-      {{ formatAePrice(formatAettosToAe(transactionData.fee)) }}
-    </app-chip>
+    <price-label :price="formatAettosToAe(transactionData.fee)"/>
     <template #tooltip>
       FEE
     </template>
@@ -14,8 +12,7 @@
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatAettosToAe } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

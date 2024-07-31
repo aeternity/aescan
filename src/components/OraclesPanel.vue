@@ -48,7 +48,7 @@ async function loadOracles() {
   const { state } = route.query
   const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
-  await fetchOracles(`/v2/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`)
+  await fetchOracles(`/v3/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`)
   await fetchOraclesCount()
   pageIndex.value = 1
 }
@@ -83,5 +83,4 @@ if (process.client) {
 
   loadOracles()
 }
-
 </script>

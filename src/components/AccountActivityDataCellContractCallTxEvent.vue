@@ -6,11 +6,16 @@
   <app-chip size="sm">
     {{ activity.payload.tx.function }}
   </app-chip>
+
+  <price-label
+    v-if="activity.payload.tx.amount !== 0"
+    :price="formatAettosToAe(activity.payload.tx.amount)"/>
 </template>
 
 <script setup>
 
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   activity: {

@@ -67,9 +67,9 @@ export default defineNuxtConfig({
   },
   sourcemap: true,
   vite: {
-    build: { target: 'es2020' },
+    build: {target: 'es2020'},
     optimizeDeps: {
-      esbuildOptions: { target: 'es2020' },
+      esbuildOptions: {target: 'es2020'},
     },
     define: {
       __VUE_PROD_DEVTOOLS__: process.env.MODE !== 'production',
@@ -83,12 +83,13 @@ export default defineNuxtConfig({
             return
           }
 
-          const { code } = compileTemplate({
+          const {code} = compileTemplate({
             id: JSON.stringify(path),
             filename: path,
             source: await fs.readFile(path, 'utf-8'),
             transformAssetUrls: false,
           })
+
 
           return `${code}\nexport default { render: render }`
         },
@@ -114,7 +115,5 @@ export default defineNuxtConfig({
       codeEditor: 'MonacoEditor',
     },
   },
-
   compatibilityDate: '2024-07-16',
-
 })

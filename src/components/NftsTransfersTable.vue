@@ -46,7 +46,7 @@
         <td class="nfts-transfers-table__data">
           <block-time-cell
             :height="transfer.height"
-            :datetime="transfer.time"/>
+            :timestamp="transfer.time"/>
         </td>
         <td class="nfts-transfers-table__data">
           {{ transfer.tokenId }}

@@ -8,7 +8,7 @@
               <app-tooltip>
                 Name
                 <template #tooltip>
-                  {{ namesHints.name }}
+                  {{ namesHints.nameId }}
                 </template>
               </app-tooltip>
             </th>
@@ -45,13 +45,13 @@
               </app-tooltip>
             </th>
             <td class="dashboard-auctions-swiper__data">
-              {{ formatAePrice(auction.bid) }}
+              <price-label :price="auction.bid"/>
             </td>
           </tr>
           <tr>
             <th>
               <app-tooltip>
-                Ending
+                <time-toggle-button>Ending</time-toggle-button>
                 <template #tooltip>
                   {{ namesHints.ends }}
                 </template>
@@ -63,7 +63,7 @@
                 {{ auction.expirationHeight }}
               </app-link>
               -
-              <datetime-label :datetime="auction.expiration"/>
+              <timestamp-label :timestamp="auction.expiration"/>
             </td>
           </tr>
         </tbody>
@@ -76,11 +76,9 @@
 import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
-import { formatAePrice } from '@/utils/format'
 import { namesHints } from '@/utils/hints/namesHints'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>

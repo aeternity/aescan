@@ -15,7 +15,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Queried At
+          <time-toggle-button>Queried At</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.queriedAt }}
           </hint-tooltip>
@@ -27,7 +27,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Responded At
+          <time-toggle-button>Responded At</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.respondedAt }}
           </hint-tooltip>
@@ -54,7 +54,7 @@
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.queriedHeight"
-              :datetime="event.queriedAt"/>
+              :timestamp="event.queriedAt"/>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
@@ -64,7 +64,7 @@
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.respondedHeight"
-              :datetime="event.respondedAt"/>
+              :timestamp="event.respondedAt"/>
           </td>
         </tr>
         <tr v-if="isExpanded.includes(index)">

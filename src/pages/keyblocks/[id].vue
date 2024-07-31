@@ -5,7 +5,6 @@
 
   <page-header>
     Keyblock
-
     <template #tooltip>
       {{ keyblocksHints.keyblock }}
     </template>
@@ -44,7 +43,7 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const isKeyblockExistent = computed(() => keyblockDetails.value && !!keyblockDetails.value.isExistent)
+const isKeyblockExistent = computed(() => keyblockDetails.value && keyblockDetails.value.isExistent !== false)
 
 await useAsyncData(async() => {
   await fetchKeyblock(route.params.id)

@@ -23,7 +23,7 @@
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             <app-tooltip>
-              Registered
+              <time-toggle-button>Registered</time-toggle-button>
               <template #tooltip>
                 {{ oraclesHints.registered }}
               </template>
@@ -32,13 +32,13 @@
           <td class="oracles-table-condensed__data">
             <block-time-cell
               :height="oracle.registeredHeight"
-              :datetime="oracle.registered"/>
+              :timestamp="oracle.registered"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
             <app-tooltip>
-              Expiration
+              <time-toggle-button>Expiration</time-toggle-button>
               <template #tooltip>
                 {{ oraclesHints.expiration }}
               </template>
@@ -47,7 +47,7 @@
           <td class="oracles-table-condensed__data">
             <block-time-cell
               :height="oracle.expirationHeight"
-              :datetime="oracle.expiration"/>
+              :timestamp="oracle.expiration"/>
           </td>
         </tr>
         <tr class="oracles-table-condensed__row">
@@ -60,7 +60,7 @@
             </app-tooltip>
           </th>
           <td class="oracles-table-condensed__data">
-            {{ formatAePrice(oracle.queryFee) }}
+            <price-label :price="oracle.queryFee"/>
           </td>
         </tr>
       </tbody>
@@ -70,7 +70,6 @@
 
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { formatAePrice } from '@/utils/format'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 defineProps({

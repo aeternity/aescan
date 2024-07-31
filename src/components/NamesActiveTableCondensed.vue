@@ -10,7 +10,7 @@
             <app-tooltip>
               Name
               <template #tooltip>
-                {{ namesHints.name }}
+                {{ namesHints.nameId }}
               </template>
             </app-tooltip>
           </th>
@@ -25,7 +25,7 @@
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
             <app-tooltip>
-              Expires
+              <time-toggle-button>Expires</time-toggle-button>
               <template #tooltip>
                 {{ namesHints.expires }}
               </template>
@@ -34,7 +34,7 @@
           <td class="names-active-table-condensed__data">
             <block-time-cell
               :height="name.expirationHeight"
-              :datetime="name.expiration"/>
+              :timestamp="name.expiration"/>
           </td>
         </tr>
         <tr class="names-active-table-condensed__row">
@@ -64,9 +64,7 @@
             </app-tooltip>
           </th>
           <td class="names-active-table-condensed__data">
-            <app-chip variant="secondary">
-              {{ formatAePrice(name.fee) }}
-            </app-chip>
+            <price-label :price="name.fee"/>
           </td>
         </tr>
         <tr class="names-active-table-condensed__row">
@@ -114,9 +112,7 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

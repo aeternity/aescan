@@ -1,27 +1,33 @@
 <template>
   <app-panel class="microblock-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
-    <template #header>
-      <copy-chip
-        :label="microblockDetails.hash"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(microblockDetails.hash)"
-        :clipboard-text="microblockDetails.hash"
-        class="u-hidden-desktop"/>
-    </template>
     <table>
       <tbody>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Keyblock
+            <hint-tooltip>
+              {{ microblocksHints.microblockId }}
+            </hint-tooltip>
+            Microblock ID
+          </th>
+          <td>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="microblockDetails.hash"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(microblockDetails.hash)"
+                :clipboard-text="microblockDetails.hash"/>
+            </div>
+          </td>
+        </tr>
+        <tr class="microblock-details-panel__row">
+          <th class="microblock-details-panel__table-header">
             <hint-tooltip>
               {{ microblocksHints.keyblock }}
             </hint-tooltip>
+            Keyblock
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             <app-link :to="`/keyblocks/${microblockDetails.prevKeyHash}`">
               <span class="u-hidden-mobile">
                 {{ microblockDetails.prevKeyHash }}
@@ -34,12 +40,12 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Height
             <hint-tooltip>
               {{ microblocksHints.microblockHeight }}
             </hint-tooltip>
+            Height
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             <app-link :to="`/keyblocks/${microblockDetails.height}`">
               {{ microblockDetails.height }}
             </app-link>
@@ -47,34 +53,36 @@
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Time
             <hint-tooltip>
               {{ microblocksHints.time }}
             </hint-tooltip>
+            Created Height
           </th>
-          <td class="microblock-details-panel__data">
-            <datetime-label :datetime="microblockDetails.time"/>
+          <td>
+            <timestamp-label
+              :timestamp="microblockDetails.time"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            Transactions Count
             <hint-tooltip>
               {{ microblocksHints.transactionsCount }}
             </hint-tooltip>
+            Transactions Count
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             {{ formatNumber(microblockDetails.transactionsCount) }}
           </td>
         </tr>
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ microblocksHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
-          <td class="microblock-details-panel__data">
+          <td>
             <div class="microblock-details-panel__container">
               <app-link
                 :to="microblockNodeUrl"
@@ -122,7 +130,7 @@ const microblockNodeUrl = computed(() =>
   `${NODE_URL}/v3/micro-blocks/hash/${props.microblockDetails.hash}/header`,
 )
 const microblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v2/micro-blocks/${props.microblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/v3/micro-blocks/${props.microblockDetails.hash}`,
 )
 </script>
 
@@ -130,19 +138,19 @@ const microblockMiddlewareUrl = computed(() =>
 .microblock-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+    font-weight: normal;
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }
 
-  &__data {
-    text-align: right;
-  }
-
   &__container {
     display: flex;
-    justify-content: flex-end;
   }
 
   &__link {

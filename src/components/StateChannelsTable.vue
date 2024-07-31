@@ -33,7 +33,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Last Updated
+          <time-toggle-button>Last Updated</time-toggle-button>
           <hint-tooltip>
             {{ stateChannelsHints.lastUpdated }}
           </hint-tooltip>
@@ -71,11 +71,13 @@
           </div>
         </td>
         <td>{{ channel.updateCount }}</td>
-        <td>{{ channel.locked }}</td>
+        <td>
+          <price-label :price="channel.locked"/>
+        </td>
         <td>
           <block-time-cell
             :height="channel.updatedHeight"
-            :datetime="channel.updated"/>
+            :timestamp="channel.updated"/>
         </td>
         <td>{{ channel.lastTxType }}</td>
       </tr>

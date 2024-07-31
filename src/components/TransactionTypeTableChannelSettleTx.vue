@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Channel ID
           <hint-tooltip>
             {{ stateChannelsHints.stateChannelId }}
           </hint-tooltip>
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
@@ -16,50 +16,40 @@
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Initiator / Amount
           <hint-tooltip>
             {{ stateChannelsHints.initiatorSettleAmount }}
           </hint-tooltip>
+          Initiator / Amount
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.initiator}`">
             {{ transactionData.channel.initiator }}
           </app-link>
           /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.initiatorAmountFinal),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Responder / Amount
           <hint-tooltip>
             {{ stateChannelsHints.responderCloseAmount }}
           </hint-tooltip>
+          Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/accounts/${transactionData.channel.responder}`">
             {{ transactionData.channel.responder }}
           </app-link>
           /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.responderAmountFinal),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
         <th class="transaction-type-panel-channel-settle-tx__table-header">
-          Settled By
           <hint-tooltip>
             {{ stateChannelsHints.settledBy }}
           </hint-tooltip>
+          Settled By
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link :to="`/accounts/${transactionData.fromId}`">
@@ -74,7 +64,7 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {
@@ -92,11 +82,14 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

@@ -1,4 +1,4 @@
-name: Pull Request Preview pipelines
+name: Preview Mainnet
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ concurrency: aescan_staging_environment-${{ github.ref }}
 jobs:
   main:
     runs-on: ubuntu-latest
-    name: Staging Pipeline Aescan Frontend
+    name: build
     steps:
       - uses: actions/checkout@v3
         with:

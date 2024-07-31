@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-type-panel">
-    <template #heading>
+    <template #title>
       {{ typeName }} DETAILS
     </template>
-    <template #header>
+    <template #end>
       <app-link
         v-if="transactionData.type === 'SpendTx' && transactionData.recipient?.account"
         :to="`/names/${transactionData.recipient.name}`">
@@ -19,7 +19,9 @@
           :label="formatEllipseHash(transactionData.payerId)"
           :clipboard-text="transactionData.payerId"
           class="u-hidden-desktop"/>
-        <app-chip variant="primary">
+        <app-chip
+          variant="primary"
+          size="sm">
           {{ transactionData.tx.tx.type }}
         </app-chip>
       </template>

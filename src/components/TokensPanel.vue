@@ -8,7 +8,9 @@
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <template #header>
-        <token-select v-model="selectedTokenName"/>
+        <token-select
+          v-if="NETWORK_NAME !== 'TESTNET'"
+          v-model="selectedTokenName"/>
       </template>
       <tokens-table
         v-if="selectedTokens"
@@ -31,6 +33,8 @@ import TokensTable from '@/components/TokensTable'
 import TokenSelect from '@/components/TokenSelect'
 import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
+
+const { NETWORK_NAME } = useRuntimeConfig().public
 
 const tokensStore = useTokensStore()
 const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(tokensStore)
@@ -56,7 +60,7 @@ await useAsyncData(async() => {
 if (process.client) {
   watch(selectedTokenName, async() => {
     pageIndex.value = 1
-    await fetchTokens(`/v2/aex9?by=name&direction=forward&limit=${limit.value}`)
+    await fetchTokens(`/v3/aex9?by=name&direction=forward&limit=${limit.value}`)
   }, {
     immediate: true,
   })

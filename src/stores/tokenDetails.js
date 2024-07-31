@@ -31,7 +31,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   )
 
   const tokenHolders = computed(() =>
-    tokenDetails.value?.totalSupply && rawTokenHolders.value
+    tokenDetails.value && rawTokenHolders.value
       ? adaptTokenHolders(
         rawTokenHolders.value,
         tokenDetails.value,
@@ -64,7 +64,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   }
 
   async function fetchToken() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${tokenId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
     rawToken.value = data
   }
 
@@ -79,7 +79,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {
     rawTokenEvents.value = null
-    const defaultParameters = `/v2/contracts/logs?contract=${contractId}&aexn-args=true&limit=${limit ?? 10}`
+    const defaultParameters = `/v3/contracts/logs?contract=${contractId}&aexn-args=true&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenEvents.value = data
   }
@@ -91,7 +91,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenHolders({ queryParameters, limit } = {}) {
     rawTokenHolders.value = null
-    const defaultParameters = `/v2/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
+    const defaultParameters = `/v3/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenHolders.value = data
   }

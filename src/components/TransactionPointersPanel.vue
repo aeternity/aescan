@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-pointers-panel">
-    <template #heading>
+    <template #title>
       NAME POINTERS
     </template>
-    <table class="transaction-pointers-panel__table">
+    <table>
       <tbody>
         <tr class="transaction-pointers-panel__row">
           <th class="transaction-pointers-panel__table-header">
@@ -12,15 +12,15 @@
               {{ namesHints.accountPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
-              v-if="pointers.accountPubkey"
-              :to="`/accounts/${pointers.accountPubkey}`">
+              v-if="pointers.account_pubkey"
+              :to="`/accounts/${pointers.account_pubkey}`">
               <span class="u-hidden-mobile">
-                {{ pointers.accountPubkey }}
+                {{ pointers.account_pubkey }}
               </span>
               <span class="u-hidden-desktop">
-                {{ formatEllipseHash(pointers.accountPubkey) }}
+                {{ formatEllipseHash(pointers.account_pubkey) }}
               </span>
             </app-link>
             <template v-else>
@@ -35,7 +35,7 @@
               {{ namesHints.channelPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             {{ formatNullable(pointers.channel) }}
           </td>
         </tr>
@@ -46,15 +46,15 @@
               {{ namesHints.contractPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
-              v-if="pointers.contractPubkey"
-              :to="`/contracts/${pointers.contractPubkey}`">
+              v-if="pointers.contract_pubkey"
+              :to="`/contracts/${pointers.contract_pubkey}`">
               <span class="u-hidden-mobile">
-                {{ pointers.contractPubkey }}
+                {{ pointers.contract_pubkey }}
               </span>
               <span class="u-hidden-desktop">
-                {{ formatEllipseHash(pointers.contractPubkey) }}
+                {{ formatEllipseHash(pointers.contract_pubkey) }}
               </span>
             </app-link>
             <template v-else>
@@ -69,8 +69,8 @@
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
-            {{ formatNullable(pointers.oraclePubkey) }}
+          <td>
+            {{ formatNullable(pointers.oracle_pubkey) }}
           </td>
         </tr>
       </tbody>
@@ -104,11 +104,10 @@ const pointers = computed(() => {
 .transaction-pointers-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
-  }
 
-  &__data {
-    word-wrap: break-word;
-    text-align: right;
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {

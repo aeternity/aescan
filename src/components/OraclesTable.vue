@@ -9,13 +9,13 @@
           </hint-tooltip>
         </th>
         <th>
-          Registered
+          <time-toggle-button>Registered</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.registered }}
           </hint-tooltip>
         </th>
         <th>
-          Expiration
+          <time-toggle-button>Expiration</time-toggle-button>
           <hint-tooltip>
             {{ oraclesHints.expiration }}
           </hint-tooltip>
@@ -40,15 +40,15 @@
         <td class="oracles-table__data">
           <block-time-cell
             :height="oracle.registeredHeight"
-            :datetime="oracle.registered"/>
+            :timestamp="oracle.registered"/>
         </td>
         <td class="oracles-table__data">
           <block-time-cell
             :height="oracle.expirationHeight"
-            :datetime="oracle.expiration"/>
+            :timestamp="oracle.expiration"/>
         </td>
         <td class="oracles-table__data">
-          {{ formatAePrice(oracle.queryFee) }}
+          <price-label :price="oracle.queryFee"/>
         </td>
       </tr>
     </tbody>
@@ -58,7 +58,6 @@
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { formatAePrice } from '@/utils/format'
 import HintTooltip from '@/components/HintTooltip'
 
 defineProps({

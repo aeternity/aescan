@@ -8,7 +8,7 @@
               <app-tooltip>
                 Name
                 <template #tooltip>
-                  {{ namesHints.name }}
+                  {{ namesHints.nameId }}
                 </template>
               </app-tooltip>
             </th>
@@ -45,13 +45,13 @@
               </app-tooltip>
             </th>
             <td class="dashboard-names-swiper__data">
-              {{ formatNullable(formatAePrice(name.price)) }}
+              <price-label :price="name.price"/>
             </td>
           </tr>
           <tr>
             <th>
               <app-tooltip>
-                Activated
+                <time-toggle-button>Activated</time-toggle-button>
                 <template #tooltip>
                   {{ namesHints.activationTime }}
                 </template>
@@ -63,7 +63,7 @@
                 {{ name.activatedHeight }}
               </app-link>
               -
-              <datetime-label :datetime="name.activated"/>
+              <timestamp-label :timestamp="name.activated"/>
             </td>
           </tr>
         </tbody>
@@ -75,11 +75,9 @@
 import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
-import { formatAePrice, formatNullable } from '@/utils/format'
 import { namesHints } from '@/utils/hints/namesHints'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import DatetimeLabel from '@/components/DatetimeLabel'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>

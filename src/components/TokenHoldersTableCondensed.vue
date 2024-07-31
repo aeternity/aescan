@@ -29,7 +29,10 @@
           </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
-          {{ formatNumber(holder.amount, 0, tokenDetails.decimals) }} {{ tokenDetails.symbol }}
+          <price-label
+            :price="holder.amount"
+            :currency="tokenDetails.symbol"
+            :contract-id="holder.contractId"/>
         </td>
       </tr>
       <tr class="token-holders-table-condensed__row">
@@ -42,13 +45,7 @@
           </app-tooltip>
         </th>
         <td class="token-holders-table-condensed__data">
-          <template v-if="Math.abs(holder.percentage) >= 0.00001">
-            {{ formatNumber(Math.abs(holder.percentage)) }}
-          </template>
-          <template v-else>
-            ~0
-          </template>
-          %
+          {{ holder.percentage }}
         </td>
       </tr>
     </table>
@@ -56,7 +53,6 @@
 </template>
 
 <script setup>
-import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
@@ -69,6 +65,7 @@ defineProps({
     required: true,
   },
 })
+
 </script>
 
 <style scoped>

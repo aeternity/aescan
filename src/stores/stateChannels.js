@@ -23,7 +23,7 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
       return
     }
 
-    const channelsUrl = new URL(`${MIDDLEWARE_URL}/v2/channels`)
+    const channelsUrl = new URL(`${MIDDLEWARE_URL}/v3/channels`)
     channelsUrl.searchParams.append('limit', limit ?? 10)
 
     const { data } = await axios.get(channelsUrl.toString())
@@ -31,7 +31,7 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
   }
 
   async function fetchStateChannelsCount() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/txs/count?tx_type=channel_create`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count?tx_type=channel_create`)
     this.stateChannelsCount = data
   }
 

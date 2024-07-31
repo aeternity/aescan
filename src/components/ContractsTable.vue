@@ -9,7 +9,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Created
+          <time-toggle-button>Created</time-toggle-button>
           <hint-tooltip>
             {{ contractsHints.created }}
           </hint-tooltip>
@@ -43,7 +43,7 @@
         <td class="contracts-table__data">
           <block-time-cell
             :height="contract.createdHeight"
-            :datetime="contract.created"/>
+            :timestamp="contract.created"/>
         </td>
         <td class="contracts-table__data">
           <value-hash-ellipsed

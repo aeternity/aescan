@@ -5,6 +5,7 @@ import useAxios from '@/composables/useAxios'
 import { adaptListedTokens } from '@/utils/adapters'
 
 export const useTokensStore = defineStore('tokens', () => {
+  const { MIDDLEWARE_URL, DEX_BACKEND_URL, NETWORK_NAME } = useRuntimeConfig().public
   const axios = useAxios()
   const rawListedTokens = ref(null)
   const allTokens = ref(null)
@@ -12,7 +13,7 @@ export const useTokensStore = defineStore('tokens', () => {
   const allTokensCount = ref(null)
 
   const selectedTokens = computed(() => {
-    return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value : allTokens.value
+    return selectedTokenName.value?.key === 'listedTokens' && NETWORK_NAME !== 'TESTNET' ? listedTokens.value : allTokens.value
   })
   const selectedTokensCount = computed(() => {
     return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value?.data.length : allTokensCount.value
@@ -33,18 +34,18 @@ export const useTokensStore = defineStore('tokens', () => {
 
   async function fetchAllTokens(queryParameters = null) {
     allTokens.value = null
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}${queryParameters || '/v2/aex9?by=name&direction=forward'}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/aex9?by=name&direction=forward'}`)
     allTokens.value = data
   }
 
   async function fetchListedTokens() {
     rawListedTokens.value = null
-    const { data } = await axios.get(`${useRuntimeConfig().public.DEX_BACKEND_URL}/tokens`)
+    const { data } = await axios.get(`${DEX_BACKEND_URL}/tokens/listed`)
     rawListedTokens.value = data
   }
 
   async function fetchTokensCount() {
-    const { data } = await axios.get(`${useRuntimeConfig().public.MIDDLEWARE_URL}/v2/aex9/count`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/count`)
     allTokensCount.value = data.data
   }
 

@@ -2,14 +2,13 @@
   <app-link :to="`/names/${activity.payload.tx.name}`">
     {{ activity.payload.tx.name }}
   </app-link>
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(activity.payload.tx.nameFee)) }}
-  </app-chip>
+  <price-label
+    v-if="activity.payload.tx.nameFee"
+    :price="formatAettosToAe(activity.payload.tx.nameFee)"/>
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatAettosToAe } from '@/utils/format'
 import AppLink from '@/components/AppLink'
 
 defineProps({

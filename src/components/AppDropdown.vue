@@ -1,5 +1,5 @@
 <template>
-  <VMenu>
+  <VMenu  placement="bottom">
     <span>
       <slot/>
     </span>
@@ -14,6 +14,6 @@
 .v-popper__popper.v-popper--theme-menu .v-popper__inner {
   margin: 0 var(--space-2);
   color: var(--color-midnight);
-  padding: var(--space-2) !important;
+  padding: var(--space-2) var(--space-1);
 }
 </style>

@@ -11,12 +11,21 @@ const useAxios = () => {
     axiosInstance.value = axios.create()
 
     axiosInstance.value.interceptors.response.use(function(response) {
+      // exception for names with pointer. The pointer name is encoded in the key,
+      // so casing needs to be preserverd for further decoding.
+      const hasPointers = !!response?.data?.info?.pointers
+      if (hasPointers) {
+        const untranslatedPointers = response.data.info.pointers
+        const translatedResponse = camelcaseKeysDeep(response.data)
+        translatedResponse.info.pointers = untranslatedPointers
+        return { ...response, data: translatedResponse }
+      }
       return { ...response, data: camelcaseKeysDeep(response.data) }
     }, function(error) {
       return Promise.reject(error)
     })
 
-    if (!DEBUG_MODE || DEBUG_MODE === 'false') {
+    if (!DEBUG_MODE) {
       return axiosInstance.value
     }
 

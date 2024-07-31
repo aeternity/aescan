@@ -15,7 +15,7 @@ export const useWalletStore = defineStore('wallet', () => {
       const aeSdkOptions = {
         nodes: [{
           name: NETWORK_ID,
-          instance: new Node(NODE_URL),
+          instance: new Node(NODE_URL, { ignoreVersion: true }),
         }],
         compilerUrl: 'https://compiler.aepps.com',
       }

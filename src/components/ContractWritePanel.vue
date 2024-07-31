@@ -45,11 +45,10 @@ const route = useRoute()
 
 const response = ref([])
 const loadingIndex = ref(null)
+
 const isDisabled = computed(() => {
-  console.log('contractDetails.value', contractDetails.value)
   const connectedAddress = walletSdk ? Object.keys(walletSdk._accounts.current)[0] : null
-  return !walletSdk ||
-    contractDetails.value.createdBy !== connectedAddress
+  return !walletSdk || contractDetails.value.createdBy !== connectedAddress
 })
 
 async function getEntrypointResponse(aciItem, index, form) {

@@ -5,7 +5,7 @@ async function lazyLoadSentryIntegrations() {
   if (process.server) {
     return
   }
-
+  
   import("@sentry/browser").then((lazyLoadedSentry) => {
     Sentry.addIntegration(lazyLoadedSentry.replayIntegration());
   });

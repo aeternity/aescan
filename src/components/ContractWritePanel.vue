@@ -13,7 +13,7 @@
         </hint-tooltip>
       </div>
       <contract-entrypoint-accordion
-        :is-disabled="!walletSdk"
+        :is-disabled="isDisabled"
         :entrypoints="aciWriteEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
@@ -25,10 +25,14 @@
 
 <script setup>
 import { useContractVerifiedStore } from '@/stores/contractVerified'
+import { useContractDetailsStore } from '@/stores/contractDetails'
 import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()
+const contractDetailStore = useContractDetailsStore()
 const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
+const { contractDetails } = storeToRefs(contractDetailStore)
+
 const {
   fetchEntrypointResponse,
   parseArguments,
@@ -41,6 +45,12 @@ const route = useRoute()
 
 const response = ref([])
 const loadingIndex = ref(null)
+const isDisabled = computed(() => {
+  console.log('contractDetails.value', contractDetails.value)
+  const connectedAddress = walletSdk ? Object.keys(walletSdk._accounts.current)[0] : null
+  return !walletSdk ||
+    contractDetails.value.createdBy !== connectedAddress
+})
 
 async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index

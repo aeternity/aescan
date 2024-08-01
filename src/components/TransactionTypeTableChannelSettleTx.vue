@@ -26,12 +26,7 @@
             {{ transactionData.channel.initiator }}
           </app-link>
           /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.initiatorAmountFinal),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
@@ -46,12 +41,7 @@
             {{ transactionData.channel.responder }}
           </app-link>
           /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.responderAmountFinal),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-settle-tx__row">
@@ -74,7 +64,7 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

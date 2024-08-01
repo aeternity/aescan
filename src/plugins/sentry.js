@@ -1,17 +1,14 @@
 /* eslint-disable */
 import * as Sentry from '@sentry/vue'
-import { BrowserTracing } from '@sentry/tracing'
 
 async function lazyLoadSentryIntegrations() {
   if (process.server) {
     return
   }
 
-  const {Replay} = await import("@sentry/vue");
-  Sentry.addIntegration(new Replay({
-    maskAllText: false,
-    blockAllMedia: false,
-  }));
+  import("@sentry/browser").then((lazyLoadedSentry) => {
+    Sentry.addIntegration(lazyLoadedSentry.replayIntegration());
+  });
 }
 
 export default defineNuxtPlugin(({vueApp}) => {
@@ -31,12 +28,8 @@ export default defineNuxtPlugin(({vueApp}) => {
   Sentry.init({
     app: vueApp,
     dsn: SENTRY_DSN,
-    integrations: [
-      new BrowserTracing({
-        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-        tracingOrigins: [APP_DOMAIN, /^\//],
-      }),
-    ],
+    integrations: [Sentry.browserTracingIntegration({router})],
+    tracePropagationTargets: [APP_DOMAIN, /^\//],
 
     beforeSend: (event) => {
       if (window.location.hostname.startsWith('localhost')) {

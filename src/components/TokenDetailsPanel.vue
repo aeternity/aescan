@@ -40,7 +40,10 @@
             Price
           </th>
           <td>
-            {{ formatAePrice(tokenDetails.price) }} ({{ fiatPrice }})
+            <div class="token-details-panel__container">
+              <price-label :price="tokenDetails.price"/>
+              ({{ fiatPrice }})
+            </div>
           </td>
         </tr>
         <tr
@@ -64,7 +67,10 @@
             Total supply
           </th>
           <td>
-            {{ formatNumber(tokenDetails.totalSupply) }} {{ tokenDetails.symbol }}
+            <price-label
+              :price="tokenDetails.totalSupply"
+              :currency="tokenDetails.symbol"
+              :contract-id="tokenDetails.contractId"/>
           </td>
         </tr>
         <tr class="token-details-panel__row">
@@ -154,7 +160,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { formatAePrice, formatNumber } from '@/utils/format'
+import { formatNumber } from '@/utils/format'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
@@ -169,7 +175,7 @@ const props = defineProps({
 })
 
 const tokenMiddlewareUrl = computed(() =>
-  `${config.MIDDLEWARE_URL}/v2/aex9/${props.tokenDetails.contractId}`,
+  `${config.MIDDLEWARE_URL}/v3/aex9/${props.tokenDetails.contractId}`,
 )
 
 const tokenDexUrl = computed(() =>
@@ -202,6 +208,10 @@ const fiatPrice = computed(() =>
   &__link {
     display: inline-flex;
     align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 
   &__extensions {

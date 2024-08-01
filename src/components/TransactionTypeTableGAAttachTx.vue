@@ -75,9 +75,11 @@
           Gas Price
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          {{ formatNullable(transactionData.gas) }}
-          /
-          {{ formatAePrice(formatAettosToAe(transactionData.gasPrice), null) }}
+          <div class="transaction-type-panel-ga-attach-tx__container">
+            <price-label :price="transactionData.gas"/>
+            /
+            <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
+          </div>
         </td>
       </tr>
       <tr class="transaction-type-panel-ga-attach-tx__row">
@@ -95,9 +97,11 @@
           Gas Costs
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          {{ formatNullable(transactionData.gasUsed) }}
-          /
-          {{ formatNullable(formatAePrice(formatAettosToAe(gasCosts), null)) }}
+          <div class="transaction-type-panel-ga-attach-tx__container">
+            <price-label :price="transactionData.gasUsed"/>
+            /
+            <price-label :price="formatAettosToAe(gasCosts)"/>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -108,7 +112,7 @@
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import AppLink from '@/components/AppLink'
 import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
-import { formatAePrice, formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAettosToAe, formatNullable } from '@/utils/format'
 
 const props = defineProps({
   transactionData: {
@@ -142,6 +146,12 @@ const gasCosts = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--space-0);
   }
 }
 </style>

@@ -13,6 +13,8 @@ import {
   formatIsAuction,
   formatNameState,
   formatOutAmountIndex,
+  formatNumber,
+  formatPercentage,
   formatTemplateLimit,
   formatTokenLimit,
 } from '@/utils/format'
@@ -187,8 +189,10 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
       contractId: token.contractId,
       amount,
       value: tokenAePrice !== null
-        ? (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber()
-        : null,
+        ? `$${formatNumber(
+          (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber(),
+          null, null, 7)}`
+        : 'N/A',
     }
   })
   return {
@@ -438,13 +442,18 @@ export function adaptTokenEvents(events) {
 }
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
-  const formattedData = tokenHolders.data.map(holder => ({
-    address: holder.accountId,
-    amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
-    percentage: (new BigNumber(holder.amount)
-      .dividedBy(10 ** (tokenDetails.decimals - 2)))
-      .dividedBy(tokenDetails.totalSupply).toNumber(),
-  }))
+  const formattedData = tokenHolders.data
+    .map(holder => {
+      const percentage = (new BigNumber(holder.amount)
+        .dividedBy(10 ** (tokenDetails.decimals - 2)))
+        .dividedBy(tokenDetails.totalSupply).toNumber()
+      return {
+        address: holder.accountId,
+        contractId: holder.contractId,
+        amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
+        percentage: formatPercentage(percentage),
+      }
+    })
 
   return {
     next: tokenHolders.next,
@@ -559,7 +568,7 @@ export function adaptStateChannels(stateChannels) {
         initiator: channel.initiator,
         responder: channel.responder,
         updateCount: channel.updatesCount,
-        locked: formatAePrice(formatAettosToAe(channel.amount)),
+        locked: formatAettosToAe(channel.amount),
         updatedHeight: channel.lastUpdatedHeight,
         updated: DateTime.fromMillis(channel.lastUpdatedTime),
         lastTxType: channel.lastUpdatedTxType,
@@ -675,4 +684,54 @@ export function adaptTrades(trades, tradesTxs, decimals, price) {
     data: formattedData,
     prev: trades.prev,
   }
+}
+
+export function adaptMarketStatsGate(stats) {
+  return {
+    price: stats[0].last,
+    volume: stats[0].baseVolume,
+  }
+}
+
+export function adaptMarketStatsMexc(stats) {
+  return {
+    price: stats.lastPrice,
+    volume: stats.volume,
+  }
+}
+
+export function adaptMarketStatsCoinStore(stats) {
+  const tokenPair = stats.data.find(item => item.symbol === 'AEUSDT')
+  return {
+    price: tokenPair.close,
+    volume: tokenPair.volume,
+  }
+}
+
+export function adaptMarketStatsHotCoin(stats) {
+  const tokenPair = stats.ticker.find(item => item.symbol === 'ae_usdt')
+  return {
+    price: tokenPair.last,
+    volume: tokenPair.vol,
+  }
+}
+
+export function adaptMarketStatsCoinW(stats) {
+  return {
+    price: stats.data.aeUsdt.last,
+    volume: stats.data.aeUsdt.baseVolume,
+  }
+}
+
+export function adaptTopAccounts(topAccounts, distribution) {
+  return topAccounts
+    .slice(0, 100)
+    .map((account, index) => {
+      return {
+        rank: index + 1,
+        account: account.account,
+        balance: formatAePrice(formatAettosToAe(account.balance)),
+        percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
+      }
+    })
 }

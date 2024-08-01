@@ -13,7 +13,7 @@
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       placeholder="CUSTOM"
-      :input-class-name="`range-picker__input ${isRangeSelected ? 'range-picker__input--active' : ''}`"
+      :ui="{input: `range-picker__input ${isRangeSelected ? 'range-picker__input--active' : ''}`}"
       @update:model-value="$emit('updated', date)"/>
   </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
-  <app-chip
-    :variant="priceChipVariant">
+  <app-chip :variant="priceChipVariant">
     {{ priceChangeSign }}{{ formatNullable(delta) }} %
   </app-chip>
 </template>
+
 <script setup>
 const props = defineProps({
   delta: {
@@ -16,5 +16,15 @@ const priceChangeSign = computed(() => {
   return props.delta > 0 ? '+' : ''
 })
 
-const priceChipVariant = computed(() => props.delta >= 0 ? 'success' : 'error')
+const priceChipVariant = computed(() => {
+  if (props.delta > 0) {
+    return 'success'
+  }
+  if (props.delta < 0) {
+    return 'error'
+  }
+  if (props.delta === 0) {
+    return 'primary'
+  }
+})
 </script>

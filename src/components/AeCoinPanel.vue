@@ -39,7 +39,7 @@
             Total Supply
           </th>
           <td>
-            {{ formatNullable(formatAePrice(MAX_AE_DISTRIBUTION), 0) }}
+            <price-label :price="MAX_AE_DISTRIBUTION"/>
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
@@ -50,7 +50,7 @@
             Circulating Supply
           </th>
           <td>
-            {{ formatNullable(formatAePrice(totalTokenSupply), 0) }}
+            <price-label :price="totalTokenSupply"/>
           </td>
         </tr>
         <tr class="ae-coin-panel__row">
@@ -70,23 +70,24 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useMarketStatsStore } from '@/stores/marketStats'
-import { useBlockchainStatsStore } from '@/stores/blockchainStats'
-import { formatAePrice, formatNullable } from '@/utils/format'
+import { formatNullable } from '@/utils/format'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 
-const { price, priceChange } = storeToRefs(useMarketStatsStore())
-const { fetchMarketStats } = useMarketStatsStore()
-
-const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
-const { fetchTotalStats } = useBlockchainStatsStore()
-
-await useAsyncData(() => Promise.all([
-  fetchTotalStats(),
-  fetchMarketStats(),
-]))
+defineProps({
+  price: {
+    type: Number,
+    required: true,
+  },
+  priceChange: {
+    type: Number,
+    required: true,
+  },
+  totalTokenSupply: {
+    type: Number,
+    required: true,
+  },
+})
 
 </script>
 

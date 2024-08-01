@@ -763,3 +763,74 @@ export function adaptReadEntrypoints(aci) {
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
 }
+
+
+export function adaptTrades(trades, price) {
+
+  const formattedData = trades.data
+    .map(trade => {
+      const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
+      const toAmount = trade.toAmount / 10 ** trade.toDecimals
+      return {
+        toAmount,
+        fromAmount,
+
+        txHash: trade.txHash,
+        fromToken: trade.fromToken,
+        toToken: trade.toToken,
+
+        fromContract: trade.fromContract,
+        toContract: trade.toContract,
+
+        height: trade.height,
+        timestamp: DateTime.fromMillis(trade.microtime),
+
+        rate: formatRate(trade),
+        action: formatDexActionName(trade.fromContract, trade.toContract),
+
+        value: formatNumber(getAeValue(trade) * price),
+      }
+    })
+  return {
+    next: trades.next,
+    data: formattedData,
+    prev: trades.prev,
+  }
+}
+
+export function formatRate(trade) {
+  const { AE_TOKEN_ID } = useRuntimeConfig().public
+  if (trade.fromContract === AE_TOKEN_ID) {
+    return `${formatNumber(trade.fromAmount / trade.toAmount, 4)} WAE`
+  }
+
+  if (trade.toContract === AE_TOKEN_ID) {
+    return `${formatNumber(trade.toAmount / trade.fromAmount, 4)} WAE`
+  }
+  return null
+}
+
+export function getAeValue(trade) {
+  const { AE_TOKEN_ID } = useRuntimeConfig().public
+  if (trade.fromContract === AE_TOKEN_ID) {
+    return trade.fromAmount / (10 ** trade.fromDecimals)
+  }
+
+  if (trade.toContract === AE_TOKEN_ID) {
+    return trade.toAmount / (10 ** trade.toDecimals)
+  }
+
+  return null
+}
+
+export function formatDexActionName(fromContract, toContract) {
+  const { AE_TOKEN_ID } = useRuntimeConfig().public
+
+  if (fromContract === AE_TOKEN_ID) {
+    return 'BUY'
+  }
+  if (toContract === AE_TOKEN_ID) {
+    return 'SELL'
+  }
+  return 'SWAP'
+}

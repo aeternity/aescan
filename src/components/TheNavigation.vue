@@ -17,105 +17,106 @@
 <script setup>
 import { isDesktop } from '@/utils/screen'
 
-const menuOptions = ref([{
-  name: 'Blockchain',
-  isActive: false,
-  submenu: [
-    {
-      name: 'Accounts',
-      path: '/accounts',
-    },
-    {
-      name: 'Transactions',
-      path: '/transactions',
-    },
-    {
+const menuOptions = ref([
+  {
+    name: 'Blockchain',
+    isActive: false,
+    submenu: [
+      {
+        name: 'Accounts',
+        path: '/accounts',
+      },
+      {
+        name: 'Transactions',
+        path: '/transactions',
+      },
+      {
       name: 'Smart Contracts',
       path: '/contracts',
     },
     {
-      name: 'Names',
-      path: '/names',
-    },
-    {
+        name: 'Names',
+        path: '/names',
+      },
+      {
       name: 'Keyblocks',
       path: '/keyblocks',
     },
     {
       name: 'Nodes',
       path: '/nodes',
-    },
-    {
-      name: 'Oracles',
-      path: '/oracles',
-    },
-    {
-      name: 'State Channels',
-      path: '/state-channels',
-    },
-    {
-      name: 'Hyperchains',
-      path: '/hyperchains',
-      isDisabled: true,
-    },
-  ],
-},
-{
-  name: 'Tokens',
-  isActive: false,
-  submenu: [
-    {
-      name: 'AE Coin',
-      path: '/tokens/AE',
-    },
-    {
-      name: 'AEX9 Tokens',
-      path: '/tokens',
-    },
-    {
-      name: 'AEX141 Tokens (NFTs)',
-      path: '/nfts',
-    },
+      },
+      {
+        name: 'Oracles',
+        path: '/oracles',
+      },
+      {
+        name: 'State Channels',
+        path: '/state-channels',
+      },
+      {
+        name: 'Hyperchains',
+        path: '/hyperchains',
+        isDisabled: true,
+      },
+    ],
+  },
+  {
+    name: 'Tokens',
+    isActive: false,
+    submenu: [
+      {
+        name: 'AE Coin',
+        path: '/tokens/AE',
+      },
+      {
+        name: 'AEX9 Tokens',
+        path: '/tokens',
+      },
+      {
+        name: 'AEX141 Tokens (NFTs)',
+        path: '/nfts',
+      },
     {
       name: 'DEX Trades',
       path: '/dex-trades',
     },
-  ],
-},
-{
-  name: 'Developers',
-  isActive: false,
-  submenu: [
-    {
-      name: 'Smart Contract Verification',
-      path: '/contract-verification',
-    },
-  ],
-},
-{
-  name: 'Charts',
-  isActive: false,
-  submenu: [
-    {
-      name: 'Transactions',
-      path: '/charts/transactions',
-    },
-    {
-      name: 'Keyblocks',
-      path: '/charts/keyblocks',
-    },
-    {
-      name: 'Smart Contracts',
-      path: '/charts/contracts',
-    },
-    {
+    ],
+  },
+  {
+    name: 'Developers',
+    isActive: false,
+    submenu: [
+      {
+        name: 'Smart Contract Verification',
+        path: '/contract-verification',
+      },
+    ],
+  },
+  {
+    name: 'Charts',
+    isActive: false,
+    submenu: [
+      {
+        name: 'Transactions',
+        path: '/charts/transactions',
+      },
+      {
+        name: 'Keyblocks',
+        path: '/charts/keyblocks',
+      },
+      {
+        name: 'Smart Contracts',
+        path: '/charts/contracts',
+      },
+      {
       name: 'Accounts',
       path: '/charts/accounts',
     },
     {
-      name: 'Names',
-      path: '/charts/names',
-    },
+        name: 'Names',
+        path: '/charts/names',
+      },
     {
       name: 'Difficulty',
       path: '/charts/difficulty',
@@ -124,8 +125,8 @@ const menuOptions = ref([{
       name: 'Hashrate',
       path: '/charts/hashrate',
     },
-  ],
-}])
+    ],
+  }])
 
 function open(name) {
   menuOptions.value.find(item => item.name === name).isActive = true

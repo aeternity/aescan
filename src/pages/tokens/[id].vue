@@ -13,7 +13,7 @@
   <template v-if="!isLoading">
     <token-details-panel
       class="token-details__panel"
-      :token-details="tokenDetails"
+      :token-details="DexTrades"
       :token-holders-count="tokenHoldersCount"/>
 
     <app-tabs v-model="activeTabIndex">
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { useTokenDetailsStore } from '@/stores/tokenDetails'
+import { useDexTradesStore } from '@/stores/DexTrades'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 const route = useRoute()
@@ -69,7 +69,7 @@ const activeTabIndex = computed({
 })
 
 try {
-  await fetchTokenDetails(route.params.id)
+  await fetchDexTrades(route.params.id)
 } catch (error) {
   if ([400, 404].includes(error.response?.status)) {
     throw showError({

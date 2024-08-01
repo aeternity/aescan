@@ -2,215 +2,215 @@
   <app-panel class="contract-details-panel">
     <table>
       <tbody>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractId }}
-            </hint-tooltip>
-            Smart Contract ID
-          </th>
-          <td>
-            <div class="u-hidden-mobile">
-              <copy-chip :label="contractDetails.id"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(contractDetails.id)"
-                :clipboard-text="contractDetails.id"/>
-            </div>
-          </td>
-        </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractId }}
+          </hint-tooltip>
+          Smart Contract ID
+        </th>
+        <td>
+          <div class="u-hidden-mobile">
+            <copy-chip :label="contractDetails.id"/>
+          </div>
+          <div class="u-hidden-desktop">
+            <copy-chip
+              :label="formatEllipseHash(contractDetails.id)"
+              :clipboard-text="contractDetails.id"/>
+          </div>
+        </td>
+      </tr>
 
-        <tr
-          v-if="contractDetails.contractType"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.type }}
-            </hint-tooltip>
-            Type
-          </th>
-          <td>
-            <app-chip size="sm">
-              {{ contractDetails.contractType }}
-            </app-chip>
-          </td>
-        </tr>
+      <tr
+        v-if="contractDetails.contractType"
+        class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.type }}
+          </hint-tooltip>
+          Type
+        </th>
+        <td>
+          <app-chip size="sm">
+            {{ contractDetails.contractType }}
+          </app-chip>
+        </td>
+      </tr>
 
-        <tr
-          v-if="contractDetails.contractType"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.token }}
-            </hint-tooltip>
-            Token
-          </th>
-          <td>
-            <div class="contract-details-panel__container">
-              <app-link
-                v-if="contractDetails.contractType === 'AEX-9'"
-                :to="`/tokens/${contractDetails.id}`"
-                class="contract-details-panel__link">
-                <token-symbol-icon
-                  :contract-id="contractDetails.id"
-                  class="contract-details-panel__icon"/>
-                {{ contractDetails.tokenDetails.symbol }}
-                <not-available-label v-if="!contractDetails.tokenDetails.symbol"/>
-              </app-link>
-              <app-link
-                v-if="contractDetails.contractType === 'AEX-141'"
-                :to="`/nfts/${contractDetails.id}`">
-                {{ contractDetails.tokenDetails.name }}
-              </app-link>
-            </div>
-          </td>
-        </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractTxHash }}
-            </hint-tooltip>
-            Create Transaction
-          </th>
-          <td>
-            <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
+      <tr
+        v-if="contractDetails.contractType"
+        class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.token }}
+          </hint-tooltip>
+          Token
+        </th>
+        <td>
+          <div class="contract-details-panel__container">
+            <template
+              v-if="contractDetails.contractType === 'AEX-9'"
+              :to="`/tokens/${contractDetails.id}`"
+              class="contract-details-panel__link">
+              <token-symbol-icon
+                :contract-id="contractDetails.id"
+                class="contract-details-panel__icon"/>
+              {{ contractDetails.tokenDetails.symbol }}
+              <not-available-label v-if="!contractDetails.tokenDetails.symbol"/>
+            </template>
+            <app-link
+              v-if="contractDetails.contractType === 'AEX-141'"
+              :to="`/nfts/${contractDetails.id}`">
+              {{ contractDetails.tokenDetails.name }}
+            </app-link>
+          </div>
+        </td>
+      </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractTxHash }}
+          </hint-tooltip>
+          Create Transaction
+        </th>
+        <td>
+          <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
               <span class="u-hidden-mobile">
                 {{ contractDetails.createTransactionHash }}
               </span>
-              <span class="u-hidden-desktop">
+            <span class="u-hidden-desktop">
                 {{ formatEllipseHash(contractDetails.createTransactionHash) }}
               </span>
-            </app-link>
-          </td>
-        </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractCreatedHeight }}
-            </hint-tooltip>
-            Created Height
-          </th>
-          <td>
-            <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
-              {{ contractDetails.creationHeight }}
-            </app-link>
-          </td>
-        </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractCreated }}
-            </hint-tooltip>
-            Created
-          </th>
-          <td>
-            <timestamp-label
-              :timestamp="contractDetails.creationDate"
-              :is-extended="true"/>
-          </td>
-        </tr>
-        <tr
-          v-if="contractDetails.createdBy"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractCreator }}
-            </hint-tooltip>
-            Created By
-          </th>
-          <td>
-            <app-link :to="`/accounts/${contractDetails.createdBy}`">
+          </app-link>
+        </td>
+      </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractCreatedHeight }}
+          </hint-tooltip>
+          Created Height
+        </th>
+        <td>
+          <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
+            {{ contractDetails.creationHeight }}
+          </app-link>
+        </td>
+      </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractCreated }}
+          </hint-tooltip>
+          Created
+        </th>
+        <td>
+          <timestamp-label
+            :timestamp="contractDetails.creationDate"
+            :is-extended="true"/>
+        </td>
+      </tr>
+      <tr
+        v-if="contractDetails.createdBy"
+        class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractCreator }}
+          </hint-tooltip>
+          Created By
+        </th>
+        <td>
+          <app-link :to="`/accounts/${contractDetails.createdBy}`">
               <span class="u-hidden-mobile">
                 {{ contractDetails.createdBy }}
               </span>
-              <span class="u-hidden-desktop">
+            <span class="u-hidden-desktop">
                 {{ formatEllipseHash(contractDetails.createdBy) }}
               </span>
-            </app-link>
-          </td>
-        </tr>
-        <tr
-          v-if="contractDetails.bytecode"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.bytecode }}
-            </hint-tooltip>
-            Bytecode
-          </th>
-          <td>
-            <copy-chip
-              :label="formatEllipseHash(contractDetails.bytecode)"
-              :clipboard-text="contractDetails.bytecode"/>
-          </td>
-        </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractsAccount }}
-            </hint-tooltip>
-            Smart Contract’s Account
-          </th>
-          <td>
-            <app-link :to="`/accounts/${contractDetails.contractAccount}`">
+          </app-link>
+        </td>
+      </tr>
+      <tr
+        v-if="contractDetails.bytecode"
+        class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.bytecode }}
+          </hint-tooltip>
+          Bytecode
+        </th>
+        <td>
+          <copy-chip
+            :label="formatEllipseHash(contractDetails.bytecode)"
+            :clipboard-text="contractDetails.bytecode"/>
+        </td>
+      </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractsAccount }}
+          </hint-tooltip>
+          Smart Contract’s Account
+        </th>
+        <td>
+          <app-link :to="`/accounts/${contractDetails.contractAccount}`">
               <span class="u-hidden-mobile">
                 {{ contractDetails.contractAccount }}
               </span>
-              <span class="u-hidden-desktop">
+            <span class="u-hidden-desktop">
                 {{ formatEllipseHash(contractDetails.contractAccount) }}
               </span>
-            </app-link>
-          </td>
-        </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractsAccountBalance }}
-            </hint-tooltip>
-            Smart Contract's Account Balance
-          </th>
-          <td>
-            <price-label :price="0"/>
-          </td>
-        </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.contractCalls }}
-            </hint-tooltip>
-            Smart Contract Calls
-          </th>
-          <td>
-            {{ contractDetails.callsCount }}
-          </td>
-        </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
-            <hint-tooltip>
-              {{ contractsHints.apiLinks }}
-            </hint-tooltip>
-            API Links
-          </th>
-          <td>
-            <app-link
-              :to="contractNodeUrl"
-              class="contract-details-panel__link">
-              <app-icon
-                name="file-cloud"
-                :size="22"/>
-              Node
-            </app-link>
-            <app-link
-              :to="contractMiddlewareUrl"
-              class="contract-details-panel__link">
-              <app-icon
-                name="file-cloud"
-                :size="22"/>
-              Middleware
-            </app-link>
-          </td>
-        </tr>
+          </app-link>
+        </td>
+      </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractsAccountBalance }}
+          </hint-tooltip>
+          Smart Contract's Account Balance
+        </th>
+        <td>
+          <price-label :price="0"/>
+        </td>
+      </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.contractCalls }}
+          </hint-tooltip>
+          Smart Contract Calls
+        </th>
+        <td>
+          {{ contractDetails.callsCount }}
+        </td>
+      </tr>
+      <tr class="contract-details-panel__row">
+        <th class="contract-details-panel__table-header">
+          <hint-tooltip>
+            {{ contractsHints.apiLinks }}
+          </hint-tooltip>
+          API Links
+        </th>
+        <td>
+          <app-link
+            :to="contractNodeUrl"
+            class="contract-details-panel__link">
+            <app-icon
+              name="file-cloud"
+              :size="22"/>
+            Node
+          </app-link>
+          <app-link
+            :to="contractMiddlewareUrl"
+            class="contract-details-panel__link">
+            <app-icon
+              name="file-cloud"
+              :size="22"/>
+            Middleware
+          </app-link>
+        </td>
+      </tr>
       </tbody>
     </table>
   </app-panel>

@@ -13,7 +13,7 @@
   <template v-if="!isLoading">
     <token-details-panel
       class="token-details__panel"
-      :token-details="tokenDetails"/>
+      :token-details="DexTrades"/>
 
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Holders">
@@ -28,15 +28,15 @@
 </template>
 
 <script setup>
-import { useTokenDetailsStore } from '@/stores/tokenDetails'
+import { useDexTradesStore } from '@/stores/DexTrades'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const tokenDetailsStore = useTokenDetailsStore()
-const { tokenDetails } = storeToRefs(tokenDetailsStore)
-const { fetchTokenDetails } = tokenDetailsStore
+const DexTradesStore = useDexTradesStore()
+const { DexTrades } = storeToRefs(DexTradesStore)
+const { fetchDexTrades } = DexTradesStore
 
 const { isLoading } = useLoading()
 const TAB_KEYS = ['holders', 'events']
@@ -68,7 +68,7 @@ const activeTabIndex = computed({
 })
 
 try {
-  await fetchTokenDetails(route.params.id)
+  await fetchDexTrades(route.params.id)
 } catch (error) {
   if ([400, 404].includes(error.response?.status)) {
     throw showError({

@@ -14,6 +14,8 @@ import {
   formatTemplateLimit,
   formatTokenLimit,
   formatTradeRate,
+  formatTradeAction,
+  formatTradeRate,
 } from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
@@ -766,14 +768,13 @@ export function adaptWriteEntrypoints(aci) {
 
 
 export function adaptTrades(trades, price) {
-  console.log('trades', trades)
   const formattedData = trades.data
     .map(trade => {
       const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
       const toAmount = trade.toAmount / 10 ** trade.toDecimals
       return {
-        toAmount,
         fromAmount,
+        toAmount,
 
         txHash: trade.txHash,
         fromToken: trade.fromToken,
@@ -785,10 +786,10 @@ export function adaptTrades(trades, price) {
         height: trade.height,
         timestamp: DateTime.fromMillis(trade.microtime),
 
-        rate: formatRate(trade),
-        action: formatDexActionName(trade.fromContract, trade.toContract),
+        rate: formatTradeRate(fromAmount, toAmount, trade.fromContract, trade.toContract),
+        action: formatTradeAction(trade.fromContract, trade.toContract),
 
-        value: formatNumber(getAeValue(trade) * price),
+        value: formatNumber(formatTradeValue(fromAmount, toAmount, trade.fromContract, trade.toContract, price)),
       }
     })
   return {
@@ -798,46 +799,4 @@ export function adaptTrades(trades, price) {
   }
 }
 
-// todo reuse values
-// todo save functions
-export function formatRate(trade) {
-  const { AE_TOKEN_ID } = useRuntimeConfig().public
-  if (trade.fromContract === AE_TOKEN_ID) {
-    return `${formatNumber(
-      (trade.fromAmount / (10 ** trade.fromDecimals)) / (trade.toAmount / (10 ** trade.toDecimals)),
-      4)} WAE`
-  }
 
-  if (trade.toContract === AE_TOKEN_ID) {
-    return `${formatNumber(
-      (trade.toAmount / (10 ** trade.toDecimals)) / (trade.fromAmount / (10 ** trade.fromDecimals)),
-      4)} WAE`
-  }
-  return null
-}
-
-export function getAeValue(trade) {
-  const { AE_TOKEN_ID } = useRuntimeConfig().public
-
-  if (trade.fromContract === AE_TOKEN_ID) {
-    return trade.fromAmount / (10 ** trade.fromDecimals)
-  }
-
-  if (trade.toContract === AE_TOKEN_ID) {
-    return trade.toAmount / (10 ** trade.toDecimals)
-  }
-
-  return null
-}
-
-export function formatDexActionName(fromContract, toContract) {
-  const { AE_TOKEN_ID } = useRuntimeConfig().public
-
-  if (fromContract === AE_TOKEN_ID) {
-    return 'BUY'
-  }
-  if (toContract === AE_TOKEN_ID) {
-    return 'SELL'
-  }
-  return 'SWAP'
-}

@@ -7,6 +7,8 @@ import {
   NUMBER_FRACTION_THRESHOLD,
   REVOKED_PERIOD,
 } from '@/utils/constants'
+import { useRuntimeConfig } from "nuxt/app";
+
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)

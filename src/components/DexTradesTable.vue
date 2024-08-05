@@ -59,9 +59,16 @@
           :has-link="true"/>
       </td>
       <td>
+        <not-available-label v-if="!trade.rate"/>
+
         {{ trade.rate }}
       </td>
-      <td>$ {{ trade.value }}</td>
+      <td>
+        <not-available-label v-if="trade.value === '0'"/>
+        <template v-else>
+          $ {{ trade.value }}
+        </template>
+      </td>
     </tr>
   </table>
 </template>
@@ -69,7 +76,7 @@
 <script setup>
 defineProps({
   trades: {
-    type: Array,
+    type: Object,
     required: true,
   },
 })

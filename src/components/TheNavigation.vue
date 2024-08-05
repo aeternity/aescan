@@ -79,7 +79,7 @@ const menuOptions = ref([
       },
     {
       name: 'DEX Trades',
-      path: '/dex-trades',
+        path: '/dex-trades',
     },
     ],
   },

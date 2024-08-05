@@ -2,12 +2,11 @@
   <Head>
     <Title>Dex Tracker</Title>
   </Head>
-  <!--  todo hint-->
 
   <page-header>
-    Dex Tracker
+    Dex Trades
     <template #tooltip>
-      {{ tokensHints.token }}
+      {{ dexTradesHints.dexTrades }}
     </template>
   </page-header>
 
@@ -17,7 +16,7 @@
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
-import { tokensHints } from '@/utils/hints/tokensHints'
+import { dexTradesHints } from "@/utils/hints/dexTradesHints";
 
 const { isLoading } = useLoading()
 </script>

@@ -1,6 +1,5 @@
 <template>
-  <table>
-    <!--    todo test-->
+  <table class="dex-trades-table">
     <tr>
       <th>
         Hash

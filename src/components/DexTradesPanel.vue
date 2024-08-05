@@ -11,7 +11,7 @@
   </app-panel>
 </template>
 <script setup>
-import { useDexTradesStore } from '@/stores/DexTrades'
+import { useDexTradesStore } from '@/stores/dexTrades'
 
 const dexTradesStore = useDexTradesStore()
 const { trades } = storeToRefs(dexTradesStore)

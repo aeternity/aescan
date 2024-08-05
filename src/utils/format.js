@@ -7,6 +7,8 @@ import {
   NUMBER_FRACTION_THRESHOLD,
   REVOKED_PERIOD,
 } from '@/utils/constants'
+import { useRuntimeConfig } from "nuxt/app";
+
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
@@ -177,4 +179,46 @@ export function formatKnownAddress(hash, isEllipsed = true) {
   } else {
     return hash
   }
+}
+
+
+export function formatTradeRate(fromAmount, toAmount, fromContract, toContract) {
+  const { AE_TOKEN_ID } = useRuntimeConfig().public
+  if (fromContract === AE_TOKEN_ID) {
+    return `${formatNumber(
+      (fromAmount / toAmount),
+      4)} WAE`
+  }
+
+  if (toContract === AE_TOKEN_ID) {
+    return `${formatNumber(
+      (toAmount / fromAmount),
+      4)} WAE`
+  }
+  return null
+}
+
+export function formatTradeValue(fromAmount, toAmount, fromContract, toContract, price) {
+  const { AE_TOKEN_ID } = useRuntimeConfig().public
+  if (fromContract === AE_TOKEN_ID) {
+    return fromAmount * price
+  }
+
+  if (toContract === AE_TOKEN_ID) {
+    return toAmount * price
+  }
+
+  return null
+}
+
+export function formatTradeAction(fromContract, toContract) {
+  const { AE_TOKEN_ID } = useRuntimeConfig().public
+  if (fromContract === AE_TOKEN_ID) {
+    return 'BUY'
+  }
+  if (toContract === AE_TOKEN_ID) {
+    return 'SELL'
+  }
+
+  return 'SWAP'
 }

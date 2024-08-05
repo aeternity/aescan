@@ -1,6 +1,5 @@
 <template>
   <table>
-    <!--    todo mobile view-->
     <!--    todo test-->
     <tr>
       <th>

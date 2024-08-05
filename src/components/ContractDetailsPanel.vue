@@ -48,7 +48,7 @@
         </th>
         <td>
           <div class="contract-details-panel__container">
-            <template
+            <app-link
               v-if="contractDetails.contractType === 'AEX-9'"
               :to="`/tokens/${contractDetails.id}`"
               class="contract-details-panel__link">
@@ -57,7 +57,7 @@
                 class="contract-details-panel__icon"/>
               {{ contractDetails.tokenDetails.symbol }}
               <not-available-label v-if="!contractDetails.tokenDetails.symbol"/>
-            </template>
+            </app-link>
             <app-link
               v-if="contractDetails.contractType === 'AEX-141'"
               :to="`/nfts/${contractDetails.id}`">

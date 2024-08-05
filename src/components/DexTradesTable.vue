@@ -55,19 +55,16 @@
           :link-to="`/transactions/${trade.txHash}`"
           :hash="trade.txHash"/>
       </td>
-
       <td>
         <block-time-cell
           :height="trade.height"
           :timestamp="trade.timestamp"/>
       </td>
       <td>
-
         <app-chip :variant="getChipVariant(trade.action)">
           {{ trade.action }}
         </app-chip>
       </td>
-
       <td>
         <price-label
           :contract-id="trade.fromContract"
@@ -75,9 +72,6 @@
           :price="trade.fromAmount"
           :max-digits="4"
           :has-link="true"/>
-      </td>
-      <td>
-        <transaction-arrow-right-icon/>
       </td>
       <td>
         <price-label

@@ -766,7 +766,7 @@ export function adaptWriteEntrypoints(aci) {
 
 
 export function adaptTrades(trades, price) {
-
+  console.log('trades', trades)
   const formattedData = trades.data
     .map(trade => {
       const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
@@ -798,20 +798,27 @@ export function adaptTrades(trades, price) {
   }
 }
 
+// todo reuse values
+// todo save functions
 export function formatRate(trade) {
   const { AE_TOKEN_ID } = useRuntimeConfig().public
   if (trade.fromContract === AE_TOKEN_ID) {
-    return `${formatNumber(trade.fromAmount / trade.toAmount, 4)} WAE`
+    return `${formatNumber(
+      (trade.fromAmount / (10 ** trade.fromDecimals)) / (trade.toAmount / (10 ** trade.toDecimals)),
+      4)} WAE`
   }
 
   if (trade.toContract === AE_TOKEN_ID) {
-    return `${formatNumber(trade.toAmount / trade.fromAmount, 4)} WAE`
+    return `${formatNumber(
+      (trade.toAmount / (10 ** trade.toDecimals)) / (trade.fromAmount / (10 ** trade.fromDecimals)),
+      4)} WAE`
   }
   return null
 }
 
 export function getAeValue(trade) {
   const { AE_TOKEN_ID } = useRuntimeConfig().public
+
   if (trade.fromContract === AE_TOKEN_ID) {
     return trade.fromAmount / (10 ** trade.fromDecimals)
   }

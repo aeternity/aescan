@@ -1,12 +1,13 @@
 <template>
   <div class="price-label">
-    <app-link :to="`/contracts/${contractId}`">
+    <app-link
+      v-if="hasLink"
+      :to="`/contracts/${contractId}`">
       <token-symbol-icon
         v-if="hasIcon"
         class="price-label__icon"
         :contract-id="contractId"/>
     </app-link>
-
     <app-tooltip v-if="isPriceRounded">
       {{ priceRounded }}
       <app-link

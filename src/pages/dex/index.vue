@@ -11,12 +11,13 @@
     </template>
   </page-header>
 
-  <dex-trades-panel/>
-  <!--  <loading-panel v-else/>-->
+  <dex-trades-panel v-if="!isLoading"/>
+  <loading-panel v-else/>
 </template>
 
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import { tokensHints } from '@/utils/hints/tokensHints'
-// const { isLoading } = useLoading()
+
+const { isLoading } = useLoading()
 </script>

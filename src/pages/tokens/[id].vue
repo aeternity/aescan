@@ -22,6 +22,9 @@
       <app-tab title="Events">
         <token-events-panel/>
       </app-tab>
+      <app-tab title="Trades">
+        <token-trades-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -39,7 +42,7 @@ const { tokenDetails } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
 const { isLoading } = useLoading()
-const TAB_KEYS = ['holders', 'events']
+const TAB_KEYS = ['holders', 'events', 'trades']
 
 const activeTabIndex = computed({
   get() {

@@ -1,6 +1,7 @@
 <template>
   <app-panel class="token-holders-panel">
     <paginated-content
+      :total-count="tokenHoldersCount"
       :entities="tokenHolders"
       @prev-clicked="loadPrevHolders"
       @next-clicked="loadNextHolders">
@@ -28,8 +29,8 @@ import TokenHoldersTableCondensed from '@/components/TokenHoldersTableCondensed'
 import PaginatedContent from '@/components/PaginatedContent'
 
 const tokenDetailsStore = useTokenDetailsStore()
-const { fetchTokenHolders } = tokenDetailsStore
-const { tokenHolders, tokenDetails } = storeToRefs(tokenDetailsStore)
+const { fetchTokenHolders, fetchTokenHoldersCount } = tokenDetailsStore
+const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
 
 function loadPrevHolders() {
   fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
@@ -44,5 +45,6 @@ if (process.client) {
   fetchTokenHolders({
     limit: limit.value,
   })
+  fetchTokenHoldersCount()
 }
 </script>

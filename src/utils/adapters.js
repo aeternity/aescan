@@ -3,13 +3,9 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
 import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import {
-  formatAeContractArgumentIndex,
-  formatAeContractIndex,
   formatAettosToAe,
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
-  formatDexActionName,
-  formatInAmountIndex,
   formatIsAuction,
   formatIsStatefulEntrypoint,
   formatNameState,
@@ -698,6 +694,7 @@ export function adaptMarketStatsCoinW(stats) {
     volume: stats.data.aeUsdt.baseVolume,
   }
 }
+
 
 export function adaptTopAccounts(topAccounts, distribution) {
   return topAccounts

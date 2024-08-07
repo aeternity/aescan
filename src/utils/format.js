@@ -193,7 +193,7 @@ export function formatTradeRate(action, fromAmount, toAmount) {
 
   if (action === 'SELL') {
     return `${formatNumber((toAmount / fromAmount), 4)} WAE`
-  }
+}
   return null
 }
 

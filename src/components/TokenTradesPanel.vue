@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel class="token-trades-panel">
     <paginated-content
       :entities="trades"
       pagination-style="history"

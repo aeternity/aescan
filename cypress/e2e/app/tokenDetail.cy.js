@@ -7,6 +7,9 @@ describe('token detail', () => {
 
     cy.contains('.tabs__item', 'Events').click()
     cy.get('.token-events-panel .paginated-content').should('be.visible')
+
+    cy.contains('.tabs__item', 'Events').click()
+    cy.get('.token-trades-panel .paginated-content').should('be.visible')
   })
 
   it('should display token not found', () => {

@@ -680,3 +680,25 @@ export function adaptTopAccounts(topAccounts, distribution) {
       }
     })
 }
+
+
+export function adaptKeyblocks(keyblocks) {
+  const formattedData = keyblocks.data
+    .map(keyblock => {
+      return {
+        hash: keyblock.hash,
+        block: keyblock.height,
+        time: DateTime.fromMillis(keyblock.time),
+        miner: keyblock.miner,
+        microBlocksCount: keyblock.microBlocksCount,
+        transactionsCount: keyblock.transactionsCount,
+        beneficiary: keyblock.beneficiary,
+        info: decode(keyblock.info),
+      }
+    })
+  return {
+    next: keyblocks.next,
+    data: formattedData,
+    prev: keyblocks.prev,
+  }
+}

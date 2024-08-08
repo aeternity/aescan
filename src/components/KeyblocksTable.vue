@@ -15,13 +15,13 @@
           </hint-tooltip>
         </th>
         <th>
-          Tx count
+          Transactions Count
           <hint-tooltip>
             {{ keyblocksHints.transactionData }}
           </hint-tooltip>
         </th>
         <th>
-          MicroBlocks Count
+          Microblocks Count
           <hint-tooltip>
             {{ keyblocksHints.transactionData }}
           </hint-tooltip>

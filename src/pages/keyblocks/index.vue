@@ -4,14 +4,9 @@
   </Head>
 
   <page-header>
-    Smart Contracts
+    Keyblocks
     <template #tooltip>
       {{ keyblocksHints.contract }}
-      <!--      <app-link-->
-      <!--        variant="primary"-->
-      <!--        to="https://docs.aeternity.com/protocol/contracts/">-->
-      <!--        Learn more-->
-      <!--      </app-link>-->
     </template>
   </page-header>
 

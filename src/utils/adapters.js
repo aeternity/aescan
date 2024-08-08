@@ -683,6 +683,7 @@ export function adaptTopAccounts(topAccounts, distribution) {
 
 
 export function adaptKeyblocks(keyblocks) {
+  console.log('keyblocks', keyblocks)
   const formattedData = keyblocks.data
     .map(keyblock => {
       return {
@@ -693,7 +694,6 @@ export function adaptKeyblocks(keyblocks) {
         microBlocksCount: keyblock.microBlocksCount,
         transactionsCount: keyblock.transactionsCount,
         beneficiary: keyblock.beneficiary,
-        info: decode(keyblock.info),
       }
     })
   return {

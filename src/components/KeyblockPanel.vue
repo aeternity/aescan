@@ -9,7 +9,9 @@
       <keyblocks-table
         class="u-hidden-mobile"
         :keyblocks="keyblocks"/>
-
+      <keyblocks-table-condensed
+        class="u-hidden-desktop"
+        :keyblocks="keyblocks"/>
     </paginated-content>
   </app-panel>
 </template>

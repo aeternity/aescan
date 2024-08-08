@@ -1,8 +1,12 @@
 <template>
   <app-panel>
-    <paginated-content :entities="keyblocks">
+    <paginated-content
+      :entities="keyblocks"
+      :total-count="keyblocksCount"
+      v-model:page-index="pageIndex"
+      @prev-clicked="loadPrevKeyblocks"
+      @next-clicked="loadNextKeyblocks">
       <keyblocks-table
-        v-if="keyblocks"
         class="u-hidden-mobile"
         :keyblocks="keyblocks"/>
 
@@ -13,13 +17,32 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useKeyblockStore } from "@/stores/keyblocks";
+import { computed, ref } from "vue";
+import { isDesktop } from "~/utils/screen";
 
 const keyblockStore = useKeyblockStore()
 const { fetchKeyblocks } = keyblockStore
-const { keyblocks } = storeToRefs(keyblockStore)
+const { keyblocks, keyblocksCount } = storeToRefs(keyblockStore)
 
-await useAsyncData(async () => {
-  await fetchKeyblocks()
-  return true
-})
+const limit = computed(() => isDesktop() ? 10 : 3)
+const pageIndex = ref(1)
+
+async function loadPrevKeyblocks() {
+  await fetchKeyblocks({
+    queryParameters: keyblocks.value.prev,
+  })
+}
+
+async function loadNextKeyblocks() {
+  await fetchKeyblocks({
+    queryParameters: keyblocks.value.next,
+  })
+}
+
+
+if (process.client) {
+  fetchKeyblocks({ limit: limit.value })
+}
+
+
 </script>

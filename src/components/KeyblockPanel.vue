@@ -1,7 +1,16 @@
 <template>
   <app-panel>
-    {{ keyblocks }}
-    AAA
+    <!--    <paginated-content-->
+    <!--      :entities="keyblocks"-->
+    <!--    >-->
+    <!--naming detail vs index-->
+    <!--    keyblocks-->
+    <keyblocks-table
+      v-if="keyblocks"
+      class="u-hidden-mobile"
+      :keyblocks="keyblocks"/>
+
+    <!--    </paginated-content>-->
   </app-panel>
 </template>
 

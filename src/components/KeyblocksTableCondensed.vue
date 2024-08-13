@@ -1,7 +1,7 @@
 <template>
   <div class="keyblocks-table-condensed">
     <table
-      v-for="(keyblock, index) in keyblock?.data"
+      v-for="(keyblock, index) in keyblocks.data"
       :key="index"
       class="keyblocks-table-condensed__table">
       <tbody>
@@ -10,7 +10,7 @@
             <app-tooltip>
               Block
               <template #tooltip>
-                {{ accountHints.activityHash }}
+                {{ keyblocksHints.keyblockHash }}
               </template>
             </app-tooltip>
           </th>
@@ -25,7 +25,7 @@
             <app-tooltip>
               <time-toggle-button/>
               <template #tooltip>
-                {{ accountHints.activityTime }}
+                {{ keyblocksHints.time }}
               </template>
             </app-tooltip>
           </th>
@@ -40,7 +40,7 @@
             <app-tooltip>
               Transactions Count
               <template #tooltip>
-                {{ accountHints.activityType }}
+                {{ keyblocksHints.transactionsCount }}
               </template>
             </app-tooltip>
           </th>
@@ -53,7 +53,7 @@
             <app-tooltip>
               Microblocks Count
               <template #tooltip>
-                {{ accountHints.activityMeaning }}
+                {{ keyblocksHints.microblockCount }}
               </template>
             </app-tooltip>
           </th>
@@ -66,14 +66,15 @@
             <app-tooltip>
               Fee Recipient
               <template #tooltip>
-                {{ accountHints.activityData }}
+                {{ keyblocksHints.beneficiary }}
               </template>
             </app-tooltip>
           </th>
+
           <td class="keyblocks-table-condensed__data">
-            <account-activity-data-cell
-              :account-details="accountDetails"
-              :activity="activity"/>
+            <value-hash-ellipsed
+              :hash="keyblock.beneficiary"
+              :link-to="`/accounts/${keyblock.beneficiary}`"/>
           </td>
         </tr>
       </tbody>
@@ -82,9 +83,8 @@
 </template>
 
 <script setup>
-import AccountActivityDataCell from '@/components/AccountActivityDataCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { accountHints } from '@/utils/hints/accountHints'
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppTooltip from '@/components/AppTooltip'
 
 defineProps({

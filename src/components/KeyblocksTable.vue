@@ -4,34 +4,32 @@
       <tr>
         <th>
           Block
-          <!--          todo hints-->
-          <!--          todo test-->
           <hint-tooltip>
-            {{ keyblocksHints.transactionHash }}
+            {{ keyblocksHints.keyblockHash }}
           </hint-tooltip>
         </th>
         <th>
           <time-toggle-button/>
           <hint-tooltip>
-            {{ keyblocksHints.transactionTime }}
+            {{ keyblocksHints.time }}
           </hint-tooltip>
         </th>
         <th>
           Transactions Count
           <hint-tooltip>
-            {{ keyblocksHints.transactionData }}
+            {{ keyblocksHints.transactionsCount }}
           </hint-tooltip>
         </th>
         <th>
           Microblocks Count
           <hint-tooltip>
-            {{ keyblocksHints.transactionData }}
+            {{ keyblocksHints.microblockCount }}
           </hint-tooltip>
         </th>
         <th>
           Fee Recipient
           <hint-tooltip>
-            {{ keyblocksHints.transactionData }}
+            {{ keyblocksHints.beneficiary }}
           </hint-tooltip>
         </th>
       </tr>

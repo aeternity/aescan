@@ -21,8 +21,6 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/PageHeader'
-import OraclesPanel from '@/components/OraclesPanel'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const { isLoading } = useLoading()

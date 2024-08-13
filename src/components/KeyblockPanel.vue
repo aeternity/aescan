@@ -20,7 +20,7 @@
 import { storeToRefs } from 'pinia'
 import { useKeyblockStore } from "@/stores/keyblocks";
 import { computed, ref } from "vue";
-import { isDesktop } from "~/utils/screen";
+import { isDesktop } from "@/utils/screen";
 
 const keyblockStore = useKeyblockStore()
 const { fetchKeyblocks } = keyblockStore

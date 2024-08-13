@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { keyblocksHints } from "~/utils/hints/keyblocksHints";
+import { keyblocksHints } from "@/utils/hints/keyblocksHints";
 
 const { isLoading } = useLoading()
 </script>

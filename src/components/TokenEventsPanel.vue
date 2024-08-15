@@ -25,7 +25,7 @@ import TokenEventsTable from '@/components/TokenEventsTable.vue'
 import TokenEventsTableCondensed from '@/components/TokenEventsTableCondensed.vue'
 
 const { tokenEvents, tokenEventsCount } = storeToRefs(useTokenDetailsStore())
-const { fetchTokenEvents } = useTokenDetailsStore()
+const { fetchTokenEvents, fetchTokenEventsCount } = useTokenDetailsStore()
 const route = useRoute()
 
 function loadPrevEvents() {
@@ -35,6 +35,8 @@ function loadPrevEvents() {
 function loadNextEvents() {
   fetchTokenEvents({ queryParameters: tokenEvents.value.next })
 }
+
+await fetchTokenEventsCount(route.params.id)
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)

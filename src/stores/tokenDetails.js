@@ -66,6 +66,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   async function fetchToken() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
     rawToken.value = data
+    tokenEventsCount.value = data.logsCount
   }
 
   async function fetchTotalSupply() {
@@ -84,11 +85,6 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     rawTokenEvents.value = data
   }
 
-  async function fetchTokenEventsCount(contractId) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId}/logs-count`)
-    tokenEventsCount.value = data.data
-  }
-
   async function fetchTokenHolders({ queryParameters, limit } = {}) {
     rawTokenHolders.value = null
     const defaultParameters = `/v3/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
@@ -100,11 +96,9 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     fetchTokenDetails,
     fetchTokenHolders,
     fetchTokenEvents,
-    fetchTokenEventsCount,
     tokenDetails,
     tokenHolders,
     tokenEvents,
     tokenEventsCount,
   }
-},
-)
+})

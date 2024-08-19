@@ -42,7 +42,7 @@ export const useOraclesStore = defineStore('oracles', () => {
 
   async function fetchOraclesCount() {
     rawOraclesCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/totalstats?limit=1`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total?limit=1`)
     rawOraclesCount.value = data.data[0]
   }
 

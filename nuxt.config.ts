@@ -6,24 +6,30 @@ import { sentryVitePlugin } from '@sentry/vite-plugin'
 export default defineNuxtConfig({
   srcDir: './src',
   css: ['@/assets/styles/main.css'],
+
   devServer: {
     port: 8080,
   },
+
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
   ],
+
   imports: {
     dirs: ['./stores'],
   },
+
   plausible: {
     apiHost: 'https://plausible.dev.service.aepps.com',
     trackLocalhost: false,
   },
+
   appConfig: {
     APP_VERSION: process.env.APP_VERSION,
   },
+
   runtimeConfig: {
     public: {
       SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
@@ -42,6 +48,7 @@ export default defineNuxtConfig({
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
     },
   },
+
   postcss: {
     plugins: {
       autoprefixer: {},
@@ -53,7 +60,9 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+
   sourcemap: true,
+
   vite: {
     build: { target: 'es2020' },
     optimizeDeps: {
@@ -95,10 +104,13 @@ export default defineNuxtConfig({
       }),
     ],
   },
+
   monacoEditor: {
     locale: 'en',
     componentName: {
       codeEditor: 'MonacoEditor',
     },
   },
+
+  compatibilityDate: '2024-08-19',
 })

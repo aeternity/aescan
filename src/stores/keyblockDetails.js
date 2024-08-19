@@ -44,7 +44,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
 
   async function fetchKeyblockDeltaStats(keyblockHeight) {
     keyblockDeltaStats.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/deltastats?scope=gen:${keyblockHeight}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/delta?scope=gen:${keyblockHeight}`)
     keyblockDeltaStats.value = data.data[0]
   }
 

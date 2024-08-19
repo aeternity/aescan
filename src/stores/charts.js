@@ -20,7 +20,7 @@ export const useChartsStore = defineStore('charts', () => {
 
     const typeSlug = txType ? '&tx_type=' + txType : ''
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions${intervalSlug + typeSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/transactions${intervalSlug + typeSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
     transactionsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
@@ -33,8 +33,7 @@ export const useChartsStore = defineStore('charts', () => {
       ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/blocks${intervalSlug}`)
-
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/blocks${intervalSlug}`)
     // remove last interval from the response not to show current interval that is being built
     keyblocksStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }
@@ -46,7 +45,7 @@ export const useChartsStore = defineStore('charts', () => {
       ? `&min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `&interval_by=${interval}&limit=${parseInt(limit) + 1}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/transactions?tx_type=contract_call${intervalSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/transactions?tx_type=contract_call${intervalSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
     contractsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
@@ -59,7 +58,7 @@ export const useChartsStore = defineStore('charts', () => {
       ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
       : `?interval_by=${interval}&limit=${limit}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/statistics/names${intervalSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/names${intervalSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
     namesStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()

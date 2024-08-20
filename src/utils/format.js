@@ -182,15 +182,15 @@ export function formatKnownAddress(hash, isEllipsed = true) {
 }
 
 
-export function formatTradeRate(fromAmount, toAmount, fromContract, toContract) {
+export function formatTradeRate(action, fromAmount, toAmount) {
   const { AE_TOKEN_ID } = useRuntimeConfig().public
-  if (fromContract === AE_TOKEN_ID) {
+  if (action === 'BUY') {
     return `${formatNumber(
       (fromAmount / toAmount),
       4)} WAE`
   }
 
-  if (toContract === AE_TOKEN_ID) {
+  if (action === 'SELL') {
     return `${formatNumber(
       (toAmount / fromAmount),
       4)} WAE`
@@ -198,27 +198,15 @@ export function formatTradeRate(fromAmount, toAmount, fromContract, toContract) 
   return null
 }
 
-export function formatTradeValue(fromAmount, toAmount, fromContract, toContract, price) {
-  const { AE_TOKEN_ID } = useRuntimeConfig().public
-  if (fromContract === AE_TOKEN_ID) {
+export function formatTradeValue(action, fromAmount, toAmount, price) {
+  if (action === 'BUY') {
     return fromAmount * price
   }
 
-  if (toContract === AE_TOKEN_ID) {
+  if (action === 'SELL') {
     return toAmount * price
   }
 
   return null
 }
 
-export function formatTradeAction(fromContract, toContract) {
-  const { AE_TOKEN_ID } = useRuntimeConfig().public
-  if (fromContract === AE_TOKEN_ID) {
-    return 'BUY'
-  }
-  if (toContract === AE_TOKEN_ID) {
-    return 'SELL'
-  }
-
-  return 'SWAP'
-}

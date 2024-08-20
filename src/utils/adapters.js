@@ -12,7 +12,6 @@ import {
   formatPercentage,
   formatTemplateLimit,
   formatTokenLimit,
-  formatTradeAction,
   formatTradeRate,
 } from '@/utils/format'
 
@@ -685,30 +684,29 @@ export function adaptTopAccounts(topAccounts, distribution) {
 
 
 export function adaptTrades(trades, price) {
-  const formattedData = trades.data
-    .map(trade => {
-      const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
-      const toAmount = trade.toAmount / 10 ** trade.toDecimals
-      return {
-        fromAmount,
-        toAmount,
+  const formattedData = trades.data.map(trade => {
+    const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
+    const toAmount = trade.toAmount / 10 ** trade.toDecimals
+    return {
+      fromAmount,
+      toAmount,
 
-        txHash: trade.txHash,
-        fromToken: trade.fromToken,
-        toToken: trade.toToken,
+      txHash: trade.txHash,
+      fromToken: trade.fromToken,
+      toToken: trade.toToken,
 
-        fromContract: trade.fromContract,
-        toContract: trade.toContract,
+      fromContract: trade.fromContract,
+      toContract: trade.toContract,
 
-        height: trade.height,
-        timestamp: DateTime.fromMillis(trade.microtime),
+      height: trade.height,
+      timestamp: DateTime.fromMillis(trade.microtime),
 
-        rate: formatTradeRate(fromAmount, toAmount, trade.fromContract, trade.toContract),
-        action: formatTradeAction(trade.fromContract, trade.toContract),
+      rate: formatTradeRate(trade.action, fromAmount, toAmount),
+      action: trade.action,
 
-        value: formatNumber(formatTradeValue(fromAmount, toAmount, trade.fromContract, trade.toContract, price)),
-      }
-    })
+      value: formatNumber(formatTradeValue(trade.action, fromAmount, toAmount, price)),
+    }
+  })
   return {
     next: trades.next,
     data: formattedData,

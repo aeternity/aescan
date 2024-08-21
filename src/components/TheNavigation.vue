@@ -17,46 +17,45 @@
 <script setup>
 import { isDesktop } from '@/utils/screen'
 
-const menuOptions = ref([
-  {
-    name: 'Blockchain',
-    isActive: false,
-    submenu: [
-      {
-        name: 'Accounts',
-        path: '/accounts',
-      },
-      {
-        name: 'Transactions',
-        path: '/transactions',
-      },
-      {
-        name: 'Names',
-        path: '/names',
-      },
-      {
-        name: 'Smart Contracts',
-        path: '/contracts',
-      },
-      {
-        name: 'Oracles',
-        path: '/oracles',
-      },
-      {
-        name: 'State Channels',
-        path: '/state-channels',
-      },
-      {
-        name: 'Nodes',
-        path: '/nodes',
-      },
-      {
-        name: 'Hyperchains',
-        path: '/hyperchains',
-        isDisabled: true,
-      },
-    ],
-  },
+const menuOptions = ref([{
+  name: 'Blockchain',
+  isActive: false,
+  submenu: [
+    {
+      name: 'Accounts',
+      path: '/accounts',
+    },
+    {
+      name: 'Transactions',
+      path: '/transactions',
+    },
+    {
+      name: 'Names',
+      path: '/names',
+    },
+    {
+      name: 'Smart Contracts',
+      path: '/contracts',
+    },
+    {
+      name: 'Oracles',
+      path: '/oracles',
+    },
+    {
+      name: 'State Channels',
+      path: '/state-channels',
+    },
+    {
+      name: 'Nodes',
+      path: '/nodes',
+    },
+    {
+      name: 'Hyperchains',
+      path: '/hyperchains',
+      isDisabled: true,
+    },
+  ],
+},
   {
     name: 'Tokens',
     isActive: false,

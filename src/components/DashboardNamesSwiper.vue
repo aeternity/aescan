@@ -8,7 +8,7 @@
               <app-tooltip>
                 Name
                 <template #tooltip>
-                  {{ namesHints.name }}
+                  {{ namesHints.nameId }}
                 </template>
               </app-tooltip>
             </th>
@@ -45,7 +45,7 @@
               </app-tooltip>
             </th>
             <td class="dashboard-names-swiper__data">
-              {{ formatNullable(formatAePrice(name.price)) }}
+              <price-label :price="name.price"/>
             </td>
           </tr>
           <tr>
@@ -75,7 +75,6 @@
 import { storeToRefs } from 'pinia'
 import AppLink from '@/components/AppLink'
 import { useNamesStore } from '@/stores/names'
-import { formatAePrice, formatNullable } from '@/utils/format'
 import { namesHints } from '@/utils/hints/namesHints'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

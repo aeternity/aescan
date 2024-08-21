@@ -22,6 +22,10 @@ const menuOptions = ref([{
   isActive: false,
   submenu: [
     {
+      name: 'Accounts',
+      path: '/accounts',
+    },
+    {
       name: 'Transactions',
       path: '/transactions',
     },
@@ -42,6 +46,10 @@ const menuOptions = ref([{
       path: '/state-channels',
     },
     {
+      name: 'Nodes',
+      path: '/nodes',
+    },
+    {
       name: 'Hyperchains',
       path: '/hyperchains',
       isDisabled: true,
@@ -52,6 +60,10 @@ const menuOptions = ref([{
   name: 'Tokens',
   isActive: false,
   submenu: [
+    {
+      name: 'AE Coin',
+      path: '/tokens/AE',
+    },
     {
       name: 'AEX9 Tokens',
       path: '/tokens',

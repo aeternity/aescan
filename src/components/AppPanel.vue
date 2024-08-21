@@ -1,13 +1,13 @@
 <template>
   <div class="panel">
     <header
-      v-if="$slots.heading"
+      v-if="$slots.title"
       class="panel__header">
       <h2 class="panel__heading h3">
-        <slot name="heading"/>
+        <slot name="title"/>
       </h2>
-      <div class="panel__container">
-        <slot name="header"/>
+      <div class="panel__end">
+        <slot name="end"/>
       </div>
     </header>
     <slot/>
@@ -40,7 +40,7 @@
     margin-bottom: var(--space-1);
   }
 
-  &__container {
+  &__end {
     padding: var(--space-1) 0;
     display: flex;
     gap: var(--space-1);

@@ -4,9 +4,7 @@
     :link-to="`/contracts/${activityPayload.contractId}`"/>
   <template v-if="activityPayload.function === 'Chain.spend'">
     <transaction-arrow-right-icon/>
-    <app-chip size="sm">
-      {{ formatAePrice(formatAettosToAe(activityPayload.internalTx.amount)) }}
-    </app-chip>
+    <price-label :price="formatAettosToAe(activityPayload.internalTx.amount)"/>
   </template>
   <app-chip size="sm">
     {{ activityPayload.function }}
@@ -15,6 +13,7 @@
 
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
+import { formatAettosToAe } from '@/utils/format'
 
 const props = defineProps({
   activity: {

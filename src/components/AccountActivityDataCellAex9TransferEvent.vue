@@ -2,15 +2,14 @@
   <value-hash-ellipsed
     :hash="activityPayload.contractId"
     :link-to="`/contracts/${activityPayload.contractId}`"/>
-
-  <app-chip size="sm">
-    {{ tokenValue }}
-  </app-chip>
+  <price-label
+    :price="tokenValue"
+    :contract-id="activityPayload.contractId"
+    :currency="activityPayload.tokenSymbol"/>
 </template>
 
 <script setup>
-import { formatNumber, formatReduceDecimals } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatReduceDecimals } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const props = defineProps({
@@ -26,8 +25,6 @@ const props = defineProps({
 
 const activityPayload = computed(() => props.activity.payload)
 const tokenValue = computed(() =>
-  formatNumber(
-    formatReduceDecimals(activityPayload.value.amount, activityPayload.value.decimals),
-  ) + ` ${activityPayload.value.tokenSymbol}`,
+  formatReduceDecimals(activityPayload.value.amount, activityPayload.value.decimals),
 )
 </script>

@@ -86,7 +86,7 @@
         {{ trade.rate }}
       </td>
       <td>
-        <not-available-label v-if="trade.value === '0'"/>
+        <not-available-label v-if="!trade.value"/>
         <template v-else>
           $ {{ trade.value }}
         </template>

@@ -7,7 +7,6 @@ import {
   NUMBER_FRACTION_THRESHOLD,
   REVOKED_PERIOD,
 } from '@/utils/constants'
-import { useRuntimeConfig } from "nuxt/app";
 
 
 export function formatEllipseHash(hash) {
@@ -206,7 +205,6 @@ export function formatTradeValue(action, fromAmount, toAmount, price) {
   if (action === 'SELL') {
     return formatNumber(toAmount * price)
   }
-
   return null
 }
 

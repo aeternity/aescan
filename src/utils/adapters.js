@@ -774,21 +774,16 @@ export function adaptTrades(trades, price) {
     return {
       fromAmount,
       toAmount,
-
       txHash: trade.txHash,
       fromToken: trade.fromToken,
       toToken: trade.toToken,
-
       fromContract: trade.fromContract,
       toContract: trade.toContract,
-
+      action: trade.action,
       height: trade.height,
       timestamp: DateTime.fromMillis(trade.microtime),
-
       rate: formatTradeRate(trade.action, fromAmount, toAmount),
-      action: trade.action,
-
-      value: formatNumber(formatTradeValue(trade.action, fromAmount, toAmount, price)),
+      value: formatTradeValue(trade.action, fromAmount, toAmount, price),
     }
   })
   return {
@@ -797,5 +792,3 @@ export function adaptTrades(trades, price) {
     prev: trades.prev,
   }
 }
-
-

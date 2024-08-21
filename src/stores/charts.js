@@ -33,7 +33,8 @@ export const useChartsStore = defineStore('charts', () => {
       ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/blocks${intervalSlug}&type=key`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/blocks${intervalSlug}`)
+
     // remove last interval from the response not to show current interval that is being built
     keyblocksStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }

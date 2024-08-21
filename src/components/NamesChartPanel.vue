@@ -1,9 +1,9 @@
 <template>
   <app-panel>
-    <template #heading>
+    <template #title>
       NAMES ACTIVATED TREND
     </template>
-    <template #header>
+    <template #end>
       <chart-controls
         v-model="selectedRange"
         class="u-hidden-mobile"/>

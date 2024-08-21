@@ -1,28 +1,28 @@
 <template>
-  <app-panel
-    v-if="name"
-    class="name-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
-    <template #header>
-      <copy-chip
-        class="name-details-panel__name"
-        :label="name.name"/>
-    </template>
-
+  <app-panel class="name-details-panel">
     <table>
       <tbody>
+        <tr class="name-details-panel__row">
+          <th class="name-details-panel__table-header">
+            <hint-tooltip>
+              {{ namesHints.nameId }}
+            </hint-tooltip>
+            Name
+          </th>
+          <td>
+            <copy-chip :label="name.name"/>
+          </td>
+        </tr>
         <tr
-          v-if="name.status !== 'auction'"
+          v-if="state !== 'auction'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ isNameExpired ? "Last Owner" : "Owner" }}
             <hint-tooltip>
-              {{ isNameExpired ? namesHints.lastOwner : namesHints.owner }}
+              {{ state === 'expired' ? namesHints.lastOwner : namesHints.owner }}
             </hint-tooltip>
+            {{ state === 'expired' ? "Last Owner" : "Owner" }}
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${name.owner}`">
               <span class="u-hidden-mobile">
                 {{ name.owner }}
@@ -37,12 +37,12 @@
           v-if="name.bidder"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Highest Bidder
             <hint-tooltip>
               {{ namesHints.bidder }}
             </hint-tooltip>
+            Highest Bidder
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${name.bidder}`">
               <span class="u-hidden-mobile">
                 {{ name.bidder }}
@@ -57,41 +57,43 @@
           v-if="name.bid"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Highest Bid
             <hint-tooltip>
               {{ namesHints.bid }}
             </hint-tooltip>
+            Highest Bid
           </th>
-          <td class="name-details-panel__data">
-            {{ formatAePrice(name.bid) }}
+          <td>
+            <price-label
+              class="name-details-panel__data"
+              :price="name.bid"/>
           </td>
         </tr>
         <tr
-          v-if="isNameActive"
+          v-if="state === 'active'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned Since Height
             <hint-tooltip>
               {{ namesHints.ownedSinceHeight }}
             </hint-tooltip>
+            Owned Since Height
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link
-              :to="`/keyblocks/${name.expirationHeight}`">
+              :to="`/keyblocks/${name.activatedHeight}`">
               {{ name.activatedHeight }}
             </app-link>
           </td>
         </tr>
         <tr
-          v-if="isNameActive"
+          v-if="state === 'active'"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Owned Since
             <hint-tooltip>
               {{ namesHints.ownedSinceTime }}
             </hint-tooltip>
+            Owned Since
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="name.activated"
               :is-extended="true"/>
@@ -99,41 +101,41 @@
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ nameStatusLabel }} Height
             <hint-tooltip>
-              {{ namesHints[nameStatusHint + 'Height'] }}
+              {{ namesHints[state + 'Height'] }}
             </hint-tooltip>
+            {{ stateLabel }} Height
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link
-              :to="`/keyblocks/${name.expirationHeight}`">
-              {{ name.expirationHeight }}
+              :to="`/keyblocks/${name.acutionEndsHeight || name.expirationHeight}`">
+              {{ name.auctionEndsHeight || name.expirationHeight }}
             </app-link>
           </td>
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            {{ nameStatusLabel }}
             <hint-tooltip>
-              {{ namesHints[nameStatusHint + 'Time'] }}
+              {{ namesHints[state + 'Time'] }}
             </hint-tooltip>
+            {{ stateLabel }}
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <timestamp-label
-              :timestamp="name.expiration"
+              :timestamp="name.auctionEnds || name.expiration"
               :is-extended="true"/>
           </td>
         </tr>
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
-            Status
             <hint-tooltip>
-              {{ namesHints.status }}
+              {{ namesHints.state }}
             </hint-tooltip>
+            Status
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-chip :variant="labelVariant">
-              {{ nameStatusText }}
+              {{ stateText }}
             </app-chip>
           </td>
         </tr>
@@ -151,52 +153,32 @@ import AppChip from '@/components/AppChip'
 import CopyChip from '@/components/CopyChip'
 import HintTooltip from '@/components/HintTooltip'
 import { useNameDetailsStore } from '@/stores/nameDetails'
-import { formatAePrice, formatEllipseHash } from '@/utils/format'
+import { formatEllipseHash } from '@/utils/format'
 
 const { name } = storeToRefs(useNameDetailsStore())
+const state = name.value.state
 
-const labelVariant = computed(() =>
-  name.value.active ? 'success' : 'error',
-)
-const nameStatusText = computed(() => {
-  if (isNameInAuction.value) {
-    return 'In auction'
-  }
+const labelVariant = computed(() => state === 'active' ? 'success' : 'error')
 
-  return name.value.active ? 'Active' : 'Expired'
-})
-const nameStatusLabel = computed(() => {
-  if (isNameInAuction.value) {
-    return 'Ends'
-  } else if (isNameExpired.value) {
-    return 'Expired'
-  } else if (isNameActive.value) {
-    return 'Expires'
+const stateLabel = computed(() => {
+  const labels = {
+    auction: 'Ends',
+    active: 'Expires',
+    expired: 'Expired',
+    revoked: 'Expired',
   }
+  return labels[state]
 })
-const nameStatusHint = computed(() => {
-  if (isNameInAuction.value) {
-    return 'ends'
-  } else if (isNameRevoked.value) {
-    return 'revoked'
-  } else if (isNameExpired.value) {
-    return 'expired'
-  } else if (isNameActive.value) {
-    return 'expires'
+
+const stateText = computed(() => {
+  const texts = {
+    auction: 'In auction',
+    active: 'Active',
+    expired: 'Expired',
+    revoked: 'Expired',
   }
+  return texts[state]
 })
-const isNameExpired = computed(() =>
-  name.value.status === 'name' && !name.value.active,
-)
-const isNameRevoked = computed(() =>
-  isNameExpired.value && name.value.isRevoked === true,
-)
-const isNameActive = computed(() =>
-  name.value.active && name.value.activated,
-)
-const isNameInAuction = computed(() =>
-  name.value.status === 'auction',
-)
 
 </script>
 
@@ -204,18 +186,14 @@ const isNameInAuction = computed(() =>
 .name-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__data {
-    text-align: right;
-  }
-
-  &__name {
-    overflow-wrap: anywhere;
   }
 }
 </style>

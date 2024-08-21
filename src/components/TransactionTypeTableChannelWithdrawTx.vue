@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
-          Channel ID
           <hint-tooltip>
             {{ stateChannelsHints.stateChannelId }}
           </hint-tooltip>
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
@@ -16,10 +16,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
-          Round
           <hint-tooltip>
             {{ stateChannelsHints.withdrawRound }}
           </hint-tooltip>
+          Round
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           {{ transactionData.round }}
@@ -27,10 +27,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
-          Recipient
           <hint-tooltip>
             {{ stateChannelsHints.withdrawRecipient }}
           </hint-tooltip>
+          Recipient
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
           <app-link :to="`/accounts/${transactionData.toId}`">
@@ -40,13 +40,13 @@
       </tr>
       <tr class="transaction-type-panel-channel-withdraw-tx__row">
         <th class="transaction-type-panel-channel-withdraw-tx__table-header">
-          Amount
           <hint-tooltip>
             {{ stateChannelsHints.withdrawAmount }}
           </hint-tooltip>
+          Amount
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          {{ formatAePrice(formatAettosToAe(transactionData.amount), null) }}
+          <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>
     </tbody>
@@ -56,7 +56,7 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {
@@ -74,11 +74,14 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {

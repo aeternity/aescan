@@ -3,10 +3,10 @@
     <tbody>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Channel ID
           <hint-tooltip>
             {{ stateChannelsHints.stateChannelId }}
           </hint-tooltip>
+          Channel ID
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
@@ -16,46 +16,38 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Channel Reserve
           <hint-tooltip>
             {{ stateChannelsHints.channelReserve }}
           </hint-tooltip>
+          Channel Reserve
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.channelReserve),
-              null,
-            )
-          }}
+          <price-label :price="formatAettosToAe(transactionData.channelReserve)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Initiator / Amount
           <hint-tooltip>
             {{ stateChannelsHints.initiatorCreateAmount }}
           </hint-tooltip>
+          Initiator / Amount
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/accounts/${transactionData.initiatorId}`">
-            {{ transactionData.initiatorId }}
-          </app-link>
-          /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.initiatorAmount),
-              null,
-            )
-          }}
+          <div class="transaction-type-panel-channel-create-tx__container">
+            <app-link :to="`/accounts/${transactionData.initiatorId}`">
+              {{ transactionData.initiatorId }}
+            </app-link>
+            /
+            <price-label :price="formatAettosToAe(transactionData.initiatorAmount)"/>
+          </div>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Initiator Delegates
           <hint-tooltip>
             {{ stateChannelsHints.initiatorDelegates }}
           </hint-tooltip>
+          Initiator Delegates
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           {{ transactionData.delegate_ids }}
@@ -63,30 +55,27 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Responder / Amount
           <hint-tooltip>
             {{ stateChannelsHints.responderCreateAmount }}
           </hint-tooltip>
+          Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/accounts/${transactionData.responderId}`">
-            {{ transactionData.responderId }}
-          </app-link>
-          /
-          {{
-            formatAePrice(
-              formatAettosToAe(transactionData.responderAmount),
-              null,
-            )
-          }}
+          <div class="transaction-type-panel-channel-create-tx__container">
+            <app-link :to="`/accounts/${transactionData.responderId}`">
+              {{ transactionData.responderId }}
+            </app-link>
+            /
+            <price-label :price="formatAettosToAe(transactionData.responderAmount)"/>
+          </div>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Responder Delegates
           <hint-tooltip>
             {{ stateChannelsHints.responderDelegates }}
           </hint-tooltip>
+          Responder Delegates
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           {{ transactionData.delegate_ids }}
@@ -94,10 +83,10 @@
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
         <th class="transaction-type-panel-channel-create-tx__table-header">
-          Lock Period
           <hint-tooltip>
             {{ stateChannelsHints.lockPeriod }}
           </hint-tooltip>
+          Lock Period
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           {{ transactionData.lock_period }}
@@ -110,7 +99,7 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {
@@ -128,15 +117,24 @@ defineProps({
 
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__data {
     word-wrap: break-word;
-    text-align: right;
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: inline-flex;
+    flex-direction: row;
+    gap: var(--space-0);
   }
 }
 </style>

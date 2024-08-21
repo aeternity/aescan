@@ -23,14 +23,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
 import { useAccountStore } from '@/stores/accountDetails'
-import AccountTransactionsTable from '@/components/AccountTransactionsTable'
-import AccountTransactionsTableCondensed from '@/components/AccountTransactionsTableCondensed'
-import TransactionsSelect from '@/components/TransactionsSelect'
 import { isDesktop } from '@/utils/screen'
-import PaginatedContent from '@/components/PaginatedContent'
 
 const route = useRoute()
 const accountStore = useAccountStore()

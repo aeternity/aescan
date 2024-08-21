@@ -72,7 +72,7 @@
           {{ channel.updateCount }}
         </td>
         <td>
-          {{ formatAePrice(channel.amount) }}
+          <price-label :price="channel.amount"/>
         </td>
         <td>
           <block-time-cell
@@ -88,7 +88,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 

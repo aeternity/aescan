@@ -5,7 +5,6 @@
 
   <page-header>
     State Channel
-
     <template #tooltip>
       {{ stateChannelsHints.stateChannel }}
       <app-link

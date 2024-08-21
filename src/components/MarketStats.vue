@@ -12,11 +12,9 @@
         </div>
         <div class="market-stats__value">
           $ {{ formatNullable(price) }}
-          <app-chip
-            class="market-stats__chip"
-            :variant="priceChipVariant">
-            {{ priceChangeSign }}{{ formatNullable(priceChange) }} %
-          </app-chip>
+          <trend-chip
+            :delta="priceChange"
+            class="market-stats__chip"/>
         </div>
       </li>
       <li
@@ -34,10 +32,16 @@
           Distribution:
         </div>
         <div class="market-stats__value">
-          {{ formatNullable(formatAePrice(distribution, 0)) }} /
-          {{ formatAePrice(MAX_AE_DISTRIBUTION, 0) }} ({{
-            formatNullable(distributionPercentage)
-          }}%)
+          <div class="market-stats__container">
+            <price-label
+              :has-icon="false"
+              :price="distribution"/>
+            /
+            <price-label
+              :has-icon="false"
+              :price="MAX_AE_DISTRIBUTION"/>
+            ({{ formatNullable(distributionPercentage) }}%)
+          </div>
         </div>
       </li>
     </ul>
@@ -48,9 +52,9 @@
 import { storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
-import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
+import { formatNullable, formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import AppChip from '@/components/AppChip'
+import TrendChip from '@/components/TrendChip'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 const selectedNetwork = `${NETWORK_NAME
@@ -66,9 +70,6 @@ const {
   distribution,
   distributionPercentage,
 } = storeToRefs(useMarketStatsStore())
-
-const priceChangeSign = computed(() => priceChange.value > 0 ? '+' : '')
-const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'error')
 </script>
 
 <style scoped>
@@ -131,6 +132,10 @@ const priceChipVariant = computed(() => priceChange.value > 0 ? 'success' : 'err
     @media (--desktop) {
       margin: 0 0 0 var(--space-1);
     }
+  }
+
+  &__container {
+    gap: 8px;
   }
 }
 </style>

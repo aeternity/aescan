@@ -1,4 +1,6 @@
-export const MARKET_STATS_ADDRESS = 'https://api.coingecko.com/api/v3'
+export const MARKET_STATS_COINGECKO_ADDRESS = 'https://api.coingecko.com/api/v3'
+export const MARKET_STATS_COINSTORE_ADDRESS = 'https://api.coinstore.com/api/v1/market/tickers'
+export const MARKET_STATS_HOTCOIN_ADDRESS = 'https://api.hotcoinfin.com/v1/market/ticker'
 export const MINUTES_PER_BLOCK = 3
 export const TX_TYPES_OPTIONS = [
   { typeQuery: null, label: 'All types' },
@@ -62,11 +64,17 @@ export const APP_KEYWORDS = 'aescan, aeternity, blockchain, explorer, search, cr
 export const APP_URL = 'https://aescan.io'
 export const APP_CREATOR = '@aeternity'
 export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
-export const CACHE_KEY_MARKET_DATA = 'aeternity-market-data'
+export const CACHE_KEY_COINGECKO_MARKET_DATA = 'coingecko-market-data'
+export const CACHE_KEY_GATE_MARKET_DATA = 'gate-market-data'
+export const CACHE_KEY_MEXC_MARKET_DATA = 'mexc-market-data'
+export const CACHE_KEY_COINSTORE_MARKET_DATA = 'coinStore-market-data'
+export const CACHE_KEY_HOTCOIN_MARKET_DATA = 'hotCoin-market-data'
+export const CACHE_KEY_COINW_MARKET_DATA = 'coinW-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
 export const VISIBLE_KEYBLOCKS_LIMIT = 20
 export const VISIBLE_MICROBLOCKS_LIMIT = 30
 export const VISIBLE_TRANSACTIONS_LIMIT = 4
+export const MENU_HASH = '#menu-open'
 export const LAEX_CONTRACT_ID = 'ct_xtk8rSz9suPb6D6VLquyfVji25FcnFRDjn3dnn5mmvHsPiESt'
 
 export const TOKEN_SUPPLY_ACI = [

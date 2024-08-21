@@ -1,9 +1,9 @@
 <template>
   <app-panel class="transaction-type-panel">
-    <template #heading>
+    <template #title>
       {{ typeName }} DETAILS
     </template>
-    <template #header>
+    <template #end>
       <app-link
         v-if="transactionData.type === 'SpendTx' && transactionData.recipient?.account"
         :to="`/names/${transactionData.recipient.name}`">

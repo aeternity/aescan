@@ -4,7 +4,7 @@
   </page-header>
 
   <app-panel class="unexpected-error__panel">
-    <template #heading>
+    <template #title>
       Sorry! We encountered an unexpected error
     </template>
     <p class="unexpected-error__paragraph">

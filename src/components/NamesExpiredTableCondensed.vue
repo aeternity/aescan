@@ -10,7 +10,7 @@
             <app-tooltip>
               Name
               <template #tooltip>
-                {{ namesHints.name }}
+                {{ namesHints.nameId }}
               </template>
             </app-tooltip>
           </th>
@@ -64,9 +64,7 @@
             </app-tooltip>
           </th>
           <td class="names-expired-table-condensed__data">
-            <app-chip variant="secondary">
-              {{ formatAePrice(name.fee) }}
-            </app-chip>
+            <price-label :price="name.fee"/>
           </td>
         </tr>
         <tr class="names-expired-table-condensed__row">
@@ -90,9 +88,7 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
 import AppLink from '@/components/AppLink'
-import { formatAePrice } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 

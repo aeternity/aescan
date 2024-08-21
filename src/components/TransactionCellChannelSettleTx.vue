@@ -3,15 +3,11 @@
     :hash="transactionData.fromId"
     :link-to="`/accounts/${transactionData.fromId}`"/>
 
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.initiatorAmountFinal)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
 
   <transaction-plus-icon/>
 
-  <app-chip size="sm">
-    {{ formatAePrice(formatAettosToAe(transactionData.responderAmountFinal)) }}
-  </app-chip>
+  <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
 
   <transaction-arrow-right-icon/>
 
@@ -21,8 +17,7 @@
 </template>
 
 <script setup>
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
+import { formatAettosToAe } from '@/utils/format'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
 import TransactionPlusIcon from '@/components/TransactionPlusIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'

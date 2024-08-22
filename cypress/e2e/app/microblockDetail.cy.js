@@ -7,7 +7,7 @@ describe('microblock details', () => {
   })
 
   it('should display microblock not found page', () => {
-    cy.visit('/microblock/wrong',
+    cy.visit('/microblocks/wrong',
       { failOnStatusCode: false })
     cy.get('.title').contains('Microblock Not Found')
   })

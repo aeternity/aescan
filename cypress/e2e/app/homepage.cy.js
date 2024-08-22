@@ -14,6 +14,6 @@ describe('homepage', () => {
   it('should display not found page', () => {
     cy.visit('/wrong',
       { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.get('.title').contains('Page Not Found')
   })
 })

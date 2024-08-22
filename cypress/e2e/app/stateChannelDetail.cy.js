@@ -9,6 +9,6 @@ describe('state channel detail', () => {
   it('should display state channel not found page', () => {
     cy.visit(`/tokens/abcd`,
       { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.get('.title').contains('State Channel Not Found')
   })
 })

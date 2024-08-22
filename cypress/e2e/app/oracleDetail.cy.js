@@ -8,6 +8,6 @@ describe('oracle detail', () => {
 
   it('should display oracles not found page', () => {
     cy.visit('/oracles/wrong', { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.get('.title').contains('Oracle Not Found')
   })
 })

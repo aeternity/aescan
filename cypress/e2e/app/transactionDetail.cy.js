@@ -9,7 +9,7 @@ describe('transaction detail', () => {
   it('should display transaction not found page', () => {
     cy.visit(`/transactions/wrong`,
       { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.get('.title').contains('Transaction Not Found')
   })
 
 })

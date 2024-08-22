@@ -14,7 +14,8 @@ describe('contract detail', () => {
   })
 
   it('should display contract not found page', () => {
-    cy.visit('/contracts/wrong-url', { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.visit('/contracts/wrong',
+      { failOnStatusCode: false })
+    cy.get('.title').contains('Smart Contract Not Found')
   })
 })

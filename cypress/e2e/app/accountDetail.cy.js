@@ -18,7 +18,7 @@ describe('account detail', () => {
   it('should display account not found page', () => {
     cy.visit(`/accounts/${Cypress.env('notFoundAccount')}`,
       { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.get('.title').contains('Account Not Found')
   })
 
   it('should display account is existent', () => {

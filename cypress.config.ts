@@ -11,9 +11,11 @@ export default defineConfig({
     tokenAddress: 'ct_2qyFRzXzTyPCtPKZQ32EPXqxxAcgiWqtADV3amcBVVPYQRKZm7',
     stateChannelAddress: 'ch_2Qo4r6u3Bq1ZMnPL7GpjLLsATaEgMK5BnYnoi68hzLL5QuKbev',
     name: 'testaensrawpointers.chain',
-    keyblockId: '947025',
+    keyblockHeight: '947025',
+    keyblockAddress: 'kh_2K9dmFN6Qv5N18JbzXfmNMyFaZ9J5tSnHHwwNALEFRusykeTXY',
     notFoundAccount: 'ak_2iBPH7HUz3cSDVEUWiHg76MZJ6tZooVNBmmxcgVK6VV8KAE689',
     existentAccount: 'ak_8HDkjUz23gARqED4oRk6nShpY3YYPUA3tb4pbPcqKxXNHYqno',
+    futureKeyblockHeight: '99999999',
   },
   e2e: {
     baseUrl: 'http://localhost:8080',

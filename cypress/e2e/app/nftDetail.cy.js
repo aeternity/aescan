@@ -11,6 +11,6 @@ describe('nft detail', () => {
 
   it('should display nfts not found', () => {
     cy.visit('/nfts/wrong', { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.get('.title').contains('NFT Not Found')
   })
 })

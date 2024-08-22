@@ -10,6 +10,6 @@ describe('name detail', () => {
   it('should display nfts does not exist page', () => {
     cy.visit('/names/wrongharp9e8zcu3qadhrey9p',
       { failOnStatusCode: false })
-    cy.get('.title').contains('Not Found')
+    cy.get('.title').contains('Name Not Found')
   })
 })

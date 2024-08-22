@@ -55,7 +55,7 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
 
   async function fetchNftOwners({ queryParameters, limit } = {}) {
     nftOwners.value = null
-    const defaultParameters = `/v2/aex141/${nftId.value}/owners?limit=${limit ?? 10}`
+    const defaultParameters = `/v3/aex141/${nftId.value}/tokens?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     nftOwners.value = data
   }

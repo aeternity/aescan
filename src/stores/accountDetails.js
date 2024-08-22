@@ -5,6 +5,7 @@ import { useMarketStatsStore } from '@/stores/marketStats'
 import { adaptAccountActivities, adaptAccountNames, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
 import { useDexStore } from '@/stores/dex'
+import { isAddressValid } from "@aeternity/aepp-sdk";
 
 export const useAccountStore = defineStore('account', () => {
   const {
@@ -80,7 +81,17 @@ export const useAccountStore = defineStore('account', () => {
       rawAccountDetails.value = data
     } catch (e) {
       if ([400, 404].includes(e.response.status)) {
-        rawAccountDetails.value = { id: accountId, isExistent: false }
+        if (isAddressValid(accountId)) {
+          rawAccountDetails.value = { id: accountId, isExistent: false }
+        } else {
+          throw showError({
+            data: {
+              entityId: accountId,
+              entityName: 'account',
+            },
+            statusMessage: 'EntityDetailsNotFound',
+          })
+        }
       }
     }
   }

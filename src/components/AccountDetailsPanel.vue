@@ -191,7 +191,7 @@ const sanitizedPrice = computed(() =>
   }
 
   &__not-existent {
-    margin: 0 0 var(--space-3) 0;
+    margin: var(--space-3) 0;
   }
 }
 </style>

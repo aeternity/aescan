@@ -12,4 +12,9 @@ describe('contract detail', () => {
     cy.get('.contract-verified-table').should('be.visible')
     cy.get('.code-editor').should('be.visible')
   })
+
+  it('should display contract not found page', () => {
+    cy.visit('/contracts/wrong-url', { failOnStatusCode: false })
+    cy.get('.title').contains('Not Found')
+  })
 })

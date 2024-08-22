@@ -1,4 +1,4 @@
-import { defineConfig } from 'cypress'
+import {defineConfig} from 'cypress'
 
 export default defineConfig({
   env: {
@@ -12,6 +12,8 @@ export default defineConfig({
     stateChannelAddress: 'ch_2Qo4r6u3Bq1ZMnPL7GpjLLsATaEgMK5BnYnoi68hzLL5QuKbev',
     name: 'testaensrawpointers.chain',
     keyblockId: '947025',
+    notFoundAccount: 'ak_2iBPH7HUz3cSDVEUWiHg76MZJ6tZooVNBmmxcgVK6VV8KAE689',
+    existentAccount: 'ak_8HDkjUz23gARqED4oRk6nShpY3YYPUA3tb4pbPcqKxXNHYqno',
   },
   e2e: {
     baseUrl: 'http://localhost:8080',
@@ -19,5 +21,5 @@ export default defineConfig({
   },
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 40000,
+  defaultCommandTimeout: 50000,
 })

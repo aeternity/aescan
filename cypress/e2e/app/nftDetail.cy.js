@@ -8,4 +8,9 @@ describe('nft detail', () => {
     cy.contains('.tabs__item', 'Inventory').click()
     cy.get('.nfts-owners-panel__table').should('be.visible')
   })
+
+  it('should display nfts not found', () => {
+    cy.visit('/nfts/wrong', { failOnStatusCode: false })
+    cy.get('.title').contains('Not Found')
+  })
 })

@@ -9,4 +9,11 @@ describe('homepage', () => {
     cy.get('.dashboard-keyblock-panel table').should('be.visible')
     cy.get('.search-bar').should('be.visible')
   })
+
+  // todo check
+  it('should display not found page', () => {
+    cy.visit('/wrong',
+      { failOnStatusCode: false })
+    cy.get('.title').contains('Not Found')
+  })
 })

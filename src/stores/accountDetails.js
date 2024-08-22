@@ -87,7 +87,7 @@ export const useAccountStore = defineStore('account', () => {
           throw showError({
             data: {
               entityId: accountId,
-              entityName: 'account',
+              entityName: 'Account',
             },
             statusMessage: 'EntityDetailsNotFound',
           })

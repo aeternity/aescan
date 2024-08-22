@@ -10,7 +10,6 @@ describe('homepage', () => {
     cy.get('.search-bar').should('be.visible')
   })
 
-  // todo check
   it('should display not found page', () => {
     cy.visit('/wrong',
       { failOnStatusCode: false })

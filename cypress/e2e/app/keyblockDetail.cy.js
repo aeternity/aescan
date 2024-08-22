@@ -20,6 +20,5 @@ describe('keyblock details', () => {
     cy.visit('/keyblocks/wrong',
       { failOnStatusCode: false })
     cy.get('.title').contains('Keyblock Not Found')
-    // todo status 400 or 500
   })
 })

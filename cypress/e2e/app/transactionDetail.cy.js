@@ -4,6 +4,7 @@ describe('transaction detail', () => {
 
     cy.get('.transaction-general-panel table').should('be.visible')
     cy.get('.transaction-type-panel table').should('be.visible')
+    cy.get('.transaction-pointers-panel table').should('be.visible')
   })
 
   it('should display transaction not found page', () => {
@@ -11,5 +12,4 @@ describe('transaction detail', () => {
       { failOnStatusCode: false })
     cy.get('.title').contains('Transaction Not Found')
   })
-
 })

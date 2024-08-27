@@ -45,19 +45,8 @@ const { isLoading } = useLoading()
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && keyblockDetails.value.isExistent !== false)
 
-const { error } = await useAsyncData(async () => {
+if (process.client) {
   await fetchKeyblock(route.params.id)
-  return true
-})
-
-if (error.value) {
-  throw showError({
-    data: {
-      entityId: route.params.id,
-      entityName: 'Keyblock',
-    },
-    statusMessage: 'EntityDetailsNotFound',
-  })
 }
 
 </script>

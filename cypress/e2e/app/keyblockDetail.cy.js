@@ -1,11 +1,11 @@
 describe('keyblock details', () => {
-  it('should display keyblock detail', () => {
+  it('should display keyblock detail (height access)', () => {
     cy.visit(`/keyblocks/${Cypress.env('keyblockHeight')}`)
     cy.get('.keyblock-details-panel__controls').should('be.visible')
     cy.get('.keyblock-microblock-panel').should('be.visible')
   })
 
-  it('should display keyblock detail (id access)', () => {
+  it('should display keyblock detail (hash access)', () => {
     cy.visit(`/keyblocks/${Cypress.env('keyblockAddress')}`)
     cy.get('.keyblock-details-panel__controls').should('be.visible')
     cy.get('.keyblock-microblock-panel').should('be.visible')

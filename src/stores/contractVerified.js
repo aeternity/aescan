@@ -5,7 +5,7 @@ import useAxios from '@/composables/useAxios'
 import { useWalletStore } from '@/stores/wallet'
 import { useAesdk } from '@/stores/aesdk'
 import { useContractDetailsStore } from '@/stores/contractDetails'
-import { adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '~/utils/adapters'
+import { adaptAciObject, adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '~/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
@@ -26,7 +26,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
 
   const aciObject = computed(() =>
     verificationDetails.value
-      ? JSON.parse(verificationDetails.value.aci).find(item => item.contract)
+      ? adaptAciObject(verificationDetails.value)
       : null,
   )
 
@@ -50,7 +50,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   }
 
   async function getWriteContractInstance() {
-    return await walletSdk.value.initializeContract({
+    return await aeSdk.value.initializeContract({
       aci: [aciObject.value],
       address: contractDetails.value.id,
     })

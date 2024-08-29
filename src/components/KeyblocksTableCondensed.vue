@@ -77,6 +77,20 @@
               :link-to="`/accounts/${keyblock.beneficiary}`"/>
           </td>
         </tr>
+        <tr class="keyblocks-table-condensed__row">
+          <th class="keyblocks-table-condensed__header">
+            <app-tooltip>
+              Beneficiary
+              <template #tooltip>
+                {{ keyblocksHints.beneficiary }}
+              </template>
+            </app-tooltip>
+          </th>
+
+          <td class="keyblocks-table-condensed__data">
+            <price-label :price="keyblock.beneficiaryReward"/>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

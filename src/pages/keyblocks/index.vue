@@ -10,7 +10,7 @@
     </template>
   </page-header>
 
-  <keyblock-panel v-if="!isLoading"/>
+  <keyblocks-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>
 

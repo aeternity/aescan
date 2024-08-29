@@ -27,9 +27,15 @@
           </hint-tooltip>
         </th>
         <th>
-          Fee Recipient
+          Beneficiary
           <hint-tooltip>
             {{ keyblocksHints.beneficiary }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Beneficiary Reward
+          <hint-tooltip>
+            {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
         </th>
       </tr>
@@ -58,6 +64,9 @@
           <value-hash-ellipsed
             :hash="keyblock.beneficiary"
             :link-to="`/accounts/${keyblock.beneficiary}`"/>
+        </td>
+        <td>
+          <price-label :price="keyblock.beneficiaryReward"/>
         </td>
       </tr>
     </tbody>

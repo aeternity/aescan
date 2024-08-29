@@ -675,7 +675,7 @@ export function adaptTopAccounts(topAccounts, distribution) {
       return {
         rank: index + 1,
         account: account.account,
-        balance: formatAePrice(formatAettosToAe(account.balance)),
+        balance: formatAettosToAe(account.balance),
         percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
       }
     })
@@ -683,7 +683,6 @@ export function adaptTopAccounts(topAccounts, distribution) {
 
 
 export function adaptKeyblocks(keyblocks) {
-  console.log('keyblocks', keyblocks)
   const formattedData = keyblocks.data
     .map(keyblock => {
       return {
@@ -694,6 +693,8 @@ export function adaptKeyblocks(keyblocks) {
         microBlocksCount: keyblock.microBlocksCount,
         transactionsCount: keyblock.transactionsCount,
         beneficiary: keyblock.beneficiary,
+        beneficiaryReward: formatAettosToAe(keyblock.beneficiaryReward),
+        
       }
     })
   return {

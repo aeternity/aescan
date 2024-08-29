@@ -9,6 +9,12 @@
           </hint-tooltip>
         </th>
         <th>
+          Created
+          <hint-tooltip>
+            {{ nftsHints.created }}
+          </hint-tooltip>
+        </th>
+        <th>
           Owners
           <hint-tooltip>
             {{ nftsHints.owners }}
@@ -36,6 +42,11 @@
           <app-link :to="`/nfts/${nft.contractId}`">
             {{ nft.name }}
           </app-link>
+        </td>
+        <td class="nfts-table__data">
+          <block-time-cell
+            :height="nft.blockHeight"
+            :timestamp="nft.creationTime"/>
         </td>
         <td class="nfts-table__data">
           {{ nft.nftOwners }}

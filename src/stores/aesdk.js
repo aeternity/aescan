@@ -5,7 +5,7 @@ import { AeSdk, Node } from '@aeternity/aepp-sdk'
 export const useAesdk = defineStore('aesdk', () => {
   const { NODE_URL, NETWORK_ID } = useRuntimeConfig().public
 
-  const node = new Node(NODE_URL, { ignoreVersion: true })
+  const node = new Node(NODE_URL)
   const aeSdk = new AeSdk({
     nodes: [
       { name: NETWORK_ID, instance: node },

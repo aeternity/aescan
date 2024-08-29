@@ -694,7 +694,6 @@ export function adaptKeyblocks(keyblocks) {
         transactionsCount: keyblock.transactionsCount,
         beneficiary: keyblock.beneficiary,
         beneficiaryReward: formatAettosToAe(keyblock.beneficiaryReward),
-        
       }
     })
   return {

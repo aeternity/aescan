@@ -50,7 +50,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   }
 
   async function getWriteContractInstance() {
-    return await aeSdk.value.initializeContract({
+    return await walletSdk.value.initializeContract({
       aci: [aciObject.value],
       address: contractDetails.value.id,
     })

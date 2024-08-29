@@ -1,6 +1,6 @@
 <template>
   <app-panel>
-    <template v-if="aciWriteEntrypoints">
+    <template v-if="aciWriteEntrypoints.length > 0">
       <h3 class="contract-write-panel__title">
         Write Smart Contract Information
       </h3>
@@ -13,7 +13,7 @@
         </hint-tooltip>
       </div>
       <contract-entrypoint-accordion
-        :is-disabled="isDisabled"
+        :is-disabled="!walletSdk"
         :entrypoints="aciWriteEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
@@ -25,13 +25,10 @@
 
 <script setup>
 import { useContractVerifiedStore } from '@/stores/contractVerified'
-import { useContractDetailsStore } from '@/stores/contractDetails'
 import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()
-const contractDetailStore = useContractDetailsStore()
 const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
-const { contractDetails } = storeToRefs(contractDetailStore)
 
 const {
   fetchEntrypointResponse,
@@ -45,11 +42,6 @@ const route = useRoute()
 
 const response = ref([])
 const loadingIndex = ref(null)
-
-const isDisabled = computed(() => {
-  const connectedAddress = walletSdk ? Object.keys(walletSdk._accounts.current)[0] : null
-  return !walletSdk || contractDetails.value.createdBy !== connectedAddress
-})
 
 async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index

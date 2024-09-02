@@ -178,3 +178,20 @@ export function formatKnownAddress(hash, isEllipsed = true) {
     return hash
   }
 }
+
+export function formatIsStatefulEntrypoint(aciFunction) {
+  return !!aciFunction.stateful
+}
+
+export function formatEntrypointResponse(value, type) {
+  if (type === 'int') {
+    return new BigNumber(value)
+  }
+  if (type === 'address') {
+    return value
+  }
+  if (type === 'bool') {
+    return value.toString()
+  }
+  return value
+}

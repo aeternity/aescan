@@ -63,8 +63,8 @@ defineProps({
       'link',
       'link-error',
       'primary',
-      'light']
-      .includes(val),
+      'light',
+    ].includes(val),
   },
   type: {
     type: String,

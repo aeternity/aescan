@@ -5,18 +5,18 @@ async function lazyLoadSentryIntegrations() {
   if (process.server) {
     return
   }
-
+  
   import("@sentry/browser").then((lazyLoadedSentry) => {
     Sentry.addIntegration(lazyLoadedSentry.replayIntegration());
   });
 }
 
-export default defineNuxtPlugin(({vueApp}) => {
+export default defineNuxtPlugin(({ vueApp }) => {
   if (process.server) {
     return
   }
 
-  const {SENTRY_DSN, APP_DOMAIN} = useRuntimeConfig().public
+  const { SENTRY_DSN, APP_DOMAIN } = useRuntimeConfig().public
 
   if (!SENTRY_DSN || !APP_DOMAIN) {
     console.warn('Sentry configuration is not set therefore it will not be initialized.')
@@ -28,7 +28,7 @@ export default defineNuxtPlugin(({vueApp}) => {
   Sentry.init({
     app: vueApp,
     dsn: SENTRY_DSN,
-    integrations: [Sentry.browserTracingIntegration({router})],
+    integrations: [Sentry.browserTracingIntegration({ router })],
     tracePropagationTargets: [APP_DOMAIN, /^\//],
 
     beforeSend: (event) => {

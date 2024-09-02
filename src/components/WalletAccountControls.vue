@@ -1,5 +1,7 @@
 <template>
-  <app-dropdown v-if="status === 'connected'">
+  <app-dropdown
+    v-if="status === 'connected'"
+    :is-disabled="!hasMenu">
     <div class="wallet-account-controls">
       <app-identicon
         :hash="aeSdk.address"
@@ -10,7 +12,9 @@
         {{ formatEllipseHash(aeSdk.address) }}
       </app-link>
     </div>
-    <template #menu>
+    <template
+      v-if="hasMenu"
+      #menu>
       <app-button @click="disconnectWallet">
         Disconnect Wallet
       </app-button>
@@ -19,8 +23,8 @@
 
   <app-button
     v-else
-    class="wallet-account-controls__button"
-    to="/wallet">
+    class="wallet-account-controls__button u-hidden-mobile"
+    @click="goToConnection()">
     Connect Wallet
   </app-button>
 </template>
@@ -29,11 +33,26 @@ import { storeToRefs } from 'pinia'
 import { formatEllipseHash } from '@/utils/format'
 import { useWalletStore } from '@/stores/wallet'
 
-const { go } = useRouter()
+const props = defineProps({
+  backlink: {
+    type: String,
+    default: null,
+  },
+  hasMenu: {
+    type: Boolean,
+    default: true,
+  },
+})
 
+const { go, push } = useRouter()
 const walletStore = useWalletStore()
 const { aeSdk, status } = storeToRefs(walletStore)
-const { disconnect } = walletStore
+const { disconnect, setBackLink } = walletStore
+
+function goToConnection() {
+  setBackLink(props.backlink)
+  push('/wallet')
+}
 
 function disconnectWallet() {
   disconnect()
@@ -48,12 +67,11 @@ function disconnectWallet() {
 
   &__identicon {
     margin-right: var(--space-1);
-    width: 32px;
+    width: 36px;
   }
 
   &__link {
     font-family: var(--font-monospaced);
-    font-size: 13px;
   }
 
   &__button {

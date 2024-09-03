@@ -46,7 +46,7 @@
           Query
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          {{ transactionData.query }}
+          {{ formatDecodeBase64(transactionData.query) }}
         </td>
       </tr>
       <tr class="transaction-type-panel-oracle-query-tx__row">
@@ -93,7 +93,7 @@
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 import AppLink from '@/components/AppLink'
-import { formatAettosToAe, formatNullable } from '@/utils/format'
+import { formatAettosToAe, formatDecodeBase64, formatNullable } from '@/utils/format'
 
 defineProps({
   transactionData: {

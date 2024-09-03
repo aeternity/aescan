@@ -687,6 +687,7 @@ export function adaptTopAccounts(topAccounts, distribution) {
     })
 }
 
+
 export function adaptTrades(trades, price) {
   const formattedData = trades.data.map(trade => {
     const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
@@ -711,4 +712,19 @@ export function adaptTrades(trades, price) {
     data: formattedData,
     prev: trades.prev,
   }
+}
+
+export function adaptAciObject(verificationDetails) {
+  const aci = JSON.parse(verificationDetails.aci).find(item => item.contract)
+  const filteredFunctions = aci?.contract?.functions?.filter(fn => fn.name !== 'init')
+  aci.contract.functions = filteredFunctions
+  return aci
+}
+
+export function adaptReadEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
+}
+
+export function adaptWriteEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
 }

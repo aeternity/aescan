@@ -20,7 +20,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   const totalTokenSupply = ref(null)
 
   async function fetchTotalStats() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/totalstats?limit=1`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total?limit=1`)
     const lastBlock = data.data[0]
     activeOraclesCount.value = lastBlock.activeOracles
     oraclesCount.value = lastBlock.activeOracles + lastBlock.inactiveOracles

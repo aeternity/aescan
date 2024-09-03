@@ -118,7 +118,8 @@ on a yearly basis.
 
 ## Testing
 
-This project uses [Cypress](https://cypress.io/) for e2e testing. Tests can be executed using the command ```yarn e2e:open```.
+This project uses [Cypress](https://cypress.io/) for e2e testing. Tests can be executed using the
+command ```yarn e2e:open```.
 
 ## Contribution
 
@@ -134,7 +135,7 @@ get involved!
 Stay up-to-date on the latest developments in the æternity ecosystem by following us on social media.
 
 - [Forum](https://forum.aeternity.com/)
-- [X](https://x.com/aeternity)
+  - [X](https://x.com/aeternity)
 - [Youtube](https://www.youtube.com/@aeternityblockchain)
 - [Reddit](https://www.reddit.com/r/Aeternity/)
 - [Linkedin](https://www.linkedin.com/company/aeternity)
@@ -150,3 +151,5 @@ website, Github repositories and blog for more information.
 - [æternity middleware](https://github.com/aeternity/ae_mdw)
 - [æternity node](https://github.com/aeternity/aeternity)
 - [æternity node API](https://api-docs.aeternity.io)
+
+

@@ -4,4 +4,5 @@ export const contractVerifiedHints = {
   entryFile: 'Main file of the smart contract source code',
   verifiedAt: 'Timestamp when the smart contract was verified.',
   initCallParameters: 'Initial call parameters of the smart contract.',
+  connectWallet: 'Connect your wallet to execute write action to smart contract.',
 }

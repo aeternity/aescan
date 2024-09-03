@@ -18,7 +18,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRouter } from '#app'
 import { useWalletStore } from '@/stores/wallet'
 import { walletHints } from '@/utils/hints/walletHints'
 
@@ -30,7 +29,7 @@ const { status, backLink } = storeToRefs(walletStore)
 
 const { isLoading } = useLoading()
 
-onBeforeMount(async () => {
+onBeforeMount(async() => {
   if (status.value !== 'connected') {
     await scanWallets()
   }

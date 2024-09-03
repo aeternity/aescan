@@ -11,11 +11,8 @@ import {
   formatNameState,
   formatNumber,
   formatPercentage,
-  formatOutAmountIndex,
   formatTemplateLimit,
   formatTokenLimit,
-  formatTradeRate,
-  formatTradeAction,
   formatTradeRate,
   formatTradeAction,
   formatTradeRate,
@@ -694,7 +691,6 @@ export function adaptMarketStatsCoinW(stats) {
     volume: stats.data.aeUsdt.baseVolume,
   }
 }
-
 
 export function adaptTopAccounts(topAccounts, distribution) {
   return topAccounts

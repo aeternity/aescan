@@ -10,6 +10,7 @@
       v-if="isProcessing"
       class="wallet-connection-panel__loader-indicator"
       :label="status"/>
+
     <template v-if="status === 'detected'">
       <p class="wallet-connection-panel__paragraph">
         Superhero wallet detected
@@ -90,9 +91,6 @@ const title = computed(() => {
       }
     }
   }
-  &__container {
-    display: flex;
-    justify-content: center;
 
   &__loader-indicator {
     margin: var(--space-3) 0;

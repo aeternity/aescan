@@ -1,5 +1,7 @@
 <template>
-  <VMenu :disabled="isDisabled" placement="bottom">
+  <VMenu
+    placement="bottom"
+    :disabled="isDisabled">
     <span>
       <slot/>
     </span>

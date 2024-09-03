@@ -1,8 +1,8 @@
 <template>
   <app-panel>
     <template
-      #title
-      v-if="title">
+      v-if="title"
+      #title>
       {{ title }}
     </template>
 
@@ -16,7 +16,6 @@
       </p>
       <wallet-connect-button/>
     </template>
-
 
     <template v-if="status === 'not connected'">
       <p class="wallet-connection-panel__paragraph">
@@ -39,13 +38,11 @@
       </app-button>
     </template>
 
-
     <template v-if="status === 'denied'">
       <p class="wallet-connection-panel__paragraph">
         Connection with your wallet has failed. Please make sure that you are logged into your wallet.
       </p>
-      <app-button
-        @click="router.go()">
+      <app-button @click="router.go()">
         Try again
       </app-button>
     </template>
@@ -54,9 +51,9 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useRuntimeConfig } from 'nuxt/app'
 import { useWalletStore } from '@/stores/wallet'
 import AppButton from '@/components/AppButton'
-import { useRuntimeConfig } from "nuxt/app";
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 
@@ -96,11 +93,6 @@ const title = computed(() => {
   &__container {
     display: flex;
     justify-content: center;
-
-    @media (--desktop) {
-      justify-content: flex-start;
-    }
-  }
 
   &__loader-indicator {
     margin: var(--space-3) 0;

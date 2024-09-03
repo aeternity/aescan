@@ -5,7 +5,7 @@ import { AeSdkAepp, BrowserWindowMessageConnection, Node, walletDetector } from 
 export const useWalletStore = defineStore('wallet', () => {
   const { NODE_URL, NETWORK_ID } = useRuntimeConfig().public
 
-  const aeSdk = ref(null)
+  const aeSdk = shallowRef(null)
   const detectedWallets = ref(null)
   const status = ref(null)
   const backLink = ref(null)
@@ -20,7 +20,7 @@ export const useWalletStore = defineStore('wallet', () => {
         compilerUrl: 'https://compiler.aepps.com',
       }
 
-      aeSdk.value = shallowReactive(new AeSdkAepp({
+      aeSdk.value = new AeSdkAepp({
         name: 'æScan',
         ...aeSdkOptions,
         onNetworkChange({ networkId }) {
@@ -29,7 +29,7 @@ export const useWalletStore = defineStore('wallet', () => {
         onDisconnect() {
           status.value = 'disconnecting'
         },
-      }))
+      })
       await connect()
     } catch (error) {
       status.value = 'failed'

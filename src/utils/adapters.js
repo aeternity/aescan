@@ -690,3 +690,18 @@ export function adaptTopAccounts(topAccounts, distribution) {
       }
     })
 }
+
+export function adaptAciObject(verificationDetails) {
+  const aci = JSON.parse(verificationDetails.aci).find(item => item.contract)
+  const filteredFunctions = aci?.contract?.functions?.filter(fn => fn.name !== 'init')
+  aci.contract.functions = filteredFunctions
+  return aci
+}
+
+export function adaptReadEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).false
+}
+
+export function adaptWriteEntrypoints(aci) {
+  return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
+}

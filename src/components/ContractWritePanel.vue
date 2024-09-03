@@ -1,6 +1,6 @@
 <template>
   <app-panel>
-    <template v-if="aciWriteEntrypoints">
+    <template v-if="aciWriteEntrypoints.length > 0">
       <h3 class="contract-write-panel__title">
         Write Smart Contract Information
       </h3>
@@ -29,6 +29,7 @@ import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
+
 const {
   fetchEntrypointResponse,
   parseArguments,

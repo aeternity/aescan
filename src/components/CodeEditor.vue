@@ -70,6 +70,5 @@ const codeModel = ref(props.code)
   .mtk7 {
     color: var(--color-success);
   }
-
 }
 </style>

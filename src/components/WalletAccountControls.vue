@@ -15,16 +15,15 @@
     <template
       v-if="hasMenu"
       #menu>
-      <app-button
-        variant="link"
-        @click="exit">
-        Exit Wallet
+      <app-button @click="disconnectWallet">
+        Disconnect Wallet
       </app-button>
     </template>
   </app-dropdown>
 
   <app-button
     v-else
+    class="wallet-account-controls__button u-hidden-mobile"
     @click="goToConnection()">
     Connect Wallet
   </app-button>
@@ -45,7 +44,7 @@ const props = defineProps({
   },
 })
 
-const { push } = useRouter()
+const { go, push } = useRouter()
 const walletStore = useWalletStore()
 const { aeSdk, status } = storeToRefs(walletStore)
 const { disconnect, setBackLink } = walletStore
@@ -55,9 +54,9 @@ function goToConnection() {
   push('/wallet')
 }
 
-function exit() {
+function disconnectWallet() {
   disconnect()
-  push('/')
+  go()
 }
 </script>
 
@@ -67,7 +66,7 @@ function exit() {
   align-items: center;
 
   &__identicon {
-    margin-right: var(--space-2);
+    margin-right: var(--space-1);
     width: 36px;
   }
 
@@ -75,5 +74,8 @@ function exit() {
     font-family: var(--font-monospaced);
   }
 
+  &__button {
+    color: var(--color-white) !important;
+  }
 }
 </style>

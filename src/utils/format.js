@@ -180,7 +180,6 @@ export function formatKnownAddress(hash, isEllipsed = true) {
   }
 }
 
-
 export function formatTradeRate(action, fromAmount, toAmount) {
   if (action === 'BUY') {
     return `${formatNumber((fromAmount / toAmount), 4)} WAE`
@@ -201,5 +200,22 @@ export function formatTradeValue(action, fromAmount, toAmount, price) {
     return formatNumber(toAmount * price)
   }
   return null
+}
+
+export function formatIsStatefulEntrypoint(aciFunction) {
+  return !!aciFunction.stateful
+}
+
+export function formatEntrypointResponse(value, type) {
+  if (type === 'int') {
+    return new BigNumber(value)
+  }
+  if (type === 'address') {
+    return value
+  }
+  if (type === 'bool') {
+    return value.toString()
+  }
+  return value
 }
 

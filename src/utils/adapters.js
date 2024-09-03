@@ -10,11 +10,8 @@ import {
   formatNameState,
   formatNumber,
   formatPercentage,
-  formatOutAmountIndex,
   formatTemplateLimit,
   formatTokenLimit,
-  formatTradeRate,
-  formatTradeAction,
   formatTradeRate,
   formatTradeValue,
 } from '@/utils/format'
@@ -673,7 +670,6 @@ export function adaptMarketStatsCoinW(stats) {
   }
 }
 
-
 export function adaptTopAccounts(topAccounts, distribution) {
   return topAccounts
     .slice(0, 100)
@@ -686,7 +682,6 @@ export function adaptTopAccounts(topAccounts, distribution) {
       }
     })
 }
-
 
 export function adaptTrades(trades, price) {
   const formattedData = trades.data.map(trade => {
@@ -702,7 +697,7 @@ export function adaptTrades(trades, price) {
       toContract: trade.toContract,
       action: trade.action,
       height: trade.height,
-      timestamp: DateTime.fromMillis(trade.microtime),
+      timestamp: DateTime.fromMillis(trade.microTime),
       rate: formatTradeRate(trade.action, fromAmount, toAmount),
       value: formatTradeValue(trade.action, fromAmount, toAmount, price),
     }

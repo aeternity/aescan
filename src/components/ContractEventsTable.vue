@@ -65,7 +65,7 @@
             'contract-events-table__arguments',
             {'contract-events-table__arguments--expanded': isExpanded.includes(index)}
           ]">
-          <event-panel
+          <events-panel
             :args="event.args"
             :call-tx-hash="event.callTxHash"
             :log-id="event.logIdx"/>

@@ -67,7 +67,7 @@
               'token-events-table__arguments',
               {'token-events-table__arguments--expanded': isExpanded.includes(index)}
             ]">
-            <event-panel :args="event.args"/>
+            <events-panel :args="event.args"/>
           </td>
         </tr>
       </template>

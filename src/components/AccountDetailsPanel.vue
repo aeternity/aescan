@@ -81,8 +81,7 @@
             Is Generalized
           </th>
           <td>
-            <app-chip
-              size="sm">
+            <app-chip size="sm">
               Generalized
             </app-chip>
           </td>

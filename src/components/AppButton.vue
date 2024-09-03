@@ -99,6 +99,13 @@ defineProps({
     padding: var(--space-3) var(--space-5);
   }
 
+  &--sm {
+    border-radius: 0;
+    padding: var(--space-0);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
   &--primary {
     background: var(--color-fire);
     color: var(--color-white);
@@ -149,9 +156,5 @@ defineProps({
     }
   }
 
-  &--sm {
-    border-radius: 0;
-    padding: var(--space-2) var(--space-3);
-  }
 }
 </style>

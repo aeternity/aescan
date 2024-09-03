@@ -9,6 +9,8 @@
     <events-definition-list :arguments="args"/>
     <app-button
       v-if="!isButtonHidden"
+      class="event-panel__button"
+      size="sm"
       @click="decode">
       Decode
     </app-button>
@@ -89,6 +91,10 @@ async function decode() {
   &__name {
     font-weight: 600;
     margin-bottom: var(--space-0);
+  }
+
+  &__button {
+    font-family: var(--font-primary);
   }
 }
 </style>

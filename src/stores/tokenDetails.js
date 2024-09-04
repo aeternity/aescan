@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
-import { adaptTokenDetails, adaptTokenEvents } from '@/utils/adapters'
+import { adaptTokenDetails, adaptTokenEvents, adaptTokenHolders } from '@/utils/adapters'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
 import { useAesdk } from '@/stores/aesdk'
 import { useDexStore } from '@/stores/dex'
@@ -20,6 +20,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const rawToken = ref(null)
   const rawTotalSupply = ref(null)
   const rawTokenHolders = ref(null)
+  const tokenHoldersCount = ref(null)
 
   const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
@@ -91,16 +92,24 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenHolders({ queryParameters, limit } = {}) {
     rawTokenHolders.value = null
-    const defaultParameters = `/v3/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
+    const defaultParameters = `/v2/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenHolders.value = data
+  }
+
+  async function fetchTokenHoldersCount() {
+    tokenHoldersCount.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${tokenId.value}`)
+    tokenHoldersCount.value = data.holders
   }
 
   return {
     fetchTokenDetails,
     fetchTokenHolders,
+    tokenHoldersCount,
     fetchTokenEvents,
     fetchTokenEventsCount,
+    fetchTokenHoldersCount,
     tokenDetails,
     tokenHolders,
     tokenEvents,

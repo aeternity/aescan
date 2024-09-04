@@ -105,6 +105,17 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             <hint-tooltip>
+              {{ tokensHints.holders }}
+            </hint-tooltip>
+            Token Holders
+          </th>
+          <td>
+            {{ tokenHoldersCount }}
+          </td>
+        </tr>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            <hint-tooltip>
               {{ tokensHints.extensions }}
             </hint-tooltip>
             Extensions
@@ -170,6 +181,10 @@ const { price } = storeToRefs(useMarketStatsStore())
 const props = defineProps({
   tokenDetails: {
     type: Object,
+    required: true,
+  },
+  tokenHoldersCount: {
+    type: Number,
     required: true,
   },
 })

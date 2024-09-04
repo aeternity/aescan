@@ -2,6 +2,7 @@
   <app-panel class="token-holders-panel">
     <paginated-content
       :entities="tokenHolders"
+      :total-count="tokenHoldersCount"
       @prev-clicked="loadPrevHolders"
       @next-clicked="loadNextHolders">
       <token-holders-table
@@ -28,19 +29,23 @@ import TokenHoldersTableCondensed from '@/components/TokenHoldersTableCondensed'
 import PaginatedContent from '@/components/PaginatedContent'
 
 const tokenDetailsStore = useTokenDetailsStore()
-const { fetchTokenHolders } = tokenDetailsStore
-const { tokenHolders, tokenDetails } = storeToRefs(tokenDetailsStore)
+const { fetchTokenHolders, fetchTokenHoldersCount } = tokenDetailsStore
+const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
 
 function loadPrevHolders() {
   fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
+  fetchTokenHoldersCount()
 }
 
 function loadNextHolders() {
   fetchTokenHolders({ queryParameters: tokenHolders.value.next })
+  fetchTokenHoldersCount()
 }
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
+  fetchTokenHoldersCount()
+
   fetchTokenHolders({
     limit: limit.value,
   })

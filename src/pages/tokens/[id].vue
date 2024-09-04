@@ -13,7 +13,8 @@
   <template v-if="!isLoading">
     <token-details-panel
       class="token-details__panel"
-      :token-details="tokenDetails"/>
+      :token-details="tokenDetails"
+      :token-holders-count="tokenHoldersCount"/>
 
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Holders">
@@ -35,7 +36,7 @@ const route = useRoute()
 const { push, replace } = useRouter()
 
 const tokenDetailsStore = useTokenDetailsStore()
-const { tokenDetails } = storeToRefs(tokenDetailsStore)
+const { tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
 const { isLoading } = useLoading()

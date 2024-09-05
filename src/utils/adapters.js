@@ -163,9 +163,10 @@ export function adaptAccountNames(names) {
   const formattedData = names.data.map(name => {
     return {
       name: name.name,
-      expirationHeight: name.info.expireHeight,
-      expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-      pointers: Object.values(name.info.pointers),
+      expirationHeight: name.expireHeight,
+      expiration: DateTime.fromMillis(name.approximateExpireTime),
+      pointers: name.pointers.map(pointer => pointer.id),
+      // todo adpot custm pointers? check
     }
   })
   return {

@@ -104,6 +104,10 @@ const menuOptions = ref([{
       name: 'Names',
       path: '/charts/names',
     },
+    {
+      name: 'Difficulty',
+      path: '/charts/difficulty',
+    },
   ],
 }])
 

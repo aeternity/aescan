@@ -31,9 +31,11 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     rawName.value = data
   }
 
+  // todo history issue
+  // todo close time count function
   async function fetchNameActions({ nameHash = null, queryParameters = null }) {
     rawNameActions.value = null
-    const defaultParameters = `/v2/names/${nameHash}/history`
+    const defaultParameters = `/v3/names/${nameHash}/history`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawNameActions.value = data
   }

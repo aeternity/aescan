@@ -54,6 +54,7 @@ export const useNamesStore = defineStore('names', () => {
 
   async function fetchInAuctionNames({ queryParameters, limit } = {}) {
     rawInAuctionNames.value = null
+    // todo not possible
     const { data } = await axios.get(
       `${MIDDLEWARE_URL}${queryParameters || `/v2/names/auctions?by=expiration&direction=forward&limit=${limit ?? 10}`}`,
     )

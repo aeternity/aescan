@@ -59,8 +59,8 @@ const menuOptions = ref([{
       path: '/nodes',
     },
     {
-      name: 'Miners',
-      path: '/miners',
+      name: 'Mining Pools',
+      path: '/mining-pools',
     },
   ],
 },

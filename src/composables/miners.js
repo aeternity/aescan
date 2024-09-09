@@ -1,64 +1,46 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
-import { adaptName, adaptNameActions } from '@/utils/adapters'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-export const useNameDetailsStore = defineStore('nameDetails', () => {
-  const { blockHeight, keyblocks } = storeToRefs(useRecentBlocksStore())
+export const useMinersStore = defineStore('miners', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
-  const rawName = ref(null)
-  const rawNameActions = ref(null)
+  const minersCount = ref(null)
+  const blockReward = ref(null)
+  const difficulty = ref(null)
 
-  const name = computed(() => {
-    return rawName.value ? adaptName(rawName.value, blockHeight.value, keyblocks.value?.[0].time) : null
-  })
-  const nameHash = computed(() => {
-    return rawName.value?.hash || rawName.value?.info.lastBid.tx.nameId
-  })
-  const nameActions = computed(() => {
-    return rawNameActions.value ? adaptNameActions(rawNameActions.value) : null
-  })
-  const hasNameHistory = computed(() => {
-    return !!nameHash.value
-  })
-
-  async function fetchName(name) {
-    rawName.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
-    rawName.value = data
+  function fetchMiners() {
+    return Promise.all([
+      fetchMinersCount(),
+      fetchBlockReward(),
+      fetchDifficulty(),
+    ])
   }
 
-  async function fetchNameActions({ nameHash = null, queryParameters = null }) {
-    rawNameActions.value = null
-    const defaultParameters = `/v2/names/${nameHash}/history`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawNameActions.value = data
+  async function fetchMinersCount() {
+    minersCount.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
+    minersCount.value = data.minersCount
   }
 
-  async function isNameAvailable(name) {
-    try {
-      await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
-      return true
-    } catch (error) {
-      if (error.response.status === 404) {
-        return false
-      }
-      return null
-    }
+  async function fetchBlockReward() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/delta?limit=1`)
+    blockReward.value = data.data[0].blockReward
+    console.log('data.data', data.data)
+  }
+
+  async function fetchDifficulty() {
+    difficulty.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/difficulty`)
+    console.log('data', data)
+    difficulty.value = data.data[0].count
   }
 
   return {
-    rawName,
-    rawNameActions,
-    name,
-    nameHash,
-    nameActions,
-    hasNameHistory,
-    fetchName,
-    fetchNameActions,
-    isNameAvailable,
+    minersCount,
+    blockReward,
+    difficulty,
+    fetchMiners,
   }
 })

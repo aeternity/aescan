@@ -10,7 +10,10 @@
       {{ topAccountsHints.topAccounts }}
     </template>
   </page-header>
-  <miners-panel v-if="!isLoading"/>
+  <tempalte v-if="!isLoading">
+    <miners-statistics/>
+    <miners-panel/>
+  </tempalte>
   <loader-panel v-else/>
 </template>
 

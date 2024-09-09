@@ -1,10 +1,10 @@
 <template>
   <Head>
-    <Title>Miners</Title>
+    <Title>Mining Pools</Title>
   </Head>
 
   <page-header>
-    Miners
+    Mining Pools
     <template #tooltip>
       <!--      todo hints-->
       {{ topAccountsHints.topAccounts }}

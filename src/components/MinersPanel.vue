@@ -12,7 +12,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="miner in MINERS">
+        <tr
+          v-for="miner in MINERS"
+          :key="miner.name">
           <td>{{ miner.name }}</td>
           <td>{{ miner.url }}</td>
         </tr>
@@ -24,7 +26,3 @@
 <script setup>
 
 </script>
-
-<style scoped>
-
-</style>

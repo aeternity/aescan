@@ -15,8 +15,14 @@
         <tr
           v-for="miner in MINERS"
           :key="miner.name">
-          <td>{{ miner.name }}</td>
-          <td>{{ miner.url }}</td>
+          <td>
+            {{ miner.name }}
+          </td>
+          <td>
+            <app-link :to="miner.url">
+              {{ miner.url }}
+            </app-link>
+          </td>
         </tr>
       </tbody>
     </table>

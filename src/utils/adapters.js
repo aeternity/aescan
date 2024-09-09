@@ -7,6 +7,7 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatIsStatefulEntrypoint,
   formatNameState,
   formatNumber,
   formatPercentage,
@@ -393,6 +394,7 @@ export function adaptContractEvents(events) {
         args: event.args,
         isDecoded: !!event.eventName,
         callTxHash: event.callTxHash,
+        logIdx: event.logIdx,
       }
     })
 

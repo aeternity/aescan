@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
-import {compileTemplate} from 'vue/compiler-sfc'
-import {sentryVitePlugin} from '@sentry/vite-plugin'
+import { compileTemplate } from 'vue/compiler-sfc'
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -11,11 +11,11 @@ export default defineNuxtConfig({
   },
   nitro: {
     routeRules: {
-      "/proxy/avatar/**": {proxy: 'https://avatars.z52da5wt.xyz/**', cors: true,},
-      '/proxy/nodes': {proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true},
-      '/proxy/gate': {proxy: 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT', cors: true},
-      '/proxy/mexc': {proxy: 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT', cors: true},
-      '/proxy/coinw': {proxy: 'https://api.coinw.com/api/v1/public?command=returnTicker', cors: true},
+      '/proxy/avatar/**': { proxy: 'https://avatars.z52da5wt.xyz/**', cors: true },
+      '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
+      '/proxy/gate': { proxy: 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT', cors: true },
+      '/proxy/mexc': { proxy: 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT', cors: true },
+      '/proxy/coinw': { proxy: 'https://api.coinw.com/api/v1/public?command=returnTicker', cors: true },
     },
   },
   modules: [
@@ -67,9 +67,9 @@ export default defineNuxtConfig({
   },
   sourcemap: true,
   vite: {
-    build: {target: 'es2020'},
+    build: { target: 'es2020' },
     optimizeDeps: {
-      esbuildOptions: {target: 'es2020'},
+      esbuildOptions: { target: 'es2020' },
     },
     define: {
       __VUE_PROD_DEVTOOLS__: process.env.MODE !== 'production',
@@ -83,13 +83,12 @@ export default defineNuxtConfig({
             return
           }
 
-          const {code} = compileTemplate({
+          const { code } = compileTemplate({
             id: JSON.stringify(path),
             filename: path,
             source: await fs.readFile(path, 'utf-8'),
             transformAssetUrls: false,
           })
-
 
           return `${code}\nexport default { render: render }`
         },
@@ -115,7 +114,6 @@ export default defineNuxtConfig({
       codeEditor: 'MonacoEditor',
     },
   },
-
 
   compatibilityDate: '2024-07-16',
 

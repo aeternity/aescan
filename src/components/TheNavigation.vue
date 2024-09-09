@@ -54,6 +54,14 @@ const menuOptions = ref([{
       name: 'State Channels',
       path: '/state-channels',
     },
+    {
+      name: 'Nodes',
+      path: '/nodes',
+    },
+    {
+      name: 'Miners',
+      path: '/miners',
+    },
   ],
 },
 {

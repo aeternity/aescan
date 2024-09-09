@@ -9,13 +9,13 @@
     <app-panel class="transaction-statistics__panel">
       <h5>REWARD</h5>
       <div class="transaction-statistics__value">
-        {{ blockReward }}
+        <price-label :price="formatAePrice(blockReward)"/>
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
       <h5>DIFFICULTY</h5>
       <div class="transaction-statistics__value">
-        {{ difficulty }}
+        {{ formatNumber(difficulty, 4, 4, 4) }} G
       </div>
     </app-panel>
   </div>

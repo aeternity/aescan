@@ -50,6 +50,10 @@ const menuOptions = ref([{
       path: '/nodes',
     },
     {
+      name: 'Miners',
+      path: '/miners',
+    },
+    {
       name: 'Hyperchains',
       path: '/hyperchains',
       isDisabled: true,

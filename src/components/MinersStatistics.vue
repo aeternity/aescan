@@ -1,10 +1,5 @@
 <template>
-  {{ know }}
-  <br>
-  <br>
-  <br>
-  status
-  {{ status }}
+  <!--  {{ status }}-->
   <div class="transaction-statistics">
     <app-panel class="transaction-statistics__panel">
       <h5>MINERS</h5>
@@ -12,56 +7,69 @@
         {{ minersCount }}
       </div>
     </app-panel>
+
     <app-panel class="transaction-statistics__panel">
       <h5>PEERS</h5>
       <div class="transaction-statistics__value">
-        {{ know.peers }}
+        {{ status.peerCount }}
       </div>
     </app-panel>
+
     <app-panel class="transaction-statistics__panel">
       <h5>POOLS</h5>
       <div class="transaction-statistics__value">
         {{ MINERS.length }}
       </div>
     </app-panel>
+
     <app-panel class="transaction-statistics__panel">
       <h5>REWARD</h5>
-      <!--      todo why reward is different_-->
       <div class="transaction-statistics__value">
-        <price-label :price="blockReward"/>
-      </div>
-    </app-panel>
-    <app-panel class="transaction-statistics__panel">
-      <h5>DIFFICULTY</h5>
-      <div class="transaction-statistics__value">
-        {{ formatNumber(status.difficulty, 0, 0, 4) }} G
+        <price-label
+          :price="formatAettosToAe(blockReward)"
+          :max-digits="2"
+          :has-icon="false"/>
       </div>
     </app-panel>
 
     <app-panel class="transaction-statistics__panel">
-      <h5>TOTAL MINED</h5>
+      <h5>DIFFICULTY</h5>
       <div class="transaction-statistics__value">
-        TOTAAAL
+        {{ Math.round(status.difficulty / 1000000000) }} KG/s
       </div>
     </app-panel>
-    <app-panel class="transaction-statistics__panel">
-      <h5>BLOCK TIME</h5>
-      <div class="transaction-statistics__value">
-        {{ blocksPerMinute }} mins/block
-      </div>
-    </app-panel>
+
     <app-panel class="transaction-statistics__panel">
       <h5>HASHRATE</h5>
       <div class="transaction-statistics__value">
-        {{ formatNumber(status.hashrate, 0, 0, 4) }} G
+        {{ Math.round(status.hashrate / 1000) }} KG/s
       </div>
     </app-panel>
+
     <app-panel class="transaction-statistics__panel">
-      <h5>nr of blocks</h5>
-      {{ status.topBlock }}
+      <h5>BLOCKS MINED</h5>
+      <div class="transaction-statistics__value">
+        {{ formatNumber(status.topBlockHeight) }}
+      </div>
     </app-panel>
+
     <app-panel class="transaction-statistics__panel">
-      <h5>nr of blocks</h5>
+      <h5>BLOCK TIME</h5>
+      <div class="transaction-statistics__value">
+        {{ Math.round(blocksPerMinute) }} mins/block
+        <!--        todo move to mdw-->
+      </div>
+    </app-panel>
+
+    <app-panel class="transaction-statistics__panel">
+      <h5>MAX TPS</h5>
+      <div class="transaction-statistics__value">
+        {{ maxTPS }}
+      </div>
+    </app-panel>
+
+    <app-panel class="transaction-statistics__panel">
+      <h5>TOP MINERS IN LAST 24 HOURS</h5>
       <pie-chart/>
     </app-panel>
   </div>
@@ -70,7 +78,13 @@
 import { useMinersStore } from '@/stores/miners'
 
 const { fetchMiners } = useMinersStore()
-const { minersCount, blockReward, difficulty, know, status, blocksPerMinute } = storeToRefs(useMinersStore())
+const {
+  minersCount,
+  blockReward,
+  status,
+  blocksPerMinute,
+  maxTPS,
+} = storeToRefs(useMinersStore())
 
 if (process.client) {
   await fetchMiners()

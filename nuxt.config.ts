@@ -16,6 +16,7 @@ export default defineNuxtConfig({
       '/proxy/gate': { proxy: 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT', cors: true },
       '/proxy/mexc': { proxy: 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT', cors: true },
       '/proxy/coinw': { proxy: 'https://api.coinw.com/api/v1/public?command=returnTicker', cors: true },
+      '/proxy/know': { proxy: 'https://www.aeknow.org/api', cors: true },
     },
   },
   modules: [

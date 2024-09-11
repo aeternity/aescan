@@ -1,79 +1,85 @@
 <template>
   <!--  {{ status }}-->
-  <div class="transaction-statistics">
-    <app-panel class="transaction-statistics__panel">
+  <span class="mining-statistics">
+    <app-panel class="mining-statistics__panel">
       <h5>MINERS</h5>
-      <div class="transaction-statistics__value">
+      <span class="mining-statistics__value">
         {{ minersCount }}
-      </div>
+      </span>
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>PEERS</h5>
-      <div class="transaction-statistics__value">
+      <span class="mining-statistics__value">
         {{ status.peerCount }}
-      </div>
+      </span>
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>POOLS</h5>
-      <div class="transaction-statistics__value">
+      <span class="mining-statistics__value">
         {{ MINERS.length }}
-      </div>
+      </span>
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>REWARD</h5>
-      <div class="transaction-statistics__value">
+      <span class="mining-statistics__value">
         <!--        <price-label
           :price="formatAettosToAe(blockReward)"
           :max-digits="2"
           :has-icon="false"/>-->
         <price-label :price="formatAettosToAe(blockReward, null)"/>
-      </div>
+      </span>
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>DIFFICULTY</h5>
-      <div class="transaction-statistics__value">
-        {{ Math.round(status.difficulty / 1000000000) }} KG/s
-      </div>
+      <span class="mining-statistics__value">
+        {{ Math.round(status.difficulty / 1000000000) }}
+      </span>
+      KG/s
+
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>HASHRATE</h5>
-      <div class="transaction-statistics__value">
-        {{ Math.round(status.hashrate / 1000) }} KG/s
-      </div>
+      <span class="mining-statistics__value">
+        {{ Math.round(status.hashrate / 1000) }}
+      </span>
+      KG/s
+
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>BLOCKS MINED</h5>
-      <div class="transaction-statistics__value">
+      <span class="mining-statistics__value">
         {{ formatNumber(status.topBlockHeight) }}
-      </div>
+      </span>
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>BLOCK TIME</h5>
-      <div class="transaction-statistics__value">
-        {{ Math.round(blocksPerMinute) }} mins/block
+      <span class="mining-statistics__value">
+        {{ Math.round(blocksPerMinute) }}
         <!--        todo move to mdw-->
-      </div>
+      </span>
+      min/block
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>MAX TPS</h5>
-      <div class="transaction-statistics__value">
+      <span class="mining-statistics__value">
         {{ maxTPS }}
-      </div>
+      </span>
+      tx/s
     </app-panel>
 
-    <app-panel class="transaction-statistics__panel">
+    <app-panel class="mining-statistics__panel">
       <h5>TOP MINERS IN LAST 24 HOURS</h5>
       <pie-chart/>
     </app-panel>
-  </div>
+  </span>
 </template>
 <script setup>
 import { useMinersStore } from '@/stores/miners'
@@ -94,7 +100,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.transaction-statistics {
+.mining-statistics {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -118,7 +124,6 @@ if (process.client) {
   &__value {
     display: inline-flex;
     justify-content: space-between;
-    width: 100%;
     font-size: 36px;
     font-family: var(--font-monospaced);
     font-weight: 400;

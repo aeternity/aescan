@@ -4,15 +4,15 @@ import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 
 export const useMinersStore = defineStore('miners', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
   const minersCount = ref(null)
   const blockReward = ref(null)
-  const know = ref(null)
   const status = ref(null)
   const firstKeyblockTime = ref(null)
   const lastKeyblock = ref(null)
+  const maxTPS = ref(null)
 
   const blocksPerMinute = computed(() => {
     // todo rename
@@ -28,10 +28,10 @@ export const useMinersStore = defineStore('miners', () => {
     return Promise.all([
       fetchMinersCount(),
       fetchBlockReward(),
-      fetchKnow(),
       fetchStatus(),
       fetchFirstBlockTime(),
       fetchLastBlock(),
+      fetchMaxTps(),
     ])
   }
 
@@ -46,15 +46,9 @@ export const useMinersStore = defineStore('miners', () => {
     blockReward.value = data.data[0].blockReward
   }
 
-  async function fetchKnow() {
-    know.value = null
-    const { data } = await axios.get('/proxy/know')
-    know.value = data
-  }
-
   async function fetchStatus() {
     status.value = null
-    const { data } = await axios.get('https://mainnet.aeternity.io/v3/status')
+    const { data } = await axios.get(`${NODE_URL}/v3/status`)
     status.value = data
   }
 
@@ -71,13 +65,19 @@ export const useMinersStore = defineStore('miners', () => {
     console.log('lastKeyblock.value', lastKeyblock.value)
   }
 
+  async function fetchMaxTps() {
+    maxTPS.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
+    maxTPS.value = data.maxTransactionsPerSecond
+  }
+
   return {
     minersCount,
     blockReward,
-    know,
     status,
     firstKeyblockTime,
     blocksPerMinute,
+    maxTPS,
     fetchMiners,
   }
 })

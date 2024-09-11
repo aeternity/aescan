@@ -1,9 +1,8 @@
 <template>
   <div class="pie-chart">
-    <Pie
-      v-if="hasChart"
+    <Doughnut
       :options="chartOptions"
-      :data="chartData"/>
+      :data="data"/>
     <blank-state
       v-if="isEmpty"
       class="line-chart__blank-state"/>
@@ -12,7 +11,9 @@
 </template>
 
 <script setup>
+
 import {
+  ArcElement,
   CategoryScale,
   Chart as ChartJS,
   Legend,
@@ -22,70 +23,85 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
-
-import { DateTime } from 'luxon'
-import { Pie } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 
 const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)
 const isLoading = computed(() => props.data === null)
 
 const props = defineProps({
-  data: {
-    type: Array,
-    default: null,
-  },
+  // data: {
+  //   type: Array,
+  //   default: null,
+  // },
   interval: {
     type: String,
     required: true,
   },
 })
-
-const stats = computed(() => {
-  return props.data.map(stat => {
-    return stat.count
-  })
-})
-
-const labels = computed(() => {
-  return props.data.map(stat => {
-    return formatDate(stat.startDate)
-  })
-})
-
-function formatDate(label) {
-  const date = DateTime.fromISO(label)
-  if (props.interval === 'month') {
-    return date.toFormat('yyyy/MM')
-  }
-
-  return date.toFormat('MM/dd')
+const data = {
+  labels: [
+    '2miners',
+    '2miners.solo',
+    'WoolyPooly',
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [48, 2, 50],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)',
+    ],
+    hoverOffset: 4,
+  }],
 }
 
-function formatNumberFractions(number) {
-  return number.toLocaleString('en-US', {
-    maximumFractionDigits: 2,
-    notation: 'compact',
-    compactDisplay: 'short',
-  })
-}
-
-const chartData = computed(() => {
-  return {
-    labels: labels.value,
-    datasets: [{
-      data: stats.value,
-      label: null,
-      cubicInterpolationMode: 'monotone',
-      tension: 0.4,
-      borderColor: '#f5274e',
-      backgroundColor: '#f5274e',
-      pointRadius: 3,
-      pointHitRadius: 20,
-    }],
-  }
-})
-
+// const stats = computed(() => {
+//   return props.data.map(stat => {
+//     return stat.count
+//   })
+// })
+//
+// const labels = computed(() => {
+//   return props.data.map(stat => {
+//     return formatDate(stat.startDate)
+//   })
+// })
+//
+// function formatDate(label) {
+//   const date = DateTime.fromISO(label)
+//   if (props.interval === 'month') {
+//     return date.toFormat('yyyy/MM')
+//   }
+//
+//   return date.toFormat('MM/dd')
+// }
+//
+// function formatNumberFractions(number) {
+//   return number.toLocaleString('en-US', {
+//     maximumFractionDigits: 2,
+//     notation: 'compact',
+//     compactDisplay: 'short',
+//   })
+// }
+//
+// const chartData = computed(() => {
+//   return {
+//     labels: labels.value,
+//     datasets: [{
+//       data: stats.value,
+//       label: null,
+//       cubicInterpolationMode: 'monotone',
+//       tension: 0.4,
+//       borderColor: '#f5274e',
+//       backgroundColor: '#f5274e',
+//       pointRadius: 3,
+//       pointHitRadius: 20,
+//     }],
+//   }
+// })
+//
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
@@ -104,27 +120,39 @@ const chartOptions = {
       },
     },
   },
-  scales: {
-    y: {
-      border: {
-        display: false,
-      },
-      ticks: {
-        precision: 0,
-        callback: function(value) {
-          return formatNumberFractions(value)
-        },
-      },
-    },
-    x: {
-      grid: {
-        color: function() {
-          return 'transparent'
-        },
-      },
-    },
-  },
+  // scales: {
+  //   y: {
+  //     border: {
+  //       display: false,
+  //     },
+  //     ticks: {
+  //       precision: 0,
+  //       callback: function(value) {
+  //         return formatNumberFractions(value)
+  //       },
+  //     },
+  //   },
+  //   x: {
+  //     grid: {
+  //       color: function() {
+  //         return 'transparent'
+  //       },
+  //     },
+  //   },
+  // },
 }
+//
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+// )
+//
+// ChartJS.defaults.font.family = 'Roboto Mono'
 
 ChartJS.register(
   CategoryScale,
@@ -134,6 +162,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  ArcElement,
 )
 
 ChartJS.defaults.font.family = 'Roboto Mono'

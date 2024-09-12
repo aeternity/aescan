@@ -1,63 +1,73 @@
 <template>
   <app-panel class="account-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
-    <template #header>
-      <app-chip
-        v-if="accountDetails.isGeneralized"
-        size="sm">
-        Generalized
-      </app-chip>
+    <template v-if="accountDetails.isExistent === false">
+      <div class="u-hidden-mobile">
+        <copy-chip :label="accountDetails.id"/>
+      </div>
+      <div class="u-hidden-desktop">
+        <copy-chip
+          :label="formatEllipseHash(accountDetails.id)"
+          :clipboard-text="accountDetails.id"/>
+      </div>
 
-      <copy-chip
-        :label="accountDetails.id"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(accountDetails.id)"
-        :clipboard-text="accountDetails.id"
-        class="u-hidden-desktop"/>
+      <p class="account-details-panel__not-existent">
+        The account has never been seen in the network.
+        <br>
+        Details will be displayed once the account is directly involved in a native transaction, but the account can
+        already receive custom tokens.
+      </p>
     </template>
-    <p
-      v-if="accountDetails.isExistent === false"
-      class="account-details-panel__not-existent">
-      The account has never been seen in the network.
-      <br>
-      Details will be displayed once the account is directly involved in a native transaction, but the account can
-      already receive custom tokens.
-    </p>
     <table v-else>
       <tbody>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Balance
             <hint-tooltip>
-              {{ accountHints.balance }}
+              {{ accountHints.address }}
             </hint-tooltip>
+            Address
           </th>
-          <td class="account-details-panel__data">
-            {{ formatAePrice(accountDetails.balance, null) }}
+          <td>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="accountDetails.id"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(accountDetails.id)"
+                :clipboard-text="accountDetails.id"/>
+            </div>
           </td>
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Value
+            <hint-tooltip>
+              {{ accountHints.balance }}
+            </hint-tooltip>
+            Balance
+          </th>
+          <td>
+            <price-label :price="accountDetails.balance"/>
+          </td>
+        </tr>
+
+        <tr class="account-details-panel__row">
+          <th class="account-details-panel__table-header">
             <hint-tooltip>
               {{ accountHints.value }}
             </hint-tooltip>
+            Value
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ sanitizedPrice }}
           </td>
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Transactions
             <hint-tooltip>
               {{ accountHints.transactions }}
             </hint-tooltip>
+            Transactions
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
           </td>
         </tr>
@@ -65,12 +75,27 @@
           v-if="accountDetails.isGeneralized"
           class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Contract Id
+            <hint-tooltip>
+              {{ accountHints.generalized }}
+            </hint-tooltip>
+            Is Generalized
+          </th>
+          <td>
+            <app-chip size="sm">
+              Generalized
+            </app-chip>
+          </td>
+        </tr>
+        <tr
+          v-if="accountDetails.isGeneralized"
+          class="account-details-panel__row">
+          <th class="account-details-panel__table-header">
             <hint-tooltip>
               {{ accountHints.contractId }}
             </hint-tooltip>
+            Contract Id
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <app-link :to="`/contracts/${accountDetails.contractId}`">
               {{ accountDetails.contractId }}
             </app-link>
@@ -80,33 +105,31 @@
           v-else
           class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            Nonce
             <hint-tooltip>
               {{ accountHints.nonce }}
             </hint-tooltip>
+            Nonce
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ accountDetails.nonce }}
           </td>
         </tr>
         <tr class="account-details-panel__row">
           <th class="account-details-panel__table-header">
-            API Links
             <hint-tooltip>
               {{ accountHints.apiLinks }}
             </hint-tooltip>
+            API Links
           </th>
-          <td class="account-details-panel__data">
-            <div class="account-details-panel__container">
-              <app-link
-                :to="accountNodeUrl"
-                class="account-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
-            </div>
+          <td>
+            <app-link
+              :to="accountNodeUrl"
+              class="account-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
           </td>
         </tr>
       </tbody>
@@ -121,10 +144,11 @@ import AppPanel from '@/components/AppPanel'
 import CopyChip from '@/components/CopyChip'
 import AppIcon from '@/components/AppIcon'
 import AppLink from '@/components/AppLink'
-import { formatAePrice, formatNullable, formatNumber } from '@/utils/format'
+import { formatNumber } from '@/utils/format'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import HintTooltip from '@/components/HintTooltip'
 import AppChip from '@/components/AppChip'
+import PriceLabel from '@/components/PriceLabel'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public
@@ -141,7 +165,7 @@ const accountNodeUrl = computed(() =>
 )
 const sanitizedPrice = computed(() =>
   price.value
-    ? `$${formatNullable(formatNumber(props.accountDetails.balance * price.value, 2, 2))}`
+    ? `$${formatNumber(props.accountDetails.balance * price.value, 2, 2)}`
     : '---',
 )
 </script>
@@ -150,19 +174,14 @@ const sanitizedPrice = computed(() =>
 .account-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
+
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__data {
-    text-align: right;
-  }
-
-  &__container {
-    display: flex;
-    justify-content: flex-end;
   }
 
   &__link {

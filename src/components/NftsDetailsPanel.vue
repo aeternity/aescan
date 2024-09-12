@@ -1,62 +1,67 @@
 <template>
   <app-panel class="nfts-details-panel">
-    <template #heading>
-      DETAILS
-    </template>
-    <template #header>
-      <copy-chip
-        :label="nftDetails.contractId"
-        class="u-hidden-mobile"/>
-      <copy-chip
-        :label="formatEllipseHash(nftDetails.contractId)"
-        :clipboard-text="nftDetails.contractId"
-        class="u-hidden-desktop"/>
-    </template>
-
     <table>
       <tbody>
         <tr class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Collection Name
+            <hint-tooltip>
+              {{ nftsHints.smartContractId }}
+            </hint-tooltip>
+            Contract ID
+          </th>
+          <td>
+            <div class="u-hidden-mobile">
+              <copy-chip :label="nftDetails.contractId"/>
+            </div>
+            <div class="u-hidden-desktop">
+              <copy-chip
+                :label="formatEllipseHash(nftDetails.contractId)"
+                :clipboard-text="nftDetails.contractId"/>
+            </div>
+          </td>
+        </tr>
+        <tr class="nfts-details-panel__row">
+          <th class="nfts-details-panel__table-header">
             <hint-tooltip>
               {{ nftsHints.collectionName }}
             </hint-tooltip>
+            Collection Name
           </th>
-          <td class="nfts-details-panel__data">
+          <td>
             {{ nftDetails.name }}
           </td>
         </tr>
         <tr class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Owners
             <hint-tooltip>
               {{ nftsHints.owners }}
             </hint-tooltip>
+            Owners
           </th>
-          <td class="nfts-details-panel__data">
+          <td>
             {{ nftDetails.nftOwners }}
           </td>
         </tr>
         <tr class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Amount
             <hint-tooltip>
               {{ nftsHints.amount }}
             </hint-tooltip>
+            Amount
           </th>
-          <td class="nfts-details-panel__data">
+          <td>
             {{ nftDetails.nftsAmount }}
           </td>
         </tr>
         <tr
           class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Extensions
             <hint-tooltip>
               {{ nftsHints.extensions }}
             </hint-tooltip>
+            Extensions
           </th>
-          <td class="nfts-details-panel__data">
+          <td>
             <div
               v-if="!!nftDetails.extensions.length"
               class="nfts-details-panel__extensions">
@@ -76,12 +81,12 @@
           v-if="nftDetails.tokenLimit !== null"
           class="nfts-details-panel__row">
           <th class="nfts-details-panel__table-header">
-            Token limit
             <hint-tooltip>
               {{ nftsHints.tokenLimit }}
             </hint-tooltip>
+            Token limit
           </th>
-          <td class="nfts-details-panel__data">
+          <td>
             {{ nftDetails.tokenLimit }}
           </td>
         </tr>
@@ -94,7 +99,7 @@
               {{ nftsHints.templateLimit }}
             </hint-tooltip>
           </th>
-          <td class="nfts-details-panel__data">
+          <td>
             {{ nftDetails.templateLimit }}
           </td>
         </tr>
@@ -120,10 +125,10 @@ defineProps({
 .nfts-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
-  }
 
-  &__data {
-    text-align: right;
+    @media (--desktop) {
+      width: var(--detail-column-width);
+    }
   }
 
   &__row:last-of-type &__table-header {
@@ -143,7 +148,10 @@ defineProps({
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);
-    justify-content: flex-end;
+
+    @media (--desktop) {
+      gap: 0 var(--space-1);
+    }
   }
 }
 </style>

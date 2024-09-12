@@ -90,7 +90,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   /* HANDLING COMMUNICATION OVER REST API */
 
   async function fetchKeyblocks() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks?&limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks?limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
     keyblocks.value = data.data
     blockHeight.value = data.data[0].height
   }

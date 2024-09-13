@@ -5,4 +5,10 @@ describe('microblock details', () => {
     cy.get('.microblock-details-panel table').should('be.visible')
     cy.get('.microblock-transactions-panel .paginated-content').should('be.visible')
   })
+
+  it('should display microblock not found page', () => {
+    cy.visit('/microblocks/wrong',
+      { failOnStatusCode: false })
+    cy.get('.title').contains('Microblock Not Found')
+  })
 })

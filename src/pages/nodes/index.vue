@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-
 import { nodesHints } from '@/utils/hints/nodesHints'
 
 const { isLoading } = useLoading()

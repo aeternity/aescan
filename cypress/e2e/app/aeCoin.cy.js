@@ -1,5 +1,5 @@
 describe('ae coin', () => {
-  it('should display tokens', () => {
+  it('should display ae token detail', () => {
     cy.visit('/tokens/ae')
 
     cy.get('.ae-coin-panel table').should('be.visible')

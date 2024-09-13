@@ -1,10 +1,10 @@
-name: Develop pipelines - testnet
+name: Develop Testnet
 
 on:
   push:
     branches:
       - develop
-    
+
 env:
   ENV: "dev"
   APP: "aescan-testnet"
@@ -15,12 +15,12 @@ jobs:
   main:
     runs-on: ubuntu-latest
     environment: develop
-    name: Develop Pipeline Aescan Frontend Testnet
+    name: build
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
+
       - name: Get commit sha on PR Sync
         if: github.event_name == 'push'
         id: git-sha
@@ -58,7 +58,7 @@ jobs:
           images: aeternity/aescan
           tags: |
             type=raw,value=develop,enable=${{ endsWith(GitHub.ref, 'develop') }}
-      
+
       - name: Create dotenv
         run: |
           echo APP_VERSION=$(git describe --tags)-dev >> .env

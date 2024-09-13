@@ -22,6 +22,7 @@
   --font-primary: clashdisplay, arial, sans-serif;
   --font-monospaced: 'Roboto Mono', monospaced, sans-serif;
   --container-width: 1280px;
+  --detail-column-width: 380px;
 }
 
 @custom-media --desktop (min-width: 1280px);

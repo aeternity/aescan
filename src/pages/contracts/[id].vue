@@ -31,9 +31,19 @@
         <contract-events-panel/>
       </app-tab>
       <app-tab
-        title="Contract"
+        title="Verification"
         :has-verified-icon="isVerified">
         <contract-verified-panel/>
+      </app-tab>
+      <app-tab
+        v-if="isVerified"
+        title="Read Contract">
+        <contract-read-panel/>
+      </app-tab>
+      <app-tab
+        v-if="isVerified"
+        title="Write Contract">
+        <contract-write-panel/>
       </app-tab>
     </app-tabs>
   </template>
@@ -57,7 +67,7 @@ const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
 const route = useRoute()
 
-const TAB_KEYS = ['call-transactions', 'events', 'contract-verified']
+const TAB_KEYS = ['call-transactions', 'events', 'contract-verified', 'contract-read', 'contract-write']
 
 const activeTabIndex = computed({
   get() {
@@ -102,7 +112,7 @@ if (error.value) {
 if (process.client && !error.value) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
-    queryParameters: `/v2/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
+    queryParameters: `/v3/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
   await fetchVerificationDetail(route.params.id)
 }

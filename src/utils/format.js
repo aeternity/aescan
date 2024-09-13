@@ -1,7 +1,12 @@
 import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
 import { BigNumber } from 'bignumber.js'
-import { MAXIMUM_FRACTION_DIGITS, MINUTES_PER_BLOCK, NUMBER_FRACTION_THRESHOLD } from '@/utils/constants'
+import {
+  MAXIMUM_FRACTION_DIGITS,
+  MINUTES_PER_BLOCK,
+  NUMBER_FRACTION_THRESHOLD,
+  REVOKED_PERIOD,
+} from '@/utils/constants'
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
@@ -30,13 +35,13 @@ export function formatNumber(
   }).format(number)
 }
 
-export function formatAePrice(price, maxDigits = 8) {
+export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
   if (isNaN(price) || price === null) {
     return price
   }
 
   if (maxDigits === null) {
-    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)} AE`
+    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)} ${currency}`
   }
 
   const truncatedPrice = new BigNumber(price).toFixed(
@@ -51,10 +56,17 @@ export function formatAePrice(price, maxDigits = 8) {
   decimals = decimals?.replace(/0+$/, '')
 
   if (!decimals) {
-    return integers === '0' ? `~${integers} AE` : `${formatNumber(integers)} AE`
+    if (price === 0) {
+      return `0 ${currency}`
+    }
+    if (integers === '0') {
+      return `~${integers} ${currency}`
+    } else {
+      return `${formatNumber(integers)} ${currency}`
+    }
   }
 
-  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} AE`
+  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} ${currency}`
 }
 
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
@@ -80,6 +92,12 @@ export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) 
 }
 
 export function formatNullable(value) {
+  if (value === 0) {
+    return value
+  }
+  if (!value) {
+    return '---'
+  }
   return value || '---'
 }
 
@@ -91,13 +109,39 @@ export function formatDecodeByteArray(bytesArray) {
   return String.fromCharCode(...bytesArray)
 }
 
-export function formatNameStatus(name) {
-  if (name.payload.auctionEnd) {
-    return 'In Auction'
-  } else if (name.payload.active) {
-    return 'Active'
-  } else {
-    return 'Expired'
+export function formatNameState(name, blockHeight) {
+  const isInAuction = name.status === 'auction'
+  const isActive = name.active
+  const isExpired = name.status === 'name' && !name.active
+  const isRevoked = isExpired && name.active === false &&
+    name.info.expireHeight + REVOKED_PERIOD > blockHeight
+
+  if (isInAuction) {
+    return 'auction'
+  } else if (isRevoked) {
+    return 'revoked'
+  } else if (isExpired) {
+    return 'expired'
+  } else if (isActive) {
+    return 'active'
+  }
+}
+
+export function formatIsAuction(name) {
+  const auctionLength = 13
+  const suffixLength = 6
+  return name.length - suffixLength < auctionLength
+}
+
+export function formatPercentage(percentage) {
+  if (percentage >= 0.00001) {
+    return `${formatNumber(percentage)} %`
+  }
+  if (percentage === 0) {
+    return '0 %'
+  }
+  if (percentage < 0.00001) {
+    return '~0 %'
   }
 }
 
@@ -125,12 +169,6 @@ export function formatTemplateLimit(extensions, templateLimit) {
   }
 }
 
-export function formatIsAuction(name) {
-  const auctionLength = 13
-  const suffixLength = 6
-  return name.length - suffixLength < auctionLength
-}
-
 export function formatKnownAddress(hash, isEllipsed = true) {
   if (KNOWN_ADDRESSES.some(address => address.hash === hash)) {
     return KNOWN_ADDRESSES.find(address => address.hash === hash).name
@@ -139,4 +177,21 @@ export function formatKnownAddress(hash, isEllipsed = true) {
   } else {
     return hash
   }
+}
+
+export function formatIsStatefulEntrypoint(aciFunction) {
+  return !!aciFunction.stateful
+}
+
+export function formatEntrypointResponse(value, type) {
+  if (type === 'int') {
+    return new BigNumber(value)
+  }
+  if (type === 'address') {
+    return value
+  }
+  if (type === 'bool') {
+    return value.toString()
+  }
+  return value
 }

@@ -1,5 +1,6 @@
 export const keyblocksHints = {
   keyblock: 'Unlike in Bitcoin, (key)blocks do not directly include any transaction. Instead, a mined keyblock determines a new leader who is then eligible to create new microblocks every 3 seconds which include the transactions. On average, a new keyblock is mined every 3 minutes.',
+  keyblockHash: 'Unique identifier of the keyblock.',
   height: 'Total number of keyblocks that have been added to the blockchain in a sequential order, starting from the genesis block. Each new block added to the chain increases the height by one.',
   time: 'Date and time when the keyblock was mined.',
   miner: 'The account that mined the keyblock.',

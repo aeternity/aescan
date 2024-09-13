@@ -5,13 +5,13 @@
         <th>
           Name
           <hint-tooltip>
-            {{ namesHints.name }}
+            {{ namesHints.nameId }}
           </hint-tooltip>
         </th>
         <th>
           Status
           <hint-tooltip>
-            {{ namesHints.status }}
+            {{ namesHints.state }}
           </hint-tooltip>
         </th>
       </tr>
@@ -25,7 +25,7 @@
             {{ name.name }}
           </app-link>
         </td>
-        <td>{{ name.status }}</td>
+        <td>{{ name.active ? 'Active' : 'Expired' }}</td>
       </tr>
     </tbody>
   </table>

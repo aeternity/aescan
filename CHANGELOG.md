@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.15.0](https://github.com/aeternity/aescan/compare/0.14.0...0.15.0) (2024-09-13)
+
+
+### Features
+
+* Ae coin details ([#827](https://github.com/aeternity/aescan/issues/827)) ([f56a9d4](https://github.com/aeternity/aescan/commit/f56a9d4330e7ea1040f068a99e5f635c2905e667))
+* AE coin markets ([#835](https://github.com/aeternity/aescan/issues/835)) ([31da7e4](https://github.com/aeternity/aescan/commit/31da7e4a00e6d0ef9c0d8e5b53ec6282b05179cf))
+* Ae coin transactions ([#831](https://github.com/aeternity/aescan/issues/831)) ([149d0b5](https://github.com/aeternity/aescan/commit/149d0b526a55654475ae0f7d062a0a0c585ff8cc))
+* change action naming ([#808](https://github.com/aeternity/aescan/issues/808)) ([82ae935](https://github.com/aeternity/aescan/commit/82ae935abfaaae2ebc40196e30c749a617fc43d4))
+* Contract read & write ([#872](https://github.com/aeternity/aescan/issues/872)) ([f5a0f80](https://github.com/aeternity/aescan/commit/f5a0f8094673339eca5d39a1d588699a129de757))
+* Enable average tx fees panel ([#785](https://github.com/aeternity/aescan/issues/785)) ([ab792cb](https://github.com/aeternity/aescan/commit/ab792cb8cb638be525bc757b4f20aaa96b99aa68))
+* Improve UI and readability of panels in detail pages ([#717](https://github.com/aeternity/aescan/issues/717)) ([44ee1fc](https://github.com/aeternity/aescan/commit/44ee1fc5a99a4d4a5e79d6da82c96685893c86e3))
+* Migrate to v3 endpoints another part ([#846](https://github.com/aeternity/aescan/issues/846)) ([34385b9](https://github.com/aeternity/aescan/commit/34385b91d33948d089e147676d56aa9858a294a1))
+* Names search case insensitive ([#824](https://github.com/aeternity/aescan/issues/824)) ([a1e187b](https://github.com/aeternity/aescan/commit/a1e187bd70bec58efc2968a4612f80a5c37c3ba2))
+* Network unavailability handling ([#823](https://github.com/aeternity/aescan/issues/823)) ([145722e](https://github.com/aeternity/aescan/commit/145722e984618a726475905f14a88a17546ff08a))
+* Node operator listing ([#850](https://github.com/aeternity/aescan/issues/850)) ([0943ea8](https://github.com/aeternity/aescan/commit/0943ea838980c9e37f711153100e2cd04d6d36db))
+* Prepend token symbol  ([#809](https://github.com/aeternity/aescan/issues/809)) ([36d1f43](https://github.com/aeternity/aescan/commit/36d1f43fde1daa8e04d628b013fe97776fc4f1d4))
+* Smart contracts event decoding ([#869](https://github.com/aeternity/aescan/issues/869)) ([0b29201](https://github.com/aeternity/aescan/commit/0b2920111e18926974fe26fdce55f605b1f3bf59))
+* Store transaction page/cursor in url of accounts page  ([#834](https://github.com/aeternity/aescan/issues/834)) ([7fa5997](https://github.com/aeternity/aescan/commit/7fa5997a057c7349ae773881e2e480d89a7f877a))
+* support mobile history back button ([#828](https://github.com/aeternity/aescan/issues/828)) ([84c1130](https://github.com/aeternity/aescan/commit/84c113016f1e1073e5735275efe356e7b838bf47))
+* Top accounts ([#841](https://github.com/aeternity/aescan/issues/841)) ([bd6cbeb](https://github.com/aeternity/aescan/commit/bd6cbeb4d3ad524b610369b229a4145909158ee3))
+* Trade ae button ([#843](https://github.com/aeternity/aescan/issues/843)) ([3db3aab](https://github.com/aeternity/aescan/commit/3db3aabbad586b05c0659b5c1e2b2ffd2059ccbe))
+* UI readability followup ([#825](https://github.com/aeternity/aescan/issues/825)) ([c6bcb8a](https://github.com/aeternity/aescan/commit/c6bcb8a8bbeb06db2e90ee80ad560ff7df6481a4))
+* upgrade dependencies ([#853](https://github.com/aeternity/aescan/issues/853)) ([fe1cc94](https://github.com/aeternity/aescan/commit/fe1cc94c1cea6f58ff5a1349262824c9ccee5329))
+* Wallet account view 4 ([#678](https://github.com/aeternity/aescan/issues/678)) ([f211ebc](https://github.com/aeternity/aescan/commit/f211ebc442cf31d473a6561a00cc2bf5812eff6f))
+
+
+### Bug Fixes
+
+* add keyblock parameter ([#832](https://github.com/aeternity/aescan/issues/832)) ([baca7b1](https://github.com/aeternity/aescan/commit/baca7b1a5a87986964685fea6998e32cdeba7531))
+* Consider JS optimizations suggested by Lighthouse ([#801](https://github.com/aeternity/aescan/issues/801)) ([8f8e1ac](https://github.com/aeternity/aescan/commit/8f8e1ac83723705bbd86733786de6f940fec02ca))
+* don't enforce https if http urls in env and related fixes 2 ([#819](https://github.com/aeternity/aescan/issues/819)) ([d33a8e5](https://github.com/aeternity/aescan/commit/d33a8e522b8a529e3b7d45ea91fa0162c956f176))
+* edit readme ([#891](https://github.com/aeternity/aescan/issues/891)) ([f891f59](https://github.com/aeternity/aescan/commit/f891f59aef127238e96619bd26063d1b5c11300c))
+* Fix 0.15.0 release ([#920](https://github.com/aeternity/aescan/issues/920)) ([971b5ba](https://github.com/aeternity/aescan/commit/971b5bab3479a5c15904a2e5376e436b697a2072))
+* Names in auction end date ([#799](https://github.com/aeternity/aescan/issues/799)) ([892b43c](https://github.com/aeternity/aescan/commit/892b43cd1e1c6731232fe6199f0b43fc74fa9450))
+* Show accounts created in genesis block ([#839](https://github.com/aeternity/aescan/issues/839)) ([5b77b20](https://github.com/aeternity/aescan/commit/5b77b206e20d4241fed62d389d35efc0c566ae13))
+* stats url ([#889](https://github.com/aeternity/aescan/issues/889)) ([c874495](https://github.com/aeternity/aescan/commit/c874495880547a51cadb4d1f9d654ea69925e558))
+* Transaction detail query ([#877](https://github.com/aeternity/aescan/issues/877)) ([1d76ba0](https://github.com/aeternity/aescan/commit/1d76ba0fe110e298bb52e1add24b482cc1310b79))
+* Trend sign fix ([#837](https://github.com/aeternity/aescan/issues/837)) ([ee24ece](https://github.com/aeternity/aescan/commit/ee24ece6fd18bcbb3118ad844f8399ad608108cd))
+* UI fixes ([#851](https://github.com/aeternity/aescan/issues/851)) ([7b8b1a8](https://github.com/aeternity/aescan/commit/7b8b1a8ae8b1fc0337fc8583499c71e2e031c12c))
+
 ## [0.14.1](https://github.com/aeternity/aescan/compare/0.14.0...0.14.1) (2024-08-21)
 
 

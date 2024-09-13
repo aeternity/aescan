@@ -1,74 +1,74 @@
 <template>
-  <table class="keyblock-table">
+  <table class="dashboard-keyblock-table">
     <tbody>
       <tr>
-        <th class="keyblock-table__header keyblock-table__column-start">
+        <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-start">
           Height
-          <hint-tooltip class="keyblock-table__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.height }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table__data">
+        <td class="dashboard-keyblock-table__data">
           <app-link
             :to="`/keyblocks/${keyblock.height}`">
             {{ keyblock.height }}
           </app-link>
         </td>
-        <th class="keyblock-table__header keyblock-table__column-end">
+        <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-end">
           Beneficiary
-          <hint-tooltip class="keyblock-table__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.beneficiary }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table__data">
+        <td class="dashboard-keyblock-table__data">
           <value-hash-ellipsed
-            class="keyblock-table__value-hash-ellipsed"
+            class="dashboard-keyblock-table__value-hash-ellipsed"
             :hash="keyblock.beneficiary"
             :link-to="`/accounts/${keyblock.beneficiary }`"/>
         </td>
       </tr>
 
       <tr>
-        <th class="keyblock-table__header keyblock-table__column-start">
+        <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-start">
           Hash
-          <hint-tooltip class="keyblock-table__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.hash }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table__data">
+        <td class="dashboard-keyblock-table__data">
           <value-hash-ellipsed
             :link-to="`/keyblocks/${keyblock.hash}`"
             :hash="keyblock.hash"
-            class="keyblock-table__value-hash-ellipsed"/>
+            class="dashboard-keyblock-table__value-hash-ellipsed"/>
         </td>
-        <th class="keyblock-table__header keyblock-table__column-end">
+        <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-end">
           Beneficiary Reward
-          <hint-tooltip class="keyblock-table__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table__data">
+        <td class="dashboard-keyblock-table__data">
           <price-label :price="stats?.blockReward"/>
         </td>
       </tr>
 
       <tr>
-        <th class="keyblock-table__column-start">
+        <th class="dashboard-keyblock-table__column-start">
           <time-toggle-button>Mined</time-toggle-button>
-          <hint-tooltip class="keyblock-table__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table__data">
+        <td class="dashboard-keyblock-table__data">
           <timestamp-label :timestamp="keyblock.mined"/>
         </td>
-        <th class="keyblock-table__column-end">
+        <th class="dashboard-keyblock-table__column-end">
           BRI Reward
-          <hint-tooltip class="keyblock-table__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table__data">
+        <td class="dashboard-keyblock-table__data">
           <price-label :price="formatNullable(stats?.devReward, null)"/>
         </td>
       </tr>
@@ -95,7 +95,7 @@ defineProps({
 </script>
 
 <style scoped>
-.keyblock-table {
+.dashboard-keyblock-table {
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
 

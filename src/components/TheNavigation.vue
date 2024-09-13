@@ -76,6 +76,10 @@ const menuOptions = ref([{
         name: 'AEX141 Tokens (NFTs)',
         path: '/nfts',
       },
+      {
+        name: 'DEX Trades',
+        path: '/dex-trades',
+      },
     ],
   },
   {

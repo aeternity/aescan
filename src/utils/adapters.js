@@ -7,11 +7,13 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatIsStatefulEntrypoint,
   formatNameState,
   formatNumber,
   formatPercentage,
   formatTemplateLimit,
   formatTokenLimit,
+  formatTradeRate,
 } from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
@@ -393,6 +395,7 @@ export function adaptContractEvents(events) {
         args: event.args,
         isDecoded: !!event.eventName,
         callTxHash: event.callTxHash,
+        logIdx: event.logIdx,
       }
     })
 
@@ -699,6 +702,32 @@ export function adaptKeyblocks(keyblocks) {
     next: keyblocks.next,
     data: formattedData,
     prev: keyblocks.prev,
+  }
+}
+
+export function adaptTrades(trades, price) {
+  const formattedData = trades.data.map(trade => {
+    const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
+    const toAmount = trade.toAmount / 10 ** trade.toDecimals
+    return {
+      fromAmount,
+      toAmount,
+      txHash: trade.txHash,
+      fromToken: trade.fromToken,
+      toToken: trade.toToken,
+      fromContract: trade.fromContract,
+      toContract: trade.toContract,
+      action: trade.action,
+      height: trade.height,
+      timestamp: DateTime.fromMillis(trade.microTime),
+      rate: formatTradeRate(trade.action, fromAmount, toAmount),
+      value: formatTradeValue(trade.action, fromAmount, toAmount, price),
+    }
+  })
+  return {
+    next: trades.next,
+    data: formattedData,
+    prev: trades.prev,
   }
 }
 

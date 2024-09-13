@@ -1,77 +1,77 @@
 <template>
   <table>
     <tbody>
-      <tr class="keyblock-table-condensed__row">
-        <th class="keyblock-table-condensed__header">
+      <tr class="dashboard-keyblock-table-condensed__row">
+        <th class="dashboard-keyblock-table-condensed__header">
           Height
-          <hint-tooltip class="keyblock-table-condensed__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.height }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table-condensed__data">
+        <td class="dashboard-keyblock-table-condensed__data">
           <app-link
             :to="`/keyblocks/${keyblock.height}`">
             {{ keyblock.height }}
           </app-link>
         </td>
       </tr>
-      <tr class="keyblock-table-condensed__row">
-        <th class="keyblock-table-condensed__header">
+      <tr class="dashboard-keyblock-table-condensed__row">
+        <th class="dashboard-keyblock-table-condensed__header">
           Hash
-          <hint-tooltip class="keyblock-table-condensed__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.hash }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table-condensed__data">
+        <td class="dashboard-keyblock-table-condensed__data">
           <value-hash-ellipsed
             :link-to="`/keyblocks/${keyblock.hash}`"
             :hash="keyblock.hash"/>
         </td>
       </tr>
-      <tr class="keyblock-table-condensed__row">
-        <th class="keyblock-table-condensed__header">
+      <tr class="dashboard-keyblock-table-condensed__row">
+        <th class="dashboard-keyblock-table-condensed__header">
           <time-toggle-button>Mined</time-toggle-button>
-          <hint-tooltip class="keyblock-table-condensed__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table-condensed__data">
+        <td class="dashboard-keyblock-table-condensed__data">
           <timestamp-label :timestamp="keyblock.mined"/>
         </td>
       </tr>
-      <tr class="keyblock-table-condensed__row">
-        <th class="keyblock-table-condensed__header">
+      <tr class="dashboard-keyblock-table-condensed__row">
+        <th class="dashboard-keyblock-table-condensed__header">
           Beneficiary
-          <hint-tooltip class="keyblock-table-condensed__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.beneficiary }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table-condensed__data">
+        <td class="dashboard-keyblock-table-condensed__data">
           <value-hash-ellipsed
-            class="keyblock-table-condensed__value-hash-ellipsed"
+            class="dashboard-keyblock-table-condensed__value-hash-ellipsed"
             :hash="keyblock.beneficiary"
             :link-to="`/accounts/${keyblock.beneficiary }`"/>
         </td>
       </tr>
-      <tr class="keyblock-table-condensed__row">
-        <th class="keyblock-table-condensed__header">
+      <tr class="dashboard-keyblock-table-condensed__row">
+        <th class="dashboard-keyblock-table-condensed__header">
           Beneficiary Reward
-          <hint-tooltip class="keyblock-table-condensed__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table-condensed__data">
+        <td class="dashboard-keyblock-table-condensed__data">
           <price-label :price="stats?.blockReward"/>
         </td>
       </tr>
-      <tr class="keyblock-table-condensed__row">
-        <th class="keyblock-table-condensed__header">
+      <tr class="dashboard-keyblock-table-condensed__row">
+        <th class="dashboard-keyblock-table-condensed__header">
           BRI Reward
-          <hint-tooltip class="keyblock-table-condensed__tooltip">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
         </th>
-        <td class="keyblock-table-condensed__data">
+        <td class="dashboard-keyblock-table-condensed__data">
           <price-label :price="formatNullable(stats?.devReward, null)"/>
         </td>
       </tr>
@@ -97,7 +97,7 @@ defineProps({
 </script>
 
 <style scoped>
-.keyblock-table-condensed {
+.dashboard-keyblock-table-condensed {
   &__table {
     padding: 0 var(--space-1) var(--space-7);
     margin-bottom: var(--space-5);

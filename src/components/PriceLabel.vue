@@ -1,18 +1,35 @@
 <template>
   <div class="price-label">
-    <token-symbol-icon
-      v-if="hasIcon"
-      class="price-label__icon"
-      :contract-id="contractId"/>
+    <app-link
+      v-if="hasLink"
+      :to="`/contracts/${contractId}`">
+      <token-symbol-icon
+        v-if="hasIcon"
+        class="price-label__icon"
+        :contract-id="contractId"/>
+    </app-link>
     <app-tooltip v-if="isPriceRounded">
       {{ priceRounded }}
+      <app-link
+        v-if="hasLink"
+        :to="`/contracts/${contractId}`">
+        {{ currency }}
+      </app-link>
+      <template v-else>{{ currency }}</template>
       <template #tooltip>
-        {{ price }}
+        {{ price }} {{ currency }}
       </template>
     </app-tooltip>
-    <template v-else>
+
+    <span v-else>
       {{ price }}
-    </template>
+      <app-link
+        v-if="hasLink"
+        :to="`/contracts/${contractId}`">
+        {{ currency }}
+      </app-link>
+      <template v-else>{{ currency }}</template>
+    </span>
   </div>
 </template>
 
@@ -32,11 +49,15 @@ const props = defineProps({
   },
   currency: {
     type: String,
-    default: undefined,
+    default: 'AE',
   },
   hasIcon: {
     type: Boolean,
     default: true,
+  },
+  hasLink: {
+    type: Boolean,
+    default: false,
   },
   contractId: {
     type: String,
@@ -48,10 +69,10 @@ const isPriceRounded = computed(() =>
   priceRounded.value !== price.value,
 )
 const priceRounded = computed(() =>
-  formatNullable(formatAePrice(props.price, props.maxDigits, props.currency)),
+  formatNullable(formatAePrice(props.price, props.maxDigits)),
 )
 const price = computed(() =>
-  formatNullable(formatAePrice(props.price, null, props.currency)),
+  formatNullable(formatAePrice(props.price, null)),
 )
 </script>
 

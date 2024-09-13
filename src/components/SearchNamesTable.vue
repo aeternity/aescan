@@ -11,7 +11,7 @@
         <th>
           Status
           <hint-tooltip>
-            {{ namesHints.status }}
+            {{ namesHints.state }}
           </hint-tooltip>
         </th>
       </tr>

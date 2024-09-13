@@ -2,6 +2,7 @@ dl {
   display: grid;
   grid-template-columns: max-content auto;
   gap: var(--space-1) 0;
+  margin-bottom: var(--space-3);
 }
 
 dt {

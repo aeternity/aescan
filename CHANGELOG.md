@@ -41,14 +41,6 @@
 * Trend sign fix ([#837](https://github.com/aeternity/aescan/issues/837)) ([ee24ece](https://github.com/aeternity/aescan/commit/ee24ece6fd18bcbb3118ad844f8399ad608108cd))
 * UI fixes ([#851](https://github.com/aeternity/aescan/issues/851)) ([7b8b1a8](https://github.com/aeternity/aescan/commit/7b8b1a8ae8b1fc0337fc8583499c71e2e031c12c))
 
-## [0.14.1](https://github.com/aeternity/aescan/compare/0.14.0...0.14.1) (2024-08-21)
-
-
-### Bug Fixes
-
-* edit readme ([#891](https://github.com/aeternity/aescan/issues/891)) ([f891f59](https://github.com/aeternity/aescan/commit/f891f59aef127238e96619bd26063d1b5c11300c))
-* stats urls ([04cc86f](https://github.com/aeternity/aescan/commit/04cc86f9a097904a89b9eeeafa53a1c8899c7fd1))
-
 ## [0.14.0](https://github.com/aeternity/aescan/compare/0.13.0...0.14.0) (2024-05-28)
 
 

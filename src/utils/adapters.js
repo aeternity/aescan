@@ -13,6 +13,7 @@ import {
   formatPercentage,
   formatTemplateLimit,
   formatTokenLimit,
+  formatTradeRate,
 } from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
@@ -681,6 +682,32 @@ export function adaptTopAccounts(topAccounts, distribution) {
         percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
       }
     })
+}
+
+export function adaptTrades(trades, price) {
+  const formattedData = trades.data.map(trade => {
+    const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
+    const toAmount = trade.toAmount / 10 ** trade.toDecimals
+    return {
+      fromAmount,
+      toAmount,
+      txHash: trade.txHash,
+      fromToken: trade.fromToken,
+      toToken: trade.toToken,
+      fromContract: trade.fromContract,
+      toContract: trade.toContract,
+      action: trade.action,
+      height: trade.height,
+      timestamp: DateTime.fromMillis(trade.microTime),
+      rate: formatTradeRate(trade.action, fromAmount, toAmount),
+      value: formatTradeValue(trade.action, fromAmount, toAmount, price),
+    }
+  })
+  return {
+    next: trades.next,
+    data: formattedData,
+    prev: trades.prev,
+  }
 }
 
 export function adaptAciObject(verificationDetails) {

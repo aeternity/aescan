@@ -8,6 +8,7 @@ import {
   REVOKED_PERIOD,
 } from '@/utils/constants'
 
+
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
   const suffix = hash.slice(hash.length - 2)
@@ -35,13 +36,13 @@ export function formatNumber(
   }).format(number)
 }
 
-export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
+export function formatAePrice(price, maxDigits = 8) {
   if (isNaN(price) || price === null) {
     return price
   }
 
   if (maxDigits === null) {
-    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)} ${currency}`
+    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)}`
   }
 
   const truncatedPrice = new BigNumber(price).toFixed(
@@ -57,16 +58,16 @@ export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
 
   if (!decimals) {
     if (price === 0) {
-      return `0 ${currency}`
+      return `0`
     }
     if (integers === '0') {
-      return `~${integers} ${currency}`
+      return `~${integers}`
     } else {
-      return `${formatNumber(integers)} ${currency}`
+      return `${formatNumber(integers)}`
     }
   }
 
-  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} ${currency}`
+  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
 }
 
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
@@ -179,6 +180,28 @@ export function formatKnownAddress(hash, isEllipsed = true) {
   }
 }
 
+export function formatTradeRate(action, fromAmount, toAmount) {
+  if (action === 'BUY') {
+    return `${formatNumber((fromAmount / toAmount), 4)} WAE`
+  }
+
+  if (action === 'SELL') {
+    return `${formatNumber((toAmount / fromAmount), 4)} WAE`
+  }
+  return null
+}
+
+export function formatTradeValue(action, fromAmount, toAmount, price) {
+  if (action === 'BUY') {
+    return formatNumber(fromAmount * price)
+  }
+
+  if (action === 'SELL') {
+    return formatNumber(toAmount * price)
+  }
+  return null
+}
+
 export function formatIsStatefulEntrypoint(aciFunction) {
   return !!aciFunction.stateful
 }
@@ -195,3 +218,4 @@ export function formatEntrypointResponse(value, type) {
   }
   return value
 }
+

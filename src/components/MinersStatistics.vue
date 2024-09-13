@@ -1,5 +1,4 @@
 <template>
-  <!--  {{ status }}-->
   <span class="mining-statistics">
     <app-panel class="mining-statistics__panel">
       <h5>MINERS</h5>
@@ -91,6 +90,7 @@ const {
   blocksPerMinute,
   maxTPS,
 } = storeToRefs(useMinersStore())
+
 
 if (process.client) {
   await fetchMiners()

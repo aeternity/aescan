@@ -54,16 +54,19 @@
       v-for="(node, index) in nodes"
       :key="node.networkId">
       <td class="nodes-table__hash">
-        {{ index }}
+        <value-hash-ellipsed :hash="index"/>
       </td>
-      <td>
-        {{ node.host }}
-      </td>
+      <td>{{ node.host }}</td>
       <td>{{ node.port }}</td>
       <td>{{ formatNullable(node.networkId) }}</td>
       <td>{{ formatNullable(node.nodeVersion) }}</td>
-      <td class="nodes-table__hash">
-        {{ formatNullable(node.nodeRevision) }}
+      <td>
+        <value-hash-ellipsed
+          v-if="node.nodeRevision"
+          :hash="node.nodeRevision"/>
+        <template v-else>
+          ---
+        </template>
       </td>
       <td>{{ formatNullable(node.nodeVendor) }}</td>
       <td>{{ formatNullable(node.nodeOs) }}</td>
@@ -84,10 +87,6 @@ defineProps({
 
 <style scoped>
 .nodes-table {
-  &__hash {
-    word-break: break-all;
-  }
-
   &__header {
     white-space: nowrap;
   }

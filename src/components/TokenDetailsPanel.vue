@@ -214,6 +214,11 @@ const fiatPrice = computed(() =>
     }
   }
 
+  &__container {
+    display: flex;
+    gap: var(--space-2) var(--space-1);
+  }
+
   &__extensions {
     display: flex;
     flex-wrap: wrap;

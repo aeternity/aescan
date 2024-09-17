@@ -35,7 +35,7 @@
             {{ blockHeight }}
           </app-link>
           <template v-else>
-            ---
+            N/A
           </template>
         </span>
       </div>

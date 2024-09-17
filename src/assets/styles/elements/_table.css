@@ -54,3 +54,7 @@ tr:last-of-type td {
   padding-bottom: 0;
 }
 
+tr:hover td {
+  background: #000;
+}
+

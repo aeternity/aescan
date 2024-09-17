@@ -14,7 +14,7 @@
               <img
                 class="ae-coin-panel__icon"
                 alt="æ token"
-                src="@/assets/ae-token.svg">
+                src="@/assets/ae-logo.svg">
               <copy-chip label="AE"/>
             </div>
           </td>

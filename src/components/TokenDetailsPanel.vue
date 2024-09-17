@@ -202,7 +202,7 @@ const tokenDexUrl = computed(() =>
 const fiatPrice = computed(() =>
   props.tokenDetails.price && price.value
     ? `$${formatNumber(price.value * props.tokenDetails.price, null, null, 7)}`
-    : '---',
+    : 'N/A',
 )
 </script>
 

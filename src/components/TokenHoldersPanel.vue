@@ -34,20 +34,16 @@ const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetai
 
 function loadPrevHolders() {
   fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
-  fetchTokenHoldersCount()
 }
 
 function loadNextHolders() {
   fetchTokenHolders({ queryParameters: tokenHolders.value.next })
-  fetchTokenHoldersCount()
 }
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
-  fetchTokenHoldersCount()
 
-  fetchTokenHolders({
-    limit: limit.value,
-  })
+  fetchTokenHolders({ limit: limit.value })
+  fetchTokenHoldersCount()
 }
 </script>

@@ -135,9 +135,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: Deployed to https://pr-${{ env.PR_NUMBER }}-aescan.${{ env.ENV }}.service.aepps.com and https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
+          msg: Deployed to \n https://pr-${{ env.PR_NUMBER }}-aescan.${{ env.ENV }}.service.aepps.com \n https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
           check_for_duplicate_msg: true
-
+          
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:

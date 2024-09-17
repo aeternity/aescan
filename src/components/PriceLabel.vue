@@ -15,7 +15,9 @@
         :to="`/contracts/${contractId}`">
         {{ currency }}
       </app-link>
-      <template v-else>{{ currency }}</template>
+      <template v-else>
+        {{ currency }}
+      </template>
       <template #tooltip>
         {{ price }} {{ currency }}
       </template>

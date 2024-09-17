@@ -763,5 +763,4 @@ export function adaptReadEntrypoints(aci) {
 
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
-
 }

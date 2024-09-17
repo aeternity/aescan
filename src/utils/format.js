@@ -8,7 +8,6 @@ import {
   REVOKED_PERIOD,
 } from '@/utils/constants'
 
-
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
   const suffix = hash.slice(hash.length - 2)
@@ -58,7 +57,7 @@ export function formatAePrice(price, maxDigits = 8) {
 
   if (!decimals) {
     if (price === 0) {
-      return `0`
+      return '0'
     }
     if (integers === '0') {
       return `~${integers}`
@@ -97,9 +96,9 @@ export function formatNullable(value) {
     return value
   }
   if (!value) {
-    return '---'
+    return 'N/A'
   }
-  return value || '---'
+  return value || 'N/A'
 }
 
 export function formatDecodeBase64(base64String) {
@@ -218,4 +217,3 @@ export function formatEntrypointResponse(value, type) {
   }
   return value
 }
-

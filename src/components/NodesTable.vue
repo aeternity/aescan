@@ -65,7 +65,7 @@
           v-if="node.nodeRevision"
           :hash="node.nodeRevision"/>
         <template v-else>
-          ---
+          N/A
         </template>
       </td>
       <td>{{ formatNullable(node.nodeVendor) }}</td>

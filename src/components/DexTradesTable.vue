@@ -96,7 +96,7 @@
 </template>
 
 <script setup>
-import { dexTradesHints } from "@/utils/hints/dexTradesHints";
+import { dexTradesHints } from '@/utils/hints/dexTradesHints'
 
 defineProps({
   trades: {

@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
+import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
 import { adaptKeyblock, adaptKeyblockMicroblocks } from '@/utils/adapters'
-import { Encoding, isAddressValid } from "@aeternity/aepp-sdk";
 
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

@@ -60,7 +60,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.19",
-    "cypress": "^13.13.0",
+    "cypress": "^13.14.2",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",

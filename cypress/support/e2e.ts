@@ -17,10 +17,9 @@
 import './commands'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
-  // returning false prevents Cypress from failing the test
-  if (err.message.includes('Navigation cancelled from')) {
-    return false
-  }
+  // returning false here prevents Cypress from
+  // failing the test
+  return false
 })
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

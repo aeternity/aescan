@@ -62,14 +62,6 @@
           :max-digits="2"
           :has-icon="false"/>
       </div>
-      <div>
-        BRI:
-        <price-label
-          class="stats-panel__value"
-          :price="latestBri"
-          :max-digits="2"
-          :has-icon="false"/>
-      </div>
       <template #tooltip>
         For each mined keyblock a reward is distributed. The amount of Æ distributed depends on the inflation curve.
         The beneficiary receives 89,10% and the
@@ -236,11 +228,10 @@ const {
   blockHeight,
   latestKeyblockTransactionsCount,
   latestReward,
-  latestBri,
 } = storeToRefs(useRecentBlocksStore())
 
 const isLoading = computed(() => {
-  return !(transactionsCount.value && latestBri.value && latestReward.value)
+  return !(transactionsCount.value && latestReward.value)
 })
 
 </script>

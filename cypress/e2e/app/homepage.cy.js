@@ -4,7 +4,15 @@ describe('homepage', () => {
 
     cy.get('.stats-panel').should('be.visible')
     cy.get('.dashboard-state-channels-panel table').should('be.visible')
-    cy.get('.dashboard-auctions-panel table').should('be.visible')
+    cy.get('.dashboard-auctions-panel')
+      .should('satisfy',
+        elements => {
+          return elements[0].childNodes.forEach(element => {
+            if (element.localName === 'table' || element.className === 'blank-state') {
+              return true
+            }
+          })
+        })
     cy.get('.dashboard-names-panel table').should('be.visible')
     cy.get('.dashboard-keyblock-panel table').should('be.visible')
     cy.get('.search-bar').should('be.visible')

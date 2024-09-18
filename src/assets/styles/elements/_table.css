@@ -51,10 +51,15 @@ td:last-of-type {
 
 tr:last-of-type td {
   border-bottom: 0;
-  padding-bottom: 0;
 }
 
-tr:hover td {
-  background: #000;
+tbody tr:hover td {
+  background: var(--color-snow);
 }
+
+tbody tr:hover th {
+  background: var(--color-snow);
+}
+
+
 

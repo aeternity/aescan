@@ -1,48 +1,52 @@
 <template>
   <table class="top-accounts-table">
-    <tr>
-      <th>
-        Rank
-        <hint-tooltip>
-          {{ topAccountsHints.rank }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Account
-        <hint-tooltip>
-          {{ topAccountsHints.account }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Balance
-        <hint-tooltip>
-          {{ topAccountsHints.balance }}
-        </hint-tooltip>
-      </th>
-      <th>
-        % Of Circulating
-        <hint-tooltip>
-          {{ topAccountsHints.percentage }}
-        </hint-tooltip>
-      </th>
-    </tr>
-    <tr
-      v-for="account in topAccounts"
-      :key="account.account">
-      <td>{{ account.rank }}.</td>
+    <thead>
+      <tr>
+        <th>
+          Rank
+          <hint-tooltip>
+            {{ topAccountsHints.rank }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Account
+          <hint-tooltip>
+            {{ topAccountsHints.account }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Balance
+          <hint-tooltip>
+            {{ topAccountsHints.balance }}
+          </hint-tooltip>
+        </th>
+        <th>
+          % Of Circulating
+          <hint-tooltip>
+            {{ topAccountsHints.percentage }}
+          </hint-tooltip>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        v-for="account in topAccounts"
+        :key="account.account">
+        <td>{{ account.rank }}.</td>
 
-      <td>
-        <app-link
-          :to="`/accounts/${account.account}`">
-          {{ account.account }}
-        </app-link>
-      </td>
-      <td>
-        <price-label :price=" account.balance "/>
-      </td>
+        <td>
+          <app-link
+            :to="`/accounts/${account.account}`">
+            {{ account.account }}
+          </app-link>
+        </td>
+        <td>
+          <price-label :price=" account.balance "/>
+        </td>
 
-      <td>{{ account.percentage }} %</td>
-    </tr>
+        <td>{{ account.percentage }} %</td>
+      </tr>
+    </tbody>
   </table>
 </template>
 <script setup>

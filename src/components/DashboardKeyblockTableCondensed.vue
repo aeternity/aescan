@@ -64,24 +64,12 @@
           <price-label :price="stats?.blockReward"/>
         </td>
       </tr>
-      <tr class="dashboard-keyblock-table-condensed__row">
-        <th class="dashboard-keyblock-table-condensed__header">
-          BRI Reward
-          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
-            {{ keyblocksHints.briReward }}
-          </hint-tooltip>
-        </th>
-        <td class="dashboard-keyblock-table-condensed__data">
-          <price-label :price="formatNullable(stats?.devReward, null)"/>
-        </td>
-      </tr>
     </tbody>
   </table>
 </template>
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import { formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

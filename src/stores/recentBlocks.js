@@ -52,9 +52,6 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const latestReward = computed(() => {
     return deltaStats.value ? formatAettosToAe(deltaStats.value[0].blockReward) : null
   })
-  const latestBri = computed(() => {
-    return deltaStats.value ? formatAettosToAe(deltaStats.value[0].devReward) : null
-  })
   const latestKeyblockTransactionsCount = computed(() => {
     return keyblocks.value?.[0].transactionsCount
   })
@@ -186,7 +183,6 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     keyblocks,
     latestKeyblockTransactionsCount,
     latestReward,
-    latestBri,
     selectedKeyblock,
     selectedDeltaStats,
     selectedKeyblockTransactionsCount,

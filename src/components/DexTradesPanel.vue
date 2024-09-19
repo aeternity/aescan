@@ -20,7 +20,7 @@ import { useDexTradesStore } from '@/stores/dexTrades'
 const dexTradesStore = useDexTradesStore()
 const { trades } = storeToRefs(dexTradesStore)
 const { fetchDexTrades } = dexTradesStore
-await useAsyncData(async () => {
+await useAsyncData(async() => {
   await fetchDexTrades()
   return true
 })

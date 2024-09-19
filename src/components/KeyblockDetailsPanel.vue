@@ -114,17 +114,6 @@
         <tr class="keyblock-details-panel__row">
           <th class="keyblock-details-panel__table-header">
             <hint-tooltip>
-              {{ keyblocksHints.briReward }}
-            </hint-tooltip>
-            BRI Reward
-          </th>
-          <td>
-            <price-label :price="keyblockDetails.devReward"/>
-          </td>
-        </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
-            <hint-tooltip>
               {{ keyblocksHints.microblockCount }}
             </hint-tooltip>
             Microblocks Count

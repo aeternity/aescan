@@ -96,9 +96,9 @@ export function formatNullable(value) {
     return value
   }
   if (!value) {
-    return '---'
+    return 'N/A'
   }
-  return value || '---'
+  return value || 'N/A'
 }
 
 export function formatDecodeBase64(base64String) {

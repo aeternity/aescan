@@ -135,7 +135,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: Deployed to https://pr-${{ env.PR_NUMBER }}-aescan.${{ env.ENV }}.service.aepps.com and https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
+          msg: |
+            ## 🧪 Preview Links 🔎️
+            Mainnet: https://pr-${{ env.PR_NUMBER }}-aescan.${{ env.ENV }}.service.aepps.com
+            Testnet: https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
           check_for_duplicate_msg: true
 
       - name: Push changes

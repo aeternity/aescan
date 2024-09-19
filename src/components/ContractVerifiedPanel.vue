@@ -52,7 +52,7 @@
     <blank-state v-else>
       Smart Contract is not verified. Go to
       <app-link to="/contract-verification">
-        Contract Verification
+        Smart Contract Verification
       </app-link>
       to verify it.
     </blank-state>

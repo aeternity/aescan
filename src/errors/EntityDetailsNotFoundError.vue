@@ -4,7 +4,7 @@
   </Head>
 
   <page-header>
-    Not Found
+    {{ errorData.entityName }} Not Found
   </page-header>
 
   <not-found-panel>

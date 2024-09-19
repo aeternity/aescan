@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
-import { adaptTokenDetails, adaptTokenEvents } from '@/utils/adapters'
+import { adaptTokenDetails, adaptTokenEvents, adaptTokenHolders } from '@/utils/adapters'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
 import { useAesdk } from '@/stores/aesdk'
 import { useDexStore } from '@/stores/dex'
@@ -125,3 +125,4 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     }
   },
 )
+

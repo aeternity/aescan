@@ -1,5 +1,7 @@
 <template>
-  <app-panel class="contract-details-panel">
+  <app-panel
+    v-if="contractDetails"
+    class="contract-details-panel">
     <table>
       <tbody>
         <tr class="contract-details-panel__row">

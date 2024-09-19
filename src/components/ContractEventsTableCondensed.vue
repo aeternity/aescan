@@ -82,7 +82,10 @@
         v-if="isExpanded.includes(index)"
         class="contract-events-table-condensed__row">
         <td colspan="5">
-          <event-data-panel :args="event.args"/>
+          <events-panel
+            :args="event.args"
+            :call-tx-hash="event.callTxHash"
+            :log-id="event.logIdx"/>
         </td>
       </tr>
     </table>

@@ -25,7 +25,7 @@
             <app-tooltip>
               Status
               <template #tooltip>
-                {{ namesHints.status }}
+                {{ namesHints.state }}
               </template>
             </app-tooltip>
           </th>

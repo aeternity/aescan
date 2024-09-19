@@ -2,29 +2,38 @@
   <nav class="charts-navigation">
     <app-panel class="charts-navigation__panel">
       <app-link
-        to="/charts/transactions"
-        class="charts-navigation__link">
-        Transactions
-      </app-link>
-      <app-link
-        to="/charts/keyblocks"
-        class="charts-navigation__link">
-        Keyblocks
-      </app-link>
-      <app-link
-        to="/charts/contracts"
-        class="charts-navigation__link">
-        Smart Contracts
-      </app-link>
-      <app-link
-        to="/charts/names"
-        class="charts-navigation__link">
-        Names
+        v-for="option in menuOptions"
+        :key="option.name"
+        class="charts-navigation__link"
+        :to="`/charts/${option.path}`">
+        {{ option.name }}
       </app-link>
     </app-panel>
   </nav>
 </template>
+<script setup>
 
+const menuOptions = ref([{
+  name: 'Transactions',
+  path: 'transactions',
+},
+{
+  name: 'Keyblocks',
+  path: 'keyblocks',
+},
+{
+  name: 'Smart Contracts',
+  path: 'contracts',
+},
+{
+  name: 'Names',
+  path: 'names',
+},
+{
+  name: 'Difficulty',
+  path: 'difficulty',
+}])
+</script>
 <style scoped>
 .charts-navigation {
   width: 100%;

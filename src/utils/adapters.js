@@ -7,6 +7,7 @@ import {
   formatBlockDiffAsDatetime,
   formatDecodeBase64,
   formatIsAuction,
+  formatIsStatefulEntrypoint,
   formatNameState,
   formatNumber,
   formatPercentage,
@@ -395,6 +396,7 @@ export function adaptContractEvents(events) {
         args: event.args,
         isDecoded: !!event.eventName,
         callTxHash: event.callTxHash,
+        logIdx: event.logIdx,
       }
     })
 
@@ -605,6 +607,25 @@ export function adaptNft(nft) {
   }
 }
 
+export function adaptNfts(nfts) {
+  const formattedData = nfts.data
+    .map(nft => {
+      return {
+        name: nft.name,
+        blockHeight: nft.blockHeight,
+        creationTime: DateTime.fromMillis(nft.creationTime),
+        contractId: nft.contractId,
+        nftsAmount: nft.nftsAmount,
+        nftOwners: nft.nftOwners,
+      }
+    })
+  return {
+    next: nfts.next,
+    data: formattedData,
+    prev: nfts.prev,
+  }
+}
+
 export function adaptVerificationDetail(verificationDetail) {
   return {
     license: verificationDetail.license,
@@ -677,10 +698,32 @@ export function adaptTopAccounts(topAccounts, distribution) {
       return {
         rank: index + 1,
         account: account.account,
-        balance: formatAePrice(formatAettosToAe(account.balance)),
+        balance: formatAettosToAe(account.balance),
         percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
       }
     })
+}
+
+
+export function adaptKeyblocks(keyblocks) {
+  const formattedData = keyblocks.data
+    .map(keyblock => {
+      return {
+        hash: keyblock.hash,
+        block: keyblock.height,
+        time: DateTime.fromMillis(keyblock.time),
+        miner: keyblock.miner,
+        microBlocksCount: keyblock.microBlocksCount,
+        transactionsCount: keyblock.transactionsCount,
+        beneficiary: keyblock.beneficiary,
+        beneficiaryReward: formatAettosToAe(keyblock.beneficiaryReward),
+      }
+    })
+  return {
+    next: keyblocks.next,
+    data: formattedData,
+    prev: keyblocks.prev,
+  }
 }
 
 export function adaptTrades(trades, price) {
@@ -722,4 +765,5 @@ export function adaptReadEntrypoints(aci) {
 
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
+
 }

@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
-import { TX_TYPES_OPTIONS } from '~/utils/constants'
+import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

@@ -25,9 +25,12 @@
 
 <script setup>
 import { useContractVerifiedStore } from '@/stores/contractVerified'
+import { useContractDetailsStore } from '@/stores/contractDetails'
 import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()
+const contractDetailStore = useContractDetailsStore()
+
 const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
 
 const {
@@ -37,6 +40,8 @@ const {
   getWriteContractInstance,
   walletSdk,
 } = contractVerifiedStore
+
+const { fetchContractEvents, fetchContractCallTransactions } = contractDetailStore
 
 const route = useRoute()
 
@@ -50,6 +55,13 @@ async function getEntrypointResponse(aciItem, index, form) {
   const fetchedResponse = await fetchEntrypointResponse(contractInstance, aciItem, args)
   response.value[index] = parseResponse(fetchedResponse)
   loadingIndex.value = null
+  await updateContractEvents()
+}
+
+async function updateContractEvents() {
+  // UX = event is visible in the other tabs after query
+  await fetchContractEvents({})
+  await fetchContractCallTransactions({})
 }
 </script>
 

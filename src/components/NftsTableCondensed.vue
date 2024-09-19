@@ -24,6 +24,21 @@
         <tr class="nfts-table-condensed__row">
           <th class="nfts-table-condensed__header">
             <app-tooltip>
+              Created
+              <template #tooltip>
+                {{ nftsHints.created }}
+              </template>
+            </app-tooltip>
+          </th>
+          <td class="nfts-table-condensed__data">
+            <block-time-cell
+              :height="nft.blockHeight"
+              :timestamp="nft.creationTime"/>
+          </td>
+        </tr>
+        <tr class="nfts-table-condensed__row">
+          <th class="nfts-table-condensed__header">
+            <app-tooltip>
               Owners
               <template #tooltip>
                 {{ nftsHints.owners }}

@@ -10,6 +10,7 @@ export const tokensHints = {
   extensions: 'Extensions that are implemented for this token according to the creator of the smart contract.',
   apiLinks: 'Links to sources of the token data.',
   account: 'Account of the token holder.',
+  holders: 'Amount of holders of the token.',
   amount: 'Amount of the tokens held by its owner.',
   percentage: 'Percentage of the token supply held by the account.',
   hash: 'Transaction hash of the event.',

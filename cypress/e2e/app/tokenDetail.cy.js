@@ -11,4 +11,11 @@ describe('token detail', () => {
     cy.contains('.tabs__item', 'Trades').click()
     cy.get('.token-trades-panel .paginated-content').should('be.visible')
   })
+
+
+  it('should display token not found', () => {
+    cy.visit(`/tokens/wrong`,
+      { failOnStatusCode: false })
+    cy.get('.title').contains('Token Not Found')
+  })
 })

@@ -187,7 +187,8 @@ export function formatTradeRate(action, fromAmount, toAmount) {
 
   if (action === 'SELL') {
     return `${formatNumber((toAmount / fromAmount), 4)} WAE`
-}
+  }
+
   return null
 }
 
@@ -201,7 +202,6 @@ export function formatTradeValue(action, fromAmount, toAmount, price) {
   }
   return null
 }
-
 
 export function formatIsStatefulEntrypoint(aciFunction) {
   return !!aciFunction.stateful

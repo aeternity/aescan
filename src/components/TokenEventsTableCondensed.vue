@@ -80,7 +80,7 @@
           v-if="isExpanded.includes(index)"
           class="token-events-table-condensed__row">
           <td colspan="5">
-            <event-data-panel :args="event.args"/>
+            <events-panel :args="event.args"/>
           </td>
         </tr>
       </tbody>

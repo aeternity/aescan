@@ -105,6 +105,17 @@
         <tr class="token-details-panel__row">
           <th class="token-details-panel__table-header">
             <hint-tooltip>
+              {{ tokensHints.holders }}
+            </hint-tooltip>
+            Token Holders
+          </th>
+          <td>
+            {{ tokenHoldersCount }}
+          </td>
+        </tr>
+        <tr class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            <hint-tooltip>
               {{ tokensHints.extensions }}
             </hint-tooltip>
             Extensions
@@ -172,6 +183,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  tokenHoldersCount: {
+    type: Number,
+    required: true,
+  },
 })
 
 const tokenMiddlewareUrl = computed(() =>
@@ -212,6 +227,11 @@ const fiatPrice = computed(() =>
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__container {
+    display: flex;
+    gap: var(--space-2) var(--space-1);
   }
 
   &__extensions {

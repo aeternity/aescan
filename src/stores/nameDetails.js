@@ -27,7 +27,7 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
 
   async function fetchName(name) {
     rawName.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/names/${name}`)
     rawName.value = data
   }
 

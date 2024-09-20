@@ -108,7 +108,7 @@
           </th>
           <td>
             <app-link
-              :to="`/keyblocks/${name.acutionEndsHeight || name.expirationHeight}`">
+              :to="`/keyblocks/${name.auctionEndsHeight || name.expirationHeight}`">
               {{ name.auctionEndsHeight || name.expirationHeight }}
             </app-link>
           </td>

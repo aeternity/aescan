@@ -42,7 +42,7 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
 
   async function isNameAvailable(name) {
     try {
-      await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
+      await axios.get(`${MIDDLEWARE_URL}/v3/names/${name}`)
       return true
     } catch (error) {
       if (error.response.status === 404) {

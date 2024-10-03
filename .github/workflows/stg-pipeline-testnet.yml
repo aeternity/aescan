@@ -87,7 +87,7 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: aeternity/gitops-apps-aelabs.git
           ref: stg

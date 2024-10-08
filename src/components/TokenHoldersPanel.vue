@@ -35,6 +35,7 @@ const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetai
 function loadPrevHolders() {
   fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
   fetchTokenHoldersCount()
+  // todo count here?
 }
 
 function loadNextHolders() {

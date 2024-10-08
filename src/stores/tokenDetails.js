@@ -16,6 +16,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const price = ref(null)
   const rawTokenEvents = ref(null)
   const tokenEventsCount = ref(null)
+  const tokenHoldersCount = ref(null)
 
   const rawToken = ref(null)
   const rawTotalSupply = ref(null)
@@ -110,17 +111,24 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     rawTokenTrades.value = data
   }
 
+  async function fetchTokenHoldersCount() {
+    tokenHoldersCount.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${tokenId.value}`)
+    tokenHoldersCount.value = data.holders
+  }
+
   return {
     fetchTokenDetails,
     fetchTokenHolders,
+    fetchTokenHoldersCount,
     fetchTokenEvents,
     fetchTokenEventsCount,
     fetchTokenTrades,
     tokenDetails,
     tokenHolders,
+    tokenHoldersCount,
     tokenEvents,
     tokenEventsCount,
     trades,
   }
-},
-)
+})

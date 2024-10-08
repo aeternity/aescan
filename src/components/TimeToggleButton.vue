@@ -9,10 +9,10 @@
 </template>
 
 <script setup>
-import { useAppStore } from '@/stores/app'
+import { useUiStore } from '@/stores/ui'
 
-const { toggleTimeFormat } = useAppStore()
-const { timeFormat } = storeToRefs(useAppStore())
+const { toggleTimeFormat } = useUiStore()
+const { timeFormat } = storeToRefs(useUiStore())
 const suffix = computed(() => {
   return timeFormat.value === 'relative' ? 'Age' : 'Time'
 })

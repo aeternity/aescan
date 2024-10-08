@@ -75,7 +75,7 @@
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <div class="transaction-type-panel-contract-create-tx__container">
-            <price-label :price="transactionData.gas"/>
+            {{ transactionData.gas }}
             /
             <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
           </div>
@@ -97,7 +97,7 @@
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <div class="transaction-type-panel-contract-create-tx__container">
-            <price-label :price="transactionData.gasUsed"/>
+            {{ transactionData.gasUsed }}
             /
             <price-label :price="formatAettosToAe(gasCosts)"/>
           </div>

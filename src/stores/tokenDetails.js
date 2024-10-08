@@ -7,122 +7,120 @@ import { useAesdk } from '@/stores/aesdk'
 import { useDexStore } from '@/stores/dex'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {
-    const { MIDDLEWARE_URL } = useRuntimeConfig().public
-    const axios = useAxios()
-    const { aeSdk } = storeToRefs(useAesdk())
-    const { fetchPrice } = useDexStore()
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const axios = useAxios()
+  const { aeSdk } = storeToRefs(useAesdk())
+  const { fetchPrice } = useDexStore()
 
-    const tokenId = ref(null)
-    const price = ref(null)
-    const rawTokenEvents = ref(null)
-    const tokenEventsCount = ref(null)
+  const tokenId = ref(null)
+  const price = ref(null)
+  const rawTokenEvents = ref(null)
+  const tokenEventsCount = ref(null)
 
-    const rawToken = ref(null)
-    const rawTotalSupply = ref(null)
-    const rawTokenHolders = ref(null)
-    const rawTokenTrades = ref(null)
+  const rawToken = ref(null)
+  const rawTotalSupply = ref(null)
+  const rawTokenHolders = ref(null)
+  const rawTokenTrades = ref(null)
 
-    const tokenDetails = computed(() => rawToken.value
-      ? adaptTokenDetails(
-        rawToken.value,
-        rawTotalSupply.value,
-        price.value,
+  const tokenDetails = computed(() => rawToken.value
+    ? adaptTokenDetails(
+      rawToken.value,
+      rawTotalSupply.value,
+      price.value,
+    )
+    : null,
+  )
+
+  const tokenHolders = computed(() =>
+    tokenDetails.value && rawTokenHolders.value
+      ? adaptTokenHolders(
+        rawTokenHolders.value,
+        tokenDetails.value,
       )
       : null,
-    )
+  )
 
-    const tokenHolders = computed(() =>
-      tokenDetails.value && rawTokenHolders.value
-        ? adaptTokenHolders(
-          rawTokenHolders.value,
-          tokenDetails.value,
-        )
-        : null,
-    )
+  const tokenEvents = computed(() => {
+    return rawTokenEvents.value
+      ? adaptTokenEvents(rawTokenEvents.value)
+      : null
+  })
 
-    const tokenEvents = computed(() => {
-      return rawTokenEvents.value
-        ? adaptTokenEvents(rawTokenEvents.value)
-        : null
+  function fetchTokenDetails(id) {
+    tokenId.value = id
+
+    const tokenPromise = fetchToken()
+
+    return Promise.all([
+      tokenPromise,
+      Promise.allSettled([
+        fetchTotalSupply(),
+        tokenPromise.then(() => fetchTokenPrice()),
+      ]),
+    ])
+  }
+
+  // todo shorten naming
+  const trades = computed(() => rawTokenTrades.value && price.value
+    ? adaptTrades(rawTokenTrades.value, price.value)
+    : null,
+  )
+
+  async function fetchTokenPrice() {
+    price.value = await fetchPrice(tokenId.value, rawToken.value.decimals)
+  }
+
+  async function fetchToken() {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
+    rawToken.value = data
+  }
+
+  async function fetchTotalSupply() {
+    const contractInstance = await aeSdk.value.initializeContract({
+      aci: TOKEN_SUPPLY_ACI,
+      address: tokenId.value,
     })
+    const contractCallResult = await contractInstance.total_supply()
+    rawTotalSupply.value = contractCallResult?.decodedResult
+  }
 
-    function fetchTokenDetails(id) {
-      tokenId.value = id
+  async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {
+    rawTokenEvents.value = null
+    const defaultParameters = `/v3/contracts/logs?contract=${contractId}&aexn-args=true&limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawTokenEvents.value = data
+  }
 
-      const tokenPromise = fetchToken()
+  async function fetchTokenEventsCount(contractId) {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId}/logs-count`)
+    tokenEventsCount.value = data.data
+  }
 
-      return Promise.all([
-        tokenPromise,
-        Promise.allSettled([
-          fetchTotalSupply(),
-          tokenPromise.then(() => fetchTokenPrice()),
-        ]),
-      ])
-    }
+  async function fetchTokenHolders({ queryParameters, limit } = {}) {
+    rawTokenHolders.value = null
+    const defaultParameters = `/v3/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawTokenHolders.value = data
+  }
 
-    // todo fix indent
-    // todo shorten naming
-    const trades = computed(() => rawTokenTrades.value && price.value
-      ? adaptTrades(rawTokenTrades.value, price.value)
-      : null,
-    )
+  async function fetchTokenTrades({ queryParameters, limit, contractId } = {}) {
+    rawTokenTrades.value = null
+    const defaultParameters = `/v3/dex/${contractId}/swaps?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawTokenTrades.value = data
+  }
 
-    async function fetchTokenPrice() {
-      price.value = await fetchPrice(tokenId.value, rawToken.value.decimals)
-    }
-
-    async function fetchToken() {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
-      rawToken.value = data
-    }
-
-    async function fetchTotalSupply() {
-      const contractInstance = await aeSdk.value.initializeContract({
-        aci: TOKEN_SUPPLY_ACI,
-        address: tokenId.value,
-      })
-      const contractCallResult = await contractInstance.total_supply()
-      rawTotalSupply.value = contractCallResult?.decodedResult
-    }
-
-    async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {
-      rawTokenEvents.value = null
-      const defaultParameters = `/v3/contracts/logs?contract=${contractId}&aexn-args=true&limit=${limit ?? 10}`
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-      rawTokenEvents.value = data
-    }
-
-    async function fetchTokenEventsCount(contractId) {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId}/logs-count`)
-      tokenEventsCount.value = data.data
-    }
-
-    async function fetchTokenHolders({ queryParameters, limit } = {}) {
-      rawTokenHolders.value = null
-      const defaultParameters = `/v3/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-      rawTokenHolders.value = data
-    }
-
-    async function fetchTokenTrades({ queryParameters, limit, contractId } = {}) {
-      rawTokenTrades.value = null
-      const defaultParameters = `/v3/dex/${contractId}/swaps?limit=${limit ?? 10}`
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-      rawTokenTrades.value = data
-    }
-
-    return {
-      fetchTokenDetails,
-      fetchTokenHolders,
-      fetchTokenEvents,
-      fetchTokenEventsCount,
-      fetchTokenTrades,
-      tokenDetails,
-      tokenHolders,
-      tokenEvents,
-      tokenEventsCount,
-      trades
-    }
-  },
+  return {
+    fetchTokenDetails,
+    fetchTokenHolders,
+    fetchTokenEvents,
+    fetchTokenEventsCount,
+    fetchTokenTrades,
+    tokenDetails,
+    tokenHolders,
+    tokenEvents,
+    tokenEventsCount,
+    trades,
+  }
+},
 )
-

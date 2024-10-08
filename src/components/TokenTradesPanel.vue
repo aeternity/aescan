@@ -21,7 +21,6 @@ const { trades } = storeToRefs(tokenDetailsStore)
 const { fetchTokenTrades } = tokenDetailsStore
 const route = useRoute()
 
-
 function loadPrevEvents() {
   fetchTokenTrades({ queryParameters: trades.value.prev })
 }

@@ -122,7 +122,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     fetchTokenHolders,
     fetchTokenHoldersCount,
     fetchTokenEvents,
-    fetchTokenEventsCount,
+    fetchTokenEventsCount, // todo eventcounter
     fetchTokenTrades,
     tokenDetails,
     tokenHolders,

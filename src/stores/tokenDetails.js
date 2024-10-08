@@ -17,6 +17,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const price = ref(null)
   const rawTokenEvents = ref(null)
   const tokenEventsCount = ref(null)
+  const tokenHoldersCount = ref(null)
 
   const rawToken = ref(null)
   const rawTotalSupply = ref(null)
@@ -117,6 +118,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     fetchTokenTrades,
     tokenDetails,
     tokenHolders,
+    tokenHoldersCount,
     tokenEvents,
     tokenEventsCount,
     trades,

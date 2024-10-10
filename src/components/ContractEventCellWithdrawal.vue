@@ -30,13 +30,11 @@ const props = defineProps({
     type: Object,
   },
 })
-
 const eventData = computed(() => props.event.data)
 const tokenValue = computed(() => {
   if (!props.contractDetails.tokenDetails || props.contractDetails.contractType === 'AEX-141') {
     return eventData.value[2]
   }
-
   return formatNumber(
     formatReduceDecimals(eventData.value[2], props.contractDetails.tokenDetails.decimals),
   ) + ` ${props.contractDetails.tokenDetails.symbol}`

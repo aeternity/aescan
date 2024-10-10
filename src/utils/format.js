@@ -198,6 +198,7 @@ export function formatTradeValue(action, fromAmount, toAmount, price) {
   if (action === 'SELL') {
     return formatNumber(toAmount * price)
   }
+
   return null
 }
 

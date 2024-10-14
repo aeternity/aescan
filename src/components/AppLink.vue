@@ -1,12 +1,12 @@
 <template>
-  <router-link
+  <nuxt-link
     v-if="isLocalLink(to)"
     :to="to"
     :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]"
     active-class="link--active"
     exact-active-class="link--exact-active">
     <slot/>
-  </router-link>
+  </nuxt-link>
   <a
     v-else
     :rel="isOpenedInNewTab ? 'noopener noreferrer' : false"

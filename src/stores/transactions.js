@@ -29,7 +29,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const data = await $fetch('/api/transctions')
+    const data = await $fetch('/api/transactions')
     isHydrated.value = true
     rawTransactions.value = data
   }

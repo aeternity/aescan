@@ -2,20 +2,26 @@
   <div class="price-label">
     <app-link
       v-if="hasLink"
-      :to="`/contracts/${contractId}`">
+      :to="`/tokens/${contractId}`">
       <token-symbol-icon
         v-if="hasIcon"
         class="price-label__icon"
         :contract-id="contractId"/>
     </app-link>
+    <token-symbol-icon
+      v-else-if="!hasLink && hasIcon"
+      class="price-label__icon"
+      :contract-id="contractId"/>
     <app-tooltip v-if="isPriceRounded">
       {{ priceRounded }}
       <app-link
         v-if="hasLink"
-        :to="`/contracts/${contractId}`">
+        :to="`/tokens/${contractId}`">
         {{ currency }}
       </app-link>
-      <template v-else>{{ currency }}</template>
+      <template v-else>
+        {{ currency }}
+      </template>
       <template #tooltip>
         {{ price }} {{ currency }}
       </template>
@@ -25,7 +31,7 @@
       {{ price }}
       <app-link
         v-if="hasLink"
-        :to="`/contracts/${contractId}`">
+        :to="`/tokens/${contractId}`">
         {{ currency }}
       </app-link>
       <template v-else>{{ currency }}</template>

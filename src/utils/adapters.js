@@ -70,6 +70,7 @@ export function adaptSelectedMicroblockTransactions(transactions) {
 }
 
 export function adaptTransactions(transactions) {
+  console.log('transactions', transactions)
   const formattedData = transactions.data.map(transaction => {
     return {
       hash: transaction.hash,

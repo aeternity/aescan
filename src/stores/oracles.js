@@ -1,13 +1,12 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
-import { adaptOracles } from '@/utils/adapters'
 
 export const useOraclesStore = defineStore('oracles', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
-  const rawOracles = ref(null)
+  const oracles = ref(null)
   const rawOraclesCount = ref(null)
 
   const activeOraclesCount = computed(() => {
@@ -15,12 +14,6 @@ export const useOraclesStore = defineStore('oracles', () => {
   })
   const inativeOracles = computed(() => {
     return rawOraclesCount.value?.inactiveOracles
-  })
-
-  const oracles = computed(() => {
-    return rawOracles.value
-      ? adaptOracles(rawOracles.value)
-      : null
   })
 
   function getOraclesCount(state) {
@@ -32,12 +25,14 @@ export const useOraclesStore = defineStore('oracles', () => {
   }
 
   async function fetchOracles(queryParameters = null) {
-    rawOracles.value = null
-    const defaultParameters = '/v3/oracles?direction=backward&limit=10'
-    const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
-    )
-    rawOracles.value = data
+    oracles.value = null
+    const slug = `?${queryParameters.substring(3).split('?')[1]}`
+    const data = await $fetch(`/api/oracles${slug}`)
+
+    // const defaultParameters = '/v3/oracles?direction=backward&limit=10'
+    // const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
+    // )
+    oracles.value = data
   }
 
   async function fetchOraclesCount() {

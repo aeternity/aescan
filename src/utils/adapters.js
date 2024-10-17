@@ -1,3 +1,5 @@
+// todo this is a duplicate of server/utils so plese resolve it
+
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
@@ -60,6 +62,24 @@ export function adaptSelectedMicroblockTransactions(transactions) {
       type: transaction.tx.type,
       data: transaction.tx,
       created: DateTime.fromMillis(transaction.microTime),
+    }
+  })
+  return {
+    next: transactions.next,
+    data: formattedData,
+    prev: transactions.prev,
+  }
+}
+
+export function adaptTransactions(transactions) {
+  const formattedData = transactions.data.map(transaction => {
+    return {
+      hash: transaction.hash,
+      createdHeight: transaction.blockHeight,
+      created: DateTime.fromMillis(transaction.microTime),
+      type: transaction.tx.type,
+      data: transaction.tx,
+      hintKey: transaction.tx.type.charAt(0).toLowerCase() + transaction.tx.type.slice(1),
     }
   })
   return {

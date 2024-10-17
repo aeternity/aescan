@@ -1,5 +1,3 @@
-// todo this is a duplicate of server/utils so plese resolve it
-
 import { DateTime } from 'luxon'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
@@ -76,7 +74,8 @@ export function adaptTransactions(transactions) {
     return {
       hash: transaction.hash,
       createdHeight: transaction.blockHeight,
-      created: DateTime.fromMillis(transaction.microTime),
+      created: DateTime.fromMillis(transaction.microTime)
+        .toLocaleString(DateTime.DATETIME_SHORT), // todo no moc se mi to nelibino
       type: transaction.tx.type,
       data: transaction.tx,
       hintKey: transaction.tx.type.charAt(0).toLowerCase() + transaction.tx.type.slice(1),

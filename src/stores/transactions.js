@@ -18,8 +18,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
   async function fetchTransactions(queryParameters = null) {
-    const slug = `?${queryParameters.substring(3).split('?')[1]}`
     transactions.value = null
+    const slug = `?${queryParameters.substring(3).split('?')[1]}`
     const data = await $fetch(`/api/transactions${slug}`)
     isHydrated.value = true
     transactions.value = data

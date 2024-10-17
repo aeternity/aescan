@@ -1,14 +1,11 @@
 import { defineStore } from 'pinia'
-import { useRuntimeConfig } from 'nuxt/app'
 import { ref } from 'vue'
-import useAxios from '@/composables/useAxios'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
+// todo there should not be any formatting in stores
+// todo there should not be any formatting in components
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 export const useTransactionsStore = defineStore('transactions', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
-
   const transactions = ref(null)
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
@@ -19,7 +16,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const isHydrated = ref(null)
   const pageIndex = ref(1)
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
-
 
   async function fetchTransactions(queryParameters = null) {
     const slug = `?${queryParameters.substring(3).split('?')[1]}`
@@ -37,7 +33,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchLast24hsTransactionsStatistics() {
     last24hsTransactionsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
+    const data = await $fetch('/api/stats')
     last24hsTransactionsCount.value = data.last24hsTransactions
     last24hsTransactionsTrend.value = data.transactionsTrend
     last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)

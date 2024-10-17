@@ -12,5 +12,7 @@ export default defineEventHandler(async event => {
     url.searchParams.append(key, value)
   })
   const { data } = await axios.get(url)
-  return adaptTransactions(data)
+  const formatted = adaptTransactions(data)
+  return { raw: data, formatted }
+  // return adaptTransactions(data)
 })

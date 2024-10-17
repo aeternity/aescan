@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { ref } from 'vue'
 import useAxios from '@/composables/useAxios'
+import { adaptTransactions } from '@/server/utils'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
@@ -25,8 +26,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const slug = `?${queryParameters.substring(3).split('?')[1]}`
     transactions.value = null
     const data = await $fetch(`/api/transactions${slug}`)
+    const adaptedHere = adaptTransactions(data.raw)
     isHydrated.value = true
-    transactions.value = data
+    transactions.value = adaptedHere
   }
 
   async function fetchTransactionsCount(txType = null) {

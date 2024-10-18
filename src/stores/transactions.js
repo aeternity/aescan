@@ -25,9 +25,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactions.value = data
   }
 
-  async function fetchTransactionsCount(txType = null) {
+  async function fetchTransactionsCount(txType = undefined) {
     transactionsCount.value = null
-    const data = await $fetch(`/api/transactions-count?${txType}`)
+    const string = txType ? `/api/transactions-count?${txType}` : `/api/transactions-count`
+    const data = await $fetch(string)
     transactionsCount.value = data
   }
 

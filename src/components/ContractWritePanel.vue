@@ -13,7 +13,7 @@
         </hint-tooltip>
       </div>
       <contract-entrypoint-accordion
-        :is-disabled="!walletSdk"
+        :is-disabled="!canWrite"
         :entrypoints="aciWriteEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
@@ -37,8 +37,8 @@ const {
   fetchEntrypointResponse,
   parseArguments,
   parseResponse,
-  getWriteContractInstance,
-  walletSdk,
+  getContract,
+  canWrite,
 } = contractVerifiedStore
 
 const { fetchContractEvents, fetchContractCallTransactions } = contractDetailStore
@@ -51,8 +51,8 @@ const loadingIndex = ref(null)
 async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
-  const contractInstance = await getWriteContractInstance()
-  const fetchedResponse = await fetchEntrypointResponse(contractInstance, aciItem, args)
+  const contract = await getContract()
+  const fetchedResponse = await fetchEntrypointResponse(contract, aciItem, args)
   response.value[index] = parseResponse(fetchedResponse)
   loadingIndex.value = null
   await updateContractEvents()

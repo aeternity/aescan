@@ -21,7 +21,7 @@ const contractVerifiedStore = useContractVerifiedStore()
 const { aciReadEntrypoints } = storeToRefs(contractVerifiedStore)
 const {
   fetchEntrypointResponse,
-  getReadContractInstance,
+  getContract,
   parseArguments,
   parseResponse,
 } = contractVerifiedStore
@@ -32,8 +32,8 @@ const loadingIndex = ref(null)
 async function getEntrypointResponse(aciItem, index, form) {
   loadingIndex.value = index
   const args = parseArguments(aciItem, form)
-  const contractInstance = await getReadContractInstance()
-  const fetchedResponse = await fetchEntrypointResponse(contractInstance, aciItem, args)
+  const contract = await getContract()
+  const fetchedResponse = await fetchEntrypointResponse(contract, aciItem, args)
   response.value[index] = parseResponse(fetchedResponse)
   loadingIndex.value = null
 }

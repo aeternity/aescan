@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.16.0](https://github.com/aeternity/aescan/compare/0.15.0...0.16.0) (2024-10-21)
+
+
+### Features
+
+* DEX Trades General ([#875](https://github.com/aeternity/aescan/issues/875)) ([1f6a363](https://github.com/aeternity/aescan/commit/1f6a363d62a7236ba286856bdfdd99337356f265))
+* difficulty chart ([#916](https://github.com/aeternity/aescan/issues/916)) ([071a75f](https://github.com/aeternity/aescan/commit/071a75fbee1948c1a6688ddfaeec8b0bcb847f1c))
+* Display NFT time value ([#906](https://github.com/aeternity/aescan/issues/906)) ([9740453](https://github.com/aeternity/aescan/commit/9740453cfb085e86fa248526371e6500dfb50b22))
+* e2e testing - edge cases ([#897](https://github.com/aeternity/aescan/issues/897)) ([8f4fa59](https://github.com/aeternity/aescan/commit/8f4fa593bc48fc9bb01ef1bd3049ab8253d05d3e))
+* Implement counter for token holders ([#913](https://github.com/aeternity/aescan/issues/913)) ([c24c27b](https://github.com/aeternity/aescan/commit/c24c27b36325ee8d751baf3c8f026a27c58d9cfc))
+* Keyblocks page ([#885](https://github.com/aeternity/aescan/issues/885)) ([d94bda9](https://github.com/aeternity/aescan/commit/d94bda9206a4ac9fe06be9eeb2aea9bb74357bf1))
+* Migrate to v3 part ([#887](https://github.com/aeternity/aescan/issues/887)) ([49fbb43](https://github.com/aeternity/aescan/commit/49fbb43bf8c7298dd1cdfc8ce3386871ca5ca4c8))
+
+
+### Bug Fixes
+
+* Fixes 0.16.0 ([#938](https://github.com/aeternity/aescan/issues/938)) ([821cdfd](https://github.com/aeternity/aescan/commit/821cdfd1cc96e0d703879a473e11ad7efece9ee7))
+* fixes 0.16.0 pt 2 ([#960](https://github.com/aeternity/aescan/issues/960)) ([d4a4b88](https://github.com/aeternity/aescan/commit/d4a4b8831c112bc3a91f1866a5b9e4ca849900fc))
+
 ## [0.15.0](https://github.com/aeternity/aescan/compare/0.14.0...0.15.0) (2024-09-13)
 
 

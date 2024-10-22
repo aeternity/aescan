@@ -30,12 +30,20 @@ const menuOptions = ref([{
       path: '/transactions',
     },
     {
+      name: 'Smart Contracts',
+      path: '/contracts',
+    },
+    {
       name: 'Names',
       path: '/names',
     },
     {
-      name: 'Smart Contracts',
-      path: '/contracts',
+      name: 'Keyblocks',
+      path: '/keyblocks',
+    },
+    {
+      name: 'Nodes',
+      path: '/nodes',
     },
     {
       name: 'Oracles',
@@ -44,10 +52,6 @@ const menuOptions = ref([{
     {
       name: 'State Channels',
       path: '/state-channels',
-    },
-    {
-      name: 'Nodes',
-      path: '/nodes',
     },
     {
       name: 'Hyperchains',
@@ -71,6 +75,10 @@ const menuOptions = ref([{
     {
       name: 'AEX141 Tokens (NFTs)',
       path: '/nfts',
+    },
+    {
+      name: 'DEX Trades',
+      path: '/dex-trades',
     },
   ],
 },
@@ -103,6 +111,10 @@ const menuOptions = ref([{
     {
       name: 'Names',
       path: '/charts/names',
+    },
+    {
+      name: 'Difficulty',
+      path: '/charts/difficulty',
     },
   ],
 }])

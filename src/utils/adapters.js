@@ -13,6 +13,7 @@ import {
   formatPercentage,
   formatTemplateLimit,
   formatTokenLimit,
+  formatTradeRate,
 } from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
@@ -605,6 +606,25 @@ export function adaptNft(nft) {
   }
 }
 
+export function adaptNfts(nfts) {
+  const formattedData = nfts.data
+    .map(nft => {
+      return {
+        name: nft.name,
+        blockHeight: nft.blockHeight,
+        creationTime: DateTime.fromMillis(nft.creationTime),
+        contractId: nft.contractId,
+        nftsAmount: nft.nftsAmount,
+        nftOwners: nft.nftOwners,
+      }
+    })
+  return {
+    next: nfts.next,
+    data: formattedData,
+    prev: nfts.prev,
+  }
+}
+
 export function adaptVerificationDetail(verificationDetail) {
   return {
     license: verificationDetail.license,
@@ -677,10 +697,57 @@ export function adaptTopAccounts(topAccounts, distribution) {
       return {
         rank: index + 1,
         account: account.account,
-        balance: formatAePrice(formatAettosToAe(account.balance)),
+        balance: formatAettosToAe(account.balance),
         percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
       }
     })
+}
+
+export function adaptKeyblocks(keyblocks) {
+  const formattedData = keyblocks.data
+    .map(keyblock => {
+      return {
+        hash: keyblock.hash,
+        block: keyblock.height,
+        time: DateTime.fromMillis(keyblock.time),
+        miner: keyblock.miner,
+        microBlocksCount: keyblock.microBlocksCount,
+        transactionsCount: keyblock.transactionsCount,
+        beneficiary: keyblock.beneficiary,
+        beneficiaryReward: formatAettosToAe(keyblock.beneficiaryReward),
+      }
+    })
+  return {
+    next: keyblocks.next,
+    data: formattedData,
+    prev: keyblocks.prev,
+  }
+}
+
+export function adaptTrades(trades, price) {
+  const formattedData = trades.data.map(trade => {
+    const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
+    const toAmount = trade.toAmount / 10 ** trade.toDecimals
+    return {
+      fromAmount,
+      toAmount,
+      txHash: trade.txHash,
+      fromToken: trade.fromToken,
+      toToken: trade.toToken,
+      fromContract: trade.fromContract,
+      toContract: trade.toContract,
+      action: trade.action,
+      height: trade.height,
+      timestamp: DateTime.fromMillis(trade.microTime),
+      rate: formatTradeRate(trade.action, fromAmount, toAmount),
+      value: formatTradeValue(trade.action, fromAmount, toAmount, price),
+    }
+  })
+  return {
+    next: trades.next,
+    data: formattedData,
+    prev: trades.prev,
+  }
 }
 
 export function adaptAciObject(verificationDetails) {
@@ -696,4 +763,5 @@ export function adaptReadEntrypoints(aci) {
 
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
+
 }

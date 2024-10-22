@@ -5,6 +5,7 @@ import { useMarketStatsStore } from '@/stores/marketStats'
 import { adaptAccountActivities, adaptAccountNames, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
 import { useDexStore } from '@/stores/dex'
+import { isAddressValid } from "@aeternity/aepp-sdk";
 
 export const useAccountStore = defineStore('account', () => {
   const {
@@ -80,7 +81,17 @@ export const useAccountStore = defineStore('account', () => {
       rawAccountDetails.value = data
     } catch (e) {
       if ([400, 404].includes(e.response.status)) {
-        rawAccountDetails.value = { id: accountId, isExistent: false }
+        if (isAddressValid(accountId)) {
+          rawAccountDetails.value = { id: accountId, isExistent: false }
+        } else {
+          throw showError({
+            data: {
+              entityId: accountId,
+              entityName: 'Account',
+            },
+            statusMessage: 'EntityDetailsNotFound',
+          })
+        }
       }
     }
   }
@@ -102,7 +113,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {
     rawAccountTokens.value = null
-    const defaultParameters = `/v2/aex9/account-balances/${accountId}?limit=${limit ?? 10}`
+    const defaultParameters = `/v3/accounts/${accountId}/aex9/balances?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountTokens.value = data
 

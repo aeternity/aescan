@@ -43,15 +43,15 @@
         </span>
       </div>
 
-      <keyblock-table
+      <dashboard-keyblock-table
         v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__keyblock-table u-hidden-mobile"
+        class="dashboard-keyblock-panel__dashboard-keyblock-table u-hidden-mobile"
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
 
-      <keyblock-table-condensed
+      <dashboard-keyblock-table-condensed
         v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__keyblock-table-condensed u-hidden-desktop"
+        class="dashboard-keyblock-panel__dashboard-keyblock-table-condensed u-hidden-desktop"
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
     </div>
@@ -63,9 +63,7 @@
 import { storeToRefs } from 'pinia'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import AppPanel from '@/components/AppPanel'
-import KeyblockTableCondensed from '@/components/KeyblockTableCondensed'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
-import KeyblockTable from '@/components/KeyblockTable'
 import KeyblockSequence from '@/components/KeyblockSequence'
 import DashboardMicroblocksPanel from '@/components/DashboardMicroblocksPanel'
 
@@ -95,13 +93,13 @@ const {
     }
   }
 
-  &__keyblock-table {
+  &__dashboard-keyblock-table {
     @media (--desktop) {
       margin-bottom: var(--space-2);
     }
   }
 
-  &__keyblock-table-condensed {
+  &__dashboard-keyblock-table-condensed {
     margin: var(--space-4) 0;
 
     @media (--desktop) {

@@ -24,5 +24,4 @@
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const { isLoading } = useLoading()
-
 </script>

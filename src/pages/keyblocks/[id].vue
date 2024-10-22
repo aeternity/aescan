@@ -45,10 +45,9 @@ const { isLoading } = useLoading()
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && keyblockDetails.value.isExistent !== false)
 
-await useAsyncData(async() => {
+if (process.client) {
   await fetchKeyblock(route.params.id)
-  return true
-})
+}
 
 </script>
 

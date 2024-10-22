@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptKeyblock, adaptKeyblockMicroblocks } from '@/utils/adapters'
+import { Encoding, isAddressValid } from "@aeternity/aepp-sdk";
 
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -18,7 +19,9 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
 
   async function fetchKeyblock(keyblockId) {
     await fetchKeyblockDetails(keyblockId)
-    await fetchKeyblockDeltaStats(rawKeyblock.value.height)
+    if (rawKeyblock.value.height) {
+      await fetchKeyblockDeltaStats(rawKeyblock.value.height)
+    }
   }
 
   async function fetchKeyblockDetails(keyblockId) {
@@ -27,11 +30,20 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
       const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/${keyblockId}`)
       rawKeyblock.value = data
     } catch (error) {
-      if (error.response?.status === 404) {
-        rawKeyblock.value = { isExistent: false }
-        return
+      if ([400, 404].includes(error.response.status)) {
+        const isKeyblockIdValid = isAddressValid(keyblockId, Encoding.KeyBlockHash) || !isNaN(keyblockId)
+        if (isKeyblockIdValid) {
+          rawKeyblock.value = { isExistent: false }
+        } else {
+          throw showError({
+            data: {
+              entityId: keyblockId,
+              entityName: 'Keyblock',
+            },
+            statusMessage: 'EntityDetailsNotFound',
+          })
+        }
       }
-      throw error
     }
   }
 

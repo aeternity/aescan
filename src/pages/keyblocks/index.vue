@@ -1,21 +1,21 @@
 <template>
   <Head>
-    <Title>Nodes</Title>
+    <Title>Keyblocks</Title>
   </Head>
 
   <page-header>
-    Nodes
-
+    Keyblocks
     <template #tooltip>
-      {{ nodesHints.nodes }}
+      {{ keyblocksHints.keyblock }}
     </template>
   </page-header>
-  <nodes-panel v-if="!isLoading"/>
+
+  <keyblocks-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>
 
 <script setup>
-import { nodesHints } from '@/utils/hints/nodesHints'
+import { keyblocksHints } from "@/utils/hints/keyblocksHints";
 
 const { isLoading } = useLoading()
 </script>

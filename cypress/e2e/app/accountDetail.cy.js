@@ -33,4 +33,13 @@ describe('account detail', () => {
     cy.get('.account-details-panel .copy-chip').should('be.visible')
     cy.get('.account-tokens-panel').should('be.visible')
   })
+
+  it('should get different results when filtering transactions', () => {
+    cy.visit(`/accounts/${Cypress.env('accountAddress')}`)
+    cy.contains('.tabs__item', 'Transactions').click()
+    cy.get('.account-transactions-table tbody td').should('be.visible')
+    cy.get('.account-transactions-panel .multiselect').click()
+    cy.contains('.multiselect__option', 'ContractCallTx').click()
+    cy.get('.blank-state').should('be.visible')
+  })
 })

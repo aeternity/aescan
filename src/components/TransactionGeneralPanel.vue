@@ -23,7 +23,7 @@
         <tr class="transaction-general-panel__row">
           <th class="transaction-general-panel__table-header">
             <hint-tooltip>
-              {{ transactionsHints.keyblockHeight }}
+              {{ transactionsHints.type }}
             </hint-tooltip>
             Transaction Type
           </th>

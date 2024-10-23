@@ -218,4 +218,3 @@ export function formatEntrypointResponse(value, type) {
   }
   return value
 }
-

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.1](https://github.com/aeternity/aescan/compare/0.16.0...0.16.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* Remove AE label from gas value  ([#942](https://github.com/aeternity/aescan/issues/942)) ([4046115](https://github.com/aeternity/aescan/commit/40461155d303abaf7fa4e9f0083b48f15d62c707))
+
 ## [0.16.0](https://github.com/aeternity/aescan/compare/0.15.0...0.16.0) (2024-10-21)
 
 

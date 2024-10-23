@@ -23,10 +23,11 @@
         {{ currency }}
       </template>
       <template #tooltip>
-        {{ price }}
+        {{ price }} {{ currency }}
       </template>
     </app-tooltip>
-    <template v-else>
+
+    <span v-else>
       {{ price }}
       <app-link
         v-if="hasLink"
@@ -54,11 +55,15 @@ const props = defineProps({
   },
   currency: {
     type: String,
-    default: undefined,
+    default: 'AE',
   },
   hasIcon: {
     type: Boolean,
     default: true,
+  },
+  hasLink: {
+    type: Boolean,
+    default: false,
   },
   contractId: {
     type: String,
@@ -70,10 +75,10 @@ const isPriceRounded = computed(() =>
   priceRounded.value !== price.value,
 )
 const priceRounded = computed(() =>
-  formatNullable(formatAePrice(props.price, props.maxDigits, props.currency)),
+  formatNullable(formatAePrice(props.price, props.maxDigits)),
 )
 const price = computed(() =>
-  formatNullable(formatAePrice(props.price, null, props.currency)),
+  formatNullable(formatAePrice(props.price, null)),
 )
 </script>
 

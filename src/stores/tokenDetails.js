@@ -16,11 +16,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const price = ref(null)
   const rawTokenEvents = ref(null)
   const tokenEventsCount = ref(null)
+  const tokenHoldersCount = ref(null)
 
   const rawToken = ref(null)
   const rawTotalSupply = ref(null)
   const rawTokenHolders = ref(null)
-  const tokenHoldersCount = ref(null)
+  const rawTokenTrades = ref(null)
 
   const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
@@ -60,6 +61,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     ])
   }
 
+  // todo shorten naming
+  const trades = computed(() => rawTokenTrades.value && price.value
+    ? adaptTrades(rawTokenTrades.value, price.value)
+    : null,
+  )
+
   async function fetchTokenPrice() {
     price.value = await fetchPrice(tokenId.value, rawToken.value.decimals)
   }
@@ -67,7 +74,6 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   async function fetchToken() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
     rawToken.value = data
-    tokenEventsCount.value = data.logsCount
   }
 
   async function fetchTotalSupply() {
@@ -86,11 +92,23 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     rawTokenEvents.value = data
   }
 
+  async function fetchTokenEventsCount(contractId) {
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${contractId}/logs-count`)
+    tokenEventsCount.value = data.data
+  }
+
   async function fetchTokenHolders({ queryParameters, limit } = {}) {
     rawTokenHolders.value = null
-    const defaultParameters = `/v2/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
+    const defaultParameters = `/v3/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenHolders.value = data
+  }
+
+  async function fetchTokenTrades({ queryParameters, limit, contractId } = {}) {
+    rawTokenTrades.value = null
+    const defaultParameters = `/v3/dex/${contractId}/swaps?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawTokenTrades.value = data
   }
 
   async function fetchTokenHoldersCount() {
@@ -102,12 +120,15 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   return {
     fetchTokenDetails,
     fetchTokenHolders,
-    tokenHoldersCount,
-    fetchTokenEvents,
     fetchTokenHoldersCount,
+    fetchTokenEvents,
+    fetchTokenEventsCount, // todo eventcounter
+    fetchTokenTrades,
     tokenDetails,
     tokenHolders,
+    tokenHoldersCount,
     tokenEvents,
     tokenEventsCount,
+    trades,
   }
 })

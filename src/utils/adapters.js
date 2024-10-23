@@ -14,6 +14,7 @@ import {
   formatTemplateLimit,
   formatTokenLimit,
   formatTradeRate,
+  formatTradeValue,
 } from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
@@ -702,6 +703,7 @@ export function adaptTopAccounts(topAccounts, distribution) {
       }
     })
 }
+
 
 export function adaptKeyblocks(keyblocks) {
   const formattedData = keyblocks.data

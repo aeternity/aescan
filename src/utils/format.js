@@ -8,6 +8,7 @@ import {
   REVOKED_PERIOD,
 } from '@/utils/constants'
 
+
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
   const suffix = hash.slice(hash.length - 2)
@@ -187,6 +188,7 @@ export function formatTradeRate(action, fromAmount, toAmount) {
   if (action === 'SELL') {
     return `${formatNumber((toAmount / fromAmount), 4)} WAE`
   }
+
   return null
 }
 
@@ -218,3 +220,4 @@ export function formatEntrypointResponse(value, type) {
   }
   return value
 }
+

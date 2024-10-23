@@ -57,7 +57,7 @@ export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
 
   if (!decimals) {
     if (price === 0) {
-      return `0 ${currency}`
+      return '0'
     }
     if (integers === '0') {
       return `~${integers} ${currency}`
@@ -198,6 +198,7 @@ export function formatTradeValue(action, fromAmount, toAmount, price) {
   if (action === 'SELL') {
     return formatNumber(toAmount * price)
   }
+
   return null
 }
 

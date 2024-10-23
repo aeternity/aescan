@@ -5,7 +5,6 @@ describe('homepage', () => {
     cy.get('.stats-panel').should('be.visible')
     cy.get('.dashboard-state-channels-panel table').should('be.visible')
     cy.get('.dashboard-auctions-panel')
-
       .should('satisfy', elements => {
         return Array.from(elements[0].childNodes).some(element => {
           if (element.localName === 'table' || element.className === 'blank-state') {

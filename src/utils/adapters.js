@@ -166,7 +166,6 @@ export function adaptAccountNames(names) {
       expirationHeight: name.expireHeight,
       expiration: DateTime.fromMillis(name.approximateExpireTime),
       pointers: name.pointers.map(pointer => pointer.id),
-      // todo adpot custm pointers? check
     }
   })
   return {

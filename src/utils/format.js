@@ -110,11 +110,8 @@ export function formatDecodeByteArray(bytesArray) {
 }
 
 export function formatNameState(name, blockHeight) {
-  console.log('name', name)
   const isActive = name.active
-
   const isInAuction = !!name.auction
-
   const isExpired = !name.active && name.auction === null
   const isRevoked = isExpired && name.active === false &&
     name.expireHeight + REVOKED_PERIOD > blockHeight

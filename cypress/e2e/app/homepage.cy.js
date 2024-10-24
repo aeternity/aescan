@@ -24,4 +24,10 @@ describe('homepage', () => {
       { failOnStatusCode: false })
     cy.get('.title').contains('Page Not Found')
   })
+
+  it('should display app versions', () => {
+    cy.visit('/')
+    // improve search for content
+    cy.get('.footer__version a').should('be.visible')
+  })
 })

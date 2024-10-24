@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.17.0](https://github.com/aeternity/aescan/compare/0.16.1...0.17.0) (2024-10-24)
+
+
+### Features
+
+* e2e testing - filtering ([#917](https://github.com/aeternity/aescan/issues/917)) ([d5ceab4](https://github.com/aeternity/aescan/commit/d5ceab4ef50b72529bc166fb3b674565929ce618))
+* e2e testing improvements ([#966](https://github.com/aeternity/aescan/issues/966)) ([506155e](https://github.com/aeternity/aescan/commit/506155eed449fc7fda45d889cea5d560f6010d71))
+* migrate names related endpoints to v3 ([#915](https://github.com/aeternity/aescan/issues/915)) ([cf3c959](https://github.com/aeternity/aescan/commit/cf3c9596320be8e10b91e0361d45a5525e76031b))
+* Use nuxt-link ([#949](https://github.com/aeternity/aescan/issues/949)) ([5e4cb79](https://github.com/aeternity/aescan/commit/5e4cb792f7d9b086f52a8cb8b6208cecce54d962))
+
+
+### Bug Fixes
+
+* Add N/A label for no query and response even ([#948](https://github.com/aeternity/aescan/issues/948)) ([4150fc1](https://github.com/aeternity/aescan/commit/4150fc172b83ab4b7e78fdb8dcb3e88b29258c4b))
+* code cleanup ([#970](https://github.com/aeternity/aescan/issues/970)) ([df1b0cd](https://github.com/aeternity/aescan/commit/df1b0cd9dccd148c455e195dbaf94e2a0826b52c))
+* sanitize contract events ([#969](https://github.com/aeternity/aescan/issues/969)) ([2566580](https://github.com/aeternity/aescan/commit/2566580cbdb5bd8dc8eb1c106f19698e56a1344c))
+
 ## [0.16.1](https://github.com/aeternity/aescan/compare/0.16.0...0.16.1) (2024-10-23)
 
 

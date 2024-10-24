@@ -12,6 +12,9 @@ export default defineConfig({
     tokenAddress: 'ct_2qyFRzXzTyPCtPKZQ32EPXqxxAcgiWqtADV3amcBVVPYQRKZm7',
     stateChannelAddress: 'ch_2Qo4r6u3Bq1ZMnPL7GpjLLsATaEgMK5BnYnoi68hzLL5QuKbev',
     name: 'testaensrawpointers.chain',
+    // todo rename to chain name
+    nameWithout: 'testaensrawpointers',
+    nameAddress: 'nm_2LvDCeiCTGk8mBXqRPmdnb3MgGUcvmfBRRAxgsgsa21GDW9FSR',
     keyblockHeight: '947025',
     keyblockAddress: 'kh_2K9dmFN6Qv5N18JbzXfmNMyFaZ9J5tSnHHwwNALEFRusykeTXY',
     notFoundAccount: 'ak_2iBPH7HUz3cSDVEUWiHg76MZJ6tZooVNBmmxcgVK6VV8KAE689',

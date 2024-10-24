@@ -109,7 +109,6 @@ export const useAccountStore = defineStore('account', () => {
     const defaultParameters = `/v3/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountNames.value = data
-    console.log('rawAccountNames.value', rawAccountNames.value)
   }
 
   async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {

@@ -27,20 +27,22 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
 
   async function fetchName(name) {
     rawName.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/names/${name}`)
     rawName.value = data
   }
 
+  // todo history issue
+  // todo close time count function
   async function fetchNameActions({ nameHash = null, queryParameters = null }) {
     rawNameActions.value = null
-    const defaultParameters = `/v2/names/${nameHash}/history`
+    const defaultParameters = `/v3/names/${nameHash}/history`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawNameActions.value = data
   }
 
   async function isNameAvailable(name) {
     try {
-      await axios.get(`${MIDDLEWARE_URL}/v2/names/${name}`)
+      await axios.get(`${MIDDLEWARE_URL}/v3/names/${name}`)
       return true
     } catch (error) {
       if (error.response.status === 404) {

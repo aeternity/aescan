@@ -18,11 +18,11 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
 
     await Promise.all([
       fetchNft(),
-      Promise.allSettled([
-        fetchNftTransfers(),
-        fetchNftInventory(),
-        fetchNftOwners(),
-      ]),
+      // Promise.allSettled([
+      //   fetchNftTransfers(),
+      //   fetchNftInventory(),
+      //   fetchNftOwners(),
+      // ]),
     ])
 
     return true

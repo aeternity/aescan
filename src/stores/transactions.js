@@ -37,8 +37,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactionsCount(txType = null) {
     transactionsCount.value = null
-    const url = txType ? `${MIDDLEWARE_URL}/v3/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v3/transactions/count`
-    const { data } = await axios.get(url)
+    const string = txType ? `/api/transactions/count?${txType}` : `/api/transactions/count`
+    const data = await $fetch(string)
     transactionsCount.value = data
   }
 

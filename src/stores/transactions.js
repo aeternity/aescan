@@ -43,11 +43,13 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchLast24hsTransactionsStatistics() {
     last24hsTransactionsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
-    last24hsTransactionsCount.value = data.last24hsTransactions
-    last24hsTransactionsTrend.value = data.transactionsTrend
-    last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)
-    feesTrend.value = data.feesTrend
+    // const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
+    const { data } = await useFetch('/api/stats')
+    console.log('data', data)
+    last24hsTransactionsCount.value = data.value.last24hsTransactions
+    last24hsTransactionsTrend.value = data.value.transactionsTrend
+    last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.value.last24hsAverageTransactionFees), 6)
+    feesTrend.value = data.value.feesTrend
   }
 
   function setPageIndex(index) {

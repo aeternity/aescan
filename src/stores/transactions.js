@@ -29,7 +29,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/transactions?limit=10'}`)
+    const data = await $fetch('/api/transactions')
     isHydrated.value = true
     rawTransactions.value = data
   }
@@ -43,13 +43,11 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchLast24hsTransactionsStatistics() {
     last24hsTransactionsCount.value = null
-    // const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
-    const { data } = await useFetch('/api/stats')
-    console.log('data', data)
-    last24hsTransactionsCount.value = data.value.last24hsTransactions
-    last24hsTransactionsTrend.value = data.value.transactionsTrend
-    last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.value.last24hsAverageTransactionFees), 6)
-    feesTrend.value = data.value.feesTrend
+    const data = await $fetch('/api/stats')
+    last24hsTransactionsCount.value = data.last24hsTransactions
+    last24hsTransactionsTrend.value = data.transactionsTrend
+    last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)
+    feesTrend.value = data.feesTrend
   }
 
   function setPageIndex(index) {

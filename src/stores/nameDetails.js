@@ -31,8 +31,6 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     rawName.value = data
   }
 
-  // todo history issue
-  // todo close time count function
   async function fetchNameActions({ nameHash = null, queryParameters = null }) {
     rawNameActions.value = null
     const defaultParameters = `/v3/names/${nameHash}/history`

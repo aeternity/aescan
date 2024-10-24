@@ -33,10 +33,12 @@ export const useOraclesStore = defineStore('oracles', () => {
 
   async function fetchOracles(queryParameters = null) {
     rawOracles.value = null
-    const defaultParameters = '/v3/oracles?direction=backward&limit=10'
-    const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
-    )
+    const slug = `?${queryParameters.substring(3).split('?')[1]}`
+    const data = await $fetch(`/api/oracles${slug}`)
+
+    // const defaultParameters = '/v3/oracles?direction=backward&limit=10'
+    // const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
+    // )
     rawOracles.value = data
   }
 

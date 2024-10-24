@@ -11,9 +11,8 @@ export default defineConfig({
     oracleAddress: 'ok_2w2Gkp9mwThn6jWdJi5Leuh3P5Zj7oJ6gyoHa8KnKzWwEVSnKf',
     tokenAddress: 'ct_2qyFRzXzTyPCtPKZQ32EPXqxxAcgiWqtADV3amcBVVPYQRKZm7',
     stateChannelAddress: 'ch_2Qo4r6u3Bq1ZMnPL7GpjLLsATaEgMK5BnYnoi68hzLL5QuKbev',
-    name: 'testaensrawpointers.chain',
-    // todo rename to chain name
-    nameWithout: 'testaensrawpointers',
+    chainName: 'testaensrawpointers.chain',
+    name: 'testaensrawpointers',
     nameAddress: 'nm_2LvDCeiCTGk8mBXqRPmdnb3MgGUcvmfBRRAxgsgsa21GDW9FSR',
     keyblockHeight: '947025',
     keyblockAddress: 'kh_2K9dmFN6Qv5N18JbzXfmNMyFaZ9J5tSnHHwwNALEFRusykeTXY',

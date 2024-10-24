@@ -1,7 +1,6 @@
 describe('search', () => {
   it('should display search results', () => {
     cy.visit('/')
-
     // loading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
@@ -19,8 +18,6 @@ describe('search', () => {
 
   it('should directly display account detail', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('accountAddress'))
@@ -31,8 +28,6 @@ describe('search', () => {
 
   it('should directly display transaction detail', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('transactionAddress'))
@@ -43,8 +38,6 @@ describe('search', () => {
 
   it('should directly display contract detail', () => {
     cy.visit('/')
-
-    //  todo loading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('contractAddress'))
@@ -55,8 +48,6 @@ describe('search', () => {
 
   it('should directly display oracles detail', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('oracleAddress'))
@@ -67,8 +58,6 @@ describe('search', () => {
 
   it('should directly display state channels detail', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('stateChannelAddress'))
@@ -79,8 +68,6 @@ describe('search', () => {
 
   it('should directly display microblocks detail', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('microblockAddress'))
@@ -91,8 +78,6 @@ describe('search', () => {
 
   it('should directly display keyblocks detail', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('keyblockAddress'))
@@ -103,8 +88,6 @@ describe('search', () => {
 
   it('should directly display keyblocks detail by hash', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('keyblockHeight'))
@@ -115,8 +98,6 @@ describe('search', () => {
 
   it('should display search result due to very high block height', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(999999999)
@@ -127,11 +108,9 @@ describe('search', () => {
 
   it('should directly display name detail by name', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
-    cy.get('.search-bar__input').type(Cypress.env('nameWithout'))
+    cy.get('.search-bar__input').type(Cypress.env('name'))
     cy.get('.search-bar__submit').click()
 
     cy.get('.search-names-table').should('be.visible')
@@ -139,11 +118,9 @@ describe('search', () => {
 
   it('should directly display name detail by name with .chain suffix', () => {
     cy.visit('/')
-
-    //  todoloading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
-    cy.get('.search-bar__input').type(Cypress.env('name'))
+    cy.get('.search-bar__input').type(Cypress.env('chainName'))
     cy.get('.search-bar__submit').click()
 
     cy.get('.name-details-panel').should('be.visible')
@@ -151,8 +128,6 @@ describe('search', () => {
 
   it('should directly display name detail by hash', () => {
     cy.visit('/')
-
-    //  todo loading waiting workaround
     cy.get('.stats-panel').should('be.visible')
 
     cy.get('.search-bar__input').type(Cypress.env('nameAddress'))

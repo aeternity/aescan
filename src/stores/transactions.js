@@ -29,7 +29,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const data = await $fetch('/api/transactions')
+    const slug = `?${queryParameters.substring(3).split('?')[1]}`
+    const data = await $fetch(`/api/transactions${slug}`)
     isHydrated.value = true
     rawTransactions.value = data
   }

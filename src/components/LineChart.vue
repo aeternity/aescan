@@ -109,6 +109,7 @@ const chartOptions = {
       border: {
         display: false,
       },
+      min: 0,
       ticks: {
         precision: 0,
         callback: function(value) {

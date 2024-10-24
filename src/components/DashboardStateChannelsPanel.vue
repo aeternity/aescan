@@ -2,7 +2,7 @@
   <app-panel class="dashboard-state-channels-panel">
     <dashboard-panel-header
       level="h3"
-      title="STATE CHANNELS"
+      title="LATEST ACTIVE STATE CHANNELS"
       icon-name="state-channel"
       show-all-link="/state-channels">
       <template #tooltip>

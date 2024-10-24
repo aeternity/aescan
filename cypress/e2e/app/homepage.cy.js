@@ -1,7 +1,6 @@
 describe('homepage', () => {
   it('should display homepage', () => {
     cy.visit('/')
-
     cy.get('.stats-panel').should('be.visible')
     cy.get('.dashboard-state-channels-panel table').should('be.visible')
     cy.get('.dashboard-auctions-panel')

@@ -9,9 +9,9 @@ export const useKeyblockStore = defineStore('keyblocks', () => {
   const keyblocksCount = ref(null)
 
   const keyblocks = computed(() => {
-    return rawKeyblocks.value ?
-      adaptKeyblocks(rawKeyblocks.value) :
-      null
+    return rawKeyblocks.value
+      ? adaptKeyblocks(rawKeyblocks.value)
+      : null
   })
 
   async function fetchKeyblocks({ queryParameters, limit } = {}) {

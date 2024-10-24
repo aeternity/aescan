@@ -16,7 +16,7 @@
       <th>
         Transactions Count
         <hint-tooltip>
-          {{ keyblocksHints.transactionsCount }}
+          {{ keyblocksHints.microblockTransactionsCount }}
         </hint-tooltip>
       </th>
     </tr>

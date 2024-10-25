@@ -40,7 +40,7 @@ const relativeUpdated = ref(null)
 const intervalRef = ref(null)
 
 const absolute = computed(() => {
-  return props.timestamp.toLocaleString(DateTime.DATETIME_SHORT)
+  return props.timestamp
 })
 
 const labelTime = computed(() => {
@@ -62,7 +62,8 @@ const dynamicInterval = computed(() => {
 })
 
 const expirationDuration = computed(() => {
-  return props.timestamp.diffNow().shiftTo(...DATETIME_UNITS)
+  // todo moc velky kejkle idelne passnout object
+  return DateTime.fromFormat(props.timestamp, 'f').diffNow().shiftTo(...DATETIME_UNITS)
 })
 
 const highestUnit = computed(() => {
@@ -88,7 +89,7 @@ onBeforeUnmount(() => {
 
 function update() {
   if (isPast.value) {
-    relativeUpdated.value = props.timestamp.setLocale('en-US').toRelative()
+    relativeUpdated.value = DateTime.fromFormat(props.timestamp, 'f').setLocale('en-US').toRelative()
   } else if (isNow.value) {
     relativeUpdated.value = 'now'
   } else {

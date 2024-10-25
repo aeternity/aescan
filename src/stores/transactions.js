@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { adaptTransactions } from '@/utils/adapters'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
@@ -8,7 +7,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   // todo there should not be any formatting in stores
   // todo there should not be any formatting in components
-  const rawTransactions = ref(null)
+  const transactions = ref(null)
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
   const last24hsTransactionsCount = ref(null)
@@ -19,18 +18,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const pageIndex = ref(1)
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
-  const transactions = computed(() =>
-    rawTransactions.value
-      ? adaptTransactions(rawTransactions.value)
-      : null,
-  )
-
   async function fetchTransactions(queryParameters = null) {
-    rawTransactions.value = null
+    transactions.value = null
     const slug = `?${queryParameters.substring(3).split('?')[1]}`
     const data = await $fetch(`/api/transactions${slug}`)
     isHydrated.value = true
-    rawTransactions.value = data
+    transactions.value = data
   }
 
   async function fetchTransactionsCount(txType = null) {

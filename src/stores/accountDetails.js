@@ -98,9 +98,12 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchTotalAccountTransactionsCount(accountId) {
     totalAccountTransactionsCount.value = null
-    const txCountUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions/count`)
-    txCountUrl.searchParams.append('id', accountId)
-    const { data } = await axios.get(txCountUrl.toString())
+    const data = await useFetch(`/api/account/txcount`, {
+      params: {
+        id: accountId,
+      },
+    })
+
     totalAccountTransactionsCount.value = data
   }
 

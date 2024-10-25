@@ -131,6 +131,8 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   async function fetchAccountTokensPrices() {
+    // todo this should happen on server side
+    // todo possibly move to mdw
     tokenPrices.value = {}
     await Promise.all(
       rawAccountTokens.value.data.map(async token => {

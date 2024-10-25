@@ -8,19 +8,19 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const axios = useAxios()
 
   const oracleId = ref(null)
-  const rawOracle = ref(null)
+  const oracleDetails = ref(null)
   const lastExtendedTx = ref(null)
   const rawEvents = ref(null)
 
-  const oracleDetails = computed(() => rawOracle.value
-    ? adaptOracleDetails(
-      rawOracle.value,
-      lastExtendedTx.value,
-      lastQueryTx.value,
-    )
-    : null,
-  )
-  const lastQueryTx = computed(() => rawEvents.value?.data?.[0]?.query)
+  // const oracleDetails = computed(() => rawOracle.value
+  //   ? adaptOracleDetails(
+  //     rawOracle.value,
+  //     lastExtendedTx.value,
+  //     lastQueryTx.value,
+  //   )
+  //   : null,
+  // )
+  // const lastQueryTx = computed(() => rawEvents.value?.data?.[0]?.query)
   const oracleEvents = computed(() => rawEvents.value ? adaptOracleEvents(rawEvents.value) : null)
 
   async function fetchOracleDetails(id) {
@@ -30,7 +30,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
       fetchOracle(),
       Promise.allSettled([
         fetchOracleEvents(),
-        fetchLastExtendedTx(),
       ]),
     ])
 
@@ -38,13 +37,10 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchOracle() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/oracles/${oracleId.value}?tx_hash=true`)
-    rawOracle.value = data
-  }
-
-  async function fetchLastExtendedTx() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${oracleId.value}`)
-    lastExtendedTx.value = data.data?.[0]
+    oracleDetails.value = null
+    // todo do i need to null? before wasnt there
+    const data = await $fetch(`/api/oracles/${oracleId.value}`)
+    oracleDetails.value = data
   }
 
   async function fetchOracleEvents(queryParameters = null) {
@@ -64,7 +60,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     fetchOracleEvents,
     oracleDetails,
     oracleId,
-    rawOracle,
     lastExtendedTx,
     oracleEvents,
   }

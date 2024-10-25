@@ -5,7 +5,6 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const query = getQuery(event)
-  console.log('query', query)
 
   // todo /accounts/{accountId}/transactions/count
   const url = new URL(`${MIDDLEWARE_URL}/v3/transactions/count`)

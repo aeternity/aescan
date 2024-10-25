@@ -77,7 +77,12 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountDetails(accountId) {
     try {
-      const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
+      const data = await $fetch(`/api/account`, {
+        params: {
+          id: accountId,
+        },
+      })
+
       rawAccountDetails.value = data
     } catch (e) {
       if ([400, 404].includes(e.response.status)) {
@@ -98,7 +103,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchTotalAccountTransactionsCount(accountId) {
     totalAccountTransactionsCount.value = null
-    const data = await useFetch(`/api/account/txcount`, {
+    const data = await $fetch(`/api/account/txcount`, {
       params: {
         id: accountId,
       },

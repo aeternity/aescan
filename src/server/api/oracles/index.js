@@ -1,4 +1,4 @@
-import useAxios from '@/composables/useAxios'
+import useAxios from '~/composables/useAxios'
 import { DateTime } from "luxon";
 import { formatAettosToAe } from "~/utils/format";
 

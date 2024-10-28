@@ -31,16 +31,21 @@ const route = useRoute()
 const pageIndex = ref(1)
 
 function loadPrevEvents() {
-  fetchOracleEvents(oracleEvents.value.prev)
+
+  fetchOracleEvents(route.params.id)
+  // fetchOracleEvents(oracleEvents.value.prev)
 }
 
 function loadNextEvents() {
-  fetchOracleEvents(oracleEvents.value.next)
+  fetchOracleEvents(route.params.id)
+  // fetchOracleEvents(oracleEvents.value.next)
 }
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
-  fetchOracleEvents(`/v3/oracles/${route.params.id}/responses?limit=${limit.value}`)
+  console.log('1 route.params.id', route.params.id)
+  fetchOracleEvents(route.params.id)
+  // fetchOracleEvents(`/v3/oracles/${route.params.id}/responses?limit=${limit.value}`)
 }
 </script>
 

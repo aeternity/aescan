@@ -15,32 +15,11 @@ export default defineEventHandler(async event => {
     fetchOracleEvents(id),
   ])
 
-const aaa = adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
-  console.log('aaa', aaa)
-  return aaa
-
+  return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
 })
 
 
-// export default defineEventHandler(async event => {
-//   // todo another way to approach params. Good for one param
-//   console.log('wurks')
-//   const id = getRouterParam(event, 'id')
-//   console.log('id', id)
-//   const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}?tx_hash=true`)
-//   console.log('url', url)
-//   //
-//   // Object.entries(query).forEach(([key, value]) => {
-//   //   url.searchParams.append(key, value)
-//   // })
-//   const { data } = await axios.get(url)
-//   console.log('data', data)
-//   return data
-// })
-
-
 async function fetchOracle(id) {
-
   const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}`)
   const { data } = await axios.get(url)
   return data
@@ -53,7 +32,8 @@ async function fetchLastExtendedTx(id) {
 }
 
 async function fetchOracleEvents(id) {
-
+// todo do i need try
+//   todo this is dupliucate
   try {
     const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}/responses`)
     const { data } = await axios.get(url)
@@ -64,7 +44,6 @@ async function fetchOracleEvents(id) {
 }
 
 export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
-  console.log('lastQueryTx', lastQueryTx)
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),

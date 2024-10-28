@@ -519,9 +519,9 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
 export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
-      queriedAt: DateTime.fromMillis(event.query.blockTime),
+      queriedAt: DateTime.fromMillis(event.query.blockTime).toLocaleString(DateTime.DATETIME_SHORT),
       queriedHeight: event.query.height,
-      respondedAt: DateTime.fromMillis(event.blockTime),
+      respondedAt: DateTime.fromMillis(event.blockTime).toLocaleString(DateTime.DATETIME_SHORT),
       respondedHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,

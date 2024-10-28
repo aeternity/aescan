@@ -34,7 +34,7 @@
     "@sentry/vite-plugin": "^2.22.6",
     "@sentry/vue": "^8.35.0",
     "@vuepic/vue-datepicker": "^9.0.3",
-    "@vueuse/core": "^10.11.1",
+    "@vueuse/core": "^11.1.0",
     "@vueuse/head": "^2.0.0",
     "axios": "^1.7.7",
     "bignumber.js": "9.1.2",

@@ -1,5 +1,6 @@
 <template>
   <price-label
+    v-if="contractDetails.tokenDetails"
     :price="formatAettosToAe(tokenValue)"
     :contract-id="contractDetails.tokenDetails.contractId"
     :currency="contractDetails.symbol"/>

@@ -1,8 +1,9 @@
-import {defineConfig} from 'cypress'
+import { defineConfig } from 'cypress'
 
 export default defineConfig({
   env: {
     accountAddress: 'ak_gZ55FLJoGEfF5gJ2xJU7j9uSH3fEjoTZq3ygQG8gYA4no6GFW',
+    generalizedAccountAddress: 'ak_2Eyn25BLZ4326wdjnrpV9wERhvDwU7b7LWmuWC3HzqNpqAf4GH',
     contractAddress: 'ct_s5ZB6cGCqS5QbUboQBK8CWwpknKRSajrt8b1EQRp4t4R5D47e',
     microblockAddress: 'mh_27HKqcut9U9xDwEAf3Lz6evTxY4rfy7odKeSnQaqu45iQesjyj',
     nftAddress: 'ct_2UVjVLvt2NycqbfJWywixyYm68iVvkiVS9wubiQRjp9WeQtfpK',
@@ -23,5 +24,5 @@ export default defineConfig({
   },
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 50000,
+  defaultCommandTimeout: 60000,
 })

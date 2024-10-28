@@ -8,8 +8,8 @@
   <value-hash-ellipsed
     :hash="eventData[0]"
     :link-to="`/accounts/${eventData[0]}`"/>
-
   <price-label
+    v-if="contractDetails.tokenDetails"
     :price="formatAettosToAe(tokenValue)"
     :contract-id="contractDetails.tokenDetails.contractId"
     :currency="contractDetails.symbol"/>

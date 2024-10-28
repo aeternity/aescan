@@ -31,7 +31,10 @@
         Query
       </dt>
       <dd class="oracle-events-query-panel__description">
-        {{ event.query }}
+        <template v-if="event.query">
+          {{ event.query }}
+        </template>
+        <not-available-label v-else/>
       </dd>
 
       <dt class="oracle-events-query-panel_term">
@@ -49,7 +52,10 @@
         Response
       </dt>
       <dd class="oracle-events-query-panel__description">
-        {{ event.response }}
+        <template v-if="event.response">
+          {{ event.response }}
+        </template>
+        <not-available-label v-else/>
       </dd>
     </dl>
   </app-panel>

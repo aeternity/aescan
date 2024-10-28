@@ -7,6 +7,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const oracleEvents = ref(null)
 
   async function fetchOracleDetails(id) {
+    // todo simplify
     oracleId.value = id
     await Promise.all([
       fetchOracle(),
@@ -24,11 +25,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   async function fetchOracleEvents(id = null) {
     // todo events pass cursor
     oracleEvents.value = null
-    const data = await $fetch('/api/oracles/events', {
-      params: {
-        id,
-      },
-    })
+    const data = await $fetch('/api/oracles/events', { params: { id } })
     oracleEvents.value = data
   }
 

@@ -1,7 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import { useRuntimeConfig } from 'nuxt/app'
-import { isAddressValid } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { adaptAccountActivities, adaptAccountNames, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'

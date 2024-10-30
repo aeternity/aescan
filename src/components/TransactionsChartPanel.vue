@@ -1,13 +1,14 @@
 <template>
   <app-panel>
     <template #title>
-      TRANSACTIONS TREND
+      TRANSACTIONS
     </template>
     <template #end>
       <transactions-select
         v-if="hasSelect"
         v-model="selectedTxType"
         size="sm"
+        data-cy='select-input'
         class="transactions-chart-panel__select
         transactions-chart-panel__select--desktop
         u-hidden-mobile"/>

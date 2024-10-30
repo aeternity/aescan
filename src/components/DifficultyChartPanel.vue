@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #title>
-      DIFFICULTY CHART
+      DIFFICULTY
     </template>
     <template #end>
       <chart-controls

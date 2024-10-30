@@ -46,12 +46,12 @@ import AppTooltip from '@/components/AppTooltip'
 
 const props = defineProps({
   price: {
-    type: Number,
+    type: [String, Number],
     default: null,
   },
   maxDigits: {
     type: Number,
-    required: true,
+    default: null,
   },
   currency: {
     type: String,

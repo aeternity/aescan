@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #title>
-      NAMES ACTIVATED TREND
+      NAMES ACTIVATED
     </template>
     <template #end>
       <chart-controls

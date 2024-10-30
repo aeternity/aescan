@@ -61,15 +61,7 @@ async function loadHashratetatistics() {
 </script>
 
 <style scoped>
-.hashrate-chart-panel {
-  &__controls {
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-2);
-
-    &--desktop {
-      /*todo remove*/
-      margin-bottom: 0;
-    }
-  }
+.hashrate-chart-pane__controls {
+  margin-top: var(--space-4);
 }
 </style>

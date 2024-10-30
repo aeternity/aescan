@@ -78,7 +78,6 @@ async function loadTransactionStatistics() {
 .transactions-chart-panel {
   &__controls {
     margin-top: var(--space-4);
-    margin-bottom: var(--space-2);
 
     &--desktop {
       margin-bottom: 0;
@@ -87,6 +86,7 @@ async function loadTransactionStatistics() {
 
   &__select {
     width: 230px;
+    min-height: 28px;
   }
 }
 </style>

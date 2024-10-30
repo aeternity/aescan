@@ -15,9 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <difficulty-chart-panel
-        :has-select="true"
-        :range="CHART_INTERVALS_OPTIONS[4]"/>
+      <difficulty-chart-panel :range="CHART_INTERVALS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>

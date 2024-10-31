@@ -32,8 +32,13 @@ const menuOptions = ref([{
 {
   name: 'Difficulty',
   path: 'difficulty',
+},
+{
+  name: 'Hashrate',
+  path: 'hashrate',
 }])
 </script>
+
 <style scoped>
 .charts-navigation {
   width: 100%;

@@ -24,4 +24,8 @@ describe('charts', () => {
     cy.visit('/charts/difficulty')
     cy.get('.line-chart canvas').should('be.visible')
   })
+  it('should display hashrate', () => {
+    cy.visit('/charts/hashrate')
+    cy.get('.line-chart canvas').should('be.visible')
+  })
 })

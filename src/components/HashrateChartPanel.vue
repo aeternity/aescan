@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #title>
-      SMART CONTRACT CALLS
+      HASHRATE
     </template>
     <template #end>
       <chart-controls
@@ -10,25 +10,28 @@
     </template>
 
     <line-chart
-      :data="contractsStatistics"
+      :data="hashrateStatistics"
       :interval="selectedRange.interval"/>
 
     <chart-controls
       v-model="selectedRange"
-      class="contracts-chart-panel__controls u-hidden-desktop"/>
+      class="hashrate-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
-import LineChart from '@/components/LineChart'
 
 const chartsStore = useChartsStore()
-const { contractsStatistics } = storeToRefs(chartsStore)
-const { fetchContractsStatistics } = chartsStore
+const { hashrateStatistics } = storeToRefs(chartsStore)
+const { fetchHashrateStatistics } = chartsStore
 
 const props = defineProps({
+  hasSelect: {
+    required: true,
+    type: Boolean,
+  },
   range: {
     required: true,
     type: Object,
@@ -36,29 +39,29 @@ const props = defineProps({
 })
 
 const selectedRange = ref(props.range)
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
-await useAsyncData(async () => {
-  await loadContractsStatistics()
+await useAsyncData(async() => {
+  await loadHashratetatistics()
   return true
 })
 
 if (process.client) {
-  watch(selectedRange, async () => {
-    await loadContractsStatistics()
+  watch([selectedRange, selectedTxType], async() => {
+    await loadHashratetatistics()
   })
 }
 
-async function loadContractsStatistics() {
-  await fetchContractsStatistics(
+async function loadHashratetatistics() {
+  await fetchHashrateStatistics(
     selectedRange.value.interval,
     selectedRange.value.limit,
     selectedRange.value.customInterval)
 }
-
 </script>
 
 <style scoped>
-.contracts-chart-panel__controls {
+.hashrate-chart-pane__controls {
   margin-top: var(--space-4);
 }
 </style>

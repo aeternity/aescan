@@ -606,24 +606,6 @@ export function adaptNft(nft) {
   }
 }
 
-export function adaptNfts(nfts) {
-  const formattedData = nfts.data
-    .map(nft => {
-      return {
-        name: nft.name,
-        blockHeight: nft.blockHeight,
-        creationTime: DateTime.fromMillis(nft.creationTime),
-        contractId: nft.contractId,
-        nftsAmount: nft.nftsAmount,
-        nftOwners: nft.nftOwners,
-      }
-    })
-  return {
-    next: nfts.next,
-    data: formattedData,
-    prev: nfts.prev,
-  }
-}
 
 export function adaptVerificationDetail(verificationDetail) {
   return {

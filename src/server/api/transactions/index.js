@@ -13,9 +13,6 @@ export default defineEventHandler(async event => {
   })
   const { data } = await axios.get(url)
   return adaptTransactions(data)
-  // return {
-  //   hello: 'world'
-  // }
 })
 
 function adaptTransactions(transactions) {

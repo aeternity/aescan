@@ -11,7 +11,4 @@ export default defineEventHandler(async () => {
   const { data } = await axios.get(url)
 
   return data
-  // return {
-  //   hello: 'world'
-  // }
 })

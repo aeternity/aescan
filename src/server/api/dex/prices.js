@@ -7,7 +7,6 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const query = getQuery(event)
-  console.log('query', query)
 
   if (query.tokenId === AE_TOKEN_ID) {
     return 1

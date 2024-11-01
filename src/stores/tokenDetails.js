@@ -77,7 +77,6 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {
     tokenEvents.value = null
     const data = await $fetch(`/api/tokens/events`, { params: { contractId, limit, queryParameters } })
-
     tokenEvents.value = data
   }
 

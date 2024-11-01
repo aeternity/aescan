@@ -76,7 +76,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {
     tokenEvents.value = null
-    const data = await $fetch(`/api/tokens/events`, {params: {contractId, limit, queryParameters}})
+    const data = await $fetch(`/api/tokens/events`, { params: { contractId, limit, queryParameters } })
 
     tokenEvents.value = data
   }
@@ -90,8 +90,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenHoldersCount() {
     tokenHoldersCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/aex9/${tokenId.value}`)
-    tokenHoldersCount.value = data.holders
+    const data = await $fetch(`/api/tokens/holders/count`, {
+      params: {
+        id: tokenId.value,
+      },
+    })
+    tokenHoldersCount.value = data
   }
 
   return {

@@ -4,8 +4,6 @@ const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async () => {
-  console.log('aaaaaaa')
-
   // todo is V3 needed?
   const url = new URL(`${MIDDLEWARE_URL}/v3/stats`)
   const { data } = await axios.get(url)

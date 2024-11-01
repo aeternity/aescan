@@ -1,11 +1,6 @@
 import { defineStore } from 'pinia'
-import { useRuntimeConfig } from 'nuxt/app'
-import useAxios from '@/composables/useAxios'
 
 export const useNftsStore = defineStore('nfts', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
-
   const nfts = ref(null)
   const nftsCount = ref(null)
 
@@ -27,8 +22,8 @@ export const useNftsStore = defineStore('nfts', () => {
   // todo list a count soplecne nebo ne?
   async function fetchNftsCount() {
     nftsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex141/count`)
-    nftsCount.value = data.data
+    const data = await $fetch(`/api/nfts/count`)
+    nftsCount.value = data
   }
 
   return {

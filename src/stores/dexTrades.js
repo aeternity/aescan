@@ -9,18 +9,17 @@ export const useDexTradesStore = defineStore('dexTrades', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const { price } = storeToRefs(useMarketStatsStore())
 
-  const rawTrades = ref(null)
-
-  const trades = computed(() => rawTrades.value && price.value
-    ? adaptTrades(rawTrades.value, price.value)
-    : null,
-  )
+  const trades = ref(null)
+  //
+  // const trades = computed(() => rawTrades.value && price.value
+  //   ? adaptTrades(rawTrades.value, price.value)
+  //   : null,
+  // )
 
   async function fetchDexTrades({ queryParameters, limit } = {}) {
-    rawTrades.value = null
-    const defaultParameters = `/v3/dex/swaps?limit=${limit ?? 10}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawTrades.value = data
+    trades.value = null
+    const data = await $fetch(`/api/dex/trades`, { params: { queryParameters, limit } })
+    trades.value = data
   }
 
   return {

@@ -17,9 +17,9 @@
       :token-holders-count="tokenHoldersCount"/>
 
     <app-tabs v-model="activeTabIndex">
-      <app-tab title="Holders">
-        <token-holders-panel/>
-      </app-tab>
+<!--      <app-tab title="Holders">-->
+<!--        <token-holders-panel/>-->
+<!--      </app-tab>-->
       <app-tab title="Events">
         <token-events-panel/>
       </app-tab>

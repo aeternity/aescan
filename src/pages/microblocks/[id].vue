@@ -14,11 +14,11 @@
     <microblock-details-panel
       class="microblock-details__microblock-details-panel"
       :microblock-details="microblockDetails"/>
-    <app-tabs>
-      <app-tab title="Transactions">
-        <microblock-transactions-panel/>
-      </app-tab>
-    </app-tabs>
+<!--    <app-tabs>-->
+<!--      <app-tab title="Transactions">-->
+<!--        <microblock-transactions-panel/>-->
+<!--      </app-tab>-->
+<!--    </app-tabs>-->
   </template>
   <loader-panel v-else/>
 </template>

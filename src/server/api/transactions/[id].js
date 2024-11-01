@@ -8,6 +8,7 @@ const axios = useAxios()
 export default defineEventHandler(async event => {
 // todo better naming
   const id = getRouterParam(event, 'id')
+  // todo getRouterParam funguje jen s [id] ?
 
   const [rawOracle, lastExtendedTx, lastOracleEvent] = await Promise.all([
     fetchOracle(id),
@@ -17,7 +18,6 @@ export default defineEventHandler(async event => {
 
   return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
 })
-
 
 async function fetchOracle(id) {
   const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}`)

@@ -15,7 +15,7 @@ export const useNftsStore = defineStore('nfts', () => {
   // todo naming list
   async function fetchNftsList({ queryParameters, limit } = {}) {
     nfts.value = null
-    const data = await $fetch(`/api/nfts`, {params: {limit, queryParameters}})
+      const data = await $fetch(`/api/nfts`, {params: {limit, queryParameters}})
     nfts.value = data
   }
 

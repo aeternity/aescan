@@ -9,10 +9,7 @@ export default defineEventHandler(async event => {
 
   const url = new URL(`${MIDDLEWARE_URL}/v3/micro-blocks/${id}`)
   const { data } = await axios.get(url)
-
-  const aaa = adaptMicroblock(data)
-  console.log('aaa', aaa)
-  return aaa
+  return  adaptMicroblock(data)
 })
 
 // todo make it honest

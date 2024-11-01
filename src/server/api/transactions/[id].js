@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
 // todo better naming
   const id = getRouterParam(event, 'id')
   // todo getRouterParam funguje jen s [id] ?
-
+// todo oracle naming?
   const [rawOracle, lastExtendedTx, lastOracleEvent] = await Promise.all([
     fetchOracle(id),
     fetchLastExtendedTx(id),

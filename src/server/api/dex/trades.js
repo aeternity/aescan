@@ -1,10 +1,7 @@
 import useAxios from "~/composables/useAxios";
-import { MAXIMUM_FRACTION_DIGITS } from "~/utils/constants";
-import { BigNumber } from "bignumber.js";
 import { DateTime } from "luxon";
 import { formatTradeRate, formatTradeValue } from "~/utils/format";
-// todo rename component
-const { MIDDLEWARE_URL, AE_TOKEN_ID } = useRuntimeConfig().public
+const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {

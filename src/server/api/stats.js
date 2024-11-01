@@ -5,6 +5,7 @@ const axios = useAxios()
 
 export default defineEventHandler(async () => {
   // todo is V3 needed?
+  // todo rename to statistics
   const url = new URL(`${MIDDLEWARE_URL}/v3/stats`)
   const { data } = await axios.get(url)
 

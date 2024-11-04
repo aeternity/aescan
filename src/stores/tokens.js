@@ -45,8 +45,11 @@ export const useTokensStore = defineStore('tokens', () => {
   }
 
   async function fetchTokensCount() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/count`)
-    allTokensCount.value = data.data
+
+    allTokensCount.value =
+      await $fetch('/api/tokens/count')
+
+    allTokensCount.value = data
   }
 
   return {

@@ -59,7 +59,9 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
   }
 
   async function fetchContractIdByAccountId(accountId) {
+    // todo tohle se mi moc nelibi
     const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
+
     contractId.value = data.contractId
   }
 

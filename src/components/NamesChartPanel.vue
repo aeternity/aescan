@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #title>
-      NAMES ACTIVATED TREND
+      NAMES ACTIVATED
     </template>
     <template #end>
       <chart-controls
@@ -9,11 +9,9 @@
         class="u-hidden-mobile"/>
     </template>
 
-    <div class="names-chart-panel__container">
-      <line-chart
-        :data="namesStatistics"
-        :interval="selectedRange.interval"/>
-    </div>
+    <line-chart
+      :data="namesStatistics"
+      :interval="selectedRange.interval"/>
 
     <chart-controls
       v-model="selectedRange"
@@ -58,14 +56,7 @@ async function loadNamesStatistics() {
 </script>
 
 <style scoped>
-.names-chart-panel {
-  &__container {
-    position: relative;
-    height: 250px;
-  }
-
-  &__controls {
-    margin-top: var(--space-4);
-  }
+.names-chart-panel__controls {
+  margin-top: var(--space-4);
 }
 </style>

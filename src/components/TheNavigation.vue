@@ -116,6 +116,10 @@ const menuOptions = ref([{
       name: 'Difficulty',
       path: '/charts/difficulty',
     },
+    {
+      name: 'Hashrate',
+      path: '/charts/hashrate',
+    },
   ],
 }])
 

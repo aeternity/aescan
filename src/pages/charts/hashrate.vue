@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <difficulty-chart-panel :range="CHART_INTERVALS_OPTIONS[4]"/>
+      <hashrate-chart-panel :range="CHART_INTERVALS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>

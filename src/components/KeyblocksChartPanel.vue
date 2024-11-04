@@ -50,14 +50,7 @@ async function loadKeyblockStatistics() {
 </script>
 
 <style scoped>
-.keyblocks-chart-panel {
-  &__controls {
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-2);
-
-    &--desktop {
-      margin-bottom: 0;
-    }
-  }
+.keyblocks-chart-pane__controls {
+  margin-top: var(--space-4);
 }
 </style>

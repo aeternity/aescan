@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #title>
-      DIFFICULTY CHART
+      DIFFICULTY
     </template>
     <template #end>
       <chart-controls
@@ -61,14 +61,7 @@ async function loadDifficultytatistics() {
 </script>
 
 <style scoped>
-.difficulty-chart-panel {
-  &__controls {
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-2);
-
-    &--desktop {
-      margin-bottom: 0;
-    }
-  }
+.difficulty-chart-panel__controls {
+  margin-top: var(--space-4);
 }
 </style>

@@ -50,12 +50,7 @@ export const useChartsStore = defineStore('charts', () => {
 
   async function fetchNamesStatistics(interval, limit, customInterval) {
     namesStatistics.value = null
-
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
-      : `?interval_by=${interval}&limit=${limit}`
-
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/names${intervalSlug}`)
+    const data = await $fetch('/api/charts/names', { params: { interval, limit, customInterval } })
 
     // remove last interval from the response not to show current interval that is being built
     namesStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()

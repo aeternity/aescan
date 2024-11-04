@@ -14,10 +14,7 @@ export default defineEventHandler(async event => {
     : `&interval_by=${interval}&limit=${parseInt(limit)}`
 
   const url = new URL(`${MIDDLEWARE_URL}/v3/stats/transactions?tx_type=contract_call${intervalSlug}`)
-  // todo do i have to use url?
-  console.log('url', url)
   const { data } = await axios.get(url)
-  console.log('data', data)
 
   return customInterval ? data.data.reverse() : data.data.slice(1).reverse()
 })

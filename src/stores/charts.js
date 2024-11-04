@@ -30,39 +30,22 @@ export const useChartsStore = defineStore('charts', () => {
 
   async function fetchKeyblocksStatistics(interval, limit, customInterval) {
     keyblocksStatistics.value = null
-    const data = await $fetch('/api/charts/keyblocks', { params: { interval, limit, customInterval } })
-    // remove last interval from the response not to show current interval that is being built
-    keyblocksStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    keyblocksStatistics.value =  await $fetch('/api/charts/keyblocks', { params: { interval, limit, customInterval } })
   }
 
   async function fetchContractsStatistics(interval, limit, customInterval) {
     contractsStatistics.value = null
-
-    const intervalSlug = customInterval
-      ? `&min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
-      : `&interval_by=${interval}&limit=${parseInt(limit) + 1}`
-
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/transactions?tx_type=contract_call${intervalSlug}`)
-
-    // remove last interval from the response not to show current interval that is being built
-    contractsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    contractsStatistics.value = await $fetch('/api/charts/contracts', { params: { interval, limit, customInterval } })
   }
 
   async function fetchNamesStatistics(interval, limit, customInterval) {
     namesStatistics.value = null
-    const data = await $fetch('/api/charts/names', { params: { interval, limit, customInterval } })
-
-    // remove last interval from the response not to show current interval that is being built
-    namesStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    namesStatistics.value = await $fetch('/api/charts/names', { params: { interval, limit, customInterval } })
   }
 
   async function fetchDifficultyStatistics(interval, limit, customInterval) {
     difficultyStatistics.value = null
-
-    const data = await $fetch('/api/charts/difficulty', { params: { interval, limit, customInterval } })
-
-    // remove last interval from the response not to show current interval that is being built
-    difficultyStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    difficultyStatistics.value = await $fetch('/api/charts/difficulty', { params: { interval, limit, customInterval } })
   }
 
   return {

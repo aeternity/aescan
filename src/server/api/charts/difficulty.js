@@ -12,6 +12,7 @@ export default defineEventHandler(async event => {
   // todo limit + 1?????
   const url = new URL(`${MIDDLEWARE_URL}/v3/stats/difficulty${intervalSlug}`)
   const { data } = await axios.get(url)
-  return data
+  return customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+
 })
 

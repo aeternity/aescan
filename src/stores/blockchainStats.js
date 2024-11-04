@@ -19,6 +19,27 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   const burnedCount = ref(null)
   const totalTokenSupply = ref(null)
 
+  async function fetchBlockchainStats() {
+    const [totalStats, maxTps, totalTransactionsCount] = await $fetch('/api/statsblockchain')
+//todo check with other concepts
+
+    // todo move toapi as adapter
+    const lastBlock = totalStats.data[0]
+    activeOraclesCount.value = lastBlock.activeOracles
+    oraclesCount.value = lastBlock.activeOracles + lastBlock.inactiveOracles
+    activeNamesCount.value = lastBlock.activeNames
+    namesInAuctionCount.value = lastBlock.activeAuctions
+    contractsCount.value = lastBlock.contracts
+    stateChannelsLockedValue.value = formatAettosToAe(lastBlock.lockedInChannels)
+    stateChannelsCount.value = lastBlock.openChannels
+    burnedCount.value = formatAettosToAe(lastBlock.burnedInAuctions)
+    totalTokenSupply.value = formatAettosToAe(lastBlock.totalTokenSupply)
+    maxTps.value = maxTps.maxTransactionsPerSecond
+    transactionsCount.value = totalTransactionsCount
+
+
+  }
+
   async function fetchTotalStats() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total?limit=1`)
     const lastBlock = data.data[0]
@@ -33,12 +54,15 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     totalTokenSupply.value = formatAettosToAe(lastBlock.totalTokenSupply)
   }
 
+
   async function fetchMaxTps() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     maxTps.value = data.maxTransactionsPerSecond
   }
 
+
   async function fetchTotalTransactionsCount() {
+    // TODO PROZATIM NECHAT
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count`)
     transactionsCount.value = data
   }
@@ -55,6 +79,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     stateChannelsCount,
     burnedCount,
     fetchTotalStats,
+    fetchBlockchainStats,
     fetchMaxTps,
     fetchTotalTransactionsCount,
     totalTokenSupply,

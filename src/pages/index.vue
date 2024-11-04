@@ -94,9 +94,7 @@ const {
   fetchDeltaStats,
 } = useRecentBlocksStore()
 const {
-  fetchTotalStats,
-  fetchMaxTps,
-  fetchTotalTransactionsCount,
+  fetchBlockchainStats,
 } = useBlockchainStatsStore()
 const { fetchStateChannels } = useDashboardStateChannelsStore()
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
@@ -110,6 +108,7 @@ definePageMeta({
 const isLoading = ref(true)
 
 await useAsyncData(() => Promise.all([
+  fetchBlockchainStats(),
   fetchStateChannels(),
   fetchInAuctionNames(),
   fetchRecentlyActivatedNames(),

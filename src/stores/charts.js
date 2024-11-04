@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
+// todo abstract stats api, reuse code
 
 export const useChartsStore = defineStore('charts', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -30,11 +31,10 @@ export const useChartsStore = defineStore('charts', () => {
   async function fetchKeyblocksStatistics(interval, limit, customInterval) {
     keyblocksStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
-      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/blocks${intervalSlug}&type=key`)
+
+    const data = await $fetch('/api/charts/keyblocks', { params: { interval, limit, customInterval } })
+    console.log('data', data)
     // remove last interval from the response not to show current interval that is being built
     keyblocksStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }

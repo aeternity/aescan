@@ -103,6 +103,9 @@ defineEmits(['updated'])
       width: 100%;
     }
   }
+  &__overlay_cell_active {
+    background: var(--color-error);
+  }
 
   &__range {
     &_start {

@@ -35,13 +35,13 @@ export function formatNumber(
   }).format(number)
 }
 
-export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
+export function formatAePrice(price, maxDigits = 8) {
   if (isNaN(price) || price === null) {
     return price
   }
 
   if (maxDigits === null) {
-    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)} ${currency}`
+    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)}`
   }
 
   const truncatedPrice = new BigNumber(price).toFixed(
@@ -57,16 +57,16 @@ export function formatAePrice(price, maxDigits = 8, currency = 'AE') {
 
   if (!decimals) {
     if (price === 0) {
-      return `0 ${currency}`
+      return '0'
     }
     if (integers === '0') {
-      return `~${integers} ${currency}`
+      return `~${integers}`
     } else {
-      return `${formatNumber(integers)} ${currency}`
+      return `${formatNumber(integers)}`
     }
   }
 
-  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)} ${currency}`
+  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
 }
 
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {

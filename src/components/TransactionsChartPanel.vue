@@ -8,7 +8,7 @@
         v-if="hasSelect"
         v-model="selectedTxType"
         size="sm"
-        data-cy='select-input'
+        data-cy="select-input"
         class="transactions-chart-panel__select
         transactions-chart-panel__select--desktop
         u-hidden-mobile"/>

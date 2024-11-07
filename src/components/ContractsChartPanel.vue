@@ -43,7 +43,7 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch(selectedRange, async () => {
+  watch(selectedRange, async() => {
     await loadContractsStatistics()
   })
 }

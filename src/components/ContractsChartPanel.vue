@@ -37,13 +37,13 @@ const props = defineProps({
 
 const selectedRange = ref(props.range)
 
-await useAsyncData(async() => {
+await useAsyncData(async () => {
   await loadContractsStatistics()
   return true
 })
 
 if (process.client) {
-  watch(selectedRange, async() => {
+  watch(selectedRange, async () => {
     await loadContractsStatistics()
   })
 }

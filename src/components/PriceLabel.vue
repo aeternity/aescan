@@ -51,7 +51,7 @@ const props = defineProps({
   },
   maxDigits: {
     type: Number,
-    default: null,
+    default: undefined,
   },
   currency: {
     type: String,

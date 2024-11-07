@@ -1,5 +1,6 @@
 <template>
   <table>
+    <thead>
     <tr>
       <th>
         Call transaction
@@ -26,6 +27,8 @@
         </hint-tooltip>
       </th>
     </tr>
+    </thead>
+    <tbody>
     <template
       v-for="(event, index) in contractEvents.data"
       :key="event.callTxHash">
@@ -72,6 +75,7 @@
         </td>
       </tr>
     </template>
+    </tbody>
   </table>
 </template>
 

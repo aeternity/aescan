@@ -35,7 +35,6 @@ const props = defineProps({
   },
 })
 
-/* eslint-disable space-before-function-paren */
 const selectedRange = ref(props.range)
 
 await useAsyncData(async() => {

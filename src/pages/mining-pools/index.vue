@@ -11,8 +11,12 @@
   </page-header>
   <tempalte v-if="!isLoading">
     <miners-statistics/>
-    <miners-panel/>
     <app-tabs v-model="activeTabIndex">
+      <app-tab title="Mining Pools">
+      <!--        todo naming-->
+        <miners-panel/>
+
+      </app-tab>
       <app-tab title="Miners">
       <!--        todo naming-->
         <mining-pools-miners-panel/>

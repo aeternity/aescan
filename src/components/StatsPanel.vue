@@ -35,7 +35,7 @@
             {{ blockHeight }}
           </app-link>
           <template v-else>
-            ---
+            N/A
           </template>
         </span>
       </div>
@@ -59,14 +59,6 @@
         <price-label
           class="stats-panel__value"
           :price="latestReward"
-          :max-digits="2"
-          :has-icon="false"/>
-      </div>
-      <div>
-        BRI:
-        <price-label
-          class="stats-panel__value"
-          :price="latestBri"
           :max-digits="2"
           :has-icon="false"/>
       </div>
@@ -236,11 +228,10 @@ const {
   blockHeight,
   latestKeyblockTransactionsCount,
   latestReward,
-  latestBri,
 } = storeToRefs(useRecentBlocksStore())
 
 const isLoading = computed(() => {
-  return !(transactionsCount.value && latestBri.value && latestReward.value)
+  return !(transactionsCount.value && latestReward.value)
 })
 
 </script>

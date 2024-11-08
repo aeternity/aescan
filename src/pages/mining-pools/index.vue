@@ -27,11 +27,10 @@
 </template>
 
 <script setup>
+import { miningHints } from '../../utils/hints/miningHints'
 import PageHeader from '~/components/PageHeader.vue'
-import { topAccountsHints } from '~/utils/hints/topAccountsHints'
 import AppTab from '~/components/AppTab.vue'
 import AppTabs from '~/components/AppTabs.vue'
-import { miningHints } from "../../utils/hints/miningHints";
 
 const route = useRoute()
 const { push, replace } = useRouter()

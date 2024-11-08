@@ -2,7 +2,6 @@
   <Head>
     <Title>Mining Pools</Title>
   </Head>
-
   <page-header>
     Mining Pools
     <template #tooltip>
@@ -15,10 +14,11 @@
     <miners-panel/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Miners">
-        <search-names-panel/>
+      <!--        todo naming-->
+        <mining-pools-miners-panel/>
       </app-tab>
       <app-tab title="Latest Blocks">
-        <search-tokens-panel/>
+        <keyblocks-panel/>
       </app-tab>
     </app-tabs>
   </tempalte>
@@ -30,6 +30,7 @@ import PageHeader from '~/components/PageHeader.vue'
 import { topAccountsHints } from '~/utils/hints/topAccountsHints'
 import AppTab from '~/components/AppTab.vue'
 import AppTabs from '~/components/AppTabs.vue'
+import MiningPoolsMiners from "~/pages/mining-pools/MiningPoolsMiners.vue";
 
 const route = useRoute()
 const { push, replace } = useRouter()

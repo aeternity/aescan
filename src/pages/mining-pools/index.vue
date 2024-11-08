@@ -6,26 +6,23 @@
     Mining Pools
     <template #tooltip>
       <!--      todo hints-->
-      {{ topAccountsHints.topAccounts }}
+      {{ miningHints.mining }}
     </template>
   </page-header>
-  <tempalte v-if="!isLoading">
+  <template v-if="!isLoading">
     <miners-statistics/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Mining Pools">
-      <!--        todo naming-->
-        <miners-panel/>
-
+        <mining-pools-panel/>
       </app-tab>
       <app-tab title="Miners">
-      <!--        todo naming-->
-        <mining-pools-miners-panel/>
+        <miners-panel/>
       </app-tab>
-      <app-tab title="Latest Blocks">
+      <app-tab title="Latest Keyblocks">
         <keyblocks-panel/>
       </app-tab>
     </app-tabs>
-  </tempalte>
+  </template>
   <loader-panel v-else/>
 </template>
 
@@ -34,11 +31,12 @@ import PageHeader from '~/components/PageHeader.vue'
 import { topAccountsHints } from '~/utils/hints/topAccountsHints'
 import AppTab from '~/components/AppTab.vue'
 import AppTabs from '~/components/AppTabs.vue'
+import { miningHints } from "../../utils/hints/miningHints";
 
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const TAB_KEYS = ['names', 'tokens', 'nfts']
+const TAB_KEYS = ['mining-pools', 'miners', 'latest-keyblocks']
 
 const activeTabIndex = computed({
   get() {

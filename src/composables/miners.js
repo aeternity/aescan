@@ -2,33 +2,41 @@ import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 // todo move it to api
+// todo loading
 
 export const useMinersStore = defineStore('miners', () => {
   const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
   const minersCount = ref(null)
+  const miners = ref(null)
   const blockReward = ref(null)
   const status = ref(null)
-  const firstKeyblockTime = ref(null)
   const maxTPS = ref(null)
   const blocksPerMinute = ref(null)
 
   function fetchMiners() {
     return Promise.all([
       fetchMinersCount(),
+      fetchMin(),
       fetchBlockReward(),
       fetchStatus(),
-      fetchFirstBlockTime(),
       fetchMaxTps(),
     ])
   }
 
   async function fetchMinersCount() {
+    // todo rename
     minersCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     minersCount.value = data.minersCount
-    blocksPerMinute.value = (data.millisecondsPerBlock / 1000 / 60)
+    blocksPerMinute.value = data.millisecondsPerBlock / 1000 / 60
+  }
+
+  async function fetchMin() {
+    miners.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/miners`)
+    miners.value = data
   }
 
   async function fetchBlockReward() {
@@ -42,12 +50,6 @@ export const useMinersStore = defineStore('miners', () => {
     status.value = data
   }
 
-  async function fetchFirstBlockTime() {
-    firstKeyblockTime.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/1`)
-    firstKeyblockTime.value = data.time
-  }
-
   async function fetchMaxTps() {
     maxTPS.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
@@ -55,12 +57,11 @@ export const useMinersStore = defineStore('miners', () => {
   }
 
   return {
+    miners,
     minersCount,
     blockReward,
     status,
-    firstKeyblockTime,
     blocksPerMinute,
-    blocksPer,
     maxTPS,
     fetchMiners,
   }

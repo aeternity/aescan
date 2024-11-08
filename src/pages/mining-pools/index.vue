@@ -30,7 +30,6 @@ import PageHeader from '~/components/PageHeader.vue'
 import { topAccountsHints } from '~/utils/hints/topAccountsHints'
 import AppTab from '~/components/AppTab.vue'
 import AppTabs from '~/components/AppTabs.vue'
-import MiningPoolsMiners from "~/pages/mining-pools/MiningPoolsMiners.vue";
 
 const route = useRoute()
 const { push, replace } = useRouter()

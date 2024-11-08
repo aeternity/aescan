@@ -119,7 +119,7 @@ jobs:
           app: ${{ env.APP }}
 
       - name: Staging undeploy
-        if: github.event_name == 'pull_request' && github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true
+        if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && github.event.pull_request.merged == true && startsWith(github.head_ref, 'release') != true
         uses: aeternity/ae-github-actions/argocd-undeploy@v5
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}
@@ -132,7 +132,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: Deployed to https://pr-${{ env.PR_NUMBER }}-aescan.${{ env.ENV }}.service.aepps.com and https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
+          msg: |
+            ## 🧪️ Preview Links 🔎️
+            Mainnet: https://pr-${{ env.PR_NUMBER }}-aescan.${{ env.ENV }}.service.aepps.com
+            Testnet: https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
           check_for_duplicate_msg: true
 
       - name: Push changes

@@ -1,5 +1,5 @@
 <template>
-<!--  todo mobile table-->
+  <!--  todo mobile table-->
   <app-panel class="">
     <table>
       <thead>

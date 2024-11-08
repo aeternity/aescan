@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
+// todo move it to api
 
 export const useMinersStore = defineStore('miners', () => {
   const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
@@ -11,18 +11,8 @@ export const useMinersStore = defineStore('miners', () => {
   const blockReward = ref(null)
   const status = ref(null)
   const firstKeyblockTime = ref(null)
-  const lastKeyblock = ref(null)
   const maxTPS = ref(null)
-
-  const blocksPerMinute = computed(() => {
-    // todo rename
-    const blocksCount = lastKeyblock.value.height
-    const timeStart = DateTime.fromMillis(firstKeyblockTime.value)
-    const timeEnd = DateTime.fromMillis(lastKeyblock.value.time)
-    const minutesCount = timeEnd.diff(timeStart, ['minutes']).minutes
-
-    return minutesCount / blocksCount
-  })
+  const blocksPerMinute = ref(null)
 
   function fetchMiners() {
     return Promise.all([
@@ -30,7 +20,6 @@ export const useMinersStore = defineStore('miners', () => {
       fetchBlockReward(),
       fetchStatus(),
       fetchFirstBlockTime(),
-      fetchLastBlock(),
       fetchMaxTps(),
     ])
   }
@@ -39,6 +28,7 @@ export const useMinersStore = defineStore('miners', () => {
     minersCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     minersCount.value = data.minersCount
+    blocksPerMinute.value = (data.millisecondsPerBlock / 1000 / 60)
   }
 
   async function fetchBlockReward() {
@@ -58,13 +48,6 @@ export const useMinersStore = defineStore('miners', () => {
     firstKeyblockTime.value = data.time
   }
 
-  async function fetchLastBlock() {
-    lastKeyblock.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks`)
-    lastKeyblock.value = data.data[0]
-    console.log('lastKeyblock.value', lastKeyblock.value)
-  }
-
   async function fetchMaxTps() {
     maxTPS.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
@@ -77,6 +60,7 @@ export const useMinersStore = defineStore('miners', () => {
     status,
     firstKeyblockTime,
     blocksPerMinute,
+    blocksPer,
     maxTPS,
     fetchMiners,
   }

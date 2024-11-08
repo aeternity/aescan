@@ -61,7 +61,7 @@
     <app-panel class="mining-statistics__panel">
       <h5>BLOCK TIME</h5>
       <span class="mining-statistics__value">
-        {{ Math.round(blocksPerMinute) }}
+        {{ Math.round(blocksPer) }}
         <!--        todo move to mdw-->
       </span>
       min/block
@@ -90,7 +90,7 @@ const {
   minersCount,
   blockReward,
   status,
-  blocksPerMinute,
+  blocksPer,
   maxTPS,
 } = storeToRefs(useMinersStore())
 

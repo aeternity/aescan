@@ -25,7 +25,7 @@ import {
 } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
 
-const hasChart = computed(() => props.data?.length > 0)
+// const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)
 const isLoading = computed(() => props.data === null)
 
@@ -107,7 +107,8 @@ const chartOptions = {
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      display: false,
+      display: true,
+      position: 'bottom',
     },
     tooltip: {
       tooltip: {

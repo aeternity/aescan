@@ -1,28 +1,43 @@
 <template>
   <div class="mining-statistics parent">
     <app-panel class="mining-statistics__panel div1">
-      <h5>MINERS</h5>
+      <h5>MINERS
+<!--        todo h3-->
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip>
+      </h5>
       <span class="mining-statistics__value">
         {{ minersCount }}
       </span>
     </app-panel>
 
     <app-panel class="mining-statistics__panel div2">
-      <h5>PEERS</h5>
+      <h5>PEERS
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip></h5>
       <span class="mining-statistics__value">
         {{ status.peerCount }}
       </span>
     </app-panel>
 
     <app-panel class="mining-statistics__panel div3">
-      <h5>POOLS</h5>
+      <h5>POOLS
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip></h5>
       <span class="mining-statistics__value">
         {{ MINERS.length }}
       </span>
     </app-panel>
 
     <app-panel class="mining-statistics__panel div9">
-      <h5>REWARD</h5>
+      <h5>REWARD
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip>
+      </h5>
       <span class="mining-statistics__value">
         <price-label
           :price="formatAettosToAe(blockReward)"
@@ -31,7 +46,10 @@
     </app-panel>
 
     <app-panel class="mining-statistics__panel div5">
-      <h5>DIFFICULTY</h5>
+      <h5>DIFFICULTY
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip></h5>
       <span class="mining-statistics__value">
         {{ Math.round(status.difficulty / 1000000000) }}
       </span>
@@ -41,7 +59,10 @@
     </app-panel>
 
     <app-panel class="mining-statistics__panel div6">
-      <h5>HASHRATE</h5>
+      <h5>HASHRATE
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip></h5>
       <span class="mining-statistics__value">
         {{ Math.round(status.hashrate / 1000) }}
       </span>
@@ -51,14 +72,20 @@
     </app-panel>
 
     <app-panel class="mining-statistics__panel div7">
-      <h5>BLOCKS MINED</h5>
+      <h5>BLOCKS MINED
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip></h5>
       <span class="mining-statistics__value">
         {{ formatNumber(status.topBlockHeight) }}
       </span>
     </app-panel>
 
     <app-panel class="mining-statistics__panel div8">
-      <h5>BLOCK TIME</h5>
+      <h5>BLOCK TIME
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip></h5>
       <span class="mining-statistics__value">
         {{ Math.round(blocksPerMinute) }}
       </span>
@@ -69,7 +96,11 @@
     </app-panel>
 
     <app-panel class="mining-statistics__panel div4">
-      <h5>MAX TPS</h5>
+      <h5>MAX TPS
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip>
+      </h5>
       <span class="mining-statistics__value">
         {{ maxTPS }}
       </span>
@@ -80,14 +111,20 @@
     </app-panel>
 
     <app-panel class="mining-statistics__panel div10">
-      <h5>TOP MINERS IN LAST 24 HOURS</h5>
+      <h5>TOP MINERS IN LAST 24 HOURS
+        <hint-tooltip>
+          {{ miningHints.mining }}
+        </hint-tooltip></h5>
       <pie-chart/>
+<!--      todo chart abstraction-->
+<!--      todo add legend-->
     </app-panel>
   </div>
 </template>
 <script setup>
 import { useMinersStore } from '@/stores/miners'
 import { formatAettosToAe } from '@/utils/format'
+import { miningHints } from "../utils/hints/miningHints";
 
 const { fetchMiners } = useMinersStore()
 const {

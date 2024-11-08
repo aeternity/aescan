@@ -17,9 +17,18 @@
     <tbody>
       <tr
         v-for="miner in miners.data"
-        :key="miner.name">
-        <td>{{ miner.miner }}</td>
-        <td>{{ miner.totalReward }}</td>
+        :key="miner.miner">
+        <td>
+          <value-hash-ellipsed
+            :link-to="`/accounts/${miner.miner}`"
+            :hash="miner.miner "/>
+        </td>
+        <td>
+          <price-label
+            :price="formatAettosToAe(miner.totalReward)">
+
+          </price-label>
+        </td>
       </tr>
     </tbody>
   </table>

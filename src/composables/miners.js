@@ -34,6 +34,7 @@ export const useMinersStore = defineStore('miners', () => {
   }
 
   async function fetchMin() {
+    // todo rename
     miners.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/miners`)
     miners.value = data

@@ -15,30 +15,22 @@ export const useMinersStore = defineStore('miners', () => {
   const maxTPS = ref(null)
   const blocksPerMinute = ref(null)
 
-  function fetchMiners() {
+  function fetchMining() {
     return Promise.all([
-      fetchMinersCount(),
-      fetchMin(),
+      fetchMiningStats(),
       fetchBlockReward(),
       fetchStatus(),
     ])
   }
 
-  async function fetchMinersCount() {
-    // todo rename
+  async function fetchMiningStats() {
     minersCount.value = null
+    blocksPerMinute.value = null
     maxTPS.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     minersCount.value = data.minersCount
     blocksPerMinute.value = data.millisecondsPerBlock / 1000 / 60
     maxTPS.value = data.maxTransactionsPerSecond
-  }
-
-  async function fetchMin() {
-    // todo rename
-    miners.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/miners`)
-    miners.value = data
   }
 
   async function fetchBlockReward() {
@@ -52,6 +44,12 @@ export const useMinersStore = defineStore('miners', () => {
     status.value = data
   }
 
+  async function fetchMiners({ queryParameters, limit } = {}) {
+    miners.value = null
+    const defaultParameters = `/v3/stats/miners?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    miners.value = data
+  }
 
   return {
     miners,
@@ -60,6 +58,7 @@ export const useMinersStore = defineStore('miners', () => {
     blockReward,
     blocksPerMinute,
     maxTPS,
+    fetchMining,
     fetchMiners,
   }
 })

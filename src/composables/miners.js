@@ -21,16 +21,17 @@ export const useMinersStore = defineStore('miners', () => {
       fetchMin(),
       fetchBlockReward(),
       fetchStatus(),
-      fetchMaxTps(),
     ])
   }
 
   async function fetchMinersCount() {
     // todo rename
     minersCount.value = null
+    maxTPS.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
     minersCount.value = data.minersCount
     blocksPerMinute.value = data.millisecondsPerBlock / 1000 / 60
+    maxTPS.value = data.maxTransactionsPerSecond
   }
 
   async function fetchMin() {
@@ -51,17 +52,12 @@ export const useMinersStore = defineStore('miners', () => {
     status.value = data
   }
 
-  async function fetchMaxTps() {
-    maxTPS.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
-    maxTPS.value = data.maxTransactionsPerSecond
-  }
 
   return {
     miners,
     minersCount,
-    blockReward,
     status,
+    blockReward,
     blocksPerMinute,
     maxTPS,
     fetchMiners,

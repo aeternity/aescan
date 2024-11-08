@@ -126,7 +126,7 @@
 
     <app-panel class="mining-statistics__panel div10">
       <h2 class="h5">
-        TOP MINERS IN LAST 24 HOURS
+        MINING POOLS IN LAST 24 HOURS
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
@@ -149,7 +149,6 @@ const {
   status,
   blocksPerMinute,
   maxTPS,
-  miners,
 } = storeToRefs(useMinersStore())
 
 if (process.client) {
@@ -160,11 +159,11 @@ if (process.client) {
 <style scoped>
 .parent {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  height: 500px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  height: 414px;
   width: 100%;
 }
 

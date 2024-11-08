@@ -35,12 +35,12 @@
 
 <script setup>
 // todo fix imports
-import { miningHints } from "../utils/hints/miningHints";
+import { miningHints } from '../utils/hints/miningHints'
 
 defineProps({
   pools: {
     type: Array,
     required: true,
-  }
+  },
 })
 </script>

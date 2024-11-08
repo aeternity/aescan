@@ -1,5 +1,4 @@
 <template>
-  <!--  todo count-->
   <app-panel class="miners-panel">
     <paginated-content
       :entities="miners"
@@ -13,6 +12,7 @@
       <!--      <miners-table-condensed-->
       <!--        :miners="miners"-->
       <!--        class="u-hidden-desktop"/>-->
+      <!--      todo mob-->
     </paginated-content>
   </app-panel>
 </template>
@@ -29,7 +29,7 @@ function loadPrevMiners() {
 }
 
 function loadNextMiners() {
-  // todo param
+  // todo report MDW
   fetchMiners({ queryParameters: miners.value.next })
 }
 

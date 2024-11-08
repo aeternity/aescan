@@ -2,12 +2,14 @@
   <table>
     <thead>
       <tr>
-        <th>Miner
+        <th>
+          Miner
           <hint-tooltip>
             {{ miningHints.mining }}
           </hint-tooltip>
         </th>
-        <th>Total Reward
+        <th>
+          Total Reward
           <hint-tooltip>
             {{ miningHints.mining }}
           </hint-tooltip>
@@ -25,9 +27,7 @@
         </td>
         <td>
           <price-label
-            :price="formatAettosToAe(miner.totalReward)">
-
-          </price-label>
+            :price="formatAettosToAe(miner.totalReward)"/>
         </td>
       </tr>
     </tbody>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { miningHints } from "../utils/hints/miningHints";
+import { miningHints } from '../utils/hints/miningHints'
 
 defineProps({
   miners: {

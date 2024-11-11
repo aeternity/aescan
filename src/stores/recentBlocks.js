@@ -90,7 +90,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   /* HANDLING COMMUNICATION OVER REST API */
 
   async function fetchKeyblocks() {
-    await $fetch(`/api/keyblocks`, { params: { limit: VISIBLE_KEYBLOCKS_LIMIT } })
+    const data = await $fetch(`/api/keyblocks`, { params: { limit: VISIBLE_KEYBLOCKS_LIMIT } })
     keyblocks.value = data.data
     blockHeight.value = data.data[0].block
   }

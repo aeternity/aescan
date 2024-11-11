@@ -7,7 +7,7 @@
 <script setup>
 const props = defineProps({
   delta: {
-    type: Number,
+    type: String,
     required: true,
   },
 })

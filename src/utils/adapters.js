@@ -24,7 +24,6 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
       ...keyblock,
       mined: DateTime.fromMillis(keyblock.time),
       blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
-      devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
     }
   }
 
@@ -211,7 +210,6 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
   return {
     ...selectedDeltaStats,
     blockReward: formatAettosToAe(selectedDeltaStats.blockReward),
-    devReward: formatAettosToAe(selectedDeltaStats.devReward),
   }
 }
 

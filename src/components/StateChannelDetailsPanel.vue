@@ -145,7 +145,7 @@
               {{ stateChannelDetails.lastUpdatedHeight }}
             </app-link>
             <template v-else>
-              ---
+              N/A
             </template>
           </td>
         </tr>
@@ -162,7 +162,7 @@
               :timestamp="stateChannelDetails.lastUpdated"
               :is-extended="true"/>
             <template v-else>
-              ---
+              N/A
             </template>
           </td>
         </tr>

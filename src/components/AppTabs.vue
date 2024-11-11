@@ -80,7 +80,7 @@ function selectTab(tabIndex) {
     line-height: 22px;
     cursor: pointer;
     padding: var(--space-1);
-    background: var(--color-midnight-15);
+    background: #dededeA5;
     color: var(--color-midnight-55);
     border-radius: 4px 4px 0 0;
     letter-spacing: 0.003em;

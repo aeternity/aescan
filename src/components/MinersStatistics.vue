@@ -167,6 +167,8 @@ if (process.client) {
   width: 100%;
 }
 
+/*todo how about testnet*/
+/*todo mobile view*/
 .div1 {
   grid-area: 1 / 1 / 2 / 2;
 }

@@ -1,6 +1,6 @@
+import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
-import { DateTime } from "luxon";
-import { formatAettosToAe } from "~/utils/format";
+import { formatAettosToAe } from '~/utils/format'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
@@ -12,11 +12,8 @@ export default defineEventHandler(async event => {
   const defaultParameters = `/v3/key-blocks?limit=${query.limit ?? 10}`
   const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
   const { data } = await axios.get(url)
-  const formattedData = adaptKeyblocks(data)
-  return formattedData
+  return adaptKeyblocks(data)
 })
-
-
 
 export function adaptKeyblocks(keyblocks) {
   const formattedData = keyblocks.data
@@ -24,7 +21,7 @@ export function adaptKeyblocks(keyblocks) {
       return {
         hash: keyblock.hash,
         block: keyblock.height,
-        time: DateTime.fromMillis(keyblock.time),
+        time: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT),
         miner: keyblock.miner,
         microBlocksCount: keyblock.microBlocksCount,
         transactionsCount: keyblock.transactionsCount,

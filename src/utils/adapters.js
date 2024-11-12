@@ -22,7 +22,7 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
     return {
       ...keyblock,
-      mined: DateTime.fromMillis(keyblock.time),
+      mined: keyblock.time,
       blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
       devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
     }
@@ -606,7 +606,6 @@ export function adaptNft(nft) {
   }
 }
 
-
 export function adaptVerificationDetail(verificationDetail) {
   return {
     license: verificationDetail.license,
@@ -745,5 +744,4 @@ export function adaptReadEntrypoints(aci) {
 
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
-
 }

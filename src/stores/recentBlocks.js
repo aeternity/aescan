@@ -90,7 +90,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   /* HANDLING COMMUNICATION OVER REST API */
 
   async function fetchKeyblocks() {
-    await $fetch(`/api/keyblocks`, { params: { limit: VISIBLE_KEYBLOCKS_LIMIT } })
+    const data = await $fetch('/api/keyblocks', { params: { limit: VISIBLE_KEYBLOCKS_LIMIT } })
     keyblocks.value = data.data
     blockHeight.value = data.data[0].block
   }
@@ -128,33 +128,33 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
 
   async function processSocketMessage(message) {
     switch (message.subscription) {
-      case 'KeyBlocks':
-        fetchDeltaStats()
-        break
-      case 'MicroBlocks':
-        fetchTotalTransactionsCount()
-        await fetchKeyblocks()
+    case 'KeyBlocks':
+      fetchDeltaStats()
+      break
+    case 'MicroBlocks':
+      fetchTotalTransactionsCount()
+      await fetchKeyblocks()
 
-        try {
-          await fetchSelectedKeyblockMicroblocks(selectedKeyblock.value.hash)
+      try {
+        await fetchSelectedKeyblockMicroblocks(selectedKeyblock.value.hash)
 
-          if (isFirstMicroblockSelected.value && isFirstKeyblockSelected.value) {
-            await fetchSelectedMicroblockTransactions()
-          }
-        } catch (error) {
-          // ignore 400 errors when fetching data by a non-existing microblock
-          // as they are caused by microforks
-          if (error?.response.status !== 400) {
-            throw error
-          }
+        if (isFirstMicroblockSelected.value && isFirstKeyblockSelected.value) {
+          await fetchSelectedMicroblockTransactions()
         }
-
-        // sometimes delta stats are not yet available on keyblock message, so retry fetching them again
-        if (selectedDeltaStats.value === null) {
-          await fetchDeltaStats()
+      } catch (error) {
+        // ignore 400 errors when fetching data by a non-existing microblock
+        // as they are caused by microforks
+        if (error?.response?.status !== 400) {
+          throw error
         }
+      }
 
-        break
+      // sometimes delta stats are not yet available on keyblock message, so retry fetching them again
+      if (selectedDeltaStats.value === null) {
+        await fetchDeltaStats()
+      }
+
+      break
     }
   }
 

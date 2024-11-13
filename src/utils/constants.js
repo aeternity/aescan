@@ -149,3 +149,5 @@ export const LICENSE_OPTIONS = [
   { label: 'GNU Affero General Public License', key: 'GNU AGPLv3' },
   { label: 'Business Source License', key: 'BSL 1.1' },
 ]
+
+export const BLOCK_GAS_LIMIT = 6000000

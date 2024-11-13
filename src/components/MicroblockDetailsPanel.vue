@@ -1,3 +1,4 @@
+loc
 <template>
   <app-panel class="microblock-details-panel">
     <table>
@@ -73,6 +74,18 @@
           </th>
           <td>
             {{ formatNumber(microblockDetails.transactionsCount) }}
+          </td>
+        </tr>
+        <tr class="microblock-details-panel__row">
+          <th class="microblock-details-panel__table-header">
+            <hint-tooltip>
+              <!--              todo hint-->
+              {{ microblocksHints.transactionsCount }}
+            </hint-tooltip>
+            Gas Limit
+          </th>
+          <td>
+            {{ BLOCK_GAS_LIMIT }}
           </td>
         </tr>
         <tr class="microblock-details-panel__row">

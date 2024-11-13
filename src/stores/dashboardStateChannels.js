@@ -6,7 +6,7 @@ export const useDashboardStateChannelsStore = defineStore('dashboardStateChannel
   async function fetchStateChannels() {
     stateChannels.value = null
     const data = await $fetch('/api/dashboardstatechannels')
-    stateChannels.value = data.data
+    stateChannels.value = data
   }
 
   return {

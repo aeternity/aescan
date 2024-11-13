@@ -1,4 +1,6 @@
 <template>
+  aaa
+  {{ stateChannels }}
   <table>
     <thead>
       <tr>

@@ -48,6 +48,8 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
       const { data } = await axios.get('/proxy/gate')
       cache.put(CACHE_KEY_GATE_MARKET_DATA, adaptMarketStatsGate(data), MARKET_STATS_CACHE_TTL)
     }
+    const data = await $fetch('/api/coin')
+    console.log('gate data', data)
     gate.value = cache.get(CACHE_KEY_GATE_MARKET_DATA)
   }
 

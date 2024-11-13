@@ -1,15 +1,15 @@
 import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
+import { formatAettosToAe } from '~/utils/format'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async() => {
   const url = new URL(`${MIDDLEWARE_URL}/v3/channels?&limit=4`)
-  console.log('url', url)
   const { data } = await axios.get(url)
-  console.log('data', data)
-  return adaptDashboardStateChannels(data)
+  const formatted = adaptDashboardStateChannels(data.data)
+  return formatted
 })
 
 function adaptDashboardStateChannels(stateChannels) {

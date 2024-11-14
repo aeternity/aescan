@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div class="chart-controls__container">
-      <range-picker
-        :is-range-selected="isCustomIntervalSelected"
-        @updated="selectCustomInterval"/>
-    </div>
+  <div class="chart-controls__container">
+    <range-picker
+      :is-range-selected="isCustomIntervalSelected"
+      @updated="selectCustomInterval"/>
   </div>
 </template>
 
@@ -19,6 +17,7 @@ const props = defineProps({
     default: 0,
   },
 })
+// todo minimalize
 
 const selectedRange = useVModel(props, 'modelValue', emit)
 

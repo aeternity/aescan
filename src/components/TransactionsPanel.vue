@@ -9,11 +9,13 @@
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
-        <transactions-select v-model="selectedTxType"/>
+        <div class="transactions-panel__header">
+          <transactions-select v-model="selectedTxType"/>
 
-        <transactions-range-picker
-          v-model="selectedRange"
-          class="u-hidden-mobile"/>
+          <transactions-range-picker
+            v-model="selectedRange"
+            class="u-hidden-mobile"/>
+        </div>
       </template>
       <transactions-table
         :transactions="transactions"
@@ -54,39 +56,28 @@ async function loadTransactions() {
 }
 
 const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
-// const selectedRange = ref(props.range)
-// const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+// todo differrent value
 
 if (process.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
   })
-  //
-  // todo merge like this
-  // watch([selectedRange, selectedTxType], async() => {
-  //   await loadHashratetatistics()
-  // })
 
   watch([selectedRange, selectedTxType], async() => {
-    console.log('selectedRange.value', selectedRange.value)
-    console.log('selectedTxType.value', selectedTxType.value)
     const hasInterval = !!selectedRange.value?.customInterval // todo not sure if correct
     const hasType = !!selectedTxType.value?.typeQuery
-    console.log('hasInterval', hasInterval)
-    console.log('hasType', hasType)
-    let string = ''
-
-    if (hasType) {
-      const from = DateTime.fromISO(selectedRange.value.customInterval.maxStart).toMillis()
-      const to = DateTime.fromISO(selectedRange.value.customInterval.minStart).toMillis()
-      string = string + `?scope=time:${from / 1000}-${to / 1000}`
-    }
+    let string = '?'
 
     if (hasInterval) {
-      console.log('insideInterval')
+      const from = DateTime.fromISO(selectedRange.value?.customInterval?.maxStart).toMillis()
+      const to = DateTime.fromISO(selectedRange.value?.customInterval?.minStart).toMillis()
+      string = string + `scope=time:${from / 1000}-${to / 1000}?`
+    }
+
+    if (hasType) {
       const typeQuery = selectedTxType.value?.typeQuery
-      const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
-      string = string + '&' + slug
+      const slug = `${typeQuery ? 'txType=' + typeQuery : ''}` // todo not necessary condition
+      string = string + slug
     }
 
     console.log('string', string)
@@ -99,18 +90,10 @@ if (process.client) {
   }
 }
 
-//
-// await useAsyncData(async() => {
-//   await loadHashratetatistics()
-//   return true
-// })
-//
-//
-//
-// async function loadHashratetatistics() {
-//   await fetchHashrateStatistics(
-//     selectedRange.value.interval,
-//     selectedRange.value.limit,
-//     selectedRange.value.customInterval)
-// }
 </script>
+
+<style>
+.transactions-panel__header {
+  display: flex;
+}
+</style>

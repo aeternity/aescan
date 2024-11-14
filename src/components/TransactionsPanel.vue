@@ -67,20 +67,31 @@ if (process.client) {
   //   await loadHashratetatistics()
   // })
 
-  watch([selectedRange], async() => {
-    const aaa = DateTime.fromISO(selectedRange.value.customInterval.maxStart).toMillis()
-    const bbb = DateTime.fromISO(selectedRange.value.customInterval.minStart).toMillis()
+  watch([selectedRange, selectedTxType], async() => {
+    console.log('selectedRange.value', selectedRange.value)
+    console.log('selectedTxType.value', selectedTxType.value)
+    const hasInterval = !!selectedRange.value?.customInterval // todo not sure if correct
+    const hasType = !!selectedTxType.value?.typeQuery
+    console.log('hasInterval', hasInterval)
+    console.log('hasType', hasType)
+    let string = ''
 
-    console.log('selectedRange.value', selectedRange.value.customInterval.maxStart)
-    // https://mainnet.aeternity.io/mdw/v3/transactions?scope=time:1543375246-1543375247
-    const url = `/v3/transactions?scope=time:${aaa / 1000}-${bbb / 1000}`
-    console.log('url', url)
-  })
+    if (hasType) {
+      const from = DateTime.fromISO(selectedRange.value.customInterval.maxStart).toMillis()
+      const to = DateTime.fromISO(selectedRange.value.customInterval.minStart).toMillis()
+      string = string + `?scope=time:${from / 1000}-${to / 1000}`
+    }
 
-  watch(selectedTxType, () => {
-    const typeQuery = selectedTxType.value?.typeQuery
-    const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
-    push(`/transactions${slug}`)
+    if (hasInterval) {
+      console.log('insideInterval')
+      const typeQuery = selectedTxType.value?.typeQuery
+      const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
+      string = string + '&' + slug
+    }
+
+    console.log('string', string)
+
+    push(`/transactions${string}`)
   })
 
   if (!isHydrated?.value) {

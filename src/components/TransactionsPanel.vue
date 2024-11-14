@@ -10,6 +10,10 @@
       @next-clicked="loadNextTransactions">
       <template #header>
         <transactions-select v-model="selectedTxType"/>
+
+        <chart-controls
+          v-model="selectedRange"
+          class="u-hidden-mobile"/>
       </template>
       <transactions-table
         :transactions="transactions"
@@ -22,7 +26,7 @@
 </template>
 
 <script setup>
-import { TX_TYPES_OPTIONS } from '@/utils/constants'
+import { CHART_INTERVALS_OPTIONS, TX_TYPES_OPTIONS } from '@/utils/constants'
 
 const { transactions, transactionsCount, isHydrated, pageIndex, selectedTxType } = storeToRefs(useTransactionsStore())
 const { fetchTransactions, fetchTransactionsCount, setPageIndex, setSelectedTxType } = useTransactionsStore()
@@ -49,9 +53,22 @@ async function loadTransactions() {
   setPageIndex(1)
 }
 
+const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
+// const selectedRange = ref(props.range)
+// const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+
 if (process.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
+  })
+  //
+  // todo merge like this
+  // watch([selectedRange, selectedTxType], async() => {
+  //   await loadHashratetatistics()
+  // })
+
+  watch([selectedRange], async() => {
+    console.log('selectedRange.value', selectedRange.value.customInterval.maxStart)
   })
 
   watch(selectedTxType, () => {
@@ -64,4 +81,19 @@ if (process.client) {
     loadTransactions()
   }
 }
+
+//
+// await useAsyncData(async() => {
+//   await loadHashratetatistics()
+//   return true
+// })
+//
+//
+//
+// async function loadHashratetatistics() {
+//   await fetchHashrateStatistics(
+//     selectedRange.value.interval,
+//     selectedRange.value.limit,
+//     selectedRange.value.customInterval)
+// }
 </script>

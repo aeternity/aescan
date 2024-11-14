@@ -4,12 +4,12 @@
     :is-disabled="!hasMenu">
     <div class="wallet-account-controls">
       <app-identicon
-        :hash="aeSdk.address"
+        :hash="address"
         class="wallet-account-controls__identicon"/>
       <app-link
         class="wallet-account-controls__link"
         to="/wallet">
-        {{ formatEllipseHash(aeSdk.address) }}
+        {{ formatEllipseHash(address) }}
       </app-link>
     </div>
     <template
@@ -46,7 +46,7 @@ const props = defineProps({
 
 const { go, push } = useRouter()
 const walletStore = useWalletStore()
-const { aeSdk, status } = storeToRefs(walletStore)
+const { address, status } = storeToRefs(walletStore)
 const { disconnect, setBackLink } = walletStore
 
 function goToConnection() {

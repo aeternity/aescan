@@ -1,16 +1,15 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
+import { Contract } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
 import { useWalletStore } from '@/stores/wallet'
-import { useAesdk } from '@/stores/aesdk'
 import { useContractDetailsStore } from '@/stores/contractDetails'
 import { adaptAciObject, adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '~/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
-  const { aeSdk: walletSdk } = storeToRefs(useWalletStore())
-  const { aeSdk } = storeToRefs(useAesdk())
+  const { aeSdk, address } = storeToRefs(useWalletStore())
   const { contractDetails } = storeToRefs(useContractDetailsStore())
 
   const axios = useAxios()
@@ -42,15 +41,9 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
       : null,
   )
 
-  async function getReadContractInstance() {
-    return await aeSdk.value.initializeContract({
-      aci: [aciObject.value],
-      address: contractDetails.value.id,
-    })
-  }
-
-  async function getWriteContractInstance() {
-    return await walletSdk.value.initializeContract({
+  async function getContract() {
+    return await Contract.initialize({
+      ...aeSdk.value.getContext(),
       aci: [aciObject.value],
       address: contractDetails.value.id,
     })
@@ -73,9 +66,9 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     contractCode.value = data
   }
 
-  async function fetchEntrypointResponse(contractInstance, aciItem, args) {
+  async function fetchEntrypointResponse(contract, aciItem, args) {
     try {
-      const contractCallResult = await contractInstance[aciItem.name](...args)
+      const contractCallResult = await contract[aciItem.name](...args)
       return {
         responseType: 'success',
         message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
@@ -118,12 +111,11 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     fetchContractCode,
     fetchVerificationDetail,
     fetchEntrypointResponse,
-    getReadContractInstance,
-    getWriteContractInstance,
+    getContract,
     parseArguments,
     parseResponse,
     aciReadEntrypoints,
     aciWriteEntrypoints,
-    walletSdk,
+    canWrite: computed(() => !!address.value),
   }
 })

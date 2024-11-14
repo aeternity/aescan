@@ -11,7 +11,7 @@
       <template #header>
         <transactions-select v-model="selectedTxType"/>
 
-        <chart-controls
+        <transactions-range-picker
           v-model="selectedRange"
           class="u-hidden-mobile"/>
       </template>
@@ -68,7 +68,13 @@ if (process.client) {
   // })
 
   watch([selectedRange], async() => {
+    const aaa = DateTime.fromISO(selectedRange.value.customInterval.maxStart).toMillis()
+    const bbb = DateTime.fromISO(selectedRange.value.customInterval.minStart).toMillis()
+
     console.log('selectedRange.value', selectedRange.value.customInterval.maxStart)
+    // https://mainnet.aeternity.io/mdw/v3/transactions?scope=time:1543375246-1543375247
+    const url = `/v3/transactions?scope=time:${aaa / 1000}-${bbb / 1000}`
+    console.log('url', url)
   })
 
   watch(selectedTxType, () => {

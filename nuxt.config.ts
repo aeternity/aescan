@@ -113,7 +113,5 @@ export default defineNuxtConfig({
       codeEditor: 'MonacoEditor',
     },
   },
-
   compatibilityDate: '2024-07-16',
-
 })

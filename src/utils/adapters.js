@@ -438,6 +438,8 @@ export function adaptTokenEvents(events) {
 }
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
+  console.log('tokenDetails', tokenDetails)
+  console.log('tokenHolders', tokenHolders)
   const formattedData = tokenHolders.data
     .map(holder => {
       const percentage = (new BigNumber(holder.amount)

@@ -111,7 +111,7 @@ defineProps({
   }
 
   &__column-end {
-    padding-left: 15%;
+    padding-left: 13%;
   }
 
   &__table-responsive {

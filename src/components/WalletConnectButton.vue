@@ -1,5 +1,5 @@
 <template>
-  <app-button @click="initWallet()">
+  <app-button @click="connectWallet()">
     Connect to Superhero Wallet
   </app-button>
 </template>
@@ -8,5 +8,5 @@
 import { useWalletStore } from '@/stores/wallet'
 
 const walletStore = useWalletStore()
-const { initWallet } = walletStore
+const { connectWallet } = walletStore
 </script>

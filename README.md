@@ -89,22 +89,26 @@ Three different deployment stages are available to test or use æScan:
 <table>
     <tr>
         <th>Stage name</th>
-        <th>URL</th>
+        <th>Mainnet URL</th>
+        <th>Testnet URL</th>
         <th>Description</th>
     </tr>
     <tr>
         <td>Production</td>
         <td>https://aescan.io</td>
+        <td>https://testnet.aescan.io</td>
         <td>Production environment deployed manually from the main branch by creating a release branch and merging an automatically created Release Pull Request.</td>
     </tr>
     <tr>
         <td>Development</td>
         <td>https://aescan.dev.service.aepps.com</td>
+        <td>https://aescan-testnet.dev.service.aepps.com</td>
         <td>Development environment deployed automatically after every push to the develop branch.</td>
     </tr>
     <tr>
         <td>PR preview</td>
         <td>https://pr-[PR-id]-aescan.stg.service.aepps.com</td>
+        <td>https://pr-[PR-id]-aescan-testnet.stg.service.aepps.com</td>
         <td>Pull Request preview deployed automatically after every commit to an open pull request.</td>
     </tr>
 </table>

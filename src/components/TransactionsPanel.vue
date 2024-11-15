@@ -51,14 +51,13 @@ async function loadNextTransactions() {
 }
 
 async function loadTransactions(queryParameters) {
-  const { txType } = route.query
-  const { customInterval } = route.query
+  const { txType, scope } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
 
   setSelectedTxType(txTypeOption || TX_TYPES_OPTIONS[0])
   await fetchTransactions({
     queryParameters,
-    range: customInterval,
+    range: scope,
     type: selectedTxType.value.typeQuery,
     limit: limit.value,
   })

@@ -38,51 +38,56 @@ const { push } = useRouter()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
+const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
+
+// todo differrent value
+
 async function loadPrevTransactions() {
-  await fetchTransactions(transactions.value.prev)
+  await loadTransactions(transactions.value.prev)
 }
 
 async function loadNextTransactions() {
-  await fetchTransactions(transactions.value.next)
+  await loadTransactions(transactions.value.next)
 }
 
-async function loadTransactions() {
+async function loadTransactions(queryParameters) {
   const { txType } = route.query
+  const { customInterval } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
+
   setSelectedTxType(txTypeOption || TX_TYPES_OPTIONS[0])
-  await fetchTransactions(`/transactions?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
+  await fetchTransactions({
+    queryParameters,
+    range: customInterval,
+    type: selectedTxType.value.typeQuery,
+    limit: limit.value,
+  })
   await fetchTransactionsCount(selectedTxType.value.typeQuery)
   setPageIndex(1)
 }
 
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
-// todo differrent value
+function changeRoute(selectedRange, selectedTxType) {
+  const hasInterval = !!selectedRange.value.customInterval
+  const hasType = !!selectedTxType.value.typeQuery
+
+  const from = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.maxStart).toSeconds() : null
+  const to = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.minStart).toSeconds() : null
+  const intervalString = hasInterval ? `scope=time:${from}-${to}` : null
+  const typeString = hasType ? `${'txType=' + selectedTxType.value.typeQuery}` : null
+
+  const array = [intervalString, typeString]
+  const slug = array ? `?${array.join('&')}` : null
+
+  push(`/transactions${slug}`)
+}
 
 if (process.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
   })
 
-  watch([selectedRange, selectedTxType], async() => {
-    const hasInterval = !!selectedRange.value?.customInterval // todo not sure if correct
-    const hasType = !!selectedTxType.value?.typeQuery
-    let string = '?'
-
-    if (hasInterval) {
-      const from = DateTime.fromISO(selectedRange.value?.customInterval?.maxStart).toMillis()
-      const to = DateTime.fromISO(selectedRange.value?.customInterval?.minStart).toMillis()
-      string = string + `scope=time:${from / 1000}-${to / 1000}?`
-    }
-
-    if (hasType) {
-      const typeQuery = selectedTxType.value?.typeQuery
-      const slug = `${typeQuery ? 'txType=' + typeQuery : ''}` // todo not necessary condition
-      string = string + slug
-    }
-
-    console.log('string', string)
-
-    push(`/transactions${string}`)
+  watch([selectedRange, selectedTxType], () => {
+    changeRoute(selectedRange, selectedTxType)
   })
 
   if (!isHydrated?.value) {

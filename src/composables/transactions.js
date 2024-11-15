@@ -22,9 +22,28 @@ export const useTransactionsStore = defineStore('transactions', () => {
       : null,
   )
 
-  async function fetchTransactions(queryParameters = null) {
+  async function fetchTransactions({ queryParameters, range, type, limit } = {}) {
     rawTransactions.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/transactions?limit=10'}`)
+    if (queryParameters) {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
+      isHydrated.value = true
+      rawTransactions.value = data
+      return
+    }
+
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
+
+    transactionsUrl.searchParams.append('limit', limit ?? 10)
+
+    if (range) {
+      transactionsUrl.searchParams.append('range', range)
+    }
+
+    if (type) {
+      transactionsUrl.searchParams.append('type', type)
+    }
+
+    const { data } = await axios.get(transactionsUrl.toString())
     isHydrated.value = true
     rawTransactions.value = data
   }

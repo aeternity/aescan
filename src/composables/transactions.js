@@ -34,9 +34,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
 
     transactionsUrl.searchParams.append('limit', limit ?? 10)
-
+    // todo range vs scope
     if (range) {
-      transactionsUrl.searchParams.append('range', range)
+      transactionsUrl.searchParams.append('scope', range)
     }
 
     if (type) {

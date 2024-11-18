@@ -12,7 +12,7 @@
       :clearable="false"
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
-      placeholder="CUSTOM"
+      :placeholder="placeholder"
       :ui="{input: `range-picker__input ${isRangeSelected ? 'range-picker__input--active' : ''}`}"
       @update:model-value="$emit('updated', date)"/>
   </div>
@@ -32,6 +32,10 @@ const props = defineProps({
   isRangeSelected: {
     type: Boolean,
     required: true,
+  },
+  placeholder: {
+    type: String,
+    default: 'CUSTOM',
   },
 })
 
@@ -74,8 +78,8 @@ defineEmits(['updated'])
     padding: var(--space-0) var(--space-1);
 
     @media (--desktop) {
-      width: 68px;
-      height: 32px;
+      width: 208px;
+      height: 40px;
       font-size: 14px;
       padding: var(--space-0) var(--space-1);
     }

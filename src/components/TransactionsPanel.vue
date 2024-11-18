@@ -10,7 +10,9 @@
       @next-clicked="loadNextTransactions">
       <template #header>
         <div class="transactions-panel__header">
-          <transactions-select v-model="selectedTxType"/>
+          <transactions-select
+            v-model="selectedTxType"
+            class="transactions-panel__select"/>
 
           <transactions-range-picker
             v-model="selectedRange"
@@ -97,7 +99,13 @@ if (process.client) {
 </script>
 
 <style>
-.transactions-panel__header {
-  display: flex;
+.transactions-panel {
+  &__select {
+    margin-right: var(--space-1);
+  }
+
+  &__header {
+    display: flex;
+  }
 }
 </style>

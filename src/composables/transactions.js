@@ -63,15 +63,14 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function loadTransactions(queryParameters) {
     // todo now i can use selected
     const [txTypeOption, scope] = getParams()
-
+    //
     selectedTxType.value = txTypeOption
     selectedRange.value = scope
-    const typestr = selectedTxType?.value?.typeQuery
-
+    const typestr = selectedTxType.value?.typeQuery
     await fetchTransactions({
       queryParameters,
       range: scope,
-      type: txTypeOption,
+      type: typestr,
       limit: 10,
     })
     // todo unhardcode

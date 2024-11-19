@@ -1,9 +1,11 @@
-import { useRuntimeConfig } from 'nuxt/app'
+import { useRoute, useRuntimeConfig } from 'nuxt/app'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
+  const route = useRoute()
+  const { push } = useRouter()
 
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
@@ -12,15 +14,89 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const last24hsTransactionsTrend = ref(null)
   const last24hsAverageTransactionFees = ref(null)
   const feesTrend = ref(null)
-  const isHydrated = ref(null)
+  const isHydrated = ref(false)
   const pageIndex = ref(1)
-  const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+  const selectedTxType = ref(null)
+  const selectedRange = ref(null) // todo default
+  // const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+  // const selectedRange = ref('time:1731106800-1731020400') // todo default
+  //
+  const slug = computed(() => {
+    console.log('selectedRange.value', selectedRange.value)
+    console.log('selectedTxType.value', selectedTxType.value)
+    const hasInterval = !!selectedRange.value?.customInterval
+    const hasType = !!selectedTxType.value?.typeQuery
+    console.info('slug')
+
+    console.log('hasInterval', hasInterval)
+    console.log('hasType', hasType)
+    console.log('selectedRange.value', selectedRange.value)
+    console.log('selectedTxType.value.typeQuery', selectedTxType.value.typeQuery)
+
+    if (hasInterval || hasType) {
+      const from = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.maxStart).toSeconds() : null
+      const to = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.minStart).toSeconds() : null
+      const intervalString = hasInterval ? `scope=time:${from}-${to}` : null
+      const typeString = hasType ? `${'txType=' + selectedTxType.value.typeQuery}` : null
+
+      const array = [intervalString, typeString]
+      const slug = array ? `?${array.join('&')}` : null
+
+      return slug
+    } else {
+      return null
+    }
+  })
 
   const transactions = computed(() =>
     rawTransactions.value
       ? adaptTransactions(rawTransactions.value)
       : null,
   )
+
+  function changeRoute() {
+    console.log(' changeRoute to slug.value', slug.value)
+    // todo otaznicek sem
+    push(`/transactions${slug.value}`)
+  }
+
+  function getParams() {
+    // todo typestr here
+    const { txType, scope } = route.query
+    console.info('getparams')
+    console.log(' txType ', txType)
+    console.log(' scope', scope)
+    const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
+    console.log('txTypeOption', txTypeOption)
+    console.log('---')
+
+    return [txTypeOption, scope]
+  }
+
+  async function loadTransactions(queryParameters) {
+    // todo now i can use selected
+    const [txTypeOption, scope] = getParams()
+    console.info('loadTransactions')
+    console.log('txTypeOption', txTypeOption)
+    console.log('scope', scope)
+
+    selectedTxType.value = txTypeOption
+    selectedRange.value = scope
+    console.log('txTypeOption, scope', txTypeOption, scope)
+    const typestr = selectedTxType?.value?.typeQuery
+
+    console.log('typestr', typestr)
+
+    await fetchTransactions({
+      queryParameters,
+      range: scope,
+      type: txTypeOption,
+      limit: 10,
+    })
+    // todo unhardcode
+    await fetchTransactionsCount(typestr)
+    setPageIndex(1) // todo resolve page index
+  }
 
   async function fetchTransactions({ queryParameters, range, type, limit } = {}) {
     rawTransactions.value = null
@@ -46,6 +122,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const { data } = await axios.get(transactionsUrl.toString())
     isHydrated.value = true
     rawTransactions.value = data
+    // todo atse to neduplikuje
   }
 
   async function fetchTransactionsCount(txType = null) {
@@ -75,10 +152,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageIndex.value = index
   }
 
-  function setSelectedTxType(txType) {
-    selectedTxType.value = txType
-  }
-
   return {
     transactionsCount,
     transactions,
@@ -89,11 +162,13 @@ export const useTransactionsStore = defineStore('transactions', () => {
     last24hsTransactionsCount,
     last24hsTransactionsTrend,
     last24hsAverageTransactionFees,
+    loadTransactions,
+    changeRoute,
     feesTrend,
     isHydrated,
     pageIndex,
     selectedTxType,
+    selectedRange,
     setPageIndex,
-    setSelectedTxType,
   }
 })

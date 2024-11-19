@@ -55,7 +55,7 @@ if (process.client) {
     await loadTransactions()
   }
 
-  watch([selectedRange, selectedTxType], () => {
+  watch([selectedTxType, selectedRange], () => {
     // console.log('selectedRange or selectedTxType changed to', selectedRange.value, selectedTxType.value)
     changeRoute()
   })

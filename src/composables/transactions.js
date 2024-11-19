@@ -22,16 +22,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   // const selectedRange = ref('time:1731106800-1731020400') // todo default
   //
   const slug = computed(() => {
-    console.log('selectedRange.value', selectedRange.value)
-    console.log('selectedTxType.value', selectedTxType.value)
     const hasInterval = !!selectedRange.value?.customInterval
     const hasType = !!selectedTxType.value?.typeQuery
-    console.info('slug')
-
-    console.log('hasInterval', hasInterval)
-    console.log('hasType', hasType)
-    console.log('selectedRange.value', selectedRange.value)
-    console.log('selectedTxType.value.typeQuery', selectedTxType.value.typeQuery)
 
     if (hasInterval || hasType) {
       const from = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.maxStart).toSeconds() : null
@@ -39,7 +31,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
       const intervalString = hasInterval ? `scope=time:${from}-${to}` : null
       const typeString = hasType ? `${'txType=' + selectedTxType.value.typeQuery}` : null
 
-      const array = [intervalString, typeString]
+      const array = [intervalString, typeString].filter(Boolean)
+      console.log('array', array)
       const slug = array ? `?${array.join('&')}` : null
 
       return slug
@@ -63,29 +56,17 @@ export const useTransactionsStore = defineStore('transactions', () => {
   function getParams() {
     // todo typestr here
     const { txType, scope } = route.query
-    console.info('getparams')
-    console.log(' txType ', txType)
-    console.log(' scope', scope)
     const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-    console.log('txTypeOption', txTypeOption)
-    console.log('---')
-
     return [txTypeOption, scope]
   }
 
   async function loadTransactions(queryParameters) {
     // todo now i can use selected
     const [txTypeOption, scope] = getParams()
-    console.info('loadTransactions')
-    console.log('txTypeOption', txTypeOption)
-    console.log('scope', scope)
 
     selectedTxType.value = txTypeOption
     selectedRange.value = scope
-    console.log('txTypeOption, scope', txTypeOption, scope)
     const typestr = selectedTxType?.value?.typeQuery
-
-    console.log('typestr', typestr)
 
     await fetchTransactions({
       queryParameters,

@@ -20,23 +20,22 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   const selectedTxType = ref(null)
   const selectedRange = ref(null) // todo default
-
   // todo nemusi byt sotre value
-  // const selectedTxType = ref(TX_TYPES_OPTIONS[0])
-  // const selectedRange = ref('time:1731106800-1731020400') // todo default
-  //
+
+  // todo convert the select type object
+
   const slug = computed(() => {
     const hasInterval = !!selectedRange.value?.customInterval
     const hasType = !!selectedTxType.value?.typeQuery
 
     if (hasInterval || hasType) {
-      const from = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.maxStart).toSeconds() : null
-      const to = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.minStart).toSeconds() : null
-      const intervalString = hasInterval ? `scope=time:${from}-${to}` : null
+      const intervalString = formatDateToParameters(
+        selectedRange.value.customInterval.maxStart,
+        selectedRange.value.customInterval.minStart,
+      )
       const typeString = hasType ? `${'txType=' + selectedTxType.value.typeQuery}` : null
       const array = [intervalString, typeString].filter(Boolean)
-      const slug = array ? `?${array.join('&')}` : null
-      return slug
+      return array ? `?${array.join('&')}` : null
     } else {
       return ''
     }
@@ -50,7 +49,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function changeRoute() {
     console.log(' changeRoute to slug.value', slug.value)
-    // todo otaznicek sem
+    // todo otaznicek sem?
     push(`/transactions${slug.value}`)
   }
 
@@ -65,30 +64,21 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function setComponentState() {
     selectedTxType.value = TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
-
-    const array = params.value.scope.split(':')[1].split('-')
-
-    const customInterval = {
-      customInterval: {
-        minStart: DateTime.fromSeconds(parseInt(array[0])),
-        maxStart: DateTime.fromSeconds(parseInt(array[1])),
-      },
-    }
-    selectedRange.value = customInterval
-
-    console.log('selectedRange.value', selectedRange.value)
+    selectedRange.value = Object.keys(params.value).length !== 0
+      ? formatParametersToDateObject(params.value.scope)
+      : null
+    // todo sanitize better
   }
 
   async function loadTransactions(queryParameters) {
-    // selected or params
+    // todo selected or params
     const [txTypeOption, scope] = getParams()
-    console.log('1 read params', [txTypeOption, scope])
 
     const typestr = txTypeOption?.typeQuery
     console.log('params.value', params.value)
-
-    // if comming direct url
+    // todo only if comming direct url
     setComponentState()
+    console.log('typestr', typestr)
 
     await fetchTransactions({
       queryParameters,
@@ -153,6 +143,23 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function setPageIndex(index) {
     pageIndex.value = index
+  }
+
+  function formatParametersToDateObject(timeString) {
+    const parameters = timeString.split(':')[1].split('-')
+    return {
+      customInterval: {
+        minStart: DateTime.fromSeconds(parseInt(parameters[0])),
+        maxStart: DateTime.fromSeconds(parseInt(parameters[1])),
+      },
+    }
+  }
+
+  function formatDateToParameters(minStart, maxStart) {
+    // todo nebo opacne
+    const from = DateTime.fromISO(maxStart).toSeconds()
+    const to = DateTime.fromISO(minStart).toSeconds()
+    return `scope=time:${from}-${to}`
   }
 
   return {

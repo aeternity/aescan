@@ -6,6 +6,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const axios = useAxios()
   const route = useRoute()
   const { push } = useRouter()
+  const params = ref([null, null]) // todo default
+  const isHydrated = ref(false)
+  const pageIndex = ref(1)
 
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
@@ -14,10 +17,11 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const last24hsTransactionsTrend = ref(null)
   const last24hsAverageTransactionFees = ref(null)
   const feesTrend = ref(null)
-  const isHydrated = ref(false)
-  const pageIndex = ref(1)
+
   const selectedTxType = ref(null)
   const selectedRange = ref(null) // todo default
+
+  // todo nemusi byt sotre value
   // const selectedTxType = ref(TX_TYPES_OPTIONS[0])
   // const selectedRange = ref('time:1731106800-1731020400') // todo default
   //
@@ -30,11 +34,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
       const to = hasInterval ? DateTime.fromISO(selectedRange.value.customInterval.minStart).toSeconds() : null
       const intervalString = hasInterval ? `scope=time:${from}-${to}` : null
       const typeString = hasType ? `${'txType=' + selectedTxType.value.typeQuery}` : null
-
       const array = [intervalString, typeString].filter(Boolean)
-      console.log('array', array)
       const slug = array ? `?${array.join('&')}` : null
-
       return slug
     } else {
       return ''
@@ -55,30 +56,44 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function getParams() {
     // todo typestr here
+    // todo setparams
     const { txType, scope } = route.query
+    params.value = route.query
     const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
     return [txTypeOption, scope]
   }
 
+  function setComponentState() {
+    selectedTxType.value = TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
+
+    const array = params.value.scope.split(':')[1].split('-')
+
+    const customInterval = {
+      customInterval: {
+        minStart: DateTime.fromSeconds(parseInt(array[0])),
+        maxStart: DateTime.fromSeconds(parseInt(array[1])),
+      },
+    }
+    selectedRange.value = customInterval
+
+    console.log('selectedRange.value', selectedRange.value)
+  }
+
   async function loadTransactions(queryParameters) {
-    // todo now i can use selected
+    // selected or params
     const [txTypeOption, scope] = getParams()
     console.log('1 read params', [txTypeOption, scope])
-    // selectedTxType.value = txTypeOption
-    // selectedRange.value = scope
-    // console.log('3setting selectedTxType.value to', selectedTxType.value)
-    // console.log('setting selectedRange.value to', selectedRange.value)
 
     const typestr = txTypeOption?.typeQuery
+    console.log('params.value', params.value)
 
-    console.log('aftr txTypeOption', txTypeOption)
-    console.log('aftr typestr', typestr)
-    console.log('scope', scope)
+    // if comming direct url
+    setComponentState()
 
     await fetchTransactions({
       queryParameters,
-      range: scope,
-      type: typestr,
+      range: params.value.scope,
+      type: params.value.txType,
       limit: 10,
     })
     // todo unhardcode

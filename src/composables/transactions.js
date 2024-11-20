@@ -37,7 +37,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
       return slug
     } else {
-      return null
+      return ''
     }
   })
 
@@ -63,10 +63,18 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function loadTransactions(queryParameters) {
     // todo now i can use selected
     const [txTypeOption, scope] = getParams()
-    //
-    selectedTxType.value = txTypeOption
-    selectedRange.value = scope
-    const typestr = selectedTxType.value?.typeQuery
+    console.log('1 read params', [txTypeOption, scope])
+    // selectedTxType.value = txTypeOption
+    // selectedRange.value = scope
+    // console.log('3setting selectedTxType.value to', selectedTxType.value)
+    // console.log('setting selectedRange.value to', selectedRange.value)
+
+    const typestr = txTypeOption?.typeQuery
+
+    console.log('aftr txTypeOption', txTypeOption)
+    console.log('aftr typestr', typestr)
+    console.log('scope', scope)
+
     await fetchTransactions({
       queryParameters,
       range: scope,

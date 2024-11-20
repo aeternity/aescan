@@ -10,6 +10,7 @@
       @next-clicked="loadNextTransactions">
       <template #header>
         <div class="transactions-panel__header">
+          <!--          todo how to cancel range-->
           <transactions-select
             v-model="selectedTxType"
             class="transactions-panel__select"/>
@@ -61,7 +62,7 @@ if (process.client) {
   })
 
   watch(() => route.fullPath, async() => {
-    console.log('watch path changed to', route.fullPath)
+    console.log('4 watch path changed to', route.fullPath)
     await loadTransactions()
   })
 }

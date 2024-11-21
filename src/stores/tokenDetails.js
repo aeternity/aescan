@@ -56,8 +56,8 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     return Promise.all([
       tokenPromise,
       Promise.allSettled([
-      fetchTotalSupply(),
-      tokenPromise.then(() => fetchTokenPrice()),
+        fetchTotalSupply(),
+        tokenPromise.then(() => fetchTokenPrice()),
       ]),
     ])
   }
@@ -106,6 +106,15 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     tokenHoldersCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
     tokenHoldersCount.value = data.holders
+  }
+
+  async function fetchTokenTrades() {
+    rawTokenTrades.value = null
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/dex/${tokenId.value}/swaps`)
+    console.log('data', data)
+    rawTokenTrades.value = data
+
+    console.log('price.value', price.value)
   }
 
   return {

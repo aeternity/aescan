@@ -110,10 +110,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   async function fetchTokenTrades() {
     rawTokenTrades.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/dex/${tokenId.value}/swaps`)
-    console.log('data', data)
     rawTokenTrades.value = data
-
-    console.log('price.value', price.value)
   }
 
   return {
@@ -121,7 +118,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     fetchTokenHolders,
     tokenHoldersCount,
     fetchTokenEvents,
-    fetchTokenHoldersCount, // todo eventcounter
+    fetchTokenHoldersCount,
     fetchTokenTrades,
     tokenDetails,
     tokenHolders,

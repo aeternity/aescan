@@ -14,8 +14,6 @@ import {
   formatTemplateLimit,
   formatTokenLimit,
   formatTradeRate,
-  formatTradeAction,
-  formatTradeRate,
   formatTradeValue,
 } from '@/utils/format'
 
@@ -765,31 +763,4 @@ export function adaptReadEntrypoints(aci) {
 
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
-}
-
-
-export function adaptTrades(trades, price) {
-  const formattedData = trades.data.map(trade => {
-    const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
-    const toAmount = trade.toAmount / 10 ** trade.toDecimals
-    return {
-      fromAmount,
-      toAmount,
-      txHash: trade.txHash,
-      fromToken: trade.fromToken,
-      toToken: trade.toToken,
-      fromContract: trade.fromContract,
-      toContract: trade.toContract,
-      action: trade.action,
-      height: trade.height,
-      timestamp: DateTime.fromMillis(trade.microtime),
-      rate: formatTradeRate(trade.action, fromAmount, toAmount),
-      value: formatTradeValue(trade.action, fromAmount, toAmount, price),
-    }
-  })
-  return {
-    next: trades.next,
-    data: formattedData,
-    prev: trades.prev,
-  }
 }

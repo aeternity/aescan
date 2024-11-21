@@ -41,9 +41,6 @@ const { push, replace } = useRouter()
 const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
-const tokenDetailsStore = useTokenDetailsStore()
-const { tokenDetails } = storeToRefs(tokenDetailsStore)
-const { fetchTokenDetails } = tokenDetailsStore
 
 const { isLoading } = useLoading()
 const TAB_KEYS = ['holders', 'events', 'trades']

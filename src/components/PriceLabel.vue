@@ -10,8 +10,8 @@
     </app-link>
     <token-symbol-icon
       v-else-if="!hasLink && hasIcon"
-        class="price-label__icon"
-        :contract-id="contractId"/>
+      class="price-label__icon"
+      :contract-id="contractId"/>
     </app-link>
 
     <app-tooltip v-if="isPriceRounded">

@@ -3,9 +3,6 @@ import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptTrades } from '@/utils/adapters'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { useRuntimeConfig } from "nuxt/app";
-import { adaptTrades } from "@/utils/adapters";
-import { useMarketStatsStore } from "@/stores/marketStats";
 
 export const useDexTradesStore = defineStore('dexTrades', () => {
   const axios = useAxios()
@@ -24,8 +21,7 @@ export const useDexTradesStore = defineStore('dexTrades', () => {
     const defaultParameters = `/v3/dex/swaps?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTrades.value = data
-
-    }
+  }
 
   return {
     fetchDexTrades,

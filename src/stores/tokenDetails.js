@@ -62,8 +62,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     ])
   }
 
-  // todo shorten naming
-  const trades = computed(() => rawTokenTrades.value && price.value
+  const tokenTrades = computed(() => rawTokenTrades.value && price.value
     ? adaptTrades(rawTokenTrades.value, price.value)
     : null,
   )
@@ -128,6 +127,6 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     tokenHolders,
     tokenEvents,
     tokenEventsCount,
-    trades,
+    tokenTrades,
   }
 })

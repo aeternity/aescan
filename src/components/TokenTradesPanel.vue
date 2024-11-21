@@ -1,15 +1,15 @@
 <template>
   <app-panel class="token-trades-panel">
     <paginated-content
-      :entities="trades"
+      :entities="tokenTrades"
       pagination-style="history"
       @prev-clicked="loadPrevEvents"
       @next-clicked="loadNextEvents">
       <dex-trades-table
-        :trades="trades"
+        :trades="tokenTrades"
         class="u-hidden-mobile"/>
       <dex-trades-table-condensed
-        :trades="trades"
+        :trades="tokenTrades"
         class="u-hidden-desktop"/>
     </paginated-content>
   </app-panel>
@@ -17,16 +17,16 @@
 <script setup>
 
 const tokenDetailsStore = useTokenDetailsStore()
-const { trades } = storeToRefs(tokenDetailsStore)
+const { tokenTrades } = storeToRefs(tokenDetailsStore)
 const { fetchTokenTrades } = tokenDetailsStore
 const route = useRoute()
 
 function loadPrevEvents() {
-  fetchTokenTrades({ queryParameters: trades.value.prev })
+  fetchTokenTrades({ queryParameters: tokenTrades.value.prev })
 }
 
 function loadNextEvents() {
-  fetchTokenTrades({ queryParameters: trades.value.next })
+  fetchTokenTrades({ queryParameters: tokenTrades.value.next })
 }
 
 if (process.client) {

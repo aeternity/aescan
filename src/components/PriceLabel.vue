@@ -12,8 +12,6 @@
       v-else-if="!hasLink && hasIcon"
       class="price-label__icon"
       :contract-id="contractId"/>
-    </app-link>
-
     <app-tooltip v-if="isPriceRounded">
       {{ priceRounded }}
       <app-link

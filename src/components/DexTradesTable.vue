@@ -61,11 +61,6 @@
           :timestamp="trade.timestamp"/>
       </td>
       <td>
-        <block-time-cell
-          :height="trade.height"
-          :timestamp="trade.timestamp"/>
-      </td>
-      <td>
         <app-chip :variant="getChipVariant(trade.action)">
           {{ trade.action }}
         </app-chip>

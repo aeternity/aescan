@@ -5,16 +5,16 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="range"
+        v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="namesStatistics"
-      :interval="range.interval"/>
+      :interval="selectedScope.interval"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="names-chart-panel__chart__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -26,17 +26,14 @@ const { namesStatistics } = storeToRefs(useChartsStore())
 const { fetchNamesStatistics } = useChartsStore()
 
 const props = defineProps({
-  hasSelect: {
+  scope: {
     required: true,
     type: Boolean,
   },
-  preselectedRange: {
-    type: Object,
-    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
-  },
+
 })
 
-const range = ref(props.preselectedRange)
+const selectedScope = ref(props.scope)
 
 await useAsyncData(async() => {
   await loadNamesStatistics()
@@ -44,16 +41,16 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch(range, async() => {
+  watch(selectedScope, async() => {
     await loadNamesStatistics()
   })
 }
 
 async function loadNamesStatistics() {
   await fetchNamesStatistics(
-    range.value.interval,
-    range.value.limit,
-    range.value.customInterval)
+    selectedScope.value.interval,
+    selectedScope.value.limit,
+    selectedScope.value.customInterval)
 }
 </script>
 

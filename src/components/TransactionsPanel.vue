@@ -10,14 +10,15 @@
       @next-clicked="loadNextTransactions">
       <template #header>
         <div class="transactions-panel__header">
-          <!--          todo how to cancel range-->
           <transactions-select
             v-model="selectedTxType"
             class="transactions-panel__select"/>
 
-          <transactions-range-picker
-            v-model="selectedRange"
+          <transactions-scope-picker
+            v-model="selectedScope"
             class="u-hidden-mobile"/>
+          <!--          todo how to cancel scope-->
+          <!--          todo mobile-->
         </div>
       </template>
       <transactions-table
@@ -33,36 +34,36 @@
 <script setup>
 import { CHART_INTERVALS_OPTIONS, TX_TYPES_OPTIONS } from '@/utils/constants'
 
+const transactionsStore = useTransactionsStore()
+
 const {
   transactions,
   transactionsCount,
   isHydrated,
   pageIndex,
   selectedTxType,
-  selectedRange,
+  selectedScope,
 } = storeToRefs(useTransactionsStore())
 const {
   loadTransactions,
   changeRoute,
+  setLimit,
 } = useTransactionsStore()
 const route = useRoute()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-// todo differrent default value
-
 if (process.client) {
   if (!isHydrated?.value) {
+    setLimit(limit)
     await loadTransactions()
   }
 
-  watch([selectedTxType, selectedRange], () => {
-    // console.log('selectedRange or selectedTxType changed to', selectedRange.value, selectedTxType.value)
+  watch([selectedTxType, selectedScope], () => {
     changeRoute()
   })
 
   watch(() => route.fullPath, async() => {
-    console.log('4 watch path changed to', route.fullPath)
     await loadTransactions()
   })
 }

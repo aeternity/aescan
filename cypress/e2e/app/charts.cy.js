@@ -3,7 +3,7 @@ describe('charts', () => {
     cy.visit('/charts/transactions')
     cy.get('.charts-navigation__link').should('be.visible')
     cy.get('.chart-controls__button').should('be.visible')
-    cy.get('.range-picker').should('be.visible')
+    cy.get('.scope-picker').should('be.visible')
     cy.get('.transactions-chart-panel__select').should('be.visible')
     cy.get('.line-chart canvas').should('be.visible')
     cy.get('.chart-controls__button').should('be.visible')

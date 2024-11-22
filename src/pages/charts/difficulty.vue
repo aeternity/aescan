@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <difficulty-chart-panel/>
+      <difficulty-chart-panel :scope="CHART_INTERVALS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>

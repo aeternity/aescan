@@ -9,8 +9,8 @@
         @click="selectPreset(option)">
         {{ option.label }}
       </app-chip>
-      <range-picker
-        :is-range-selected="isCustomIntervalSelected"
+      <scope-picker
+        :is-scope-selected="isCustomIntervalSelected"
         @updated="selectCustomInterval"/>
     </div>
   </div>
@@ -28,17 +28,17 @@ const props = defineProps({
   },
 })
 
-const selectedRange = useVModel(props, 'modelValue', emit)
+const selectedScope = useVModel(props, 'modelValue', emit)
 
 const isCustomIntervalSelected = computed(() =>
-  Object.keys(selectedRange.value).includes('customInterval'))
+  Object.keys(selectedScope.value).includes('customInterval'))
 
 function isPresetSelected(option) {
-  return selectedRange.value.label === option.label
+  return selectedScope.value.label === option.label
 }
 
 function selectPreset(option) {
-  selectedRange.value = option
+  selectedScope.value = option
 }
 
 function selectCustomInterval(dateCustomInterval) {
@@ -48,7 +48,7 @@ function selectCustomInterval(dateCustomInterval) {
       maxStart: dateCustomInterval[1].toISOString().split('T')[0],
     },
   }
-  selectedRange.value = customInterval
+  selectedScope.value = customInterval
 }
 
 </script>

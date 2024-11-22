@@ -1,7 +1,7 @@
 <template>
   <div class="chart-controls__container">
-    <range-picker
-      :is-range-selected="isCustomIntervalSelected"
+    <scope-picker
+      :is-scope-selected="isCustomIntervalSelected"
       placeholder="All Time"
       @updated="selectCustomInterval"/>
   </div>
@@ -20,18 +20,18 @@ const props = defineProps({
 })
 // todo minimalize
 
-const selectedRange = useVModel(props, 'modelValue', emit)
+const selectedScope = useVModel(props, 'modelValue', emit)
 const isCustomIntervalSelected = computed(() => {
-  console.log('5 selectedRange.value', selectedRange.value)
+  console.log('5 selectedScope.value', selectedScope.value)
   // todo sanitize null
-  if (selectedRange.value) {
-    return Object.keys(selectedRange.value).includes('customInterval')
+  if (selectedScope.value) {
+    return Object.keys(selectedScope.value).includes('customInterval')
   } else {
     return false
   }
 })
 
-// const isSelected = computed(() => !!selectedRange.value)
+// const isSelected = computed(() => !!selectedScope.value)
 
 function selectCustomInterval(dateCustomInterval) {
   const customInterval = {
@@ -40,7 +40,7 @@ function selectCustomInterval(dateCustomInterval) {
       maxStart: dateCustomInterval[1].toISOString().split('T')[0],
     },
   }
-  selectedRange.value = customInterval
+  selectedScope.value = customInterval
 }
 
 </script>

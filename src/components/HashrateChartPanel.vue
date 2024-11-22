@@ -5,16 +5,16 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="range"
+        v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="hashrateStatistics"
-      :interval="range.interval"/>
+      :interval="selectedScope.interval"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="hashrate-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -35,13 +35,13 @@ const props = defineProps({
     required: true,
     type: Boolean,
   },
-  range: {
+  scope: {
     required: true,
     type: Object,
   },
 })
 
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
+const selectedScope = ref(CHART_INTERVALS_OPTIONS[4])
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
@@ -51,16 +51,16 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([range], async() => {
+  watch([selectedScope, selectedTxType], async() => {
     await loadHashratetatistics()
   })
 }
 
 async function loadHashratetatistics() {
   await fetchHashrateStatistics(
-    range.value.interval,
-    range.value.limit,
-    range.value.customInterval)
+    selectedScope.value.interval,
+    selectedScope.value.limit,
+    selectedScope.value.customInterval)
 }
 </script>
 

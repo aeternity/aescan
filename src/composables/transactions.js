@@ -85,10 +85,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   async function loadTransactions(queryParameters) {
-    // todo selected isntead of params?
     // todo only if comming direct url
 
     setParameters()
+
     setComponentState()
 
     await fetchTransactions({
@@ -97,7 +97,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
       type: params.value.txType,
       limit: pageLimit.value,
     })
+
     await fetchTransactionsCount(params.value.txType)
+
     setPageIndex(1)
   }
 

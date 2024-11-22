@@ -17,6 +17,7 @@
           <transactions-scope-picker
             v-model="selectedScope"
             class="u-hidden-mobile"/>
+
           <!--          todo how to cancel scope-->
           <!--          todo mobile-->
         </div>

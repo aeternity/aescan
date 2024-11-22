@@ -15,6 +15,7 @@
       :placeholder="placeholder"
       :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
       @update:model-value="$emit('updated', date)"/>
+    <app-icon name="cross"/>
   </div>
 </template>
 

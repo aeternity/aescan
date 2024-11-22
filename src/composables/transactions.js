@@ -6,10 +6,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const axios = useAxios()
   const route = useRoute()
   const { push } = useRouter()
+
   const params = ref(null)
   const isHydrated = ref(false)
   const pageIndex = ref(1)
-
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
@@ -28,11 +28,13 @@ export const useTransactionsStore = defineStore('transactions', () => {
   )
 
   const slug = computed(() => {
-    console.log('(hasInterval.value || hasType.value)', (hasInterval.value || hasType.value))
+    // todo condition
+    // todo has parameters
     if (hasInterval.value || hasType.value) {
       const array = [
         intervalSlug.value,
-        typeSlug.value]
+        typeSlug.value,
+      ]
         .filter(Boolean)
       return array ? `?${array.join('&')}` : null
     } else {
@@ -44,13 +46,17 @@ export const useTransactionsStore = defineStore('transactions', () => {
     hasType.value ? `${'txType=' + selectedTxType.value.typeQuery}` : null,
   )
 
-  const intervalSlug = computed(() => hasType.value
-    ? formatDateToParameters(
-      selectedScope.value.customInterval.maxStart,
-      selectedScope.value.customInterval.minStart,
-    )
-    : null,
-  )
+  const intervalSlug = computed(() => {
+    // todo condition
+    if (hasInterval.value) {
+      return formatDateToParameters(
+        selectedScope.value.customInterval.maxStart,
+        selectedScope.value.customInterval.minStart,
+      )
+    } else {
+      return null
+    }
+  })
 
   const hasInterval = computed(() =>
     !!selectedScope.value?.customInterval,
@@ -81,17 +87,17 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function loadTransactions(queryParameters) {
     // todo selected isntead of params?
     // todo only if comming direct url
+
     setParameters()
     setComponentState()
+
     await fetchTransactions({
       queryParameters,
       scope: params.value.scope,
       type: params.value.txType,
       limit: pageLimit.value,
     })
-
     await fetchTransactionsCount(params.value.txType)
-
     setPageIndex(1)
   }
 

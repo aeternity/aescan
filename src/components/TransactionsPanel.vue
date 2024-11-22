@@ -56,7 +56,6 @@ const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 if (process.client) {
   if (!isHydrated?.value) {
-    console.log('1setPageLimit', limit.value)
     setPageLimit(limit)
     await loadTransactions()
   }

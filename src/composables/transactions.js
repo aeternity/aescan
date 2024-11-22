@@ -59,17 +59,17 @@ export const useTransactionsStore = defineStore('transactions', () => {
   })
 
   const hasInterval = computed(() =>
-    !!selectedScope.value?.customInterval,
+    !!params.value?.scope,
   )
   const hasType = computed(() =>
-    !!selectedTxType.value?.typeQuery,
+    !!params.value?.txType,
   )
 
   function changeRoute() {
     push(`/transactions${slug.value}`)
   }
 
-  function setParameters() {
+  function getParams() {
     const { txType, scope } = route.query
     params.value = route.query
     const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
@@ -78,7 +78,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   function setComponentState() {
-    selectedTxType.value = TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
+    selectedTxType.value = hasType.value
+      ? TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
+      : null
     selectedScope.value = hasInterval.value
       ? formatParametersToDateObject(params.value.scope)
       : null
@@ -86,8 +88,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function loadTransactions(queryParameters) {
     // todo only if comming direct url
-
-    setParameters()
+    getParams()
 
     setComponentState()
 

@@ -22,7 +22,6 @@ const props = defineProps({
 
 const selectedScope = useVModel(props, 'modelValue', emit)
 const isCustomIntervalSelected = computed(() => {
-  console.log('5 selectedScope.value', selectedScope.value)
   // todo sanitize null
   if (selectedScope.value) {
     return Object.keys(selectedScope.value).includes('customInterval')

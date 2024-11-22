@@ -15,7 +15,10 @@
       :placeholder="placeholder"
       :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
       @update:model-value="$emit('updated', date)"/>
-    <app-icon name="cross"/>
+    <app-icon
+      :size="28"
+      name="cross"
+      @click="clear()"/>
   </div>
 </template>
 
@@ -46,11 +49,17 @@ watch(() => props.isScopeSelected, (newVal, oldVal) => {
   }
 })
 
+// todo rename closr
 function closeDatepicker() {
   if (datepicker) {
     datepicker.value.closeMenu()
   }
   date.value = null
+}
+
+function clear() {
+  date.value = null
+  datepicker.value.clearValue()
 }
 
 defineEmits(['updated'])
@@ -59,6 +68,9 @@ defineEmits(['updated'])
 <style>
 .scope-picker {
   grid-column: span 5;
+  flex-direction: row;
+  align-items: center;
+  display: flex;
 
   &__input {
     background: var(--color-snow);

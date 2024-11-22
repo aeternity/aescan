@@ -6,7 +6,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const axios = useAxios()
   const route = useRoute()
   const { push } = useRouter()
-  const params = ref([null, null]) // todo default
+  const params = ref(null)
   const isHydrated = ref(false)
   const pageIndex = ref(1)
 
@@ -17,24 +17,31 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const last24hsTransactionsTrend = ref(null)
   const last24hsAverageTransactionFees = ref(null)
   const feesTrend = ref(null)
-
   const selectedTxType = ref(null)
-  const selectedRange = ref(null) // todo default
-  // todo nemusi byt sotre value
+  const selectedScope = ref(null)
+  const limit = ref(null)
 
-  // todo convert the select type object
+  const hasInterval = computed(() =>
+    !!selectedScope.value?.customInterval,
+  )
+  const hasType = computed(() =>
+    !!selectedTxType.value?.typeQuery,
+  )
+
+  const typeString = computed(() => {
+    return hasType.value ? `${'txType=' + selectedTxType.value.typeQuery}` : null
+  })
+
+  const intervalString = computed(() => {
+    return formatDateToParameters(
+      selectedScope.value.customInterval.maxStart,
+      selectedScope.value.customInterval.minStart,
+    )
+  })
 
   const slug = computed(() => {
-    const hasInterval = !!selectedRange.value?.customInterval
-    const hasType = !!selectedTxType.value?.typeQuery
-
-    if (hasInterval || hasType) {
-      const intervalString = formatDateToParameters(
-        selectedRange.value.customInterval.maxStart,
-        selectedRange.value.customInterval.minStart,
-      )
-      const typeString = hasType ? `${'txType=' + selectedTxType.value.typeQuery}` : null
-      const array = [intervalString, typeString].filter(Boolean)
+    if (hasInterval.value || hasType.value) {
+      const array = [intervalString.value, typeString.value].filter(Boolean)
       return array ? `?${array.join('&')}` : null
     } else {
       return ''
@@ -48,51 +55,48 @@ export const useTransactionsStore = defineStore('transactions', () => {
   )
 
   function changeRoute() {
-    console.log(' changeRoute to slug.value', slug.value)
-    // todo otaznicek sem?
     push(`/transactions${slug.value}`)
   }
 
-  function getParams() {
-    // todo typestr here
-    // todo setparams
+  function setParameters() {
     const { txType, scope } = route.query
     params.value = route.query
     const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-    return [txTypeOption, scope]
+    const typeString = txTypeOption?.typeQuery
+    return [typeString, scope]
   }
 
   function setComponentState() {
     selectedTxType.value = TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
-    selectedRange.value = Object.keys(params.value).length !== 0
+    selectedScope.value = hasInterval.value
       ? formatParametersToDateObject(params.value.scope)
       : null
-    // todo sanitize better
   }
 
   async function loadTransactions(queryParameters) {
-    // todo selected or params
-    const [txTypeOption, scope] = getParams()
+    // todo selected isntead of params?
 
-    const typestr = txTypeOption?.typeQuery
+    const [txTypeOption, scope] = setParameters()
+
     console.log('params.value', params.value)
     // todo only if comming direct url
     setComponentState()
-    console.log('typestr', typestr)
-
+    console.log('txTypeOption', txTypeOption)
+    console.log('22limit.value', limit.value)
     await fetchTransactions({
       queryParameters,
-      range: params.value.scope,
+      scope: params.value.scope,
       type: params.value.txType,
-      limit: 10,
+      limit: limit.value,
     })
-    // todo unhardcode
-    await fetchTransactionsCount(typestr)
-    setPageIndex(1) // todo resolve page index
+
+    await fetchTransactionsCount(txTypeOption)
+    setPageIndex(1)
   }
 
-  async function fetchTransactions({ queryParameters, range, type, limit } = {}) {
+  async function fetchTransactions({ queryParameters, scope, type, limit } = {}) {
     rawTransactions.value = null
+
     if (queryParameters) {
       const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
       isHydrated.value = true
@@ -103,9 +107,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
 
     transactionsUrl.searchParams.append('limit', limit ?? 10)
-    // todo range vs scope
-    if (range) {
-      transactionsUrl.searchParams.append('scope', range)
+
+    if (scope) {
+      transactionsUrl.searchParams.append('scope', scope)
     }
 
     if (type) {
@@ -115,7 +119,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const { data } = await axios.get(transactionsUrl.toString())
     isHydrated.value = true
     rawTransactions.value = data
-    // todo atse to neduplikuje
   }
 
   async function fetchTransactionsCount(txType = null) {
@@ -145,6 +148,11 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageIndex.value = index
   }
 
+  function setLimit(value) {
+    limit.value = value
+    // console.log('setLimit', limit.value)
+  }
+
   function formatParametersToDateObject(timeString) {
     const parameters = timeString.split(':')[1].split('-')
     return {
@@ -156,7 +164,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   function formatDateToParameters(minStart, maxStart) {
-    // todo nebo opacne
     const from = DateTime.fromISO(maxStart).toSeconds()
     const to = DateTime.fromISO(minStart).toSeconds()
     return `scope=time:${from}-${to}`
@@ -178,7 +185,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
     isHydrated,
     pageIndex,
     selectedTxType,
-    selectedRange,
+    selectedScope,
     setPageIndex,
+    setLimit,
   }
 })

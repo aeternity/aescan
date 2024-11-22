@@ -13,16 +13,16 @@
         u-hidden-mobile"/>
 
       <chart-controls
-        v-model="range"
+        v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="transactionsStatistics"
-      :interval="range.interval"/>
+      :interval="selectedScope.interval"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="transactions-chart-panel__controls u-hidden-desktop"/>
 
     <transactions-select
@@ -43,14 +43,15 @@ const props = defineProps({
     required: true,
     type: Boolean,
   },
-  preselectedRange: {
+  scope: {
+    required: true,
     type: Object,
     default: CHART_INTERVALS_PRESETS_OPTIONS[4],
   },
 })
 
-const range = ref(props.preselectedRange)
-const type = ref(TX_TYPES_OPTIONS[0])
+const selectedScope = ref(props.scope)
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {
   await loadTransactionStatistics()
@@ -58,17 +59,17 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([range, type], async() => {
+  watch([selectedScope, selectedTxType], async() => {
     await loadTransactionStatistics()
   })
 }
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
-    range.value.interval,
-    range.value.limit,
-    range.value.customInterval,
-    props.hasSelect ? type.value.typeQuery : null)
+    selectedScope.value.interval,
+    selectedScope.value.limit,
+    selectedScope.value.customInterval,
+    props.hasSelect ? selectedTxType.value.typeQuery : null)
 }
 </script>
 

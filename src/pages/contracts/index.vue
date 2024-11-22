@@ -18,7 +18,7 @@
   <template v-if="!isLoading">
     <contracts-chart-panel
       class="contracts-panel"
-      :preselected-range="CHART_INTERVALS_PRESETS_OPTIONS[0]"/>
+      :scope="CHART_INTERVALS_OPTIONS[0]"/>
     <contracts-panel class="contracts-panel"/>
   </template>
   <loader-panel v-else/>

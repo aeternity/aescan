@@ -15,7 +15,9 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <transactions-chart-panel :has-select="true"/>
+      <transactions-chart-panel
+        :has-select="true"
+        :scope="CHART_INTERVALS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>

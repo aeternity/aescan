@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <contracts-chart-panel/>
+      <contracts-chart-panel :scope="CHART_INTERVALS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>

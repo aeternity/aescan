@@ -17,7 +17,7 @@
   <template v-if="!isLoading">
     <names-chart-panel
       class="names__names-panel"
-      :preselected-range="CHART_INTERVALS_PRESETS_OPTIONS[0]"/>
+      :scope="CHART_INTERVALS_OPTIONS[0]"/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Active">
         <names-active-panel/>

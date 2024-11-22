@@ -1,5 +1,5 @@
 <template>
-  <div class="range-picker">
+  <div class="scope-picker">
     <VueDatePicker
       ref="datepicker"
       v-model="date"
@@ -13,7 +13,7 @@
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       :placeholder="placeholder"
-      :ui="{input: `range-picker__input ${isRangeSelected ? 'range-picker__input--active' : ''}`}"
+      :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
       @update:model-value="$emit('updated', date)"/>
   </div>
 </template>
@@ -29,7 +29,7 @@ const datepicker = ref(null)
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 const props = defineProps({
-  isRangeSelected: {
+  isScopeSelected: {
     type: Boolean,
     required: true,
   },
@@ -39,7 +39,7 @@ const props = defineProps({
   },
 })
 
-watch(() => props.isRangeSelected, (newVal, oldVal) => {
+watch(() => props.isScopeSelected, (newVal, oldVal) => {
   if (!newVal && oldVal) {
     closeDatepicker()
   }
@@ -56,7 +56,7 @@ defineEmits(['updated'])
 </script>
 
 <style>
-.range-picker {
+.scope-picker {
   grid-column: span 5;
 
   &__input {
@@ -112,7 +112,7 @@ defineEmits(['updated'])
     background: var(--color-error);
   }
 
-  &__range {
+  &__scope {
     &_start {
       pointer-events: none !important;
       cursor: not-allowed !important;

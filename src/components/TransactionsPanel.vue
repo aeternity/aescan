@@ -47,7 +47,7 @@ const {
 const {
   loadTransactions,
   changeRoute,
-  setLimit,
+  setPageLimit,
 } = useTransactionsStore()
 const route = useRoute()
 
@@ -55,7 +55,8 @@ const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 if (process.client) {
   if (!isHydrated?.value) {
-    setLimit(limit)
+    console.log('1setPageLimit', limit.value)
+    setPageLimit(limit)
     await loadTransactions()
   }
 

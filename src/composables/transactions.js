@@ -19,39 +19,44 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const feesTrend = ref(null)
   const selectedTxType = ref(null)
   const selectedScope = ref(null)
-  const limit = ref(null)
+  const pageLimit = ref(null)
 
-  const hasInterval = computed(() =>
-    !!selectedScope.value?.customInterval,
+  const transactions = computed(() =>
+    rawTransactions.value
+      ? adaptTransactions(rawTransactions.value)
+      : null,
   )
-  const hasType = computed(() =>
-    !!selectedTxType.value?.typeQuery,
-  )
-
-  const typeString = computed(() => {
-    return hasType.value ? `${'txType=' + selectedTxType.value.typeQuery}` : null
-  })
-
-  const intervalString = computed(() => {
-    return formatDateToParameters(
-      selectedScope.value.customInterval.maxStart,
-      selectedScope.value.customInterval.minStart,
-    )
-  })
 
   const slug = computed(() => {
+    console.log('(hasInterval.value || hasType.value)', (hasInterval.value || hasType.value))
     if (hasInterval.value || hasType.value) {
-      const array = [intervalString.value, typeString.value].filter(Boolean)
+      const array = [
+        intervalSlug.value,
+        typeSlug.value]
+        .filter(Boolean)
       return array ? `?${array.join('&')}` : null
     } else {
       return ''
     }
   })
 
-  const transactions = computed(() =>
-    rawTransactions.value
-      ? adaptTransactions(rawTransactions.value)
-      : null,
+  const typeSlug = computed(() =>
+    hasType.value ? `${'txType=' + selectedTxType.value.typeQuery}` : null,
+  )
+
+  const intervalSlug = computed(() => hasType.value
+    ? formatDateToParameters(
+      selectedScope.value.customInterval.maxStart,
+      selectedScope.value.customInterval.minStart,
+    )
+    : null,
+  )
+
+  const hasInterval = computed(() =>
+    !!selectedScope.value?.customInterval,
+  )
+  const hasType = computed(() =>
+    !!selectedTxType.value?.typeQuery,
   )
 
   function changeRoute() {
@@ -62,8 +67,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const { txType, scope } = route.query
     params.value = route.query
     const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-    const typeString = txTypeOption?.typeQuery
-    return [typeString, scope]
+    const typeSlug = txTypeOption?.typeQuery
+    return [typeSlug, scope]
   }
 
   function setComponentState() {
@@ -75,22 +80,18 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function loadTransactions(queryParameters) {
     // todo selected isntead of params?
-
-    const [txTypeOption, scope] = setParameters()
-
-    console.log('params.value', params.value)
     // todo only if comming direct url
+    setParameters()
     setComponentState()
-    console.log('txTypeOption', txTypeOption)
-    console.log('22limit.value', limit.value)
     await fetchTransactions({
       queryParameters,
       scope: params.value.scope,
       type: params.value.txType,
-      limit: limit.value,
+      limit: pageLimit.value,
     })
 
-    await fetchTransactionsCount(txTypeOption)
+    await fetchTransactionsCount(params.value.txType)
+
     setPageIndex(1)
   }
 
@@ -106,7 +107,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
     const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
 
-    transactionsUrl.searchParams.append('limit', limit ?? 10)
+    transactionsUrl.searchParams.append('limit', limit.value ?? 10)
 
     if (scope) {
       transactionsUrl.searchParams.append('scope', scope)
@@ -148,9 +149,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageIndex.value = index
   }
 
-  function setLimit(value) {
-    limit.value = value
-    // console.log('setLimit', limit.value)
+  function setPageLimit(value) {
+    pageLimit.value = value
   }
 
   function formatParametersToDateObject(timeString) {
@@ -187,6 +187,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     selectedTxType,
     selectedScope,
     setPageIndex,
-    setLimit,
+    setPageLimit,
   }
 })

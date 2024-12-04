@@ -145,7 +145,7 @@
           </th>
           <td>
             <app-link
-              v-if="tokenDexUrl"
+              v-if="featureFlags.dex && tokenDexUrl"
               :to="tokenDexUrl"
               class="token-details-panel__link">
               <app-icon
@@ -174,9 +174,11 @@ import { useMarketStatsStore } from '@/stores/marketStats'
 import { formatNumber } from '@/utils/format'
 import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 import { tokensHints } from '@/utils/hints/tokensHints'
+import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())
+const featureFlags = useFeatureFlags()
 
 const props = defineProps({
   tokenDetails: {

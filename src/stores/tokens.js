@@ -3,9 +3,11 @@ import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
 import useAxios from '@/composables/useAxios'
 import { adaptListedTokens } from '@/utils/adapters'
+import useFeatureFlags from '@/composables/useFeatureFlags'
 
 export const useTokensStore = defineStore('tokens', () => {
   const { MIDDLEWARE_URL, DEX_BACKEND_URL, NETWORK_NAME } = useRuntimeConfig().public
+  const featureFlags = useFeatureFlags()
   const axios = useAxios()
   const rawListedTokens = ref(null)
   const allTokens = ref(null)
@@ -13,9 +15,17 @@ export const useTokensStore = defineStore('tokens', () => {
   const allTokensCount = ref(null)
 
   const selectedTokens = computed(() => {
+    if (!featureFlags.dex) {
+      return allTokens.value;
+    }
+
     return selectedTokenName.value?.key === 'listedTokens' && NETWORK_NAME !== 'TESTNET' ? listedTokens.value : allTokens.value
   })
   const selectedTokensCount = computed(() => {
+    if (!featureFlags.dex) {
+      return allTokensCount.value;
+    }
+
     return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value?.data.length : allTokensCount.value
   })
 
@@ -39,6 +49,10 @@ export const useTokensStore = defineStore('tokens', () => {
   }
 
   async function fetchListedTokens() {
+    if (!featureFlags.dex) {
+      return
+    }
+
     rawListedTokens.value = null
     const { data } = await axios.get(`${DEX_BACKEND_URL}/tokens/listed`)
     rawListedTokens.value = data

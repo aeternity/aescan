@@ -100,7 +100,7 @@ if (process.client) {
 useHead({
   titleTemplate: pageTitle =>
     pageTitle
-      ? `${pageTitle} ${route.params.id} | ${APP_TITLE_SHORT}`
+      ? `${pageTitle} ${route.params.id || ''} | ${APP_TITLE_SHORT}`
       : APP_TITLE,
 })
 

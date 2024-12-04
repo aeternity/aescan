@@ -12,6 +12,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const axios = useAxios()
   const { aeSdk } = storeToRefs(useWalletStore())
   const { fetchPrice } = useDexStore()
+  const featureFlags = useFeatureFlags();
 
   const tokenId = ref(null)
   const price = ref(null)
@@ -60,6 +61,10 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   }
 
   async function fetchTokenPrice() {
+    if (!featureFlags.dex) {
+      return;
+    }
+
     price.value = await fetchPrice(tokenId.value, rawToken.value.decimals)
   }
 

@@ -52,7 +52,6 @@ export default defineNuxtConfig({
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
     },
   },
-
   postcss: {
     plugins: {
       autoprefixer: {},
@@ -106,7 +105,6 @@ export default defineNuxtConfig({
       }),
     ],
   },
-
   monacoEditor: {
     locale: 'en',
     componentName: {

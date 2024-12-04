@@ -32,7 +32,9 @@
       </app-tab>
       <app-tab
         title="Verification"
-        :has-verified-icon="isVerified">
+        v-if="featureFlags.smartContractVerification"
+        :has-verified-icon="isVerified"
+        >
         <contract-verified-panel/>
       </app-tab>
       <app-tab
@@ -57,6 +59,7 @@ import { useContractDetailsStore } from '@/stores/contractDetails'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
+import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
@@ -66,6 +69,7 @@ const { isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
 const route = useRoute()
+const featureFlags = useFeatureFlags();
 
 const TAB_KEYS = ['call-transactions', 'events', 'contract-verified', 'contract-read', 'contract-write']
 
@@ -114,7 +118,10 @@ if (process.client && !error.value) {
   await useAsyncData(() => fetchContractEvents({
     queryParameters: `/v3/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
-  await fetchVerificationDetail(route.params.id)
+
+  if (featureFlags.smartContractVerification) {
+    await fetchVerificationDetail(route.params.id)
+  }
 }
 
 </script>

@@ -7,177 +7,176 @@
         class="navigation__item"
         @click="toggle(menu.name)"
         @mouseover="isDesktopResolution ? open(menu.name) : null"
-        @mouseleave="isDesktopResolution ? closeAll() : null"
-      >
-        <menu-item :menu="menu" />
+        @mouseleave="isDesktopResolution ? closeAll() : null">
+        <menu-item :menu="menu"/>
       </li>
     </ul>
   </nav>
 </template>
 
 <script setup>
-import { isDesktop } from "@/utils/screen";
-import useFeatureFlags from "@/composables/useFeatureFlags";
+import { isDesktop } from '@/utils/screen'
+import useFeatureFlags from '@/composables/useFeatureFlags'
 
-const featureFlags = useFeatureFlags();
+const featureFlags = useFeatureFlags()
 
 const menuOptions = ref([
   {
-    name: "Blockchain",
+    name: 'Blockchain',
     isActive: false,
     submenu: [
       {
-        name: "Accounts",
-        path: "/accounts",
+        name: 'Accounts',
+        path: '/accounts',
       },
       {
-        name: "Transactions",
-        path: "/transactions",
+        name: 'Transactions',
+        path: '/transactions',
       },
       {
-        name: "Smart Contracts",
-        path: "/contracts",
+        name: 'Smart Contracts',
+        path: '/contracts',
       },
       {
-        name: "Names",
-        path: "/names",
+        name: 'Names',
+        path: '/names',
       },
       {
-        name: "Keyblocks",
-        path: "/keyblocks",
+        name: 'Keyblocks',
+        path: '/keyblocks',
       },
       {
-        name: "Nodes",
-        path: "/nodes",
+        name: 'Nodes',
+        path: '/nodes',
       },
       {
-        name: "Oracles",
-        path: "/oracles",
+        name: 'Oracles',
+        path: '/oracles',
       },
       {
-        name: "State Channels",
-        path: "/state-channels",
+        name: 'State Channels',
+        path: '/state-channels',
       },
       {
-        name: "Hyperchains",
-        path: "/hyperchains",
+        name: 'Hyperchains',
+        path: '/hyperchains',
         isDisabled: true,
       },
     ],
   },
   {
-    name: "Tokens",
+    name: 'Tokens',
     isActive: false,
     submenu: [
       {
-        name: "AE Coin",
-        path: "/tokens/AE",
+        name: 'AE Coin',
+        path: '/tokens/AE',
       },
       {
-        name: "AEX9 Tokens",
-        path: "/tokens",
+        name: 'AEX9 Tokens',
+        path: '/tokens',
       },
       {
-        name: "AEX141 Tokens (NFTs)",
-        path: "/nfts",
+        name: 'AEX141 Tokens (NFTs)',
+        path: '/nfts',
       },
       ...featureFlagSubmenu(featureFlags.dex, {
-        name: "DEX Trades",
-        path: "/dex-trades",
+        name: 'DEX Trades',
+        path: '/dex-trades',
       }),
     ],
   },
   {
-    name: "Developers",
+    name: 'Developers',
     isActive: false,
     submenu: [
       ...featureFlagSubmenu(featureFlags.smartContractVerification, {
-        name: "Smart Contract Verification",
-        path: "/contract-verification",
+        name: 'Smart Contract Verification',
+        path: '/contract-verification',
       }),
     ],
   },
   {
-    name: "Charts",
+    name: 'Charts',
     isActive: false,
     submenu: [
       {
-        name: "Transactions",
-        path: "/charts/transactions",
+        name: 'Transactions',
+        path: '/charts/transactions',
       },
       {
-        name: "Keyblocks",
-        path: "/charts/keyblocks",
+        name: 'Keyblocks',
+        path: '/charts/keyblocks',
       },
       {
-        name: "Smart Contracts",
-        path: "/charts/contracts",
+        name: 'Smart Contracts',
+        path: '/charts/contracts',
       },
       {
-        name: "Names",
-        path: "/charts/names",
+        name: 'Names',
+        path: '/charts/names',
       },
       {
-        name: "Difficulty",
-        path: "/charts/difficulty",
+        name: 'Difficulty',
+        path: '/charts/difficulty',
       },
       {
-        name: "Hashrate",
-        path: "/charts/hashrate",
+        name: 'Hashrate',
+        path: '/charts/hashrate',
       },
     ],
   },
-]);
+])
 
 const visibleMenuOptions = computed(() =>
-  menuOptions.value.filter((menu) => menu.submenu.length > 0)
-);
+  menuOptions.value.filter(menu => menu.submenu.length > 0),
+)
 
 function featureFlagSubmenu(featureFlag, submenu) {
   if (featureFlag) {
-    return submenu;
+    return submenu
   }
 
-  return [];
+  return []
 }
 
 function open(name) {
-  menuOptions.value.find((item) => item.name === name).isActive = true;
+  menuOptions.value.find(item => item.name === name).isActive = true
 }
 
 const activeItemName = computed(() => {
-  const activeItem = menuOptions.value.find((item) => item.isActive);
-  return activeItem ? activeItem.name : null;
-});
+  const activeItem = menuOptions.value.find(item => item.isActive)
+  return activeItem ? activeItem.name : null
+})
 
 function toggle(name) {
   if (activeItemName.value !== name) {
-    closeAll();
-    open(name);
+    closeAll()
+    open(name)
   } else {
-    closeAll();
+    closeAll()
   }
 }
 
 function closeAll() {
-  menuOptions.value.forEach((item) => {
-    item.isActive = false;
-  });
+  menuOptions.value.forEach(item => {
+    item.isActive = false
+  })
 }
 
 onMounted(() => {
-  updateIsDesktopResolution();
-  window.addEventListener("resize", updateIsDesktopResolution);
-});
+  updateIsDesktopResolution()
+  window.addEventListener('resize', updateIsDesktopResolution)
+})
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", updateIsDesktopResolution);
-});
+  window.removeEventListener('resize', updateIsDesktopResolution)
+})
 
-const isDesktopResolution = ref(null);
+const isDesktopResolution = ref(null)
 
 function updateIsDesktopResolution() {
-  isDesktopResolution.value = isDesktop();
+  isDesktopResolution.value = isDesktop()
 }
 </script>
 

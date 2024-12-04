@@ -16,14 +16,14 @@ export const useTokensStore = defineStore('tokens', () => {
 
   const selectedTokens = computed(() => {
     if (!featureFlags.dex) {
-      return allTokens.value;
+      return allTokens.value
     }
 
     return selectedTokenName.value?.key === 'listedTokens' && NETWORK_NAME !== 'TESTNET' ? listedTokens.value : allTokens.value
   })
   const selectedTokensCount = computed(() => {
     if (!featureFlags.dex) {
-      return allTokensCount.value;
+      return allTokensCount.value
     }
 
     return selectedTokenName.value?.key === 'listedTokens' ? listedTokens.value?.data.length : allTokensCount.value

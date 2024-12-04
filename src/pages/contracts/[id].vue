@@ -31,10 +31,9 @@
         <contract-events-panel/>
       </app-tab>
       <app-tab
-        title="Verification"
         v-if="featureFlags.smartContractVerification"
-        :has-verified-icon="isVerified"
-        >
+        title="Verification"
+        :has-verified-icon="isVerified">
         <contract-verified-panel/>
       </app-tab>
       <app-tab
@@ -69,7 +68,7 @@ const { isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchVerificationDetail } = contractVerifiedStore
 const { push, replace } = useRouter()
 const route = useRoute()
-const featureFlags = useFeatureFlags();
+const featureFlags = useFeatureFlags()
 
 const TAB_KEYS = ['call-transactions', 'events', 'contract-verified', 'contract-read', 'contract-write']
 

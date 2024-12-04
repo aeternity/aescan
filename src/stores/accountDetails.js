@@ -125,7 +125,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountTokensPrices() {
     if (!featureFlags.dex) {
-      return;
+      return
     }
 
     tokenPrices.value = {}

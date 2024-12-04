@@ -6,7 +6,7 @@ import { adaptContracts } from '@/utils/adapters'
 
 export const useContractsStore = defineStore('contracts', () => {
   const { MIDDLEWARE_URL, CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
-  const featureFlags = useFeatureFlags();
+  const featureFlags = useFeatureFlags()
 
   const axios = useAxios()
   const rawContracts = ref(null)
@@ -38,7 +38,7 @@ export const useContractsStore = defineStore('contracts', () => {
 
   async function fetchVerifiedContracts(contracts) {
     if (!featureFlags.smartContractVerification) {
-      return;
+      return
     }
 
     const slug = contracts.data.map(contract => contract.tx.contractId).join('&ids=')

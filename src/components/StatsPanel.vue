@@ -231,7 +231,7 @@ const {
 } = storeToRefs(useRecentBlocksStore())
 
 const isLoading = computed(() => {
-  return !(transactionsCount.value && latestReward.value)
+  return transactionsCount.value === null || latestReward.value === null
 })
 
 </script>

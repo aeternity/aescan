@@ -1,10 +1,18 @@
 const useFeatureFlags = () => {
-  const { SMART_CONTRACT_VERIFICATION_SERVICE_URL, DEX_BACKEND_URL } =
-    useRuntimeConfig().public
+  const {
+    ENABLE_PAGE_COIN,
+    ENABLE_FEATURE_DEX,
+    ENABLE_PAGE_NODES,
+    ENABLE_FEATURE_CONTRACT_VERIFICATION,
+    ENABLE_FEATURE_MARKET_STATS,
+  } = useRuntimeConfig().public
 
   return {
-    smartContractVerification: !!SMART_CONTRACT_VERIFICATION_SERVICE_URL,
-    dex: !!DEX_BACKEND_URL,
+    coinPage: !!ENABLE_PAGE_COIN,
+    dex: !!ENABLE_FEATURE_DEX,
+    nodesPage: !!ENABLE_PAGE_NODES,
+    smartContractVerification: !!ENABLE_FEATURE_CONTRACT_VERIFICATION,
+    marketStats: !!ENABLE_FEATURE_MARKET_STATS,
   }
 }
 

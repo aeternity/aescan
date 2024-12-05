@@ -48,6 +48,7 @@ const menuOptions = ref([
       {
         name: 'Nodes',
         path: '/nodes',
+        hidden: !featureFlags.nodesPage,
       },
       {
         name: 'Oracles',
@@ -56,11 +57,6 @@ const menuOptions = ref([
       {
         name: 'State Channels',
         path: '/state-channels',
-      },
-      {
-        name: 'Hyperchains',
-        path: '/hyperchains',
-        isDisabled: true,
       },
     ],
   },
@@ -71,6 +67,7 @@ const menuOptions = ref([
       {
         name: 'AE Coin',
         path: '/tokens/AE',
+        hidden: !featureFlags.nodesPage,
       },
       {
         name: 'AEX9 Tokens',
@@ -80,20 +77,22 @@ const menuOptions = ref([
         name: 'AEX141 Tokens (NFTs)',
         path: '/nfts',
       },
-      ...featureFlagSubmenu(featureFlags.dex, {
+      {
         name: 'DEX Trades',
         path: '/dex-trades',
-      }),
+        hidden: !featureFlags.dex,
+      },
     ],
   },
   {
     name: 'Developers',
     isActive: false,
     submenu: [
-      ...featureFlagSubmenu(featureFlags.smartContractVerification, {
+      {
         name: 'Smart Contract Verification',
         path: '/contract-verification',
-      }),
+        hidden: !featureFlags.smartContractVerification,
+      },
     ],
   },
   {
@@ -129,16 +128,8 @@ const menuOptions = ref([
 ])
 
 const visibleMenuOptions = computed(() =>
-  menuOptions.value.filter(menu => menu.submenu.length > 0),
+  menuOptions.value.filter(menu => !menu.submenu.every(submenu => submenu.hidden)),
 )
-
-function featureFlagSubmenu(featureFlag, submenu) {
-  if (featureFlag) {
-    return submenu
-  }
-
-  return []
-}
 
 function open(name) {
   menuOptions.value.find(item => item.name === name).isActive = true

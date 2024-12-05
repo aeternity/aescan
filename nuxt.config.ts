@@ -49,7 +49,12 @@ export default defineNuxtConfig({
       AE_TOKEN_ID: process.env.AE_TOKEN_ID,
       DEBUG_MODE: process.env.DEBUG_MODE,
       CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
-      SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
+      DEX_CONTRACTS: process.env.DEX_CONTRACTS?.split(';'),
+      ENABLE_PAGE_COIN: process.env.ENABLE_PAGE_COIN,
+      ENABLE_PAGE_NODES: process.env.ENABLE_PAGE_NODES,
+      ENABLE_FEATURE_DEX: process.env.ENABLE_FEATURE_DEX,
+      ENABLE_FEATURE_CONTRACT_VERIFICATION: process.env.ENABLE_FEATURE_CONTRACT_VERIFICATION,
+      ENABLE_FEATURE_MARKET_STATS: process.env.ENABLE_FEATURE_MARKET_STATS,
     },
   },
   postcss: {

@@ -10,7 +10,7 @@
       v-show="menu.isActive"
       class="menu-item__list">
       <li
-        v-for="submenu in menu.submenu"
+        v-for="submenu in visibleSubmenus"
         :key="submenu.name">
         <app-link
           v-if="!submenu.isDisabled"
@@ -36,12 +36,14 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   menu: {
     type: Object,
     required: true,
   },
 })
+
+const visibleSubmenus = computed(() => props.menu.submenu.filter(submenu => !submenu.hidden))
 </script>
 
 <style scoped>

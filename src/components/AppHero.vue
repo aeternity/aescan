@@ -14,7 +14,9 @@
           <the-search-bar class="hero__search-bar"/>
         </div>
       </div>
-      <market-stats class="hero__market-stats"/>
+      <market-stats
+        v-if="featureFlags.marketStats"
+        class="hero__market-stats"/>
       <stats-panel/>
     </div>
   </div>
@@ -24,6 +26,9 @@
 import TheSearchBar from '@/components/TheSearchBar'
 import StatsPanel from '@/components/StatsPanel'
 import MarketStats from '@/components/MarketStats'
+import useFeatureFlags from '@/composables/useFeatureFlags'
+
+const featureFlags = useFeatureFlags()
 </script>
 
 <style scoped>

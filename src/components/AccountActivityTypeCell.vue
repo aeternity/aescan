@@ -8,7 +8,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
 
-const { SH_DEX_CONTRACTS } = useRuntimeConfig().public
+const { DEX_CONTRACTS } = useRuntimeConfig().public
 
 const props = defineProps({
   accountDetails: {
@@ -40,7 +40,7 @@ const activityType = computed(() => {
       SWAP_CONTRACT_CALLS.includes(tx.value.function) ||
           ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
           REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
-          SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+          DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'
@@ -68,7 +68,7 @@ const activityType = computed(() => {
     if (props.activity.payload.kind === 'reward_block') {
       return 'AE'
     } else if (
-      SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+      DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'
@@ -79,7 +79,7 @@ const activityType = computed(() => {
     return 'AEX-141'
   case 'InternalContractCallEvent':
     if (
-      SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+      DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'

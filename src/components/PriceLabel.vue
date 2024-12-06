@@ -41,8 +41,12 @@
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
+import { storeToRefs } from 'pinia'
 import { formatNullable } from '@/utils/format'
+import { useAppStore } from '@/stores/app'
 import AppTooltip from '@/components/AppTooltip'
+
+const { currency: defaultCurrency } = storeToRefs(useAppStore())
 
 const props = defineProps({
   price: {
@@ -55,11 +59,11 @@ const props = defineProps({
   },
   currency: {
     type: String,
-    default: 'AE',
+    default: null,
   },
   hasIcon: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   hasLink: {
     type: Boolean,
@@ -79,6 +83,10 @@ const priceRounded = computed(() =>
 )
 const price = computed(() =>
   formatNullable(formatAePrice(props.price, null)),
+)
+
+const currency = computed(() =>
+  props.currency || defaultCurrency.value.symbol,
 )
 </script>
 

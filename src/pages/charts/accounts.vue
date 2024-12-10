@@ -15,14 +15,11 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <accounts-chart-panel
-        :has-select="true"
-        :range="CHART_INTERVALS_PRESETS_OPTIONS[4]"/>
+      <accounts-chart-panel/>
     </template>
   </NuxtLayout>
 </template>
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 </script>

@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <hashrate-chart-panel :range="CHART_INTERVALS_PRESETS_OPTIONS[4]"/>
+      <hashrate-chart-panel/>
     </template>
   </NuxtLayout>
 </template>

@@ -22,19 +22,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()
 const { namesStatistics } = storeToRefs(chartsStore)
 const { fetchNamesStatistics } = chartsStore
 
-const props = defineProps({
-  range: {
-    required: true,
-    type: Object,
-  },
-})
-
-const selectedRange = ref(props.range)
+const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadNamesStatistics()

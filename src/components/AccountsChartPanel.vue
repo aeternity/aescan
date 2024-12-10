@@ -31,19 +31,7 @@ const chartsStore = useChartsStore()
 const { accountsStatistics } = storeToRefs(chartsStore)
 const { fetchAccountsStatistics } = chartsStore
 
-const props = defineProps({
-  hasSelect: {
-    required: true,
-    type: Boolean,
-  },
-  range: {
-    required: true,
-    type: Object,
-  },
-})
-
-const selectedRange = ref(props.range)
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadHashratetatistics()
@@ -51,7 +39,7 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([selectedRange, selectedTxType], async() => {
+  watch([selectedRange], async() => {
     await loadHashratetatistics()
   })
 }

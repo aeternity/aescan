@@ -22,24 +22,20 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
 
 const chartsStore = useChartsStore()
 const { difficultyStatistics } = storeToRefs(chartsStore)
 const { fetchDifficultyStatistics } = chartsStore
 
 const props = defineProps({
-  hasSelect: {
-    required: true,
-    type: Boolean,
-  },
   range: {
     required: true,
     type: Object,
   },
 })
 
-const selectedRange = ref(props.range)
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadDifficultytatistics()
@@ -47,7 +43,7 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([selectedRange, selectedTxType], async() => {
+  watch([selectedRange], async() => {
     await loadDifficultytatistics()
   })
 }

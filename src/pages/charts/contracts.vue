@@ -15,7 +15,6 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <!--      todo defaiult-->
       <contracts-chart-panel/>
     </template>
   </NuxtLayout>

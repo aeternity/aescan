@@ -2,6 +2,9 @@
   <app-panel>
     <template #title>
       ACTIVE ACCOUNTS
+      <hint-tooltip>
+        {{ chartsHints.accountsChart }}
+      </hint-tooltip>
     </template>
     <template #end>
       <chart-controls
@@ -21,6 +24,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { chartsHints } from '../utils/hints/chartsHints'
 import { useChartsStore } from '@/stores/charts'
 
 const chartsStore = useChartsStore()

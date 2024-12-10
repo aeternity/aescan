@@ -26,6 +26,10 @@ const menuOptions = ref([{
   path: 'contracts',
 },
 {
+  name: 'Accounts',
+  path: 'accounts',
+},
+{
   name: 'Names',
   path: 'names',
 },

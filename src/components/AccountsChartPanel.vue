@@ -24,7 +24,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { chartsHints } from '../utils/hints/chartsHints'
+import { chartsHints } from '@/utils/hints/chartsHints'
 import { useChartsStore } from '@/stores/charts'
 
 const chartsStore = useChartsStore()

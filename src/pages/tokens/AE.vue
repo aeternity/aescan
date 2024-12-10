@@ -26,7 +26,8 @@
       class="ae-coin__panel"
       :price="price"
       :price-change="priceChange"
-      :total-token-supply="totalTokenSupply"/>
+      :total-token-supply="totalTokenSupply"
+      :active-accounts="activeAccounts"/>
 
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Transactions">
@@ -52,8 +53,8 @@ const { push, replace } = useRouter()
 const { price, priceChange } = storeToRefs(useMarketStatsStore())
 const { fetchMarketStats } = useMarketStatsStore()
 
-const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
-const { fetchTotalStats } = useBlockchainStatsStore()
+const { totalTokenSupply, activeAccounts } = storeToRefs(useBlockchainStatsStore())
+const { fetchTotalStats, fetchActiveAccounts } = useBlockchainStatsStore()
 
 const { isLoading } = useLoading()
 const TAB_KEYS = ['transactions', 'markets']
@@ -87,6 +88,7 @@ const activeTabIndex = computed({
 await useAsyncData(() => Promise.allSettled([
   fetchTotalStats(),
   fetchMarketStats(),
+  fetchActiveAccounts(),
 ]))
 </script>
 

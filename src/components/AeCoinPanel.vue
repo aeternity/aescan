@@ -56,6 +56,17 @@
         <tr class="ae-coin-panel__row">
           <th class="ae-coin-panel__table-header">
             <hint-tooltip>
+              {{ aeCoinHints.activeAccounts }}
+            </hint-tooltip>
+            Latest Active Accounts
+          </th>
+          <td>
+            {{ activeAccounts }}
+          </td>
+        </tr>
+        <tr class="ae-coin-panel__row">
+          <th class="ae-coin-panel__table-header">
+            <hint-tooltip>
               {{ aeCoinHints.decimals }}
             </hint-tooltip>
             Decimals
@@ -84,6 +95,10 @@ defineProps({
     required: true,
   },
   totalTokenSupply: {
+    type: Number,
+    required: true,
+  },
+  activeAccounts: {
     type: Number,
     required: true,
   },

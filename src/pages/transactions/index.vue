@@ -13,7 +13,7 @@
     <transactions-statistics class="transactions-panel"/>
     <transactions-chart-panel
       :has-select="false"
-      :range="CHART_INTERVALS_OPTIONS[0]"
+      :range="CHART_INTERVALS_PRESETS_OPTIONS[0]"
       class="transactions-panel"/>
     <transactions-panel class="transactions-panel"/>
   </template>
@@ -22,7 +22,7 @@
 
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

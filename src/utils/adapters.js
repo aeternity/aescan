@@ -740,7 +740,7 @@ export function adaptTrades(trades, price) {
       height: trade.height,
       timestamp: DateTime.fromMillis(trade.microTime),
       rate: formatTradeRate(trade.action, fromAmount, toAmount),
-      value: formatTradeValue(trade.action, fromAmount, toAmount, price),
+      value: price ? formatTradeValue(trade.action, fromAmount, toAmount, price) : null,
     }
   })
   return {

@@ -63,7 +63,7 @@ export const useNamesStore = defineStore('names', () => {
   async function fetchExpiredNames({ queryParameters, limit } = {}) {
     rawExpiredNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/v2/names?state=inactive&expand=true&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || `/v3/names?state=inactive&expand=true&limit=${limit ?? 10}`}`,
     )
     rawExpiredNames.value = data
   }

@@ -250,11 +250,11 @@ export function adaptInAuctionNames(names) {
 export function adaptExpiredNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    expirationHeight: name.info.expireHeight,
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
-    lastBuyer: name.info.ownership.original,
-    lastOwner: name.info.ownership.current,
+    expirationHeight: name.expireHeight,
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
+    fee: formatAettosToAe(name.nameFee),
+    lastBuyer: name.ownership.original,
+    lastOwner: name.ownership.current,
   }))
   return {
     next: names.next,

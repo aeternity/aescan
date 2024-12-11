@@ -216,13 +216,14 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
 export function adaptActiveNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    buyer: name.info.ownership.original,
-    owner: name.info.ownership.current,
-    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-    expirationHeight: name.info.expireHeight,
-    pointers: Object.values(name.info.pointers),
+    buyer: name.ownership.original,
+    owner: name.ownership.current,
+    fee: formatAettosToAe(name.nameFee),
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
+    expirationHeight: name.expireHeight,
+    pointers: Object.values(name.pointers),
   }))
+
   return {
     next: names.next,
     data: formattedData,
@@ -438,8 +439,6 @@ export function adaptTokenEvents(events) {
 }
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
-  console.log('tokenDetails', tokenDetails)
-  console.log('tokenHolders', tokenHolders)
   const formattedData = tokenHolders.data
     .map(holder => {
       const percentage = (new BigNumber(holder.amount)

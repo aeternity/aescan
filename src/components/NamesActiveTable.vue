@@ -71,12 +71,15 @@
               :link-to="`/accounts/${name.owner}`"/>
           </td>
           <td>
-            <value-hash-ellipsed
-              v-for="pointer in name.pointers"
-              :key="pointer"
-              class="names-active-table__pointer"
-              :hash="pointer"
-              :link-to="`/accounts/${pointer}`"/>
+            <template v-if="name.pointers.length > 0">
+              <value-hash-ellipsed
+                v-for="pointer in name.pointers"
+                :key="pointer.id"
+                class="names-active-table__pointer"
+                :hash="pointer.id"
+                :link-to="`/accounts/${pointer.id}`"/>
+            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
       </tbody>
@@ -86,8 +89,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppLink from '@/components/AppLink'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   names: {

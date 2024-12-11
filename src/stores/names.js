@@ -47,7 +47,7 @@ export const useNamesStore = defineStore('names', () => {
   async function fetchActiveNames({ queryParameters, limit } = {}) {
     rawActiveNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/v2/names?state=active&expand=true&by=deactivation&direction=forward&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || `/v3/names?state=active&expand=true&by=deactivation&direction=forward&limit=${limit ?? 10}`}`,
     )
     rawActiveNames.value = data
   }

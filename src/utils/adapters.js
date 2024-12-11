@@ -233,11 +233,11 @@ export function adaptActiveNames(names) {
 export function adaptInAuctionNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    highestBidder: name.info.lastBid.tx.accountId,
-    bid: formatAettosToAe(name.info.lastBid.tx.nameFee),
-    bidCount: name.info.bids.length,
-    expirationHeight: name.info.auctionEnd,
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
+    highestBidder: name.lastBid.tx.accountId,
+    bid: formatAettosToAe(name.lastBid.tx.nameFee),
+    bidCount: name.claimsCount,
+    expirationHeight: name.auctionEnd,
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
   }))
   return {
     next: names.next,

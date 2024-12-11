@@ -108,14 +108,14 @@ export function adaptNames(names, blockHeight) {
   return names.map(name => {
     return {
       name: name.name,
-      address: name.info.ownership.current,
-      activatedHeight: name.info.activeFrom,
+      address: name.ownership.current,
+      activatedHeight: name.activeFrom,
       activated: formatBlockDiffAsDatetime(
-        name.info.activeFrom,
+        name.activeFrom,
         blockHeight,
       ),
       isAuction: formatIsAuction(name.name),
-      price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
+      price: formatAettosToAe(name.nameFee),
     }
   })
 }

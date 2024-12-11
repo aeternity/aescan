@@ -69,7 +69,7 @@ export const useNamesStore = defineStore('names', () => {
   }
 
   async function fetchRecentlyActivatedNames() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v2/names?state=active&by=activation&direction=backward&limit=4&by=activation`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/names?state=active&by=activation&direction=backward&limit=4&by=activation`)
     rawRecentlyActivatedNames.value = data.data
   }
 

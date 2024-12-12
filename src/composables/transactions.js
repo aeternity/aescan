@@ -7,7 +7,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const route = useRoute()
   const { push } = useRouter()
 
-  const params = ref(null)
   const isHydrated = ref(false)
   const pageIndex = ref(1)
   const rawTransactions = ref(null)
@@ -17,9 +16,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const last24hsTransactionsTrend = ref(null)
   const last24hsAverageTransactionFees = ref(null)
   const feesTrend = ref(null)
-  const selectedTxType = ref(null)
-  const selectedScope = ref(null)
+  const selectedTxType = ref(undefined)
+  const selectedScope = ref(undefined)
   const pageLimit = ref(null)
+  const params = ref(null)
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -27,10 +27,22 @@ export const useTransactionsStore = defineStore('transactions', () => {
       : null,
   )
 
+  const hasInterval = computed(() =>
+    !!params.value?.scope,
+  )
+  const hasType = computed(() =>
+    !!params.value?.txType,
+  )
+
   const slug = computed(() => {
     // todo condition
     // todo has parameters
-    if (hasInterval.value || hasType.value) {
+    console.log('params.value?.txType', params.value?.txType)
+    console.log('selectedTxType', selectedTxType)
+    const isTyp = hasType.value || !!selectedTxType.value
+    const isInt = hasInterval.value || !!selectedScope.value
+
+    if (isInt || isTyp) {
       const array = [
         intervalSlug.value,
         typeSlug.value,
@@ -43,27 +55,22 @@ export const useTransactionsStore = defineStore('transactions', () => {
   })
 
   const typeSlug = computed(() =>
-    hasType.value ? `${'txType=' + selectedTxType.value.typeQuery}` : null,
+    hasType.value || !!selectedTxType.value ? `${'txType=' + selectedTxType.value.typeQuery}` : null,
   )
 
   const intervalSlug = computed(() => {
     // todo condition
-    if (hasInterval.value) {
+    console.log('3 hasInterval.value', hasInterval.value)
+    console.log('3 !!selectedScope.value', selectedScope.value)
+    if (hasInterval.value || !!selectedScope.value) {
       return formatDateToParameters(
-        selectedScope.value.customInterval.maxStart,
-        selectedScope.value.customInterval.minStart,
+        selectedScope.value?.customInterval?.maxStart,
+        selectedScope.value?.customInterval?.minStart,
       )
     } else {
       return null
     }
   })
-
-  const hasInterval = computed(() =>
-    !!params.value?.scope,
-  )
-  const hasType = computed(() =>
-    !!params.value?.txType,
-  )
 
   function changeRoute() {
     push(`/transactions${slug.value}`)

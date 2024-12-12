@@ -2,23 +2,24 @@
   <div class="scope-picker">
     <VueDatePicker
       ref="datepicker"
-      v-model="date"
+      v-model="aaa"
       range
       min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
       :max-date="today"
       auto-apply
       hide-input-icon
-      :clearable="false"
+      :clearable="true"
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       :placeholder="placeholder"
       :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
-      @update:model-value="$emit('updated', date)"/>
-    <app-icon
-      :size="28"
-      name="cross"
-      @click="clear()"/>
+      @cleared="alertFn"
+      @update:model-value="$emit('updated', aaa)"/>
+    <!--    <app-icon-->
+    <!--      :size="28"-->
+    <!--      name="cross"-->
+    <!--      @click="clear()"/>-->
   </div>
 </template>
 
@@ -26,13 +27,17 @@
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
+import { useVModel } from '@vueuse/core'
 import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 
-const date = ref()
 const datepicker = ref(null)
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 const props = defineProps({
+  modelValue: {
+    type: Array,
+    default: null,
+  },
   isScopeSelected: {
     type: Boolean,
     required: true,
@@ -43,11 +48,18 @@ const props = defineProps({
   },
 })
 
+const today = DateTime.now().toFormat('yyyy-MM-dd')
+
 watch(() => props.isScopeSelected, (newVal, oldVal) => {
   if (!newVal && oldVal) {
     closeDatepicker()
   }
 })
+
+const alertFn = () => {
+  date.value = null
+  aaa.value = null
+}
 
 // todo rename closr
 function closeDatepicker() {
@@ -57,12 +69,6 @@ function closeDatepicker() {
   date.value = null
 }
 
-function clear() {
-  date.value = null
-  datepicker.value.clearValue()
-}
-
-defineEmits(['updated'])
 </script>
 
 <style>
@@ -91,7 +97,7 @@ defineEmits(['updated'])
     padding: var(--space-0) var(--space-1);
 
     @media (--desktop) {
-      width: 208px;
+      width: 272px;
       height: 40px;
       font-size: 14px;
       padding: var(--space-0) var(--space-1);
@@ -108,7 +114,7 @@ defineEmits(['updated'])
       color: var(--color-white);
 
       @media (--desktop) {
-        width: 208px;
+        width: 272px;
       }
     }
   }
@@ -123,6 +129,10 @@ defineEmits(['updated'])
 
   &__overlay_cell_active {
     background: var(--color-error);
+  }
+
+  &__icon {
+    color: var(--color-white);
   }
 
   &__scope {

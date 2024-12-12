@@ -40,7 +40,7 @@ await useAsyncData(async() => {
 
 if (process.client) {
   watch([selectedRange], async() => {
-    await loadHashratetatistics()
+    await loadHashrateStatistics()
   })
 }
 

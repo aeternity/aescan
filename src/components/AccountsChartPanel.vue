@@ -34,7 +34,7 @@ const { fetchAccountsStatistics } = chartsStore
 const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
-  await loadHashratetatistics()
+  await loadHashrateStatistics()
   return true
 })
 

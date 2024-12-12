@@ -44,7 +44,7 @@ if (process.client) {
   })
 }
 
-async function loadHashratetatistics() {
+async function loadHashrateStatistics() {
   await fetchAccountsStatistics(
     selectedRange.value.interval,
     selectedRange.value.limit,

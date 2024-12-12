@@ -58,7 +58,7 @@ export const useChartsStore = defineStore('charts', () => {
     namesStatistics.value = null
 
     const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
+      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/names${intervalSlug}`)
@@ -71,7 +71,7 @@ export const useChartsStore = defineStore('charts', () => {
     difficultyStatistics.value = null
 
     const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
+      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/difficulty${intervalSlug}`)
@@ -84,7 +84,7 @@ export const useChartsStore = defineStore('charts', () => {
     hashrateStatistics.value = null
 
     const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
+      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/hashrate${intervalSlug}`)
@@ -97,7 +97,7 @@ export const useChartsStore = defineStore('charts', () => {
     accountsStatistics.value = null
 
     const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
+      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
       : `?interval_by=${interval}&limit=${limit}`
     // https://mainnet.aeternity.io/mdw/v3/stats/active-accounts?interval_by=week&limit=10
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/active-accounts${intervalSlug}`)

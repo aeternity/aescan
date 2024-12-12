@@ -1,6 +1,7 @@
 <template>
   <div class="chart-controls__container">
     <scope-picker
+      v-model="selectedScope"
       :is-scope-selected="isCustomIntervalSelected"
       placeholder="All Time"
       @updated="selectCustomInterval"/>
@@ -21,6 +22,7 @@ const props = defineProps({
 // todo minimalize
 
 const selectedScope = useVModel(props, 'modelValue', emit)
+
 const isCustomIntervalSelected = computed(() => {
   // todo sanitize null
   if (selectedScope.value) {
@@ -32,38 +34,13 @@ const isCustomIntervalSelected = computed(() => {
 
 // const isSelected = computed(() => !!selectedScope.value)
 
-function selectCustomInterval(dateCustomInterval) {
-  const customInterval = {
-    customInterval: {
-      minStart: dateCustomInterval[0].toISOString().split('T')[0],
-      maxStart: dateCustomInterval[1].toISOString().split('T')[0],
-    },
+function selectCustomInterval(interval) {
+  console.log('selectCustomInterval', interval)
+  selectedScope.value = {
+    minStart: interval[0].toISOString().split('T')[0],
+    maxStart: interval[1].toISOString().split('T')[0],
   }
-  selectedScope.value = customInterval
+  console.log('selectedScope.value', selectedScope.value)
 }
 
 </script>
-
-<style scoped>
-.chart-controls {
-  &__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    column-gap: var(--space-1);
-    row-gap: var(--space-1);
-
-    @media (--desktop) {
-      display: flex;
-      gap: var(--space-1);
-      flex-grow: 1;
-      flex-wrap: nowrap;
-    }
-  }
-
-  &__button {
-    display: inline-flex;
-    justify-content: center;
-    cursor: pointer;
-  }
-}
-</style>

@@ -99,7 +99,7 @@ export const useChartsStore = defineStore('charts', () => {
     const intervalSlug = customInterval
       ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
       : `?interval_by=${interval}&limit=${limit}`
-    // https://mainnet.aeternity.io/mdw/v3/stats/active-accounts?interval_by=week&limit=10
+
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/active-accounts${intervalSlug}`)
 
     // remove last interval from the response not to show current interval that is being built

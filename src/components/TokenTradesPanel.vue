@@ -3,8 +3,8 @@
     <paginated-content
       :entities="tokenTrades"
       pagination-style="history"
-      @prev-clicked="loadPrevEvents"
-      @next-clicked="loadNextEvents">
+      @prev-clicked="loadPrevTrades"
+      @next-clicked="loadNextTrades">
       <dex-trades-table
         :trades="tokenTrades"
         class="u-hidden-mobile"/>
@@ -21,11 +21,11 @@ const { tokenTrades } = storeToRefs(tokenDetailsStore)
 const { fetchTokenTrades } = tokenDetailsStore
 const route = useRoute()
 
-function loadPrevEvents() {
+function loadPrevTrades() {
   fetchTokenTrades({ queryParameters: tokenTrades.value.prev })
 }
 
-function loadNextEvents() {
+function loadNextTrades() {
   fetchTokenTrades({ queryParameters: tokenTrades.value.next })
 }
 

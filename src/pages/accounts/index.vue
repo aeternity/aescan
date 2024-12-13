@@ -17,7 +17,6 @@
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import { topAccountsHints } from '@/utils/hints/topAccountsHints'
-import AccountsStatistics from '~/components/AccountsStatistics.vue'
 
 const { isLoading } = useLoading()
 </script>

@@ -1,18 +1,17 @@
 <template>
-  <div class="account-statistics">
+  <div class="accounts-statistics">
     <app-panel class="account-statistics__panel">
       <h5>TOTAL ACCOUNTS</h5>
-      <div class="account-statistics__value">
+      <div class="accounts-statistics__value">
         {{ formatNumber(totalAccountsCount) }}
       </div>
     </app-panel>
-    <app-panel class="account-statistics__panel">
+    <app-panel class="accounts-statistics__panel">
       <h5>ACTIVE ACCOUNTS (LAST 24H)</h5>
-      <div class="account-statistics__value">
+      <div class="accounts-statistics__value">
         {{ formatNumber(activeAccountsCount) }}
       </div>
     </app-panel>
-    <!--    todo napsat testy na stats-->
   </div>
 </template>
 <script setup>
@@ -30,7 +29,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.account-statistics {
+.accounts-statistics {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);

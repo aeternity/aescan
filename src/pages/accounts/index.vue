@@ -9,7 +9,6 @@
       {{ topAccountsHints.topAccounts }}
     </template>
   </page-header>
-  <!--  todo accounts vs accounts-->
   <accounts-statistics/>
   <top-accounts-panel v-if="!isLoading"/>
   <loader-panel v-else/>

@@ -37,20 +37,7 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
   async function fetchTotalAccountsCount() {
     totalAccountsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total-accounts?interval_by=month&limit=100`)
-    // todo ask mdw for endpoint
     totalAccountsCount.value = data.data.reduce((total, item) => total + parseInt(item.count), 0)
-  }
-
-  function sumCounts(dataString) {
-    // Parse the input string into an array of objects
-
-    // Check if the parsing was successful
-    if (!Array.isArray(dataArray)) {
-      throw new TypeError('Invalid input: Expected a valid JSON array')
-    }
-
-    // Sum up all the counts using reduce()
-    return dataArray.reduce((total, item) => total + parseInt(item.count), 0)
   }
 
   return {

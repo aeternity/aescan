@@ -1,6 +1,6 @@
 <template>
   <div class="accounts-statistics">
-    <app-panel class="account-statistics__panel">
+    <app-panel class="accounts-statistics__panel">
       <h5>TOTAL ACCOUNTS</h5>
       <div class="accounts-statistics__value">
         {{ formatNumber(totalAccountsCount) }}
@@ -10,6 +10,9 @@
       <h5>ACTIVE ACCOUNTS (LAST 24H)</h5>
       <div class="accounts-statistics__value">
         {{ formatNumber(activeAccountsCount) }}
+        <trend-chip
+          v-if="activeAccountsDelta"
+          :delta="activeAccountsDelta"/>
       </div>
     </app-panel>
   </div>
@@ -21,7 +24,7 @@ import { formatNumber } from '@/utils/format'
 
 const { fetchTopAccounts } = useTopAccountsStore()
 
-const { totalAccountsCount, activeAccountsCount } = storeToRefs(useTopAccountsStore())
+const { totalAccountsCount, activeAccountsCount, activeAccountsDelta } = storeToRefs(useTopAccountsStore())
 
 if (process.client) {
   await fetchTopAccounts()

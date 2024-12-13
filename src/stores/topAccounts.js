@@ -3,6 +3,7 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
   const rawTopAccounts = ref(null)
   const activeAccountsCount = ref(null)
   const totalAccountsCount = ref(null)
+  const activeAccountsDelta = ref(null)
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const blockchainStatsStore = useBlockchainStatsStore()
   const { fetchTotalStats } = useBlockchainStatsStore()
@@ -30,13 +31,15 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
 
   async function fetchActiveAccountsCount() {
     activeAccountsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/active-accounts?limit=1`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/active-accounts?limit=2`)
     activeAccountsCount.value = data.data[0].count
+    const prevTotalAccountCount = data.data[1].count
+    activeAccountsDelta.value = (100 - (prevTotalAccountCount * 100 / activeAccountsCount.value)).toFixed(2)
   }
 
   async function fetchTotalAccountsCount() {
     totalAccountsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total-accounts?interval_by=month&limit=100`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total-accounts?interval_by=month&limit=1`)
     totalAccountsCount.value = data.data.reduce((total, item) => total + parseInt(item.count), 0)
   }
 
@@ -45,5 +48,6 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
     topAccounts,
     activeAccountsCount,
     totalAccountsCount,
+    activeAccountsDelta,
   }
 })

@@ -4,12 +4,10 @@
       <tbody>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ aeCoinHints.marketName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ aeCoinHints.marketName }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             Gate.io
@@ -17,10 +15,11 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Token Pair
             <hint-tooltip>
               {{ aeCoinHints.pair }}
             </hint-tooltip>
+
+            Token Pair
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             AE / USDT
@@ -28,10 +27,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Price
             <hint-tooltip>
               {{ aeCoinHints.marketPrice }}
             </hint-tooltip>
+            Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(gate?.price)) }}
@@ -39,10 +38,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Volume (24h)
             <hint-tooltip>
               {{ aeCoinHints.volume }}
             </hint-tooltip>
+            Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(gate?.volume)) }}
@@ -54,12 +53,10 @@
       <tbody>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ aeCoinHints.marketName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ aeCoinHints.marketName }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             Mexc
@@ -67,10 +64,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Token Pair
             <hint-tooltip>
               {{ aeCoinHints.pair }}
             </hint-tooltip>
+            Token Pair
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             AE / USDT
@@ -78,10 +75,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Price
             <hint-tooltip>
               {{ aeCoinHints.marketPrice }}
             </hint-tooltip>
+            Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(mexc?.price)) }}
@@ -89,10 +86,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Volume (24h)
             <hint-tooltip>
               {{ aeCoinHints.volume }}
             </hint-tooltip>
+            Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(mexc?.volume)) }}
@@ -104,12 +101,10 @@
       <tbody>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ aeCoinHints.marketName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ aeCoinHints.marketName }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             HotCoin
@@ -117,10 +112,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Token Pair
             <hint-tooltip>
               {{ aeCoinHints.pair }}
             </hint-tooltip>
+            Token Pair
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             AE / USDT
@@ -128,22 +123,17 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Price
             <hint-tooltip>
               {{ aeCoinHints.marketPrice }}
             </hint-tooltip>
+            Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(hotCoin?.price)) }}
           </td>
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
-          <th class="ae-coin-markets-table-condensed__header">
-            Volume (24h)
-            <hint-tooltip>
-              {{ aeCoinHints.volume }}
-            </hint-tooltip>
-          </th>
+          <th class="ae-coin-markets-table-condensed__header"/>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(hotCoin?.volume)) }}
           </td>
@@ -154,12 +144,10 @@
       <tbody>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ aeCoinHints.marketName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ aeCoinHints.marketName }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             CoinStore
@@ -178,10 +166,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Price
             <hint-tooltip>
               {{ aeCoinHints.marketPrice }}
             </hint-tooltip>
+            Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(coinStore?.price)) }}
@@ -189,10 +177,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Volume (24h)
             <hint-tooltip>
               {{ aeCoinHints.volume }}
             </hint-tooltip>
+            Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(coinStore?.volume)) }}
@@ -204,12 +192,10 @@
       <tbody>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ aeCoinHints.marketName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ aeCoinHints.marketName }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             CoinW
@@ -217,10 +203,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Token Pair
             <hint-tooltip>
               {{ aeCoinHints.pair }}
             </hint-tooltip>
+            Token Pair
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             AE / USDT
@@ -228,10 +214,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Price
             <hint-tooltip>
               {{ aeCoinHints.marketPrice }}
             </hint-tooltip>
+            Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(coinW?.price)) }}
@@ -239,10 +225,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Volume (24h)
             <hint-tooltip>
               {{ aeCoinHints.volume }}
             </hint-tooltip>
+            Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             $ {{ formatNullable(formatNumber(coinW?.volume)) }}

@@ -21,8 +21,6 @@
               is-text-link>
               Learn more
             </app-link>
-            <br>
-            Soon also with Hyperchains support!
           </p>
         </div>
       </div>

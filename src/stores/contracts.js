@@ -37,7 +37,7 @@ export const useContractsStore = defineStore('contracts', () => {
   }
 
   async function fetchVerifiedContracts(contracts) {
-    if (!featureFlags.smartContractVerification) {
+    if (featureFlags.isHyperchain) {
       return
     }
 

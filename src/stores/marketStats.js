@@ -33,7 +33,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   )
 
   function fetchMarketStats() {
-    if (!featureFlags.marketStats) {
+    if (featureFlags.isHyperchain) {
       return
     }
 

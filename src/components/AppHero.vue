@@ -15,7 +15,7 @@
         </div>
       </div>
       <market-stats
-        v-if="featureFlags.marketStats"
+        v-if="!featureFlags.isHyperchain"
         class="hero__market-stats"/>
       <stats-panel/>
     </div>

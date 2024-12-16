@@ -15,14 +15,14 @@ export const useTokensStore = defineStore('tokens', () => {
   const allTokensCount = ref(null)
 
   const selectedTokens = computed(() => {
-    if (!featureFlags.dex) {
+    if (featureFlags.isHyperchain) {
       return allTokens.value
     }
 
     return selectedTokenName.value?.key === 'listedTokens' && NETWORK_NAME !== 'TESTNET' ? listedTokens.value : allTokens.value
   })
   const selectedTokensCount = computed(() => {
-    if (!featureFlags.dex) {
+    if (featureFlags.isHyperchain) {
       return allTokensCount.value
     }
 
@@ -49,7 +49,7 @@ export const useTokensStore = defineStore('tokens', () => {
   }
 
   async function fetchListedTokens() {
-    if (!featureFlags.dex) {
+    if (featureFlags.isHyperchain) {
       return
     }
 

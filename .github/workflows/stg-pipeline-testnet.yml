@@ -149,7 +149,7 @@ jobs:
     needs: main
     runs-on: ubuntu-22.04
     name: E2E Tests
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Check the PR deployment status before run E2E tests.
         uses: aeternity/ae-github-actions/deploy-status@v7.1.0

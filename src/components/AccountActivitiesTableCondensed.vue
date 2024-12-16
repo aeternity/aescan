@@ -7,12 +7,10 @@
       <tbody>
         <tr class="account-activities-table-condensed__row">
           <th class="account-activities-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ accountHints.activityHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.activityHash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="account-activities-table-condensed__data">
             <value-hash-ellipsed
@@ -26,12 +24,10 @@
         </tr>
         <tr class="account-activities-table-condensed__row">
           <th class="account-activities-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ accountHints.activityTime }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.activityTime }}
+            </hint-tooltip>
+            <time-toggle-button/>
           </th>
           <td class="account-activities-table-condensed__data">
             <block-time-cell
@@ -41,12 +37,10 @@
         </tr>
         <tr class="account-activities-table-condensed__row">
           <th class="account-activities-table-condensed__header">
-            <app-tooltip>
-              Type
-              <template #tooltip>
-                {{ accountHints.activityType }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.activityType }}
+            </hint-tooltip>
+            Type
           </th>
           <td class="account-activities-table-condensed__data">
             <account-activity-type-cell
@@ -56,12 +50,10 @@
         </tr>
         <tr class="account-activities-table-condensed__row">
           <th class="account-activities-table-condensed__header">
-            <app-tooltip>
-              Activity
-              <template #tooltip>
-                {{ accountHints.activityMeaning }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.activityMeaning }}
+            </hint-tooltip>
+            Activity
           </th>
           <td class="account-activities-table-condensed__data">
             <account-activity-cell
@@ -71,12 +63,10 @@
         </tr>
         <tr class="account-activities-table-condensed__row">
           <th class="account-activities-table-condensed__header">
-            <app-tooltip>
-              Data
-              <template #tooltip>
-                {{ accountHints.activityData }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.activityData }}
+            </hint-tooltip>
+            Data
           </th>
           <td class="account-activities-table-condensed__data">
             <account-activity-data-cell
@@ -95,7 +85,6 @@ import AccountActivityTypeCell from '@/components/AccountActivityTypeCell'
 import AccountActivityDataCell from '@/components/AccountActivityDataCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { accountHints } from '@/utils/hints/accountHints'
-import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   accountDetails: {

@@ -54,8 +54,10 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
     return Promise.all([
       tokenPromise,
-      fetchTotalSupply(),
-      tokenPromise.then(() => fetchTokenPrice()),
+      Promise.allSettled([
+        fetchTotalSupply(),
+        tokenPromise.then(() => fetchTokenPrice()),
+      ]),
     ])
   }
 

@@ -16,10 +16,12 @@
 
           <transactions-scope-picker
             v-model="selectedScope"
-            class="u-hidden-mobile"/>
+            class="u-hidden-mobile"
+            @updated="updateId"/>
 
           <!--          todo how to cancel scope-->
           <!--          todo mobile-->
+          <!--          todo fix counter-->
         </div>
       </template>
       <transactions-table
@@ -53,6 +55,11 @@ const {
 const route = useRoute()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+
+function updateId(it) {
+  console.log('it', it)
+  selectedScope.value = it
+}
 
 if (process.client) {
   if (!isHydrated?.value) {

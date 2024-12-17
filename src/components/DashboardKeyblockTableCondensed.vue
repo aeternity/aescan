@@ -3,10 +3,10 @@
     <tbody>
       <tr class="dashboard-keyblock-table-condensed__row">
         <th class="dashboard-keyblock-table-condensed__header">
-          Height
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.height }}
           </hint-tooltip>
+          Height
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
           <app-link
@@ -17,10 +17,10 @@
       </tr>
       <tr class="dashboard-keyblock-table-condensed__row">
         <th class="dashboard-keyblock-table-condensed__header">
-          Hash
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.hash }}
           </hint-tooltip>
+          Hash
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
           <value-hash-ellipsed
@@ -30,10 +30,10 @@
       </tr>
       <tr class="dashboard-keyblock-table-condensed__row">
         <th class="dashboard-keyblock-table-condensed__header">
-          <time-toggle-button>Mined</time-toggle-button>
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>
+          <time-toggle-button>Mined</time-toggle-button>
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
           <timestamp-label :timestamp="keyblock.mined"/>
@@ -41,10 +41,10 @@
       </tr>
       <tr class="dashboard-keyblock-table-condensed__row">
         <th class="dashboard-keyblock-table-condensed__header">
-          Beneficiary
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.beneficiary }}
           </hint-tooltip>
+          Beneficiary
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
           <value-hash-ellipsed
@@ -55,10 +55,10 @@
       </tr>
       <tr class="dashboard-keyblock-table-condensed__row">
         <th class="dashboard-keyblock-table-condensed__header">
-          Beneficiary Reward
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
+          Beneficiary Reward
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
           <price-label :price="stats?.blockReward"/>

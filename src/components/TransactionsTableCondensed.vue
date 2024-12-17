@@ -39,12 +39,10 @@
             Type
           </th>
           <td class="transactions-table-condensed__data">
-            <app-tooltip>
-              {{ transaction.type }}
-              <template #tooltip>
-                {{ transactionsHints[transaction.hintKey] }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ transactionsHints[transaction.hintKey] }}
+            </hint-tooltip>
+            {{ transaction.type }}
           </td>
         </tr>
         <tr class="transactions-table-condensed__row">

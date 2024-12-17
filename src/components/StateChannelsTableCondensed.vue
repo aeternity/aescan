@@ -7,12 +7,10 @@
       <tbody>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            <app-tooltip>
-              State Channel ID
-              <template #tooltip>
-                {{ stateChannelsHints.stateChannelId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ stateChannelsHints.stateChannelId }}
+            </hint-tooltip>
+            State Channel ID
           </th>
           <td class="state-channels-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            <app-tooltip>
-              Status
-              <template #tooltip>
-                {{ stateChannelsHints.status }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ stateChannelsHints.status }}
+            </hint-tooltip>
+            Status
           </th>
           <td class="state-channels-table-condensed__data">
             {{ channel.status }}
@@ -35,12 +31,11 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            <app-tooltip>
-              Participants
-              <template #tooltip>
-                {{ stateChannelsHints.participants }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ stateChannelsHints.participants }}
+            </hint-tooltip>
+
+            Participants
           </th>
           <td class="state-channels-table-condensed__data">
             <div>
@@ -59,12 +54,10 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            <app-tooltip>
-              On-Chain TXs
-              <template #tooltip>
-                {{ stateChannelsHints.onChainUpdates }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ stateChannelsHints.onChainUpdates }}
+            </hint-tooltip>
+            On-Chain TXs
           </th>
           <td class="state-channels-table-condensed__data">
             {{ channel.updateCount }}
@@ -72,12 +65,10 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            <app-tooltip>
-              Locked
-              <template #tooltip>
-                {{ stateChannelsHints.locked }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ stateChannelsHints.locked }}
+            </hint-tooltip>
+            Locked
           </th>
           <td class="state-channels-table-condensed__data">
             {{ channel.locked }}
@@ -85,12 +76,10 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Last Updated</time-toggle-button>
-              <template #tooltip>
-                {{ stateChannelsHints.lastUpdated }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ stateChannelsHints.lastUpdated }}
+            </hint-tooltip>
+            <time-toggle-button>Last Updated</time-toggle-button>
           </th>
           <td class="state-channels-table-condensed__data">
             <block-time-cell
@@ -100,12 +89,10 @@
         </tr>
         <tr class="state-channels-table-condensed__row">
           <th class="state-channels-table-condensed__header">
-            <app-tooltip>
-              Last TX Type
-              <template #tooltip>
-                {{ stateChannelsHints.lastTxType }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ stateChannelsHints.lastTxType }}
+            </hint-tooltip>
+            Last TX Type
           </th>
           <td class="state-channels-table-condensed__data">
             {{ channel.lastTxType }}

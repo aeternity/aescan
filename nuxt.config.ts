@@ -2,6 +2,13 @@ import fs from 'fs/promises'
 import { compileTemplate } from 'vue/compiler-sfc'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 
+const routesWithConditions = {
+  '/dex-trades': process.env.IS_HYPERCHAIN === 'true',
+  '/nodes': process.env.IS_HYPERCHAIN === 'true',
+  '/contract-verification/**': process.env.IS_HYPERCHAIN === 'true',
+  '/tokens/AE': process.env.IS_HYPERCHAIN === 'true',
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   srcDir: './src',
@@ -65,6 +72,12 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+  routeRules: Object.fromEntries(
+    Object.entries(routesWithConditions).map(([route, isEnabled]) => [
+      route,
+      isEnabled ? {} : { redirect: '/' },
+    ]),
+  ),
   sourcemap: true,
   vite: {
     build: { target: 'es2020' },

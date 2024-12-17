@@ -7,12 +7,11 @@
       <tbody>
         <tr class="nfts-inventory-table-condensed__row">
           <th class="nfts-inventory-table-condensed__header">
-            <app-tooltip>
-              Template ID
-              <template #tooltip>
-                {{ nftsHints.inventoryTemplateId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.inventoryTemplateId }}
+            </hint-tooltip>
+
+            Template ID
           </th>
           <td class="nfts-inventory-table-condensed__data">
             {{ nft.templateId }}
@@ -20,12 +19,10 @@
         </tr>
         <tr class="nfts-inventory-table-condensed__row">
           <th class="nfts-inventory-table-condensed__header">
-            <app-tooltip>
-              Supply
-              <template #tooltip>
-                {{ nftsHints.inventorySupply }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.inventorySupply }}
+            </hint-tooltip>
+            Supply
           </th>
           <td class="nfts-inventory-table-condensed__data">
             {{ nft.edition?.supply }}
@@ -33,12 +30,10 @@
         </tr>
         <tr class="nfts-inventory-table-condensed__row">
           <th class="nfts-inventory-table-condensed__header">
-            <app-tooltip>
-              Limit
-              <template #tooltip>
-                {{ nftsHints.inventoryLimit }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.inventoryLimit }}
+            </hint-tooltip>
+            Limit
           </th>
           <td class="nfts-inventory-table-condensed__data">
             {{ nft.edition?.limit }}
@@ -47,12 +42,11 @@
 
         <tr class="nfts-inventory-table-condensed__row">
           <th class="nfts-inventory-table-condensed__header">
-            <app-tooltip>
-              Create Transaction
-              <template #tooltip>
-                {{ nftsHints.inventoryCreteTransaction }}
-              </template>
-            </app-tooltip>
+            \
+            <hint-tooltip>
+              {{ nftsHints.inventoryCreteTransaction }}
+            </hint-tooltip>
+            Create Transaction
           </th>
           <td class="nfts-inventory-table-condensed__data">
             <value-hash-ellipsed

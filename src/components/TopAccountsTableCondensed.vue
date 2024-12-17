@@ -7,12 +7,10 @@
       <tbody>
         <tr class="top-accounts-table-condensed__row">
           <th class="top-accounts-table-condensed__header">
-            <app-tooltip>
-              Rank
-              <template #tooltip>
-                {{ topAccountsHints.rank }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ topAccountsHints.rank }}
+            </hint-tooltip>
+            Rank
           </th>
           <td class="top-accounts-table-condensed__data">
             {{ account.rank }}.
@@ -20,12 +18,10 @@
         </tr>
         <tr class="top-accounts-table-condensed__row">
           <th class="top-accounts-table-condensed__header">
-            <app-tooltip>
-              Account
-              <template #tooltip>
-                {{ topAccountsHints.account }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ topAccountsHints.account }}
+            </hint-tooltip>
+            Account
           </th>
           <td class="top-accounts-table-condensed__data">
             <app-link
@@ -36,12 +32,10 @@
         </tr>
         <tr class="top-accounts-table-condensed__row">
           <th class="top-accounts-table-condensed__header">
-            <app-tooltip>
-              Balance
-              <template #tooltip>
-                {{ topAccountsHints.balance }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ topAccountsHints.balance }}
+            </hint-tooltip>
+            Balance
           </th>
           <td class="top-accounts-table-condensed__data">
             {{ account.balance }}
@@ -49,12 +43,10 @@
         </tr>
         <tr class="top-accounts-table-condensed__row">
           <th class="top-accounts-table-condensed__header">
-            <app-tooltip>
-              % Of Circulating
-              <template #tooltip>
-                {{ topAccountsHints.percentage }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ topAccountsHints.percentage }}
+            </hint-tooltip>
+            % Of Circulating
           </th>
           <td class="top-accounts-table-condensed__data">
             {{ account.percentage }} %

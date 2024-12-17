@@ -37,8 +37,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const slug = computed(() => {
     // todo condition
     // todo has parameters
-    console.log('params.value?.txType', params.value?.txType)
-    console.log('selectedTxType', selectedTxType)
     const isTyp = hasType.value || !!selectedTxType.value
     const isInt = hasInterval.value || !!selectedScope.value
 
@@ -54,18 +52,17 @@ export const useTransactionsStore = defineStore('transactions', () => {
     }
   })
 
-  const typeSlug = computed(() =>
-    hasType.value || !!selectedTxType.value ? `${'txType=' + selectedTxType.value.typeQuery}` : null,
-  )
+  const typeSlug = computed(() => {
+    return selectedTxType.value?.typeQuery !== undefined ? `${'txType=' + selectedTxType.value.typeQuery}` : null
+  })
 
   const intervalSlug = computed(() => {
     // todo condition
-    console.log('3 hasInterval.value', hasInterval.value)
-    console.log('3 !!selectedScope.value', selectedScope.value)
-    if (hasInterval.value || !!selectedScope.value) {
+    const cond = hasInterval.value || !!selectedScope.value
+    if (cond) {
       return formatDateToParameters(
-        selectedScope.value?.customInterval?.maxStart,
-        selectedScope.value?.customInterval?.minStart,
+        selectedScope.value?.maxStart,
+        selectedScope.value?.minStart,
       )
     } else {
       return null
@@ -98,13 +95,19 @@ export const useTransactionsStore = defineStore('transactions', () => {
     getParams()
 
     setComponentState()
-
     await fetchTransactions({
       queryParameters,
-      scope: params.value.scope,
-      type: params.value.txType,
+      scope: selectedScope.value,
+      type: selectedTxType.value?.typeQuery,
       limit: pageLimit.value,
     })
+
+    // await fetchTransactions({
+    //   queryParameters,
+    //   scope: params.value.scope,
+    //   type: params.value.txType,
+    //   limit: pageLimit.value,
+    // })
 
     await fetchTransactionsCount(params.value.txType)
 
@@ -112,6 +115,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   async function fetchTransactions({ queryParameters, scope, type, limit } = {}) {
+    const bbb = formatDateToParameters(scope.customInterval.minStart, scope.customInterval.maxStart)
+    const ccc = bbb.substring(6)
     rawTransactions.value = null
 
     if (queryParameters) {
@@ -126,7 +131,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsUrl.searchParams.append('limit', limit.value ?? 10)
 
     if (scope) {
-      transactionsUrl.searchParams.append('scope', scope)
+      transactionsUrl.searchParams.append('scope', ccc)
     }
 
     if (type) {

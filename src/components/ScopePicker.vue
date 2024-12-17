@@ -55,6 +55,11 @@ watch(() => props.isScopeSelected, (newVal, oldVal) => {
     closeDatepicker()
   }
 })
+//
+watch(date.value, (newModel, oldModel) => {
+  console.log('newModel', newModel)
+  console.log('oldModel', oldModel)
+})
 
 const alertFn = () => {
   date.value = null

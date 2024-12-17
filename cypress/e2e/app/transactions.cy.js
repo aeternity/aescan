@@ -8,6 +8,8 @@ describe('transactions', () => {
     cy.get('.transaction-statistics__panel .chip').should('be.visible')
   })
 
+  // todo add multiple tests
+
   it('should display same transactions after going back from detail', () => {
     cy.visit('/transactions')
 

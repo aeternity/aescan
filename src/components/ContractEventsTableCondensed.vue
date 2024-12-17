@@ -7,12 +7,10 @@
       <tbody>
         <tr class="contract-events-table-condensed__row">
           <th class="contract-events-table-condensed__header">
-            <app-tooltip>
-              Call Transaction
-              <template #tooltip>
-                {{ contractsHints.eventsCallTransaction }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.eventsCallTransaction }}
+            </hint-tooltip>
+            Call Transaction
           </th>
           <td class="contract-events-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="contract-events-table-condensed__row">
           <th class="contract-events-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Created</time-toggle-button>
-              <template #tooltip>
-                {{ contractsHints.eventsCreated }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.eventsCreated }}
+            </hint-tooltip>
+            <time-toggle-button>Created</time-toggle-button>
           </th>
           <td class="contract-events-table-condensed__data">
             <block-time-cell
@@ -38,10 +34,10 @@
         <tr class="contract-events-table-condensed__row">
           <th class="contract-events-table-condensed__header">
             <app-tooltip>
-              Event Name
-              <template #tooltip>
+              <hint-tooltip>
                 {{ contractsHints.eventsName }}
-              </template>
+              </hint-tooltip>
+              Event Name
             </app-tooltip>
           </th>
           <td class="contract-events-table-condensed__data">
@@ -52,12 +48,10 @@
           <th
             :class="['contract-events-table-condensed__header',
                      {'contract-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
-            <app-tooltip>
-              Data
-              <template #tooltip>
-                {{ contractsHints.eventsData }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.eventsData }}
+            </hint-tooltip>
+            Data
           </th>
           <td
             v-if="event.isDecoded"

@@ -18,7 +18,6 @@
             <hint-tooltip>
               {{ aeCoinHints.pair }}
             </hint-tooltip>
-
             Token Pair
           </th>
           <td class="ae-coin-markets-table-condensed__data">

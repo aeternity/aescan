@@ -7,12 +7,10 @@
       <tbody>
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ namesHints.eventTransactionHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.eventTransactionHash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="name-history-table-condensed__data">
             <value-hash-ellipsed
@@ -26,12 +24,10 @@
         </tr>
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ namesHints.eventTime }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.eventTime }}
+            </hint-tooltip>
+            <time-toggle-button/>
           </th>
           <td class="name-history-table-condensed__data">
             <block-time-cell
@@ -41,12 +37,10 @@
         </tr>
         <tr class="name-history-table-condensed__row">
           <th class="name-history-table-condensed__header">
-            <app-tooltip>
-              Activity
-              <template #tooltip>
-                {{ namesHints.activity }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.activity }}
+            </hint-tooltip>
+            Activity
           </th>
           <td class="name-history-table-condensed__data">
             <name-history-cell
@@ -71,7 +65,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

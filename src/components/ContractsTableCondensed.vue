@@ -1,4 +1,4 @@
-<template>
+<hint-tooltip>
   <div>
     <table
       v-for="contract in contracts.data"
@@ -7,12 +7,10 @@
       <tbody>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Smart Contract ID
-              <template #tooltip>
-                {{ contractsHints.contractId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.contractId }}
+            </hint-tooltip>
+            Smart Contract ID
           </th>
           <td class="contracts-table-condensed__data">
             <div class="contracts-table-condensed__container">
@@ -25,12 +23,10 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Created</time-toggle-button>
-              <template #tooltip>
-                {{ contractsHints.created }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.created }}
+            </hint-tooltip>
+            <time-toggle-button>Created</time-toggle-button>
           </th>
           <td class="contracts-table-condensed__data">
             <block-time-cell
@@ -40,12 +36,11 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Create Transaction
-              <template #tooltip>
-                {{ contractsHints.hash }}
-              </template>
-            </app-tooltip>
+
+            <hint-tooltip>
+              {{ contractsHints.hash }}
+            </hint-tooltip>
+            Create Transaction
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed
@@ -55,12 +50,10 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-            <app-tooltip>
-              Created By
-              <template #tooltip>
+              <hint-tooltip>
                 {{ contractsHints.creator }}
-              </template>
-            </app-tooltip>
+              </hint-tooltip>
+              Created By
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed

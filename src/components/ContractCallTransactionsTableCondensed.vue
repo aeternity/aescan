@@ -7,12 +7,10 @@
       <tbody>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ contractsHints.callTransactionsHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.callTransactionsHash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ contractsHints.callTransactionsTime }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.callTransactionsTime }}
+            </hint-tooltip>
+            <time-toggle-button/>
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <block-time-cell
@@ -37,12 +33,10 @@
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Caller
-              <template #tooltip>
-                {{ contractsHints.callTransactionsCaller }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.callTransactionsCaller }}
+            </hint-tooltip>
+            Caller
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -52,12 +46,10 @@
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Entrypoint
-              <template #tooltip>
-                {{ contractsHints.callTransactionsEntryPoint }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.callTransactionsEntryPoint }}
+            </hint-tooltip>
+            Entrypoint
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <app-chip

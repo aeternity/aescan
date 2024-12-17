@@ -7,12 +7,9 @@
       <tbody>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Block
-              <template #tooltip>
-                {{ keyblocksHints.keyblockHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.keyblockHash }}
+            </hint-tooltip>
           </th>
           <td class="keyblocks-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +19,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ keyblocksHints.time }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.time }}
+            </hint-tooltip>
+            <time-toggle-button/>
           </th>
           <td class="keyblocks-table-condensed__data">
             <block-time-cell
@@ -37,12 +32,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Transactions Count
-              <template #tooltip>
-                {{ keyblocksHints.transactionsCount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.transactionsCount }}
+            </hint-tooltip>
+            Transactions Count
           </th>
           <td class="keyblocks-table-condensed__data">
             {{ keyblock.transactionsCount }}
@@ -50,12 +43,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Microblocks Count
-              <template #tooltip>
-                {{ keyblocksHints.microblockCount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.microblockCount }}
+            </hint-tooltip>
+            Transactions Count
           </th>
           <td class="keyblocks-table-condensed__data">
             {{ keyblock.microBlocksCount }}

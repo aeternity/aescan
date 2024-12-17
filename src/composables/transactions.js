@@ -60,9 +60,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     // todo condition
     const cond = hasInterval.value || !!selectedScope.value
     if (cond) {
+      // todo tohle neni dobre wrap unwrap customInterval
       return formatDateToParameters(
-        selectedScope.value?.maxStart,
-        selectedScope.value?.minStart,
+        selectedScope.value?.maxStart || selectedScope.value?.customInterval?.maxStart,
+        selectedScope.value?.minStart || selectedScope.value?.customInterval?.minStart,
       )
     } else {
       return null
@@ -70,6 +71,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   })
 
   function changeRoute() {
+    console.log('slug.value', slug.value)
     push(`/transactions${slug.value}`)
   }
 
@@ -115,8 +117,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   async function fetchTransactions({ queryParameters, scope, type, limit } = {}) {
-    const bbb = formatDateToParameters(scope.customInterval.minStart, scope.customInterval.maxStart)
-    const ccc = bbb.substring(6)
     rawTransactions.value = null
 
     if (queryParameters) {
@@ -131,6 +131,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsUrl.searchParams.append('limit', limit.value ?? 10)
 
     if (scope) {
+      const bbb = formatDateToParameters(scope.customInterval.minStart, scope.customInterval.maxStart)
+      const ccc = bbb.substring(6)
       transactionsUrl.searchParams.append('scope', ccc)
     }
 

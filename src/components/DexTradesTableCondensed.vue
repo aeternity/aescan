@@ -79,12 +79,10 @@
         </tr>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Swapped Rate
-              <template #tooltip>
-                {{ dexTradesHints.swappedRate }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.swappedRate }}
+            </hint-tooltip>
+            Swapped Rate
           </th>
           <td class="dex-trades-table-condensed__data">
             <not-available-label v-if="!trade.rate"/>
@@ -93,12 +91,10 @@
         </tr>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Value
-              <template #tooltip>
-                {{ dexTradesHints.value }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.value }}
+            </hint-tooltip>
+            Value
           </th>
           <td class="dex-trades-table-condensed__data">
             <not-available-label v-if="trade.value === '0'"/>

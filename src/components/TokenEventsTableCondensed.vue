@@ -7,12 +7,10 @@
       <tbody>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ tokensHints.hash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.hash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="token-events-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ tokensHints.eventName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokenEvents.eventName }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="token-events-table-condensed__data">
             {{ event.name }}
@@ -35,12 +31,10 @@
         </tr>
         <tr class="token-events-table-condensed__row">
           <th class="token-events-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ tokensHints.date }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokenEvents.date }}
+            </hint-tooltip>
+            <time-toggle-button/>
           </th>
           <td class="token-events-table-condensed__data">
             <block-time-cell

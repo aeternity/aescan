@@ -9,6 +9,7 @@
       {{ topAccountsHints.topAccounts }}
     </template>
   </page-header>
+
   <accounts-statistics class="accounts-panel"/>
   <accounts-chart-panel class="accounts-panel"/>
   <top-accounts-panel v-if="!isLoading"/>

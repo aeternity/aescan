@@ -18,7 +18,6 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   const stateChannelsCount = ref(null)
   const burnedCount = ref(null)
   const totalTokenSupply = ref(null)
-  const activeAccounts = ref(null)
 
   async function fetchTotalStats() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total?limit=1`)
@@ -44,12 +43,6 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     transactionsCount.value = data
   }
 
-  async function fetchActiveAccounts() {
-    activeAccounts.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/active-accounts?limit=1`)
-    activeAccounts.value = data.data[0].count
-  }
-
   return {
     maxTps,
     transactionsCount,
@@ -64,8 +57,6 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
     fetchTotalStats,
     fetchMaxTps,
     fetchTotalTransactionsCount,
-    fetchActiveAccounts,
     totalTokenSupply,
-    activeAccounts,
   }
 })

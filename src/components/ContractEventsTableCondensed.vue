@@ -33,12 +33,10 @@
         </tr>
         <tr class="contract-events-table-condensed__row">
           <th class="contract-events-table-condensed__header">
-            <app-tooltip>
-              <hint-tooltip>
-                {{ contractsHints.eventsName }}
-              </hint-tooltip>
-              Event Name
-            </app-tooltip>
+            <hint-tooltip>
+              {{ contractsHints.eventsName }}
+            </hint-tooltip>
+            Event Name
           </th>
           <td class="contract-events-table-condensed__data">
             {{ event.eventName ? event.eventName : 'N/A' }}

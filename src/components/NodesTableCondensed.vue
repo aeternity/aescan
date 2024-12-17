@@ -7,12 +7,10 @@
       <tbody>
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              Node Id
-              <template #tooltip>
-                {{ nodesHints.nodeId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.nodeId }}
+            </hint-tooltip>
+            Node Id
           </th>
           <td class="nodes-table-condensed__data">
             {{ index }}
@@ -21,12 +19,10 @@
 
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              Host
-              <template #tooltip>
-                {{ nodesHints.host }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.host }}
+            </hint-tooltip>
+            Host
           </th>
           <td class="nodes-table-condensed__data">
             {{ node.host }}
@@ -34,12 +30,10 @@
         </tr>
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              Port
-              <template #tooltip>
-                {{ nodesHints.port }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.port }}
+            </hint-tooltip>
+            Port
           </th>
           <td class="nodes-table-condensed__data">
             {{ node.port }}
@@ -47,12 +41,10 @@
         </tr>
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              Network Id
-              <template #tooltip>
-                {{ nodesHints.networkId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.networkId }}
+            </hint-tooltip>
+            Network Id
           </th>
           <td class="nodes-table-condensed__data">
             {{ formatNullable(node.networkId) }}
@@ -60,12 +52,10 @@
         </tr>
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              Version
-              <template #tooltip>
-                {{ nodesHints.nodeVersion }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.nodeVersion }}
+            </hint-tooltip>
+            Version
           </th>
           <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeVersion) }}
@@ -73,12 +63,10 @@
         </tr>
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              Revision
-              <template #tooltip>
-                {{ nodesHints.nodeRevision }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.nodeRevision }}
+            </hint-tooltip>
+            Revision
           </th>
           <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeRevision) }}
@@ -86,12 +74,10 @@
         </tr>
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              Vendor
-              <template #tooltip>
-                {{ nodesHints.nodeVendor }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.nodeVendor }}
+            </hint-tooltip>
+            Vendor
           </th>
           <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeVendor) }}
@@ -99,12 +85,10 @@
         </tr>
         <tr class="nodes-table-condensed__row">
           <th class="nodes-table-condensed__header">
-            <app-tooltip>
-              OS
-              <template #tooltip>
-                {{ nodesHints.os }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nodesHints.os }}
+            </hint-tooltip>
+            OS
           </th>
           <td class="nodes-table-condensed__data">
             {{ formatNullable(node.nodeOs) }}
@@ -115,7 +99,7 @@
   </div>
 </template>
 <script setup>
-import { nodesHints } from '../utils/hints/nodesHints'
+import { nodesHints } from '@/utils/hints/nodesHints'
 
 defineProps({
   nodes: {

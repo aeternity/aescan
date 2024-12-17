@@ -7,12 +7,10 @@
       <tbody>
         <tr class="token-holders-table-condensed__row">
           <th class="token-holders-table-condensed__header">
-            <app-tooltip>
-              Account
-              <template #tooltip>
-                {{ tokensHints.account }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.account }}
+            </hint-tooltip>
+            Account
           </th>
           <td class="token-holders-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="token-holders-table-condensed__row">
           <th class="token-holders-table-condensed__header">
-            <app-tooltip>
-              Amount
-              <template #tooltip>
-                {{ tokensHints.amount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.amount }}
+            </hint-tooltip>
+            Amount
           </th>
           <td class="token-holders-table-condensed__data">
             <price-label
@@ -38,12 +34,10 @@
         </tr>
         <tr class="token-holders-table-condensed__row">
           <th class="token-holders-table-condensed__header">
-            <app-tooltip>
-              Percentage
-              <template #tooltip>
-                {{ tokensHints.percentage }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.percentage }}
+            </hint-tooltip>
+            Percentage
           </th>
           <td class="token-holders-table-condensed__data">
             {{ holder.percentage }}

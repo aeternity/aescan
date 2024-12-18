@@ -5,12 +5,10 @@
         <tbody>
           <tr>
             <th class="dashboard-names-swiper__header">
-              <app-tooltip>
-                Name
-                <template #tooltip>
-                  {{ namesHints.nameId }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.nameId }}
+              </hint-tooltip>
+              Name
             </th>
             <td class="dashboard-names-swiper__data">
               <app-link
@@ -22,12 +20,11 @@
           </tr>
           <tr>
             <th class="dashboard-names-swiper__header">
-              <app-tooltip>
-                Claimed by
-                <template #tooltip>
-                  {{ namesHints.owner }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.owner }}
+              </hint-tooltip>
+
+              Claimed by
             </th>
             <td class="dashboard-names-swiper__data">
               <value-hash-ellipsed
@@ -37,12 +34,10 @@
           </tr>
           <tr>
             <th class="dashboard-names-swiper__header">
-              <app-tooltip>
-                Price
-                <template #tooltip>
-                  {{ namesHints.activationPrice }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.activationPrice }}
+              </hint-tooltip>
+              Price
             </th>
             <td class="dashboard-names-swiper__data">
               <price-label :price="name.price"/>
@@ -50,12 +45,10 @@
           </tr>
           <tr>
             <th>
-              <app-tooltip>
-                <time-toggle-button>Activated</time-toggle-button>
-                <template #tooltip>
-                  {{ namesHints.activationTime }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.activationTime }}
+              </hint-tooltip>
+              <time-toggle-button>Activated</time-toggle-button>
             </th>
             <td class="dashboard-names-swiper__data">
               <app-link

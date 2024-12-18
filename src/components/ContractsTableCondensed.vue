@@ -1,4 +1,4 @@
-<hint-tooltip>
+<template>
   <div>
     <table
       v-for="contract in contracts.data"
@@ -36,7 +36,6 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-
             <hint-tooltip>
               {{ contractsHints.hash }}
             </hint-tooltip>
@@ -50,10 +49,10 @@
         </tr>
         <tr class="contracts-table-condensed__row">
           <th class="contracts-table-condensed__header">
-              <hint-tooltip>
-                {{ contractsHints.creator }}
-              </hint-tooltip>
-              Created By
+            <hint-tooltip>
+              {{ contractsHints.creator }}
+            </hint-tooltip>
+            Created By
           </th>
           <td class="contracts-table-condensed__data">
             <value-hash-ellipsed

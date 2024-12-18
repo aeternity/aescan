@@ -57,7 +57,6 @@ const route = useRoute()
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function updateId(it) {
-  console.log('it', it)
   selectedScope.value = it
 }
 

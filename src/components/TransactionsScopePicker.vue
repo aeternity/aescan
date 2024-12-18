@@ -1,7 +1,7 @@
 <template>
   <div class="chart-controls__container">
     <scope-picker
-      v-model="fff"
+      :date="aaa"
       :is-scope-selected="isCustomIntervalSelected"
       placeholder="All Time"
       @updated="selectCustomInterval"/>
@@ -21,6 +21,14 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 const fff = useVModel(props, 'modelValue', emit)
+
+const aaa = computed(() => {
+  // todo this is how formatting look like
+  const bbb =
+    [fff.value?.customInterval.minStart,
+      fff.value?.customInterval.maxStart]
+  return bbb
+})
 
 const isCustomIntervalSelected = computed(() => {
   // todo sanitize null

@@ -54,12 +54,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Fee Recipient
-              <template #tooltip>
-                {{ keyblocksHints.beneficiary }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiary }}
+            </hint-tooltip>
+            Fee Recipient
           </th>
 
           <td class="keyblocks-table-condensed__data">
@@ -70,12 +68,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Beneficiary
-              <template #tooltip>
-                {{ keyblocksHints.beneficiary }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiary }}
+            </hint-tooltip>
+            Beneficiary
           </th>
 
           <td class="keyblocks-table-condensed__data">
@@ -90,7 +86,6 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   keyblocks: {

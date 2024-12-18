@@ -7,12 +7,10 @@
       <tbody>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            <app-tooltip>
-              Oracle ID
-              <template #tooltip>
-                {{ oraclesHints.oracleId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.oracleId }}
+            </hint-tooltip>
+            Oracle ID
           </th>
           <td class="oracles-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,11 @@
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Registered</time-toggle-button>
-              <template #tooltip>
-                {{ oraclesHints.registered }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.registered }}
+            </hint-tooltip>
+            <time-toggle-button>Registered</time-toggle-button>
+            >
           </th>
           <td class="oracles-table-condensed__data">
             <block-time-cell
@@ -37,12 +34,10 @@
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Expiration</time-toggle-button>
-              <template #tooltip>
-                {{ oraclesHints.expiration }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.expiration }}
+            </hint-tooltip>
+            <time-toggle-button>Expiration</time-toggle-button>
           </th>
           <td class="oracles-table-condensed__data">
             <block-time-cell
@@ -52,12 +47,10 @@
         </tr>
         <tr class="oracles-table-condensed__row">
           <th class="oracles-table-condensed__header">
-            <app-tooltip>
-              Query Fee
-              <template #tooltip>
-                {{ oraclesHints.queryFee }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.queryFee }}
+            </hint-tooltip>
+            Query Fee
           </th>
           <td class="oracles-table-condensed__data">
             <price-label :price="oracle.queryFee"/>

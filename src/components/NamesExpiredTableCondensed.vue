@@ -7,12 +7,10 @@
       <tbody>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ namesHints.nameId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.nameId }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="names-expired-table-condensed__data">
             <app-link
@@ -24,12 +22,10 @@
         </tr>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Expired</time-toggle-button>
-              <template #tooltip>
-                {{ namesHints.expired }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.expired }}
+            </hint-tooltip>
+            <time-toggle-button>Expired</time-toggle-button>
           </th>
           <td class="names-expired-table-condensed__data">
             <block-time-cell
@@ -39,12 +35,10 @@
         </tr>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            <app-tooltip>
-              Last Buyer
-              <template #tooltip>
-                {{ namesHints.lastBuyer }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.lastBuyer }}
+            </hint-tooltip>
+            Last Buyer
           </th>
           <td class="names-expired-table-condensed__data">
             <value-hash-ellipsed
@@ -56,12 +50,10 @@
         </tr>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            <app-tooltip>
-              Last Price
-              <template #tooltip>
-                {{ namesHints.lastPrice }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.lastPrice }}
+            </hint-tooltip>
+            Last Price
           </th>
           <td class="names-expired-table-condensed__data">
             <price-label :price="name.fee"/>
@@ -69,12 +61,10 @@
         </tr>
         <tr class="names-expired-table-condensed__row">
           <th class="names-expired-table-condensed__header">
-            <app-tooltip>
-              Last Owner
-              <template #tooltip>
-                {{ namesHints.lastOwner }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.lastOwner }}
+            </hint-tooltip>
+            Last Owner
           </th>
           <td class="names-expired-table-condensed__data">
             <value-hash-ellipsed

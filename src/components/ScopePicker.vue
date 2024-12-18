@@ -2,7 +2,7 @@
   <div class="scope-picker">
     <VueDatePicker
       ref="datepicker"
-      v-model="aaa"
+      v-model="neco"
       range
       min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
@@ -15,7 +15,7 @@
       :placeholder="placeholder"
       :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
       @cleared="alertFn"
-      @update:model-value="$emit('updated', aaa)"/>
+      @update:model-value="$emit('updated', neco)"/>
     <!--    <app-icon-->
     <!--      :size="28"-->
     <!--      name="cross"-->
@@ -27,14 +27,13 @@
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import { useVModel } from '@vueuse/core'
 import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 
 const datepicker = ref(null)
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 const props = defineProps({
-  modelValue: {
+  date: {
     type: Array,
     default: null,
   },
@@ -56,14 +55,14 @@ watch(() => props.isScopeSelected, (newVal, oldVal) => {
   }
 })
 //
-watch(date.value, (newModel, oldModel) => {
-  console.log('newModel', newModel)
-  console.log('oldModel', oldModel)
-})
+// watch(date.value, (newModel, oldModel) => {
+//   console.log('newModel', newModel)
+//   console.log('oldModel', oldModel)
+// })
 
 const alertFn = () => {
-  date.value = null
-  aaa.value = null
+  // date.value = null
+  // aaa.value = null
 }
 
 // todo rename closr

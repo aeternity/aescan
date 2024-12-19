@@ -33,35 +33,19 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const hasType = computed(() =>
     !!params.value?.txType,
   )
-
   const slug = computed(() => {
-    // todo condition
-    // todo has parameters
-    const isTyp = hasType.value || !!selectedTxType.value
-    const isInt = hasInterval.value || !!selectedScope.value
-
-    if (isInt || isTyp) {
-      const array = [
-        intervalSlug.value,
-        typeSlug.value,
-      ]
-        .filter(Boolean)
-      return array ? `?${array.join('&')}` : null
-    } else {
-      return ''
-    }
+    const queryParams = [intervalSlug.value, typeSlug.value].filter(Boolean)
+    return queryParams.length ? `?${queryParams.join('&')}` : ''
   })
 
   const typeSlug = computed(() => {
     return selectedTxType.value?.typeQuery !== undefined ? `${'txType=' + selectedTxType.value.typeQuery}` : null
   })
 
+  // todo tohle neni dobre wrap unwrap customInterval
+
   const intervalSlug = computed(() => {
-    // todo condition
-    const cond = hasInterval.value || !!selectedScope.value
-    console.log('cond', cond)
-    if (cond) {
-      // todo tohle neni dobre wrap unwrap customInterval
+    if (selectedScope.value) {
       return formatDateToParameters(
         selectedScope.value?.maxStart || selectedScope.value?.customInterval?.maxStart,
         selectedScope.value?.minStart || selectedScope.value?.customInterval?.minStart,
@@ -72,16 +56,16 @@ export const useTransactionsStore = defineStore('transactions', () => {
   })
 
   function changeRoute() {
-    console.log('slug.value', slug.value)
     push(`/transactions${slug.value}`)
   }
 
+  // todo naming scope vs interval
+  // todo counter
+  // todo test previous charts
+
   function getParams() {
-    const { txType, scope } = route.query
     params.value = route.query
-    const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-    const typeSlug = txTypeOption?.typeQuery
-    return [typeSlug, scope]
+    // todo mozna konverze uz tady
   }
 
   function setComponentState() {

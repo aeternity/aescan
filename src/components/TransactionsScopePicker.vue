@@ -1,7 +1,7 @@
 <template>
-  <div class="chart-controls__container">
+  <div>
     <scope-picker
-      :date="formattedInterval"
+      :date="formattedDate"
       :is-scope-selected="isCustomIntervalSelected"
       placeholder="All Time"
       @updated="selectCustomInterval"/>
@@ -12,7 +12,6 @@
 import { useVModel } from '@vueuse/core'
 import { computed } from 'vue'
 
-// Define props
 const props = defineProps({
   modelValue: {
     type: Number,
@@ -21,27 +20,26 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue'])
-
-const model = useVModel(props, 'modelValue', emit)
+const date = useVModel(props, 'modelValue', emit)
 
 // todo null handling
 // todo this is how formatting look like
-const formattedInterval = computed(() => {
-  if (!model.value?.customInterval) {
+const formattedDate = computed(() => {
+  if (!date.value?.customInterval) {
     return []
   }
   return [
-    model.value.customInterval.minStart,
-    model.value.customInterval.maxStart,
+    date.value.customInterval.minStart,
+    date.value.customInterval.maxStart,
   ]
 })
 
 const isCustomIntervalSelected = computed(() => {
-  return !!model.value?.customInterval
+  return !!date.value?.customInterval
 })
 
 function selectCustomInterval(interval) {
-  model.value = interval
+  date.value = interval
     ? {
       minStart: interval[0].toISOString().split('T')[0],
       maxStart: interval[1].toISOString().split('T')[0],

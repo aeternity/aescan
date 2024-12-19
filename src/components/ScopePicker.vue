@@ -2,7 +2,7 @@
   <div class="scope-picker">
     <VueDatePicker
       ref="datepicker"
-      v-model="selectedDateRange"
+      v-model="selectedDateScope"
       range
       min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
@@ -13,9 +13,9 @@
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       :placeholder="placeholder"
-      :ui="{input: scopePickerInputClass}"
-      @cleared="handleCleared"
-      @update:model-value="$emit('updated', selectedDateRange)"/>
+      :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
+      @cleared="clear"
+      @update:model-value="$emit('updated', selectedDateScope)"/>
   </div>
 </template>
 
@@ -45,24 +45,28 @@ const props = defineProps({
 
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
-const scopePickerInputClass = computed(() =>
-  `scope-picker__input ${props.isScopeSelected ? 'scope-picker__input--active' : ''}`,
-)
-
 watch(
   () => props.isScopeSelected,
   (newVal, oldVal) => {
     if (!newVal && oldVal) {
-      closeDatePicker() // Updated method name
+      close()
     }
   },
 )
 
-const handleCleared = () => {
+watch(
+  () => props.date,
+  newDate => {
+    selectedDateScope.value = newDate
+  },
+  { immediate: true },
+)
+
+function clear() {
   emit('updated', null)
 }
 
-function closeDatePicker() {
+function close() {
   if (datepicker.value) {
     datepicker.value.closeMenu()
   }

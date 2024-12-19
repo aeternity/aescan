@@ -33,8 +33,11 @@ describe('transactions', () => {
   it('should filter by combinig parameters from URL', () => {
     cy.visit('/transactions?scope=time:1733871600-1733958000&txType=spend')
     // todo check first type
+    // todo read button value
+    // todo read select value
     cy.get('.transactions-table tbody tr').should('have.length', 10)
   })
+
   it('should cancel filtering and clear url', () => {
     cy.visit('/transactions?scope=time:1733871600-1733958000&txType=spend')
 

@@ -4,7 +4,7 @@
       :date="formattedDate"
       :is-scope-selected="isCustomIntervalSelected"
       placeholder="All Time"
-      @updated="selectCustomInterval"/>
+      @updated="selectScope"/>
   </div>
 </template>
 
@@ -24,6 +24,7 @@ const date = useVModel(props, 'modelValue', emit)
 
 // todo null handling
 // todo this is how formatting look like
+// todo move formating to store
 const formattedDate = computed(() => {
   if (!date.value?.customInterval) {
     return []
@@ -38,7 +39,7 @@ const isCustomIntervalSelected = computed(() => {
   return !!date.value?.customInterval
 })
 
-function selectCustomInterval(interval) {
+function selectScope(interval) {
   date.value = interval
     ? {
       minStart: interval[0].toISOString().split('T')[0],

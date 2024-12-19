@@ -59,6 +59,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const intervalSlug = computed(() => {
     // todo condition
     const cond = hasInterval.value || !!selectedScope.value
+    console.log('cond', cond)
     if (cond) {
       // todo tohle neni dobre wrap unwrap customInterval
       return formatDateToParameters(
@@ -187,9 +188,13 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   function formatDateToParameters(minStart, maxStart) {
-    const from = DateTime.fromISO(maxStart).toSeconds()
-    const to = DateTime.fromISO(minStart).toSeconds()
-    return `scope=time:${from}-${to}`
+    if (minStart && maxStart) {
+      const from = DateTime.fromISO(maxStart).toSeconds()
+      const to = DateTime.fromISO(minStart).toSeconds()
+      return `scope=time:${from}-${to}`
+    } else {
+      return null
+    }
   }
 
   return {

@@ -61,8 +61,7 @@ watch(() => props.isScopeSelected, (newVal, oldVal) => {
 // })
 
 const alertFn = () => {
-  // date.value = null
-  // aaa.value = null
+  emit('updated', null)
 }
 
 // todo rename closr
@@ -70,7 +69,7 @@ function closeDatepicker() {
   if (datepicker) {
     datepicker.value.closeMenu()
   }
-  date.value = null
+  // date.value = null
 }
 
 </script>

@@ -2,7 +2,7 @@
   <div class="scope-picker">
     <VueDatePicker
       ref="datepicker"
-      v-model="neco"
+      v-model="selectedDateRange"
       range
       min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
@@ -13,13 +13,9 @@
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       :placeholder="placeholder"
-      :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
-      @cleared="alertFn"
-      @update:model-value="$emit('updated', neco)"/>
-    <!--    <app-icon-->
-    <!--      :size="28"-->
-    <!--      name="cross"-->
-    <!--      @click="clear()"/>-->
+      :ui="{input: scopePickerInputClass}"
+      @cleared="handleCleared"
+      @update:model-value="$emit('updated', selectedDateRange)"/>
   </div>
 </template>
 
@@ -49,29 +45,28 @@ const props = defineProps({
 
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
-watch(() => props.isScopeSelected, (newVal, oldVal) => {
-  if (!newVal && oldVal) {
-    closeDatepicker()
-  }
-})
-//
-// watch(date.value, (newModel, oldModel) => {
-//   console.log('newModel', newModel)
-//   console.log('oldModel', oldModel)
-// })
+const scopePickerInputClass = computed(() =>
+  `scope-picker__input ${props.isScopeSelected ? 'scope-picker__input--active' : ''}`,
+)
 
-const alertFn = () => {
+watch(
+  () => props.isScopeSelected,
+  (newVal, oldVal) => {
+    if (!newVal && oldVal) {
+      closeDatePicker() // Updated method name
+    }
+  },
+)
+
+const handleCleared = () => {
   emit('updated', null)
 }
 
-// todo rename closr
-function closeDatepicker() {
-  if (datepicker) {
+function closeDatePicker() {
+  if (datepicker.value) {
     datepicker.value.closeMenu()
   }
-  // date.value = null
 }
-
 </script>
 
 <style>

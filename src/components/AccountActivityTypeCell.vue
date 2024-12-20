@@ -30,7 +30,7 @@ const tx = computed(() => props.activity.payload?.tx)
 const activityType = computed(() => {
   switch (props.activity.type) {
   case 'SpendTxEvent':
-    return currency
+    return currency.value.symbol
   case 'NamePreclaimTxEvent':
   case 'NameClaimTxEvent':
   case 'NameTransferTxEvent':
@@ -70,7 +70,7 @@ const activityType = computed(() => {
     return 'Wrapped Transaction'
   case 'InternalTransferEvent':
     if (props.activity.payload.kind === 'reward_block') {
-      return currency
+      return currency.value.symbol
     } else if (
       DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'

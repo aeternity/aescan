@@ -16,8 +16,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const last24hsTransactionsTrend = ref(null)
   const last24hsAverageTransactionFees = ref(null)
   const feesTrend = ref(null)
-  const selectedTxType = ref(undefined)
-  const selectedScope = ref(undefined)
+  const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+  const selectedScope = ref(null)
   const pageLimit = ref(null)
   const params = ref(null)
 
@@ -40,7 +40,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   const scopeSlug = computed(() => {
     return selectedScope.value
-      ? formatDateToParameters(
+      ? formatScopeToParameters(
         selectedScope.value?.maxStart ?? selectedScope.value?.customInterval?.maxStart,
         selectedScope.value?.minStart ?? selectedScope.value?.customInterval?.minStart,
       )
@@ -52,9 +52,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   // todo naming scope vs interval
-  // todo counter
-  // todo test previous charts
-  // todo default state All Types
 
   function setUrlParametersToStore() {
     // todo as parameters, does not have to be store
@@ -63,11 +60,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const hasType = !!params.value?.txType
     // todo mozna konverze uz tady
 
+    console.log('selectedScope', selectedScope)
     selectedTxType.value = hasType
       ? TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
-      : null
+      : TX_TYPES_OPTIONS[0]
     selectedScope.value = hasInterval
-      ? formatParametersToDateObject(params.value.scope)
+      ? formatParametersToScopeObject(params.value.scope)
       : null
   }
 
@@ -105,7 +103,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
     if (scope) {
       // todo try to move
-      const bbb = formatDateToParameters(scope.customInterval.minStart, scope.customInterval.maxStart)
+      const bbb = formatScopeToParameters(scope.customInterval.minStart, scope.customInterval.maxStart)
       const ccc = bbb.substring(6)
       url.searchParams.append('scope', ccc)
     }
@@ -150,8 +148,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageLimit.value = value
   }
 
-  function formatParametersToDateObject(timeString) {
-    const parameters = timeString.split(':')[1].split('-')
+  function formatParametersToScopeObject(scopeString) {
+    const parameters = scopeString.split(':')[1].split('-')
+
     return {
       customInterval: {
         minStart: DateTime.fromSeconds(parseInt(parameters[0])),
@@ -160,7 +159,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     }
   }
 
-  function formatDateToParameters(minStart, maxStart) {
+  function formatScopeToParameters(minStart, maxStart) {
     if (minStart && maxStart) {
       const from = DateTime.fromISO(maxStart).toSeconds()
       const to = DateTime.fromISO(minStart).toSeconds()

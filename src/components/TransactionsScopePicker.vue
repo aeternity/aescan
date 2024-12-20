@@ -1,7 +1,7 @@
 <template>
   <div>
     <scope-picker
-      :date="formattedDate"
+      :scope="formattedScope"
       :is-scope-selected="isCustomIntervalSelected"
       placeholder="All Time"
       @updated="selectScope"/>
@@ -20,31 +20,28 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue'])
-const date = useVModel(props, 'modelValue', emit)
-
-// todo null handling
-// todo this is how formatting look like
-// todo move formating to store
-const formattedDate = computed(() => {
-  if (!date.value?.customInterval) {
-    return []
-  }
-  return [
-    date.value.customInterval.minStart,
-    date.value.customInterval.maxStart,
-  ]
-})
+const scope = useVModel(props, 'modelValue', emit)
 
 const isCustomIntervalSelected = computed(() => {
-  return !!date.value?.customInterval
+  return !!scope.value?.customInterval
 })
 
 function selectScope(interval) {
-  date.value = interval
+  scope.value = interval
     ? {
-      minStart: interval[0].toISOString().split('T')[0],
-      maxStart: interval[1].toISOString().split('T')[0],
+      customInterval: {
+        minStart: interval[0].toISOString().split('T')[0],
+        maxStart: interval[1].toISOString().split('T')[0],
+      },
     }
     : null
+  // todo no need sanitize
 }
+
+// todo null handling  need sanitize?
+// todo this is how formatting look like
+// todo move formating to store?
+const formattedScope = computed(() => scope.value?.customInterval
+  ? [scope.value.customInterval.minStart, scope.value.customInterval.maxStart]
+  : [])
 </script>

@@ -44,9 +44,6 @@ function selectPreset(option) {
 }
 
 function selectCustomInterval(dateCustomInterval) {
-  console.log('selectCustomInterval dateCustomInterval[0]', dateCustomInterval[0])
-  console.log('selectCustomInterval dateCustomInterval[0]', typeof dateCustomInterval[0])
-
   const customInterval = {
     customInterval: {
       minStart: dateCustomInterval[0].toISOString().split('T')[0],

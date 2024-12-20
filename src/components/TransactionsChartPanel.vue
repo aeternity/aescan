@@ -51,7 +51,6 @@ const props = defineProps({
 })
 
 const selectedScope = ref(props.scope)
-console.log('selectedScope', selectedScope)
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {

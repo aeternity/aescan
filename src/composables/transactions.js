@@ -54,17 +54,16 @@ export const useTransactionsStore = defineStore('transactions', () => {
   // todo naming scope vs interval
 
   function setUrlParametersToStore() {
-    // todo as parameters, does not have to be store
-    params.value = route.query
-    const hasInterval = !!params.value?.scope
-    const hasType = !!params.value?.txType
+    const { scope, txType } = route.query
+    const hasInterval = !!scope
+    const hasType = !!txType
     // todo mozna konverze uz tady
 
     selectedTxType.value = hasType
-      ? TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
+      ? TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
       : TX_TYPES_OPTIONS[0]
     selectedScope.value = hasInterval
-      ? formatParametersToScopeObject(params.value.scope)
+      ? formatParametersToScopeObject(scope)
       : null
   }
 
@@ -72,7 +71,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     setUrlParametersToStore()
 
     const ddd = scopeSlug.value ? scopeSlug.value.substring(6) : null
-    console.log('ddd', ddd)
 
     await fetchTransactions({
       queryParameters,

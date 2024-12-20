@@ -16,7 +16,6 @@
 
           <transactions-scope-picker
             v-model="selectedScope"
-            class="u-hidden-mobile"
             @updated="updateId"/>
 
           <!--          todo how to cancel scope-->
@@ -57,6 +56,7 @@ const route = useRoute()
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function updateId(it) {
+  // todo fix
   selectedScope.value = it
 }
 
@@ -89,10 +89,19 @@ async function loadNextTransactions() {
 .transactions-panel {
   &__select {
     margin-right: var(--space-1);
+
+    @media (--desktop) {
+      flex-direction: row;
+    }
   }
 
   &__header {
     display: flex;
+    flex-direction: column;
+
+    @media (--desktop) {
+      flex-direction: row;
+    }
   }
 }
 </style>

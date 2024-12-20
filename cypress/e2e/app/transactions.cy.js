@@ -78,11 +78,11 @@ describe('transactions', () => {
     cy.visit('/transactions?scope=time:1733871600-1733958000&txType=spend')
 
     cy.get('.paginated-content .multiselect').click()
-    cy.contains('.paginated-content .multiselect__option', 'All types').click()
+    cy.contains('.paginated-content .multiselect__option', 'All Types').click()
     cy.get('.dp--clear-btn').click()
 
     cy.url().should('eq', Cypress.config().baseUrl + '/transactions')
-    cy.get('.paginated-content .multiselect__single').contains('All types')
+    cy.get('.paginated-content .multiselect__single').contains('All Types')
     cy.get('.paginated-content .dp__input').should('have.value', '')
   })
 })

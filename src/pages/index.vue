@@ -13,7 +13,7 @@
         </div>
         <div class="dashboard__column">
           <p class="dashboard__paragraph dashboard__paragraph--horizontal">
-            Discover and navigate through the æternity blockchain mainnet, powered by
+            Discover and navigate through the æternity blockchain, powered by
             Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
             <app-link
               class="dashboard__link"

@@ -3,10 +3,10 @@ import { compileTemplate } from 'vue/compiler-sfc'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 const routesWithConditions = {
-  '/dex-trades': process.env.IS_HYPERCHAIN === 'true',
-  '/nodes': process.env.IS_HYPERCHAIN === 'true',
-  '/contract-verification/**': process.env.IS_HYPERCHAIN === 'true',
-  '/tokens/AE': process.env.IS_HYPERCHAIN === 'true',
+  '/dex-trades': process.env.DEX_BACKEND_URL === 'true',
+  '/nodes': process.env.NODES_BACKEND_URL === 'true',
+  '/contract-verification/**': process.env.CONTRACT_VERIFICATION_SERVICE_URL === 'true',
+  '/tokens/AE': process.env.ENABLE_MARKET_STATS === 'true',
 }
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -58,7 +58,8 @@ export default defineNuxtConfig({
       CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
       DEX_CONTRACTS: process.env.DEX_CONTRACTS?.split(';'),
       PLAUSIBLE_URL: process.env.PLAUSIBLE_URL,
-      IS_HYPERCHAIN: process.env.IS_HYPERCHAIN,
+      ENABLE_MARKET_STATS: process.env.ENABLE_MARKET_STATS,
+      NODES_BACKEND_URL: process.env.NODES_BACKEND_URL,
     },
   },
   postcss: {

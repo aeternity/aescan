@@ -7,7 +7,7 @@ export const MARKET_STATS_HOTCOIN_ADDRESS = 'https://api.hotcoinfin.com/v1/marke
 
 export const MINUTES_PER_BLOCK = 3
 export const TX_TYPES_OPTIONS = [
-  { typeQuery: null, label: 'All types' },
+  { typeQuery: null, label: 'All Types' },
   { typeQuery: 'spend', label: 'SpendTx' },
   { typeQuery: 'contract_call', label: 'ContractCallTx' },
   { typeQuery: 'contract_create', label: 'ContractCreateTx' },

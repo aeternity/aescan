@@ -2,8 +2,9 @@
   <div>
     <scope-picker
       :scope="formattedScope"
-      :is-scope-selected="isCustomIntervalSelected"
+      :is-scope-selected="isScopeSelected"
       placeholder="All Time"
+      :clearable="true"
       @updated="selectScope"/>
   </div>
 </template>
@@ -19,15 +20,14 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
-const scope = useVModel(props, 'modelValue', emit)
+const model = useVModel(props, 'modelValue', null)
 
-const isCustomIntervalSelected = computed(() => {
-  return !!scope.value?.customInterval
+const isScopeSelected = computed(() => {
+  return !!model.value
 })
 
 function selectScope(interval) {
-  scope.value = interval
+  model.value = interval
     ? {
       customInterval: {
         minStart: interval[0].toISOString().split('T')[0],
@@ -35,13 +35,10 @@ function selectScope(interval) {
       },
     }
     : null
-  // todo no need sanitize
 }
 
-// todo null handling  need sanitize?
-// todo this is how formatting look like
 // todo move formating to store?
-const formattedScope = computed(() => scope.value?.customInterval
-  ? [scope.value.customInterval.minStart, scope.value.customInterval.maxStart]
+const formattedScope = computed(() => model.value
+  ? [model.value.customInterval.minStart, model.value.customInterval.maxStart]
   : [])
 </script>

@@ -9,7 +9,7 @@
       :max-date="today"
       auto-apply
       hide-input-icon
-      :clearable="true"
+      :clearable="clearable"
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       :placeholder="placeholder"
@@ -40,6 +40,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: 'CUSTOM',
+  },
+  clearable: {
+    type: Boolean,
+    default: false,
   },
 })
 

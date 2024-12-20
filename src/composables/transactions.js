@@ -28,12 +28,14 @@ export const useTransactionsStore = defineStore('transactions', () => {
   )
 
   const slug = computed(() => {
-    const queryParams = [scopeSlug.value, typeSlug.value].filter(Boolean)
-    return queryParams.length ? `?${queryParams.join('&')}` : ''
+    const slugParts = [scopeSlug.value, typeSlug.value].filter(Boolean)
+    return slugParts.length ? `?${slugParts.join('&')}` : ''
   })
 
   const typeSlug = computed(() => {
-    return selectedTxType.value?.typeQuery !== undefined ? `${'txType=' + selectedTxType.value.typeQuery}` : null
+    return selectedTxType.value?.typeQuery !== undefined
+      ? `${'txType=' + selectedTxType.value.typeQuery}`
+      : null
   })
 
   const scopeSlug = computed(() => {

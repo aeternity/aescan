@@ -32,16 +32,17 @@ describe('transactions', () => {
   })
   it('should filter by combinig parameters from URL', () => {
     cy.visit('/transactions?scope=time:1733871600-1733958000&txType=spend')
-    // todo check first type
-    // todo read button value
-    // todo read select value
+
+    cy.get('.paginated-content .dp__input')
+      .should('have.value', '12/11/2024 - 12/12/2024')
+    cy.get('.paginated-content .multiselect__single').contains('SpendTx')
     cy.get('.transactions-table tbody tr').should('have.length', 10)
+    cy.get('.transactions-table tbody tr').contains('td', 'SpendTx').should('have.length', 1)
   })
 
   it('should cancel filtering and clear url', () => {
     cy.visit('/transactions?scope=time:1733871600-1733958000&txType=spend')
 
-    // todo check first type
     cy.get('.paginated-content .multiselect').click()
     cy.contains('.paginated-content .multiselect__option', 'All types').click()
     cy.get('.dp--clear-btn').click()
@@ -51,7 +52,6 @@ describe('transactions', () => {
   it('should select the date', () => {
     cy.visit('/transactions')
 
-    // todo check first type
     cy.get('.paginated-content .multiselect').click()
     cy.contains('.paginated-content .multiselect__option', 'SpendTx').click()
     cy.get('.paginated-content .scope-picker').click()

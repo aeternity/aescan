@@ -6,9 +6,13 @@
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
+import { storeToRefs } from 'pinia'
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
+import { useAppStore } from '@/stores/app'
 
 const { DEX_CONTRACTS } = useRuntimeConfig().public
+
+const { currency } = storeToRefs(useAppStore())
 
 const props = defineProps({
   accountDetails: {
@@ -26,7 +30,7 @@ const tx = computed(() => props.activity.payload?.tx)
 const activityType = computed(() => {
   switch (props.activity.type) {
   case 'SpendTxEvent':
-    return 'AE'
+    return currency
   case 'NamePreclaimTxEvent':
   case 'NameClaimTxEvent':
   case 'NameTransferTxEvent':
@@ -66,7 +70,7 @@ const activityType = computed(() => {
     return 'Wrapped Transaction'
   case 'InternalTransferEvent':
     if (props.activity.payload.kind === 'reward_block') {
-      return 'AE'
+      return currency
     } else if (
       DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'

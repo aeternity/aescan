@@ -9,6 +9,8 @@
         @click="selectPreset(option)">
         {{ option.label }}
       </app-chip>
+      <!--      todo improve naming-->
+
       <scope-picker
         :is-scope-selected="isCustomIntervalSelected"
         @updated="selectCustomInterval"/>
@@ -42,6 +44,9 @@ function selectPreset(option) {
 }
 
 function selectCustomInterval(dateCustomInterval) {
+  console.log('selectCustomInterval dateCustomInterval[0]', dateCustomInterval[0])
+  console.log('selectCustomInterval dateCustomInterval[0]', typeof dateCustomInterval[0])
+
   const customInterval = {
     customInterval: {
       minStart: dateCustomInterval[0].toISOString().split('T')[0],

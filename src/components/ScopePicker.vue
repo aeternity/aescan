@@ -2,7 +2,7 @@
   <div class="scope-picker">
     <VueDatePicker
       ref="datepicker"
-      v-model="selectedDateScope"
+      v-model="selectedScope"
       range
       min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
@@ -15,7 +15,7 @@
       :placeholder="placeholder"
       :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
       @cleared="clear"
-      @update:model-value="$emit('updated', selectedDateScope)"/>
+      @update:model-value="$emit('updated', selectedScope)"/>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ const datepicker = ref(null)
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 const props = defineProps({
-  date: {
+  scope: {
     type: Array,
     default: null,
   },
@@ -54,12 +54,15 @@ watch(
   },
 )
 
+// todo better naming proximity
 watch(
-  () => props.date,
-  newDate => {
-    selectedDateScope.value = newDate
+  () => props.scope,
+  newScope => {
+    console.log('newScope', newScope)
+    selectedScope.value = newScope
   },
   { immediate: true },
+  // todo is immidieate necessary
 )
 
 function clear() {

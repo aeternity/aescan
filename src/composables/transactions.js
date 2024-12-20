@@ -60,7 +60,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const hasType = !!params.value?.txType
     // todo mozna konverze uz tady
 
-    console.log('selectedScope', selectedScope)
     selectedTxType.value = hasType
       ? TX_TYPES_OPTIONS.find(option => option.typeQuery === params.value.txType)
       : TX_TYPES_OPTIONS[0]
@@ -72,15 +71,18 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function loadTransactions(queryParameters) {
     setUrlParametersToStore()
 
+    const ddd = scopeSlug.value ? scopeSlug.value.substring(6) : null
+    console.log('ddd', ddd)
+
     await fetchTransactions({
       queryParameters,
-      scope: selectedScope.value,
+      scope: ddd,
       type: selectedTxType.value?.typeQuery,
       limit: pageLimit.value,
     })
 
     await fetchTransactionsCount({
-      scope: selectedScope.value,
+      scope: ddd,
       type: selectedTxType.value?.typeQuery,
     })
 
@@ -88,6 +90,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   async function fetchTransactions({ queryParameters, scope, type, limit } = {}) {
+    console.log('fetchTransactions scope', scope)
+
     rawTransactions.value = null
 
     if (queryParameters) {
@@ -102,10 +106,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     url.searchParams.append('limit', limit.value ?? 10)
 
     if (scope) {
-      // todo try to move
-      const bbb = formatScopeToParameters(scope.customInterval.minStart, scope.customInterval.maxStart)
-      const ccc = bbb.substring(6)
-      url.searchParams.append('scope', ccc)
+      url.searchParams.append('scope', scope)
     }
 
     if (type) {
@@ -118,6 +119,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   async function fetchTransactionsCount({ scope, type }) {
+    console.log('fetchTransactionsCount scope', scope)
     transactionsCount.value = null
     const url = txType ? `${MIDDLEWARE_URL}/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/transactions/count`
     const { data } = await axios.get(url)

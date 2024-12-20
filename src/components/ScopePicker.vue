@@ -58,7 +58,6 @@ watch(
 watch(
   () => props.scope,
   newScope => {
-    console.log('newScope', newScope)
     selectedScope.value = newScope
   },
   { immediate: true },

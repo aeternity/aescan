@@ -124,7 +124,7 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   async function fetchAccountTokensPrices() {
-    if (featureFlags.isHyperchain) {
+    if (!featureFlags.dex) {
       return
     }
 

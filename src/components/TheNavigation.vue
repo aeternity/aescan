@@ -48,7 +48,7 @@ const menuOptions = ref([
       {
         name: 'Nodes',
         path: '/nodes',
-        hidden: featureFlags.isHyperchain,
+        hidden: !featureFlags.nodes,
       },
       {
         name: 'Oracles',
@@ -67,7 +67,7 @@ const menuOptions = ref([
       {
         name: 'AE Coin',
         path: '/tokens/AE',
-        hidden: featureFlags.isHyperchain,
+        hidden: !featureFlags.marketStats,
       },
       {
         name: 'AEX9 Tokens',
@@ -80,7 +80,7 @@ const menuOptions = ref([
       {
         name: 'DEX Trades',
         path: '/dex-trades',
-        hidden: featureFlags.isHyperchain,
+        hidden: !featureFlags.dex,
       },
     ],
   },
@@ -91,7 +91,7 @@ const menuOptions = ref([
       {
         name: 'Smart Contract Verification',
         path: '/contract-verification',
-        hidden: featureFlags.isHyperchain,
+        hidden: !featureFlags.smartContractVerification,
       },
     ],
   },

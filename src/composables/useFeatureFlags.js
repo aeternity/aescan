@@ -1,10 +1,16 @@
 const useFeatureFlags = () => {
   const {
-    IS_HYPERCHAIN,
+    DEX_BACKEND_URL,
+    CONTRACT_VERIFICATION_SERVICE_URL,
+    ENABLE_MARKET_STATS,
+    NODES_BACKEND_URL,
   } = useRuntimeConfig().public
 
   return {
-    isHyperchain: !!IS_HYPERCHAIN,
+    dex: !!DEX_BACKEND_URL,
+    smartContractVerification: !!CONTRACT_VERIFICATION_SERVICE_URL,
+    marketStats: !!ENABLE_MARKET_STATS,
+    nodes: !!NODES_BACKEND_URL,
   }
 }
 

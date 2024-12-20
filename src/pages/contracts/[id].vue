@@ -31,7 +31,7 @@
         <contract-events-panel/>
       </app-tab>
       <app-tab
-        v-if="!featureFlags.isHyperchain"
+        v-if="featureFlags.smartContractVerification"
         title="Verification"
         :has-verified-icon="isVerified">
         <contract-verified-panel/>
@@ -118,7 +118,7 @@ if (process.client && !error.value) {
     queryParameters: `/v3/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
 
-  if (!featureFlags.isHyperchain) {
+  if (!featureFlags.smartContractVerification) {
     await fetchVerificationDetail(route.params.id)
   }
 }

@@ -145,7 +145,7 @@
           </th>
           <td>
             <app-link
-              v-if="!featureFlags.isHyperchain && tokenDexUrl"
+              v-if="featureFlags.dex && tokenDexUrl"
               :to="tokenDexUrl"
               class="token-details-panel__link">
               <app-icon

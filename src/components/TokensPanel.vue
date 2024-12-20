@@ -53,7 +53,7 @@ async function loadNextTokens() {
 }
 
 const tokenSelectVisible = computed(() => {
-  return !featureFlags.isHyperchain && NETWORK_NAME !== 'TESTNET'
+  return featureFlags.dex && NETWORK_NAME !== 'TESTNET'
 })
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)

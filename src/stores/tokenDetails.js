@@ -61,7 +61,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   }
 
   async function fetchTokenPrice() {
-    if (featureFlags.isHyperchain) {
+    if (!featureFlags.dex) {
       return
     }
 

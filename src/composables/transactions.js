@@ -33,21 +33,18 @@ export const useTransactionsStore = defineStore('transactions', () => {
   })
 
   const typeSlug = computed(() => {
-    return selectedTxType.value?.typeQuery !== undefined
-      ? `${'txType=' + selectedTxType.value.typeQuery}`
+    return selectedTxType.value?.typeQuery
+      ? `txType=${selectedTxType.value.typeQuery}`
       : null
   })
 
   const scopeSlug = computed(() => {
-    // todo tohle neni dobre wrap unwrap customInterval
-    if (selectedScope.value) {
-      return formatDateToParameters(
-        selectedScope.value?.maxStart || selectedScope.value?.customInterval?.maxStart,
-        selectedScope.value?.minStart || selectedScope.value?.customInterval?.minStart,
+    return selectedScope.value
+      ? formatDateToParameters(
+        selectedScope.value?.maxStart ?? selectedScope.value?.customInterval?.maxStart,
+        selectedScope.value?.minStart ?? selectedScope.value?.customInterval?.minStart,
       )
-    } else {
-      return null
-    }
+      : null
   })
 
   function changeRoute() {

@@ -12,6 +12,14 @@
 <script setup>
 import { useVModel } from '@vueuse/core'
 import { computed } from 'vue'
+import { useTransactionsStore } from '~/stores/transactions'
+
+const transactionsStore = useTransactionsStore()
+
+const {
+  formatStoreObjectToDatePickerObject,
+  formatPickerObjectToStoreObject,
+} = transactionsStore
 
 const props = defineProps({
   modelValue: {
@@ -27,18 +35,9 @@ const isScopeSelected = computed(() => {
 })
 
 function selectScope(interval) {
-  model.value = interval
-    ? {
-      customInterval: {
-        minStart: interval[0].toISOString().split('T')[0],
-        maxStart: interval[1].toISOString().split('T')[0],
-      },
-    }
-    : null
+  // model.value = formatB(interval)
+  model.value = formatPickerObjectToStoreObject(interval)
 }
 
-// todo move formating to store?
-const formattedScope = computed(() => model.value
-  ? [model.value.customInterval.minStart, model.value.customInterval.maxStart]
-  : [])
+const formattedScope = computed(() => formatStoreObjectToDatePickerObject(model.value))
 </script>

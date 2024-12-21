@@ -19,7 +19,7 @@
 <script setup>
 import PageHeader from '@/components/PageHeader'
 import { topAccountsHints } from '@/utils/hints/topAccountsHints'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

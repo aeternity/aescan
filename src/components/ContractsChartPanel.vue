@@ -28,14 +28,7 @@ const chartsStore = useChartsStore()
 const { contractsStatistics } = storeToRefs(chartsStore)
 const { fetchContractsStatistics } = chartsStore
 
-const props = defineProps({
-  range: {
-    required: true,
-    type: Object,
-  },
-})
-
-const selectedRange = ref(props.range)
+const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadContractsStatistics()

@@ -109,6 +109,10 @@ const menuOptions = ref([{
       path: '/charts/contracts',
     },
     {
+      name: 'Accounts',
+      path: '/charts/accounts',
+    },
+    {
       name: 'Names',
       path: '/charts/names',
     },

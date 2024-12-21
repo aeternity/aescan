@@ -5,7 +5,7 @@ import { Contract } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
 import { useWalletStore } from '@/stores/wallet'
 import { useContractDetailsStore } from '@/stores/contractDetails'
-import { adaptAciObject, adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '~/utils/adapters'
+import { adaptAciObject, adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '@/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public

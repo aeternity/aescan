@@ -24,7 +24,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
   const selectedScope = ref(null)
   const pageLimit = ref(null)
-  const params = ref(null)
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -46,8 +45,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const scopeSlug = computed(() => {
     return selectedScope.value
       ? formatScopeToParameters(
-        selectedScope.value?.maxStart ?? selectedScope.value?.customInterval?.maxStart,
-        selectedScope.value?.minStart ?? selectedScope.value?.customInterval?.minStart,
+        selectedScope.value?.customInterval?.maxStart,
+        selectedScope.value?.customInterval?.minStart,
       )
       : null
   })
@@ -71,17 +70,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
       : null
   }
 
-  function formatParametersToScopeObject(scopeString) {
-    const parameters = scopeString.split(':')[1].split('-')
-
-    return {
-      customInterval: {
-        minStart: DateTime.fromSeconds(parseInt(parameters[0])),
-        maxStart: DateTime.fromSeconds(parseInt(parameters[1])),
-      },
-    }
-  }
-
   function formatScopeToParameters(minStart, maxStart) {
     if (minStart && maxStart) {
       const from = DateTime.fromISO(maxStart).toSeconds()
@@ -92,10 +80,15 @@ export const useTransactionsStore = defineStore('transactions', () => {
     }
   }
 
-  function formatStoreObjectToDatePickerObject(mod) {
-    return mod
-      ? [mod.customInterval.minStart, mod.customInterval.maxStart]
-      : []
+  function formatParametersToScopeObject(scopeString) {
+    const parameters = scopeString.split(':')[1].split('-')
+
+    return {
+      customInterval: {
+        minStart: DateTime.fromSeconds(parseInt(parameters[0])),
+        maxStart: DateTime.fromSeconds(parseInt(parameters[1])),
+      },
+    }
   }
 
   function formatPickerObjectToStoreObject(interval) {
@@ -109,6 +102,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
     } else {
       return null
     }
+  }
+
+  function formatStoreObjectToDatePickerObject(mod) {
+    return mod
+      ? [mod.customInterval.minStart, mod.customInterval.maxStart]
+      : []
   }
 
   async function loadTransactions(queryParameters) {

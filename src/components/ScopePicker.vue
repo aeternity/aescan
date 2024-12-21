@@ -157,4 +157,7 @@ function close() {
     }
   }
 }
+
 </style>
+<!--          todo mobile UI-->
+<!--          todo scope color-->

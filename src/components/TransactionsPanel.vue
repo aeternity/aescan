@@ -17,10 +17,6 @@
           <transactions-scope-picker
             v-model="selectedScope"
             @updated="updateId"/>
-
-          <!--          todo how to cancel scope-->
-          <!--          todo mobile-->
-          <!--          todo fix counter-->
         </div>
       </template>
       <transactions-table

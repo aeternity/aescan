@@ -35,7 +35,7 @@ const props = defineProps({
     type: Array,
     default: null,
   },
-  interval: {
+  intervalBy: {
     type: String,
     required: true,
   },
@@ -55,7 +55,7 @@ const labels = computed(() => {
 
 function formatDate(label) {
   const date = DateTime.fromISO(label)
-  if (props.interval === 'month') {
+  if (props.intervalBy === 'month') {
     return date.toFormat('yyyy/MM')
   }
 

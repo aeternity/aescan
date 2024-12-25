@@ -11,7 +11,7 @@
 
     <line-chart
       :data="contractsStatistics"
-      :interval="selectedScope.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
       v-model="selectedScope"
@@ -32,7 +32,8 @@ const props = defineProps({
     default: CHART_INTERVALS_PRESETS_OPTIONS[4],
   },
 })
-
+// todo is props needed?
+// todo directly bind props
 const selectedScope = ref(props.scope)
 
 await useAsyncData(async() => {
@@ -48,9 +49,9 @@ if (process.client) {
 
 async function loadContractsStatistics() {
   await fetchContractsStatistics(
-    selectedScope.value.interval,
+    selectedScope.value.preset,
     selectedScope.value.limit,
-    selectedScope.value.customInterval)
+    selectedScope.value.scope)
 }
 
 </script>

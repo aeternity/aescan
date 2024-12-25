@@ -11,7 +11,7 @@
 
     <line-chart
       :data="hashrateStatistics"
-      :interval="selectedScope.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
       v-model="selectedScope"
@@ -22,7 +22,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '~/utils/constants'
 
 const chartsStore = useChartsStore()
 const { hashrateStatistics } = storeToRefs(chartsStore)
@@ -31,19 +31,13 @@ const { hashrateStatistics } = storeToRefs(useChartsStore())
 const { fetchHashrateStatistics } = useChartsStore()
 
 const props = defineProps({
-  hasSelect: {
-    required: true,
-    type: Boolean,
-  },
   scope: {
     required: true,
     type: Object,
   },
 })
 
-const selectedScope = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
-const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
+const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadHashratetatistics()
@@ -53,19 +47,20 @@ await useAsyncData(async() => {
 if (process.client) {
   watch([selectedScope, selectedTxType], async() => {
     await loadHashratetatistics()
+    // todo fix typo
   })
 }
 
 async function loadHashratetatistics() {
   await fetchHashrateStatistics(
-    selectedScope.value.interval,
+    selectedScope.value.preset,
     selectedScope.value.limit,
-    selectedScope.value.customInterval)
+    selectedScope.value.scope)
 }
 </script>
 
 <style scoped>
-.hashrate-chart-pane__controls {
+.hashrate-chart-panel__controls {
   margin-top: var(--space-4);
 }
 </style>

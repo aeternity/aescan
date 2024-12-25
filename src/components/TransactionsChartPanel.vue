@@ -19,7 +19,7 @@
 
     <line-chart
       :data="transactionsStatistics"
-      :interval="selectedScope.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
       v-model="selectedScope"
@@ -66,9 +66,9 @@ if (process.client) {
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
-    selectedScope.value.interval,
+    selectedScope.value.preset,
     selectedScope.value.limit,
-    selectedScope.value.customInterval,
+    selectedScope.value.scope,
     props.hasSelect ? selectedTxType.value.typeQuery : null)
 }
 </script>

@@ -2,7 +2,7 @@
   <div>
     <div class="chart-controls__container">
       <app-chip
-        v-for="option in CHART_INTERVALS_PRESETS_OPTIONS"
+        v-for="option in CHART_SCOPE_PRESETS_OPTIONS"
         :key="option.label"
         class="chart-controls__button"
         :variant="isPresetSelected(option) ? 'error' : 'secondary'"
@@ -12,8 +12,8 @@
       <!--      todo improve naming-->
 
       <scope-picker
-        :is-scope-selected="isCustomIntervalSelected"
-        @updated="selectCustomInterval"/>
+        :is-scope-selected="isCustomScopeSelected"
+        @updated="selectCustomScope"/>
     </div>
   </div>
 </template>
@@ -32,8 +32,17 @@ const props = defineProps({
 
 const selectedScope = useVModel(props, 'modelValue', emit)
 
-const isCustomIntervalSelected = computed(() =>
-  Object.keys(selectedScope.value).includes('customInterval'))
+const isCustomScopeSelected = computed(() =>
+  Object.keys(selectedScope.value).includes('scope'))
+
+function selectCustomScope(scope) {
+  selectedScope.value = {
+    scope: {
+      minStart: scope[0],
+      maxStart: scope[1],
+    },
+  }
+}
 
 function isPresetSelected(option) {
   return selectedScope.value.label === option.label
@@ -41,16 +50,6 @@ function isPresetSelected(option) {
 
 function selectPreset(option) {
   selectedScope.value = option
-}
-
-function selectCustomInterval(dateCustomInterval) {
-  console.log('dateCustomInterval', dateCustomInterval)
-  selectedScope.value = {
-    customInterval: {
-      minStart: dateCustomInterval[0],
-      maxStart: dateCustomInterval[1],
-    },
-  }
 }
 
 </script>

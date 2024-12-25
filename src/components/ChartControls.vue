@@ -44,13 +44,13 @@ function selectPreset(option) {
 }
 
 function selectCustomInterval(dateCustomInterval) {
-  const customInterval = {
+  console.log('dateCustomInterval', dateCustomInterval)
+  selectedScope.value = {
     customInterval: {
-      minStart: dateCustomInterval[0].toISOString().split('T')[0],
-      maxStart: dateCustomInterval[1].toISOString().split('T')[0],
+      minStart: dateCustomInterval[0],
+      maxStart: dateCustomInterval[1],
     },
   }
-  selectedScope.value = customInterval
 }
 
 </script>

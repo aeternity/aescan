@@ -21,6 +21,7 @@
 
 <script setup>
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { namesStatistics } = storeToRefs(useChartsStore())
 const { fetchNamesStatistics } = useChartsStore()
@@ -48,7 +49,7 @@ if (process.client) {
 
 async function loadNamesStatistics() {
   await fetchNamesStatistics(
-    selectedScope.value.preset,
+    selectedScope.value.intervalBy,
     selectedScope.value.limit,
     selectedScope.value.scope)
 }

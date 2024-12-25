@@ -66,7 +66,7 @@ if (process.client) {
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
-    selectedScope.value.preset,
+    selectedScope.value.intervalBy,
     selectedScope.value.limit,
     selectedScope.value.scope,
     props.hasSelect ? selectedTxType.value.typeQuery : null)

@@ -21,6 +21,7 @@
 
 <script setup>
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { contractsStatistics } = storeToRefs(useChartsStore())
 const { fetchContractsStatistics } = useChartsStore()
@@ -49,7 +50,7 @@ if (process.client) {
 
 async function loadContractsStatistics() {
   await fetchContractsStatistics(
-    selectedScope.value.preset,
+    selectedScope.value.intervalBy,
     selectedScope.value.limit,
     selectedScope.value.scope)
 }

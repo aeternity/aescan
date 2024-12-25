@@ -40,7 +40,7 @@ if (process.client) {
 
 async function loadKeyblockStatistics() {
   await fetchKeyblocksStatistics(
-    selectedScope.value.preset,
+    selectedScope.value.intervalBy,
     selectedScope.value.limit,
     selectedScope.value.scope)
 }

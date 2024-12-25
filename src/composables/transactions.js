@@ -23,7 +23,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
   const selectedScope = ref(null)
   const pageLimit = ref(null)
-  // todo di i need page limit
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -36,72 +35,46 @@ export const useTransactionsStore = defineStore('transactions', () => {
     return slugParts.length ? `?${slugParts.join('&')}` : ''
   })
 
-  const typeSlug = computed(() => {
-    return selectedTxType.value?.typeQuery
+  const typeSlug = computed(() =>
+    selectedTxType.value?.typeQuery
       ? `txType=${selectedTxType.value.typeQuery}`
-      : null
-  })
-
-  // todo do i need return
-  const scopeSlug = computed(() => {
-    return selectedScope.value
-      ? formatObjectToParameters(
-        selectedScope.value[0],
-        selectedScope.value[1],
-      )
-      : null
-  })
+      : null,
+  )
+  // todo remove time
+  const scopeSlug = computed(() =>
+    selectedScope.value
+      ? `scope=time:${selectedScope.value[0]}-${selectedScope.value[1]}`
+      : null,
+  )
 
   function changeRoute() {
     push(`/transactions${slug.value}`)
   }
 
-  // todo naming scope vs interval
-
   function setUrlParametersToStore() {
     const { scope, txType } = route.query
 
-    // todo mozna konverze uz tady
+    const [min, max] = scope ? scope.split(':')[1].split('-') : [null, null]
+
+    // todo format separate fxs
 
     selectedTxType.value = txType
       ? TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
       : TX_TYPES_OPTIONS[0]
     selectedScope.value = scope
-      ? formatUrlToObject(scope)
+      ? [min, max]
       : null
-  }
-
-  function formatObjectToParameters(minStart, maxStart) {
-    if (minStart && maxStart) {
-      return `scope=time:${minStart}-${maxStart}`
-    } else {
-      return null
-    }
-  }
-
-  function formatUrlToObject(scopeString) {
-    const parameters = scopeString.split(':')[1].split('-')
-    return [parameters[0], parameters[1]]
   }
 
   async function loadTransactions(queryParameters) {
     setUrlParametersToStore()
 
-    // todo this formatting?
-    console.log('scopeSlug.value', scopeSlug.value)
-    const scopeString = scopeSlug.value ? scopeSlug.value.substring(6) : null
-    console.log('scopeString', scopeString)
+    const type = selectedTxType.value?.typeQuery
+    const scope = scopeSlug.value ? scopeSlug.value.substring(6) : null
+
     await Promise.all([
-      fetchTransactions({
-        queryParameters,
-        scope: scopeString,
-        type: selectedTxType.value?.typeQuery,
-        limit: pageLimit.value,
-      }),
-      fetchTransactionsCount({
-        scope: scopeString,
-        type: selectedTxType.value?.typeQuery,
-      }),
+      fetchTransactions({ queryParameters, scope, type, limit: pageLimit.value }),
+      fetchTransactionsCount({ scope, type }),
     ])
     setPageIndex(1)
   }

@@ -32,19 +32,17 @@ const { fetchAccountsStatistics } = useChartsStore()
 const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
-  await loadHashrateStatistics()
+  await loadAccountStatistics()
   return true
 })
 
-// todo check charts
 if (process.client) {
   watch([selectedScope], async() => {
-    await loadHashrateStatistics()
-    // todo fix
+    await loadAccountStatistics()
   })
 }
 
-async function loadHashrateStatistics() {
+async function loadAccountStatistics() {
   await fetchAccountsStatistics(
     selectedScope.value.intervalBy,
     selectedScope.value.limit,

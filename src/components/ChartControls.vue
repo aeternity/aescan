@@ -32,8 +32,7 @@ const props = defineProps({
 
 const selectedScope = useVModel(props, 'modelValue', emit)
 
-const isCustomScopeSelected = computed(() =>
-  Object.keys(selectedScope.value).includes('scope'))
+const isCustomScopeSelected = computed(() => Object.keys(selectedScope.value).includes('scope'))
 
 function selectCustomScope(scope) {
   selectedScope.value = {

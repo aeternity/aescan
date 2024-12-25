@@ -25,14 +25,7 @@ import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 const { difficultyStatistics } = storeToRefs(useChartsStore())
 const { fetchDifficultyStatistics } = useChartsStore()
 
-const props = defineProps({
-  scope: {
-    required: true,
-    type: Object,
-  },
-})
-
-const selectedScope = ref(props.scope)
+const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadDifficultytatistics()
@@ -47,7 +40,7 @@ if (process.client) {
 
 async function loadDifficultytatistics() {
   await fetchDifficultyStatistics(
-    selectedScope.value.preset,
+    selectedScope.value.intervalBy,
     selectedScope.value.limit,
     selectedScope.value.scope)
 }

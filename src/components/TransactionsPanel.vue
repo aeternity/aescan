@@ -13,10 +13,7 @@
           <transactions-select
             v-model="selectedTxType"
             class="transactions-panel__select"/>
-
-          <transactions-scope-picker
-            v-model="selectedScope"
-            @updated="updateId"/>
+          <transactions-scope-picker v-model="selectedScope"/>
         </div>
       </template>
       <transactions-table
@@ -51,11 +48,6 @@ const route = useRoute()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
-function updateId(it) {
-  // todo fix
-  selectedScope.value = it
-}
-
 if (process.client) {
   if (!isHydrated?.value) {
     setPageLimit(limit)
@@ -63,6 +55,8 @@ if (process.client) {
   }
 
   watch([selectedTxType, selectedScope], () => {
+    console.log('selectedTxType', selectedTxType)
+    console.log('selectedScope', selectedScope)
     changeRoute()
   })
 

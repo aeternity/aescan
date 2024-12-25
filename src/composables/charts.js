@@ -79,6 +79,9 @@ export const useChartsStore = defineStore('charts', () => {
   }
 
   async function fetchHashrateStatistics(interval, limit, customInterval) {
+    // todo expand parameters
+    // todo refactor
+    console.log('customInterval', customInterval)
     hashrateStatistics.value = null
 
     const intervalSlug = customInterval

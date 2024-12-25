@@ -3,6 +3,7 @@
     <VueDatePicker
       ref="datepicker"
       v-model="selectedScope"
+      :model-type="type"
       range
       min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
@@ -45,8 +46,16 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  type: {
+    type: String,
+    default: 'yyyy-MM-dd',
+  },
+  // todo val check
 })
 
+const datepicker = ref(null)
+const selectedScope = ref(props.scope)
+const emit = defineEmits(['updated'])
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 watch(

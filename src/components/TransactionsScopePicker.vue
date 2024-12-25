@@ -1,10 +1,11 @@
 <template>
   <div>
     <scope-picker
-      :scope="formattedScope"
+      :scope="model"
       :is-scope-selected="isScopeSelected"
       placeholder="All Time"
       :clearable="true"
+      type="t"
       @updated="selectScope"/>
   </div>
 </template>
@@ -12,14 +13,6 @@
 <script setup>
 import { useVModel } from '@vueuse/core'
 import { computed } from 'vue'
-import { useTransactionsStore } from '~/stores/transactions'
-
-const transactionsStore = useTransactionsStore()
-
-const {
-  formatStoreObjectToDatePickerObject,
-  formatPickerObjectToStoreObject,
-} = transactionsStore
 
 const props = defineProps({
   modelValue: {
@@ -35,9 +28,8 @@ const isScopeSelected = computed(() => {
 })
 
 function selectScope(interval) {
-  // model.value = formatB(interval)
-  model.value = formatPickerObjectToStoreObject(interval)
+  model.value = interval
+  // todo usemodel
 }
 
-const formattedScope = computed(() => formatStoreObjectToDatePickerObject(model.value))
 </script>

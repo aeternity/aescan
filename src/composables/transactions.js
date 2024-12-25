@@ -1,6 +1,5 @@
 import { useRoute, useRuntimeConfig } from 'nuxt/app'
 import { computed, ref } from 'vue'
-import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
@@ -32,7 +31,9 @@ export const useTransactionsStore = defineStore('transactions', () => {
   )
 
   const slug = computed(() => {
+    console.log('scopeSlug.value', scopeSlug.value)
     const slugParts = [scopeSlug.value, typeSlug.value].filter(Boolean)
+    console.log('slugParts', slugParts)
     return slugParts.length ? `?${slugParts.join('&')}` : ''
   })
 
@@ -42,16 +43,19 @@ export const useTransactionsStore = defineStore('transactions', () => {
       : null
   })
 
+  // todo do i need return
   const scopeSlug = computed(() => {
+    // todo swapped params fix!
     return selectedScope.value
       ? formatScopeToParameters(
-        selectedScope.value?.customInterval?.maxStart,
-        selectedScope.value?.customInterval?.minStart,
+        selectedScope.value[1],
+        selectedScope.value[0],
       )
       : null
   })
 
   function changeRoute() {
+    console.log('slug.value', slug.value)
     push(`/transactions${slug.value}`)
   }
 
@@ -70,10 +74,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
       : null
   }
 
+  // todo check params are not swapped
   function formatScopeToParameters(minStart, maxStart) {
+    console.log('formatScopeToParameters', minStart, maxStart)
     if (minStart && maxStart) {
-      const from = DateTime.fromISO(maxStart).toSeconds()
-      const to = DateTime.fromISO(minStart).toSeconds()
+      const from = maxStart
+      const to = minStart
       return `scope=time:${from}-${to}`
     } else {
       return null
@@ -82,39 +88,12 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function formatParametersToScopeObject(scopeString) {
     const parameters = scopeString.split(':')[1].split('-')
-
-    return {
-      customInterval: {
-        minStart: DateTime.fromSeconds(parseInt(parameters[0])),
-        maxStart: DateTime.fromSeconds(parseInt(parameters[1])),
-      },
-    }
-  }
-
-  function formatPickerObjectToStoreObject(interval) {
-    if (interval) {
-      return {
-        customInterval: {
-          minStart: interval[0].toISOString().split('T')[0],
-          maxStart: interval[1].toISOString().split('T')[0],
-        },
-      }
-    } else {
-      return null
-    }
-  }
-
-  function formatStoreObjectToDatePickerObject(mod) {
-    return mod
-      ? [mod.customInterval.minStart, mod.customInterval.maxStart]
-      : []
+    return [parameters[0], parameters[1]]
   }
 
   async function loadTransactions(queryParameters) {
     setUrlParametersToStore()
-
     const scopeString = scopeSlug.value ? scopeSlug.value.substring(6) : null
-
     await fetchTransactions({
       queryParameters,
       scope: scopeString,
@@ -131,8 +110,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   async function fetchTransactions({ queryParameters, scope, type, limit } = {}) {
-    console.log('fetchTransactions scope', scope)
-
     rawTransactions.value = null
 
     if (queryParameters) {
@@ -210,7 +187,5 @@ export const useTransactionsStore = defineStore('transactions', () => {
     selectedScope,
     setPageIndex,
     setPageLimit,
-    formatStoreObjectToDatePickerObject,
-    formatPickerObjectToStoreObject,
   }
 })

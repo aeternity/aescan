@@ -12,99 +12,98 @@ export const useChartsStore = defineStore('charts', () => {
   const hashrateStatistics = ref(null)
   const accountsStatistics = ref(null)
 
-  async function fetchTransactionsStatistics(interval, limit, customInterval, txType) {
+  async function fetchTransactionsStatistics(intervalBy, limit, scope, txType) {
     transactionsStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
-      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
+    const scopeSlug = scope
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
+      : `?interval_by=${intervalBy}&limit=${parseInt(limit) + 1}`
 
     const typeSlug = txType ? '&tx_type=' + txType : ''
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/transactions${intervalSlug + typeSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/transactions${scopeSlug + typeSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    transactionsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    transactionsStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
-  async function fetchKeyblocksStatistics(interval, limit, customInterval) {
+  async function fetchKeyblocksStatistics(intervalBy, limit, scope) {
     keyblocksStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
-      : `?interval_by=${interval}&limit=${parseInt(limit) + 1}`
+    const scopeSlug = scope
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
+      : `?interval_by=${intervalBy}&limit=${parseInt(limit) + 1}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/blocks${intervalSlug}&type=key`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/blocks${scopeSlug}&type=key`)
     // remove last interval from the response not to show current interval that is being built
-    keyblocksStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    keyblocksStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
-  async function fetchContractsStatistics(interval, limit, customInterval) {
+  async function fetchContractsStatistics(intervalBy, limit, scope) {
     contractsStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `&min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=1000`
-      : `&interval_by=${interval}&limit=${parseInt(limit) + 1}`
+    const scopeSlug = scope
+      ? `&min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
+      : `&interval_by=${intervalBy}&limit=${parseInt(limit) + 1}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/transactions?tx_type=contract_call${intervalSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/transactions?tx_type=contract_call${scopeSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    contractsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    contractsStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
-  async function fetchNamesStatistics(interval, limit, customInterval) {
+  async function fetchNamesStatistics(intervalBy, limit, scope) {
     namesStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
-      : `?interval_by=${interval}&limit=${limit}`
+    const scopeSlug = scope
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      : `?interval_by=${intervalBy}&limit=${limit}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/names${intervalSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/names${scopeSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    namesStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    namesStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
-  async function fetchDifficultyStatistics(interval, limit, customInterval) {
+  async function fetchDifficultyStatistics(intervalBy, limit, scope) {
     difficultyStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
-      : `?interval_by=${interval}&limit=${limit}`
+    const scopeSlug = scope
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      : `?interval_by=${intervalBy}&limit=${limit}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/difficulty${intervalSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/difficulty${scopeSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    difficultyStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    difficultyStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
-  async function fetchHashrateStatistics(interval, limit, customInterval) {
+  async function fetchHashrateStatistics(intervalBy, limit, scope) {
     // todo expand parameters
     // todo refactor
-    console.log('customInterval', customInterval)
     hashrateStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
-      : `?interval_by=${interval}&limit=${limit}`
+    const scopeSlug = scope
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      : `?interval_by=${intervalBy}&limit=${limit}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/hashrate${intervalSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/hashrate${scopeSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    hashrateStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    hashrateStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
-  async function fetchAccountsStatistics(interval, limit, customInterval) {
+  async function fetchAccountsStatistics(intervalBy, limit, scope) {
     accountsStatistics.value = null
 
-    const intervalSlug = customInterval
-      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
-      : `?interval_by=${interval}&limit=${limit}`
+    const scopeSlug = scope
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      : `?interval_by=${intervalBy}&limit=${limit}`
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/active-accounts${intervalSlug}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/active-accounts${scopeSlug}`)
 
     // remove last interval from the response not to show current interval that is being built
-    accountsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+    accountsStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
   return {

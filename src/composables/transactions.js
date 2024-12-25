@@ -23,6 +23,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const selectedTxType = ref(TX_TYPES_OPTIONS[0])
   const selectedScope = ref(null)
   const pageLimit = ref(null)
+  // todo di i need page limit
 
   const transactions = computed(() =>
     rawTransactions.value
@@ -31,9 +32,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   )
 
   const slug = computed(() => {
-    console.log('scopeSlug.value', scopeSlug.value)
     const slugParts = [scopeSlug.value, typeSlug.value].filter(Boolean)
-    console.log('slugParts', slugParts)
     return slugParts.length ? `?${slugParts.join('&')}` : ''
   })
 
@@ -45,17 +44,15 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   // todo do i need return
   const scopeSlug = computed(() => {
-    // todo swapped params fix!
     return selectedScope.value
-      ? formatScopeToParameters(
-        selectedScope.value[1],
+      ? formatObjectToParameters(
         selectedScope.value[0],
+        selectedScope.value[1],
       )
       : null
   })
 
   function changeRoute() {
-    console.log('slug.value', slug.value)
     push(`/transactions${slug.value}`)
   }
 
@@ -70,42 +67,42 @@ export const useTransactionsStore = defineStore('transactions', () => {
       ? TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
       : TX_TYPES_OPTIONS[0]
     selectedScope.value = scope
-      ? formatParametersToScopeObject(scope)
+      ? formatUrlToObject(scope)
       : null
   }
 
-  // todo check params are not swapped
-  function formatScopeToParameters(minStart, maxStart) {
-    console.log('formatScopeToParameters', minStart, maxStart)
+  function formatObjectToParameters(minStart, maxStart) {
     if (minStart && maxStart) {
-      const from = maxStart
-      const to = minStart
-      return `scope=time:${from}-${to}`
+      return `scope=time:${minStart}-${maxStart}`
     } else {
       return null
     }
   }
 
-  function formatParametersToScopeObject(scopeString) {
+  function formatUrlToObject(scopeString) {
     const parameters = scopeString.split(':')[1].split('-')
     return [parameters[0], parameters[1]]
   }
 
   async function loadTransactions(queryParameters) {
     setUrlParametersToStore()
+
+    // todo this formatting?
+    console.log('scopeSlug.value', scopeSlug.value)
     const scopeString = scopeSlug.value ? scopeSlug.value.substring(6) : null
-    await fetchTransactions({
-      queryParameters,
-      scope: scopeString,
-      type: selectedTxType.value?.typeQuery,
-      limit: pageLimit.value,
-    })
-
-    await fetchTransactionsCount({
-      scope: scopeString,
-      type: selectedTxType.value?.typeQuery,
-    })
-
+    console.log('scopeString', scopeString)
+    await Promise.all([
+      fetchTransactions({
+        queryParameters,
+        scope: scopeString,
+        type: selectedTxType.value?.typeQuery,
+        limit: pageLimit.value,
+      }),
+      fetchTransactionsCount({
+        scope: scopeString,
+        type: selectedTxType.value?.typeQuery,
+      }),
+    ])
     setPageIndex(1)
   }
 
@@ -137,7 +134,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   async function fetchTransactionsCount({ scope, type }) {
-    console.log('fetchTransactionsCount scope', scope)
     transactionsCount.value = null
     const url = txType ? `${MIDDLEWARE_URL}/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/transactions/count`
     const { data } = await axios.get(url)

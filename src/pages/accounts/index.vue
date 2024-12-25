@@ -20,7 +20,7 @@
 
 <script setup>
 import { topAccountsHints } from '@/utils/hints/topAccountsHints'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

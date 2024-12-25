@@ -11,7 +11,7 @@
 
     <line-chart
       :data="difficultyStatistics"
-      :interval="selectedScope.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
       v-model="selectedScope"
@@ -26,10 +26,6 @@ const { difficultyStatistics } = storeToRefs(useChartsStore())
 const { fetchDifficultyStatistics } = useChartsStore()
 
 const props = defineProps({
-  hasSelect: {
-    required: true,
-    type: Boolean,
-  },
   scope: {
     required: true,
     type: Object,
@@ -37,7 +33,6 @@ const props = defineProps({
 })
 
 const selectedScope = ref(props.scope)
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {
   await loadDifficultytatistics()
@@ -52,9 +47,9 @@ if (process.client) {
 
 async function loadDifficultytatistics() {
   await fetchDifficultyStatistics(
-    selectedScope.value.interval,
+    selectedScope.value.preset,
     selectedScope.value.limit,
-    selectedScope.value.customInterval)
+    selectedScope.value.scope)
 }
 </script>
 

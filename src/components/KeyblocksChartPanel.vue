@@ -11,7 +11,7 @@
 
     <line-chart
       :data="keyblocksStatistics"
-      :interval="selectedScope.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
       v-model="selectedScope"
@@ -20,12 +20,12 @@
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { keyblocksStatistics } = storeToRefs(useChartsStore())
 const { fetchKeyblocksStatistics } = useChartsStore()
 
-const selectedScope = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
+const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadKeyblockStatistics()
@@ -40,9 +40,9 @@ if (process.client) {
 
 async function loadKeyblockStatistics() {
   await fetchKeyblocksStatistics(
-    selectedScope.value.interval,
+    selectedScope.value.preset,
     selectedScope.value.limit,
-    selectedScope.value.customInterval)
+    selectedScope.value.scope)
 }
 </script>
 

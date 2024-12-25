@@ -11,7 +11,7 @@
 
     <line-chart
       :data="namesStatistics"
-      :interval="selectedScope.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
       v-model="selectedScope"
@@ -48,9 +48,9 @@ if (process.client) {
 
 async function loadNamesStatistics() {
   await fetchNamesStatistics(
-    selectedScope.value.interval,
+    selectedScope.value.preset,
     selectedScope.value.limit,
-    selectedScope.value.customInterval)
+    selectedScope.value.scope)
 }
 </script>
 

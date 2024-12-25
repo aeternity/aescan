@@ -22,7 +22,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_OPTIONS } from '~/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
 
 const chartsStore = useChartsStore()
 const { hashrateStatistics } = storeToRefs(chartsStore)
@@ -41,7 +41,7 @@ const props = defineProps({
   },
 })
 
-const selectedScope = ref(CHART_INTERVALS_OPTIONS[4])
+const selectedScope = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 

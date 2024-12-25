@@ -25,7 +25,7 @@ import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 const { keyblocksStatistics } = storeToRefs(useChartsStore())
 const { fetchKeyblocksStatistics } = useChartsStore()
 
-const selectedScope = ref(CHART_INTERVALS_OPTIONS[4])
+const selectedScope = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadKeyblockStatistics()

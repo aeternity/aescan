@@ -29,11 +29,10 @@ const props = defineProps({
   },
 })
 
-// todo fix buttons
-// todo fix select height
 // todo reset custom after selecting preset
 const selectedScope = useVModel(props, 'modelValue', emit)
 
+// todo move inside
 const isCustomScopeSelected = computed(() => Object.keys(selectedScope.value).includes('scope'))
 
 function selectCustomScope(scope) {

@@ -50,7 +50,6 @@ const props = defineProps({
     type: String,
     default: 'yyyy-MM-dd',
   },
-  // todo val check
 })
 
 const datepicker = ref(null)
@@ -72,10 +71,7 @@ watch(
   propScope => {
     scope.value = propScope
   },
-  { immediate: true },
 )
-
-// todo immediate
 
 function clear() {
   emit('updated', null)

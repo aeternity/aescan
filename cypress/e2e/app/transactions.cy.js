@@ -65,7 +65,7 @@ describe('transactions', () => {
   })
 
   it('should filter by combining parameters from direct URL access', () => {
-    cy.visit('/transactions?scope=time:1733871600-1733958000&txType=contract_create')
+    cy.visit('/transactions?scope=1733871600-1733958000&txType=contract_create')
 
     cy.get('.paginated-content .multiselect__single').contains('ContractCreateTx')
     cy.get('.transactions-table tbody tr').should('have.length', 10)
@@ -75,7 +75,7 @@ describe('transactions', () => {
   })
 
   it('should cancel filtering and clear url', () => {
-    cy.visit('/transactions?scope=time:1733871600-1733958000&txType=spend')
+    cy.visit('/transactions?scope=1733871600-1733958000&txType=spend')
 
     cy.get('.paginated-content .multiselect').click()
     cy.contains('.paginated-content .multiselect__option', 'All Types').click()

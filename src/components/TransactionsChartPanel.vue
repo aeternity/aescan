@@ -38,10 +38,9 @@ import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 const { transactionsStatistics } = storeToRefs(useChartsStore())
 const { fetchTransactionsStatistics } = useChartsStore()
 
-// todo has select?
 const props = defineProps({
   hasSelect: {
-    required: true,
+    default: true,
     type: Boolean,
   },
   scope: {
@@ -70,7 +69,7 @@ async function loadTransactionStatistics() {
     selectedScope.value.intervalBy,
     selectedScope.value.limit,
     selectedScope.value.scope,
-    props.hasSelect ? selectedTxType.value.typeQuery : null)
+    selectedTxType.value?.typeQuery)
 }
 </script>
 

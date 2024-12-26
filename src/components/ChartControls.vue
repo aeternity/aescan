@@ -30,6 +30,8 @@ const props = defineProps({
   },
 })
 
+// todo fix buttons
+// todo fix select height
 const selectedScope = useVModel(props, 'modelValue', emit)
 
 const isCustomScopeSelected = computed(() => Object.keys(selectedScope.value).includes('scope'))

@@ -40,10 +40,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
       ? `txType=${selectedTxType.value.typeQuery}`
       : null,
   )
-  // todo remove time
+
   const scopeSlug = computed(() =>
     selectedScope.value
-      ? `scope=time:${selectedScope.value[0]}-${selectedScope.value[1]}`
+      ? `scope=${selectedScope.value[0]}-${selectedScope.value[1]}`
       : null,
   )
 
@@ -53,9 +53,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function setUrlParametersToStore() {
     const { scope, txType } = route.query
-
-    const [min, max] = scope ? scope.split(':')[1].split('-') : [null, null]
-
+    const [min, max] = scope ? scope.split('-') : [null, null]
     // todo format separate fxs
 
     selectedTxType.value = txType
@@ -70,7 +68,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     setUrlParametersToStore()
 
     const type = selectedTxType.value?.typeQuery
-    const scope = scopeSlug.value ? scopeSlug.value.substring(6) : null
+    const scope = selectedScope.value ? `time:${selectedScope.value[0]}-${selectedScope.value[1]}` : null
 
     await Promise.all([
       fetchTransactions({ queryParameters, scope, type, limit: pageLimit.value }),

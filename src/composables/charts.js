@@ -79,8 +79,6 @@ export const useChartsStore = defineStore('charts', () => {
   }
 
   async function fetchHashrateStatistics(intervalBy, limit, scope) {
-    // todo expand parameters
-    // todo refactor
     hashrateStatistics.value = null
 
     const scopeSlug = scope

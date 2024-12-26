@@ -12,6 +12,7 @@
         <div class="transactions-panel__header">
           <transactions-select
             v-model="selectedTxType"
+            size="sm"
             class="transactions-panel__select"/>
           <transactions-scope-picker v-model="selectedScope"/>
         </div>

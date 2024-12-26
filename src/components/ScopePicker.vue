@@ -144,7 +144,6 @@ const inputClassNames = computed(() => ({
 
     &--clearable {
       @media (--desktop) {
-
         width: 230px;
         padding-right: 28px;
       }

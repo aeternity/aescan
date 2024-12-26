@@ -38,6 +38,7 @@ import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 const { transactionsStatistics } = storeToRefs(useChartsStore())
 const { fetchTransactionsStatistics } = useChartsStore()
 
+// todo has select?
 const props = defineProps({
   hasSelect: {
     required: true,

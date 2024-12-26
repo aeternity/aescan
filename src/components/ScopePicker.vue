@@ -14,7 +14,7 @@
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
       :placeholder="placeholder"
-      :ui="{input: `scope-picker__input ${isScopeSelected ? 'scope-picker__input--active' : ''}`}"
+      :ui="inputClassNames"
       @cleared="clear"
       @update:model-value="$emit('updated', scope)"/>
   </div>
@@ -67,7 +67,6 @@ watch(
   },
 )
 
-// todo better naming proximity
 watch(
   () => props.selectedScope,
   propScope => {
@@ -75,6 +74,8 @@ watch(
   },
   { immediate: true },
 )
+
+// todo immediate
 
 function clear() {
   emit('updated', null)
@@ -85,6 +86,12 @@ function close() {
     datepicker.value.closeMenu()
   }
 }
+
+const inputClassNames = computed(() => ({
+  input: `scope-picker__input
+  ${props.isScopeSelected ? 'scope-picker__input--active' : ''}
+  ${props.clearable ? 'scope-picker__input--clearable' : ''}`,
+}))
 </script>
 
 <style>
@@ -113,8 +120,8 @@ function close() {
     padding: var(--space-0) var(--space-1);
 
     @media (--desktop) {
-      width: 272px;
-      height: 40px;
+      width: 200px;
+      height: 32px;
       font-size: 14px;
       padding: var(--space-0) var(--space-1);
     }
@@ -130,13 +137,26 @@ function close() {
       color: var(--color-white);
 
       @media (--desktop) {
-        width: 272px;
+        width: 208px;
+      }
+
+    }
+
+    &--clearable {
+      @media (--desktop) {
+
+        width: 230px;
+        padding-right: 28px;
       }
     }
   }
 }
 
 .dp {
+  &__today {
+    border: 1px solid var(--color-error)
+  }
+
   &__outer_menu_wrap {
     @media (--desktop) {
       width: 100%;
@@ -151,7 +171,7 @@ function close() {
     color: var(--color-white);
   }
 
-  &__scope {
+  &__range {
     &_start {
       pointer-events: none !important;
       cursor: not-allowed !important;
@@ -164,8 +184,10 @@ function close() {
       color: var(--color-white);
     }
   }
+
+  &__input_icons {
+    padding: 6px 7px;
+  }
 }
 
 </style>
-<!--          todo mobile UI-->
-<!--          todo scope color-->

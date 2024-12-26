@@ -56,8 +56,6 @@ if (process.client) {
   }
 
   watch([selectedTxType, selectedScope], () => {
-    console.log('selectedTxType', selectedTxType)
-    console.log('selectedScope', selectedScope)
     changeRoute()
   })
 

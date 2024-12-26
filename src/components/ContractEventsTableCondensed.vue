@@ -23,7 +23,9 @@
             <hint-tooltip>
               {{ contractsHints.eventsCreated }}
             </hint-tooltip>
-            <time-toggle-button>Created</time-toggle-button>
+            <time-toggle-button class="contract-events-table-condensed__button">
+              Created
+            </time-toggle-button>
           </th>
           <td class="contract-events-table-condensed__data">
             <block-time-cell
@@ -145,6 +147,10 @@ function toggle(id) {
   &__cell {
     flex-wrap: wrap;
     gap: var(--space-1);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

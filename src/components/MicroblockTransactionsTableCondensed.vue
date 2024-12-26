@@ -23,7 +23,7 @@
             <hint-tooltip>
               {{ microblocksHints.transactionHash }}
             </hint-tooltip>
-            <time-toggle-button/>
+            <time-toggle-button class="microblock-transactions-table-condensed__button"/>
           </th>
           <td class="microblock-transactions-table-condensed__data">
             <block-time-cell
@@ -92,6 +92,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

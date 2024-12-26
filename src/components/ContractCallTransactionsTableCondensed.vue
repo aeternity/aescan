@@ -23,7 +23,7 @@
             <hint-tooltip>
               {{ contractsHints.callTransactionsTime }}
             </hint-tooltip>
-            <time-toggle-button/>
+            <time-toggle-button class="contract-call-transactions-table-condensed__button"/>
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <block-time-cell
@@ -97,6 +97,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

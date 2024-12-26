@@ -22,7 +22,7 @@
             <hint-tooltip>
               {{ keyblocksHints.time }}
             </hint-tooltip>
-            <time-toggle-button/>
+            <time-toggle-button class="keyblocks-table-condensed__button"/>
           </th>
           <td class="keyblocks-table-condensed__data">
             <block-time-cell
@@ -121,6 +121,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

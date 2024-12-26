@@ -25,7 +25,9 @@
             <hint-tooltip>
               {{ accountHints.expires }}
             </hint-tooltip>
-            <time-toggle-button>Expires</time-toggle-button>
+            <time-toggle-button class="account-names-table-condensed__button">
+              Expires
+            </time-toggle-button>
           </th>
           <td class="account-names-table-condensed__data">
             <block-time-cell
@@ -98,6 +100,10 @@ defineProps({
 
   &__pointer {
     display: block;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

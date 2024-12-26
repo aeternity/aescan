@@ -47,7 +47,9 @@
               <hint-tooltip>
                 {{ namesHints.ends }}
               </hint-tooltip>
-              <time-toggle-button>Ending</time-toggle-button>
+              <time-toggle-button class="dashboard-auctions-swiper__button">
+                Ending
+              </time-toggle-button>
             </th>
             <td class="dashboard-auctions-swiper__data">
               <app-link
@@ -88,6 +90,10 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
   &__name {
     max-width: 200px;
     display: inline-block;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

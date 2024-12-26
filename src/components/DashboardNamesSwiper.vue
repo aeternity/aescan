@@ -48,7 +48,9 @@
               <hint-tooltip>
                 {{ namesHints.activationTime }}
               </hint-tooltip>
-              <time-toggle-button>Activated</time-toggle-button>
+              <time-toggle-button class="dashboard-names-swiper__button">
+                Activated
+              </time-toggle-button>
             </th>
             <td class="dashboard-names-swiper__data">
               <app-link
@@ -88,6 +90,10 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
   &__name {
     max-width: 200px;
     display: inline-block;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

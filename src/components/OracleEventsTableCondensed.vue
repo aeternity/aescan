@@ -38,7 +38,9 @@
             <hint-tooltip>
               {{ oraclesHints.queriedAt }}
             </hint-tooltip>
-            <time-toggle-button>Queried At</time-toggle-button>
+            <time-toggle-button class="oracle-events-table-condensed__button">
+              Queried At
+            </time-toggle-button>
           </th>
           <td class="oracle-events-table-condensed__data">
             <block-time-cell
@@ -67,7 +69,9 @@
             <hint-tooltip>
               {{ oraclesHints.queriedAt }}
             </hint-tooltip>
-            <time-toggle-button>Responded At</time-toggle-button>
+            <time-toggle-button class="oracle-events-table-condensed__button">
+              Responded At
+            </time-toggle-button>
           </th>
           <td
             :class="[
@@ -141,6 +145,10 @@ function toggle(id) {
 
   &__row:last-of-type &__header {
     border-bottom: 0;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

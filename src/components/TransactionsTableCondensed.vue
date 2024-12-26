@@ -23,7 +23,9 @@
             <hint-tooltip>
               {{ transactionsHints.hash }}
             </hint-tooltip>
-            <time-toggle-button>Created</time-toggle-button>
+            <time-toggle-button class="transactions-table-condensed__button">
+              Created
+            </time-toggle-button>
           </th>
           <td class="transactions-table-condensed__data">
             <block-time-cell
@@ -94,6 +96,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

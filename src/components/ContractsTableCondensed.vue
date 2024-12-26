@@ -26,7 +26,9 @@
             <hint-tooltip>
               {{ contractsHints.created }}
             </hint-tooltip>
-            <time-toggle-button>Created</time-toggle-button>
+            <time-toggle-button class="contracts-table-condensed__button">
+              Created
+            </time-toggle-button>
           </th>
           <td class="contracts-table-condensed__data">
             <block-time-cell
@@ -102,6 +104,10 @@ defineProps({
     align-items: center;
     justify-content: flex-end;
     gap: var(--space-0);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

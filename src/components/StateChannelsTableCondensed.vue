@@ -79,7 +79,9 @@
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
-            <time-toggle-button>Last Updated</time-toggle-button>
+            <time-toggle-button class="state-channels-table-condensed__button">
+              Last Updated
+            </time-toggle-button>
           </th>
           <td class="state-channels-table-condensed__data">
             <block-time-cell
@@ -131,6 +133,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

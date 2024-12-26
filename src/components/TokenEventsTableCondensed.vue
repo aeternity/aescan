@@ -34,7 +34,7 @@
             <hint-tooltip>
               {{ tokenEvents.date }}
             </hint-tooltip>
-            <time-toggle-button/>
+            <time-toggle-button class="token-events-table-condensed__button"/>
           </th>
           <td class="token-events-table-condensed__data">
             <block-time-cell
@@ -135,6 +135,10 @@ function toggle(id) {
     &--expanded {
       border-bottom: 0;
     }
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

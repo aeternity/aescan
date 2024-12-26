@@ -33,7 +33,9 @@
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>
-          <time-toggle-button>Mined</time-toggle-button>
+          <time-toggle-button class="dashboard-keyblock-table-condensed__button">
+            Mined
+          </time-toggle-button>
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
           <timestamp-label :timestamp="keyblock.mined"/>
@@ -105,6 +107,10 @@ defineProps({
 
   &__tooltip {
     margin-left: var(--space-0);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

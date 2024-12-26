@@ -25,7 +25,9 @@
             <hint-tooltip>
               {{ namesHints.expired }}
             </hint-tooltip>
-            <time-toggle-button>Expired</time-toggle-button>
+            <time-toggle-button class="names-expired-table-condensed__button">
+              Expired
+            </time-toggle-button>
           </th>
           <td class="names-expired-table-condensed__data">
             <block-time-cell
@@ -117,6 +119,10 @@ defineProps({
 
   &__last-buyer {
     margin-right: var(--space-2);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

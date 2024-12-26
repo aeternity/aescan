@@ -26,7 +26,9 @@
             <hint-tooltip>
               {{ namesHints.ends }}
             </hint-tooltip>
-            <time-toggle-button>Ends</time-toggle-button>
+            <time-toggle-button class="names-in-auction-table-condensed__button">
+              Ends
+            </time-toggle-button>
           </th>
           <td class="names-in-auction-table-condensed__data">
             <block-time-cell
@@ -114,6 +116,10 @@ defineProps({
 
   &__highest-bid {
     margin-right: var(--space-2);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

@@ -23,7 +23,9 @@
             <hint-tooltip>
               {{ oraclesHints.registered }}
             </hint-tooltip>
-            <time-toggle-button>Registered</time-toggle-button>
+            <time-toggle-button class="oracles-table-condensed__button">
+              Registered
+            </time-toggle-button>
             >
           </th>
           <td class="oracles-table-condensed__data">
@@ -37,7 +39,9 @@
             <hint-tooltip>
               {{ oraclesHints.expiration }}
             </hint-tooltip>
-            <time-toggle-button>Expiration</time-toggle-button>
+            <time-toggle-button class="oracles-table-condensed__button">
+              Expiration
+            </time-toggle-button>
           </th>
           <td class="oracles-table-condensed__data">
             <block-time-cell
@@ -90,6 +94,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

@@ -24,7 +24,9 @@
             <hint-tooltip>
               {{ dexTradesHints.executed }}
             </hint-tooltip>
-            <time-toggle-button>Executed</time-toggle-button>
+            <time-toggle-button class="dex-trades-table-condensed__button">
+              Executed
+            </time-toggle-button>
           </th>
           <td class="dex-trades-table-condensed__data">
             <block-time-cell
@@ -144,6 +146,10 @@ function getChipVariant(action) {
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

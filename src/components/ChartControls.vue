@@ -9,7 +9,6 @@
         @click="selectPreset(option)">
         {{ option.label }}
       </app-chip>
-      <!--      todo improve naming-->
 
       <scope-picker
         :is-scope-selected="isCustomScopeSelected"
@@ -32,6 +31,7 @@ const props = defineProps({
 
 // todo fix buttons
 // todo fix select height
+// todo reset custom after selecting preset
 const selectedScope = useVModel(props, 'modelValue', emit)
 
 const isCustomScopeSelected = computed(() => Object.keys(selectedScope.value).includes('scope'))

@@ -42,7 +42,6 @@
 
         <tr class="nfts-inventory-table-condensed__row">
           <th class="nfts-inventory-table-condensed__header">
-            \
             <hint-tooltip>
               {{ nftsHints.inventoryCreteTransaction }}
             </hint-tooltip>

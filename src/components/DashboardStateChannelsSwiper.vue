@@ -69,6 +69,9 @@
               <hint-tooltip>
                 {{ stateChannelsHints.lastUpdated }}
               </hint-tooltip>
+              <time-toggle-button class="dashboard-state-channels-swiper__button">
+                Last Updated
+              </time-toggle-button>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <app-link
@@ -114,6 +117,10 @@ const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

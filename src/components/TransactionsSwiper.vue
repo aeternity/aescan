@@ -15,7 +15,9 @@
           </tr>
           <tr>
             <th class="transactions-swiper__header">
-              <time-toggle-button>Created</time-toggle-button>
+              <time-toggle-button class="transactions-swiper__button">
+                Created
+              </time-toggle-button>
             </th>
             <td class="transactions-swiper__data">
               <timestamp-label :timestamp="transaction.created"/>
@@ -64,6 +66,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

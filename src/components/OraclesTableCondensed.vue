@@ -26,7 +26,6 @@
             <time-toggle-button class="oracles-table-condensed__button">
               Registered
             </time-toggle-button>
-            >
           </th>
           <td class="oracles-table-condensed__data">
             <block-time-cell

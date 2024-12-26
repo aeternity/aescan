@@ -20,7 +20,7 @@
         </tr>
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
-            Hash
+            <time-toggle-button class="keyblock-microblocks-table-condensed__button"/>
             <hint-tooltip>
               {{ keyblocksHints.time }}
             </hint-tooltip>
@@ -72,6 +72,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

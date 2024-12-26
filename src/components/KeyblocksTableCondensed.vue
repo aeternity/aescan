@@ -46,7 +46,7 @@
             <hint-tooltip>
               {{ keyblocksHints.microblockCount }}
             </hint-tooltip>
-            Transactions Count
+            Microblocks Count
           </th>
           <td class="keyblocks-table-condensed__data">
             {{ keyblock.microBlocksCount }}

@@ -67,7 +67,7 @@
               'oracle-events-table-condensed__header',
               {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
             <hint-tooltip>
-              {{ oraclesHints.queriedAt }}
+              {{ oraclesHints.respondedAt }}
             </hint-tooltip>
             <time-toggle-button class="oracle-events-table-condensed__button">
               Responded At

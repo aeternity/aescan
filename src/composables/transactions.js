@@ -31,44 +31,26 @@ export const useTransactionsStore = defineStore('transactions', () => {
   )
 
   const slug = computed(() => {
-    const slugParts = [scopeSlug.value, typeSlug.value].filter(Boolean)
-    return slugParts.length ? `?${slugParts.join('&')}` : ''
+    const scope = formatScopeSlug(selectedScope.value)
+    const type = formatTypeSlug(selectedTxType.value)
+    return formatSlug(scope, type)
   })
 
-  const typeSlug = computed(() =>
-    selectedTxType.value?.typeQuery
-      ? `txType=${selectedTxType.value.typeQuery}`
-      : null,
-  )
-
-  const scopeSlug = computed(() =>
-    selectedScope.value
-      ? `scope=${selectedScope.value[0]}-${selectedScope.value[1]}`
-      : null,
-  )
+  function setUrlParametersToStore() {
+    const { scope, txType } = route.query
+    selectedTxType.value = formatUrlToTypeObject(txType)
+    selectedScope.value = formatUrlToScopeObject(scope)
+  }
 
   function changeRoute() {
     push(`/transactions${slug.value}`)
   }
 
-  function setUrlParametersToStore() {
-    const { scope, txType } = route.query
-    const [min, max] = scope ? scope.split('-') : [null, null]
-    // todo format separate fxs
-
-    selectedTxType.value = txType
-      ? TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-      : TX_TYPES_OPTIONS[0]
-    selectedScope.value = scope
-      ? [min, max]
-      : null
-  }
-
   async function loadTransactions(queryParameters) {
     setUrlParametersToStore()
 
-    const type = selectedTxType.value?.typeQuery
-    const scope = selectedScope.value ? `time:${selectedScope.value[0]}-${selectedScope.value[1]}` : null
+    const type = formatMDWTypeSlug(selectedTxType.value)
+    const scope = formatMDWScopeSlug(selectedScope.value)
 
     await Promise.all([
       fetchTransactions({ queryParameters, scope, type, limit: pageLimit.value }),
@@ -135,6 +117,41 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageLimit.value = value
   }
 
+  function formatSlug(scope, type) {
+    const slugParts = [scope, type].filter(Boolean)
+    return slugParts.length ? `?${slugParts.join('&')}` : ''
+  }
+
+  function formatScopeSlug(scope) {
+    return scope ? `scope=${scope[0]}-${scope[1]}` : null
+  }
+
+  function formatTypeSlug(txType) {
+    return txType?.typeQuery ? `txType=${txType.typeQuery}` : null
+  }
+
+  function formatUrlToTypeObject(txType) {
+    return txType
+      ? TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
+      : TX_TYPES_OPTIONS[0]
+  }
+
+  function formatUrlToScopeObject(scope) {
+    if (!scope) {
+      return null
+    }
+    const [min, max] = scope.split('-')
+    return [min, max]
+  }
+
+  function formatMDWScopeSlug(scope) {
+    return scope ? `time:${scope[0]}-${scope[1]}` : null
+  }
+
+  function formatMDWTypeSlug(selectedTxType) {
+    return selectedTxType?.typeQuery
+  }
+
   return {
     transactionsCount,
     transactions,
@@ -152,7 +169,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageIndex,
     selectedTxType,
     selectedScope,
-    setPageIndex,
     setPageLimit,
   }
 })

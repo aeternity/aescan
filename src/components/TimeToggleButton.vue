@@ -20,6 +20,7 @@ const suffix = computed(() => {
 
 <style setup>
 .time-toggle-button {
+  display: contents !important;
   font-weight: 500 !important;
 
   font-size: 14px !important;

@@ -154,10 +154,10 @@
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header">
-            Token Pair
             <hint-tooltip>
               {{ aeCoinHints.pair }}
             </hint-tooltip>
+            Token Pair
           </th>
           <td class="ae-coin-markets-table-condensed__data">
             AE / USDT

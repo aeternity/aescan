@@ -24,10 +24,9 @@
             Account
           </th>
           <td class="top-accounts-table-condensed__data">
-            <app-link
-              :to="`/accounts/${account.account}`">
-              {{ account.account }}
-            </app-link>
+            <value-hash-ellipsed
+              :hash="account.account"
+              :link-to="`/accounts/${account.account}`"/>
           </td>
         </tr>
         <tr class="top-accounts-table-condensed__row">
@@ -38,7 +37,7 @@
             Balance
           </th>
           <td class="top-accounts-table-condensed__data">
-            {{ account.balance }}
+            <price-label :price="account.balance "/>
           </td>
         </tr>
         <tr class="top-accounts-table-condensed__row">

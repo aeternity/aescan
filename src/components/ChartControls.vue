@@ -29,7 +29,6 @@ const props = defineProps({
   },
 })
 
-// todo reset custom after selecting preset
 const selectedScope = useVModel(props, 'modelValue', emit)
 
 // todo move inside

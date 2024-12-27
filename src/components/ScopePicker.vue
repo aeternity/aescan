@@ -57,11 +57,17 @@ const scope = ref(props.selectedScope)
 const emit = defineEmits(['updated'])
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
+// todo usevmodel
+
 watch(
   () => props.isScopeSelected,
   (newVal, oldVal) => {
     if (!newVal && oldVal) {
       close()
+    }
+    if (!newVal) {
+      scope.value = null
+      // todo solve better
     }
   },
 )

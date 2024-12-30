@@ -113,7 +113,7 @@ defineProps({
   }
 
   &__name {
-    max-width: 200px;
+    max-width: 168px;
     display: inline-block;
   }
 

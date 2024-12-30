@@ -10,6 +10,7 @@
             <hint-tooltip>
               {{ keyblocksHints.keyblockHash }}
             </hint-tooltip>
+            Block
           </th>
           <td class="keyblocks-table-condensed__data">
             <value-hash-ellipsed

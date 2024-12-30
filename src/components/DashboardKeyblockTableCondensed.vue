@@ -60,7 +60,7 @@
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
-          Beneficiary Reward
+          Reward
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
           <price-label :price="stats?.blockReward"/>

@@ -87,7 +87,7 @@ const activityDescription = computed(() => {
     return 'Paid for'
   case 'InternalTransferEvent':
     if (props.activity.payload.kind === 'reward_block') {
-      return 'Beneficiary reward'
+      return 'Reward'
     }
     if (SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX transfer'

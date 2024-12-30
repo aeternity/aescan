@@ -71,7 +71,7 @@
             Locked
           </th>
           <td class="state-channels-table-condensed__data">
-            {{ channel.locked }}
+            <price-label :price="channel.locked"/>
           </td>
         </tr>
         <tr class="state-channels-table-condensed__row">

@@ -54,6 +54,7 @@ const menuOptions = ref([{
   &__panel {
     display: flex;
     flex-direction: row;
+    overflow: auto;
 
     @media (--desktop) {
       flex-direction: column;
@@ -61,7 +62,7 @@ const menuOptions = ref([{
   }
 
   &__link {
-    display: flex;
+    white-space: nowrap;
 
     &:not(:last-child) {
       margin-right: var(--space-3);

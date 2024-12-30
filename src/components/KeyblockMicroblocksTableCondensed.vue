@@ -7,10 +7,10 @@
       <tbody>
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
-            Hash
             <hint-tooltip>
               {{ keyblocksHints.microblockHash }}
             </hint-tooltip>
+            Hash
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
             <value-hash-ellipsed
@@ -20,10 +20,10 @@
         </tr>
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
-            <time-toggle-button class="keyblock-microblocks-table-condensed__button"/>
             <hint-tooltip>
               {{ keyblocksHints.time }}
             </hint-tooltip>
+            <time-toggle-button class="keyblock-microblocks-table-condensed__button"/>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
             <timestamp-label :timestamp="microblock.time"/>
@@ -31,10 +31,10 @@
         </tr>
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
-            Transactions Count
             <hint-tooltip>
               {{ keyblocksHints.microblockTransactionsCount }}
             </hint-tooltip>
+            Transactions Count
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
             {{ microblock.transactionsCount }}

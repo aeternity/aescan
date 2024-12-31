@@ -65,22 +65,13 @@ watch(
       close()
     }
     if (!newVal) {
-      scope.value = null
-      // todo solve better
+      clear()
     }
   },
 )
 
-watch(
-  () => props.selectedScope,
-  propScope => {
-    scope.value = propScope
-  },
-)
-
 function clear() {
-  // todo better
-  emit('updated', null)
+  scope.value = null
 }
 
 function close() {

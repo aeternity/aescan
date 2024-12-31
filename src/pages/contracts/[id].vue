@@ -118,7 +118,7 @@ if (process.client && !error.value) {
     queryParameters: `/v3/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
 
-  if (!featureFlags.smartContractVerification) {
+  if (featureFlags.smartContractVerification) {
     await fetchVerificationDetail(route.params.id)
   }
 }

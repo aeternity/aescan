@@ -1,12 +1,11 @@
 <template>
   <div>
     <scope-picker
-      :selected-scope="scope"
-      :is-scope-selected="!!scope"
+      v-model="selectedScope"
+      :is-scope-selected="!!selectedScope"
       placeholder="All Time"
       :clearable="true"
-      type="t"
-      @updated="scope = $event"/>
+      type="t"/>
   </div>
 </template>
 
@@ -19,6 +18,7 @@ const props = defineProps({
     default: null,
   },
 })
-// todo try using emit
-const scope = useVModel(props, 'modelValue', null)
+const emit = defineEmits(['update:modelValue'])
+
+const selectedScope = useVModel(props, 'modelValue', emit)
 </script>

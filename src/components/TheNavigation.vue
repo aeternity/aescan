@@ -66,6 +66,7 @@ const menuOptions = ref([{
     {
       name: 'AE Coin',
       path: '/tokens/AE',
+      hidden: !featureFlags.marketStats,
     },
     {
       name: 'AEX9 Tokens',

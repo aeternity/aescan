@@ -87,6 +87,7 @@ async function loadTransactionStatistics() {
 
   &__select {
     margin-top: var(--space-2);
+
     @media (--desktop) {
       margin-top: 0;
     }

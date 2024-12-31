@@ -55,7 +55,7 @@ jobs:
         with:
           images: aeternity/aescan
           tags: |
-            0.18.0-rc.1
+            type=ref,event=pr
 
       - name: Get commit sha on PR Sync
         if: github.event_name == 'pull_request' && github.event.action == 'synchronize'

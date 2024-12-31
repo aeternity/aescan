@@ -10,9 +10,7 @@
     :searchable="searchable"
     :hide-selected="hideSelected"
     :preselect-first="preselectFirst"
-    :class="[
-      size ? `multiselect--${size}` : null,
-    ]">
+    :class="[ size ? `multiselect--${size}` : null]">
     <template
       v-for="(_, slot) of $slots"
       #[slot]="scope">

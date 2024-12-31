@@ -10,7 +10,7 @@ import { storeToRefs } from 'pinia'
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
 import { useAppStore } from '@/stores/app'
 
-const { DEX_CONTRACTS } = useRuntimeConfig().public
+const { SH_DEX_CONTRACTS } = useRuntimeConfig().public
 
 const { currency } = storeToRefs(useAppStore())
 
@@ -44,7 +44,7 @@ const activityType = computed(() => {
       SWAP_CONTRACT_CALLS.includes(tx.value.function) ||
           ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
           REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
-          DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+          SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'
@@ -72,7 +72,7 @@ const activityType = computed(() => {
     if (props.activity.payload.kind === 'reward_block') {
       return currency.value.symbol
     } else if (
-      DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+      SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'
@@ -83,7 +83,7 @@ const activityType = computed(() => {
     return 'AEX-141'
   case 'InternalContractCallEvent':
     if (
-      DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+      SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'

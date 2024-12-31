@@ -55,7 +55,7 @@ export default defineNuxtConfig({
       AE_TOKEN_ID: process.env.AE_TOKEN_ID,
       DEBUG_MODE: process.env.DEBUG_MODE,
       CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
-      DEX_CONTRACTS: process.env.DEX_CONTRACTS?.split(';'),
+      SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
       PLAUSIBLE_URL: process.env.PLAUSIBLE_URL,
       ENABLE_MARKET_STATS: process.env.ENABLE_MARKET_STATS,
       NODES_BACKEND_URL: process.env.NODES_BACKEND_URL,

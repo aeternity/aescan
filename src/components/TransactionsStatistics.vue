@@ -10,14 +10,18 @@
       <h5>TRANSACTIONS (LAST 24H)</h5>
       <div class="transaction-statistics__value">
         {{ formatNumber(last24hsTransactionsCount) }}
-        <trend-chip :delta="last24hsTransactionsTrend"/>
+        <trend-chip
+          v-if="last24hsTransactionsTrend"
+          :delta="last24hsTransactionsTrend"/>
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
       <h5>AVG TRANSACTION FEE (LAST 24H)</h5>
       <div class="transaction-statistics__value">
         {{ last24hsAverageTransactionFees }}
-        <trend-chip :delta="feesTrend"/>
+        <trend-chip
+          v-if="feesTrend"
+          :delta="feesTrend"/>
       </div>
     </app-panel>
   </div>

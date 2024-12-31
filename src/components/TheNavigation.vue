@@ -20,112 +20,113 @@ import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const featureFlags = useFeatureFlags()
 
-const menuOptions = ref([
-  {
-    name: 'Blockchain',
-    isActive: false,
-    submenu: [
-      {
-        name: 'Accounts',
-        path: '/accounts',
-      },
-      {
-        name: 'Transactions',
-        path: '/transactions',
-      },
-      {
-        name: 'Smart Contracts',
-        path: '/contracts',
-      },
-      {
-        name: 'Names',
-        path: '/names',
-      },
-      {
-        name: 'Keyblocks',
-        path: '/keyblocks',
-      },
-      {
-        name: 'Nodes',
-        path: '/nodes',
-        hidden: !featureFlags.nodes,
-      },
-      {
-        name: 'Oracles',
-        path: '/oracles',
-      },
-      {
-        name: 'State Channels',
-        path: '/state-channels',
-      },
-    ],
-  },
-  {
-    name: 'Tokens',
-    isActive: false,
-    submenu: [
-      {
-        name: 'AE Coin',
-        path: '/tokens/AE',
-        hidden: !featureFlags.marketStats,
-      },
-      {
-        name: 'AEX9 Tokens',
-        path: '/tokens',
-      },
-      {
-        name: 'AEX141 Tokens (NFTs)',
-        path: '/nfts',
-      },
-      {
-        name: 'DEX Trades',
-        path: '/dex-trades',
-        hidden: !featureFlags.dex,
-      },
-    ],
-  },
-  {
-    name: 'Developers',
-    isActive: false,
-    submenu: [
-      {
-        name: 'Smart Contract Verification',
-        path: '/contract-verification',
-        hidden: !featureFlags.smartContractVerification,
-      },
-    ],
-  },
-  {
-    name: 'Charts',
-    isActive: false,
-    submenu: [
-      {
-        name: 'Transactions',
-        path: '/charts/transactions',
-      },
-      {
-        name: 'Keyblocks',
-        path: '/charts/keyblocks',
-      },
-      {
-        name: 'Smart Contracts',
-        path: '/charts/contracts',
-      },
-      {
-        name: 'Names',
-        path: '/charts/names',
-      },
-      {
-        name: 'Difficulty',
-        path: '/charts/difficulty',
-      },
-      {
-        name: 'Hashrate',
-        path: '/charts/hashrate',
-      },
-    ],
-  },
-])
+const menuOptions = ref([{
+  name: 'Blockchain',
+  isActive: false,
+  submenu: [
+    {
+      name: 'Accounts',
+      path: '/accounts',
+    },
+    {
+      name: 'Transactions',
+      path: '/transactions',
+    },
+    {
+      name: 'Smart Contracts',
+      path: '/contracts',
+    },
+    {
+      name: 'Names',
+      path: '/names',
+    },
+    {
+      name: 'Keyblocks',
+      path: '/keyblocks',
+    },
+    {
+      name: 'Nodes',
+      path: '/nodes',
+      hidden: !featureFlags.nodes,
+    },
+    {
+      name: 'Oracles',
+      path: '/oracles',
+    },
+    {
+      name: 'State Channels',
+      path: '/state-channels',
+    },
+  ],
+},
+{
+  name: 'Tokens',
+  isActive: false,
+  submenu: [
+    {
+      name: 'AE Coin',
+      path: '/tokens/AE',
+    },
+    {
+      name: 'AEX9 Tokens',
+      path: '/tokens',
+    },
+    {
+      name: 'AEX141 Tokens (NFTs)',
+      path: '/nfts',
+    },
+    {
+      name: 'DEX Trades',
+      path: '/dex-trades',
+      hidden: !featureFlags.dex,
+    },
+  ],
+},
+{
+  name: 'Developers',
+  isActive: false,
+  submenu: [
+    {
+      name: 'Smart Contract Verification',
+      path: '/contract-verification',
+      hidden: !featureFlags.smartContractVerification,
+    },
+  ],
+},
+{
+  name: 'Charts',
+  isActive: false,
+  submenu: [
+    {
+      name: 'Transactions',
+      path: '/charts/transactions',
+    },
+    {
+      name: 'Keyblocks',
+      path: '/charts/keyblocks',
+    },
+    {
+      name: 'Smart Contracts',
+      path: '/charts/contracts',
+    },
+    {
+      name: 'Accounts',
+      path: '/charts/accounts',
+    },
+    {
+      name: 'Names',
+      path: '/charts/names',
+    },
+    {
+      name: 'Difficulty',
+      path: '/charts/difficulty',
+    },
+    {
+      name: 'Hashrate',
+      path: '/charts/hashrate',
+    },
+  ],
+}])
 
 const visibleMenuOptions = computed(() =>
   menuOptions.value.filter(menu => !menu.submenu.every(submenu => submenu.hidden)),

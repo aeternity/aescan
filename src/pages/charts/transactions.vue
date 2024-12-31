@@ -17,12 +17,12 @@
     <template #detail>
       <transactions-chart-panel
         :has-select="true"
-        :range="CHART_INTERVALS_OPTIONS[4]"/>
+        :range="CHART_INTERVALS_PRESETS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 </script>

@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <keyblocks-chart-panel/>
+      <accounts-chart-panel/>
     </template>
   </NuxtLayout>
 </template>

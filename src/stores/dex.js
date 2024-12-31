@@ -13,7 +13,7 @@ export const useDexStore = defineStore('dex', () => {
       return 1
     }
 
-    const { data } = await axios.get(`${DEX_BACKEND_URL}/pairs/swap-routes/${tokenId}/${AE_TOKEN_ID}`)
+    const { data } = await axios.get(`${DEX_BACKEND_URL}/swap-routes/${tokenId}/${AE_TOKEN_ID}`)
 
     if (data.length === 0) {
       return false

@@ -49,7 +49,7 @@ export const useTokensStore = defineStore('tokens', () => {
   }
 
   async function fetchListedTokens() {
-    if (featureFlags.dex) {
+    if (!featureFlags.dex) {
       return
     }
 

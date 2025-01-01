@@ -24,14 +24,13 @@
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import { useVModel } from '@vueuse/core'
 import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 
 const datepicker = ref(null)
 const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 const props = defineProps({
-  modelValue: {
+  selectedScope: {
     type: Array,
     default: null,
   },
@@ -54,9 +53,9 @@ const props = defineProps({
 })
 
 const datepicker = ref(null)
+const scope = ref(props.selectedScope)
+const emit = defineEmits(['updated'])
 const today = DateTime.now().toFormat('yyyy-MM-dd')
-const emit = defineEmits(['update:modelValue'])
-const scope = useVModel(props, 'modelValue', emit)
 
 watch(
   () => props.isScopeSelected,
@@ -90,6 +89,9 @@ const inputClassNames = computed(() => ({
 <style>
 .scope-picker {
   grid-column: span 5;
+  /*flex-direction: row;*/
+  /*align-items: center;*/
+  /*display: flex;*/
 
   &__input {
     background: var(--color-snow);

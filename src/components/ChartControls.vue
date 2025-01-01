@@ -24,14 +24,13 @@ const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
   modelValue: {
-    type: Number,
-    default: 0,
+    type: Object,
+    default: null,
   },
 })
 
 const selectedScope = useVModel(props, 'modelValue', emit)
 
-// todo move inside
 const isCustomScopeSelected = computed(() => Object.keys(selectedScope.value).includes('scope'))
 
 function selectCustomScope(scope) {

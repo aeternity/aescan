@@ -89,9 +89,6 @@ const inputClassNames = computed(() => ({
 <style>
 .scope-picker {
   grid-column: span 5;
-  /*flex-direction: row;*/
-  /*align-items: center;*/
-  /*display: flex;*/
 
   &__input {
     background: var(--color-snow);
@@ -133,14 +130,12 @@ const inputClassNames = computed(() => ({
       }
     }
 
-    &--clearable {
-      @media (--desktop) {
+    @media (--desktop) {
+      &--clearable {
         width: 100px;
         padding-right: 0;
-      }
 
-      &.scope-picker__input--active {
-        @media (--desktop) {
+        &.scope-picker__input--active {
           width: 234px;
           padding-right: 28px;
         }

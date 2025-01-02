@@ -7,7 +7,6 @@
       <tbody>
         <tr class="state-channel-transactions-table-condensed__row">
           <th class="state-channel-transactions-table-condensed__header">
-            <!--            todo missing hint-->
             Hash
           </th>
           <td class="state-channel-transactions-table-condensed__data">

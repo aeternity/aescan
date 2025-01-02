@@ -75,7 +75,7 @@ describe('transactions', () => {
   })
 
   it('should cancel filtering and clear url', () => {
-    cy.visit('/transactions?scope=1733871600-1733958000&txType=spend')
+    cy.visit('/transactions?scope=1733871600-1733958000&txType=contract_create')
 
     cy.get('.paginated-content .multiselect').click()
     cy.contains('.paginated-content .multiselect__option', 'All Types').click()

@@ -65,11 +65,11 @@ describe('transactions', () => {
   })
 
   it('should filter by combining parameters from direct URL access', () => {
-    cy.visit('/transactions?scope=1733871600-1733958000&txType=contract_create')
+    cy.visit('/transactions?scope=1733871600-1733958000&txType=spend')
 
-    cy.get('.paginated-content .multiselect__single').contains('ContractCreateTx')
+    cy.get('.paginated-content .multiselect__single').contains('SpendTx')
     cy.get('.transactions-table tbody tr').should('have.length', 10)
-    cy.get('.transactions-table tbody tr').contains('td', 'ContractCreateTx').should('have.length', 1)
+    cy.get('.transactions-table tbody tr').contains('td', 'SpendTx').should('have.length', 1)
     cy.get('.paginated-content .dp__input')
       .should('have.value', '12/11/2024 - 12/12/2024')
   })

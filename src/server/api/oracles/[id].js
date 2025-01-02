@@ -1,6 +1,6 @@
+import { DateTime } from 'luxon'
 import useAxios from '~/composables/useAxios'
-import { DateTime } from "luxon";
-import { formatAettosToAe } from "~/utils/format";
+import { formatAettosToAe } from '~/utils/format'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
@@ -18,7 +18,6 @@ export default defineEventHandler(async event => {
   return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
 })
 
-
 async function fetchOracle(id) {
   const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}`)
   const { data } = await axios.get(url)
@@ -33,7 +32,7 @@ async function fetchLastExtendedTx(id) {
 
 async function fetchOracleEvents(id) {
 // todo do i need try
-//   todo this is dupliucate
+// todo this is dupliucate
   try {
     const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}/responses`)
     const { data } = await axios.get(url)
@@ -61,4 +60,3 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
   }
   return oracleDetails
 }
-

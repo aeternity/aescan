@@ -66,7 +66,7 @@ const menuOptions = ref([{
   submenu: [
     {
       name: 'AE Coin',
-      path: '/tokens/AE',
+      path: '/tokens/ae',
     },
     {
       name: 'AEX9 Tokens',

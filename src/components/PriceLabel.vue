@@ -14,7 +14,6 @@
       :contract-id="contractId"/>
     <app-tooltip v-if="isPriceRounded">
       {{ priceRounded }}
-      <wbr>
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">

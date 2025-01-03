@@ -1,5 +1,6 @@
 <template>
   <app-panel class="keyblock-microblock-panel">
+    microblocks > {{ microblocks }}
     <paginated-content
       v-model:page-index="pageIndex"
       pagination-style="history"

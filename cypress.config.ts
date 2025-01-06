@@ -1,4 +1,4 @@
-import { defineConfig } from 'cypress'
+import {defineConfig} from 'cypress'
 
 export default defineConfig({
   env: {
@@ -24,7 +24,8 @@ export default defineConfig({
     baseUrl: 'http://localhost:8080',
     experimentalRunAllSpecs: true,
   },
+  retries: 2,
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 180000,
+  defaultCommandTimeout: 30000,
 })

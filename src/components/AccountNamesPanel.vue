@@ -27,6 +27,8 @@ const accountStore = useAccountStore()
 const { fetchAccountNames } = accountStore
 const { accountNames } = storeToRefs(accountStore)
 
+// const route = useRoute()
+
 async function loadPrevAccountNames() {
   await fetchAccountNames({ queryParameters: accountNames.value.prev })
 }
@@ -34,6 +36,14 @@ async function loadPrevAccountNames() {
 async function loadNextAccountNames() {
   await fetchAccountNames({ queryParameters: accountNames.value.next })
 }
+
+// if (process.client) {
+//   // todo pass params
+//   const limit = computed(() => isDesktop() ? 10 : 3)
+//   fetchAccountNames({ accountId: route.params.id, limit })
+//   // fetchOracleEvents(`/v3/oracles/${route.params.id}/responses?limit=${limit.value}`)
+// }
+
 </script>
 
 <style scoped>

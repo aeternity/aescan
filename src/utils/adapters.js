@@ -59,7 +59,7 @@ export function adaptTransactions(transactions) {
     return {
       hash: transaction.hash,
       createdHeight: transaction.blockHeight,
-      created: DateTime.fromMillis(transaction.microTime),
+      created: DateTime.fromMillis(transaction.microTime).toLocaleString(DateTime.DATETIME_SHORT),
       type: transaction.tx.type,
       data: transaction.tx,
       hintKey: transaction.tx.type.charAt(0).toLowerCase() + transaction.tx.type.slice(1),
@@ -127,7 +127,7 @@ export function adaptAccountActivities(activities) {
       hash: activity.payload?.hash || activity.payload?.txHash ||
         activity.payload?.refTxHash || activity.payload?.callTxHash,
       type: activity.type,
-      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime),
+      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime).toLocaleString(DateTime.DATETIME_SHORT),
       height: activity.payload?.blockHeight || activity.height,
       payload: activity.payload,
       hintKey:
@@ -141,22 +141,6 @@ export function adaptAccountActivities(activities) {
     next: activities.next,
     data: formattedData,
     prev: activities.prev,
-  }
-}
-
-export function adaptAccountNames(names) {
-  const formattedData = names.data.map(name => {
-    return {
-      name: name.name,
-      expirationHeight: name.info.expireHeight,
-      expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-      pointers: Object.values(name.info.pointers),
-    }
-  })
-  return {
-    next: names.next,
-    data: formattedData,
-    prev: names.prev,
   }
 }
 

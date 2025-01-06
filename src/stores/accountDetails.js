@@ -3,7 +3,7 @@ import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { adaptAccountActivities, adaptAccountNames, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
+import { adaptAccountActivities, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
 import { useDexStore } from '@/stores/dex'
 
@@ -27,6 +27,7 @@ export const useAccountStore = defineStore('account', () => {
   const rawAccountTokens = ref(null)
   const rawAccountTransactions = ref(null)
   const tokenPrices = ref({})
+  const accountNames = ref({})
 
   const accountDetails = computed(() =>
     rawAccountDetails.value
@@ -46,11 +47,6 @@ export const useAccountStore = defineStore('account', () => {
   const accountTransactions = computed(() =>
     rawAccountTransactions.value
       ? adaptTransactions(rawAccountTransactions.value)
-      : null,
-  )
-  const accountNames = computed(() =>
-    rawAccountNames.value
-      ? adaptAccountNames(rawAccountNames.value)
       : null,
   )
 
@@ -77,7 +73,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountDetails(accountId) {
     try {
-      const data = await $fetch(`/api/account`, {
+      const data = await $fetch('/api/account', {
         params: {
           id: accountId,
         },
@@ -103,7 +99,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchTotalAccountTransactionsCount(accountId) {
     totalAccountTransactionsCount.value = null
-    const data = await $fetch(`/api/account/txcount`, {
+    const data = await $fetch('/api/account/txcount', {
       params: {
         id: accountId,
       },
@@ -113,10 +109,17 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
-    rawAccountNames.value = null
-    const defaultParameters = `/v2/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${limit ?? 10}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawAccountNames.value = data
+    accountNames.value = null
+    const data = await $fetch('/api/account/names', {
+      params: {
+        accountId,
+        queryParameters,
+        limit,
+      },
+    })
+    console.log('data', data)
+    accountNames.value = data
+    console.log('accountNames.value', accountNames.value)
   }
 
   async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {

@@ -1,4 +1,4 @@
-import { defineConfig } from 'cypress'
+import {defineConfig} from 'cypress'
 
 export default defineConfig({
   env: {
@@ -19,6 +19,7 @@ export default defineConfig({
     notFoundAccount: 'ak_2iBPH7HUz3cSDVEUWiHg76MZJ6tZooVNBmmxcgVK6VV8KAE689',
     existentAccount: 'ak_8HDkjUz23gARqED4oRk6nShpY3YYPUA3tb4pbPcqKxXNHYqno',
     futureKeyblockHeight: '99999999',
+    retries: 2
   },
   e2e: {
     baseUrl: 'http://localhost:8080',

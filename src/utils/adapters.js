@@ -121,29 +121,6 @@ export function adaptDashboardStateChannels(stateChannels) {
   })
 }
 
-export function adaptAccountActivities(activities) {
-  const formattedData = activities.data.map(activity => {
-    return {
-      hash: activity.payload?.hash || activity.payload?.txHash ||
-        activity.payload?.refTxHash || activity.payload?.callTxHash,
-      type: activity.type,
-      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime).toLocaleString(DateTime.DATETIME_SHORT),
-      height: activity.payload?.blockHeight || activity.height,
-      payload: activity.payload,
-      hintKey:
-        activity.payload?.tx
-          ? activity.payload.tx.type.charAt(0).toLowerCase() + activity.payload.tx.type.slice(1)
-          : null,
-    }
-  })
-
-  return {
-    next: activities.next,
-    data: formattedData,
-    prev: activities.prev,
-  }
-}
-
 export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
   const formattedData = tokens.data.map(token => {
     const amount = token.amount / (10 ** token.decimals)

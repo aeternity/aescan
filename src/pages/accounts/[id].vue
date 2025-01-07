@@ -11,8 +11,6 @@
   </page-header>
 
   <template v-if="!isLoading">
-    totalAccountTransactionsCount {{ totalAccountTransactionsCount }}
-
     <account-details-panel
       class="account__account-details-panel"
       :total-account-transactions-count="totalAccountTransactionsCount"

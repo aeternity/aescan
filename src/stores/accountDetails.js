@@ -2,7 +2,7 @@ import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { adaptAccountActivities, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
+import { adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
 import { useDexStore } from '@/stores/dex'
 
 export const useAccountStore = defineStore('account', () => {
@@ -20,18 +20,12 @@ export const useAccountStore = defineStore('account', () => {
   const selectedMicroblock = ref(null)
   const selectedKeyblockMicroblocks = ref(null)
   const selectedMicroblockTransactions = ref(null)
-  const rawAccountNames = ref(null)
-  const rawAccountActivities = ref(null)
   const rawAccountTokens = ref(null)
   const rawAccountTransactions = ref(null)
   const tokenPrices = ref({})
-  const accountNames = ref({})
+  const accountNames = ref(null)
+  const accountActivities = ref(null)
 
-  const accountActivities = computed(() =>
-    rawAccountActivities.value
-      ? adaptAccountActivities(rawAccountActivities.value)
-      : null,
-  )
   const accountTransactions = computed(() =>
     rawAccountTransactions.value
       ? adaptTransactions(rawAccountTransactions.value)
@@ -45,6 +39,8 @@ export const useAccountStore = defineStore('account', () => {
   )
 
   async function fetchAccount(accountId, { limit } = {}) {
+    console.log('111 accountId', accountId)
+
     await Promise.all([
       fetchAccountDetails(accountId),
 
@@ -90,6 +86,7 @@ export const useAccountStore = defineStore('account', () => {
         limit,
       },
     })
+
     accountNames.value = data
   }
 
@@ -118,11 +115,18 @@ export const useAccountStore = defineStore('account', () => {
     )
   }
 
-  async function fetchAccountActivities({ accountId, limit, queryParameters } = {}) {
-    rawAccountActivities.value = null
-    const defaultParameters = `/v3/accounts/${accountId}/activities?limit=${limit ?? 10}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawAccountActivities.value = data
+  async function fetchAccountActivities({ accountId, queryParameters, limit } = {}) {
+    console.log('accountId, queryParameters, limit', accountId, queryParameters, limit)
+    accountActivities.value = null
+    const data = await $fetch('/api/account/activities', {
+      params: {
+        accountId,
+        queryParameters,
+        limit,
+      },
+    })
+    console.log('data', data)
+    accountActivities.value = data
   }
 
   async function fetchAccountTransactions({ accountId, type, limit, queryParameters } = {}) {
@@ -157,8 +161,6 @@ export const useAccountStore = defineStore('account', () => {
     selectedMicroblock,
     selectedKeyblockMicroblocks,
     selectedMicroblockTransactions,
-    rawAccountNames,
-    rawAccountActivities,
     rawAccountTransactions,
     rawAccountTokens,
     accountDetails,

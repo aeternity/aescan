@@ -19,7 +19,6 @@ export const useAccountStore = defineStore('account', () => {
   const selectedKeyblockMicroblocks = ref(null)
   const selectedMicroblockTransactions = ref(null)
   const rawAccountTokens = ref(null)
-  const rawAccountTransactions = ref(null)
   const tokenPrices = ref({})
   const accountNames = ref(null)
   const accountActivities = ref(null)
@@ -47,34 +46,24 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountDetails(accountId) {
     accountDetails.value = null
-    const data = await $fetch('/api/account/detail', {
-      params: {
-        id: accountId,
-      },
+    accountDetails.value = await $fetch('/api/account/detail', {
+      params: { id: accountId },
     })
-    accountDetails.value = data
   }
 
   async function fetchTotalAccountTransactionsCount(accountId) {
     totalAccountTransactionsCount.value = null
-    const data = await $fetch('/api/account/txcount', {
-      params: {
-        id: accountId,
-      },
+    totalAccountTransactionsCount.value = await $fetch('/api/account/txcount', {
+      params: { id: accountId },
     })
-    totalAccountTransactionsCount.value = data
   }
 
+  // todo account id to id
   async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
     accountNames.value = null
-    const data = await $fetch('/api/account/names', {
-      params: {
-        accountId,
-        queryParameters,
-        limit,
-      },
+    accountNames.value = await $fetch('/api/account/names', {
+      params: { accountId, queryParameters, limit },
     })
-    accountNames.value = data
   }
 
   async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {
@@ -104,27 +93,16 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountActivities({ accountId, queryParameters, limit } = {}) {
     accountActivities.value = null
-    const data = await $fetch('/api/account/activities', {
-      params: {
-        accountId,
-        queryParameters,
-        limit,
-      },
+    accountActivities.value = await $fetch('/api/account/activities', {
+      params: { accountId, queryParameters, limit },
     })
-    accountActivities.value = data
   }
 
   async function fetchAccountTransactions({ accountId, type, queryParameters, limit } = {}) {
     accountTransactions.value = null
-    const data = await $fetch('/api/account/transactions', {
-      params: {
-        accountId,
-        queryParameters,
-        limit,
-        type,
-      },
+    accountTransactions.value = await $fetch('/api/account/transactions', {
+      params: { accountId, queryParameters, limit, type },
     })
-    accountTransactions.value = data
   }
 
   return {

@@ -1,10 +1,8 @@
-import { isAddressValid } from '@aeternity/aepp-sdk'
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { adaptAccountActivities, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
-import { formatAettosToAe } from '@/utils/format'
 import { useDexStore } from '@/stores/dex'
 
 export const useAccountStore = defineStore('account', () => {
@@ -16,7 +14,7 @@ export const useAccountStore = defineStore('account', () => {
   const axios = useAxios()
   const { fetchPrice } = useDexStore()
 
-  const rawAccountDetails = ref(null)
+  const accountDetails = ref(null)
   const totalAccountTransactionsCount = ref(null)
   const selectedKeyblock = ref(null)
   const selectedMicroblock = ref(null)
@@ -29,16 +27,6 @@ export const useAccountStore = defineStore('account', () => {
   const tokenPrices = ref({})
   const accountNames = ref({})
 
-  const accountDetails = computed(() =>
-    rawAccountDetails.value
-      ? {
-        ...rawAccountDetails.value,
-        balance: formatAettosToAe(rawAccountDetails.value.balance),
-        totalTransactionsCount: totalAccountTransactionsCount.value,
-        isGeneralized: rawAccountDetails.value.kind === 'generalized',
-      }
-      : null,
-  )
   const accountActivities = computed(() =>
     rawAccountActivities.value
       ? adaptAccountActivities(rawAccountActivities.value)
@@ -72,29 +60,13 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   async function fetchAccountDetails(accountId) {
-    try {
-      const data = await $fetch('/api/account', {
-        params: {
-          id: accountId,
-        },
-      })
-
-      rawAccountDetails.value = data
-    } catch (e) {
-      if ([400, 404].includes(e.response.status)) {
-        if (isAddressValid(accountId)) {
-          rawAccountDetails.value = { id: accountId, isExistent: false }
-        } else {
-          throw showError({
-            data: {
-              entityId: accountId,
-              entityName: 'Account',
-            },
-            statusMessage: 'EntityDetailsNotFound',
-          })
-        }
-      }
-    }
+    accountDetails.value = null
+    const data = await $fetch('/api/account/detail', {
+      params: {
+        id: accountId,
+      },
+    })
+    accountDetails.value = data
   }
 
   async function fetchTotalAccountTransactionsCount(accountId) {
@@ -106,6 +78,7 @@ export const useAccountStore = defineStore('account', () => {
     })
 
     totalAccountTransactionsCount.value = data
+    console.log('totalAccountTransactionsCount.value', totalAccountTransactionsCount.value)
   }
 
   async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
@@ -117,9 +90,7 @@ export const useAccountStore = defineStore('account', () => {
         limit,
       },
     })
-    console.log('data', data)
     accountNames.value = data
-    console.log('accountNames.value', accountNames.value)
   }
 
   async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {
@@ -180,8 +151,8 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   return {
-    rawAccountDetails,
     totalAccountTransactionsCount,
+    // todo shorten name totalAccountTransactionsCount
     selectedKeyblock,
     selectedMicroblock,
     selectedKeyblockMicroblocks,

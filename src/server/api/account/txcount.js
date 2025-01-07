@@ -1,5 +1,5 @@
-import useAxios from "~/composables/useAxios";
-// todo rename component
+import useAxios from '~/composables/useAxios'
+// todo move to detail api
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 

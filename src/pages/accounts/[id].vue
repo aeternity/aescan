@@ -11,8 +11,11 @@
   </page-header>
 
   <template v-if="!isLoading">
+    totalAccountTransactionsCount {{ totalAccountTransactionsCount }}
+
     <account-details-panel
       class="account__account-details-panel"
+      :total-account-transactions-count="totalAccountTransactionsCount"
       :account-details="accountDetails"/>
 
     <client-only>
@@ -52,7 +55,7 @@ const { isLoading } = useLoading()
 const { push, replace } = useRouter()
 
 const accountStore = useAccountStore()
-const { accountDetails, accountTokens } = storeToRefs(accountStore)
+const { accountDetails, accountTokens, totalAccountTransactionsCount } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
 const route = useRoute()
 
@@ -61,11 +64,11 @@ const isAccountExistent = computed(() => {
 })
 
 const isTabsVisible = computed(() => process.client &&
-    (isAccountExistent.value || !!accountTokens.value?.data.length),
+  (isAccountExistent.value || !!accountTokens.value?.data.length),
 )
 
 const isTokensTabPreselected = computed(() => process.client &&
-    !isAccountExistent.value && !!accountTokens.value?.data.length,
+  !isAccountExistent.value && !!accountTokens.value?.data.length,
 )
 
 const activeTabIndex = computed({

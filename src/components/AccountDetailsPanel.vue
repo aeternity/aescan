@@ -68,7 +68,7 @@
             Transactions
           </th>
           <td>
-            {{ formatNumber(accountDetails.totalTransactionsCount) }}
+            {{ formatNumber(totalAccountTransactionsCount) }}
           </td>
         </tr>
         <tr
@@ -156,6 +156,10 @@ const { NODE_URL } = useRuntimeConfig().public
 const props = defineProps({
   accountDetails: {
     type: Object,
+    required: true,
+  },
+  totalAccountTransactionsCount: {
+    type: String,
     required: true,
   },
 })

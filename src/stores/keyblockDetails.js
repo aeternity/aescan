@@ -28,7 +28,6 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
         microblockHash, limit, queryParameters, keyblockHash,
       },
     })
-    console.log('keyblockMicroblocks.value', keyblockMicroblocks.value)
     keyblockMicroblocks.value = data
   }
 

@@ -9,7 +9,6 @@ export default defineEventHandler(async event => {
   const defaultParameters = `/v3/accounts/${query.accountId}/activities?limit=${query.limit || 10}`
 
   const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
-  console.log('url', url)
   const { data } = await axios.get(url)
   return adaptAccountActivities(data)
 })

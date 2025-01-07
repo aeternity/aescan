@@ -2,20 +2,18 @@ import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { useMarketStatsStore } from '@/stores/marketStats'
-import { adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
+import { adaptAccountTokens } from '@/utils/adapters'
 import { useDexStore } from '@/stores/dex'
 
 export const useAccountStore = defineStore('account', () => {
-  const {
-    MIDDLEWARE_URL,
-    NODE_URL,
-  } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const { price: aeFiatPrice } = storeToRefs(useMarketStatsStore())
   const axios = useAxios()
   const { fetchPrice } = useDexStore()
 
   const accountDetails = ref(null)
   const totalAccountTransactionsCount = ref(null)
+  const accountTransactions = ref(null)
   const selectedKeyblock = ref(null)
   const selectedMicroblock = ref(null)
   const selectedKeyblockMicroblocks = ref(null)
@@ -26,12 +24,6 @@ export const useAccountStore = defineStore('account', () => {
   const accountNames = ref(null)
   const accountActivities = ref(null)
 
-  const accountTransactions = computed(() =>
-    rawAccountTransactions.value
-      ? adaptTransactions(rawAccountTransactions.value)
-      : null,
-  )
-
   const accountTokens = computed(() =>
     rawAccountTokens.value
       ? adaptAccountTokens(rawAccountTokens.value, tokenPrices.value, aeFiatPrice.value)
@@ -39,8 +31,6 @@ export const useAccountStore = defineStore('account', () => {
   )
 
   async function fetchAccount(accountId, { limit } = {}) {
-    console.log('111 accountId', accountId)
-
     await Promise.all([
       fetchAccountDetails(accountId),
 
@@ -72,9 +62,7 @@ export const useAccountStore = defineStore('account', () => {
         id: accountId,
       },
     })
-
     totalAccountTransactionsCount.value = data
-    console.log('totalAccountTransactionsCount.value', totalAccountTransactionsCount.value)
   }
 
   async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
@@ -86,7 +74,6 @@ export const useAccountStore = defineStore('account', () => {
         limit,
       },
     })
-
     accountNames.value = data
   }
 
@@ -116,7 +103,6 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   async function fetchAccountActivities({ accountId, queryParameters, limit } = {}) {
-    console.log('accountId, queryParameters, limit', accountId, queryParameters, limit)
     accountActivities.value = null
     const data = await $fetch('/api/account/activities', {
       params: {
@@ -125,33 +111,20 @@ export const useAccountStore = defineStore('account', () => {
         limit,
       },
     })
-    console.log('data', data)
     accountActivities.value = data
   }
 
-  async function fetchAccountTransactions({ accountId, type, limit, queryParameters } = {}) {
-    rawAccountTransactions.value = null
-
-    if (queryParameters) {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
-      rawAccountTransactions.value = data
-      return
-    }
-
-    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions`)
-    transactionsUrl.searchParams.append('direction', 'backward')
-    transactionsUrl.searchParams.append('limit', limit ?? 10)
-
-    if (accountId) {
-      transactionsUrl.searchParams.append('sender_id', accountId)
-    }
-
-    if (type) {
-      transactionsUrl.searchParams.append('type', type)
-    }
-
-    const { data } = await axios.get(transactionsUrl.toString())
-    rawAccountTransactions.value = data
+  async function fetchAccountTransactions({ accountId, type, queryParameters, limit } = {}) {
+    accountTransactions.value = null
+    const data = await $fetch('/api/account/transactions', {
+      params: {
+        accountId,
+        queryParameters,
+        limit,
+        type,
+      },
+    })
+    accountTransactions.value = data
   }
 
   return {
@@ -161,7 +134,6 @@ export const useAccountStore = defineStore('account', () => {
     selectedMicroblock,
     selectedKeyblockMicroblocks,
     selectedMicroblockTransactions,
-    rawAccountTransactions,
     rawAccountTokens,
     accountDetails,
     accountActivities,

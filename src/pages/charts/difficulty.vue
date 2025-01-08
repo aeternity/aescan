@@ -15,14 +15,11 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <difficulty-chart-panel
-        :has-select="true"
-        :range="CHART_INTERVALS_OPTIONS[4]"/>
+      <difficulty-chart-panel/>
     </template>
   </NuxtLayout>
 </template>
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
 </script>

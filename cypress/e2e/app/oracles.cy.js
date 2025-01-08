@@ -17,7 +17,6 @@ describe('oracles', () => {
         cy.get('.oracles-table__data').first()
           .invoke('text')
           .should(hash2 => {
-            console.log('hash2', hash2)
             expect(hash1).not.to.eq(hash2)
           })
       })
@@ -37,7 +36,6 @@ describe('oracles', () => {
         cy.get('.oracles-table__data').first()
           .invoke('text')
           .should(hash2 => {
-            console.log('hash2', hash2)
             expect(hash1).to.eq(hash2)
           })
       })

@@ -96,13 +96,19 @@ export function formatNullable(value) {
     return value
   }
   if (!value) {
-    return '---'
+    return 'N/A'
   }
-  return value || '---'
+  return value || 'N/A'
 }
 
 export function formatDecodeBase64(base64String) {
-  return process.client ? window.atob(base64String) : Buffer.from(base64String, 'base64').toString('utf8')
+  try {
+    return process.client
+      ? (decodeURIComponent(escape(atob(base64String))) ? decodeURIComponent(escape(atob(base64String))) : null)
+      : Buffer.from(base64String, 'base64').toString('utf8')
+  } catch (e) {
+    return ''
+  }
 }
 
 export function formatDecodeByteArray(bytesArray) {
@@ -110,11 +116,11 @@ export function formatDecodeByteArray(bytesArray) {
 }
 
 export function formatNameState(name, blockHeight) {
-  const isInAuction = name.status === 'auction'
   const isActive = name.active
-  const isExpired = name.status === 'name' && !name.active
+  const isInAuction = !!name.auction
+  const isExpired = !name.active && name.auction === null
   const isRevoked = isExpired && name.active === false &&
-    name.info.expireHeight + REVOKED_PERIOD > blockHeight
+    name.expireHeight + REVOKED_PERIOD > blockHeight
 
   if (isInAuction) {
     return 'auction'

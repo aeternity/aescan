@@ -62,15 +62,6 @@
         <td class="dashboard-keyblock-table__data">
           <timestamp-label :timestamp="keyblock.mined"/>
         </td>
-        <th class="dashboard-keyblock-table__column-end">
-          BRI Reward
-          <hint-tooltip class="dashboard-keyblock-table__tooltip">
-            {{ keyblocksHints.briReward }}
-          </hint-tooltip>
-        </th>
-        <td class="dashboard-keyblock-table__data">
-          <price-label :price="formatNullable(stats?.devReward, null)"/>
-        </td>
       </tr>
     </tbody>
   </table>
@@ -78,7 +69,6 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import { formatNullable } from '@/utils/format'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import HintTooltip from '@/components/HintTooltip'
 
@@ -121,7 +111,7 @@ defineProps({
   }
 
   &__column-end {
-    padding-left: 15%;
+    padding-left: 13%;
   }
 
   &__table-responsive {

@@ -64,7 +64,7 @@
                 :is-extended="true"/>
             </div>
             <template v-else>
-              ---
+              N/A
             </template>
           </td>
         </tr>
@@ -91,7 +91,7 @@
                 :is-extended="true"/>
             </div>
             <template v-else>
-              ---
+              N/A
             </template>
           </td>
         </tr>

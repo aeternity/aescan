@@ -26,14 +26,23 @@ const menuOptions = ref([{
   path: 'contracts',
 },
 {
+  name: 'Accounts',
+  path: 'accounts',
+},
+{
   name: 'Names',
   path: 'names',
 },
 {
   name: 'Difficulty',
   path: 'difficulty',
+},
+{
+  name: 'Hashrate',
+  path: 'hashrate',
 }])
 </script>
+
 <style scoped>
 .charts-navigation {
   width: 100%;

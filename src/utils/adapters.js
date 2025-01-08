@@ -24,7 +24,6 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
       ...keyblock,
       mined: DateTime.fromMillis(keyblock.time),
       blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
-      devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
     }
   }
 
@@ -109,14 +108,14 @@ export function adaptNames(names, blockHeight) {
   return names.map(name => {
     return {
       name: name.name,
-      address: name.info.ownership.current,
-      activatedHeight: name.info.activeFrom,
+      address: name.ownership.current,
+      activatedHeight: name.activeFrom,
       activated: formatBlockDiffAsDatetime(
-        name.info.activeFrom,
+        name.activeFrom,
         blockHeight,
       ),
       isAuction: formatIsAuction(name.name),
-      price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
+      price: formatAettosToAe(name.nameFee),
     }
   })
 }
@@ -163,9 +162,9 @@ export function adaptAccountNames(names) {
   const formattedData = names.data.map(name => {
     return {
       name: name.name,
-      expirationHeight: name.info.expireHeight,
-      expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-      pointers: Object.values(name.info.pointers),
+      expirationHeight: name.expireHeight,
+      expiration: DateTime.fromMillis(name.approximateExpireTime),
+      pointers: name.pointers.map(pointer => pointer.id),
     }
   })
   return {
@@ -211,20 +210,20 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
   return {
     ...selectedDeltaStats,
     blockReward: formatAettosToAe(selectedDeltaStats.blockReward),
-    devReward: formatAettosToAe(selectedDeltaStats.devReward),
   }
 }
 
 export function adaptActiveNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    buyer: name.info.ownership.original,
-    owner: name.info.ownership.current,
-    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-    expirationHeight: name.info.expireHeight,
-    pointers: Object.values(name.info.pointers),
+    buyer: name.ownership.original,
+    owner: name.ownership.current,
+    fee: formatAettosToAe(name.nameFee),
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
+    expirationHeight: name.expireHeight,
+    pointers: Object.values(name.pointers),
   }))
+
   return {
     next: names.next,
     data: formattedData,
@@ -235,11 +234,11 @@ export function adaptActiveNames(names) {
 export function adaptInAuctionNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    highestBidder: name.info.lastBid.tx.accountId,
-    bid: formatAettosToAe(name.info.lastBid.tx.nameFee),
-    bidCount: name.info.bids.length,
-    expirationHeight: name.info.auctionEnd,
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
+    highestBidder: name.lastBid.tx.accountId,
+    bid: formatAettosToAe(name.lastBid.tx.nameFee),
+    bidCount: name.claimsCount,
+    expirationHeight: name.auctionEnd,
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
   }))
   return {
     next: names.next,
@@ -251,11 +250,11 @@ export function adaptInAuctionNames(names) {
 export function adaptExpiredNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    expirationHeight: name.info.expireHeight,
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
-    lastBuyer: name.info.ownership.original,
-    lastOwner: name.info.ownership.current,
+    expirationHeight: name.expireHeight,
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
+    fee: formatAettosToAe(name.nameFee),
+    lastBuyer: name.ownership.original,
+    lastOwner: name.ownership.current,
   }))
   return {
     next: names.next,
@@ -265,62 +264,62 @@ export function adaptExpiredNames(names) {
 }
 
 export function adaptCustomPointers(allPointers) {
-  const customPointers = { ...allPointers }
-
-  SPECIAL_POINTERS_PRESET_KEYS.forEach(specialPointerKey => {
+  const customPointers = allPointers.filter(pointer =>
     // separate special and custom pointers
-    delete customPointers[specialPointerKey]
-  })
+    !SPECIAL_POINTERS_PRESET_KEYS.includes(pointer.key),
+  )
+
   const hasRawPointers = allPointers
-    ? Object.values(allPointers)
-      .some(v => isAddressValid(v, Encoding.Bytearray))
+    ? allPointers.some(pointer => isAddressValid(pointer.id, Encoding.Bytearray))
     : null
 
-  return Object.entries(customPointers).map(pointer => {
+  return customPointers.map(pointer => {
     return {
-      key: formatDecodeBase64(pointer[0]),
-      pointer: hasRawPointers ? decode(pointer[1]).toString() : pointer[1],
+      key: pointer.key,
+      pointer: hasRawPointers ? decode(pointer.id).toString() : pointer.id,
       isRawPointer: hasRawPointers,
     }
   })
 }
 
 export function adaptName(name, blockHeight, blockTime) {
-  const lastBid = name?.auction?.lastBid || name?.info?.lastBid
-  const customPointers = adaptCustomPointers(name.info?.pointers)
-  const endHeight = name.auction?.auctionEnd || name?.info?.auctionEnd
-  const ends = name.auction?.approximateAuctionEndTime || name.info?.approximateAuctionEndTime
+  const lastBid = name?.auction?.lastBid
   const state = formatNameState(name, blockHeight)
+  const endHeight = name.auction?.auctionEnd
+  const ends = name.auction?.approximateExpireTime || name.approximateExpireTime
   const blockCreatedTime = DateTime.fromMillis(blockTime)
   const activated = state === 'active'
     ? blockCreatedTime.minus({
-      minutes: blockHeight - name.info.activeFrom * MINUTES_PER_BLOCK,
+      minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
     })
     : null
+  const customPointers = adaptCustomPointers(name.pointers)
+
+  const specialPointers = {
+    account: name.pointers ? name.pointers.find(name => name.key === 'account_pubkey')?.id : null,
+    channel: name.pointers ? name.pointers.find(name => name.key === 'channel')?.id : null,
+    contract: name.pointers ? name.pointers.find(name => name.key === 'contract_pubkey')?.id : null,
+    oracle: name.pointers ? name.pointers.find(name => name.key === 'oracle_pubkey')?.id : null,
+  }
 
   return {
     state,
     name: name.name,
     active: name.active,
-    owner: name.info?.ownership?.current,
+    owner: name?.ownership?.current,
     bidder: lastBid?.tx?.accountId,
     bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
-    activatedHeight: state === 'active' ? name.info.activeFrom : null,
+    activatedHeight: state === 'active' ? name.activeFrom : null,
     activated,
-    expirationHeight: name.info.expireHeight,
-    expiration: name.info.approximateExpireTime
-      ? DateTime.fromMillis(name.info.approximateExpireTime)
+    expirationHeight: name.expireHeight,
+    expiration: name.approximateExpireTime
+      ? DateTime.fromMillis(name.approximateExpireTime)
       : null,
     auctionEndsHeight: endHeight,
     auctionEnds: ends
       ? DateTime.fromMillis(ends)
       : null,
-    specialPointers: {
-      account: name.info?.pointers?.account_pubkey,
-      channel: name.info?.pointers?.channel,
-      contract: name.info?.pointers?.contract_pubkey,
-      oracle: name.info?.pointers?.oracle_pubkey,
-    },
+    specialPointers,
     customPointers,
   }
 }
@@ -763,5 +762,4 @@ export function adaptReadEntrypoints(aci) {
 
 export function adaptWriteEntrypoints(aci) {
   return Object.groupBy(aci.contract.functions, formatIsStatefulEntrypoint).true
-
 }

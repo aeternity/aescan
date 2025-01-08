@@ -42,4 +42,16 @@ describe('account detail', () => {
     cy.contains('.multiselect__option', 'ContractCallTx').click()
     cy.get('.blank-state').should('be.visible')
   })
+
+  it('should display generalized account label', () => {
+    cy.visit(`/accounts/${Cypress.env('generalizedAccountAddress')}`)
+    cy.get('.account-details-panel .chip').should('contain', 'Generalized')
+  })
+
+  it('should select previous tab when navigating back', () => {
+    cy.visit(`/accounts/${Cypress.env('accountAddress')}`)
+    cy.contains('.tabs__item', 'Transactions').click()
+    cy.go(-1)
+    cy.get('.tabs__item--active').should('contain', 'Activities')
+  })
 })

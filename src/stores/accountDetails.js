@@ -1,4 +1,5 @@
 import { defineStore, storeToRefs } from 'pinia'
+import { isAddressValid } from '@aeternity/aepp-sdk'
 import { useRuntimeConfig } from 'nuxt/app'
 import { isAddressValid } from '@aeternity/aepp-sdk';
 import useAxios from '@/composables/useAxios'
@@ -106,7 +107,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
     rawAccountNames.value = null
-    const defaultParameters = `/v2/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${limit ?? 10}`
+    const defaultParameters = `/v3/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountNames.value = data
   }

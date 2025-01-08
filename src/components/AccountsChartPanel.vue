@@ -1,7 +1,10 @@
 <template>
   <app-panel>
     <template #title>
-      KEYBLOCKS MINED
+      ACTIVE ACCOUNTS
+      <hint-tooltip>
+        {{ chartsHints.accountsChart }}
+      </hint-tooltip>
     </template>
     <template #end>
       <chart-controls
@@ -10,39 +13,39 @@
     </template>
 
     <line-chart
-      :data="keyblocksStatistics"
+      :data="accountsStatistics"
       :interval="selectedRange.interval"/>
 
     <chart-controls
       v-model="selectedRange"
-      class="keyblocks-chart-panel__controls u-hidden-desktop"/>
+      class="accounts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { chartsHints } from '@/utils/hints/chartsHints'
 import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()
-const { keyblocksStatistics } = storeToRefs(chartsStore)
-const { fetchKeyblocksStatistics } = chartsStore
+const { accountsStatistics } = storeToRefs(chartsStore)
+const { fetchAccountsStatistics } = chartsStore
 
 const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
-  await loadKeyblockStatistics()
+  await loadHashrateStatistics()
   return true
 })
 
 if (process.client) {
-  watch(selectedRange, async() => {
-    await loadKeyblockStatistics()
+  watch([selectedRange], async() => {
+    await loadHashrateStatistics()
   })
 }
 
-async function loadKeyblockStatistics() {
-  await fetchKeyblocksStatistics(
+async function loadHashrateStatistics() {
+  await fetchAccountsStatistics(
     selectedRange.value.interval,
     selectedRange.value.limit,
     selectedRange.value.customInterval)
@@ -50,7 +53,7 @@ async function loadKeyblockStatistics() {
 </script>
 
 <style scoped>
-.keyblocks-chart-pane__controls {
+.accounts-chart-pane__controls {
   margin-top: var(--space-4);
 }
 </style>

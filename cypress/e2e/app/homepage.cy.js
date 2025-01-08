@@ -5,6 +5,7 @@ describe('homepage', () => {
     cy.get('.stats-panel').should('be.visible')
     cy.get('.dashboard-state-channels-panel table').should('be.visible')
     cy.get('.dashboard-auctions-panel')
+
       .should('satisfy', elements => {
         return Array.from(elements[0].childNodes).some(element => {
           if (element.localName === 'table' || element.className === 'blank-state') {
@@ -23,5 +24,11 @@ describe('homepage', () => {
     cy.visit('/wrong',
       { failOnStatusCode: false })
     cy.get('.title').contains('Page Not Found')
+  })
+
+  it('should display app versions', () => {
+    cy.visit('/')
+    // improve search for content
+    cy.get('.footer__version a').should('be.visible')
   })
 })

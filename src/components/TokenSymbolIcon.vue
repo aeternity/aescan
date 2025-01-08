@@ -2,7 +2,7 @@
   <img
     v-if="isAe"
     alt="æ token"
-    src="@/assets/ae-token.svg">
+    src="@/assets/ae-logo.svg">
 
   <img
     v-else-if="isLaex"

@@ -1,7 +1,7 @@
 <template>
   <app-panel>
     <template #title>
-      NAMES ACTIVATED TREND
+      NAMES ACTIVATED
     </template>
     <template #end>
       <chart-controls
@@ -9,11 +9,9 @@
         class="u-hidden-mobile"/>
     </template>
 
-    <div class="names-chart-panel__container">
-      <line-chart
-        :data="namesStatistics"
-        :interval="selectedRange.interval"/>
-    </div>
+    <line-chart
+      :data="namesStatistics"
+      :interval="selectedRange.interval"/>
 
     <chart-controls
       v-model="selectedRange"
@@ -24,19 +22,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()
 const { namesStatistics } = storeToRefs(chartsStore)
 const { fetchNamesStatistics } = chartsStore
 
-const props = defineProps({
-  range: {
-    required: true,
-    type: Object,
-  },
-})
-
-const selectedRange = ref(props.range)
+const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadNamesStatistics()
@@ -58,14 +50,7 @@ async function loadNamesStatistics() {
 </script>
 
 <style scoped>
-.names-chart-panel {
-  &__container {
-    position: relative;
-    height: 250px;
-  }
-
-  &__controls {
-    margin-top: var(--space-4);
-  }
+.names-chart-panel__controls {
+  margin-top: var(--space-4);
 }
 </style>

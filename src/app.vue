@@ -88,6 +88,7 @@ import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '
 
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const router = useRouter()
+const route = useRoute()
 
 await useAsyncData(() => initializeStores())
 
@@ -99,7 +100,7 @@ if (process.client) {
 useHead({
   titleTemplate: pageTitle =>
     pageTitle
-      ? `${APP_TITLE_SHORT} | ${pageTitle}`
+      ? `${pageTitle} ${route.params.id || ''} | ${APP_TITLE_SHORT}`
       : APP_TITLE,
 })
 

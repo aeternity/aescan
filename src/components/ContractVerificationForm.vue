@@ -42,13 +42,14 @@
         </div>
 
         <div class="contract-verification-form__field">
-          <label for="compiler">
+          <label for="license">
             License
             <hint-tooltip>
               {{ contractVerificationHints.required }}
             </hint-tooltip>
           </label>
           <license-select
+            id="license"
             v-model="form.license"
             class="contract-verification-form__select"/>
           <p

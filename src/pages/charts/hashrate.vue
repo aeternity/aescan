@@ -15,11 +15,12 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <keyblocks-chart-panel/>
+      <hashrate-chart-panel/>
     </template>
   </NuxtLayout>
 </template>
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 </script>

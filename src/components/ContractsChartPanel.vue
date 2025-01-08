@@ -9,11 +9,9 @@
         class="u-hidden-mobile"/>
     </template>
 
-    <div class="contracts-chart-panel__container">
-      <line-chart
-        :data="contractsStatistics"
-        :interval="selectedRange.interval"/>
-    </div>
+    <line-chart
+      :data="contractsStatistics"
+      :interval="selectedRange.interval"/>
 
     <chart-controls
       v-model="selectedRange"
@@ -30,14 +28,7 @@ const chartsStore = useChartsStore()
 const { contractsStatistics } = storeToRefs(chartsStore)
 const { fetchContractsStatistics } = chartsStore
 
-const props = defineProps({
-  range: {
-    required: true,
-    type: Object,
-  },
-})
-
-const selectedRange = ref(props.range)
+const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadContractsStatistics()
@@ -60,14 +51,7 @@ async function loadContractsStatistics() {
 </script>
 
 <style scoped>
-.contracts-chart-panel {
-  &__container {
-    position: relative;
-    height: 250px;
-  }
-
-  &__controls {
-    margin-top: var(--space-4);
-  }
+.contracts-chart-panel__controls {
+  margin-top: var(--space-4);
 }
 </style>

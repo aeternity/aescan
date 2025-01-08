@@ -63,7 +63,7 @@ const props = defineProps({
   },
   hasIcon: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   hasLink: {
     type: Boolean,

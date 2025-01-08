@@ -3,9 +3,9 @@ import { compileTemplate } from 'vue/compiler-sfc'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 const routesWithConditions = {
-  '/dex-trades': process.env.DEX_BACKEND_URL === 'true',
-  '/nodes': process.env.NODES_BACKEND_URL === 'true',
-  '/contract-verification/**': process.env.CONTRACT_VERIFICATION_SERVICE_URL === 'true',
+  '/dex-trades': !!process.env.DEX_BACKEND_URL,
+  '/nodes': !!process.env.NODES_BACKEND_URL,
+  '/contract-verification/**': !!process.env.CONTRACT_VERIFICATION_SERVICE_URL,
   '/tokens/AE': process.env.ENABLE_MARKET_STATS === 'true',
 }
 

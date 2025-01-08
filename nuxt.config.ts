@@ -2,13 +2,6 @@ import fs from 'fs/promises'
 import { compileTemplate } from 'vue/compiler-sfc'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 
-const routesWithConditions = {
-  '/dex-trades': !!process.env.DEX_BACKEND_URL,
-  '/nodes': !!process.env.NODES_BACKEND_URL,
-  '/contract-verification/**': !!process.env.CONTRACT_VERIFICATION_SERVICE_URL,
-  '/tokens/AE': process.env.ENABLE_MARKET_STATS === 'true',
-}
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   srcDir: './src',
@@ -73,7 +66,12 @@ export default defineNuxtConfig({
     },
   },
   routeRules: Object.fromEntries(
-    Object.entries(routesWithConditions).map(([route, isEnabled]) => [
+    Object.entries({
+      '/dex-trades': !!process.env.NUXT_PUBLIC_DEX_BACKEND_URL,
+      '/nodes': !!process.env.NUXT_PUBLIC_NODES_BACKEND_URL,
+      '/contract-verification/**': !!process.env.NUXT_PUBLIC_CONTRACT_VERIFICATION_SERVICE_URL,
+      '/tokens/AE': process.env.NUXT_PUBLIC_ENABLE_MARKET_STATS === 'true',
+    }).map(([route, isEnabled]) => [
       route,
       isEnabled ? {} : { redirect: '/' },
     ]),

@@ -67,10 +67,10 @@ export default defineNuxtConfig({
   },
   routeRules: Object.fromEntries(
     Object.entries({
-      '/dex-trades': !!process.env.NUXT_PUBLIC_DEX_BACKEND_URL,
-      '/nodes': !!process.env.NUXT_PUBLIC_NODES_BACKEND_URL,
-      '/contract-verification/**': !!process.env.NUXT_PUBLIC_CONTRACT_VERIFICATION_SERVICE_URL,
-      '/tokens/AE': process.env.NUXT_PUBLIC_ENABLE_MARKET_STATS === 'true',
+      '/dex-trades': !!process.env.DEX_BACKEND_URL,
+      '/nodes': !!process.env.NODES_BACKEND_URL,
+      '/contract-verification/**': !!process.env.CONTRACT_VERIFICATION_SERVICE_URL,
+      '/tokens/AE': process.env.ENABLE_MARKET_STATS === 'true',
     }).map(([route, isEnabled]) => [
       route,
       isEnabled ? {} : { redirect: '/' },

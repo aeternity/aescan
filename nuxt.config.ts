@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   nitro: {
     routeRules: {
       '/proxy/avatar/**': { proxy: 'https://avatars.z52da5wt.xyz/**', cors: true },
+      '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
       '/proxy/gate': { proxy: 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT', cors: true },
       '/proxy/mexc': { proxy: 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT', cors: true },
       '/proxy/coinw': { proxy: 'https://api.coinw.com/api/v1/public?command=returnTicker', cors: true },
@@ -51,7 +52,7 @@ export default defineNuxtConfig({
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
       PLAUSIBLE_URL: process.env.PLAUSIBLE_URL,
       ENABLE_MARKET_STATS: process.env.ENABLE_MARKET_STATS,
-      NODES_BACKEND_URL: process.env.NODES_BACKEND_URL,
+      ENABLE_NODES: process.env.ENABLE_NODES,
     },
   },
   postcss: {

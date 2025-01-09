@@ -14,13 +14,13 @@
           </td>
         </tr>
         <tr
-          v-if="state !== 'auction'"
+          v-if="!states.includes('active')"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ state === 'expired' ? namesHints.lastOwner : namesHints.owner }}
+              {{ states.includes('expired') ? namesHints.lastOwner : namesHints.owner }}
             </hint-tooltip>
-            {{ state === 'expired' ? "Last Owner" : "Owner" }}
+            {{ states.includes('expired') ? "Last Owner" : "Owner" }}
           </th>
           <td>
             <app-link :to="`/accounts/${name.owner}`">
@@ -69,7 +69,7 @@
           </td>
         </tr>
         <tr
-          v-if="state === 'active'"
+          v-if="states.includes('active')"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
@@ -85,7 +85,7 @@
           </td>
         </tr>
         <tr
-          v-if="state === 'active'"
+          v-if="states.includes('active')"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
@@ -102,7 +102,7 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[state + 'Height'] }}
+              {{ namesHints[states + 'Height'] }}
             </hint-tooltip>
             {{ stateLabel }} Height
           </th>
@@ -116,7 +116,7 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[state + 'Time'] }}
+              {{ namesHints[states + 'Time'] }}
             </hint-tooltip>
             {{ stateLabel }}
           </th>
@@ -134,9 +134,14 @@
             Status
           </th>
           <td>
-            <app-chip :variant="labelVariant">
-              {{ stateText }}
-            </app-chip>
+            <div class="name-details-panel__container">
+              <app-chip
+                v-for="state in states"
+                :key="state"
+                :variant="getVariant(state)">
+                {{ getLabel(state) }}
+              </app-chip>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -156,29 +161,46 @@ import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatEllipseHash } from '@/utils/format'
 
 const { name } = storeToRefs(useNameDetailsStore())
-const state = name.value.state
-
-const labelVariant = computed(() => state === 'active' ? 'success' : 'error')
+const states = name.value.state
 
 const stateLabel = computed(() => {
-  const labels = {
-    auction: 'Ends',
-    active: 'Expires',
-    expired: 'Expired',
-    revoked: 'Expired',
+  if (states.includes('auction')) {
+    return 'Ends'
   }
-  return labels[state]
+  if (states.includes('expired')) {
+    return 'Expired'
+  }
+  if (states.includes('revoked')) {
+    return 'Expired'
+  }
+  return 'Expires'
 })
 
-const stateText = computed(() => {
-  const texts = {
-    auction: 'In auction',
-    active: 'Active',
-    expired: 'Expired',
-    revoked: 'Expired',
+function getVariant(state) {
+  if (state.includes('auction')) {
+    return 'primary'
   }
-  return texts[state]
-})
+  if (state.includes('expired')) {
+    return 'error'
+  }
+  if (state.includes('revoked')) {
+    return 'error'
+  }
+  return 'success'
+}
+
+function getLabel(state) {
+  if (state.includes('auction')) {
+    return 'In Auction'
+  }
+  if (state.includes('expired')) {
+    return 'Expired'
+  }
+  if (state.includes('revoked')) {
+    return 'Revoked'
+  }
+  return 'Active'
+}
 
 </script>
 
@@ -194,6 +216,11 @@ const stateText = computed(() => {
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: flex;
+    gap: var(--space-1);
   }
 }
 </style>

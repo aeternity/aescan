@@ -21,9 +21,9 @@
 import { DateTime, Duration } from 'luxon'
 import { DATETIME_UNITS } from '@/utils/constants'
 
-import { useAppStore } from '@/stores/app'
+import { useUiStore } from '@/stores/ui'
 
-const { timeFormat } = storeToRefs(useAppStore())
+const { timeFormat } = storeToRefs(useUiStore())
 
 const props = defineProps({
   timestamp: {

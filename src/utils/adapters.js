@@ -14,6 +14,7 @@ import {
   formatTemplateLimit,
   formatTokenLimit,
   formatTradeRate,
+  formatTradeValue,
 } from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
@@ -739,7 +740,7 @@ export function adaptTrades(trades, price) {
       height: trade.height,
       timestamp: DateTime.fromMillis(trade.microTime),
       rate: formatTradeRate(trade.action, fromAmount, toAmount),
-      value: formatTradeValue(trade.action, fromAmount, toAmount, price),
+      value: price ? formatTradeValue(trade.action, fromAmount, toAmount, price) : null,
     }
   })
   return {

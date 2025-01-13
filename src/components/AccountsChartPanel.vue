@@ -26,12 +26,20 @@
 import { storeToRefs } from 'pinia'
 import { chartsHints } from '@/utils/hints/chartsHints'
 import { useChartsStore } from '@/stores/charts'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
 
 const chartsStore = useChartsStore()
 const { accountsStatistics } = storeToRefs(chartsStore)
 const { fetchAccountsStatistics } = chartsStore
 
-const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
+const props = defineProps({
+  range: {
+    required: true,
+    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
+  },
+})
+
+const selectedRange = ref(props.range)
 
 await useAsyncData(async() => {
   await loadHashrateStatistics()

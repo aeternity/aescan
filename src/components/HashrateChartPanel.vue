@@ -5,16 +5,16 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="selectedRange"
+        v-model="range"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="hashrateStatistics"
-      :interval="selectedRange.interval"/>
+      :interval="range.interval"/>
 
     <chart-controls
-      v-model="selectedRange"
+      v-model="range"
       class="hashrate-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -27,7 +27,7 @@ const chartsStore = useChartsStore()
 const { hashrateStatistics } = storeToRefs(chartsStore)
 const { fetchHashrateStatistics } = chartsStore
 
-const selectedRange = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
+const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadHashratetatistics()
@@ -35,16 +35,16 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([selectedRange], async() => {
+  watch([range], async() => {
     await loadHashratetatistics()
   })
 }
 
 async function loadHashratetatistics() {
   await fetchHashrateStatistics(
-    selectedRange.value.interval,
-    selectedRange.value.limit,
-    selectedRange.value.customInterval)
+    range.value.interval,
+    range.value.limit,
+    range.value.customInterval)
 }
 </script>
 

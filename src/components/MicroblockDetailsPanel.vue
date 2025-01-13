@@ -79,13 +79,12 @@ loc
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             <hint-tooltip>
-              <!--              todo hint-->
-              {{ microblocksHints.transactionsCount }}
+              {{ microblocksHints.gas }}
             </hint-tooltip>
             Gas Limit
           </th>
           <td>
-            {{ BLOCK_GAS_LIMIT }}
+            {{ microblockDetails.gas }}
           </td>
         </tr>
         <tr class="microblock-details-panel__row">

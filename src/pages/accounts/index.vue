@@ -13,7 +13,7 @@
   <accounts-statistics class="accounts-panel"/>
   <accounts-chart-panel
     class="accounts-panel"
-    :range="CHART_INTERVALS_PRESETS_OPTIONS[0]"/>
+    :preselected-range="CHART_INTERVALS_PRESETS_OPTIONS[0]"/>
   <top-accounts-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>

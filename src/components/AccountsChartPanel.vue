@@ -8,16 +8,16 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="selectedRange"
+        v-model="range"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="accountsStatistics"
-      :interval="selectedRange.interval"/>
+      :interval="range.interval"/>
 
     <chart-controls
-      v-model="selectedRange"
+      v-model="range"
       class="accounts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -33,13 +33,13 @@ const { accountsStatistics } = storeToRefs(chartsStore)
 const { fetchAccountsStatistics } = chartsStore
 
 const props = defineProps({
-  range: {
+  preselectedRange: {
     type: Object,
     default: CHART_INTERVALS_PRESETS_OPTIONS[4],
   },
 })
 
-const selectedRange = ref(props.range)
+const range = ref(props.preselectedRange)
 
 await useAsyncData(async() => {
   await loadHashrateStatistics()
@@ -47,16 +47,16 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([selectedRange], async() => {
+  watch([range], async() => {
     await loadHashrateStatistics()
   })
 }
 
 async function loadHashrateStatistics() {
   await fetchAccountsStatistics(
-    selectedRange.value.interval,
-    selectedRange.value.limit,
-    selectedRange.value.customInterval)
+    range.value.interval,
+    range.value.limit,
+    range.value.customInterval)
 }
 </script>
 

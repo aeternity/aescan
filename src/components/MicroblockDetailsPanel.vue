@@ -1,4 +1,3 @@
-loc
 <template>
   <app-panel class="microblock-details-panel">
     <table>

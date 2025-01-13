@@ -1,7 +1,10 @@
 <template>
   <app-panel>
     <template #title>
-      NAMES ACTIVATED
+      ACTIVE ACCOUNTS
+      <hint-tooltip>
+        {{ chartsHints.accountsChart }}
+      </hint-tooltip>
     </template>
     <template #end>
       <chart-controls
@@ -10,29 +13,26 @@
     </template>
 
     <line-chart
-      :data="namesStatistics"
+      :data="accountsStatistics"
       :interval="range.interval"/>
 
     <chart-controls
       v-model="range"
-      class="names-chart-panel__chart__controls u-hidden-desktop"/>
+      class="accounts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { chartsHints } from '@/utils/hints/chartsHints'
 import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
 
 const chartsStore = useChartsStore()
-const { namesStatistics } = storeToRefs(chartsStore)
-const { fetchNamesStatistics } = chartsStore
+const { accountsStatistics } = storeToRefs(chartsStore)
+const { fetchAccountsStatistics } = chartsStore
 
 const props = defineProps({
-  hasSelect: {
-    required: true,
-    type: Boolean,
-  },
   preselectedRange: {
     type: Object,
     default: CHART_INTERVALS_PRESETS_OPTIONS[4],
@@ -42,18 +42,18 @@ const props = defineProps({
 const range = ref(props.preselectedRange)
 
 await useAsyncData(async() => {
-  await loadNamesStatistics()
+  await loadHashrateStatistics()
   return true
 })
 
 if (process.client) {
-  watch(range, async() => {
-    await loadNamesStatistics()
+  watch([range], async() => {
+    await loadHashrateStatistics()
   })
 }
 
-async function loadNamesStatistics() {
-  await fetchNamesStatistics(
+async function loadHashrateStatistics() {
+  await fetchAccountsStatistics(
     range.value.interval,
     range.value.limit,
     range.value.customInterval)
@@ -61,7 +61,7 @@ async function loadNamesStatistics() {
 </script>
 
 <style scoped>
-.names-chart-panel__controls {
+.accounts-chart-pane__controls {
   margin-top: var(--space-4);
 }
 </style>

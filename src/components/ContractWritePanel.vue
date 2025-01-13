@@ -13,7 +13,7 @@
         </hint-tooltip>
       </div>
       <contract-entrypoint-accordion
-        :is-disabled="!walletSdk"
+        :is-disabled="!canWrite"
         :entrypoints="aciWriteEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
@@ -37,8 +37,8 @@ const {
   fetchEntrypointResponse,
   parseArguments,
   parseResponse,
-  getWriteContractInstance,
-  walletSdk,
+  getContract,
+  canWrite,
 } = contractVerifiedStore
 
 const { fetchContractEvents, fetchContractCallTransactions } = contractDetailStore

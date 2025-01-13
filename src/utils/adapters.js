@@ -24,7 +24,6 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
       ...keyblock,
       mined: DateTime.fromMillis(keyblock.time),
       blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
-      devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
     }
   }
 
@@ -109,14 +108,14 @@ export function adaptNames(names, blockHeight) {
   return names.map(name => {
     return {
       name: name.name,
-      address: name.info.ownership.current,
-      activatedHeight: name.info.activeFrom,
+      address: name.ownership.current,
+      activatedHeight: name.activeFrom,
       activated: formatBlockDiffAsDatetime(
-        name.info.activeFrom,
+        name.activeFrom,
         blockHeight,
       ),
       isAuction: formatIsAuction(name.name),
-      price: formatAettosToAe(name.info.claims.at(-1)?.tx.nameFee),
+      price: formatAettosToAe(name.nameFee),
     }
   })
 }
@@ -211,20 +210,20 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
   return {
     ...selectedDeltaStats,
     blockReward: formatAettosToAe(selectedDeltaStats.blockReward),
-    devReward: formatAettosToAe(selectedDeltaStats.devReward),
   }
 }
 
 export function adaptActiveNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    buyer: name.info.ownership.original,
-    owner: name.info.ownership.current,
-    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-    expirationHeight: name.info.expireHeight,
-    pointers: Object.values(name.info.pointers),
+    buyer: name.ownership.original,
+    owner: name.ownership.current,
+    fee: formatAettosToAe(name.nameFee),
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
+    expirationHeight: name.expireHeight,
+    pointers: Object.values(name.pointers),
   }))
+
   return {
     next: names.next,
     data: formattedData,
@@ -235,11 +234,11 @@ export function adaptActiveNames(names) {
 export function adaptInAuctionNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    highestBidder: name.info.lastBid.tx.accountId,
-    bid: formatAettosToAe(name.info.lastBid.tx.nameFee),
-    bidCount: name.info.bids.length,
-    expirationHeight: name.info.auctionEnd,
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
+    highestBidder: name.lastBid.tx.accountId,
+    bid: formatAettosToAe(name.lastBid.tx.nameFee),
+    bidCount: name.claimsCount,
+    expirationHeight: name.auctionEnd,
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
   }))
   return {
     next: names.next,
@@ -251,11 +250,11 @@ export function adaptInAuctionNames(names) {
 export function adaptExpiredNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
-    expirationHeight: name.info.expireHeight,
-    expiration: DateTime.fromMillis(name.info.approximateExpireTime),
-    fee: formatAettosToAe(name.info.claims[0].tx.nameFee),
-    lastBuyer: name.info.ownership.original,
-    lastOwner: name.info.ownership.current,
+    expirationHeight: name.expireHeight,
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
+    fee: formatAettosToAe(name.nameFee),
+    lastBuyer: name.ownership.original,
+    lastOwner: name.ownership.current,
   }))
   return {
     next: names.next,

@@ -1,15 +1,16 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
+import { Contract } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
 import { adaptTokenDetails, adaptTokenEvents, adaptTokenHolders } from '@/utils/adapters'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
-import { useAesdk } from '@/stores/aesdk'
+import { useWalletStore } from '@/stores/wallet'
 import { useDexStore } from '@/stores/dex'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
-  const { aeSdk } = storeToRefs(useAesdk())
+  const { aeSdk } = storeToRefs(useWalletStore())
   const { fetchPrice } = useDexStore()
 
   const tokenId = ref(null)
@@ -71,11 +72,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   }
 
   async function fetchTotalSupply() {
-    const contractInstance = await aeSdk.value.initializeContract({
+    const contract = await Contract.initialize({
+      ...aeSdk.value.getContext(),
       aci: TOKEN_SUPPLY_ACI,
       address: tokenId.value,
     })
-    const contractCallResult = await contractInstance.total_supply()
+    const contractCallResult = await contract.total_supply()
     rawTotalSupply.value = contractCallResult?.decodedResult
   }
 

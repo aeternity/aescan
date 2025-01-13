@@ -15,13 +15,11 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <contracts-chart-panel :range="CHART_INTERVALS_OPTIONS[4]"/>
+      <contracts-chart-panel/>
     </template>
   </NuxtLayout>
 </template>
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
-
 </script>

@@ -22,7 +22,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
-    'nuxt-booster',
   ],
   imports: {
     dirs: ['./stores'],
@@ -114,7 +113,5 @@ export default defineNuxtConfig({
       codeEditor: 'MonacoEditor',
     },
   },
-
   compatibilityDate: '2024-07-16',
-
 })

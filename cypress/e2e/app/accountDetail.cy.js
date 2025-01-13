@@ -43,7 +43,6 @@ describe('account detail', () => {
     cy.get('.blank-state').should('be.visible')
   })
 
-
   it('should display generalized account label', () => {
     cy.visit(`/accounts/${Cypress.env('generalizedAccountAddress')}`)
     cy.get('.account-details-panel .chip').should('contain', 'Generalized')

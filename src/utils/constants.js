@@ -29,7 +29,7 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
-export const CHART_INTERVALS_OPTIONS = [
+export const CHART_INTERVALS_PRESETS_OPTIONS = [
   { interval: 'day', limit: '7', label: '1W' },
   { interval: 'day', limit: '30', label: '1M' },
   { interval: 'day', limit: '90', label: '3M' },

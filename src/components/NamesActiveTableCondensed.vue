@@ -95,14 +95,12 @@
             <template v-if="name.pointers.length > 0">
               <value-hash-ellipsed
                 v-for="pointer in name.pointers"
-                :key="pointer"
-                :hash="pointer"
-                :link-to="`/accounts/${pointer}`"
-                class="names-active-table-condensed__pointer"/>
+                :key="pointer.id"
+                class="names-active-table__pointer"
+                :hash="pointer.id"
+                :link-to="`/accounts/${pointer.id}`"/>
             </template>
-            <template v-else>
-              -
-            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
       </tbody>
@@ -112,8 +110,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppLink from '@/components/AppLink'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   names: {

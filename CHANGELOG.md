@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.18.0](https://github.com/aeternity/aescan/compare/0.17.0...0.18.0) (2025-01-13)
+
+
+### Features
+
+* Active accounts chart 2 ([#1006](https://github.com/aeternity/aescan/issues/1006)) ([01735cc](https://github.com/aeternity/aescan/commit/01735cc67cb62659678ffc843eb0fbdaa5db9989))
+* Add entity id to page title ([#973](https://github.com/aeternity/aescan/issues/973)) ([5566c72](https://github.com/aeternity/aescan/commit/5566c72d80904d0eb32bb930e4daca54f3f3ea47))
+* hashrate chart ([#975](https://github.com/aeternity/aescan/issues/975)) ([9dc599c](https://github.com/aeternity/aescan/commit/9dc599caed013ff7ec3be0f21c5cd792b04fc5da))
+* improve e2e testing - charts ([#974](https://github.com/aeternity/aescan/issues/974)) ([4bed5cf](https://github.com/aeternity/aescan/commit/4bed5cf7d2096df1f31847c0ea1e6d80d02b2031))
+* improve e2e testing - search ([#972](https://github.com/aeternity/aescan/issues/972)) ([cbfbf1d](https://github.com/aeternity/aescan/commit/cbfbf1dbbfd1024940c35555e2b012aaea4cc933))
+* Migrate names to V3 (final part) ([#1007](https://github.com/aeternity/aescan/issues/1007)) ([81bfce8](https://github.com/aeternity/aescan/commit/81bfce844a16adee45aadc198a80a410bebde948))
+* Upgrade all dependencies 5 ([#989](https://github.com/aeternity/aescan/issues/989)) ([4985628](https://github.com/aeternity/aescan/commit/498562865a618ce03c3783b680e6e32fbda50973))
+
+
+### Bug Fixes
+
+* defaul chart options ([#1027](https://github.com/aeternity/aescan/issues/1027)) ([81ad27b](https://github.com/aeternity/aescan/commit/81ad27b4c4ec1e03652aad3f31ba6f983d79d4dd))
+* page title printing ([#1017](https://github.com/aeternity/aescan/issues/1017)) ([d8c46ad](https://github.com/aeternity/aescan/commit/d8c46ad2cad39c7870d8bbd27ce6e8f0dcfe66cd))
+* UI fixes 2 ([#985](https://github.com/aeternity/aescan/issues/985)) ([73d2f46](https://github.com/aeternity/aescan/commit/73d2f46ea4dd562050df8d6ba9b9ccb818cb2662))
+
 ## [0.17.0](https://github.com/aeternity/aescan/compare/0.16.1...0.17.0) (2024-10-24)
 
 

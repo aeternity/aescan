@@ -31,7 +31,7 @@ const { fetchContractsStatistics } = chartsStore
 
 const props = defineProps({
   range: {
-    required: true,
+    type: Object,
     default: CHART_INTERVALS_PRESETS_OPTIONS[4],
   },
 })

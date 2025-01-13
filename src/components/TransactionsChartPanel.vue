@@ -47,7 +47,7 @@ const props = defineProps({
     type: Boolean,
   },
   range: {
-    required: true,
+    type: Object,
     default: CHART_INTERVALS_PRESETS_OPTIONS[4],
   },
 })

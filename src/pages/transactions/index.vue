@@ -12,7 +12,7 @@
   <transactions-statistics class="transactions-panel"/>
   <transactions-chart-panel
     :has-select="false"
-    :scope="CHART_SCOPE_PRESETS_OPTIONS[0]"
+    :preselected-range="CHART_SCOPE_PRESETS_OPTIONS[0]"
     class="transactions-panel"/>
   <transactions-panel
     v-if="!isLoading"

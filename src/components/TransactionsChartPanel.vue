@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { transactionsStatistics } = storeToRefs(useChartsStore())
 const { fetchTransactionsStatistics } = useChartsStore()
@@ -46,13 +46,12 @@ const props = defineProps({
   scope: {
     required: true,
     type: Object,
-    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
+    default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
 })
 
 const selectedScope = ref(props.scope)
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
-
 await useAsyncData(async() => {
   await loadTransactionStatistics()
   return true

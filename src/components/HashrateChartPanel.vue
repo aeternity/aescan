@@ -15,7 +15,7 @@
 
     <chart-controls
       v-model="selectedScope"
-      class="hashrate-chart-panel__controls u-hidden-desktop"/>
+    class="hashrate-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 

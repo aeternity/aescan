@@ -14,7 +14,7 @@
       :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
-      v-model="selectedScope"
+      v-model="range"
       class="contracts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -30,13 +30,12 @@ const props = defineProps({
   scope: {
     required: true,
     type: Object,
-    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
+    default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
 })
 // todo is props needed?
 // todo directly bind props
 const selectedScope = ref(props.scope)
-
 await useAsyncData(async() => {
   await loadContractsStatistics()
   return true

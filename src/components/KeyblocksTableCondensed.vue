@@ -7,12 +7,10 @@
       <tbody>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Block
-              <template #tooltip>
-                {{ keyblocksHints.keyblockHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.keyblockHash }}
+            </hint-tooltip>
+            Block
           </th>
           <td class="keyblocks-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ keyblocksHints.time }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.time }}
+            </hint-tooltip>
+            <time-toggle-button class="keyblocks-table-condensed__button"/>
           </th>
           <td class="keyblocks-table-condensed__data">
             <block-time-cell
@@ -37,12 +33,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Transactions Count
-              <template #tooltip>
-                {{ keyblocksHints.transactionsCount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.transactionsCount }}
+            </hint-tooltip>
+            Transactions Count
           </th>
           <td class="keyblocks-table-condensed__data">
             {{ keyblock.transactionsCount }}
@@ -50,12 +44,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Microblocks Count
-              <template #tooltip>
-                {{ keyblocksHints.microblockCount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.microblockCount }}
+            </hint-tooltip>
+            Microblocks Count
           </th>
           <td class="keyblocks-table-condensed__data">
             {{ keyblock.microBlocksCount }}
@@ -63,12 +55,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Fee Recipient
-              <template #tooltip>
-                {{ keyblocksHints.beneficiary }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiary }}
+            </hint-tooltip>
+            Fee Recipient
           </th>
 
           <td class="keyblocks-table-condensed__data">
@@ -79,12 +69,10 @@
         </tr>
         <tr class="keyblocks-table-condensed__row">
           <th class="keyblocks-table-condensed__header">
-            <app-tooltip>
-              Beneficiary
-              <template #tooltip>
-                {{ keyblocksHints.beneficiary }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.beneficiary }}
+            </hint-tooltip>
+            Beneficiary
           </th>
 
           <td class="keyblocks-table-condensed__data">
@@ -99,7 +87,6 @@
 <script setup>
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   keyblocks: {
@@ -135,6 +122,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

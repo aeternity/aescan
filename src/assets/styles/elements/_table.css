@@ -10,6 +10,7 @@ th {
   font-weight: 500;
   font-size: 14px;
   line-height: 22px;
+  white-space: nowrap;
 
   vertical-align: middle;
   padding: 7px 7px 7px 0;

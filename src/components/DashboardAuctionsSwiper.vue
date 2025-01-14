@@ -5,12 +5,10 @@
         <tbody>
           <tr>
             <th class="dashboard-auctions-swiper__header">
-              <app-tooltip>
-                Name
-                <template #tooltip>
-                  {{ namesHints.nameId }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.nameId }}
+              </hint-tooltip>
+              Name
             </th>
             <td class="dashboard-auctions-swiper__data">
               <app-link
@@ -22,12 +20,10 @@
           </tr>
           <tr>
             <th class="dashboard-auctions-swiper__header">
-              <app-tooltip>
-                Highest Bidder
-                <template #tooltip>
-                  {{ namesHints.bidder }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.bidder }}
+              </hint-tooltip>
+              Highest Bidder
             </th>
             <td class="dashboard-auctions-swiper__data">
               <value-hash-ellipsed
@@ -37,12 +33,10 @@
           </tr>
           <tr>
             <th class="dashboard-auctions-swiper__header">
-              <app-tooltip>
-                Bid
-                <template #tooltip>
-                  {{ namesHints.bid }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.bid }}
+              </hint-tooltip>
+              Bid
             </th>
             <td class="dashboard-auctions-swiper__data">
               <price-label :price="auction.bid"/>
@@ -50,12 +44,12 @@
           </tr>
           <tr>
             <th>
-              <app-tooltip>
-                <time-toggle-button>Ending</time-toggle-button>
-                <template #tooltip>
-                  {{ namesHints.ends }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ namesHints.ends }}
+              </hint-tooltip>
+              <time-toggle-button class="dashboard-auctions-swiper__button">
+                Ending
+              </time-toggle-button>
             </th>
             <td class="dashboard-auctions-swiper__data">
               <app-link
@@ -96,6 +90,10 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
   &__name {
     max-width: 200px;
     display: inline-block;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

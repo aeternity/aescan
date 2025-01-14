@@ -28,7 +28,7 @@
     <transactions-select
       v-if="hasSelect"
       v-model="type"
-      class="select u-hidden-desktop"/>
+      class="select u-hidden-desktop transactions-chart-panel__select"/>
   </app-panel>
 </template>
 
@@ -86,8 +86,12 @@ async function loadTransactionStatistics() {
   }
 
   &__select {
-    width: 230px;
-    min-height: 28px;
+    margin-top: var(--space-2);
+
+    @media (--desktop) {
+      margin-top: 0;
+    }
+
   }
 }
 </style>

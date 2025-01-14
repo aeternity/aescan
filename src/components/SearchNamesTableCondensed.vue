@@ -7,12 +7,10 @@
       <tbody>
         <tr class="search-names-table-condensed__row">
           <th class="search-names-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ namesHints.nameId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.nameId }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="search-names-table-condensed__data">
             <app-link :to="`/names/${name.name}`">
@@ -22,12 +20,10 @@
         </tr>
         <tr class="search-names-table-condensed__row">
           <th class="search-names-table-condensed__header">
-            <app-tooltip>
-              Status
-              <template #tooltip>
-                {{ namesHints.state }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.state }}
+            </hint-tooltip>
+            Status
           </th>
           <td class="search-names-table-condensed__data">
             {{ name.active ? 'Active' : 'Expired' }}
@@ -41,7 +37,6 @@
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
 import AppLink from '@/components/AppLink'
-import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   names: {

@@ -7,12 +7,10 @@
       <tbody>
         <tr class="search-nfts-table-condensed__row">
           <th class="search-nfts-table-condensed__header">
-            <app-tooltip>
-              Collection Name
-              <template #tooltip>
-                {{ nftsHints.collectionName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.collectionName }}
+            </hint-tooltip>
+            Collection Name
           </th>
           <td class="search-nfts-table-condensed__data">
             <app-link
@@ -24,12 +22,10 @@
         </tr>
         <tr class="search-nfts-table-condensed__row">
           <th class="search-nfts-table-condensed__header">
-            <app-tooltip>
-              Smart Contract ID
-              <template #tooltip>
-                {{ nftsHints.smartContractId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.smartContractId }}
+            </hint-tooltip>
+            Smart Contract ID
           </th>
           <td class="search-nfts-table-condensed__data">
             <value-hash-ellipsed
@@ -44,7 +40,6 @@
 <script setup>
 
 import AppLink from '@/components/AppLink'
-import AppTooltip from '@/components/AppTooltip'
 import { nftsHints } from '@/utils/hints/nftsHints'
 
 defineProps({

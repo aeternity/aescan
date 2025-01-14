@@ -4,7 +4,7 @@
     :link-to="`/accounts/${transactionData.initiatorId}`"/>
 
   <price-label :price="formatAettosToAe(transactionData.initiatorAmount)"/>
-  <transaction-plus-icon/>
+  +
 
   <value-hash-ellipsed
     :hash="transactionData.responderId"
@@ -22,7 +22,6 @@
 <script setup>
 import { formatAettosToAe } from '@/utils/format'
 import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import TransactionPlusIcon from '@/components/TransactionPlusIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

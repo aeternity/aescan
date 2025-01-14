@@ -14,7 +14,7 @@
             <hint-tooltip>
               {{ keyblocksHints.keyblockHash }}
             </hint-tooltip>
-            Keyblock Hash
+            Hash
           </th>
           <td>
             <div class="u-hidden-mobile">
@@ -105,7 +105,7 @@
             <hint-tooltip>
               {{ keyblocksHints.beneficiaryReward }}
             </hint-tooltip>
-            Beneficiary Reward
+            Reward
           </th>
           <td>
             <price-label :price="keyblockDetails.blockReward"/>

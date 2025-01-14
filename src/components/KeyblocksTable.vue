@@ -33,7 +33,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Beneficiary Reward
+          Reward
           <hint-tooltip>
             {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>

@@ -23,7 +23,9 @@
       <app-tab title="Events">
         <token-events-panel/>
       </app-tab>
-      <app-tab title="Trades">
+      <app-tab
+        v-if="featureFlags.dex"
+        title="Trades">
         <token-trades-panel/>
       </app-tab>
     </app-tabs>
@@ -34,6 +36,9 @@
 <script setup>
 import { useTokenDetailsStore } from '@/stores/tokenDetails'
 import { tokensHints } from '@/utils/hints/tokensHints'
+import useFeatureFlags from '@/composables/useFeatureFlags'
+
+const featureFlags = useFeatureFlags()
 
 const route = useRoute()
 const { push, replace } = useRouter()

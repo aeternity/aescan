@@ -2,7 +2,7 @@
   <nav class="navigation">
     <ul class="navigation__list">
       <li
-        v-for="menu in visibleMenuOptions"
+        v-for="menu in menuOptionsWithSubmenus"
         :key="menu.name"
         class="navigation__item"
         @click="toggle(menu.name)"
@@ -129,7 +129,7 @@ const menuOptions = ref([{
   ],
 }])
 
-const visibleMenuOptions = computed(() =>
+const menuOptionsWithSubmenus = computed(() =>
   menuOptions.value.filter(menu => !menu.submenu.every(submenu => submenu.hidden)),
 )
 

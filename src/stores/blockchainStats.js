@@ -38,7 +38,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
       const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
       maxTps.value = data.maxTransactionsPerSecond
     } catch {
-      // no stats available
+      maxTps.value = null
     }
   }
 

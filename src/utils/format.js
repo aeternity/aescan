@@ -118,19 +118,17 @@ export function formatDecodeByteArray(bytesArray) {
 export function formatNameState(name, blockHeight) {
   const isActive = name.active
   const isInAuction = !!name.auction
-  const isExpired = !name.active && name.auction === null
-  const isRevoked = isExpired && name.active === false &&
+  const isExpired = !name.active
+  const isRevoked = !name.active &&
     name.expireHeight + REVOKED_PERIOD > blockHeight
 
-  if (isInAuction) {
-    return 'auction'
-  } else if (isRevoked) {
-    return 'revoked'
-  } else if (isExpired) {
-    return 'expired'
-  } else if (isActive) {
-    return 'active'
-  }
+  const labels = Object.keys({
+    active: isActive,
+    revoked: isRevoked,
+    expired: isExpired,
+    auction: isInAuction,
+  }).filter(key => ({ active: isActive, revoked: isRevoked, expired: isExpired, auction: isInAuction })[key])
+  return labels
 }
 
 export function formatIsAuction(name) {

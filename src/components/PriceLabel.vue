@@ -46,8 +46,6 @@ import { formatNullable } from '@/utils/format'
 import { useAppStore } from '@/stores/app'
 import AppTooltip from '@/components/AppTooltip'
 
-const { currency: defaultCurrency } = storeToRefs(useAppStore())
-
 const props = defineProps({
   price: {
     type: [String, Number],
@@ -59,7 +57,7 @@ const props = defineProps({
   },
   currency: {
     type: String,
-    default: null,
+    default: () => storeToRefs(useAppStore()).currency.value.symbol,
   },
   hasIcon: {
     type: Boolean,
@@ -83,10 +81,6 @@ const priceRounded = computed(() =>
 )
 const price = computed(() =>
   formatNullable(formatAePrice(props.price, null)),
-)
-
-const currency = computed(() =>
-  props.currency || defaultCurrency.value.symbol,
 )
 </script>
 

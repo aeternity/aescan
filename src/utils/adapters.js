@@ -285,11 +285,11 @@ export function adaptCustomPointers(allPointers) {
 
 export function adaptName(name, blockHeight, blockTime) {
   const lastBid = name?.auction?.lastBid
-  const state = formatNameState(name, blockHeight)
+  const states = formatNameState(name, blockHeight)
   const endHeight = name.auction?.auctionEnd
   const ends = name.auction?.approximateExpireTime || name.approximateExpireTime
   const blockCreatedTime = DateTime.fromMillis(blockTime)
-  const activated = state === 'active'
+  const activated = states.includes('active')
     ? blockCreatedTime.minus({
       minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
     })
@@ -304,13 +304,13 @@ export function adaptName(name, blockHeight, blockTime) {
   }
 
   return {
-    state,
+    states,
     name: name.name,
     active: name.active,
     owner: name?.ownership?.current,
     bidder: lastBid?.tx?.accountId,
     bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
-    activatedHeight: state === 'active' ? name.activeFrom : null,
+    activatedHeight: states.includes('active') ? name.activeFrom : null,
     activated,
     expirationHeight: name.expireHeight,
     expiration: name.approximateExpireTime

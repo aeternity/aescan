@@ -102,7 +102,7 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[states + 'Height'] }}
+              {{ namesHints[stateLabel.toLowerCase() + 'Height'] }}
             </hint-tooltip>
             {{ stateLabel }} Height
           </th>
@@ -116,7 +116,7 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[states + 'Time'] }}
+              {{ namesHints[stateLabel.toLowerCase() + 'Time'] }}
             </hint-tooltip>
             {{ stateLabel }}
           </th>
@@ -161,16 +161,16 @@ import { useNameDetailsStore } from '@/stores/nameDetails'
 import { formatEllipseHash } from '@/utils/format'
 
 const { name } = storeToRefs(useNameDetailsStore())
-const states = name.value.state
+const states = name.value.states
 
 const stateLabel = computed(() => {
   if (states.includes('auction')) {
     return 'Ends'
   }
-  if (states.includes('expired')) {
-    return 'Expired'
-  }
   if (states.includes('revoked')) {
+    return 'Revoked'
+  }
+  if (states.includes('expired')) {
     return 'Expired'
   }
   return 'Expires'
@@ -180,10 +180,10 @@ function getVariant(state) {
   if (state.includes('auction')) {
     return 'primary'
   }
-  if (state.includes('expired')) {
+  if (state.includes('revoked')) {
     return 'error'
   }
-  if (state.includes('revoked')) {
+  if (state.includes('expired')) {
     return 'error'
   }
   return 'success'
@@ -193,12 +193,13 @@ function getLabel(state) {
   if (state.includes('auction')) {
     return 'In Auction'
   }
-  if (state.includes('expired')) {
-    return 'Expired'
-  }
   if (state.includes('revoked')) {
     return 'Revoked'
   }
+  if (state.includes('expired')) {
+    return 'Expired'
+  }
+
   return 'Active'
 }
 

@@ -119,11 +119,15 @@ export function formatNameState(name, blockHeight) {
   const isActive = name.active
   const isInAuction = !!name.auction
   const isExpired = !name.active
-  const isRevoked = isExpired && name.active === false &&
+  const isRevoked = !name.active &&
     name.expireHeight + REVOKED_PERIOD > blockHeight
 
-  const map = { active: isActive, auction: isInAuction, expired: isExpired, revoked: isRevoked }
-  const labels = Object.keys(map).filter(key => map[key] === true)
+  const labels = Object.keys({
+    active: isActive,
+    revoked: isRevoked,
+    expired: isExpired,
+    auction: isInAuction,
+  }).filter(key => ({ active: isActive, revoked: isRevoked, expired: isExpired, auction: isInAuction })[key])
   return labels
 }
 

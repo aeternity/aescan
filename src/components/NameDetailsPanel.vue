@@ -14,7 +14,7 @@
           </td>
         </tr>
         <tr
-          v-if="!states.includes('active')"
+          v-if="!states.includes('auction')"
           class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>

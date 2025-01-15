@@ -7,12 +7,10 @@
       <tbody>
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ keyblocksHints.microblockHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.microblockHash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ keyblocksHints.time }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.time }}
+            </hint-tooltip>
+            <time-toggle-button class="keyblock-microblocks-table-condensed__button"/>
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
             <timestamp-label :timestamp="microblock.time"/>
@@ -35,17 +31,13 @@
         </tr>
         <tr class="keyblock-microblocks-table-condensed__row">
           <th class="keyblock-microblocks-table-condensed__header">
-            <app-tooltip>
-              Transactions Count
-              <template #tooltip>
-                {{ keyblocksHints.microblockTransactionsCount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ keyblocksHints.microblockTransactionsCount }}
+            </hint-tooltip>
+            Transactions Count
           </th>
           <td class="keyblock-microblocks-table-condensed__data">
-            <div>
-              {{ microblock.transactionsCount }}
-            </div>
+            {{ microblock.transactionsCount }}
           </td>
         </tr>
       </tbody>
@@ -80,6 +72,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

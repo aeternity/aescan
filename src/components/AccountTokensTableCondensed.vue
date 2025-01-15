@@ -7,12 +7,10 @@
       <tbody>
         <tr class="account-tokens-table-condensed__row">
           <th class="account-tokens-table-condensed__header">
-            <app-tooltip>
-              Amount
-              <template #tooltip>
-                {{ tokensHints.amount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.amount }}
+            </hint-tooltip>
+            Amount
           </th>
           <td class="account-tokens-table-condensed__data">
             <price-label
@@ -23,12 +21,10 @@
         </tr>
         <tr class="account-tokens-table-condensed__row">
           <th class="account-tokens-table-condensed__header">
-            <app-tooltip>
-              Value
-              <template #tooltip>
-                {{ tokensHints.value }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.value }}
+            </hint-tooltip>
+            Value
           </th>
           <td class="account-tokens-table-condensed__data">
             {{ token.value }}
@@ -36,12 +32,10 @@
         </tr>
         <tr class="account-tokens-table-condensed__row">
           <th class="account-tokens-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ tokensHints.tokenName }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.tokenName }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="account-tokens-table-condensed__data">
             <app-link :to="`/tokens/${token.contractId}`">
@@ -52,12 +46,10 @@
 
         <tr class="account-tokens-table-condensed__row">
           <th class="account-tokens-table-condensed__header">
-            <app-tooltip>
-              Smart Contract
-              <template #tooltip>
-                {{ tokensHints.smartContractId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ tokensHints.smartContractId }}
+            </hint-tooltip>
+            Smart Contract
           </th>
           <td class="account-tokens-table-condensed__data">
             <value-hash-ellipsed
@@ -72,7 +64,6 @@
 
 <script setup>
 import AppLink from '@/components/AppLink'
-import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { tokensHints } from '@/utils/hints/tokensHints'
 

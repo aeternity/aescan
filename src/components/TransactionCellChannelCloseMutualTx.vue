@@ -1,7 +1,7 @@
 <template>
   <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
 
-  <transaction-plus-icon/>
+  +
 
   <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
 
@@ -12,7 +12,6 @@
 
 <script setup>
 import { formatAettosToAe } from '@/utils/format'
-import TransactionPlusIcon from '@/components/TransactionPlusIcon'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({

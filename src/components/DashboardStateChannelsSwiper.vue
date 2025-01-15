@@ -5,12 +5,10 @@
         <tbody>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              <app-tooltip>
-                State Channel ID
-                <template #tooltip>
-                  {{ stateChannelsHints.stateChannelId }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ stateChannelsHints.stateChannelId }}
+              </hint-tooltip>
+              State Channel ID
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <value-hash-ellipsed
@@ -20,12 +18,10 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              <app-tooltip>
-                Initiator
-                <template #tooltip>
-                  {{ stateChannelsHints.initiator }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ stateChannelsHints.initiator }}
+              </hint-tooltip>
+              Initiator
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <value-hash-ellipsed
@@ -35,12 +31,10 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              <app-tooltip>
-                Responder
-                <template #tooltip>
-                  {{ stateChannelsHints.responder }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ stateChannelsHints.responder }}
+              </hint-tooltip>
+              Responder
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <value-hash-ellipsed
@@ -50,12 +44,10 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              <app-tooltip>
-                On-Chain TXs
-                <template #tooltip>
-                  {{ stateChannelsHints.onChainUpdates }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ stateChannelsHints.onChainUpdates }}
+              </hint-tooltip>
+              On-Chain TXs
             </th>
             <td class="dashboard-state-channels-swiper__data">
               {{ channel.updateCount }}
@@ -63,12 +55,10 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              <app-tooltip>
-                Locked
-                <template #tooltip>
-                  {{ stateChannelsHints.locked }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ stateChannelsHints.locked }}
+              </hint-tooltip>
+              Locked
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <price-label :price="channel.amount"/>
@@ -76,12 +66,12 @@
           </tr>
           <tr>
             <th class="dashboard-state-channels-swiper__header">
-              <app-tooltip>
-                <time-toggle-button>Last Updated</time-toggle-button>
-                <template #tooltip>
-                  {{ stateChannelsHints.lastUpdated }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ stateChannelsHints.lastUpdated }}
+              </hint-tooltip>
+              <time-toggle-button class="dashboard-state-channels-swiper__button">
+                Last Updated
+              </time-toggle-button>
             </th>
             <td class="dashboard-state-channels-swiper__data">
               <app-link
@@ -94,12 +84,10 @@
           </tr>
           <tr>
             <th>
-              <app-tooltip>
-                Last TX Type
-                <template #tooltip>
-                  {{ stateChannelsHints.lastTxType }}
-                </template>
-              </app-tooltip>
+              <hint-tooltip>
+                {{ stateChannelsHints.lastTxType }}
+              </hint-tooltip>
+              Last TX Type
             </th>
             <td class="dashboard-state-channels-swiper__data">
               {{ channel.lastTxType }}
@@ -129,6 +117,10 @@ const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

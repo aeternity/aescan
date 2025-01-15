@@ -1,5 +1,5 @@
 import type { RouterConfig } from '@nuxt/schema'
-import { MENU_HASH } from '../utils/constants'
+import { MENU_HASH } from '@/utils/constants'
 
 export default <RouterConfig>{
   scrollBehavior(to, _from, savedPosition) {

@@ -7,12 +7,10 @@
       <tbody>
         <tr class="microblock-transactions-table-condensed__row">
           <th class="microblock-transactions-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ microblocksHints.transactionHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ microblocksHints.transactionHash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="microblock-transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="microblock-transactions-table-condensed__row">
           <th class="microblock-transactions-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ microblocksHints.transactionTime }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ microblocksHints.transactionHash }}
+            </hint-tooltip>
+            <time-toggle-button class="microblock-transactions-table-condensed__button"/>
           </th>
           <td class="microblock-transactions-table-condensed__data">
             <block-time-cell
@@ -36,31 +32,24 @@
           </td>
         </tr>
         <tr class="microblock-transactions-table-condensed__row">
-          <th class="microblock-transactions-table-condensed__header">
-            <app-tooltip>
-              Type
-              <template #tooltip>
-                {{ microblocksHints.transactionType }}
-              </template>
-            </app-tooltip>
-          </th>
+          <hint-tooltip>
+            {{ microblocksHints.transactionType }}
+          </hint-tooltip>
+          Type
+          <th class="microblock-transactions-table-condensed__header"/>
           <td class="microblock-transactions-table-condensed__data">
-            <app-tooltip>
-              {{ transaction.type }}
-              <template #tooltip>
-                {{ transactionsHints[transaction.hintKey] }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ transactionsHints[transaction.hintKey] }}
+            </hint-tooltip>
+            {{ transaction.type }}
           </td>
         </tr>
         <tr class="microblock-transactions-table-condensed__row">
           <th class="microblock-transactions-table-condensed__header">
-            <app-tooltip>
-              Data
-              <template #tooltip>
-                {{ microblocksHints.transactionData }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ microblocksHints.transactionData }}
+            </hint-tooltip>
+            Data
           </th>
           <td class="microblock-transactions-table-condensed__data">
             <transaction-cell
@@ -75,7 +64,6 @@
 <script setup>
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import AppTooltip from '@/components/AppTooltip'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
@@ -104,6 +92,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

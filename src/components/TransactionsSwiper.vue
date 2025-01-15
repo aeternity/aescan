@@ -5,6 +5,9 @@
         <tbody>
           <tr>
             <th class="transactions-swiper__header">
+              <hint-tooltip>
+                {{ transactionsHints.hash }}
+              </hint-tooltip>
               Hash
             </th>
             <td class="transactions-swiper__data">
@@ -15,7 +18,12 @@
           </tr>
           <tr>
             <th class="transactions-swiper__header">
-              <time-toggle-button>Created</time-toggle-button>
+              <hint-tooltip>
+                {{ transactionsHints.created }}
+              </hint-tooltip>
+              <time-toggle-button class="transactions-swiper__button">
+                Created
+              </time-toggle-button>
             </th>
             <td class="transactions-swiper__data">
               <timestamp-label :timestamp="transaction.created"/>
@@ -23,6 +31,9 @@
           </tr>
           <tr>
             <th class="transactions-swiper__header">
+              <hint-tooltip>
+                {{ transactionsHints.type }}
+              </hint-tooltip>
               Type
             </th>
             <td class="transactions-swiper__data">
@@ -30,7 +41,12 @@
             </td>
           </tr>
           <tr>
-            <th>Data</th>
+            <th>
+              <hint-tooltip>
+                {{ transactionsHints.data }}
+              </hint-tooltip>
+              Data
+            </th>
             <td>
               <transaction-cell
                 :transaction-data="transaction.data"
@@ -44,6 +60,7 @@
 </template>
 
 <script setup>
+import { transactionsHints } from '@/utils/hints/transactionsHints'
 import TransactionCell from '@/components/TransactionCell'
 import AppSwiper from '@/components/AppSwiper'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
@@ -64,6 +81,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

@@ -37,12 +37,26 @@
             <hint-tooltip>
               {{ tokensHints.price }}
             </hint-tooltip>
-            Price
+            AE Price
           </th>
           <td>
             <div class="token-details-panel__container">
               <price-label :price="tokenDetails.price"/>
-              ({{ fiatPrice }})
+            </div>
+          </td>
+        </tr>
+        <tr
+          v-if="tokenDetails.price"
+          class="token-details-panel__row">
+          <th class="token-details-panel__table-header">
+            <hint-tooltip>
+              {{ tokensHints.price }}
+            </hint-tooltip>
+            Fiat Price
+          </th>
+          <td>
+            <div class="token-details-panel__container">
+              {{ fiatPrice }}
             </div>
           </td>
         </tr>

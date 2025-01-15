@@ -8,11 +8,11 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { storeToRefs } from 'pinia'
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
-import { useAppStore } from '@/stores/app'
+import { useConfigStore } from '@/stores/config'
 
 const { SH_DEX_CONTRACTS } = useRuntimeConfig().public
 
-const { currency } = storeToRefs(useAppStore())
+const { currency } = storeToRefs(useConfigStore())
 
 const props = defineProps({
   accountDetails: {

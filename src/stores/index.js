@@ -1,13 +1,13 @@
 import { useMarketStatsStore } from '@/stores/marketStats'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 import { useStatus } from '@/stores/status'
-import { useAppStore } from '@/stores/app'
+import { useConfigStore } from '@/stores/config'
 
 export async function initializeStores() {
   const { fetchKeyblocks } = useRecentBlocksStore()
   const { fetchStatus } = useStatus()
   const { fetchMarketStats } = useMarketStatsStore()
-  const { fetchCurrency } = useAppStore()
+  const { fetchCurrency } = useConfigStore()
 
   try {
     await Promise.all([

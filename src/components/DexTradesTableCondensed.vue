@@ -7,12 +7,10 @@
       <tbody>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ dexTradesHints.hash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.hash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="dex-trades-table-condensed__data">
             <value-hash-ellipsed
@@ -23,12 +21,12 @@
 
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Executed</time-toggle-button>
-              <template #tooltip>
-                {{ dexTradesHints.executed }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.executed }}
+            </hint-tooltip>
+            <time-toggle-button class="dex-trades-table-condensed__button">
+              Executed
+            </time-toggle-button>
           </th>
           <td class="dex-trades-table-condensed__data">
             <block-time-cell
@@ -38,12 +36,10 @@
         </tr>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Action
-              <template #tooltip>
-                {{ dexTradesHints.action }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.action }}
+            </hint-tooltip>
+            Action
           </th>
           <td class="dex-trades-table-condensed__data">
             <app-chip :variant="getChipVariant(trade.action)">
@@ -53,12 +49,10 @@
         </tr>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Token Amount (Out)
-              <template #tooltip>
-                {{ dexTradesHints.tokenAmountOut }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.tokenAmountOut }}
+            </hint-tooltip>
+            Token Amount (Out)
           </th>
           <td class="dex-trades-table-condensed__data">
             <price-label
@@ -71,12 +65,10 @@
         </tr>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Token Amount (In)
-              <template #tooltip>
-                {{ dexTradesHints.tokenAmountIn }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.tokenAmountIn }}
+            </hint-tooltip>
+            Token Amount (In)
           </th>
           <td class="dex-trades-table-condensed__data">
             <price-label
@@ -89,12 +81,10 @@
         </tr>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Swapped Rate
-              <template #tooltip>
-                {{ dexTradesHints.swappedRate }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.swappedRate }}
+            </hint-tooltip>
+            Swapped Rate
           </th>
           <td class="dex-trades-table-condensed__data">
             <not-available-label v-if="!trade.rate"/>
@@ -103,12 +93,10 @@
         </tr>
         <tr class="dex-trades-table-condensed__row">
           <th class="dex-trades-table-condensed__header">
-            <app-tooltip>
-              Value
-              <template #tooltip>
-                {{ dexTradesHints.value }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ dexTradesHints.value }}
+            </hint-tooltip>
+            Value
           </th>
           <td class="dex-trades-table-condensed__data">
             <not-available-label v-if="trade.value === '0'"/>
@@ -158,6 +146,10 @@ function getChipVariant(action) {
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

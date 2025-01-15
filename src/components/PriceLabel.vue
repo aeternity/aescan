@@ -43,7 +43,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { storeToRefs } from 'pinia'
 import { formatNullable } from '@/utils/format'
-import { useAppStore } from '@/stores/app'
+import { useConfigStore } from '@/stores/config'
 import AppTooltip from '@/components/AppTooltip'
 
 const props = defineProps({
@@ -57,7 +57,7 @@ const props = defineProps({
   },
   currency: {
     type: String,
-    default: () => storeToRefs(useAppStore()).currency.value.symbol,
+    default: () => storeToRefs(useConfigStore()).currency.value.symbol,
   },
   hasIcon: {
     type: Boolean,

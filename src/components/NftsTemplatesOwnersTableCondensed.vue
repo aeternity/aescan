@@ -7,12 +7,10 @@
       <tbody>
         <tr class="nfts-templates-owners-table-condensed__row">
           <th class="nfts-templates-owners-table-condensed__header">
-            <app-tooltip>
-              Token ID
-              <template #tooltip>
-                {{ nftsHints.ownersTokenId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.ownersTokenId }}
+            </hint-tooltip>
+            Token ID
           </th>
           <td class="nfts-templates-owners-table-condensed__data">
             {{ owner.tokenId }}
@@ -20,12 +18,10 @@
         </tr>
         <tr class="nfts-templates-owners-table-condensed__row">
           <th class="nfts-templates-owners-table-condensed__header">
-            <app-tooltip>
-              Smart Contract ID
-              <template #tooltip>
-                {{ nftsHints.ownersContractId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.ownersContractId }}
+            </hint-tooltip>
+            Smart Contract ID
           </th>
           <td class="nfts-templates-owners-table-condensed__data">
             <value-hash-ellipsed
@@ -35,12 +31,10 @@
         </tr>
         <tr class="nfts-templates-owners-table-condensed__row">
           <th class="nfts-templates-owners-table-condensed__header">
-            <app-tooltip>
-              Owner ID
-              <template #tooltip>
-                {{ nftsHints.ownersOwnerId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.ownersOwnerId }}
+            </hint-tooltip>
+            Owner ID
           </th>
           <td class="nfts-templates-owners-table-condensed__data">
             <value-hash-ellipsed

@@ -50,7 +50,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
       last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)
       feesTrend.value = data.feesTrend
     } catch {
-      // no stats available
+      last24hsTransactionsCount.value = null
+      last24hsTransactionsTrend.value = null
+      last24hsAverageTransactionFees.value = null
+      feesTrend.value = null
     }
   }
 

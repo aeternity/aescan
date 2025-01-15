@@ -9,7 +9,7 @@
       @next-clicked="loadNextTokens">
       <template #header>
         <token-select
-          v-if="tokenSelectVisible"
+          v-if="hasTokenSelect"
           v-model="selectedTokenName"/>
       </template>
       <tokens-table
@@ -52,7 +52,7 @@ async function loadNextTokens() {
   await fetchTokens(selectedTokens.value.next)
 }
 
-const tokenSelectVisible = computed(() => {
+const hasTokenSelect = computed(() => {
   return featureFlags.dex && NETWORK_NAME !== 'TESTNET'
 })
 

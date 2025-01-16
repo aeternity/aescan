@@ -27,7 +27,7 @@ export default defineNuxtConfig({
     dirs: ['./stores'],
   },
   plausible: {
-    apiHost: 'https://plausible.dev.service.aepps.com',
+    apiHost: process.env.PLAUSIBLE_URL,
     trackLocalhost: false,
   },
   appConfig: {
@@ -50,9 +50,11 @@ export default defineNuxtConfig({
       DEBUG_MODE: process.env.DEBUG_MODE,
       CONTRACT_VERIFICATION_SERVICE_URL: process.env.CONTRACT_VERIFICATION_SERVICE_URL,
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
+      PLAUSIBLE_URL: process.env.PLAUSIBLE_URL,
+      ENABLE_MARKET_STATS: process.env.ENABLE_MARKET_STATS,
+      ENABLE_NODES: process.env.ENABLE_NODES,
     },
   },
-
   postcss: {
     plugins: {
       autoprefixer: {},
@@ -106,7 +108,6 @@ export default defineNuxtConfig({
       }),
     ],
   },
-
   monacoEditor: {
     locale: 'en',
     componentName: {

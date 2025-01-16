@@ -73,11 +73,8 @@ export const useWebSocket = defineStore('webSocket', () => {
     const parsedData = camelcaseKeysDeep(JSON.parse(data))
     const isSpecificEntityMessage = parsedData.subscription === 'Object'
     const isSubscribedTransactionMessage = parsedData.payload?.hash === subscribedTransactionId.value
-    const isSubscribedKeyblockMessage = parsedData.subscription === 'KeyBlocks'
 
-    if (isSubscribedKeyblockMessage) {
-      updateBlockHeight(parsedData.payload)
-    } else if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
+    if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
       updateTransactionTypeData(parsedData.payload)
     } else {
       await processSocketMessage(parsedData)

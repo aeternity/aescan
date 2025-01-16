@@ -63,7 +63,7 @@ const menuOptions = ref([{
   submenu: [
     {
       name: 'AE Coin',
-      path: '/tokens/AE',
+      path: '/tokens/ae',
       hidden: !featureFlags.marketStats,
     },
     {

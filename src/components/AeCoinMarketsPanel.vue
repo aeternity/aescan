@@ -4,33 +4,26 @@
     <template v-else>
       <ae-coin-markets-table
         class="u-hidden-mobile"
-        :gate="gate"
-        :mexc="mexc"
-        :hot-coin="hotCoin"
-        :coin-store="coinStore"
-        :coin-w="coinW"/>
+        :gate="coinMarkets.gate"
+        :mexc="coinMarkets.mexc"
+        :hot-coin="coinMarkets.hotcoin"
+        :coin-store="coinMarkets.coinstore"
+        :coin-w="coinMarkets.coinw"/>
       <ae-coin-markets-table-condensed
         class="u-hidden-desktop"
-        :gate="gate"
-        :mexc="mexc"
-        :hot-coin="hotCoin"
-        :coin-store="coinStore"
-        :coin-w="coinW"/>
+        :gate="coinMarkets.gate"
+        :mexc="coinMarkets.mexc"
+        :hot-coin="coinMarkets.hotcoin"
+        :coin-store="coinMarkets.coinstore"
+        :coin-w="coinMarkets.coinw"/>
+      <!--      todo so many params-->
     </template>
   </app-panel>
 </template>
 
 <script setup>
-const aeCoinStore = useAeCoinStore()
-const { fetchMarketStats } = aeCoinStore
-const {
-  gate,
-  mexc,
-  hotCoin,
-  coinStore,
-  coinW,
-  isLoading,
-} = storeToRefs(aeCoinStore)
+const { fetchMarketStats } = useAeCoinStore()
+const { isLoading, coinMarkets } = storeToRefs(useAeCoinStore())
 
 await useAsyncData(async() => {
   await fetchMarketStats()

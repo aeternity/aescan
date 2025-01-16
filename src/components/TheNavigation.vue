@@ -130,7 +130,12 @@ const menuOptions = ref([{
 }])
 
 const menuOptionsWithSubmenus = computed(() =>
-  menuOptions.value.filter(menu => !menu.submenu.every(submenu => submenu.hidden)),
+  menuOptions.value
+    .map(menuOption => ({
+      ...menuOption,
+      submenu: menuOption.submenu.filter(submenu => !submenu.hidden),
+    }))
+    .filter(menuOption => menuOption.submenu.length > 0),
 )
 
 function open(name) {

@@ -10,13 +10,20 @@
         through an expired auction (name length &lt;= 12).
       </template>
     </dashboard-panel-header>
-    <dashboard-names-table class="u-hidden-mobile"/>
-    <dashboard-names-swiper class="u-hidden-desktop"/>
+    <template v-if="!!recentlyActivatedNames.length">
+      <dashboard-names-table class="u-hidden-mobile"/>
+      <dashboard-names-swiper class="u-hidden-desktop"/>
+    </template>
+    <blank-state v-else/>
   </app-panel>
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
+import { useNamesStore } from '@/stores/names'
+
+const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>
 
 <style scoped>

@@ -17,7 +17,7 @@
         </tr>
         <tr class="state-channel-transactions-table-condensed__row">
           <th class="state-channel-transactions-table-condensed__header">
-            <time-toggle-button/>
+            <time-toggle-button class="state-channel-transactions-table-condensed__button"/>
           </th>
           <td class="state-channel-transactions-table-condensed__data">
             <block-time-cell
@@ -77,6 +77,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

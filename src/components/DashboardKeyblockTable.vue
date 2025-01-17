@@ -42,7 +42,7 @@
             class="dashboard-keyblock-table__value-hash-ellipsed"/>
         </td>
         <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-end">
-          Beneficiary Reward
+          Reward
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>

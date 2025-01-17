@@ -126,7 +126,9 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   async function processSocketMessage(message) {
     switch (message.subscription) {
     case 'KeyBlocks':
+      updateBlockHeight(message.payload)
       fetchDeltaStats()
+      await fetchKeyblocks()
       break
     case 'MicroBlocks':
       fetchTotalTransactionsCount()

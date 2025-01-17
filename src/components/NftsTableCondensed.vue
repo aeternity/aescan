@@ -7,12 +7,10 @@
       <tbody>
         <tr class="nfts-table-condensed__row">
           <th class="nfts-table-condensed__header">
-            <app-tooltip>
-              Collection Name
-              <template #tooltip>
-                {{ nftsHints.hash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.hash }}
+            </hint-tooltip>
+            Collection Name
           </th>
           <td class="nfts-table-condensed__data">
             <app-link :to="`/nfts/${nft.contractId}`">
@@ -23,12 +21,10 @@
 
         <tr class="nfts-table-condensed__row">
           <th class="nfts-table-condensed__header">
-            <app-tooltip>
-              Created
-              <template #tooltip>
-                {{ nftsHints.created }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.created }}
+            </hint-tooltip>
+            Created
           </th>
           <td class="nfts-table-condensed__data">
             <block-time-cell
@@ -38,12 +34,8 @@
         </tr>
         <tr class="nfts-table-condensed__row">
           <th class="nfts-table-condensed__header">
-            <app-tooltip>
-              Owners
-              <template #tooltip>
-                {{ nftsHints.owners }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip> {{ nftsHints.owners }}</hint-tooltip>
+            Owners
           </th>
           <td class="nfts-table-condensed__data">
             {{ nft.nftOwners }}
@@ -52,12 +44,10 @@
 
         <tr class="nfts-table-condensed__row">
           <th class="nfts-table-condensed__header">
-            <app-tooltip>
-              Amount
-              <template #tooltip>
-                {{ nftsHints.amount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.amount }}
+            </hint-tooltip>
+            Amount
           </th>
           <td class="nfts-table-condensed__data">
             {{ nft.nftsAmount }}
@@ -66,12 +56,10 @@
 
         <tr class="nfts-table-condensed__row">
           <th class="nfts-table-condensed__header">
-            <app-tooltip>
-              Smart Contract ID
-              <template #tooltip>
-                {{ nftsHints.smartContractId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.smartContractId }}
+            </hint-tooltip>
+            Smart Contract ID
           </th>
           <td class="nfts-table-condensed__data">
             <app-link :to="`/contracts/${nft.contractId}`">

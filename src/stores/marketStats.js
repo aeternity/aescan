@@ -9,6 +9,7 @@ import {
   MAX_AE_DISTRIBUTION,
 } from '@/utils/constants'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
+import useFeatureFlags from '@/composables/useFeatureFlags'
 
 export const useMarketStatsStore = defineStore('marketStats', () => {
   const axios = useAxios()
@@ -18,6 +19,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   const isMarketCapAvailable = ref(null)
 
   const blockchainStatsStore = useBlockchainStatsStore()
+  const featureFlags = useFeatureFlags()
 
   const distribution = computed(() =>
     blockchainStatsStore.totalTokenSupply && blockchainStatsStore.burnedCount
@@ -31,6 +33,10 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   )
 
   function fetchMarketStats() {
+    if (!featureFlags.marketStats) {
+      return
+    }
+
     return Promise.all([
       fetchPrice(),
       fetchCoinStats(),

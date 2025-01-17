@@ -7,12 +7,10 @@
       <tbody>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ namesHints.nameId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.nameId }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="names-active-table-condensed__data">
             <app-link
@@ -24,12 +22,12 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Expires</time-toggle-button>
-              <template #tooltip>
-                {{ namesHints.expires }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.expires }}
+            </hint-tooltip>
+            <time-toggle-button class="names-active-table-condensed__button">
+              Expires
+            </time-toggle-button>
           </th>
           <td class="names-active-table-condensed__data">
             <block-time-cell
@@ -39,12 +37,10 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            <app-tooltip>
-              Buyer
-              <template #tooltip>
-                {{ namesHints.buyer }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.buyer }}
+            </hint-tooltip>
+            Buyer
           </th>
           <td class="names-active-table-condensed__data">
             <value-hash-ellipsed
@@ -56,12 +52,10 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            <app-tooltip>
-              Price
-              <template #tooltip>
-                {{ namesHints.price }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.price }}
+            </hint-tooltip>
+            Price
           </th>
           <td class="names-active-table-condensed__data">
             <price-label :price="name.fee"/>
@@ -69,12 +63,10 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            <app-tooltip>
-              Owner
-              <template #tooltip>
-                {{ namesHints.owner }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.owner }}
+            </hint-tooltip>
+            Owner
           </th>
           <td class="names-active-table-condensed__data">
             <value-hash-ellipsed
@@ -84,12 +76,10 @@
         </tr>
         <tr class="names-active-table-condensed__row">
           <th class="names-active-table-condensed__header">
-            <app-tooltip>
-              Points To
-              <template #tooltip>
-                {{ namesHints.pointsTo }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.pointsTo }}
+            </hint-tooltip>
+            Points To
           </th>
           <td class="names-active-table-condensed__data">
             <template v-if="name.pointers.length > 0">
@@ -140,7 +130,7 @@ defineProps({
   }
 
   &__name {
-    max-width: 200px;
+    max-width: 168px;
     display: inline-block;
   }
 
@@ -150,6 +140,10 @@ defineProps({
 
   &__buyer {
     margin-right: var(--space-2);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

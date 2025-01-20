@@ -22,7 +22,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
-import { useNamesStore } from '~/stores/names'
+import { useNamesStore } from '@/stores/names'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 

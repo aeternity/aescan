@@ -9,7 +9,7 @@
       @next-clicked="loadNextTokens">
       <template #header>
         <token-select
-          v-if="NETWORK_NAME !== 'TESTNET'"
+          v-if="hasTokenSelect"
           v-model="selectedTokenName"/>
       </template>
       <tokens-table
@@ -33,12 +33,14 @@ import TokensTable from '@/components/TokensTable'
 import TokenSelect from '@/components/TokenSelect'
 import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
+import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 
 const tokensStore = useTokensStore()
 const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(tokensStore)
 const { fetchTokens, fetchTokensCount } = useTokensStore()
+const featureFlags = useFeatureFlags()
 
 const pageIndex = ref(1)
 
@@ -49,6 +51,10 @@ async function loadPrevTokens() {
 async function loadNextTokens() {
   await fetchTokens(selectedTokens.value.next)
 }
+
+const hasTokenSelect = computed(() => {
+  return featureFlags.dex && NETWORK_NAME !== 'TESTNET'
+})
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 

@@ -15,6 +15,7 @@ export const useAccountStore = defineStore('account', () => {
   const { price: aeFiatPrice } = storeToRefs(useMarketStatsStore())
   const axios = useAxios()
   const { fetchPrice } = useDexStore()
+  const featureFlags = useFeatureFlags()
 
   const rawAccountDetails = ref(null)
   const totalAccountTransactionsCount = ref(null)
@@ -123,6 +124,10 @@ export const useAccountStore = defineStore('account', () => {
   }
 
   async function fetchAccountTokensPrices() {
+    if (!featureFlags.dex) {
+      return
+    }
+
     tokenPrices.value = {}
     await Promise.all(
       rawAccountTokens.value.data.map(async token => {

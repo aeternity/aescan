@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.19.0](https://github.com/aeternity/aescan/compare/0.18.0...0.19.0) (2025-01-16)
+
+
+### Features
+
+* Dex Trades per Token ([#876](https://github.com/aeternity/aescan/issues/876)) ([1b771c8](https://github.com/aeternity/aescan/commit/1b771c8b3f9d18a89e4ee30a3df7af739ee43c1e))
+* hyperchains support ([#1003](https://github.com/aeternity/aescan/issues/1003)) ([0de2e89](https://github.com/aeternity/aescan/commit/0de2e8926e02f1e34b503a700716a1471079306f))
+* Show Block gas limit 2 ([#1030](https://github.com/aeternity/aescan/issues/1030)) ([5e2a631](https://github.com/aeternity/aescan/commit/5e2a63165726554a9d97bea787fea0786bb253bd))
+* upgrade dependencies ([#1028](https://github.com/aeternity/aescan/issues/1028)) ([f6f076a](https://github.com/aeternity/aescan/commit/f6f076aa954cf72dc83500ea1635666a0c23e4ac))
+
+
+### Bug Fixes
+
+* e2e randomly failing  ([#1020](https://github.com/aeternity/aescan/issues/1020)) ([d0f8737](https://github.com/aeternity/aescan/commit/d0f87376b0bfac7ec35b59220ae3c4838fab5b64))
+* Mixed controls of hints  ([#1016](https://github.com/aeternity/aescan/issues/1016)) ([9d4a9c9](https://github.com/aeternity/aescan/commit/9d4a9c919135e97e8b6dfa2207fa1aed5ad4a891))
+* Name appears in Auction and Expired list ([#1032](https://github.com/aeternity/aescan/issues/1032)) ([1abdace](https://github.com/aeternity/aescan/commit/1abdace1af94a8cf12dbd8779099281ab340dbb1))
+
 ## [0.18.0](https://github.com/aeternity/aescan/compare/0.17.0...0.18.0) (2025-01-13)
 
 

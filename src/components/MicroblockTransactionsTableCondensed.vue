@@ -32,11 +32,12 @@
           </td>
         </tr>
         <tr class="microblock-transactions-table-condensed__row">
-          <hint-tooltip>
-            {{ microblocksHints.transactionType }}
-          </hint-tooltip>
-          Type
-          <th class="microblock-transactions-table-condensed__header"/>
+          <th class="microblock-transactions-table-condensed__header">
+            <hint-tooltip>
+              {{ microblocksHints.transactionType }}
+            </hint-tooltip>
+            Type
+          </th>
           <td class="microblock-transactions-table-condensed__data">
             <hint-tooltip>
               {{ transactionsHints[transaction.hintKey] }}

@@ -7,7 +7,7 @@
             <hint-tooltip>
               {{ microblocksHints.microblockId }}
             </hint-tooltip>
-            Microblock ID
+            Hash
           </th>
           <td>
             <div class="u-hidden-mobile">
@@ -56,7 +56,7 @@
             <hint-tooltip>
               {{ microblocksHints.time }}
             </hint-tooltip>
-            Created Height
+            Created
           </th>
           <td>
             <timestamp-label
@@ -94,25 +94,23 @@
             API Links
           </th>
           <td>
-            <div class="microblock-details-panel__container">
-              <app-link
-                :to="microblockNodeUrl"
-                class="microblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Node
-              </app-link>
+            <app-link
+              :to="microblockNodeUrl"
+              class="microblock-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Node
+            </app-link>
 
-              <app-link
-                :to="microblockMiddlewareUrl"
-                class="microblock-details-panel__link">
-                <app-icon
-                  name="file-cloud"
-                  :size="22"/>
-                Middleware
-              </app-link>
-            </div>
+            <app-link
+              :to="microblockMiddlewareUrl"
+              class="microblock-details-panel__link">
+              <app-icon
+                name="file-cloud"
+                :size="22"/>
+              Middleware
+            </app-link>
           </td>
         </tr>
       </tbody>
@@ -149,7 +147,6 @@ const microblockMiddlewareUrl = computed(() =>
 .microblock-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
-    font-weight: normal;
 
     @media (--desktop) {
       width: var(--detail-column-width);
@@ -158,10 +155,6 @@ const microblockMiddlewareUrl = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__container {
-    display: flex;
   }
 
   &__link {

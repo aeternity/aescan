@@ -141,7 +141,7 @@
 import { storeToRefs } from 'pinia'
 import { accountHints } from '@/utils/hints/accountHints'
 import { formatNumber } from '@/utils/format'
-import { useMarketStatsStore } from '@/stores/marketStats'
+import { useMarketStatsStore } from '@/composables/marketStats'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public

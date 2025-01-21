@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { useTokenDetailsStore } from '@/stores/tokenDetails'
+import { useTokenDetailsStore } from '@/composables/tokenDetails'
 import { tokensHints } from '@/utils/hints/tokensHints'
 import useFeatureFlags from '@/composables/useFeatureFlags'
 

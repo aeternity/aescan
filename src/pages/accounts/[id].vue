@@ -42,7 +42,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
-import { useAccountStore } from '@/stores/accountDetails'
+import { useAccountStore } from '@/composables/accountDetails'
 import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'
 
@@ -61,11 +61,11 @@ const isAccountExistent = computed(() => {
 })
 
 const isTabsVisible = computed(() => process.client &&
-    (isAccountExistent.value || !!accountTokens.value?.data.length),
+  (isAccountExistent.value || !!accountTokens.value?.data.length),
 )
 
 const isTokensTabPreselected = computed(() => process.client &&
-    !isAccountExistent.value && !!accountTokens.value?.data.length,
+  !isAccountExistent.value && !!accountTokens.value?.data.length,
 )
 
 const activeTabIndex = computed({

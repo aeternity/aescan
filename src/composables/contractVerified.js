@@ -3,8 +3,8 @@ import { computed } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Contract } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
-import { useWalletStore } from '@/stores/wallet'
-import { useContractDetailsStore } from '@/stores/contractDetails'
+import { useWalletStore } from '@/composables/wallet'
+import { useContractDetailsStore } from '@/composables/contractDetails'
 import { adaptAciObject, adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '@/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {

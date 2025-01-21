@@ -43,8 +43,8 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
-import { useMarketStatsStore } from '@/stores/marketStats'
-import { useBlockchainStatsStore } from '@/stores/blockchainStats'
+import { useMarketStatsStore } from '@/composables/marketStats'
+import { useBlockchainStatsStore } from '@/composables/blockchainStats'
 
 const route = useRoute()
 const { push, replace } = useRouter()

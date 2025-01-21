@@ -28,7 +28,7 @@ import { storeToRefs } from 'pinia'
 import { useRoute } from 'nuxt/app'
 
 import { microblocksHints } from '@/utils/hints/microblocksHints'
-import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
+import { useMicroblockDetailsStore } from '@/composables/microblockDetails'
 
 const { isLoading } = useLoading()
 const microblockDetailsStore = useMicroblockDetailsStore()

@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { useWalletStore } from '@/stores/wallet'
+import { useWalletStore } from '@/composables/wallet'
 
 const walletStore = useWalletStore()
 const { connectWallet } = walletStore

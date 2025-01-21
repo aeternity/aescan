@@ -2,7 +2,7 @@ import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
 import { adaptName, adaptNameActions } from '@/utils/adapters'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { useRecentBlocksStore } from '@/composables/recentBlocks'
 
 export const useNameDetailsStore = defineStore('nameDetails', () => {
   const { blockHeight, keyblocks } = storeToRefs(useRecentBlocksStore())

@@ -8,7 +8,7 @@ import {
   MARKET_STATS_COINGECKO_ADDRESS,
   MAX_AE_DISTRIBUTION,
 } from '@/utils/constants'
-import { useBlockchainStatsStore } from '@/stores/blockchainStats'
+import { useBlockchainStatsStore } from '@/composables/blockchainStats'
 import useFeatureFlags from '@/composables/useFeatureFlags'
 
 export const useMarketStatsStore = defineStore('marketStats', () => {

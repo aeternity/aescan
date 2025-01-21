@@ -71,10 +71,10 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useOnline } from '@vueuse/core'
-import { useUiStore } from '@/stores/ui'
-import { useStatus } from '@/stores/status'
+import { useUiStore } from '@/composables/ui'
+import { useStatus } from '@/composables/status'
 import { MENU_HASH } from '@/utils/constants'
-import { useMarketStatsStore } from '@/stores/marketStats'
+import { useMarketStatsStore } from '@/composables/marketStats'
 
 const route = useRoute()
 const router = useRouter()

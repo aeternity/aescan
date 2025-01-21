@@ -20,7 +20,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
+import { useKeyblockDetailsStore } from '@/composables/keyblockDetails'
 import { isDesktop } from '@/utils/screen'
 
 const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetailsStore())

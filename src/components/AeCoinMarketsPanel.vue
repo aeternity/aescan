@@ -22,7 +22,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useAeCoinStore } from '@/stores/aeCoin'
+import { useAeCoinStore } from '@/composables/aeCoin'
 
 const aeCoinStore = useAeCoinStore()
 const { fetchMarketStats } = aeCoinStore

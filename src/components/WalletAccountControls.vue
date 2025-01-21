@@ -31,7 +31,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { formatEllipseHash } from '@/utils/format'
-import { useWalletStore } from '@/stores/wallet'
+import { useWalletStore } from '@/composables/wallet'
 
 const props = defineProps({
   backlink: {

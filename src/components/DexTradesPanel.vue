@@ -15,7 +15,7 @@
   </app-panel>
 </template>
 <script setup>
-import { useDexTradesStore } from '@/stores/dexTrades'
+import { useDexTradesStore } from '@/composables/dexTrades'
 
 const dexTradesStore = useDexTradesStore()
 const { trades } = storeToRefs(dexTradesStore)

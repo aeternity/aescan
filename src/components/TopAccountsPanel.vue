@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { useTopAccountsStore } from '@/stores/topAccounts'
+import { useTopAccountsStore } from '@/composables/topAccounts'
 
 const { topAccounts } = storeToRefs(useTopAccountsStore())
 const { fetchTopAccounts } = useTopAccountsStore()

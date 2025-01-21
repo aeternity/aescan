@@ -20,7 +20,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNameDetailsStore } from '@/stores/nameDetails'
+import { useNameDetailsStore } from '@/composables/nameDetails'
 
 const nameDetailsStore = useNameDetailsStore()
 const { fetchNameActions } = nameDetailsStore

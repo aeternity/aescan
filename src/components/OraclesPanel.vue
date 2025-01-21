@@ -24,7 +24,7 @@
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'nuxt/app'
-import { useOraclesStore } from '@/stores/oracles'
+import { useOraclesStore } from '@/composables/oracles'
 import { isDesktop } from '@/utils/screen'
 
 const oraclesStore = useOraclesStore()

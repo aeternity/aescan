@@ -80,8 +80,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useWebSocket } from '@/stores/webSocket'
-import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
+import { useWebSocket } from '@/composables/webSocket'
+import { useDashboardStateChannelsStore } from '@/composables/dashboardStateChannels'
 
 const {
   fetchSelectedMicroblocksInfo,

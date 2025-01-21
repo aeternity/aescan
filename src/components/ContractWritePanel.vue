@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import { useContractVerifiedStore } from '@/stores/contractVerified'
-import { useContractDetailsStore } from '@/stores/contractDetails'
+import { useContractVerifiedStore } from '@/composables/contractVerified'
+import { useContractDetailsStore } from '@/composables/contractDetails'
 import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()

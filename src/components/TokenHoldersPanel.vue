@@ -22,7 +22,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useTokenDetailsStore } from '@/stores/tokenDetails'
+import { useTokenDetailsStore } from '@/composables/tokenDetails'
 
 const tokenDetailsStore = useTokenDetailsStore()
 const { fetchTokenHolders, fetchTokenHoldersCount } = tokenDetailsStore

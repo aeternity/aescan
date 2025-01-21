@@ -18,7 +18,7 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { isDesktop } from '@/utils/screen'
-import { useSearchStore } from '@/stores/search'
+import { useSearchStore } from '@/composables/search'
 
 const searchStore = useSearchStore()
 const { tokensResults } = storeToRefs(searchStore)

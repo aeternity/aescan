@@ -47,7 +47,7 @@
 import { defineAsyncComponent } from 'vue'
 import { storeToRefs } from 'pinia'
 import { formatEllipseHash } from '@/utils/format'
-import { useTransactionDetailsStore } from '@/stores/transactionDetails'
+import { useTransactionDetailsStore } from '@/composables/transactionDetails'
 
 const props = defineProps({
   transactionData: {

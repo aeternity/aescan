@@ -21,7 +21,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
-import { useContractsStore } from '@/stores/contracts'
+import { useContractsStore } from '@/composables/contracts'
 import { isDesktop } from '@/utils/screen'
 
 const contractsStore = useContractsStore()

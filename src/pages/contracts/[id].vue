@@ -54,8 +54,8 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 
-import { useContractDetailsStore } from '@/stores/contractDetails'
-import { useContractVerifiedStore } from '@/stores/contractVerified'
+import { useContractDetailsStore } from '@/composables/contractDetails'
+import { useContractVerifiedStore } from '@/composables/contractVerified'
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import useFeatureFlags from '@/composables/useFeatureFlags'

@@ -18,7 +18,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useWalletStore } from '@/stores/wallet'
+import { useWalletStore } from '@/composables/wallet'
 import { walletHints } from '@/utils/hints/walletHints'
 
 const { push } = useRouter()

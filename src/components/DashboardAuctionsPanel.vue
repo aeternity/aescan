@@ -21,7 +21,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNamesStore } from '@/stores/names'
+import { useNamesStore } from '@/composables/names'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 

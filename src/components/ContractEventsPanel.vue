@@ -22,7 +22,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useContractDetailsStore } from '@/stores/contractDetails'
+import { useContractDetailsStore } from '@/composables/contractDetails'
 
 const contractDetailsStore = useContractDetailsStore()
 const { fetchContractEvents } = contractDetailsStore

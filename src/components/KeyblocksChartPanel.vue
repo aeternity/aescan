@@ -21,7 +21,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useChartsStore } from '@/stores/charts'
+import { useChartsStore } from '@/composables/charts'
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()

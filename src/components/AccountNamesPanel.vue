@@ -17,7 +17,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useAccountStore } from '@/stores/accountDetails'
+import { useAccountStore } from '@/composables/accountDetails'
 
 const accountStore = useAccountStore()
 const { fetchAccountNames } = accountStore

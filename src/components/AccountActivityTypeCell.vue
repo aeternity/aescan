@@ -8,7 +8,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { storeToRefs } from 'pinia'
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
-import { useConfigStore } from '@/stores/config'
+import { useConfigStore } from '@/composables/config'
 
 const { SH_DEX_CONTRACTS } = useRuntimeConfig().public
 
@@ -42,9 +42,9 @@ const activityType = computed(() => {
   case 'ContractCallTxEvent':
     if (
       SWAP_CONTRACT_CALLS.includes(tx.value.function) ||
-          ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
-          REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
-          SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+        ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
+        REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
+        SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'

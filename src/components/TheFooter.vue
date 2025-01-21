@@ -89,7 +89,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useStatus } from '@/stores/status'
+import { useStatus } from '@/composables/status'
 
 const { middlewareStatus, nodeStatus, isSyncing } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public

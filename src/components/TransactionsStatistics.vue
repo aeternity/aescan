@@ -28,8 +28,8 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useBlockchainStatsStore } from '@/stores/blockchainStats'
-import { useTransactionsStore } from '@/stores/transactions'
+import { useBlockchainStatsStore } from '@/composables/blockchainStats'
+import { useTransactionsStore } from '@/composables/transactions'
 import { formatNumber } from '@/utils/format'
 
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()

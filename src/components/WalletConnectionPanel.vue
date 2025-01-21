@@ -53,7 +53,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { useWalletStore } from '@/stores/wallet'
+import { useWalletStore } from '@/composables/wallet'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 

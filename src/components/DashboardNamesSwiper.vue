@@ -69,7 +69,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 
-import { useNamesStore } from '@/stores/names'
+import { useNamesStore } from '@/composables/names'
 import { namesHints } from '@/utils/hints/namesHints'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())

@@ -21,7 +21,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { useRecentBlocksStore } from '@/composables/recentBlocks'
 
 const recentBlocksStore = useRecentBlocksStore()
 const { selectMicroblock } = recentBlocksStore

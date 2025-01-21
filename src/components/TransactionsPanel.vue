@@ -25,7 +25,7 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
-import { useTransactionsStore } from '@/stores/transactions'
+import { useTransactionsStore } from '@/composables/transactions'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 import { isDesktop } from '@/utils/screen'
 

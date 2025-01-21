@@ -72,7 +72,7 @@
 
 import { storeToRefs } from 'pinia'
 import { nftsHints } from '@/utils/hints/nftsHints'
-import { useNftDetailsStore } from '@/stores/nftDetails'
+import { useNftDetailsStore } from '@/composables/nftDetails'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nftOwners } = storeToRefs(nftDetailsStore)

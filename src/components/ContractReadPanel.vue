@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { useContractVerifiedStore } from '@/stores/contractVerified'
+import { useContractVerifiedStore } from '@/composables/contractVerified'
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { aciReadEntrypoints } = storeToRefs(contractVerifiedStore)

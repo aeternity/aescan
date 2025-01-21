@@ -12,7 +12,7 @@
 import { useVModel } from '@vueuse/core'
 import { storeToRefs } from 'pinia'
 
-import { useContractVerificationStore } from '@/stores/contractVerification'
+import { useContractVerificationStore } from '@/composables/contractVerification'
 
 const verificationStore = useContractVerificationStore()
 const { compilerOptions } = storeToRefs(verificationStore)

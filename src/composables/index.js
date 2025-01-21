@@ -1,7 +1,7 @@
-import { useMarketStatsStore } from '@/stores/marketStats'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
-import { useStatus } from '@/stores/status'
-import { useConfigStore } from '@/stores/config'
+import { useMarketStatsStore } from '@/composables/marketStats'
+import { useRecentBlocksStore } from '@/composables/recentBlocks'
+import { useStatus } from '@/composables/status'
+import { useConfigStore } from '@/composables/config'
 
 export async function initializeStores() {
   const { fetchKeyblocks } = useRecentBlocksStore()

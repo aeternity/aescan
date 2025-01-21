@@ -41,7 +41,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { useRecentBlocksStore } from '@/composables/recentBlocks'
 
 const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
   storeToRefs(useRecentBlocksStore())

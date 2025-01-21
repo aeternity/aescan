@@ -19,7 +19,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
-import { useKeyblockStore } from '@/stores/keyblocks'
+import { useKeyblockStore } from '@/composables/keyblocks'
 import { isDesktop } from '@/utils/screen'
 
 const keyblockStore = useKeyblockStore()

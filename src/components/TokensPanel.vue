@@ -27,7 +27,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed, watch } from 'vue'
-import { useTokensStore } from '@/stores/tokens'
+import { useTokensStore } from '@/composables/tokens'
 import { isDesktop } from '@/utils/screen'
 
 const { NETWORK_NAME } = useRuntimeConfig().public

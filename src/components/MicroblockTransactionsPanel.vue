@@ -23,7 +23,7 @@
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from '#app'
-import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
+import { useMicroblockDetailsStore } from '@/composables/microblockDetails'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 const { push } = useRouter()

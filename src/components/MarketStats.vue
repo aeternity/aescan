@@ -53,7 +53,7 @@ import { storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 import { formatNullable, formatNumber } from '@/utils/format'
-import { useMarketStatsStore } from '@/stores/marketStats'
+import { useMarketStatsStore } from '@/composables/marketStats'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 const selectedNetwork = `${NETWORK_NAME

@@ -32,7 +32,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useOracleDetailsStore } from '@/stores/oracleDetails'
+import { useOracleDetailsStore } from '@/composables/oracleDetails'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const oracleDetailsStore = useOracleDetailsStore()

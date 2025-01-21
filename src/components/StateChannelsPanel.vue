@@ -21,7 +21,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
-import { useStateChannelsStore } from '@/stores/stateChannels'
+import { useStateChannelsStore } from '@/composables/stateChannels'
 import { isDesktop } from '@/utils/screen'
 
 const stateChannelsStore = useStateChannelsStore()

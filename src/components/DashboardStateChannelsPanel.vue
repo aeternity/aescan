@@ -20,7 +20,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
-import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
+import { useDashboardStateChannelsStore } from '@/composables/dashboardStateChannels'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 </script>

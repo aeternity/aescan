@@ -62,7 +62,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
+import { useRecentBlocksStore } from '@/composables/recentBlocks'
 
 const {
   keyblocks,

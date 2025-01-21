@@ -16,9 +16,8 @@
 </template>
 
 <script setup>
-const dexTradesStore = useDexTradesStore()
-const { trades } = storeToRefs(dexTradesStore)
-const { fetchDexTrades } = dexTradesStore
+const { trades } = storeToRefs(useDexTradesStore())
+const { fetchDexTrades } = useDexTradesStore()
 
 await useAsyncData(async() => {
   await fetchDexTrades()

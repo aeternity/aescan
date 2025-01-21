@@ -15,10 +15,8 @@
 </template>
 
 <script setup>
-
-const transactionsStore = useTransactionsStore()
-const { fetchTransactions } = transactionsStore
-const { transactions } = storeToRefs(transactionsStore)
+const { fetchTransactions } = useTransactionsStore()
+const { transactions } = storeToRefs(useTransactionsStore())
 
 const limit = computed(() => isDesktop() ? 10 : 3)
 

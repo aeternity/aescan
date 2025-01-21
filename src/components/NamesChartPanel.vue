@@ -22,9 +22,8 @@
 <script setup>
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { namesStatistics } = storeToRefs(chartsStore)
-const { fetchNamesStatistics } = chartsStore
+const { namesStatistics } = storeToRefs(useChartsStore())
+const { fetchNamesStatistics } = useChartsStore()
 
 const props = defineProps({
   hasSelect: {

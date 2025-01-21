@@ -19,9 +19,8 @@
 </template>
 
 <script setup>
-const stateChannelsStore = useStateChannelsStore()
-const { stateChannels, stateChannelsCount } = storeToRefs(stateChannelsStore)
-const { fetchStateChannels, fetchStateChannelsCount } = stateChannelsStore
+const { stateChannels, stateChannelsCount } = storeToRefs(useStateChannelsStore())
+const { fetchStateChannels, fetchStateChannelsCount } = useStateChannelsStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

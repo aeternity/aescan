@@ -82,8 +82,7 @@
 <script setup>
 import { nftsHints } from '@/utils/hints/nftsHints'
 
-const nftDetailsStore = useNftDetailsStore()
-const { nftOwners } = storeToRefs(nftDetailsStore)
+const { nftOwners } = storeToRefs(useNftDetailsStore())
 
 const props = defineProps({
   nftInventory: {

@@ -20,9 +20,8 @@
 </template>
 
 <script setup>
-const chartsStore = useChartsStore()
-const { hashrateStatistics } = storeToRefs(chartsStore)
-const { fetchHashrateStatistics } = chartsStore
+const { hashrateStatistics } = storeToRefs(useChartsStore())
+const { fetchHashrateStatistics } = useChartsStore()
 
 const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 

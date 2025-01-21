@@ -45,9 +45,8 @@
 
 <script setup>
 
-const transactionDetailsStore = useTransactionDetailsStore()
-const { fetchContractIdByAccountId } = transactionDetailsStore
-const { contractId } = storeToRefs(transactionDetailsStore)
+const { fetchContractIdByAccountId } = useTransactionDetailsStore()
+const { contractId } = storeToRefs(useTransactionDetailsStore())
 
 const props = defineProps({
   transactionData: {

@@ -22,9 +22,8 @@
 <script setup>
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { difficultyStatistics } = storeToRefs(chartsStore)
-const { fetchDifficultyStatistics } = chartsStore
+const { difficultyStatistics } = storeToRefs(useChartsStore())
+const { fetchDifficultyStatistics } = useChartsStore()
 
 const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 

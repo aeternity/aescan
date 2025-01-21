@@ -22,9 +22,8 @@
 <script setup>
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { keyblocksStatistics } = storeToRefs(chartsStore)
-const { fetchKeyblocksStatistics } = chartsStore
+const { keyblocksStatistics } = storeToRefs(useChartsStore())
+const { fetchKeyblocksStatistics } = useChartsStore()
 
 const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 

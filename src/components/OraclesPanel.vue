@@ -24,9 +24,8 @@
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const oraclesStore = useOraclesStore()
-const { fetchOracles, fetchOraclesCount, getOraclesCount } = oraclesStore
-const { oracles } = storeToRefs(oraclesStore)
+const { fetchOracles, fetchOraclesCount, getOraclesCount } = useOraclesStore()
+const { oracles } = storeToRefs(useOraclesStore())
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

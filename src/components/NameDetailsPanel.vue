@@ -155,7 +155,6 @@ import { namesHints } from '@/utils/hints/namesHints'
 const { name } = storeToRefs(useNameDetailsStore())
 const states = name.value.states
 
-// todo move to adapt
 const stateLabel = computed(() => {
   if (states.includes('auction')) {
     return 'Ends'

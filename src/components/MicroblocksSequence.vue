@@ -20,9 +20,8 @@
 </template>
 
 <script setup>
-const recentBlocksStore = useRecentBlocksStore()
-const { selectMicroblock } = recentBlocksStore
-const { selectedMicroblock } = storeToRefs(recentBlocksStore)
+const { selectMicroblock } = useRecentBlocksStore()
+const { selectedMicroblock } = storeToRefs(useRecentBlocksStore())
 
 defineProps({
   microblocks: {

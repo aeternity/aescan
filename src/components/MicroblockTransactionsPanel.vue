@@ -23,9 +23,8 @@
 <script setup>
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
-const microblockDetailsStore = useMicroblockDetailsStore()
-const { microblockTransactions: transactions } = storeToRefs(microblockDetailsStore)
-const { fetchMicroblockTransactions } = microblockDetailsStore
+const { microblockTransactions: transactions } = storeToRefs(useMicroblockDetailsStore())
+const { fetchMicroblockTransactions } = useMicroblockDetailsStore()
 
 const route = useRoute()
 const { push } = useRouter()

@@ -27,9 +27,9 @@
 <script setup>
 const { NETWORK_NAME } = useRuntimeConfig().public
 
-const tokensStore = useTokensStore()
-const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(tokensStore)
+const { selectedTokens, selectedTokenName, selectedTokensCount } = storeToRefs(useTokensStore())
 const { fetchTokens, fetchTokensCount } = useTokensStore()
+
 const featureFlags = useFeatureFlags()
 
 const pageIndex = ref(1)

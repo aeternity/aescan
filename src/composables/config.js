@@ -2,7 +2,6 @@ import { useRuntimeConfig } from 'nuxt/app'
 
 export const useConfigStore = defineStore('config', () => {
   const axios = useAxios()
-  // todo axios
   const { NODE_URL } = useRuntimeConfig().public
 
   const currency = ref()

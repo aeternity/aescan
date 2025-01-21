@@ -18,9 +18,8 @@
 </template>
 
 <script setup>
-const nftsStore = useNftsStore()
-const { nfts, nftsCount } = storeToRefs(nftsStore)
-const { fetchNfts, fetchNftsList } = nftsStore
+const { nfts, nftsCount } = storeToRefs(useNftsStore())
+const { fetchNfts, fetchNftsList } = useNftsStore()
 
 const pageIndex = ref(1)
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)

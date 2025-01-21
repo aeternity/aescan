@@ -22,9 +22,8 @@
 <script setup>
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { contractsStatistics } = storeToRefs(chartsStore)
-const { fetchContractsStatistics } = chartsStore
+const { contractsStatistics } = storeToRefs(useChartsStore())
+const { fetchContractsStatistics } = useChartsStore()
 
 const props = defineProps({
   preselectedRange: {

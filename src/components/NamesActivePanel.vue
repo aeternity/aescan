@@ -18,9 +18,8 @@
 </template>
 
 <script setup>
-const namesStore = useNamesStore()
-const { fetchActiveNames } = namesStore
-const { activeNames } = storeToRefs(namesStore)
+const { fetchActiveNames } = useNamesStore()
+const { activeNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
   return fetchActiveNames({ queryParameters: activeNames.value.prev })

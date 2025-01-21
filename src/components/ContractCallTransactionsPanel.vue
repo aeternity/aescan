@@ -20,10 +20,8 @@
 </template>
 
 <script setup>
-// todo store to refs
-const contractDetailsStore = useContractDetailsStore()
-const { contractCallTransactions, contractCallsCount } = storeToRefs(contractDetailsStore)
-const { fetchContractCallTransactions } = contractDetailsStore
+const { contractCallTransactions, contractCallsCount } = storeToRefs(useContractDetailsStore())
+const { fetchContractCallTransactions } = useContractDetailsStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

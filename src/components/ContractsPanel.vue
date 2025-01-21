@@ -19,9 +19,8 @@
 </template>
 
 <script setup>
-const contractsStore = useContractsStore()
-const { contracts, contractsCount } = storeToRefs(contractsStore)
-const { fetchContracts, fetchContractsCount } = contractsStore
+const { contracts, contractsCount } = storeToRefs(useContractsStore())
+const { fetchContracts, fetchContractsCount } = useContractsStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

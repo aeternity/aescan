@@ -24,9 +24,9 @@
 <script setup>
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
-const transactionsStore = useTransactionsStore()
-const { transactions, transactionsCount, isHydrated, pageIndex, selectedTxType } = storeToRefs(transactionsStore)
-const { fetchTransactions, fetchTransactionsCount, setPageIndex, setSelectedTxType } = transactionsStore
+const { transactions, transactionsCount, isHydrated, pageIndex, selectedTxType } = storeToRefs(useTransactionsStore())
+const { fetchTransactions, fetchTransactionsCount, setPageIndex, setSelectedTxType } = useTransactionsStore()
+
 const route = useRoute()
 const { push } = useRouter()
 

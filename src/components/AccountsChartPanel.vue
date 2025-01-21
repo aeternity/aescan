@@ -26,9 +26,8 @@
 import { chartsHints } from '@/utils/hints/chartsHints'
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { accountsStatistics } = storeToRefs(chartsStore)
-const { fetchAccountsStatistics } = chartsStore
+const { accountsStatistics } = storeToRefs(useChartsStore())
+const { fetchAccountsStatistics } = useChartsStore()
 
 const props = defineProps({
   preselectedRange: {

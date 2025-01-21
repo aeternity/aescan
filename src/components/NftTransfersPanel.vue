@@ -17,9 +17,8 @@
 </template>
 
 <script setup>
-const nftDetailsStore = useNftDetailsStore()
-const { nftTransfers } = storeToRefs(nftDetailsStore)
-const { fetchNftTransfers } = nftDetailsStore
+const { nftTransfers } = storeToRefs(useNftDetailsStore())
+const { fetchNftTransfers } = useNftDetailsStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 

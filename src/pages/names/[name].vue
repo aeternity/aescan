@@ -36,9 +36,8 @@
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
 
-const nameDetailsStore = useNameDetailsStore()
-const { name, nameHash, hasNameHistory } = storeToRefs(nameDetailsStore)
-const { fetchName, fetchNameActions } = nameDetailsStore
+const { name, nameHash, hasNameHistory } = storeToRefs(useNameDetailsStore())
+const { fetchName, fetchNameActions } = useNameDetailsStore()
 
 const route = useRoute()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)

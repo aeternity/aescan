@@ -18,9 +18,8 @@
 </template>
 
 <script setup>
-const oracleDetailsStore = useOracleDetailsStore()
-const { oracleEvents } = storeToRefs(oracleDetailsStore)
-const { fetchOracleEvents } = oracleDetailsStore
+const { oracleEvents } = storeToRefs(useOracleDetailsStore())
+const { fetchOracleEvents } = useOracleDetailsStore()
 
 const route = useRoute()
 

@@ -22,9 +22,8 @@
 </template>
 
 <script setup>
-const stateChannelDetailsStore = useStateChannelDetailsStore()
-const { stateChannelTransactions, stateChannelTransactionsCount } = storeToRefs(stateChannelDetailsStore)
-const { fetchStateChannelTransactions } = stateChannelDetailsStore
+const { stateChannelTransactions, stateChannelTransactionsCount } = storeToRefs(useStateChannelDetailsStore())
+const { fetchStateChannelTransactions } = useStateChannelDetailsStore()
 
 const limit = computed(() => isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

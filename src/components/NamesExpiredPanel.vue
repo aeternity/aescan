@@ -18,9 +18,8 @@
 </template>
 
 <script setup>
-const namesStore = useNamesStore()
-const { fetchExpiredNames } = namesStore
-const { expiredNames } = storeToRefs(namesStore)
+const { fetchExpiredNames } = useNamesStore()
+const { expiredNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
   fetchExpiredNames({ queryParameters: expiredNames.value.prev })

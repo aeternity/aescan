@@ -19,9 +19,8 @@
 </template>
 
 <script setup>
-const nameDetailsStore = useNameDetailsStore()
-const { fetchNameActions } = nameDetailsStore
-const { nameActions } = storeToRefs(nameDetailsStore)
+const { fetchNameActions } = useNameDetailsStore()
+const { nameActions } = storeToRefs(useNameDetailsStore())
 
 function loadPrevActions() {
   return fetchNameActions({ queryParameters: nameActions.value.prev })

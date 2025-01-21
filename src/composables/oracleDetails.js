@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import useAxios from '@/composables/useAxios'
 import { adaptOracleDetails, adaptOracleEvents } from '@/utils/adapters'
 
 export const useOracleDetailsStore = defineStore('oracleDetails', () => {

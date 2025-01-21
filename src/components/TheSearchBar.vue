@@ -18,8 +18,6 @@
 </template>
 <script setup>
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-import { useNameDetailsStore } from '@/composables/nameDetails'
-import { useKeyblockDetailsStore } from '@/composables/keyblockDetails'
 
 const { isNameAvailable } = useNameDetailsStore()
 const { isKeyblockAvailable } = useKeyblockDetailsStore()

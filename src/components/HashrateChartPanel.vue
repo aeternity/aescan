@@ -21,7 +21,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useChartsStore } from '@/composables/charts'
 
 const chartsStore = useChartsStore()
 const { hashrateStatistics } = storeToRefs(chartsStore)

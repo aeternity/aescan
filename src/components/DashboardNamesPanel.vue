@@ -20,7 +20,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNamesStore } from '@/composables/names'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>

@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import useAxios from '@/composables/useAxios'
-import { useBlockchainStatsStore } from '@/composables/blockchainStats'
 import { adaptDeltaStats, adaptKeyblock, adaptSelectedMicroblockTransactions } from '@/utils/adapters'
 import { formatAettosToAe, formatNullable, formatNumber } from '@/utils/format'
 import { VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_MICROBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'

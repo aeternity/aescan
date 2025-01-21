@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-import useAxios from '@/composables/useAxios'
 import { adaptKeyblock, adaptKeyblockMicroblocks } from '@/utils/adapters'
 
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {

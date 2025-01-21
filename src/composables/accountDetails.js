@@ -1,11 +1,8 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import { useRuntimeConfig } from 'nuxt/app'
-import useAxios from '@/composables/useAxios'
-import { useMarketStatsStore } from '@/composables/marketStats'
 import { adaptAccountActivities, adaptAccountNames, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
 import { formatAettosToAe } from '@/utils/format'
-import { useDexStore } from '@/composables/dex'
 
 export const useAccountStore = defineStore('account', () => {
   const {

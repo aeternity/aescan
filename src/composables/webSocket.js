@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import camelcaseKeysDeep from 'camelcase-keys-deep'
-import { useRecentBlocksStore } from '@/composables/recentBlocks'
-import { useTransactionDetailsStore } from '@/composables/transactionDetails'
 
 export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public

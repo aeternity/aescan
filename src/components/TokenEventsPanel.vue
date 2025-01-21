@@ -20,7 +20,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useTokenDetailsStore } from '@/composables/tokenDetails'
 
 const { tokenEvents, tokenEventsCount } = storeToRefs(useTokenDetailsStore())
 const { fetchTokenEvents } = useTokenDetailsStore()

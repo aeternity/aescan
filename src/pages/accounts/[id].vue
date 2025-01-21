@@ -42,7 +42,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'nuxt/app'
-import { useAccountStore } from '@/composables/accountDetails'
 import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'
 

@@ -11,12 +11,10 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNodes } from '@/composables/nodes'
 
 const nodesStore = useNodes()
 const { fetchNodes } = nodesStore
 const { nodes } = storeToRefs(nodesStore)
 
 await fetchNodes()
-
 </script>

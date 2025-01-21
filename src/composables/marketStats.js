@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import cache from 'memory-cache'
-import useAxios from '@/composables/useAxios'
 import {
   CACHE_KEY_COINGECKO_MARKET_DATA,
   CACHE_KEY_PRICE_DATA,
@@ -8,8 +7,6 @@ import {
   MARKET_STATS_COINGECKO_ADDRESS,
   MAX_AE_DISTRIBUTION,
 } from '@/utils/constants'
-import { useBlockchainStatsStore } from '@/composables/blockchainStats'
-import useFeatureFlags from '@/composables/useFeatureFlags'
 
 export const useMarketStatsStore = defineStore('marketStats', () => {
   const axios = useAxios()

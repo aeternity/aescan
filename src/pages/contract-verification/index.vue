@@ -24,8 +24,6 @@
 </template>
 
 <script setup>
-import { useContractVerificationStore } from '@/composables/contractVerification'
-
 const verificationStore = useContractVerificationStore()
 const { fetchCompilerOptions } = verificationStore
 

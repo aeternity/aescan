@@ -61,9 +61,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useContractVerifiedStore } from '@/composables/contractVerified'
-import { useContractDetailsStore } from '@/composables/contractDetails'
-
 const contractVerifiedStore = useContractVerifiedStore()
 const { contractCode, verificationDetails, isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchContractCode } = contractVerifiedStore

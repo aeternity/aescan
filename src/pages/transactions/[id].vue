@@ -35,8 +35,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router'
-import { useTransactionDetailsStore } from '@/composables/transactionDetails'
-import { useWebSocket } from '@/composables/webSocket'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 const transactionDetailsStore = useTransactionDetailsStore()

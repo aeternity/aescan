@@ -1,8 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
-import useAxios from '@/composables/useAxios'
-import { useRecentBlocksStore } from '@/composables/recentBlocks'
 import { adaptTransactionDetails } from '@/utils/adapters'
 
 export const useTransactionDetailsStore = defineStore('transactionDetails', () => {

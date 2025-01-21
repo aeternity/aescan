@@ -1,11 +1,8 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Contract } from '@aeternity/aepp-sdk'
-import useAxios from '@/composables/useAxios'
 import { adaptTokenDetails, adaptTokenEvents, adaptTokenHolders, adaptTrades } from '@/utils/adapters'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
-import { useWalletStore } from '@/composables/wallet'
-import { useDexStore } from '@/composables/dex'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

@@ -35,7 +35,6 @@
 
 <script setup>
 import { useRoute, useRouter } from 'nuxt/app'
-import { useNamesStore } from '@/composables/names'
 import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'

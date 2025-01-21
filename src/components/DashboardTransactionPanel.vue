@@ -39,7 +39,6 @@
 import { storeToRefs } from 'pinia'
 
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import { useRecentBlocksStore } from '@/composables/recentBlocks'
 
 const {
   selectedMicroblockTransactions,

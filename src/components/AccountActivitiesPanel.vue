@@ -21,7 +21,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useAccountStore } from '@/composables/accountDetails'
 import { isDesktop } from '@/utils/screen'
 
 const accountStore = useAccountStore()

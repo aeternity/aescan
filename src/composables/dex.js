@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
-import useAxios from '@/composables/useAxios'
 import { MAXIMUM_FRACTION_DIGITS } from '@/utils/constants'
 
 export const useDexStore = defineStore('dex', () => {

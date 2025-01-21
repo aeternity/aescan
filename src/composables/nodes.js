@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import useAxios from '@/composables/useAxios'
 
 export const useNodes = defineStore('nodes', () => {
   const axios = useAxios()

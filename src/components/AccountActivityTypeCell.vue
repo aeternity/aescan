@@ -8,7 +8,6 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { storeToRefs } from 'pinia'
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
-import { useConfigStore } from '@/composables/config'
 
 const { SH_DEX_CONTRACTS } = useRuntimeConfig().public
 

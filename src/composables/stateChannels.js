@@ -1,6 +1,5 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
-import useAxios from '@/composables/useAxios'
 import { adaptStateChannels } from '@/utils/adapters'
 
 export const useStateChannelsStore = defineStore('stateChannels', () => {

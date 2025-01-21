@@ -18,7 +18,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNftDetailsStore } from '@/composables/nftDetails'
 import { isDesktop } from '@/utils/screen'
 
 const nftDetailsStore = useNftDetailsStore()

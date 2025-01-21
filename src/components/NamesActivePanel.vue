@@ -19,7 +19,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNamesStore } from '@/composables/names'
 
 const namesStore = useNamesStore()
 const { fetchActiveNames } = namesStore

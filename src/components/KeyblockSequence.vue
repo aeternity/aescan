@@ -22,7 +22,6 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useRecentBlocksStore } from '@/composables/recentBlocks'
 
 const recentBlocksStore = useRecentBlocksStore()
 const { selectKeyblock } = recentBlocksStore

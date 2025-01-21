@@ -59,7 +59,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { namesHints } from '@/utils/hints/namesHints'
-import { useNamesStore } from '@/composables/names'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>

@@ -169,7 +169,6 @@
 import { storeToRefs } from 'pinia'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import { formatEllipseHash, formatNumber } from '@/utils/format'
-import { useRecentBlocksStore } from '@/composables/recentBlocks'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 const { blockHeight: latestBlockHeight } = storeToRefs(useRecentBlocksStore())

@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import cache from 'memory-cache'
-import useAxios from '@/composables/useAxios'
 import {
   CACHE_KEY_COINSTORE_MARKET_DATA,
   CACHE_KEY_COINW_MARKET_DATA,

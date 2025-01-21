@@ -19,7 +19,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useOracleDetailsStore } from '@/composables/oracleDetails'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)

@@ -9,8 +9,6 @@
 </template>
 
 <script setup>
-import { useUiStore } from '@/composables/ui'
-
 const { toggleTimeFormat } = useUiStore()
 const { timeFormat } = storeToRefs(useUiStore())
 const suffix = computed(() => {

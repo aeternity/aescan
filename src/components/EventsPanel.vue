@@ -33,8 +33,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { contractsHints } from '@/utils/hints/contractsHints'
-import { useContractVerifiedStore } from '@/composables/contractVerified'
-import { useWalletStore } from '@/composables/wallet'
 
 const { aeSdk } = storeToRefs(useWalletStore())
 

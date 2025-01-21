@@ -21,10 +21,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNamesStore } from '@/composables/names'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
-
 </script>
 
 <style scoped>

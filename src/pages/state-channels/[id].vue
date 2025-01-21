@@ -31,7 +31,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useStateChannelDetailsStore } from '@/composables/stateChannelDetails'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()

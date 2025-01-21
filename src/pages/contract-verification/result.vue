@@ -75,7 +75,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useContractVerificationStore } from '@/composables/contractVerification'
 
 const timer = ref(null)
 

@@ -35,7 +35,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useNameDetailsStore } from '@/composables/nameDetails'
 import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
 

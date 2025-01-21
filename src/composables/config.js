@@ -1,6 +1,5 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
-import useAxios from '@/composables/useAxios'
 
 export const useConfigStore = defineStore('config', () => {
   const axios = useAxios()

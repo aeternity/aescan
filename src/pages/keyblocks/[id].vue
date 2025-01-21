@@ -29,7 +29,6 @@
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'nuxt/app'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import { useKeyblockDetailsStore } from '@/composables/keyblockDetails'
 
 const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)

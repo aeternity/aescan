@@ -184,10 +184,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useMarketStatsStore } from '@/composables/marketStats'
 import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
-import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const config = useRuntimeConfig().public
 const { price } = storeToRefs(useMarketStatsStore())

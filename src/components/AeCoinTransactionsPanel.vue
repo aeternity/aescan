@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-import { useTransactionsStore } from '@/composables/transactions'
 import { isDesktop } from '@/utils/screen'
 
 const transactionsStore = useTransactionsStore()

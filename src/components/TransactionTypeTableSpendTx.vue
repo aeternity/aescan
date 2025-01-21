@@ -73,7 +73,6 @@
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import { formatAettosToAe, formatEllipseHash } from '@/utils/format'
 
 defineProps({
   transactionData: {

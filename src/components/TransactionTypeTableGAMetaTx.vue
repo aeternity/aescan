@@ -56,7 +56,6 @@
 <script setup>
 import { decode } from '@aeternity/aepp-sdk'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import { formatAettosToAe, formatNullable } from '@/utils/format'
 
 const props = defineProps({
   transactionData: {

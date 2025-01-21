@@ -99,8 +99,6 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
-import { formatAettosToAe } from '@/utils/format'
-
 defineProps({
   transactionData: {
     required: true,

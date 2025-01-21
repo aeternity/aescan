@@ -184,7 +184,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { formatNumber } from '@/utils/format'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 const config = useRuntimeConfig().public

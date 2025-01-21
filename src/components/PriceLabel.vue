@@ -42,7 +42,6 @@
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
 import { storeToRefs } from 'pinia'
-import { formatNullable } from '@/utils/format'
 
 const props = defineProps({
   price: {

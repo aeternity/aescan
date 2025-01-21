@@ -14,8 +14,6 @@
 
 <script setup>
 
-import { formatAettosToAe } from '@/utils/format'
-
 defineProps({
   activity: {
     required: true,

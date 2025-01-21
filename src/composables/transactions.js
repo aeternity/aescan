@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { ref } from 'vue'
 import { adaptTransactions } from '@/utils/adapters'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 export const useTransactionsStore = defineStore('transactions', () => {

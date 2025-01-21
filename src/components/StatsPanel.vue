@@ -203,7 +203,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { formatNullable, formatNumber } from '@/utils/format'
 
 const {
   maxTps,

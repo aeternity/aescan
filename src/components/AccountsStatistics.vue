@@ -19,7 +19,6 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
-import { formatNumber } from '@/utils/format'
 
 const { fetchTopAccounts } = useTopAccountsStore()
 

@@ -108,7 +108,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { namesHints } from '@/utils/hints/namesHints'
-import { formatEllipseHash } from '@/utils/format'
 
 const { name } = storeToRefs(useNameDetailsStore())
 </script>

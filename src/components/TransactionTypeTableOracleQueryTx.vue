@@ -93,8 +93,6 @@
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
-import { formatAettosToAe, formatDecodeBase64, formatNullable } from '@/utils/format'
-
 defineProps({
   transactionData: {
     required: true,

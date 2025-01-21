@@ -30,7 +30,6 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
-import { formatEllipseHash } from '@/utils/format'
 
 const props = defineProps({
   backlink: {

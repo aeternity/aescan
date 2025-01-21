@@ -10,9 +10,6 @@
 </template>
 
 <script setup>
-
-import { formatNullable } from '@/utils/format'
-
 defineProps({
   status: {
     type: String,

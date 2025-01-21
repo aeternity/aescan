@@ -16,8 +16,6 @@
 </template>
 
 <script setup>
-import { formatNumber, formatReduceDecimals } from '@/utils/format'
-
 const props = defineProps({
   contractDetails: {
     required: true,

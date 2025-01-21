@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-import { formatAettosToAe } from '@/utils/format'
-
 const props = defineProps({
   transactionData: {
     required: true,

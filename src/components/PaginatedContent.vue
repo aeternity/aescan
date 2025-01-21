@@ -58,7 +58,6 @@
 <script setup>
 import { useVModel } from '@vueuse/core'
 import { computed, ref } from 'vue'
-import { formatNullable } from '@/utils/format'
 
 const props = defineProps({
   entities: {

@@ -81,8 +81,6 @@
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
 
-import { formatNullable } from '@/utils/format'
-
 const props = defineProps({
   transactionData: {
     type: Object,

@@ -55,7 +55,6 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import { formatDecodeByteArray } from '@/utils/format'
 
 defineProps({
   transactionData: {

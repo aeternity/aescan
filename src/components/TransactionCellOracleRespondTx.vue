@@ -15,8 +15,6 @@
 </template>
 
 <script setup>
-import { formatDecodeByteArray } from '@/utils/format'
-
 const props = defineProps({
   transactionData: {
     required: true,

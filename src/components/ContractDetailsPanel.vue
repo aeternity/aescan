@@ -219,7 +219,6 @@
 </template>
 
 <script setup>
-import { formatEllipseHash } from '@/utils/format'
 import { contractsHints } from '@/utils/hints/contractsHints'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

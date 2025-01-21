@@ -108,7 +108,6 @@
 </template>
 
 <script setup>
-import { formatAettosToAe, formatNullable } from '@/utils/format'
 import { contractsHints } from '@/utils/hints/contractsHints'
 
 const props = defineProps({

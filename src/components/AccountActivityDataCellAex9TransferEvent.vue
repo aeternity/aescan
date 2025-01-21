@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-import { formatReduceDecimals } from '@/utils/format'
 
 const props = defineProps({
   activity: {

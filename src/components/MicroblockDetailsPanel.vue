@@ -122,7 +122,6 @@
 
 <script setup>
 import { microblocksHints } from '@/utils/hints/microblocksHints'
-import { formatEllipseHash, formatNumber } from '@/utils/format'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

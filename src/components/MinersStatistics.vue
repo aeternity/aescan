@@ -23,7 +23,6 @@
 </template>
 <script setup>
 import { useMinersStore } from '@/stores/miners'
-import { formatAettosToAe } from '@/utils/format'
 
 const { fetchMiners } = useMinersStore()
 const { minersCount, blockReward, difficulty } = storeToRefs(useMinersStore())

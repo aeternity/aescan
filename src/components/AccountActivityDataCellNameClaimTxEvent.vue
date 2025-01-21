@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   activity: {

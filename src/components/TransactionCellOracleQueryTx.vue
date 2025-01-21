@@ -17,8 +17,6 @@
 </template>
 
 <script setup>
-import { formatDecodeBase64 } from '@/utils/format'
-
 defineProps({
   transactionData: {
     required: true,

@@ -51,7 +51,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import { formatNullable } from '@/utils/format'
 
 defineProps({
   transactionData: {

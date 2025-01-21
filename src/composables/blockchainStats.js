@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { formatAettosToAe } from '@/utils/format'
 
 export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

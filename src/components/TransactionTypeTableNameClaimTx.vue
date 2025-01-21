@@ -46,7 +46,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

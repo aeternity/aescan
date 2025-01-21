@@ -1,4 +1,3 @@
-import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useNameDetailsStore = defineStore('nameDetails', () => {

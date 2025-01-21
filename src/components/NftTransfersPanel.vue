@@ -17,9 +17,6 @@
 </template>
 
 <script setup>
-
-import { isDesktop } from '@/utils/screen'
-
 const nftDetailsStore = useNftDetailsStore()
 const { nftTransfers } = storeToRefs(nftDetailsStore)
 const { fetchNftTransfers } = nftDetailsStore

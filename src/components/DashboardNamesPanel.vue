@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>
 

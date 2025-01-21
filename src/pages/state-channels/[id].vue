@@ -30,15 +30,16 @@
 </template>
 
 <script setup>
-
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()
 const { stateChannelDetails } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelDetails } = stateChannelDetailsStore
+
 const route = useRoute()
 
 const { isLoading } = useLoading()
+
 const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 
 if (error.value) {

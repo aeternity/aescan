@@ -21,6 +21,7 @@ const props = defineProps({
     type: Object,
   },
 })
+
 const oracleResponse = computed(() => {
   const { response } = props.transactionData
   const decodedResponse = response instanceof Array ? formatDecodeByteArray(response) : response.toString()

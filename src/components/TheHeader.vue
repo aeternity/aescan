@@ -69,14 +69,15 @@
 </template>
 
 <script setup>
-
+// todo online
 import { useOnline } from '@vueuse/core'
 import { MENU_HASH } from '@/utils/constants'
 
 const route = useRoute()
 const router = useRouter()
-const { isMobileMenuOpen } = storeToRefs(useUiStore())
+
 const isOnline = useOnline()
+const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const { isSyncing, nodeStatus, middlewareStatus } = storeToRefs(useStatus())
 const { isMarketCapAvailable } = storeToRefs(useMarketStatsStore())
 

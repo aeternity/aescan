@@ -21,16 +21,15 @@
 </template>
 
 <script setup>
-
-import { computed, ref } from 'vue'
+// todo remove
 import { useRoute, useRouter } from 'nuxt/app'
-import { isDesktop } from '@/utils/screen'
+
+const route = useRoute()
+const { push, replace } = useRouter()
 
 const oraclesStore = useOraclesStore()
 const { fetchOracles, fetchOraclesCount, getOraclesCount } = oraclesStore
 const { oracles } = storeToRefs(oraclesStore)
-const route = useRoute()
-const { push, replace } = useRouter()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

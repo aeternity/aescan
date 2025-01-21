@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   payload: {
     type: Object,

@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-
 const chartsStore = useChartsStore()
 const { hashrateStatistics } = storeToRefs(chartsStore)
 const { fetchHashrateStatistics } = chartsStore

@@ -13,9 +13,8 @@
       renderLineHighlight: 'none'
     }"/>
 </template>
-<script setup>
-import { ref } from 'vue'
 
+<script setup>
 const props = defineProps({
   code: {
     required: true,

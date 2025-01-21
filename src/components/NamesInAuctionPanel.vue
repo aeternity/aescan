@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-
 const namesStore = useNamesStore()
 const { fetchInAuctionNames } = namesStore
 const { inAuctionNames } = storeToRefs(namesStore)

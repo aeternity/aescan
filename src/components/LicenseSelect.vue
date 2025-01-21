@@ -12,7 +12,6 @@
 import { useVModel } from '@vueuse/core'
 import { LICENSE_OPTIONS } from "@/utils/constants";
 
-
 const props = defineProps({
   modelValue: {
     type: String,

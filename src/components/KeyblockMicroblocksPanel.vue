@@ -18,10 +18,6 @@
   </app-panel>
 </template>
 <script setup>
-
-import { computed } from 'vue'
-import { isDesktop } from '@/utils/screen'
-
 const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetailsStore())
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()

@@ -49,11 +49,11 @@
 </template>
 
 <script setup>
-
 import { useRuntimeConfig } from 'nuxt/app'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
+
 const selectedNetwork = `${NETWORK_NAME
   .charAt(0)
   .toUpperCase()}${NETWORK_NAME.slice(1).toLowerCase()}`

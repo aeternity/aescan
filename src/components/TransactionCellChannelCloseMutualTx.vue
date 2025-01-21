@@ -11,7 +11,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   transactionData: {
     required: true,

@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-
 const nameDetailsStore = useNameDetailsStore()
 const { fetchNameActions } = nameDetailsStore
 const { nameActions } = storeToRefs(nameDetailsStore)

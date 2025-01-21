@@ -21,7 +21,6 @@
   </div>
 </template>
 <script setup>
-
 const recentBlocksStore = useRecentBlocksStore()
 const { selectKeyblock } = recentBlocksStore
 const { selectedKeyblock } = storeToRefs(recentBlocksStore)

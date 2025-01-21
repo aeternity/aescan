@@ -1,4 +1,3 @@
-import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useNamesStore = defineStore('names', () => {
@@ -16,17 +15,21 @@ export const useNamesStore = defineStore('names', () => {
       ? adaptActiveNames(rawActiveNames.value)
       : null
   })
+
   const inAuctionNames = computed(() => {
     return rawInAuctionNames.value
       ? adaptInAuctionNames(rawInAuctionNames.value)
       : null
   })
+
   const auctionsEndingSoon = computed(() => inAuctionNames.value?.data.slice(0, 4))
+
   const expiredNames = computed(() => {
     return rawExpiredNames.value
       ? adaptExpiredNames(rawExpiredNames.value)
       : null
   })
+
   const recentlyActivatedNames = computed(() => {
     return rawRecentlyActivatedNames.value
       ? adaptNames(rawRecentlyActivatedNames.value, blockHeight.value)

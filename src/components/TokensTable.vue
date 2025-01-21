@@ -50,8 +50,8 @@
     </tbody>
   </table>
 </template>
-<script setup>
 
+<script setup>
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({

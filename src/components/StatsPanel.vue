@@ -202,7 +202,6 @@
 </template>
 
 <script setup>
-
 const {
   maxTps,
   transactionsCount,
@@ -226,7 +225,6 @@ const {
 const isLoading = computed(() => {
   return transactionsCount.value === null || latestReward.value === null
 })
-
 </script>
 
 <style scoped>

@@ -63,7 +63,6 @@
 </template>
 
 <script setup>
-
 import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 defineProps({
@@ -72,7 +71,6 @@ defineProps({
     type: Object,
   },
 })
-
 </script>
 
 <style scoped>

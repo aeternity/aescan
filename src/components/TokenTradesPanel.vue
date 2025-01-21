@@ -14,8 +14,8 @@
     </paginated-content>
   </app-panel>
 </template>
-<script setup>
 
+<script setup>
 const tokenDetailsStore = useTokenDetailsStore()
 const { tokenTrades } = storeToRefs(tokenDetailsStore)
 const { fetchTokenTrades } = tokenDetailsStore

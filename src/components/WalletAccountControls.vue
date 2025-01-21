@@ -28,8 +28,8 @@
     Connect Wallet
   </app-button>
 </template>
-<script setup>
 
+<script setup>
 const props = defineProps({
   backlink: {
     type: String,

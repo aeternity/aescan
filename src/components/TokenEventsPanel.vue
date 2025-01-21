@@ -19,9 +19,9 @@
 </template>
 
 <script setup>
-
 const { tokenEvents, tokenEventsCount } = storeToRefs(useTokenDetailsStore())
 const { fetchTokenEvents } = useTokenDetailsStore()
+
 const route = useRoute()
 
 function loadPrevEvents() {

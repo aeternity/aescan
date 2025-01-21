@@ -106,7 +106,6 @@
 </template>
 
 <script setup>
-
 import { namesHints } from '@/utils/hints/namesHints'
 
 const { name } = storeToRefs(useNameDetailsStore())

@@ -23,5 +23,4 @@ export const useDexTradesStore = defineStore('dexTrades', () => {
     fetchDexTrades,
     trades,
   }
-},
-)
+})

@@ -36,17 +36,18 @@
 <script setup>
 import { tokensHints } from '@/utils/hints/tokensHints'
 
-const featureFlags = useFeatureFlags()
-
-const route = useRoute()
-const { push, replace } = useRouter()
-
 const tokenDetailsStore = useTokenDetailsStore()
 const { tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
-const { isLoading } = useLoading()
+const featureFlags = useFeatureFlags()
+
 const TAB_KEYS = ['holders', 'events', 'trades']
+
+const route = useRoute()
+const { push, replace } = useRouter()
+
+const { isLoading } = useLoading()
 
 const activeTabIndex = computed({
   get() {

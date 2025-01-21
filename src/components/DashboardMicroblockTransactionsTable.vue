@@ -34,7 +34,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   transactions: {
     required: true,

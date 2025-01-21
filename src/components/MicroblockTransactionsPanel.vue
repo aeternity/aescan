@@ -19,13 +19,12 @@
     </paginated-content>
   </app-panel>
 </template>
-<script setup>
 
-import { ref } from 'vue'
-import { useRouter } from '#app'
+<script setup>
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 const { push } = useRouter()
+// todo router toute
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockTransactions: transactions } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblockTransactions } = microblockDetailsStore

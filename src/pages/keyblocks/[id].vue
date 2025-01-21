@@ -26,13 +26,13 @@
 </template>
 
 <script setup>
-
 import { useRoute } from 'nuxt/app'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 
 const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
 const { fetchKeyblock } = keyblockDetailsStore
+
 const route = useRoute()
 
 const { isLoading } = useLoading()

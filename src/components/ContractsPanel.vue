@@ -19,10 +19,6 @@
 </template>
 
 <script setup>
-
-import { computed, ref } from 'vue'
-import { isDesktop } from '@/utils/screen'
-
 const contractsStore = useContractsStore()
 const { contracts, contractsCount } = storeToRefs(contractsStore)
 const { fetchContracts, fetchContractsCount } = contractsStore

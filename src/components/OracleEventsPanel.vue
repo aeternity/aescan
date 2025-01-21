@@ -18,10 +18,10 @@
 </template>
 
 <script setup>
-
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)
 const { fetchOracleEvents } = oracleDetailsStore
+
 const route = useRoute()
 
 const pageIndex = ref(1)

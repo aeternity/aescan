@@ -14,6 +14,7 @@
 
 <script setup>
 import { defineAsyncComponent } from 'vue'
+// todo remove
 
 const props = defineProps({
   contractDetails: {
@@ -47,7 +48,7 @@ const contractEventCellComponent = computed(() =>
   gap: var(--space-1);
   flex-wrap: wrap;
 
-  @media(--desktop) {
+  @media (--desktop) {
     justify-content: space-between;
   }
 }

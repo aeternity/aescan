@@ -1,5 +1,3 @@
-import { defineStore, storeToRefs } from 'pinia'
-import { ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useTransactionDetailsStore = defineStore('transactionDetails', () => {

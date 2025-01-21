@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   activity: {
     type: Object,

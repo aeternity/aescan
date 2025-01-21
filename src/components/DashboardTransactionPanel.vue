@@ -35,17 +35,15 @@
       :transactions="selectedMicroblockTransactions"/>
   </app-panel>
 </template>
-<script setup>
 
+<script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 const {
   selectedMicroblockTransactions,
   selectedMicroblockTransactionsCount,
   selectedMicroblock,
-} = storeToRefs(
-  useRecentBlocksStore(),
-)
+} = storeToRefs(useRecentBlocksStore())
 
 const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.value?.hash}`)
 </script>

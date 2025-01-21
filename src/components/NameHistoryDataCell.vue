@@ -33,8 +33,7 @@ const dataCellComponent = computed(() =>
       console.error(`Unknown name history data cell ${props.activity}`)
       return defineComponent(() => () => h('span', 'N/A'))
     }
-  },
-  ),
+  }),
 )
 </script>
 

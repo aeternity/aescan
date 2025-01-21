@@ -14,11 +14,8 @@
     </paginated-content>
   </app-panel>
 </template>
+
 <script setup>
-
-import { computed } from 'vue'
-import { isDesktop } from '@/utils/screen'
-
 const nftDetailsStore = useNftDetailsStore()
 const { nftOwners } = storeToRefs(nftDetailsStore)
 const { fetchNftOwners } = nftDetailsStore

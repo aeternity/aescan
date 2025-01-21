@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
   activity: {
     type: Object,

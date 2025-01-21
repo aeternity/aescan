@@ -74,12 +74,11 @@
 </template>
 
 <script setup>
-
-const timer = ref(null)
-
 const verificationStore = useContractVerificationStore()
 const { fetchVerificationStatus } = verificationStore
 const { id, verificationResult, verificationStatus } = storeToRefs(verificationStore)
+
+const timer = ref(null)
 
 onMounted(() => {
   if (status.value !== 'fail' && status.value !== 'conflict') {

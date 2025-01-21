@@ -11,6 +11,7 @@
 <script setup>
 const { toggleTimeFormat } = useUiStore()
 const { timeFormat } = storeToRefs(useUiStore())
+
 const suffix = computed(() => {
   return timeFormat.value === 'relative' ? 'Age' : 'Time'
 })

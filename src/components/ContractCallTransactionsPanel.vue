@@ -20,10 +20,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-
-import { isDesktop } from '@/utils/screen'
-
+// todo store to refs
 const contractDetailsStore = useContractDetailsStore()
 const { contractCallTransactions, contractCallsCount } = storeToRefs(contractDetailsStore)
 const { fetchContractCallTransactions } = contractDetailsStore

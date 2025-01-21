@@ -40,19 +40,17 @@
 </template>
 
 <script setup>
-
 import { useRoute, useRouter } from 'nuxt/app'
 import { accountHints } from '@/utils/hints/accountHints'
-import { isDesktop } from '@/utils/screen'
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
-
-const { isLoading } = useLoading()
-const { push, replace } = useRouter()
 
 const accountStore = useAccountStore()
 const { accountDetails, accountTokens } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
+
+const { isLoading } = useLoading()
+const { push, replace } = useRouter()
 const route = useRoute()
 
 const isAccountExistent = computed(() => {

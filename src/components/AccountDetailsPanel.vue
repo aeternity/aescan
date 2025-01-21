@@ -138,7 +138,6 @@
 </template>
 
 <script setup>
-
 import { accountHints } from '@/utils/hints/accountHints'
 
 const { price } = storeToRefs(useMarketStatsStore())

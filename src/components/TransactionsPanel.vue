@@ -22,11 +22,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-
 import { useRoute, useRouter } from 'nuxt/app'
+// todo router
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
-import { isDesktop } from '@/utils/screen'
 
 const transactionsStore = useTransactionsStore()
 const { transactions, transactionsCount, isHydrated, pageIndex, selectedTxType } = storeToRefs(transactionsStore)

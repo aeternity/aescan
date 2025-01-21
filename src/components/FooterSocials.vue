@@ -13,8 +13,8 @@
     </app-link>
   </div>
 </template>
-<script setup>
 
+<script setup>
 const socials = [
   {
     name: 'Forum',

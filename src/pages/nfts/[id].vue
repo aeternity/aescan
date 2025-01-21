@@ -28,12 +28,12 @@
 </template>
 
 <script setup>
-
 import { nftsHints } from '@/utils/hints/nftsHints'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nft } = storeToRefs(nftDetailsStore)
 const { fetchNftDetails } = nftDetailsStore
+
 const route = useRoute()
 const { push, replace } = useRouter()
 

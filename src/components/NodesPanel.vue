@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-
 const nodesStore = useNodes()
 const { fetchNodes } = nodesStore
 const { nodes } = storeToRefs(nodesStore)

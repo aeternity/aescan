@@ -22,10 +22,6 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-
-import { isDesktop } from '@/utils/screen'
-
 const stateChannelDetailsStore = useStateChannelDetailsStore()
 const { stateChannelTransactions, stateChannelTransactionsCount } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelTransactions } = stateChannelDetailsStore
@@ -38,6 +34,7 @@ const loadPrevTransactions = () => {
     queryParameters: stateChannelTransactions.value.prev,
   })
 }
+
 const loadNextTransactions = () => {
   fetchStateChannelTransactions({
     queryParameters: stateChannelTransactions.value.next,

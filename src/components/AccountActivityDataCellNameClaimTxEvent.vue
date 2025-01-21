@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   activity: {
     required: true,

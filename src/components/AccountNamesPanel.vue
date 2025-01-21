@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-
 const accountStore = useAccountStore()
 const { fetchAccountNames } = accountStore
 const { accountNames } = storeToRefs(accountStore)

@@ -18,9 +18,6 @@
 
 <script setup>
 
-import { computed, ref } from 'vue'
-import { isDesktop } from '@/utils/screen'
-
 const keyblockStore = useKeyblockStore()
 const { fetchKeyblocks } = keyblockStore
 const { keyblocks, keyblocksCount } = storeToRefs(keyblockStore)

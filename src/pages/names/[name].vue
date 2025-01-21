@@ -34,16 +34,12 @@
 </template>
 
 <script setup>
-
 import { namesHints } from '@/utils/hints/namesHints'
-import { isDesktop } from '@/utils/screen'
 
 const nameDetailsStore = useNameDetailsStore()
 const { name, nameHash, hasNameHistory } = storeToRefs(nameDetailsStore)
-const {
-  fetchName,
-  fetchNameActions,
-} = nameDetailsStore
+const { fetchName, fetchNameActions } = nameDetailsStore
+
 const route = useRoute()
 const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 

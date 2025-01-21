@@ -20,9 +20,6 @@
 </template>
 
 <script setup>
-
-import { isDesktop } from '@/utils/screen'
-
 const accountStore = useAccountStore()
 const { fetchAccountActivities } = accountStore
 const { accountActivities, accountDetails } = storeToRefs(accountStore)

@@ -1,4 +1,3 @@
-import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Contract } from '@aeternity/aepp-sdk'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'

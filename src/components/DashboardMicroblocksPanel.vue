@@ -39,7 +39,6 @@
 </template>
 
 <script setup>
-
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 
 const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =

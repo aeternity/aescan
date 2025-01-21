@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-
 const namesStore = useNamesStore()
 const { fetchActiveNames } = namesStore
 const { activeNames } = storeToRefs(namesStore)

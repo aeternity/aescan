@@ -5,7 +5,6 @@
 
   <page-header>
     Oracle
-
     <template #tooltip>
       {{ oraclesHints.oracle }}
       <app-link
@@ -31,13 +30,14 @@
 </template>
 
 <script setup>
-
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
+
 const route = useRoute()
+
 const { isLoading } = useLoading()
 
 const { error } = await useAsyncData(() => fetchOracleDetails(route.params.id))

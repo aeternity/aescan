@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-
 const recentBlocksStore = useRecentBlocksStore()
 const { selectMicroblock } = recentBlocksStore
 const { selectedMicroblock } = storeToRefs(recentBlocksStore)

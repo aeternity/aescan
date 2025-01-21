@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-
 const namesStore = useNamesStore()
 const { fetchExpiredNames } = namesStore
 const { expiredNames } = storeToRefs(namesStore)

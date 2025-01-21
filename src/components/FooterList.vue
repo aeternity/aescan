@@ -18,6 +18,7 @@
     </ul>
   </div>
 </template>
+
 <script setup>
 defineProps({
   title: {

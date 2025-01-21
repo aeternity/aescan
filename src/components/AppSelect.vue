@@ -31,6 +31,7 @@
 <script setup>
 import VueMultiselect from 'vue-multiselect'
 import { useVModel } from '@vueuse/core'
+// todo remove vue model
 
 const props = defineProps({
   placeholder: {

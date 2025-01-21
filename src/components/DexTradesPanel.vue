@@ -14,11 +14,12 @@
     </paginated-content>
   </app-panel>
 </template>
-<script setup>
 
+<script setup>
 const dexTradesStore = useDexTradesStore()
 const { trades } = storeToRefs(dexTradesStore)
 const { fetchDexTrades } = dexTradesStore
+
 await useAsyncData(async() => {
   await fetchDexTrades()
   return true

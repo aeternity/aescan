@@ -26,8 +26,8 @@
     </app-panel>
   </div>
 </template>
-<script setup>
 
+<script setup>
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 const { fetchLast24hsTransactionsStatistics } = useTransactionsStore()
 

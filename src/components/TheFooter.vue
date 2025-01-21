@@ -88,7 +88,6 @@
 </template>
 
 <script setup>
-
 const { middlewareStatus, nodeStatus, isSyncing } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const { APP_VERSION } = useAppConfig()

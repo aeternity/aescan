@@ -21,8 +21,9 @@ import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
 const { isNameAvailable } = useNameDetailsStore()
 const { isKeyblockAvailable } = useKeyblockDetailsStore()
-const query = ref('')
 const { push } = useRouter()
+
+const query = ref('')
 
 async function search() {
   if (!query.value) {

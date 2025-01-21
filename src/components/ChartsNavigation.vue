@@ -12,7 +12,6 @@
   </nav>
 </template>
 <script setup>
-
 const menuOptions = ref([{
   name: 'Transactions',
   path: 'transactions',

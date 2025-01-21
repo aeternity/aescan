@@ -17,7 +17,9 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     )
     : null,
   )
+
   const lastQueryTx = computed(() => rawEvents.value?.data?.[0]?.query)
+
   const oracleEvents = computed(() => rawEvents.value ? adaptOracleEvents(rawEvents.value) : null)
 
   async function fetchOracleDetails(id) {

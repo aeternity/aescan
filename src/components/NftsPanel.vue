@@ -18,18 +18,12 @@
 </template>
 
 <script setup>
-
-import { isDesktop } from '@/utils/screen'
-
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-const pageIndex = ref(1)
-
 const nftsStore = useNftsStore()
-const {
-  nfts,
-  nftsCount,
-} = storeToRefs(nftsStore)
+const { nfts, nftsCount } = storeToRefs(nftsStore)
 const { fetchNfts, fetchNftsList } = nftsStore
+
+const pageIndex = ref(1)
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevNfts() {
   await fetchNftsList({ queryParameters: nfts.value.prev })

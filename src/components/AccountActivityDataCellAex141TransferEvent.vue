@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
   activity: {
     type: Object,
@@ -18,5 +17,4 @@ const props = defineProps({
 })
 
 const activityPayload = computed(() => props.activity.payload)
-
 </script>

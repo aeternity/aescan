@@ -8,6 +8,7 @@
 
 <script setup>
 const icon = ref(null)
+
 const props = defineProps({
   name: {
     type: String,
@@ -21,7 +22,9 @@ const props = defineProps({
 
 watch(
   computed(() => props.name),
-  async() => { icon.value = await import(`@/assets/icons/${props.name}.svg`) },
+  async() => {
+    icon.value = await import(`@/assets/icons/${props.name}.svg`)
+  },
   { immediate: true },
 )
 </script>

@@ -17,15 +17,11 @@
 </template>
 
 <script setup>
-
-import { computed } from 'vue'
-import { isDesktop } from '@/utils/screen'
-
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-
 const nftDetailsStore = useNftDetailsStore()
 const { nftInventory } = storeToRefs(nftDetailsStore)
 const { fetchNftInventory } = nftDetailsStore
+
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevNftInventory() {
   await fetchNftInventory({ queryParameters: nftInventory.value.prev })

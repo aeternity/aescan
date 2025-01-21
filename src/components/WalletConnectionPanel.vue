@@ -51,14 +51,13 @@
 </template>
 
 <script setup>
-
 import { useRuntimeConfig } from 'nuxt/app'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 
 const walletStore = useWalletStore()
-
 const { status } = storeToRefs(walletStore)
+
 const router = useRouter()
 
 const isProcessing = computed(() => {

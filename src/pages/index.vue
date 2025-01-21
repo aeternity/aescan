@@ -79,18 +79,13 @@
 </template>
 
 <script setup>
+const { fetchSelectedMicroblocksInfo, fetchDeltaStats } = useRecentBlocksStore()
+const { fetchTotalStats, fetchMaxTps, fetchTotalTransactionsCount } = useBlockchainStatsStore()
 
-const {
-  fetchSelectedMicroblocksInfo,
-  fetchDeltaStats,
-} = useRecentBlocksStore()
-const {
-  fetchTotalStats,
-  fetchMaxTps,
-  fetchTotalTransactionsCount,
-} = useBlockchainStatsStore()
 const { fetchStateChannels } = useDashboardStateChannelsStore()
+
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+
 const webSocketStore = useWebSocket()
 const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)
 

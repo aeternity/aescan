@@ -25,10 +25,6 @@
 </template>
 
 <script setup>
-
-import { computed, watch } from 'vue'
-import { isDesktop } from '@/utils/screen'
-
 const { NETWORK_NAME } = useRuntimeConfig().public
 
 const tokensStore = useTokensStore()

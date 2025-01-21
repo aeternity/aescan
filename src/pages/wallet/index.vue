@@ -17,14 +17,13 @@
 </template>
 
 <script setup>
-
 import { walletHints } from '@/utils/hints/walletHints'
-
-const { push } = useRouter()
 
 const walletStore = useWalletStore()
 const { scanWallets, setBackLink } = walletStore
 const { status, backLink } = storeToRefs(walletStore)
+
+const { push } = useRouter()
 
 const { isLoading } = useLoading()
 

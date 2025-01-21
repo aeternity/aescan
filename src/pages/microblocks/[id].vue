@@ -24,16 +24,16 @@
 </template>
 
 <script setup>
-
 import { useRoute } from 'nuxt/app'
-
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 
-const { isLoading } = useLoading()
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockDetails } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblock } = microblockDetailsStore
+
 const route = useRoute()
+
+const { isLoading } = useLoading()
 
 const { error } = await useAsyncData(async() => {
   await fetchMicroblock(route.params.id)

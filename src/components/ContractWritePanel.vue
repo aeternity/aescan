@@ -28,7 +28,6 @@ import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
 const contractVerifiedStore = useContractVerifiedStore()
 const contractDetailStore = useContractDetailsStore()
-
 const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
 
 const {

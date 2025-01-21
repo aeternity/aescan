@@ -60,7 +60,6 @@
 </template>
 
 <script setup>
-
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 
 const {

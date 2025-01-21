@@ -19,10 +19,6 @@
 </template>
 
 <script setup>
-
-import { computed, ref } from 'vue'
-import { isDesktop } from '@/utils/screen'
-
 const stateChannelsStore = useStateChannelsStore()
 const { stateChannels, stateChannelsCount } = storeToRefs(stateChannelsStore)
 const { fetchStateChannels, fetchStateChannelsCount } = stateChannelsStore

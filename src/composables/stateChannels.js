@@ -6,6 +6,7 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
 
   const rawStateChannels = ref(null)
   const stateChannelsCount = ref(null)
+
   const stateChannels = computed(() => {
     return rawStateChannels.value
       ? adaptStateChannels(rawStateChannels.value)

@@ -16,10 +16,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-
-import { isDesktop } from '@/utils/screen'
-
 const searchStore = useSearchStore()
 const { namesResults } = storeToRefs(searchStore)
 const { fetchNamesResults } = searchStore

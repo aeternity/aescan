@@ -31,7 +31,6 @@
 </template>
 
 <script setup>
-
 import { contractsHints } from '@/utils/hints/contractsHints'
 
 const { aeSdk } = storeToRefs(useWalletStore())

@@ -54,6 +54,7 @@
     </table>
   </div>
 </template>
+
 <script setup>
 import { tokensHints } from '@/utils/hints/tokensHints'
 

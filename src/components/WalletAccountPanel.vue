@@ -25,21 +25,20 @@
     </app-tabs>
   </client-only>
 </template>
-<script setup>
 
+<script setup>
 import { useRoute, useRouter } from 'nuxt/app'
-import { isDesktop } from '@/utils/screen'
 
 const walletStore = useWalletStore()
-const accountStore = useAccountStore()
 const { address } = storeToRefs(walletStore)
+
+const accountStore = useAccountStore()
 const { accountDetails, accountTokens } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
 
 const { push, replace } = useRouter()
-
 const route = useRoute()
 
 const isTabsVisible = computed(() => process.client &&

@@ -60,7 +60,6 @@
 </template>
 
 <script setup>
-
 const contractVerifiedStore = useContractVerifiedStore()
 const { contractCode, verificationDetails, isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchContractCode } = contractVerifiedStore
@@ -82,7 +81,6 @@ function downloadFile(content) {
   link.click()
   document.body.removeChild(link)
 }
-
 </script>
 
 <style scoped>

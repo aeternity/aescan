@@ -100,7 +100,6 @@
 </template>
 
 <script setup>
-
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())

@@ -6,11 +6,9 @@
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
-
 import { ADD_LIQUIDITY_CONTRACT_CALLS, REMOVE_LIQUIDITY_CONTRACT_CALLS, SWAP_CONTRACT_CALLS } from '@/utils/constants'
 
 const { SH_DEX_CONTRACTS } = useRuntimeConfig().public
-
 const { currency } = storeToRefs(useConfigStore())
 
 const props = defineProps({

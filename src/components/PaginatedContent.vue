@@ -57,7 +57,6 @@
 
 <script setup>
 import { useVModel } from '@vueuse/core'
-import { computed, ref } from 'vue'
 
 const props = defineProps({
   entities: {

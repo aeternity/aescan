@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Contract } from '@aeternity/aepp-sdk'
 
@@ -10,6 +9,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const axios = useAxios()
   const rawVerificationDetails = ref(null)
   const contractCode = ref(null)
+
   const isVerified = computed(() => !!verificationDetails?.value)
 
   const verificationDetails = computed(() =>

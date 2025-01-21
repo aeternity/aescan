@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-
 const aeCoinStore = useAeCoinStore()
 const { fetchMarketStats } = aeCoinStore
 const {

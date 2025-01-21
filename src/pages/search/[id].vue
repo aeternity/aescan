@@ -23,10 +23,10 @@
 </template>
 
 <script setup>
+const TAB_KEYS = ['names', 'tokens', 'nfts']
+
 const route = useRoute()
 const { push, replace } = useRouter()
-
-const TAB_KEYS = ['names', 'tokens', 'nfts']
 
 const activeTabIndex = computed({
   get() {

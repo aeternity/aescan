@@ -23,6 +23,9 @@ import { DATETIME_UNITS } from '@/utils/constants'
 
 const { timeFormat } = storeToRefs(useUiStore())
 
+const relativeUpdated = ref(null)
+const intervalRef = ref(null)
+
 const props = defineProps({
   timestamp: {
     type: Object,
@@ -33,9 +36,6 @@ const props = defineProps({
     default: false,
   },
 })
-
-const relativeUpdated = ref(null)
-const intervalRef = ref(null)
 
 const absolute = computed(() => {
   return props.timestamp.toLocaleString(DateTime.DATETIME_SHORT)

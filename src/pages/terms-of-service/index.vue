@@ -266,8 +266,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
 <style scoped>
 .terms-of-service {
   max-width: 680px;

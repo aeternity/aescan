@@ -33,20 +33,18 @@
 </template>
 
 <script setup>
-
+// todo router
 import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 const transactionDetailsStore = useTransactionDetailsStore()
-const {
-  transactionDetails,
-  transactionTypeData,
-} = storeToRefs(transactionDetailsStore)
-const {
-  fetchTransactionDetails,
-} = transactionDetailsStore
-const route = useRoute()
+const { transactionDetails, transactionTypeData } = storeToRefs(transactionDetailsStore)
+const { fetchTransactionDetails } = transactionDetailsStore
+
 const { subscribedTransactionId } = storeToRefs(useWebSocket())
+
+const route = useRoute()
+
 const { isLoading } = useLoading()
 
 const isSyncing = computed(() => isLoading.value || !transactionTypeData.value)

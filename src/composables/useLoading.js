@@ -5,8 +5,10 @@ export default function useLoading() {
   nuxtApp.hook('page:start', () => {
     isLoading.value = true
   })
+
   nuxtApp.hook('page:finish', () => {
     isLoading.value = false
   })
+
   return { isLoading }
 }

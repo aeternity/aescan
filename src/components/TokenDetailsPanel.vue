@@ -183,7 +183,6 @@
 </template>
 
 <script setup>
-
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 const config = useRuntimeConfig().public

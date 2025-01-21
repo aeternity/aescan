@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 
 const {
@@ -24,6 +23,7 @@ const {
 const selectedNetwork = ref({
   name: NETWORK_NAME,
 })
+
 const networks = ref([
   {
     name: NETWORK_NAME,

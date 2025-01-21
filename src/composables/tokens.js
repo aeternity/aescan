@@ -1,4 +1,3 @@
-import { computed, ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useTokensStore = defineStore('tokens', () => {

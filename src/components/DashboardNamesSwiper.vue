@@ -66,8 +66,8 @@
     </template>
   </app-swiper>
 </template>
-<script setup>
 
+<script setup>
 import { namesHints } from '@/utils/hints/namesHints'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())

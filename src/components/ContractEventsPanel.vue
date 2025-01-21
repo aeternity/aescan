@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-
 const contractDetailsStore = useContractDetailsStore()
 const { fetchContractEvents } = contractDetailsStore
 const { contractEvents, contractDetails } = storeToRefs(contractDetailsStore)

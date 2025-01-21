@@ -8,6 +8,7 @@
     v-else
     :hash="contractId"/>
 </template>
+
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
 

@@ -77,7 +77,7 @@
 
 <script setup>
 import { useHead } from '@vueuse/head'
-
+// todo head
 import Error from '@/error'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
 

@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-
 const tokenDetailsStore = useTokenDetailsStore()
 const { fetchTokenHolders, fetchTokenHoldersCount } = tokenDetailsStore
 const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)

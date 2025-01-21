@@ -46,6 +46,7 @@
     </table>
   </div>
 </template>
+
 <script setup>
 import { nftsHints } from '@/utils/hints/nftsHints'
 
@@ -55,7 +56,6 @@ defineProps({
     required: true,
   },
 })
-
 </script>
 
 <style scoped>

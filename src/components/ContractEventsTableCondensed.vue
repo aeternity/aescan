@@ -85,6 +85,7 @@
     </table>
   </div>
 </template>
+
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 

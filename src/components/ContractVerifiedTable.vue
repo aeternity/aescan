@@ -1,60 +1,64 @@
 <template>
   <table class="contract-verified-table">
-    <tr class="contract-verified-table__row">
-      <th class="contract-verified-table__header">
-        License
-        <hint-tooltip>
-          {{ contractVerifiedHints.license }}
-        </hint-tooltip>
-      </th>
-      <td class="contract-verified-table__data">
-        {{ verificationDetails.license }}
-      </td>
-    </tr>
-    <tr class="contract-verified-table__row">
-      <th class="contract-verified-table__header">
-        Compiler Version
-        <hint-tooltip>
-          {{ contractVerifiedHints.compiler }}
-        </hint-tooltip>
-      </th>
-      <td class="contract-verified-table__data">
-        {{ verificationDetails.compiler }}
-      </td>
-    </tr>
-    <tr class="contract-verified-table__row">
-      <th class="contract-verified-table__header">
-        Entry File
-        <hint-tooltip>
-          {{ contractVerifiedHints.entryFile }}
-        </hint-tooltip>
-      </th>
-      <td class="contract-verified-table__data">
-        {{ verificationDetails.entryFile }}
-      </td>
-    </tr>
-    <tr class="contract-verified-table__row">
-      <th class="contract-verified-table__header">
-        <time-toggle-button>Verified</time-toggle-button>
-        <hint-tooltip>
-          {{ contractVerifiedHints.verifiedAt }}
-        </hint-tooltip>
-      </th>
-      <td class="contract-verified-table__data">
-        <timestamp-label :timestamp="verificationDetails.verifiedAt"/>
-      </td>
-    </tr>
-    <tr class="contract-verified-table__row">
-      <th class="contract-verified-table__header">
-        Entrypoint
-        <hint-tooltip>
-          {{ contractVerifiedHints.initCallParameters }}
-        </hint-tooltip>
-      </th>
-      <td class="contract-verified-table__data">
-        {{ verificationDetails.initCallParameters }}
-      </td>
-    </tr>
+    <thead>
+      <tr class="contract-verified-table__row">
+        <th class="contract-verified-table__header">
+          License
+          <hint-tooltip>
+            {{ contractVerifiedHints.license }}
+          </hint-tooltip>
+        </th>
+        <td class="contract-verified-table__data">
+          {{ verificationDetails.license }}
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="contract-verified-table__row">
+        <th class="contract-verified-table__header">
+          Compiler Version
+          <hint-tooltip>
+            {{ contractVerifiedHints.compiler }}
+          </hint-tooltip>
+        </th>
+        <td class="contract-verified-table__data">
+          {{ verificationDetails.compiler }}
+        </td>
+      </tr>
+      <tr class="contract-verified-table__row">
+        <th class="contract-verified-table__header">
+          Entry File
+          <hint-tooltip>
+            {{ contractVerifiedHints.entryFile }}
+          </hint-tooltip>
+        </th>
+        <td class="contract-verified-table__data">
+          {{ verificationDetails.entryFile }}
+        </td>
+      </tr>
+      <tr class="contract-verified-table__row">
+        <th class="contract-verified-table__header">
+          <time-toggle-button>Verified</time-toggle-button>
+          <hint-tooltip>
+            {{ contractVerifiedHints.verifiedAt }}
+          </hint-tooltip>
+        </th>
+        <td class="contract-verified-table__data">
+          <timestamp-label :timestamp="verificationDetails.verifiedAt"/>
+        </td>
+      </tr>
+      <tr class="contract-verified-table__row">
+        <th class="contract-verified-table__header">
+          Entrypoint
+          <hint-tooltip>
+            {{ contractVerifiedHints.initCallParameters }}
+          </hint-tooltip>
+        </th>
+        <td class="contract-verified-table__data">
+          {{ verificationDetails.initCallParameters }}
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 

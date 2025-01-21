@@ -5,16 +5,16 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="selectedRange"
+        v-model="range"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="contractsStatistics"
-      :interval="selectedRange.interval"/>
+      :interval="range.interval"/>
 
     <chart-controls
-      v-model="selectedRange"
+      v-model="range"
       class="contracts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -23,36 +23,37 @@
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
 import LineChart from '@/components/LineChart'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
 
 const chartsStore = useChartsStore()
 const { contractsStatistics } = storeToRefs(chartsStore)
 const { fetchContractsStatistics } = chartsStore
 
 const props = defineProps({
-  range: {
-    required: true,
+  preselectedRange: {
     type: Object,
+    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
   },
 })
 
-const selectedRange = ref(props.range)
+const range = ref(props.preselectedRange)
 
-await useAsyncData(async () => {
+await useAsyncData(async() => {
   await loadContractsStatistics()
   return true
 })
 
 if (process.client) {
-  watch(selectedRange, async () => {
+  watch(range, async() => {
     await loadContractsStatistics()
   })
 }
 
 async function loadContractsStatistics() {
   await fetchContractsStatistics(
-    selectedRange.value.interval,
-    selectedRange.value.limit,
-    selectedRange.value.customInterval)
+    range.value.interval,
+    range.value.limit,
+    range.value.customInterval)
 }
 
 </script>

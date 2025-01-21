@@ -2,20 +2,28 @@
   <app-panel class="dashboard-state-channels-panel">
     <dashboard-panel-header
       level="h3"
-      title="STATE CHANNELS"
+      title="LATEST ACTIVE STATE CHANNELS"
       icon-name="state-channel"
       show-all-link="/state-channels">
       <template #tooltip>
         {{ stateChannelsHints.stateChannel }}
       </template>
     </dashboard-panel-header>
-    <dashboard-state-channels-table class="u-hidden-mobile"/>
-    <dashboard-state-channels-swiper class="u-hidden-desktop"/>
+    <template v-if="!!stateChannels.length">
+      <dashboard-state-channels-table class="u-hidden-mobile"/>
+      <dashboard-state-channels-swiper class="u-hidden-desktop"/>
+    </template>
+    <blank-state v-else/>
   </app-panel>
 </template>
+
 <script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
+import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
+
+const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 </script>
 
 <style scoped>

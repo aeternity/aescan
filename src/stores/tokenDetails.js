@@ -1,16 +1,18 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
+import { Contract } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
-import { adaptTokenDetails, adaptTokenEvents, adaptTokenHolders } from '@/utils/adapters'
+import { adaptTokenDetails, adaptTokenEvents, adaptTokenHolders, adaptTrades } from '@/utils/adapters'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
-import { useAesdk } from '@/stores/aesdk'
+import { useWalletStore } from '@/stores/wallet'
 import { useDexStore } from '@/stores/dex'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
-  const { aeSdk } = storeToRefs(useAesdk())
+  const { aeSdk } = storeToRefs(useWalletStore())
   const { fetchPrice } = useDexStore()
+  const featureFlags = useFeatureFlags()
 
   const tokenId = ref(null)
   const price = ref(null)
@@ -21,6 +23,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   const rawTotalSupply = ref(null)
   const rawTokenHolders = ref(null)
   const tokenHoldersCount = ref(null)
+  const rawTokenTrades = ref(null)
 
   const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
@@ -40,11 +43,16 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
       : null,
   )
 
-  const tokenEvents = computed(() => {
-    return rawTokenEvents.value
+  const tokenEvents = computed(() =>
+    rawTokenEvents.value
       ? adaptTokenEvents(rawTokenEvents.value)
-      : null
-  })
+      : null,
+  )
+
+  const tokenTrades = computed(() => rawTokenTrades.value
+    ? adaptTrades(rawTokenTrades.value, price.value)
+    : null,
+  )
 
   function fetchTokenDetails(id) {
     tokenId.value = id
@@ -61,6 +69,10 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   }
 
   async function fetchTokenPrice() {
+    if (!featureFlags.dex) {
+      return
+    }
+
     price.value = await fetchPrice(tokenId.value, rawToken.value.decimals)
   }
 
@@ -71,11 +83,12 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   }
 
   async function fetchTotalSupply() {
-    const contractInstance = await aeSdk.value.initializeContract({
+    const contract = await Contract.initialize({
+      ...aeSdk.value.getContext(),
       aci: TOKEN_SUPPLY_ACI,
       address: tokenId.value,
     })
-    const contractCallResult = await contractInstance.total_supply()
+    const contractCallResult = await contract.total_supply()
     rawTotalSupply.value = contractCallResult?.decodedResult
   }
 
@@ -99,15 +112,24 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     tokenHoldersCount.value = data.holders
   }
 
+  async function fetchTokenTrades({ queryParameters, limit, contractId } = {}) {
+    rawTokenTrades.value = null
+    const defaultParameters = `/v3/dex/${contractId}/swaps?limit=${limit ?? 10}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    rawTokenTrades.value = data
+  }
+
   return {
     fetchTokenDetails,
     fetchTokenHolders,
     tokenHoldersCount,
     fetchTokenEvents,
     fetchTokenHoldersCount,
+    fetchTokenTrades,
     tokenDetails,
     tokenHolders,
     tokenEvents,
     tokenEventsCount,
+    tokenTrades,
   }
 })

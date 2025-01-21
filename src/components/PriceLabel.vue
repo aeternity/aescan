@@ -41,21 +41,23 @@
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
+import { storeToRefs } from 'pinia'
 import { formatNullable } from '@/utils/format'
+import { useConfigStore } from '@/stores/config'
 import AppTooltip from '@/components/AppTooltip'
 
 const props = defineProps({
   price: {
-    type: Number,
+    type: [String, Number],
     default: null,
   },
   maxDigits: {
     type: Number,
-    required: true,
+    default: undefined,
   },
   currency: {
     type: String,
-    default: 'AE',
+    default: () => storeToRefs(useConfigStore()).currency.value.symbol,
   },
   hasIcon: {
     type: Boolean,

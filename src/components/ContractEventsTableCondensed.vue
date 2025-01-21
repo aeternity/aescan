@@ -4,90 +4,84 @@
       v-for="(event, index) in contractEvents.data"
       :key="event.callTxHash"
       class="contract-events-table-condensed__table">
-      <tr class="contract-events-table-condensed__row">
-        <th class="contract-events-table-condensed__header">
-          <app-tooltip>
-            Call Transaction
-            <template #tooltip>
+      <tbody>
+        <tr class="contract-events-table-condensed__row">
+          <th class="contract-events-table-condensed__header">
+            <hint-tooltip>
               {{ contractsHints.eventsCallTransaction }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-events-table-condensed__data">
-          <value-hash-ellipsed
-            :hash="event.callTxHash"
-            :link-to="`/transactions/${event.callTxHash}`"/>
-        </td>
-      </tr>
-      <tr class="contract-events-table-condensed__row">
-        <th class="contract-events-table-condensed__header">
-          <app-tooltip>
-            <time-toggle-button>Created</time-toggle-button>
-            <template #tooltip>
+            </hint-tooltip>
+            Call Transaction
+          </th>
+          <td class="contract-events-table-condensed__data">
+            <value-hash-ellipsed
+              :hash="event.callTxHash"
+              :link-to="`/transactions/${event.callTxHash}`"/>
+          </td>
+        </tr>
+        <tr class="contract-events-table-condensed__row">
+          <th class="contract-events-table-condensed__header">
+            <hint-tooltip>
               {{ contractsHints.eventsCreated }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-events-table-condensed__data">
-          <block-time-cell
-            :height="event.createdHeight"
-            :timestamp="event.created"/>
-        </td>
-      </tr>
-      <tr class="contract-events-table-condensed__row">
-        <th class="contract-events-table-condensed__header">
-          <app-tooltip>
-            Event Name
-            <template #tooltip>
+            </hint-tooltip>
+            <time-toggle-button class="contract-events-table-condensed__button">
+              Created
+            </time-toggle-button>
+          </th>
+          <td class="contract-events-table-condensed__data">
+            <block-time-cell
+              :height="event.createdHeight"
+              :timestamp="event.created"/>
+          </td>
+        </tr>
+        <tr class="contract-events-table-condensed__row">
+          <th class="contract-events-table-condensed__header">
+            <hint-tooltip>
               {{ contractsHints.eventsName }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-events-table-condensed__data">
-          {{ event.eventName ? event.eventName : 'N/A' }}
-        </td>
-      </tr>
-      <tr class="contract-events-table-condensed__row">
-        <th
-          :class="[
-            'contract-events-table-condensed__header',
-            {'contract-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
-          <app-tooltip>
-            Data
-            <template #tooltip>
+            </hint-tooltip>
+            Event Name
+          </th>
+          <td class="contract-events-table-condensed__data">
+            {{ event.eventName ? event.eventName : 'N/A' }}
+          </td>
+        </tr>
+        <tr class="contract-events-table-condensed__row">
+          <th
+            :class="['contract-events-table-condensed__header',
+                     {'contract-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
+            <hint-tooltip>
               {{ contractsHints.eventsData }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td
-          v-if="event.isDecoded"
-          class="contract-events-table-condensed__cell">
-          <contract-event-cell
-            :event="event"
-            :contract-details="contractDetails"/>
-        </td>
-        <td
-          v-else
-          :class="[
-            'contract-events-table-condensed__data',
-            {'contract-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
-          <expand-button
-            :is-expanded="isExpanded.includes(index)"
-            @click="toggle(index)">
-            {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
-          </expand-button>
-        </td>
-      </tr>
-      <tr
-        v-if="isExpanded.includes(index)"
-        class="contract-events-table-condensed__row">
-        <td colspan="5">
-          <events-panel
-            :args="event.args"
-            :call-tx-hash="event.callTxHash"
-            :log-id="event.logIdx"/>
-        </td>
-      </tr>
+            </hint-tooltip>
+            Data
+          </th>
+          <td
+            v-if="event.isDecoded"
+            class="contract-events-table-condensed__cell">
+            <contract-event-cell
+              :event="event"
+              :contract-details="contractDetails"/>
+          </td>
+          <td
+            v-else
+            :class="['contract-events-table-condensed__data',
+                     {'contract-events-table-condensed__data--expanded': isExpanded.includes(index)}]">
+            <expand-button
+              :is-expanded="isExpanded.includes(index)"
+              @click="toggle(index)">
+              {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguemnts' }}
+            </expand-button>
+          </td>
+        </tr>
+        <tr
+          v-if="isExpanded.includes(index)"
+          class="contract-events-table-condensed__row">
+          <td colspan="5">
+            <events-panel
+              :args="event.args"
+              :call-tx-hash="event.callTxHash"
+              :log-id="event.logIdx"/>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -153,6 +147,10 @@ function toggle(id) {
   &__cell {
     flex-wrap: wrap;
     gap: var(--space-1);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

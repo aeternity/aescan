@@ -7,12 +7,10 @@
       <tbody>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ nftsHints.transferHash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.transferHash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ nftsHints.transferTime }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.transferTime }}
+            </hint-tooltip>
+            <time-toggle-button class="contract-call-transactions-table-condensed__button"/>
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <block-time-cell
@@ -37,26 +33,21 @@
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Token ID
-              <template #tooltip>
-                {{ nftsHints.transferTokenId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.transferTokenId }}
+            </hint-tooltip>
+            Token ID
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             {{ transfer.tokenId }}
           </td>
         </tr>
-
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Sender
-              <template #tooltip>
-                {{ nftsHints.transferSender }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.transferSender }}
+            </hint-tooltip>
+            Sender
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -66,12 +57,10 @@
         </tr>
         <tr class="contract-call-transactions-table-condensed__row">
           <th class="contract-call-transactions-table-condensed__header">
-            <app-tooltip>
-              Recipient
-              <template #tooltip>
-                {{ nftsHints.transferRecipient }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ nftsHints.transferRecipient }}
+            </hint-tooltip>
+            Recipient
           </th>
           <td class="contract-call-transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -113,6 +102,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

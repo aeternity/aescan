@@ -22,5 +22,4 @@
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
-
 </script>

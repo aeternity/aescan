@@ -29,7 +29,7 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
-export const CHART_INTERVALS_OPTIONS = [
+export const CHART_INTERVALS_PRESETS_OPTIONS = [
   { interval: 'day', limit: '7', label: '1W' },
   { interval: 'day', limit: '30', label: '1M' },
   { interval: 'day', limit: '90', label: '3M' },
@@ -75,7 +75,6 @@ export const VISIBLE_KEYBLOCKS_LIMIT = 20
 export const VISIBLE_MICROBLOCKS_LIMIT = 30
 export const VISIBLE_TRANSACTIONS_LIMIT = 4
 export const MENU_HASH = '#menu-open'
-export const LAEX_CONTRACT_ID = 'ct_xtk8rSz9suPb6D6VLquyfVji25FcnFRDjn3dnn5mmvHsPiESt'
 
 export const TOKEN_SUPPLY_ACI = [
   {

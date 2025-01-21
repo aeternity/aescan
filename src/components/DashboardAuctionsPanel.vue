@@ -11,13 +11,21 @@
         name. The shorter the name, the longer the auction lives.
       </template>
     </dashboard-panel-header>
-    <dashboard-auctions-table class="u-hidden-mobile"/>
-    <dashboard-auctions-swiper class="u-hidden-desktop"/>
+    <template v-if="!!auctionsEndingSoon.length">
+      <dashboard-auctions-table class="u-hidden-mobile"/>
+      <dashboard-auctions-swiper class="u-hidden-desktop"/>
+    </template>
+    <blank-state v-else/>
   </app-panel>
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import AppPanel from '@/components/AppPanel'
+import { useNamesStore } from '@/stores/names'
+
+const { auctionsEndingSoon } = storeToRefs(useNamesStore())
+
 </script>
 
 <style scoped>

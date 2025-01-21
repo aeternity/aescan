@@ -7,12 +7,10 @@
       <tbody>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ namesHints.nameId }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.nameId }}
+            </hint-tooltip>
+            Name
           </th>
           <td
             class="names-in-auction-table-condensed__data">
@@ -25,12 +23,12 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Ends</time-toggle-button>
-              <template #tooltip>
-                {{ namesHints.ends }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.ends }}
+            </hint-tooltip>
+            <time-toggle-button class="names-in-auction-table-condensed__button">
+              Ends
+            </time-toggle-button>
           </th>
           <td class="names-in-auction-table-condensed__data">
             <block-time-cell
@@ -40,12 +38,10 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            <app-tooltip>
-              Highest Bid
-              <template #tooltip>
-                {{ namesHints.highestBid }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.highestBid }}
+            </hint-tooltip>
+            Highest Bid
           </th>
           <td class="names-in-auction-table-condensed__data">
             <price-label :price="name.bid"/>
@@ -53,12 +49,10 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            <app-tooltip>
-              Highest Bidder
-              <template #tooltip>
-                {{ namesHints.highestBidder }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.highestBidder }}
+            </hint-tooltip>
+            Highest Bidder
           </th>
           <td class="names-in-auction-table-condensed__data">
             <value-hash-ellipsed
@@ -69,12 +63,10 @@
         </tr>
         <tr class="names-in-auction-table-condensed__row">
           <th class="names-in-auction-table-condensed__header">
-            <app-tooltip>
-              Bid Count
-              <template #tooltip>
-                {{ namesHints.bidCount }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ namesHints.bidCount }}
+            </hint-tooltip>
+            Bid Count
           </th>
           <td class="names-in-auction-table-condensed__data">
             {{ name.bidCount }}
@@ -118,12 +110,16 @@ defineProps({
   }
 
   &__name {
-    max-width: 200px;
+    max-width: 168px;
     display: inline-block;
   }
 
   &__highest-bid {
     margin-right: var(--space-2);
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

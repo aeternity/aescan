@@ -2,7 +2,7 @@
   <nav class="navigation">
     <ul class="navigation__list">
       <li
-        v-for="menu in menuOptions"
+        v-for="menu in menuOptionsWithSubmenus"
         :key="menu.name"
         class="navigation__item"
         @click="toggle(menu.name)"
@@ -16,6 +16,9 @@
 
 <script setup>
 import { isDesktop } from '@/utils/screen'
+import useFeatureFlags from '@/composables/useFeatureFlags'
+
+const featureFlags = useFeatureFlags()
 
 const menuOptions = ref([{
   name: 'Blockchain',
@@ -44,6 +47,7 @@ const menuOptions = ref([{
     {
       name: 'Nodes',
       path: '/nodes',
+      hidden: !featureFlags.nodes,
     },
     {
       name: 'Oracles',
@@ -52,11 +56,6 @@ const menuOptions = ref([{
     {
       name: 'State Channels',
       path: '/state-channels',
-    },
-    {
-      name: 'Hyperchains',
-      path: '/hyperchains',
-      isDisabled: true,
     },
   ],
 },
@@ -67,6 +66,7 @@ const menuOptions = ref([{
     {
       name: 'AE Coin',
       path: '/tokens/AE',
+      hidden: !featureFlags.marketStats,
     },
     {
       name: 'AEX9 Tokens',
@@ -79,6 +79,7 @@ const menuOptions = ref([{
     {
       name: 'DEX Trades',
       path: '/dex-trades',
+      hidden: !featureFlags.dex,
     },
   ],
 },
@@ -89,6 +90,7 @@ const menuOptions = ref([{
     {
       name: 'Smart Contract Verification',
       path: '/contract-verification',
+      hidden: !featureFlags.smartContractVerification,
     },
   ],
 },
@@ -109,6 +111,10 @@ const menuOptions = ref([{
       path: '/charts/contracts',
     },
     {
+      name: 'Accounts',
+      path: '/charts/accounts',
+    },
+    {
       name: 'Names',
       path: '/charts/names',
     },
@@ -122,6 +128,15 @@ const menuOptions = ref([{
     },
   ],
 }])
+
+const menuOptionsWithSubmenus = computed(() =>
+  menuOptions.value
+    .map(menuOption => ({
+      ...menuOption,
+      submenu: menuOption.submenu.filter(submenu => !submenu.hidden),
+    }))
+    .filter(menuOption => menuOption.submenu.length > 0),
+)
 
 function open(name) {
   menuOptions.value.find(item => item.name === name).isActive = true

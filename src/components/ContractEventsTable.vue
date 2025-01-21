@@ -1,77 +1,81 @@
 <template>
   <table>
-    <tr>
-      <th>
-        Call transaction
-        <hint-tooltip>
-          {{ contractsHints.eventsCallTransaction }}
-        </hint-tooltip>
-      </th>
-      <th>
-        <time-toggle-button>Created</time-toggle-button>
-        <hint-tooltip>
-          {{ contractsHints.eventsCreated }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Name
-        <hint-tooltip>
-          {{ contractsHints.eventsName }}
-        </hint-tooltip>
-      </th>
-      <th>
-        Data
-        <hint-tooltip>
-          {{ contractsHints.eventsData }}
-        </hint-tooltip>
-      </th>
-    </tr>
-    <template
-      v-for="(event, index) in contractEvents.data"
-      :key="event.callTxHash">
+    <thead>
       <tr>
-        <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
-          <value-hash-ellipsed
-            :hash="event.callTxHash"
-            :link-to="`/transactions/${event.callTxHash}`"/>
-        </td>
-        <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
-          <block-time-cell
-            :height="event.createdHeight"
-            :timestamp="event.created"/>
-        </td>
-        <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
-          {{ event.eventName || 'N/A' }}
-        </td>
-        <td v-if="event.isDecoded">
-          <contract-event-cell
-            :event="event"
-            :contract-details="contractDetails"/>
-        </td>
-        <td
-          v-else
-          :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
-          <expand-button
-            :is-expanded="isExpanded.includes(index)"
-            @click="toggle(index)">
-            {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguments' }}
-          </expand-button>
-        </td>
+        <th>
+          Call transaction
+          <hint-tooltip>
+            {{ contractsHints.eventsCallTransaction }}
+          </hint-tooltip>
+        </th>
+        <th>
+          <time-toggle-button>Created</time-toggle-button>
+          <hint-tooltip>
+            {{ contractsHints.eventsCreated }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Name
+          <hint-tooltip>
+            {{ contractsHints.eventsName }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Data
+          <hint-tooltip>
+            {{ contractsHints.eventsData }}
+          </hint-tooltip>
+        </th>
       </tr>
-      <tr v-if="isExpanded.includes(index)">
-        <td
-          colspan="4"
-          :class="[
-            'contract-events-table__arguments',
-            {'contract-events-table__arguments--expanded': isExpanded.includes(index)}
-          ]">
-          <events-panel
-            :args="event.args"
-            :call-tx-hash="event.callTxHash"
-            :log-id="event.logIdx"/>
-        </td>
-      </tr>
-    </template>
+    </thead>
+    <tbody>
+      <template
+        v-for="(event, index) in contractEvents.data"
+        :key="event.callTxHash">
+        <tr>
+          <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            <value-hash-ellipsed
+              :hash="event.callTxHash"
+              :link-to="`/transactions/${event.callTxHash}`"/>
+          </td>
+          <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            <block-time-cell
+              :height="event.createdHeight"
+              :timestamp="event.created"/>
+          </td>
+          <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            {{ event.eventName || 'N/A' }}
+          </td>
+          <td v-if="event.isDecoded">
+            <contract-event-cell
+              :event="event"
+              :contract-details="contractDetails"/>
+          </td>
+          <td
+            v-else
+            :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            <expand-button
+              :is-expanded="isExpanded.includes(index)"
+              @click="toggle(index)">
+              {{ isExpanded.includes(index) ? 'Hide arguments' : 'See arguments' }}
+            </expand-button>
+          </td>
+        </tr>
+        <tr v-if="isExpanded.includes(index)">
+          <td
+            colspan="4"
+            :class="[
+              'contract-events-table__arguments',
+              {'contract-events-table__arguments--expanded': isExpanded.includes(index)}
+            ]">
+            <events-panel
+              :args="event.args"
+              :call-tx-hash="event.callTxHash"
+              :log-id="event.logIdx"/>
+          </td>
+        </tr>
+      </template>
+    </tbody>
   </table>
 </template>
 

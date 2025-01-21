@@ -5,16 +5,16 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="selectedRange"
+        v-model="range"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="keyblocksStatistics"
-      :interval="selectedRange.interval"/>
+      :interval="range.interval"/>
 
     <chart-controls
-      v-model="selectedRange"
+      v-model="range"
       class="keyblocks-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -22,13 +22,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_OPTIONS } from '@/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()
 const { keyblocksStatistics } = storeToRefs(chartsStore)
 const { fetchKeyblocksStatistics } = chartsStore
 
-const selectedRange = ref(CHART_INTERVALS_OPTIONS[4])
+const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadKeyblockStatistics()
@@ -36,16 +36,16 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch(selectedRange, async() => {
+  watch(range, async() => {
     await loadKeyblockStatistics()
   })
 }
 
 async function loadKeyblockStatistics() {
   await fetchKeyblocksStatistics(
-    selectedRange.value.interval,
-    selectedRange.value.limit,
-    selectedRange.value.customInterval)
+    range.value.interval,
+    range.value.limit,
+    range.value.customInterval)
 }
 </script>
 

@@ -9,8 +9,11 @@
         <template #tooltip>
           {{ microblocksHints.microblock }}
         </template>
-        <template #header>
-          <div class="dashboard-microblocks-panel__summary dashboard-microblocks-panel__summary--desktop">
+        <template
+          v-if="selectedMicroblockTransactionsCount > 0"
+          #header>
+          <div
+            class="dashboard-microblocks-panel__summary dashboard-microblocks-panel__summary--desktop">
             Transactions in this microblock:
             <span class="dashboard-microblocks-panel__count">
               {{ selectedMicroblockTransactionsCount }}
@@ -26,12 +29,12 @@
         </span>
       </div>
     </div>
-
     <microblocks-sequence
-      v-if="selectedKeyblockMicroblocks"
+      v-if="selectedKeyblockMicroblocks.length > 0"
       class="dashboard-microblocks-panel__microblock-sequence"
       :microblocks="selectedKeyblockMicroblocks"/>
-    <dashboard-transaction-panel/>
+    <dashboard-transaction-panel v-if="selectedKeyblockMicroblocks.length > 0"/>
+    <blank-state v-else/>
   </app-panel>
 </template>
 
@@ -43,9 +46,8 @@ import DashboardTransactionPanel from '@/components/DashboardTransactionPanel'
 import MicroblocksSequence from '@/components/MicroblocksSequence'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
-const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } = storeToRefs(
-  useRecentBlocksStore(),
-)
+const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
+  storeToRefs(useRecentBlocksStore())
 </script>
 
 <style scoped>

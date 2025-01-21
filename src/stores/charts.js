@@ -12,6 +12,7 @@ export const useChartsStore = defineStore('charts', () => {
   const namesStatistics = ref(null)
   const difficultyStatistics = ref(null)
   const hashrateStatistics = ref(null)
+  const accountsStatistics = ref(null)
 
   async function fetchTransactionsStatistics(interval, limit, customInterval, txType) {
     transactionsStatistics.value = null
@@ -92,6 +93,19 @@ export const useChartsStore = defineStore('charts', () => {
     hashrateStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
+  async function fetchAccountsStatistics(interval, limit, customInterval) {
+    accountsStatistics.value = null
+
+    const intervalSlug = customInterval
+      ? `?min_start_date=${customInterval.minStart}&max_start_date=${customInterval.maxStart}&limit=100`
+      : `?interval_by=${interval}&limit=${limit}`
+
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/active-accounts${intervalSlug}`)
+
+    // remove last interval from the response not to show current interval that is being built
+    accountsStatistics.value = customInterval ? data.data.reverse() : data.data.slice(1).reverse()
+  }
+
   return {
     keyblocksStatistics,
     transactionsStatistics,
@@ -99,11 +113,13 @@ export const useChartsStore = defineStore('charts', () => {
     namesStatistics,
     difficultyStatistics,
     hashrateStatistics,
+    accountsStatistics,
     fetchKeyblocksStatistics,
     fetchTransactionsStatistics,
     fetchContractsStatistics,
     fetchNamesStatistics,
     fetchDifficultyStatistics,
     fetchHashrateStatistics,
+    fetchAccountsStatistics,
   }
 })

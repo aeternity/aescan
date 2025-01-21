@@ -2,11 +2,11 @@
   <div>
     <div class="chart-controls__container">
       <app-chip
-        v-for="option in CHART_INTERVALS_OPTIONS"
+        v-for="option in CHART_INTERVALS_PRESETS_OPTIONS"
         :key="option.label"
         class="chart-controls__button"
-        :variant="isIntervalSelected(option) ? 'error' : 'secondary'"
-        @click="selectInterval(option)">
+        :variant="isPresetSelected(option) ? 'error' : 'secondary'"
+        @click="selectPreset(option)">
         {{ option.label }}
       </app-chip>
       <range-picker
@@ -33,11 +33,11 @@ const selectedRange = useVModel(props, 'modelValue', emit)
 const isCustomIntervalSelected = computed(() =>
   Object.keys(selectedRange.value).includes('customInterval'))
 
-function isIntervalSelected(option) {
+function isPresetSelected(option) {
   return selectedRange.value.label === option.label
 }
 
-function selectInterval(option) {
+function selectPreset(option) {
   selectedRange.value = option
 }
 

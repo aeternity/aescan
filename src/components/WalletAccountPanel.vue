@@ -34,7 +34,7 @@ import { isDesktop } from '@/utils/screen'
 
 const walletStore = useWalletStore()
 const accountStore = useAccountStore()
-const { aeSdk } = storeToRefs(walletStore)
+const { address } = storeToRefs(walletStore)
 const { accountDetails, accountTokens } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
 
@@ -45,12 +45,12 @@ const { push, replace } = useRouter()
 const route = useRoute()
 
 const isTabsVisible = computed(() => process.client &&
-    ((accountDetails.value && !accountDetails.value?.notExistent) ||
-        !!accountTokens.value?.data.length))
+  ((accountDetails.value && !accountDetails.value?.notExistent) ||
+    !!accountTokens.value?.data.length))
 
 const isTokensTabSelected = computed(() => process.client &&
-    accountDetails.value?.notExistent &&
-    !!accountTokens.value?.data.length)
+  accountDetails.value?.notExistent &&
+  !!accountTokens.value?.data.length)
 
 const activeTabIndex = computed({
   get() {
@@ -80,10 +80,7 @@ const activeTabIndex = computed({
 
 if (process.client) {
   const limit = isDesktop() ? null : 3
-  await fetchAccount(aeSdk.value.address, { limit })
-  watch(() => aeSdk.value.address, async() => {
-    await fetchAccount(aeSdk.value.address, { limit })
-  })
+  watch(address, () => fetchAccount(address.value, { limit }), { immediate: true })
 }
 </script>
 

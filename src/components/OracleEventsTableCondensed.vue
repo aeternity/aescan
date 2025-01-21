@@ -7,12 +7,10 @@
       <tbody>
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
-            <app-tooltip>
-              Query Tx
-              <template #tooltip>
-                {{ oraclesHints.queryTx }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.queryTx }}
+            </hint-tooltip>
+            Query Tx
           </th>
           <td class="oracle-events-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
-            <app-tooltip>
-              Status
-              <template #tooltip>
-                {{ oraclesHints.queryStatus }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.queryStatus }}
+            </hint-tooltip>
+            Status
           </th>
           <td class="oracle-events-table-condensed__data">
             <expand-button
@@ -39,12 +35,12 @@
         </tr>
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Queried At</time-toggle-button>
-              <template #tooltip>
-                {{ oraclesHints.queriedAt }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.queriedAt }}
+            </hint-tooltip>
+            <time-toggle-button class="oracle-events-table-condensed__button">
+              Queried At
+            </time-toggle-button>
           </th>
           <td class="oracle-events-table-condensed__data">
             <block-time-cell
@@ -54,12 +50,10 @@
         </tr>
         <tr class="oracle-events-table-condensed__row">
           <th class="oracle-events-table-condensed__header">
-            <app-tooltip>
-              Respond Tx
-              <template #tooltip>
-                {{ oraclesHints.respondTx }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.respondTx }}
+            </hint-tooltip>
+            Respond Tx
           </th>
           <td class="oracle-events-table-condensed__data">
             <value-hash-ellipsed
@@ -72,12 +66,12 @@
             :class="[
               'oracle-events-table-condensed__header',
               {'oracle-events-table-condensed__header--expanded': isExpanded.includes(index)}]">
-            <app-tooltip>
-              <time-toggle-button>Responded At</time-toggle-button>
-              <template #tooltip>
-                {{ oraclesHints.queriedAt }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ oraclesHints.respondedAt }}
+            </hint-tooltip>
+            <time-toggle-button class="oracle-events-table-condensed__button">
+              Responded At
+            </time-toggle-button>
           </th>
           <td
             :class="[
@@ -101,7 +95,6 @@
 </template>
 
 <script setup>
-import AppTooltip from '@/components/AppTooltip.vue'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const props = defineProps({
@@ -152,6 +145,10 @@ function toggle(id) {
 
   &__row:last-of-type &__header {
     border-bottom: 0;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

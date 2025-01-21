@@ -5,16 +5,16 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="selectedRange"
+        v-model="range"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="difficultyStatistics"
-      :interval="selectedRange.interval"/>
+      :interval="range.interval"/>
 
     <chart-controls
-      v-model="selectedRange"
+      v-model="range"
       class="difficulty-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
@@ -22,24 +22,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const chartsStore = useChartsStore()
 const { difficultyStatistics } = storeToRefs(chartsStore)
 const { fetchDifficultyStatistics } = chartsStore
 
-const props = defineProps({
-  hasSelect: {
-    required: true,
-    type: Boolean,
-  },
-  range: {
-    required: true,
-    type: Object,
-  },
-})
-
-const selectedRange = ref(props.range)
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadDifficultytatistics()
@@ -47,16 +36,16 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([selectedRange, selectedTxType], async() => {
+  watch([range], async() => {
     await loadDifficultytatistics()
   })
 }
 
 async function loadDifficultytatistics() {
   await fetchDifficultyStatistics(
-    selectedRange.value.interval,
-    selectedRange.value.limit,
-    selectedRange.value.customInterval)
+    range.value.interval,
+    range.value.limit,
+    range.value.customInterval)
 }
 </script>
 

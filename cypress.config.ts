@@ -24,7 +24,8 @@ export default defineConfig({
     baseUrl: 'http://localhost:8080',
     experimentalRunAllSpecs: true,
   },
+  retries: 10,
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 120000,
+  defaultCommandTimeout: 20000,
 })

@@ -104,6 +104,10 @@ defineEmits(['updated'])
     }
   }
 
+  &__overlay_cell_active {
+    background: var(--color-error);
+  }
+
   &__range {
     &_start {
       pointer-events: none !important;

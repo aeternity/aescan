@@ -23,6 +23,11 @@
       <app-tab title="Events">
         <token-events-panel/>
       </app-tab>
+      <app-tab
+        v-if="featureFlags.dex"
+        title="Trades">
+        <token-trades-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -31,6 +36,9 @@
 <script setup>
 import { useTokenDetailsStore } from '@/stores/tokenDetails'
 import { tokensHints } from '@/utils/hints/tokensHints'
+import useFeatureFlags from '@/composables/useFeatureFlags'
+
+const featureFlags = useFeatureFlags()
 
 const route = useRoute()
 const { push, replace } = useRouter()
@@ -40,7 +48,7 @@ const { tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
 const { fetchTokenDetails } = tokenDetailsStore
 
 const { isLoading } = useLoading()
-const TAB_KEYS = ['holders', 'events']
+const TAB_KEYS = ['holders', 'events', 'trades']
 
 const activeTabIndex = computed({
   get() {

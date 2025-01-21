@@ -7,12 +7,10 @@
       <tbody>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            <app-tooltip>
-              Name
-              <template #tooltip>
-                {{ accountHints.name }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.name }}
+            </hint-tooltip>
+            Name
           </th>
           <td class="account-names-table-condensed__data">
             <app-link
@@ -24,12 +22,12 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button>Expires</time-toggle-button>
-              <template #tooltip>
-                {{ accountHints.expires }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.expires }}
+            </hint-tooltip>
+            <time-toggle-button class="account-names-table-condensed__button">
+              Expires
+            </time-toggle-button>
           </th>
           <td class="account-names-table-condensed__data">
             <block-time-cell
@@ -39,12 +37,10 @@
         </tr>
         <tr class="account-names-table-condensed__row">
           <th class="account-names-table-condensed__header">
-            <app-tooltip>
-              Points To
-              <template #tooltip>
-                {{ accountHints.pointsTo }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.pointsTo }}
+            </hint-tooltip>
+            Points To
           </th>
           <td class="account-names-table-condensed__data">
             <template v-if="name.pointers.length">
@@ -67,7 +63,6 @@
 
 <script setup>
 import AppLink from '@/components/AppLink'
-import AppTooltip from '@/components/AppTooltip'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { accountHints } from '@/utils/hints/accountHints'
 
@@ -105,6 +100,10 @@ defineProps({
 
   &__pointer {
     display: block;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

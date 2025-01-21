@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import useAxios from '@/composables/useAxios'
+import useFeatureFlags from '@/composables/useFeatureFlags'
 import { adaptContracts } from '@/utils/adapters'
 
 export const useContractsStore = defineStore('contracts', () => {
   const { MIDDLEWARE_URL, CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public
+  const featureFlags = useFeatureFlags()
 
   const axios = useAxios()
   const rawContracts = ref(null)
@@ -35,6 +37,10 @@ export const useContractsStore = defineStore('contracts', () => {
   }
 
   async function fetchVerifiedContracts(contracts) {
+    if (!featureFlags.smartContractVerification) {
+      return
+    }
+
     const slug = contracts.data.map(contract => contract.tx.contractId).join('&ids=')
     try {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts?ids=${slug}`)

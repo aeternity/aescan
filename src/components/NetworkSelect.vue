@@ -42,6 +42,6 @@ const navigate = selectedOption => window.location.replace(selectedOption.url)
 
 <style scoped>
 .network-select {
-  width: 110px;
+  width: auto;
 }
 </style>

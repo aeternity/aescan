@@ -24,7 +24,7 @@
               </span>
             </app-link>
             <template v-else>
-              ---
+              N/A
             </template>
           </td>
         </tr>
@@ -58,7 +58,7 @@
               </span>
             </app-link>
             <template v-else>
-              ---
+              N/A
             </template>
           </td>
         </tr>

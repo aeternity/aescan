@@ -7,12 +7,10 @@
       <tbody>
         <tr class="account-transactions-table-condensed__row">
           <th class="account-transactions-table-condensed__header">
-            <app-tooltip>
-              Hash
-              <template #tooltip>
-                {{ accountHints.hash }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.hash }}
+            </hint-tooltip>
+            Hash
           </th>
           <td class="account-transactions-table-condensed__data">
             <value-hash-ellipsed
@@ -22,12 +20,10 @@
         </tr>
         <tr class="account-transactions-table-condensed__row">
           <th class="account-transactions-table-condensed__header">
-            <app-tooltip>
-              <time-toggle-button/>
-              <template #tooltip>
-                {{ accountHints.time }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.time }}
+            </hint-tooltip>
+            <time-toggle-button class="account-transactions-table-condensed__button"/>
           </th>
           <td class="account-transactions-table-condensed__data">
             <block-time-cell
@@ -37,30 +33,24 @@
         </tr>
         <tr class="account-transactions-table-condensed__row">
           <th class="account-transactions-table-condensed__header">
-            <app-tooltip>
-              Type
-              <template #tooltip>
-                {{ accountHints.type }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.type }}
+            </hint-tooltip>
+            Type
           </th>
           <td class="account-transactions-table-condensed__data">
-            <app-tooltip>
-              {{ transaction.type }}
-              <template #tooltip>
-                {{ transactionsHints[transaction.hintKey] }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ transactionsHints[transaction.hintKey] }}
+            </hint-tooltip>
+            {{ transaction.type }}
           </td>
         </tr>
         <tr class="account-transactions-table-condensed__row">
           <th class="account-transactions-table-condensed__header">
-            <app-tooltip>
-              Data
-              <template #tooltip>
-                {{ accountHints.data }}
-              </template>
-            </app-tooltip>
+            <hint-tooltip>
+              {{ accountHints.data }}
+            </hint-tooltip>
+            Data
           </th>
           <td class="account-transactions-table-condensed__data">
             <transaction-cell
@@ -78,7 +68,6 @@ import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { accountHints } from '@/utils/hints/accountHints'
 import TransactionCell from '@/components/TransactionCell'
 import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import AppTooltip from '@/components/AppTooltip'
 
 defineProps({
   accountTransactions: {
@@ -105,6 +94,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

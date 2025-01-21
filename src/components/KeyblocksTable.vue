@@ -33,7 +33,7 @@
           </hint-tooltip>
         </th>
         <th>
-          Beneficiary Reward
+          Reward
           <hint-tooltip>
             {{ keyblocksHints.beneficiaryReward }}
           </hint-tooltip>
@@ -75,7 +75,7 @@
 
 <script setup>
 import HintTooltip from '@/components/HintTooltip'
-import { keyblocksHints } from "@/utils/hints/keyblocksHints";
+import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 
 defineProps({
   keyblocks: {

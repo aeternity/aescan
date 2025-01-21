@@ -4,50 +4,46 @@
       v-for="holder in tokenHolders.data"
       :key="holder.address"
       class="token-holders-table-condensed__table">
-      <tr class="token-holders-table-condensed__row">
-        <th class="token-holders-table-condensed__header">
-          <app-tooltip>
-            Account
-            <template #tooltip>
+      <tbody>
+        <tr class="token-holders-table-condensed__row">
+          <th class="token-holders-table-condensed__header">
+            <hint-tooltip>
               {{ tokensHints.account }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="token-holders-table-condensed__data">
-          <value-hash-ellipsed
-            :hash="holder.address"
-            :link-to="`/accounts/${holder.address}`"/>
-        </td>
-      </tr>
-      <tr class="token-holders-table-condensed__row">
-        <th class="token-holders-table-condensed__header">
-          <app-tooltip>
-            Amount
-            <template #tooltip>
+            </hint-tooltip>
+            Account
+          </th>
+          <td class="token-holders-table-condensed__data">
+            <value-hash-ellipsed
+              :hash="holder.address"
+              :link-to="`/accounts/${holder.address}`"/>
+          </td>
+        </tr>
+        <tr class="token-holders-table-condensed__row">
+          <th class="token-holders-table-condensed__header">
+            <hint-tooltip>
               {{ tokensHints.amount }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="token-holders-table-condensed__data">
-          <price-label
-            :price="holder.amount"
-            :currency="tokenDetails.symbol"
-            :contract-id="holder.contractId"/>
-        </td>
-      </tr>
-      <tr class="token-holders-table-condensed__row">
-        <th class="token-holders-table-condensed__header">
-          <app-tooltip>
-            Percentage
-            <template #tooltip>
+            </hint-tooltip>
+            Amount
+          </th>
+          <td class="token-holders-table-condensed__data">
+            <price-label
+              :price="holder.amount"
+              :currency="tokenDetails.symbol"
+              :contract-id="holder.contractId"/>
+          </td>
+        </tr>
+        <tr class="token-holders-table-condensed__row">
+          <th class="token-holders-table-condensed__header">
+            <hint-tooltip>
               {{ tokensHints.percentage }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="token-holders-table-condensed__data">
-          {{ holder.percentage }}
-        </td>
-      </tr>
+            </hint-tooltip>
+            Percentage
+          </th>
+          <td class="token-holders-table-condensed__data">
+            {{ holder.percentage }}
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>

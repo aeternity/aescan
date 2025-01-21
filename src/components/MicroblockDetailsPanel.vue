@@ -78,6 +78,17 @@
         <tr class="microblock-details-panel__row">
           <th class="microblock-details-panel__table-header">
             <hint-tooltip>
+              {{ microblocksHints.gas }}
+            </hint-tooltip>
+            Gas Limit
+          </th>
+          <td>
+            {{ microblockDetails.gas }}
+          </td>
+        </tr>
+        <tr class="microblock-details-panel__row">
+          <th class="microblock-details-panel__table-header">
+            <hint-tooltip>
               {{ microblocksHints.apiLinks }}
             </hint-tooltip>
             API Links

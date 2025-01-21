@@ -19,10 +19,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import PaginatedContent from '@/components/PaginatedContent'
-import NamesActiveTable from '@/components/NamesActiveTable'
-import NamesActiveTableCondensed from '@/components/NamesActiveTableCondensed'
 import { useNamesStore } from '@/stores/names'
 
 const namesStore = useNamesStore()

@@ -34,13 +34,13 @@
 import { storeToRefs } from 'pinia'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import { useContractVerifiedStore } from '@/stores/contractVerified'
-import { useAesdk } from '@/stores/aesdk'
+import { useWalletStore } from '@/stores/wallet'
 
-const { aeSdk } = storeToRefs(useAesdk())
+const { aeSdk } = storeToRefs(useWalletStore())
 
 const contractVerifiedStore = useContractVerifiedStore()
 const { isVerified } = storeToRefs(contractVerifiedStore)
-const { getReadContractInstance, parseResponse } = contractVerifiedStore
+const { getContract, parseResponse } = contractVerifiedStore
 
 const props = defineProps({
   args: {
@@ -67,7 +67,7 @@ async function decode() {
     return
   }
   isLoading.value = true
-  const contract = await getReadContractInstance()
+  const contract = await getContract()
   const tx = await aeSdk.value.api.getTransactionInfoByHash(props.callTxHash)
   const decodedUsingContract = contract.$decodeEvents(tx.callInfo.log)
   encodedEvents.value = parseResponse(decodedUsingContract).reverse()

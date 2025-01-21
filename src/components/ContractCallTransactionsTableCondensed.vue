@@ -4,71 +4,65 @@
       v-for="transaction in contractCallTransactions.data"
       :key="transaction.hash"
       class="contract-call-transactions-table-condensed__table">
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Hash
-            <template #tooltip>
+      <tbody>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <hint-tooltip>
               {{ contractsHints.callTransactionsHash }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <value-hash-ellipsed
-            :hash="transaction.hash"
-            :link-to="`/transactions/${transaction.hash}`"/>
-        </td>
-      </tr>
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            <time-toggle-button/>
-            <template #tooltip>
+            </hint-tooltip>
+            Hash
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <value-hash-ellipsed
+              :hash="transaction.hash"
+              :link-to="`/transactions/${transaction.hash}`"/>
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <hint-tooltip>
               {{ contractsHints.callTransactionsTime }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <block-time-cell
-            :height="transaction.createdHeight"
-            :timestamp="transaction.created"/>
-        </td>
-      </tr>
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Caller
-            <template #tooltip>
+            </hint-tooltip>
+            <time-toggle-button class="contract-call-transactions-table-condensed__button"/>
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <block-time-cell
+              :height="transaction.createdHeight"
+              :timestamp="transaction.created"/>
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <hint-tooltip>
               {{ contractsHints.callTransactionsCaller }}
-            </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <value-hash-ellipsed
-            :hash="transaction.data.callerId"
-            :link-to="`/accounts/${transaction.data.callerId}`"/>
-        </td>
-      </tr>
-      <tr class="contract-call-transactions-table-condensed__row">
-        <th class="contract-call-transactions-table-condensed__header">
-          <app-tooltip>
-            Entrypoint
-            <template #tooltip>
+            </hint-tooltip>
+            Caller
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <value-hash-ellipsed
+              :hash="transaction.data.callerId"
+              :link-to="`/accounts/${transaction.data.callerId}`"/>
+          </td>
+        </tr>
+        <tr class="contract-call-transactions-table-condensed__row">
+          <th class="contract-call-transactions-table-condensed__header">
+            <hint-tooltip>
               {{ contractsHints.callTransactionsEntryPoint }}
+            </hint-tooltip>
+            Entrypoint
+          </th>
+          <td class="contract-call-transactions-table-condensed__data">
+            <app-chip
+              v-if="transaction.data.function"
+              size="sm">
+              {{ transaction.data.function }}
+            </app-chip>
+            <template v-else>
+              N/A
             </template>
-          </app-tooltip>
-        </th>
-        <td class="contract-call-transactions-table-condensed__data">
-          <app-chip
-            v-if="transaction.data.function"
-            size="sm">
-            {{ transaction.data.function }}
-          </app-chip>
-          <template v-else>
-            N/A
-          </template>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -103,6 +97,10 @@ defineProps({
 
   &__data {
     text-align: right;
+  }
+
+  &__button {
+    margin-left: 3px;
   }
 }
 </style>

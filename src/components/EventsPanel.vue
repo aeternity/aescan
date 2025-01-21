@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { contractsHints } from '@/utils/hints/contractsHints'
 
 const { aeSdk } = storeToRefs(useWalletStore())

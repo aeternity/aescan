@@ -45,7 +45,6 @@
 
 <script setup>
 import { defineAsyncComponent } from 'vue'
-import { storeToRefs } from 'pinia'
 
 const props = defineProps({
   transactionData: {

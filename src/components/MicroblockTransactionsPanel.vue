@@ -20,7 +20,7 @@
   </app-panel>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { ref } from 'vue'
 import { useRouter } from '#app'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'

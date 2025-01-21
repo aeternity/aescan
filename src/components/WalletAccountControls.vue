@@ -29,7 +29,6 @@
   </app-button>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const props = defineProps({
   backlink: {

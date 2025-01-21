@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 
 const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =

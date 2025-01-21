@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
 

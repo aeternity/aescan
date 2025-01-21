@@ -41,7 +41,6 @@
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
-import { storeToRefs } from 'pinia'
 
 const props = defineProps({
   price: {

@@ -36,7 +36,6 @@
   </app-panel>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
 
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 

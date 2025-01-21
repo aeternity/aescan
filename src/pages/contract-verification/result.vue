@@ -74,7 +74,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const timer = ref(null)
 

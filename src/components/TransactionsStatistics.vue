@@ -27,7 +27,6 @@
   </div>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 const { fetchLast24hsTransactionsStatistics } = useTransactionsStore()

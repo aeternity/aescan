@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const tokenDetailsStore = useTokenDetailsStore()
 const { fetchTokenHolders, fetchTokenHoldersCount } = tokenDetailsStore

@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { isDesktop } from '@/utils/screen'
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)

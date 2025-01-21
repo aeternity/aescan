@@ -79,7 +79,7 @@
   </div>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { nftsHints } from '@/utils/hints/nftsHints'
 
 const nftDetailsStore = useNftDetailsStore()

@@ -183,7 +183,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 const config = useRuntimeConfig().public

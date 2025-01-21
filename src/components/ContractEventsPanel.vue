@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const contractDetailsStore = useContractDetailsStore()
 const { fetchContractEvents } = contractDetailsStore

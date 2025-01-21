@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const chartsStore = useChartsStore()
 const { hashrateStatistics } = storeToRefs(chartsStore)

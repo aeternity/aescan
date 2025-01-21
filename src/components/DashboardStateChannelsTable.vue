@@ -86,7 +86,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 

@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useRoute, useRouter } from 'nuxt/app'
 import { accountHints } from '@/utils/hints/accountHints'
 import { isDesktop } from '@/utils/screen'

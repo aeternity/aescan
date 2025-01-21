@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const nodesStore = useNodes()
 const { fetchNodes } = nodesStore

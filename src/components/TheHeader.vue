@@ -69,7 +69,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useOnline } from '@vueuse/core'
 import { MENU_HASH } from '@/utils/constants'
 

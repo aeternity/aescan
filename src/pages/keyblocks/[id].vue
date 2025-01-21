@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useRoute } from 'nuxt/app'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 

@@ -60,7 +60,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 const contractVerifiedStore = useContractVerifiedStore()
 const { contractCode, verificationDetails, isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchContractCode } = contractVerifiedStore

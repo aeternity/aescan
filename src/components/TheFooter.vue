@@ -88,7 +88,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const { middlewareStatus, nodeStatus, isSyncing } = storeToRefs(useStatus())
 const { MIDDLEWARE_URL } = useRuntimeConfig().public

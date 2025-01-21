@@ -17,7 +17,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
+
 import { isDesktop } from '@/utils/screen'
 
 const searchStore = useSearchStore()

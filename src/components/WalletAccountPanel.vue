@@ -26,7 +26,7 @@
   </client-only>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useRoute, useRouter } from 'nuxt/app'
 import { isDesktop } from '@/utils/screen'
 

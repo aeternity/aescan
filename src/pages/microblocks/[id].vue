@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useRoute } from 'nuxt/app'
 
 import { microblocksHints } from '@/utils/hints/microblocksHints'

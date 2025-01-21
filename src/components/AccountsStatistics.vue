@@ -18,7 +18,6 @@
   </div>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const { fetchTopAccounts } = useTopAccountsStore()
 

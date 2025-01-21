@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const oracleDetailsStore = useOracleDetailsStore()

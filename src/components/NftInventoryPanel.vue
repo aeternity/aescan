@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { computed } from 'vue'
 import { isDesktop } from '@/utils/screen'
 

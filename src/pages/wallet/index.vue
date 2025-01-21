@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { walletHints } from '@/utils/hints/walletHints'
 
 const { push } = useRouter()

@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 
 const route = useRoute()

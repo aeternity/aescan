@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 

@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { isDesktop } from '@/utils/screen'
 
 const accountStore = useAccountStore()

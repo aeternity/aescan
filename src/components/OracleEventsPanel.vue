@@ -18,7 +18,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleEvents } = storeToRefs(oracleDetailsStore)

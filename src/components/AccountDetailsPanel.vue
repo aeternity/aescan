@@ -138,7 +138,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { accountHints } from '@/utils/hints/accountHints'
 
 const { price } = storeToRefs(useMarketStatsStore())

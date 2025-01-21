@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const accountStore = useAccountStore()
 const { fetchAccountNames } = accountStore

@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useRuntimeConfig } from 'nuxt/app'
 
 const { NETWORK_NAME } = useRuntimeConfig().public

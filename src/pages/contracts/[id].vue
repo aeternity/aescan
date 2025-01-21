@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
 

@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'nuxt/app'
 import { isDesktop } from '@/utils/screen'

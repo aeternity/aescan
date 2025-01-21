@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>

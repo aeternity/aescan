@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 
 const aeCoinStore = useAeCoinStore()
 const { fetchMarketStats } = aeCoinStore

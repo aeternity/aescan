@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+
 import { useRuntimeConfig } from 'nuxt/app'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 

@@ -10,7 +10,6 @@
 
 <script setup>
 import { useVModel } from '@vueuse/core'
-import { storeToRefs } from 'pinia'
 
 const verificationStore = useContractVerificationStore()
 const { compilerOptions } = storeToRefs(verificationStore)

@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { useRuntimeConfig } from 'nuxt/app'
+
 import { BigNumber } from 'bignumber.js'
 import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 

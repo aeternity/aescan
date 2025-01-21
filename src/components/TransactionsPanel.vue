@@ -23,7 +23,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
+
 import { useRoute, useRouter } from 'nuxt/app'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 import { isDesktop } from '@/utils/screen'

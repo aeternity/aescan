@@ -1,9 +1,6 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_MICROBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'
 
-const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSequence?.[0].hash
-// todo move
-
 export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
@@ -16,6 +13,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const rawSelectedKeyblock = ref(null)
   const rawSelectedMicroblock = ref(null)
   const blockHeight = ref(null)
+
+  const isBlockFirstInSequence = (block, blockSequence) => block.hash === blockSequence?.[0].hash
 
   const selectedKeyblock = computed(() => {
     return adaptKeyblock(rawSelectedKeyblock.value || keyblocks.value?.[0])

@@ -13,9 +13,6 @@
 </template>
 
 <script setup>
-
-// todo remove
-
 const props = defineProps({
   contractDetails: {
     type: Object,

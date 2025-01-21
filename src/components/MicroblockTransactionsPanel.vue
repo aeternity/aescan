@@ -23,14 +23,14 @@
 <script setup>
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
-const { push } = useRouter()
-// todo router toute
 const microblockDetailsStore = useMicroblockDetailsStore()
 const { microblockTransactions: transactions } = storeToRefs(microblockDetailsStore)
 const { fetchMicroblockTransactions } = microblockDetailsStore
 
-const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const route = useRoute()
+const { push } = useRouter()
+
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const pageIndex = ref(1)
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 

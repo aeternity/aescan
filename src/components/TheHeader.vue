@@ -69,7 +69,6 @@
 </template>
 
 <script setup>
-// todo online
 import { useOnline } from '@vueuse/core'
 import { MENU_HASH } from '@/utils/constants'
 

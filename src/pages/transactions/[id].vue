@@ -33,8 +33,6 @@
 </template>
 
 <script setup>
-// todo router
-import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 const transactionDetailsStore = useTransactionDetailsStore()

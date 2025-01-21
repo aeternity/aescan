@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Contract } from '@aeternity/aepp-sdk'

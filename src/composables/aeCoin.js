@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import cache from 'memory-cache'
 import {
   CACHE_KEY_COINSTORE_MARKET_DATA,

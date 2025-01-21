@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { AeSdk, BrowserWindowMessageConnection, Node, WalletConnectorFrame, walletDetector } from '@aeternity/aepp-sdk'
 

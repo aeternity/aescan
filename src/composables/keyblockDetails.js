@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 

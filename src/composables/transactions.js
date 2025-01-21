@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { ref } from 'vue'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'

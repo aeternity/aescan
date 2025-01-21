@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { BigNumber } from 'bignumber.js'
 import { MAXIMUM_FRACTION_DIGITS } from '@/utils/constants'

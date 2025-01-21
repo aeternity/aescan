@@ -1,5 +1,4 @@
 import { useRuntimeConfig } from 'nuxt/app'
-import { defineStore } from 'pinia'
 
 export const useSearchStore = defineStore('search', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

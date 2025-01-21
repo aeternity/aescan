@@ -54,7 +54,6 @@
 import { storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { useWalletStore } from '@/stores/wallet'
-import AppButton from '@/components/AppButton'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 

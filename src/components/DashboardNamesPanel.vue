@@ -20,7 +20,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
 import { useNamesStore } from '@/stores/names'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())

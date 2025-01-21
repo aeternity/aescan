@@ -21,12 +21,8 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
 import { useAccountStore } from '@/stores/accountDetails'
-import AccountActivitiesTable from '@/components/AccountActivitiesTable'
-import AccountActivitiesTableCondensed from '@/components/AccountActivitiesTableCondensed'
 import { isDesktop } from '@/utils/screen'
-import PaginatedContent from '@/components/PaginatedContent'
 
 const accountStore = useAccountStore()
 const { fetchAccountActivities } = accountStore

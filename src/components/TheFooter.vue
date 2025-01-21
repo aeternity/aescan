@@ -89,9 +89,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import FooterList from '@/components/FooterList'
-import AppLink from '@/components/AppLink'
-import AppTooltip from '@/components/AppTooltip'
 import { useStatus } from '@/stores/status'
 
 const { middlewareStatus, nodeStatus, isSyncing } = storeToRefs(useStatus())

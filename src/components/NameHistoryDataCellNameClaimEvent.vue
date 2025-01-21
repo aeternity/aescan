@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   payload: {

@@ -30,11 +30,6 @@ import { storeToRefs } from 'pinia'
 import { useRoute } from 'nuxt/app'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
-import PageHeader from '@/components/PageHeader'
-import KeyblockDetailsPanel from '@/components/KeyblockDetailsPanel'
-import KeyblockMicroblocksPanel from '@/components/KeyblockMicroblocksPanel'
-import AppTabs from '@/components/AppTabs'
-import AppTab from '@/components/AppTab'
 
 const keyblockDetailsStore = useKeyblockDetailsStore()
 const { keyblockDetails } = storeToRefs(keyblockDetailsStore)

@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/PageHeader'
-import TokensPanel from '@/components/TokensPanel'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 const { isLoading } = useLoading()

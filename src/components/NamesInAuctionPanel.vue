@@ -19,10 +19,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import PaginatedContent from '@/components/PaginatedContent'
-import NamesInAuctionTable from '@/components/NamesInAuctionTable'
-import NamesInAuctionTableCondensed from '@/components/NamesInAuctionTableCondensed'
 import { useNamesStore } from '@/stores/names'
 
 const namesStore = useNamesStore()

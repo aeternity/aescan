@@ -36,13 +36,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useNameDetailsStore } from '@/stores/nameDetails'
-import NameDetailsPanel from '@/components/NameDetailsPanel'
-import NameHistoryPanel from '@/components/NameHistoryPanel'
-import NamePointersSpecialPanel from '@/components/NamePointersSpecialPanel'
-import NamePointersCustomPanel from '@/components/NamePointersCustomPanel'
-import PageHeader from '@/components/PageHeader'
-import AppTabs from '@/components/AppTabs'
-import AppTab from '@/components/AppTab'
 import { namesHints } from '@/utils/hints/namesHints'
 import { isDesktop } from '@/utils/screen'
 

@@ -5,10 +5,10 @@
       :limit="limit"
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
-      <nfts-owners-table
+      <nft-owners-table
         :owners="nftOwners"
-        class="nfts-owners-panel__table u-hidden-mobile"/>
-      <nfts-owners-table-condensed
+        class="nft-owners-panel__table u-hidden-mobile"/>
+      <nft-owners-table-condensed
         :owners="nftOwners"
         class="u-hidden-desktop"/>
     </paginated-content>
@@ -36,7 +36,7 @@ async function loadPrevNftowners() {
 </script>
 
 <style scoped>
-.nfts-owners-panel__table {
+.nft-owners-panel__table {
   margin-bottom: var(--space-4);
 }
 </style>

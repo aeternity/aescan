@@ -19,8 +19,6 @@
   </div>
 </template>
 <script setup>
-import AppLink from '@/components/AppLink'
-
 defineProps({
   title: {
     type: String,

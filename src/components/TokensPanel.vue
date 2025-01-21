@@ -28,12 +28,7 @@
 import { storeToRefs } from 'pinia'
 import { computed, watch } from 'vue'
 import { useTokensStore } from '@/stores/tokens'
-import TokensTableCondensed from '@/components/TokensTableCondensed'
-import TokensTable from '@/components/TokensTable'
-import TokenSelect from '@/components/TokenSelect'
-import PaginatedContent from '@/components/PaginatedContent'
 import { isDesktop } from '@/utils/screen'
-import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 

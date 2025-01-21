@@ -7,8 +7,6 @@
 </template>
 
 <script setup>
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-
 const props = defineProps({
   contractDetails: {
     required: true,

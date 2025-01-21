@@ -12,7 +12,6 @@
 
 <script setup>
 import { formatAettosToAe } from '@/utils/format'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   transactionData: {

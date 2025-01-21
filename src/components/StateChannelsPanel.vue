@@ -22,8 +22,6 @@
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { useStateChannelsStore } from '@/stores/stateChannels'
-import PaginatedContent from '@/components/PaginatedContent'
-import StateChannelsTableCondensed from '@/components/StateChannelsTableCondensed'
 import { isDesktop } from '@/utils/screen'
 
 const stateChannelsStore = useStateChannelsStore()

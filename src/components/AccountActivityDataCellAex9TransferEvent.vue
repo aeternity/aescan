@@ -10,7 +10,6 @@
 
 <script setup>
 import { formatReduceDecimals } from '@/utils/format'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const props = defineProps({
   activity: {

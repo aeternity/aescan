@@ -52,7 +52,6 @@
 </template>
 <script setup>
 
-import TokenSymbolIcon from '@/components/TokenSymbolIcon'
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({

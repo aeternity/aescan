@@ -78,8 +78,6 @@
 <script setup>
 import { useHead } from '@vueuse/head'
 import { storeToRefs } from 'pinia'
-import TheHeader from '@/components/TheHeader'
-import TheFooter from '@/components/TheFooter'
 import Error from '@/error'
 import { initializeStores } from '@/stores'
 import { useWebSocket } from '@/stores/webSocket'
@@ -152,6 +150,45 @@ router.beforeEach((_to, from, next, abort) => {
 .nuxt-loading-indicator {
   background: var(--color-fire);
 }
+
+:root {
+  view-transition-name: root;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes move-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes move-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apply the custom animation to the old and new page states */
+
+::view-transition-old(root) {
+  animation: 0.07s ease-in both move-out;
+}
+
+::view-transition-new(root) {
+  animation: 0.07s ease-in both move-in;
+}
+
 </style>
 
 <style scoped>

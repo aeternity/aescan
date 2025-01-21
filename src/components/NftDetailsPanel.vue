@@ -1,9 +1,9 @@
 <template>
-  <app-panel class="nfts-details-panel">
+  <app-panel class="nft-details-panel">
     <table>
       <tbody>
-        <tr class="nfts-details-panel__row">
-          <th class="nfts-details-panel__table-header">
+        <tr class="nft-details-panel__row">
+          <th class="nft-details-panel__table-header">
             <hint-tooltip>
               {{ nftsHints.smartContractId }}
             </hint-tooltip>
@@ -20,8 +20,8 @@
             </div>
           </td>
         </tr>
-        <tr class="nfts-details-panel__row">
-          <th class="nfts-details-panel__table-header">
+        <tr class="nft-details-panel__row">
+          <th class="nft-details-panel__table-header">
             <hint-tooltip>
               {{ nftsHints.collectionName }}
             </hint-tooltip>
@@ -31,8 +31,8 @@
             {{ nftDetails.name }}
           </td>
         </tr>
-        <tr class="nfts-details-panel__row">
-          <th class="nfts-details-panel__table-header">
+        <tr class="nft-details-panel__row">
+          <th class="nft-details-panel__table-header">
             <hint-tooltip>
               {{ nftsHints.owners }}
             </hint-tooltip>
@@ -42,8 +42,8 @@
             {{ nftDetails.nftOwners }}
           </td>
         </tr>
-        <tr class="nfts-details-panel__row">
-          <th class="nfts-details-panel__table-header">
+        <tr class="nft-details-panel__row">
+          <th class="nft-details-panel__table-header">
             <hint-tooltip>
               {{ nftsHints.amount }}
             </hint-tooltip>
@@ -54,8 +54,8 @@
           </td>
         </tr>
         <tr
-          class="nfts-details-panel__row">
-          <th class="nfts-details-panel__table-header">
+          class="nft-details-panel__row">
+          <th class="nft-details-panel__table-header">
             <hint-tooltip>
               {{ nftsHints.extensions }}
             </hint-tooltip>
@@ -64,7 +64,7 @@
           <td>
             <div
               v-if="!!nftDetails.extensions.length"
-              class="nfts-details-panel__extensions">
+              class="nft-details-panel__extensions">
               <app-chip
                 v-for="extension in nftDetails.extensions"
                 :key="extension"
@@ -79,8 +79,8 @@
         </tr>
         <tr
           v-if="nftDetails.tokenLimit !== null"
-          class="nfts-details-panel__row">
-          <th class="nfts-details-panel__table-header">
+          class="nft-details-panel__row">
+          <th class="nft-details-panel__table-header">
             <hint-tooltip>
               {{ nftsHints.tokenLimit }}
             </hint-tooltip>
@@ -92,8 +92,8 @@
         </tr>
         <tr
           v-if="nftDetails.templateLimit !== null"
-          class="nfts-details-panel__row">
-          <th class="nfts-details-panel__table-header">
+          class="nft-details-panel__row">
+          <th class="nft-details-panel__table-header">
             Template limit
             <hint-tooltip>
               {{ nftsHints.templateLimit }}
@@ -109,7 +109,6 @@
 </template>
 
 <script setup>
-import AppPanel from '@/components/AppPanel'
 import { nftsHints } from '@/utils/hints/nftsHints'
 
 defineProps({
@@ -122,7 +121,7 @@ defineProps({
 </script>
 
 <style scoped>
-.nfts-details-panel {
+.nft-details-panel {
   &__table-header {
     border-bottom: 1px solid var(--color-midnight-25);
 

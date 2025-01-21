@@ -203,9 +203,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import AppLink from '@/components/AppLink'
-import AppPanel from '@/components/AppPanel'
-import StatsTile from '@/components/StatsTile'
 import { formatNullable, formatNumber } from '@/utils/format'
 import { useBlockchainStatsStore } from '@/stores/blockchainStats'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'

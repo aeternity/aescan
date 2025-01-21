@@ -80,10 +80,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import DashboardNamesPanel from '@/components/DashboardNamesPanel'
-import DashboardStateChannelsPanel from '@/components/DashboardStateChannelsPanel'
-import AppHero from '@/components/AppHero'
-import AppLink from '@/components/AppLink'
 import { useWebSocket } from '@/stores/webSocket'
 import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 

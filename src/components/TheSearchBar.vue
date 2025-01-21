@@ -18,7 +18,6 @@
 </template>
 <script setup>
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-import AppIcon from '@/components/AppIcon'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 

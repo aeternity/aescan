@@ -15,9 +15,6 @@
 </template>
 
 <script setup>
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import AppChip from '@/components/AppChip'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   transactionData: {

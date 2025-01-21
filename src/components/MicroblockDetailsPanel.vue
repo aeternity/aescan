@@ -122,10 +122,6 @@
 
 <script setup>
 import { microblocksHints } from '@/utils/hints/microblocksHints'
-import AppPanel from '@/components/AppPanel'
-import CopyChip from '@/components/CopyChip'
-import AppIcon from '@/components/AppIcon'
-import AppLink from '@/components/AppLink'
 import { formatEllipseHash, formatNumber } from '@/utils/format'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

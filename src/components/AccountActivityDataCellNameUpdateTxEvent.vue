@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
-import AppLink from '@/components/AppLink'
 
 defineProps({
   activity: {

@@ -92,7 +92,7 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import AppLink from '@/components/AppLink'
+
 import { formatAettosToAe, formatDecodeBase64, formatNullable } from '@/utils/format'
 
 defineProps({

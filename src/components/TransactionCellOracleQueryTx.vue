@@ -18,9 +18,6 @@
 
 <script setup>
 import { formatDecodeBase64 } from '@/utils/format'
-import AppChip from '@/components/AppChip'
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   transactionData: {

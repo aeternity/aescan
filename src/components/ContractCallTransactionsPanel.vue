@@ -22,12 +22,8 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
 import { useContractDetailsStore } from '@/stores/contractDetails'
-import ContractCallTransactionsTable from '@/components/ContractCallTransactionsTable'
-import ContractCallTransactionsTableCondensed from '@/components/ContractCallTransactionsTableCondensed'
 import { isDesktop } from '@/utils/screen'
-import PaginatedContent from '@/components/PaginatedContent'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractCallTransactions, contractCallsCount } = storeToRefs(contractDetailsStore)

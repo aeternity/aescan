@@ -70,8 +70,6 @@
 </template>
 
 <script setup>
-import AppLink from '@/components/AppLink'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { namesHints } from '@/utils/hints/namesHints'
 
 defineProps({

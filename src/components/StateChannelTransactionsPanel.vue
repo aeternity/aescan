@@ -24,12 +24,8 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
 import { useStateChannelDetailsStore } from '@/stores/stateChannelDetails'
-import StateChannelTransactionsTable from '@/components/StateChannelTransactionsTable'
-import StateChannelTransactionsTableCondensed from '@/components/StateChannelTransactionsTableCondensed'
 import { isDesktop } from '@/utils/screen'
-import PaginatedContent from '@/components/PaginatedContent'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()
 const { stateChannelTransactions, stateChannelTransactionsCount } = storeToRefs(stateChannelDetailsStore)

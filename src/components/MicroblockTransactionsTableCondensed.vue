@@ -62,8 +62,6 @@
   </div>
 </template>
 <script setup>
-import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 

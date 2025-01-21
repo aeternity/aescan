@@ -102,8 +102,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
-import AppSwiper from '@/components/AppSwiper'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())

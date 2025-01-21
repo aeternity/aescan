@@ -20,9 +20,6 @@
 
 <script setup>
 import { formatAettosToAe } from '@/utils/format'
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import AppLink from '@/components/AppLink'
 
 const props = defineProps({
   transactionData: {

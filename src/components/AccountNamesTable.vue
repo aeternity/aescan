@@ -49,10 +49,7 @@
   </table>
 </template>
 <script setup>
-import AppLink from '@/components/AppLink'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { accountHints } from '@/utils/hints/accountHints'
-import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   accountNames: {

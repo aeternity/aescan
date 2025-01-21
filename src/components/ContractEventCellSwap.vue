@@ -9,9 +9,6 @@
 </template>
 
 <script setup>
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-
 const props = defineProps({
   contractDetails: {
     required: true,

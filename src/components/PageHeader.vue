@@ -16,12 +16,6 @@
   </header>
 </template>
 
-<script setup>
-import TheSearchBar from '@/components/TheSearchBar'
-import AppTitle from '@/components/AppTitle'
-import HintTooltip from '@/components/HintTooltip'
-</script>
-
 <style scoped>
 .page-header {
   padding: 8px 0;

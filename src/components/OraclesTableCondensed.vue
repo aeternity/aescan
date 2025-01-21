@@ -65,7 +65,6 @@
 </template>
 
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 defineProps({

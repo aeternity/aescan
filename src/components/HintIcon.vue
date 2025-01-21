@@ -6,8 +6,6 @@
 </template>
 
 <script setup>
-import AppIcon from '@/components/AppIcon'
-
 defineProps({
   variant: {
     type: String,

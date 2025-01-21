@@ -20,10 +20,6 @@
 </template>
 
 <script setup>
-import AppIcon from '@/components/AppIcon'
-import HintTooltip from '@/components/HintTooltip'
-import AppBadge from '@/components/AppBadge'
-
 defineProps({
   iconName: {
     type: String,

@@ -1,14 +1,14 @@
 <template>
-  <app-panel class="nfts-templates-owners-panel">
+  <app-panel class="nft-templates-owners-panel">
     <paginated-content
       :entities="nftOwners"
       :limit="limit"
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
-      <nfts-templates-owners-table
+      <nft-templates-owners-table
         :owners="nftOwners"
-        class="nfts-templates-owners-panel__table u-hidden-mobile"/>
-      <nfts-templates-owners-table-condensed
+        class="nft-templates-owners-panel__table u-hidden-mobile"/>
+      <nft-templates-owners-table-condensed
         :owners="nftOwners"
         class="u-hidden-desktop"/>
     </paginated-content>
@@ -36,7 +36,7 @@ async function loadPrevNftowners() {
 </script>
 
 <style scoped>
-.nfts-templates-owners-panel {
+.nft-templates-owners-panel {
   background: var(--color-snow);
   font-size: 11px;
   line-height: 16px;

@@ -14,7 +14,6 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
-import AppSelect from '@/components/AppSelect'
 
 const {
   NETWORK_NAME,

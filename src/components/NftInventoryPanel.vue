@@ -6,10 +6,10 @@
       :limit="limit"
       @next-clicked="loadNextNftInventory"
       @prev-clicked="loadPrevNftInventory">
-      <nfts-inventory-table
+      <nft-inventory-table
         :nft-inventory="nftInventory"
-        class="nfts-inventory-panel__table u-hidden-mobile"/>
-      <nfts-inventory-table-condensed
+        class="nft-inventory-panel__table u-hidden-mobile"/>
+      <nft-inventory-table-condensed
         :nft-inventory="nftInventory"
         class="u-hidden-desktop"/>
     </paginated-content>
@@ -21,7 +21,6 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useNftDetailsStore } from '@/stores/nftDetails'
 import { isDesktop } from '@/utils/screen'
-import PaginatedContent from '@/components/PaginatedContent'
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
@@ -43,7 +42,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-.nfts-inventory-panel__table {
+.nft-inventory-panel__table {
   margin-bottom: var(--space-4);
 }
 </style>

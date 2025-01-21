@@ -20,10 +20,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import NameHistoryTable from '@/components/NameHistoryTable'
-import NameHistoryTableCondensed from '@/components/NameHistoryTableCondensed'
-import AppPanel from '@/components/AppPanel'
-import PaginatedContent from '@/components/PaginatedContent'
 import { useNameDetailsStore } from '@/stores/nameDetails'
 
 const nameDetailsStore = useNameDetailsStore()

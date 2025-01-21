@@ -9,7 +9,6 @@
 
 <script setup>
 import { formatAettosToAe } from '@/utils/format'
-import AppLink from '@/components/AppLink'
 
 defineProps({
   activity: {

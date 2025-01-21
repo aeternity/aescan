@@ -2,13 +2,13 @@
   <table>
     <thead>
       <tr>
-        <th class="nfts-owners-table__header">
+        <th class="nft-owners-table__header">
           Token ID
           <hint-tooltip>
             {{ nftsHints.ownersTokenId }}
           </hint-tooltip>
         </th>
-        <th class="nfts-owners-table__header">
+        <th class="nft-owners-table__header">
           Owner ID
           <hint-tooltip>
             {{ nftsHints.ownersOwnerId }}
@@ -20,10 +20,10 @@
       <tr
         v-for="owner in owners.data"
         :key="owner.tokenId">
-        <td class="nfts-owners-table__data">
+        <td class="nft-owners-table__data">
           {{ owner.tokenId }}
         </td>
-        <td class="nfts-owners-table__data">
+        <td class="nft-owners-table__data">
           <value-hash-ellipsed
             :link-to="`/accounts/${owner.ownerId}`"
             :hash="owner.ownerId "/>

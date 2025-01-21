@@ -21,8 +21,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useTokenDetailsStore } from '@/stores/tokenDetails'
-import TokenEventsTable from '@/components/TokenEventsTable.vue'
-import TokenEventsTableCondensed from '@/components/TokenEventsTableCondensed.vue'
 
 const { tokenEvents, tokenEventsCount } = storeToRefs(useTokenDetailsStore())
 const { fetchTokenEvents } = useTokenDetailsStore()

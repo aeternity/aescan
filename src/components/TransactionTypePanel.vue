@@ -46,10 +46,6 @@
 <script setup>
 import { defineAsyncComponent } from 'vue'
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import AppChip from '@/components/AppChip'
-import AppLink from '@/components/AppLink'
-import CopyChip from '@/components/CopyChip'
 import { formatEllipseHash } from '@/utils/format'
 import { useTransactionDetailsStore } from '@/stores/transactionDetails'
 

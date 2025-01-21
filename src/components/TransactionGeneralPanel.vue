@@ -169,11 +169,6 @@
 
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import AppPanel from '@/components/AppPanel'
-import AppChip from '@/components/AppChip'
-import AppIcon from '@/components/AppIcon'
-import AppLink from '@/components/AppLink'
-import CopyChip from '@/components/CopyChip'
 import { formatAettosToAe, formatEllipseHash } from '@/utils/format'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

@@ -150,10 +150,7 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import AppLink from '@/components/AppLink'
-import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAettosToAe, formatNullable } from '@/utils/format'
-import AppChip from '@/components/AppChip'
 
 const isCollapsed = ref(true)
 const isArgumentsLong = computed(() => JSON.stringify(props.transactionData.arguments).length > 300)

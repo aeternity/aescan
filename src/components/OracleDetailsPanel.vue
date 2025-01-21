@@ -204,11 +204,6 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import HintTooltip from '@/components/HintTooltip'
-import AppLink from '@/components/AppLink'
-import AppPanel from '@/components/AppPanel'
-import CopyChip from '@/components/CopyChip'
-import AppIcon from '@/components/AppIcon'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 

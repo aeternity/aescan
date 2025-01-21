@@ -108,8 +108,6 @@
 </template>
 
 <script setup>
-import AppLink from '@/components/AppLink'
-import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
 import { formatAettosToAe, formatNullable } from '@/utils/format'
 import { contractsHints } from '@/utils/hints/contractsHints'
 

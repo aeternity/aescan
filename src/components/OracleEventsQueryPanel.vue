@@ -63,8 +63,6 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import HintTooltip from '@/components/HintTooltip'
-import AppPanel from '@/components/AppPanel'
 
 defineProps({
   event: {

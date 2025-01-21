@@ -17,10 +17,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import PaginatedContent from '@/components/PaginatedContent'
-import AccountTokensTable from '@/components/AccountTokensTable'
-import AccountTokensTableCondensed from '@/components/AccountTokensTableCondensed'
 import { useAccountStore } from '@/stores/accountDetails'
 
 const accountStore = useAccountStore()

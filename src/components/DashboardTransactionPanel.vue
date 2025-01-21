@@ -37,11 +37,9 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import TransactionsSwiper from '@/components/TransactionsSwiper'
+
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { useRecentBlocksStore } from '@/stores/recentBlocks'
-import DashboardMicroblockTransactionsTable from '@/components/DashboardMicroblockTransactionsTable'
 
 const {
   selectedMicroblockTransactions,

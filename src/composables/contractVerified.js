@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Contract } from '@aeternity/aepp-sdk'
-import { adaptAciObject, adaptReadEntrypoints, adaptVerificationDetail, adaptWriteEntrypoints } from '@/utils/adapters'
 
 export const useContractVerifiedStore = defineStore('contractVerified', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public

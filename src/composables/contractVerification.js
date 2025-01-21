@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptVerificationResult } from '@/utils/adapters'
 
 export const useContractVerificationStore = defineStore('useContractVerificationStore', () => {
   const { CONTRACT_VERIFICATION_SERVICE_URL } = useRuntimeConfig().public

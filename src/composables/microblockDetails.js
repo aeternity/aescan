@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptMicroblock, adaptTransactions } from '@/utils/adapters'
 
 export const useMicroblockDetailsStore = defineStore('microblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

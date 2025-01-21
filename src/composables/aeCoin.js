@@ -10,13 +10,6 @@ import {
   MARKET_STATS_COINSTORE_ADDRESS,
   MARKET_STATS_HOTCOIN_ADDRESS,
 } from '@/utils/constants'
-import {
-  adaptMarketStatsCoinStore,
-  adaptMarketStatsCoinW,
-  adaptMarketStatsGate,
-  adaptMarketStatsHotCoin,
-  adaptMarketStatsMexc,
-} from '@/utils/adapters'
 
 export const useAeCoinStore = defineStore('aeCoin', () => {
   const axios = useAxios()

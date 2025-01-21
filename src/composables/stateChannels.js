@@ -1,6 +1,5 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
-import { adaptStateChannels } from '@/utils/adapters'
 
 export const useStateChannelsStore = defineStore('stateChannels', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

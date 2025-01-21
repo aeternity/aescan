@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptContractDetails, adaptContractEvents, adaptTransactions } from '@/utils/adapters'
 
 export const useContractDetailsStore = defineStore('contractDetails', () => {
   const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

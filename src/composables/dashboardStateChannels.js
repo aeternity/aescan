@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptDashboardStateChannels } from '@/utils/adapters'
 
 export const useDashboardStateChannelsStore = defineStore('dashboardStateChannels', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

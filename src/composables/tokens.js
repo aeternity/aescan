@@ -1,7 +1,6 @@
 import { computed, ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
 import { defineStore } from 'pinia'
-import { adaptListedTokens } from '@/utils/adapters'
 
 export const useTokensStore = defineStore('tokens', () => {
   const { MIDDLEWARE_URL, DEX_BACKEND_URL, NETWORK_NAME } = useRuntimeConfig().public

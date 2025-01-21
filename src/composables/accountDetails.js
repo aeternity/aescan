@@ -1,7 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { isAddressValid } from '@aeternity/aepp-sdk'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptAccountActivities, adaptAccountNames, adaptAccountTokens, adaptTransactions } from '@/utils/adapters'
 
 export const useAccountStore = defineStore('account', () => {
   const {

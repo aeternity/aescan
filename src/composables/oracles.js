@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptOracles } from '@/utils/adapters'
 
 export const useOraclesStore = defineStore('oracles', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public

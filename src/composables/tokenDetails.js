@@ -1,7 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
 import { Contract } from '@aeternity/aepp-sdk'
-import { adaptTokenDetails, adaptTokenEvents, adaptTokenHolders, adaptTrades } from '@/utils/adapters'
 import { TOKEN_SUPPLY_ACI } from '@/utils/constants'
 
 export const useTokenDetailsStore = defineStore('tokenDetails', () => {

@@ -1,6 +1,5 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptActiveNames, adaptExpiredNames, adaptInAuctionNames, adaptNames } from '@/utils/adapters'
 
 export const useNamesStore = defineStore('names', () => {
   const { blockHeight } = storeToRefs(useRecentBlocksStore())

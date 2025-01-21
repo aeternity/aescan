@@ -1,7 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
-import { adaptTransactionDetails } from '@/utils/adapters'
 
 export const useTransactionDetailsStore = defineStore('transactionDetails', () => {
   const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

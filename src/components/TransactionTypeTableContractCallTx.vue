@@ -150,7 +150,6 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import { formatAettosToAe, formatNullable } from '@/utils/format'
 
 const isCollapsed = ref(true)
 const isArgumentsLong = computed(() => JSON.stringify(props.transactionData.arguments).length > 300)

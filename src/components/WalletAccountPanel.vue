@@ -27,7 +27,6 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'nuxt/app'
 
 const walletStore = useWalletStore()
 const { address } = storeToRefs(walletStore)

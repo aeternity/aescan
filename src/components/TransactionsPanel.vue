@@ -22,8 +22,6 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'nuxt/app'
-// todo router
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 const transactionsStore = useTransactionsStore()

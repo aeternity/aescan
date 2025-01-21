@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'nuxt/app'
+
 import { accountHints } from '@/utils/hints/accountHints'
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']

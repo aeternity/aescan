@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
 
 const props = defineProps({
   transactionType: {
@@ -54,7 +53,7 @@ const transactionCellComponent = computed(() => {
   gap: var(--space-1);
   flex-wrap: wrap;
 
-  @media(--desktop) {
+  @media (--desktop) {
     justify-content: space-between;
   }
 }

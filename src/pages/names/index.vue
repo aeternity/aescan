@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'nuxt/app'
+
 import { namesHints } from '@/utils/hints/namesHints'
 
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'

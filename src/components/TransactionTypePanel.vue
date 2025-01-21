@@ -44,7 +44,6 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
 
 const transactionDetailsStore = useTransactionDetailsStore()
 const { fetchContractIdByAccountId } = transactionDetailsStore

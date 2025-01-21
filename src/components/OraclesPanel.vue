@@ -21,9 +21,6 @@
 </template>
 
 <script setup>
-// todo remove
-import { useRoute, useRouter } from 'nuxt/app'
-
 const route = useRoute()
 const { push, replace } = useRouter()
 

@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
+
 // todo remove
 
 const props = defineProps({

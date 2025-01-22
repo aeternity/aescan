@@ -23,9 +23,6 @@ export default defineNuxtConfig({
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
   ],
-  experimental: {
-    restoreState: true,
-  },
   imports: {
     dirs: ['./stores'],
   },

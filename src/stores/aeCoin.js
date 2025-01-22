@@ -27,6 +27,8 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
   const hotCoin = ref(null)
   const coinStore = ref(null)
   const coinW = ref(null)
+  const tradingPairs = ref(null)
+  const tokens = ref(null)
 
   const isLoading = ref(true)
 
@@ -83,6 +85,20 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
     coinW.value = cache.get(CACHE_KEY_COINW_MARKET_DATA)
   }
 
+  async function fetchTradingPairs() {
+    const { data } = await axios.get('https://dex-backend-testnet.prd.service.aepps.com/pairs?only-listed=false')
+
+    console.log('data', data)
+    tradingPairs.value = data
+  }
+
+  async function fetchTokens() {
+    const { data } = await axios.get('https://dex-backend-testnet.prd.service.aepps.com/tokens')
+
+    console.log('data', data)
+    tokens.value = data
+  }
+
   return {
     gate,
     mexc,
@@ -90,6 +106,10 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
     coinStore,
     coinW,
     isLoading,
+    tradingPairs,
+    tokens,
+    fetchTokens,
     fetchMarketStats,
+    fetchTradingPairs,
   }
 })

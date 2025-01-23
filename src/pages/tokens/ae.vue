@@ -49,11 +49,12 @@ const { fetchMarketStats } = useMarketStatsStore()
 const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
 const { fetchTotalStats } = useBlockchainStatsStore()
 
-const { isLoading } = useLoading()
+const TAB_KEYS = ['transactions', 'markets']
 
 const route = useRoute()
 const { push, replace } = useRouter()
-const TAB_KEYS = ['transactions', 'markets']
+
+const { isLoading } = useLoading()
 
 const activeTabIndex = computed({
   get() {

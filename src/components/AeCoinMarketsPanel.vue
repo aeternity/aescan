@@ -4,19 +4,10 @@
     <template v-else>
       <ae-coin-markets-table
         class="u-hidden-mobile"
-        :gate="coinMarkets.gate"
-        :mexc="coinMarkets.mexc"
-        :hot-coin="coinMarkets.hotcoin"
-        :coin-store="coinMarkets.coinstore"
-        :coin-w="coinMarkets.coinw"/>
+        :coin-markets="coinMarkets"/>
       <ae-coin-markets-table-condensed
         class="u-hidden-desktop"
-        :gate="coinMarkets.gate"
-        :mexc="coinMarkets.mexc"
-        :hot-coin="coinMarkets.hotcoin"
-        :coin-store="coinMarkets.coinstore"
-        :coin-w="coinMarkets.coinw"/>
-      <!--      todo so many params-->
+        :coin-markets="coinMarkets"/>
     </template>
   </app-panel>
 </template>

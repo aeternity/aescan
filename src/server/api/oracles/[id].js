@@ -57,7 +57,9 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
       ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT)
       : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT) : null,
+    lastQueried: lastQueryTx
+      ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT)
+      : null,
     lastQueryHeight: lastQueryTx?.height,
   }
   return oracleDetails

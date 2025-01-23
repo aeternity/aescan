@@ -128,7 +128,8 @@ export function adaptAccountActivities(activities) {
       hash: activity.payload?.hash || activity.payload?.txHash ||
         activity.payload?.refTxHash || activity.payload?.callTxHash,
       type: activity.type,
-      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime)
+        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
       height: activity.payload?.blockHeight || activity.height,
       payload: activity.payload,
       hintKey:
@@ -377,7 +378,8 @@ export function adaptContractDetails(
     id: rawContractInformation?.id,
     createTransactionHash: contractCreationTx?.hash,
     createdBy: contractCreationTx?.tx.callerId,
-    creationDate: DateTime.fromMillis(contractCreationTx?.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    creationDate: DateTime.fromMillis(contractCreationTx?.microTime)
+      .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
     creationHeight: contractCreationTx.blockHeight,
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
@@ -514,9 +516,13 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
     operator: oracle.oracle.replace('ok_', 'ak_'),
-    lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) : null,
+    lastExtended: lastExtendedTx
+      ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
+      : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) : null,
+    lastQueried: lastQueryTx
+      ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
+      : null,
     lastQueryHeight: lastQueryTx?.height,
   }
   return oracleDetails

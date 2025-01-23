@@ -26,16 +26,20 @@ const route = useRoute()
 const pageIndex = ref(1)
 
 function loadPrevEvents() {
-  fetchOracleEvents(oracleEvents.value.prev)
+  fetchOracleEvents(route.params.id)
+  // fetchOracleEvents(oracleEvents.value.prev)
 }
 
 function loadNextEvents() {
-  fetchOracleEvents(oracleEvents.value.next)
+  fetchOracleEvents(route.params.id)
+  // fetchOracleEvents(oracleEvents.value.next)
 }
 
 if (process.client) {
+  // todo pass params
   const limit = computed(() => isDesktop() ? 10 : 3)
-  fetchOracleEvents(`/v3/oracles/${route.params.id}/responses?limit=${limit.value}`)
+  fetchOracleEvents(route.params.id)
+  // fetchOracleEvents(`/v3/oracles/${route.params.id}/responses?limit=${limit.value}`)
 }
 </script>
 

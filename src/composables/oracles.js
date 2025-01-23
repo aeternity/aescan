@@ -1,46 +1,37 @@
-import { useRuntimeConfig } from 'nuxt/app'
+import { defineStore } from 'pinia'
 
 export const useOraclesStore = defineStore('oracles', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
-
-  const rawOracles = ref(null)
+  const oracles = ref(null)
   const rawOraclesCount = ref(null)
 
   const activeOraclesCount = computed(() => {
     return rawOraclesCount.value?.activeOracles
   })
-  const inativeOracles = computed(() => {
-    return rawOraclesCount.value?.inactiveOracles
-  })
 
-  const oracles = computed(() => {
-    return rawOracles.value
-      ? adaptOracles(rawOracles.value)
-      : null
+  const inactiveOraclesCount = computed(() => {
+    return rawOraclesCount.value?.inactiveOraclesCount
   })
 
   function getOraclesCount(state) {
     if (state === 'active') {
       return activeOraclesCount.value
     } else {
-      return inativeOracles.value
+      return inactiveOraclesCount.value
     }
   }
 
   async function fetchOracles(queryParameters = null) {
-    rawOracles.value = null
-    const defaultParameters = '/v3/oracles?direction=backward&limit=10'
-    const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
-    )
-    rawOracles.value = data
+    oracles.value = null
+    const slug = `?${queryParameters.substring(3).split('?')[1]}`
+    const data = await $fetch(`/api/oracles${slug}`)
+    oracles.value = data
   }
 
   async function fetchOraclesCount() {
     rawOraclesCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total?limit=1`)
-    rawOraclesCount.value = data.data[0]
+    // todo here i am reusing total stats
+    const data = await $fetch('/api/oracles/count')
+    rawOraclesCount.value = data
   }
 
   return {

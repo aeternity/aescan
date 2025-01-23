@@ -41,13 +41,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
-import { useMarketStatsStore } from '@/stores/marketStats'
-import { useBlockchainStatsStore } from '@/stores/blockchainStats'
-
-const route = useRoute()
-const { push, replace } = useRouter()
 
 const { price, priceChange } = storeToRefs(useMarketStatsStore())
 const { fetchMarketStats } = useMarketStatsStore()
@@ -55,8 +49,12 @@ const { fetchMarketStats } = useMarketStatsStore()
 const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
 const { fetchTotalStats } = useBlockchainStatsStore()
 
-const { isLoading } = useLoading()
 const TAB_KEYS = ['transactions', 'markets']
+
+const route = useRoute()
+const { push, replace } = useRouter()
+
+const { isLoading } = useLoading()
 
 const activeTabIndex = computed({
   get() {

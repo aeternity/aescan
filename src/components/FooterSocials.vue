@@ -13,10 +13,8 @@
     </app-link>
   </div>
 </template>
-<script setup>
-import AppIcon from '@/components/AppIcon'
-import AppLink from '@/components/AppLink'
 
+<script setup>
 const socials = [
   {
     name: 'Forum',

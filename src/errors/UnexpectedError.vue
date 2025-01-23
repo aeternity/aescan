@@ -30,11 +30,6 @@
 </template>
 
 <script setup>
-import AppLink from '@/components/AppLink'
-import PageHeader from '@/components/PageHeader'
-import AppButton from '@/components/AppButton'
-import AppPanel from '@/components/AppPanel'
-
 setResponseStatus(500, 'Unexpected Error')
 </script>
 

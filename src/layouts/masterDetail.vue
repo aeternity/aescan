@@ -11,11 +11,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
-
 <style scoped>
-
 .master-detail {
   background-image: url("@/assets/background.svg");
   background-color: var(--color-midnight-35);

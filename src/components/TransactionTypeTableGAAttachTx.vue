@@ -110,9 +110,6 @@
 
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import AppLink from '@/components/AppLink'
-import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
-import { formatAettosToAe, formatNullable } from '@/utils/format'
 
 const props = defineProps({
   transactionData: {

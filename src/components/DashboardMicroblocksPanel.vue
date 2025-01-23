@@ -39,12 +39,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
-import AppPanel from '@/components/AppPanel'
-import DashboardTransactionPanel from '@/components/DashboardTransactionPanel'
-import MicroblocksSequence from '@/components/MicroblocksSequence'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
 
 const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
   storeToRefs(useRecentBlocksStore())

@@ -74,7 +74,6 @@
 </template>
 
 <script setup>
-import HintTooltip from '@/components/HintTooltip'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 
 defineProps({

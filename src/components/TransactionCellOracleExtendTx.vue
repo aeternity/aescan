@@ -14,9 +14,6 @@
 </template>
 
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import AppChip from '@/components/AppChip'
-
 defineProps({
   transactionData: {
     required: true,

@@ -52,23 +52,20 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-
-import { useContractDetailsStore } from '@/stores/contractDetails'
-import { useContractVerifiedStore } from '@/stores/contractVerified'
-import { isDesktop } from '@/utils/screen'
 import { contractsHints } from '@/utils/hints/contractsHints'
-import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const contractDetailsStore = useContractDetailsStore()
 const { contractDetails } = storeToRefs(contractDetailsStore)
 const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
+
 const contractVerifiedStore = useContractVerifiedStore()
 const { isVerified } = storeToRefs(contractVerifiedStore)
 const { fetchVerificationDetail } = contractVerifiedStore
+
+const featureFlags = useFeatureFlags()
+
 const { push, replace } = useRouter()
 const route = useRoute()
-const featureFlags = useFeatureFlags()
 
 const TAB_KEYS = ['call-transactions', 'events', 'contract-verified', 'contract-read', 'contract-write']
 

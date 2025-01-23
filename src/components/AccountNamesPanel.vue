@@ -16,13 +16,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import PaginatedContent from '@/components/PaginatedContent'
-import AccountNamesTable from '@/components/AccountNamesTable'
-import AccountNamesTableCondensed from '@/components/AccountNamesTableCondensed'
-import { useAccountStore } from '@/stores/accountDetails'
-
 const accountStore = useAccountStore()
 const { fetchAccountNames } = accountStore
 const { accountNames } = storeToRefs(accountStore)

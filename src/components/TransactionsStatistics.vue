@@ -26,12 +26,8 @@
     </app-panel>
   </div>
 </template>
-<script setup>
-import { storeToRefs } from 'pinia'
-import { useBlockchainStatsStore } from '@/stores/blockchainStats'
-import { useTransactionsStore } from '@/stores/transactions'
-import { formatNumber } from '@/utils/format'
 
+<script setup>
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 const { fetchLast24hsTransactionsStatistics } = useTransactionsStore()
 

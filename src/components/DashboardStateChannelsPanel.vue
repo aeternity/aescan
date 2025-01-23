@@ -18,10 +18,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
-import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
 
 const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 </script>

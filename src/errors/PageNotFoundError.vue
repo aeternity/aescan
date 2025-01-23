@@ -14,8 +14,5 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/PageHeader'
-import NotFoundPanel from '@/components/NotFoundPanel'
-
 setResponseStatus(404, 'Page Not Found')
 </script>

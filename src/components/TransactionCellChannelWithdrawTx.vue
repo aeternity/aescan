@@ -13,10 +13,6 @@
 </template>
 
 <script setup>
-import { formatAettosToAe } from '@/utils/format'
-import TransactionArrowLeftIcon from '@/components/TransactionArrowLeftIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-
 defineProps({
   transactionData: {
     required: true,

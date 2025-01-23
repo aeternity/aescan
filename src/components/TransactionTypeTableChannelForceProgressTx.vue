@@ -74,7 +74,6 @@
 
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
-import AppLink from '@/components/AppLink'
 
 defineProps({
   transactionData: {

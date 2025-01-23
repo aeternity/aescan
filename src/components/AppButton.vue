@@ -35,9 +35,6 @@
 </template>
 
 <script setup>
-import AppIcon from '@/components/AppIcon'
-import AppLink from '@/components/AppLink'
-
 defineProps({
   iconName: {
     type: String,

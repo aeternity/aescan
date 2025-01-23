@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/PageHeader'
 import { dexTradesHints } from '@/utils/hints/dexTradesHints'
 
 const { isLoading } = useLoading()

@@ -48,7 +48,6 @@
 </template>
 
 <script setup>
-
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({
@@ -57,7 +56,6 @@ defineProps({
     required: true,
   },
 })
-
 </script>
 
 <style scoped>

@@ -11,7 +11,6 @@
 
 <script setup>
 import { useVModel } from '@vueuse/core'
-import AppSelect from '@/components/AppSelect'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 const props = defineProps({

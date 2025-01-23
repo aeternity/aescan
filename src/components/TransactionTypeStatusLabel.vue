@@ -10,9 +10,6 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
-import { formatNullable } from '@/utils/format'
-
 defineProps({
   status: {
     type: String,

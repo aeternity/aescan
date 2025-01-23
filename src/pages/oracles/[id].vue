@@ -5,7 +5,6 @@
 
   <page-header>
     Oracle
-
     <template #tooltip>
       {{ oraclesHints.oracle }}
       <app-link
@@ -31,17 +30,14 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import OracleDetailsPanel from '@/components/OracleDetailsPanel'
-import PageHeader from '@/components/PageHeader'
-import { useOracleDetailsStore } from '@/stores/oracleDetails'
-import OracleEventsPanel from '@/components/OracleEventsPanel'
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
 const oracleDetailsStore = useOracleDetailsStore()
 const { oracleDetails } = storeToRefs(oracleDetailsStore)
 const { fetchOracleDetails } = oracleDetailsStore
+
 const route = useRoute()
+
 const { isLoading } = useLoading()
 
 const { error } = await useAsyncData(() => fetchOracleDetails(route.params.id))

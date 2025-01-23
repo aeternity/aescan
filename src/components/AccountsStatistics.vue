@@ -18,12 +18,7 @@
   </div>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useTopAccountsStore } from '@/stores/topAccounts'
-import { formatNumber } from '@/utils/format'
-
 const { fetchTopAccounts } = useTopAccountsStore()
-
 const { totalAccountsCount, activeAccountsCount, activeAccountsDelta } = storeToRefs(useTopAccountsStore())
 
 if (process.client) {

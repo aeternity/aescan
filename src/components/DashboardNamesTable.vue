@@ -61,12 +61,9 @@
     </tbody>
   </table>
 </template>
+
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppLink from '@/components/AppLink'
 import { namesHints } from '@/utils/hints/namesHints'
-import { useNamesStore } from '@/stores/names'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 </script>

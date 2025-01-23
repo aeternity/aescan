@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import AppIcon from '@/components/AppIcon'
-
 const ICON_COPY = 'copy-simple'
 const ICON_SUCCESS = 'check'
 const SUCCESS_ANIMATION_DURATION = 3000

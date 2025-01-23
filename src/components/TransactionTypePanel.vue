@@ -44,14 +44,9 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import AppChip from '@/components/AppChip'
-import AppLink from '@/components/AppLink'
-import CopyChip from '@/components/CopyChip'
-import { formatEllipseHash } from '@/utils/format'
-import { useTransactionDetailsStore } from '@/stores/transactionDetails'
+
+const { fetchContractIdByAccountId } = useTransactionDetailsStore()
+const { contractId } = storeToRefs(useTransactionDetailsStore())
 
 const props = defineProps({
   transactionData: {
@@ -59,10 +54,6 @@ const props = defineProps({
     type: Object,
   },
 })
-
-const transactionDetailsStore = useTransactionDetailsStore()
-const { fetchContractIdByAccountId } = transactionDetailsStore
-const { contractId } = storeToRefs(transactionDetailsStore)
 
 const innerTransactionDetails = computed(() =>
   props.transactionData.tx.tx,
@@ -85,8 +76,7 @@ watch(props.transactionData, () => {
     fetchContractIdByAccountId(props.transactionData.ga_id)
   }
 },
-{ immediate: true },
-)
+{ immediate: true })
 </script>
 
 <style scoped>

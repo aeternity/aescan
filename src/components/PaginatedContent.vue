@@ -57,10 +57,6 @@
 
 <script setup>
 import { useVModel } from '@vueuse/core'
-import { computed, ref } from 'vue'
-import AppPagination from '@/components/AppPagination'
-import { formatNullable } from '@/utils/format'
-import BlankState from '@/components/BlankState'
 
 const props = defineProps({
   entities: {

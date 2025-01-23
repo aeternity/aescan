@@ -14,12 +14,8 @@
     </paginated-content>
   </app-panel>
 </template>
-<script setup>
-import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
-import { isDesktop } from '@/utils/screen'
-import { useSearchStore } from '@/stores/search'
 
+<script setup>
 const searchStore = useSearchStore()
 const { tokensResults } = storeToRefs(searchStore)
 const { fetchTokenResults } = searchStore

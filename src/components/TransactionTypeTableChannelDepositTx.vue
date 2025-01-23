@@ -55,8 +55,6 @@
 
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
-import AppLink from '@/components/AppLink'
-import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

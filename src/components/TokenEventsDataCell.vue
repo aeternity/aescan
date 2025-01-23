@@ -58,8 +58,6 @@
 </template>
 
 <script setup>
-import { useTokenDetailsStore } from '@/stores/tokenDetails'
-
 const { tokenDetails } = useTokenDetailsStore()
 
 defineProps({

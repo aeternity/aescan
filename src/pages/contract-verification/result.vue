@@ -74,14 +74,11 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useContractVerificationStore } from '@/stores/contractVerification'
-
-const timer = ref(null)
-
 const verificationStore = useContractVerificationStore()
 const { fetchVerificationStatus } = verificationStore
 const { id, verificationResult, verificationStatus } = storeToRefs(verificationStore)
+
+const timer = ref(null)
 
 onMounted(() => {
   if (status.value !== 'fail' && status.value !== 'conflict') {

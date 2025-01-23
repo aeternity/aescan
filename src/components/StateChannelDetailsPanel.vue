@@ -202,10 +202,6 @@
 
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
-import AppLink from '@/components/AppLink'
-import AppChip from '@/components/AppChip'
-import AppPanel from '@/components/AppPanel'
-import CopyChip from '@/components/CopyChip'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 

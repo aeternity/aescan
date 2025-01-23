@@ -15,8 +15,6 @@
 </template>
 
 <script setup>
-import { isDesktop } from '@/utils/screen'
-import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const featureFlags = useFeatureFlags()
 

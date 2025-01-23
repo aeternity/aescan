@@ -150,18 +150,8 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import AppLink from '@/components/AppLink'
-import TransactionTypeStatusLabel from '@/components/TransactionTypeStatusLabel'
-import { formatAettosToAe, formatNullable } from '@/utils/format'
-import AppChip from '@/components/AppChip'
 
 const isCollapsed = ref(true)
-const isArgumentsLong = computed(() => JSON.stringify(props.transactionData.arguments).length > 300)
-const shortArguments = computed(() => isArgumentsLong.value ? JSON.stringify(props.transactionData.arguments).substr(0, 300) + '...' : props.transactionData.arguments)
-
-function toggleCollapse() {
-  isCollapsed.value = !isCollapsed.value
-}
 
 const props = defineProps({
   transactionData: {
@@ -170,9 +160,13 @@ const props = defineProps({
   },
 })
 
-const gasCosts = computed(() =>
-  props.transactionData.gasUsed * props.transactionData.gasPrice,
-)
+const gasCosts = computed(() => props.transactionData.gasUsed * props.transactionData.gasPrice)
+const isArgumentsLong = computed(() => JSON.stringify(props.transactionData.arguments).length > 300)
+const shortArguments = computed(() => isArgumentsLong.value ? JSON.stringify(props.transactionData.arguments).substr(0, 300) + '...' : props.transactionData.arguments)
+
+function toggleCollapse() {
+  isCollapsed.value = !isCollapsed.value
+}
 </script>
 
 <style scoped>

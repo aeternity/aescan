@@ -28,11 +28,8 @@
     Connect Wallet
   </app-button>
 </template>
-<script setup>
-import { storeToRefs } from 'pinia'
-import { formatEllipseHash } from '@/utils/format'
-import { useWalletStore } from '@/stores/wallet'
 
+<script setup>
 const props = defineProps({
   backlink: {
     type: String,

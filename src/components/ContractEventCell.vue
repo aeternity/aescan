@@ -13,8 +13,6 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
-
 const props = defineProps({
   contractDetails: {
     type: Object,
@@ -47,7 +45,7 @@ const contractEventCellComponent = computed(() =>
   gap: var(--space-1);
   flex-wrap: wrap;
 
-  @media(--desktop) {
+  @media (--desktop) {
     justify-content: space-between;
   }
 }

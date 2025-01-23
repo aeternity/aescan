@@ -57,8 +57,6 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   oracles: {

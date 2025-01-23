@@ -15,17 +15,13 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { formatDecodeByteArray } from '@/utils/format'
-
 const props = defineProps({
   transactionData: {
     required: true,
     type: Object,
   },
 })
+
 const oracleResponse = computed(() => {
   const { response } = props.transactionData
   const decodedResponse = response instanceof Array ? formatDecodeByteArray(response) : response.toString()

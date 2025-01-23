@@ -85,10 +85,9 @@
     </table>
   </div>
 </template>
+
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({
   contractDetails: {

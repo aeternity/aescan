@@ -16,7 +16,7 @@
       :nft-details="nft"/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Transfers">
-        <nfts-transfers-panel/>
+        <nft-transfers-panel/>
       </app-tab>
       <app-tab title="Inventory">
         <nft-inventory-panel v-if="hasTemplates"/>
@@ -28,18 +28,12 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { nftsHints } from '@/utils/hints/nftsHints'
-import PageHeader from '@/components/PageHeader'
-import { useNftDetailsStore } from '@/stores/nftDetails'
-import NftDetailsPanel from '@/components/NftsDetailsPanel'
-import NftInventoryPanel from '@/components/NftsInventoryPanel'
-import NftOwnersPanel from '@/components/NftsOwnersPanel'
-import AppTabs from '@/components/AppTabs'
 
 const nftDetailsStore = useNftDetailsStore()
 const { nft } = storeToRefs(nftDetailsStore)
 const { fetchNftDetails } = nftDetailsStore
+
 const route = useRoute()
 const { push, replace } = useRouter()
 

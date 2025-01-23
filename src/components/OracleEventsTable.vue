@@ -81,7 +81,6 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import HintTooltip from '@/components/HintTooltip'
 
 const props = defineProps({
   oracleEvents: {

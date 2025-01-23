@@ -1,21 +1,7 @@
 import { DateTime } from 'luxon'
-import { useRuntimeConfig } from 'nuxt/app'
+
 import { BigNumber } from 'bignumber.js'
 import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-import {
-  formatAettosToAe,
-  formatBlockDiffAsDatetime,
-  formatDecodeBase64,
-  formatIsAuction,
-  formatIsStatefulEntrypoint,
-  formatNameState,
-  formatNumber,
-  formatPercentage,
-  formatTemplateLimit,
-  formatTokenLimit,
-  formatTradeRate,
-  formatTradeValue,
-} from '@/utils/format'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 

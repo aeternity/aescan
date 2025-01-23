@@ -13,10 +13,6 @@
 </template>
 
 <script setup>
-import { useTopAccountsStore } from '@/stores/topAccounts'
-import TopAccountsTable from '@/components/TopAccountsTable'
-import TopAccountsTableCondensed from '@/components/TopAccountsTableCondensed'
-
 const { topAccounts } = storeToRefs(useTopAccountsStore())
 const { fetchTopAccounts } = useTopAccountsStore()
 

@@ -23,8 +23,6 @@
 </template>
 
 <script setup>
-import { useAccountStore } from '@/stores/accountDetails'
-import { isDesktop } from '@/utils/screen'
 
 const route = useRoute()
 const accountStore = useAccountStore()

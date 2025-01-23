@@ -20,18 +20,8 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import { useContractDetailsStore } from '@/stores/contractDetails'
-import ContractCallTransactionsTable from '@/components/ContractCallTransactionsTable'
-import ContractCallTransactionsTableCondensed from '@/components/ContractCallTransactionsTableCondensed'
-import { isDesktop } from '@/utils/screen'
-import PaginatedContent from '@/components/PaginatedContent'
-
-const contractDetailsStore = useContractDetailsStore()
-const { contractCallTransactions, contractCallsCount } = storeToRefs(contractDetailsStore)
-const { fetchContractCallTransactions } = contractDetailsStore
+const { contractCallTransactions, contractCallsCount } = storeToRefs(useContractDetailsStore())
+const { fetchContractCallTransactions } = useContractDetailsStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

@@ -150,15 +150,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { namesHints } from '@/utils/hints/namesHints'
-import AppPanel from '@/components/AppPanel'
-import AppLink from '@/components/AppLink'
-import AppChip from '@/components/AppChip'
-import CopyChip from '@/components/CopyChip'
-import HintTooltip from '@/components/HintTooltip'
-import { useNameDetailsStore } from '@/stores/nameDetails'
-import { formatEllipseHash } from '@/utils/format'
 
 const { name } = storeToRefs(useNameDetailsStore())
 const states = name.value.states
@@ -199,10 +191,8 @@ function getLabel(state) {
   if (state.includes('expired')) {
     return 'Expired'
   }
-
   return 'Active'
 }
-
 </script>
 
 <style scoped>

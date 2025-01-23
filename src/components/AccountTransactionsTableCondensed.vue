@@ -66,8 +66,6 @@
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 import { accountHints } from '@/utils/hints/accountHints'
-import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   accountTransactions: {

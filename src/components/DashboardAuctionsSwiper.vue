@@ -67,12 +67,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppLink from '@/components/AppLink'
-import { useNamesStore } from '@/stores/names'
 import { namesHints } from '@/utils/hints/namesHints'
-import AppSwiper from '@/components/AppSwiper'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>

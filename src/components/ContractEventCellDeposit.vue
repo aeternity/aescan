@@ -16,10 +16,6 @@
 </template>
 
 <script setup>
-import { formatNumber, formatReduceDecimals } from '@/utils/format'
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-
 const props = defineProps({
   contractDetails: {
     required: true,
@@ -31,6 +27,7 @@ const props = defineProps({
   },
 })
 const eventData = computed(() => props.event.data)
+
 const tokenValue = computed(() => {
   if (!props.contractDetails.tokenDetails || props.contractDetails.contractType === 'AEX-141') {
     return eventData.value[2]

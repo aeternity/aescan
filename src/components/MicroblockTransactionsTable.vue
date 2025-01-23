@@ -59,9 +59,6 @@
 </template>
 <script setup>
 import { microblocksHints } from '@/utils/hints/microblocksHints'
-import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import HintTooltip from '@/components/HintTooltip'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({

@@ -15,12 +15,8 @@
 </template>
 
 <script setup>
-import { useTransactionsStore } from '@/stores/transactions'
-import { isDesktop } from '@/utils/screen'
-
-const transactionsStore = useTransactionsStore()
-const { fetchTransactions } = transactionsStore
-const { transactions } = storeToRefs(transactionsStore)
+const { fetchTransactions } = useTransactionsStore()
+const { transactions } = storeToRefs(useTransactionsStore())
 
 const limit = computed(() => isDesktop() ? 10 : 3)
 

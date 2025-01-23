@@ -51,16 +51,13 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { useRuntimeConfig } from 'nuxt/app'
-import { useWalletStore } from '@/stores/wallet'
-import AppButton from '@/components/AppButton'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 
 const walletStore = useWalletStore()
-
 const { status } = storeToRefs(walletStore)
+
 const router = useRouter()
 
 const isProcessing = computed(() => {

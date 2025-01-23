@@ -21,9 +21,10 @@
 import { DateTime, Duration } from 'luxon'
 import { DATETIME_UNITS } from '@/utils/constants'
 
-import { useUiStore } from '@/stores/ui'
-
 const { timeFormat } = storeToRefs(useUiStore())
+
+const relativeUpdated = ref(null)
+const intervalRef = ref(null)
 
 const props = defineProps({
   timestamp: {
@@ -35,9 +36,6 @@ const props = defineProps({
     default: false,
   },
 })
-
-const relativeUpdated = ref(null)
-const intervalRef = ref(null)
 
 const absolute = computed(() => {
   return props.timestamp.toLocaleString(DateTime.DATETIME_SHORT)

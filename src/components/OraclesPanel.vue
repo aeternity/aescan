@@ -21,17 +21,11 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { computed, ref } from 'vue'
-import { useRoute, useRouter } from 'nuxt/app'
-import { useOraclesStore } from '@/stores/oracles'
-import { isDesktop } from '@/utils/screen'
-
-const oraclesStore = useOraclesStore()
-const { fetchOracles, fetchOraclesCount, getOraclesCount } = oraclesStore
-const { oracles } = storeToRefs(oraclesStore)
 const route = useRoute()
 const { push, replace } = useRouter()
+
+const { fetchOracles, fetchOraclesCount, getOraclesCount } = useOraclesStore()
+const { oracles } = storeToRefs(useOraclesStore())
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

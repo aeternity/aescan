@@ -18,9 +18,8 @@
     </ul>
   </div>
 </template>
-<script setup>
-import AppLink from '@/components/AppLink'
 
+<script setup>
 defineProps({
   title: {
     type: String,

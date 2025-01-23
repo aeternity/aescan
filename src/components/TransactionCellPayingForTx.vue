@@ -19,11 +19,6 @@
 </template>
 
 <script setup>
-import { formatAettosToAe } from '@/utils/format'
-import AppChip from '@/components/AppChip'
-import TransactionArrowRightIcon from '@/components/TransactionArrowRightIcon'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-
 const props = defineProps({
   transactionData: {
     required: true,

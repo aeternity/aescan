@@ -73,12 +73,7 @@
 </template>
 
 <script setup>
-import AccountActivityCell from '@/components/AccountActivityCell'
-import AccountActivityTypeCell from '@/components/AccountActivityTypeCell'
-import AccountActivityDataCell from '@/components/AccountActivityDataCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { accountHints } from '@/utils/hints/accountHints'
-import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   accountDetails: {

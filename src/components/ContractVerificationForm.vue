@@ -108,7 +108,6 @@
 </template>
 
 <script setup>
-import { useContractVerificationStore } from '@/stores/contractVerification'
 import { contractVerificationHints } from '@/utils/hints/contractVerificationHints'
 
 const verificationStore = useContractVerificationStore()

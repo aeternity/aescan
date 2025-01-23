@@ -49,6 +49,7 @@
     </tbody>
   </table>
 </template>
+
 <script setup>
 import { topAccountsHints } from '@/utils/hints/topAccountsHints'
 

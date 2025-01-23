@@ -66,8 +66,6 @@
 </template>
 
 <script setup>
-import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({

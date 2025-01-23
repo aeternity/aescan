@@ -35,6 +35,9 @@
       <app-tab title="Markets">
         <ae-coin-markets-panel/>
       </app-tab>
+      <app-tab title="Trading Pairs">
+        <ae-coin-trading-pairs-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>
@@ -49,7 +52,7 @@ const { fetchMarketStats } = useMarketStatsStore()
 const { totalTokenSupply } = storeToRefs(useBlockchainStatsStore())
 const { fetchTotalStats } = useBlockchainStatsStore()
 
-const TAB_KEYS = ['transactions', 'markets']
+const TAB_KEYS = ['transactions', 'markets', 'trading-pairs']
 
 const route = useRoute()
 const { push, replace } = useRouter()

@@ -27,7 +27,7 @@ const { timeFormat } = storeToRefs(useUiStore())
 
 const props = defineProps({
   timestamp: {
-    type: Object,
+    type: String,
     required: true,
   },
   isExtended: {
@@ -62,7 +62,6 @@ const dynamicInterval = computed(() => {
 })
 
 const expirationDuration = computed(() => {
-  // todo moc velky kejkle idelne passnout object
   return DateTime.fromFormat(props.timestamp, 'F').diffNow().shiftTo(...DATETIME_UNITS)
 })
 

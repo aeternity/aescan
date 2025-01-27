@@ -63,9 +63,7 @@
                 :timestamp="oracleDetails.lastExtended"
                 :is-extended="true"/>
             </div>
-            <template v-else>
-              N/A
-            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -90,9 +88,7 @@
                 :timestamp="oracleDetails.lastQueried"
                 :is-extended="true"/>
             </div>
-            <template v-else>
-              N/A
-            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -235,6 +231,11 @@ const oracleMiddlewareUrl = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: flex;
+    align-content: center;
   }
 
   &__link {

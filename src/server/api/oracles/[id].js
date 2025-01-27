@@ -12,9 +12,8 @@ export default defineEventHandler(async event => {
   const [rawOracle, lastExtendedTx, lastOracleEvent] = await Promise.all([
     fetchOracle(id),
     fetchLastExtendedTx(id),
-    fetchOracleEvents(id),
   ])
-
+  // todo fix
   return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
 })
 
@@ -30,35 +29,23 @@ async function fetchLastExtendedTx(id) {
   return data.data?.[0]
 }
 
-async function fetchOracleEvents(id) {
-// todo do i need try
-// todo this is dupliucate
-  try {
-    const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}/responses`)
-    const { data } = await axios.get(url)
-    return data.data?.[0]?.query
-  } catch (e) {
-    return null
-  }
-}
-
 export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
-    expiration: DateTime.fromMillis(oracle.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT),
+    expiration: DateTime.fromMillis(oracle.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
     expirationHeight: oracle.expireHeight,
-    registered: DateTime.fromMillis(oracle.registerTime).toLocaleString(DateTime.DATETIME_SHORT),
+    registered: DateTime.fromMillis(oracle.registerTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
     registeredHeight: oracle.activeFrom,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
     operator: oracle.oracle.replace('ok_', 'ak_'),
     lastExtended: lastExtendedTx
-      ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT)
+      ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
       : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
     lastQueried: lastQueryTx
-      ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT)
+      ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
       : null,
     lastQueryHeight: lastQueryTx?.height,
   }

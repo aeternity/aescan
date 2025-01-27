@@ -6,7 +6,6 @@ const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-// todo better naming
   const id = getRouterParam(event, 'id')
 
   const [rawOracle, lastExtendedTx, lastOracleEvent] = await Promise.all([
@@ -14,7 +13,6 @@ export default defineEventHandler(async event => {
     fetchLastExtendedTx(id),
     fetchLastQueriedTx(id),
   ])
-  // todo fix
 
   return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
 })

@@ -12,8 +12,10 @@ export default defineEventHandler(async event => {
   const [rawOracle, lastExtendedTx, lastOracleEvent] = await Promise.all([
     fetchOracle(id),
     fetchLastExtendedTx(id),
+    fetchLastQueriedTx(id),
   ])
   // todo fix
+
   return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
 })
 
@@ -27,6 +29,13 @@ async function fetchLastExtendedTx(id) {
   const url = new URL(`${MIDDLEWARE_URL}/v3/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${id}`)
   const { data } = await axios.get(url)
   return data.data?.[0]
+}
+
+async function fetchLastQueriedTx(id) {
+  const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}/responses?limit=1`)
+  const { data } = await axios.get(url)
+
+  return data.data?.[0]?.query
 }
 
 export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {

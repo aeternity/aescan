@@ -1,4 +1,5 @@
 <template>
+  <!--  oracleEvents {{ oracleEvents }}-->
   <app-panel class="oracle-events-panel">
     <paginated-content
       v-model:page-index="pageIndex"
@@ -22,30 +23,25 @@ const { oracleEvents } = storeToRefs(useOracleDetailsStore())
 const { fetchOracleEvents } = useOracleDetailsStore()
 
 const route = useRoute()
-
 const pageIndex = ref(1)
 
 function loadPrevEvents() {
-  fetchOracleEvents(route.params.id)
-  // fetchOracleEvents(oracleEvents.value.prev)
+  fetchOracleEvents({ queryParameters: oracleEvents.value.prev })
 }
 
 function loadNextEvents() {
-  fetchOracleEvents(route.params.id)
-  // fetchOracleEvents(oracleEvents.value.next)
+  fetchOracleEvents({ queryParameters: oracleEvents.value.next })
 }
 
 if (process.client) {
   // todo pass params
   const limit = computed(() => isDesktop() ? 10 : 3)
-  fetchOracleEvents(route.params.id)
-  // fetchOracleEvents(`/oracles/${route.params.id}/responses?limit=${limit.value}`)
+  fetchOracleEvents({ limit, id: route.params.id })
 }
 </script>
 
 <style scoped>
 .oracle-events-panel__table {
   margin-bottom: var(--space-4);
-
 }
 </style>

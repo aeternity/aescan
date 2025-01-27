@@ -1,5 +1,3 @@
-import { useRuntimeConfig } from 'nuxt/app'
-
 export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const oracleId = ref(null)
   const oracleDetails = ref(null)
@@ -8,11 +6,15 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const oracleEvents = ref(null)
 
   async function fetchOracleDetails(id) {
-    // todo simplify
     oracleId.value = id
     await Promise.all([
       fetchOracle(),
+      // Promise.allSettled([
+      //   fetchOracleEvents(),
+      // ]),
     ])
+    // todo simplify
+
     return true
   }
 
@@ -23,10 +25,27 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     oracleDetails.value = data
   }
 
-  async function fetchOracleEvents(id = null) {
+  //
+  // async function fetchOracleEvents({ queryParameters = null, limit = null, id = null }) {
+  //   await Promise.all([
+  //     fetchEvents({ queryParameters, limit, id }),
+  //   ])
+  //   return true
+  // }
+
+  async function fetchOracleEvents({ queryParameters = null, limit = 10 }) {
     // todo events pass cursor
-    oracleEvents.value = null
-    const data = await $fetch('/api/oracles/events', { params: { id } })
+    // console.log('aaa', aaa)
+    // oracleEvents.value = null
+    console.log('oracleId.value', oracleId.value)
+    const data = await $fetch('/api/oracles/events', {
+      params: {
+        queryParameters,
+        limit: 10,
+        id: oracleId.value,
+      },
+    })
+    console.log('data', data)
     oracleEvents.value = data
   }
 

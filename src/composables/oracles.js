@@ -2,14 +2,14 @@ import { defineStore } from 'pinia'
 
 export const useOraclesStore = defineStore('oracles', () => {
   const oracles = ref(null)
-  const rawOraclesCount = ref(null)
+  const oraclesCount = ref(null)
 
   const activeOraclesCount = computed(() => {
-    return rawOraclesCount.value?.activeOracles
+    return oraclesCount.value?.activeOracles
   })
 
   const inactiveOraclesCount = computed(() => {
-    return rawOraclesCount.value?.inactiveOraclesCount
+    return oraclesCount.value?.inactiveOracles
   })
 
   function getOraclesCount(state) {
@@ -28,10 +28,9 @@ export const useOraclesStore = defineStore('oracles', () => {
   }
 
   async function fetchOraclesCount() {
-    rawOraclesCount.value = null
-    // todo here i am reusing total stats
-    const data = await $fetch('/api/oracles/count')
-    rawOraclesCount.value = data
+    oraclesCount.value = null
+    oraclesCount.value = await $fetch('/api/oracles/count')
+    console.log('oraclesCount.value', oraclesCount.value)
   }
 
   return {

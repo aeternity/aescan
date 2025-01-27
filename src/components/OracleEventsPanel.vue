@@ -34,7 +34,6 @@ function loadNextEvents() {
 }
 
 if (process.client) {
-  // todo pass params
   const limit = computed(() => isDesktop() ? 10 : 3)
   fetchOracleEvents({ limit, id: route.params.id })
 }

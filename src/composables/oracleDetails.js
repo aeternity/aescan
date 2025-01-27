@@ -5,10 +5,7 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
 
   async function fetchOracleDetails(id) {
     oracleId.value = id
-    await Promise.all([
-      fetchOracle(),
-    ])
-    // todo simplify
+    await fetchOracle()
     return true
   }
 
@@ -20,7 +17,6 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchOracleEvents({ queryParameters = null, limit = 10 }) {
-    // todo events pass cursor
     oracleEvents.value = null
     oracleEvents.value = await $fetch('/api/oracles/events', {
       params: {

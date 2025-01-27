@@ -6,7 +6,6 @@ export default defineEventHandler(async() => {
     fetchTokens(),
 
   ])
-  console.log('pairs, tokens', pairs, tokens)
   return { pairs, tokens }
 })
 

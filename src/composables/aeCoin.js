@@ -12,6 +12,7 @@ export const useAeCoinStore = defineStore('aeCoin', () => {
 
   async function fetchTokenPairs() {
     isLoading.value = true
+    console.log('test')
     const data = await $fetch('/api/tokens/trading')
     console.log('dataaaa', data)
     tokenPairs.value = data

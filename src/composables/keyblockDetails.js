@@ -1,76 +1,37 @@
 import { useRuntimeConfig } from 'nuxt/app'
-import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
+import useAxios from '@/composables/useAxios'
 
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
-  const rawKeyblock = ref(null)
   const keyblockDeltaStats = ref(null)
-  const rawKeyblockMicroblocks = ref(null)
-  const keyblockDetails = computed(() => {
-    return rawKeyblock.value?.hash ? adaptKeyblock(rawKeyblock.value, keyblockDeltaStats.value) : rawKeyblock.value
-  })
-  const keyblockMicroblocks = computed(() => {
-    return rawKeyblockMicroblocks.value ? adaptKeyblockMicroblocks(rawKeyblockMicroblocks.value) : null
-  })
+  const keyblockMicroblocks = ref(null)
+  const keyblockDetails = ref(null)
 
   async function fetchKeyblock(keyblockId) {
-    await fetchKeyblockDetails(keyblockId)
-    if (rawKeyblock.value.height) {
-      await fetchKeyblockDeltaStats(rawKeyblock.value.height)
-    }
+    keyblockDetails.value = null
+    const data = await $fetch(`/api/keyblocks/${keyblockId}`)
+    // todo splelling 2 words?
+    keyblockDetails.value = data
   }
 
-  async function fetchKeyblockDetails(keyblockId) {
-    rawKeyblock.value = null
-    try {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}/key-blocks/${keyblockId}`)
-      rawKeyblock.value = data
-    } catch (error) {
-      if ([400, 404].includes(error.response.status)) {
-        const isKeyblockIdValid = isAddressValid(keyblockId, Encoding.KeyBlockHash) || !isNaN(keyblockId)
-        if (isKeyblockIdValid) {
-          rawKeyblock.value = { isExistent: false }
-        } else {
-          throw showError({
-            data: {
-              entityId: keyblockId,
-              entityName: 'Keyblock',
-            },
-            statusMessage: 'EntityDetailsNotFound',
-          })
-        }
-      }
-    }
-  }
+  async function fetchKeyblockMicroblocks({ queryParameters, limit, microblockHash, keyblockHash } = {}) {
+    keyblockMicroblocks.value = null
 
-  async function fetchKeyblockMicroblocks({ queryParameters, limit, keyblockHash } = {}) {
-    rawKeyblockMicroblocks.value = null
-    const defaultParameters = `/key-blocks/${keyblockHash}/micro-blocks?limit=${limit ?? 10}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawKeyblockMicroblocks.value = data
-  }
-
-  async function fetchKeyblockDeltaStats(keyblockHeight) {
-    keyblockDeltaStats.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?scope=gen:${keyblockHeight}`)
-    keyblockDeltaStats.value = data.data[0]
+    const data = await $fetch('/api/keyblocks/microblocks', {
+      params: { microblockHash, limit, queryParameters, keyblockHash },
+    })
+    keyblockMicroblocks.value = data
   }
 
   async function isKeyblockAvailable(keyblockHash) {
-    try {
-      await axios.get(`${MIDDLEWARE_URL}/key-blocks/${keyblockHash}`)
-      return true
-    } catch (error) {
-      if (error.response.status === 404) {
-        return false
-      }
-      return null
-    }
+    const data = await $fetch('/api/keyblocks/is-available', {
+      params: { keyblockHash },
+    })
+    return data
   }
 
   return {
-    rawKeyblock,
     keyblockDeltaStats,
     keyblockDetails,
     fetchKeyblock,

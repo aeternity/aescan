@@ -29,10 +29,23 @@ export const useSearchStore = defineStore('search', () => {
     nftsResults.value = data
   }
 
+  async function isKeyblockAvailable(keyblockHash) {
+    try {
+      await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/${keyblockHash}`)
+      return true
+    } catch (error) {
+      if (error.response.status === 404) {
+        return false
+      }
+      return null
+    }
+  }
+
   return {
     namesResults,
     tokensResults,
     nftsResults,
+    isKeyblockAvailable,
     fetchTokenResults,
     fetchNamesResults,
     fetchNftsResults,

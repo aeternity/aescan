@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia'
-
 export const useOraclesStore = defineStore('oracles', () => {
   const oracles = ref(null)
   const oraclesCount = ref(null)

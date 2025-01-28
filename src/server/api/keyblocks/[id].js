@@ -18,7 +18,7 @@ export default defineEventHandler(async event => {
 
 async function fetchKeblockDetails(id) {
   try {
-    const url = new URL(`${MIDDLEWARE_URL}/v3/key-blocks/${id}`)
+    const url = new URL(`${MIDDLEWARE_URL}/key-blocks/${id}`)
     const { data } = await axios.get(url)
     return data
   } catch (error) {
@@ -40,7 +40,7 @@ async function fetchKeblockDetails(id) {
 }
 
 async function fetchKeyblockDeltaStats(keyblockHeight) {
-  const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/delta?scope=gen:${keyblockHeight}`)
+  const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?scope=gen:${keyblockHeight}`)
   return data?.data?.[0]
 }
 

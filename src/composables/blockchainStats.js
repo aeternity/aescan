@@ -17,7 +17,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   const totalTokenSupply = ref(null)
 
   async function fetchTotalStats() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total?limit=1`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/total?limit=1`)
     const lastBlock = data.data[0]
     activeOraclesCount.value = lastBlock.activeOracles
     oraclesCount.value = lastBlock.activeOracles + lastBlock.inactiveOracles
@@ -32,7 +32,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
 
   async function fetchMaxTps() {
     try {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}/stats`)
       maxTps.value = data.maxTransactionsPerSecond
     } catch {
       maxTps.value = null
@@ -40,7 +40,7 @@ export const useBlockchainStatsStore = defineStore('blockchainStats', () => {
   }
 
   async function fetchTotalTransactionsCount() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/transactions/count`)
     transactionsCount.value = data
   }
 

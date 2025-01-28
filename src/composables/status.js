@@ -10,7 +10,7 @@ export const useStatus = defineStore('status', () => {
 
   async function fetchMdwStatus() {
     try {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/status`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}/status`)
       middlewareStatus.value = data
     } catch (e) {
       middlewareStatus.value = false
@@ -19,7 +19,7 @@ export const useStatus = defineStore('status', () => {
 
   async function fetchNodeStatus() {
     try {
-      const { data } = await axios.get(`${NODE_URL}/v3/status`)
+      const { data } = await axios.get(`${NODE_URL}/status`)
       nodeStatus.value = data
     } catch (e) {
       nodeStatus.value = false

@@ -56,7 +56,7 @@ await useAsyncData(async() => {
 if (process.client) {
   watch(selectedTokenName, async() => {
     pageIndex.value = 1
-    await fetchTokens(`/v3/aex9?by=name&direction=forward&limit=${limit.value}`)
+    await fetchTokens(`/aex9?by=name&direction=forward&limit=${limit.value}`)
   }, {
     immediate: true,
   })

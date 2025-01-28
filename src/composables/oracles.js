@@ -21,8 +21,7 @@ export const useOraclesStore = defineStore('oracles', () => {
   async function fetchOracles(queryParameters = null) {
     oracles.value = null
     const slug = `?${queryParameters.substring(3).split('?')[1]}`
-    const data = await $fetch(`/api/oracles${slug}`)
-    oracles.value = data
+    oracles.value = await $fetch(`/api/oracles${slug}`)
   }
 
   async function fetchOraclesCount() {

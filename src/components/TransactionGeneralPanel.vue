@@ -180,11 +180,11 @@ const props = defineProps({
 })
 
 const transactionNodeUrl = computed(() => {
-  return `${NODE_URL}/v3/transactions/${props.transactionDetails.hash}`
+  return `${NODE_URL}/transactions/${props.transactionDetails.hash}`
 })
 
 const transactionMiddlewareUrl = computed(() => {
-  return `${MIDDLEWARE_URL}/v3/transactions/${props.transactionDetails.hash}`
+  return `${MIDDLEWARE_URL}/transactions/${props.transactionDetails.hash}`
 })
 </script>
 

@@ -47,7 +47,7 @@ export const useNamesStore = defineStore('names', () => {
   async function fetchActiveNames({ queryParameters, limit } = {}) {
     rawActiveNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/v3/names?state=active&by=deactivation&direction=forward&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || `/names?state=active&by=deactivation&direction=forward&limit=${limit ?? 10}`}`,
     )
     rawActiveNames.value = data
   }
@@ -55,7 +55,7 @@ export const useNamesStore = defineStore('names', () => {
   async function fetchInAuctionNames({ queryParameters, limit } = {}) {
     rawInAuctionNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/v3/names/auctions?by=expiration&direction=forward&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || `/names/auctions?by=expiration&direction=forward&limit=${limit ?? 10}`}`,
     )
     rawInAuctionNames.value = data
   }
@@ -63,13 +63,13 @@ export const useNamesStore = defineStore('names', () => {
   async function fetchExpiredNames({ queryParameters, limit } = {}) {
     rawExpiredNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/v3/names?state=inactive&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || `/names?state=inactive&limit=${limit ?? 10}`}`,
     )
     rawExpiredNames.value = data
   }
 
   async function fetchRecentlyActivatedNames() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/names?state=active&by=activation&direction=backward&limit=4&by=activation`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/names?state=active&by=activation&direction=backward&limit=4&by=activation`)
     rawRecentlyActivatedNames.value = data.data
   }
 

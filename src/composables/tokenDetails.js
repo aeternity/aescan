@@ -72,7 +72,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
   }
 
   async function fetchToken() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/aex9/${tokenId.value}`)
     rawToken.value = data
     tokenEventsCount.value = data.logsCount
   }
@@ -89,27 +89,27 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   async function fetchTokenEvents({ queryParameters, limit, contractId } = {}) {
     rawTokenEvents.value = null
-    const defaultParameters = `/v3/contracts/logs?contract=${contractId}&aexn-args=true&limit=${limit ?? 10}`
+    const defaultParameters = `/contracts/logs?contract=${contractId}&aexn-args=true&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenEvents.value = data
   }
 
   async function fetchTokenHolders({ queryParameters, limit } = {}) {
     rawTokenHolders.value = null
-    const defaultParameters = `/v3/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
+    const defaultParameters = `/aex9/${tokenId.value}/balances?by=amount&limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenHolders.value = data
   }
 
   async function fetchTokenHoldersCount() {
     tokenHoldersCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${tokenId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/aex9/${tokenId.value}`)
     tokenHoldersCount.value = data.holders
   }
 
   async function fetchTokenTrades({ queryParameters, limit, contractId } = {}) {
     rawTokenTrades.value = null
-    const defaultParameters = `/v3/dex/${contractId}/swaps?limit=${limit ?? 10}`
+    const defaultParameters = `/dex/${contractId}/swaps?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenTrades.value = data
   }

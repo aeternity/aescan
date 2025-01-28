@@ -45,7 +45,7 @@ async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
-  await fetchMicroblockTransactions({ queryParameters: `/v3/micro-blocks/${route.params.id}/transactions/?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}` })
+  await fetchMicroblockTransactions({ queryParameters: `/micro-blocks/${route.params.id}/transactions/?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}` })
   pageIndex.value = 1
 }
 

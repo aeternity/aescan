@@ -215,11 +215,11 @@ const props = defineProps({
 })
 
 const oracleNodeUrl = computed(() =>
-  `${NODE_URL}/v3/oracles/${props.oracleDetails.id}`,
+  `${NODE_URL}/oracles/${props.oracleDetails.id}`,
 )
 
 const oracleMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v3/oracles/${props.oracleDetails.id}`,
+  `${MIDDLEWARE_URL}/oracles/${props.oracleDetails.id}`,
 )
 </script>
 

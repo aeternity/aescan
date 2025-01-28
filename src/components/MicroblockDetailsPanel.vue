@@ -131,10 +131,10 @@ const props = defineProps({
 })
 
 const microblockNodeUrl = computed(() =>
-  `${NODE_URL}/v3/micro-blocks/hash/${props.microblockDetails.hash}/header`,
+  `${NODE_URL}/micro-blocks/hash/${props.microblockDetails.hash}/header`,
 )
 const microblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v3/micro-blocks/${props.microblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/micro-blocks/${props.microblockDetails.hash}`,
 )
 </script>
 

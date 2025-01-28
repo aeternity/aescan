@@ -33,7 +33,7 @@ async function loadNextNfts() {
 }
 
 if (process.client) {
-  await fetchNfts({ queryParameters: `/v3/aex141?limit=${limit.value}&direction=backward&by=creation` })
+  await fetchNfts({ queryParameters: `/aex141?limit=${limit.value}&direction=backward&by=creation` })
 }
 
 </script>

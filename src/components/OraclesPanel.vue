@@ -4,7 +4,7 @@
       v-model:page-index="pageIndex"
       :entities="oracles"
       :limit="limit"
-      :total-count="getOraclesCount(selectedOracleState.stateQuery)"
+      :total-count="oraclesCount"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
       <template #header>
@@ -24,8 +24,8 @@
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const { fetchOracles, fetchOraclesCount, getOraclesCount } = useOraclesStore()
-const { oracles } = storeToRefs(useOraclesStore())
+const { fetchOracles, fetchOraclesCount } = useOraclesStore()
+const { oracles, oraclesCount } = storeToRefs(useOraclesStore())
 
 const limit = isDesktop() ? 10 : 3
 const pageIndex = ref(1)
@@ -42,10 +42,9 @@ async function loadOracles() {
   const { state } = route.query
   const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
-
   await Promise.all([
     await fetchOracles({ limit, state: selectedOracleState.value.stateQuery }),
-    await fetchOraclesCount(),
+    await fetchOraclesCount(selectedOracleState.value.stateQuery),
   ])
 
   pageIndex.value = 1

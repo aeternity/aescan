@@ -2,22 +2,6 @@ export const useOraclesStore = defineStore('oracles', () => {
   const oracles = ref(null)
   const oraclesCount = ref(null)
 
-  const activeOraclesCount = computed(() => {
-    return oraclesCount.value?.activeOracles
-  })
-
-  const inactiveOraclesCount = computed(() => {
-    return oraclesCount.value?.inactiveOracles
-  })
-
-  function getOraclesCount(state) {
-    if (state === 'active') {
-      return activeOraclesCount.value
-    } else {
-      return inactiveOraclesCount.value
-    }
-  }
-
   async function fetchOracles({ queryParameters = null, limit = null, state = null }) {
     oracles.value = null
     oracles.value = await $fetch('/api/oracles', {
@@ -29,15 +13,19 @@ export const useOraclesStore = defineStore('oracles', () => {
     })
   }
 
-  async function fetchOraclesCount() {
+  async function fetchOraclesCount(state) {
     oraclesCount.value = null
-    oraclesCount.value = await $fetch('/api/oracles/count')
+    oraclesCount.value = await $fetch('/api/oracles/count', {
+      params: {
+        state,
+      },
+    })
   }
 
   return {
     oracles,
+    oraclesCount,
     fetchOracles,
     fetchOraclesCount,
-    getOraclesCount,
   }
 })

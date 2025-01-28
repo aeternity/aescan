@@ -151,7 +151,7 @@ const props = defineProps({
 })
 
 const accountNodeUrl = computed(() =>
-  `${NODE_URL}/v3/accounts/${props.accountDetails.id}`,
+  `${NODE_URL}/accounts/${props.accountDetails.id}`,
 )
 const sanitizedPrice = computed(() =>
   price.value

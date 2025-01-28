@@ -201,7 +201,7 @@ const props = defineProps({
 })
 
 const tokenMiddlewareUrl = computed(() =>
-  `${config.MIDDLEWARE_URL}/v3/aex9/${props.tokenDetails.contractId}`,
+  `${config.MIDDLEWARE_URL}/aex9/${props.tokenDetails.contractId}`,
 )
 
 const tokenDexUrl = computed(() =>

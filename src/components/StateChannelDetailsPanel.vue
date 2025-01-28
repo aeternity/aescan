@@ -212,7 +212,7 @@ const props = defineProps({
   },
 })
 
-const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v3/channels/${props.stateChannelDetails.id}`
+const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/channels/${props.stateChannelDetails.id}`
 </script>
 
 <style scoped>

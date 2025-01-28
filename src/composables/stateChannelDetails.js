@@ -36,12 +36,12 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   }
 
   async function fetchStateChannel() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/channels/${stateChannelId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/channels/${stateChannelId.value}`)
     rawStateChannel.value = data
   }
 
   async function fetchStateChannelCreateTx() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/channels/${stateChannelId.value}/updates?direction=forward&limit=1`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/channels/${stateChannelId.value}/updates?direction=forward&limit=1`)
     rawStateChannelCreateTx.value = data.data[0]
   }
 
@@ -54,7 +54,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
       return
     }
 
-    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions`)
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
     transactionsUrl.searchParams.append('limit', limit ?? 10)
     transactionsUrl.searchParams.append('channel', stateChannelId.value)
@@ -64,7 +64,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   }
 
   async function fetchStateChannelTransactionsCount() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count?id=${stateChannelId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/transactions/count?id=${stateChannelId.value}`)
     stateChannelTransactionsCount.value = data + 1
   }
 

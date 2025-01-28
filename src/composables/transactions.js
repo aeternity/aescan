@@ -24,14 +24,14 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactions(queryParameters = null) {
     rawTransactions.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/v3/transactions?limit=10'}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/transactions?limit=10'}`)
     isHydrated.value = true
     rawTransactions.value = data
   }
 
   async function fetchTransactionsCount(txType = null) {
     transactionsCount.value = null
-    const url = txType ? `${MIDDLEWARE_URL}/v3/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/v3/transactions/count`
+    const url = txType ? `${MIDDLEWARE_URL}/transactions/count?tx_type=${txType}` : `${MIDDLEWARE_URL}/transactions/count`
     const { data } = await axios.get(url)
     transactionsCount.value = data
   }
@@ -39,7 +39,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   async function fetchLast24hsTransactionsStatistics() {
     last24hsTransactionsCount.value = null
     try {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}/stats`)
       last24hsTransactionsCount.value = data.last24hsTransactions
       last24hsTransactionsTrend.value = data.transactionsTrend
       last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)

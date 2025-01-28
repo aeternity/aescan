@@ -18,19 +18,19 @@ export default defineEventHandler(async event => {
 })
 
 async function fetchOracle(id) {
-  const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}`)
+  const url = new URL(`${MIDDLEWARE_URL}/oracles/${id}`)
   const { data } = await axios.get(url)
   return data
 }
 
 async function fetchLastExtendedTx(id) {
-  const url = new URL(`${MIDDLEWARE_URL}/v3/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${id}`)
+  const url = new URL(`${MIDDLEWARE_URL}/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${id}`)
   const { data } = await axios.get(url)
   return data.data?.[0]
 }
 
 async function fetchLastQueriedTx(id) {
-  const url = new URL(`${MIDDLEWARE_URL}/v3/oracles/${id}/responses?limit=1`)
+  const url = new URL(`${MIDDLEWARE_URL}/oracles/${id}/responses?limit=1`)
   const { data } = await axios.get(url)
 
   return data.data?.[0]?.query

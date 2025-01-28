@@ -1,5 +1,4 @@
 export const useOracleDetailsStore = defineStore('oracleDetails', () => {
-  const oracleId = ref(null)
   const oracleDetails = ref(null)
   const oracleEvents = ref(null)
 
@@ -24,6 +23,5 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     fetchOracleEvents,
     oracleDetails,
     oracleEvents,
-    oracleId,
   }
 })

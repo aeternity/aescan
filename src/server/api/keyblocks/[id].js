@@ -8,12 +8,9 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const id = getRouterParam(event, 'id')
-  const data = await fetchKeblockDetails(id)
-  if (!data.height) {
-    return data
-  }
-  const keyblockDeltaStats = await fetchKeyblockDeltaStats(data.height)
-  return adaptKeyblock(data, keyblockDeltaStats)
+  const keyblockDetails = await fetchKeblockDetails(id)
+  const keyblockDeltaStats = await fetchKeyblockDeltaStats(keyblockDetails.height)
+  return adaptKeyblock(keyblockDetails, keyblockDeltaStats)
 })
 
 async function fetchKeblockDetails(id) {

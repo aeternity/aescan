@@ -31,7 +31,6 @@ const errorData = computed(() => {
   }
 
   return error.data.data || error.data
-  // todo tempo followup
 })
 
 setResponseStatus(404, `${errorData.value.entityName} Not Found`)

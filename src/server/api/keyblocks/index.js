@@ -5,8 +5,6 @@ import { formatAettosToAe } from '~/utils/format'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  // todo is V3 needed?
-  // todo rename to statistics
   const { limit, queryParameters } = getQuery(event)
 
   const url = getUrl({

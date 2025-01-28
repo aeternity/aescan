@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
   // todo is V3 needed?
   // todo rename to statistics
   const query = getQuery(event)
-  const defaultParameters = `/v3/key-blocks?limit=${query.limit ?? 10}`
+  const defaultParameters = `/key-blocks?limit=${query.limit ?? 10}`
   const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
   const { data } = await axios.get(url)
   return adaptKeyblocks(data)

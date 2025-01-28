@@ -31,7 +31,7 @@ export const useSearchStore = defineStore('search', () => {
 
   async function isKeyblockAvailable(keyblockHash) {
     try {
-      await axios.get(`${MIDDLEWARE_URL}/v3/key-blocks/${keyblockHash}`)
+      await axios.get(`${MIDDLEWARE_URL}/key-blocks/${keyblockHash}`)
       return true
     } catch (error) {
       if (error.response.status === 404) {

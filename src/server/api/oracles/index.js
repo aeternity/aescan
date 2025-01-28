@@ -7,11 +7,9 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const query = getQuery(event)
-  const url = new URL(`${MIDDLEWARE_URL}/v3/oracles`)
+  const defaultParameters = `/v3/oracles?state=${query.state}&limit=${query.limit || 10}`
+  const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
 
-  Object.entries(query).forEach(([key, value]) => {
-    url.searchParams.append(key, value)
-  })
   const { data } = await axios.get(url)
   return adaptOracles(data)
 })

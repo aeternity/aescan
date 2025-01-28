@@ -27,15 +27,15 @@ const { push, replace } = useRouter()
 const { fetchOracles, fetchOraclesCount, getOraclesCount } = useOraclesStore()
 const { oracles } = storeToRefs(useOraclesStore())
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
+const limit = isDesktop() ? 10 : 3
 const pageIndex = ref(1)
 
 function loadPrevOracles() {
-  fetchOracles(oracles.value.prev)
+  fetchOracles({ queryParameters: oracles.value.prev })
 }
 
 function loadNextOracles() {
-  fetchOracles(oracles.value.next)
+  fetchOracles({ queryParameters: oracles.value.prev })
 }
 
 async function loadOracles() {
@@ -44,7 +44,7 @@ async function loadOracles() {
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
 
   await Promise.all([
-    await fetchOracles(`/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`),
+    await fetchOracles({ limit, state: selectedOracleState.value.stateQuery }),
     await fetchOraclesCount(),
   ])
   pageIndex.value = 1

@@ -33,7 +33,7 @@ function loadNextEvents() {
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
+  const limit = isDesktop() ? 10 : 3
   fetchOracleEvents({ limit, id: route.params.id })
 }
 </script>

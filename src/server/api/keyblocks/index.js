@@ -1,9 +1,12 @@
+import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe } from '~/utils/format'
 
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
+  // todo is V3 needed?
+  // todo rename to statistics
   const { limit, queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -11,7 +14,6 @@ export default defineEventHandler(async event => {
     limit: limit ?? 10,
     queryParameters,
   })
-
   const { data } = await axios.get(url)
   return adaptKeyblocks(data)
 })

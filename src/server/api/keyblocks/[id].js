@@ -1,4 +1,5 @@
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
+import { DateTime } from 'luxon'
 import { formatAettosToAe } from '@/utils/format'
 import useAxios from '@/composables/useAxios'
 
@@ -10,6 +11,9 @@ export default defineEventHandler(async event => {
   let keyblockDeltaStats = null
   if (keyblockDetails.height) {
     keyblockDeltaStats = await fetchKeyblockDeltaStats(keyblockDetails.height)
+  const data = await fetchKeblockDetails(id)
+  if (!data.height) {
+    return data
   }
   return adaptKeyblock(keyblockDetails, keyblockDeltaStats)
 })

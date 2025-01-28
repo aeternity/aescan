@@ -5,7 +5,6 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   async function fetchKeyblock(keyblockId) {
     keyblockDetails.value = null
     keyblockDetails.value = await $fetch(`/api/keyblocks/${keyblockId}`)
-    // todo splelling 2 words?
   }
 
   async function fetchKeyblockMicroblocks({ queryParameters, limit, microblockHash, keyblockHash } = {}) {

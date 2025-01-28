@@ -6,8 +6,6 @@ const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  // todo is V3 needed?
-  // todo rename to statistics
   const query = getQuery(event)
   const defaultParameters = `/key-blocks?limit=${query.limit ?? 10}`
   const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)

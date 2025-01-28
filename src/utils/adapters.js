@@ -5,33 +5,6 @@ import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
-export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
-  if (keyblock) {
-    return {
-      ...keyblock,
-      mined: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-      blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
-    }
-  }
-
-  return keyblock
-}
-
-export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
-  const formattedData = keyblockMicroblocks.data.map(microblock => {
-    return {
-      time: DateTime.fromMillis(microblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-      transactionsCount: microblock.transactionsCount,
-      hash: microblock.hash,
-    }
-  })
-  return {
-    next: keyblockMicroblocks.next,
-    data: formattedData,
-    prev: keyblockMicroblocks.prev,
-  }
-}
-
 export function adaptMicroblock(microblock) {
   return {
     ...microblock,
@@ -468,74 +441,6 @@ export function adaptListedTokens(tokens) {
   }
 }
 
-export function adaptOracles(oracles) {
-  const formattedData = oracles.data.map(oracle => {
-    return {
-      id: oracle.oracle,
-      registeredHeight: oracle.activeFrom,
-      registered: DateTime.fromMillis(oracle.registerTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-      expirationHeight: oracle.expireHeight,
-      expiration: DateTime.fromMillis(oracle.approximateExpireTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-      queryFee: formatAettosToAe(oracle.queryFee),
-    }
-  })
-
-  return {
-    next: oracles.next,
-    data: formattedData,
-    prev: oracles.prev,
-  }
-}
-
-export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
-  const oracleDetails = {
-    id: oracle.oracle,
-    fee: formatAettosToAe(oracle.queryFee),
-    expiration: DateTime.fromMillis(oracle.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-    expirationHeight: oracle.expireHeight,
-    registered: DateTime.fromMillis(oracle.registerTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-    registeredHeight: oracle.activeFrom,
-    queryFormat: oracle.format.query,
-    responseFormat: oracle.format.response,
-    operator: oracle.oracle.replace('ok_', 'ak_'),
-    lastExtended: lastExtendedTx
-      ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-      : null,
-    lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx
-      ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-      : null,
-    lastQueryHeight: lastQueryTx?.height,
-  }
-  return oracleDetails
-}
-
-export function adaptOracleEvents(events) {
-  const formattedData = events.data.map(event => {
-    return {
-      queriedAt: DateTime.fromMillis(event.query.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-      queriedHeight: event.query.height,
-      respondedAt: DateTime.fromMillis(event.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-      respondedHeight: event.height,
-      queryTx: event.query.sourceTxHash,
-      respondTx: event.sourceTxHash,
-      queryId: event.query.queryId,
-      queryFee: formatAettosToAe(event.query.fee),
-      query: formatDecodeBase64(event.query.query),
-      responseTtl: event.query.responseTtl.value,
-      response: formatDecodeBase64(event.response),
-    }
-  })
-
-  return {
-    next: events?.next,
-    data: formattedData,
-    prev: events?.prev,
-  }
-}
-
 export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx) {
   return {
     id: stateChannel.channel,
@@ -697,27 +602,6 @@ export function adaptTopAccounts(topAccounts, distribution) {
         percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
       }
     })
-}
-
-export function adaptKeyblocks(keyblocks) {
-  const formattedData = keyblocks.data
-    .map(keyblock => {
-      return {
-        hash: keyblock.hash,
-        block: keyblock.height,
-        time: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
-        miner: keyblock.miner,
-        microBlocksCount: keyblock.microBlocksCount,
-        transactionsCount: keyblock.transactionsCount,
-        beneficiary: keyblock.beneficiary,
-        beneficiaryReward: formatAettosToAe(keyblock.beneficiaryReward),
-      }
-    })
-  return {
-    next: keyblocks.next,
-    data: formattedData,
-    prev: keyblocks.prev,
-  }
 }
 
 export function adaptTrades(trades, price) {

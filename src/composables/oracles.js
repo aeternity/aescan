@@ -16,9 +16,7 @@ export const useOraclesStore = defineStore('oracles', () => {
   async function fetchOraclesCount(state) {
     oraclesCount.value = null
     oraclesCount.value = await $fetch('/api/oracles/count', {
-      params: {
-        state,
-      },
+      params: { state },
     })
   }
 

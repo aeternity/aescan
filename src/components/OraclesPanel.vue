@@ -35,7 +35,7 @@ function loadPrevOracles() {
 }
 
 function loadNextOracles() {
-  fetchOracles({ queryParameters: oracles.value.prev })
+  fetchOracles({ queryParameters: oracles.value.next })
 }
 
 async function loadOracles() {

@@ -314,7 +314,7 @@ export function adaptName(name, blockHeight, blockTime) {
     activated,
     expirationHeight: name.expireHeight,
     expiration: name.approximateExpireTime
-      ? (name.approximateExpireTime)
+      ? (name.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
       : null,
     auctionEndsHeight: endHeight,
     auctionEnds: ends || null,
@@ -344,6 +344,7 @@ export function adaptNameActions(actions) {
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
   const created = transactionDetails.time
     ? (transactionDetails.time)
+   .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
     : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.blockHeight : 0
   const blockHash = transactionDetails.blockHash !== 'none' ? transactionDetails.blockHash : null

@@ -22,26 +22,24 @@ const { oracleEvents } = storeToRefs(useOracleDetailsStore())
 const { fetchOracleEvents } = useOracleDetailsStore()
 
 const route = useRoute()
-
 const pageIndex = ref(1)
 
 function loadPrevEvents() {
-  fetchOracleEvents(oracleEvents.value.prev)
+  fetchOracleEvents({ queryParameters: oracleEvents.value.prev })
 }
 
 function loadNextEvents() {
-  fetchOracleEvents(oracleEvents.value.next)
+  fetchOracleEvents({ queryParameters: oracleEvents.value.next })
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
-  fetchOracleEvents(`/v3/oracles/${route.params.id}/responses?limit=${limit.value}`)
+  const limit = isDesktop() ? 10 : 3
+  fetchOracleEvents({ limit, id: route.params.id })
 }
 </script>
 
 <style scoped>
 .oracle-events-panel__table {
   margin-bottom: var(--space-4);
-
 }
 </style>

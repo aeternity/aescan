@@ -29,16 +29,19 @@
             Registered
           </th>
           <td>
-            <app-link
-              class="oracle-details-panel__block"
-              :to="`/keyblocks/${oracleDetails.registeredHeight}`">
-              {{ oracleDetails.registeredHeight }}
-            </app-link>
-            -
-            <timestamp-label
-              class="oracle-details-panel__timestamp"
-              :timestamp="oracleDetails.registered"
-              :is-extended="true"/>
+            <div
+              class="oracle-details-panel__container">
+              <app-link
+                class="oracle-details-panel__block"
+                :to="`/keyblocks/${oracleDetails.registeredHeight}`">
+                {{ oracleDetails.registeredHeight }}
+              </app-link>
+              -
+              <timestamp-label
+                class="oracle-details-panel__timestamp"
+                :timestamp="oracleDetails.registered"
+                :is-extended="true"/>
+            </div>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -63,9 +66,7 @@
                 :timestamp="oracleDetails.lastExtended"
                 :is-extended="true"/>
             </div>
-            <template v-else>
-              N/A
-            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -90,9 +91,7 @@
                 :timestamp="oracleDetails.lastQueried"
                 :is-extended="true"/>
             </div>
-            <template v-else>
-              N/A
-            </template>
+            <not-available-label v-else/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -235,6 +234,12 @@ const oracleMiddlewareUrl = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
   }
 
   &__link {

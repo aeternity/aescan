@@ -1,5 +1,4 @@
 <template>
-  <!--  oracleEvents {{ oracleEvents }}-->
   <app-panel class="oracle-events-panel">
     <paginated-content
       v-model:page-index="pageIndex"

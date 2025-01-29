@@ -5,6 +5,18 @@ import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
+export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
+  if (keyblock) {
+    return {
+      ...keyblock,
+      mined: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
+    }
+  }
+
+  return keyblock
+}
+
 export function adaptMicroblock(microblock) {
   return {
     ...microblock,

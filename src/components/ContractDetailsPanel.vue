@@ -254,6 +254,7 @@ const contractMiddlewareUrl = computed(() =>
 
   &__row {
     display: block;
+
     @media (--mobile) {
       display: table-row;
     }
@@ -262,6 +263,7 @@ const contractMiddlewareUrl = computed(() =>
   &__data {
     display: block;
     padding-left: 20px;
+
     @media (--mobile) {
       display: table-cell;
     }

@@ -135,6 +135,7 @@ defineProps({
 
   &__row {
     display: block;
+
     @media (--mobile) {
       display: table-row;
     }
@@ -147,6 +148,7 @@ defineProps({
   &__data {
     display: block;
     padding-left: 20px;
+
     @media (--mobile) {
       display: table-cell;
     }

@@ -209,6 +209,7 @@ function getLabel(state) {
 
   &__row {
     display: block;
+
     @media (--mobile) {
       display: table-row;
     }
@@ -221,6 +222,7 @@ function getLabel(state) {
   &__data {
     display: block;
     padding-left: 20px;
+
     @media (--mobile) {
       display: table-cell;
     }

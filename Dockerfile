@@ -18,9 +18,18 @@ FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /app
 
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nuxt
+
 COPY --from=build /app/.output ./
 
-ENV NITRO_PORT=80
+RUN chown nuxt:nodejs ./
+
+USER nuxt
+
+ENV HOST=0.0.0.0
+ENV PORT=80
+ENV NODE_ENV=production
 
 EXPOSE 80
 

@@ -20,6 +20,8 @@ WORKDIR /app
 
 COPY --from=build /app/.output ./
 
+ENV NITRO_PORT=80
+
 EXPOSE 80
 
 CMD [ "node", "/app/server/index.mjs" ]

@@ -9,7 +9,7 @@
             </hint-tooltip>
             State Channel ID
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <div class="u-hidden-mobile">
               <copy-chip :label="stateChannelDetails.id"/>
             </div>
@@ -27,7 +27,7 @@
             </hint-tooltip>
             Status
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <app-chip :variant="stateChannelDetails.isOpen ? 'success' : 'primary'">
               {{ stateChannelDetails.isOpen ? 'Open' : 'Closed' }}
             </app-chip>
@@ -40,7 +40,7 @@
             </hint-tooltip>
             Create Transaction
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <app-link :to="`/transactions/${stateChannelDetails.createTransactionHash}`">
               <span class="u-hidden-mobile">
                 {{ stateChannelDetails.createTransactionHash }}
@@ -58,7 +58,7 @@
             </hint-tooltip>
             Initial Amount
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <price-label :price="stateChannelDetails.initialAmount"/>
           </td>
         </tr>
@@ -69,7 +69,7 @@
             </hint-tooltip>
             Initiator
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <app-link :to="`/accounts/${stateChannelDetails.initiator}`">
               <span class="u-hidden-mobile">
                 {{ stateChannelDetails.initiator }}
@@ -87,7 +87,7 @@
             </hint-tooltip>
             Responder
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <app-link :to="`/accounts/${stateChannelDetails.responder}`">
               <span class="u-hidden-mobile">
                 {{ stateChannelDetails.responder }}
@@ -105,7 +105,7 @@
             </hint-tooltip>
             On-Chain TXs
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             {{ formatNumber(stateChannelDetails.onChainUpdates) }}
           </td>
         </tr>
@@ -116,7 +116,7 @@
             </hint-tooltip>
             Last Known Round
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             {{ formatNumber(stateChannelDetails.lastKnownRound) }}
           </td>
         </tr>
@@ -127,7 +127,7 @@
             </hint-tooltip>
             Locked
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <price-label :price="stateChannelDetails.aeLocked"/>
           </td>
         </tr>
@@ -138,7 +138,7 @@
             </hint-tooltip>
             Last Updated Height
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <app-link
               v-if="stateChannelDetails.lastUpdatedHeight"
               :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
@@ -156,7 +156,7 @@
             </hint-tooltip>
             Last Updated
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <timestamp-label
               v-if="stateChannelDetails.lastUpdated"
               :timestamp="stateChannelDetails.lastUpdated"
@@ -173,7 +173,7 @@
             </hint-tooltip>
             Last TX Type
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             {{ stateChannelDetails.lastTxType }}
           </td>
         </tr>
@@ -184,7 +184,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="state-channel-details-panel__data">
             <app-link
               :to="stateChannelMiddlewareUrl"
               class="state-channel-details-panel__link">
@@ -217,16 +217,36 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/v3/channels/${props.stateCh
 
 <style scoped>
 .state-channel-details-panel {
-  &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
 
-    @media (--desktop) {
+  &__table-header {
+    display: block;
+    padding-bottom: 0;
+
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 20px;
+    @media (--mobile) {
+      display: table-cell;
+    }
   }
 
   &__link {

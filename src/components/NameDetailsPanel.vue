@@ -9,7 +9,7 @@
             </hint-tooltip>
             Name
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <copy-chip :label="name.name"/>
           </td>
         </tr>
@@ -22,7 +22,7 @@
             </hint-tooltip>
             {{ states.includes('expired') ? "Last Owner" : "Owner" }}
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.owner}`">
               <span class="u-hidden-mobile">
                 {{ name.owner }}
@@ -42,7 +42,7 @@
             </hint-tooltip>
             Highest Bidder
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
               <span class="u-hidden-mobile">
                 {{ name.bidder }}
@@ -62,10 +62,8 @@
             </hint-tooltip>
             Highest Bid
           </th>
-          <td>
-            <price-label
-              class="name-details-panel__data"
-              :price="name.bid"/>
+          <td class="name-details-panel__data">
+            <price-label :price="name.bid"/>
           </td>
         </tr>
         <tr
@@ -77,7 +75,7 @@
             </hint-tooltip>
             Owned Since Height
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link
               :to="`/keyblocks/${name.activatedHeight}`">
               {{ name.activatedHeight }}
@@ -93,7 +91,7 @@
             </hint-tooltip>
             Owned Since
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <timestamp-label
               :timestamp="name.activated"
               :is-extended="true"/>
@@ -106,7 +104,7 @@
             </hint-tooltip>
             {{ stateLabel }} Height
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link
               :to="`/keyblocks/${name.auctionEndsHeight || name.expirationHeight}`">
               {{ name.auctionEndsHeight || name.expirationHeight }}
@@ -120,7 +118,7 @@
             </hint-tooltip>
             {{ stateLabel }}
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <timestamp-label
               :timestamp="name.auctionEnds || name.expiration"
               :is-extended="true"/>
@@ -133,7 +131,7 @@
             </hint-tooltip>
             Status
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <div class="name-details-panel__container">
               <app-chip
                 v-for="state in states"
@@ -198,10 +196,21 @@ function getLabel(state) {
 <style scoped>
 .name-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
@@ -209,9 +218,12 @@ function getLabel(state) {
     border-bottom: 0;
   }
 
-  &__container {
-    display: flex;
-    gap: var(--space-1);
+  &__data {
+    display: block;
+    padding-left: 20px;
+    @media (--mobile) {
+      display: table-cell;
+    }
   }
 }
 </style>

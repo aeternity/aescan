@@ -26,7 +26,7 @@
             </hint-tooltip>
             Address
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <div class="u-hidden-mobile">
               <copy-chip :label="accountDetails.id"/>
             </div>
@@ -44,7 +44,7 @@
             </hint-tooltip>
             Balance
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <price-label :price="accountDetails.balance"/>
           </td>
         </tr>
@@ -56,7 +56,7 @@
             </hint-tooltip>
             Value
           </th>
-          <td>
+          <td class="account-details-panel__data">
             {{ sanitizedPrice }}
           </td>
         </tr>
@@ -67,7 +67,7 @@
             </hint-tooltip>
             Transactions
           </th>
-          <td>
+          <td class="account-details-panel__data">
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
           </td>
         </tr>
@@ -80,7 +80,7 @@
             </hint-tooltip>
             Is Generalized
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <app-chip size="sm">
               Generalized
             </app-chip>
@@ -95,7 +95,7 @@
             </hint-tooltip>
             Contract Id
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <app-link :to="`/contracts/${accountDetails.contractId}`">
               {{ accountDetails.contractId }}
             </app-link>
@@ -110,7 +110,7 @@
             </hint-tooltip>
             Nonce
           </th>
-          <td>
+          <td class="account-details-panel__data">
             {{ accountDetails.nonce }}
           </td>
         </tr>
@@ -121,7 +121,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <app-link
               :to="accountNodeUrl"
               class="account-details-panel__link">
@@ -163,15 +163,34 @@ const sanitizedPrice = computed(() =>
 <style scoped>
 .account-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 20px;
+    @media (--mobile) {
+      display: table-cell;
+    }
   }
 
   &__link {

@@ -18,14 +18,9 @@ FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /app
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nuxt
+COPY --chown=node:node --from=build /app/.output ./
 
-COPY --from=build /app/.output ./
-
-RUN chown nuxt:nodejs ./
-
-USER nuxt
+USER node
 
 ENV HOST=0.0.0.0
 ENV PORT=80

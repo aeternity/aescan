@@ -8,12 +8,7 @@
       pagination-style="history"
       @prev-clicked="loadPrevContracts"
       @next-clicked="loadNextContracts">
-      <contracts-table
-        :contracts="contracts"
-        class="u-hidden-mobile"/>
-      <contract-table-condensed
-        :contracts="contracts"
-        class="u-hidden-desktop"/>
+      <contracts-table :contracts="contracts"/>
     </paginated-content>
   </app-panel>
 </template>

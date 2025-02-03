@@ -10,13 +10,7 @@
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
-      <state-channel-transactions-table
-        class="u-hidden-mobile"
-        :transactions="stateChannelTransactions"/>
-
-      <state-channel-transactions-table-condensed
-        class="u-hidden-desktop"
-        :transactions="stateChannelTransactions"/>
+      <state-channel-transactions-table :transactions="stateChannelTransactions"/>
     </paginated-content>
   </app-panel>
 </template>

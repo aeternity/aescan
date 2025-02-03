@@ -6,11 +6,7 @@
       @prev-clicked="loadPrevNfts"
       @next-clicked="loadNextNfts">
       <search-nfts-table
-        :nfts="nftsResults"
-        class="u-hidden-mobile"/>
-      <search-nfts-table-condensed
-        :nfts="nftsResults"
-        class="u-hidden-desktop"/>
+        :nfts="nftsResults"/>
     </paginated-content>
   </app-panel>
 </template>

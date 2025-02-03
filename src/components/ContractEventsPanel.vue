@@ -8,14 +8,7 @@
       <contract-events-table
         v-if="contractEvents"
         :contract-details="contractDetails"
-        :contract-events="contractEvents"
-        class="u-hidden-mobile"/>
-
-      <contract-events-table-condensed
-        v-if="contractEvents"
-        :contract-details="contractDetails"
-        :contract-events="contractEvents"
-        class="u-hidden-desktop"/>
+        :contract-events="contractEvents"/>
     </paginated-content>
   </app-panel>
 </template>

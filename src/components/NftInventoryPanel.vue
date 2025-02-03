@@ -8,10 +8,7 @@
       @prev-clicked="loadPrevNftInventory">
       <nft-inventory-table
         :nft-inventory="nftInventory"
-        class="nft-inventory-panel__table u-hidden-mobile"/>
-      <nft-inventory-table-condensed
-        :nft-inventory="nftInventory"
-        class="u-hidden-desktop"/>
+        class="nft-inventory-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>

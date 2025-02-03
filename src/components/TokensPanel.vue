@@ -14,11 +14,6 @@
       </template>
       <tokens-table
         v-if="selectedTokens"
-        class="u-hidden-mobile"
-        :tokens="selectedTokens"/>
-      <tokens-table-condensed
-        v-if="selectedTokens"
-        class="u-hidden-desktop"
         :tokens="selectedTokens"/>
     </paginated-content>
   </app-panel>

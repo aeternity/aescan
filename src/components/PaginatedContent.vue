@@ -186,6 +186,7 @@ onBeforeUnmount(() => {
 
   &__container {
     width: 100%;
+    overflow-x: auto;
   }
 
   &__slot-header {

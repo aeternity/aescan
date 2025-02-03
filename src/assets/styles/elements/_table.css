@@ -13,32 +13,35 @@ th {
   white-space: nowrap;
 
   vertical-align: middle;
-  padding: 7px 7px 7px 0;
+  padding: 10px 10px var(--space-1) 10px;
 
 
   @media (--desktop) {
     font-size: 16px;
     line-height: 18px;
-    padding: 10px 10px var(--space-1) 0;
+
   }
 }
 
 td {
   font-family: var(--font-monospaced);
   font-weight: 400;
-  padding: 7px 0;
+
   text-align: left;
   border-bottom: 1px solid var(--color-midnight-25);
   vertical-align: middle;
+  padding: 10px var(--space-0) var(--space-1) 10px;
 
-  @media (--desktop) {
-    padding: 10px var(--space-0) var(--space-1) 0;
-  }
 }
 
 
 thead tr:first-of-type th {
   padding-bottom: 0;
+}
+
+
+th:first-of-type {
+  padding-left: 0;
 }
 
 

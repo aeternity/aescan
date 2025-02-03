@@ -13,7 +13,7 @@
         </hint-tooltip>
       </div>
       <contract-entrypoint-accordion
-        :is-disabled="!canWrite"
+        :is-disabled="!isWritable"
         :entrypoints="aciWriteEntrypoints"
         :loading-index="loadingIndex"
         :response="response"
@@ -26,19 +26,16 @@
 <script setup>
 import { contractVerifiedHints } from '@/utils/hints/contractVerifiedHints'
 
-const contractVerifiedStore = useContractVerifiedStore()
-const contractDetailStore = useContractDetailsStore()
-const { aciWriteEntrypoints } = storeToRefs(contractVerifiedStore)
+const { aciWriteEntrypoints } = storeToRefs(useContractVerifiedStore())
 
 const {
   fetchEntrypointResponse,
   parseArguments,
   parseResponse,
-  getContract,
-  canWrite,
-} = contractVerifiedStore
+  isWritable,
+} = useContractVerifiedStore()
 
-const { fetchContractEvents, fetchContractCallTransactions } = contractDetailStore
+const { fetchContractEvents, fetchContractCallTransactions } = useContractDetailsStore()
 
 const route = useRoute()
 

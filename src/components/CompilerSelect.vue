@@ -11,8 +11,7 @@
 <script setup>
 import { useVModel } from '@vueuse/core'
 
-const verificationStore = useContractVerificationStore()
-const { compilerOptions } = storeToRefs(verificationStore)
+const { compilerOptions } = storeToRefs(useContractVerificationStore())
 
 const props = defineProps({
   modelValue: {

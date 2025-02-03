@@ -42,9 +42,8 @@ const props = defineProps({
 })
 
 const { go, push } = useRouter()
-const walletStore = useWalletStore()
-const { address, status } = storeToRefs(walletStore)
-const { disconnect, setBackLink } = walletStore
+const { address, status } = storeToRefs(useWalletStore())
+const { disconnect, setBackLink } = useWalletStore()
 
 function goToConnection() {
   setBackLink(props.backlink)

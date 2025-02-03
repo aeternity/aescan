@@ -19,9 +19,8 @@
 <script setup>
 import { walletHints } from '@/utils/hints/walletHints'
 
-const walletStore = useWalletStore()
-const { scanWallets, setBackLink } = walletStore
-const { status, backLink } = storeToRefs(walletStore)
+const { scanWallets, setBackLink } = useWalletStore()
+const { status, backLink } = storeToRefs(useWalletStore())
 
 const { push } = useRouter()
 

@@ -16,9 +16,8 @@
 </template>
 
 <script setup>
-const searchStore = useSearchStore()
-const { namesResults } = storeToRefs(searchStore)
-const { fetchNamesResults } = searchStore
+const { namesResults } = storeToRefs(useSearchStore())
+const { fetchNamesResults } = useSearchStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()

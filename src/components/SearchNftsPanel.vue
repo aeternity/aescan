@@ -14,11 +14,10 @@
     </paginated-content>
   </app-panel>
 </template>
-<script setup>
 
-const searchStore = useSearchStore()
-const { nftsResults } = storeToRefs(searchStore)
-const { fetchNftsResults } = searchStore
+<script setup>
+const { nftsResults } = storeToRefs(useSearchStore())
+const { fetchNftsResults } = useSearchStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()

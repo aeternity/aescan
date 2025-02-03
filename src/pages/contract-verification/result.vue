@@ -74,9 +74,8 @@
 </template>
 
 <script setup>
-const verificationStore = useContractVerificationStore()
-const { fetchVerificationStatus } = verificationStore
-const { id, verificationResult, verificationStatus } = storeToRefs(verificationStore)
+const { fetchVerificationStatus } = useContractVerificationStore()
+const { id, verificationResult, verificationStatus } = storeToRefs(useContractVerificationStore())
 
 const timer = ref(null)
 

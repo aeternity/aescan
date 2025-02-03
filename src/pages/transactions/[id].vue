@@ -35,9 +35,8 @@
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
-const transactionDetailsStore = useTransactionDetailsStore()
-const { transactionDetails, transactionTypeData } = storeToRefs(transactionDetailsStore)
-const { fetchTransactionDetails } = transactionDetailsStore
+const { transactionDetails, transactionTypeData } = storeToRefs(useTransactionDetailsStore())
+const { fetchTransactionDetails } = useTransactionDetailsStore()
 
 const { subscribedTransactionId } = storeToRefs(useWebSocket())
 

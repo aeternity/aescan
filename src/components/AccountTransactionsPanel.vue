@@ -10,13 +10,8 @@
       <template #header>
         <transactions-select v-model="selectedTxType"/>
       </template>
-
       <account-transactions-table
-        class="account-transactions-panel__account-transactions-table u-hidden-mobile"
-        :account-transactions="accountTransactions"/>
-
-      <account-transactions-table-condensed
-        class="u-hidden-desktop"
+        class="account-transactions-panel__account-transactions-table"
         :account-transactions="accountTransactions"/>
     </paginated-content>
   </app-panel>

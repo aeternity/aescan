@@ -8,13 +8,7 @@
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
-      <contract-call-transactions-table
-        class="u-hidden-mobile"
-        :contract-call-transactions="contractCallTransactions"/>
-
-      <contract-call-transactions-table-condensed
-        class="u-hidden-desktop"
-        :contract-call-transactions="contractCallTransactions"/>
+      <contract-call-transactions-table :contract-call-transactions="contractCallTransactions"/>
     </paginated-content>
   </app-panel>
 </template>

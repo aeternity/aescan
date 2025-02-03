@@ -6,12 +6,7 @@
       @next-clicked="loadNextNames">
       <names-expired-table
         v-if="expiredNames"
-        class="names-expired-panel__names-expired-table u-hidden-mobile"
-        :names="expiredNames"/>
-
-      <names-expired-table-condensed
-        v-if="expiredNames"
-        class="u-hidden-desktop"
+        class="names-expired-panel__names-expired-table"
         :names="expiredNames"/>
     </paginated-content>
   </app-panel>

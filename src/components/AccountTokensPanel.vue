@@ -4,13 +4,7 @@
       :entities="accountTokens"
       @prev-clicked="loadPrevAccountTokens"
       @next-clicked="loadNextAccountTokens">
-      <account-tokens-table
-        class="u-hidden-mobile"
-        :account-tokens="accountTokens"/>
-
-      <account-tokens-table-condensed
-        class="account-tokens-panel__account-tokens-table-condensed u-hidden-desktop"
-        :account-tokens="accountTokens"/>
+      <account-tokens-table :account-tokens="accountTokens"/>
     </paginated-content>
   </app-panel>
 </template>

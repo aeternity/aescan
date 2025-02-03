@@ -6,12 +6,7 @@
       @next-clicked="loadNextNames">
       <names-in-auction-table
         v-if="inAuctionNames"
-        class="names-in-auction-panel__names-in-auction-table u-hidden-mobile"
-        :names="inAuctionNames"/>
-
-      <names-in-auction-table-condensed
-        v-if="inAuctionNames"
-        class="u-hidden-desktop"
+        class="names-in-auction-panel__names-in-auction-table"
         :names="inAuctionNames"/>
     </paginated-content>
   </app-panel>

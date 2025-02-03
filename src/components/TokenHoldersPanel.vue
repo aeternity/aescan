@@ -8,14 +8,7 @@
       <token-holders-table
         v-if="tokenHolders"
         :token-holders="tokenHolders"
-        :token-details="tokenDetails"
-        class="u-hidden-mobile"/>
-
-      <token-holders-table-condensed
-        v-if="tokenHolders"
-        :token-holders="tokenHolders"
-        :token-details="tokenDetails"
-        class="u-hidden-desktop"/>
+        :token-details="tokenDetails"/>
     </paginated-content>
   </app-panel>
 </template>

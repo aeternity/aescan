@@ -6,12 +6,7 @@
       :limit="limit"
       @prev-clicked="loadPrevNftTransfers"
       @next-clicked="loadNextNftTransfers">
-      <nft-transfers-table
-        class="u-hidden-mobile"
-        :nft-transfers="nftTransfers"/>
-      <nft-transfers-table-condensed
-        class="u-hidden-desktop"
-        :nft-transfers="nftTransfers"/>
+      <nft-transfers-table :nft-transfers="nftTransfers"/>
     </paginated-content>
   </app-panel>
 </template>

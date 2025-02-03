@@ -6,12 +6,7 @@
       :total-count="keyblocksCount"
       @prev-clicked="loadPrevKeyblocks"
       @next-clicked="loadNextKeyblocks">
-      <keyblocks-table
-        class="u-hidden-mobile"
-        :keyblocks="keyblocks"/>
-      <keyblocks-table-condensed
-        class="u-hidden-desktop"
-        :keyblocks="keyblocks"/>
+      <keyblocks-table :keyblocks="keyblocks"/>
     </paginated-content>
   </app-panel>
 </template>

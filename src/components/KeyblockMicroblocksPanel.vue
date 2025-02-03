@@ -10,10 +10,7 @@
       @next-clicked="loadNextMicroblocks">
       <keyblock-microblocks-table
         :microblocks="microblocks"
-        class="keyblock-microblock-panel__table u-hidden-mobile"/>
-      <keyblock-microblocks-table-condensed
-        :microblocks="microblocks"
-        class="u-hidden-desktop"/>
+        class="keyblock-microblock-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>

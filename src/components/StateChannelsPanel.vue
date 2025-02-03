@@ -8,12 +8,7 @@
       :limit="limit"
       @prev-clicked="loadPrevStateChannels"
       @next-clicked="loadNextStateChannels">
-      <state-channels-table
-        :state-channels="stateChannels"
-        class="u-hidden-mobile"/>
-      <state-channels-table-condensed
-        :state-channels="stateChannels"
-        class="u-hidden-desktop"/>
+      <state-channels-table :state-channels="stateChannels"/>
     </paginated-content>
   </app-panel>
 </template>

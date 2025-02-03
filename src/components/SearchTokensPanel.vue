@@ -5,12 +5,7 @@
       :limit="limit"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
-      <search-tokens-table
-        :tokens="tokensResults"
-        class="u-hidden-mobile"/>
-      <search-tokens-table-condensed
-        :tokens="tokensResults"
-        class="u-hidden-desktop"/>
+      <search-tokens-table :tokens="tokensResults"/>
     </paginated-content>
   </app-panel>
 </template>

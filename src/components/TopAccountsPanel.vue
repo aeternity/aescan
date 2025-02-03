@@ -1,12 +1,7 @@
 <template>
   <app-panel>
     <template v-if="!!topAccounts?.length">
-      <top-accounts-table
-        :top-accounts="topAccounts"
-        class="u-hidden-mobile"/>
-      <top-accounts-table-condensed
-        :top-accounts="topAccounts"
-        class="u-hidden-desktop"/>
+      <top-accounts-table :top-accounts="topAccounts"/>
     </template>
     <blank-state v-else/>
   </app-panel>

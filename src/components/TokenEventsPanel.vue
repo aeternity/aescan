@@ -9,11 +9,7 @@
       <token-events-table
         v-if="tokenEvents"
         :token-events="tokenEvents"
-        class="token-events-panel__table u-hidden-mobile"/>
-      <token-events-table-condensed
-        v-if="tokenEvents"
-        :token-events="tokenEvents"
-        class="u-hidden-desktop"/>
+        class="token-events-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>

@@ -7,12 +7,7 @@
       :limit="limit"
       @prev-clicked="loadPrevNfts"
       @next-clicked="loadNextNfts">
-      <nfts-table
-        :nfts="nfts"
-        class="u-hidden-mobile"/>
-      <nfts-table-condensed
-        :nfts="nfts"
-        class="u-hidden-desktop"/>
+      <nfts-table :nfts="nfts"/>
     </paginated-content>
   </app-panel>
 </template>

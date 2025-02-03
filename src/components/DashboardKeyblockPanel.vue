@@ -45,13 +45,7 @@
 
       <dashboard-keyblock-table
         v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__dashboard-keyblock-table u-hidden-mobile"
-        :keyblock="selectedKeyblock"
-        :stats="selectedDeltaStats"/>
-
-      <dashboard-keyblock-table-condensed
-        v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__dashboard-keyblock-table-condensed u-hidden-desktop"
+        class="dashboard-keyblock-panel__dashboard-keyblock-table"
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
     </div>
@@ -91,14 +85,6 @@ const {
   &__dashboard-keyblock-table {
     @media (--desktop) {
       margin-bottom: var(--space-2);
-    }
-  }
-
-  &__dashboard-keyblock-table-condensed {
-    margin: var(--space-4) 0;
-
-    @media (--desktop) {
-      margin: 0;
     }
   }
 

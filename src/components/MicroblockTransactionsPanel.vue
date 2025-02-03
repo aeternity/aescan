@@ -10,12 +10,7 @@
       <template #header>
         <transactions-select v-model="selectedTxType"/>
       </template>
-      <microblock-transactions-table
-        :transactions="transactions"
-        class="u-hidden-mobile"/>
-      <microblock-transactions-table-condensed
-        :transactions="transactions"
-        class="u-hidden-desktop"/>
+      <microblock-transactions-table :transactions="transactions"/>
     </paginated-content>
   </app-panel>
 </template>

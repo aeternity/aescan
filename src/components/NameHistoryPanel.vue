@@ -7,12 +7,7 @@
       @next-clicked="loadNextActions">
       <name-history-table
         v-if="nameActions"
-        class="name-history-panel__name-history-table u-hidden-mobile"
-        :actions="nameActions"/>
-
-      <name-history-table-condensed
-        v-if="nameActions"
-        class="u-hidden-desktop"
+        class="name-history-panel__name-history-table"
         :actions="nameActions"/>
     </paginated-content>
   </app-panel>

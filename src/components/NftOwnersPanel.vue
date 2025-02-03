@@ -7,10 +7,7 @@
       @prev-clicked="loadPrevNftowners">
       <nft-owners-table
         :owners="nftOwners"
-        class="nft-owners-panel__table u-hidden-mobile"/>
-      <nft-owners-table-condensed
-        :owners="nftOwners"
-        class="u-hidden-desktop"/>
+        class="nft-owners-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>

@@ -3,7 +3,9 @@
     <client-only>
       <template v-if="isExtended">
         <app-icon name="clock"/>
-        {{ relativeUpdated }} ({{ absolute }})
+        {{ relativeUpdated }}
+        <wbr>
+        ({{ absolute }})
       </template>
       <template v-else>
         <app-tooltip>
@@ -20,7 +22,6 @@
 <script setup>
 import { DateTime, Duration } from 'luxon'
 import { DATETIME_UNITS } from '@/utils/constants'
-
 import { useUiStore } from '@/composables/ui'
 
 const { timeFormat } = storeToRefs(useUiStore())
@@ -101,5 +102,6 @@ function update() {
 .timestamp-label {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 </style>

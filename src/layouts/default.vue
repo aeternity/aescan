@@ -17,7 +17,7 @@
   background-size: cover;
 
   &__parallax {
-    padding: 120px var(--space-1) var(--space-6);
+    padding: var(--space-6) var(--space-1);
     max-width: var(--container-width);
     margin: 0 auto;
 

@@ -10,12 +10,7 @@
       <template #header>
         <oracles-select v-model="selectedOracleState"/>
       </template>
-      <oracles-table
-        class="u-hidden-mobile"
-        :oracles="oracles"/>
-      <oracles-table-condensed
-        class="u-hidden-desktop"
-        :oracles="oracles"/>
+      <oracles-table :oracles="oracles"/>
     </paginated-content>
   </app-panel>
 </template>

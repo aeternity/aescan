@@ -5,12 +5,7 @@
       :limit="limit"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
-      <search-names-table
-        :names="namesResults"
-        class="u-hidden-mobile"/>
-      <search-names-table-condensed
-        :names="namesResults"
-        class="u-hidden-desktop"/>
+      <search-names-table :names="namesResults"/>
     </paginated-content>
   </app-panel>
 </template>

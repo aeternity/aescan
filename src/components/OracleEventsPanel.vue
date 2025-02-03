@@ -8,11 +8,7 @@
       @next-clicked="loadNextEvents">
       <oracle-events-table
         :oracle-events="oracleEvents"
-        class="oracle-events-panel__table u-hidden-mobile"/>
-
-      <oracle-events-table-condensed
-        :oracle-events="oracleEvents"
-        class="u-hidden-desktop"/>
+        class="oracle-events-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>

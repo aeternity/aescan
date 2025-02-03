@@ -5,11 +5,7 @@
       @prev-clicked="loadPrevAccountNames"
       @next-clicked="loadNextAccountNames">
       <account-names-table
-        class="account-names-panel__account-names-table u-hidden-mobile"
-        :account-names="accountNames"/>
-
-      <account-names-table-condensed
-        class="u-hidden-desktop"
+        class="account-names-panel__account-names-table"
         :account-names="accountNames"/>
     </paginated-content>
   </app-panel>

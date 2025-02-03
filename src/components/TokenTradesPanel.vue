@@ -5,12 +5,7 @@
       pagination-style="history"
       @prev-clicked="loadPrevTrades"
       @next-clicked="loadNextTrades">
-      <dex-trades-table
-        :trades="tokenTrades"
-        class="u-hidden-mobile"/>
-      <dex-trades-table-condensed
-        :trades="tokenTrades"
-        class="u-hidden-desktop"/>
+      <dex-trades-table :trades="tokenTrades"/>
     </paginated-content>
   </app-panel>
 </template>

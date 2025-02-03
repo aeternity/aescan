@@ -1,11 +1,6 @@
 <template>
   <app-panel>
-    <nodes-table
-      :nodes="nodes"
-      class="u-hidden-mobile"/>
-    <nodes-table-condensed
-      :nodes="nodes"
-      class="u-hidden-desktop"/>
+    <nodes-table :nodes="nodes"/>
   </app-panel>
 </template>
 

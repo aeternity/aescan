@@ -4,12 +4,7 @@
       :entities="transactions"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
-      <transactions-table
-        :transactions="transactions"
-        class="u-hidden-mobile"/>
-      <transactions-table-condensed
-        :transactions="transactions"
-        class="u-hidden-desktop"/>
+      <transactions-table :transactions="transactions"/>
     </paginated-content>
   </app-panel>
 </template>

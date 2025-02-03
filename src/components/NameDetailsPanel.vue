@@ -100,9 +100,9 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[stateLabel.toLowerCase() + 'Height'] }}
+              {{ namesHints[name.stateString + 'Height'] }}
             </hint-tooltip>
-            {{ stateLabel }} Height
+            {{ name.stateLabel }} Height
           </th>
           <td class="name-details-panel__data">
             <app-link
@@ -114,9 +114,9 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[stateLabel.toLowerCase() + 'Time'] }}
+              {{ namesHints[name.stateString + 'Time'] }}
             </hint-tooltip>
-            {{ stateLabel }}
+            {{ name.stateLabel }}
           </th>
           <td class="name-details-panel__data">
             <timestamp-label
@@ -152,19 +152,6 @@ import { namesHints } from '@/utils/hints/namesHints'
 
 const { name } = storeToRefs(useNameDetailsStore())
 const states = name.value.states
-
-const stateLabel = computed(() => {
-  if (states.includes('auction')) {
-    return 'Ends'
-  }
-  if (states.includes('revoked')) {
-    return 'Revoked'
-  }
-  if (states.includes('expired')) {
-    return 'Expired'
-  }
-  return 'Expires'
-})
 
 function getVariant(state) {
   if (state.includes('auction')) {

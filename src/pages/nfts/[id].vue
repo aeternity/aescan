@@ -30,9 +30,8 @@
 <script setup>
 import { nftsHints } from '@/utils/hints/nftsHints'
 
-const nftDetailsStore = useNftDetailsStore()
-const { nft } = storeToRefs(nftDetailsStore)
-const { fetchNftDetails } = nftDetailsStore
+const { nft } = storeToRefs(useNftDetailsStore())
+const { fetchNftDetails } = useNftDetailsStore()
 
 const route = useRoute()
 const { push, replace } = useRouter()

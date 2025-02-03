@@ -14,12 +14,9 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   const marketCap = ref(null)
   const isMarketCapAvailable = ref(null)
 
-  const blockchainStatsStore = useBlockchainStatsStore()
-  const featureFlags = useFeatureFlags()
-
   const distribution = computed(() =>
-    blockchainStatsStore.totalTokenSupply && blockchainStatsStore.burnedCount
-      ? Number(blockchainStatsStore.totalTokenSupply) + Number(blockchainStatsStore.burnedCount)
+    blockchainStatsStore.totalTokenSupply && useBlockchainStatsStore().burnedCount
+      ? Number(blockchainStatsStore.totalTokenSupply) + Number(useBlockchainStatsStore().burnedCount)
       : null,
   )
 
@@ -29,7 +26,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   )
 
   function fetchMarketStats() {
-    if (!featureFlags.marketStats) {
+    if (!useFeatureFlags().marketStats) {
       return
     }
 

@@ -16,9 +16,8 @@
 </template>
 
 <script setup>
-const accountStore = useAccountStore()
-const { fetchAccountNames } = accountStore
-const { accountNames } = storeToRefs(accountStore)
+const { fetchAccountNames } = useAccountStore()
+const { accountNames } = storeToRefs(useAccountStore())
 
 async function loadPrevAccountNames() {
   await fetchAccountNames({ queryParameters: accountNames.value.prev })

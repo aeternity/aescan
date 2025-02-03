@@ -6,7 +6,7 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
   const activeAccountsDelta = ref(null)
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const blockchainStatsStore = useBlockchainStatsStore()
-  const { fetchTotalStats } = useBlockchainStatsStore()
+  const { fetchTotalStats } = blockchainStatsStore
 
   const topAccounts = computed(() =>
     rawTopAccounts.value && blockchainStatsStore.totalTokenSupply

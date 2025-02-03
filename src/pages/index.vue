@@ -86,8 +86,7 @@ const { fetchStateChannels } = useDashboardStateChannelsStore()
 
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
 
-const webSocketStore = useWebSocket()
-const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)
+const { isSubscribedToKeyblockDetails } = storeToRefs(useWebSocket())
 
 definePageMeta({
   layout: 'empty',

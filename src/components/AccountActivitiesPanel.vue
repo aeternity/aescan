@@ -20,9 +20,8 @@
 </template>
 
 <script setup>
-const accountStore = useAccountStore()
-const { fetchAccountActivities } = accountStore
-const { accountActivities, accountDetails } = storeToRefs(accountStore)
+const { fetchAccountActivities } = useAccountStore()
+const { accountActivities, accountDetails } = storeToRefs(useAccountStore())
 
 const limit = computed(() => isDesktop() ? 10 : 3)
 

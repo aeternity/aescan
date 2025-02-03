@@ -25,9 +25,8 @@
 <script setup>
 
 const route = useRoute()
-const accountStore = useAccountStore()
-const { fetchAccountTransactions } = accountStore
-const { accountTransactions } = storeToRefs(accountStore)
+const { fetchAccountTransactions } = useAccountStore()
+const { accountTransactions } = storeToRefs(useAccountStore())
 
 const selectedTxType = ref({ typeQuery: null, label: 'All types' })
 const pageIndex = ref(1)

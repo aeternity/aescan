@@ -111,6 +111,6 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     parseResponse,
     aciReadEntrypoints,
     aciWriteEntrypoints,
-    canWrite: computed(() => !!address.value),
+    isWritable: computed(() => !!address.value),
   }
 })

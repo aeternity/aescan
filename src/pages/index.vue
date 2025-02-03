@@ -1,4 +1,7 @@
 <template>
+  MIDDLEWARE_URL {{ MIDDLEWARE_URL }}
+  <br>
+  NODE_URL {{ NODE_URL }}
   <div class="dashboard">
     <div class="dashboard__row">
       <app-hero/>
@@ -79,6 +82,7 @@
 </template>
 
 <script setup>
+const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
 const { fetchSelectedMicroblocksInfo, fetchDeltaStats } = useRecentBlocksStore()
 const { fetchTotalStats, fetchMaxTps, fetchTotalTransactionsCount } = useBlockchainStatsStore()
 

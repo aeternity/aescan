@@ -14,7 +14,7 @@ export const useKeyblockStore = defineStore('keyblocks', () => {
 
   async function fetchKeyblocks({ queryParameters, limit } = {}) {
     rawKeyblocks.value = null
-    const defaultParameters = `/v3/key-blocks?limit=${limit ?? 10}`
+    const defaultParameters = `/key-blocks?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawKeyblocks.value = data
     keyblocksCount.value = data.data[0].height

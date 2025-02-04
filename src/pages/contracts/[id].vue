@@ -112,7 +112,7 @@ if (error.value) {
 if (process.client && !error.value) {
   const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
-    queryParameters: `/v3/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
+    queryParameters: `/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
   }))
 
   if (featureFlags.smartContractVerification) {

@@ -231,10 +231,10 @@ const props = defineProps({
 })
 
 const contractNodeUrl = computed(() =>
-  `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
+  `${NODE_URL}/contracts/${props.contractDetails.id}`,
 )
 const contractMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v3/contracts/${props.contractDetails.id}`,
+  `${MIDDLEWARE_URL}/contracts/${props.contractDetails.id}`,
 )
 </script>
 

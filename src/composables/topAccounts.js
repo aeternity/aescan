@@ -25,13 +25,13 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
 
   async function fetchAccounts() {
     rawTopAccounts.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/wealth`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/wealth`)
     rawTopAccounts.value = data
   }
 
   async function fetchActiveAccountsCount() {
     activeAccountsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/active-accounts?limit=2`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/active-accounts?limit=2`)
     activeAccountsCount.value = data.data[0].count
     const prevTotalAccountCount = data.data[1].count
     activeAccountsDelta.value = (100 - (prevTotalAccountCount * 100 / activeAccountsCount.value)).toFixed(2)
@@ -39,7 +39,7 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
 
   async function fetchTotalAccountsCount() {
     totalAccountsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/total-accounts?interval_by=month&limit=100`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/total-accounts?interval_by=month&limit=100`)
     totalAccountsCount.value = data.data.reduce((total, item) => total + parseInt(item.count), 0)
   }
 

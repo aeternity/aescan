@@ -48,7 +48,7 @@
             <expand-button
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
-              Response available
+              Response
             </expand-button>
           </td>
           <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">

@@ -9,9 +9,6 @@
 </template>
 
 <script setup>
-import AppChip from '@/components/AppChip'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-
 const props = defineProps({
   activity: {
     type: Object,
@@ -20,5 +17,4 @@ const props = defineProps({
 })
 
 const activityPayload = computed(() => props.activity.payload)
-
 </script>

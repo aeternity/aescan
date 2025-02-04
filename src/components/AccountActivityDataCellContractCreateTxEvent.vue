@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-
 defineProps({
   activity: {
     required: true,

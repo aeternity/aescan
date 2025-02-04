@@ -79,25 +79,13 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import DashboardNamesPanel from '@/components/DashboardNamesPanel'
-import DashboardStateChannelsPanel from '@/components/DashboardStateChannelsPanel'
-import AppHero from '@/components/AppHero'
-import AppLink from '@/components/AppLink'
-import { useWebSocket } from '@/stores/webSocket'
-import { useDashboardStateChannelsStore } from '@/stores/dashboardStateChannels'
+const { fetchSelectedMicroblocksInfo, fetchDeltaStats } = useRecentBlocksStore()
+const { fetchTotalStats, fetchMaxTps, fetchTotalTransactionsCount } = useBlockchainStatsStore()
 
-const {
-  fetchSelectedMicroblocksInfo,
-  fetchDeltaStats,
-} = useRecentBlocksStore()
-const {
-  fetchTotalStats,
-  fetchMaxTps,
-  fetchTotalTransactionsCount,
-} = useBlockchainStatsStore()
 const { fetchStateChannels } = useDashboardStateChannelsStore()
+
 const { fetchInAuctionNames, fetchRecentlyActivatedNames } = useNamesStore()
+
 const webSocketStore = useWebSocket()
 const { isSubscribedToKeyblockDetails } = storeToRefs(webSocketStore)
 

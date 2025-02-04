@@ -9,10 +9,9 @@
 </template>
 
 <script setup>
-import { useUiStore } from '@/stores/ui'
-
 const { toggleTimeFormat } = useUiStore()
 const { timeFormat } = storeToRefs(useUiStore())
+
 const suffix = computed(() => {
   return timeFormat.value === 'relative' ? 'Age' : 'Time'
 })

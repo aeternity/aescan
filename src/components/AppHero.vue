@@ -23,11 +23,6 @@
 </template>
 
 <script setup>
-import TheSearchBar from '@/components/TheSearchBar'
-import StatsPanel from '@/components/StatsPanel'
-import MarketStats from '@/components/MarketStats'
-import useFeatureFlags from '@/composables/useFeatureFlags'
-
 const featureFlags = useFeatureFlags()
 </script>
 

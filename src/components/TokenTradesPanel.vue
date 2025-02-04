@@ -14,11 +14,11 @@
     </paginated-content>
   </app-panel>
 </template>
-<script setup>
 
-const tokenDetailsStore = useTokenDetailsStore()
-const { tokenTrades } = storeToRefs(tokenDetailsStore)
-const { fetchTokenTrades } = tokenDetailsStore
+<script setup>
+const { tokenTrades } = storeToRefs(useTokenDetailsStore())
+const { fetchTokenTrades } = useTokenDetailsStore()
+
 const route = useRoute()
 
 function loadPrevTrades() {

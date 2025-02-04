@@ -20,12 +20,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
-
-const recentBlocksStore = useRecentBlocksStore()
-const { selectMicroblock } = recentBlocksStore
-const { selectedMicroblock } = storeToRefs(recentBlocksStore)
+const { selectMicroblock } = useRecentBlocksStore()
+const { selectedMicroblock } = storeToRefs(useRecentBlocksStore())
 
 defineProps({
   microblocks: {

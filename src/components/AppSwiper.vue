@@ -23,7 +23,6 @@ import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import BlankState from '@/components/BlankState'
 
 defineProps({
   slides: {

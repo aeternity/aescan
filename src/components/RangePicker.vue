@@ -26,14 +26,14 @@ import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 
 const date = ref()
 const datepicker = ref(null)
+const today = DateTime.now().toFormat('yyyy-MM-dd')
+
 const props = defineProps({
   isRangeSelected: {
     type: Boolean,
     required: true,
   },
 })
-
-const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 watch(() => props.isRangeSelected, (newVal, oldVal) => {
   if (!newVal && oldVal) {

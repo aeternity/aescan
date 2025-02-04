@@ -21,16 +21,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import { useContractDetailsStore } from '@/stores/contractDetails'
-import ContractEventsTable from '@/components/ContractEventsTable'
-import ContractEventsTableCondensed from '@/components/ContractEventsTableCondensed'
-import PaginatedContent from '@/components/PaginatedContent'
-
-const contractDetailsStore = useContractDetailsStore()
-const { fetchContractEvents } = contractDetailsStore
-const { contractEvents, contractDetails } = storeToRefs(contractDetailsStore)
+const { fetchContractEvents } = useContractDetailsStore()
+const { contractEvents, contractDetails } = storeToRefs(useContractDetailsStore())
 
 function loadPrevEvents() {
   fetchContractEvents({ queryParameters: contractEvents.value.prev })

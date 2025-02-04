@@ -21,16 +21,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import { useTokenDetailsStore } from '@/stores/tokenDetails'
-import TokenHoldersTable from '@/components/TokenHoldersTable'
-import TokenHoldersTableCondensed from '@/components/TokenHoldersTableCondensed'
-import PaginatedContent from '@/components/PaginatedContent'
-
-const tokenDetailsStore = useTokenDetailsStore()
-const { fetchTokenHolders, fetchTokenHoldersCount } = tokenDetailsStore
-const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
+const { fetchTokenHolders, fetchTokenHoldersCount } = useTokenDetailsStore()
+const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(useTokenDetailsStore())
 
 function loadPrevHolders() {
   fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
@@ -42,7 +34,6 @@ function loadNextHolders() {
 
 if (process.client) {
   const limit = computed(() => isDesktop() ? 10 : 3)
-
   fetchTokenHolders({ limit: limit.value })
   fetchTokenHoldersCount()
 }

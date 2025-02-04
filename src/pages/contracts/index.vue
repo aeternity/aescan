@@ -25,8 +25,6 @@
 </template>
 
 <script setup>
-import ContractsPanel from '@/components/ContractsPanel'
-import PageHeader from '@/components/PageHeader'
 import { contractsHints } from '@/utils/hints/contractsHints'
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 

@@ -19,20 +19,17 @@
     </paginated-content>
   </app-panel>
 </template>
+
 <script setup>
-import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
-import { useRouter } from '#app'
-import { useMicroblockDetailsStore } from '@/stores/microblockDetails'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
+const { microblockTransactions: transactions } = storeToRefs(useMicroblockDetailsStore())
+const { fetchMicroblockTransactions } = useMicroblockDetailsStore()
+
+const route = useRoute()
 const { push } = useRouter()
-const microblockDetailsStore = useMicroblockDetailsStore()
-const { microblockTransactions: transactions } = storeToRefs(microblockDetailsStore)
-const { fetchMicroblockTransactions } = microblockDetailsStore
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
-const route = useRoute()
 const pageIndex = ref(1)
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 

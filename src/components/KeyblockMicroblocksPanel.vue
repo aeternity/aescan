@@ -18,14 +18,6 @@
   </app-panel>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
-import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
-import PaginatedContent from '@/components/PaginatedContent'
-import KeyblockMicroblocksTable from '@/components/KeyblockMicroblocksTable'
-import KeyblockMicroblocksTableCondensed from '@/components/KeyblockMicroblocksTableCondensed'
-import { isDesktop } from '@/utils/screen'
-
 const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetailsStore())
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()

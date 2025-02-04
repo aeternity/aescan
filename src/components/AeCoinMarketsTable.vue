@@ -32,32 +32,32 @@
       <tr>
         <td>Gate.io</td>
         <td>AE / USDT</td>
-        <td>$ {{ formatNullable(formatNumber(gate?.price)) }}</td>
-        <td>$ {{ formatNullable(formatNumber(gate?.volume)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.gate.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.gate.volume)) }}</td>
       </tr>
       <tr>
         <td>Mexc</td>
         <td>AE / USDT</td>
-        <td>$ {{ formatNullable(formatNumber(mexc?.price)) }}</td>
-        <td>$ {{ formatNullable(formatNumber(mexc?.volume)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.mexc.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.mexc.volume)) }}</td>
       </tr>
       <tr>
         <td>HotCoin</td>
         <td>AE / USDT</td>
-        <td>$ {{ formatNullable(formatNumber(hotCoin?.price)) }}</td>
-        <td>$ {{ formatNullable(formatNumber(hotCoin?.volume)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.hotcoin.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.hotcoin.volume)) }}</td>
       </tr>
       <tr>
         <td>CoinStore</td>
         <td>AE / USDT</td>
-        <td>$ {{ formatNullable(formatNumber(coinStore?.price)) }}</td>
-        <td>$ {{ formatNullable(formatNumber(coinStore?.volume)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.coinstore.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.coinstore.volume)) }}</td>
       </tr>
       <tr>
         <td>CoinW</td>
         <td>AE / USDT</td>
-        <td>$ {{ formatNullable(formatNumber(coinW?.price)) }}</td>
-        <td>$ {{ formatNullable(formatNumber(coinW?.volume)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.coinw.price)) }}</td>
+        <td>$ {{ formatNullable(formatNumber(coinMarkets.coinw.volume)) }}</td>
       </tr>
     </tbody>
   </table>
@@ -67,23 +67,7 @@
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 
 defineProps({
-  gate: {
-    type: Object,
-    required: true,
-  },
-  mexc: {
-    type: Object,
-    required: true,
-  },
-  hotCoin: {
-    type: Object,
-    required: true,
-  },
-  coinStore: {
-    type: Object,
-    required: true,
-  },
-  coinW: {
+  coinMarkets: {
     type: Object,
     required: true,
   },

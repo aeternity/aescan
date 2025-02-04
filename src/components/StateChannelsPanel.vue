@@ -19,16 +19,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { computed, ref } from 'vue'
-import { useStateChannelsStore } from '@/stores/stateChannels'
-import PaginatedContent from '@/components/PaginatedContent'
-import StateChannelsTableCondensed from '@/components/StateChannelsTableCondensed'
-import { isDesktop } from '@/utils/screen'
-
-const stateChannelsStore = useStateChannelsStore()
-const { stateChannels, stateChannelsCount } = storeToRefs(stateChannelsStore)
-const { fetchStateChannels, fetchStateChannelsCount } = stateChannelsStore
+const { stateChannels, stateChannelsCount } = storeToRefs(useStateChannelsStore())
+const { fetchStateChannels, fetchStateChannelsCount } = useStateChannelsStore()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

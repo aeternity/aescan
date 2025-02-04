@@ -16,11 +16,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
-import { isDesktop } from '@/utils/screen'
-import { useSearchStore } from '@/stores/search'
-
 const searchStore = useSearchStore()
 const { namesResults } = storeToRefs(searchStore)
 const { fetchNamesResults } = searchStore

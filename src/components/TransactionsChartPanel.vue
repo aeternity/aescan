@@ -33,13 +33,10 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useChartsStore } from '@/stores/charts'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { transactionsStatistics } = storeToRefs(chartsStore)
-const { fetchTransactionsStatistics } = chartsStore
+const { transactionsStatistics } = storeToRefs(useChartsStore())
+const { fetchTransactionsStatistics } = useChartsStore()
 
 const props = defineProps({
   hasSelect: {

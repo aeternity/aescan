@@ -46,8 +46,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppLink from '@/components/AppLink'
-import { formatAettosToAe } from '@/utils/format'
 
 defineProps({
   transactionData: {

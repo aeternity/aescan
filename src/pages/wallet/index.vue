@@ -17,15 +17,13 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useWalletStore } from '@/stores/wallet'
 import { walletHints } from '@/utils/hints/walletHints'
-
-const { push } = useRouter()
 
 const walletStore = useWalletStore()
 const { scanWallets, setBackLink } = walletStore
 const { status, backLink } = storeToRefs(walletStore)
+
+const { push } = useRouter()
 
 const { isLoading } = useLoading()
 

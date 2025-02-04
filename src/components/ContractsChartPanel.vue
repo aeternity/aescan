@@ -20,14 +20,10 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useChartsStore } from '@/stores/charts'
-import LineChart from '@/components/LineChart'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '~/utils/constants'
+import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { contractsStatistics } = storeToRefs(chartsStore)
-const { fetchContractsStatistics } = chartsStore
+const { contractsStatistics } = storeToRefs(useChartsStore())
+const { fetchContractsStatistics } = useChartsStore()
 
 const props = defineProps({
   preselectedRange: {

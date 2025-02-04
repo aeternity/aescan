@@ -21,12 +21,8 @@
   </div>
 </template>
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
-
-const recentBlocksStore = useRecentBlocksStore()
-const { selectKeyblock } = recentBlocksStore
-const { selectedKeyblock } = storeToRefs(recentBlocksStore)
+const { selectKeyblock } = useRecentBlocksStore()
+const { selectedKeyblock } = storeToRefs(useRecentBlocksStore())
 
 defineProps({
   keyblocks: {

@@ -138,17 +138,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { accountHints } from '@/utils/hints/accountHints'
-import AppPanel from '@/components/AppPanel'
-import CopyChip from '@/components/CopyChip'
-import AppIcon from '@/components/AppIcon'
-import AppLink from '@/components/AppLink'
-import { formatNumber } from '@/utils/format'
-import { useMarketStatsStore } from '@/stores/marketStats'
-import HintTooltip from '@/components/HintTooltip'
-import AppChip from '@/components/AppChip'
-import PriceLabel from '@/components/PriceLabel'
 
 const { price } = storeToRefs(useMarketStatsStore())
 const { NODE_URL } = useRuntimeConfig().public

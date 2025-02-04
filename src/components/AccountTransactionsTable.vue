@@ -59,10 +59,7 @@
 </template>
 
 <script setup>
-import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { accountHints } from '@/utils/hints/accountHints'
-import HintTooltip from '@/components/HintTooltip'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 defineProps({

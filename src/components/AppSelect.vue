@@ -31,7 +31,6 @@
 <script setup>
 import VueMultiselect from 'vue-multiselect'
 import { useVModel } from '@vueuse/core'
-import AppIcon from '@/components/AppIcon'
 
 const props = defineProps({
   placeholder: {

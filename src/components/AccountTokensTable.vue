@@ -57,9 +57,7 @@
 </template>
 
 <script setup>
-import AppLink from '@/components/AppLink'
 import { tokensHints } from '@/utils/hints/tokensHints'
-import HintTooltip from '@/components/HintTooltip'
 
 defineProps({
   accountTokens: {

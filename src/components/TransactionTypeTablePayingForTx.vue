@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
 
 const props = defineProps({
   transactionData: {
@@ -17,6 +16,7 @@ const props = defineProps({
 const innerTransactionDetails = computed(() =>
   props.transactionData.tx.tx,
 )
+
 const transactionTypeTableComponent = computed(() =>
   defineAsyncComponent(() =>
     import(`@/components/TransactionTypeTable${innerTransactionDetails.value.type}.vue`),

@@ -32,7 +32,7 @@
             Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(gate?.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.gate.price)) }}
           </td>
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
@@ -43,7 +43,7 @@
             Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(gate?.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.gate.volume)) }}
           </td>
         </tr>
       </tbody>
@@ -80,7 +80,7 @@
             Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(mexc?.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.mexc.price)) }}
           </td>
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
@@ -91,7 +91,7 @@
             Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(mexc?.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.mexc.volume)) }}
           </td>
         </tr>
       </tbody>
@@ -128,13 +128,13 @@
             Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(hotCoin?.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin.price)) }}
           </td>
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
           <th class="ae-coin-markets-table-condensed__header"/>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(hotCoin?.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin.volume)) }}
           </td>
         </tr>
       </tbody>
@@ -171,7 +171,7 @@
             Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(coinStore?.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.coinstore.price)) }}
           </td>
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
@@ -182,7 +182,7 @@
             Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(coinStore?.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.coinstore.volume)) }}
           </td>
         </tr>
       </tbody>
@@ -219,7 +219,7 @@
             Price
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(coinW?.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.coinw.price)) }}
           </td>
         </tr>
         <tr class="ae-coin-markets-table-condensed__row">
@@ -230,7 +230,7 @@
             Volume (24h)
           </th>
           <td class="ae-coin-markets-table-condensed__data">
-            $ {{ formatNullable(formatNumber(coinW?.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.coinw.volume)) }}
           </td>
         </tr>
       </tbody>
@@ -239,27 +239,10 @@
 </template>
 
 <script setup>
-
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 
 defineProps({
-  gate: {
-    type: Object,
-    required: true,
-  },
-  mexc: {
-    type: Object,
-    required: true,
-  },
-  hotCoin: {
-    type: Object,
-    required: true,
-  },
-  coinStore: {
-    type: Object,
-    required: true,
-  },
-  coinW: {
+  coinMarkets: {
     type: Object,
     required: true,
   },

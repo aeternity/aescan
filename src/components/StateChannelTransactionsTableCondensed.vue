@@ -49,9 +49,6 @@
 </template>
 
 <script setup>
-import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-
 defineProps({
   transactions: {
     type: Object,

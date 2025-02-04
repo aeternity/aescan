@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-import PaginationButton from '@/components/PaginationButton'
-
 defineProps({
   isPrevDisabled: {
     type: Boolean,

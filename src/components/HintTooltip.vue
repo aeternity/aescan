@@ -12,9 +12,6 @@
 </template>
 
 <script setup>
-import HintIcon from '@/components/HintIcon'
-import AppTooltip from '@/components/AppTooltip'
-
 defineProps({
   variant: {
     type: String,

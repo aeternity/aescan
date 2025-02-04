@@ -32,11 +32,12 @@
           </td>
         </tr>
         <tr class="microblock-transactions-table-condensed__row">
-          <hint-tooltip>
-            {{ microblocksHints.transactionType }}
-          </hint-tooltip>
-          Type
-          <th class="microblock-transactions-table-condensed__header"/>
+          <th class="microblock-transactions-table-condensed__header">
+            <hint-tooltip>
+              {{ microblocksHints.transactionType }}
+            </hint-tooltip>
+            Type
+          </th>
           <td class="microblock-transactions-table-condensed__data">
             <hint-tooltip>
               {{ transactionsHints[transaction.hintKey] }}
@@ -62,8 +63,6 @@
   </div>
 </template>
 <script setup>
-import TransactionCell from '@/components/TransactionCell'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 

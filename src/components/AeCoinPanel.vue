@@ -70,7 +70,6 @@
 </template>
 
 <script setup>
-import { formatNullable } from '@/utils/format'
 import { aeCoinHints } from '@/utils/hints/aeCoinHints'
 import { MAX_AE_DISTRIBUTION } from '@/utils/constants'
 

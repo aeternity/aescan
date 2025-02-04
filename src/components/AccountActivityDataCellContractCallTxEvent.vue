@@ -13,10 +13,6 @@
 </template>
 
 <script setup>
-
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import { formatAettosToAe } from '@/utils/format'
-
 defineProps({
   activity: {
     required: true,

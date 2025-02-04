@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from 'vue'
-
 const props = defineProps({
   accountDetails: {
     type: Object,
@@ -34,16 +32,16 @@ const props = defineProps({
 
 const isActivityCell = computed(() => {
   if (props.activity.type === 'SpendTxEvent' ||
-      props.activity.type === 'ContractCallTxEvent' ||
-      props.activity.type === 'ContractCreateTxEvent' ||
-      props.activity.type === 'NameClaimTxEvent' ||
-      props.activity.type === 'NameUpdateTxEvent' ||
-      props.activity.type === 'NameRevokeTxEvent' ||
-      props.activity.type === 'NamePreclaimTxEvent' ||
-      props.activity.type === 'InternalContractCallEvent' ||
-      props.activity.type === 'InternalTransferEvent' ||
-      props.activity.type === 'Aex9TransferEvent' ||
-      props.activity.type === 'Aex141TransferEvent') {
+    props.activity.type === 'ContractCallTxEvent' ||
+    props.activity.type === 'ContractCreateTxEvent' ||
+    props.activity.type === 'NameClaimTxEvent' ||
+    props.activity.type === 'NameUpdateTxEvent' ||
+    props.activity.type === 'NameRevokeTxEvent' ||
+    props.activity.type === 'NamePreclaimTxEvent' ||
+    props.activity.type === 'InternalContractCallEvent' ||
+    props.activity.type === 'InternalTransferEvent' ||
+    props.activity.type === 'Aex9TransferEvent' ||
+    props.activity.type === 'Aex141TransferEvent') {
     return true
   } else {
     return false

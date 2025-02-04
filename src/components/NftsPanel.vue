@@ -18,19 +18,11 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useNftsStore } from '@/stores/nfts'
-import { isDesktop } from '@/utils/screen'
+const { nfts, nftsCount } = storeToRefs(useNftsStore())
+const { fetchNfts, fetchNftsList } = useNftsStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
-
-const nftsStore = useNftsStore()
-const {
-  nfts,
-  nftsCount,
-} = storeToRefs(nftsStore)
-const { fetchNfts, fetchNftsList } = nftsStore
+const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevNfts() {
   await fetchNftsList({ queryParameters: nfts.value.prev })

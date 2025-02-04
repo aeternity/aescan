@@ -60,12 +60,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import AppPanel from '@/components/AppPanel'
-import { useRecentBlocksStore } from '@/stores/recentBlocks'
-import KeyblockSequence from '@/components/KeyblockSequence'
-import DashboardMicroblocksPanel from '@/components/DashboardMicroblocksPanel'
 
 const {
   keyblocks,

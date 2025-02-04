@@ -41,10 +41,6 @@
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
-import { storeToRefs } from 'pinia'
-import { formatNullable } from '@/utils/format'
-import { useConfigStore } from '@/stores/config'
-import AppTooltip from '@/components/AppTooltip'
 
 const props = defineProps({
   price: {

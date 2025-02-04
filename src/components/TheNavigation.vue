@@ -15,8 +15,6 @@
 </template>
 
 <script setup>
-import { isDesktop } from '@/utils/screen'
-import useFeatureFlags from '@/composables/useFeatureFlags'
 
 const featureFlags = useFeatureFlags()
 
@@ -65,7 +63,7 @@ const menuOptions = ref([{
   submenu: [
     {
       name: 'AE Coin',
-      path: '/tokens/AE',
+      path: '/tokens/ae',
       hidden: !featureFlags.marketStats,
     },
     {

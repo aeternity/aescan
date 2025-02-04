@@ -65,7 +65,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   actions: {

@@ -17,9 +17,6 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/PageHeader'
-import NotFoundPanel from '@/components/NotFoundPanel'
-
 const props = defineProps({
   error: {
     type: Object,

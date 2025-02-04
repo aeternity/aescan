@@ -40,20 +40,17 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useRoute, useRouter } from 'nuxt/app'
-import { useAccountStore } from '@/stores/accountDetails'
+
 import { accountHints } from '@/utils/hints/accountHints'
-import { isDesktop } from '@/utils/screen'
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
-
-const { isLoading } = useLoading()
-const { push, replace } = useRouter()
 
 const accountStore = useAccountStore()
 const { accountDetails, accountTokens } = storeToRefs(accountStore)
 const { fetchAccount } = accountStore
+
+const { isLoading } = useLoading()
+const { push, replace } = useRouter()
 const route = useRoute()
 
 const isAccountExistent = computed(() => {
@@ -61,11 +58,11 @@ const isAccountExistent = computed(() => {
 })
 
 const isTabsVisible = computed(() => process.client &&
-    (isAccountExistent.value || !!accountTokens.value?.data.length),
+  (isAccountExistent.value || !!accountTokens.value?.data.length),
 )
 
 const isTokensTabPreselected = computed(() => process.client &&
-    !isAccountExistent.value && !!accountTokens.value?.data.length,
+  !isAccountExistent.value && !!accountTokens.value?.data.length,
 )
 
 const activeTabIndex = computed({

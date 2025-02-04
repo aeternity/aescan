@@ -72,7 +72,6 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 
 defineProps({
   keyblock: {

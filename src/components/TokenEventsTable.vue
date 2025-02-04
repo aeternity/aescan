@@ -76,10 +76,7 @@
 </template>
 
 <script setup>
-
 import { tokensHints } from '@/utils/hints/tokensHints'
-import TokenEventsDataCell from '@/components/TokenEventsDataCell.vue'
-import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({
   tokenEvents: {

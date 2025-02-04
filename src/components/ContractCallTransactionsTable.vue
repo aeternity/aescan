@@ -64,8 +64,6 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import AppChip from '@/components/AppChip'
 
 defineProps({
   contractCallTransactions: {

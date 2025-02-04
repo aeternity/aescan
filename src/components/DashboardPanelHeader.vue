@@ -32,11 +32,6 @@
 </template>
 
 <script setup>
-import AppIcon from '@/components/AppIcon'
-import AppBadge from '@/components/AppBadge'
-import AppLink from '@/components/AppLink'
-import HintTooltip from '@/components/HintTooltip'
-
 defineProps({
   level: {
     type: String,

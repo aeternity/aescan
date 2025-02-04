@@ -24,9 +24,6 @@
 </template>
 
 <script setup>
-import CopyButton from '@/components/CopyButton'
-import AppChip from '@/components/AppChip'
-
 const props = defineProps({
   label: {
     type: String,
@@ -48,7 +45,7 @@ const textToDisplay = computed(() =>
 function activateCopyAnimation() {
   isCopyAnimationActive.value = true
   copyChip.value.$el.style.width =
-      `${Math.max(copyChip.value.$el.clientWidth, 72)}px`
+    `${Math.max(copyChip.value.$el.clientWidth, 72)}px`
 }
 
 function deactivateCopyAnimation() {

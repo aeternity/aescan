@@ -15,7 +15,7 @@
         <search-tokens-panel/>
       </app-tab>
       <app-tab title="NFTs">
-        <search-nft-panel/>
+        <search-nfts-panel/>
       </app-tab>
     </app-tabs>
   </template>
@@ -23,15 +23,10 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/PageHeader'
-import AppTabs from '@/components/AppTabs'
-import AppTab from '@/components/AppTab'
-import SearchNftPanel from '@/components/SearchNftsPanel'
+const TAB_KEYS = ['names', 'tokens', 'nfts']
 
 const route = useRoute()
 const { push, replace } = useRouter()
-
-const TAB_KEYS = ['names', 'tokens', 'nfts']
 
 const activeTabIndex = computed({
   get() {

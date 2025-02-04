@@ -1,4 +1,7 @@
-FROM node:lts-alpine as server
+ARG NODE_VERSION=22.13.1
+
+FROM node:${NODE_VERSION}-alpine AS build
+
 WORKDIR /app
 
 COPY package.json .
@@ -11,5 +14,18 @@ COPY . .
 ARG BUILD_MODE=production
 RUN MODE=$BUILD_MODE yarn build
 
-EXPOSE 80
-CMD [ "npm", "start" ]
+FROM node:${NODE_VERSION}-alpine
+
+WORKDIR /app
+
+COPY --chown=node:node --from=build /app/.output ./
+
+USER node
+
+ENV HOST=0.0.0.0
+ENV PORT=8080
+ENV NODE_ENV=production
+
+EXPOSE 8080
+
+CMD [ "node", "/app/server/index.mjs" ]

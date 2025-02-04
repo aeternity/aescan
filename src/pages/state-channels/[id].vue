@@ -30,21 +30,16 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import StateChannelDetailsPanel from '@/components/StateChannelDetailsPanel'
-import PageHeader from '@/components/PageHeader'
-import { useStateChannelDetailsStore } from '@/stores/stateChannelDetails'
-import AppTabs from '@/components/AppTabs'
-import AppTab from '@/components/AppTab'
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
-import StateChannelTransactionsPanel from '@/components/StateChannelTransactionsPanel'
 
 const stateChannelDetailsStore = useStateChannelDetailsStore()
 const { stateChannelDetails } = storeToRefs(stateChannelDetailsStore)
 const { fetchStateChannelDetails } = stateChannelDetailsStore
+
 const route = useRoute()
 
 const { isLoading } = useLoading()
+
 const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
 
 if (error.value) {

@@ -23,12 +23,6 @@
   </app-panel>
 </template>
 
-<script setup>
-import AppButton from '@/components/AppButton'
-import AppLink from '@/components/AppLink'
-import AppPanel from '@/components/AppPanel'
-</script>
-
 <style scoped>
 .not-found-panel {
   &__paragraph {

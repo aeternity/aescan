@@ -33,26 +33,16 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { onBeforeRouteUpdate, onBeforeRouteLeave } from 'vue-router'
-import TransactionGeneralPanel from '@/components/TransactionGeneralPanel'
-import PageHeader from '@/components/PageHeader'
-import { useTransactionDetailsStore } from '@/stores/transactionDetails'
-import { useWebSocket } from '@/stores/webSocket'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import TransactionTypePanel from '@/components/TransactionTypePanel'
-import TransactionPointersPanel from '@/components/TransactionPointersPanel'
 
 const transactionDetailsStore = useTransactionDetailsStore()
-const {
-  transactionDetails,
-  transactionTypeData,
-} = storeToRefs(transactionDetailsStore)
-const {
-  fetchTransactionDetails,
-} = transactionDetailsStore
-const route = useRoute()
+const { transactionDetails, transactionTypeData } = storeToRefs(transactionDetailsStore)
+const { fetchTransactionDetails } = transactionDetailsStore
+
 const { subscribedTransactionId } = storeToRefs(useWebSocket())
+
+const route = useRoute()
+
 const { isLoading } = useLoading()
 
 const isSyncing = computed(() => isLoading.value || !transactionTypeData.value)

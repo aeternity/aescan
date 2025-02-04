@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-import AppIcon from '@/components/AppIcon'
-
 defineProps({
   direction: {
     type: String,

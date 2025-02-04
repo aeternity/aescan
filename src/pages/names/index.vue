@@ -34,21 +34,15 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'nuxt/app'
-import AppTab from '@/components/AppTab'
-import AppTabs from '@/components/AppTabs'
-import NamesActivePanel from '@/components/NamesActivePanel'
-import NamesInAuctionPanel from '@/components/NamesInAuctionPanel'
-import NamesExpiredPanel from '@/components/NamesExpiredPanel'
-import { useNamesStore } from '@/stores/names'
-import PageHeader from '@/components/PageHeader'
+
 import { namesHints } from '@/utils/hints/namesHints'
-import { isDesktop } from '@/utils/screen'
+
 import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const TAB_KEYS = ['active', 'in-auction', 'expired']
 
 const { fetchNamesDetails } = useNamesStore()
+
 const { push, replace } = useRouter()
 const route = useRoute()
 

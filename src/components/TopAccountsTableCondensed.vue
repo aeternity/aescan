@@ -55,8 +55,8 @@
     </table>
   </div>
 </template>
-<script setup>
 
+<script setup>
 import { topAccountsHints } from '@/utils/hints/topAccountsHints'
 
 defineProps({

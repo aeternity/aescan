@@ -81,11 +81,9 @@
     </table>
   </div>
 </template>
+
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import TokenEventsDataCell from '@/components/TokenEventsDataCell'
 import { tokensHints } from '@/utils/hints/tokensHints'
-import ExpandButton from '@/components/ExpandButton'
 
 const props = defineProps({
   tokenEvents: {

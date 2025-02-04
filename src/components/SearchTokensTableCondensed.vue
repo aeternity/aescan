@@ -51,9 +51,8 @@
     </table>
   </div>
 </template>
-<script setup>
 
-import AppLink from '@/components/AppLink'
+<script setup>
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({

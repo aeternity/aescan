@@ -37,9 +37,8 @@
     </table>
   </div>
 </template>
-<script setup>
 
-import AppLink from '@/components/AppLink'
+<script setup>
 import { nftsHints } from '@/utils/hints/nftsHints'
 
 defineProps({

@@ -36,9 +36,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
 import { namesHints } from '@/utils/hints/namesHints'
-import { useNameDetailsStore } from '@/stores/nameDetails'
 
 const { name } = storeToRefs(useNameDetailsStore())
 </script>

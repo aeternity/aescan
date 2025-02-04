@@ -81,9 +81,6 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
-import ExpandButton from '@/components/ExpandButton'
-import ContractEventCell from '@/components/ContractEventCell'
 
 const props = defineProps({
   contractDetails: {

@@ -24,7 +24,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   files: {
     type: Array,

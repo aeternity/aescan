@@ -18,16 +18,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import AppPanel from '@/components/AppPanel'
-import PaginatedContent from '@/components/PaginatedContent'
-import NamesExpiredTable from '@/components/NamesExpiredTable'
-import NamesExpiredTableCondensed from '@/components/NamesExpiredTableCondensed'
-import { useNamesStore } from '@/stores/names'
-
-const namesStore = useNamesStore()
-const { fetchExpiredNames } = namesStore
-const { expiredNames } = storeToRefs(namesStore)
+const { fetchExpiredNames } = useNamesStore()
+const { expiredNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
   fetchExpiredNames({ queryParameters: expiredNames.value.prev })

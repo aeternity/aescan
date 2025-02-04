@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import { useWalletStore } from '@/stores/wallet'
-
 const walletStore = useWalletStore()
 const { connectWallet } = walletStore
 </script>

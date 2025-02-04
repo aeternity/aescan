@@ -18,14 +18,12 @@
 </template>
 <script setup>
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-import AppIcon from '@/components/AppIcon'
-import { useNameDetailsStore } from '@/stores/nameDetails'
-import { useKeyblockDetailsStore } from '@/stores/keyblockDetails'
 
 const { isNameAvailable } = useNameDetailsStore()
 const { isKeyblockAvailable } = useKeyblockDetailsStore()
-const query = ref('')
 const { push } = useRouter()
+
+const query = ref('')
 
 async function search() {
   if (!query.value) {

@@ -28,7 +28,7 @@
             </hint-tooltip>
             Registered
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <app-link
               class="oracle-details-panel__block"
               :to="`/keyblocks/${oracleDetails.registeredHeight}`">
@@ -204,11 +204,6 @@
 
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
-import HintTooltip from '@/components/HintTooltip'
-import AppLink from '@/components/AppLink'
-import AppPanel from '@/components/AppPanel'
-import CopyChip from '@/components/CopyChip'
-import AppIcon from '@/components/AppIcon'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 
@@ -240,6 +235,12 @@ const oracleMiddlewareUrl = computed(() =>
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__container {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
   }
 
   &__link {

@@ -19,16 +19,8 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import NameHistoryTable from '@/components/NameHistoryTable'
-import NameHistoryTableCondensed from '@/components/NameHistoryTableCondensed'
-import AppPanel from '@/components/AppPanel'
-import PaginatedContent from '@/components/PaginatedContent'
-import { useNameDetailsStore } from '@/stores/nameDetails'
-
-const nameDetailsStore = useNameDetailsStore()
-const { fetchNameActions } = nameDetailsStore
-const { nameActions } = storeToRefs(nameDetailsStore)
+const { fetchNameActions } = useNameDetailsStore()
+const { nameActions } = storeToRefs(useNameDetailsStore())
 
 function loadPrevActions() {
   return fetchNameActions({ queryParameters: nameActions.value.prev })

@@ -85,7 +85,6 @@
 </template>
 
 <script setup>
-import ValueHashEllipsed from '@/components/ValueHashEllipsed'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 
 defineProps({

@@ -38,8 +38,6 @@
 
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
-import AppLink from '@/components/AppLink'
-import { formatNullable } from '@/utils/format'
 
 defineProps({
   transactionData: {

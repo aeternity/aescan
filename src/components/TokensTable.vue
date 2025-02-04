@@ -50,9 +50,8 @@
     </tbody>
   </table>
 </template>
-<script setup>
 
-import TokenSymbolIcon from '@/components/TokenSymbolIcon'
+<script setup>
 import { tokensHints } from '@/utils/hints/tokensHints'
 
 defineProps({

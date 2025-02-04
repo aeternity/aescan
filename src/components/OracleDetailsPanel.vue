@@ -9,7 +9,7 @@
             </hint-tooltip>
             Oracle ID
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <div class="u-hidden-mobile">
               <copy-chip
                 :label="oracleDetails.id"/>
@@ -28,20 +28,17 @@
             </hint-tooltip>
             Registered
           </th>
-          <td>
-            <div
-              class="oracle-details-panel__container">
-              <app-link
-                class="oracle-details-panel__block"
-                :to="`/keyblocks/${oracleDetails.registeredHeight}`">
-                {{ oracleDetails.registeredHeight }}
-              </app-link>
-              -
-              <timestamp-label
-                class="oracle-details-panel__timestamp"
-                :timestamp="oracleDetails.registered"
-                :is-extended="true"/>
-            </div>
+          <td class="oracle-details-panel__data">
+            <app-link
+              class="oracle-details-panel__block"
+              :to="`/keyblocks/${oracleDetails.registeredHeight}`">
+              {{ oracleDetails.registeredHeight }}
+            </app-link>
+            -
+            <timestamp-label
+              class="oracle-details-panel__timestamp"
+              :timestamp="oracleDetails.registered"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -51,7 +48,7 @@
             </hint-tooltip>
             Last Extended
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <div
               v-if="oracleDetails.lastExtended"
               class="oracle-details-panel__container">
@@ -66,7 +63,9 @@
                 :timestamp="oracleDetails.lastExtended"
                 :is-extended="true"/>
             </div>
-            <not-available-label v-else/>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -76,7 +75,7 @@
             </hint-tooltip>
             Last Queried
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <div
               v-if="oracleDetails.lastQueried"
               class="oracle-details-panel__container">
@@ -91,7 +90,9 @@
                 :timestamp="oracleDetails.lastQueried"
                 :is-extended="true"/>
             </div>
-            <not-available-label v-else/>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -101,7 +102,7 @@
             </hint-tooltip>
             Expiration
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <div
               class="oracle-details-panel__container">
               <app-link
@@ -125,7 +126,7 @@
             </hint-tooltip>
             Query Fee
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <price-label :price="oracleDetails.fee"/>
           </td>
         </tr>
@@ -136,7 +137,7 @@
             </hint-tooltip>
             Query Format
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             {{ oracleDetails.queryFormat }}
           </td>
         </tr>
@@ -147,7 +148,7 @@
             </hint-tooltip>
             Response Format
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             {{ oracleDetails.responseFormat }}
           </td>
         </tr>
@@ -158,7 +159,7 @@
             </hint-tooltip>
             Operator
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <app-link
               :to="`/accounts/${oracleDetails.operator}`">
               <span class="u-hidden-mobile">
@@ -171,13 +172,13 @@
           </td>
         </tr>
         <tr>
-          <th class="contract-details-panel__table-header">
+          <th class="oracle-details-panel__table-header">
             <hint-tooltip>
               {{ oraclesHints.apiLinks }}
             </hint-tooltip>
             API links
           </th>
-          <td>
+          <td class="oracle-details-panel__data">
             <app-link
               :to="oracleNodeUrl"
               class="oracle-details-panel__link">
@@ -225,10 +226,22 @@ const oracleMiddlewareUrl = computed(() =>
 <style scoped>
 .oracle-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
@@ -236,10 +249,13 @@ const oracleMiddlewareUrl = computed(() =>
     border-bottom: 0;
   }
 
-  &__container {
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
+  &__data {
+    display: block;
+    padding-left: 20px;
+
+    @media (--mobile) {
+      display: table-cell;
+    }
   }
 
   &__link {

@@ -32,8 +32,9 @@
 <script setup>
 import { oraclesHints } from '@/utils/hints/oraclesHints'
 
-const { oracleDetails } = storeToRefs(useOracleDetailsStore())
-const { fetchOracleDetails } = useOracleDetailsStore()
+const oracleDetailsStore = useOracleDetailsStore()
+const { oracleDetails } = storeToRefs(oracleDetailsStore)
+const { fetchOracleDetails } = oracleDetailsStore
 
 const route = useRoute()
 

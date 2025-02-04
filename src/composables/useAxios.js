@@ -1,6 +1,5 @@
 import axios from 'axios'
 import camelcaseKeysDeep from 'camelcase-keys-deep'
-import { shallowRef } from 'vue'
 
 const axiosInstance = shallowRef(null)
 

@@ -21,8 +21,16 @@
   border-radius: 8px;
   padding: var(--space-4) var(--space-1);
 
+  &:has(table) {
+    padding: var(--space-4) 0;
+  }
+
   @media (--desktop) {
     padding: var(--space-4);
+
+    &:has(table) {
+      padding: var(--space-4);
+    }
   }
 
   &__header {

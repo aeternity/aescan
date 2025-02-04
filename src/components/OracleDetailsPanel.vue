@@ -28,20 +28,17 @@
             </hint-tooltip>
             Registered
           </th>
-          <td>
-            <div
-              class="oracle-details-panel__container">
-              <app-link
-                class="oracle-details-panel__block"
-                :to="`/keyblocks/${oracleDetails.registeredHeight}`">
-                {{ oracleDetails.registeredHeight }}
-              </app-link>
-              -
-              <timestamp-label
-                class="oracle-details-panel__timestamp"
-                :timestamp="oracleDetails.registered"
-                :is-extended="true"/>
-            </div>
+          <td class="oracle-details-panel__data">
+            <app-link
+              class="oracle-details-panel__block"
+              :to="`/keyblocks/${oracleDetails.registeredHeight}`">
+              {{ oracleDetails.registeredHeight }}
+            </app-link>
+            -
+            <timestamp-label
+              class="oracle-details-panel__timestamp"
+              :timestamp="oracleDetails.registered"
+              :is-extended="true"/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -66,7 +63,9 @@
                 :timestamp="oracleDetails.lastExtended"
                 :is-extended="true"/>
             </div>
-            <not-available-label v-else/>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">
@@ -91,7 +90,9 @@
                 :timestamp="oracleDetails.lastQueried"
                 :is-extended="true"/>
             </div>
-            <not-available-label v-else/>
+            <template v-else>
+              N/A
+            </template>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">

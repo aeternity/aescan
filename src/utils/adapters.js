@@ -9,7 +9,7 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
     return {
       ...keyblock,
-      mined: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      mined: DateTime.fromMillis(keyblock.time),
       blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
     }
   }
@@ -20,7 +20,7 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
 export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
   const formattedData = keyblockMicroblocks.data.map(microblock => {
     return {
-      time: DateTime.fromMillis(microblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      time: DateTime.fromMillis(microblock.time),
       transactionsCount: microblock.transactionsCount,
       hash: microblock.hash,
     }
@@ -35,7 +35,7 @@ export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
 export function adaptMicroblock(microblock) {
   return {
     ...microblock,
-    time: DateTime.fromMillis(microblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    time: DateTime.fromMillis(microblock.time),
   }
 }
 
@@ -45,7 +45,7 @@ export function adaptSelectedMicroblockTransactions(transactions) {
       hash: transaction.hash,
       type: transaction.tx.type,
       data: transaction.tx,
-      created: DateTime.fromMillis(transaction.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      created: DateTime.fromMillis(transaction.microTime),
     }
   })
   return {
@@ -60,7 +60,7 @@ export function adaptTransactions(transactions) {
     return {
       hash: transaction.hash,
       createdHeight: transaction.blockHeight,
-      created: DateTime.fromMillis(transaction.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      created: DateTime.fromMillis(transaction.microTime),
       type: transaction.tx.type,
       data: transaction.tx,
       hintKey: transaction.tx.type.charAt(0).toLowerCase() + transaction.tx.type.slice(1),
@@ -77,7 +77,7 @@ export function adaptContracts(contracts) {
   const formattedData = contracts.data.map(contract => {
     return {
       contractId: contract.tx.contractId,
-      created: DateTime.fromMillis(contract.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      created: DateTime.fromMillis(contract.microTime),
       createdHeight: contract.blockHeight,
       hash: contract.hash,
       createdBy: contract.tx.callerId,
@@ -116,7 +116,7 @@ export function adaptDashboardStateChannels(stateChannels) {
       updateCount: channel.updatesCount,
       amount: formatAettosToAe(channel.amount),
       updatedHeight: channel.lastUpdatedHeight,
-      updated: DateTime.fromMillis(channel.lastUpdatedTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      updated: DateTime.fromMillis(channel.lastUpdatedTime),
       lastTxType: channel.lastUpdatedTxType,
     }
   })
@@ -128,8 +128,7 @@ export function adaptAccountActivities(activities) {
       hash: activity.payload?.hash || activity.payload?.txHash ||
         activity.payload?.refTxHash || activity.payload?.callTxHash,
       type: activity.type,
-      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      time: DateTime.fromMillis(activity.payload?.microTime || activity.blockTime),
       height: activity.payload?.blockHeight || activity.height,
       payload: activity.payload,
       hintKey:
@@ -151,7 +150,7 @@ export function adaptAccountNames(names) {
     return {
       name: name.name,
       expirationHeight: name.expireHeight,
-      expiration: DateTime.fromMillis(name.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      expiration: DateTime.fromMillis(name.approximateExpireTime),
       pointers: name.pointers.map(pointer => pointer.id),
     }
   })
@@ -207,7 +206,7 @@ export function adaptActiveNames(names) {
     buyer: name.ownership.original,
     owner: name.ownership.current,
     fee: formatAettosToAe(name.nameFee),
-    expiration: DateTime.fromMillis(name.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
     expirationHeight: name.expireHeight,
     pointers: Object.values(name.pointers),
   }))
@@ -226,7 +225,7 @@ export function adaptInAuctionNames(names) {
     bid: formatAettosToAe(name.lastBid.tx.nameFee),
     bidCount: name.claimsCount,
     expirationHeight: name.auctionEnd,
-    expiration: DateTime.fromMillis(name.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
   }))
   return {
     next: names.next,
@@ -239,7 +238,7 @@ export function adaptExpiredNames(names) {
   const formattedData = names.data.map(name => ({
     name: name.name,
     expirationHeight: name.expireHeight,
-    expiration: DateTime.fromMillis(name.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    expiration: DateTime.fromMillis(name.approximateExpireTime),
     fee: formatAettosToAe(name.nameFee),
     lastBuyer: name.ownership.original,
     lastOwner: name.ownership.current,
@@ -279,7 +278,7 @@ export function adaptName(name, blockHeight, blockTime) {
   const activated = states.includes('active')
     ? blockCreatedTime.minus({
       minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
-    }).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
+    })
     : null
   const customPointers = adaptCustomPointers(name.pointers)
 
@@ -301,11 +300,11 @@ export function adaptName(name, blockHeight, blockTime) {
     activated,
     expirationHeight: name.expireHeight,
     expiration: name.approximateExpireTime
-      ? DateTime.fromMillis(name.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
+      ? DateTime.fromMillis(name.approximateExpireTime)
       : null,
     auctionEndsHeight: endHeight,
     auctionEnds: ends
-      ? DateTime.fromMillis(ends).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
+      ? DateTime.fromMillis(ends)
       : null,
     specialPointers,
     customPointers,
@@ -319,7 +318,7 @@ export function adaptNameActions(actions) {
       hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
       createdHeight: action.height,
       payload: action.payload,
-      created: DateTime.fromMillis(action.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      created: DateTime.fromMillis(action.blockTime),
     }
   })
 
@@ -331,9 +330,7 @@ export function adaptNameActions(actions) {
 }
 
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
-  const created = transactionDetails.time
-    ? DateTime.fromMillis(transactionDetails.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-    : null
+  const created = transactionDetails.time ? DateTime.fromMillis(transactionDetails.time) : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.blockHeight : 0
   const blockHash = transactionDetails.blockHash !== 'none' ? transactionDetails.blockHash : null
 
@@ -362,8 +359,7 @@ export function adaptContractDetails(
     id: rawContractInformation?.id,
     createTransactionHash: contractCreationTx?.hash,
     createdBy: contractCreationTx?.tx.callerId,
-    creationDate: DateTime.fromMillis(contractCreationTx?.microTime)
-      .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    creationDate: DateTime.fromMillis(contractCreationTx?.microTime),
     creationHeight: contractCreationTx.blockHeight,
     bytecode: contractCreationTx?.tx.code,
     contractAccount: rawContractInformation?.id.replace('ct_', 'ak_'),
@@ -378,7 +374,7 @@ export function adaptContractEvents(events) {
   const formattedData = events.data
     .map(event => {
       return {
-        created: DateTime.fromMillis(event.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        created: DateTime.fromMillis(event.blockTime),
         createdHeight: event.height,
         eventName: event.eventName,
         data: event.args,
@@ -415,7 +411,7 @@ export function adaptTokenEvents(events) {
       return {
         hash: event.callTxHash,
         name: event.eventName || 'N/A',
-        created: DateTime.fromMillis(event.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        created: DateTime.fromMillis(event.blockTime),
         createdHeight: event.height,
         isDecoded: !!event.eventName,
         args: event.args,
@@ -473,11 +469,9 @@ export function adaptOracles(oracles) {
     return {
       id: oracle.oracle,
       registeredHeight: oracle.activeFrom,
-      registered: DateTime.fromMillis(oracle.registerTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      registered: DateTime.fromMillis(oracle.registerTime),
       expirationHeight: oracle.expireHeight,
-      expiration: DateTime.fromMillis(oracle.approximateExpireTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      expiration: DateTime.fromMillis(oracle.approximateExpireTime),
       queryFee: formatAettosToAe(oracle.queryFee),
     }
   })
@@ -493,20 +487,16 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
-    expiration: DateTime.fromMillis(oracle.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    expiration: DateTime.fromMillis(oracle.approximateExpireTime),
     expirationHeight: oracle.expireHeight,
-    registered: DateTime.fromMillis(oracle.registerTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    registered: DateTime.fromMillis(oracle.registerTime),
     registeredHeight: oracle.activeFrom,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
     operator: oracle.oracle.replace('ok_', 'ak_'),
-    lastExtended: lastExtendedTx
-      ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-      : null,
+    lastExtended: lastExtendedTx ? DateTime.fromMillis(lastExtendedTx.microTime) : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx
-      ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-      : null,
+    lastQueried: lastQueryTx ? DateTime.fromMillis(lastQueryTx.blockTime) : null,
     lastQueryHeight: lastQueryTx?.height,
   }
   return oracleDetails
@@ -515,9 +505,9 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
 export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
-      queriedAt: DateTime.fromMillis(event.query.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      queriedAt: DateTime.fromMillis(event.query.blockTime),
       queriedHeight: event.query.height,
-      respondedAt: DateTime.fromMillis(event.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      respondedAt: DateTime.fromMillis(event.blockTime),
       respondedHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,
@@ -548,7 +538,7 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx) {
     lastKnownRound: stateChannel.round,
     aeLocked: formatAettosToAe(stateChannel.amount),
     lastUpdatedHeight: stateChannel.lastUpdatedHeight,
-    lastUpdated: DateTime.fromMillis(stateChannel.lastUpdatedTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    lastUpdated: DateTime.fromMillis(stateChannel.lastUpdatedTime),
     lastTxType: stateChannel.lastUpdatedTxType,
   }
 }
@@ -564,7 +554,7 @@ export function adaptStateChannels(stateChannels) {
         updateCount: channel.updatesCount,
         locked: formatAettosToAe(channel.amount),
         updatedHeight: channel.lastUpdatedHeight,
-        updated: DateTime.fromMillis(channel.lastUpdatedTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        updated: DateTime.fromMillis(channel.lastUpdatedTime),
         lastTxType: channel.lastUpdatedTxType,
       }
     })
@@ -580,7 +570,7 @@ export function adaptNftTransfers(transfers) {
     .map(transfer => {
       return {
         txHash: transfer.txHash,
-        time: DateTime.fromMillis(transfer.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        time: DateTime.fromMillis(transfer.microTime),
         height: transfer.blockHeight,
         tokenId: transfer.tokenId,
         recipient: transfer.recipient,
@@ -608,7 +598,7 @@ export function adaptNfts(nfts) {
       return {
         name: nft.name,
         blockHeight: nft.blockHeight,
-        creationTime: DateTime.fromMillis(nft.creationTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        creationTime: DateTime.fromMillis(nft.creationTime),
         contractId: nft.contractId,
         nftsAmount: nft.nftsAmount,
         nftOwners: nft.nftOwners,
@@ -628,7 +618,7 @@ export function adaptVerificationDetail(verificationDetail) {
     entryFile: verificationDetail.entryFile,
     initCallParameters: verificationDetail.initCallParameters,
     aci: verificationDetail.aci,
-    verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
   }
 }
 
@@ -705,7 +695,7 @@ export function adaptKeyblocks(keyblocks) {
       return {
         hash: keyblock.hash,
         block: keyblock.height,
-        time: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        time: DateTime.fromMillis(keyblock.time),
         miner: keyblock.miner,
         microBlocksCount: keyblock.microBlocksCount,
         transactionsCount: keyblock.transactionsCount,
@@ -734,7 +724,7 @@ export function adaptTrades(trades, price) {
       toContract: trade.toContract,
       action: trade.action,
       height: trade.height,
-      timestamp: DateTime.fromMillis(trade.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      timestamp: DateTime.fromMillis(trade.microTime),
       rate: formatTradeRate(trade.action, fromAmount, toAmount),
       value: price ? formatTradeValue(trade.action, fromAmount, toAmount, price) : null,
     }

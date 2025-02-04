@@ -9,7 +9,9 @@
       </template>
       <template v-else>
         <app-tooltip>
-          {{ labelTime }}
+          <span class="timestamp-label__label">
+            {{ labelTime }}
+          </span>
           <template #tooltip>
             {{ tooltipTime }}
           </template>
@@ -101,6 +103,9 @@ function update() {
 .timestamp-label {
   display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
+
+  &__label {
+    white-space: nowrap;
+  }
 }
 </style>

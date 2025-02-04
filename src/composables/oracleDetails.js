@@ -37,18 +37,18 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   }
 
   async function fetchOracle() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/oracles/${oracleId.value}?tx_hash=true`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/oracles/${oracleId.value}?tx_hash=true`)
     rawOracle.value = data
   }
 
   async function fetchLastExtendedTx() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${oracleId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${oracleId.value}`)
     lastExtendedTx.value = data.data?.[0]
   }
 
   async function fetchOracleEvents(queryParameters = null) {
     rawEvents.value = null
-    const defaultParameters = `/v3/oracles/${oracleId.value}/responses`
+    const defaultParameters = `/oracles/${oracleId.value}/responses`
 
     try {
       const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)

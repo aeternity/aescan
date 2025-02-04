@@ -58,16 +58,19 @@
         <td>{{ channel.status }}</td>
         <td>
           <div>
-            Initiator:
-            <value-hash-ellipsed
-              :hash="channel.initiator"
-              :link-to="`/accounts/${channel.initiator}`"/>
-          </div>
-          <div>
-            Responder:
-            <value-hash-ellipsed
-              :hash="channel.responder"
-              :link-to="`/accounts/${channel.responder}`"/>
+            <div
+              class="state-channels-table__participants">
+              Initiator:
+              <value-hash-ellipsed
+                :hash="channel.initiator"
+                :link-to="`/accounts/${channel.initiator}`"/>
+            </div>
+            <div class="state-channels-table__participants">
+              Responder:
+              <value-hash-ellipsed
+                :hash="channel.responder"
+                :link-to="`/accounts/${channel.responder}`"/>
+            </div>
           </div>
         </td>
         <td>{{ channel.updateCount }}</td>
@@ -99,5 +102,9 @@ defineProps({
 <style scoped>
 .state-channels-table {
   margin-bottom: var(--space-4);
+
+  &__participants {
+    white-space: nowrap;
+  }
 }
 </style>

@@ -30,7 +30,7 @@ td {
   border-bottom: 1px solid var(--color-midnight-25);
   vertical-align: middle;
   padding: 10px var(--space-0) var(--space-1) 10px;
-
+  white-space: nowrap;
 }
 
 th:first-of-type {

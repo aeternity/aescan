@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.20.0](https://github.com/aeternity/aescan/compare/0.19.0...0.20.0) (2025-02-04)
+
+
+### Features
+
+* multi stage Docker build ([#1055](https://github.com/aeternity/aescan/issues/1055)) ([3fc0ab0](https://github.com/aeternity/aescan/commit/3fc0ab0461f85237704ae65db20556f298ab3fdd))
+* remove imports ([#1040](https://github.com/aeternity/aescan/issues/1040)) ([3e6a35a](https://github.com/aeternity/aescan/commit/3e6a35a16fdf4bb93e8c8ebb417c4e18fa636c73))
+* revert server handlers oracles 2 ([#1066](https://github.com/aeternity/aescan/issues/1066)) ([abc50b1](https://github.com/aeternity/aescan/commit/abc50b1b3acede0b9fd3b24e1c5bfab31eee3c65))
+* Server handlers aecoin ([#1044](https://github.com/aeternity/aescan/issues/1044)) ([e0c2464](https://github.com/aeternity/aescan/commit/e0c24642decf89d578b94ac943233c931276d7ab))
+* server handlers oracles ([#1047](https://github.com/aeternity/aescan/issues/1047)) ([698054f](https://github.com/aeternity/aescan/commit/698054f72a5df23ab3800dbd560e450e53a26de9))
+
+
+### Bug Fixes
+
+* expose port 8080 in Docker ([#1060](https://github.com/aeternity/aescan/issues/1060)) ([c85d8ce](https://github.com/aeternity/aescan/commit/c85d8ceef5c19c62a9bee41154b310a2b7589fda))
+* microblock detail UI ([#1038](https://github.com/aeternity/aescan/issues/1038)) ([d5df11a](https://github.com/aeternity/aescan/commit/d5df11a9312161b78413eb117e746f615e9f703f))
+
 ## [0.19.0](https://github.com/aeternity/aescan/compare/0.18.0...0.19.0) (2025-01-16)
 
 

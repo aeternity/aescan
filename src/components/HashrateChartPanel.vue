@@ -15,7 +15,7 @@
 
     <chart-controls
       v-model="selectedScope"
-    class="hashrate-chart-panel__controls u-hidden-desktop"/>
+      class="hashrate-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
@@ -24,9 +24,6 @@ import { storeToRefs } from 'pinia'
 import { useChartsStore } from '@/stores/charts'
 import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
-const chartsStore = useChartsStore()
-const { hashrateStatistics } = storeToRefs(chartsStore)
-const { fetchHashrateStatistics } = chartsStore
 const { hashrateStatistics } = storeToRefs(useChartsStore())
 const { fetchHashrateStatistics } = useChartsStore()
 

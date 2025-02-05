@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { keyblocksStatistics } = storeToRefs(useChartsStore())
 const { fetchKeyblocksStatistics } = useChartsStore()

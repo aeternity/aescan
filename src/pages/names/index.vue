@@ -37,8 +37,6 @@
 
 import { namesHints } from '@/utils/hints/namesHints'
 
-import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
-
 const TAB_KEYS = ['active', 'in-auction', 'expired']
 
 const { fetchNamesDetails } = useNamesStore()

@@ -289,7 +289,7 @@ export function adaptName(name, blockHeight, blockTime) {
     oracle: name.pointers ? name.pointers.find(name => name.key === 'oracle_pubkey')?.id : null,
   }
 
-  function getStateLabel(states) {
+  function getStateString(states) {
     if (states.includes('auction')) {
       return 'Ends'
     }
@@ -304,8 +304,9 @@ export function adaptName(name, blockHeight, blockTime) {
 
   return {
     states,
-    stateLabel: getStateLabel(states),
-    stateString: getStateLabel(states).toLowerCase(),
+    // todo check function
+    stateString: getStateString(states),
+    stateLabel: getStateString(states).capitalize(),
     name: name.name,
     active: name.active,
     owner: name?.ownership?.current,

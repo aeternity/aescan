@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
-
 const { namesStatistics } = storeToRefs(useChartsStore())
 const { fetchNamesStatistics } = useChartsStore()
 

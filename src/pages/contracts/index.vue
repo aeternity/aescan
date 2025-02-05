@@ -26,7 +26,6 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

@@ -21,7 +21,5 @@
 </template>
 
 <script setup>
-import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
-
 import { chartsHints } from '@/utils/hints/chartsHints'
 </script>

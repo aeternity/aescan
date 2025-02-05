@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
-
 const { hashrateStatistics } = storeToRefs(useChartsStore())
 const { fetchHashrateStatistics } = useChartsStore()
 

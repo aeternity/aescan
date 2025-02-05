@@ -33,8 +33,6 @@
 </template>
 
 <script setup>
-import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
-
 const { transactionsStatistics } = storeToRefs(useChartsStore())
 const { fetchTransactionsStatistics } = useChartsStore()
 
@@ -68,7 +66,7 @@ async function loadTransactionStatistics() {
     selectedScope.value.intervalBy,
     selectedScope.value.limit,
     selectedScope.value.scope,
-    selectedTxType.value?.typeQuery)
+    selectedTxType.value.typeQuery)
 }
 </script>
 

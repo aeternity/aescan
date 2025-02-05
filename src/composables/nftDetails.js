@@ -5,7 +5,7 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
   const axios = useAxios()
 
   const nftId = ref(null)
-  const rawNft = ref(null)
+  const rawNftDetails = ref(null)
   const rawNftTransfers = ref(null)
   const nftInventory = ref(null)
   const nftOwners = ref(null)
@@ -25,9 +25,9 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     return true
   }
 
-  const nft = computed(() => {
-    return rawNft.value
-      ? adaptNft(rawNft.value)
+  const nftDetails = computed(() => {
+    return rawNftDetails.value
+      ? adaptNft(rawNftDetails.value)
       : null
   })
 
@@ -38,9 +38,9 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
   })
 
   async function fetchNft() {
-    rawNft.value = null
+    rawNftDetails.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/aex141/${nftId.value}`)
-    rawNft.value = data
+    rawNftDetails.value = data
   }
 
   async function fetchNftInventory({ queryParameters, limit } = {}) {
@@ -65,7 +65,7 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
   }
 
   return {
-    nft,
+    nftDetails,
     fetchNftDetails,
     fetchNftTransfers,
     nftTransfers,

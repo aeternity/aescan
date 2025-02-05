@@ -6,7 +6,7 @@
     <template #end>
       <transactions-select
         v-if="hasSelect"
-        v-model="type"
+        v-model="selectedTxType"
         size="sm"
         class="transactions-chart-panel__select
         transactions-chart-panel__select--desktop
@@ -27,7 +27,7 @@
 
     <transactions-select
       v-if="hasSelect"
-      v-model="type"
+      v-model="selectedTxType"
       class="select u-hidden-desktop transactions-chart-panel__select"/>
   </app-panel>
 </template>
@@ -88,7 +88,6 @@ async function loadTransactionStatistics() {
     @media (--desktop) {
       margin-top: 0;
     }
-
   }
 }
 </style>

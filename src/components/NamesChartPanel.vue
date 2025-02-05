@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS, CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { namesStatistics } = storeToRefs(useChartsStore())
 const { fetchNamesStatistics } = useChartsStore()
@@ -28,9 +28,9 @@ const { fetchNamesStatistics } = useChartsStore()
 const props = defineProps({
   scope: {
     required: true,
-    type: Boolean,
+    type: Object,
+    default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
-
 })
 
 const selectedScope = ref(props.scope)

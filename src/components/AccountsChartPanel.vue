@@ -17,19 +17,20 @@
       :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="accounts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
-import { chartsHints } from '@/utils/hints/chartsHints'
 import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
+import { chartsHints } from '@/utils/hints/chartsHints'
 
 const { accountsStatistics } = storeToRefs(useChartsStore())
 const { fetchAccountsStatistics } = useChartsStore()
 
 const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
+
 await useAsyncData(async() => {
   await loadAccountStatistics()
   return true

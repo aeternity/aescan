@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <names-chart-panel :scope="CHART_INTERVALS_PRESETS_OPTIONS[4]"/>
+      <names-chart-panel :scope="CHART_SCOPE_PRESETS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>

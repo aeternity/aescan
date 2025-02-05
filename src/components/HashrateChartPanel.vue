@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useChartsStore } from '@/stores/charts'
 import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { hashrateStatistics } = storeToRefs(useChartsStore())
@@ -35,7 +33,7 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([selectedScope, selectedTxType], async() => {
+  watch([selectedScope], async() => {
     await loadHashrateStatistics()
   })
 }

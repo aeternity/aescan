@@ -14,13 +14,13 @@
       :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="contracts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS, CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { contractsStatistics } = storeToRefs(useChartsStore())
 const { fetchContractsStatistics } = useChartsStore()
@@ -32,9 +32,9 @@ const props = defineProps({
     default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
 })
-// todo is props needed?
-// todo directly bind props
+
 const selectedScope = ref(props.scope)
+
 await useAsyncData(async() => {
   await loadContractsStatistics()
   return true
@@ -52,7 +52,6 @@ async function loadContractsStatistics() {
     selectedScope.value.limit,
     selectedScope.value.scope)
 }
-
 </script>
 
 <style scoped>

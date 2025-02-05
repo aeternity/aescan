@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
+import { CHART_SCOPE_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { difficultyStatistics } = storeToRefs(useChartsStore())
 const { fetchDifficultyStatistics } = useChartsStore()
@@ -33,7 +33,7 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([selectedScope, selectedTxType], async() => {
+  watch([selectedScope], async() => {
     await loadDifficultytatistics()
   })
 }

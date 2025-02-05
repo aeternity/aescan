@@ -1,4 +1,4 @@
-describe('homepage', () => {
+describe('DEX trades', () => {
   it('should display dex trades', () => {
     cy.visit('/dex-trades')
 

@@ -26,9 +26,6 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 
-const datepicker = ref(null)
-const today = DateTime.now().toFormat('yyyy-MM-dd')
-
 const props = defineProps({
   selectedScope: {
     type: Array,

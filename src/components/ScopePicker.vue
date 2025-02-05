@@ -24,7 +24,6 @@
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
 
 const props = defineProps({
   selectedScope: {

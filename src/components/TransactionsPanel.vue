@@ -28,10 +28,6 @@
 </template>
 
 <script setup>
-import { CHART_INTERVALS_OPTIONS, TX_TYPES_OPTIONS } from '@/utils/constants'
-
-const transactionsStore = useTransactionsStore()
-
 const {
   transactions,
   transactionsCount,

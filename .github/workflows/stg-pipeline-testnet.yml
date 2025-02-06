@@ -119,7 +119,7 @@ jobs:
           app: ${{ env.APP }}
 
       - name: Staging undeploy
-        if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true
+        if: github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true
         uses: aeternity/ae-github-actions/argocd-undeploy@v5
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}
@@ -150,6 +150,7 @@ jobs:
     runs-on: ubuntu-22.04
     name: E2E Tests
     timeout-minutes: 20
+    if: github.event.action == 'opened' || github.event.action == 'synchronize'
     steps:
       - name: Check the PR deployment status before run E2E tests.
         uses: aeternity/ae-github-actions/deploy-status@v7.1.0

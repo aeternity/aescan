@@ -126,7 +126,7 @@ jobs:
           env: ${{ env.ENV }}
           app: ${{ env.APP }}
 
-      - name: Print PR url
+      - name: Print PR Url
         uses: unsplash/comment-on-pr@v1.3.0
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         env:

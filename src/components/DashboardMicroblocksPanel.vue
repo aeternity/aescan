@@ -55,20 +55,20 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
   }
 
   &__dashboard-panel-header {
-    margin-bottom: var(--space-2);
+    margin: 0 var(--space-2) var(--space-2);
 
     @media (--desktop) {
-      margin-bottom: var(--space-3);
+      margin: 0 0 var(--space-4) 0;
     }
   }
 
   &__microblock-sequence {
-    margin-bottom: var(--space-3);
+    margin: 0 var(--space-1) var(--space-3) var(--space-1);
   }
 
   &__summary {
     display: block;
-    margin-bottom: var(--space-3);
+    margin: 0 var(--space-1) var(--space-3) var(--space-1);
     font-family: var(--font-monospaced);
     font-size: 14px;
     line-height: 20px;

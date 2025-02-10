@@ -39,7 +39,7 @@ const modules = [Pagination]
   position: static;
 
   &-bullet {
-    margin-top: var(--space-5) !important;
+    margin-top: var(--space-2) !important;
   }
 
   &-bullet-active {

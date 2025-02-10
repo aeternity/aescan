@@ -167,13 +167,14 @@ onBeforeUnmount(() => {
   flex-direction: column;
 
   &__header {
-    padding: var(--space-1) 0;
+    padding: var(--space-1);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
 
     @media (--desktop) {
+      padding: var(--space-1) 0;
       justify-content: space-between;
       flex-direction: row;
       align-items: center;

@@ -45,7 +45,13 @@
 
       <dashboard-keyblock-table
         v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__dashboard-keyblock-table"
+        class="dashboard-keyblock-panel__dashboard-keyblock-table u-hidden-mobile"
+        :keyblock="selectedKeyblock"
+        :stats="selectedDeltaStats"/>
+
+      <dashboard-keyblock-table-condensed
+        v-if="selectedKeyblock"
+        class="dashboard-keyblock-panel__dashboard-keyblock-table  u-hidden-desktop"
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
     </div>
@@ -67,6 +73,7 @@ const {
 <style scoped>
 .dashboard-keyblock-panel {
   width: 100%;
+  padding-bottom: 0;
 
   &__container {
     @media (--desktop) {
@@ -75,10 +82,10 @@ const {
   }
 
   &__dashboard-panel-header {
-    margin-bottom: var(--space-2);
+    margin: 0 var(--space-2) var(--space-2);
 
     @media (--desktop) {
-      margin-bottom: var(--space-4);
+      margin: 0 0 var(--space-4) 0;
     }
   }
 
@@ -102,13 +109,12 @@ const {
     line-height: 20px;
     display: block;
 
-    margin-bottom: var(--space-1);
+    margin: 0 var(--space-1) var(--space-1) var(--space-1);
 
     @media (--desktop) {
       margin-bottom: 0;
       display: none;
     }
-
   }
 
   &__summary--desktop {

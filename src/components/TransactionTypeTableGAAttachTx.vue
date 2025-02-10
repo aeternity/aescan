@@ -66,9 +66,15 @@
             {{ transactionsHints.gaAttachTxGasLimit }}
           </hint-tooltip>
           Gas Limit
-          /
-          <wbr>
-
+        </th>
+        <td class="transaction-type-panel-ga-attach-tx__data">
+          <div class="transaction-type-panel-ga-attach-tx__container">
+            {{ transactionData.gas }}
+          </div>
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-ga-attach-tx__row">
+        <th class="transaction-type-panel-ga-attach-tx__table-header">
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasPrice }}
           </hint-tooltip>
@@ -76,8 +82,6 @@
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <div class="transaction-type-panel-ga-attach-tx__container">
-            {{ transactionData.gas }}
-            /
             <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
           </div>
         </td>
@@ -88,9 +92,15 @@
             {{ transactionsHints.gaAttachTxGasUsed }}
           </hint-tooltip>
           Gas Used
-          /
-          <wbr>
-
+        </th>
+        <td class="transaction-type-panel-ga-attach-tx__data">
+          <div class="transaction-type-panel-ga-attach-tx__container">
+            {{ transactionData.gasUsed }}
+          </div>
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-ga-attach-tx__row">
+        <th class="transaction-type-panel-ga-attach-tx__table-header">
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasCost }}
           </hint-tooltip>
@@ -98,8 +108,6 @@
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <div class="transaction-type-panel-ga-attach-tx__container">
-            {{ transactionData.gasUsed }}
-            /
             <price-label :price="formatAettosToAe(gasCosts)"/>
           </div>
         </td>

@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe } from '@/utils/format'
 
@@ -40,20 +39,16 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
   const oracleDetails = {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
-    expiration: DateTime.fromMillis(oracle.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    expiration: oracle.approximateExpireTime,
     expirationHeight: oracle.expireHeight,
-    registered: DateTime.fromMillis(oracle.registerTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    registered: oracle.registerTime,
     registeredHeight: oracle.activeFrom,
     queryFormat: oracle.format.query,
     responseFormat: oracle.format.response,
     operator: oracle.oracle.replace('ok_', 'ak_'),
-    lastExtended: lastExtendedTx
-      ? DateTime.fromMillis(lastExtendedTx.microTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-      : null,
+    lastExtended: lastExtendedTx ? lastExtendedTx.microTime : null,
     lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx
-      ? DateTime.fromMillis(lastQueryTx.blockTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-      : null,
+    lastQueried: lastQueryTx ? lastQueryTx.blockTime : null,
     lastQueryHeight: lastQueryTx?.height,
   }
   return oracleDetails

@@ -29,8 +29,7 @@
             Registered
           </th>
           <td class="oracle-details-panel__data">
-            <div
-              class="oracle-details-panel__container">
+            <div class="oracle-details-panel__container">
               <app-link
                 class="oracle-details-panel__block"
                 :to="`/keyblocks/${oracleDetails.registeredHeight}`">

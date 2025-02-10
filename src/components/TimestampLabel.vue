@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
 
 function update() {
   if (isPast.value) {
-    relativeUpdated.value = DateTime.fromMillis(props.timestamp).setLocale('en-US').toRelative()
+    relativeUpdated.value = DateTime.fromMillis(props.timestamp).toRelative()
   } else if (isNow.value) {
     relativeUpdated.value = 'now'
   } else {

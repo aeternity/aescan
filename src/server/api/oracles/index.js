@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon'
 import useAxios from '~/composables/useAxios'
 import { formatAettosToAe } from '~/utils/format'
 
@@ -7,10 +6,11 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const query = getQuery(event)
-  const defaultParameters = `/v3/oracles?state=${query.state}&limit=${query.limit || 10}`
+  const defaultParameters = `/oracles?state=${query.state}&limit=${query.limit || 10}`
   const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
 
   const { data } = await axios.get(url)
+  console.log('data', data)
   return adaptOracles(data)
 })
 
@@ -19,11 +19,9 @@ function adaptOracles(oracles) {
     return {
       id: oracle.oracle,
       registeredHeight: oracle.activeFrom,
-      registered: DateTime.fromMillis(oracle.registerTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      registered: oracle.registerTime,
       expirationHeight: oracle.expireHeight,
-      expiration: DateTime.fromMillis(oracle.approximateExpireTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      expiration: oracle.approximateExpireTime,
       queryFee: formatAettosToAe(oracle.queryFee),
     }
   })

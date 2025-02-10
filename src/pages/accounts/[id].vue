@@ -45,9 +45,8 @@ import { accountHints } from '@/utils/hints/accountHints'
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
 
-const accountStore = useAccountStore()
-const { accountDetails, accountTokens } = storeToRefs(accountStore)
-const { fetchAccount } = accountStore
+const { accountDetails, accountTokens } = storeToRefs(useAccountStore())
+const { fetchAccount } = useAccountStore()
 
 const { isLoading } = useLoading()
 const { push, replace } = useRouter()

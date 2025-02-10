@@ -60,9 +60,8 @@
 </template>
 
 <script setup>
-const contractVerifiedStore = useContractVerifiedStore()
-const { contractCode, verificationDetails, isVerified } = storeToRefs(contractVerifiedStore)
-const { fetchContractCode } = contractVerifiedStore
+const { contractCode, verificationDetails, isVerified } = storeToRefs(useContractVerifiedStore())
+const { fetchContractCode } = useContractVerifiedStore()
 
 const { contractDetails } = storeToRefs(useContractDetailsStore())
 

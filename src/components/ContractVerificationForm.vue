@@ -110,8 +110,7 @@
 <script setup>
 import { contractVerificationHints } from '@/utils/hints/contractVerificationHints'
 
-const verificationStore = useContractVerificationStore()
-const { verifyContract } = verificationStore
+const { verifyContract } = useContractVerificationStore()
 const { push } = useRouter()
 
 const form = ref({

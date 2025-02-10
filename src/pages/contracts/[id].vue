@@ -54,13 +54,11 @@
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 
-const contractDetailsStore = useContractDetailsStore()
-const { contractDetails } = storeToRefs(contractDetailsStore)
-const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
+const { contractDetails } = storeToRefs(useContractDetailsStore())
+const { fetchContractDetails, fetchContractEvents } = useContractDetailsStore()
 
-const contractVerifiedStore = useContractVerifiedStore()
-const { isVerified } = storeToRefs(contractVerifiedStore)
-const { fetchVerificationDetail } = contractVerifiedStore
+const { isVerified } = storeToRefs(useContractVerifiedStore())
+const { fetchVerificationDetail } = useContractVerifiedStore()
 
 const featureFlags = useFeatureFlags()
 

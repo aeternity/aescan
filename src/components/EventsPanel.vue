@@ -35,9 +35,8 @@ import { contractsHints } from '@/utils/hints/contractsHints'
 
 const { aeSdk } = storeToRefs(useWalletStore())
 
-const contractVerifiedStore = useContractVerifiedStore()
-const { isVerified } = storeToRefs(contractVerifiedStore)
-const { getContract, parseResponse } = contractVerifiedStore
+const { isVerified } = storeToRefs(useContractVerifiedStore())
+const { getContract, parseResponse } = useContractVerifiedStore()
 
 const props = defineProps({
   args: {

@@ -16,10 +16,8 @@
 </template>
 
 <script setup>
-
-const accountStore = useAccountStore()
-const { fetchAccountTokens } = accountStore
-const { accountTokens } = storeToRefs(accountStore)
+const { fetchAccountTokens } = useAccountStore()
+const { accountTokens } = storeToRefs(useAccountStore())
 
 async function loadPrevAccountTokens() {
   await fetchAccountTokens({ queryParameters: accountTokens.value.prev })

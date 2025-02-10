@@ -27,13 +27,10 @@
 </template>
 
 <script setup>
+const { address } = storeToRefs(useWalletStore())
 
-const walletStore = useWalletStore()
-const { address } = storeToRefs(walletStore)
-
-const accountStore = useAccountStore()
-const { accountDetails, accountTokens } = storeToRefs(accountStore)
-const { fetchAccount } = accountStore
+const { accountDetails, accountTokens } = storeToRefs(useAccountStore())
+const { fetchAccount } = useAccountStore()
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
 

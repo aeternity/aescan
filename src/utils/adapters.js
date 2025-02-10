@@ -289,8 +289,24 @@ export function adaptName(name, blockHeight, blockTime) {
     oracle: name.pointers ? name.pointers.find(name => name.key === 'oracle_pubkey')?.id : null,
   }
 
+  function getStateString(states) {
+    if (states.includes('auction')) {
+      return 'Ends'
+    }
+    if (states.includes('revoked')) {
+      return 'Revoked'
+    }
+    if (states.includes('expired')) {
+      return 'Expired'
+    }
+    return 'Expires'
+  }
+
   return {
     states,
+    // todo check function
+    stateString: getStateString(states).toLowerCase(),
+    stateLabel: getStateString(states),
     name: name.name,
     active: name.active,
     owner: name?.ownership?.current,

@@ -27,9 +27,8 @@
 import { useRoute } from 'nuxt/app'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 
-const microblockDetailsStore = useMicroblockDetailsStore()
-const { microblockDetails } = storeToRefs(microblockDetailsStore)
-const { fetchMicroblock } = microblockDetailsStore
+const { microblockDetails } = storeToRefs(useMicroblockDetailsStore())
+const { fetchMicroblock } = useMicroblockDetailsStore()
 
 const route = useRoute()
 

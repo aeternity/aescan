@@ -5,6 +5,5 @@
 </template>
 
 <script setup>
-const walletStore = useWalletStore()
-const { connectWallet } = walletStore
+const { connectWallet } = useWalletStore()
 </script>

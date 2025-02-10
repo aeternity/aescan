@@ -66,8 +66,15 @@
             {{ contractsHints.gasLimit }}
           </hint-tooltip>
           Gas Limit
-          /
-          <wbr>
+        </th>
+        <td class="transaction-type-panel-contract-create-tx__data">
+          <div class="transaction-type-panel-contract-create-tx__container">
+            {{ transactionData.gas }}
+          </div>
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-contract-create-tx__row">
+        <th class="transaction-type-panel-contract-create-tx__table-header">
           <hint-tooltip>
             {{ contractsHints.gasPrice }}
           </hint-tooltip>
@@ -75,8 +82,6 @@
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <div class="transaction-type-panel-contract-create-tx__container">
-            {{ transactionData.gas }}
-            /
             <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
           </div>
         </td>
@@ -87,9 +92,15 @@
             {{ contractsHints.gasUsed }}
           </hint-tooltip>
           Gas Used
-
-          /
-          <wbr>
+        </th>
+        <td class="transaction-type-panel-contract-create-tx__data">
+          <div class="transaction-type-panel-contract-create-tx__container">
+            {{ transactionData.gasUsed }}
+          </div>
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-contract-create-tx__row">
+        <th class="transaction-type-panel-contract-create-tx__table-header">
           <hint-tooltip>
             {{ contractsHints.gasCost }}
           </hint-tooltip>
@@ -97,8 +108,6 @@
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
           <div class="transaction-type-panel-contract-create-tx__container">
-            {{ transactionData.gasUsed }}
-            /
             <price-label :price="formatAettosToAe(gasCosts)"/>
           </div>
         </td>

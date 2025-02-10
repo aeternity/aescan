@@ -17,10 +17,8 @@
 </template>
 
 <script setup>
-
-const keyblockStore = useKeyblockStore()
-const { fetchKeyblocks } = keyblockStore
-const { keyblocks, keyblocksCount } = storeToRefs(keyblockStore)
+const { fetchKeyblocks } = useKeyblockStore()
+const { keyblocks, keyblocksCount } = storeToRefs(useKeyblockStore())
 
 const limit = computed(() => isDesktop() ? 10 : 3)
 const pageIndex = ref(1)

@@ -10,7 +10,6 @@ export default defineEventHandler(async event => {
   const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
 
   const { data } = await axios.get(url)
-  console.log('data', data)
   return adaptOracles(data)
 })
 

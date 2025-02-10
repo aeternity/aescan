@@ -15,7 +15,8 @@
 </template>
 
 <script setup>
-const { aciReadEntrypoints } = storeToRefs(useContractVerifiedStore())
+const contractVerifiedStore = useContractVerifiedStore()
+const { aciReadEntrypoints } = storeToRefs(contractVerifiedStore)
 const {
   fetchEntrypointResponse,
   getContract,

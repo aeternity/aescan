@@ -138,8 +138,8 @@
   </div>
 </template>
 <script setup>
-import { miningHints } from '../utils/hints/miningHints'
-import { useMinersStore } from '@/stores/miners'
+import { miningHints } from '@/utils/hints/miningHints'
+import { useMinersStore } from '@/composables/miners'
 import { formatAettosToAe } from '@/utils/format'
 
 const { fetchMining } = useMinersStore()

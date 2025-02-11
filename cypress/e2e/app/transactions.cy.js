@@ -67,6 +67,7 @@ describe('transactions', () => {
   })
 
   it('should filter by combining parameters from direct URL access', () => {
+    cy.clock(new Date(2024, 12, 12))
     cy.visit('/transactions?scope=1733871600-1733958000&txType=spend')
 
     cy.get('.paginated-content .multiselect__single').contains('SpendTx')

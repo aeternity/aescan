@@ -17,7 +17,7 @@
   <template v-if="!isLoading">
     <names-chart-panel
       class="names__names-panel"
-      :preselected-range="CHART_INTERVALS_PRESETS_OPTIONS[0]"/>
+      :scope="CHART_SCOPE_PRESETS_OPTIONS[0]"/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Active">
         <names-active-panel/>
@@ -36,8 +36,6 @@
 <script setup>
 
 import { namesHints } from '@/utils/hints/namesHints'
-
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const TAB_KEYS = ['active', 'in-auction', 'expired']
 

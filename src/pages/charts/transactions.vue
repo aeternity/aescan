@@ -15,7 +15,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <transactions-chart-panel :has-select="true"/>
+      <transactions-chart-panel :scope="CHART_SCOPE_PRESETS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>
 </template>

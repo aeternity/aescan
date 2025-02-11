@@ -5,27 +5,25 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="range"
+        v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="difficultyStatistics"
-      :interval="range.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="difficulty-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
-
 const { difficultyStatistics } = storeToRefs(useChartsStore())
 const { fetchDifficultyStatistics } = useChartsStore()
 
-const range = ref(CHART_INTERVALS_PRESETS_OPTIONS[4])
+const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
 
 await useAsyncData(async() => {
   await loadDifficultytatistics()
@@ -33,16 +31,16 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([range], async() => {
+  watch([selectedScope], async() => {
     await loadDifficultytatistics()
   })
 }
 
 async function loadDifficultytatistics() {
   await fetchDifficultyStatistics(
-    range.value.interval,
-    range.value.limit,
-    range.value.customInterval)
+    selectedScope.value.intervalBy,
+    selectedScope.value.limit,
+    selectedScope.value.scope)
 }
 </script>
 

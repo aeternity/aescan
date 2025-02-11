@@ -9,7 +9,13 @@
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
-        <transactions-select v-model="selectedTxType"/>
+        <div class="transactions-panel__header">
+          <transactions-select
+            v-model="selectedTxType"
+            size="sm"
+            class="transactions-panel__select"/>
+          <transactions-scope-picker v-model="selectedScope"/>
+        </div>
       </template>
       <transactions-table
         :transactions="transactions"
@@ -22,46 +28,65 @@
 </template>
 
 <script setup>
-import { TX_TYPES_OPTIONS } from '@/utils/constants'
-
-const { transactions, transactionsCount, isHydrated, pageIndex, selectedTxType } = storeToRefs(useTransactionsStore())
-const { fetchTransactions, fetchTransactionsCount, setPageIndex, setSelectedTxType } = useTransactionsStore()
-
+const {
+  transactions,
+  transactionsCount,
+  isHydrated,
+  pageIndex,
+  selectedTxType,
+  selectedScope,
+} = storeToRefs(useTransactionsStore())
+const {
+  loadTransactions,
+  changeRoute,
+  setPageLimit,
+} = useTransactionsStore()
 const route = useRoute()
-const { push } = useRouter()
 
 const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
+if (process.client) {
+  if (!isHydrated?.value) {
+    setPageLimit(limit)
+    await loadTransactions()
+  }
+
+  watch([selectedTxType, selectedScope], () => {
+    changeRoute()
+  })
+
+  watch(() => route.fullPath, async() => {
+    await loadTransactions()
+  })
+}
+
 async function loadPrevTransactions() {
-  await fetchTransactions(transactions.value.prev)
+  await loadTransactions(transactions.value.prev)
 }
 
 async function loadNextTransactions() {
-  await fetchTransactions(transactions.value.next)
+  await loadTransactions(transactions.value.next)
 }
 
-async function loadTransactions() {
-  const { txType } = route.query
-  const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-  setSelectedTxType(txTypeOption || TX_TYPES_OPTIONS[0])
-  await fetchTransactions(`/transactions?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
-  await fetchTransactionsCount(selectedTxType.value.typeQuery)
-  setPageIndex(1)
-}
+</script>
 
-if (process.client) {
-  watch(() => route.fullPath, () => {
-    loadTransactions()
-  })
+<style>
+.transactions-panel {
+  &__select {
+    margin-right: var(--space-1);
 
-  watch(selectedTxType, () => {
-    const typeQuery = selectedTxType.value?.typeQuery
-    const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
-    push(`/transactions${slug}`)
-  })
+    @media (--desktop) {
+      flex-direction: row;
+    }
+  }
 
-  if (!isHydrated?.value) {
-    loadTransactions()
+  &__header {
+    display: flex;
+    flex-direction: column;
+
+    @media (--desktop) {
+      flex-direction: row;
+    }
   }
 }
-</script>
+</style>

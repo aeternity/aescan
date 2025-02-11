@@ -5,34 +5,34 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="range"
+        v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="contractsStatistics"
-      :interval="range.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="contracts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { contractsStatistics } = storeToRefs(useChartsStore())
 const { fetchContractsStatistics } = useChartsStore()
 
 const props = defineProps({
-  preselectedRange: {
+  scope: {
+    required: true,
     type: Object,
-    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
+    default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
 })
 
-const range = ref(props.preselectedRange)
+const selectedScope = ref(props.scope)
 
 await useAsyncData(async() => {
   await loadContractsStatistics()
@@ -40,18 +40,17 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch(range, async() => {
+  watch(selectedScope, async() => {
     await loadContractsStatistics()
   })
 }
 
 async function loadContractsStatistics() {
   await fetchContractsStatistics(
-    range.value.interval,
-    range.value.limit,
-    range.value.customInterval)
+    selectedScope.value.intervalBy,
+    selectedScope.value.limit,
+    selectedScope.value.scope)
 }
-
 </script>
 
 <style scoped>

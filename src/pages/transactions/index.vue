@@ -12,7 +12,7 @@
   <transactions-statistics class="transactions-panel"/>
   <transactions-chart-panel
     :has-select="false"
-    :preselected-range="CHART_INTERVALS_PRESETS_OPTIONS[0]"
+    :scope="CHART_SCOPE_PRESETS_OPTIONS[0]"
     class="transactions-panel"/>
   <transactions-panel
     v-if="!isLoading"
@@ -22,7 +22,6 @@
 
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

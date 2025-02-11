@@ -1,20 +1,22 @@
 <template>
-  <div class="range-picker">
+  <div class="scope-picker">
     <VueDatePicker
       ref="datepicker"
-      v-model="date"
+      v-model="scope"
+      :model-type="type"
       range
       min-range="1"
       :min-date="STATISTICS_DATA_BEGINNING"
       :max-date="today"
       auto-apply
       hide-input-icon
-      :clearable="false"
+      :clearable="clearable"
       :enable-time-picker="false"
       :prevent-min-max-navigation="true"
-      placeholder="CUSTOM"
-      :ui="{input: `range-picker__input ${isRangeSelected ? 'range-picker__input--active' : ''}`}"
-      @update:model-value="$emit('updated', date)"/>
+      :placeholder="placeholder"
+      :ui="inputClassNames"
+      @cleared="clear"
+      @update:model-value="$emit('updated', scope)"/>
   </div>
 </template>
 
@@ -22,37 +24,66 @@
 import { DateTime } from 'luxon'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
-import { STATISTICS_DATA_BEGINNING } from '@/utils/constants'
-
-const date = ref()
-const datepicker = ref(null)
-const today = DateTime.now().toFormat('yyyy-MM-dd')
 
 const props = defineProps({
-  isRangeSelected: {
+  selectedScope: {
+    type: Array,
+    default: null,
+  },
+  isScopeSelected: {
     type: Boolean,
     required: true,
   },
+  placeholder: {
+    type: String,
+    default: 'CUSTOM',
+  },
+  clearable: {
+    type: Boolean,
+    default: false,
+  },
+  type: {
+    type: String,
+    default: 'yyyy-MM-dd',
+  },
 })
 
-watch(() => props.isRangeSelected, (newVal, oldVal) => {
-  if (!newVal && oldVal) {
-    closeDatepicker()
-  }
-})
+const datepicker = ref(null)
+const scope = ref(props.selectedScope)
+const emit = defineEmits(['updated'])
+const today = DateTime.now().toFormat('yyyy-MM-dd')
 
-function closeDatepicker() {
-  if (datepicker) {
-    datepicker.value.closeMenu()
-  }
-  date.value = null
+watch(
+  () => props.isScopeSelected,
+  (newVal, oldVal) => {
+    if (!newVal && oldVal) {
+      close()
+    }
+    if (!newVal) {
+      clear()
+    }
+  },
+)
+
+function clear() {
+  scope.value = null
 }
 
-defineEmits(['updated'])
+function close() {
+  if (datepicker.value) {
+    datepicker.value.closeMenu()
+  }
+}
+
+const inputClassNames = computed(() => ({
+  input: `scope-picker__input
+  ${props.isScopeSelected ? 'scope-picker__input--active' : ''}
+  ${props.clearable ? 'scope-picker__input--clearable' : ''}`,
+}))
 </script>
 
 <style>
-.range-picker {
+.scope-picker {
   grid-column: span 5;
 
   &__input {
@@ -94,10 +125,26 @@ defineEmits(['updated'])
         width: 208px;
       }
     }
+
+    @media (--desktop) {
+      &--clearable {
+        width: 100px;
+        padding-right: 0;
+
+        &.scope-picker__input--active {
+          width: 234px;
+          padding-right: 28px;
+        }
+      }
+    }
   }
 }
 
 .dp {
+  &__today {
+    border: 1px solid var(--color-error)
+  }
+
   &__outer_menu_wrap {
     @media (--desktop) {
       width: 100%;
@@ -106,6 +153,10 @@ defineEmits(['updated'])
 
   &__overlay_cell_active {
     background: var(--color-error);
+  }
+
+  &__icon {
+    color: var(--color-white);
   }
 
   &__range {
@@ -121,5 +172,10 @@ defineEmits(['updated'])
       color: var(--color-white);
     }
   }
+
+  &__input_icons {
+    padding: 6px 7px;
+  }
 }
+
 </style>

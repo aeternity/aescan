@@ -7,7 +7,7 @@ export const MARKET_STATS_HOTCOIN_ADDRESS = 'https://api.hotcoinfin.com/v1/marke
 
 export const MINUTES_PER_BLOCK = 3
 export const TX_TYPES_OPTIONS = [
-  { typeQuery: null, label: 'All types' },
+  { typeQuery: null, label: 'All Types' },
   { typeQuery: 'spend', label: 'SpendTx' },
   { typeQuery: 'contract_call', label: 'ContractCallTx' },
   { typeQuery: 'contract_create', label: 'ContractCreateTx' },
@@ -33,12 +33,12 @@ export const TX_TYPES_OPTIONS = [
   { typeQuery: 'ga_meta', label: 'GAMetaTx' },
   { typeQuery: 'paying_for', label: 'PayingForTx' },
 ]
-export const CHART_INTERVALS_PRESETS_OPTIONS = [
-  { interval: 'day', limit: '7', label: '1W' },
-  { interval: 'day', limit: '30', label: '1M' },
-  { interval: 'day', limit: '90', label: '3M' },
-  { interval: 'month', limit: '12', label: '1Y' },
-  { interval: 'month', limit: '100', label: 'ALL' },
+export const CHART_SCOPE_PRESETS_OPTIONS = [
+  { intervalBy: 'day', limit: '7', label: '1W' },
+  { intervalBy: 'day', limit: '30', label: '1M' },
+  { intervalBy: 'day', limit: '90', label: '3M' },
+  { intervalBy: 'month', limit: '12', label: '1Y' },
+  { intervalBy: 'month', limit: '100', label: 'ALL' },
 ]
 export const ORACLE_STATES_OPTIONS = [
   { stateQuery: 'active', label: 'Active' },

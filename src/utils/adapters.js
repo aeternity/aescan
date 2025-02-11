@@ -304,7 +304,6 @@ export function adaptName(name, blockHeight, blockTime) {
 
   return {
     states,
-    // todo check function
     stateString: getStateString(states).toLowerCase(),
     stateLabel: getStateString(states),
     name: name.name,

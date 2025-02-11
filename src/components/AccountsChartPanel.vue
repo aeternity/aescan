@@ -28,7 +28,15 @@ import { chartsHints } from '@/utils/hints/chartsHints'
 const { accountsStatistics } = storeToRefs(useChartsStore())
 const { fetchAccountsStatistics } = useChartsStore()
 
-const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
+const props = defineProps({
+  scope: {
+    required: true,
+    type: Object,
+    default: CHART_SCOPE_PRESETS_OPTIONS[4],
+  },
+})
+
+const selectedScope = ref(props.scope)
 
 await useAsyncData(async() => {
   await loadAccountStatistics()

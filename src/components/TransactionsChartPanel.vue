@@ -50,6 +50,7 @@ const props = defineProps({
 
 const selectedScope = ref(props.scope)
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+
 await useAsyncData(async() => {
   await loadTransactionStatistics()
   return true

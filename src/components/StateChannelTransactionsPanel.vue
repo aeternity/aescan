@@ -34,8 +34,6 @@ const loadNextTransactions = () => {
 }
 
 if (process.client) {
-  fetchStateChannelTransactions({
-    limit: 10,
-  })
+  fetchStateChannelTransactions()
 }
 </script>

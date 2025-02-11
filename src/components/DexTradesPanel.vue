@@ -28,8 +28,6 @@ function loadNextEvents() {
 }
 
 if (process.client) {
-  await fetchDexTrades({
-    limit: 10,
-  })
+  await fetchDexTrades()
 }
 </script>

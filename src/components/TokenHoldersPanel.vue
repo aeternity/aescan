@@ -26,7 +26,7 @@ function loadNextHolders() {
 }
 
 if (process.client) {
-  fetchTokenHolders({ limit: 10 })
+  fetchTokenHolders()
   fetchTokenHoldersCount()
 }
 </script>

@@ -72,8 +72,7 @@ const activeTabIndex = computed({
 })
 
 if (process.client) {
-  const limit = 10
-  watch(address, () => fetchAccount(address.value, { limit }), { immediate: true })
+  watch(address, () => fetchAccount(address.value), { immediate: true })
 }
 </script>
 

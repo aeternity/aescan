@@ -3,7 +3,6 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="accountTransactions"
-
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
@@ -29,7 +28,6 @@ const pageIndex = ref(1)
 watch(selectedTxType, () => {
   fetchAccountTransactions({
     accountId: route.params.id,
-    limit: 10,
     type: selectedTxType.value.typeQuery,
   })
   pageIndex.value = 1

@@ -36,34 +36,34 @@ export const useNamesStore = defineStore('names', () => {
       : null
   })
 
-  function fetchNamesDetails({ limit }) {
+  function fetchNamesDetails(limit) {
     return Promise.all([
-      fetchActiveNames({ limit }),
-      fetchInAuctionNames({ limit }),
-      fetchExpiredNames({ limit }),
+      fetchActiveNames(),
+      fetchInAuctionNames(),
+      fetchExpiredNames(),
     ])
   }
 
-  async function fetchActiveNames({ queryParameters, limit } = {}) {
+  async function fetchActiveNames({ queryParameters } = {}) {
     rawActiveNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/names?state=active&by=deactivation&direction=forward&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || '/names?state=active&by=deactivation&direction=forward&limit=10'}`,
     )
     rawActiveNames.value = data
   }
 
-  async function fetchInAuctionNames({ queryParameters, limit } = {}) {
+  async function fetchInAuctionNames({ queryParameters } = {}) {
     rawInAuctionNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/names/auctions?by=expiration&direction=forward&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || '/names/auctions?by=expiration&direction=forward&limit=10'}`,
     )
     rawInAuctionNames.value = data
   }
 
-  async function fetchExpiredNames({ queryParameters, limit } = {}) {
+  async function fetchExpiredNames({ queryParameters } = {}) {
     rawExpiredNames.value = null
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || `/names?state=inactive&limit=${limit ?? 10}`}`,
+      `${MIDDLEWARE_URL}${queryParameters || '/names?state=inactive&limit=10'}`,
     )
     rawExpiredNames.value = data
   }

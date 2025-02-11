@@ -27,7 +27,6 @@ function loadNextTrades() {
 if (process.client) {
   await fetchTokenTrades({
     contractId: route.params.id,
-    limit: 10,
   })
 }
 </script>

@@ -21,7 +21,7 @@ const route = useRoute()
 
 if (process.client) {
   fetchKeyblockMicroblocks({
-    limit: 10,
+
     id: route.params.id,
   })
 }

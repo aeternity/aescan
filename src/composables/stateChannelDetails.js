@@ -45,7 +45,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     rawStateChannelCreateTx.value = data.data[0]
   }
 
-  async function fetchStateChannelTransactions({ limit, queryParameters } = {}) {
+  async function fetchStateChannelTransactions({ queryParameters } = {}) {
     rawStateChannelTransactions.value = null
 
     if (queryParameters) {
@@ -56,7 +56,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
 
     const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
-    transactionsUrl.searchParams.append('limit', limit ?? 10)
+    transactionsUrl.searchParams.append('limit', 10)
     transactionsUrl.searchParams.append('channel', stateChannelId.value)
 
     const { data } = await axios.get(transactionsUrl.toString())

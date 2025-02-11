@@ -30,8 +30,6 @@ const loadNextTransactions = () => {
 }
 
 if (process.client) {
-  fetchContractCallTransactions({
-    limit: 10,
-  })
+  fetchContractCallTransactions()
 }
 </script>

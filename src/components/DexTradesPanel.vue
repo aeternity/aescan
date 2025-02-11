@@ -28,9 +28,8 @@ function loadNextEvents() {
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
   await fetchDexTrades({
-    limit: limit.value,
+    limit: 10,
   })
 }
 </script>

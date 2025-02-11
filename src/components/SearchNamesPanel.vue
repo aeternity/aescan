@@ -2,7 +2,7 @@
   <app-panel>
     <paginated-content
       :entities="namesResults"
-      :limit="limit"
+
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
       <search-names-table :names="namesResults"/>
@@ -14,10 +14,9 @@
 const { namesResults } = storeToRefs(useSearchStore())
 const { fetchNamesResults } = useSearchStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()
 
-await fetchNamesResults({ query: route.params.id, limit: limit.value })
+await fetchNamesResults({ query: route.params.id, limit: 10 })
 
 async function loadPrevNames() {
   await fetchNamesResults({ queryParameters: namesResults.value.prev })

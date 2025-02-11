@@ -3,7 +3,7 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="accountTransactions"
-      :limit="limit"
+
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
@@ -26,12 +26,10 @@ const { accountTransactions } = storeToRefs(useAccountStore())
 const selectedTxType = ref({ typeQuery: null, label: 'All types' })
 const pageIndex = ref(1)
 
-const limit = computed(() => isDesktop() ? 10 : 3)
-
 watch(selectedTxType, () => {
   fetchAccountTransactions({
     accountId: route.params.id,
-    limit: limit.value,
+    limit: 10,
     type: selectedTxType.value.typeQuery,
   })
   pageIndex.value = 1

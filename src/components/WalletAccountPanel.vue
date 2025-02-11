@@ -72,7 +72,7 @@ const activeTabIndex = computed({
 })
 
 if (process.client) {
-  const limit = isDesktop() ? null : 3
+  const limit = 10
   watch(address, () => fetchAccount(address.value, { limit }), { immediate: true })
 }
 </script>

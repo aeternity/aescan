@@ -15,7 +15,6 @@
 const { fetchKeyblocks } = useKeyblockStore()
 const { keyblocks, keyblocksCount } = storeToRefs(useKeyblockStore())
 
-const limit = computed(() => isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 async function loadPrevKeyblocks() {
@@ -31,7 +30,7 @@ async function loadNextKeyblocks() {
 }
 
 if (process.client) {
-  fetchKeyblocks({ limit: limit.value })
+  fetchKeyblocks({ limit: 10 })
 }
 
 </script>

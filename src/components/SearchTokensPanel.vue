@@ -2,7 +2,7 @@
   <app-panel>
     <paginated-content
       :entities="tokensResults"
-      :limit="limit"
+
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <search-tokens-table :tokens="tokensResults"/>
@@ -14,10 +14,9 @@
 const { tokensResults } = storeToRefs(useSearchStore())
 const { fetchTokenResults } = useSearchStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()
 
-await fetchTokenResults({ query: route.params.id, limit: limit.value })
+await fetchTokenResults({ query: route.params.id, limit: 10 })
 
 async function loadPrevTokens() {
   await fetchTokenResults({ queryParameters: tokensResults.value.prev })

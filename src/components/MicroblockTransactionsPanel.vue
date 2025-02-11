@@ -4,7 +4,7 @@
       v-model:page-index="pageIndex"
       :entities="transactions"
       pagination-style="history"
-      :limit="limit"
+
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
@@ -26,7 +26,6 @@ const { push } = useRouter()
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const pageIndex = ref(1)
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function loadPrevTransactions() {
   fetchMicroblockTransactions({ queryParameters: transactions.value.prev })
@@ -40,7 +39,7 @@ async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
-  await fetchMicroblockTransactions({ queryParameters: `/micro-blocks/${route.params.id}/transactions/?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}` })
+  await fetchMicroblockTransactions({ queryParameters: `/micro-blocks/${route.params.id}/transactions/?limit=10${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}` })
   pageIndex.value = 1
 }
 

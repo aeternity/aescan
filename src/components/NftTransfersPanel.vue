@@ -3,7 +3,7 @@
     <paginated-content
       :entities="nftTransfers"
       pagination-style="history"
-      :limit="limit"
+
       @prev-clicked="loadPrevNftTransfers"
       @next-clicked="loadNextNftTransfers">
       <nft-transfers-table :nft-transfers="nftTransfers"/>
@@ -14,8 +14,6 @@
 <script setup>
 const { nftTransfers } = storeToRefs(useNftDetailsStore())
 const { fetchNftTransfers } = useNftDetailsStore()
-
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadPrevNftTransfers() {
   await fetchNftTransfers({ queryParameters: nftTransfers.value.prev })

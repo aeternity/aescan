@@ -4,7 +4,7 @@
       v-model:page-index="pageIndex"
       :entities="selectedTokens"
       :total-count="selectedTokensCount"
-      :limit="limit"
+
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <template #header>
@@ -41,8 +41,6 @@ const hasTokenSelect = computed(() => {
   return featureFlags.dex && NETWORK_NAME !== 'TESTNET'
 })
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-
 await useAsyncData(async() => {
   await fetchTokensCount()
   return true
@@ -51,7 +49,7 @@ await useAsyncData(async() => {
 if (process.client) {
   watch(selectedTokenName, async() => {
     pageIndex.value = 1
-    await fetchTokens(`/aex9?by=name&direction=forward&limit=${limit.value}`)
+    await fetchTokens('/aex9?by=name&direction=forward&limit=10')
   }, {
     immediate: true,
   })

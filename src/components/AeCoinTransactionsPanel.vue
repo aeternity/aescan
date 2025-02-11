@@ -13,10 +13,8 @@
 const { fetchTransactions } = useTransactionsStore()
 const { transactions } = storeToRefs(useTransactionsStore())
 
-const limit = computed(() => isDesktop() ? 10 : 3)
-
 async function loadTransactions() {
-  await fetchTransactions(`/transactions?limit=${limit.value}${'&type=' + 'spend'}`)
+  await fetchTransactions(`/transactions?limit=10${'&type=' + 'spend'}`)
 }
 
 await useAsyncData(async() => {

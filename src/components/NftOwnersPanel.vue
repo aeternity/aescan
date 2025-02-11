@@ -2,7 +2,7 @@
   <app-panel>
     <paginated-content
       :entities="nftOwners"
-      :limit="limit"
+
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
       <nft-owners-table
@@ -15,8 +15,6 @@
 <script setup>
 const { nftOwners } = storeToRefs(useNftDetailsStore())
 const { fetchNftOwners } = useNftDetailsStore()
-
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 async function loadNextNftowners() {
   await fetchNftOwners({ queryParameters: nftOwners.value.next })

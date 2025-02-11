@@ -91,7 +91,7 @@ const activeTabIndex = computed({
 })
 
 if (process.client) {
-  const limit = isDesktop() ? null : 3
+  const limit = 10
   await fetchAccount(route.params.id, { limit })
 }
 </script>

@@ -1,5 +1,5 @@
-import useAxios from '~/composables/useAxios'
-import { formatAettosToAe, formatDecodeBase64 } from '~/utils/format'
+import useAxios from '@/composables/useAxios'
+import { formatAettosToAe, formatDecodeBase64 } from '@/utils/format'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()

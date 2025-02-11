@@ -26,8 +26,7 @@ function loadNextHolders() {
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
-  fetchTokenHolders({ limit: limit.value })
+  fetchTokenHolders({ limit: 10 })
   fetchTokenHoldersCount()
 }
 </script>

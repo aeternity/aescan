@@ -2,7 +2,7 @@
   <app-panel>
     <paginated-content
       :entities="nftsResults"
-      :limit="limit"
+
       @prev-clicked="loadPrevNfts"
       @next-clicked="loadNextNfts">
       <search-nfts-table
@@ -15,10 +15,9 @@
 const { nftsResults } = storeToRefs(useSearchStore())
 const { fetchNftsResults } = useSearchStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()
 
-await fetchNftsResults({ query: route.params.id, limit: limit.value })
+await fetchNftsResults({ query: route.params.id, limit: 10 })
 
 async function loadPrevNfts() {
   await fetchNftsResults({ queryParameters: nftsResults.value.prev })

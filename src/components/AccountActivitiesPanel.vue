@@ -2,7 +2,7 @@
   <app-panel class="account-activities-panel">
     <paginated-content
       :entities="accountActivities"
-      :limit="limit"
+
       pagination-style="history"
       @prev-clicked="loadPrevActivities"
       @next-clicked="loadNextActivities">
@@ -17,8 +17,6 @@
 <script setup>
 const { fetchAccountActivities } = useAccountStore()
 const { accountActivities, accountDetails } = storeToRefs(useAccountStore())
-
-const limit = computed(() => isDesktop() ? 10 : 3)
 
 function loadPrevActivities() {
   return fetchAccountActivities({

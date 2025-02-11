@@ -3,7 +3,6 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :total-count="contractCallsCount"
-      :limit="limit"
       :entities="contractCallTransactions"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
@@ -17,7 +16,6 @@
 const { contractCallTransactions, contractCallsCount } = storeToRefs(useContractDetailsStore())
 const { fetchContractCallTransactions } = useContractDetailsStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 const loadPrevTransactions = () => {
@@ -33,7 +31,7 @@ const loadNextTransactions = () => {
 
 if (process.client) {
   fetchContractCallTransactions({
-    limit: limit.value,
+    limit: 10,
   })
 }
 </script>

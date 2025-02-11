@@ -25,10 +25,9 @@ function loadNextTrades() {
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
   await fetchTokenTrades({
     contractId: route.params.id,
-    limit: limit.value,
+    limit: 10,
   })
 }
 </script>

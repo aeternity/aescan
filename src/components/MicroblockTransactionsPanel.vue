@@ -5,7 +5,7 @@
       :entities="transactions"
       :total-count="transactions?.count"
       pagination-style="history"
-      :limit="limit"
+
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
@@ -27,7 +27,6 @@ const { push } = useRouter()
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const pageIndex = ref(1)
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function loadPrevTransactions() {
   fetchMicroblockTransactions({ queryParameters: transactions.value.prev })
@@ -42,7 +41,7 @@ async function loadTransactions() {
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
   await fetchMicroblockTransactions({
-    limit: limit.value,
+    limit: 10,
     microblockHash: route.params.id,
     type: selectedTxType.value?.typeQuery,
   })

@@ -29,9 +29,8 @@ function loadNextEvents() {
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
   await fetchTokenEvents({
-    limit: limit.value,
+    limit: 10,
     contractId: route.params.id,
   })
 }

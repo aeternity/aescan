@@ -131,7 +131,8 @@
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <pie-chart/>
+
+      <pie-chart :top-miners="topMiners"/>
       <!--      todo chart abstraction-->
       <!--      todo add legend-->
     </app-panel>
@@ -142,17 +143,19 @@ import { miningHints } from '@/utils/hints/miningHints'
 import { useMinersStore } from '@/composables/miners'
 import { formatAettosToAe } from '@/utils/format'
 
-const { fetchMining } = useMinersStore()
+const { fetchMining, fetchTopMiners } = useMinersStore()
 const {
   minersCount,
   blockReward,
   status,
   blocksPerMinute,
   maxTPS,
+  topMiners,
 } = storeToRefs(useMinersStore())
 
 if (process.client) {
   await fetchMining()
+  await fetchTopMiners()
 }
 </script>
 

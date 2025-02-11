@@ -14,6 +14,7 @@ export const useMinersStore = defineStore('miners', () => {
   const status = ref(null)
   const maxTPS = ref(null)
   const blocksPerMinute = ref(null)
+  const topMiners = ref(null)
 
   function fetchMining() {
     return Promise.all([
@@ -27,28 +28,35 @@ export const useMinersStore = defineStore('miners', () => {
     minersCount.value = null
     blocksPerMinute.value = null
     maxTPS.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats`)
     minersCount.value = data.minersCount
     blocksPerMinute.value = data.millisecondsPerBlock / 1000 / 60
     maxTPS.value = data.maxTransactionsPerSecond
   }
 
   async function fetchBlockReward() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/stats/delta?limit=1`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?limit=1`)
     blockReward.value = data.data[0].blockReward
   }
 
   async function fetchStatus() {
     status.value = null
-    const { data } = await axios.get(`${NODE_URL}/v3/status`)
+    const { data } = await axios.get(`${NODE_URL}/status`)
     status.value = data
   }
 
   async function fetchMiners({ queryParameters, limit } = {}) {
     miners.value = null
-    const defaultParameters = `/v3/stats/miners?limit=${limit ?? 10}`
+    const defaultParameters = `/stats/miners?limit=${limit ?? 10}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     miners.value = data
+  }
+
+  async function fetchTopMiners({ queryParameters, limit } = {}) {
+    topMiners.value = null
+    const defaultParameters = '/stats/miners/top?interval_by=day&min_start_date=2025-02-11&max_start_date=2025-02-11&limit=10&direction=forward'
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    topMiners.value = data.data
   }
 
   return {
@@ -60,5 +68,7 @@ export const useMinersStore = defineStore('miners', () => {
     maxTPS,
     fetchMining,
     fetchMiners,
+    fetchTopMiners,
+    topMiners,
   }
 })

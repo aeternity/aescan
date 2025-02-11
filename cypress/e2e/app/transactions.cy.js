@@ -39,14 +39,15 @@ describe('transactions', () => {
     cy.url().should('include', 'scope=')
     cy.get('.paginated-content .dp__input').should('not.have.value', '')
   })
+
   it('should select type', () => {
     cy.visit('/transactions')
 
     cy.get('.paginated-content .multiselect').click()
-    cy.contains('.paginated-content .multiselect__option', 'SpendTx').click()
+    cy.contains('.paginated-content .multiselect__option', 'NameClaimTx').click()
 
-    cy.url().should('include', 'txType=spend')
-    cy.get('.paginated-content .multiselect__single').contains('SpendTx')
+    cy.url().should('include', 'txType=name_claim')
+    cy.get('.paginated-content .multiselect__single').contains('NameClaimTx')
   })
 
   it('should select combined parameters', () => {
@@ -57,11 +58,12 @@ describe('transactions', () => {
     cy.get('.dp__today').parent().prev().click()
 
     cy.get('.paginated-content .multiselect').click()
-    cy.contains('.paginated-content .multiselect__option', 'NameClaimTx').click()
+    cy.contains('.paginated-content .multiselect__option', 'SpendTx').click()
 
-    cy.url().should('include', 'txType=name_claim').should('include', 'scope=')
-    cy.get('.paginated-content .multiselect__single').contains('NameClaimTx')
+    cy.url().should('include', 'txType=spend').should('include', 'scope=')
+    cy.get('.paginated-content .multiselect__single').contains('SpendTx')
     cy.get('.paginated-content .dp__input').should('not.have.value', '')
+    cy.get('.paginated-content__highlighted').should('be.visible')
   })
 
   it('should filter by combining parameters from direct URL access', () => {

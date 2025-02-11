@@ -67,14 +67,13 @@ describe('transactions', () => {
   })
 
   it('should filter by combining parameters from direct URL access', () => {
-    cy.clock(new Date(2024, 12, 12))
-    cy.visit('/transactions?scope=1733871600-1733958000&txType=spend')
+    cy.visit('/transactions?scope=1674712740-1675144740&txType=spend')
 
     cy.get('.paginated-content .multiselect__single').contains('SpendTx')
     cy.get('.transactions-table tbody tr').should('have.length', 10)
     cy.get('.transactions-table tbody tr').contains('td', 'SpendTx').should('have.length', 1)
     cy.get('.paginated-content .dp__input')
-      .should('have.value', '12/11/2024 - 12/12/2024')
+      .should('have.value', '01/26/2023 - 01/31/2023')
   })
 
   it('should cancel filtering and clear url', () => {

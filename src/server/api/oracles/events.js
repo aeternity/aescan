@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon'
 import useAxios from '~/composables/useAxios'
 import { formatAettosToAe, formatDecodeBase64 } from '~/utils/format'
 
@@ -16,11 +15,9 @@ export default defineEventHandler(async event => {
 export function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
-      queriedAt: DateTime.fromMillis(event.query.blockTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      queriedAt: event.query.blockTime,
       queriedHeight: event.query.height,
-      respondedAt: DateTime.fromMillis(event.blockTime)
-        .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      respondedAt: event.blockTime,
       respondedHeight: event.height,
       queryTx: event.query.sourceTxHash,
       respondTx: event.sourceTxHash,

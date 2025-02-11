@@ -273,11 +273,11 @@ export function adaptName(name, blockHeight, blockTime) {
   const states = formatNameState(name, blockHeight)
   const endHeight = name.auction?.auctionEnd
   const ends = name.auction?.approximateExpireTime || name.approximateExpireTime
-  const blockCreatedTime = (blockTime)
+  const blockCreatedTime = DateTime.fromMillis(blockTime)
   const activated = states.includes('active')
     ? blockCreatedTime.minus({
       minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
-    })
+    }).toMillis()
     : null
   const customPointers = adaptCustomPointers(name.pointers)
 
@@ -633,7 +633,7 @@ export function adaptVerificationDetail(verificationDetail) {
     entryFile: verificationDetail.entryFile,
     initCallParameters: verificationDetail.initCallParameters,
     aci: verificationDetail.aci,
-    verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt),
+    verifiedAt: DateTime.fromISO(verificationDetail.verifiedAt).toMillis(),
   }
 }
 

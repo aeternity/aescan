@@ -1,5 +1,6 @@
 import { useRoute, useRuntimeConfig } from 'nuxt/app'
 import { computed, ref } from 'vue'
+import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
 import { formatAePrice, formatAettosToAe } from '@/utils/format'
@@ -78,7 +79,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     }
 
     if (type) {
-      url.searchParams.append('type', type)
+      url.searchParams.append('type', type.replace('-', '_'))
     }
 
     const { data } = await axios.get(url.toString())
@@ -88,7 +89,19 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   async function fetchTransactionsCount({ scope, type }) {
     transactionsCount.value = null
-    const url = type ? `${MIDDLEWARE_URL}/transactions/count?tx_type=${type}` : `${MIDDLEWARE_URL}/transactions/count`
+
+    const url = new URL(`${MIDDLEWARE_URL}/stats/transactions/total`)
+
+    if (scope) {
+      const scopeDate = formatScopeMilisecondsToScopeDate(scope)
+      url.searchParams.append('min_start_date', scopeDate[0])
+      url.searchParams.append('max_start_date', scopeDate[1])
+    }
+
+    if (type) {
+      url.searchParams.append('tx_type', type)
+    }
+
     const { data } = await axios.get(url)
     transactionsCount.value = data
   }
@@ -124,6 +137,15 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function formatScopeSlug(scope) {
     return scope ? `scope=${scope[0]}-${scope[1]}` : null
+  }
+
+  function formatScopeMilisecondsToScopeDate(scope) {
+    const [min, max] = formatUrlToScopeObject(scope.substring(5))
+
+    return [
+      DateTime.fromSeconds(parseInt(min)).toISODate(),
+      DateTime.fromSeconds(parseInt(max)).toISODate(),
+    ]
   }
 
   function formatTypeSlug(txType) {

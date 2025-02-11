@@ -30,7 +30,7 @@ async function loadNextKeyblocks() {
 }
 
 if (process.client) {
-  fetchKeyblocks({ limit: 10 })
+  fetchKeyblocks()
 }
 
 </script>

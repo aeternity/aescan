@@ -26,7 +26,7 @@ async function loadNextNftInventory() {
 }
 
 if (process.client) {
-  await fetchNftInventory({ limit: 10 })
+  await fetchNftInventory()
 }
 </script>
 

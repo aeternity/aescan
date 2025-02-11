@@ -73,8 +73,7 @@ const activeTabIndex = computed({
 const { isLoading } = useLoading()
 
 if (process.client) {
-  const limit = 10
-  fetchNamesDetails({ limit })
+  fetchNamesDetails()
 }
 </script>
 

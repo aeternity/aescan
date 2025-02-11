@@ -67,6 +67,7 @@ const props = defineProps({
     type: [Number, null],
     default: null,
   },
+  // todo adjust
   limit: {
     type: Number,
     default: 10,

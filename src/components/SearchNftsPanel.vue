@@ -17,7 +17,7 @@ const { fetchNftsResults } = useSearchStore()
 
 const route = useRoute()
 
-await fetchNftsResults({ query: route.params.id, limit: 10 })
+await fetchNftsResults({ query: route.params.id })
 
 async function loadPrevNfts() {
   await fetchNftsResults({ queryParameters: nftsResults.value.prev })

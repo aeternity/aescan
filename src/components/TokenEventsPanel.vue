@@ -30,7 +30,6 @@ function loadNextEvents() {
 
 if (process.client) {
   await fetchTokenEvents({
-    limit: 10,
     contractId: route.params.id,
   })
 }

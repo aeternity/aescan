@@ -16,7 +16,7 @@ const { fetchTokenResults } = useSearchStore()
 
 const route = useRoute()
 
-await fetchTokenResults({ query: route.params.id, limit: 10 })
+await fetchTokenResults({ query: route.params.id })
 
 async function loadPrevTokens() {
   await fetchTokenResults({ queryParameters: tokensResults.value.prev })

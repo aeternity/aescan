@@ -3,7 +3,7 @@ export const useSearchStore = defineStore('search', () => {
   const tokensResults = ref([])
   const nftsResults = ref([])
 
-  async function fetchNamesResults({ query, limit, queryParameters } = {}) {
+  async function fetchNamesResults({ query, queryParameters } = {}) {
     namesResults.value = null
     namesResults.value = await $fetch('/api/search/names', {
       params: { query, limit, queryParameters },

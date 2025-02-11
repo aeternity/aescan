@@ -32,7 +32,7 @@ async function loadNextStateChannels() {
 }
 
 async function loadStateChannels() {
-  await fetchStateChannels({ limit: 10 })
+  await fetchStateChannels()
   pageIndex.value = 1
 }
 

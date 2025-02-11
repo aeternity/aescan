@@ -94,7 +94,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
     rawContractEvents.value = data
   }
 
-  async function fetchContractCallTransactions({ limit, queryParameters } = {}) {
+  async function fetchContractCallTransactions({ queryParameters } = {}) {
     rawContractCallTransactions.value = null
 
     if (queryParameters) {
@@ -105,7 +105,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
     const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
-    transactionsUrl.searchParams.append('limit', limit ?? 10)
+    transactionsUrl.searchParams.append('limit', 10)
     transactionsUrl.searchParams.append('type', 'contract_call')
     transactionsUrl.searchParams.append('contract', contractId.value)
 

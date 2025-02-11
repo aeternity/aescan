@@ -89,7 +89,7 @@ const emit = defineEmits([
   'next-clicked',
   'update:pageIndex',
 ])
-
+// todo fix pagination
 const pageIndex = props.pageIndex ? useVModel(props, 'pageIndex', emit) : ref(1)
 const firstVisibleIndex = computed(
   () => (pageIndex.value - 1) * props.limit + 1,

@@ -24,30 +24,32 @@ import {
   Tooltip,
 } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
+import { formatKnownAddress } from '~/utils/format'
 
-// const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)
 const isLoading = computed(() => props.data === null)
 
 const props = defineProps({
-  // data: {
-  //   type: Array,
-  //   default: null,
-  // },
   interval: {
     type: String,
     required: true,
   },
+  topMiners: {
+    type: Array,
+    required: true,
+  },
+})
+const stats = computed(() => {
+  return props.topMiners.map(item => item.blocksMined)
+})
+const legend = computed(() => {
+  return props.topMiners.map(item => formatKnownAddress(item.miner))
 })
 const data = {
-  labels: [
-    '2miners',
-    '2miners.solo',
-    'WoolyPooly',
-  ],
+  labels: legend.value,
   datasets: [{
     label: 'My First Dataset',
-    data: [48, 2, 50],
+    data: stats.value,
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
@@ -57,11 +59,6 @@ const data = {
   }],
 }
 
-// const stats = computed(() => {
-//   return props.data.map(stat => {
-//     return stat.count
-//   })
-// })
 //
 // const labels = computed(() => {
 //   return props.data.map(stat => {

@@ -126,6 +126,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     pageIndex.value = index
   }
 
+  // todo is this necessary?
   function setPageLimit(value) {
     pageLimit.value = value
   }

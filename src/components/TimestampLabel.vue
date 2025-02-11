@@ -22,6 +22,7 @@
 <script setup>
 import { DateTime, Duration } from 'luxon'
 import { DATETIME_UNITS } from '@/utils/constants'
+
 const { timeFormat } = storeToRefs(useUiStore())
 
 const relativeUpdated = ref(null)
@@ -39,7 +40,7 @@ const props = defineProps({
 })
 
 const absolute = computed(() => {
-  return props.timestamp.toLocaleString(DateTime.DATETIME_SHORT)
+  return DateTime.fromMillis(props.timestamp).toLocaleString(DateTime.DATETIME_SHORT)
 })
 
 const labelTime = computed(() => {
@@ -61,7 +62,7 @@ const dynamicInterval = computed(() => {
 })
 
 const expirationDuration = computed(() => {
-  return props.timestamp.diffNow().shiftTo(...DATETIME_UNITS)
+  return DateTime.fromMillis(props.timestamp).diffNow().shiftTo(...DATETIME_UNITS)
 })
 
 const highestUnit = computed(() => {
@@ -87,7 +88,7 @@ onBeforeUnmount(() => {
 
 function update() {
   if (isPast.value) {
-    relativeUpdated.value = props.timestamp.setLocale('en-US').toRelative()
+    relativeUpdated.value = DateTime.fromMillis(props.timestamp).toRelative()
   } else if (isNow.value) {
     relativeUpdated.value = 'now'
   } else {

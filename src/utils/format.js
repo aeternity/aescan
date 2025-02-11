@@ -86,9 +86,10 @@ export function formatAettosToAe(aettosAmount) {
 }
 
 export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) {
-  const now = DateTime.now().setLocale('en-US')
+  const now = DateTime.now()
+
   const heightDiff = expirationHeight - currentBlockHeight
-  return now.plus({ minutes: heightDiff * MINUTES_PER_BLOCK })
+  return now.plus({ minutes: heightDiff * MINUTES_PER_BLOCK }).toMillis()
 }
 
 export function formatNullable(value) {

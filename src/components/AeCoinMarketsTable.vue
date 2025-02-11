@@ -1,5 +1,5 @@
 <template>
-  <div class="ae-coin-markets-table-container">
+  <div class="ae-coin-markets-table__container">
     <table>
       <thead>
         <tr>
@@ -77,7 +77,7 @@ defineProps({
 </script>
 
 <style>
-.ae-coin-markets-table-container {
+.ae-coin-markets-table__container {
   overflow-x: auto;
 }
 </style>

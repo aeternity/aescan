@@ -38,6 +38,7 @@ const {
 } = useTransactionsStore()
 const route = useRoute()
 
+// todo remove limit
 const limit = computed(() => 10)
 
 if (process.client) {

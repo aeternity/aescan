@@ -5,7 +5,7 @@
       pagination-style="history"
       :entities="transactions"
       :total-count="transactionsCount"
-
+      :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
@@ -38,22 +38,7 @@ const {
 } = useTransactionsStore()
 const route = useRoute()
 
-async function loadPrevTransactions() {
-  await fetchTransactions(transactions.value.prev)
-}
-
-async function loadNextTransactions() {
-  await fetchTransactions(transactions.value.next)
-}
-
-async function loadTransactions() {
-  const { txType } = route.query
-  const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
-  setSelectedTxType(txTypeOption || TX_TYPES_OPTIONS[0])
-  await fetchTransactions(`/transactions?limit=10${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}`)
-  await fetchTransactionsCount(selectedTxType.value.typeQuery)
-  setPageIndex(1)
-}
+const limit = computed(() => 10)
 
 if (process.client) {
   if (!isHydrated?.value) {

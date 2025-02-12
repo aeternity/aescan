@@ -1,16 +1,15 @@
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe } from '@/utils/format'
 
-const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const query = getQuery(event)
+  const { queryParameters, state, limit } = getQuery(event)
 
   const url = getUrl({
     entity: 'oracles',
-    parameters: { state: query.state, limit: query.limit ?? 10 },
-    queryParameters: query.queryParameters,
+    parameters: { state, limit: limit ?? 10 },
+    queryParameters,
   })
 
   const { data } = await axios.get(url)

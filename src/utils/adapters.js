@@ -344,7 +344,7 @@ export function adaptNameActions(actions) {
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
   const created = transactionDetails.time
     ? (transactionDetails.time)
-   .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
+      .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
     : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.blockHeight : 0
   const blockHash = transactionDetails.blockHash !== 'none' ? transactionDetails.blockHash : null

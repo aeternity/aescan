@@ -10,23 +10,23 @@ export const useSearchStore = defineStore('search', () => {
 
   async function fetchNamesResults({ query, limit, queryParameters } = {}) {
     namesResults.value = null
-    const defaultParameters = `/names?prefix=${query}&limit=${limit ?? 10}&by=name`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    namesResults.value = data
+    namesResults.value = await $fetch('/api/search/names', {
+      params: { query, limit, queryParameters },
+    })
   }
 
   async function fetchTokenResults({ query, limit, queryParameters } = {}) {
     tokensResults.value = null
-    const defaultParameters = `/aex9?prefix=${query}&limit=${limit ?? 10}&direction=forward`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    tokensResults.value = data
+    tokensResults.value = await $fetch('/api/search/tokens', {
+      params: { query, limit, queryParameters },
+    })
   }
 
   async function fetchNftsResults({ query, limit, queryParameters } = {}) {
     nftsResults.value = null
-    const defaultParameters = `/aex141?prefix=${query}&limit=${limit ?? 10}&direction=forward`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    nftsResults.value = data
+    nftsResults.value = await $fetch('/api/search/nfts', {
+      params: { query, limit, queryParameters },
+    })
   }
 
   async function isKeyblockAvailable(keyblockHash) {

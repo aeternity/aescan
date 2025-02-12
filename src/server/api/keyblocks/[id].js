@@ -2,7 +2,6 @@ import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import { formatAettosToAe } from '@/utils/format'
 import useAxios from '@/composables/useAxios'
 
-const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {

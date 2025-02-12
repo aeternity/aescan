@@ -11,9 +11,6 @@ export default defineEventHandler(async event => {
   let keyblockDeltaStats = null
   if (keyblockDetails.height) {
     keyblockDeltaStats = await fetchKeyblockDeltaStats(keyblockDetails.height)
-  const data = await fetchKeblockDetails(id)
-  if (!data.height) {
-    return data
   }
   return adaptKeyblock(keyblockDetails, keyblockDeltaStats)
 })

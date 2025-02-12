@@ -7,10 +7,10 @@ export function getUrl({ entity, id, route, parameters, limit, queryParameters }
     const slug = `/${entity}${id ? `/${id}` : ''}${route ? `/${route}` : ''}`
     const url = new URL(`${MIDDLEWARE_URL}${slug}`)
 
-    if (parameters) {
-      Object.entries(parameters).forEach(([key, value]) => {
-        url.searchParams.append(key, value)
-      })
+  if (parameters) {
+    Object.entries(parameters).forEach(([key, value]) => {
+      url.searchParams.append(key, value)
+    })
     }
 
     if (limit) {

@@ -1,5 +1,4 @@
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-import { DateTime } from 'luxon'
 import { formatAettosToAe } from '@/utils/format'
 import useAxios from '@/composables/useAxios'
 

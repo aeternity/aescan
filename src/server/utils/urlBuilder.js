@@ -1,15 +1,17 @@
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
-export function getUrl({ baseUrl, id, parameters, queryParameters }) {
+export function getUrl({ baseUrl, id, route, parameters, queryParameters }) {
   const idd = id ? `/${id}` : ''
-  const url = new URL(`${MIDDLEWARE_URL}/${baseUrl}${idd}`)
+  const routerr = route ? `/${route}` : ''
+  const url = new URL(`${MIDDLEWARE_URL}/${baseUrl}${idd}${routerr}`)
 
   if (parameters) {
     Object.entries(parameters).forEach(([key, value]) => {
       url.searchParams.append(key, value)
     })
   }
-  console.log('url', url)
+  console.log('url', url.href)
+  console.log('==============')
   return new URL(queryParameters || decodeURIComponent(url.toString()))
   // todo double URL
 }

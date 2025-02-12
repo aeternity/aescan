@@ -29,6 +29,7 @@ export const useSearchStore = defineStore('search', () => {
     })
   }
 
+  // todo refactor
   async function isKeyblockAvailable(keyblockHash) {
     try {
       await axios.get(`${MIDDLEWARE_URL}/key-blocks/${keyblockHash}`)

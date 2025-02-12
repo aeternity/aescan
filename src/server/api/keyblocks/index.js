@@ -7,7 +7,7 @@ export default defineEventHandler(async event => {
   const query = getQuery(event)
 
   const url = getUrl({
-    baseUrl: 'key-blocks',
+    entity: 'key-blocks',
     parameters: { limit: query.limit ?? 10 },
     queryParameters: query.queryParameters,
   })
@@ -16,7 +16,7 @@ export default defineEventHandler(async event => {
   return adaptKeyblocks(data)
 })
 
-export function adaptKeyblocks(keyblocks) {
+function adaptKeyblocks(keyblocks) {
   const formattedData = keyblocks.data
     .map(keyblock => {
       return {

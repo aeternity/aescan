@@ -6,8 +6,12 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const query = getQuery(event)
-  const defaultParameters = `/oracles?state=${query.state}&limit=${query.limit || 10}`
-  const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
+
+  const url = getUrl({
+    entity: 'oracles',
+    parameters: { state: query.state, limit: query.limit ?? 10 },
+    queryParameters: query.queryParameters,
+  })
 
   const { data } = await axios.get(url)
   return adaptOracles(data)

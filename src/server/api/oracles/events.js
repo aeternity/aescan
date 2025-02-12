@@ -12,7 +12,7 @@ export default defineEventHandler(async event => {
   return adaptOracleEvents(data)
 })
 
-export function adaptOracleEvents(events) {
+function adaptOracleEvents(events) {
   const formattedData = events.data.map(event => {
     return {
       queriedAt: event.query.blockTime,

@@ -5,7 +5,12 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const query = getQuery(event)
-  const url = new URL(`${MIDDLEWARE_URL}/stats/total?limit=1`)
+  const url = getUrl({
+    entity: 'stats',
+    route: 'total',
+    parameters: { limit: 1 },
+  })
+
   const { data } = await axios.get(url)
   return data.data[0][`${query.state}Oracles`]
 })

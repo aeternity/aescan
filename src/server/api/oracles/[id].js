@@ -17,26 +17,41 @@ export default defineEventHandler(async event => {
 })
 
 async function fetchOracle(id) {
-  const url = new URL(`${MIDDLEWARE_URL}/oracles/${id}`)
+  const url = getUrl({
+    entity: 'oracles',
+    id,
+  })
+
   const { data } = await axios.get(url)
   return data
 }
 
 async function fetchLastExtendedTx(id) {
-  const url = new URL(`${MIDDLEWARE_URL}/transactions?direction=backward&limit=1&type=oracle_extend&oracle=${id}`)
+  const url = getUrl({
+    entity: 'transactions',
+    parameters: { oracle: id, type: 'oracle_extend', limit: 1, direction: 'backward' },
+  })
+
   const { data } = await axios.get(url)
   return data.data?.[0]
 }
 
 async function fetchLastQueriedTx(id) {
-  const url = new URL(`${MIDDLEWARE_URL}/oracles/${id}/responses?limit=1`)
+  // todo destruct
+  const url = getUrl({
+    entity: 'oracles',
+    id,
+    route: 'responses',
+    parameters: { limit: 1 },
+  })
+
   const { data } = await axios.get(url)
 
   return data.data?.[0]?.query
 }
 
-export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
-  const oracleDetails = {
+function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
+  return {
     id: oracle.oracle,
     fee: formatAettosToAe(oracle.queryFee),
     expiration: oracle.approximateExpireTime,
@@ -51,5 +66,4 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
     lastQueried: lastQueryTx ? lastQueryTx.blockTime : null,
     lastQueryHeight: lastQueryTx?.height,
   }
-  return oracleDetails
 }

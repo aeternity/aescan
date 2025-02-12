@@ -6,7 +6,7 @@ export default defineEventHandler(async event => {
   const query = getQuery(event)
 
   const url = getUrl({
-    baseUrl: 'names',
+    entity: 'names',
     parameters: { prefix: query.query, limit: query.limit ?? 10, by: 'name' },
     queryParameters: query.queryParameters,
   })

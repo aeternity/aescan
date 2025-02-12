@@ -1,9 +1,9 @@
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
 
-export function getUrl({ baseUrl, id, route, parameters, queryParameters }) {
+export function getUrl({ entity, id, route, parameters, queryParameters }) {
   const idd = id ? `/${id}` : ''
   const routerr = route ? `/${route}` : ''
-  const url = new URL(`${MIDDLEWARE_URL}/${baseUrl}${idd}${routerr}`)
+  const url = new URL(`${MIDDLEWARE_URL}/${entity}${idd}${routerr}`)
 
   if (parameters) {
     Object.entries(parameters).forEach(([key, value]) => {

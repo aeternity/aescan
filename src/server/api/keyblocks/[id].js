@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
 async function fetchKeblockDetails(id) {
   try {
     const url = getUrl({
-      baseUrl: 'key-blocks',
+      entity: 'key-blocks',
       id,
     })
     const { data } = await axios.get(url)
@@ -42,7 +42,7 @@ async function fetchKeblockDetails(id) {
 
 async function fetchKeyblockDeltaStats(keyblockHeight) {
   const url = getUrl({
-    baseUrl: 'stats/delta',
+    entity: 'stats/delta',
     parameters: { scope: `gen:${keyblockHeight}` },
   })
 

@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public

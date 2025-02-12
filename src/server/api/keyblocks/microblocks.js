@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 
 const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -17,7 +16,7 @@ export default defineEventHandler(async event => {
 export function adaptKeyblockMicroblocks(microblocks) {
   const formattedData = microblocks.data.map(microblock => {
     return {
-      time: DateTime.fromMillis(microblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      time: microblock.time,
       transactionsCount: microblock.transactionsCount,
       hash: microblock.hash,
     }

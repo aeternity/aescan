@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe } from '~/utils/format'
 
@@ -19,7 +18,7 @@ export function adaptKeyblocks(keyblocks) {
       return {
         hash: keyblock.hash,
         block: keyblock.height,
-        time: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+        time: keyblock.time,
         miner: keyblock.miner,
         microBlocksCount: keyblock.microBlocksCount,
         transactionsCount: keyblock.transactionsCount,

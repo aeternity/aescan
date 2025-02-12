@@ -24,7 +24,7 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
     return {
       ...keyblock,
-      mined: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+      mined: keyblock.time,
       blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
     }
   }
@@ -313,11 +313,9 @@ export function adaptName(name, blockHeight, blockTime) {
     activatedHeight: states.includes('active') ? name.activeFrom : null,
     activated,
     expirationHeight: name.expireHeight,
-    expiration: name.approximateExpireTime
-      ? (name.approximateExpireTime).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-      : null,
+    expiration: name.approximateExpireTime,
     auctionEndsHeight: endHeight,
-    auctionEnds: ends || null,
+    auctionEnds: ends,
     specialPointers,
     customPointers,
   }
@@ -342,10 +340,7 @@ export function adaptNameActions(actions) {
 }
 
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
-  const created = transactionDetails.time
-    ? (transactionDetails.time)
-      .toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
-    : null
+  const created = transactionDetails.time ? transactionDetails.time : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.blockHeight : 0
   const blockHash = transactionDetails.blockHash !== 'none' ? transactionDetails.blockHash : null
 

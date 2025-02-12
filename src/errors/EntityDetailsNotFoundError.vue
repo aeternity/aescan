@@ -29,7 +29,6 @@ const errorData = computed(() => {
   if (typeof error.data === 'string') {
     return JSON.parse(error.data)
   }
-
   return error.data.data || error.data
 })
 

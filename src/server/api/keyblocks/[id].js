@@ -1,5 +1,4 @@
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-import { DateTime } from 'luxon'
 import { formatAettosToAe } from '@/utils/format'
 import useAxios from '@/composables/useAxios'
 
@@ -44,7 +43,7 @@ async function fetchKeyblockDeltaStats(keyblockHeight) {
 function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   return {
     ...keyblock,
-    mined: DateTime.fromMillis(keyblock.time).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS),
+    mined: keyblock.time,
     blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
     devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
   }

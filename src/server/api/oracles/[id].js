@@ -36,7 +36,6 @@ async function fetchLastExtendedTx(id) {
 }
 
 async function fetchLastQueriedTx(id) {
-  // todo destruct
   const url = getUrl({
     entity: 'oracles',
     id,

@@ -4,6 +4,7 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const { keyblockHash, limit, queryParameters } = getQuery(event)
+
   const url = getUrl({
     entity: 'key-blocks',
     id: keyblockHash,

@@ -4,6 +4,7 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const { state } = getQuery(event)
+
   const url = getUrl({
     entity: 'stats',
     route: 'total',

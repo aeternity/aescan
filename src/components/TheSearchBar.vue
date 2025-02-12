@@ -20,7 +20,7 @@
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
 const { isNameAvailable } = useNameDetailsStore()
-const { isKeyblockAvailable } = useKeyblockDetailsStore()
+const { isKeyblockAvailable } = useSearchStore()
 const { push } = useRouter()
 
 const query = ref('')

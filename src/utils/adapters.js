@@ -5,18 +5,6 @@ import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
-export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
-  if (keyblock) {
-    return {
-      ...keyblock,
-      mined: keyblock.time,
-      blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
-    }
-  }
-
-  return keyblock
-}
-
 export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
   const formattedData = keyblockMicroblocks.data.map(microblock => {
     return {
@@ -30,6 +18,18 @@ export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
     data: formattedData,
     prev: keyblockMicroblocks.prev,
   }
+}
+
+export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
+  if (keyblock) {
+    return {
+      ...keyblock,
+      mined: keyblock.time,
+      blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
+    }
+  }
+
+  return keyblock
 }
 
 export function adaptMicroblock(microblock) {
@@ -313,11 +313,9 @@ export function adaptName(name, blockHeight, blockTime) {
     activatedHeight: states.includes('active') ? name.activeFrom : null,
     activated,
     expirationHeight: name.expireHeight,
-    expiration: name.approximateExpireTime
-      ? (name.approximateExpireTime)
-      : null,
+    expiration: name.approximateExpireTime,
     auctionEndsHeight: endHeight,
-    auctionEnds: ends || null,
+    auctionEnds: ends,
     specialPointers,
     customPointers,
   }
@@ -342,9 +340,7 @@ export function adaptNameActions(actions) {
 }
 
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
-  const created = transactionDetails.time
-    ? (transactionDetails.time)
-    : null
+  const created = transactionDetails.time ? transactionDetails.time : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.blockHeight : 0
   const blockHash = transactionDetails.blockHash !== 'none' ? transactionDetails.blockHash : null
 

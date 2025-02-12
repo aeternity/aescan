@@ -10,8 +10,8 @@ export function getUrl({ entity, id, route, parameters, queryParameters }) {
       url.searchParams.append(key, value)
     })
   }
-  console.log('url', url.href)
-  console.log('==============')
-  return new URL(queryParameters || decodeURIComponent(url.toString()))
-  // todo double URL
+
+  const aaa = decodeURIComponent(url.toString())
+  const bbb = queryParameters ? `${MIDDLEWARE_URL}${queryParameters.substr(3)}` : null
+  return bbb || aaa
 }

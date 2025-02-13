@@ -16,7 +16,6 @@ export function getUrl({ entity, id, route, parameters, limit, queryParameters }
     if (limit) {
       url.searchParams.append('limit', limit)
     }
-
     return decodeURIComponent(url.toString())
   }
 }

@@ -1,9 +1,4 @@
-import { useRuntimeConfig } from 'nuxt/app'
-
 export const useSearchStore = defineStore('search', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
-
   const namesResults = ref([])
   const tokensResults = ref([])
   const nftsResults = ref([])
@@ -29,17 +24,8 @@ export const useSearchStore = defineStore('search', () => {
     })
   }
 
-  // todo refactor
-  async function isKeyblockAvailable(keyblockHash) {
-    try {
-      await axios.get(`${MIDDLEWARE_URL}/key-blocks/${keyblockHash}`)
-      return true
-    } catch (error) {
-      if (error.response.status === 404) {
-        return false
-      }
-      return null
-    }
+  async function isKeyblockAvailable(id) {
+    return await $fetch(`/api/search/${id}`)
   }
 
   return {

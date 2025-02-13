@@ -3,11 +3,11 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const { keyblockHash, limit, queryParameters } = getQuery(event)
-  // todo rename param
+  const { id, limit, queryParameters } = getQuery(event)
+
   const url = getUrl({
     entity: 'key-blocks',
-    id: keyblockHash,
+    id,
     route: 'micro-blocks',
     limit: limit ?? 10,
     queryParameters,

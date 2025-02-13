@@ -43,6 +43,7 @@ async function fetchLastQueriedTx(id) {
     route: 'responses',
     limit: 1,
   })
+  // todo rename route to slug
 
   const { data } = await axios.get(url)
 

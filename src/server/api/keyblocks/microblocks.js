@@ -4,7 +4,6 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const { id, limit, queryParameters } = getQuery(event)
-  // todo rename param
   const url = getUrl({
     entity: 'key-blocks',
     id,

@@ -24,7 +24,6 @@ export const useSearchStore = defineStore('search', () => {
     })
   }
 
-  // todo refactor
   async function isKeyblockAvailable(id) {
     return await $fetch(`/api/search/${id}`)
   }

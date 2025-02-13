@@ -8,7 +8,8 @@ export default defineEventHandler(async event => {
 
   const url = getUrl({
     entity: 'oracles',
-    parameters: { state, limit: limit ?? 10 },
+    parameters: { state },
+    limit: limit ?? 10,
     queryParameters,
   })
 

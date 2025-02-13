@@ -4,12 +4,12 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const { keyblockHash, limit, queryParameters } = getQuery(event)
-
+  // todo rename param
   const url = getUrl({
     entity: 'key-blocks',
     id: keyblockHash,
     route: 'micro-blocks',
-    parameters: { limit: limit ?? 10 },
+    limit: limit ?? 10,
     queryParameters,
   })
   const { data } = await axios.get(url)

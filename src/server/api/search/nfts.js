@@ -7,7 +7,8 @@ export default defineEventHandler(async event => {
 
   const url = getUrl({
     entity: 'aex141',
-    parameters: { prefix: query, limit: limit ?? 10, direction: 'forward' },
+    parameters: { prefix: query, direction: 'forward' },
+    limit: limit ?? 10,
     queryParameters,
   })
 

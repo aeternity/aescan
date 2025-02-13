@@ -8,7 +8,7 @@ export default defineEventHandler(async event => {
 
   const url = getUrl({
     entity: 'key-blocks',
-    parameters: { limit: limit ?? 10 },
+    limit: limit ?? 10,
     queryParameters,
   })
 

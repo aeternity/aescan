@@ -8,7 +8,7 @@ export default defineEventHandler(async event => {
   const url = getUrl({
     entity: 'stats',
     route: 'total',
-    parameters: { limit: 1 },
+    limit: 1,
   })
 
   const { data } = await axios.get(url)

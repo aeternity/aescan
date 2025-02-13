@@ -28,7 +28,8 @@ async function fetchOracle(id) {
 async function fetchLastExtendedTx(id) {
   const url = getUrl({
     entity: 'transactions',
-    parameters: { oracle: id, type: 'oracle_extend', limit: 1, direction: 'backward' },
+    limit: 1,
+    parameters: { oracle: id, type: 'oracle_extend', direction: 'backward' },
   })
 
   const { data } = await axios.get(url)
@@ -40,8 +41,9 @@ async function fetchLastQueriedTx(id) {
     entity: 'oracles',
     id,
     route: 'responses',
-    parameters: { limit: 1 },
+    limit: 1,
   })
+  // todo rename route to slug
 
   const { data } = await axios.get(url)
 

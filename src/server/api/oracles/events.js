@@ -10,7 +10,7 @@ export default defineEventHandler(async event => {
     entity: 'oracles',
     route: 'responses',
     id,
-    parameters: { limit: limit ?? 10 },
+    limit: limit ?? 10,
     queryParameters,
   })
 

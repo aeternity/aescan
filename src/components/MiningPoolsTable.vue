@@ -34,8 +34,7 @@
 </template>
 
 <script setup>
-// todo fix imports
-import { miningHints } from '../utils/hints/miningHints'
+import { miningHints } from '@/utils/hints/miningHints'
 
 defineProps({
   pools: {

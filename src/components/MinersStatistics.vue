@@ -23,7 +23,7 @@
         {{ status.peerCount }}
       </span>
     </app-panel>
-    <!--todo layout wider-->
+
     <app-panel class="mining-statistics__panel div3">
       <h2 class="h5">
         POOLS
@@ -165,218 +165,98 @@ if (process.client) {
 /*todo fix selectors*/
 .mining-statistics {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(10, auto);
   grid-column-gap: 16px;
   grid-row-gap: 16px;
-  height: 414px;
+  height: auto;
   width: 100%;
 
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(10, auto);
-    height: auto;
+  @media (--desktop) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    height: 414px;
   }
 
   .div1 {
     grid-area: 1 / 1 / 2 / 2;
 
-    @media screen and (max-width: 768px) {
+    @media (--desktop) {
       grid-area: 1 / 1 / 2 / 2;
     }
   }
 
   .div2 {
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 2 / 1 / 3 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 2 / 1 / 3 / 2;
+    @media (--desktop) {
+      grid-area: 1 / 2 / 2 / 3;
     }
   }
 
   .div3 {
-    grid-area: 1 / 3 / 2 / 4;
+    grid-area: 3 / 1 / 4 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 3 / 1 / 4 / 2;
+    @media (--desktop) {
+      grid-area: 1 / 3 / 2 / 4;
     }
   }
 
   .div4 {
-    grid-area: 3 / 3 / 4 / 4;
+    grid-area: 4 / 1 / 5 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 4 / 1 / 5 / 2;
+    @media (--desktop) {
+      grid-area: 3 / 3 / 4 / 4;
     }
   }
 
   .div5 {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 5 / 1 / 6 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 5 / 1 / 6 / 2;
+    @media (--desktop) {
+      grid-area: 2 / 1 / 3 / 2;
     }
   }
 
   .div6 {
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area: 6 / 1 / 7 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 6 / 1 / 7 / 2;
+    @media (--desktop) {
+      grid-area: 2 / 2 / 3 / 3;
     }
   }
 
   .div7 {
-    grid-area: 2 / 3 / 3 / 4;
+    grid-area: 7 / 1 / 8 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 7 / 1 / 8 / 2;
+    @media (--desktop) {
+      grid-area: 2 / 3 / 3 / 4;
     }
   }
 
   .div8 {
-    grid-area: 3 / 1 / 4 / 2;
+    grid-area: 8 / 1 / 9 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 8 / 1 / 9 / 2;
+    @media (--desktop) {
+      grid-area: 3 / 1 / 4 / 2;
     }
   }
 
   .div9 {
-    grid-area: 3 / 2 / 4 / 3;
+    grid-area: 9 / 1 / 10 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 9 / 1 / 10 / 2;
+    @media (--desktop) {
+      grid-area: 3 / 2 / 4 / 3;
     }
   }
 
   .div10 {
-    grid-area: 1 / 4 / 4 / 5;
+    grid-area: 10 / 1 / 11 / 2;
 
-    @media screen and (max-width: 768px) {
-      grid-area: 10 / 1 / 11 / 2;
+    @media (--desktop) {
+      grid-area: 1 / 4 / 4 / 5;
     }
   }
-}
-
-/*.parent {*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(4, 1fr);*/
-/*  grid-template-rows: repeat(4, 1fr);*/
-/*  grid-column-gap: 16px;*/
-/*  grid-row-gap: 16px;*/
-/*  height: 414px;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.div1 {*/
-/*  grid-area: 1 / 1 / 2 / 2;*/
-/*}*/
-
-/*.div2 {*/
-/*  grid-area: 1 / 2 / 2 / 3;*/
-/*}*/
-
-/*.div3 {*/
-/*  grid-area: 1 / 3 / 2 / 4;*/
-/*}*/
-
-/*.div4 {*/
-/*  grid-area: 3 / 3 / 4 / 4;*/
-/*}*/
-
-/*.div5 {*/
-/*  grid-area: 2 / 1 / 3 / 2;*/
-/*}*/
-
-/*.div6 {*/
-/*  grid-area: 2 / 2 / 3 / 3;*/
-/*}*/
-
-/*.div7 {*/
-/*  grid-area: 2 / 3 / 3 / 4;*/
-/*}*/
-
-/*.div8 {*/
-/*  grid-area: 3 / 1 / 4 / 2;*/
-/*}*/
-
-/*.div9 {*/
-/*  grid-area: 3 / 2 / 4 / 3;*/
-/*}*/
-
-/*.div10 {*/
-/*  grid-area: 1 / 4 / 4 / 5;*/
-/*}*/
-
-/*@media screen and (max-width: 768px) {*/
-/*  .parent {*/
-/*    grid-template-columns: 1fr;*/
-/*    grid-template-rows: repeat(10, auto);*/
-/*    height: auto;*/
-/*  }*/
-
-/*  .div1 {*/
-/*    grid-area: 1 / 1 / 2 / 2;*/
-/*  }*/
-
-/*  .div2 {*/
-/*    grid-area: 2 / 1 / 3 / 2;*/
-/*  }*/
-
-/*  .div3 {*/
-/*    grid-area: 3 / 1 / 4 / 2;*/
-/*  }*/
-
-/*  .div4 {*/
-/*    grid-area: 4 / 1 / 5 / 2;*/
-/*  }*/
-
-/*  .div5 {*/
-/*    grid-area: 5 / 1 / 6 / 2;*/
-/*  }*/
-
-/*  .div6 {*/
-/*    grid-area: 6 / 1 / 7 / 2;*/
-/*  }*/
-
-/*  .div7 {*/
-/*    grid-area: 7 / 1 / 8 / 2;*/
-/*  }*/
-
-/*  .div8 {*/
-/*    grid-area: 8 / 1 / 9 / 2;*/
-/*  }*/
-
-/*  .div9 {*/
-/*    grid-area: 9 / 1 / 10 / 2;*/
-/*  }*/
-
-/*  .div10 {*/
-/*    grid-area: 10 / 1 / 11 / 2;*/
-/*  }*/
-/*}*/
-
-.mining-statistics {
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*flex-wrap: wrap;*/
-  /*gap: var(--space-2);*/
-  /*width: 100%;*/
-  /*margin-bottom: var(--space-2);*/
-
-  /*@media (--desktop) {*/
-  /*  flex-direction: row;*/
-  /*}*/
-
-  /*&__panel {*/
-  /*  padding: var(--space-4);*/
-  /*  width: 50%;*/
-
-  /*  @media (--desktop) {*/
-  /*    width: 18%;*/
-  /*  }*/
-  /*}*/
 
   &__value {
     display: inline-flex;
@@ -391,4 +271,5 @@ if (process.client) {
     white-space: nowrap;
   }
 }
+
 </style>

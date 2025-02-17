@@ -159,8 +159,7 @@ if (process.client) {
 
 <style scoped>
 
-/*todo how about testnet*/
-/*todo fix selectors*/
+/*todo how about testnet miners count*/
 .mining-statistics {
   display: grid;
   grid-template-columns: 1fr;

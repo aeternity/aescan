@@ -8,7 +8,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ minersCount }}
+        {{ statistics.minersCount }}
       </span>
     </app-panel>
 
@@ -20,7 +20,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ status.peerCount }}
+        {{ statistics.status.peerCount }}
       </span>
     </app-panel>
 
@@ -33,6 +33,7 @@
       </h2>
       <span class="mining-statistics__value">
         {{ MINERS.length }}
+        <!--        todo wut-->
       </span>
     </app-panel>
 
@@ -45,7 +46,7 @@
       </h2>
       <span class="mining-statistics__value">
         <price-label
-          :price="formatAettosToAe(blockReward)"
+          :price="formatAettosToAe(statistics.blockReward)"
           :max-digits="2"/>
       </span>
     </app-panel>
@@ -58,7 +59,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ Math.round(status.difficulty / 1000000000) }}
+        {{ Math.round(statistics.status.difficulty / 1000000000) }}
       </span>
       <span class="mining-statistics__unit">
         KG/s
@@ -73,7 +74,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ Math.round(status.hashrate / 1000) }}
+        {{ Math.round(statistics.status.hashrate / 1000) }}
       </span>
       <span class="mining-statistics__unit">
         KG/s
@@ -88,7 +89,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ formatNumber(status.topBlockHeight) }}
+        {{ formatNumber(statistics.status.topBlockHeight) }}
       </span>
     </app-panel>
 
@@ -100,7 +101,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ Math.round(blocksPerMinute) }}
+        {{ Math.round(statistics.blocksPerMinute) }}
       </span>
 
       <span class="mining-statistics__unit">
@@ -116,7 +117,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ maxTPS }}
+        {{ statistics.maxTPS }}
       </span>
 
       <span class="mining-statistics__unit">
@@ -131,6 +132,7 @@
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
+      <!--      todo adapt and separate-->
 
       <pie-chart :top-miners="topMiners"/>
       <!--      todo chart abstraction-->
@@ -145,11 +147,7 @@ import { formatAettosToAe } from '@/utils/format'
 
 const { fetchMining, fetchTopMiners } = useMinersStore()
 const {
-  minersCount,
-  blockReward,
-  status,
-  blocksPerMinute,
-  maxTPS,
+  statistics,
   topMiners,
 } = storeToRefs(useMinersStore())
 

@@ -5,7 +5,7 @@ import useAxios from '@/composables/useAxios'
 // todo loading
 
 export const useMinersStore = defineStore('miners', () => {
-  const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
   const minersCount = ref(null)
@@ -15,34 +15,11 @@ export const useMinersStore = defineStore('miners', () => {
   const maxTPS = ref(null)
   const blocksPerMinute = ref(null)
   const topMiners = ref(null)
+  const statistics = ref(null)
 
-  function fetchMining() {
-    return Promise.all([
-      fetchMiningStats(),
-      fetchBlockReward(),
-      fetchStatus(),
-    ])
-  }
-
-  async function fetchMiningStats() {
-    minersCount.value = null
-    blocksPerMinute.value = null
-    maxTPS.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats`)
-    minersCount.value = data.minersCount
-    blocksPerMinute.value = data.millisecondsPerBlock / 1000 / 60
-    maxTPS.value = data.maxTransactionsPerSecond
-  }
-
-  async function fetchBlockReward() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?limit=1`)
-    blockReward.value = data.data[0].blockReward
-  }
-
-  async function fetchStatus() {
-    status.value = null
-    const { data } = await axios.get(`${NODE_URL}/status`)
-    status.value = data
+  async function fetchMining() {
+    statistics.value = null
+    statistics.value = await $fetch('/api/mining/statistics')
   }
 
   async function fetchMiners({ queryParameters, limit } = {}) {
@@ -60,6 +37,7 @@ export const useMinersStore = defineStore('miners', () => {
   }
 
   return {
+    statistics,
     miners,
     minersCount,
     status,

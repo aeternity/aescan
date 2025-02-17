@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { miningHints } from '../utils/hints/miningHints'
+import { miningHints } from '@/utils/hints/miningHints'
 
 defineProps({
   miners: {

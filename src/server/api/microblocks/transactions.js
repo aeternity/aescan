@@ -3,22 +3,25 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const { microblockHash, limit, queryParameters } = getQuery(event)
+  const { microblockHash, limit, queryParameters, type } = getQuery(event)
 
   const [data, count] = await Promise.all([
-    fetchTransactions(microblockHash, queryParameters, limit),
-    fetchTransactionsCount(microblockHash),
+    fetchTransactions(microblockHash, queryParameters, limit, type),
+    fetchTransactionsCount(microblockHash, type),
   ])
 
   return adaptTransactions(data, count)
 })
 
-async function fetchTransactions(microblockHash, queryParameters, limit) {
+async function fetchTransactions(microblockHash, queryParameters, limit, type) {
   const url = getUrl({
     entity: 'micro-blocks',
     id: microblockHash,
     route: 'transactions',
     limit: limit ?? 10,
+    parameters: {
+      type,
+    },
     queryParameters,
   })
   const { data } = await axios.get(url)
@@ -26,15 +29,16 @@ async function fetchTransactions(microblockHash, queryParameters, limit) {
   // todo wire type
 }
 
-async function fetchTransactionsCount(id) {
+async function fetchTransactionsCount(id, type) {
   const url = getUrl({
     entity: 'transactions',
     route: 'count',
     parameters: {
       mb_hash: id,
-      // type:null
+      type,
     },
   })
+  // https://mainnet.aeternity.io/mdw/v3/transactions/count?mb_hash=mh_2kNgGg4NTqrLqPyEfGm2Hsvz6BbymymvNxze332WEDVou9gf3W&type=name_claim
 
   const { data } = await axios.get(url)
   return data.data

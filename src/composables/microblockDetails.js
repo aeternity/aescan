@@ -8,10 +8,10 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
   }
 
   async function fetchMicroblockTransactions({ queryParameters, limit, microblockHash, type } = {}) {
-    console.log('queryParameters, limit, microblockHash', queryParameters, limit, microblockHash)
+    console.log('queryParameters, limit, microblockHash', queryParameters, limit, microblockHash, type)
     microblockTransactions.value = null
     microblockTransactions.value = await $fetch('/api/microblocks/transactions', {
-      params: { microblockHash, limit, queryParameters },
+      params: { microblockHash, limit, queryParameters, type },
     })
   }
 

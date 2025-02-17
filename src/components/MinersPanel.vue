@@ -8,11 +8,7 @@
       @next-clicked="loadNextMiners">
       <miners-table
         :miners="miners"
-        class="miners-panel__table u-hidden-mobile"/>
-      <!--      <miners-table-condensed-->
-      <!--        :miners="miners"-->
-      <!--        class="u-hidden-desktop"/>-->
-      <!--      todo mob-->
+        class="miners-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>

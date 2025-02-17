@@ -1,5 +1,5 @@
 <template>
-  <div class="mining-statistics parent">
+  <div class="mining-statistics">
     <app-panel class="mining-statistics__panel div1">
       <h2 class="h5">
         MINERS
@@ -160,7 +160,10 @@ if (process.client) {
 </script>
 
 <style scoped>
-.parent {
+
+/*todo how about testnet*/
+/*todo fix selectors*/
+.mining-statistics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -168,49 +171,191 @@ if (process.client) {
   grid-row-gap: 16px;
   height: 414px;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, auto);
+    height: auto;
+  }
+
+  .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+  }
+
+  .div2 {
+    grid-area: 1 / 2 / 2 / 3;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 2 / 1 / 3 / 2;
+    }
+  }
+
+  .div3 {
+    grid-area: 1 / 3 / 2 / 4;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 3 / 1 / 4 / 2;
+    }
+  }
+
+  .div4 {
+    grid-area: 3 / 3 / 4 / 4;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 4 / 1 / 5 / 2;
+    }
+  }
+
+  .div5 {
+    grid-area: 2 / 1 / 3 / 2;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 5 / 1 / 6 / 2;
+    }
+  }
+
+  .div6 {
+    grid-area: 2 / 2 / 3 / 3;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 6 / 1 / 7 / 2;
+    }
+  }
+
+  .div7 {
+    grid-area: 2 / 3 / 3 / 4;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 7 / 1 / 8 / 2;
+    }
+  }
+
+  .div8 {
+    grid-area: 3 / 1 / 4 / 2;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 8 / 1 / 9 / 2;
+    }
+  }
+
+  .div9 {
+    grid-area: 3 / 2 / 4 / 3;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 9 / 1 / 10 / 2;
+    }
+  }
+
+  .div10 {
+    grid-area: 1 / 4 / 4 / 5;
+
+    @media screen and (max-width: 768px) {
+      grid-area: 10 / 1 / 11 / 2;
+    }
+  }
 }
 
-/*todo how about testnet*/
-/*todo mobile view*/
-.div1 {
-  grid-area: 1 / 1 / 2 / 2;
-}
+/*.parent {*/
+/*  display: grid;*/
+/*  grid-template-columns: repeat(4, 1fr);*/
+/*  grid-template-rows: repeat(4, 1fr);*/
+/*  grid-column-gap: 16px;*/
+/*  grid-row-gap: 16px;*/
+/*  height: 414px;*/
+/*  width: 100%;*/
+/*}*/
 
-.div2 {
-  grid-area: 1 / 2 / 2 / 3;
-}
+/*.div1 {*/
+/*  grid-area: 1 / 1 / 2 / 2;*/
+/*}*/
 
-.div3 {
-  grid-area: 1 / 3 / 2 / 4;
-}
+/*.div2 {*/
+/*  grid-area: 1 / 2 / 2 / 3;*/
+/*}*/
 
-.div4 {
-  grid-area: 3 / 3 / 4 / 4;
-}
+/*.div3 {*/
+/*  grid-area: 1 / 3 / 2 / 4;*/
+/*}*/
 
-.div5 {
-  grid-area: 2 / 1 / 3 / 2;
-}
+/*.div4 {*/
+/*  grid-area: 3 / 3 / 4 / 4;*/
+/*}*/
 
-.div6 {
-  grid-area: 2 / 2 / 3 / 3;
-}
+/*.div5 {*/
+/*  grid-area: 2 / 1 / 3 / 2;*/
+/*}*/
 
-.div7 {
-  grid-area: 2 / 3 / 3 / 4;
-}
+/*.div6 {*/
+/*  grid-area: 2 / 2 / 3 / 3;*/
+/*}*/
 
-.div8 {
-  grid-area: 3 / 1 / 4 / 2;
-}
+/*.div7 {*/
+/*  grid-area: 2 / 3 / 3 / 4;*/
+/*}*/
 
-.div9 {
-  grid-area: 3 / 2 / 4 / 3;
-}
+/*.div8 {*/
+/*  grid-area: 3 / 1 / 4 / 2;*/
+/*}*/
 
-.div10 {
-  grid-area: 1 / 4 / 4 / 5;
-}
+/*.div9 {*/
+/*  grid-area: 3 / 2 / 4 / 3;*/
+/*}*/
+
+/*.div10 {*/
+/*  grid-area: 1 / 4 / 4 / 5;*/
+/*}*/
+
+/*@media screen and (max-width: 768px) {*/
+/*  .parent {*/
+/*    grid-template-columns: 1fr;*/
+/*    grid-template-rows: repeat(10, auto);*/
+/*    height: auto;*/
+/*  }*/
+
+/*  .div1 {*/
+/*    grid-area: 1 / 1 / 2 / 2;*/
+/*  }*/
+
+/*  .div2 {*/
+/*    grid-area: 2 / 1 / 3 / 2;*/
+/*  }*/
+
+/*  .div3 {*/
+/*    grid-area: 3 / 1 / 4 / 2;*/
+/*  }*/
+
+/*  .div4 {*/
+/*    grid-area: 4 / 1 / 5 / 2;*/
+/*  }*/
+
+/*  .div5 {*/
+/*    grid-area: 5 / 1 / 6 / 2;*/
+/*  }*/
+
+/*  .div6 {*/
+/*    grid-area: 6 / 1 / 7 / 2;*/
+/*  }*/
+
+/*  .div7 {*/
+/*    grid-area: 7 / 1 / 8 / 2;*/
+/*  }*/
+
+/*  .div8 {*/
+/*    grid-area: 8 / 1 / 9 / 2;*/
+/*  }*/
+
+/*  .div9 {*/
+/*    grid-area: 9 / 1 / 10 / 2;*/
+/*  }*/
+
+/*  .div10 {*/
+/*    grid-area: 10 / 1 / 11 / 2;*/
+/*  }*/
+/*}*/
 
 .mining-statistics {
   /*display: flex;*/

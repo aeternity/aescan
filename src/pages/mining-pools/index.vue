@@ -5,7 +5,6 @@
   <page-header>
     Mining Pools
     <template #tooltip>
-      <!--      todo hints-->
       {{ miningHints.mining }}
     </template>
   </page-header>

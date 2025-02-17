@@ -24,9 +24,9 @@ export const useMinersStore = defineStore('miners', () => {
 
   async function fetchMiners({ queryParameters, limit } = {}) {
     miners.value = null
-    const defaultParameters = `/stats/miners?limit=${limit ?? 10}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    miners.value = data
+    miners.value = await $fetch('/api/mining/miners', {
+      params: { queryParameters, limit },
+    })
   }
 
   async function fetchTopMiners({ queryParameters, limit } = {}) {

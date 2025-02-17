@@ -1,35 +1,21 @@
-import { useRuntimeConfig } from 'nuxt/app'
-
 export const useMicroblockDetailsStore = defineStore('microblockDetails', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
+  const microblockDetails = ref(null)
+  const microblockTransactions = ref(null)
 
-  const rawMicroblock = ref(null)
-  const rawMicroblockTransactions = ref(null)
-
-  const microblockDetails = computed(() => {
-    return rawMicroblock.value ? adaptMicroblock(rawMicroblock.value) : null
-  })
-
-  const microblockTransactions = computed(() => {
-    return rawMicroblockTransactions.value ? adaptTransactions(rawMicroblockTransactions.value) : null
-  })
-
-  async function fetchMicroblock(microblockHash) {
-    rawMicroblock.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/micro-blocks/${microblockHash}`)
-    rawMicroblock.value = data
+  async function fetchMicroblock(id) {
+    microblockDetails.value = null
+    microblockDetails.value = await $fetch(`/api/microblocks/${id}`)
   }
 
-  async function fetchMicroblockTransactions({ queryParameters, limit, microblockHash } = {}) {
-    rawMicroblockTransactions.value = null
-    const defaultParameters = `/micro-blocks/${microblockHash}/transactions?limit=${limit ?? 10}`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawMicroblockTransactions.value = data
+  async function fetchMicroblockTransactions({ queryParameters, limit, microblockHash, type } = {}) {
+    console.log('queryParameters, limit, microblockHash', queryParameters, limit, microblockHash)
+    microblockTransactions.value = null
+    microblockTransactions.value = await $fetch('/api/microblocks/transactions', {
+      params: { microblockHash, limit, queryParameters },
+    })
   }
 
   return {
-    rawMicroblock,
     microblockDetails,
     fetchMicroblock,
     microblockTransactions,

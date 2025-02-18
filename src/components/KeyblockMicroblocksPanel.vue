@@ -5,7 +5,6 @@
       pagination-style="history"
       :entities="microblocks"
       :total-count="keyblockDetails.microBlocksCount"
-
       @prev-clicked="loadPrevMicroblocks"
       @next-clicked="loadNextMicroblocks">
       <keyblock-microblocks-table
@@ -21,7 +20,6 @@ const route = useRoute()
 
 if (process.client) {
   fetchKeyblockMicroblocks({
-
     id: route.params.id,
   })
 }

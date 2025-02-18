@@ -6,7 +6,6 @@ export const useMiningStore = defineStore('mining', () => {
     return statistics.value?.minersCount
   })
 
-  // todo loading like txs
   async function fetchMiningStatistics() {
     statistics.value = null
     statistics.value = await $fetch('/api/mining/statistics')

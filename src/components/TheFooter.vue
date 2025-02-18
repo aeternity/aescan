@@ -26,6 +26,7 @@
               </template>
             </app-tooltip>
           </header>
+          TEST
           <p class="footer__paragraph">
             æScan is the Explorer for the æternity Blockchain.
           </p>

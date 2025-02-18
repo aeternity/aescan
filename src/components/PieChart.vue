@@ -1,5 +1,7 @@
 <template>
-  <div class="pie-chart">
+  <div
+    class="pie-chart"
+    style="position:relative">
     <Doughnut
       :options="chartOptions"
       :data="data"/>
@@ -21,8 +23,8 @@ import {
 } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
 
-const isEmpty = computed(() => props.data?.length === 0)
 const isLoading = computed(() => props.data === null)
+// todo try loading separately
 
 const props = defineProps({
   interval: {
@@ -89,16 +91,7 @@ ChartJS.defaults.font.family = 'Roboto Mono'
 </script>
 
 <style scoped>
-.line-chart {
-  height: 250px;
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &__blank-state {
-    width: 100%;
-  }
+.pie-chart {
+  min-width: 0;
 }
 </style>

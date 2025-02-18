@@ -2,7 +2,6 @@ export const useMiningStore = defineStore('mining', () => {
   const miners = ref(null)
   const topMiners = ref(null)
   const statistics = ref(null)
-  // todo rename
 
   // todo loading like txs
   async function fetchMining() {

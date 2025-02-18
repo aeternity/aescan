@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>Mining Pools</Title>
+    <Title>Mining</Title>
   </Head>
   <page-header>
     Mining Pools

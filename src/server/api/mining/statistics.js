@@ -1,16 +1,16 @@
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe, formatNumber } from '~/utils/format'
 
-const { NODE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async() => {
-  const [statistics, blockReward, status] = await Promise.all([
+  const [statistics, blockReward, status, topMiners] = await Promise.all([
     fetchMiningStats(),
     fetchBlockReward(),
     fetchStatus(),
+    fetchTopMiners(),
   ])
-  return adaptMiningStatistics(statistics, blockReward, status)
+  return adaptMiningStatistics(statistics, blockReward, status, topMiners)
 })
 
 async function fetchMiningStats() {
@@ -31,7 +31,23 @@ async function fetchStatus() {
   return data
 }
 
-function adaptMiningStatistics(statistics, blockReward, status) {
+async function fetchTopMiners() {
+  const url = getUrl({
+    entity: 'stats/miners/top',
+    parameters: {
+      interval_by: 'day',
+      min_start_date: '2025-02-11',
+      max_start_date: '2025-02-11',
+      direction: 'forward',
+    },
+  })
+
+  const { data } = await axios.get(url)
+  // todo different fetch function
+  return data.data
+}
+
+function adaptMiningStatistics(statistics, blockReward, status, topMiners) {
   return {
     blockReward: formatAettosToAe(blockReward),
     minersCount: statistics.minersCount,
@@ -41,5 +57,6 @@ function adaptMiningStatistics(statistics, blockReward, status) {
     hashrate: Math.round(status.hashrate / 1000),
     topBlockHeight: formatNumber(status.topBlockHeight),
     blocksPerMinute: Math.round(statistics.millisecondsPerBlock / 1000 / 60),
+    topMiners,
   }
 }

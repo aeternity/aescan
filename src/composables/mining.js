@@ -3,6 +3,10 @@ export const useMiningStore = defineStore('mining', () => {
   const topMiners = ref(null)
   const statistics = ref(null)
 
+  const minersCount = computed(() => {
+    return statistics.value?.minersCount
+  })
+
   // todo loading like txs
   async function fetchMining() {
     statistics.value = null
@@ -27,6 +31,7 @@ export const useMiningStore = defineStore('mining', () => {
     statistics,
     miners,
     topMiners,
+    minersCount,
     fetchMining,
     fetchMiners,
     fetchTopMiners,

@@ -21,14 +21,13 @@ async function fetchMiningStats() {
 
 async function fetchBlockReward() {
   const url = getUrl({ entity: 'stats/delta', limit: 1 })
-
   const { data } = await axios.get(url)
   return data.data[0].blockReward
 }
 
 async function fetchStatus() {
-  // todo parametrize node
-  const { data } = await axios.get(`${NODE_URL}/status`)
+  const url = getUrl({ node: true, entity: 'status' })
+  const { data } = await axios.get(url)
   return data
 }
 

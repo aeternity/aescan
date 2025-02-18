@@ -27,7 +27,7 @@ const limit = computed(() => isDesktop() ? 10 : 3)
 if (process.client) {
   fetchKeyblockMicroblocks({
     limit: limit.value,
-    keyblockHash: route.params.id,
+    id: route.params.id,
   })
 }
 

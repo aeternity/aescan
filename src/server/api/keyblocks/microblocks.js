@@ -1,19 +1,22 @@
 import useAxios from '@/composables/useAxios'
 
-const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const query = getQuery(event)
+  const { id, limit, queryParameters } = getQuery(event)
 
-  const defaultParameters = `/key-blocks/${query.keyblockHash}/micro-blocks?limit=${query.limit ?? 10}`
-
-  const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
+  const url = getUrl({
+    entity: 'key-blocks',
+    id,
+    route: 'micro-blocks',
+    limit: limit ?? 10,
+    queryParameters,
+  })
   const { data } = await axios.get(url)
   return adaptKeyblockMicroblocks(data)
 })
 
-export function adaptKeyblockMicroblocks(microblocks) {
+function adaptKeyblockMicroblocks(microblocks) {
   const formattedData = microblocks.data.map(microblock => {
     return {
       time: microblock.time,

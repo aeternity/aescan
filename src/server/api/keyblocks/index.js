@@ -1,18 +1,22 @@
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe } from '~/utils/format'
 
-const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const query = getQuery(event)
-  const defaultParameters = `/key-blocks?limit=${query.limit ?? 10}`
-  const url = new URL(`${MIDDLEWARE_URL}${query.queryParameters || defaultParameters}`)
+  const { limit, queryParameters } = getQuery(event)
+
+  const url = getUrl({
+    entity: 'key-blocks',
+    limit: limit ?? 10,
+    queryParameters,
+  })
+
   const { data } = await axios.get(url)
   return adaptKeyblocks(data)
 })
 
-export function adaptKeyblocks(keyblocks) {
+function adaptKeyblocks(keyblocks) {
   const formattedData = keyblocks.data
     .map(keyblock => {
       return {

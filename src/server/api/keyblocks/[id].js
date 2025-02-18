@@ -2,7 +2,6 @@ import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import { formatAettosToAe } from '@/utils/format'
 import useAxios from '@/composables/useAxios'
 
-const { MIDDLEWARE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
@@ -17,7 +16,10 @@ export default defineEventHandler(async event => {
 
 async function fetchKeblockDetails(id) {
   try {
-    const url = new URL(`${MIDDLEWARE_URL}/key-blocks/${id}`)
+    const url = getUrl({
+      entity: 'key-blocks',
+      id,
+    })
     const { data } = await axios.get(url)
     return data
   } catch (error) {
@@ -39,7 +41,13 @@ async function fetchKeblockDetails(id) {
 }
 
 async function fetchKeyblockDeltaStats(keyblockHeight) {
-  const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?scope=gen:${keyblockHeight}`)
+  const url = getUrl({
+    entity: 'stats/delta',
+    parameters: { scope: `gen:${keyblockHeight}` },
+  })
+
+  const { data } = await axios.get(url)
+
   return data?.data?.[0]
 }
 

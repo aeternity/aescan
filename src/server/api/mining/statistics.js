@@ -1,7 +1,7 @@
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe, formatNumber } from '~/utils/format'
 
-const { MIDDLEWARE_URL, NODE_URL } = useRuntimeConfig().public
+const { NODE_URL } = useRuntimeConfig().public
 const axios = useAxios()
 
 export default defineEventHandler(async() => {
@@ -14,16 +14,20 @@ export default defineEventHandler(async() => {
 })
 
 async function fetchMiningStats() {
-  const { data } = await axios.get(`${MIDDLEWARE_URL}/stats`)
+  const url = getUrl({ entity: 'stats' })
+  const { data } = await axios.get(url)
   return data
 }
 
 async function fetchBlockReward() {
-  const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?limit=1`)
+  const url = getUrl({ entity: 'stats/delta', limit: 1 })
+
+  const { data } = await axios.get(url)
   return data.data[0].blockReward
 }
 
 async function fetchStatus() {
+  // todo parametrize node
   const { data } = await axios.get(`${NODE_URL}/status`)
   return data
 }

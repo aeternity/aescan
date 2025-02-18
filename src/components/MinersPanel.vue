@@ -14,17 +14,16 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+// todo translate miners
+const { miners, minersCount } = storeToRefs(useMiningStore())
+const { fetchMiners } = useMiningStore()
 
-const { miners, minersCount } = storeToRefs(useMinersStore())
-const { fetchMiners } = useMinersStore()
-
+// todo fix count
 function loadPrevMiners() {
   fetchMiners({ queryParameters: miners.value.prev })
 }
 
 function loadNextMiners() {
-  // todo report MDW
   fetchMiners({ queryParameters: miners.value.next })
 }
 

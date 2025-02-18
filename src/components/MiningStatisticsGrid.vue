@@ -128,8 +128,6 @@
       </span>
     </app-panel>
 
-    <!--    todo rename classes-->
-    <!--    todo accommodate styles-->
     <app-panel
       class="mining-statistics-grid__panel--chart"
       style="">
@@ -140,7 +138,6 @@
         </hint-tooltip>
       </h2>
 
-      <!--      todo rename component-->
       <doughnut-chart :top-miners="statistics.topMiners"/>
     </app-panel>
   </div>

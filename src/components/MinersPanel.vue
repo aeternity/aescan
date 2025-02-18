@@ -15,7 +15,6 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useMinersStore } from '@/composables/miners'
 
 const { miners, minersCount } = storeToRefs(useMinersStore())
 const { fetchMiners } = useMinersStore()

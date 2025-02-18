@@ -28,7 +28,6 @@ export const useMiningStore = defineStore('mining', () => {
     statistics,
     miners,
     topMiners,
-
     fetchMining,
     fetchMiners,
     fetchTopMiners,

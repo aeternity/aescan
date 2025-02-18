@@ -1,128 +1,129 @@
 <template>
+  <!--  todo add test-->
+  <!--  todo fix hints-->
   <!--  todo fix order-->
-  <!--  todo rename component domain, miners vs mining-->
-  <div class="mining-statistics">
-    <app-panel class="mining-statistics__panel--miners">
+  <div class="mining-statistics-grid">
+    <app-panel class="mining-statistics-grid__panel--miners">
       <h2 class="h5">
         MINERS
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ statistics.minersCount }}
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--peers">
+    <app-panel class="mining-statistics-grid__panel--peers">
       <h2 class="h5">
         PEERS
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ statistics.peerCount }}
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--pools">
+    <app-panel class="mining-statistics-grid__panel--pools">
       <h2 class="h5">
         POOLS
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ MINERS.length }}
         <!--        todo wut-->
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--reward">
+    <app-panel class="mining-statistics-grid__panel--reward">
       <h2 class="h5">
         REWARD
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         <price-label
           :price="statistics.blockReward"
           :max-digits="2"/>
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--difficulty">
+    <app-panel class="mining-statistics-grid__panel--difficulty">
       <h2 class="h5">
         DIFFICULTY
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ statistics.difficulty }}
       </span>
-      <span class="mining-statistics__unit">
+      <span class="mining-statistics-grid__unit">
         KG/s
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--hashrate">
+    <app-panel class="mining-statistics-grid__panel--hashrate">
       <h2 class="h5">
         HASHRATE
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ statistics.hashrate }}
       </span>
-      <span class="mining-statistics__unit">
+      <span class="mining-statistics-grid__unit">
         KG/s
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--blocks-mined">
+    <app-panel class="mining-statistics-grid__panel--blocks-mined">
       <h2 class="h5">
         BLOCKS MINED
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ statistics.topBlockHeight }}
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--block-time">
+    <app-panel class="mining-statistics-grid__panel--block-time">
       <h2 class="h5">
         BLOCK TIME
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ statistics.blocksPerMinute }}
       </span>
 
-      <span class="mining-statistics__unit">
+      <span class="mining-statistics-grid__unit">
         min/block
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel--max-tps">
+    <app-panel class="mining-statistics-grid__panel--max-tps">
       <h2 class="h5">
         MAX TPS
         <hint-tooltip>
           {{ miningHints.mining }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics__value">
+      <span class="mining-statistics-grid__value">
         {{ statistics.maxTPS }}
       </span>
 
-      <span class="mining-statistics__unit">
+      <span class="mining-statistics-grid__unit">
         tx/s
       </span>
     </app-panel>
@@ -130,7 +131,7 @@
     <!--    todo rename classes-->
     <!--    todo accommodate styles-->
     <app-panel
-      class="mining-statistics__panel--chart"
+      class="mining-statistics-grid__panel--chart"
       style="">
       <h2 class="h5">
         MINING POOLS IN LAST 24 HOURS
@@ -140,7 +141,7 @@
       </h2>
 
       <!--      todo rename component-->
-      <pie-chart :top-miners="statistics.topMiners"/>
+      <doughnut-chart :top-miners="statistics.topMiners"/>
     </app-panel>
   </div>
 </template>
@@ -158,14 +159,13 @@ if (process.client) {
 <style scoped>
 
 /*todo how about testnet minig miners count*/
-.mining-statistics {
+.mining-statistics-grid {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(10, auto);
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   margin-bottom: var(--space-4);
-  /*todo remove sizing*/
 
   @media (--desktop) {
     grid-template-columns: repeat(4, 1fr);
@@ -268,6 +268,5 @@ if (process.client) {
       }
     }
   }
-
 }
 </style>

@@ -75,7 +75,7 @@ const chartOptions = {
     },
   },
 }
-// todo fix responsive change
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -89,9 +89,3 @@ ChartJS.register(
 
 ChartJS.defaults.font.family = 'Roboto Mono'
 </script>
-
-<style scoped>
-.pie-chart {
-  min-width: 0;
-}
-</style>

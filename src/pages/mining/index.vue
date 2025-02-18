@@ -11,7 +11,7 @@
   </page-header>
 
   <template v-if="!isLoading">
-    <miners-statistics/>
+    <mining-statistics-grid/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Mining Pools">
         <mining-pools-panel/>
@@ -29,6 +29,7 @@
 
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
+import MiningStatisticsGrid from '~/components/MiningStatisticsGrid.vue'
 
 const route = useRoute()
 const { push, replace } = useRouter()

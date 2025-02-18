@@ -2,12 +2,14 @@
   <Head>
     <Title>Mining</Title>
   </Head>
+
   <page-header>
     Mining Pools
     <template #tooltip>
       {{ miningHints.mining }}
     </template>
   </page-header>
+
   <template v-if="!isLoading">
     <miners-statistics/>
     <app-tabs v-model="activeTabIndex">

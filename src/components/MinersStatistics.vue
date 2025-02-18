@@ -1,6 +1,8 @@
 <template>
+  <!--  todo fix order-->
+  <!--  todo rename component domain, miners vs mining-->
   <div class="mining-statistics">
-    <app-panel class="mining-statistics__panel div1">
+    <app-panel class="mining-statistics__panel--miners">
       <h2 class="h5">
         MINERS
         <hint-tooltip>
@@ -12,7 +14,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div2">
+    <app-panel class="mining-statistics__panel--peers">
       <h2 class="h5">
         PEERS
         <hint-tooltip>
@@ -24,7 +26,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div3">
+    <app-panel class="mining-statistics__panel--pools">
       <h2 class="h5">
         POOLS
         <hint-tooltip>
@@ -37,7 +39,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div9">
+    <app-panel class="mining-statistics__panel--reward">
       <h2 class="h5">
         REWARD
         <hint-tooltip>
@@ -51,7 +53,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div5">
+    <app-panel class="mining-statistics__panel--difficulty">
       <h2 class="h5">
         DIFFICULTY
         <hint-tooltip>
@@ -66,7 +68,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div6">
+    <app-panel class="mining-statistics__panel--hashrate">
       <h2 class="h5">
         HASHRATE
         <hint-tooltip>
@@ -81,7 +83,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div7">
+    <app-panel class="mining-statistics__panel--blocks-mined">
       <h2 class="h5">
         BLOCKS MINED
         <hint-tooltip>
@@ -93,7 +95,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div8">
+    <app-panel class="mining-statistics__panel--block-time">
       <h2 class="h5">
         BLOCK TIME
         <hint-tooltip>
@@ -109,7 +111,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div4">
+    <app-panel class="mining-statistics__panel--max-tps">
       <h2 class="h5">
         MAX TPS
         <hint-tooltip>
@@ -125,7 +127,11 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics__panel div10">
+    <!--    todo rename classes-->
+    <!--    todo accommodate styles-->
+    <app-panel
+      class="mining-statistics__panel--chart"
+      style="">
       <h2 class="h5">
         MINING POOLS IN LAST 24 HOURS
         <hint-tooltip>
@@ -133,8 +139,8 @@
         </hint-tooltip>
       </h2>
 
+      <!--      todo rename component-->
       <pie-chart :top-miners="statistics.topMiners"/>
-      <!--      todo chart abstraction-->
     </app-panel>
   </div>
 </template>
@@ -160,91 +166,12 @@ if (process.client) {
   grid-row-gap: 16px;
   height: auto;
   width: 100%;
+  /*todo remove sizing*/
 
   @media (--desktop) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     height: 414px;
-  }
-
-  .div1 {
-    grid-area: 1 / 1 / 2 / 2;
-
-    @media (--desktop) {
-      grid-area: 1 / 1 / 2 / 2;
-    }
-  }
-
-  .div2 {
-    grid-area: 2 / 1 / 3 / 2;
-
-    @media (--desktop) {
-      grid-area: 1 / 2 / 2 / 3;
-    }
-  }
-
-  .div3 {
-    grid-area: 3 / 1 / 4 / 2;
-
-    @media (--desktop) {
-      grid-area: 1 / 3 / 2 / 4;
-    }
-  }
-
-  .div4 {
-    grid-area: 4 / 1 / 5 / 2;
-
-    @media (--desktop) {
-      grid-area: 3 / 3 / 4 / 4;
-    }
-  }
-
-  .div5 {
-    grid-area: 5 / 1 / 6 / 2;
-
-    @media (--desktop) {
-      grid-area: 2 / 1 / 3 / 2;
-    }
-  }
-
-  .div6 {
-    grid-area: 6 / 1 / 7 / 2;
-
-    @media (--desktop) {
-      grid-area: 2 / 2 / 3 / 3;
-    }
-  }
-
-  .div7 {
-    grid-area: 7 / 1 / 8 / 2;
-
-    @media (--desktop) {
-      grid-area: 2 / 3 / 3 / 4;
-    }
-  }
-
-  .div8 {
-    grid-area: 8 / 1 / 9 / 2;
-
-    @media (--desktop) {
-      grid-area: 3 / 1 / 4 / 2;
-    }
-  }
-
-  .div9 {
-    grid-area: 9 / 1 / 10 / 2;
-
-    @media (--desktop) {
-      grid-area: 3 / 2 / 4 / 3;
-    }
-  }
-
-  .div10 {
-    grid-area: 10 / 1 / 11 / 2;
-
-    @media (--desktop) {
-      grid-area: 1 / 4 / 4 / 5;
-    }
   }
 
   &__value {
@@ -259,6 +186,90 @@ if (process.client) {
   &__unit {
     white-space: nowrap;
   }
-}
 
+  &__panel {
+
+    &--miners {
+      grid-area: 1 / 1 / 2 / 2;
+
+      @media (--desktop) {
+        grid-area: 1 / 1 / 2 / 2;
+      }
+    }
+
+    &--peers {
+      grid-area: 2 / 1 / 3 / 2;
+
+      @media (--desktop) {
+        grid-area: 1 / 2 / 2 / 3;
+      }
+    }
+
+    &--pools {
+      grid-area: 3 / 1 / 4 / 2;
+
+      @media (--desktop) {
+        grid-area: 1 / 3 / 2 / 4;
+      }
+    }
+
+    &--reward {
+      grid-area: 4 / 1 / 5 / 2;
+
+      @media (--desktop) {
+        grid-area: 3 / 3 / 4 / 4;
+      }
+    }
+
+    &--difficulty {
+      grid-area: 5 / 1 / 6 / 2;
+
+      @media (--desktop) {
+        grid-area: 2 / 1 / 3 / 2;
+      }
+    }
+
+    &--hashrate {
+      grid-area: 6 / 1 / 7 / 2;
+
+      @media (--desktop) {
+        grid-area: 2 / 2 / 3 / 3;
+      }
+    }
+
+    &--blocks-mined {
+      grid-area: 7 / 1 / 8 / 2;
+
+      @media (--desktop) {
+        grid-area: 2 / 3 / 3 / 4;
+      }
+    }
+
+    &--block-time {
+      grid-area: 8 / 1 / 9 / 2;
+
+      @media (--desktop) {
+        grid-area: 3 / 1 / 4 / 2;
+      }
+    }
+
+    &--max-tps {
+      grid-area: 9 / 1 / 10 / 2;
+      @media (--desktop) {
+        grid-area: 3 / 2 / 4 / 3;
+      }
+    }
+
+    &--chart {
+      min-width: 0;
+      /* chart resizing fix*/
+
+      grid-area: 10 / 1 / 11 / 2;
+      @media (--desktop) {
+        grid-area: 1 / 4 / 4 / 5;
+      }
+    }
+  }
+
+}
 </style>

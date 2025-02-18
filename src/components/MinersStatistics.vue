@@ -133,7 +133,7 @@
         </hint-tooltip>
       </h2>
 
-      <pie-chart :top-miners="topMiners"/>
+      <pie-chart :top-miners="statistics.topMiners"/>
       <!--      todo chart abstraction-->
       <!--      todo add legend-->
     </app-panel>
@@ -142,12 +142,11 @@
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
 
-const { fetchMining, fetchTopMiners } = useMiningStore()
-const { statistics, topMiners } = storeToRefs(useMiningStore())
+const { fetchMining } = useMiningStore()
+const { statistics } = storeToRefs(useMiningStore())
 
 if (process.client) {
   await fetchMining()
-  await fetchTopMiners()
   // todo glue together
 }
 </script>

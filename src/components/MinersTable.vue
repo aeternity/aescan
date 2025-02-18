@@ -27,7 +27,7 @@
         </td>
         <td>
           <price-label
-            :price="formatAettosToAe(miner.totalReward)"/>
+            :price="miner.totalReward"/>
         </td>
       </tr>
     </tbody>

@@ -18,7 +18,6 @@
 const { miners, minersCount } = storeToRefs(useMiningStore())
 const { fetchMiners } = useMiningStore()
 
-// todo fix count
 function loadPrevMiners() {
   fetchMiners({ queryParameters: miners.value.prev })
 }

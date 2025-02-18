@@ -135,25 +135,23 @@
 
       <pie-chart :top-miners="statistics.topMiners"/>
       <!--      todo chart abstraction-->
-      <!--      todo add legend-->
     </app-panel>
   </div>
 </template>
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
 
-const { fetchMining } = useMiningStore()
+const { fetchMiningStatistics } = useMiningStore()
 const { statistics } = storeToRefs(useMiningStore())
 
 if (process.client) {
-  await fetchMining()
-  // todo glue together
+  await fetchMiningStatistics()
 }
 </script>
 
 <style scoped>
 
-/*todo how about testnet miners count*/
+/*todo how about testnet minig miners count*/
 .mining-statistics {
   display: grid;
   grid-template-columns: 1fr;

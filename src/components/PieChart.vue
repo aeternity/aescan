@@ -3,10 +3,6 @@
     <Doughnut
       :options="chartOptions"
       :data="data"/>
-    <blank-state
-      v-if="isEmpty"
-      class="line-chart__blank-state"/>
-    <loader-indicator v-if="isLoading"/>
   </div>
 </template>
 
@@ -24,7 +20,6 @@ import {
   Tooltip,
 } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
-import { formatKnownAddress } from '~/utils/format'
 
 const isEmpty = computed(() => props.data?.length === 0)
 const isLoading = computed(() => props.data === null)
@@ -40,65 +35,24 @@ const props = defineProps({
   },
 })
 const stats = computed(() => {
-  return props.topMiners.map(item => item.blocksMined)
+  return props.topMiners.blocksMined
 })
 const legend = computed(() => {
-  return props.topMiners.map(item => formatKnownAddress(item.miner))
+  return props.topMiners.miners
 })
 const data = {
   labels: legend.value,
   datasets: [{
-    label: 'My First Dataset',
     data: stats.value,
     backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)',
+      'rgb(0, 61, 255)',
+      'rgb(102, 231, 115)',
+      'rgb(245, 39, 78)',
     ],
     hoverOffset: 4,
   }],
 }
 
-//
-// const labels = computed(() => {
-//   return props.data.map(stat => {
-//     return formatDate(stat.startDate)
-//   })
-// })
-//
-// function formatDate(label) {
-//   const date = DateTime.fromISO(label)
-//   if (props.interval === 'month') {
-//     return date.toFormat('yyyy/MM')
-//   }
-//
-//   return date.toFormat('MM/dd')
-// }
-//
-// function formatNumberFractions(number) {
-//   return number.toLocaleString('en-US', {
-//     maximumFractionDigits: 2,
-//     notation: 'compact',
-//     compactDisplay: 'short',
-//   })
-// }
-//
-// const chartData = computed(() => {
-//   return {
-//     labels: labels.value,
-//     datasets: [{
-//       data: stats.value,
-//       label: null,
-//       cubicInterpolationMode: 'monotone',
-//       tension: 0.4,
-//       borderColor: '#f5274e',
-//       backgroundColor: '#f5274e',
-//       pointRadius: 3,
-//       pointHitRadius: 20,
-//     }],
-//   }
-// })
-//
 const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
@@ -118,40 +72,8 @@ const chartOptions = {
       },
     },
   },
-  // scales: {
-  //   y: {
-  //     border: {
-  //       display: false,
-  //     },
-  //     ticks: {
-  //       precision: 0,
-  //       callback: function(value) {
-  //         return formatNumberFractions(value)
-  //       },
-  //     },
-  //   },
-  //   x: {
-  //     grid: {
-  //       color: function() {
-  //         return 'transparent'
-  //       },
-  //     },
-  //   },
-  // },
 }
-//
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// )
-//
-// ChartJS.defaults.font.family = 'Roboto Mono'
-
+// todo fix responsive change
 ChartJS.register(
   CategoryScale,
   LinearScale,

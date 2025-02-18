@@ -1,5 +1,5 @@
 import useAxios from '@/composables/useAxios'
-import { formatAettosToAe, formatNumber } from '~/utils/format'
+import { formatAettosToAe, formatKnownAddress, formatNumber } from '~/utils/format'
 
 const axios = useAxios()
 
@@ -43,7 +43,6 @@ async function fetchTopMiners() {
   })
 
   const { data } = await axios.get(url)
-  // todo different fetch function
   return data.data
 }
 
@@ -57,6 +56,9 @@ function adaptMiningStatistics(statistics, blockReward, status, topMiners) {
     hashrate: Math.round(status.hashrate / 1000),
     topBlockHeight: formatNumber(status.topBlockHeight),
     blocksPerMinute: Math.round(statistics.millisecondsPerBlock / 1000 / 60),
-    topMiners,
+    topMiners: {
+      miners: topMiners.map(item => formatKnownAddress(item.miner)),
+      blocksMined: topMiners.map(item => item.blocksMined),
+    },
   }
 }

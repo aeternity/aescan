@@ -14,7 +14,6 @@
 </template>
 
 <script setup>
-// todo translate miners
 const { miners, minersCount } = storeToRefs(useMiningStore())
 const { fetchMiners } = useMiningStore()
 

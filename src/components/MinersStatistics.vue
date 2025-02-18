@@ -164,14 +164,12 @@ if (process.client) {
   grid-template-rows: repeat(10, auto);
   grid-column-gap: 16px;
   grid-row-gap: 16px;
-  height: auto;
-  width: 100%;
+  margin-bottom: var(--space-4);
   /*todo remove sizing*/
 
   @media (--desktop) {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    height: 414px;
+    grid-template-rows: repeat(3, 1fr);
   }
 
   &__value {

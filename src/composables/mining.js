@@ -1,6 +1,5 @@
 export const useMiningStore = defineStore('mining', () => {
   const miners = ref(null)
-  const topMiners = ref(null)
   const statistics = ref(null)
 
   const minersCount = computed(() => {
@@ -20,20 +19,11 @@ export const useMiningStore = defineStore('mining', () => {
     })
   }
 
-  async function fetchTopMiners({ queryParameters, limit } = {}) {
-    topMiners.value = null
-    topMiners.value = await $fetch('/api/mining/top-miners', {
-      params: { queryParameters, limit },
-    })
-  }
-
   return {
     statistics,
     miners,
-    topMiners,
     minersCount,
     fetchMining,
     fetchMiners,
-    fetchTopMiners,
   }
 })

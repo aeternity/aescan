@@ -26,8 +26,7 @@
             :hash="miner.miner "/>
         </td>
         <td>
-          <price-label
-            :price="miner.totalReward"/>
+          <price-label :price="miner.totalReward"/>
         </td>
       </tr>
     </tbody>

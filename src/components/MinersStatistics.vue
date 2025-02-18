@@ -20,7 +20,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ statistics.status.peerCount }}
+        {{ statistics.peerCount }}
       </span>
     </app-panel>
 
@@ -46,7 +46,7 @@
       </h2>
       <span class="mining-statistics__value">
         <price-label
-          :price="formatAettosToAe(statistics.blockReward)"
+          :price="statistics.blockReward"
           :max-digits="2"/>
       </span>
     </app-panel>
@@ -59,7 +59,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ Math.round(statistics.status.difficulty / 1000000000) }}
+        {{ statistics.difficulty }}
       </span>
       <span class="mining-statistics__unit">
         KG/s
@@ -74,7 +74,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ Math.round(statistics.status.hashrate / 1000) }}
+        {{ statistics.hashrate }}
       </span>
       <span class="mining-statistics__unit">
         KG/s
@@ -89,7 +89,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ formatNumber(statistics.status.topBlockHeight) }}
+        {{ statistics.topBlockHeight }}
       </span>
     </app-panel>
 
@@ -101,7 +101,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics__value">
-        {{ Math.round(statistics.blocksPerMinute) }}
+        {{ statistics.blocksPerMinute }}
       </span>
 
       <span class="mining-statistics__unit">
@@ -142,7 +142,6 @@
 </template>
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
-import { formatAettosToAe } from '@/utils/format'
 
 const { fetchMining, fetchTopMiners } = useMinersStore()
 const {

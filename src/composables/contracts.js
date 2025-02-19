@@ -16,7 +16,7 @@ export const useContractsStore = defineStore('contracts', () => {
   )
 
   async function fetchContracts(queryParameters = null) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/transactions?type=contract_create&limit=10'}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3) || '/transactions?type=contract_create&limit=10'}`)
     const verifiedContracts = await fetchVerifiedContracts(data)
     if (verifiedContracts) {
       data.data.forEach(contract => {

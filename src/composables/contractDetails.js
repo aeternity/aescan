@@ -90,7 +90,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
   async function fetchContractEvents({ queryParameters = null }) {
     rawContractEvents.value = null
     const defaultParameters = `/contracts/logs?contract_id=${contractId.value}&aexn-args=true`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3) || defaultParameters}`)
     rawContractEvents.value = data
   }
 
@@ -98,7 +98,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
     rawContractCallTransactions.value = null
 
     if (queryParameters) {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3)}`)
       rawContractCallTransactions.value = data
       return
     }

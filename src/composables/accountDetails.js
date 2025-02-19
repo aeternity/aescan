@@ -102,14 +102,14 @@ export const useAccountStore = defineStore('account', () => {
   async function fetchAccountNames({ accountId, queryParameters } = {}) {
     rawAccountNames.value = null
     const defaultParameters = `/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=10`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3) || defaultParameters}`)
     rawAccountNames.value = data
   }
 
   async function fetchAccountTokens({ accountId, queryParameters } = {}) {
     rawAccountTokens.value = null
     const defaultParameters = `/accounts/${accountId}/aex9/balances?limit=10`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3) || defaultParameters}`)
     rawAccountTokens.value = data
 
     if (rawAccountTokens.value?.data.length) {
@@ -136,7 +136,7 @@ export const useAccountStore = defineStore('account', () => {
   async function fetchAccountActivities({ accountId, queryParameters } = {}) {
     rawAccountActivities.value = null
     const defaultParameters = `/accounts/${accountId}/activities?limit=10`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3) || defaultParameters}`)
     rawAccountActivities.value = data
   }
 
@@ -144,7 +144,7 @@ export const useAccountStore = defineStore('account', () => {
     rawAccountTransactions.value = null
 
     if (queryParameters) {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3)}`)
       rawAccountTransactions.value = data
       return
     }

@@ -16,7 +16,7 @@ export const useDexTradesStore = defineStore('dexTrades', () => {
   async function fetchDexTrades({ queryParameters } = {}) {
     rawTrades.value = null
     const defaultParameters = '/dex/swaps?limit=10'
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3) || defaultParameters}`)
     rawTrades.value = data
   }
 

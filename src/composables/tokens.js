@@ -39,7 +39,7 @@ export const useTokensStore = defineStore('tokens', () => {
 
   async function fetchAllTokens(queryParameters = null) {
     allTokens.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/aex9?by=name&direction=forward'}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3) || '/aex9?by=name&direction=forward'}`)
     allTokens.value = data
   }
 

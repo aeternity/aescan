@@ -4,7 +4,7 @@
   </Head>
 
   <page-header>
-    Mining Pools
+    Mining
     <template #tooltip>
       {{ miningHints.mining }}
     </template>

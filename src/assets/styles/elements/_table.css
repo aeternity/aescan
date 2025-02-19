@@ -33,6 +33,8 @@ td {
   white-space: nowrap;
 }
 
+/*todo revert some styles back*/
+
 th:first-of-type {
   padding-left: var(--space-1);
 
@@ -41,6 +43,14 @@ th:first-of-type {
   }
 }
 
+
+/*thead th {*/
+/*  position: sticky;*/
+/*  top: 0;*/
+/*  z-index: 10;*/
+/*  !*To not have transparent background.*/
+/*  background-color: white;*!*/
+/*}*/
 
 td:first-of-type {
   padding-left: var(--space-1);

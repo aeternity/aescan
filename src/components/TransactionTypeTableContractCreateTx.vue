@@ -1,4 +1,5 @@
 <template>
+  <!--  todo make it single column-->
   <table class="transaction-type-panel-contract-create-tx__table">
     <tbody>
       <tr class="transaction-type-panel-contract-create-tx__row">

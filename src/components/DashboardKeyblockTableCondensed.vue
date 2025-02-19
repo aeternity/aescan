@@ -17,6 +17,7 @@
       </tr>
 
       <tr>
+        <!--        todo fix table-->
         <th class="dashboard-keyblock-table__header">
           Beneficiary
           <hint-tooltip class="dashboard-keyblock-table__tooltip">

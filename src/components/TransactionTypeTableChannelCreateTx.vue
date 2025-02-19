@@ -11,6 +11,7 @@
         <td class="transaction-type-panel-channel-create-tx__data">
           <app-link :to="`/state-channels/${transactionData.channelId}`">
             {{ transactionData.channelId }}
+            <!--            todo shorten hashes-->
           </app-link>
         </td>
       </tr>

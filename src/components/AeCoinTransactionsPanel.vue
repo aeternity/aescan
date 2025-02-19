@@ -14,7 +14,7 @@ const { fetchTransactions } = useTransactionsStore()
 const { transactions } = storeToRefs(useTransactionsStore())
 
 async function loadTransactions() {
-  await fetchTransactions(`/transactions?limit=10${'&type=' + 'spend'}`)
+  await fetchTransactions({ type: 'spend', limit: 10 })
 }
 
 await useAsyncData(async() => {
@@ -23,10 +23,10 @@ await useAsyncData(async() => {
 })
 
 function loadPrevTransactions() {
-  fetchTransactions(transactions.value.prev)
+  fetchTransactions({ queryParameters: transactions.value.prev })
 }
 
 function loadNextTransactions() {
-  fetchTransactions(transactions.value.next)
+  fetchTransactions({ queryParameters: transactions.value.next })
 }
 </script>

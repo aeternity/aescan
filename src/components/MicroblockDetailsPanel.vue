@@ -8,7 +8,6 @@
               {{ microblocksHints.microblockId }}
             </hint-tooltip>
             Hash
-            <!--            todo bettere alignment labels and content-->
           </th>
           <td class="microblock-details-panel__data">
             <div class="u-hidden-mobile">

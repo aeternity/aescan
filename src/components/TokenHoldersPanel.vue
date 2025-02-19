@@ -1,6 +1,5 @@
 <template>
   <app-panel class="token-holders-panel">
-    <!--    todo percentage is missing-->
     <paginated-content
       :entities="tokenHolders"
       :total-count="tokenHoldersCount"

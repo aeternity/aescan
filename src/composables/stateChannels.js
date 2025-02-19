@@ -16,7 +16,7 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
   async function fetchStateChannels({ limit, queryParameters } = {}) {
     rawStateChannels.value = null
     if (queryParameters) {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3)}`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
       rawStateChannels.value = data
       return
     }

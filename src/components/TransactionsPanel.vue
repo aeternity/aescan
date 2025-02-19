@@ -5,7 +5,6 @@
       pagination-style="history"
       :entities="transactions"
       :total-count="transactionsCount"
-      :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
@@ -38,12 +37,9 @@ const {
 } = useTransactionsStore()
 const route = useRoute()
 
-// todo remove limit
-const limit = computed(() => 10)
-
 if (process.client) {
   if (!isHydrated?.value) {
-    setPageLimit(limit)
+    setPageLimit(10)
     await loadTransactions()
   }
 

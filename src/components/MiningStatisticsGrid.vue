@@ -128,9 +128,7 @@
       </span>
     </app-panel>
 
-    <app-panel
-      class="mining-statistics-grid__panel--chart"
-      style="">
+    <app-panel class="mining-statistics-grid__panel--chart">
       <h2 class="h5">
         MINING POOLS IN LAST 24 HOURS
         <hint-tooltip>

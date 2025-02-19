@@ -86,7 +86,6 @@ const price = computed(() =>
   flex-direction: row;
   align-items: center;
   height: 20px;
-  flex: 1 0 auto;
 
   &__icon {
     width: 20px;

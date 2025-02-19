@@ -24,7 +24,7 @@ export const useNftsStore = defineStore('nfts', () => {
     rawNfts.value = null
     const defaultParameters = `/aex141?limit=${limit || 10}&direction=backward&by=creation`
     const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters.substring(3) || defaultParameters}`,
+      `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
     )
     rawNfts.value = data
   }

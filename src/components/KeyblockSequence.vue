@@ -104,7 +104,7 @@ defineProps({
     width: 80px;
     height: 100%;
     position: absolute;
-    right: -8px;
+    right: 0;
     top: 0;
     background-image: linear-gradient(90deg, rgb(255 255 255 / 0%) 0, rgb(255 255 255 / 100%) 100%);
 

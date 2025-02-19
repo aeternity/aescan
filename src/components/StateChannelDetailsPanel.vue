@@ -244,7 +244,7 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/channels/${props.stateChann
 
   &__data {
     display: block;
-    padding-left: 20px;
+    padding-left: 28px;
 
     @media (--mobile) {
       display: table-cell;

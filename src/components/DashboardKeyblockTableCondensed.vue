@@ -2,7 +2,7 @@
   <table class="dashboard-keyblock-table">
     <tbody>
       <tr>
-        <th class="dashboard-keyblock-table__heade">
+        <th class="dashboard-keyblock-table__header">
           Height
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.height }}
@@ -17,7 +17,6 @@
       </tr>
 
       <tr>
-        <!--        todo fix table-->
         <th class="dashboard-keyblock-table__header">
           Beneficiary
           <hint-tooltip class="dashboard-keyblock-table__tooltip">

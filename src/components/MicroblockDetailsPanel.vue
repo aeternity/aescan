@@ -167,7 +167,7 @@ const microblockMiddlewareUrl = computed(() =>
 
   &__data {
     display: block;
-    padding-left: 20px;
+    padding-left: 28px;
 
     @media (--mobile) {
       display: table-cell;

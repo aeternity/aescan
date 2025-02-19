@@ -1,5 +1,4 @@
 <template>
-  <!--  todo fich chain line-->
   <app-panel class="keyblock-microblock-panel">
     <paginated-content
       v-model:page-index="pageIndex"

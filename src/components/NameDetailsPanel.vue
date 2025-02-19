@@ -11,6 +11,7 @@
           </th>
           <td class="name-details-panel__data">
             <copy-chip :label="name.name"/>
+            <!--            todo break long content-->
           </td>
         </tr>
         <tr

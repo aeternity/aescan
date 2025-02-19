@@ -1,4 +1,5 @@
 <template>
+  <!--  todo make it single column-->
   <table class="transaction-type-panel-ga-attach-tx__table">
     <tbody>
       <tr class="transaction-type-panel-ga-attach-tx__row">

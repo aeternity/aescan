@@ -45,7 +45,6 @@
             <price-label :price=" account.balance "/>
           </td>
           <!--          todo fix price-->
-
           <td>{{ account.percentage }} %</td>
         </tr>
       </tbody>

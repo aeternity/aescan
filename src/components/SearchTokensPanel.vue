@@ -19,10 +19,10 @@ const route = useRoute()
 await fetchTokenResults({ query: route.params.id })
 
 async function loadPrevTokens() {
-  await fetchTokenResults({ queryParameters: tokensResults.value.prev })
+  await fetchTokenResults({ queryParameters: tokensResults.value.prev.substring(3) })
 }
 
 async function loadNextTokens() {
-  await fetchTokenResults({ queryParameters: tokensResults.value.next })
+  await fetchTokenResults({ queryParameters: tokensResults.value.next.substring(3) })
 }
 </script>

@@ -18,10 +18,10 @@ const { fetchContractEvents } = useContractDetailsStore()
 const { contractEvents, contractDetails } = storeToRefs(useContractDetailsStore())
 
 function loadPrevEvents() {
-  fetchContractEvents({ queryParameters: contractEvents.value.prev })
+  fetchContractEvents({ queryParameters: contractEvents.value.prev.substring(3) })
 }
 
 function loadNextEvents() {
-  fetchContractEvents({ queryParameters: contractEvents.value.next })
+  fetchContractEvents({ queryParameters: contractEvents.value.next.substring(3) })
 }
 </script>

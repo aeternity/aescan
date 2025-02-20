@@ -20,12 +20,12 @@ const pageIndex = ref(1)
 
 const loadPrevTransactions = () => {
   fetchContractCallTransactions({
-    queryParameters: contractCallTransactions.value.prev,
+    queryParameters: contractCallTransactions.value.prev.substring(3),
   })
 }
 const loadNextTransactions = () => {
   fetchContractCallTransactions({
-    queryParameters: contractCallTransactions.value.next,
+    queryParameters: contractCallTransactions.value.next.substring(3),
   })
 }
 

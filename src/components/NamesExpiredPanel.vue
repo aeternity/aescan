@@ -17,11 +17,11 @@ const { fetchExpiredNames } = useNamesStore()
 const { expiredNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
-  fetchExpiredNames({ queryParameters: expiredNames.value.prev })
+  fetchExpiredNames({ queryParameters: expiredNames.value.prev.substring(3) })
 }
 
 function loadNextNames() {
-  fetchExpiredNames({ queryParameters: expiredNames.value.next })
+  fetchExpiredNames({ queryParameters: expiredNames.value.next.substring(3) })
 }
 </script>
 

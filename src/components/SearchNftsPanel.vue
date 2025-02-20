@@ -20,10 +20,10 @@ const route = useRoute()
 await fetchNftsResults({ query: route.params.id })
 
 async function loadPrevNfts() {
-  await fetchNftsResults({ queryParameters: nftsResults.value.prev })
+  await fetchNftsResults({ queryParameters: nftsResults.value.prev.substring(3) })
 }
 
 async function loadNextNfts() {
-  await fetchNftsResults({ queryParameters: nftsResults.value.next })
+  await fetchNftsResults({ queryParameters: nftsResults.value.next.substring(3) })
 }
 </script>

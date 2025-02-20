@@ -18,11 +18,11 @@ const { fetchTokenHolders, fetchTokenHoldersCount } = useTokenDetailsStore()
 const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(useTokenDetailsStore())
 
 function loadPrevHolders() {
-  fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
+  fetchTokenHolders({ queryParameters: tokenHolders.value.prev.substring(3) })
 }
 
 function loadNextHolders() {
-  fetchTokenHolders({ queryParameters: tokenHolders.value.next })
+  fetchTokenHolders({ queryParameters: tokenHolders.value.next.substring(3) })
 }
 
 if (process.client) {

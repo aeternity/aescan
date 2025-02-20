@@ -20,11 +20,11 @@ await useAsyncData(async() => {
 })
 
 function loadPrevEvents() {
-  fetchDexTrades({ queryParameters: trades.value.prev })
+  fetchDexTrades({ queryParameters: trades.value.prev.substring(3) })
 }
 
 function loadNextEvents() {
-  fetchDexTrades({ queryParameters: trades.value.next })
+  fetchDexTrades({ queryParameters: trades.value.next.substring(3) })
 }
 
 if (process.client) {

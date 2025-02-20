@@ -32,13 +32,13 @@ defineProps({
   font-family: var(--font-monospaced);
   align-items: center;
   text-align: center;
-  height: 28px;
+  /*height: 28px;*/
   font-size: 12px;
   line-height: 20px;
   padding: var(--space-0) var(--space-1);
 
   @media (--desktop) {
-    height: 32px;
+    /*height: 32px;*/
     font-size: 14px;
     padding: var(--space-0) var(--space-1);
   }
@@ -69,7 +69,7 @@ defineProps({
   }
 
   &--sm {
-    height: 28px;
+    /*height: 28px;*/
     padding: var(--space-0) var(--space-1);
   }
 }

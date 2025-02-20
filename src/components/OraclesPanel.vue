@@ -25,11 +25,11 @@ const { oracles, oraclesCount } = storeToRefs(useOraclesStore())
 const pageIndex = ref(1)
 
 function loadPrevOracles() {
-  fetchOracles({ queryParameters: oracles.value.prev })
+  fetchOracles({ queryParameters: oracles.value.prev.substring(3) })
 }
 
 function loadNextOracles() {
-  fetchOracles({ queryParameters: oracles.value.next })
+  fetchOracles({ queryParameters: oracles.value.next.substring(3) })
 }
 
 async function loadOracles() {

@@ -17,11 +17,11 @@ const { fetchTokenTrades } = useTokenDetailsStore()
 const route = useRoute()
 
 function loadPrevTrades() {
-  fetchTokenTrades({ queryParameters: tokenTrades.value.prev })
+  fetchTokenTrades({ queryParameters: tokenTrades.value.prev.substring(3) })
 }
 
 function loadNextTrades() {
-  fetchTokenTrades({ queryParameters: tokenTrades.value.next })
+  fetchTokenTrades({ queryParameters: tokenTrades.value.next.substring(3) })
 }
 
 if (process.client) {

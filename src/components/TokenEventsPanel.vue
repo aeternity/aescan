@@ -21,11 +21,11 @@ const { fetchTokenEvents } = useTokenDetailsStore()
 const route = useRoute()
 
 function loadPrevEvents() {
-  fetchTokenEvents({ queryParameters: tokenEvents.value.prev })
+  fetchTokenEvents({ queryParameters: tokenEvents.value.prev.substring(3) })
 }
 
 function loadNextEvents() {
-  fetchTokenEvents({ queryParameters: tokenEvents.value.next })
+  fetchTokenEvents({ queryParameters: tokenEvents.value.next.substring(3) })
 }
 
 if (process.client) {

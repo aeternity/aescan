@@ -19,10 +19,10 @@ const route = useRoute()
 await fetchNamesResults({ query: route.params.id })
 
 async function loadPrevNames() {
-  await fetchNamesResults({ queryParameters: namesResults.value.prev })
+  await fetchNamesResults({ queryParameters: namesResults.value.prev.substring(3) })
 }
 
 async function loadNextNames() {
-  await fetchNamesResults({ queryParameters: namesResults.value.next })
+  await fetchNamesResults({ queryParameters: namesResults.value.next.substring(3) })
 }
 </script>

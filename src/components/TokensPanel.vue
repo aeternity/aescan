@@ -30,11 +30,11 @@ const featureFlags = useFeatureFlags()
 const pageIndex = ref(1)
 
 async function loadPrevTokens() {
-  await fetchTokens(selectedTokens.value.prev)
+  await fetchTokens(selectedTokens.value.prev.substring(3))
 }
 
 async function loadNextTokens() {
-  await fetchTokens(selectedTokens.value.next)
+  await fetchTokens(selectedTokens.value.next.substring(3))
 }
 
 const hasTokenSelect = computed(() => {

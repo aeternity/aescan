@@ -18,11 +18,11 @@ const { fetchNameActions } = useNameDetailsStore()
 const { nameActions } = storeToRefs(useNameDetailsStore())
 
 function loadPrevActions() {
-  return fetchNameActions({ queryParameters: nameActions.value.prev })
+  return fetchNameActions({ queryParameters: nameActions.value.prev.substring(3) })
 }
 
 function loadNextActions() {
-  return fetchNameActions({ queryParameters: nameActions.value.next })
+  return fetchNameActions({ queryParameters: nameActions.value.next.substring(3) })
 }
 </script>
 

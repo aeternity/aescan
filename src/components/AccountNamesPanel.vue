@@ -16,11 +16,11 @@ const { fetchAccountNames } = useAccountStore()
 const { accountNames } = storeToRefs(useAccountStore())
 
 async function loadPrevAccountNames() {
-  await fetchAccountNames({ queryParameters: accountNames.value.prev })
+  await fetchAccountNames({ queryParameters: accountNames.value.prev.substring(3) })
 }
 
 async function loadNextAccountNames() {
-  await fetchAccountNames({ queryParameters: accountNames.value.next })
+  await fetchAccountNames({ queryParameters: accountNames.value.next.substring(3) })
 }
 </script>
 

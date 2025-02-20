@@ -5,7 +5,6 @@
       :entities="stateChannels"
       pagination-style="history"
       :total-count="stateChannelsCount"
-
       @prev-clicked="loadPrevStateChannels"
       @next-clicked="loadNextStateChannels">
       <state-channels-table :state-channels="stateChannels"/>
@@ -21,13 +20,13 @@ const pageIndex = ref(1)
 
 async function loadPrevStateChannels() {
   await fetchStateChannels({
-    queryParameters: stateChannels.value.prev,
+    queryParameters: stateChannels.value.prev.substring(3),
   })
 }
 
 async function loadNextStateChannels() {
   await fetchStateChannels({
-    queryParameters: stateChannels.value.next,
+    queryParameters: stateChannels.value.next.substring(3),
   })
 }
 

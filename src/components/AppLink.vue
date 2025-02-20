@@ -50,6 +50,9 @@ function isLocalLink(url) {
 
 <style scoped>
 .link {
+  word-wrap: anywhere;
+  white-space: wrap;
+
   &--primary {
     color: var(--color-fire);
   }

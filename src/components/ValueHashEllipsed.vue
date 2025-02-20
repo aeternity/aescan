@@ -3,6 +3,7 @@
     <span class="u-hidden-desktop">
       <app-link
         v-if="linkTo"
+        class="value-hash-ellipsed__link"
         :to="linkTo">
         {{ formatKnownAddress(hash) }}
       </app-link>
@@ -45,3 +46,9 @@ defineProps({
   },
 })
 </script>
+<!--todo parametrize-->
+<style scoped>
+.value-hash-ellipsed__link {
+  white-space: nowrap;
+}
+</style>

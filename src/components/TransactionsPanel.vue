@@ -62,7 +62,7 @@ async function loadNextTransactions() {
 
 </script>
 
-<style>
+<style scoped>
 .transactions-panel {
   &__select {
     margin-right: var(--space-1);

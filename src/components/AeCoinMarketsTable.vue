@@ -76,7 +76,7 @@ defineProps({
 })
 </script>
 
-<style>
+<style scoped>
 .ae-coin-markets-table__container {
   overflow-x: auto;
 }

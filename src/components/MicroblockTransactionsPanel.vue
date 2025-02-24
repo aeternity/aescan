@@ -46,7 +46,6 @@ async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
-  console.log('selectedTxType.value', selectedTxType.value)
   await fetchMicroblockTransactions({
     limit: limit.value,
     microblockHash: route.params.id,

@@ -4,7 +4,18 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
 
   async function fetchKeyblock(id) {
     keyblockDetails.value = null
-    keyblockDetails.value = await $fetch(`/api/keyblocks/${id}`)
+    const data = await $fetch(`/api/keyblocks/${id}`)
+    if (data?.error === 400) {
+      throw showError({
+        data: {
+          entityId: id,
+          entityName: 'Keyblock',
+        },
+        statusMessage: 'EntityDetailsNotFound',
+      })
+    } else {
+      keyblockDetails.value = data
+    }
   }
 
   async function fetchKeyblockMicroblocks({ queryParameters, limit, microblockHash, id } = {}) {

@@ -28,13 +28,7 @@ async function fetchKeblockDetails(id) {
       if (isKeyblockIdValid) {
         return { isExistent: false }
       } else {
-        throw createError({
-          data: {
-            entityId: id,
-            entityName: 'Keyblock',
-          },
-          statusMessage: 'EntityDetailsNotFound',
-        })
+        return { error: error.response.status }
       }
     }
   }

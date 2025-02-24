@@ -5,7 +5,7 @@ export default defineConfig({
     accountAddress: 'ak_gZ55FLJoGEfF5gJ2xJU7j9uSH3fEjoTZq3ygQG8gYA4no6GFW',
     generalizedAccountAddress: 'ak_2Eyn25BLZ4326wdjnrpV9wERhvDwU7b7LWmuWC3HzqNpqAf4GH',
     contractAddress: 'ct_s5ZB6cGCqS5QbUboQBK8CWwpknKRSajrt8b1EQRp4t4R5D47e',
-    microblockAddress: 'mh_27HKqcut9U9xDwEAf3Lz6evTxY4rfy7odKeSnQaqu45iQesjyj',
+    microblockAddress: 'mh_2dDD1aj3foBG7HeVhZR4cLJgDiar9DYSW86L6VNSnRNXfkBabq',
     nftAddress: 'ct_2UVjVLvt2NycqbfJWywixyYm68iVvkiVS9wubiQRjp9WeQtfpK',
     transactionAddress: 'th_2g4RMEbA6avWtuQnYgG6Jgc2n2RhPyhLTvdiwdgrgYjLcJmeH2',
     oracleAddress: 'ok_2w2Gkp9mwThn6jWdJi5Leuh3P5Zj7oJ6gyoHa8KnKzWwEVSnKf',
@@ -26,7 +26,7 @@ export default defineConfig({
   },
   retries: {
     runMode: 5,
-    openMode: 0,
+    openMode: 1,
   },
   viewportWidth: 1280,
   viewportHeight: 720,

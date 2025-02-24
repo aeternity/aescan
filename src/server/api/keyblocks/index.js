@@ -11,7 +11,6 @@ export default defineEventHandler(async event => {
     limit: limit ?? 10,
     queryParameters,
   })
-
   const { data } = await axios.get(url)
   return adaptKeyblocks(data)
 })

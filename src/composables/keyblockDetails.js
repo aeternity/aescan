@@ -5,7 +5,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   async function fetchKeyblock(id) {
     keyblockDetails.value = null
     const data = await $fetch(`/api/keyblocks/${id}`)
-    if (data?.error === 400) {
+    if (data.error === 400) {
       throw showError({
         data: {
           entityId: id,

@@ -9,7 +9,9 @@ export function getUrl({ entity, id, route, parameters, limit, queryParameters }
 
     if (parameters) {
       Object.entries(parameters).forEach(([key, value]) => {
-        url.searchParams.append(key, value)
+        if (value) {
+          url.searchParams.append(key, value)
+        }
       })
     }
 

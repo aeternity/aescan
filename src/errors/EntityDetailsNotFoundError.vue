@@ -25,7 +25,6 @@ const props = defineProps({
 })
 
 const errorData = computed(() => {
-  console.log('errorData', errorData)
   const error = unref(props.error)
   if (typeof error?.data === 'string') {
     return JSON.parse(error?.data)

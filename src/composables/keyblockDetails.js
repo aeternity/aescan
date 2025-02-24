@@ -5,8 +5,6 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   async function fetchKeyblock(id) {
     keyblockDetails.value = null
     const data = await $fetch(`/api/keyblocks/${id}`)
-    console.log('data', data)
-    console.log('data?.error === 400', data?.error === 400)
     if (data?.error === 400) {
       throw showError({
         data: {
@@ -25,7 +23,6 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     keyblockMicroblocks.value = await $fetch('/api/keyblocks/microblocks', {
       params: { microblockHash, limit, queryParameters, id },
     })
-    console.log('keyblockMicroblocks.value', keyblockMicroblocks.value)
   }
 
   return {

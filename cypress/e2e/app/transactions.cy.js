@@ -33,8 +33,8 @@ describe('transactions', () => {
     cy.visit('/transactions')
 
     cy.get('.paginated-content .scope-picker').click()
-    cy.get('.dp__today').click()
-    cy.get('.dp__today').parent().prev().click()
+    cy.get('.dp__cell_inner').contains('10').click()
+    cy.get('.dp__cell_inner').contains('15').click()
 
     cy.url().should('include', 'scope=')
     cy.get('.paginated-content .dp__input').should('not.have.value', '')
@@ -54,8 +54,8 @@ describe('transactions', () => {
     cy.visit('/transactions')
 
     cy.get('.paginated-content .scope-picker').click()
-    cy.get('.dp__today').click()
-    cy.get('.dp__today').parent().prev().click()
+    cy.get('.dp__cell_inner').contains('10').click()
+    cy.get('.dp__cell_inner').contains('15').click()
 
     cy.get('.paginated-content .multiselect').click()
     cy.contains('.paginated-content .multiselect__option', 'SpendTx').click()

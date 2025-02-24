@@ -23,7 +23,7 @@ async function fetchKeblockDetails(id) {
     const { data } = await axios.get(url)
     return data
   } catch (error) {
-    if ([400, 404].includes(error.response.status)) {
+    if ([400].includes(error.response.status)) {
       const isKeyblockIdValid = isAddressValid(id, Encoding.KeyBlockHash) || !isNaN(id)
       if (isKeyblockIdValid) {
         return { isExistent: false }

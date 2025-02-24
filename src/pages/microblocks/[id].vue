@@ -9,12 +9,13 @@
       {{ microblocksHints.microblock }}
     </template>
   </page-header>
-
   <template v-if="!isLoading">
     <microblock-details-panel
+      v-if="microblockDetails"
       class="microblock-details__microblock-details-panel"
       :microblock-details="microblockDetails"/>
-    <app-tabs>
+
+    <app-tabs v-if="microblockDetails">
       <app-tab title="Transactions">
         <microblock-transactions-panel/>
       </app-tab>
@@ -34,21 +35,11 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const { error } = await useAsyncData(async() => {
+if (process.client) {
   await fetchMicroblock(route.params.id)
-  return true
-})
-
-if (error.value) {
-  throw showError({
-    data: {
-      entityId: route.params.id,
-      entityName: 'Microblock',
-    },
-    statusMessage: 'EntityDetailsNotFound',
-  })
 }
 </script>
+
 <style scoped>
 .microblock-details__microblock-details-panel {
   margin-bottom: var(--space-4);

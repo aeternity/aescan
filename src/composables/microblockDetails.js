@@ -4,7 +4,18 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
 
   async function fetchMicroblock(id) {
     microblockDetails.value = null
-    microblockDetails.value = await $fetch(`/api/microblocks/${id}`)
+    const data = await $fetch(`/api/microblocks/${id}`)
+    if (data.error === 400) {
+      throw showError({
+        data: {
+          entityId: id,
+          entityName: 'Microblock',
+        },
+        statusMessage: 'EntityDetailsNotFound',
+      })
+    } else {
+      microblockDetails.value = data
+    }
   }
 
   async function fetchMicroblockTransactions({ queryParameters, limit, microblockHash, type } = {}) {

@@ -3,14 +3,20 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const id = getRouterParam(event, 'id')
+  try {
+    const id = getRouterParam(event, 'id')
 
-  const url = getUrl({
-    entity: 'micro-blocks',
-    id,
-  })
-  const { data } = await axios.get(url)
-  return adaptMicroblock(data)
+    const url = getUrl({
+      entity: 'micro-blocks',
+      id,
+    })
+    const { data } = await axios.get(url)
+    return adaptMicroblock(data)
+  } catch (error) {
+    if ([400].includes(error.response.status)) {
+      return { error: error.response.status }
+    }
+  }
 })
 
 function adaptMicroblock(microblock) {

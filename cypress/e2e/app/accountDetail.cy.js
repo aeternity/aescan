@@ -11,7 +11,8 @@ describe('account detail', () => {
     cy.contains('.tabs__item', 'AENS Names').click()
     cy.get('.account-names-panel .paginated-content').should('be.visible')
 
-    cy.contains('.tabs__item', 'Tokens').click()
+    cy.contains('.tabs__item', 'Tokens')
+      .click()
     cy.get('.account-tokens-panel .paginated-content').should('be.visible')
   })
 

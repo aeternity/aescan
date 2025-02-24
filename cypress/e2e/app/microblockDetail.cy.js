@@ -6,6 +6,7 @@ describe('microblock details', () => {
     cy.get('.microblock-transactions-panel .paginated-content').should('be.visible')
     cy.get('.paginated-content .multiselect__single').contains('All Types')
     cy.get('.microblock-transactions-table tbody tr').should('have.length', 7)
+    cy.get('.paginated-content__highlighted').contains('1-7 of 7')
   })
 
   it('should display microblock not found page', () => {
@@ -19,7 +20,8 @@ describe('microblock details', () => {
 
     cy.get('.paginated-content .multiselect__single').contains('ContractCallTx')
     cy.get('.microblock-transactions-table tbody tr').should('have.length', 6)
-    // todo fix
+
+    cy.get('.paginated-content__highlighted').contains('1-6 of 6')
     cy.get('.microblock-transactions-table tbody tr').contains('td', 'ContractCallTx').should('have.length', 1)
   })
 
@@ -33,10 +35,8 @@ describe('microblock details', () => {
     cy.get('.paginated-content .multiselect__single').contains('SpendTx')
     cy.get('.microblock-transactions-table tbody tr').should('have.length', 1)
 
-    cy.get('.paginated-content__highlighted').should('be.visible')
+    cy.get('.paginated-content__highlighted').contains('1-1 of 1')
     cy.url().should('include', 'txType=spend')
-
-    // todo read counter
   })
 
   it('should navigate back to previous filter option', () => {
@@ -52,9 +52,8 @@ describe('microblock details', () => {
 
     cy.get('.paginated-content .multiselect__single').contains('ContractCallTx')
     cy.url().should('include', 'txType=contract_call')
-
-    // todo read counter
   })
+
   it('should cancel filter options', () => {
     cy.visit('/microblocks/mh_2dDD1aj3foBG7HeVhZR4cLJgDiar9DYSW86L6VNSnRNXfkBabq?txType=contract_call')
 
@@ -62,9 +61,8 @@ describe('microblock details', () => {
     cy.contains('.paginated-content .multiselect__option', 'All Types').click()
 
     cy.get('.microblock-transactions-table tbody tr').should('have.length', 7)
+    cy.get('.paginated-content__highlighted').contains('1-7 of 7')
 
     cy.url().should('eq', Cypress.config().baseUrl + '/microblocks/mh_2dDD1aj3foBG7HeVhZR4cLJgDiar9DYSW86L6VNSnRNXfkBabq')
-
-    // todo read counter
   })
 })

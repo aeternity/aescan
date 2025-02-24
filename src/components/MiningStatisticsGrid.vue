@@ -248,6 +248,7 @@ if (process.client) {
 
     &--max-tps {
       grid-area: 9 / 1 / 10 / 2;
+
       @media (--desktop) {
         grid-area: 3 / 2 / 4 / 3;
       }
@@ -258,6 +259,7 @@ if (process.client) {
       /* chart resizing fix*/
 
       grid-area: 10 / 1 / 11 / 2;
+
       @media (--desktop) {
         grid-area: 1 / 4 / 4 / 5;
       }

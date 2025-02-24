@@ -12,6 +12,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     keyblockMicroblocks.value = await $fetch('/api/keyblocks/microblocks', {
       params: { microblockHash, limit, queryParameters, id },
     })
+    console.log('keyblockMicroblocks.value', keyblockMicroblocks.value)
   }
 
   return {

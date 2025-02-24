@@ -32,6 +32,9 @@ async function fetchKeblockDetails(id) {
           data: {
             entityId: id,
             entityName: 'Keyblock',
+            isKeyblockIdValid,
+            status: error.response.status,
+            error,
           },
           statusMessage: 'EntityDetailsNotFound',
         })

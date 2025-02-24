@@ -8,15 +8,14 @@ describe('microblock details', () => {
     cy.get('.microblock-transactions-table tbody tr').should('have.length', 7)
   })
 
-  // todo add tests
   it('should display microblock not found page', () => {
     cy.visit('/microblocks/wrong',
       { failOnStatusCode: false })
     cy.get('.title').contains('Microblock Not Found')
   })
-  // todo add tests
+
   it('should display filtered transactions from direct URL access', () => {
-    cy.visit('/microblocks/mh_2dDD1aj3foBG7HeVhZR4cLJgDiar9DYSW86L6VNSnRNXfkBabq?txType=contract_call')
+    cy.visit(`/microblocks/${Cypress.env('microblockAddress')}?txType=contract_call`)
 
     cy.get('.paginated-content .multiselect__single').contains('ContractCallTx')
     cy.get('.microblock-transactions-table tbody tr').should('have.length', 6)
@@ -24,9 +23,8 @@ describe('microblock details', () => {
     cy.get('.microblock-transactions-table tbody tr').contains('td', 'ContractCallTx').should('have.length', 1)
   })
 
-  // todo parametrize url
   it('should display filtered transactions by selecting option', () => {
-    cy.visit('/microblocks/mh_2dDD1aj3foBG7HeVhZR4cLJgDiar9DYSW86L6VNSnRNXfkBabq')
+    cy.visit(`/microblocks/${Cypress.env('microblockAddress')}`)
 
     cy.get('.paginated-content .multiselect').click()
     cy.contains('.paginated-content .multiselect__option', 'SpendTx').click()

@@ -30,7 +30,7 @@ const intervalRef = ref(null)
 
 const props = defineProps({
   timestamp: {
-    type: Object,
+    type: Number,
     required: true,
   },
   isExtended: {

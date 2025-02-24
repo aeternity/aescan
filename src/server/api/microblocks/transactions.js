@@ -26,7 +26,6 @@ async function fetchTransactions(microblockHash, queryParameters, limit, type) {
   })
   const { data } = await axios.get(url)
   return data
-  // todo wire type
 }
 
 async function fetchTransactionsCount(id, type) {
@@ -38,8 +37,6 @@ async function fetchTransactionsCount(id, type) {
       type,
     },
   })
-  // https://mainnet.aeternity.io/mdw/v3/transactions/count?mb_hash=mh_2kNgGg4NTqrLqPyEfGm2Hsvz6BbymymvNxze332WEDVou9gf3W&type=name_claim
-
   const { data } = await axios.get(url)
   return data.data
 }

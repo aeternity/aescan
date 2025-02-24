@@ -10,7 +10,6 @@ export default defineEventHandler(async event => {
     id,
   })
   const { data } = await axios.get(url)
-
   return adaptMicroblock(data)
 })
 

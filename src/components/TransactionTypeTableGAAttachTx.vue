@@ -21,7 +21,9 @@
           Account
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          <app-link :to="`/accounts/${transactionData.ownerId}`">
+          <app-link
+            :to="`/accounts/${transactionData.ownerId}`"
+            has-break>
             {{ transactionData.ownerId }}
           </app-link>
         </td>
@@ -34,7 +36,9 @@
           Smart Contract ID
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
-          <app-link :to="`/contracts/${transactionData.contractId}`">
+          <app-link
+            :to="`/contracts/${transactionData.contractId}`"
+            has-break>
             {{ formatNullable(transactionData.contractId) }}
           </app-link>
         </td>
@@ -148,6 +152,8 @@ const gasCosts = computed(() =>
 
   &__data {
     word-wrap: break-word;
+    white-space: wrap;
+    /*todo remove data completely or add wrap everywhere*/
   }
 
   &__row:last-of-type &__table-header {

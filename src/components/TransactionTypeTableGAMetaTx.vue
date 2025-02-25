@@ -9,7 +9,9 @@
           Sender
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
-          <app-link :to="`/accounts/${innerTransactionDetails.senderId}`">
+          <app-link
+            :to="`/accounts/${innerTransactionDetails.senderId}`"
+            has-break>
             {{ innerTransactionDetails.senderId }}
           </app-link>
         </td>
@@ -22,7 +24,9 @@
           Recipient
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
-          <app-link :to="`/accounts/${innerTransactionDetails.recipientId}`">
+          <app-link
+            :to="`/accounts/${innerTransactionDetails.recipientId}`"
+            has-break>
             {{ innerTransactionDetails.recipientId }}
           </app-link>
         </td>

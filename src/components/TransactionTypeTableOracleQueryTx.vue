@@ -9,7 +9,9 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracleId}`">
+          <app-link
+            :to="`/oracles/${transactionData.oracleId}`"
+            has-break>
             {{ transactionData.oracleId }}
           </app-link>
         </td>
@@ -22,7 +24,9 @@
           Sender
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link :to="`/accounts/${transactionData.senderId}`">
+          <app-link
+            :to="`/accounts/${transactionData.senderId}`"
+            has-break>
             {{ transactionData.senderId }}
           </app-link>
         </td>
@@ -117,6 +121,7 @@ defineProps({
 
   &__data {
     word-wrap: break-word;
+    white-space: wrap;
   }
 
   &__row:last-of-type &__table-header {

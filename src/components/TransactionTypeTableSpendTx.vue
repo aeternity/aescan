@@ -9,13 +9,10 @@
           Sender
         </th>
         <td class="transaction-type-panel-spend-tx__data">
-          <app-link :to="`/accounts/${transactionData.senderId}`">
-            <span class="u-hidden-mobile">
-              {{ transactionData.senderId }}
-            </span>
-            <span class="u-hidden-desktop">
-              {{ formatEllipseHash(transactionData.senderId) }}
-            </span>
+          <app-link
+            :to="`/accounts/${transactionData.senderId}`"
+            has-break>
+            {{ transactionData.senderId }}
           </app-link>
         </td>
       </tr>
@@ -29,17 +26,14 @@
         <td class="transaction-type-panel-spend-tx__data">
           <app-link
             v-if="!transactionData.recipient"
-            :to="`/accounts/${transactionData.recipientId}`">
-            <span class="u-hidden-mobile">
-              {{ transactionData.recipientId }}
-            </span>
-            <span class="u-hidden-desktop">
-              {{ formatEllipseHash(transactionData.recipientId) }}
-            </span>
+            :to="`/accounts/${transactionData.recipientId}`"
+            has-break>
+            {{ transactionData.recipientId }}
           </app-link>
           <app-link
             v-else
-            :to="`/accounts/${transactionData.recipient.account}`">
+            :to="`/accounts/${transactionData.recipient.account}`"
+            has-break>
             {{ formatEllipseHash(transactionData.recipient.account) }}
           </app-link>
         </td>
@@ -102,6 +96,7 @@ defineProps({
 
   &__data {
     word-wrap: break-word;
+    white-space: wrap;
   }
 
   &__row:last-of-type &__table-header {

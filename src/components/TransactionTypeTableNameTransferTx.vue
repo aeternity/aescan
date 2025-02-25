@@ -11,7 +11,8 @@
         <td class="transaction-type-panel-name-transfer-tx__data">
           <app-link
             v-if="transactionData.name"
-            :to="`/names/${transactionData.name}`">
+            :to="`/names/${transactionData.name}`"
+            has-break>
             {{ transactionData.name }}
           </app-link>
           <template v-else>
@@ -27,7 +28,9 @@
           Old Owner
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
-          <app-link :to="`/accounts/${transactionData.accountId}`">
+          <app-link
+            :to="`/accounts/${transactionData.accountId}`"
+            has-break>
             {{ transactionData.accountId }}
           </app-link>
         </td>
@@ -40,7 +43,9 @@
           New Owner
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
-          <app-link :to="`/accounts/${transactionData.recipientId}`">
+          <app-link
+            :to="`/accounts/${transactionData.recipientId}`"
+            has-break>
             {{ transactionData.recipientId }}
           </app-link>
         </td>

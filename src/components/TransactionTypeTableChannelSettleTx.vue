@@ -9,7 +9,9 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
-          <app-link :to="`/state-channels/${transactionData.channelId}`">
+          <app-link
+            :to="`/state-channels/${transactionData.channelId}`"
+            has-break>
             {{ transactionData.channelId }}
           </app-link>
         </td>
@@ -22,7 +24,9 @@
           Initiator / Amount
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
-          <app-link :to="`/accounts/${transactionData.channel.initiator}`">
+          <app-link
+            :to="`/accounts/${transactionData.channel.initiator}`"
+            has-break>
             {{ transactionData.channel.initiator }}
           </app-link>
           /
@@ -37,7 +41,9 @@
           Responder / Amount
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
-          <app-link :to="`/accounts/${transactionData.channel.responder}`">
+          <app-link
+            :to="`/accounts/${transactionData.channel.responder}`"
+            has-break>
             {{ transactionData.channel.responder }}
           </app-link>
           /
@@ -52,7 +58,9 @@
           Settled By
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
-          <app-link :to="`/accounts/${transactionData.fromId}`">
+          <app-link
+            :to="`/accounts/${transactionData.fromId}`"
+            has-break>
             {{ transactionData.fromId }}
           </app-link>
         </td>

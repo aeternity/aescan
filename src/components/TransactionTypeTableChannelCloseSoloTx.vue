@@ -9,7 +9,9 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-close-solo-tx__data">
-          <app-link :to="`/state-channels/${transactionData.channelId}`">
+          <app-link
+            :to="`/state-channels/${transactionData.channelId}`"
+            has-break>
             {{ transactionData.channelId }}
           </app-link>
         </td>
@@ -33,7 +35,9 @@
           Initiator
         </th>
         <td class="transaction-type-panel-channel-close-solo-tx__data">
-          <app-link :to="`/accounts/${transactionData.channel.initiator}`">
+          <app-link
+            :to="`/accounts/${transactionData.channel.initiator}`"
+            has-break>
             {{ transactionData.channel.initiator }}
           </app-link>
         </td>
@@ -46,7 +50,9 @@
           Responder
         </th>
         <td class="transaction-type-panel-channel-close-solo-tx__data">
-          <app-link :to="`/accounts/${transactionData.channel.responder}`">
+          <app-link
+            :to="`/accounts/${transactionData.channel.responder}`"
+            has-break>
             {{ transactionData.channel.responder }}
           </app-link>
         </td>
@@ -59,7 +65,9 @@
           Proposed By
         </th>
         <td class="transaction-type-panel-channel-close-solo-tx__data">
-          <app-link :to="`/accounts/${transactionData.fromId}`">
+          <app-link
+            :to="`/accounts/${transactionData.fromId}`"
+            has-break>
             {{ transactionData.fromId }}
           </app-link>
         </td>

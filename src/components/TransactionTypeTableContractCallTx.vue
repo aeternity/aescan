@@ -20,7 +20,9 @@
           Smart Contract
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <app-link :to="`/contracts/${transactionData.contractId}`">
+          <app-link
+            :to="`/contracts/${transactionData.contractId}`"
+            has-break>
             {{ transactionData.contractId }}
           </app-link>
         </td>
@@ -33,7 +35,9 @@
           Caller
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <app-link :to="`/accounts/${transactionData.callerId}`">
+          <app-link
+            :to="`/accounts/${transactionData.callerId}`"
+            has-break>
             {{ transactionData.callerId }}
           </app-link>
         </td>

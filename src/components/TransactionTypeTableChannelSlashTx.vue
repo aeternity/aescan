@@ -9,7 +9,9 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
-          <app-link :to="`/state-channels/${transactionData.channelId}`">
+          <app-link
+            :to="`/state-channels/${transactionData.channelId}`"
+            has-break>
             {{ transactionData.channelId }}
           </app-link>
         </td>
@@ -33,7 +35,9 @@
           Slashed By
         </th>
         <td class="transaction-type-panel-channel-slash-tx__data">
-          <app-link :to="`/accounts/${transactionData.fromId}`">
+          <app-link
+            :to="`/accounts/${transactionData.fromId}`"
+            has-break>
             {{ transactionData.fromId }}
           </app-link>
         </td>

@@ -9,7 +9,9 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-respond-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracleId}`">
+          <app-link
+            :to="`/oracles/${transactionData.oracleId}`"
+            has-break>
             {{ transactionData.oracleId }}
           </app-link>
         </td>
@@ -80,6 +82,7 @@ defineProps({
 
   &__data {
     word-wrap: break-word;
+    white-space: wrap;
   }
 
   &__row:last-of-type &__table-header {

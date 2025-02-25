@@ -2,7 +2,10 @@
   <nuxt-link
     v-if="isLocalLink(to)"
     :to="to"
-    :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]"
+    :class="['link',
+             {'link--primary': variant === 'primary'},
+             {'link--text-link': isTextLink},
+             {'link--break': hasBreak }]"
     active-class="link--active"
     exact-active-class="link--exact-active">
     <slot/>
@@ -12,7 +15,10 @@
     :rel="isOpenedInNewTab ? 'noopener noreferrer' : false"
     :target="target"
     :href="to"
-    :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]">
+    :class="['link',
+             {'link--primary': variant === 'primary'},
+             {'link--text-link': isTextLink},
+             {'link--break': hasBreak }]">
     <slot/>
   </a>
 </template>
@@ -36,6 +42,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  hasBreak: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const isOpenedInNewTab = computed(
@@ -50,9 +60,6 @@ function isLocalLink(url) {
 
 <style scoped>
 .link {
-  word-wrap: anywhere;
-  white-space: wrap;
-
   &--primary {
     color: var(--color-fire);
   }
@@ -63,6 +70,12 @@ function isLocalLink(url) {
 
   &--text-link {
     text-decoration: underline;
+  }
+
+  &--break {
+    /*todo try to remove it completely*/
+    word-wrap: anywhere;
+    white-space: wrap;
   }
 }
 </style>

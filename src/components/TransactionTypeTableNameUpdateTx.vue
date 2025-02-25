@@ -11,7 +11,8 @@
         <td class="transaction-type-panel-name-update-tx__data">
           <app-link
             v-if="transactionData.name"
-            :to="`/names/${transactionData.name}`">
+            :to="`/names/${transactionData.name}`"
+            has-break>
             {{ transactionData.name }}
           </app-link>
           <template v-else>
@@ -27,7 +28,9 @@
           Owner
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
-          <app-link :to="`/accounts/${transactionData.accountId}`">
+          <app-link
+            :to="`/accounts/${transactionData.accountId}`"
+            has-break>
             {{ transactionData.accountId }}
           </app-link>
         </td>

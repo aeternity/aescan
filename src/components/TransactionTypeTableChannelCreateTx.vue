@@ -9,9 +9,10 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link :to="`/state-channels/${transactionData.channelId}`">
+          <app-link
+            :to="`/state-channels/${transactionData.channelId}`"
+            has-break>
             {{ transactionData.channelId }}
-            <!--            todo shorten hashes-->
           </app-link>
         </td>
       </tr>
@@ -35,7 +36,9 @@
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <div class="transaction-type-panel-channel-create-tx__container">
-            <app-link :to="`/accounts/${transactionData.initiatorId}`">
+            <app-link
+              :to="`/accounts/${transactionData.initiatorId}`"
+              has-break>
               {{ transactionData.initiatorId }}
             </app-link>
             /
@@ -63,7 +66,9 @@
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <div class="transaction-type-panel-channel-create-tx__container">
-            <app-link :to="`/accounts/${transactionData.responderId}`">
+            <app-link
+              :to="`/accounts/${transactionData.responderId}`"
+              has-break>
               {{ transactionData.responderId }}
             </app-link>
             /

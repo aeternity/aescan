@@ -9,7 +9,9 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-extend-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracleId}`">
+          <app-link
+            :to="`/oracles/${transactionData.oracleId}`"
+            has-break>
             {{ transactionData.oracleId }}
           </app-link>
         </td>

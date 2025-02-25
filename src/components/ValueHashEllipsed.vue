@@ -46,9 +46,3 @@ defineProps({
   },
 })
 </script>
-<!--todo parametrize-->
-<style scoped>
-.value-hash-ellipsed__link {
-  white-space: nowrap;
-}
-</style>

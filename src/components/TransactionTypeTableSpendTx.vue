@@ -75,10 +75,6 @@ defineProps({
 
 <style scoped>
 .transaction-type-panel-spend-tx {
-  &__label-link {
-    text-decoration: none;
-  }
-
   &__table {
     table-layout: fixed;
   }
@@ -125,6 +121,10 @@ defineProps({
     &:first-child {
       margin-right: var(--space-3);
     }
+  }
+
+  &__label-link {
+    text-decoration: none;
   }
 }
 </style>

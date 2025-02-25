@@ -90,7 +90,6 @@ defineProps({
 <style scoped>
 .transaction-type-panel-channel-force-progress-tx {
   &__table {
-    /*todo what is this?*/
     table-layout: fixed;
   }
 

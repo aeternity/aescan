@@ -39,7 +39,7 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
 
   async function fetchTotalAccountsCount() {
     totalAccountsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/total-accounts?interval_by=month&limit=100`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/total-accounts?interval_by=month&limit=1000`)
     totalAccountsCount.value = data.data.reduce((total, item) => total + parseInt(item.count), 0)
   }
 

@@ -3,7 +3,6 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="oracles"
-
       :total-count="oraclesCount"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
@@ -25,11 +24,11 @@ const { oracles, oraclesCount } = storeToRefs(useOraclesStore())
 const pageIndex = ref(1)
 
 function loadPrevOracles() {
-  fetchOracles({ queryParameters: oracles.value.prev.substring(3) })
+  fetchOracles({ queryParameters: oracles.value.prev })
 }
 
 function loadNextOracles() {
-  fetchOracles({ queryParameters: oracles.value.next.substring(3) })
+  fetchOracles({ queryParameters: oracles.value.next })
 }
 
 async function loadOracles() {

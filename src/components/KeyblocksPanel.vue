@@ -10,7 +10,6 @@
     </paginated-content>
   </app-panel>
 </template>
-<!--todo pagination fix jako oracles-->
 
 <script setup>
 const { fetchKeyblocks } = useKeyblockStore()

@@ -200,8 +200,6 @@ function toggleCollapse() {
     white-space: wrap;
   }
 
-  /*todo ad respo code*/
-
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }

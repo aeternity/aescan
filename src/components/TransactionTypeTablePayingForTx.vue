@@ -4,7 +4,6 @@
     :transaction-data="innerTransactionDetails"/>
 </template>
 
-<!--todo fix chip-->
 <script setup>
 const props = defineProps({
   transactionData: {

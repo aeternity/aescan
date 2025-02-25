@@ -57,6 +57,7 @@
 
 <script setup>
 import { useVModel } from '@vueuse/core'
+import { PAGINATION_LIMIT } from '@/utils/constants'
 
 const props = defineProps({
   entities: {
@@ -66,11 +67,6 @@ const props = defineProps({
   pageIndex: {
     type: [Number, null],
     default: null,
-  },
-  // todo adjust
-  limit: {
-    type: Number,
-    default: 10,
   },
   totalCount: {
     type: [Number, null],
@@ -91,7 +87,7 @@ const emit = defineEmits([
 ])
 const pageIndex = props.pageIndex ? useVModel(props, 'pageIndex', emit) : ref(1)
 const firstVisibleIndex = computed(
-  () => (pageIndex.value - 1) * props.limit + 1,
+  () => (pageIndex.value - 1) * PAGINATION_LIMIT + 1,
 )
 const lastVisibleIndex = computed(
   () => firstVisibleIndex.value + props.entities?.data.length - 1,

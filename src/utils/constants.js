@@ -6,6 +6,7 @@ export const MARKET_STATS_COINSTORE_ADDRESS = 'https://api.coinstore.com/api/v1/
 export const MARKET_STATS_HOTCOIN_ADDRESS = 'https://api.hotcoinfin.com/v1/market/ticker'
 
 export const MINUTES_PER_BLOCK = 3
+export const PAGINATION_LIMIT = 10
 export const TX_TYPES_OPTIONS = [
   { typeQuery: null, label: 'All Types' },
   { typeQuery: 'spend', label: 'SpendTx' },

@@ -56,7 +56,7 @@ export const useChartsStore = defineStore('charts', () => {
     namesStatistics.value = null
 
     const scopeSlug = scope
-      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
       : `?interval_by=${intervalBy}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/names${scopeSlug}`)
@@ -69,7 +69,7 @@ export const useChartsStore = defineStore('charts', () => {
     difficultyStatistics.value = null
 
     const scopeSlug = scope
-      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
       : `?interval_by=${intervalBy}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/difficulty${scopeSlug}`)
@@ -82,7 +82,7 @@ export const useChartsStore = defineStore('charts', () => {
     hashrateStatistics.value = null
 
     const scopeSlug = scope
-      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
       : `?interval_by=${intervalBy}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/hashrate${scopeSlug}`)
@@ -95,7 +95,7 @@ export const useChartsStore = defineStore('charts', () => {
     accountsStatistics.value = null
 
     const scopeSlug = scope
-      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=100`
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
       : `?interval_by=${intervalBy}&limit=${limit}`
 
     const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/active-accounts${scopeSlug}`)

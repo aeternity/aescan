@@ -38,7 +38,7 @@ export const CHART_SCOPE_PRESETS_OPTIONS = [
   { intervalBy: 'day', limit: '30', label: '1M' },
   { intervalBy: 'day', limit: '90', label: '3M' },
   { intervalBy: 'month', limit: '12', label: '1Y' },
-  { intervalBy: 'month', limit: '100', label: 'ALL' },
+  { intervalBy: 'month', limit: '999', label: 'ALL' },
 ]
 export const ORACLE_STATES_OPTIONS = [
   { stateQuery: 'active', label: 'Active' },

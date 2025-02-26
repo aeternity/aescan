@@ -160,10 +160,6 @@ const gasCosts = computed(() =>
   }
 
   &__data {
-    word-wrap: break-word;
-    white-space: wrap;
-    /*todo move to table styles*/
-
     display: block;
     padding-left: 28px;
 

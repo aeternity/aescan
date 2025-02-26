@@ -19,7 +19,6 @@ th {
   @media (--desktop) {
     font-size: 16px;
     line-height: 18px;
-
   }
 }
 
@@ -30,7 +29,8 @@ td {
   border-bottom: 1px solid var(--color-midnight-25);
   vertical-align: middle;
   padding: var(--space-1);
-  white-space: nowrap;
+  white-space: wrap;
+  word-wrap: break-word;
 }
 
 /*todo revert some styles back*/

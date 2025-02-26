@@ -7,7 +7,7 @@
       </hint-tooltip>
     </template>
     <table>
-      <tbody>
+      <thead>
         <tr>
           <th class="name-pointers-custom-panel__header">
             Key
@@ -16,6 +16,8 @@
             Value
           </th>
         </tr>
+      </thead>
+      <tbody>
         <tr
           v-for="(pointer, index) in name.customPointers"
           :key="index">
@@ -42,16 +44,9 @@ const { name } = storeToRefs(useNameDetailsStore())
 </script>
 
 <style scoped>
-.name-pointers-custom-panel {
-  &__header {
-    padding: var(--space-1) 0;
-    border-bottom: 1px solid var(--color-midnight-25);
-
-    &:first-child {
-      @media (--desktop) {
-        width: var(--detail-column-width);
-      }
-    }
+.name-pointers-custom-panel__header:first-child {
+  @media (--desktop) {
+    width: var(--detail-column-width);
   }
 }
 </style>

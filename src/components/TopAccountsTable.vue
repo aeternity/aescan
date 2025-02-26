@@ -66,6 +66,7 @@ defineProps({
 <style scoped>
 .top-accounts-table {
   margin-bottom: var(--space-4);
+  white-space: nowrap;
 
   &__container {
     overflow-x: auto;

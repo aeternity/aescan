@@ -79,8 +79,6 @@ defineProps({
   }
 
   &__data {
-    word-wrap: break-word;
-    white-space: wrap;
     display: block;
     padding-left: 28px;
 

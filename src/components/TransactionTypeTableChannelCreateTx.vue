@@ -32,7 +32,7 @@
           <hint-tooltip>
             {{ stateChannelsHints.initiatorCreateAmount }}
           </hint-tooltip>
-          Initiator / Amount
+          Initiator
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <app-link
@@ -40,7 +40,16 @@
             has-break>
             {{ transactionData.initiatorId }}
           </app-link>
-          /
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-create-tx__row">
+        <th class="transaction-type-panel-channel-create-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.initiatorCreateAmount }}
+          </hint-tooltip>
+          Initiator Amount
+        </th>
+        <td class="transaction-type-panel-channel-create-tx__data">
           <price-label :price="formatAettosToAe(transactionData.initiatorAmount)"/>
         </td>
       </tr>
@@ -60,7 +69,7 @@
           <hint-tooltip>
             {{ stateChannelsHints.responderCreateAmount }}
           </hint-tooltip>
-          Responder / Amount
+          Responder
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
           <app-link
@@ -68,7 +77,16 @@
             has-break>
             {{ transactionData.responderId }}
           </app-link>
-          /
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-create-tx__row">
+        <th class="transaction-type-panel-channel-create-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.responderCreateAmount }}
+          </hint-tooltip>
+          Responder Amount
+        </th>
+        <td class="transaction-type-panel-channel-create-tx__data">
           <price-label :price="formatAettosToAe(transactionData.responderAmount)"/>
         </td>
       </tr>

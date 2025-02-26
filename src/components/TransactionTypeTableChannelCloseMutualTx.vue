@@ -20,14 +20,23 @@
           <hint-tooltip>
             {{ stateChannelsHints.initiatorCloseAmount }}
           </hint-tooltip>
-          Initiator / Amount
+          Initiator
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <app-link
             :to="`/accounts/${transactionData.channel.initiator}`">
             {{ transactionData.channel.initiator }}
           </app-link>
-          /
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-close-mutual-tx__row">
+        <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.initiatorCloseAmount }}
+          </hint-tooltip>
+          Initiator Amount
+        </th>
+        <td class="transaction-type-panel-channel-close-mutual-tx__data">
           <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
         </td>
       </tr>
@@ -36,16 +45,23 @@
           <hint-tooltip>
             {{ stateChannelsHints.responderCloseAmount }}
           </hint-tooltip>
-          Responder / Amount
+          Responder
         </th>
         <td class="transaction-type-panel-channel-close-mutual-tx__data">
-          <div class="transaction-type-panel-channel-close-mutual-tx__container">
-            <app-link :to="`/accounts/${transactionData.channel.responder}`">
-              {{ transactionData.channel.responder }}
-            </app-link>
-            /
-            <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
-          </div>
+          <app-link :to="`/accounts/${transactionData.channel.responder}`">
+            {{ transactionData.channel.responder }}
+          </app-link>
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-close-mutual-tx__row">
+        <th class="transaction-type-panel-channel-close-mutual-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.responderCloseAmount }}
+          </hint-tooltip>
+          Responder Amount
+        </th>
+        <td class="transaction-type-panel-channel-close-mutual-tx__data">
+          <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-close-mutual-tx__row">
@@ -114,12 +130,6 @@ defineProps({
     @media (--mobile) {
       display: table-cell;
     }
-  }
-
-  &__container {
-    display: inline-flex;
-    flex-direction: row;
-    gap: var(--space-0);
   }
 }
 </style>

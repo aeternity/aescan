@@ -20,14 +20,23 @@
           <hint-tooltip>
             {{ stateChannelsHints.initiatorSettleAmount }}
           </hint-tooltip>
-          Initiator / Amount
+          Initiator
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link
             :to="`/accounts/${transactionData.channel.initiator}`">
             {{ transactionData.channel.initiator }}
           </app-link>
-          /
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-settle-tx__row">
+        <th class="transaction-type-panel-channel-settle-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.initiatorSettleAmount }}
+          </hint-tooltip>
+          Initiator Amount
+        </th>
+        <td class="transaction-type-panel-channel-settle-tx__data">
           <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
         </td>
       </tr>
@@ -36,14 +45,23 @@
           <hint-tooltip>
             {{ stateChannelsHints.responderCloseAmount }}
           </hint-tooltip>
-          Responder / Amount
+          Responder
         </th>
         <td class="transaction-type-panel-channel-settle-tx__data">
           <app-link
             :to="`/accounts/${transactionData.channel.responder}`">
             {{ transactionData.channel.responder }}
           </app-link>
-          /
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-settle-tx__row">
+        <th class="transaction-type-panel-channel-settle-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.responderCloseAmount }}
+          </hint-tooltip>
+          Responder Amount
+        </th>
+        <td class="transaction-type-panel-channel-settle-tx__data">
           <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
         </td>
       </tr>

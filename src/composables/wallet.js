@@ -6,7 +6,7 @@ export const useWalletStore = defineStore('wallet', () => {
 
   const aeSdk = new AeSdk({
     nodes: [
-      { name: NETWORK_ID, instance: new Node(NODE_URL) },
+      { name: NETWORK_ID, instance: new Node(NODE_URL.substring(3)) },
     ],
   })
 

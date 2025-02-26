@@ -3,10 +3,9 @@ import { AeSdk, BrowserWindowMessageConnection, Node, WalletConnectorFrame, wall
 
 export const useWalletStore = defineStore('wallet', () => {
   const { NODE_URL, NETWORK_ID } = useRuntimeConfig().public
-
   const aeSdk = new AeSdk({
     nodes: [
-      { name: NETWORK_ID, instance: new Node(NODE_URL.substring(3)) },
+      { name: NETWORK_ID, instance: new Node(NODE_URL.slice(0, -3)) },
     ],
   })
 

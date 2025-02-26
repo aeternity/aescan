@@ -34,7 +34,7 @@
   }
 
   &__header {
-    padding: var(--space-1) 0 0 var(--space-1);
+    padding: var(--space-1) var(--space-1) 0 var(--space-1);
 
     @media (--desktop) {
       display: flex;

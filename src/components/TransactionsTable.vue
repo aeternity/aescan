@@ -74,7 +74,6 @@ defineProps({
   margin-bottom: var(--space-4);
 
   &__data {
-    vertical-align: top;
     white-space: nowrap;
   }
 }

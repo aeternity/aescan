@@ -75,6 +75,7 @@ defineProps({
 
   &__data {
     vertical-align: top;
+    white-space: nowrap;
   }
 }
 </style>

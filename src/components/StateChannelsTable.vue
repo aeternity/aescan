@@ -50,16 +50,17 @@
       <tr
         v-for="channel in stateChannels.data"
         :key="channel.id">
-        <td>
+        <td class="state-channels-table__data">
           <value-hash-ellipsed
             :hash="channel.id"
             :link-to="`/state-channels/${channel.id}`"/>
         </td>
-        <td>{{ channel.status }}</td>
-        <td>
+        <td class="state-channels-table__data">
+          {{ channel.status }}
+        </td>
+        <td class="state-channels-table__data">
           <div>
-            <div
-              class="state-channels-table__participants">
+            <div>
               Initiator:
               <value-hash-ellipsed
                 :hash="channel.initiator"
@@ -73,16 +74,20 @@
             </div>
           </div>
         </td>
-        <td>{{ channel.updateCount }}</td>
-        <td>
+        <td class="state-channels-table__data">
+          {{ channel.updateCount }}
+        </td>
+        <td class="state-channels-table__data">
           <price-label :price="channel.locked"/>
         </td>
-        <td>
+        <td class="state-channels-table__data">
           <block-time-cell
             :height="channel.updatedHeight"
             :timestamp="channel.updated"/>
         </td>
-        <td>{{ channel.lastTxType }}</td>
+        <td class="state-channels-table__data">
+          {{ channel.lastTxType }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -103,7 +108,7 @@ defineProps({
 .state-channels-table {
   margin-bottom: var(--space-4);
 
-  &__participants {
+  &__data {
     white-space: nowrap;
   }
 }

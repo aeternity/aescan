@@ -45,32 +45,32 @@
         <tr
           v-for="name in names.data"
           :key="name.name">
-          <td>
+          <td class="names-active-table__data">
             <app-link :to="`/names/${name.name}`">
               {{ name.name }}
             </app-link>
           </td>
-          <td>
+          <td class="names-active-table__data">
             <block-time-cell
               :height="name.expirationHeight"
               :timestamp="name.expiration"/>
           </td>
-          <td>
+          <td class="names-active-table__data">
             <value-hash-ellipsed
               :hash="name.buyer"
               :link-to="`/accounts/${name.buyer}`"/>
           </td>
-          <td>
+          <td class="names-active-table__data">
             <price-label
               class="names-active-table__price-label"
               :price="name.fee"/>
           </td>
-          <td>
+          <td class="names-active-table__data">
             <value-hash-ellipsed
               :hash="name.owner"
               :link-to="`/accounts/${name.owner}`"/>
           </td>
-          <td>
+          <td class="names-active-table__data">
             <template v-if="name.pointers.length > 0">
               <value-hash-ellipsed
                 v-for="pointer in name.pointers"
@@ -102,6 +102,10 @@ defineProps({
 .names-active-table {
   &__price-label {
     margin-top: var(--space-0);
+  }
+
+  &__data {
+    white-space: nowrap;
   }
 
   &__pointer {

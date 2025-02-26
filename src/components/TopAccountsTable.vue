@@ -33,19 +33,21 @@
         <tr
           v-for="account in topAccounts"
           :key="account.account">
-          <td>{{ account.rank }}.</td>
-
-          <td>
+          <td class="top-accounts-table__data">
+            {{ account.rank }}.
+          </td>
+          <td class="top-accounts-table__data">
             <app-link
               :to="`/accounts/${account.account}`">
               {{ account.account }}
             </app-link>
           </td>
-          <td>
+          <td class="top-accounts-table__data">
             <price-label :price=" account.balance "/>
           </td>
-          <!--          todo fix price-->
-          <td>{{ account.percentage }} %</td>
+          <td class="top-accounts-table__data">
+            {{ account.percentage }} %
+          </td>
         </tr>
       </tbody>
     </table>
@@ -67,6 +69,10 @@ defineProps({
 .top-accounts-table {
   margin-bottom: var(--space-4);
   white-space: nowrap;
+
+  &__data {
+    white-space: nowrap;
+  }
 
   &__container {
     overflow-x: auto;

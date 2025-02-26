@@ -44,28 +44,28 @@
       <tr
         v-for="keyblock in keyblocks.data"
         :key="keyblock.height">
-        <td>
+        <td class="keyblocks-table__data">
           <value-hash-ellipsed
             :hash="keyblock.hash"
             :link-to="`/keyblocks/${keyblock.hash}`"/>
         </td>
-        <td>
+        <td class="keyblocks-table__data">
           <block-time-cell
             :height="keyblock.block"
             :timestamp="keyblock.time"/>
         </td>
-        <td>
+        <td class="keyblocks-table__data">
           {{ keyblock.transactionsCount }}
         </td>
-        <td>
+        <td class="keyblocks-table__data">
           {{ keyblock.microBlocksCount }}
         </td>
-        <td>
+        <td class="keyblocks-table__data">
           <value-hash-ellipsed
             :hash="keyblock.beneficiary"
             :link-to="`/accounts/${keyblock.beneficiary}`"/>
         </td>
-        <td>
+        <td class="keyblocks-table__data">
           <price-label :price="keyblock.beneficiaryReward"/>
         </td>
       </tr>
@@ -83,3 +83,9 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.keyblocks-table__data {
+  white-space: nowrap;
+}
+</style>

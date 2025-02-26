@@ -60,11 +60,19 @@
           <td class="nodes-table__hash">
             <value-hash-ellipsed :hash="index"/>
           </td>
-          <td>{{ node.host }}</td>
-          <td>{{ node.port }}</td>
-          <td>{{ formatNullable(node.networkId) }}</td>
-          <td>{{ formatNullable(node.nodeVersion) }}</td>
-          <td>
+          <td class="nodes-table__data">
+            {{ node.host }}
+          </td>
+          <td class="nodes-table__data">
+            {{ node.port }}
+          </td>
+          <td class="nodes-table__data">
+            {{ formatNullable(node.networkId) }}
+          </td>
+          <td class="nodes-table__data">
+            {{ formatNullable(node.nodeVersion) }}
+          </td>
+          <td class="nodes-table__data">
             <value-hash-ellipsed
               v-if="node.nodeRevision"
               :hash="node.nodeRevision"/>
@@ -72,8 +80,12 @@
               N/A
             </template>
           </td>
-          <td>{{ formatNullable(node.nodeVendor) }}</td>
-          <td>{{ formatNullable(node.nodeOs) }}</td>
+          <td class="nodes-table__data">
+            {{ formatNullable(node.nodeVendor) }}
+          </td>
+          <td class="nodes-table__data">
+            {{ formatNullable(node.nodeOs) }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -94,6 +106,10 @@ defineProps({
 <style scoped>
 .nodes-table {
   &__header {
+    white-space: nowrap;
+  }
+
+  &__data {
     white-space: nowrap;
   }
 

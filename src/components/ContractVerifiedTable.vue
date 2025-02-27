@@ -94,6 +94,10 @@ defineProps({
     }
   }
 
+  &__row:last-of-type &__table-header {
+    border-bottom: 0;
+  }
+
   &__data {
     display: block;
     padding-left: 28px;

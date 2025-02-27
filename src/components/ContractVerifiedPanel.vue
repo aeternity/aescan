@@ -8,7 +8,8 @@
     <template v-if="isVerified">
       <contract-verified-table
         :verification-details="verificationDetails"
-        :is-verified="isVerified"/>
+        :is-verified="isVerified"
+        class="contract-verified-panel__table"/>
 
       <div class="contract-verified-panel__container">
         <h3 class="contract-verified-panel__title">
@@ -100,6 +101,10 @@ function downloadFile(content) {
 
   &__container {
     margin: var(--space-1);
+  }
+
+  &__table {
+    margin-bottom: var(--space-5);
   }
 
   &__file {

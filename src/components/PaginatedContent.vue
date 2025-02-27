@@ -213,7 +213,7 @@ onBeforeUnmount(() => {
   }
 
   &__pagination {
-    padding: 0 var(--space-2);
+    padding: 0 var(--space-1);
     width: 100%;
   }
 

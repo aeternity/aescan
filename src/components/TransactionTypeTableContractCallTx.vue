@@ -110,9 +110,7 @@
           Gas Limit
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <div class="transaction-type-panel-contract-call-tx__container">
-            {{ transactionData.gas }}
-          </div>
+          {{ transactionData.gas }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -123,9 +121,7 @@
           Gas Price
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <div class="transaction-type-panel-contract-call-tx__container">
-            <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
-          </div>
+          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -136,9 +132,7 @@
           Gas Used
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <div class="transaction-type-panel-contract-call-tx__container">
-            {{ transactionData.gasUsed }}
-          </div>
+          {{ transactionData.gasUsed }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -149,9 +143,7 @@
           Gas Costs
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <div class="transaction-type-panel-contract-call-tx__container">
-            <price-label :price="formatAettosToAe(gasCosts)"/>
-          </div>
+          <price-label :price="formatAettosToAe(gasCosts)"/>
         </td>
       </tr>
     </tbody>
@@ -225,12 +217,6 @@ function toggleCollapse() {
     &:first-child {
       margin-right: var(--space-3);
     }
-  }
-
-  &__container {
-    display: inline-flex;
-    flex-direction: row;
-    gap: var(--space-0);
   }
 }
 </style>

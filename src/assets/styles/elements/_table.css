@@ -28,9 +28,14 @@ td {
   text-align: left;
   border-bottom: 1px solid var(--color-midnight-25);
   vertical-align: middle;
-  padding: var(--space-1);
+  padding: var(--space-0) var(--space-1) var(--space-1);
   white-space: wrap;
   word-wrap: break-word;
+
+  @media (--desktop) {
+    padding: var(--space-1);
+
+  }
 }
 
 /*todo revert some styles back*/

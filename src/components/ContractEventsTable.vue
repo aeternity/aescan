@@ -33,27 +33,32 @@
         v-for="(event, index) in contractEvents.data"
         :key="event.callTxHash">
         <tr>
-          <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td
+            :class="['contract-events-table__data', {'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.callTxHash"
               :link-to="`/transactions/${event.callTxHash}`"/>
           </td>
-          <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td
+            :class="['contract-events-table__data',{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.createdHeight"
               :timestamp="event.created"/>
           </td>
-          <td :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td
+            :class="['contract-events-table__data',{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             {{ event.eventName || 'N/A' }}
           </td>
-          <td v-if="event.isDecoded">
+          <td
+            v-if="event.isDecoded"
+            class="contract-events-table__data">
             <contract-event-cell
               :event="event"
               :contract-details="contractDetails"/>
           </td>
           <td
             v-else
-            :class="[{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="['contract-events-table__data',{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
@@ -110,6 +115,10 @@ function toggle(id) {
 </script>
 <style scoped>
 .contract-events-table {
+  &__data {
+    white-space: nowrap;
+  }
+
   &__data--expanded {
     border-bottom: 0;
   }

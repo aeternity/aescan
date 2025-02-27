@@ -6,20 +6,14 @@
       <tbody>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
+            Smart Contract ID
+
             <hint-tooltip>
               {{ contractsHints.contractId }}
             </hint-tooltip>
-            Smart Contract ID
           </th>
           <td class="contract-details-panel__data">
-            <div class="u-hidden-mobile">
-              <copy-chip :label="contractDetails.id"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(contractDetails.id)"
-                :clipboard-text="contractDetails.id"/>
-            </div>
+            <copy-chip :label="contractDetails.id"/>
           </td>
         </tr>
 
@@ -27,10 +21,11 @@
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
+            Type
+
             <hint-tooltip>
               {{ contractsHints.type }}
             </hint-tooltip>
-            Type
           </th>
           <td class="contract-details-panel__data">
             <app-chip size="sm">
@@ -43,10 +38,11 @@
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
+            Token
+
             <hint-tooltip>
               {{ contractsHints.token }}
             </hint-tooltip>
-            Token
           </th>
           <td class="contract-details-panel__data">
             <div class="contract-details-panel__container">
@@ -249,6 +245,7 @@ const contractMiddlewareUrl = computed(() =>
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
+      /*todo border fix*/
     }
   }
 

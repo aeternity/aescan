@@ -226,8 +226,6 @@ const contractMiddlewareUrl = computed(() =>
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
-      /*todo border fix*/
-      /*todo padding under table*/
     }
   }
 

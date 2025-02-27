@@ -12,7 +12,6 @@
               {{ namesHints.accountPointer }}
             </hint-tooltip>
           </th>
-          <!--          todo revert order of hints-->
           <td class="transaction-pointers-panel__data">
             <app-link
               v-if="pointers.account_pubkey"

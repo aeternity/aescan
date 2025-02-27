@@ -40,13 +40,9 @@ const contractEventCellComponent = computed(() =>
 <style scoped>
 .contract-event-cell {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: var(--space-1);
   flex-wrap: nowrap;
-
-  @media (--desktop) {
-    justify-content: space-between;
-  }
 }
 </style>

@@ -31,20 +31,22 @@
         <tr>
           <td
             class="tokens-event-table__hash"
-            :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="['token-events-table__data',{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.hash"
               :link-to="`/transactions/${event.hash}`"/>
           </td>
-          <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="['token-events-table__data',{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.createdHeight"
               :timestamp="event.created"/>
           </td>
-          <td :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="['token-events-table__data',{'token-events-table__data--expanded': isExpanded.includes(index)}]">
             {{ event.name }}
           </td>
-          <td v-if="event.isDecoded">
+          <td
+            v-if="event.isDecoded"
+            class="token-events-table__data">
             <token-events-data-cell
               :name="event.name"
               :data="event.data"
@@ -52,7 +54,7 @@
           </td>
           <td
             v-else
-            :class="[{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="['token-events-table__data', {'token-events-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
@@ -64,6 +66,7 @@
           <td
             colspan="4"
             :class="[
+              'token-events-table__data',
               'token-events-table__arguments',
               {'token-events-table__arguments--expanded': isExpanded.includes(index)}
             ]">
@@ -103,6 +106,10 @@ function toggle(id) {
 
 <style scoped>
 .token-events-table {
+  &__data {
+    white-space: nowrap;
+  }
+
   &__data--expanded {
     border-bottom: 0;
   }

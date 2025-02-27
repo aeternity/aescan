@@ -1,14 +1,7 @@
 <template>
   <app-panel class="account-details-panel">
     <template v-if="accountDetails.isExistent === false">
-      <div class="u-hidden-mobile">
-        <copy-chip :label="accountDetails.id"/>
-      </div>
-      <div class="u-hidden-desktop">
-        <copy-chip
-          :label="formatEllipseHash(accountDetails.id)"
-          :clipboard-text="accountDetails.id"/>
-      </div>
+      <copy-chip :label="accountDetails.id"/>
 
       <p class="account-details-panel__not-existent">
         The account has never been seen in the network.
@@ -27,14 +20,7 @@
             Address
           </th>
           <td class="account-details-panel__data">
-            <div class="u-hidden-mobile">
-              <copy-chip :label="accountDetails.id"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(accountDetails.id)"
-                :clipboard-text="accountDetails.id"/>
-            </div>
+            <copy-chip :label="accountDetails.id"/>
           </td>
         </tr>
         <tr class="account-details-panel__row">

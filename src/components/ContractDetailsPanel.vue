@@ -6,11 +6,10 @@
       <tbody>
         <tr class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Smart Contract ID
-
             <hint-tooltip>
               {{ contractsHints.contractId }}
             </hint-tooltip>
+            Smart Contract ID
           </th>
           <td class="contract-details-panel__data">
             <copy-chip :label="contractDetails.id"/>
@@ -21,11 +20,10 @@
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Type
-
             <hint-tooltip>
               {{ contractsHints.type }}
             </hint-tooltip>
+            Type
           </th>
           <td class="contract-details-panel__data">
             <app-chip size="sm">
@@ -33,16 +31,14 @@
             </app-chip>
           </td>
         </tr>
-
         <tr
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
           <th class="contract-details-panel__table-header">
-            Token
-
             <hint-tooltip>
               {{ contractsHints.token }}
             </hint-tooltip>
+            Token
           </th>
           <td class="contract-details-panel__data">
             <div class="contract-details-panel__container">
@@ -73,12 +69,7 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.createTransactionHash }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.createTransactionHash) }}
-              </span>
+              {{ contractDetails.createTransactionHash }}
             </app-link>
           </td>
         </tr>
@@ -119,12 +110,7 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.createdBy }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.createdBy) }}
-              </span>
+              {{ contractDetails.createdBy }}
             </app-link>
           </td>
         </tr>
@@ -152,12 +138,7 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.contractAccount }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.contractAccount) }}
-              </span>
+              {{ contractDetails.contractAccount }}
             </app-link>
           </td>
         </tr>
@@ -246,6 +227,7 @@ const contractMiddlewareUrl = computed(() =>
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
       /*todo border fix*/
+      /*todo padding under table*/
     }
   }
 
@@ -260,6 +242,8 @@ const contractMiddlewareUrl = computed(() =>
   &__data {
     display: block;
     padding-left: 28px;
+    white-space: wrap;
+    word-break: break-all;
 
     @media (--mobile) {
       display: table-cell;

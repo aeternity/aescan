@@ -34,19 +34,25 @@
         :key="event.callTxHash">
         <tr>
           <td
-            :class="['contract-events-table__data', {'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="[
+              'contract-events-table__data',
+              {'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             <value-hash-ellipsed
               :hash="event.callTxHash"
               :link-to="`/transactions/${event.callTxHash}`"/>
           </td>
           <td
-            :class="['contract-events-table__data',{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="[
+              'contract-events-table__data',
+              {'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             <block-time-cell
               :height="event.createdHeight"
               :timestamp="event.created"/>
           </td>
           <td
-            :class="['contract-events-table__data',{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="[
+              'contract-events-table__data',
+              {'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             {{ event.eventName || 'N/A' }}
           </td>
           <td
@@ -58,7 +64,9 @@
           </td>
           <td
             v-else
-            :class="['contract-events-table__data',{'contract-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="[
+              'contract-events-table__data',
+              {'contract-events-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
@@ -71,8 +79,7 @@
             colspan="4"
             :class="[
               'contract-events-table__arguments',
-              {'contract-events-table__arguments--expanded': isExpanded.includes(index)}
-            ]">
+              {'contract-events-table__arguments--expanded': isExpanded.includes(index)}]">
             <events-panel
               :args="event.args"
               :call-tx-hash="event.callTxHash"

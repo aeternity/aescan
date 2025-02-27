@@ -24,12 +24,7 @@
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.owner}`">
-              <span class="u-hidden-mobile">
-                {{ name.owner }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.owner) }}
-              </span>
+              {{ name.owner }}
             </app-link>
           </td>
         </tr>
@@ -44,12 +39,7 @@
           </th>
           <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
-              <span class="u-hidden-mobile">
-                {{ name.bidder }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.bidder) }}
-              </span>
+              {{ name.bidder }}
             </app-link>
           </td>
         </tr>
@@ -209,6 +199,8 @@ function getLabel(state) {
   &__data {
     display: block;
     padding-left: 28px;
+    white-space: wrap;
+    word-break: break-all;
 
     @media (--mobile) {
       display: table-cell;

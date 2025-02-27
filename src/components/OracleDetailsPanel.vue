@@ -10,15 +10,7 @@
             Oracle ID
           </th>
           <td class="oracle-details-panel__data">
-            <div class="u-hidden-mobile">
-              <copy-chip
-                :label="oracleDetails.id"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(oracleDetails.id)"
-                :clipboard-text="oracleDetails.id"/>
-            </div>
+            <copy-chip :label="oracleDetails.id"/>
           </td>
         </tr>
         <tr class="oracle-details-panel__row">

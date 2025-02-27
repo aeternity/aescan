@@ -77,7 +77,7 @@ defineProps({
   }
 
   &__link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
   }
 }

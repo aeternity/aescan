@@ -26,18 +26,18 @@
       <tr
         v-for="holder in tokenHolders.data"
         :key="holder.address">
-        <td>
+        <td class="token-holders-table__data">
           <value-hash-ellipsed
             :hash="holder.address"
             :link-to="`/accounts/${holder.address}`"/>
         </td>
-        <td>
+        <td class="token-holders-table__data">
           <price-label
             :price="holder.amount"
             :currency="tokenDetails.symbol"
             :contract-id="holder.contractId"/>
         </td>
-        <td>
+        <td class="token-holders-table__data">
           {{ holder.percentage }}
         </td>
       </tr>
@@ -59,3 +59,10 @@ defineProps({
   },
 })
 </script>
+<style scoped>
+.token-holders-table {
+  &__data {
+    white-space: nowrap;
+  }
+}
+</style>

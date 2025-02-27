@@ -55,7 +55,7 @@
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
     </div>
-    <dashboard-microblocks-panel/>
+    <dashboard-microblocks-panel class="dashboard-keyblock-panel__dashboard-microblocks-panel"/>
   </app-panel>
 </template>
 
@@ -82,7 +82,7 @@ const {
   }
 
   &__dashboard-panel-header {
-    margin: 0 var(--space-2) var(--space-2);
+    margin: 0 var(--space-1) var(--space-0) var(--space-1);
 
     @media (--desktop) {
       margin: 0 0 var(--space-4) 0;
@@ -101,6 +101,10 @@ const {
     @media (--desktop) {
       margin-bottom: var(--space-4);
     }
+  }
+
+  &__dashboard-microblocks-panel {
+    margin: var(--space-1) var(--space-1) 0;
   }
 
   &__summary {

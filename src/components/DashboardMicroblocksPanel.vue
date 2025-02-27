@@ -33,7 +33,9 @@
       v-if="selectedKeyblockMicroblocks.length > 0"
       class="dashboard-microblocks-panel__microblock-sequence"
       :microblocks="selectedKeyblockMicroblocks"/>
-    <dashboard-transaction-panel v-if="selectedKeyblockMicroblocks.length > 0"/>
+    <dashboard-transaction-panel
+      v-if="selectedKeyblockMicroblocks.length > 0"
+      class="dashboard-microblocks-panel__dasboard-transaction-panel"/>
     <blank-state v-else/>
   </app-panel>
 </template>
@@ -60,6 +62,10 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
     @media (--desktop) {
       margin: 0 0 var(--space-4) 0;
     }
+  }
+
+  &__dasboard-transaction-panel {
+    margin: var(--space-1) var(--space-1) 0;
   }
 
   &__microblock-sequence {

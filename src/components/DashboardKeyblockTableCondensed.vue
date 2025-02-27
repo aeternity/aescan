@@ -19,6 +19,7 @@
       <tr>
         <th class="dashboard-keyblock-table__header">
           Beneficiary
+          <!--          todo flip hints order-->
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.beneficiary }}
           </hint-tooltip>

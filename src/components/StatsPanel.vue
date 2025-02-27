@@ -6,10 +6,10 @@
       class="stats-panel__stats-tile"
       title="TRANSACTIONS"
       icon-name="transactions">
-      <div>
+      <div class="stats-panel__content">
         Max TPS: <span class="stats-panel__value">{{ formatNullable(formatNumber(maxTps)) }}</span>
       </div>
-      <div>
+      <div class="stats-panel__content">
         Total: <span class="stats-panel__value">{{ formatNullable(formatNumber(transactionsCount)) }}</span>
       </div>
       <template #tooltip>
@@ -26,7 +26,7 @@
       class="stats-panel__stats-tile"
       title="LATEST KEYBLOCK"
       icon-name="latest-keyblock">
-      <div>
+      <div class="stats-panel__content">
         Height:
         <span class="stats-panel__value">
           <app-link
@@ -39,7 +39,7 @@
           </template>
         </span>
       </div>
-      <div>
+      <div class="stats-panel__content">
         Transactions:
         <span class="stats-panel__value">
           {{ formatNullable(formatNumber(latestKeyblockTransactionsCount)) }}
@@ -54,7 +54,7 @@
       class="stats-panel__stats-tile"
       title="KEYBLOCK REWARD"
       icon-name="keyblock-reward">
-      <div>
+      <div class="stats-panel__content">
         Beneficiary:
         <price-label
           class="stats-panel__value"
@@ -83,14 +83,14 @@
       class="stats-panel__stats-tile"
       title="SUPPLY"
       icon-name="supply">
-      <div>
+      <div class="stats-panel__content">
         Burned:
         <price-label
           class="stats-panel__value"
           :price="burnedCount"
           :has-icon="false"/>
       </div>
-      <div>
+      <div class="stats-panel__content">
         Circulating:
         <price-label
           class="stats-panel__value"
@@ -109,10 +109,10 @@
       class="stats-panel__stats-tile"
       title="STATE CHANNELS"
       icon-name="state-channel">
-      <div>
+      <div class="stats-panel__content">
         Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(stateChannelsCount)) }}</span>
       </div>
-      <div>
+      <div class="stats-panel__content">
         Locked:
         <price-label
           class="stats-panel__value"
@@ -136,7 +136,7 @@
       class="stats-panel__stats-tile"
       title="SMART CONTRACTS"
       icon-name="contracts">
-      <div>
+      <div class="stats-panel__content">
         Total: <span class="stats-panel__value">{{ formatNullable(formatNumber(contractsCount)) }}</span>
       </div>
       <template #tooltip>
@@ -160,10 +160,10 @@
       class="stats-panel__stats-tile"
       title="ORACLES"
       icon-name="oracles">
-      <div>
+      <div class="stats-panel__content">
         Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(activeOraclesCount)) }}</span>
       </div>
-      <div>
+      <div class="stats-panel__content">
         Total seen: <span class="stats-panel__value">{{ formatNullable(formatNumber(oraclesCount)) }}</span>
       </div>
       <template #tooltip>
@@ -175,10 +175,10 @@
       class="stats-panel__stats-tile"
       title="AENS NAMES"
       icon-name="aens-name">
-      <div>
+      <div class="stats-panel__content">
         In auction: <span class="stats-panel__value">{{ formatNullable(formatNumber(namesInAuctionCount)) }}</span>
       </div>
-      <div>
+      <div class="stats-panel__content">
         Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(activeNamesCount)) }}</span>
       </div>
       <template #tooltip>
@@ -257,6 +257,11 @@ const isLoading = computed(() => {
 
   &__value {
     font-weight: 700;
+    margin-left: var(--space-0);
+  }
+
+  &__content {
+    display: flex;
   }
 
   &__loader-panel {

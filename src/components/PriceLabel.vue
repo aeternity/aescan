@@ -82,10 +82,9 @@ const price = computed(() =>
 
 <style scoped>
 .price-label {
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
-  height: 20px;
 
   &__icon {
     width: 20px;

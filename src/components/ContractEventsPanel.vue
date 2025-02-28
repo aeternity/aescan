@@ -8,14 +8,7 @@
       <contract-events-table
         v-if="contractEvents"
         :contract-details="contractDetails"
-        :contract-events="contractEvents"
-        class="u-hidden-mobile"/>
-
-      <contract-events-table-condensed
-        v-if="contractEvents"
-        :contract-details="contractDetails"
-        :contract-events="contractEvents"
-        class="u-hidden-desktop"/>
+        :contract-events="contractEvents"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -25,10 +18,10 @@ const { fetchContractEvents } = useContractDetailsStore()
 const { contractEvents, contractDetails } = storeToRefs(useContractDetailsStore())
 
 function loadPrevEvents() {
-  fetchContractEvents({ queryParameters: contractEvents.value.prev })
+  fetchContractEvents({ queryParameters: contractEvents.value.prev.substring(3) })
 }
 
 function loadNextEvents() {
-  fetchContractEvents({ queryParameters: contractEvents.value.next })
+  fetchContractEvents({ queryParameters: contractEvents.value.next.substring(3) })
 }
 </script>

@@ -38,29 +38,29 @@
       <tr
         v-for="name in names.data"
         :key="name.name">
-        <td>
+        <td class="names-in-auction-table__data">
           <app-link :to="`/names/${name.name}`">
             {{ name.name }}
           </app-link>
         </td>
-        <td>
+        <td class="names-in-auction-table__data">
           <block-time-cell
             :height="name.expirationHeight"
             :timestamp="name.expiration"/>
         </td>
-        <td>
+        <td class="names-in-auction-table__data">
           <price-label
             :price="name.bid"
             class="names-in-auction-table__price-label"/>
         </td>
-        <td>
+        <td class="names-in-auction-table__data">
           <div>
             <value-hash-ellipsed
               :hash="name.highestBidder"
               :link-to="`/accounts/${name.highestBidder}`"/>
           </div>
         </td>
-        <td>
+        <td class="names-in-auction-table__data">
           {{ name.bidCount }}
         </td>
       </tr>

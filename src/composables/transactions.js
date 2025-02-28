@@ -64,7 +64,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
     rawTransactions.value = null
 
     if (queryParameters) {
-      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters}`)
+      const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters.substring(3)}`)
       isHydrated.value = true
       rawTransactions.value = data
       return
@@ -81,7 +81,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     if (type) {
       url.searchParams.append('type', type.replace('-', '_'))
     }
-
     const { data } = await axios.get(url.toString())
     isHydrated.value = true
     rawTransactions.value = data

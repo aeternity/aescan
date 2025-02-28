@@ -26,7 +26,7 @@
       <tr
         v-for="token in tokens.data"
         :key="token.contractId">
-        <td>
+        <td class="tokens-table__data">
           <app-link
             :to="`/tokens/${token.contractId}`"
             class="tokens-table__link">
@@ -37,11 +37,11 @@
             <not-available-label v-if="!token.symbol"/>
           </app-link>
         </td>
-        <td>
+        <td class="tokens-table__data">
           {{ token.name }}
           <not-available-label v-if="!token.name"/>
         </td>
-        <td>
+        <td class="tokens-table__data">
           <value-hash-ellipsed
             :link-to="`/contracts/${token.contractId}`"
             :hash="token.contractId "/>
@@ -66,6 +66,10 @@ defineProps({
 .tokens-table {
   margin-bottom: var(--space-4);
 
+  &__data {
+    white-space: nowrap;
+  }
+
   &__icon {
     width: 24px;
     height: 24px;
@@ -73,7 +77,7 @@ defineProps({
   }
 
   &__link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
   }
 }

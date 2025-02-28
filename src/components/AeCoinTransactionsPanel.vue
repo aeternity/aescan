@@ -4,12 +4,7 @@
       :entities="transactions"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
-      <transactions-table
-        :transactions="transactions"
-        class="u-hidden-mobile"/>
-      <transactions-table-condensed
-        :transactions="transactions"
-        class="u-hidden-desktop"/>
+      <transactions-table :transactions="transactions"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -18,10 +13,8 @@
 const { fetchTransactions } = useTransactionsStore()
 const { transactions } = storeToRefs(useTransactionsStore())
 
-const limit = computed(() => isDesktop() ? 10 : 3)
-
 async function loadTransactions() {
-  await fetchTransactions(`/transactions?limit=${limit.value}${'&type=' + 'spend'}`)
+  await fetchTransactions({ type: 'spend', limit: 10 })
 }
 
 await useAsyncData(async() => {
@@ -30,10 +23,10 @@ await useAsyncData(async() => {
 })
 
 function loadPrevTransactions() {
-  fetchTransactions(transactions.value.prev)
+  fetchTransactions({ queryParameters: transactions.value.prev })
 }
 
 function loadNextTransactions() {
-  fetchTransactions(transactions.value.next)
+  fetchTransactions({ queryParameters: transactions.value.next })
 }
 </script>

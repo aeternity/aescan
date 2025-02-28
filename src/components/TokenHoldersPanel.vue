@@ -8,14 +8,7 @@
       <token-holders-table
         v-if="tokenHolders"
         :token-holders="tokenHolders"
-        :token-details="tokenDetails"
-        class="u-hidden-mobile"/>
-
-      <token-holders-table-condensed
-        v-if="tokenHolders"
-        :token-holders="tokenHolders"
-        :token-details="tokenDetails"
-        class="u-hidden-desktop"/>
+        :token-details="tokenDetails"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -25,16 +18,15 @@ const { fetchTokenHolders, fetchTokenHoldersCount } = useTokenDetailsStore()
 const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(useTokenDetailsStore())
 
 function loadPrevHolders() {
-  fetchTokenHolders({ queryParameters: tokenHolders.value.prev })
+  fetchTokenHolders({ queryParameters: tokenHolders.value.prev.substring(3) })
 }
 
 function loadNextHolders() {
-  fetchTokenHolders({ queryParameters: tokenHolders.value.next })
+  fetchTokenHolders({ queryParameters: tokenHolders.value.next.substring(3) })
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
-  fetchTokenHolders({ limit: limit.value })
+  fetchTokenHolders()
   fetchTokenHoldersCount()
 }
 </script>

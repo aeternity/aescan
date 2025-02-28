@@ -38,7 +38,7 @@
       <tr
         v-for="(activity, index) in accountActivities?.data"
         :key="index">
-        <td>
+        <td class="account-activities-table__data">
           <value-hash-ellipsed
             v-if="activity.hash"
             :hash="activity.hash"
@@ -47,22 +47,22 @@
             N/A
           </template>
         </td>
-        <td>
+        <td class="account-activities-table__data">
           <block-time-cell
             :height="activity.height"
             :timestamp="activity.time"/>
         </td>
-        <td>
+        <td class="account-activities-table__data">
           <account-activity-type-cell
             :account-details="accountDetails"
             :activity="activity"/>
         </td>
-        <td>
+        <td class="account-activities-table__data">
           <account-activity-cell
             :account-details="accountDetails"
             :activity="activity"/>
         </td>
-        <td>
+        <td class="account-activities-table__data">
           <account-activity-data-cell
             :account-details="accountDetails"
             :activity="activity"/>
@@ -86,3 +86,9 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.account-activities-table__data {
+  white-space: nowrap;
+}
+</style>

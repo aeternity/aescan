@@ -51,11 +51,11 @@
 
       <dashboard-keyblock-table-condensed
         v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__dashboard-keyblock-table-condensed u-hidden-desktop"
+        class="dashboard-keyblock-panel__dashboard-keyblock-table  u-hidden-desktop"
         :keyblock="selectedKeyblock"
         :stats="selectedDeltaStats"/>
     </div>
-    <dashboard-microblocks-panel/>
+    <dashboard-microblocks-panel class="dashboard-keyblock-panel__dashboard-microblocks-panel"/>
   </app-panel>
 </template>
 
@@ -73,6 +73,7 @@ const {
 <style scoped>
 .dashboard-keyblock-panel {
   width: 100%;
+  padding-bottom: 0;
 
   &__container {
     @media (--desktop) {
@@ -81,24 +82,16 @@ const {
   }
 
   &__dashboard-panel-header {
-    margin-bottom: var(--space-2);
+    margin: 0 var(--space-1) var(--space-0) var(--space-1);
 
     @media (--desktop) {
-      margin-bottom: var(--space-4);
+      margin: 0 0 var(--space-4) 0;
     }
   }
 
   &__dashboard-keyblock-table {
     @media (--desktop) {
       margin-bottom: var(--space-2);
-    }
-  }
-
-  &__dashboard-keyblock-table-condensed {
-    margin: var(--space-4) 0;
-
-    @media (--desktop) {
-      margin: 0;
     }
   }
 
@@ -110,19 +103,22 @@ const {
     }
   }
 
+  &__dashboard-microblocks-panel {
+    margin: var(--space-1) var(--space-1) 0;
+  }
+
   &__summary {
     font-family: var(--font-monospaced);
     font-size: 12px;
     line-height: 20px;
     display: block;
 
-    margin-bottom: var(--space-1);
+    margin: 0 var(--space-1) var(--space-1) var(--space-1);
 
     @media (--desktop) {
       margin-bottom: 0;
       display: none;
     }
-
   }
 
   &__summary--desktop {

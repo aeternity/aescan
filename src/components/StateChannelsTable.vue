@@ -33,7 +33,7 @@
           </hint-tooltip>
         </th>
         <th>
-          <time-toggle-button>Last Updated</time-toggle-button>
+          <time-toggle-button>Last Update</time-toggle-button>
           <hint-tooltip>
             {{ stateChannelsHints.lastUpdated }}
           </hint-tooltip>
@@ -50,36 +50,44 @@
       <tr
         v-for="channel in stateChannels.data"
         :key="channel.id">
-        <td>
+        <td class="state-channels-table__data">
           <value-hash-ellipsed
             :hash="channel.id"
             :link-to="`/state-channels/${channel.id}`"/>
         </td>
-        <td>{{ channel.status }}</td>
-        <td>
+        <td class="state-channels-table__data">
+          {{ channel.status }}
+        </td>
+        <td class="state-channels-table__data">
           <div>
-            Initiator:
-            <value-hash-ellipsed
-              :hash="channel.initiator"
-              :link-to="`/accounts/${channel.initiator}`"/>
-          </div>
-          <div>
-            Responder:
-            <value-hash-ellipsed
-              :hash="channel.responder"
-              :link-to="`/accounts/${channel.responder}`"/>
+            <div>
+              Initiator:
+              <value-hash-ellipsed
+                :hash="channel.initiator"
+                :link-to="`/accounts/${channel.initiator}`"/>
+            </div>
+            <div class="state-channels-table__participants">
+              Responder:
+              <value-hash-ellipsed
+                :hash="channel.responder"
+                :link-to="`/accounts/${channel.responder}`"/>
+            </div>
           </div>
         </td>
-        <td>{{ channel.updateCount }}</td>
-        <td>
+        <td class="state-channels-table__data">
+          {{ channel.updateCount }}
+        </td>
+        <td class="state-channels-table__data">
           <price-label :price="channel.locked"/>
         </td>
-        <td>
+        <td class="state-channels-table__data">
           <block-time-cell
             :height="channel.updatedHeight"
             :timestamp="channel.updated"/>
         </td>
-        <td>{{ channel.lastTxType }}</td>
+        <td class="state-channels-table__data">
+          {{ channel.lastTxType }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -99,5 +107,9 @@ defineProps({
 <style scoped>
 .state-channels-table {
   margin-bottom: var(--space-4);
+
+  &__data {
+    white-space: nowrap;
+  }
 }
 </style>

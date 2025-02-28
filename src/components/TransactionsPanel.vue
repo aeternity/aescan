@@ -5,7 +5,6 @@
       pagination-style="history"
       :entities="transactions"
       :total-count="transactionsCount"
-      :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
@@ -17,12 +16,7 @@
           <transactions-scope-picker v-model="selectedScope"/>
         </div>
       </template>
-      <transactions-table
-        :transactions="transactions"
-        class="u-hidden-mobile"/>
-      <transactions-table-condensed
-        :transactions="transactions"
-        class="u-hidden-desktop"/>
+      <transactions-table :transactions="transactions"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -43,11 +37,9 @@ const {
 } = useTransactionsStore()
 const route = useRoute()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-
 if (process.client) {
   if (!isHydrated?.value) {
-    setPageLimit(limit)
+    setPageLimit(10)
     await loadTransactions()
   }
 
@@ -70,7 +62,7 @@ async function loadNextTransactions() {
 
 </script>
 
-<style>
+<style scoped>
 .transactions-panel {
   &__select {
     margin-right: var(--space-1);

@@ -20,7 +20,8 @@
           Smart Contract
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <app-link :to="`/contracts/${transactionData.contractId}`">
+          <app-link
+            :to="`/contracts/${transactionData.contractId}`">
             {{ formatNullable(transactionData.contractId) }}
           </app-link>
         </td>
@@ -33,7 +34,8 @@
           Created By
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <app-link :to="`/accounts/${transactionData.ownerId}`">
+          <app-link
+            :to="`/accounts/${transactionData.ownerId}`">
             {{ transactionData.ownerId }}
           </app-link>
         </td>
@@ -68,9 +70,7 @@
           Gas Limit
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <div class="transaction-type-panel-contract-create-tx__container">
-            {{ transactionData.gas }}
-          </div>
+          {{ transactionData.gas }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
@@ -81,9 +81,7 @@
           Gas Price
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <div class="transaction-type-panel-contract-create-tx__container">
-            <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
-          </div>
+          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
@@ -94,9 +92,7 @@
           Gas Used
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <div class="transaction-type-panel-contract-create-tx__container">
-            {{ transactionData.gasUsed }}
-          </div>
+          {{ transactionData.gasUsed }}
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-create-tx__row">
@@ -107,9 +103,7 @@
           Gas Costs
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <div class="transaction-type-panel-contract-create-tx__container">
-            <price-label :price="formatAettosToAe(gasCosts)"/>
-          </div>
+          <price-label :price="formatAettosToAe(gasCosts)"/>
         </td>
       </tr>
     </tbody>
@@ -138,25 +132,45 @@ const gasCosts = computed(() =>
   }
 
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
     }
   }
 
-  &__data {
-    word-wrap: break-word;
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }
 
-  &__container {
+  &__data {
+    display: block;
+    padding-left: 28px;
+
+    @media (--mobile) {
+      display: table-cell;
+    }
+  }
+
+  &__link {
     display: inline-flex;
-    flex-direction: row;
-    gap: var(--space-0);
+    align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 }
 </style>

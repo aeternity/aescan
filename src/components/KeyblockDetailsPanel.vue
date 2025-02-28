@@ -17,14 +17,7 @@
             Hash
           </th>
           <td class="keyblock-details-panel__data">
-            <div class="u-hidden-mobile">
-              <copy-chip :label="keyblockDetails.hash"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(keyblockDetails.hash)"
-                :clipboard-text="keyblockDetails.hash"/>
-            </div>
+            <copy-chip :label="keyblockDetails.hash"/>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -74,12 +67,7 @@
             Miner
           </th>
           <td class="keyblock-details-panel__data">
-            <span class="u-hidden-mobile">
-              {{ keyblockDetails.miner }}
-            </span>
-            <span class="u-hidden-desktop">
-              {{ formatEllipseHash(keyblockDetails.miner) }}
-            </span>
+            {{ keyblockDetails.miner }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -91,12 +79,7 @@
           </th>
           <td class="keyblock-details-panel__data">
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
-              <span class="u-hidden-mobile">
-                {{ keyblockDetails.beneficiary }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(keyblockDetails.beneficiary) }}
-              </span>
+              {{ keyblockDetails.beneficiary }}
             </app-link>
           </td>
         </tr>
@@ -217,7 +200,9 @@ const isNextKeyblockMined = computed(() =>
 
   &__data {
     display: block;
-    padding-left: 20px;
+    padding-left: 28px;
+    white-space: wrap;
+    word-break: break-all;
 
     @media (--mobile) {
       display: table-cell;

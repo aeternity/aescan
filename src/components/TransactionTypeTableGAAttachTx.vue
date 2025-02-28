@@ -66,15 +66,9 @@
             {{ transactionsHints.gaAttachTxGasLimit }}
           </hint-tooltip>
           Gas Limit
-        </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
-          <div class="transaction-type-panel-ga-attach-tx__container">
-            {{ transactionData.gas }}
-          </div>
-        </td>
-      </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+          /
+          <wbr>
+
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasPrice }}
           </hint-tooltip>
@@ -82,6 +76,8 @@
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <div class="transaction-type-panel-ga-attach-tx__container">
+            {{ transactionData.gas }}
+            /
             <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
           </div>
         </td>
@@ -92,15 +88,9 @@
             {{ transactionsHints.gaAttachTxGasUsed }}
           </hint-tooltip>
           Gas Used
-        </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
-          <div class="transaction-type-panel-ga-attach-tx__container">
-            {{ transactionData.gasUsed }}
-          </div>
-        </td>
-      </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+          /
+          <wbr>
+
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasCost }}
           </hint-tooltip>
@@ -108,6 +98,8 @@
         </th>
         <td class="transaction-type-panel-ga-attach-tx__data">
           <div class="transaction-type-panel-ga-attach-tx__container">
+            {{ transactionData.gasUsed }}
+            /
             <price-label :price="formatAettosToAe(gasCosts)"/>
           </div>
         </td>
@@ -138,19 +130,36 @@ const gasCosts = computed(() =>
   }
 
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
     }
   }
 
-  &__data {
-    word-wrap: break-word;
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+
+    @media (--mobile) {
+      display: table-cell;
+    }
   }
 
   &__container {

@@ -3,19 +3,13 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="oracles"
-      :limit="limit"
       :total-count="oraclesCount"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
       <template #header>
         <oracles-select v-model="selectedOracleState"/>
       </template>
-      <oracles-table
-        class="u-hidden-mobile"
-        :oracles="oracles"/>
-      <oracles-table-condensed
-        class="u-hidden-desktop"
-        :oracles="oracles"/>
+      <oracles-table :oracles="oracles"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -27,7 +21,6 @@ const { push, replace } = useRouter()
 const { fetchOracles, fetchOraclesCount } = useOraclesStore()
 const { oracles, oraclesCount } = storeToRefs(useOraclesStore())
 
-const limit = isDesktop() ? 10 : 3
 const pageIndex = ref(1)
 
 function loadPrevOracles() {
@@ -43,7 +36,7 @@ async function loadOracles() {
   const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
   await Promise.all([
-    await fetchOracles({ limit, state: selectedOracleState.value.stateQuery }),
+    await fetchOracles({ limit: 10, state: selectedOracleState.value.stateQuery }),
     await fetchOraclesCount(selectedOracleState.value.stateQuery),
   ])
   pageIndex.value = 1

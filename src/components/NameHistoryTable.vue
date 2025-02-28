@@ -29,7 +29,7 @@
       <tr
         v-for="action in actions.data"
         :key="action.hash">
-        <td>
+        <td class="name-history-table__data">
           <value-hash-ellipsed
             v-if="action.hash"
             :hash="action.hash"
@@ -38,17 +38,17 @@
             N/A
           </template>
         </td>
-        <td>
+        <td class="name-history-table__data">
           <block-time-cell
             :height="action.createdHeight"
             :timestamp="action.created"/>
         </td>
-        <td>
+        <td class="name-history-table__data">
           <name-history-cell
             :activity="action.type"
             :payload="action.payload"/>
         </td>
-        <td>
+        <td class="name-history-table__data">
           <name-history-data-cell
             :activity="action.type"
             :payload="action.payload"/>
@@ -71,6 +71,10 @@ defineProps({
 
 <style scoped>
 .name-history-table {
+  &__data {
+    white-space: nowrap;
+  }
+
   &__label {
     display: inline-block;
     margin: 0 var(--space-0) var(--space-0) 0;

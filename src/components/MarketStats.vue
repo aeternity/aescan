@@ -132,6 +132,7 @@ const {
   }
 
   &__container {
+    display: flex;
     gap: 8px;
   }
 }

@@ -9,11 +9,7 @@
       <token-events-table
         v-if="tokenEvents"
         :token-events="tokenEvents"
-        class="token-events-panel__table u-hidden-mobile"/>
-      <token-events-table-condensed
-        v-if="tokenEvents"
-        :token-events="tokenEvents"
-        class="u-hidden-desktop"/>
+        class="token-events-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -25,17 +21,15 @@ const { fetchTokenEvents } = useTokenDetailsStore()
 const route = useRoute()
 
 function loadPrevEvents() {
-  fetchTokenEvents({ queryParameters: tokenEvents.value.prev })
+  fetchTokenEvents({ queryParameters: tokenEvents.value.prev.substring(3) })
 }
 
 function loadNextEvents() {
-  fetchTokenEvents({ queryParameters: tokenEvents.value.next })
+  fetchTokenEvents({ queryParameters: tokenEvents.value.next.substring(3) })
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
   await fetchTokenEvents({
-    limit: limit.value,
     contractId: route.params.id,
   })
 }

@@ -3,10 +3,10 @@
     <tbody>
       <tr>
         <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-start">
-          Height
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.height }}
           </hint-tooltip>
+          Height
         </th>
         <td class="dashboard-keyblock-table__data">
           <app-link
@@ -15,10 +15,10 @@
           </app-link>
         </td>
         <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-end">
-          Beneficiary
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.beneficiary }}
           </hint-tooltip>
+          Beneficiary
         </th>
         <td class="dashboard-keyblock-table__data">
           <value-hash-ellipsed
@@ -30,10 +30,10 @@
 
       <tr>
         <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-start">
-          Hash
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.hash }}
           </hint-tooltip>
+          Hash
         </th>
         <td class="dashboard-keyblock-table__data">
           <value-hash-ellipsed
@@ -42,22 +42,24 @@
             class="dashboard-keyblock-table__value-hash-ellipsed"/>
         </td>
         <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-end">
-          Reward
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
+          Reward
         </th>
         <td class="dashboard-keyblock-table__data">
-          <price-label :price="stats?.blockReward"/>
+          <price-label
+            :price="stats?.blockReward"
+            class="dashboard-keyblock-table__price"/>
         </td>
       </tr>
 
       <tr>
         <th class="dashboard-keyblock-table__column-start">
-          <time-toggle-button>Mined</time-toggle-button>
           <hint-tooltip class="dashboard-keyblock-table__tooltip">
             {{ keyblocksHints.mined }}
           </hint-tooltip>
+          <time-toggle-button>Mined</time-toggle-button>
         </th>
         <td class="dashboard-keyblock-table__data">
           <timestamp-label :timestamp="keyblock.mined"/>
@@ -105,11 +107,11 @@ defineProps({
   }
 
   &__column-start {
-    padding-right: 28px;
+    padding-right: 0;
   }
 
   &__column-end {
-    padding-left: 13%;
+    padding-left: 8%;
   }
 
   &__table-responsive {
@@ -128,6 +130,10 @@ defineProps({
 
   &__tooltip {
     margin-left: var(--space-0);
+  }
+
+  &__price {
+    justify-content: flex-end;
   }
 }
 </style>

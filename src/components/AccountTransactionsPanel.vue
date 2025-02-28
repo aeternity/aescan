@@ -3,20 +3,14 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="accountTransactions"
-      :limit="limit"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
         <transactions-select v-model="selectedTxType"/>
       </template>
-
       <account-transactions-table
-        class="account-transactions-panel__account-transactions-table u-hidden-mobile"
-        :account-transactions="accountTransactions"/>
-
-      <account-transactions-table-condensed
-        class="u-hidden-desktop"
+        class="account-transactions-panel__account-transactions-table"
         :account-transactions="accountTransactions"/>
     </paginated-content>
   </app-panel>
@@ -31,12 +25,9 @@ const { accountTransactions } = storeToRefs(useAccountStore())
 const selectedTxType = ref({ typeQuery: null, label: 'All types' })
 const pageIndex = ref(1)
 
-const limit = computed(() => isDesktop() ? 10 : 3)
-
 watch(selectedTxType, () => {
   fetchAccountTransactions({
     accountId: route.params.id,
-    limit: limit.value,
     type: selectedTxType.value.typeQuery,
   })
   pageIndex.value = 1

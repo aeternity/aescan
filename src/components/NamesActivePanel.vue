@@ -6,12 +6,7 @@
       @next-clicked="loadNextNames">
       <names-active-table
         v-if="activeNames"
-        class="names-active-panel__names-active-table u-hidden-mobile"
-        :names="activeNames"/>
-
-      <names-active-table-condensed
-        v-if="activeNames"
-        class="u-hidden-desktop"
+        class="names-active-panel__names-active-table"
         :names="activeNames"/>
     </paginated-content>
   </app-panel>
@@ -22,11 +17,11 @@ const { fetchActiveNames } = useNamesStore()
 const { activeNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
-  return fetchActiveNames({ queryParameters: activeNames.value.prev })
+  return fetchActiveNames({ queryParameters: activeNames.value.prev.substring(3) })
 }
 
 function loadNextNames() {
-  return fetchActiveNames({ queryParameters: activeNames.value.next })
+  return fetchActiveNames({ queryParameters: activeNames.value.next.substring(3) })
 }
 </script>
 

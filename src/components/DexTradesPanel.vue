@@ -5,12 +5,7 @@
       pagination-style="history"
       @prev-clicked="loadPrevEvents"
       @next-clicked="loadNextEvents">
-      <dex-trades-table
-        :trades="trades"
-        class="u-hidden-mobile"/>
-      <dex-trades-table-condensed
-        :trades="trades"
-        class="u-hidden-desktop"/>
+      <dex-trades-table :trades="trades"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -25,17 +20,14 @@ await useAsyncData(async() => {
 })
 
 function loadPrevEvents() {
-  fetchDexTrades({ queryParameters: trades.value.prev })
+  fetchDexTrades(trades.value.prev.substring(3))
 }
 
 function loadNextEvents() {
-  fetchDexTrades({ queryParameters: trades.value.next })
+  fetchDexTrades(trades.value.next.substring(3))
 }
 
 if (process.client) {
-  const limit = computed(() => isDesktop() ? 10 : 3)
-  await fetchDexTrades({
-    limit: limit.value,
-  })
+  await fetchDexTrades()
 }
 </script>

@@ -57,6 +57,7 @@
 
 <script setup>
 import { useVModel } from '@vueuse/core'
+import { PAGINATION_LIMIT } from '@/utils/constants'
 
 const props = defineProps({
   entities: {
@@ -66,10 +67,6 @@ const props = defineProps({
   pageIndex: {
     type: [Number, null],
     default: null,
-  },
-  limit: {
-    type: Number,
-    default: 10,
   },
   totalCount: {
     type: [Number, null],
@@ -88,10 +85,9 @@ const emit = defineEmits([
   'next-clicked',
   'update:pageIndex',
 ])
-
 const pageIndex = props.pageIndex ? useVModel(props, 'pageIndex', emit) : ref(1)
 const firstVisibleIndex = computed(
-  () => (pageIndex.value - 1) * props.limit + 1,
+  () => (pageIndex.value - 1) * PAGINATION_LIMIT + 1,
 )
 const lastVisibleIndex = computed(
   () => firstVisibleIndex.value + props.entities?.data.length - 1,
@@ -167,13 +163,14 @@ onBeforeUnmount(() => {
   flex-direction: column;
 
   &__header {
-    padding: var(--space-1) 0;
+    padding: var(--space-1);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
 
     @media (--desktop) {
+      padding: var(--space-1) 0;
       justify-content: space-between;
       flex-direction: row;
       align-items: center;
@@ -186,6 +183,7 @@ onBeforeUnmount(() => {
 
   &__container {
     width: 100%;
+    overflow-x: auto;
   }
 
   &__slot-header {
@@ -215,6 +213,7 @@ onBeforeUnmount(() => {
   }
 
   &__pagination {
+    padding: 0 var(--space-1);
     width: 100%;
   }
 

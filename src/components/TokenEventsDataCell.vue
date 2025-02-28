@@ -79,7 +79,6 @@ defineProps({
   align-items: center;
   justify-content: flex-end;
   gap: var(--space-1);
-  flex-wrap: wrap;
 
   @media (--desktop) {
     justify-content: space-between;

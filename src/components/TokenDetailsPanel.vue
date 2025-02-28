@@ -96,12 +96,7 @@
           </th>
           <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contractId}`">
-              <span class="u-hidden-mobile">
-                {{ tokenDetails.contractId }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(tokenDetails.contractId) }}
-              </span>
+              {{ tokenDetails.contractId }}
             </app-link>
           </td>
         </tr>
@@ -254,7 +249,9 @@ const fiatPrice = computed(() =>
 
   &__data {
     display: block;
-    padding-left: 20px;
+    padding-left: 28px;
+    white-space: wrap;
+    word-break: break-all;
 
     @media (--mobile) {
       display: table-cell;

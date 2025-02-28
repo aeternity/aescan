@@ -52,22 +52,22 @@
       <tr
         v-for="trade in trades.data"
         :key="trade.txHash">
-        <td>
+        <td class="dex-trades-table__data">
           <value-hash-ellipsed
             :link-to="`/transactions/${trade.txHash}`"
             :hash="trade.txHash"/>
         </td>
-        <td>
+        <td class="dex-trades-table__data">
           <block-time-cell
             :height="trade.height"
             :timestamp="trade.timestamp"/>
         </td>
-        <td>
+        <td class="dex-trades-table__data">
           <app-chip :variant="getChipVariant(trade.action)">
             {{ trade.action }}
           </app-chip>
         </td>
-        <td>
+        <td class="dex-trades-table__data">
           <price-label
             :contract-id="trade.fromContract"
             :currency="trade.fromToken"
@@ -75,7 +75,7 @@
             :max-digits="4"
             :has-link="true"/>
         </td>
-        <td>
+        <td class="dex-trades-table__data">
           <price-label
             :contract-id="trade.toContract"
             :currency="trade.toToken"
@@ -83,11 +83,11 @@
             :max-digits="4"
             :has-link="true"/>
         </td>
-        <td>
+        <td class="dex-trades-table__data">
           <not-available-label v-if="!trade.rate"/>
           {{ trade.rate }}
         </td>
-        <td>
+        <td class="dex-trades-table__data">
           <not-available-label v-if="!trade.value"/>
           <template v-else>
             $ {{ trade.value }}
@@ -117,3 +117,9 @@ function getChipVariant(action) {
   return variants[action]
 }
 </script>
+
+<style scoped>
+.dex-trades-table__data {
+  white-space: nowrap;
+}
+</style>

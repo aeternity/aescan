@@ -1,53 +1,62 @@
 <template>
   <app-panel>
+    <template
+      v-if="isVerified"
+      #title>
+      Verification Details
+    </template>
     <template v-if="isVerified">
-      <h3>Verification details</h3>
       <contract-verified-table
         :verification-details="verificationDetails"
-        :is-verified="isVerified"/>
-      <h3 class="contract-verified-panel__title">
-        Contract Code
-      </h3>
-      <template
-        v-for="(code, index) in contractCode.source"
-        :key="index">
+        :is-verified="isVerified"
+        class="contract-verified-panel__table"/>
+
+      <div class="contract-verified-panel__container">
+        <h3 class="contract-verified-panel__title">
+          Contract Code
+        </h3>
+
+        <template
+          v-for="(code, index) in contractCode.source"
+          :key="index">
+          <header class="contract-verified-panel__header">
+            <div class="contract-verified-panel__file">
+              <h4>file {{ index + 1 }} of {{ contractCode.source.length }}: {{ code.filePath }}</h4>
+              <app-chip
+                v-if="code.isEntryFile"
+                size="sm">
+                entry file
+              </app-chip>
+            </div>
+          </header>
+          <code-editor
+            class="contract-verified-panel__code-editor"
+            :code="code.content"
+            lang="aes"/>
+        </template>
         <header class="contract-verified-panel__header">
-          <div class="contract-verified-panel__container">
-            <h4>file {{ index + 1 }} of {{ contractCode.source.length }}: {{ code.filePath }}</h4>
-            <app-chip
-              v-if="code.isEntryFile"
-              size="sm">
-              entry file
-            </app-chip>
-          </div>
+          <h3>
+            ACI
+          </h3>
+          <app-button
+            variant="light"
+            @click="downloadFile(verificationDetails.aci)">
+            Export
+          </app-button>
         </header>
         <code-editor
           class="contract-verified-panel__code-editor"
-          :code="code.content"
-          lang="aes"/>
-      </template>
-      <header class="contract-verified-panel__header">
-        <h3>
-          ACI
-        </h3>
-        <app-button
-          variant="light"
-          @click="downloadFile(verificationDetails.aci)">
-          Export
-        </app-button>
-      </header>
-      <code-editor
-        class="contract-verified-panel__code-editor"
-        :code="verificationDetails.aci"
-        lang="json"/>
-      <header class="contract-verified-panel__header">
-        <h3>
-          Bytecode
-        </h3>
-      </header>
-      <code-editor
-        class="contract-verified-panel__code-editor"
-        :code="contractDetails.bytecode"/>
+          :code="verificationDetails.aci"
+          lang="json"/>
+        <header class="contract-verified-panel__header">
+          <h3>
+            Bytecode
+          </h3>
+        </header>
+        <code-editor
+          class="contract-verified-panel__code-editor"
+          :code="contractDetails.bytecode"/>
+      </div>
     </template>
     <blank-state v-else>
       Smart Contract is not verified. Go to
@@ -91,6 +100,14 @@ function downloadFile(content) {
   }
 
   &__container {
+    margin: var(--space-1);
+  }
+
+  &__table {
+    margin-bottom: var(--space-5);
+  }
+
+  &__file {
     display: flex;
     align-items: center;
     gap: var(--space-1);

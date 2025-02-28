@@ -9,7 +9,8 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link :to="`/oracles/${transactionData.oracleId}`">
+          <app-link
+            :to="`/oracles/${transactionData.oracleId}`">
             {{ transactionData.oracleId }}
           </app-link>
         </td>
@@ -22,7 +23,8 @@
           Sender
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link :to="`/accounts/${transactionData.senderId}`">
+          <app-link
+            :to="`/accounts/${transactionData.senderId}`">
             {{ transactionData.senderId }}
           </app-link>
         </td>
@@ -108,19 +110,45 @@ defineProps({
   }
 
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
     }
   }
 
-  &__data {
-    word-wrap: break-word;
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+
+    @media (--mobile) {
+      display: table-cell;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 }
 </style>

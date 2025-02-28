@@ -7,12 +7,7 @@
       @next-clicked="loadNextActions">
       <name-history-table
         v-if="nameActions"
-        class="name-history-panel__name-history-table u-hidden-mobile"
-        :actions="nameActions"/>
-
-      <name-history-table-condensed
-        v-if="nameActions"
-        class="u-hidden-desktop"
+        class="name-history-panel__name-history-table"
         :actions="nameActions"/>
     </paginated-content>
   </app-panel>
@@ -23,11 +18,11 @@ const { fetchNameActions } = useNameDetailsStore()
 const { nameActions } = storeToRefs(useNameDetailsStore())
 
 function loadPrevActions() {
-  return fetchNameActions({ queryParameters: nameActions.value.prev })
+  return fetchNameActions({ queryParameters: nameActions.value.prev.substring(3) })
 }
 
 function loadNextActions() {
-  return fetchNameActions({ queryParameters: nameActions.value.next })
+  return fetchNameActions({ queryParameters: nameActions.value.next.substring(3) })
 }
 </script>
 

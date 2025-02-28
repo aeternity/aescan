@@ -12,14 +12,7 @@
             Smart Contract ID
           </th>
           <td class="contract-details-panel__data">
-            <div class="u-hidden-mobile">
-              <copy-chip :label="contractDetails.id"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(contractDetails.id)"
-                :clipboard-text="contractDetails.id"/>
-            </div>
+            <copy-chip :label="contractDetails.id"/>
           </td>
         </tr>
 
@@ -38,7 +31,6 @@
             </app-chip>
           </td>
         </tr>
-
         <tr
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
@@ -77,12 +69,7 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.createTransactionHash }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.createTransactionHash) }}
-              </span>
+              {{ contractDetails.createTransactionHash }}
             </app-link>
           </td>
         </tr>
@@ -123,12 +110,7 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.createdBy }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.createdBy) }}
-              </span>
+              {{ contractDetails.createdBy }}
             </app-link>
           </td>
         </tr>
@@ -156,12 +138,7 @@
           </th>
           <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.contractAccount }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.contractAccount) }}
-              </span>
+              {{ contractDetails.contractAccount }}
             </app-link>
           </td>
         </tr>
@@ -262,7 +239,9 @@ const contractMiddlewareUrl = computed(() =>
 
   &__data {
     display: block;
-    padding-left: 20px;
+    padding-left: 28px;
+    white-space: wrap;
+    word-break: break-all;
 
     @media (--mobile) {
       display: table-cell;

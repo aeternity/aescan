@@ -42,7 +42,7 @@ const dataCellComponent = computed(() =>
   justify-content: flex-end;
   align-items: center;
   gap: var(--space-1);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   @media (--desktop) {
     justify-content: space-between;

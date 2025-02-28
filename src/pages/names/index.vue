@@ -73,8 +73,7 @@ const activeTabIndex = computed({
 const { isLoading } = useLoading()
 
 if (process.client) {
-  const limit = isDesktop() ? null : 3
-  fetchNamesDetails({ limit })
+  fetchNamesDetails()
 }
 </script>
 

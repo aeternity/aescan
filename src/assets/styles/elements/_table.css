@@ -4,7 +4,6 @@ table {
   margin-bottom: var(--space-1);
 }
 
-
 th {
   text-align: left;
   font-weight: 500;
@@ -13,41 +12,55 @@ th {
   white-space: nowrap;
 
   vertical-align: middle;
-  padding: 7px 7px 7px 0;
-
+  padding: var(--space-1);
 
   @media (--desktop) {
     font-size: 16px;
     line-height: 18px;
-    padding: 10px 10px var(--space-1) 0;
   }
 }
 
 td {
   font-family: var(--font-monospaced);
   font-weight: 400;
-  padding: 7px 0;
   text-align: left;
   border-bottom: 1px solid var(--color-midnight-25);
   vertical-align: middle;
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-1);
+  white-space: wrap;
+  word-wrap: break-word;
 
   @media (--desktop) {
-    padding: 10px var(--space-0) var(--space-1) 0;
+    padding: var(--space-1);
   }
 }
 
+th:first-of-type {
+  padding-left: var(--space-1);
 
-thead tr:first-of-type th {
-  padding-bottom: 0;
+  @media (--desktop) {
+    padding-left: 0;
+  }
 }
 
-
 td:first-of-type {
-  padding-left: 0;
+  padding-left: var(--space-1);
+
+  @media (--desktop) {
+    padding-left: 0;
+  }
 }
 
 td:last-of-type {
-  padding-right: 0;
+  padding-right: var(--space-1);
+
+  @media (--desktop) {
+    padding-right: 0;
+  }
+}
+
+thead tr:first-of-type th {
+  padding-bottom: 0;
 }
 
 tr:last-of-type td {

@@ -6,12 +6,7 @@
       @next-clicked="loadNextNames">
       <names-in-auction-table
         v-if="inAuctionNames"
-        class="names-in-auction-panel__names-in-auction-table u-hidden-mobile"
-        :names="inAuctionNames"/>
-
-      <names-in-auction-table-condensed
-        v-if="inAuctionNames"
-        class="u-hidden-desktop"
+        class="names-in-auction-panel__names-in-auction-table"
         :names="inAuctionNames"/>
     </paginated-content>
   </app-panel>
@@ -22,11 +17,11 @@ const { fetchInAuctionNames } = useNamesStore()
 const { inAuctionNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
-  fetchInAuctionNames({ queryParameters: inAuctionNames.value.prev })
+  fetchInAuctionNames({ queryParameters: inAuctionNames.value.prev.substring(3) })
 }
 
 function loadNextNames() {
-  fetchInAuctionNames({ queryParameters: inAuctionNames.value.next })
+  fetchInAuctionNames({ queryParameters: inAuctionNames.value.next.substring(3) })
 }
 </script>
 

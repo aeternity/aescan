@@ -22,7 +22,7 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
     }
 
     const channelsUrl = new URL(`${MIDDLEWARE_URL}/channels`)
-    channelsUrl.searchParams.append('limit', limit ?? 10)
+    channelsUrl.searchParams.append('limit', 10)
 
     const { data } = await axios.get(channelsUrl.toString())
     rawStateChannels.value = data

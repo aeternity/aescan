@@ -2,15 +2,10 @@
   <app-panel>
     <paginated-content
       :entities="tokensResults"
-      :limit="limit"
+
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
-      <search-tokens-table
-        :tokens="tokensResults"
-        class="u-hidden-mobile"/>
-      <search-tokens-table-condensed
-        :tokens="tokensResults"
-        class="u-hidden-desktop"/>
+      <search-tokens-table :tokens="tokensResults"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -19,16 +14,15 @@
 const { tokensResults } = storeToRefs(useSearchStore())
 const { fetchTokenResults } = useSearchStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()
 
-await fetchTokenResults({ query: route.params.id, limit: limit.value })
+await fetchTokenResults({ query: route.params.id })
 
 async function loadPrevTokens() {
-  await fetchTokenResults({ queryParameters: tokensResults.value.prev })
+  await fetchTokenResults({ queryParameters: tokensResults.value.prev.substring(3) })
 }
 
 async function loadNextTokens() {
-  await fetchTokenResults({ queryParameters: tokensResults.value.next })
+  await fetchTokenResults({ queryParameters: tokensResults.value.next.substring(3) })
 }
 </script>

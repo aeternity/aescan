@@ -57,7 +57,11 @@ defineProps({
 .dashboard-panel-header {
   display: flex;
   flex-direction: row;
-  margin-bottom: var(--space-4);
+  margin: 0 var(--space-2) var(--space-2);
+
+  @media (--desktop) {
+    margin: 0 0 var(--space-4) 0;
+  }
 
   &__body {
     display: flex;

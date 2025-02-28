@@ -2,17 +2,12 @@
   <app-panel class="account-activities-panel">
     <paginated-content
       :entities="accountActivities"
-      :limit="limit"
+
       pagination-style="history"
       @prev-clicked="loadPrevActivities"
       @next-clicked="loadNextActivities">
       <account-activities-table
-        class="account-activities-panel__account-activities-table u-hidden-mobile"
-        :account-details="accountDetails"
-        :account-activities="accountActivities"/>
-
-      <account-activities-table-condensed
-        class="u-hidden-desktop"
+        class="account-activities-panel__account-activities-table"
         :account-details="accountDetails"
         :account-activities="accountActivities"/>
     </paginated-content>
@@ -22,8 +17,6 @@
 <script setup>
 const { fetchAccountActivities } = useAccountStore()
 const { accountActivities, accountDetails } = storeToRefs(useAccountStore())
-
-const limit = computed(() => isDesktop() ? 10 : 3)
 
 function loadPrevActivities() {
   return fetchAccountActivities({

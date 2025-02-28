@@ -2,15 +2,10 @@
   <app-panel>
     <paginated-content
       :entities="namesResults"
-      :limit="limit"
+
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
-      <search-names-table
-        :names="namesResults"
-        class="u-hidden-mobile"/>
-      <search-names-table-condensed
-        :names="namesResults"
-        class="u-hidden-desktop"/>
+      <search-names-table :names="namesResults"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -19,16 +14,15 @@
 const { namesResults } = storeToRefs(useSearchStore())
 const { fetchNamesResults } = useSearchStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const route = useRoute()
 
-await fetchNamesResults({ query: route.params.id, limit: limit.value })
+await fetchNamesResults({ query: route.params.id })
 
 async function loadPrevNames() {
-  await fetchNamesResults({ queryParameters: namesResults.value.prev })
+  await fetchNamesResults({ queryParameters: namesResults.value.prev.substring(3) })
 }
 
 async function loadNextNames() {
-  await fetchNamesResults({ queryParameters: namesResults.value.next })
+  await fetchNamesResults({ queryParameters: namesResults.value.next.substring(3) })
 }
 </script>

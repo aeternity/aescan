@@ -12,7 +12,7 @@
               {{ namesHints.accountPointer }}
             </hint-tooltip>
           </th>
-          <td>
+          <td class="transaction-pointers-panel__data">
             <app-link
               v-if="pointers.account_pubkey"
               :to="`/accounts/${pointers.account_pubkey}`">
@@ -35,7 +35,7 @@
               {{ namesHints.channelPointer }}
             </hint-tooltip>
           </th>
-          <td>
+          <td class="transaction-pointers-panel__data">
             {{ formatNullable(pointers.channel) }}
           </td>
         </tr>
@@ -46,7 +46,7 @@
               {{ namesHints.contractPointer }}
             </hint-tooltip>
           </th>
-          <td>
+          <td class="transaction-pointers-panel__data">
             <app-link
               v-if="pointers.contract_pubkey"
               :to="`/contracts/${pointers.contract_pubkey}`">
@@ -69,7 +69,7 @@
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
           </th>
-          <td>
+          <td class="transaction-pointers-panel__data">
             {{ formatNullable(pointers.oracle_pubkey) }}
           </td>
         </tr>
@@ -100,16 +100,42 @@ const pointers = computed(() => {
 
 <style scoped>
 .transaction-pointers-panel {
-  &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+  &__table {
+    table-layout: fixed;
+  }
 
-    @media (--desktop) {
+  &__table-header {
+    display: block;
+    padding-bottom: 0;
+
+    @media (--mobile) {
+      padding-bottom: 8px;
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+
+    @media (--mobile) {
+      display: table-cell;
+    }
+  }
+
 }
 </style>

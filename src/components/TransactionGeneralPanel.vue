@@ -10,14 +10,7 @@
             Transaction ID
           </th>
           <td class="transaction-general-panel__data">
-            <div class="u-hidden-mobile">
-              <copy-chip :label="transactionDetails.hash"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(transactionDetails.hash)"
-                :clipboard-text="transactionDetails.hash"/>
-            </div>
+            <copy-chip :label="transactionDetails.hash"/>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">
@@ -87,14 +80,8 @@
           </th>
           <td class="transaction-general-panel__data">
             <app-link
-              :to="`/microblocks/${transactionDetails.blockHash}`"
-              class="u-hidden-mobile">
+              :to="`/microblocks/${transactionDetails.blockHash}`">
               {{ transactionDetails.blockHash }}
-            </app-link>
-            <app-link
-              :to="`/microblocks/${transactionDetails.blockHash}`"
-              class="u-hidden-desktop">
-              {{ formatEllipseHash(transactionDetails.blockHash) }}
             </app-link>
           </td>
         </tr>
@@ -215,8 +202,10 @@ const transactionMiddlewareUrl = computed(() => {
   }
 
   &__data {
+    white-space: wrap;
+    word-break: break-all;
     display: block;
-    padding-left: 20px;
+    padding-left: 28px;
 
     @media (--mobile) {
       display: table-cell;

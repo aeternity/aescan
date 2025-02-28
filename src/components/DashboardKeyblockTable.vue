@@ -107,7 +107,7 @@ defineProps({
   }
 
   &__column-start {
-    padding-right: 0px;
+    padding-right: 0;
   }
 
   &__column-end {

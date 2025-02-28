@@ -36,10 +36,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  hasBreak: {
-    type: Boolean,
-    default: false,
-  },
 })
 
 const isOpenedInNewTab = computed(

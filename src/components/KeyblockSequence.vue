@@ -36,6 +36,7 @@ defineProps({
 .keyblock-sequence {
   position: relative;
   padding: 0 var(--space-1);
+
   @media (--desktop) {
     padding: 0;
   }
@@ -48,7 +49,6 @@ defineProps({
     scrollbar-width: none;
 
     /*animation overflow workaround*/
-    /*margin: var(--space-1) 0;*/
     padding: var(--space-1) 0;
 
     &::-webkit-scrollbar {

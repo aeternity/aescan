@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
 import { BigNumber } from 'bignumber.js'
 import {
+  KNOWN_ADDRESSES,
   MAXIMUM_FRACTION_DIGITS,
   MINUTES_PER_BLOCK,
   NUMBER_FRACTION_THRESHOLD,

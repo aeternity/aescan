@@ -114,7 +114,7 @@
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdatedHeight }}
             </hint-tooltip>
-            Last Updated Height
+            Last Update Height
           </th>
           <td class="state-channel-details-panel__data">
             <app-link
@@ -132,7 +132,7 @@
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdated }}
             </hint-tooltip>
-            Last Updated
+            Last Update
           </th>
           <td class="state-channel-details-panel__data">
             <timestamp-label

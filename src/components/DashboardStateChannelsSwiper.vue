@@ -61,7 +61,9 @@
               Locked
             </th>
             <td class="dashboard-state-channels-swiper__data">
-              <price-label :price="channel.amount"/>
+              <price-label
+                :price="channel.amount"
+                class="dashboard-state-channels-swiper__price"/>
             </td>
           </tr>
           <tr>
@@ -70,7 +72,7 @@
                 {{ stateChannelsHints.lastUpdated }}
               </hint-tooltip>
               <time-toggle-button class="dashboard-state-channels-swiper__button">
-                Last Updated
+                Last Update
               </time-toggle-button>
             </th>
             <td class="dashboard-state-channels-swiper__data">
@@ -109,6 +111,10 @@ const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 .dashboard-state-channels-swiper {
   &__header {
     border-bottom: 1px solid var(--color-midnight-25);
+  }
+
+  &__price {
+    justify-content: flex-end;
   }
 
   &__data {

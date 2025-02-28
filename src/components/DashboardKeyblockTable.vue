@@ -48,7 +48,9 @@
           Reward
         </th>
         <td class="dashboard-keyblock-table__data">
-          <price-label :price="stats?.blockReward"/>
+          <price-label
+            :price="stats?.blockReward"
+            class="dashboard-keyblock-table__price"/>
         </td>
       </tr>
 
@@ -105,11 +107,11 @@ defineProps({
   }
 
   &__column-start {
-    padding-right: 28px;
+    padding-right: 0px;
   }
 
   &__column-end {
-    padding-left: 13%;
+    padding-left: 8%;
   }
 
   &__table-responsive {
@@ -128,6 +130,10 @@ defineProps({
 
   &__tooltip {
     margin-left: var(--space-0);
+  }
+
+  &__price {
+    justify-content: flex-end;
   }
 }
 </style>

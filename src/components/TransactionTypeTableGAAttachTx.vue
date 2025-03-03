@@ -67,8 +67,6 @@
           </hint-tooltip>
           Gas Limit
           /
-          <wbr>
-
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasPrice }}
           </hint-tooltip>

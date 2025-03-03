@@ -3,22 +3,21 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const { microblockHash, limit, queryParameters, type } = getQuery(event)
+  const { microblockHash, queryParameters, type } = getQuery(event)
 
   const [data, count] = await Promise.all([
-    fetchTransactions(microblockHash, queryParameters, limit, type),
+    fetchTransactions(microblockHash, queryParameters, type),
     fetchTransactionsCount(microblockHash, type),
   ])
 
   return adaptTransactions(data, count)
 })
 
-async function fetchTransactions(microblockHash, queryParameters, limit, type) {
+async function fetchTransactions(microblockHash, queryParameters, type) {
   const url = getUrl({
     entity: 'micro-blocks',
     id: microblockHash,
     route: 'transactions',
-    limit: limit ?? 10,
     parameters: {
       type,
     },

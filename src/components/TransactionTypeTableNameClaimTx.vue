@@ -9,8 +9,7 @@
           Name
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          <app-link
-            :to="`/names/${transactionData.name}`">
+          <app-link :to="`/names/${transactionData.name}`">
             {{ transactionData.name }}
           </app-link>
         </td>
@@ -23,8 +22,7 @@
           Claimer
         </th>
         <td class="transaction-type-panel-name-claim-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.accountId}`">
+          <app-link :to="`/accounts/${transactionData.accountId}`">
             {{ transactionData.accountId }}
           </app-link>
         </td>

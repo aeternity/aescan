@@ -9,8 +9,7 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link
-            :to="`/oracles/${transactionData.oracleId}`">
+          <app-link :to="`/oracles/${transactionData.oracleId}`">
             {{ transactionData.oracleId }}
           </app-link>
         </td>
@@ -23,8 +22,7 @@
           Sender
         </th>
         <td class="transaction-type-panel-oracle-query-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.senderId}`">
+          <app-link :to="`/accounts/${transactionData.senderId}`">
             {{ transactionData.senderId }}
           </app-link>
         </td>

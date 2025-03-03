@@ -9,8 +9,7 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          <app-link
-            :to="`/oracles/${transactionData.oracleId}`">
+          <app-link :to="`/oracles/${transactionData.oracleId}`">
             {{ formatNullable(transactionData.oracleId) }}
           </app-link>
         </td>

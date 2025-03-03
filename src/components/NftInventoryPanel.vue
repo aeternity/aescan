@@ -3,7 +3,6 @@
     <paginated-content
       pagination-style="history"
       :entities="nftInventory"
-
       @next-clicked="loadNextNftInventory"
       @prev-clicked="loadPrevNftInventory">
       <nft-inventory-table

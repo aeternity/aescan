@@ -9,8 +9,7 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link
-            :to="`/state-channels/${transactionData.channelId}`">
+          <app-link :to="`/state-channels/${transactionData.channelId}`">
             {{ transactionData.channelId }}
           </app-link>
         </td>
@@ -34,8 +33,7 @@
           Initiator
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.initiatorId}`">
+          <app-link :to="`/accounts/${transactionData.initiatorId}`">
             {{ transactionData.initiatorId }}
           </app-link>
         </td>
@@ -70,8 +68,7 @@
           Responder
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.responderId}`">
+          <app-link :to="`/accounts/${transactionData.responderId}`">
             {{ transactionData.responderId }}
           </app-link>
         </td>

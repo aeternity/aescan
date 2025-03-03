@@ -12,7 +12,7 @@
         </app-chip>
       </app-link>
       <template v-if="transactionData.type === 'PayingForTx'">
-        <div class="transaction-type-panel__container">
+        <div>
           <copy-chip
             class="transaction-type-panel__chip--paying"
             :label="transactionData.payerId"/>

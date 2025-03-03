@@ -27,8 +27,7 @@
           Owner
         </th>
         <td class="transaction-type-panel-name-update-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.accountId}`">
+          <app-link :to="`/accounts/${transactionData.accountId}`">
             {{ transactionData.accountId }}
           </app-link>
         </td>

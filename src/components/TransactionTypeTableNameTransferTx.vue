@@ -27,8 +27,7 @@
           Old Owner
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.accountId}`">
+          <app-link :to="`/accounts/${transactionData.accountId}`">
             {{ transactionData.accountId }}
           </app-link>
         </td>
@@ -41,8 +40,7 @@
           New Owner
         </th>
         <td class="transaction-type-panel-name-transfer-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.recipientId}`">
+          <app-link :to="`/accounts/${transactionData.recipientId}`">
             {{ transactionData.recipientId }}
           </app-link>
         </td>

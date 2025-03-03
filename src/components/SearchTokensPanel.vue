@@ -2,7 +2,6 @@
   <app-panel>
     <paginated-content
       :entities="tokensResults"
-
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
       <search-tokens-table :tokens="tokensResults"/>

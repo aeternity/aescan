@@ -20,8 +20,7 @@
           Smart Contract
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <app-link
-            :to="`/contracts/${transactionData.contractId}`">
+          <app-link :to="`/contracts/${transactionData.contractId}`">
             {{ formatNullable(transactionData.contractId) }}
           </app-link>
         </td>
@@ -34,8 +33,7 @@
           Created By
         </th>
         <td class="transaction-type-panel-contract-create-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.ownerId}`">
+          <app-link :to="`/accounts/${transactionData.ownerId}`">
             {{ transactionData.ownerId }}
           </app-link>
         </td>

@@ -9,8 +9,7 @@
           Sender
         </th>
         <td class="transaction-type-panel-spend-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.senderId}`">
+          <app-link :to="`/accounts/${transactionData.senderId}`">
             {{ transactionData.senderId }}
           </app-link>
         </td>

@@ -239,11 +239,13 @@ const contractMiddlewareUrl = computed(() =>
 
   &__data {
     display: block;
-    padding-left: 28px;
     white-space: wrap;
     word-break: break-all;
+    padding-left: 28px;
+    padding-top: var(--space-0);
 
     @media (--mobile) {
+      padding-top: var(--space-1);
       display: table-cell;
     }
   }

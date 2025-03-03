@@ -22,15 +22,11 @@ const { fetchStateChannelTransactions } = useStateChannelDetailsStore()
 const pageIndex = ref(1)
 
 const loadPrevTransactions = () => {
-  fetchStateChannelTransactions({
-    queryParameters: stateChannelTransactions.value.prev,
-  })
+  fetchStateChannelTransactions(stateChannelTransactions.value.prev)
 }
 
 const loadNextTransactions = () => {
-  fetchStateChannelTransactions({
-    queryParameters: stateChannelTransactions.value.next,
-  })
+  fetchStateChannelTransactions(stateChannelTransactions.value.next)
 }
 
 if (process.client) {

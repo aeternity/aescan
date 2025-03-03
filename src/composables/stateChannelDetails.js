@@ -45,7 +45,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     rawStateChannelCreateTx.value = data.data[0]
   }
 
-  async function fetchStateChannelTransactions({ queryParameters } = {}) {
+  async function fetchStateChannelTransactions(queryParameters) {
     rawStateChannelTransactions.value = null
 
     if (queryParameters) {

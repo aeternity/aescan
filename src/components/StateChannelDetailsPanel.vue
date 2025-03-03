@@ -112,7 +112,7 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             <hint-tooltip>
-              {{ stateChannelsHints.lastUpdatedHeight }}
+              {{ stateChannelsHints.lastUpdateHeight }}
             </hint-tooltip>
             Last Update Height
           </th>
@@ -120,7 +120,7 @@
             <app-link
               v-if="stateChannelDetails.lastUpdatedHeight"
               :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
-              {{ stateChannelDetails.lastUpdatedHeight }}
+              {{ stateChannelDetails.lastUpdateHeight }}
             </app-link>
             <template v-else>
               N/A
@@ -130,7 +130,7 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             <hint-tooltip>
-              {{ stateChannelsHints.lastUpdated }}
+              {{ stateChannelsHints.lastUpdate }}
             </hint-tooltip>
             Last Update
           </th>

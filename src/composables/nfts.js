@@ -26,7 +26,6 @@ export const useNftsStore = defineStore('nfts', () => {
     const { data } = await axios.get(
       `${MIDDLEWARE_URL}${queryParameters || defaultParameters}`,
     )
-    console.log('data', data)
     rawNfts.value = data
   }
 

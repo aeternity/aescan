@@ -4,7 +4,6 @@
       <template v-if="isExtended">
         <app-icon name="clock"/>
         {{ relativeUpdated }}
-        <wbr>
         ({{ absolute }})
       </template>
       <template v-else>

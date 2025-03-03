@@ -2,7 +2,6 @@
   <app-panel class="account-activities-panel">
     <paginated-content
       :entities="accountActivities"
-
       pagination-style="history"
       @prev-clicked="loadPrevActivities"
       @next-clicked="loadNextActivities">

@@ -2,7 +2,6 @@
   <app-panel>
     <paginated-content
       :entities="namesResults"
-
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
       <search-names-table :names="namesResults"/>

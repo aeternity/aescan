@@ -9,8 +9,7 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
-          <app-link
-            :to="`/state-channels/${transactionData.channelId}`">
+          <app-link :to="`/state-channels/${transactionData.channelId}`">
             {{ transactionData.channelId }}
           </app-link>
         </td>
@@ -34,8 +33,7 @@
           Depositor
         </th>
         <td class="transaction-type-panel-channel-deposit-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.fromId}`">
+          <app-link :to="`/accounts/${transactionData.fromId}`">
             {{ transactionData.fromId }}
           </app-link>
         </td>

@@ -60,9 +60,7 @@ defineProps({
 })
 </script>
 <style scoped>
-.token-holders-table {
-  &__data {
-    white-space: nowrap;
-  }
+.token-holders-table__data {
+  white-space: nowrap;
 }
 </style>

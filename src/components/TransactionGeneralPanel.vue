@@ -79,8 +79,7 @@
             Microblock Hash
           </th>
           <td class="transaction-general-panel__data">
-            <app-link
-              :to="`/microblocks/${transactionDetails.blockHash}`">
+            <app-link :to="`/microblocks/${transactionDetails.blockHash}`">
               {{ transactionDetails.blockHash }}
             </app-link>
           </td>

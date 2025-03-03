@@ -10,8 +10,7 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
-          <app-link
-            :to="`/state-channels/${transactionData.channelId}`">
+          <app-link :to="`/state-channels/${transactionData.channelId}`">
             {{ transactionData.channelId }}
           </app-link>
         </td>
@@ -36,8 +35,7 @@
           Initiator
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.channel.initiator}`">
+          <app-link :to="`/accounts/${transactionData.channel.initiator}`">
             {{ transactionData.channel.initiator }}
           </app-link>
         </td>
@@ -51,8 +49,7 @@
           Responder
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.channel.responder}`">
+          <app-link :to="`/accounts/${transactionData.channel.responder}`">
             {{ transactionData.channel.responder }}
           </app-link>
         </td>
@@ -66,8 +63,7 @@
           Forced By
         </th>
         <td class="transaction-type-panel-channel-force-progress-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.fromId}`">
+          <app-link :to="`/accounts/${transactionData.fromId}`">
             {{ transactionData.fromId }}
           </app-link>
         </td>

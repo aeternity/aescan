@@ -9,8 +9,7 @@
           Claimer
         </th>
         <td class="transaction-type-panel-name-preclaim-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.accountId}`">
+          <app-link :to="`/accounts/${transactionData.accountId}`">
             {{ transactionData.accountId }}
           </app-link>
         </td>

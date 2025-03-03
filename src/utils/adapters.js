@@ -692,7 +692,8 @@ export function adaptTopAccounts(topAccounts, distribution) {
     .map((account, index) => {
       return {
         rank: index + 1,
-        account: formatKnownAddress(account.account),
+        label: formatKnownAddress(account.account),
+        account: account.account,
         balance: formatAettosToAe(account.balance),
         percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
       }

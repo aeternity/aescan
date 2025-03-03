@@ -1,4 +1,4 @@
-const { MIDDLEWARE_URL } = useRuntimeConfig().public
+const { MIDDLEWARE_URL, PAGINATION_LIMIT } = useRuntimeConfig().public
 
 export function getUrl({ entity, id, route, parameters, limit = PAGINATION_LIMIT, queryParameters }) {
   if (queryParameters) {

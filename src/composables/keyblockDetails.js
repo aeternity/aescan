@@ -18,10 +18,10 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     }
   }
 
-  async function fetchKeyblockMicroblocks({ queryParameters, limit, microblockHash, id } = {}) {
+  async function fetchKeyblockMicroblocks({ queryParameters, microblockHash, id } = {}) {
     keyblockMicroblocks.value = null
     keyblockMicroblocks.value = await $fetch('/api/keyblocks/microblocks', {
-      params: { microblockHash, limit, queryParameters, id },
+      params: { microblockHash, queryParameters, id },
     })
   }
 

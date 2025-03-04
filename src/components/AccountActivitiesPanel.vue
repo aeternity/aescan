@@ -19,13 +19,13 @@ const { accountActivities, accountDetails } = storeToRefs(useAccountStore())
 
 function loadPrevActivities() {
   return fetchAccountActivities({
-    queryParameters: accountActivities.value.prev,
+    queryParameters: accountActivities.value.prev.substring(3),
   })
 }
 
 function loadNextActivities() {
   return fetchAccountActivities({
-    queryParameters: accountActivities.value.next,
+    queryParameters: accountActivities.value.next.substring(3),
   })
 }
 </script>

@@ -7,12 +7,11 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
     return true
   }
 
-  async function fetchOracleEvents({ id, queryParameters = null, limit = 10 }) {
+  async function fetchOracleEvents({ id, queryParameters = null }) {
     oracleEvents.value = null
     oracleEvents.value = await $fetch('/api/oracles/events', {
       params: {
         queryParameters,
-        limit,
         id,
       },
     })

@@ -124,10 +124,10 @@ function toggle(id) {
 .contract-events-table {
   &__data {
     white-space: nowrap;
-  }
 
-  &__data--expanded {
-    border-bottom: 0;
+    &--expanded {
+      border-bottom: 0;
+    }
   }
 
   &__event-data {

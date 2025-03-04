@@ -5,7 +5,6 @@
       :entities="transactions"
       :total-count="transactions?.count"
       pagination-style="history"
-
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>

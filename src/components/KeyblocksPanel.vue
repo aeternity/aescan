@@ -18,11 +18,11 @@ const { keyblocks, keyblocksCount } = storeToRefs(useKeyblockStore())
 const pageIndex = ref(1)
 
 async function loadPrevKeyblocks() {
-  await fetchKeyblocks({ queryParameters: keyblocks.value.prev })
+  await fetchKeyblocks(keyblocks.value.prev)
 }
 
 async function loadNextKeyblocks() {
-  await fetchKeyblocks({ queryParameters: keyblocks.value.next })
+  await fetchKeyblocks(keyblocks.value.next)
 }
 
 if (process.client) {

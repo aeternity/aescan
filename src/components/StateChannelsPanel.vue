@@ -19,15 +19,11 @@ const { fetchStateChannels, fetchStateChannelsCount } = useStateChannelsStore()
 const pageIndex = ref(1)
 
 async function loadPrevStateChannels() {
-  await fetchStateChannels({
-    queryParameters: stateChannels.value.prev.substring(3),
-  })
+  await fetchStateChannels(stateChannels.value.prev.substring(3))
 }
 
 async function loadNextStateChannels() {
-  await fetchStateChannels({
-    queryParameters: stateChannels.value.next.substring(3),
-  })
+  await fetchStateChannels(stateChannels.value.next.substring(3))
 }
 
 async function loadStateChannels() {

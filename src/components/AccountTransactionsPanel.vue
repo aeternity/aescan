@@ -35,13 +35,13 @@ watch(selectedTxType, () => {
 
 function loadPrevTransactions() {
   fetchAccountTransactions({
-    queryParameters: accountTransactions.value.prev,
+    queryParameters: accountTransactions.value.prev.substring(3),
   })
 }
 
 function loadNextTransactions() {
   fetchAccountTransactions({
-    queryParameters: accountTransactions.value.next,
+    queryParameters: accountTransactions.value.next.substring(3),
   })
 }
 </script>

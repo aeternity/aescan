@@ -29,10 +29,11 @@ describe('transactions', () => {
       })
   })
 
-  it('should select  date', () => {
+  it('should select date', () => {
     cy.visit('/transactions')
 
     cy.get('.paginated-content .scope-picker').click()
+    cy.get('.dp--arrow-btn-nav').first().click()
     cy.get('.dp__cell_inner').contains('10').click()
     cy.get('.dp__cell_inner').contains('15').click()
 
@@ -54,6 +55,7 @@ describe('transactions', () => {
     cy.visit('/transactions')
 
     cy.get('.paginated-content .scope-picker').click()
+    cy.get('.dp--arrow-btn-nav').first().click()
     cy.get('.dp__cell_inner').contains('10').click()
     cy.get('.dp__cell_inner').contains('15').click()
 

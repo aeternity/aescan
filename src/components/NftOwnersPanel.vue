@@ -2,7 +2,6 @@
   <app-panel>
     <paginated-content
       :entities="nftOwners"
-
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
       <nft-owners-table

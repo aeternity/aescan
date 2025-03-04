@@ -29,7 +29,7 @@
         <th>
           <time-toggle-button>Last Update</time-toggle-button>
           <hint-tooltip>
-            {{ stateChannelsHints.lastUpdated }}
+            {{ stateChannelsHints.lastUpdate }}
           </hint-tooltip>
         </th>
         <th>

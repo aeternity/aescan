@@ -112,7 +112,7 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             <hint-tooltip>
-              {{ stateChannelsHints.lastUpdatedHeight }}
+              {{ stateChannelsHints.lastUpdateHeight }}
             </hint-tooltip>
             Last Update Height
           </th>
@@ -120,7 +120,7 @@
             <app-link
               v-if="stateChannelDetails.lastUpdatedHeight"
               :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
-              {{ stateChannelDetails.lastUpdatedHeight }}
+              {{ stateChannelDetails.lastUpdateHeight }}
             </app-link>
             <template v-else>
               N/A
@@ -130,7 +130,7 @@
         <tr class="state-channel-details-panel__row">
           <th class="state-channel-details-panel__table-header">
             <hint-tooltip>
-              {{ stateChannelsHints.lastUpdated }}
+              {{ stateChannelsHints.lastUpdate }}
             </hint-tooltip>
             Last Update
           </th>
@@ -200,7 +200,7 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/channels/${props.stateChann
     padding-bottom: 0;
 
     @media (--mobile) {
-      padding-bottom: 8px;
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
@@ -224,8 +224,10 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/channels/${props.stateChann
     word-break: break-all;
     display: block;
     padding-left: 28px;
+    padding-top: var(--space-0);
 
     @media (--mobile) {
+      padding-top: var(--space-1);
       display: table-cell;
     }
   }

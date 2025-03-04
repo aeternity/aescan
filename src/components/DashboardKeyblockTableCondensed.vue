@@ -9,8 +9,7 @@
           Height
         </th>
         <td class="dashboard-keyblock-table-condensed__data">
-          <app-link
-            :to="`/keyblocks/${keyblock.height}`">
+          <app-link :to="`/keyblocks/${keyblock.height}`">
             {{ keyblock.height }}
           </app-link>
         </td>

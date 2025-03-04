@@ -20,8 +20,7 @@
           Smart Contract
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <app-link
-            :to="`/contracts/${transactionData.contractId}`">
+          <app-link :to="`/contracts/${transactionData.contractId}`">
             {{ transactionData.contractId }}
           </app-link>
         </td>
@@ -34,8 +33,7 @@
           Caller
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.callerId}`">
+          <app-link :to="`/accounts/${transactionData.callerId}`">
             {{ transactionData.callerId }}
           </app-link>
         </td>
@@ -182,7 +180,7 @@ function toggleCollapse() {
     padding-bottom: 0;
 
     @media (--mobile) {
-      padding-bottom: 8px;
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
@@ -204,8 +202,10 @@ function toggleCollapse() {
   &__data {
     display: block;
     padding-left: 28px;
+    padding-top: var(--space-0);
 
     @media (--mobile) {
+      padding-top: var(--space-1);
       display: table-cell;
     }
   }

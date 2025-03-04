@@ -32,16 +32,16 @@
       <tr
         v-for="token in accountTokens?.data"
         :key="token.contractId">
-        <td>
+        <td class="account-tokens-table__data">
           <price-label
             :price="token.amount"
             :contract-id="token.contractId"
             :currency="token.tokenSymbol"/>
         </td>
-        <td>
+        <td class="account-tokens-table__data">
           {{ token.value }}
         </td>
-        <td>
+        <td class="account-tokens-table__data">
           <app-link :to="`/tokens/${token.contractId}`">
             {{ token.tokenName }}
           </app-link>
@@ -66,3 +66,9 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+.account-tokens-table__data {
+  white-space: nowrap;
+}
+</style>

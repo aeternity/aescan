@@ -7,6 +7,6 @@
 <style scoped>
 .transaction-arrow-left-icon {
   color: var(--color-fire);
-  min-width: 16px;
+  min-width: var(--space-3);
 }
 </style>

@@ -4,7 +4,7 @@
     class="state-channel-transactions-panel">
     <paginated-content
       v-model:page-index="pageIndex"
-      :total-count="stateChannelTransactionsCount"
+      :total-count="stateChannelTransactions.count"
       :entities="stateChannelTransactions"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-const { stateChannelTransactions, stateChannelTransactionsCount } = storeToRefs(useStateChannelDetailsStore())
+const { stateChannelTransactions } = storeToRefs(useStateChannelDetailsStore())
 const { fetchStateChannelTransactions } = useStateChannelDetailsStore()
 
 const pageIndex = ref(1)

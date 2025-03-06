@@ -9,8 +9,7 @@
           Sender
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
-          <app-link
-            :to="`/accounts/${innerTransactionDetails.senderId}`">
+          <app-link :to="`/accounts/${innerTransactionDetails.senderId}`">
             {{ innerTransactionDetails.senderId }}
           </app-link>
         </td>
@@ -23,8 +22,7 @@
           Recipient
         </th>
         <td class="transaction-type-panel-ga-meta-tx__data">
-          <app-link
-            :to="`/accounts/${innerTransactionDetails.recipientId}`">
+          <app-link :to="`/accounts/${innerTransactionDetails.recipientId}`">
             {{ innerTransactionDetails.recipientId }}
           </app-link>
         </td>
@@ -86,7 +84,7 @@ const payload = computed(() =>
     padding-bottom: 0;
 
     @media (--mobile) {
-      padding-bottom: 8px;
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
@@ -104,8 +102,10 @@ const payload = computed(() =>
   &__data {
     display: block;
     padding-left: 28px;
+    padding-top: var(--space-0);
 
     @media (--mobile) {
+      padding-top: var(--space-1);
       display: table-cell;
     }
   }

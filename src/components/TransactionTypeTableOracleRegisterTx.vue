@@ -9,8 +9,7 @@
           Oracle
         </th>
         <td class="transaction-type-panel-oracle-register-tx__data">
-          <app-link
-            :to="`/oracles/${transactionData.oracleId}`">
+          <app-link :to="`/oracles/${transactionData.oracleId}`">
             {{ formatNullable(transactionData.oracleId) }}
           </app-link>
         </td>
@@ -87,7 +86,7 @@ defineProps({
     padding-bottom: 0;
 
     @media (--mobile) {
-      padding-bottom: 8px;
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
@@ -109,8 +108,10 @@ defineProps({
   &__data {
     display: block;
     padding-left: 28px;
+    padding-top: var(--space-0);
 
     @media (--mobile) {
+      padding-top: var(--space-1);
       display: table-cell;
     }
   }

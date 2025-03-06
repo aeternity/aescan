@@ -34,13 +34,17 @@
         <div class="market-stats__value">
           <div class="market-stats__container">
             <price-label
+              class="market-stats__price"
               :has-icon="false"
               :price="distribution"/>
             /
             <price-label
+              class="market-stats__price"
               :has-icon="false"
               :price="MAX_AE_DISTRIBUTION"/>
-            ({{ formatNullable(distributionPercentage) }}%)
+            <div>
+              ({{ formatNullable(distributionPercentage) }}%)
+            </div>
           </div>
         </div>
       </li>
@@ -133,7 +137,12 @@ const {
 
   &__container {
     display: flex;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 0 var(--space-1);
+  }
+
+  &__price {
+    white-space: nowrap;
   }
 }
 </style>

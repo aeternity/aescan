@@ -179,7 +179,7 @@ const isNextKeyblockMined = computed(() =>
     padding-bottom: 0;
 
     @media (--mobile) {
-      padding-bottom: 8px;
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
@@ -200,11 +200,13 @@ const isNextKeyblockMined = computed(() =>
 
   &__data {
     display: block;
-    padding-left: 28px;
     white-space: wrap;
     word-break: break-all;
+    padding-left: 28px;
+    padding-top: var(--space-0);
 
     @media (--mobile) {
+      padding-top: var(--space-1);
       display: table-cell;
     }
   }

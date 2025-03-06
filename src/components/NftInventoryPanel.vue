@@ -3,7 +3,6 @@
     <paginated-content
       pagination-style="history"
       :entities="nftInventory"
-
       @next-clicked="loadNextNftInventory"
       @prev-clicked="loadPrevNftInventory">
       <nft-inventory-table
@@ -18,11 +17,11 @@ const { nftInventory } = storeToRefs(useNftDetailsStore())
 const { fetchNftInventory } = useNftDetailsStore()
 
 async function loadPrevNftInventory() {
-  await fetchNftInventory({ queryParameters: nftInventory.value.prev.substring(3) })
+  await fetchNftInventory(nftInventory.value.prev.substring(3))
 }
 
 async function loadNextNftInventory() {
-  await fetchNftInventory({ queryParameters: nftInventory.value.next.substring(3) })
+  await fetchNftInventory(nftInventory.value.next.substring(3))
 }
 
 if (process.client) {

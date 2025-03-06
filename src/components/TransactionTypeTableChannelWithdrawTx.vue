@@ -9,8 +9,7 @@
           Channel ID
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          <app-link
-            :to="`/state-channels/${transactionData.channelId}`">
+          <app-link :to="`/state-channels/${transactionData.channelId}`">
             {{ transactionData.channelId }}
           </app-link>
         </td>
@@ -34,8 +33,7 @@
           Recipient
         </th>
         <td class="transaction-type-panel-channel-withdraw-tx__data">
-          <app-link
-            :to="`/accounts/${transactionData.toId}`">
+          <app-link :to="`/accounts/${transactionData.toId}`">
             {{ transactionData.toId }}
           </app-link>
         </td>
@@ -77,7 +75,7 @@ defineProps({
     padding-bottom: 0;
 
     @media (--mobile) {
-      padding-bottom: 8px;
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
       border-bottom: 1px solid var(--color-midnight-25);
       display: table-cell;
@@ -99,8 +97,10 @@ defineProps({
   &__data {
     display: block;
     padding-left: 28px;
+    padding-top: var(--space-0);
 
     @media (--mobile) {
+      padding-top: var(--space-1);
       display: table-cell;
     }
   }

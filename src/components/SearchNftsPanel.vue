@@ -2,11 +2,9 @@
   <app-panel>
     <paginated-content
       :entities="nftsResults"
-
       @prev-clicked="loadPrevNfts"
       @next-clicked="loadNextNfts">
-      <search-nfts-table
-        :nfts="nftsResults"/>
+      <search-nfts-table :nfts="nftsResults"/>
     </paginated-content>
   </app-panel>
 </template>

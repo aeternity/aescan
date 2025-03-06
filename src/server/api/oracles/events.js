@@ -4,13 +4,12 @@ import { formatAettosToAe, formatDecodeBase64 } from '@/utils/format'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const { id, limit, queryParameters } = getQuery(event)
+  const { id, queryParameters } = getQuery(event)
 
   const url = getUrl({
     entity: 'oracles',
     route: 'responses',
     id,
-    limit: limit ?? 10,
     queryParameters,
   })
 

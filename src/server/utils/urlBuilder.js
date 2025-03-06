@@ -1,6 +1,6 @@
-const { MIDDLEWARE_URL } = useRuntimeConfig().public
+const { MIDDLEWARE_URL, PAGINATION_LIMIT } = useRuntimeConfig().public
 
-export function getUrl({ entity, id, route, parameters, limit, queryParameters }) {
+export function getUrl({ entity, id, route, parameters, limit = PAGINATION_LIMIT, queryParameters }) {
   if (queryParameters) {
     return new URL(`${MIDDLEWARE_URL}${queryParameters.substr(3)}`)
   } else {

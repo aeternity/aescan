@@ -10,17 +10,17 @@ export const useSearchStore = defineStore('search', () => {
     })
   }
 
-  async function fetchTokenResults({ query, limit, queryParameters } = {}) {
+  async function fetchTokenResults({ query, queryParameters } = {}) {
     tokensResults.value = null
     tokensResults.value = await $fetch('/api/search/tokens', {
-      params: { query, limit, queryParameters },
+      params: { query, queryParameters },
     })
   }
 
-  async function fetchNftsResults({ query, limit, queryParameters } = {}) {
+  async function fetchNftsResults({ query, queryParameters } = {}) {
     nftsResults.value = null
     nftsResults.value = await $fetch('/api/search/nfts', {
-      params: { query, limit, queryParameters },
+      params: { query, queryParameters },
     })
   }
 

@@ -69,7 +69,7 @@
           <tr>
             <th class="dashboard-state-channels-swiper__header">
               <hint-tooltip>
-                {{ stateChannelsHints.lastUpdated }}
+                {{ stateChannelsHints.lastUpdate }}
               </hint-tooltip>
               <time-toggle-button class="dashboard-state-channels-swiper__button">
                 Last Update

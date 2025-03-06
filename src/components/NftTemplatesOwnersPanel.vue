@@ -2,7 +2,6 @@
   <app-panel class="nft-templates-owners-panel">
     <paginated-content
       :entities="nftOwners"
-
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
       <nft-templates-owners-table
@@ -17,11 +16,11 @@ const { nftOwners } = storeToRefs(useNftDetailsStore())
 const { fetchNftOwners } = useNftDetailsStore()
 
 async function loadNextNftowners() {
-  await fetchNftOwners({ queryParameters: nftOwners.value.next.substring(3) })
+  await fetchNftOwners(nftOwners.value.next.substring(3))
 }
 
 async function loadPrevNftowners() {
-  await fetchNftOwners({ queryParameters: nftOwners.value.prev.substring(3) })
+  await fetchNftOwners(nftOwners.value.prev.substring(3))
 }
 </script>
 

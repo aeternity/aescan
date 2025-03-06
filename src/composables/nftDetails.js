@@ -43,21 +43,21 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
     rawNftDetails.value = data
   }
 
-  async function fetchNftInventory({ queryParameters } = {}) {
+  async function fetchNftInventory(queryParameters) {
     nftInventory.value = null
     const defaultParameters = `/aex141/${nftId.value}/templates?limit=10`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     nftInventory.value = data
   }
 
-  async function fetchNftOwners({ queryParameters } = {}) {
+  async function fetchNftOwners(queryParameters) {
     nftOwners.value = null
     const defaultParameters = `/aex141/${nftId.value}/tokens?limit=10`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     nftOwners.value = data
   }
 
-  async function fetchNftTransfers({ queryParameters } = {}) {
+  async function fetchNftTransfers(queryParameters) {
     rawNftTransfers.value = null
     const defaultParameters = `/aex141/${nftId.value}/transfers?limit=10`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)

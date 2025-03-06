@@ -94,7 +94,7 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     rawTokenEvents.value = data
   }
 
-  async function fetchTokenHolders({ queryParameters } = {}) {
+  async function fetchTokenHolders(queryParameters) {
     rawTokenHolders.value = null
     const defaultParameters = `/aex9/${tokenId.value}/balances?by=amount&limit=10`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)

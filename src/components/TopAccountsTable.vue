@@ -37,9 +37,8 @@
             {{ account.rank }}.
           </td>
           <td class="top-accounts-table__data">
-            <app-link
-              :to="`/accounts/${account.account}`">
-              {{ account.account }}
+            <app-link :to="`/accounts/${account.account}`">
+              {{ account.label }}
             </app-link>
           </td>
           <td class="top-accounts-table__data">

@@ -17,11 +17,11 @@ const { fetchInAuctionNames } = useNamesStore()
 const { inAuctionNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
-  fetchInAuctionNames({ queryParameters: inAuctionNames.value.prev.substring(3) })
+  fetchInAuctionNames(inAuctionNames.value.prev.substring(3))
 }
 
 function loadNextNames() {
-  fetchInAuctionNames({ queryParameters: inAuctionNames.value.next.substring(3) })
+  fetchInAuctionNames(inAuctionNames.value.next.substring(3))
 }
 </script>
 

@@ -30,6 +30,5 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     stateChannelTransactionsCount,
     fetchStateChannelDetails,
     fetchStateChannelTransactions,
-
   }
 })

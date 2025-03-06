@@ -39,16 +39,8 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
-
-if (error.value) {
-  throw showError({
-    data: {
-      entityId: route.params.id,
-      entityName: 'State Channel',
-    },
-    statusMessage: 'EntityDetailsNotFound',
-  })
+if (process.client) {
+  await fetchStateChannelDetails(route.params.id)
 }
 </script>
 

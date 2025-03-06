@@ -4,17 +4,20 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   const stateChannelTransactionsCount = ref(null)
 
   async function fetchStateChannelDetails(id) {
-    await Promise.all([
-      fetchStateChannel(id),
-      // fetchStateChannelTransactionsCount(id),
-    ])
-
-    return true
-  }
-
-  async function fetchStateChannel(id) {
     stateChannelDetails.value = null
-    stateChannelDetails.value = await $fetch(`/api/channels/${id}`)
+    const data = await $fetch(`/api/channels/${id}`)
+    console.log('data', data)
+    if (data.error === 400) {
+      throw showError({
+        data: {
+          entityId: id,
+          entityName: 'State Channel',
+        },
+        statusMessage: 'EntityDetailsNotFound',
+      })
+    } else {
+      stateChannelDetails.value = data
+    }
   }
 
   async function fetchStateChannelTransactions({ id, queryParameters } = {}) {

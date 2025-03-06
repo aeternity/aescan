@@ -26,7 +26,6 @@
 </template>
 
 <script setup>
-import { useRoute } from 'nuxt/app'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 
 const { keyblockDetails } = storeToRefs(useKeyblockDetailsStore())

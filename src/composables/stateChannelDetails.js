@@ -6,7 +6,6 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
   async function fetchStateChannelDetails(id) {
     stateChannelDetails.value = null
     const data = await $fetch(`/api/channels/${id}`)
-    console.log('data', data)
     if (data.error === 400) {
       throw showError({
         data: {
@@ -22,9 +21,11 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
 
   async function fetchStateChannelTransactions({ id, queryParameters } = {}) {
     stateChannelTransactions.value = null
-    stateChannelTransactions.value = await $fetch('/api/channels/transactions', {
+
+    const aaa = await $fetch('/api/channels/transactions', {
       params: { queryParameters, direction: 'backward', channel: id },
     })
+    stateChannelTransactions.value = aaa
   }
 
   return {

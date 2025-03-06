@@ -6,28 +6,32 @@ const axios = useAxios()
 export default defineEventHandler(async event => {
   const id = getRouterParam(event, 'id')
 
-  const [aaa, bbb] = await Promise.all([
-    fetchStateChannel(id),
-    fetchStateChannelCreateTx(id),
-  ])
-  return adaptStateChannelDetails(aaa, bbb)
+  try {
+    const [aaa, bbb] = await Promise.all([
+      fetchStateChannel(id),
+      fetchStateChannelCreateTx(id),
+    ])
+    return adaptStateChannelDetails(aaa, bbb)
+  } catch (error) {
+    console.log('error', error)
+    if ([400, 404].includes(error.response.status)) {
+      return { error: error.response.status }
+    }
+  }
 })
 
 async function fetchStateChannel(id) {
-  // const { data } = await axios.get(`${MIDDLEWARE_URL}/channels/${stateChannelId.value}`)
-
   const url = getUrl({
     entity: 'channels',
     id,
   })
-
   const { data } = await axios.get(url)
+  console.log('data', data)
+
   return data
 }
 
 async function fetchStateChannelCreateTx(id) {
-  // const { data } = await axios.get(`${MIDDLEWARE_URL}/channels/${stateChannelId.value}/updates?direction=forward&limit=1`)
-  // rawStateChannelCreateTx.value = data.data[0]
   const url = getUrl({
     entity: 'channels',
     id,

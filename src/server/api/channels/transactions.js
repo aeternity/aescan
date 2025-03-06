@@ -19,7 +19,6 @@ async function fetchStateChannelTransactions(channel, direction, queryParameters
     parameters: { channel, direction },
     queryParameters,
   })
-
   const { data } = await axios.get(url)
   return data
 }
@@ -28,9 +27,8 @@ async function fetchStateChannelTransactionsCount(id) {
   const url = getUrl({
     entity: 'transactions',
     route: 'count',
-    params: { id },
+    parameters: { id },
   })
-
   const { data } = await axios.get(url)
   return data + 1
 }

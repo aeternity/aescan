@@ -18,6 +18,7 @@
 const { stateChannelTransactions } = storeToRefs(useStateChannelDetailsStore())
 const { fetchStateChannelTransactions } = useStateChannelDetailsStore()
 
+const route = useRoute()
 const pageIndex = ref(1)
 
 const loadPrevTransactions = () => {
@@ -29,6 +30,6 @@ const loadNextTransactions = () => {
 }
 
 if (process.client) {
-  fetchStateChannelTransactions()
+  fetchStateChannelTransactions({ id: route.params.id })
 }
 </script>

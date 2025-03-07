@@ -39,19 +39,19 @@
           </template>
         </td>
         <td class="name-history-table__data">
-          <!--          <block-time-cell-->
-          <!--            :height="action.createdHeight"-->
-          <!--            :timestamp="action.created"/>-->
+          <block-time-cell
+            :height="action.createdHeight"
+            :timestamp="action.created"/>
         </td>
         <td class="name-history-table__data">
-          <!--          <name-history-cell-->
-          <!--            :activity="action.type"-->
-          <!--            :payload="action.payload"/>-->
+          <name-history-cell
+            :activity="action.type"
+            :payload="action.payload"/>
         </td>
         <td class="name-history-table__data">
-          <!--          <name-history-data-cell-->
-          <!--            :activity="action.type"-->
-          <!--            :payload="action.payload"/>-->
+          <name-history-data-cell
+            :activity="action.type"
+            :payload="action.payload"/>
         </td>
       </tr>
     </tbody>

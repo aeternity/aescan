@@ -208,5 +208,10 @@ function getLabel(state) {
       display: table-cell;
     }
   }
+
+  &__container {
+    display: flex;
+    gap: var(--space-1);
+  }
 }
 </style>

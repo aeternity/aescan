@@ -14,6 +14,7 @@ const props = defineProps({
   },
 })
 
+// todo move
 const isAuction = computed(() => {
   return props.payload.tx.name ? formatIsAuction(props.payload.tx.name) : false
 })

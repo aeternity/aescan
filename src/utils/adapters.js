@@ -269,18 +269,17 @@ export function adaptCustomPointers(allPointers) {
 }
 
 export function adaptName(name, blockHeight, blockTime) {
-  const lastBid = name?.auction?.lastBid
+  const lastBid = name?.lastBid
   const states = formatNameState(name, blockHeight)
-  const endHeight = name.auction?.auctionEnd
-  const ends = name.auction?.approximateExpireTime || name.approximateExpireTime
+  const endHeight = name.auctionEnd
+  const ends = name.approximateExpireTime
   const blockCreatedTime = DateTime.fromMillis(blockTime)
   const activated = states.includes('active')
     ? blockCreatedTime.minus({
       minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
     }).toMillis()
     : null
-  const customPointers = adaptCustomPointers(name.pointers)
-
+  const customPointers = name.pointers ? adaptCustomPointers(name.pointers) : null
   const specialPointers = {
     account: name.pointers ? name.pointers.find(name => name.key === 'account_pubkey')?.id : null,
     channel: name.pointers ? name.pointers.find(name => name.key === 'channel')?.id : null,

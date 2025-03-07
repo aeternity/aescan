@@ -37,15 +37,13 @@
 import { namesHints } from '@/utils/hints/namesHints'
 
 const { name, nameHash, hasNameHistory } = storeToRefs(useNameDetailsStore())
-const { fetchName, fetchNameActions } = useNameDetailsStore()
-
+const { fetchNameDetails, fetchNameActions } = useNameDetailsStore()
 const route = useRoute()
-const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
 const { isLoading } = useLoading()
 
 try {
-  await fetchName(route.params.name)
+  await fetchNameDetails(route.params.name)
 } catch (error) {
   if (error.response?.status === 404) {
     throw showError({
@@ -59,9 +57,10 @@ try {
     throw error
   }
 }
+const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
 if (hasNameHistory && process.client) {
-  fetchNameActions({ queryParameters: `/accounts/${nameHash.value}/activities?limit=10` })
+  fetchNameActions({ nameHash: nameHash.value })
 }
 </script>
 

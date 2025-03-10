@@ -42,20 +42,8 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-try {
+if (process.client) {
   await fetchNameDetails(route.params.name)
-} catch (error) {
-  if (error.response?.status === 404) {
-    throw showError({
-      data: {
-        entityId: route.params.name,
-        entityName: 'Name',
-      },
-      statusMessage: 'EntityDetailsNotFound',
-    })
-  } else {
-    throw error
-  }
 }
 
 if (hasNameHistory && process.client) {

@@ -2,12 +2,24 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
   const name = ref(null)
   const nameHistory = ref(null)
 
-  const hasNameHistory = computed(() => !!name.value.hash)
+  const hasNameHistory = computed(() => !!name.value?.hash)
   const hasCustomPointers = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
   async function fetchNameDetails(id) {
     name.value = null
-    name.value = await $fetch(`/api/names/${id}`)
+    const data = await $fetch(`/api/names/${id}`)
+    console.log('data', data)
+    if (data.error === 404) {
+      throw showError({
+        data: {
+          entityId: id,
+          entityName: 'Name',
+        },
+        statusMessage: 'EntityDetailsNotFound',
+      })
+    } else {
+      name.value = data
+    }
   }
 
   async function fetchNameHistory({ nameHash, queryParameters }) {

@@ -8,27 +8,22 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const id = getRouterParam(event, 'id')
-
   const [nameDetails, latestKeyblock] = await Promise.all([
     fetchDetails(id),
     fetchLatestKeyblock(),
   ])
-
+  if (!nameDetails) {
+    return { error: 404 }
+  }
   return adaptName(nameDetails, latestKeyblock.height, latestKeyblock.time)
 })
 
 async function fetchDetails(id) {
-  try {
-    const [name, auction] = await Promise.all([
-      fetchName(id),
-      fetchAuction(id),
-    ])
-    return name || auction
-  } catch (error) {
-    if ([400, 404].includes(error.response.status)) {
-      return { error: error.response.status }
-    }
-  }
+  const [name, auction] = await Promise.all([
+    fetchName(id),
+    fetchAuction(id),
+  ])
+  return name || auction
 }
 
 async function fetchName(id) {

@@ -7,6 +7,7 @@ describe('name detail', () => {
     cy.get('.name-pointers-custom-panel table').should('be.visible')
     cy.get('.name-history-panel .paginated-content').should('be.visible')
   })
+
   it('should display name detail accessed by name hash', () => {
     cy.visit(`/names/${Cypress.env('nameAddress')}`)
 

@@ -8,7 +8,6 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
   async function fetchNameDetails(id) {
     name.value = null
     const data = await $fetch(`/api/names/${id}`)
-    console.log('data', data)
     if (data.error === 404) {
       throw showError({
         data: {

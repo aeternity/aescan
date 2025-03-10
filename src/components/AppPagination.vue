@@ -49,7 +49,6 @@ defineEmits(['prev-clicked', 'next-clicked'])
   &__button {
     &--next {
       margin-left: var(--space-1);
-      /*todo fix margin*/
     }
 
     &--previous {

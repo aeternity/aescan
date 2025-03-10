@@ -1,4 +1,9 @@
+import axios from 'axios'
+import { useRuntimeConfig } from 'nuxt/app'
+
 export const useSearchStore = defineStore('search', () => {
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+
   const namesResults = ref([])
   const tokensResults = ref([])
   const nftsResults = ref([])
@@ -28,7 +33,6 @@ export const useSearchStore = defineStore('search', () => {
     return await $fetch(`/api/search/${id}`)
   }
 
-  // todo refactor
   async function isNameAvailable(name) {
     try {
       await axios.get(`${MIDDLEWARE_URL}/names/${name}`)

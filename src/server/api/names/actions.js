@@ -4,7 +4,6 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const { id, queryParameters } = getQuery(event)
-  console.log('id, queryParameters', id, queryParameters)
 
   const url = getUrl({
     entity: 'accounts',

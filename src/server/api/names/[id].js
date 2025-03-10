@@ -9,20 +9,21 @@ const axios = useAxios()
 export default defineEventHandler(async event => {
   const id = getRouterParam(event, 'id')
 
-  const [name, block] = await Promise.all([
-    fetchaaa(id),
+  const [nameDetails, block] = await Promise.all([
+    fetchDetails(id),
     fetchKeyblocks(),
   ])
-  return adaptName(name[0] || name[1], block.data[0].height, block.data[0].time)
+
+  return adaptName(nameDetails.name || nameDetails.auction, block.height, block.time)
 })
 
-async function fetchaaa(id) {
+async function fetchDetails(id) {
   try {
     const [name, auction] = await Promise.all([
       fetchName(id),
       fetchAuction(id),
     ])
-    return [name, auction]
+    return { name, auction }
   } catch (error) {
     if ([400, 404].includes(error.response.status)) {
       return { error: error.response.status }
@@ -59,22 +60,18 @@ async function fetchAuction(id) {
 async function fetchKeyblocks() {
   const url = getUrl({
     entity: 'key-blocks',
+    limit: 1,
   })
   const { data } = await axios.get(url)
-  return data
+  return data.data[0]
 }
 
 function adaptName(name, blockHeight, blockTime) {
   const lastBid = name?.lastBid
   const hash = name.hash || name.lastBid.tx.nameId
-  console.log('hash', hash)
-
   const states = formatNameState(name, blockHeight)
-
   const endHeight = name.auctionEnd
-
   const ends = name.approximateExpireTime
-
   const blockCreatedTime = DateTime.fromMillis(blockTime)
   const activated = states.includes('active')
     ? blockCreatedTime.minus({
@@ -82,25 +79,13 @@ function adaptName(name, blockHeight, blockTime) {
     }).toMillis()
     : null
   const customPointers = name.pointers ? adaptCustomPointers(name.pointers) : null
-  const specialPointers = {
-    account: name.pointers ? name.pointers.find(name => name.key === 'account_pubkey')?.id : null,
-    channel: name.pointers ? name.pointers.find(name => name.key === 'channel')?.id : null,
-    contract: name.pointers ? name.pointers.find(name => name.key === 'contract_pubkey')?.id : null,
-    oracle: name.pointers ? name.pointers.find(name => name.key === 'oracle_pubkey')?.id : null,
-  }
-
-  function getStateString(states) {
-    if (states.includes('auction')) {
-      return 'Ends'
-    }
-    if (states.includes('revoked')) {
-      return 'Revoked'
-    }
-    if (states.includes('expired')) {
-      return 'Expired'
-    }
-    return 'Expires'
-  }
+  const specialPointers = name.pointers?.reduce((acc, pointer) => ({
+    ...acc,
+    ...(pointer.key === 'account_pubkey' && { account: pointer.id }),
+    ...(pointer.key === 'channel' && { channel: pointer.id }),
+    ...(pointer.key === 'contract_pubkey' && { contract: pointer.id }),
+    ...(pointer.key === 'oracle_pubkey' && { oracle: pointer.id }),
+  }), {}) || {}
 
   return {
     states,
@@ -121,6 +106,19 @@ function adaptName(name, blockHeight, blockTime) {
     specialPointers,
     customPointers,
   }
+}
+
+function getStateString(states) {
+  if (states.includes('auction')) {
+    return 'Ends'
+  }
+  if (states.includes('revoked')) {
+    return 'Revoked'
+  }
+  if (states.includes('expired')) {
+    return 'Expired'
+  }
+  return 'Expires'
 }
 
 function adaptCustomPointers(allPointers) {

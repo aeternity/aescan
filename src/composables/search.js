@@ -28,6 +28,19 @@ export const useSearchStore = defineStore('search', () => {
     return await $fetch(`/api/search/${id}`)
   }
 
+  // todo refactor
+  async function isNameAvailable(name) {
+    try {
+      await axios.get(`${MIDDLEWARE_URL}/names/${name}`)
+      return true
+    } catch (error) {
+      if (error.response.status === 404) {
+        return false
+      }
+      return null
+    }
+  }
+
   return {
     namesResults,
     tokensResults,
@@ -36,5 +49,6 @@ export const useSearchStore = defineStore('search', () => {
     fetchTokenResults,
     fetchNamesResults,
     fetchNftsResults,
+    isNameAvailable,
   }
 })

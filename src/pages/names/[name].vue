@@ -22,7 +22,7 @@
       v-if="name?.active"
       class="name-details__panel"/>
     <name-pointers-custom-panel
-      v-if="hasCustomPanel"
+      v-if="hasCustomPointers"
       class="name-details__panel"/>
     <app-tabs v-if="hasNameHistory">
       <app-tab title="History">
@@ -36,7 +36,7 @@
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
 
-const { name, nameHash, hasNameHistory } = storeToRefs(useNameDetailsStore())
+const { name, hasNameHistory, hasCustomPointers } = storeToRefs(useNameDetailsStore())
 const { fetchNameDetails, fetchNameActions } = useNameDetailsStore()
 const route = useRoute()
 
@@ -57,10 +57,9 @@ try {
     throw error
   }
 }
-const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
 if (hasNameHistory && process.client) {
-  fetchNameActions({ nameHash: nameHash.value })
+  fetchNameActions({ nameHash: name.value.hash })
 }
 </script>
 

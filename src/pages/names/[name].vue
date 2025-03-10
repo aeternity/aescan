@@ -37,7 +37,7 @@
 import { namesHints } from '@/utils/hints/namesHints'
 
 const { name, hasNameHistory, hasCustomPointers } = storeToRefs(useNameDetailsStore())
-const { fetchNameDetails, fetchNameActions } = useNameDetailsStore()
+const { fetchNameDetails, fetchNameHistory } = useNameDetailsStore()
 const route = useRoute()
 
 const { isLoading } = useLoading()
@@ -59,7 +59,7 @@ try {
 }
 
 if (hasNameHistory && process.client) {
-  fetchNameActions({ nameHash: name.value.hash })
+  fetchNameHistory({ nameHash: name.value.hash })
 }
 </script>
 

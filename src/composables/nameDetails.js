@@ -1,6 +1,6 @@
 export const useNameDetailsStore = defineStore('nameDetails', () => {
   const name = ref(null)
-  const nameActions = ref(null)
+  const nameHistory = ref(null)
 
   const hasNameHistory = computed(() => !!name.value.hash)
   const hasCustomPointers = computed(() => name.value?.active && !!name.value?.customPointers?.length)
@@ -10,9 +10,9 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     name.value = await $fetch(`/api/names/${id}`)
   }
 
-  async function fetchNameActions({ nameHash, queryParameters }) {
-    nameActions.value = null
-    nameActions.value = await $fetch('/api/names/actions', {
+  async function fetchNameHistory({ nameHash, queryParameters }) {
+    nameHistory.value = null
+    nameHistory.value = await $fetch('/api/names/history', {
       params: {
         queryParameters,
         id: nameHash,
@@ -22,10 +22,10 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
 
   return {
     name,
-    nameActions,
+    nameHistory,
     hasNameHistory,
     hasCustomPointers,
     fetchNameDetails,
-    fetchNameActions,
+    fetchNameHistory,
   }
 })

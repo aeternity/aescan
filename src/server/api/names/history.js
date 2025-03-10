@@ -13,12 +13,10 @@ export default defineEventHandler(async event => {
   })
   const { data } = await axios.get(url)
 
-  return adaptNameActions(data)
+  return adaptNameHistory(data)
 })
 
-// todo unite confusing naming
-
-export function adaptNameActions(actions) {
+export function adaptNameHistory(actions) {
   const formattedData = actions.data.map(action => {
     return {
       type: action.type,

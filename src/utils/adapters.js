@@ -320,7 +320,7 @@ export function adaptName(name, blockHeight, blockTime) {
   }
 }
 
-export function adaptNameActions(actions) {
+export function adaptNameHistory(actions) {
   const formattedData = actions.data.map(action => {
     return {
       type: action.type,

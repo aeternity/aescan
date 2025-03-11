@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.21.0](https://github.com/aeternity/aescan/compare/0.20.0...0.21.0) (2025-03-11)
+
+
+### Features
+
+* Filter transactions table by date 3 ([#1072](https://github.com/aeternity/aescan/issues/1072)) ([b950845](https://github.com/aeternity/aescan/commit/b950845edc06381a02e2f4100a061334fcb6010d))
+* Increase statistics limit ([#1098](https://github.com/aeternity/aescan/issues/1098)) ([5fb2f61](https://github.com/aeternity/aescan/commit/5fb2f61c181b67df992c2929c95be707b3d07d42))
+* move v3 version string to env variables 2 ([#1068](https://github.com/aeternity/aescan/issues/1068)) ([17e80d7](https://github.com/aeternity/aescan/commit/17e80d7638c6d25cdeddea2cba177260b978c789))
+* Server handlers keyblocks 6 ([#1083](https://github.com/aeternity/aescan/issues/1083)) ([2fd833e](https://github.com/aeternity/aescan/commit/2fd833e073e3904ceaceabdce2a05fe9423b2709))
+* Server handlers microblocks ([#1089](https://github.com/aeternity/aescan/issues/1089)) ([390a96c](https://github.com/aeternity/aescan/commit/390a96cd8aa75196bae26ae081303fe2ab42b67f))
+* server handlers oracles 2, 3 ([#1085](https://github.com/aeternity/aescan/issues/1085)) ([0f7655f](https://github.com/aeternity/aescan/commit/0f7655ff580376a9c8cb99fe7dce887c341e120d))
+* Server handlers search 2 ([#1086](https://github.com/aeternity/aescan/issues/1086)) ([890d6ca](https://github.com/aeternity/aescan/commit/890d6caeafafa2b120dccaca736f3b75b07d4f9d))
+* Unify desktop and mobile tables to simplify the code 4 ([#1093](https://github.com/aeternity/aescan/issues/1093)) ([de69ba6](https://github.com/aeternity/aescan/commit/de69ba681bce8bec3bd6f59b61237a1c531d05a7))
+
+
+### Bug Fixes
+
+* displaying auctions ([#1103](https://github.com/aeternity/aescan/issues/1103)) ([2e01344](https://github.com/aeternity/aescan/commit/2e0134415fdfbbd6d92c3b00ea0d956a3b539403))
+* keyblocks e2e test ([#1097](https://github.com/aeternity/aescan/issues/1097)) ([bdeff6f](https://github.com/aeternity/aescan/commit/bdeff6f8ad35b29f030f216ce6e3398df3acf6de))
+* release fixes 3 ([#1102](https://github.com/aeternity/aescan/issues/1102)) ([3bf6dbb](https://github.com/aeternity/aescan/commit/3bf6dbb0f989bfb7dd1efcbb0ae00ba8ea54cf82))
+* rename plausible env variable ([#1104](https://github.com/aeternity/aescan/issues/1104)) ([42d224c](https://github.com/aeternity/aescan/commit/42d224cc9b92566053c3900554352b6855e96699))
+* transaction test ([#1094](https://github.com/aeternity/aescan/issues/1094)) ([811ecd6](https://github.com/aeternity/aescan/commit/811ecd60a146ad7a7e998bb73aab07af64bfc843))
+* UI fixes 6 ([#1080](https://github.com/aeternity/aescan/issues/1080)) ([0691c66](https://github.com/aeternity/aescan/commit/0691c66f9da63fa3481b79a52a1efb6164f31028))
+
 ## [0.20.0](https://github.com/aeternity/aescan/compare/0.19.0...0.20.0) (2025-02-04)
 
 

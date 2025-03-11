@@ -2,8 +2,11 @@
   <div class="timestamp-label">
     <client-only>
       <template v-if="isExtended">
-        <app-icon name="clock"/>
+        <app-icon
+          name="clock"
+          class="timestamp-label__delimiter"/>
         {{ relativeUpdated }}
+        <wbr class="timestamp-label__delimiter">
         ({{ absolute }})
       </template>
       <template v-else>
@@ -102,9 +105,14 @@ function update() {
 .timestamp-label {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
 
   &__label {
     white-space: nowrap;
+  }
+
+  &__delimiter {
+    margin-right: var(--space-0);
   }
 }
 </style>

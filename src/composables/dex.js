@@ -41,10 +41,7 @@ export const useDexStore = defineStore('dex', () => {
       )
   }
 
-  function reduceTokenPairRatioWithDecimals(
-    ratio,
-    { decimalsA, decimalsB },
-  ) {
+  function reduceTokenPairRatioWithDecimals(ratio, { decimalsA, decimalsB }) {
     return ratio.shiftedBy(decimalsA - decimalsB)
   }
 

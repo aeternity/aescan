@@ -18,21 +18,6 @@
       <tr>
         <th class="dashboard-keyblock-table-condensed__header">
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
-            {{ keyblocksHints.beneficiary }}
-          </hint-tooltip>
-          Beneficiary
-        </th>
-        <td class="dashboard-keyblock-table-condensed__data">
-          <value-hash-ellipsed
-            class="dashboard-keyblock-table-condensed__value-hash-ellipsed"
-            :hash="keyblock.beneficiary"
-            :link-to="`/accounts/${keyblock.beneficiary }`"/>
-        </td>
-      </tr>
-
-      <tr>
-        <th class="dashboard-keyblock-table-condensed__header">
-          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.hash }}
           </hint-tooltip>
           Hash
@@ -48,6 +33,33 @@
       <tr>
         <th class="dashboard-keyblock-table-condensed__header">
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
+            {{ keyblocksHints.mined }}
+          </hint-tooltip>
+          <time-toggle-button>Mined</time-toggle-button>
+        </th>
+        <td class="dashboard-keyblock-table-condensed__data">
+          <timestamp-label :timestamp="keyblock.mined"/>
+        </td>
+      </tr>
+
+      <tr>
+        <th class="dashboard-keyblock-table-condensed__header">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
+            {{ keyblocksHints.beneficiary }}
+          </hint-tooltip>
+          Beneficiary
+        </th>
+        <td class="dashboard-keyblock-table-condensed__data">
+          <value-hash-ellipsed
+            class="dashboard-keyblock-table-condensed__value-hash-ellipsed"
+            :hash="keyblock.beneficiary"
+            :link-to="`/accounts/${keyblock.beneficiary }`"/>
+        </td>
+      </tr>
+
+      <tr>
+        <th class="dashboard-keyblock-table-condensed__column-start">
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
           Reward
@@ -56,18 +68,6 @@
           <price-label
             :price="stats?.blockReward"
             class="dashboard-keyblock-table-condensed__price"/>
-        </td>
-      </tr>
-
-      <tr>
-        <th class="dashboard-keyblock-table-condensed__column-start">
-          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
-            {{ keyblocksHints.mined }}
-          </hint-tooltip>
-          <time-toggle-button>Mined</time-toggle-button>
-        </th>
-        <td class="dashboard-keyblock-table-condensed__data">
-          <timestamp-label :timestamp="keyblock.mined"/>
         </td>
       </tr>
     </tbody>

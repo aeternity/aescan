@@ -19,37 +19,29 @@ export default defineEventHandler(async event => {
 })
 
 async function fetchDetails(id) {
-  const [name, auction] = await Promise.all([
+  const [name, auction] = (await Promise.allSettled([
     fetchName(id),
     fetchAuction(id),
-  ])
-  return name || auction
+  ])).map(result => result.value)
+  return name ?? auction
 }
 
 async function fetchName(id) {
-  try {
-    const url = getUrl({
-      entity: 'names',
-      id,
-    })
-    const { data } = await axios.get(url)
-    return data
-  } catch (e) {
-    return null
-  }
+  const url = getUrl({
+    entity: 'names',
+    id,
+  })
+  const { data } = await axios.get(url)
+  return data
 }
 
 async function fetchAuction(id) {
-  try {
-    const url = getUrl({
-      entity: 'names/auctions',
-      id,
-    })
-    const { data } = await axios.get(url)
-    return data
-  } catch (e) {
-    return null
-  }
+  const url = getUrl({
+    entity: 'names/auctions',
+    id,
+  })
+  const { data } = await axios.get(url)
+  return data
 }
 
 async function fetchLatestKeyblock() {

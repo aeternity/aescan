@@ -1,24 +1,6 @@
 import { DateTime } from 'luxon'
 
 import { BigNumber } from 'bignumber.js'
-import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
-
-import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
-
-export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
-  const formattedData = keyblockMicroblocks.data.map(microblock => {
-    return {
-      time: microblock.time,
-      transactionsCount: microblock.transactionsCount,
-      hash: microblock.hash,
-    }
-  })
-  return {
-    next: keyblockMicroblocks.next,
-    data: formattedData,
-    prev: keyblockMicroblocks.prev,
-  }
-}
 
 export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   if (keyblock) {
@@ -30,13 +12,6 @@ export function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
   }
 
   return keyblock
-}
-
-export function adaptMicroblock(microblock) {
-  return {
-    ...microblock,
-    time: microblock.time,
-  }
 }
 
 export function adaptSelectedMicroblockTransactions(transactions) {
@@ -249,95 +224,6 @@ export function adaptExpiredNames(names) {
   }
 }
 
-export function adaptCustomPointers(allPointers) {
-  const customPointers = allPointers.filter(pointer =>
-    // separate special and custom pointers
-    !SPECIAL_POINTERS_PRESET_KEYS.includes(pointer.key),
-  )
-
-  const hasRawPointers = allPointers
-    ? allPointers.some(pointer => isAddressValid(pointer.id, Encoding.Bytearray))
-    : null
-
-  return customPointers.map(pointer => {
-    return {
-      key: pointer.key,
-      pointer: hasRawPointers ? decode(pointer.id).toString() : pointer.id,
-      isRawPointer: hasRawPointers,
-    }
-  })
-}
-
-export function adaptName(name, blockHeight, blockTime) {
-  const lastBid = name?.lastBid
-  const states = formatNameState(name, blockHeight)
-  const endHeight = name.auctionEnd
-  const ends = name.approximateExpireTime
-  const blockCreatedTime = DateTime.fromMillis(blockTime)
-  const activated = states.includes('active')
-    ? blockCreatedTime.minus({
-      minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
-    }).toMillis()
-    : null
-  const customPointers = name.pointers ? adaptCustomPointers(name.pointers) : null
-  const specialPointers = {
-    account: name.pointers ? name.pointers.find(name => name.key === 'account_pubkey')?.id : null,
-    channel: name.pointers ? name.pointers.find(name => name.key === 'channel')?.id : null,
-    contract: name.pointers ? name.pointers.find(name => name.key === 'contract_pubkey')?.id : null,
-    oracle: name.pointers ? name.pointers.find(name => name.key === 'oracle_pubkey')?.id : null,
-  }
-
-  function getStateString(states) {
-    if (states.includes('auction')) {
-      return 'Ends'
-    }
-    if (states.includes('revoked')) {
-      return 'Revoked'
-    }
-    if (states.includes('expired')) {
-      return 'Expired'
-    }
-    return 'Expires'
-  }
-
-  return {
-    states,
-    stateString: getStateString(states).toLowerCase(),
-    stateLabel: getStateString(states),
-    name: name.name,
-    active: name.active,
-    owner: name?.ownership?.current,
-    bidder: lastBid?.tx?.accountId,
-    bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
-    activatedHeight: states.includes('active') ? name.activeFrom : null,
-    activated,
-    expirationHeight: name.expireHeight,
-    expiration: name.approximateExpireTime,
-    auctionEndsHeight: endHeight,
-    auctionEnds: ends,
-    specialPointers,
-    customPointers,
-  }
-}
-
-export function adaptNameHistory(actions) {
-  const formattedData = actions.data.map(action => {
-    return {
-      type: action.type,
-      hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
-      createdHeight: action.height,
-      payload: action.payload,
-      created: action.blockTime,
-    }
-  })
-
-  return {
-    next: actions.next,
-    data: formattedData,
-    prev: actions.prev,
-  }
-}
-
 export function adaptTransactionDetails(transactionDetails, blockHeight) {
   const created = transactionDetails.time ? transactionDetails.time : null
   const confirmations = transactionDetails.isMined ? blockHeight.value - transactionDetails.blockHeight : 0
@@ -473,68 +359,6 @@ export function adaptListedTokens(tokens) {
   }
 }
 
-export function adaptOracles(oracles) {
-  const formattedData = oracles.data.map(oracle => {
-    return {
-      id: oracle.oracle,
-      registeredHeight: oracle.activeFrom,
-      registered: oracle.registerTime,
-      expirationHeight: oracle.expireHeight,
-      expiration: oracle.approximateExpireTime,
-      queryFee: formatAettosToAe(oracle.queryFee),
-    }
-  })
-
-  return {
-    next: oracles.next,
-    data: formattedData,
-    prev: oracles.prev,
-  }
-}
-
-export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
-  const oracleDetails = {
-    id: oracle.oracle,
-    fee: formatAettosToAe(oracle.queryFee),
-    expiration: oracle.approximateExpireTime,
-    expirationHeight: oracle.expireHeight,
-    registered: oracle.registerTime,
-    registeredHeight: oracle.activeFrom,
-    queryFormat: oracle.format.query,
-    responseFormat: oracle.format.response,
-    operator: oracle.oracle.replace('ok_', 'ak_'),
-    lastExtended: lastExtendedTx ? lastExtendedTx.microTime : null,
-    lastExtendedHeight: lastExtendedTx?.blockHeight,
-    lastQueried: lastQueryTx ? lastQueryTx.blockTime : null,
-    lastQueryHeight: lastQueryTx?.height,
-  }
-  return oracleDetails
-}
-
-export function adaptOracleEvents(events) {
-  const formattedData = events.data.map(event => {
-    return {
-      queriedAt: event.query.blockTime,
-      queriedHeight: event.query.height,
-      respondedAt: event.blockTime,
-      respondedHeight: event.height,
-      queryTx: event.query.sourceTxHash,
-      respondTx: event.sourceTxHash,
-      queryId: event.query.queryId,
-      queryFee: formatAettosToAe(event.query.fee),
-      query: formatDecodeBase64(event.query.query),
-      responseTtl: event.query.responseTtl.value,
-      response: formatDecodeBase64(event.response),
-    }
-  })
-
-  return {
-    next: events?.next,
-    data: formattedData,
-    prev: events?.prev,
-  }
-}
-
 export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx) {
   return {
     id: stateChannel.channel,
@@ -648,43 +472,6 @@ export function adaptVerificationResult(verificationStatus) {
   }
 }
 
-export function adaptMarketStatsGate(stats) {
-  return {
-    price: stats[0].last,
-    volume: stats[0].baseVolume,
-  }
-}
-
-export function adaptMarketStatsMexc(stats) {
-  return {
-    price: stats.lastPrice,
-    volume: stats.volume,
-  }
-}
-
-export function adaptMarketStatsCoinStore(stats) {
-  const tokenPair = stats.data.find(item => item.symbol === 'AEUSDT')
-  return {
-    price: tokenPair.close,
-    volume: tokenPair.volume,
-  }
-}
-
-export function adaptMarketStatsHotCoin(stats) {
-  const tokenPair = stats.ticker.find(item => item.symbol === 'ae_usdt')
-  return {
-    price: tokenPair.last,
-    volume: tokenPair.vol,
-  }
-}
-
-export function adaptMarketStatsCoinW(stats) {
-  return {
-    price: stats.data.aeUsdt.last,
-    volume: stats.data.aeUsdt.baseVolume,
-  }
-}
-
 export function adaptTopAccounts(topAccounts, distribution) {
   return topAccounts
     .slice(0, 100)
@@ -697,27 +484,6 @@ export function adaptTopAccounts(topAccounts, distribution) {
         percentage: (formatAettosToAe(account.balance) * 100 / distribution).toFixed(4),
       }
     })
-}
-
-export function adaptKeyblocks(keyblocks) {
-  const formattedData = keyblocks.data
-    .map(keyblock => {
-      return {
-        hash: keyblock.hash,
-        block: keyblock.height,
-        time: keyblock.time,
-        miner: keyblock.miner,
-        microBlocksCount: keyblock.microBlocksCount,
-        transactionsCount: keyblock.transactionsCount,
-        beneficiary: keyblock.beneficiary,
-        beneficiaryReward: formatAettosToAe(keyblock.beneficiaryReward),
-      }
-    })
-  return {
-    next: keyblocks.next,
-    data: formattedData,
-    prev: keyblocks.prev,
-  }
 }
 
 export function adaptTrades(trades, price) {

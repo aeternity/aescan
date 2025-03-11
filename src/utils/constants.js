@@ -51,7 +51,6 @@ export const TOKEN_TYPES_OPTIONS = [
 ]
 
 export const MAX_AE_DISTRIBUTION = 536306702.49932
-export const SPECIAL_POINTERS_PRESET_KEYS = ['account_pubkey', 'oracle_pubkey', 'contract_pubkey', 'channel']
 export const DATETIME_UNITS = [
   'years',
   'months',

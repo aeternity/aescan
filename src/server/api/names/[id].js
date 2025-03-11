@@ -2,7 +2,9 @@ import { DateTime } from 'luxon'
 import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import useAxios from '@/composables/useAxios'
 import { formatAettosToAe, formatNameState } from '@/utils/format'
-import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
+import { MINUTES_PER_BLOCK } from '@/utils/constants'
+
+const SPECIAL_POINTERS_PRESET_KEYS = ['account_pubkey', 'oracle_pubkey', 'contract_pubkey', 'channel']
 
 const axios = useAxios()
 
@@ -54,8 +56,8 @@ async function fetchLatestKeyblock() {
 }
 
 function adaptName(name, blockHeight, blockTime) {
-  const lastBid = name?.lastBid
-  const hash = name.hash || name.lastBid.tx.nameId
+  const lastBid = name.lastBid
+  const hash = name.hash ?? name.lastBid.tx.nameId
   const states = formatNameState(name, blockHeight)
   const endHeight = name.auctionEnd
   const ends = name.approximateExpireTime
@@ -65,14 +67,13 @@ function adaptName(name, blockHeight, blockTime) {
       minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
     }).toMillis()
     : null
-  const customPointers = name.pointers ? adaptCustomPointers(name.pointers) : null
-  const specialPointers = name.pointers?.reduce((acc, pointer) => ({
-    ...acc,
-    ...(pointer.key === 'account_pubkey' && { account: pointer.id }),
-    ...(pointer.key === 'channel' && { channel: pointer.id }),
-    ...(pointer.key === 'contract_pubkey' && { contract: pointer.id }),
-    ...(pointer.key === 'oracle_pubkey' && { oracle: pointer.id }),
-  }), {}) || {}
+  name.pointers ??= []
+  const customPointers = adaptCustomPointers(name.pointers)
+  const specialPointers = Object.fromEntries(
+    name.pointers
+      .map(({ key }) => SPECIAL_POINTERS_PRESET_KEYS.includes(key))
+      .map(({ key, id }) => [key.replace('_pubkey', ''), id]),
+  )
 
   return {
     states,
@@ -81,8 +82,8 @@ function adaptName(name, blockHeight, blockTime) {
     name: name.name,
     hash,
     active: name.active,
-    owner: name?.ownership?.current,
-    bidder: lastBid?.tx?.accountId,
+    owner: name.ownership?.current,
+    bidder: lastBid?.tx.accountId,
     bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
     activatedHeight: states.includes('active') ? name.activeFrom : null,
     activated,

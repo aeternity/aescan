@@ -1,7 +1,6 @@
 <template>
   <img
     v-if="isAe"
-    class="token-symbol-icon"
     alt="æ token"
     src="@/assets/ae-logo.svg">
 
@@ -24,9 +23,3 @@ const props = defineProps({
 
 const isAe = computed(() => props.contractId === AE_TOKEN_ID)
 </script>
-
-<style scoped>
-.token-symbol-icon {
-  max-width: none
-}
-</style>

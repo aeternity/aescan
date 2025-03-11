@@ -106,20 +106,20 @@
             {{ contractsHints.gasLimit }}
           </hint-tooltip>
           Gas Limit
-
-          /
-          <wbr>
+        </th>
+        <td class="transaction-type-panel-contract-call-tx__data">
+          {{ transactionData.gas }}
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-contract-call-tx__row">
+        <th class="transaction-type-panel-contract-call-tx__table-header">
           <hint-tooltip>
             {{ contractsHints.gasPrice }}
           </hint-tooltip>
           Gas Price
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <div class="transaction-type-panel-contract-call-tx__container">
-            {{ transactionData.gas }}
-            /
-            <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
-          </div>
+          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-contract-call-tx__row">
@@ -128,20 +128,20 @@
             {{ contractsHints.gasUsed }}
           </hint-tooltip>
           Gas Used
-
-          /
-          <wbr>
+        </th>
+        <td class="transaction-type-panel-contract-call-tx__data">
+          {{ transactionData.gasUsed }}
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-contract-call-tx__row">
+        <th class="transaction-type-panel-contract-call-tx__table-header">
           <hint-tooltip>
             {{ contractsHints.gasCost }}
           </hint-tooltip>
           Gas Costs
         </th>
         <td class="transaction-type-panel-contract-call-tx__data">
-          <div class="transaction-type-panel-contract-call-tx__container">
-            {{ transactionData.gasUsed }}
-            /
-            <price-label :price="formatAettosToAe(gasCosts)"/>
-          </div>
+          <price-label :price="formatAettosToAe(gasCosts)"/>
         </td>
       </tr>
     </tbody>
@@ -176,25 +176,47 @@ function toggleCollapse() {
   }
 
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
     }
   }
 
-  &__data {
-    word-wrap: break-word;
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }
 
-  &__container {
+  &__data {
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
+  }
+
+  &__link {
     display: inline-flex;
-    flex-direction: row;
-    gap: var(--space-0);
+    align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 }
 </style>

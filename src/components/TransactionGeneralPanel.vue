@@ -9,15 +9,8 @@
             </hint-tooltip>
             Transaction ID
           </th>
-          <td>
-            <div class="u-hidden-mobile">
-              <copy-chip :label="transactionDetails.hash"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(transactionDetails.hash)"
-                :clipboard-text="transactionDetails.hash"/>
-            </div>
+          <td class="transaction-general-panel__data">
+            <copy-chip :label="transactionDetails.hash"/>
           </td>
         </tr>
         <tr class="transaction-general-panel__row">
@@ -27,7 +20,7 @@
             </hint-tooltip>
             Transaction Type
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             {{ transactionDetails.type }}
           </td>
         </tr>
@@ -38,7 +31,7 @@
             </hint-tooltip>
             Keyblock Height
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             <app-link
               :to="`/keyblocks/${transactionDetails.blockHeight}`">
               {{ transactionDetails.blockHeight }}
@@ -52,7 +45,7 @@
             </hint-tooltip>
             Keyblock Confirmations
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             {{ transactionDetails.confirmations }}
           </td>
         </tr>
@@ -63,7 +56,7 @@
             </hint-tooltip>
             Status
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             <app-chip
               v-if="transactionDetails.isMined"
               variant="success">
@@ -85,16 +78,9 @@
             </hint-tooltip>
             Microblock Hash
           </th>
-          <td>
-            <app-link
-              :to="`/microblocks/${transactionDetails.blockHash}`"
-              class="u-hidden-mobile">
+          <td class="transaction-general-panel__data">
+            <app-link :to="`/microblocks/${transactionDetails.blockHash}`">
               {{ transactionDetails.blockHash }}
-            </app-link>
-            <app-link
-              :to="`/microblocks/${transactionDetails.blockHash}`"
-              class="u-hidden-desktop">
-              {{ formatEllipseHash(transactionDetails.blockHash) }}
             </app-link>
           </td>
         </tr>
@@ -107,7 +93,7 @@
             </hint-tooltip>
             Created
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             <timestamp-label
               :timestamp="transactionDetails.created"
               :is-extended="true"/>
@@ -120,7 +106,7 @@
             </hint-tooltip>
             Fee
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             <price-label :price="formatAettosToAe(transactionDetails.fee)"/>
           </td>
         </tr>
@@ -131,7 +117,7 @@
             </hint-tooltip>
             Nonce
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             {{ transactionDetails.nonce }}
           </td>
         </tr>
@@ -142,7 +128,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="transaction-general-panel__data">
             <app-link
               :to="transactionNodeUrl"
               class="transaction-general-panel__link">
@@ -180,26 +166,51 @@ const props = defineProps({
 })
 
 const transactionNodeUrl = computed(() => {
-  return `${NODE_URL}/v3/transactions/${props.transactionDetails.hash}`
+  return `${NODE_URL}/transactions/${props.transactionDetails.hash}`
 })
 
 const transactionMiddlewareUrl = computed(() => {
-  return `${MIDDLEWARE_URL}/v3/transactions/${props.transactionDetails.hash}`
+  return `${MIDDLEWARE_URL}/transactions/${props.transactionDetails.hash}`
 })
 </script>
 
 <style scoped>
 .transaction-general-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    white-space: wrap;
+    word-break: break-all;
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
   }
 
   &__link {

@@ -27,13 +27,10 @@
 </template>
 
 <script setup>
+const { address } = storeToRefs(useWalletStore())
 
-const walletStore = useWalletStore()
-const { address } = storeToRefs(walletStore)
-
-const accountStore = useAccountStore()
-const { accountDetails, accountTokens } = storeToRefs(accountStore)
-const { fetchAccount } = accountStore
+const { accountDetails, accountTokens } = storeToRefs(useAccountStore())
+const { fetchAccount } = useAccountStore()
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
 
@@ -75,8 +72,7 @@ const activeTabIndex = computed({
 })
 
 if (process.client) {
-  const limit = isDesktop() ? null : 3
-  watch(address, () => fetchAccount(address.value, { limit }), { immediate: true })
+  watch(address, () => fetchAccount(address.value), { immediate: true })
 }
 </script>
 

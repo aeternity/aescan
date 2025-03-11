@@ -12,7 +12,7 @@
             </hint-tooltip>
             Account
           </th>
-          <td>
+          <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.account"
               :to="`/accounts/${name.specialPointers.account}`">
@@ -36,7 +36,7 @@
             </hint-tooltip>
             State Channel
           </th>
-          <td>
+          <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.channel"
               :to="`/state-channels/${name.specialPointers.channel}`">
@@ -60,7 +60,7 @@
             </hint-tooltip>
             Smart Contract
           </th>
-          <td>
+          <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.contract"
               :to="`/contracts/${name.specialPointers.contract}`">
@@ -83,7 +83,7 @@
             </hint-tooltip>
             Oracle
           </th>
-          <td>
+          <td class="name-pointers-special-panel__data">
             <app-link
               v-if="name.specialPointers.oracle"
               :to="`/oracles/${name.specialPointers.oracle}`">
@@ -113,16 +113,44 @@ const { name } = storeToRefs(useNameDetailsStore())
 
 <style scoped>
 .name-pointers-special-panel {
-  &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+  &__table {
+    table-layout: fixed;
+  }
 
-    @media (--desktop) {
+  &__table-header {
+    display: block;
+    padding-bottom: 0;
+
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
+  }
+
 }
 </style>

@@ -11,9 +11,9 @@
   </page-header>
   <template v-if="!isLoading">
     <nft-details-panel
-      v-if="nft"
+      v-if="nftDetails"
       class="nft-details__panel"
-      :nft-details="nft"/>
+      :nft-details="nftDetails"/>
     <app-tabs v-model="activeTabIndex">
       <app-tab title="Transfers">
         <nft-transfers-panel/>
@@ -30,9 +30,8 @@
 <script setup>
 import { nftsHints } from '@/utils/hints/nftsHints'
 
-const nftDetailsStore = useNftDetailsStore()
-const { nft } = storeToRefs(nftDetailsStore)
-const { fetchNftDetails } = nftDetailsStore
+const { nftDetails } = storeToRefs(useNftDetailsStore())
+const { fetchNftDetails } = useNftDetailsStore()
 
 const route = useRoute()
 const { push, replace } = useRouter()
@@ -40,7 +39,7 @@ const { push, replace } = useRouter()
 const { isLoading } = useLoading()
 
 const hasTemplates = computed(() => {
-  return nft.value?.extensions.includes('mintable_templates_limit')
+  return nftDetails.value?.extensions.includes('mintable_templates_limit')
 })
 
 const TAB_KEYS = ['transfers', 'inventory']

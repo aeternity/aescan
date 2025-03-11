@@ -10,9 +10,7 @@
     :searchable="searchable"
     :hide-selected="hideSelected"
     :preselect-first="preselectFirst"
-    :class="[
-      size ? `multiselect--${size}` : null,
-    ]">
+    :class="[ size ? `multiselect--${size}` : null]">
     <template
       v-for="(_, slot) of $slots"
       #[slot]="scope">
@@ -183,7 +181,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &--sm {
     .multiselect__tags {
-      min-height: 28px;
+      min-height: 31px;
       padding: 0 var(--space-6) 0 var(--space-1);
     }
 
@@ -198,7 +196,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     }
 
     .multiselect__select {
-      height: 29px;
+      height: 32px;
     }
   }
 }

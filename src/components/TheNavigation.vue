@@ -172,7 +172,7 @@ onBeforeUnmount(() => {
 const isDesktopResolution = ref(null)
 
 function updateIsDesktopResolution() {
-  isDesktopResolution.value = isDesktop()
+  isDesktopResolution.value = window.innerWidth >= 1280
 }
 </script>
 

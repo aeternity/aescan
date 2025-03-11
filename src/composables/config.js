@@ -7,7 +7,7 @@ export const useConfigStore = defineStore('config', () => {
   const currency = ref()
 
   async function fetchCurrency() {
-    const { data } = await axios.get(`${NODE_URL}/v3/currency`)
+    const { data } = await axios.get(`${NODE_URL}/currency`)
     currency.value = data
   }
 

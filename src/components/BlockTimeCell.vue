@@ -15,7 +15,7 @@ defineProps({
     required: true,
   },
   timestamp: {
-    type: Object,
+    type: Number,
     required: true,
   },
 })

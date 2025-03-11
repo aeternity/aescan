@@ -26,17 +26,17 @@
       <tr
         v-for="name in accountNames.data"
         :key="name.name">
-        <td>
+        <td class="account-names-table__data">
           <app-link :to="`/names/${name.name}`">
             {{ name.name }}
           </app-link>
         </td>
-        <td>
+        <td class="account-names-table__data">
           <block-time-cell
             :height="name.expirationHeight"
             :timestamp="name.expiration"/>
         </td>
-        <td>
+        <td class="account-names-table__data">
           <value-hash-ellipsed
             v-for="pointer in name.pointers"
             :key="pointer"
@@ -63,6 +63,10 @@ defineProps({
 .account-names-table {
   &__pointer {
     display: block;
+  }
+
+  &__data {
+    white-space: nowrap;
   }
 }
 </style>

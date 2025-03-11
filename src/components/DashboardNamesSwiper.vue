@@ -40,7 +40,9 @@
               Price
             </th>
             <td class="dashboard-names-swiper__data">
-              <price-label :price="name.price"/>
+              <price-label
+                :price="name.price"
+                class="dashboard-names-swiper__price"/>
             </td>
           </tr>
           <tr>
@@ -81,10 +83,16 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 
   &__data {
     text-align: right;
+    white-space: wrap;
+    word-break: break-all;
+  }
+
+  &__price {
+    justify-content: flex-end;
   }
 
   &__name {
-    max-width: 200px;
+    max-width: 153px;
     display: inline-block;
   }
 

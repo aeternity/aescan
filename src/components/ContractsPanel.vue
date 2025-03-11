@@ -4,16 +4,10 @@
       v-model:page-index="pageIndex"
       :entities="contracts"
       :total-count="contractsCount"
-      :limit="limit"
       pagination-style="history"
       @prev-clicked="loadPrevContracts"
       @next-clicked="loadNextContracts">
-      <contracts-table
-        :contracts="contracts"
-        class="u-hidden-mobile"/>
-      <contract-table-condensed
-        :contracts="contracts"
-        class="u-hidden-desktop"/>
+      <contracts-table :contracts="contracts"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -22,7 +16,6 @@
 const { contracts, contractsCount } = storeToRefs(useContractsStore())
 const { fetchContracts, fetchContractsCount } = useContractsStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 const loadPrevContracts = () => {
@@ -33,7 +26,7 @@ const loadNextContracts = () => {
 }
 
 const loadContracts = () => {
-  fetchContracts(`/v3/transactions?type=contract_create&limit=${limit.value}`)
+  fetchContracts('/v3/transactions?type=contract_create&limit=10')
   fetchContractsCount()
   pageIndex.value = 1
 }

@@ -49,6 +49,7 @@
             </th>
             <td>
               <transaction-cell
+                class="transactions-swiper__transaction-cell"
                 :transaction-data="transaction.data"
                 :transaction-type="transaction.type"/>
             </td>
@@ -82,6 +83,10 @@ defineProps({
 
   &__button {
     margin-left: 3px;
+  }
+
+  &__transaction-cell {
+    flex-wrap: wrap;
   }
 }
 </style>

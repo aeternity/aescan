@@ -16,11 +16,11 @@
     </button>
   </div>
 </template>
+
 <script setup>
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
-const { isNameAvailable } = useNameDetailsStore()
-const { isKeyblockAvailable } = useKeyblockDetailsStore()
+const { isKeyblockAvailable, isNameAvailable } = useSearchStore()
 const { push } = useRouter()
 
 const query = ref('')
@@ -99,6 +99,7 @@ function isMicroblockId(query) {
   return isAddressValid(query, Encoding.MicroBlockHash)
 }
 </script>
+
 <style scoped>
 .search-bar {
   padding: 6px var(--space-0) 6px var(--space-3);

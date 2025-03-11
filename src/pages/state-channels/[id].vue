@@ -32,9 +32,8 @@
 <script setup>
 import { stateChannelsHints } from '@/utils/hints/stateChannelsHints'
 
-const stateChannelDetailsStore = useStateChannelDetailsStore()
-const { stateChannelDetails } = storeToRefs(stateChannelDetailsStore)
-const { fetchStateChannelDetails } = stateChannelDetailsStore
+const { stateChannelDetails } = storeToRefs(useStateChannelDetailsStore())
+const { fetchStateChannelDetails } = useStateChannelDetailsStore()
 
 const route = useRoute()
 

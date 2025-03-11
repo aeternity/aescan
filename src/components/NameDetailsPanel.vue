@@ -9,7 +9,7 @@
             </hint-tooltip>
             Name
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <copy-chip :label="name.name"/>
           </td>
         </tr>
@@ -22,14 +22,9 @@
             </hint-tooltip>
             {{ states.includes('expired') ? "Last Owner" : "Owner" }}
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.owner}`">
-              <span class="u-hidden-mobile">
-                {{ name.owner }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.owner) }}
-              </span>
+              {{ name.owner }}
             </app-link>
           </td>
         </tr>
@@ -42,14 +37,9 @@
             </hint-tooltip>
             Highest Bidder
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link :to="`/accounts/${name.bidder}`">
-              <span class="u-hidden-mobile">
-                {{ name.bidder }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.bidder) }}
-              </span>
+              {{ name.bidder }}
             </app-link>
           </td>
         </tr>
@@ -62,10 +52,8 @@
             </hint-tooltip>
             Highest Bid
           </th>
-          <td>
-            <price-label
-              class="name-details-panel__data"
-              :price="name.bid"/>
+          <td class="name-details-panel__data">
+            <price-label :price="name.bid"/>
           </td>
         </tr>
         <tr
@@ -77,7 +65,7 @@
             </hint-tooltip>
             Owned Since Height
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link
               :to="`/keyblocks/${name.activatedHeight}`">
               {{ name.activatedHeight }}
@@ -93,7 +81,7 @@
             </hint-tooltip>
             Owned Since
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <timestamp-label
               :timestamp="name.activated"
               :is-extended="true"/>
@@ -102,11 +90,11 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[stateLabel.toLowerCase() + 'Height'] }}
+              {{ namesHints[name.stateString + 'Height'] }}
             </hint-tooltip>
-            {{ stateLabel }} Height
+            {{ name.stateLabel }} Height
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <app-link
               :to="`/keyblocks/${name.auctionEndsHeight || name.expirationHeight}`">
               {{ name.auctionEndsHeight || name.expirationHeight }}
@@ -116,11 +104,11 @@
         <tr class="name-details-panel__row">
           <th class="name-details-panel__table-header">
             <hint-tooltip>
-              {{ namesHints[stateLabel.toLowerCase() + 'Time'] }}
+              {{ namesHints[name.stateString + 'Time'] }}
             </hint-tooltip>
-            {{ stateLabel }}
+            {{ name.stateLabel }}
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <timestamp-label
               :timestamp="name.auctionEnds || name.expiration"
               :is-extended="true"/>
@@ -133,7 +121,7 @@
             </hint-tooltip>
             Status
           </th>
-          <td>
+          <td class="name-details-panel__data">
             <div class="name-details-panel__container">
               <app-chip
                 v-for="state in states"
@@ -154,19 +142,6 @@ import { namesHints } from '@/utils/hints/namesHints'
 
 const { name } = storeToRefs(useNameDetailsStore())
 const states = name.value.states
-
-const stateLabel = computed(() => {
-  if (states.includes('auction')) {
-    return 'Ends'
-  }
-  if (states.includes('revoked')) {
-    return 'Revoked'
-  }
-  if (states.includes('expired')) {
-    return 'Expired'
-  }
-  return 'Expires'
-})
 
 function getVariant(state) {
   if (state.includes('auction')) {
@@ -198,15 +173,40 @@ function getLabel(state) {
 <style scoped>
 .name-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    white-space: wrap;
+    word-break: break-all;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
   }
 
   &__container {

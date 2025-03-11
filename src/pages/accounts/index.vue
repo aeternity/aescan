@@ -13,14 +13,13 @@
   <accounts-statistics class="accounts-panel"/>
   <accounts-chart-panel
     class="accounts-panel"
-    :preselected-range="CHART_INTERVALS_PRESETS_OPTIONS[0]"/>
+    :scope="CHART_SCOPE_PRESETS_OPTIONS[0]"/>
   <top-accounts-panel v-if="!isLoading"/>
   <loader-panel v-else/>
 </template>
 
 <script setup>
 import { topAccountsHints } from '@/utils/hints/topAccountsHints'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

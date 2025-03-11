@@ -9,7 +9,7 @@
             </hint-tooltip>
             Symbol
           </th>
-          <td>
+          <td class="ae-coin-panel__data">
             <div class="ae-coin-panel__link">
               <img
                 class="ae-coin-panel__icon"
@@ -26,7 +26,7 @@
             </hint-tooltip>
             Price
           </th>
-          <td>
+          <td class="ae-coin-panel__data">
             $ {{ formatNullable(price) }}
             <trend-chip :delta="priceChange"/>
           </td>
@@ -38,7 +38,7 @@
             </hint-tooltip>
             Total Supply
           </th>
-          <td>
+          <td class="ae-coin-panel__data">
             <price-label :price="MAX_AE_DISTRIBUTION"/>
           </td>
         </tr>
@@ -49,7 +49,7 @@
             </hint-tooltip>
             Circulating Supply
           </th>
-          <td>
+          <td class="ae-coin-panel__data">
             <price-label :price="totalTokenSupply"/>
           </td>
         </tr>
@@ -60,7 +60,7 @@
             </hint-tooltip>
             Decimals
           </th>
-          <td>
+          <td class="ae-coin-panel__data">
             18
           </td>
         </tr>
@@ -93,15 +93,38 @@ defineProps({
 <style scoped>
 .ae-coin-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
   }
 
   &__link {
@@ -114,10 +137,6 @@ defineProps({
     width: 28px;
     height: 28px;
 
-    @media (--desktop) {
-      width: 24px;
-      height: 24px;
-    }
   }
 }
 </style>

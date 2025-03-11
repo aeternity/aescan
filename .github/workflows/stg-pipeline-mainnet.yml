@@ -34,7 +34,7 @@ jobs:
           install: true
 
       - name: Cache Docker layers
-        uses: actions/cache@v4.0.2
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           # Key is named differently to avoid collision
@@ -122,7 +122,7 @@ jobs:
           app: ${{ env.APP }}
 
       - name: Staging undeploy
-        if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true
+        if: github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true
         uses: aeternity/ae-github-actions/argocd-undeploy@v5
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}

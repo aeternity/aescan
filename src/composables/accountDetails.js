@@ -55,16 +55,16 @@ export const useAccountStore = defineStore('account', () => {
       : null,
   )
 
-  async function fetchAccount(accountId, { limit } = {}) {
+  async function fetchAccount(accountId = {}) {
     await Promise.all([
       fetchAccountDetails(accountId),
 
       Promise.allSettled([
-        fetchAccountTokens({ accountId, limit }),
-        fetchAccountTransactions({ accountId, limit }),
+        fetchAccountTokens({ accountId }),
+        fetchAccountTransactions({ accountId }),
         fetchTotalAccountTransactionsCount(accountId),
-        fetchAccountNames({ accountId, limit }),
-        fetchAccountActivities({ accountId, limit }),
+        fetchAccountNames({ accountId }),
+        fetchAccountActivities({ accountId }),
       ]),
     ])
     return true
@@ -72,7 +72,7 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchAccountDetails(accountId) {
     try {
-      const { data } = await axios.get(`${NODE_URL}/v3/accounts/${accountId}`)
+      const { data } = await axios.get(`${NODE_URL}/accounts/${accountId}`)
       rawAccountDetails.value = data
     } catch (e) {
       if ([400, 404].includes(e.response.status)) {
@@ -93,22 +93,22 @@ export const useAccountStore = defineStore('account', () => {
 
   async function fetchTotalAccountTransactionsCount(accountId) {
     totalAccountTransactionsCount.value = null
-    const txCountUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions/count`)
+    const txCountUrl = new URL(`${MIDDLEWARE_URL}/transactions/count`)
     txCountUrl.searchParams.append('id', accountId)
     const { data } = await axios.get(txCountUrl.toString())
     totalAccountTransactionsCount.value = data
   }
 
-  async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
+  async function fetchAccountNames({ accountId, queryParameters } = {}) {
     rawAccountNames.value = null
-    const defaultParameters = `/v3/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${limit ?? 10}`
+    const defaultParameters = `/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=10`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountNames.value = data
   }
 
-  async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {
+  async function fetchAccountTokens({ accountId, queryParameters } = {}) {
     rawAccountTokens.value = null
-    const defaultParameters = `/v3/accounts/${accountId}/aex9/balances?limit=${limit ?? 10}`
+    const defaultParameters = `/accounts/${accountId}/aex9/balances?limit=10`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountTokens.value = data
 
@@ -133,14 +133,14 @@ export const useAccountStore = defineStore('account', () => {
     )
   }
 
-  async function fetchAccountActivities({ accountId, limit, queryParameters } = {}) {
+  async function fetchAccountActivities({ accountId, queryParameters } = {}) {
     rawAccountActivities.value = null
-    const defaultParameters = `/v3/accounts/${accountId}/activities?limit=${limit ?? 10}`
+    const defaultParameters = `/accounts/${accountId}/activities?limit=10`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountActivities.value = data
   }
 
-  async function fetchAccountTransactions({ accountId, type, limit, queryParameters } = {}) {
+  async function fetchAccountTransactions({ accountId, type, queryParameters } = {}) {
     rawAccountTransactions.value = null
 
     if (queryParameters) {
@@ -149,9 +149,9 @@ export const useAccountStore = defineStore('account', () => {
       return
     }
 
-    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions`)
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
-    transactionsUrl.searchParams.append('limit', limit ?? 10)
+    transactionsUrl.searchParams.append('limit', 10)
 
     if (accountId) {
       transactionsUrl.searchParams.append('sender_id', accountId)

@@ -12,18 +12,17 @@
         </app-chip>
       </app-link>
       <template v-if="transactionData.type === 'PayingForTx'">
-        <copy-chip
-          :label="transactionData.payerId"
-          class="u-hidden-mobile"/>
-        <copy-chip
-          :label="formatEllipseHash(transactionData.payerId)"
-          :clipboard-text="transactionData.payerId"
-          class="u-hidden-desktop"/>
-        <app-chip
-          variant="primary"
-          size="sm">
-          {{ transactionData.tx.tx.type }}
-        </app-chip>
+        <div>
+          <copy-chip
+            class="transaction-type-panel__chip--paying"
+            :label="transactionData.payerId"/>
+
+          <app-chip
+            variant="primary"
+            size="sm">
+            {{ transactionData.tx.tx.type }}
+          </app-chip>
+        </div>
       </template>
       <template v-if="transactionData.type === 'GAMetaTx'">
         <copy-chip
@@ -81,22 +80,18 @@ watch(props.transactionData, () => {
 
 <style scoped>
 .transaction-type-panel {
-  &__container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
-    gap: var(--space-1);
-    margin-bottom: var(--space-1);
-
-    &:empty {
-      gap: 0;
-      margin-bottom: 0;
-    }
-  }
 
   &__payer {
     word-wrap: anywhere;
     max-width: 100%;
+  }
+
+  &__chip--paying {
+    margin-bottom: var(--space-2);
+
+    @media (--mobile) {
+      margin-right: var(--space-2);
+    }
   }
 }
 </style>

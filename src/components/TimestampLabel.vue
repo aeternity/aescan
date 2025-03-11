@@ -2,12 +2,18 @@
   <div class="timestamp-label">
     <client-only>
       <template v-if="isExtended">
-        <app-icon name="clock"/>
-        {{ relativeUpdated }} ({{ absolute }})
+        <app-icon
+          name="clock"
+          class="timestamp-label__delimiter"/>
+        {{ relativeUpdated }}
+        <wbr class="timestamp-label__delimiter">
+        ({{ absolute }})
       </template>
       <template v-else>
         <app-tooltip>
-          {{ labelTime }}
+          <span class="timestamp-label__label">
+            {{ labelTime }}
+          </span>
           <template #tooltip>
             {{ tooltipTime }}
           </template>
@@ -20,6 +26,7 @@
 <script setup>
 import { DateTime, Duration } from 'luxon'
 import { DATETIME_UNITS } from '@/utils/constants'
+
 const { timeFormat } = storeToRefs(useUiStore())
 
 const relativeUpdated = ref(null)
@@ -27,7 +34,7 @@ const intervalRef = ref(null)
 
 const props = defineProps({
   timestamp: {
-    type: Object,
+    type: Number,
     required: true,
   },
   isExtended: {
@@ -37,7 +44,7 @@ const props = defineProps({
 })
 
 const absolute = computed(() => {
-  return props.timestamp.toLocaleString(DateTime.DATETIME_SHORT)
+  return DateTime.fromMillis(props.timestamp).toLocaleString(DateTime.DATETIME_SHORT)
 })
 
 const labelTime = computed(() => {
@@ -59,7 +66,7 @@ const dynamicInterval = computed(() => {
 })
 
 const expirationDuration = computed(() => {
-  return props.timestamp.diffNow().shiftTo(...DATETIME_UNITS)
+  return DateTime.fromMillis(props.timestamp).diffNow().shiftTo(...DATETIME_UNITS)
 })
 
 const highestUnit = computed(() => {
@@ -85,7 +92,7 @@ onBeforeUnmount(() => {
 
 function update() {
   if (isPast.value) {
-    relativeUpdated.value = props.timestamp.setLocale('en-US').toRelative()
+    relativeUpdated.value = DateTime.fromMillis(props.timestamp).toRelative()
   } else if (isNow.value) {
     relativeUpdated.value = 'now'
   } else {
@@ -98,5 +105,14 @@ function update() {
 .timestamp-label {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  &__delimiter {
+    margin-right: var(--space-0);
+  }
 }
 </style>

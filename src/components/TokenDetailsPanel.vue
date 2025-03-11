@@ -9,7 +9,7 @@
             </hint-tooltip>
             Symbol
           </th>
-          <td>
+          <td class="token-details-panel__data">
             <div class="token-details-panel__link">
               <token-symbol-icon
                 :contract-id="tokenDetails.contractId"
@@ -25,7 +25,7 @@
             </hint-tooltip>
             Name
           </th>
-          <td>
+          <td class="token-details-panel__data">
             {{ tokenDetails.name }}
             <not-available-label v-if="!tokenDetails.name"/>
           </td>
@@ -39,7 +39,7 @@
             </hint-tooltip>
             AE Price
           </th>
-          <td>
+          <td class="token-details-panel__data">
             <div class="token-details-panel__container">
               <price-label :price="tokenDetails.price"/>
             </div>
@@ -54,7 +54,7 @@
             </hint-tooltip>
             Fiat Price
           </th>
-          <td>
+          <td class="token-details-panel__data">
             <div class="token-details-panel__container">
               {{ fiatPrice }}
             </div>
@@ -69,7 +69,7 @@
             </hint-tooltip>
             Market cap
           </th>
-          <td>
+          <td class="token-details-panel__data">
             {{ marketCap }}
           </td>
         </tr>
@@ -80,7 +80,7 @@
             </hint-tooltip>
             Total supply
           </th>
-          <td>
+          <td class="token-details-panel__data">
             <price-label
               :price="tokenDetails.totalSupply"
               :currency="tokenDetails.symbol"
@@ -94,14 +94,9 @@
             </hint-tooltip>
             Smart Contract ID
           </th>
-          <td>
+          <td class="token-details-panel__data">
             <app-link :to="`/contracts/${tokenDetails.contractId}`">
-              <span class="u-hidden-mobile">
-                {{ tokenDetails.contractId }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(tokenDetails.contractId) }}
-              </span>
+              {{ tokenDetails.contractId }}
             </app-link>
           </td>
         </tr>
@@ -112,7 +107,7 @@
             </hint-tooltip>
             Decimals
           </th>
-          <td>
+          <td class="token-details-panel__data">
             {{ tokenDetails.decimals }}
           </td>
         </tr>
@@ -123,7 +118,7 @@
             </hint-tooltip>
             Token Holders
           </th>
-          <td>
+          <td class="token-details-panel__data">
             {{ tokenHoldersCount }}
           </td>
         </tr>
@@ -134,7 +129,7 @@
             </hint-tooltip>
             Extensions
           </th>
-          <td>
+          <td class="token-details-panel__data">
             <div
               v-if="!!tokenDetails.extensions.length"
               class="token-details-panel__extensions">
@@ -157,7 +152,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="token-details-panel__data">
             <app-link
               v-if="featureFlags.dex && tokenDexUrl"
               :to="tokenDexUrl"
@@ -201,7 +196,7 @@ const props = defineProps({
 })
 
 const tokenMiddlewareUrl = computed(() =>
-  `${config.MIDDLEWARE_URL}/v3/aex9/${props.tokenDetails.contractId}`,
+  `${config.MIDDLEWARE_URL}/aex9/${props.tokenDetails.contractId}`,
 )
 
 const tokenDexUrl = computed(() =>
@@ -220,10 +215,22 @@ const fiatPrice = computed(() =>
 <style scoped>
 .token-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
@@ -240,6 +247,19 @@ const fiatPrice = computed(() =>
     }
   }
 
+  &__data {
+    display: block;
+    white-space: wrap;
+    word-break: break-all;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
+  }
+
   &__container {
     display: flex;
     gap: var(--space-2) var(--space-1);
@@ -249,21 +269,12 @@ const fiatPrice = computed(() =>
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);
-
-    @media (--desktop) {
-      gap: 0 var(--space-1);
-    }
   }
 
   &__icon {
     margin-right: var(--space-1);
     width: 28px;
     height: 28px;
-
-    @media (--desktop) {
-      width: 24px;
-      height: 24px;
-    }
   }
 }
 </style>

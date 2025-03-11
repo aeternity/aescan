@@ -36,9 +36,8 @@
 <script setup>
 import { tokensHints } from '@/utils/hints/tokensHints'
 
-const tokenDetailsStore = useTokenDetailsStore()
-const { tokenDetails, tokenHoldersCount } = storeToRefs(tokenDetailsStore)
-const { fetchTokenDetails } = tokenDetailsStore
+const { tokenDetails, tokenHoldersCount } = storeToRefs(useTokenDetailsStore())
+const { fetchTokenDetails } = useTokenDetailsStore()
 
 const featureFlags = useFeatureFlags()
 

@@ -3,19 +3,14 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="transactions"
+      :total-count="transactions?.count"
       pagination-style="history"
-      :limit="limit"
       @prev-clicked="loadPrevTransactions"
       @next-clicked="loadNextTransactions">
       <template #header>
         <transactions-select v-model="selectedTxType"/>
       </template>
-      <microblock-transactions-table
-        :transactions="transactions"
-        class="u-hidden-mobile"/>
-      <microblock-transactions-table-condensed
-        :transactions="transactions"
-        class="u-hidden-desktop"/>
+      <microblock-transactions-table :transactions="transactions"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -31,21 +26,24 @@ const { push } = useRouter()
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const pageIndex = ref(1)
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 
 function loadPrevTransactions() {
-  fetchMicroblockTransactions({ queryParameters: transactions.value.prev })
+  fetchMicroblockTransactions({ queryParameters: transactions.value.prev.substring(3) })
 }
 
 function loadNextTransactions() {
-  fetchMicroblockTransactions({ queryParameters: transactions.value.next })
+  fetchMicroblockTransactions({ queryParameters: transactions.value.next.substring(3) })
 }
 
 async function loadTransactions() {
   const { txType } = route.query
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
-  await fetchMicroblockTransactions({ queryParameters: `/v3/micro-blocks/${route.params.id}/transactions/?limit=${limit.value}${selectedTxType.value.typeQuery ? '&type=' + selectedTxType.value.typeQuery : ''}` })
+  await fetchMicroblockTransactions({
+    limit: 10,
+    microblockHash: route.params.id,
+    type: selectedTxType.value?.typeQuery,
+  })
   pageIndex.value = 1
 }
 

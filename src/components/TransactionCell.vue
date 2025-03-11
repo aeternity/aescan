@@ -48,13 +48,8 @@ const transactionCellComponent = computed(() => {
 <style scoped>
 .transaction-cell {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: var(--space-1);
-  flex-wrap: wrap;
-
-  @media (--desktop) {
-    justify-content: space-between;
-  }
 }
 </style>

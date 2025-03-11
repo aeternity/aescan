@@ -9,7 +9,7 @@
             </hint-tooltip>
             Contract ID
           </th>
-          <td>
+          <td class="nft-details-panel__data">
             <div class="u-hidden-mobile">
               <copy-chip :label="nftDetails.contractId"/>
             </div>
@@ -27,7 +27,7 @@
             </hint-tooltip>
             Collection Name
           </th>
-          <td>
+          <td class="nft-details-panel__data">
             {{ nftDetails.name }}
           </td>
         </tr>
@@ -38,7 +38,7 @@
             </hint-tooltip>
             Owners
           </th>
-          <td>
+          <td class="nft-details-panel__data">
             {{ nftDetails.nftOwners }}
           </td>
         </tr>
@@ -49,7 +49,7 @@
             </hint-tooltip>
             Amount
           </th>
-          <td>
+          <td class="nft-details-panel__data">
             {{ nftDetails.nftsAmount }}
           </td>
         </tr>
@@ -61,7 +61,7 @@
             </hint-tooltip>
             Extensions
           </th>
-          <td>
+          <td class="nft-details-panel__data">
             <div
               v-if="!!nftDetails.extensions.length"
               class="nft-details-panel__extensions">
@@ -86,7 +86,7 @@
             </hint-tooltip>
             Token limit
           </th>
-          <td>
+          <td class="nft-details-panel__data">
             {{ nftDetails.tokenLimit }}
           </td>
         </tr>
@@ -99,7 +99,7 @@
               {{ nftsHints.templateLimit }}
             </hint-tooltip>
           </th>
-          <td>
+          <td class="nft-details-panel__data">
             {{ nftDetails.templateLimit }}
           </td>
         </tr>
@@ -122,15 +122,38 @@ defineProps({
 <style scoped>
 .nft-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
   }
 
   &__link {
@@ -146,10 +169,6 @@ defineProps({
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-1);
-
-    @media (--desktop) {
-      gap: 0 var(--space-1);
-    }
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="pagination">
     <pagination-button
-      class="pagination__prev-button"
+      class="pagination__button--previous"
       direction="left"
       :disabled="isPrevDisabled"
       @click="$emit('prev-clicked')">
@@ -51,7 +51,7 @@ defineEmits(['prev-clicked', 'next-clicked'])
       margin-left: var(--space-1);
     }
 
-    &--prev {
+    &--previous {
       margin-right: var(--space-1);
     }
   }

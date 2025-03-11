@@ -11,15 +11,8 @@
             </hint-tooltip>
             Smart Contract ID
           </th>
-          <td>
-            <div class="u-hidden-mobile">
-              <copy-chip :label="contractDetails.id"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(contractDetails.id)"
-                :clipboard-text="contractDetails.id"/>
-            </div>
+          <td class="contract-details-panel__data">
+            <copy-chip :label="contractDetails.id"/>
           </td>
         </tr>
 
@@ -32,13 +25,12 @@
             </hint-tooltip>
             Type
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <app-chip size="sm">
               {{ contractDetails.contractType }}
             </app-chip>
           </td>
         </tr>
-
         <tr
           v-if="contractDetails.contractType"
           class="contract-details-panel__row">
@@ -48,7 +40,7 @@
             </hint-tooltip>
             Token
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <div class="contract-details-panel__container">
               <app-link
                 v-if="contractDetails.contractType === 'AEX-9'"
@@ -75,14 +67,9 @@
             </hint-tooltip>
             Create Transaction
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.createTransactionHash }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.createTransactionHash) }}
-              </span>
+              {{ contractDetails.createTransactionHash }}
             </app-link>
           </td>
         </tr>
@@ -93,7 +80,7 @@
             </hint-tooltip>
             Created Height
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
               {{ contractDetails.creationHeight }}
             </app-link>
@@ -106,7 +93,7 @@
             </hint-tooltip>
             Created
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <timestamp-label
               :timestamp="contractDetails.creationDate"
               :is-extended="true"/>
@@ -121,14 +108,9 @@
             </hint-tooltip>
             Created By
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.createdBy }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.createdBy) }}
-              </span>
+              {{ contractDetails.createdBy }}
             </app-link>
           </td>
         </tr>
@@ -141,7 +123,7 @@
             </hint-tooltip>
             Bytecode
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <copy-chip
               :label="formatEllipseHash(contractDetails.bytecode)"
               :clipboard-text="contractDetails.bytecode"/>
@@ -154,14 +136,9 @@
             </hint-tooltip>
             Smart Contract’s Account
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
-              <span class="u-hidden-mobile">
-                {{ contractDetails.contractAccount }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(contractDetails.contractAccount) }}
-              </span>
+              {{ contractDetails.contractAccount }}
             </app-link>
           </td>
         </tr>
@@ -172,7 +149,7 @@
             </hint-tooltip>
             Smart Contract's Account Balance
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <price-label :price="0"/>
           </td>
         </tr>
@@ -183,7 +160,7 @@
             </hint-tooltip>
             Smart Contract Calls
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             {{ contractDetails.callsCount }}
           </td>
         </tr>
@@ -194,7 +171,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="contract-details-panel__data">
             <app-link
               :to="contractNodeUrl"
               class="contract-details-panel__link">
@@ -231,29 +208,50 @@ const props = defineProps({
 })
 
 const contractNodeUrl = computed(() =>
-  `${NODE_URL}/v3/contracts/${props.contractDetails.id}`,
+  `${NODE_URL}/contracts/${props.contractDetails.id}`,
 )
 const contractMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v3/contracts/${props.contractDetails.id}`,
+  `${MIDDLEWARE_URL}/contracts/${props.contractDetails.id}`,
 )
 </script>
 
 <style scoped>
 .contract-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
+    }
+  }
+
+  &__data {
+    display: block;
+    white-space: wrap;
+    word-break: break-all;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
-  }
-
-  &__container {
-    display: flex;
   }
 
   &__link {

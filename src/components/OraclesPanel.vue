@@ -3,19 +3,13 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="oracles"
-      :limit="limit"
-      :total-count="getOraclesCount(selectedOracleState.stateQuery)"
+      :total-count="oraclesCount"
       @prev-clicked="loadPrevOracles"
       @next-clicked="loadNextOracles">
       <template #header>
         <oracles-select v-model="selectedOracleState"/>
       </template>
-      <oracles-table
-        class="u-hidden-mobile"
-        :oracles="oracles"/>
-      <oracles-table-condensed
-        class="u-hidden-desktop"
-        :oracles="oracles"/>
+      <oracles-table :oracles="oracles"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -24,26 +18,27 @@
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const { fetchOracles, fetchOraclesCount, getOraclesCount } = useOraclesStore()
-const { oracles } = storeToRefs(useOraclesStore())
+const { fetchOracles, fetchOraclesCount } = useOraclesStore()
+const { oracles, oraclesCount } = storeToRefs(useOraclesStore())
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 function loadPrevOracles() {
-  fetchOracles(oracles.value.prev)
+  fetchOracles({ queryParameters: oracles.value.prev })
 }
 
 function loadNextOracles() {
-  fetchOracles(oracles.value.next)
+  fetchOracles({ queryParameters: oracles.value.next })
 }
 
 async function loadOracles() {
   const { state } = route.query
   const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
-  await fetchOracles(`/v3/oracles?limit=${limit.value}${selectedOracleState.value.stateQuery ? '&state=' + selectedOracleState.value.stateQuery : ''}`)
-  await fetchOraclesCount()
+  await Promise.all([
+    await fetchOracles({ limit: 10, state: selectedOracleState.value.stateQuery }),
+    await fetchOraclesCount(selectedOracleState.value.stateQuery),
+  ])
   pageIndex.value = 1
 }
 

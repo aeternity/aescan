@@ -18,7 +18,7 @@
   <template v-if="!isLoading">
     <contracts-chart-panel
       class="contracts-panel"
-      :preselected-range="CHART_INTERVALS_PRESETS_OPTIONS[0]"/>
+      :scope="CHART_SCOPE_PRESETS_OPTIONS[0]"/>
     <contracts-panel class="contracts-panel"/>
   </template>
   <loader-panel v-else/>
@@ -26,7 +26,6 @@
 
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { isLoading } = useLoading()
 </script>

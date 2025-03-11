@@ -58,19 +58,19 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
   async function fetchContractInformation() {
     rawContractInformation.value = null
-    const { data } = await axios.get(`${NODE_URL}/v3/contracts/${contractId.value}`)
+    const { data } = await axios.get(`${NODE_URL}/contracts/${contractId.value}`)
     rawContractInformation.value = data
   }
 
   async function fetchContractCallsCount() {
     contractCallsCount.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions/count?id=${contractId.value}`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/transactions/count?id=${contractId.value}`)
     contractCallsCount.value = data
   }
 
   async function fetchContractCreationTx() {
     contractCreationTx.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/v3/transactions?limit=1&contract=${contractId.value}&direction=forward`)
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/transactions?limit=1&contract=${contractId.value}&direction=forward`)
     contractCreationTx.value = data?.data[0]
   }
 
@@ -83,18 +83,18 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
   }
 
   async function fetchBalance() {
-    const { data } = await axios.get(`${NODE_URL}/v3/accounts/${contractId.value.replace('ct_', 'ak_')}`)
+    const { data } = await axios.get(`${NODE_URL}/accounts/${contractId.value.replace('ct_', 'ak_')}`)
     contractAccountBalance.value = data.balance
   }
 
-  async function fetchContractEvents({ queryParameters = null }) {
+  async function fetchContractEvents(queryParameters) {
     rawContractEvents.value = null
-    const defaultParameters = `/v3/contracts/logs?contract_id=${contractId.value}&aexn-args=true`
+    const defaultParameters = `/contracts/logs?contract_id=${contractId.value}&aexn-args=true`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawContractEvents.value = data
   }
 
-  async function fetchContractCallTransactions({ limit, queryParameters } = {}) {
+  async function fetchContractCallTransactions({ queryParameters } = {}) {
     rawContractCallTransactions.value = null
 
     if (queryParameters) {
@@ -103,9 +103,9 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
       return
     }
 
-    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/v3/transactions`)
+    const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
-    transactionsUrl.searchParams.append('limit', limit ?? 10)
+    transactionsUrl.searchParams.append('limit', 10)
     transactionsUrl.searchParams.append('type', 'contract_call')
     transactionsUrl.searchParams.append('contract', contractId.value)
 
@@ -114,12 +114,12 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
   }
 
   async function fetchIsContractAex9() {
-    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/v3/aex9/${contractId.value}`)).data
+    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/aex9/${contractId.value}`)).data
     contractType.value = 'AEX-9'
   }
 
   async function fetchIsContractAex141() {
-    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/v3/aex141/${contractId.value}`)).data
+    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/aex141/${contractId.value}`)).data
     contractType.value = 'AEX-141'
   }
 

@@ -5,15 +5,9 @@
       :entities="stateChannels"
       pagination-style="history"
       :total-count="stateChannelsCount"
-      :limit="limit"
       @prev-clicked="loadPrevStateChannels"
       @next-clicked="loadNextStateChannels">
-      <state-channels-table
-        :state-channels="stateChannels"
-        class="u-hidden-mobile"/>
-      <state-channels-table-condensed
-        :state-channels="stateChannels"
-        class="u-hidden-desktop"/>
+      <state-channels-table :state-channels="stateChannels"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -22,23 +16,18 @@
 const { stateChannels, stateChannelsCount } = storeToRefs(useStateChannelsStore())
 const { fetchStateChannels, fetchStateChannelsCount } = useStateChannelsStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
 const pageIndex = ref(1)
 
 async function loadPrevStateChannels() {
-  await fetchStateChannels({
-    queryParameters: stateChannels.value.prev,
-  })
+  await fetchStateChannels(stateChannels.value.prev.substring(3))
 }
 
 async function loadNextStateChannels() {
-  await fetchStateChannels({
-    queryParameters: stateChannels.value.next,
-  })
+  await fetchStateChannels(stateChannels.value.next.substring(3))
 }
 
 async function loadStateChannels() {
-  await fetchStateChannels({ limit: limit.value })
+  await fetchStateChannels()
   pageIndex.value = 1
 }
 

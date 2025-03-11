@@ -4,29 +4,21 @@
       :entities="accountTokens"
       @prev-clicked="loadPrevAccountTokens"
       @next-clicked="loadNextAccountTokens">
-      <account-tokens-table
-        class="u-hidden-mobile"
-        :account-tokens="accountTokens"/>
-
-      <account-tokens-table-condensed
-        class="account-tokens-panel__account-tokens-table-condensed u-hidden-desktop"
-        :account-tokens="accountTokens"/>
+      <account-tokens-table :account-tokens="accountTokens"/>
     </paginated-content>
   </app-panel>
 </template>
 
 <script setup>
-
-const accountStore = useAccountStore()
-const { fetchAccountTokens } = accountStore
-const { accountTokens } = storeToRefs(accountStore)
+const { fetchAccountTokens } = useAccountStore()
+const { accountTokens } = storeToRefs(useAccountStore())
 
 async function loadPrevAccountTokens() {
-  await fetchAccountTokens({ queryParameters: accountTokens.value.prev })
+  await fetchAccountTokens({ queryParameters: accountTokens.value.prev.substring(3) })
 }
 
 async function loadNextAccountTokens() {
-  await fetchAccountTokens({ queryParameters: accountTokens.value.next })
+  await fetchAccountTokens({ queryParameters: accountTokens.value.next.substring(3) })
 }
 </script>
 

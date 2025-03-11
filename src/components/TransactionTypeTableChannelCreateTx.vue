@@ -30,16 +30,23 @@
           <hint-tooltip>
             {{ stateChannelsHints.initiatorCreateAmount }}
           </hint-tooltip>
-          Initiator / Amount
+          Initiator
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <div class="transaction-type-panel-channel-create-tx__container">
-            <app-link :to="`/accounts/${transactionData.initiatorId}`">
-              {{ transactionData.initiatorId }}
-            </app-link>
-            /
-            <price-label :price="formatAettosToAe(transactionData.initiatorAmount)"/>
-          </div>
+          <app-link :to="`/accounts/${transactionData.initiatorId}`">
+            {{ transactionData.initiatorId }}
+          </app-link>
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-create-tx__row">
+        <th class="transaction-type-panel-channel-create-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.initiatorCreateAmount }}
+          </hint-tooltip>
+          Initiator Amount
+        </th>
+        <td class="transaction-type-panel-channel-create-tx__data">
+          <price-label :price="formatAettosToAe(transactionData.initiatorAmount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -58,16 +65,23 @@
           <hint-tooltip>
             {{ stateChannelsHints.responderCreateAmount }}
           </hint-tooltip>
-          Responder / Amount
+          Responder
         </th>
         <td class="transaction-type-panel-channel-create-tx__data">
-          <div class="transaction-type-panel-channel-create-tx__container">
-            <app-link :to="`/accounts/${transactionData.responderId}`">
-              {{ transactionData.responderId }}
-            </app-link>
-            /
-            <price-label :price="formatAettosToAe(transactionData.responderAmount)"/>
-          </div>
+          <app-link :to="`/accounts/${transactionData.responderId}`">
+            {{ transactionData.responderId }}
+          </app-link>
+        </td>
+      </tr>
+      <tr class="transaction-type-panel-channel-create-tx__row">
+        <th class="transaction-type-panel-channel-create-tx__table-header">
+          <hint-tooltip>
+            {{ stateChannelsHints.responderCreateAmount }}
+          </hint-tooltip>
+          Responder Amount
+        </th>
+        <td class="transaction-type-panel-channel-create-tx__data">
+          <price-label :price="formatAettosToAe(transactionData.responderAmount)"/>
         </td>
       </tr>
       <tr class="transaction-type-panel-channel-create-tx__row">
@@ -114,25 +128,47 @@ defineProps({
   }
 
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
     }
   }
 
-  &__data {
-    word-wrap: break-word;
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
+    }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
   }
 
-  &__container {
+  &__data {
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
+  }
+
+  &__link {
     display: inline-flex;
-    flex-direction: row;
-    gap: var(--space-0);
+    align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
   }
 }
 </style>

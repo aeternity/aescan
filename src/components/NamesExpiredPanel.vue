@@ -6,12 +6,7 @@
       @next-clicked="loadNextNames">
       <names-expired-table
         v-if="expiredNames"
-        class="names-expired-panel__names-expired-table u-hidden-mobile"
-        :names="expiredNames"/>
-
-      <names-expired-table-condensed
-        v-if="expiredNames"
-        class="u-hidden-desktop"
+        class="names-expired-panel__names-expired-table"
         :names="expiredNames"/>
     </paginated-content>
   </app-panel>
@@ -22,11 +17,11 @@ const { fetchExpiredNames } = useNamesStore()
 const { expiredNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
-  fetchExpiredNames({ queryParameters: expiredNames.value.prev })
+  fetchExpiredNames(expiredNames.value.prev.substring(3))
 }
 
 function loadNextNames() {
-  fetchExpiredNames({ queryParameters: expiredNames.value.next })
+  fetchExpiredNames(expiredNames.value.next.substring(3))
 }
 </script>
 

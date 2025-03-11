@@ -29,9 +29,8 @@
 import { useRoute } from 'nuxt/app'
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 
-const keyblockDetailsStore = useKeyblockDetailsStore()
-const { keyblockDetails } = storeToRefs(keyblockDetailsStore)
-const { fetchKeyblock } = keyblockDetailsStore
+const { keyblockDetails } = storeToRefs(useKeyblockDetailsStore())
+const { fetchKeyblock } = useKeyblockDetailsStore()
 
 const route = useRoute()
 

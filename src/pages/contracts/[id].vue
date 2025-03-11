@@ -54,13 +54,11 @@
 <script setup>
 import { contractsHints } from '@/utils/hints/contractsHints'
 
-const contractDetailsStore = useContractDetailsStore()
-const { contractDetails } = storeToRefs(contractDetailsStore)
-const { fetchContractDetails, fetchContractEvents } = contractDetailsStore
+const { contractDetails } = storeToRefs(useContractDetailsStore())
+const { fetchContractDetails, fetchContractEvents } = useContractDetailsStore()
 
-const contractVerifiedStore = useContractVerifiedStore()
-const { isVerified } = storeToRefs(contractVerifiedStore)
-const { fetchVerificationDetail } = contractVerifiedStore
+const { isVerified } = storeToRefs(useContractVerifiedStore())
+const { fetchVerificationDetail } = useContractVerifiedStore()
 
 const featureFlags = useFeatureFlags()
 
@@ -110,9 +108,8 @@ if (error.value) {
 }
 
 if (process.client && !error.value) {
-  const limit = isDesktop() ? 10 : 3
   await useAsyncData(() => fetchContractEvents({
-    queryParameters: `/v3/contracts/logs?contract_id=${route.params.id}&limit=${limit}&aexn-args=true`,
+    queryParameters: `/contracts/logs?contract_id=${route.params.id}&limit=10&aexn-args=true`,
   }))
 
   if (featureFlags.smartContractVerification) {

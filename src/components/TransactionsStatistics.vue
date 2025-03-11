@@ -20,7 +20,7 @@
       <div class="transaction-statistics__value">
         {{ last24hsAverageTransactionFees }}
         <trend-chip
-          v-if="feesTrend"
+          v-if="feesTrend || feesTrend === 0"
           :delta="feesTrend"/>
       </div>
     </app-panel>
@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 const { fetchLast24hsTransactionsStatistics } = useTransactionsStore()
 

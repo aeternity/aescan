@@ -8,57 +8,57 @@
     </template>
     <template #end>
       <chart-controls
-        v-model="range"
+        v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="accountsStatistics"
-      :interval="range.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="accounts-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
 <script setup>
 import { chartsHints } from '@/utils/hints/chartsHints'
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
 
 const { accountsStatistics } = storeToRefs(useChartsStore())
 const { fetchAccountsStatistics } = useChartsStore()
 
 const props = defineProps({
-  preselectedRange: {
+  scope: {
+    required: true,
     type: Object,
-    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
+    default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
 })
 
-const range = ref(props.preselectedRange)
+const selectedScope = ref(props.scope)
 
 await useAsyncData(async() => {
-  await loadHashrateStatistics()
+  await loadAccountStatistics()
   return true
 })
 
 if (process.client) {
-  watch([range], async() => {
-    await loadHashrateStatistics()
+  watch([selectedScope], async() => {
+    await loadAccountStatistics()
   })
 }
 
-async function loadHashrateStatistics() {
+async function loadAccountStatistics() {
   await fetchAccountsStatistics(
-    range.value.interval,
-    range.value.limit,
-    range.value.customInterval)
+    selectedScope.value.intervalBy,
+    selectedScope.value.limit,
+    selectedScope.value.scope)
 }
 </script>
 
 <style scoped>
-.accounts-chart-pane__controls {
+.accounts-chart-panel__controls {
   margin-top: var(--space-4);
 }
 </style>

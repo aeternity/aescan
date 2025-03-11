@@ -9,7 +9,7 @@
             </hint-tooltip>
             Hash
           </th>
-          <td>
+          <td class="microblock-details-panel__data">
             <div class="u-hidden-mobile">
               <copy-chip :label="microblockDetails.hash"/>
             </div>
@@ -27,7 +27,7 @@
             </hint-tooltip>
             Keyblock
           </th>
-          <td>
+          <td class="microblock-details-panel__data">
             <app-link :to="`/keyblocks/${microblockDetails.prevKeyHash}`">
               <span class="u-hidden-mobile">
                 {{ microblockDetails.prevKeyHash }}
@@ -45,7 +45,7 @@
             </hint-tooltip>
             Height
           </th>
-          <td>
+          <td class="microblock-details-panel__data">
             <app-link :to="`/keyblocks/${microblockDetails.height}`">
               {{ microblockDetails.height }}
             </app-link>
@@ -58,7 +58,7 @@
             </hint-tooltip>
             Created
           </th>
-          <td>
+          <td class="microblock-details-panel__data">
             <timestamp-label
               :timestamp="microblockDetails.time"
               :is-extended="true"/>
@@ -71,7 +71,7 @@
             </hint-tooltip>
             Transactions Count
           </th>
-          <td>
+          <td class="microblock-details-panel__data">
             {{ formatNumber(microblockDetails.transactionsCount) }}
           </td>
         </tr>
@@ -82,7 +82,7 @@
             </hint-tooltip>
             Gas Limit
           </th>
-          <td>
+          <td class="microblock-details-panel__data">
             {{ microblockDetails.gas }}
           </td>
         </tr>
@@ -93,7 +93,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="microblock-details-panel__data">
             <app-link
               :to="microblockNodeUrl"
               class="microblock-details-panel__link">
@@ -131,25 +131,48 @@ const props = defineProps({
 })
 
 const microblockNodeUrl = computed(() =>
-  `${NODE_URL}/v3/micro-blocks/hash/${props.microblockDetails.hash}/header`,
+  `${NODE_URL}/micro-blocks/hash/${props.microblockDetails.hash}/header`,
 )
 const microblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v3/micro-blocks/${props.microblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/micro-blocks/${props.microblockDetails.hash}`,
 )
 </script>
 
 <style scoped>
 .microblock-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
   }
 
   &__link {

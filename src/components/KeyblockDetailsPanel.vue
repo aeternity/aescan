@@ -16,15 +16,8 @@
             </hint-tooltip>
             Hash
           </th>
-          <td>
-            <div class="u-hidden-mobile">
-              <copy-chip :label="keyblockDetails.hash"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(keyblockDetails.hash)"
-                :clipboard-text="keyblockDetails.hash"/>
-            </div>
+          <td class="keyblock-details-panel__data">
+            <copy-chip :label="keyblockDetails.hash"/>
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -34,7 +27,7 @@
             </hint-tooltip>
             Height
           </th>
-          <td>
+          <td class="keyblock-details-panel__data">
             <div class="keyblock-details-panel__controls">
               <pagination-button
                 class="keyblock-details-panel__button--prev"
@@ -60,7 +53,7 @@
             </hint-tooltip>
             Time
           </th>
-          <td>
+          <td class="keyblock-details-panel__data">
             <timestamp-label
               :timestamp="keyblockDetails.mined"
               :is-extended="true"/>
@@ -73,13 +66,8 @@
             </hint-tooltip>
             Miner
           </th>
-          <td>
-            <span class="u-hidden-mobile">
-              {{ keyblockDetails.miner }}
-            </span>
-            <span class="u-hidden-desktop">
-              {{ formatEllipseHash(keyblockDetails.miner) }}
-            </span>
+          <td class="keyblock-details-panel__data">
+            {{ keyblockDetails.miner }}
           </td>
         </tr>
         <tr class="keyblock-details-panel__row">
@@ -89,14 +77,9 @@
             </hint-tooltip>
             Beneficiary
           </th>
-          <td>
+          <td class="keyblock-details-panel__data">
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
-              <span class="u-hidden-mobile">
-                {{ keyblockDetails.beneficiary }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(keyblockDetails.beneficiary) }}
-              </span>
+              {{ keyblockDetails.beneficiary }}
             </app-link>
           </td>
         </tr>
@@ -107,7 +90,7 @@
             </hint-tooltip>
             Reward
           </th>
-          <td>
+          <td class="keyblock-details-panel__data">
             <price-label :price="keyblockDetails.blockReward"/>
           </td>
         </tr>
@@ -118,7 +101,7 @@
             </hint-tooltip>
             Microblocks Count
           </th>
-          <td>
+          <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.microBlocksCount) }}
           </td>
         </tr>
@@ -129,7 +112,7 @@
             </hint-tooltip>
             Transactions Count
           </th>
-          <td>
+          <td class="keyblock-details-panel__data">
             {{ formatNumber(keyblockDetails.transactionsCount) }}
           </td>
         </tr>
@@ -140,7 +123,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="keyblock-details-panel__data">
             <app-link
               :to="keyblockNodeUrl"
               class="keyblock-details-panel__link">
@@ -179,10 +162,10 @@ const props = defineProps({
 })
 
 const keyblockNodeUrl = computed(() =>
-  `${NODE_URL}/v3/key-blocks/hash/${props.keyblockDetails.hash}`,
+  `${NODE_URL}/key-blocks/hash/${props.keyblockDetails.hash}`,
 )
 const keyblockMiddlewareUrl = computed(() =>
-  `${MIDDLEWARE_URL}/v3/key-blocks/${props.keyblockDetails.hash}`,
+  `${MIDDLEWARE_URL}/key-blocks/${props.keyblockDetails.hash}`,
 )
 const isNextKeyblockMined = computed(() =>
   props.keyblockDetails.height < latestBlockHeight.value,
@@ -192,15 +175,40 @@ const isNextKeyblockMined = computed(() =>
 <style scoped>
 .keyblock-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    white-space: wrap;
+    word-break: break-all;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
   }
 
   &__link {

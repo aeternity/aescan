@@ -55,8 +55,7 @@ import { useRuntimeConfig } from 'nuxt/app'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 
-const walletStore = useWalletStore()
-const { status } = storeToRefs(walletStore)
+const { status } = storeToRefs(useWalletStore())
 
 const router = useRouter()
 

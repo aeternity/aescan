@@ -6,51 +6,50 @@
     <template #end>
       <transactions-select
         v-if="hasSelect"
-        v-model="type"
+        v-model="selectedTxType"
         size="sm"
         class="transactions-chart-panel__select
         transactions-chart-panel__select--desktop
         u-hidden-mobile"/>
 
       <chart-controls
-        v-model="range"
+        v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
 
     <line-chart
       :data="transactionsStatistics"
-      :interval="range.interval"/>
+      :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
-      v-model="range"
+      v-model="selectedScope"
       class="transactions-chart-panel__controls u-hidden-desktop"/>
 
     <transactions-select
       v-if="hasSelect"
-      v-model="type"
+      v-model="selectedTxType"
       class="select u-hidden-desktop transactions-chart-panel__select"/>
   </app-panel>
 </template>
 
 <script setup>
-import { CHART_INTERVALS_PRESETS_OPTIONS } from '@/utils/constants'
-
 const { transactionsStatistics } = storeToRefs(useChartsStore())
 const { fetchTransactionsStatistics } = useChartsStore()
 
 const props = defineProps({
   hasSelect: {
-    required: true,
+    default: true,
     type: Boolean,
   },
-  preselectedRange: {
+  scope: {
+    required: true,
     type: Object,
-    default: CHART_INTERVALS_PRESETS_OPTIONS[4],
+    default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
 })
 
-const range = ref(props.preselectedRange)
-const type = ref(TX_TYPES_OPTIONS[0])
+const selectedScope = ref(props.scope)
+const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
 await useAsyncData(async() => {
   await loadTransactionStatistics()
@@ -58,17 +57,17 @@ await useAsyncData(async() => {
 })
 
 if (process.client) {
-  watch([range, type], async() => {
+  watch([selectedScope, selectedTxType], async() => {
     await loadTransactionStatistics()
   })
 }
 
 async function loadTransactionStatistics() {
   await fetchTransactionsStatistics(
-    range.value.interval,
-    range.value.limit,
-    range.value.customInterval,
-    props.hasSelect ? type.value.typeQuery : null)
+    selectedScope.value.intervalBy,
+    selectedScope.value.limit,
+    selectedScope.value.scope,
+    selectedTxType.value.typeQuery)
 }
 </script>
 
@@ -88,7 +87,6 @@ async function loadTransactionStatistics() {
     @media (--desktop) {
       margin-top: 0;
     }
-
   }
 }
 </style>

@@ -1,14 +1,7 @@
 <template>
   <app-panel class="account-details-panel">
     <template v-if="accountDetails.isExistent === false">
-      <div class="u-hidden-mobile">
-        <copy-chip :label="accountDetails.id"/>
-      </div>
-      <div class="u-hidden-desktop">
-        <copy-chip
-          :label="formatEllipseHash(accountDetails.id)"
-          :clipboard-text="accountDetails.id"/>
-      </div>
+      <copy-chip :label="accountDetails.id"/>
 
       <p class="account-details-panel__not-existent">
         The account has never been seen in the network.
@@ -26,15 +19,8 @@
             </hint-tooltip>
             Address
           </th>
-          <td>
-            <div class="u-hidden-mobile">
-              <copy-chip :label="accountDetails.id"/>
-            </div>
-            <div class="u-hidden-desktop">
-              <copy-chip
-                :label="formatEllipseHash(accountDetails.id)"
-                :clipboard-text="accountDetails.id"/>
-            </div>
+          <td class="account-details-panel__data">
+            <copy-chip :label="accountDetails.id"/>
           </td>
         </tr>
         <tr class="account-details-panel__row">
@@ -44,7 +30,7 @@
             </hint-tooltip>
             Balance
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <price-label :price="accountDetails.balance"/>
           </td>
         </tr>
@@ -56,7 +42,7 @@
             </hint-tooltip>
             Value
           </th>
-          <td>
+          <td class="account-details-panel__data">
             {{ sanitizedPrice }}
           </td>
         </tr>
@@ -67,7 +53,7 @@
             </hint-tooltip>
             Transactions
           </th>
-          <td>
+          <td class="account-details-panel__data">
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
           </td>
         </tr>
@@ -80,7 +66,7 @@
             </hint-tooltip>
             Is Generalized
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <app-chip size="sm">
               Generalized
             </app-chip>
@@ -95,7 +81,7 @@
             </hint-tooltip>
             Contract Id
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <app-link :to="`/contracts/${accountDetails.contractId}`">
               {{ accountDetails.contractId }}
             </app-link>
@@ -110,7 +96,7 @@
             </hint-tooltip>
             Nonce
           </th>
-          <td>
+          <td class="account-details-panel__data">
             {{ accountDetails.nonce }}
           </td>
         </tr>
@@ -121,7 +107,7 @@
             </hint-tooltip>
             API Links
           </th>
-          <td>
+          <td class="account-details-panel__data">
             <app-link
               :to="accountNodeUrl"
               class="account-details-panel__link">
@@ -151,7 +137,7 @@ const props = defineProps({
 })
 
 const accountNodeUrl = computed(() =>
-  `${NODE_URL}/v3/accounts/${props.accountDetails.id}`,
+  `${NODE_URL}/accounts/${props.accountDetails.id}`,
 )
 const sanitizedPrice = computed(() =>
   price.value
@@ -163,15 +149,38 @@ const sanitizedPrice = computed(() =>
 <style scoped>
 .account-details-panel {
   &__table-header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    display: block;
+    padding-bottom: 0;
 
-    @media (--desktop) {
+    @media (--mobile) {
+      padding-bottom: var(--space-1);
       width: var(--detail-column-width);
+      border-bottom: 1px solid var(--color-midnight-25);
+      display: table-cell;
+    }
+  }
+
+  &__row {
+    display: block;
+
+    @media (--mobile) {
+      display: table-row;
     }
   }
 
   &__row:last-of-type &__table-header {
     border-bottom: 0;
+  }
+
+  &__data {
+    display: block;
+    padding-left: 28px;
+    padding-top: var(--space-0);
+
+    @media (--mobile) {
+      padding-top: var(--space-1);
+      display: table-cell;
+    }
   }
 
   &__link {

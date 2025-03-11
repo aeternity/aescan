@@ -22,7 +22,7 @@
       v-if="name?.active"
       class="name-details__panel"/>
     <name-pointers-custom-panel
-      v-if="hasCustomPanel"
+      v-if="hasCustomPointers"
       class="name-details__panel"/>
     <app-tabs v-if="hasNameHistory">
       <app-tab title="History">
@@ -36,33 +36,18 @@
 <script setup>
 import { namesHints } from '@/utils/hints/namesHints'
 
-const { name, nameHash, hasNameHistory } = storeToRefs(useNameDetailsStore())
-const { fetchName, fetchNameActions } = useNameDetailsStore()
-
+const { name, hasNameHistory, hasCustomPointers } = storeToRefs(useNameDetailsStore())
+const { fetchNameDetails, fetchNameHistory } = useNameDetailsStore()
 const route = useRoute()
-const hasCustomPanel = computed(() => name.value?.active && !!name.value?.customPointers?.length)
 
 const { isLoading } = useLoading()
 
-try {
-  await fetchName(route.params.name)
-} catch (error) {
-  if (error.response?.status === 404) {
-    throw showError({
-      data: {
-        entityId: route.params.name,
-        entityName: 'Name',
-      },
-      statusMessage: 'EntityDetailsNotFound',
-    })
-  } else {
-    throw error
-  }
+if (process.client) {
+  await fetchNameDetails(route.params.name)
 }
 
 if (hasNameHistory && process.client) {
-  const limit = isDesktop() ? 10 : 3
-  fetchNameActions({ queryParameters: `/v3/accounts/${nameHash.value}/activities?limit=${limit}` })
+  fetchNameHistory({ nameHash: name.value.hash })
 }
 </script>
 

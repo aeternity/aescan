@@ -2,15 +2,11 @@
   <app-panel>
     <paginated-content
       :entities="nftOwners"
-      :limit="limit"
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
       <nft-owners-table
         :owners="nftOwners"
-        class="nft-owners-panel__table u-hidden-mobile"/>
-      <nft-owners-table-condensed
-        :owners="nftOwners"
-        class="u-hidden-desktop"/>
+        class="nft-owners-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -19,14 +15,12 @@
 const { nftOwners } = storeToRefs(useNftDetailsStore())
 const { fetchNftOwners } = useNftDetailsStore()
 
-const limit = computed(() => process.client && isDesktop() ? 10 : 3)
-
 async function loadNextNftowners() {
-  await fetchNftOwners({ queryParameters: nftOwners.value.next })
+  await fetchNftOwners({ queryParameters: nftOwners.value.next.substring(3) })
 }
 
 async function loadPrevNftowners() {
-  await fetchNftOwners({ queryParameters: nftOwners.value.prev })
+  await fetchNftOwners({ queryParameters: nftOwners.value.prev.substring(3) })
 }
 </script>
 

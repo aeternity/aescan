@@ -5,15 +5,11 @@
       pagination-style="history"
       :entities="microblocks"
       :total-count="keyblockDetails.microBlocksCount"
-      :limit="limit"
       @prev-clicked="loadPrevMicroblocks"
       @next-clicked="loadNextMicroblocks">
       <keyblock-microblocks-table
         :microblocks="microblocks"
-        class="keyblock-microblock-panel__table u-hidden-mobile"/>
-      <keyblock-microblocks-table-condensed
-        :microblocks="microblocks"
-        class="u-hidden-desktop"/>
+        class="keyblock-microblock-panel__table"/>
     </paginated-content>
   </app-panel>
 </template>
@@ -22,12 +18,9 @@ const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKey
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()
 
-const limit = computed(() => isDesktop() ? 10 : 3)
-
 if (process.client) {
   fetchKeyblockMicroblocks({
-    limit: limit.value,
-    keyblockHash: route.params.id,
+    id: route.params.id,
   })
 }
 

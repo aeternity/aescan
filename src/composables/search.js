@@ -1,8 +1,8 @@
+import axios from 'axios'
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useSearchStore = defineStore('search', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
 
   const namesResults = ref([])
   const tokensResults = ref([])
@@ -10,31 +10,49 @@ export const useSearchStore = defineStore('search', () => {
 
   async function fetchNamesResults({ query, limit, queryParameters } = {}) {
     namesResults.value = null
-    const defaultParameters = `/v3/names?prefix=${query}&limit=${limit ?? 10}&by=name`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    namesResults.value = data
+    namesResults.value = await $fetch('/api/search/names', {
+      params: { query, limit, queryParameters },
+    })
   }
 
-  async function fetchTokenResults({ query, limit, queryParameters } = {}) {
+  async function fetchTokenResults({ query, queryParameters } = {}) {
     tokensResults.value = null
-    const defaultParameters = `/v3/aex9?prefix=${query}&limit=${limit ?? 10}&direction=forward`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    tokensResults.value = data
+    tokensResults.value = await $fetch('/api/search/tokens', {
+      params: { query, queryParameters },
+    })
   }
 
-  async function fetchNftsResults({ query, limit, queryParameters } = {}) {
+  async function fetchNftsResults({ query, queryParameters } = {}) {
     nftsResults.value = null
-    const defaultParameters = `/v3/aex141?prefix=${query}&limit=${limit ?? 10}&direction=forward`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    nftsResults.value = data
+    nftsResults.value = await $fetch('/api/search/nfts', {
+      params: { query, queryParameters },
+    })
+  }
+
+  async function isKeyblockAvailable(id) {
+    return await $fetch(`/api/search/${id}`)
+  }
+
+  async function isNameAvailable(name) {
+    try {
+      await axios.get(`${MIDDLEWARE_URL}/names/${name}`)
+      return true
+    } catch (error) {
+      if (error.response.status === 404) {
+        return false
+      }
+      return null
+    }
   }
 
   return {
     namesResults,
     tokensResults,
     nftsResults,
+    isKeyblockAvailable,
     fetchTokenResults,
     fetchNamesResults,
     fetchNftsResults,
+    isNameAvailable,
   }
 })

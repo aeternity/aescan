@@ -1,33 +1,28 @@
 <template>
   <app-panel class="name-history-panel">
     <paginated-content
-      :entities="nameActions"
+      :entities="nameHistory"
       pagination-style="history"
       @prev-clicked="loadPrevActions"
       @next-clicked="loadNextActions">
       <name-history-table
-        v-if="nameActions"
-        class="name-history-panel__name-history-table u-hidden-mobile"
-        :actions="nameActions"/>
-
-      <name-history-table-condensed
-        v-if="nameActions"
-        class="u-hidden-desktop"
-        :actions="nameActions"/>
+        v-if="nameHistory"
+        class="name-history-panel__name-history-table"
+        :actions="nameHistory"/>
     </paginated-content>
   </app-panel>
 </template>
 
 <script setup>
-const { fetchNameActions } = useNameDetailsStore()
-const { nameActions } = storeToRefs(useNameDetailsStore())
+const { fetchNameHistory } = useNameDetailsStore()
+const { nameHistory } = storeToRefs(useNameDetailsStore())
 
 function loadPrevActions() {
-  return fetchNameActions({ queryParameters: nameActions.value.prev })
+  return fetchNameHistory({ queryParameters: nameHistory.value.prev.substring(3) })
 }
 
 function loadNextActions() {
-  return fetchNameActions({ queryParameters: nameActions.value.next })
+  return fetchNameHistory({ queryParameters: nameHistory.value.next.substring(3) })
 }
 </script>
 

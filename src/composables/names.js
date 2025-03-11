@@ -1,42 +1,11 @@
-import { useRuntimeConfig } from 'nuxt/app'
-
 export const useNamesStore = defineStore('names', () => {
-  const { blockHeight } = storeToRefs(useRecentBlocksStore())
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
+  const activeNames = ref(null)
+  const inAuctionNames = ref(null)
+  const expiredNames = ref(null)
+  const recentlyActivatedNames = ref(null)
 
-  const rawActiveNames = ref(null)
-  const rawInAuctionNames = ref(null)
-  const rawExpiredNames = ref(null)
-  const rawRecentlyActivatedNames = ref(null)
-
-  const activeNames = computed(() => {
-    return rawActiveNames.value
-      ? adaptActiveNames(rawActiveNames.value)
-      : null
-  })
-
-  const inAuctionNames = computed(() => {
-    return rawInAuctionNames.value
-      ? adaptInAuctionNames(rawInAuctionNames.value)
-      : null
-  })
-
-  const auctionsEndingSoon = computed(() => inAuctionNames.value?.data.slice(0, 4))
-
-  const expiredNames = computed(() => {
-    return rawExpiredNames.value
-      ? adaptExpiredNames(rawExpiredNames.value)
-      : null
-  })
-
-  const recentlyActivatedNames = computed(() => {
-    return rawRecentlyActivatedNames.value
-      ? adaptNames(rawRecentlyActivatedNames.value, blockHeight.value)
-      : null
-  })
-
-  function fetchNamesDetails(limit) {
+  function fetchNames() {
+    // todo rename
     return Promise.all([
       fetchActiveNames(),
       fetchInAuctionNames(),
@@ -45,45 +14,40 @@ export const useNamesStore = defineStore('names', () => {
   }
 
   async function fetchActiveNames(queryParameters) {
-    rawActiveNames.value = null
-    const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || '/names?state=active&by=deactivation&direction=forward&limit=10'}`,
-    )
-    rawActiveNames.value = data
+    activeNames.value = null
+    activeNames.value = await $fetch('/api/names/active', {
+      params: { queryParameters },
+    })
   }
 
   async function fetchInAuctionNames(queryParameters) {
-    rawInAuctionNames.value = null
-    const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || '/names/auctions?by=expiration&direction=forward&limit=10'}`,
-    )
-    rawInAuctionNames.value = data
+    inAuctionNames.value = null
+    inAuctionNames.value = await $fetch('/api/names/auctions', {
+      params: { queryParameters },
+    })
   }
 
   async function fetchExpiredNames(queryParameters) {
-    rawExpiredNames.value = null
-    const { data } = await axios.get(
-      `${MIDDLEWARE_URL}${queryParameters || '/names?state=inactive&limit=10'}`,
-    )
-    rawExpiredNames.value = data
+    expiredNames.value = null
+    expiredNames.value = await $fetch('/api/names/expired', {
+      params: { queryParameters },
+    })
   }
 
   async function fetchRecentlyActivatedNames() {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/names?state=active&by=activation&direction=backward&limit=4&by=activation`)
-    rawRecentlyActivatedNames.value = data.data
+    recentlyActivatedNames.value = null
+    recentlyActivatedNames.value = await $fetch('/api/names/recent')
   }
 
+  const auctionsEndingSoon = computed(() => inAuctionNames.value?.data.slice(0, 4))
+
   return {
-    rawActiveNames,
-    rawInAuctionNames,
-    rawExpiredNames,
-    rawRecentlyActivatedNames,
     activeNames,
     inAuctionNames,
     auctionsEndingSoon,
     expiredNames,
     recentlyActivatedNames,
-    fetchNamesDetails,
+    fetchNames,
     fetchActiveNames,
     fetchInAuctionNames,
     fetchExpiredNames,

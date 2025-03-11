@@ -18,12 +18,13 @@ const { fetchContractCallTransactions } = useContractDetailsStore()
 
 const pageIndex = ref(1)
 
-const loadPrevTransactions = () => {
+function loadPrevTransactions() {
   fetchContractCallTransactions({
     queryParameters: contractCallTransactions.value.prev.substring(3),
   })
 }
-const loadNextTransactions = () => {
+
+function loadNextTransactions() {
   fetchContractCallTransactions({
     queryParameters: contractCallTransactions.value.next.substring(3),
   })

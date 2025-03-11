@@ -21,11 +21,11 @@ const { fetchStateChannelTransactions } = useStateChannelDetailsStore()
 const route = useRoute()
 const pageIndex = ref(1)
 
-const loadPrevTransactions = () => {
+function loadPrevTransactions() {
   fetchStateChannelTransactions(stateChannelTransactions.value.prev)
 }
 
-const loadNextTransactions = () => {
+function loadNextTransactions() {
   fetchStateChannelTransactions(stateChannelTransactions.value.next)
 }
 

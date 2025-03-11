@@ -4,7 +4,7 @@ import { shallowRef } from 'vue'
 
 const axiosInstance = shallowRef(null)
 
-const useAxios = () => {
+function useAxios() {
   const { DEBUG_MODE } = useRuntimeConfig().public
 
   if (!axiosInstance.value) {

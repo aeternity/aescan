@@ -113,13 +113,13 @@ const nextLabel = computed(() => {
   return 'Next'
 })
 
-const handlePrevClicked = () => {
+function handlePrevClicked() {
   setFixedContainerHeight()
   pageIndex.value--
   emit('prev-clicked')
 }
 
-const handleNextClicked = () => {
+function handleNextClicked() {
   setFixedContainerHeight()
   pageIndex.value++
   emit('next-clicked')

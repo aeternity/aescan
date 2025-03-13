@@ -75,7 +75,7 @@
               {{ shortArguments }}
             </div>
             <div v-show="!isCollapsed">
-              {{ formatNullable(transactionData.arguments) }}
+              {{ formatNullable(formattedArguments) }}
             </div>
             <app-button
               v-show="isArgumentsLong"
@@ -85,7 +85,7 @@
             </app-button>
           </template>
           <template v-else>
-            {{ formatNullable(transactionData.arguments) }}
+            {{ formatNullable(formattedArguments) }}
           </template>
         </td>
       </tr>
@@ -160,9 +160,32 @@ const props = defineProps({
   },
 })
 
+const formattedArguments = ref(traverseAndFormatInts(props.transactionData.arguments))
 const gasCosts = computed(() => props.transactionData.gasUsed * props.transactionData.gasPrice)
-const isArgumentsLong = computed(() => JSON.stringify(props.transactionData.arguments).length > 300)
-const shortArguments = computed(() => isArgumentsLong.value ? JSON.stringify(props.transactionData.arguments).substr(0, 300) + '...' : props.transactionData.arguments)
+const isArgumentsLong = computed(() => JSON.stringify(formattedArguments.value).length > 300)
+const shortArguments = computed(() => isArgumentsLong.value ? JSON.stringify(formattedArguments.value).substr(0, 300) + '...' : formattedArguments.value)
+
+function traverseAndFormatInts(data) {
+  return data.map(item => {
+    if (item.type === 'int') {
+      return {
+        ...item,
+        value: formatInt(item.value),
+      }
+    } else if (item.type === 'tuple') {
+      return {
+        ...item,
+        value: traverseAndFormatInts(item.value),
+      }
+    } else {
+      return item
+    }
+  })
+}
+
+function formatInt(value) {
+  return Number(value).toLocaleString('fullwide', { useGrouping: false })
+}
 
 function toggleCollapse() {
   isCollapsed.value = !isCollapsed.value

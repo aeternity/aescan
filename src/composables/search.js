@@ -24,15 +24,14 @@ export const useSearchStore = defineStore('search', () => {
     })
   }
 
-  async function isKeyblockAvailable(id) {
-    // todo param
-    // todo rename
-    // todo review
-    return await $fetch(`/api/search/${id}`)
+  async function isKeyblockMined(id) {
+    return await $fetch('/api/search/is-keyblock-mined', {
+      params: { id },
+    })
   }
 
-  async function isNameAvailable(name) {
-    return await $fetch('/api/search/hasName', {
+  async function isNameClaimed(name) {
+    return await $fetch('/api/search/is-name-claimed', {
       params: { name },
     })
   }
@@ -41,10 +40,10 @@ export const useSearchStore = defineStore('search', () => {
     namesResults,
     tokensResults,
     nftsResults,
-    isKeyblockAvailable,
+    isKeyblockMined,
     fetchTokenResults,
     fetchNamesResults,
     fetchNftsResults,
-    isNameAvailable,
+    isNameClaimed,
   }
 })

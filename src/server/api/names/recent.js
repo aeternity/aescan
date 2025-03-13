@@ -1,14 +1,13 @@
 import useAxios from '@/composables/useAxios'
-import { formatAettosToAe } from '~/utils/format'
+import { formatAettosToAe, formatBlockDiffAsDatetime, formatIsAuction } from '~/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async() => {
   const [names, latestKeyblock] = await Promise.all([
-    fetchNames(id),
+    fetchNames(),
     fetchLatestKeyblock(),
   ])
-
   return adaptNames(names, latestKeyblock)
 })
 
@@ -18,7 +17,7 @@ async function fetchLatestKeyblock() {
     limit: 1,
   })
   const { data } = await axios.get(url)
-  return data.data[0]
+  return data.data[0].height
 }
 
 async function fetchNames() {
@@ -28,10 +27,10 @@ async function fetchNames() {
     limit: 4,
   })
   const { data } = await axios.get(url)
-  return adaptNames(data.data)
+  return data.data
 }
 
-export function adaptNames(names, blockHeight) {
+function adaptNames(names, blockHeight) {
   return names.map(name => {
     return {
       name: name.name,

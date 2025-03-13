@@ -17,11 +17,10 @@
 
   <template v-if="!isLoading">
     <state-channel-details-panel
-      v-if="stateChannelDetails"
       class="state-channel-details__state-channel-details-panel"
       :state-channel-details="stateChannelDetails"/>
 
-    <app-tabs v-if="stateChannelDetails">
+    <app-tabs>
       <app-tab title="Transactions">
         <state-channel-transactions-panel/>
       </app-tab>

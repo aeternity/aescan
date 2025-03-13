@@ -63,7 +63,7 @@ async function fetchLatestKeyblock() {
 
 function adaptName(name, blockHeight, blockTime) {
   const lastBid = name?.lastBid
-  const hash = name.hash || name.lastBid.tx.nameId
+  const hash = name.hash ?? name.lastBid.tx.nameId
   const states = formatNameState(name, blockHeight)
   const endHeight = name.auctionEnd
   const ends = name.approximateExpireTime

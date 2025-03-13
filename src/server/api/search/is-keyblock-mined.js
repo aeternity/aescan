@@ -12,6 +12,6 @@ export default defineEventHandler(async event => {
     if (error.response.status === 404) {
       return false
     }
-    return null
+    return false
   }
 })

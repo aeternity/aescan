@@ -7,13 +7,12 @@ export default defineEventHandler(async event => {
   const id = getRouterParam(event, 'id')
 
   try {
-    const [aaa, bbb] = await Promise.all([
+    const [details, createTx] = await Promise.all([
       fetchStateChannel(id),
       fetchStateChannelCreateTx(id),
     ])
-    return adaptStateChannelDetails(aaa, bbb)
+    return adaptStateChannelDetails(details, createTx)
   } catch (error) {
-    console.log('error', error)
     if ([400, 404].includes(error.response.status)) {
       return { error: error.response.status }
     }
@@ -26,8 +25,6 @@ async function fetchStateChannel(id) {
     id,
   })
   const { data } = await axios.get(url)
-  console.log('data', data)
-
   return data
 }
 

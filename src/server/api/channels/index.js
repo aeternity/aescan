@@ -4,11 +4,10 @@ import { formatAettosToAe } from '@/utils/format'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const { queryParameters, limit } = getQuery(event)
+  const { queryParameters } = getQuery(event)
 
   const url = getUrl({
     entity: 'channels',
-    limit: limit ?? 10,
     queryParameters,
   })
 

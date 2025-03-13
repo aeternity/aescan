@@ -3,8 +3,6 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const { state } = getQuery(event)
-
   const url = getUrl({
     entity: 'transactions',
     route: 'count',

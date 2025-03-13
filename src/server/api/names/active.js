@@ -7,16 +7,11 @@ export default defineEventHandler(async event => {
   const { queryParameters } = getQuery(event)
 
   const url = getUrl({
-    entity: 'name/auctions',
+    entity: 'names',
     parameters: { state: 'active', by: 'deactivation', direction: 'forward' },
     queryParameters,
   })
-
-  console.log('url', url.href)
   const { data } = await axios.get(url)
-
-  console.log('data', data)
-
   return adaptActiveNames(data)
 })
 

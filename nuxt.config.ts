@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     'nuxt-monaco-editor',
   ],
   plausible: {
-    trackLocalhost: false,
+    ignoredHostnames: ['localhost'],
   },
   appConfig: {
     APP_VERSION: process.env.APP_VERSION,

@@ -5,14 +5,15 @@
     </template>
     <table>
       <tbody>
-        <tr class="name-pointers-special-panel__row">
-          <th class="name-pointers-special-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints.accountPointer }}
             </hint-tooltip>
             Account
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
+            <!--            todo remove-->
             <app-link
               v-if="name.specialPointers.account"
               :to="`/accounts/${name.specialPointers.account}`">
@@ -29,14 +30,14 @@
             </template>
           </td>
         </tr>
-        <tr class="name-pointers-special-panel__row">
-          <th class="name-pointers-special-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints.channelPointer }}
             </hint-tooltip>
             State Channel
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.channel"
               :to="`/state-channels/${name.specialPointers.channel}`">
@@ -53,14 +54,14 @@
             </template>
           </td>
         </tr>
-        <tr class="name-pointers-special-panel__row">
-          <th class="name-pointers-special-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints.contractPointer }}
             </hint-tooltip>
             Smart Contract
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.contract"
               :to="`/contracts/${name.specialPointers.contract}`">
@@ -76,14 +77,14 @@
             </template>
           </td>
         </tr>
-        <tr class="name-pointers-special-panel__row">
-          <th class="name-pointers-special-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
             Oracle
           </th>
-          <td class="name-pointers-special-panel__data">
+          <td>
             <app-link
               v-if="name.specialPointers.oracle"
               :to="`/oracles/${name.specialPointers.oracle}`">
@@ -112,45 +113,5 @@ const { name } = storeToRefs(useNameDetailsStore())
 </script>
 
 <style scoped>
-.name-pointers-special-panel {
-  &__table {
-    table-layout: fixed;
-  }
-
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
-}
+@import url("../assets/styles/utilities/panel-detail.css");
 </style>

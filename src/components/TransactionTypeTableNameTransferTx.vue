@@ -1,14 +1,14 @@
 <template>
-  <table class="transaction-type-panel-name-transfer-tx__table">
+  <table>
     <tbody>
-      <tr class="transaction-type-panel-name-transfer-tx__row">
-        <th class="transaction-type-panel-name-transfer-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ namesHints.nameId }}
           </hint-tooltip>
           Name
         </th>
-        <td class="transaction-type-panel-name-transfer-tx__data">
+        <td>
           <app-link
             v-if="transactionData.name"
             :to="`/names/${transactionData.name}`">
@@ -19,27 +19,27 @@
           </template>
         </td>
       </tr>
-      <tr class="transaction-type-panel-name-transfer-tx__row">
-        <th class="transaction-type-panel-name-transfer-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ namesHints.oldOwner }}
           </hint-tooltip>
           Old Owner
         </th>
-        <td class="transaction-type-panel-name-transfer-tx__data">
+        <td>
           <app-link :to="`/accounts/${transactionData.accountId}`">
             {{ transactionData.accountId }}
           </app-link>
         </td>
       </tr>
-      <tr class="transaction-type-panel-name-transfer-tx__row">
-        <th class="transaction-type-panel-name-transfer-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ namesHints.newOwner }}
           </hint-tooltip>
           New Owner
         </th>
-        <td class="transaction-type-panel-name-transfer-tx__data">
+        <td>
           <app-link :to="`/accounts/${transactionData.recipientId}`">
             {{ transactionData.recipientId }}
           </app-link>
@@ -61,46 +61,10 @@ defineProps({
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/panel-detail.css");
+
+/*todo unused class*/
 .transaction-type-panel-name-transfer-tx {
-  &__table {
-    table-layout: fixed;
-  }
-
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;

@@ -4,43 +4,41 @@
     class="contract-details-panel">
     <table>
       <tbody>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractId }}
             </hint-tooltip>
             Smart Contract ID
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <copy-chip :label="contractDetails.id"/>
           </td>
         </tr>
 
         <tr
-          v-if="contractDetails.contractType"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+          v-if="contractDetails.contractType">
+          <th>
             <hint-tooltip>
               {{ contractsHints.type }}
             </hint-tooltip>
             Type
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-chip size="sm">
               {{ contractDetails.contractType }}
             </app-chip>
           </td>
         </tr>
         <tr
-          v-if="contractDetails.contractType"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+          v-if="contractDetails.contractType">
+          <th>
             <hint-tooltip>
               {{ contractsHints.token }}
             </hint-tooltip>
             Token
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <div class="contract-details-panel__container">
               <app-link
                 v-if="contractDetails.contractType === 'AEX-9'"
@@ -60,118 +58,114 @@
             </div>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractTxHash }}
             </hint-tooltip>
             Create Transaction
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/transactions/${contractDetails.createTransactionHash}`">
               {{ contractDetails.createTransactionHash }}
             </app-link>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractCreatedHeight }}
             </hint-tooltip>
             Created Height
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/keyblocks/${contractDetails.creationHeight}`">
               {{ contractDetails.creationHeight }}
             </app-link>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractCreated }}
             </hint-tooltip>
             Created
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="contractDetails.creationDate"
               :is-extended="true"/>
           </td>
         </tr>
-        <tr
-          v-if="contractDetails.createdBy"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr v-if="contractDetails.createdBy">
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractCreator }}
             </hint-tooltip>
             Created By
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${contractDetails.createdBy}`">
               {{ contractDetails.createdBy }}
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="contractDetails.bytecode"
-          class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr v-if="contractDetails.bytecode">
+          <th>
             <hint-tooltip>
               {{ contractsHints.bytecode }}
             </hint-tooltip>
             Bytecode
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <copy-chip
               :label="formatEllipseHash(contractDetails.bytecode)"
               :clipboard-text="contractDetails.bytecode"/>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractsAccount }}
             </hint-tooltip>
             Smart Contract’s Account
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${contractDetails.contractAccount}`">
               {{ contractDetails.contractAccount }}
             </app-link>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractsAccountBalance }}
             </hint-tooltip>
             Smart Contract's Account Balance
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <price-label :price="0"/>
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.contractCalls }}
             </hint-tooltip>
             Smart Contract Calls
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             {{ contractDetails.callsCount }}
           </td>
         </tr>
-        <tr class="contract-details-panel__row">
-          <th class="contract-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ contractsHints.apiLinks }}
             </hint-tooltip>
             API Links
           </th>
-          <td class="contract-details-panel__data">
+          <td>
             <app-link
               :to="contractNodeUrl"
               class="contract-details-panel__link">
@@ -216,43 +210,9 @@ const contractMiddlewareUrl = computed(() =>
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/panel-detail.css");
+
 .contract-details-panel {
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__data {
-    display: block;
-    white-space: wrap;
-    word-break: break-all;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
 
   &__link {
     display: inline-flex;

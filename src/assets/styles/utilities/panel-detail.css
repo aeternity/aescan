@@ -1,0 +1,40 @@
+table {
+  table-layout: fixed;
+}
+
+th {
+  display: block;
+  padding-bottom: 0;
+
+  @media (--mobile) {
+    padding-bottom: var(--space-1);
+    width: var(--detail-column-width);
+    border-bottom: 1px solid var(--color-midnight-25);
+    display: table-cell;
+  }
+}
+
+tr {
+  display: block;
+
+  @media (--mobile) {
+    display: table-row;
+  }
+}
+
+tr:last-of-type th {
+  border-bottom: 0;
+}
+
+td {
+  white-space: wrap;
+  word-break: break-all;
+  display: block;
+  padding-left: 28px;
+  padding-top: var(--space-0);
+
+  @media (--mobile) {
+    padding-top: var(--space-1);
+    display: table-cell;
+  }
+}

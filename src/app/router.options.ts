@@ -6,9 +6,14 @@ export default <RouterConfig>{
     if (to?.hash !== MENU_HASH && savedPosition) {
       return savedPosition
     }
+    if (to.name !== _from.name) {
+      return {
+        top: 0,
+      }
+    }
 
     return {
-      top: 0,
+      savedPosition,
     }
   },
 }

@@ -97,7 +97,7 @@ jobs:
 
       - name: Chekc the initial PR deployment status before make a PR Sync.
         if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
-        uses: aeternity/ae-github-actions/deploy-status@v7
+        uses: aeternity/ae-github-actions/deploy-status@v7.2.0
         with:
           url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
 
@@ -144,6 +144,12 @@ jobs:
           repository: aeternity/gitops-apps-aelabs
           github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
           branch: stg
+      
+      - name: Final Message
+        if: env.DEPLOYMENT_STATUS == 'failure'
+        run: |
+          echo -e "\n\033[1;31mPipeline completed, but the initial deployment check failed.\033[0m"
+          echo -e "\033[1;31mPlease fix the build and rerun the pipeline.\033[0m"
 
   end-to-end-tests:
     needs: main
@@ -153,7 +159,7 @@ jobs:
     if: github.event.action == 'opened' || github.event.action == 'synchronize'
     steps:
       - name: Check the PR deployment status before run E2E tests.
-        uses: aeternity/ae-github-actions/deploy-status@v7.1.0
+        uses: aeternity/ae-github-actions/deploy-status@v7.2.0
         with:
           url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
           timeout: 300

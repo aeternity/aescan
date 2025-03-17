@@ -1,5 +1,5 @@
 import useAxios from '@/composables/useAxios'
-import { formatAettosToAe, formatBlockDiffAsDatetime, formatIsAuction } from '~/utils/format'
+import { formatAettosToAe, formatBlockDiffAsDatetime, formatIsAuction } from '@/utils/format'
 
 const axios = useAxios()
 

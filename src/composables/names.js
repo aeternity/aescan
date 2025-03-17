@@ -4,8 +4,9 @@ export const useNamesStore = defineStore('names', () => {
   const expiredNames = ref(null)
   const recentlyActivatedNames = ref(null)
 
+  const auctionsEndingSoon = computed(() => inAuctionNames.value?.data.slice(0, 4))
+
   function fetchNames() {
-    // todo rename
     return Promise.all([
       fetchActiveNames(),
       fetchInAuctionNames(),
@@ -38,8 +39,6 @@ export const useNamesStore = defineStore('names', () => {
     recentlyActivatedNames.value = null
     recentlyActivatedNames.value = await $fetch('/api/names/recent')
   }
-
-  const auctionsEndingSoon = computed(() => inAuctionNames.value?.data.slice(0, 4))
 
   return {
     activeNames,

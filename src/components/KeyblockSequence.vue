@@ -80,6 +80,13 @@ defineProps({
       animation: pulse 2s infinite;
     }
 
+    &::after {
+      content: '=';
+      position: absolute;
+      right: -16px;
+      color: var(--color-midnight);
+    }
+
     @media (--desktop) {
       margin-right: var(--space-4);
     }
@@ -98,6 +105,7 @@ defineProps({
         animation: pulse-active 2s infinite;
       }
     }
+
   }
 
   &__overlay {

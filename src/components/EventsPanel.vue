@@ -6,7 +6,7 @@
         {{ contractsHints.encodedEvents }}
       </hint-tooltip>
     </h4>
-    <events-definition-list :arguments="args"/>
+    <events-definition-list :args="args"/>
     <app-button
       v-if="!isButtonHidden"
       class="event-panel__button"
@@ -25,7 +25,7 @@
         {{ encodedEvents[logId].name }}
       </div>
 
-      <events-definition-list :arguments="encodedEvents[logId].args"/>
+      <events-definition-list :args="encodedEvents[logId].args"/>
     </template>
   </app-panel>
 </template>

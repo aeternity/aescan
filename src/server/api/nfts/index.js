@@ -13,19 +13,23 @@ export default defineEventHandler(async event => {
   return adaptNfts(nfts, count)
 })
 
-async function fetchNftsList(queryParameters, limit) {
+async function fetchNftsList(queryParameters) {
   const url = getUrl({
     entity: 'aex141',
     parameters: { by: 'creation', direction: 'backward' },
     queryParameters,
   })
-
   const { data } = await axios.get(url)
   return data
 }
 
 async function fetchNftsCount() {
-  const { data } = await axios.get(`${MIDDLEWARE_URL}/aex141/count`)
+  const url = getUrl({
+    entity: 'aex141',
+    route: 'count',
+  })
+  const { data } = await axios.get(url)
+
   return data.data
 }
 

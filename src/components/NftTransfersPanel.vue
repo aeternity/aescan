@@ -15,10 +15,10 @@ const { nftTransfers } = storeToRefs(useNftDetailsStore())
 const { fetchNftTransfers } = useNftDetailsStore()
 
 async function loadPrevNftTransfers() {
-  await fetchNftTransfers(nftTransfers.value.prev.substring(3))
+  await fetchNftTransfers({ queryParameters: nftTransfers.value.prev.substring(3) })
 }
 
 async function loadNextNftTransfers() {
-  await fetchNftTransfers(nftTransfers.value.next.substring(3))
+  await fetchNftTransfers({ queryParameters: nftTransfers.value.next.substring(3) })
 }
 </script>

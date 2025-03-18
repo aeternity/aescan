@@ -1,14 +1,15 @@
 export const useNftsStore = defineStore('nfts', () => {
-  const nfts = computed(() => {
-    return rawNfts.value
-      ? adaptNfts(rawNfts.value)
-      : null
-  })
+  const nfts = ref(null)
+
+  async function fetchNfts(queryParameters) {
+    nfts.value = null
+    nfts.value = await $fetch('/api/nfts', {
+      params: { queryParameters },
+    })
+  }
 
   return {
-    nftsCount,
     nfts,
     fetchNfts,
-    fetchNftsList,
   }
 })

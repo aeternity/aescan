@@ -1,7 +1,6 @@
 <template>
   <app-panel class="keyblock-microblock-panel">
     <paginated-content
-      v-model:page-index="pageIndex"
       pagination-style="history"
       :entities="microblocks"
       :total-count="keyblockDetails.microBlocksCount"
@@ -24,7 +23,6 @@ if (process.client) {
   })
 }
 
-const pageIndex = ref(1)
 const loadPrevMicroblocks = () =>
   fetchKeyblockMicroblocks(
     { queryParameters: microblocks.value.prev })

@@ -1,7 +1,6 @@
 <template>
   <app-panel class="transactions-panel">
     <paginated-content
-      v-model:page-index="pageIndex"
       pagination-style="history"
       :entities="transactions"
       :total-count="transactionsCount"
@@ -26,7 +25,6 @@ const {
   transactions,
   transactionsCount,
   isHydrated,
-  pageIndex,
   selectedTxType,
   selectedScope,
 } = storeToRefs(useTransactionsStore())

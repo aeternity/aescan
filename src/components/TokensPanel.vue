@@ -1,7 +1,6 @@
 <template>
   <app-panel class="tokens-panel">
     <paginated-content
-      v-model:page-index="pageIndex"
       :entities="selectedTokens"
       :total-count="selectedTokensCount"
       @prev-clicked="loadPrevTokens"
@@ -26,8 +25,6 @@ const { fetchTokens, fetchTokensCount } = useTokensStore()
 
 const featureFlags = useFeatureFlags()
 
-const pageIndex = ref(1)
-
 async function loadPrevTokens() {
   await fetchTokens(selectedTokens.value.prev.substring(3))
 }
@@ -47,7 +44,6 @@ await useAsyncData(async() => {
 
 if (process.client) {
   watch(selectedTokenName, async() => {
-    pageIndex.value = 1
     await fetchTokens('/aex9?by=name&direction=forward&limit=10')
   }, {
     immediate: true,

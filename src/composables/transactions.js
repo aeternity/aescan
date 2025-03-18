@@ -13,7 +13,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const { push } = useRouter()
 
   const isHydrated = ref(false)
-  const pageIndex = ref(1)
   const rawTransactions = ref(null)
   const transactionsCount = ref(null)
   const transactionsStatistics = ref(null)
@@ -57,7 +56,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
       fetchTransactions({ queryParameters, scope, type, limit: pageLimit.value }),
       fetchTransactionsCount({ scope, type }),
     ])
-    setPageIndex(1)
   }
 
   async function fetchTransactions({ queryParameters, scope, type, limit } = {}) {
@@ -119,10 +117,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
       last24hsAverageTransactionFees.value = null
       feesTrend.value = null
     }
-  }
-
-  function setPageIndex(index) {
-    pageIndex.value = index
   }
 
   function setPageLimit(value) {

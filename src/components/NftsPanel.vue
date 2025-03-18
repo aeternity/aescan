@@ -1,7 +1,6 @@
 <template>
   <app-panel>
     <paginated-content
-      v-model:page-index="pageIndex"
       :entities="nfts"
       :total-count="nfts?.count"
       @prev-clicked="loadPrevNfts"
@@ -14,8 +13,6 @@
 <script setup>
 const { nfts } = storeToRefs(useNftsStore())
 const { fetchNfts } = useNftsStore()
-
-const pageIndex = ref(1)
 
 async function loadPrevNfts() {
   await fetchNfts(nfts.value.prev)

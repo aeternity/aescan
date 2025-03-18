@@ -80,7 +80,7 @@ defineProps({
       animation: pulse 2s infinite;
     }
 
-    &::after {
+    &:after {
       content: '=';
       position: absolute;
       right: -16px;

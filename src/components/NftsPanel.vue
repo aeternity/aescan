@@ -18,11 +18,11 @@ const { fetchNfts } = useNftsStore()
 const pageIndex = ref(1)
 
 async function loadPrevNfts() {
-  await fetchNfts(nfts.value.prev.substring(3))
+  await fetchNfts(nfts.value.prev)
 }
 
 async function loadNextNfts() {
-  await fetchNfts(nfts.value.next.substring(3))
+  await fetchNfts(nfts.value.next)
 }
 
 if (process.client) {

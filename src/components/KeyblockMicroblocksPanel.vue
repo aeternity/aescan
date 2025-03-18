@@ -23,12 +23,15 @@ if (process.client) {
   })
 }
 
-const loadPrevMicroblocks = () =>
+function loadPrevMicroblocks() {
   fetchKeyblockMicroblocks(
     { queryParameters: microblocks.value.prev })
-const loadNextMicroblocks = () =>
+}
+
+function loadNextMicroblocks() {
   fetchKeyblockMicroblocks(
     { queryParameters: microblocks.value.next })
+}
 </script>
 
 <style scoped>

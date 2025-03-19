@@ -109,9 +109,9 @@ if (error.value) {
 }
 
 if (process.client && !error.value) {
-  await useAsyncData(() => fetchContractEvents({
-    queryParameters: `/contracts/logs?contract_id=${route.params.id}&limit=10&aexn-args=true`,
-  }))
+  await useAsyncData(() => fetchContractEvents(
+    `/contracts/logs?contract_id=${route.params.id}&limit=10&aexn-args=true`,
+  ))
 
   if (featureFlags.smartContractVerification) {
     await fetchVerificationDetail(route.params.id)

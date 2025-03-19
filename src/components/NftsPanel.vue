@@ -3,7 +3,7 @@
     <paginated-content
       v-model:page-index="pageIndex"
       :entities="nfts"
-      :total-count="nfts.count"
+      :total-count="nfts?.count"
       @prev-clicked="loadPrevNfts"
       @next-clicked="loadNextNfts">
       <nfts-table :nfts="nfts"/>

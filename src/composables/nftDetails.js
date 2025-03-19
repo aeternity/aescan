@@ -1,77 +1,56 @@
-import { useRuntimeConfig } from 'nuxt/app'
-
 export const useNftDetailsStore = defineStore('nftDetails', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-  const axios = useAxios()
-
-  const nftId = ref(null)
-  const rawNftDetails = ref(null)
-  const rawNftTransfers = ref(null)
+  const nftDetails = ref(null)
+  const nftTransfers = ref(null)
   const nftInventory = ref(null)
   const nftOwners = ref(null)
 
   async function fetchNftDetails(id) {
-    nftId.value = id
-
     await Promise.all([
-      fetchNft(),
+      fetchNft(id),
       Promise.allSettled([
-        fetchNftTransfers(),
-        fetchNftInventory(),
-        fetchNftOwners(),
+        fetchNftTransfers({ id }),
+        fetchNftInventory({ id }),
+        fetchNftOwners({ id }),
       ]),
     ])
 
     return true
   }
 
-  const nftDetails = computed(() => {
-    return rawNftDetails.value
-      ? adaptNft(rawNftDetails.value)
-      : null
-  })
-
-  const nftTransfers = computed(() => {
-    return rawNftTransfers.value
-      ? adaptNftTransfers(rawNftTransfers.value)
-      : null
-  })
-
-  async function fetchNft() {
-    rawNftDetails.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/aex141/${nftId.value}`)
-    rawNftDetails.value = data
+  async function fetchNft(id) {
+    nftDetails.value = null
+    nftDetails.value = await $fetch(`/api/nfts/${id}`)
   }
 
-  async function fetchNftInventory(queryParameters) {
+  async function fetchNftInventory({ id, queryParameters }) {
     nftInventory.value = null
-    const defaultParameters = `/aex141/${nftId.value}/templates?limit=10`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    nftInventory.value = data
+    nftInventory.value = await $fetch('/api/nfts/inventory', {
+      params: { id, queryParameters },
+    })
   }
 
-  async function fetchNftOwners(queryParameters) {
+  async function fetchNftOwners({ id, queryParameters }) {
     nftOwners.value = null
-    const defaultParameters = `/aex141/${nftId.value}/tokens?limit=10`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    nftOwners.value = data
+    nftOwners.value = await $fetch('/api/nfts/owners', {
+      params: { id, queryParameters },
+    })
   }
 
-  async function fetchNftTransfers(queryParameters) {
-    rawNftTransfers.value = null
-    const defaultParameters = `/aex141/${nftId.value}/transfers?limit=10`
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
-    rawNftTransfers.value = data
+  async function fetchNftTransfers({ id, queryParameters }) {
+    nftTransfers.value = null
+    nftTransfers.value = await $fetch('/api/nfts/transfers', {
+      params: { id, queryParameters },
+    })
   }
 
   return {
     nftDetails,
+    nftTransfers,
+    nftInventory,
+    nftOwners,
     fetchNftDetails,
     fetchNftTransfers,
-    nftTransfers,
     fetchNftInventory,
-    nftInventory,
     fetchNftOwners,
-    nftOwners,
   }
 })

@@ -20,7 +20,7 @@
 <script setup>
 import { Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
-const { isKeyblockAvailable, isNameAvailable } = useSearchStore()
+const { isKeyblockMined, isNameClaimed } = useSearchStore()
 const { push } = useRouter()
 
 const query = ref('')
@@ -79,7 +79,7 @@ function isStateChannelId(query) {
 
 async function isName(query) {
   if (query.endsWith('.test') || query.endsWith('.chain')) {
-    return await isNameAvailable(query)
+    return await isNameClaimed(query)
   } else {
     return false
   }
@@ -90,7 +90,7 @@ function isKeyblockId(query) {
     return true
   }
   if (!isNaN(query)) {
-    return isKeyblockAvailable(query)
+    return isKeyblockMined(query)
   }
   return false
 }

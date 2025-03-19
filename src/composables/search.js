@@ -1,9 +1,4 @@
-import axios from 'axios'
-import { useRuntimeConfig } from 'nuxt/app'
-
 export const useSearchStore = defineStore('search', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
-
   const namesResults = ref([])
   const tokensResults = ref([])
   const nftsResults = ref([])
@@ -29,30 +24,26 @@ export const useSearchStore = defineStore('search', () => {
     })
   }
 
-  async function isKeyblockAvailable(id) {
-    return await $fetch(`/api/search/${id}`)
+  async function isKeyblockMined(id) {
+    return await $fetch('/api/search/is-keyblock-mined', {
+      params: { id },
+    })
   }
 
-  async function isNameAvailable(name) {
-    try {
-      await axios.get(`${MIDDLEWARE_URL}/names/${name}`)
-      return true
-    } catch (error) {
-      if (error.response.status === 404) {
-        return false
-      }
-      return null
-    }
+  async function isNameClaimed(name) {
+    return await $fetch('/api/search/is-name-claimed', {
+      params: { name },
+    })
   }
 
   return {
     namesResults,
     tokensResults,
     nftsResults,
-    isKeyblockAvailable,
+    isKeyblockMined,
     fetchTokenResults,
     fetchNamesResults,
     fetchNftsResults,
-    isNameAvailable,
+    isNameClaimed,
   }
 })

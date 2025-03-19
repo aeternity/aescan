@@ -39,7 +39,7 @@ import { namesHints } from '@/utils/hints/namesHints'
 
 const TAB_KEYS = ['active', 'in-auction', 'expired']
 
-const { fetchNamesDetails } = useNamesStore()
+const { fetchNames } = useNamesStore()
 
 const { push, replace } = useRouter()
 const route = useRoute()
@@ -73,7 +73,7 @@ const activeTabIndex = computed({
 const { isLoading } = useLoading()
 
 if (process.client) {
-  fetchNamesDetails()
+  fetchNames()
 }
 </script>
 

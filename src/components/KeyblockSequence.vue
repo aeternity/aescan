@@ -50,7 +50,11 @@ defineProps({
 
     /*animation overflow workaround*/
     margin-left: -8px;
-    padding: var(--space-1) 0 var(--space-1) var(--space-1);
+    padding: var(--space-1);
+
+    @media (--desktop) {
+      padding: var(--space-1) 0;
+    }
 
     &::-webkit-scrollbar {
       display: none;

@@ -4,7 +4,6 @@ export const useNftDetailsStore = defineStore('nftDetails', () => {
   const nftInventory = ref(null)
   const nftOwners = ref(null)
 
-  // todo remove id
   async function fetchNftDetails(id) {
     await Promise.all([
       fetchNft(id),

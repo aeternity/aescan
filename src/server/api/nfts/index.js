@@ -4,7 +4,6 @@ const axios = useAxios()
 
 export default defineEventHandler(async event => {
   const { queryParameters } = getQuery(event)
-  console.log('1queryParameters', queryParameters)
   const [nfts, count] = await Promise.all([
     fetchNftsList(queryParameters),
     fetchNftsCount(),
@@ -28,8 +27,6 @@ async function fetchNftsCount() {
     entity: 'aex141',
     route: 'count',
   })
-  console.log('url', url)
-
   const { data } = await axios.get(url)
   return data.data
 }

@@ -80,6 +80,7 @@ defineProps({
       position: absolute;
       left: -12px;
       color: var(--color-midnight);
+
       @media (--desktop) {
         left: -16px;
       }

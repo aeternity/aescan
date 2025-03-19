@@ -38,7 +38,7 @@ defineProps({
   padding: 0 var(--space-1);
 
   @media (--desktop) {
-    padding: 0;
+    padding: 0 var(--space-1);
   }
 
   &__sequence {
@@ -49,7 +49,8 @@ defineProps({
     scrollbar-width: none;
 
     /*animation overflow workaround*/
-    padding: var(--space-1) 0;
+    margin-left: -8px;
+    padding: var(--space-1) 0 var(--space-1) var(--space-1);
 
     &::-webkit-scrollbar {
       display: none;
@@ -74,17 +75,24 @@ defineProps({
     font-size: 14px;
     cursor: pointer;
 
+    &:before {
+      content: '=';
+      position: absolute;
+      left: -12px;
+      color: var(--color-midnight);
+      @media (--desktop) {
+        left: -16px;
+      }
+    }
+
     &:first-child {
       box-shadow: 0 0 0 0 var(--color-midnight-35);
       transform: scale(1);
       animation: pulse 2s infinite;
-    }
 
-    &:after {
-      content: '=';
-      position: absolute;
-      right: -16px;
-      color: var(--color-midnight);
+      &:before {
+        content: '';
+      }
     }
 
     @media (--desktop) {

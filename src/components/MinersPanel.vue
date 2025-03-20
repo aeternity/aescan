@@ -26,9 +26,7 @@ function loadNextMiners() {
 }
 
 if (process.client) {
-  await fetchMiners({
-    limit: 10,
-  })
+  await fetchMiners()
 }
 </script>
 

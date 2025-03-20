@@ -1,6 +1,5 @@
 <template>
   <!--  todo add test-->
-  <!--  todo fix hints-->
   <!--  todo fix order-->
   <div class="mining-statistics-grid">
     <app-panel class="mining-statistics-grid__panel--miners">
@@ -19,7 +18,7 @@
       <h2 class="h5">
         PEERS
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.peers }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -31,7 +30,7 @@
       <h2 class="h5">
         POOLS
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.pools }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -44,7 +43,7 @@
       <h2 class="h5">
         REWARD
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.reward }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -58,7 +57,7 @@
       <h2 class="h5">
         DIFFICULTY
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.difficulty }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -73,7 +72,7 @@
       <h2 class="h5">
         HASHRATE
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.hashrate }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -88,7 +87,7 @@
       <h2 class="h5">
         BLOCKS MINED
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.blocksMined }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -100,7 +99,7 @@
       <h2 class="h5">
         BLOCK TIME
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.blockTime }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -116,7 +115,7 @@
       <h2 class="h5">
         MAX TPS
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.maxTPS }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -132,7 +131,7 @@
       <h2 class="h5">
         MINING POOLS IN LAST 24 HOURS
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.miningPoolsChart }}
         </hint-tooltip>
       </h2>
 

@@ -5,13 +5,13 @@
         <th>
           Miner
           <hint-tooltip>
-            {{ miningHints.mining }}
+            {{ miningHints.minerAccount }}
           </hint-tooltip>
         </th>
         <th>
           Total Reward
           <hint-tooltip>
-            {{ miningHints.mining }}
+            {{ miningHints.minerTotalReward }}
           </hint-tooltip>
         </th>
       </tr>

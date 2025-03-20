@@ -5,13 +5,13 @@
         <th>
           Name
           <hint-tooltip>
-            {{ miningHints.mining }}
+            {{ miningHints.miningPoolName }}
           </hint-tooltip>
         </th>
         <th>
           Pool Url
           <hint-tooltip>
-            {{ miningHints.mining }}
+            {{ miningHints.miningPoolUrl }}
           </hint-tooltip>
         </th>
       </tr>

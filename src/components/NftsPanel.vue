@@ -21,4 +21,8 @@ async function loadPrevNfts() {
 async function loadNextNfts() {
   await fetchNfts(nfts.value.next)
 }
+
+if (process.client) {
+  await fetchNfts()
+}
 </script>

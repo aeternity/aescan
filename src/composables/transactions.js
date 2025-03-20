@@ -181,7 +181,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     changeRoute,
     feesTrend,
     isHydrated,
-    pageIndex,
     selectedTxType,
     selectedScope,
     setPageLimit,

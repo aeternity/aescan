@@ -83,8 +83,7 @@
             </app-link>
           </td>
         </tr>
-        <tr
-          v-else>
+        <tr v-else>
           <th>
             <hint-tooltip>
               {{ accountHints.nonce }}

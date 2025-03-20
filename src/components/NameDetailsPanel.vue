@@ -13,8 +13,7 @@
             <copy-chip :label="name.name"/>
           </td>
         </tr>
-        <tr
-          v-if="!states.includes('auction')">
+        <tr v-if="!states.includes('auction')">
           <th>
             <hint-tooltip>
               {{ states.includes('expired') ? namesHints.lastOwner : namesHints.owner }}
@@ -51,8 +50,7 @@
             <price-label :price="name.bid"/>
           </td>
         </tr>
-        <tr
-          v-if="states.includes('active')">
+        <tr v-if="states.includes('active')">
           <th>
             <hint-tooltip>
               {{ namesHints.ownedSinceHeight }}
@@ -66,8 +64,7 @@
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="states.includes('active')">
+        <tr v-if="states.includes('active')">
           <th>
             <hint-tooltip>
               {{ namesHints.ownedSinceTime }}

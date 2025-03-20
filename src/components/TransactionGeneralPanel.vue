@@ -82,8 +82,7 @@
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="transactionDetails.created">
+        <tr v-if="transactionDetails.created">
           <th>
             <hint-tooltip>
               {{ transactionsHints.createdTime }}

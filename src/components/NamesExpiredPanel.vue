@@ -17,11 +17,11 @@ const { fetchExpiredNames } = useNamesStore()
 const { expiredNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
-  fetchExpiredNames(expiredNames.value.prev.substring(3))
+  fetchExpiredNames(expiredNames.value.prev)
 }
 
 function loadNextNames() {
-  fetchExpiredNames(expiredNames.value.next.substring(3))
+  fetchExpiredNames(expiredNames.value.next)
 }
 </script>
 

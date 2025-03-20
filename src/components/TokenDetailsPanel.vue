@@ -30,8 +30,7 @@
             <not-available-label v-if="!tokenDetails.name"/>
           </td>
         </tr>
-        <tr
-          v-if="tokenDetails.price">
+        <tr v-if="tokenDetails.price">
           <th>
             <hint-tooltip>
               {{ tokensHints.price }}
@@ -44,8 +43,7 @@
             </div>
           </td>
         </tr>
-        <tr
-          v-if="tokenDetails.price">
+        <tr v-if="tokenDetails.price">
           <th>
             <hint-tooltip>
               {{ tokensHints.price }}
@@ -58,8 +56,7 @@
             </div>
           </td>
         </tr>
-        <tr
-          v-if="tokenDetails.marketCap">
+        <tr v-if="tokenDetails.marketCap">
           <th>
             <hint-tooltip>
               {{ tokensHints.marketCap }}

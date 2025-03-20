@@ -13,18 +13,11 @@
             Account
           </th>
           <td>
-            <!--            todo remove-->
             <app-link
               v-if="name.specialPointers.account"
               :to="`/accounts/${name.specialPointers.account}`">
-              <span class="u-hidden-mobile">
-                {{ name.specialPointers.account }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.specialPointers.account) }}
-              </span>
+              {{ name.specialPointers.account }}
             </app-link>
-
             <template v-else>
               -
             </template>
@@ -41,12 +34,7 @@
             <app-link
               v-if="name.specialPointers.channel"
               :to="`/state-channels/${name.specialPointers.channel}`">
-              <span class="u-hidden-mobile">
-                {{ name.specialPointers.channel }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.specialPointers.channel) }}
-              </span>
+              {{ name.specialPointers.channel }}
             </app-link>
 
             <template v-else>
@@ -65,12 +53,7 @@
             <app-link
               v-if="name.specialPointers.contract"
               :to="`/contracts/${name.specialPointers.contract}`">
-              <span class="u-hidden-mobile">
-                {{ name.specialPointers.contract }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.specialPointers.contract) }}
-              </span>
+              {{ name.specialPointers.contract }}
             </app-link>
             <template v-else>
               -
@@ -88,14 +71,8 @@
             <app-link
               v-if="name.specialPointers.oracle"
               :to="`/oracles/${name.specialPointers.oracle}`">
-              <span class="u-hidden-mobile">
-                {{ name.specialPointers.oracle }}
-              </span>
-              <span class="u-hidden-desktop">
-                {{ formatEllipseHash(name.specialPointers.oracle) }}
-              </span>
+              {{ name.specialPointers.oracle }}
             </app-link>
-
             <template v-else>
               -
             </template>

@@ -74,8 +74,3 @@ tbody tr:hover td {
 tbody tr:hover th {
   background: var(--color-snow);
 }
-
-.huhu {
-  background: red;
-}
-

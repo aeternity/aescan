@@ -16,8 +16,7 @@
           </td>
         </tr>
 
-        <tr
-          v-if="contractDetails.contractType">
+        <tr v-if="contractDetails.contractType">
           <th>
             <hint-tooltip>
               {{ contractsHints.type }}
@@ -30,8 +29,7 @@
             </app-chip>
           </td>
         </tr>
-        <tr
-          v-if="contractDetails.contractType">
+        <tr v-if="contractDetails.contractType">
           <th>
             <hint-tooltip>
               {{ contractsHints.token }}

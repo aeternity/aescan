@@ -29,6 +29,7 @@
     "e2e": "cypress open",
     "unlighthouse": "npx unlighthouse --site http://localhost:8080"
   },
+  //    param address
   "dependencies": {
     "@aeternity/aepp-sdk": "14.0.0",
     "@sentry/tracing": "^7.114.0",

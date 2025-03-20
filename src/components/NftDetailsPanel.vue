@@ -88,8 +88,7 @@
             {{ nftDetails.tokenLimit }}
           </td>
         </tr>
-        <tr
-          v-if="nftDetails.templateLimit !== null">
+        <tr v-if="nftDetails.templateLimit !== null">
           <th>
             Template limit
             <hint-tooltip>

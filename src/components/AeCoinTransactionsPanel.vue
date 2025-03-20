@@ -11,11 +11,12 @@
 </template>
 
 <script setup>
-const { fetchTransactions } = useTransactionsStore()
+const { fetchTransactions, fetchTransactionsCount } = useTransactionsStore()
 const { transactions, transactionsCount } = storeToRefs(useTransactionsStore())
 
 async function loadTransactions() {
   await fetchTransactions({ type: 'spend', limit: 10 })
+  await fetchTransactionsCount({ type: 'spend' })
 }
 
 await useAsyncData(async() => {

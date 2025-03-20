@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:page-index="pageIndex"
       :entities="oracles"
       :total-count="oraclesCount"
       @prev-clicked="loadPrevOracles"
@@ -20,6 +21,8 @@ const { push, replace } = useRouter()
 const { fetchOracles, fetchOraclesCount } = useOraclesStore()
 const { oracles, oraclesCount } = storeToRefs(useOraclesStore())
 
+const pageIndex = ref(1)
+
 function loadPrevOracles() {
   fetchOracles({ queryParameters: oracles.value.prev })
 }
@@ -36,6 +39,7 @@ async function loadOracles() {
     await fetchOracles({ limit: 10, state: selectedOracleState.value.stateQuery }),
     await fetchOraclesCount(selectedOracleState.value.stateQuery),
   ])
+  pageIndex.value = 1
 }
 
 const selectedOracleState = computed({

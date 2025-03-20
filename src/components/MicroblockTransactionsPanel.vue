@@ -1,6 +1,7 @@
 <template>
   <app-panel class="microblock-transactions-panel">
     <paginated-content
+      v-model:page-index="pageIndex"
       :entities="transactions"
       :total-count="transactions?.count"
       pagination-style="history"
@@ -24,6 +25,7 @@ const route = useRoute()
 const { push } = useRouter()
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
+const pageIndex = ref(1)
 
 function loadPrevTransactions() {
   fetchMicroblockTransactions({ queryParameters: transactions.value.prev.substring(3) })
@@ -42,6 +44,7 @@ async function loadTransactions() {
     microblockHash: route.params.id,
     type: selectedTxType.value?.typeQuery,
   })
+  pageIndex.value = 1
 }
 
 if (process.client) {

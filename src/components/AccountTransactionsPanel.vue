@@ -1,6 +1,7 @@
 <template>
   <app-panel class="account-transactions-panel">
     <paginated-content
+      v-model:page-index="pageIndex"
       :entities="accountTransactions"
       pagination-style="history"
       @prev-clicked="loadPrevTransactions"
@@ -22,12 +23,14 @@ const { fetchAccountTransactions } = useAccountStore()
 const { accountTransactions } = storeToRefs(useAccountStore())
 
 const selectedTxType = ref({ typeQuery: null, label: 'All types' })
+const pageIndex = ref(1)
 
 watch(selectedTxType, () => {
   fetchAccountTransactions({
     accountId: route.params.id,
     type: selectedTxType.value.typeQuery,
   })
+  pageIndex.value = 1
 })
 
 function loadPrevTransactions() {

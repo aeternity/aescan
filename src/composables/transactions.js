@@ -171,7 +171,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     transactionsCount,
     transactions,
     fetchTransactions,
-    fetchTransactionsCount,
     transactionsStatistics,
     fetchLast24hsTransactionsStatistics,
     last24hsTransactionsCount,

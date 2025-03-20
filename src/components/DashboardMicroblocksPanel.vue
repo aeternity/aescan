@@ -66,6 +66,7 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
 
   &__dasboard-transaction-panel {
     margin: var(--space-1) var(--space-1) 0;
+
     @media (--desktop) {
       margin: var(--space-1) 0;
     }
@@ -73,6 +74,7 @@ const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
 
   &__microblock-sequence {
     margin: 0 var(--space-1) var(--space-3) var(--space-1);
+
     @media (--desktop) {
       margin: 0 0 var(--space-3);
     }

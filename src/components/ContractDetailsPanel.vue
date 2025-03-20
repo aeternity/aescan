@@ -211,7 +211,6 @@ const contractMiddlewareUrl = computed(() =>
 @import url("../assets/styles/utilities/panel-detail.css");
 
 .contract-details-panel {
-
   &__link {
     display: inline-flex;
     align-items: center;

@@ -210,6 +210,15 @@ const fiatPrice = computed(() =>
 @import url("../assets/styles/utilities/panel-detail.css");
 
 .token-details-panel {
+  &__link {
+    display: inline-flex;
+    align-items: center;
+
+    &:first-child {
+      margin-right: var(--space-3);
+    }
+  }
+
   &__container {
     display: flex;
     gap: var(--space-2) var(--space-1);

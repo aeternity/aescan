@@ -119,15 +119,6 @@ defineProps({
 @import url("../assets/styles/utilities/panel-detail.css");
 
 .nft-details-panel {
-  &__link {
-    display: inline-flex;
-    align-items: center;
-
-    &:first-child {
-      margin-right: var(--space-3);
-    }
-  }
-
   &__extensions {
     display: flex;
     flex-wrap: wrap;

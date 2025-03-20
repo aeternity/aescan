@@ -31,15 +31,4 @@ defineProps({
 
 <style scoped>
 @import url("../assets/styles/utilities/panel-detail.css");
-
-.transaction-type-panel-name-preclaim-tx {
-  &__link {
-    display: inline-flex;
-    align-items: center;
-
-    &:first-child {
-      margin-right: var(--space-3);
-    }
-  }
-}
 </style>

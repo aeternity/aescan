@@ -92,5 +92,4 @@ defineProps({
 
 <style scoped>
 @import url("../assets/styles/utilities/panel-detail.css");
-
 </style>

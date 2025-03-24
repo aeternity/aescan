@@ -122,7 +122,7 @@ const gasCosts = computed(() =>
 </script>
 
 <style scoped>
-@import url("../assets/styles/utilities/panel-detail.css");
+@import url("../assets/styles/utilities/_detail-table.css");
 
 .transaction-type-panel-ga-attach-tx {
   &__container {

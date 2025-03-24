@@ -161,7 +161,7 @@ function getLabel(state) {
 </script>
 
 <style scoped>
-@import url("../assets/styles/utilities/panel-detail.css");
+@import url("../assets/styles/utilities/_detail-table.css");
 
 .name-details-panel {
   &__container {

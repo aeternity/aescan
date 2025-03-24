@@ -18,7 +18,7 @@ const { fetchContractEvents } = useContractDetailsStore()
 const { contractEvents, contractDetails } = storeToRefs(useContractDetailsStore())
 
 function loadPrevEvents() {
-  fetchContractEvents(contractEvents.value.prev.sxubstring(3))
+  fetchContractEvents(contractEvents.value.prev.substring(3))
 }
 
 function loadNextEvents() {

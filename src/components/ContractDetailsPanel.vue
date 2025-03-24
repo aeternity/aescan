@@ -208,7 +208,7 @@ const contractMiddlewareUrl = computed(() =>
 </script>
 
 <style scoped>
-@import url("../assets/styles/utilities/panel-detail.css");
+@import url("../assets/styles/utilities/_detail-table.css");
 
 .contract-details-panel {
   &__link {

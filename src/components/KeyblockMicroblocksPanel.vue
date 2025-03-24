@@ -24,13 +24,11 @@ if (process.client) {
 }
 
 function loadPrevMicroblocks() {
-  fetchKeyblockMicroblocks(
-    { queryParameters: microblocks.value.prev })
+  fetchKeyblockMicroblocks({ queryParameters: microblocks.value.prev })
 }
 
 function loadNextMicroblocks() {
-  fetchKeyblockMicroblocks(
-    { queryParameters: microblocks.value.next })
+  fetchKeyblockMicroblocks({ queryParameters: microblocks.value.next })
 }
 </script>
 

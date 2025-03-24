@@ -26,7 +26,8 @@
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install",
     "reset": "yarn reinstall && yarn dev",
     "e2e:run": "cypress run",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "unlighthouse": "npx unlighthouse --site http://localhost:8080"
   },
   "dependencies": {
     "@aeternity/aepp-sdk": "14.0.0",
@@ -48,6 +49,7 @@
     "memory-cache": "^0.2.0",
     "pinia": "^2.3.0",
     "swiper": "^11.2.0",
+    "unlighthouse": "^0.16.2",
     "vue": "^3.5.13",
     "vue-chartjs": "^5.3.2",
     "vue-multiselect": "^3.1.0",

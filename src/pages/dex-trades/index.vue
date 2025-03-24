@@ -11,7 +11,7 @@
   </page-header>
 
   <dex-trades-panel v-if="!isLoading"/>
-  <loading-panel v-else/>
+  <loader-panel v-else/>
 </template>
 
 <script setup>

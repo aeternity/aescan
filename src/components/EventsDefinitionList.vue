@@ -1,13 +1,13 @@
 <template>
   <dl class="event-definition-list">
     <template
-      v-for="(argument, index) in arguments"
+      v-for="(argument, index) in args"
       :key="index">
       <dt class="event-definition-list__term">
         [arg{{ index }}]:
       </dt>
       <dd class="event-definition-list__value">
-        {{ argument }}
+        {{ args }}
         <copy-button
           :clipboard-text="argument"
           size="sm"/>
@@ -18,7 +18,7 @@
 
 <script setup>
 defineProps({
-  arguments: {
+  args: {
     type: Object,
     required: true,
   },

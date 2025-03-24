@@ -1,7 +1,6 @@
 <template>
   <app-panel class="oracle-events-panel">
     <paginated-content
-      v-model:page-index="pageIndex"
       :entities="oracleEvents"
       pagination-style="history"
       @prev-clicked="loadPrevEvents"
@@ -18,7 +17,6 @@ const { oracleEvents } = storeToRefs(useOracleDetailsStore())
 const { fetchOracleEvents } = useOracleDetailsStore()
 
 const route = useRoute()
-const pageIndex = ref(1)
 
 function loadPrevEvents() {
   fetchOracleEvents({ queryParameters: oracleEvents.value.prev })

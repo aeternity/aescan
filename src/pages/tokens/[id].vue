@@ -12,6 +12,7 @@
 
   <template v-if="!isLoading">
     <token-details-panel
+      v-if="tokenDetails && tokenHoldersCount"
       class="token-details__panel"
       :token-details="tokenDetails"
       :token-holders-count="tokenHoldersCount"/>

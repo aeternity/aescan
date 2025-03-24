@@ -3,7 +3,6 @@
     v-if="stateChannelTransactions"
     class="state-channel-transactions-panel">
     <paginated-content
-      v-model:page-index="pageIndex"
       :total-count="stateChannelTransactions.count"
       :entities="stateChannelTransactions"
       pagination-style="history"
@@ -19,13 +18,12 @@ const { stateChannelTransactions } = storeToRefs(useStateChannelDetailsStore())
 const { fetchStateChannelTransactions } = useStateChannelDetailsStore()
 
 const route = useRoute()
-const pageIndex = ref(1)
 
-const loadPrevTransactions = () => {
+function loadPrevTransactions() {
   fetchStateChannelTransactions(stateChannelTransactions.value.prev)
 }
 
-const loadNextTransactions = () => {
+function loadNextTransactions() {
   fetchStateChannelTransactions(stateChannelTransactions.value.next)
 }
 

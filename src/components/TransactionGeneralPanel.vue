@@ -2,61 +2,61 @@
   <app-panel class="transaction-general-panel">
     <table>
       <tbody>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.hash }}
             </hint-tooltip>
             Transaction ID
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <copy-chip :label="transactionDetails.hash"/>
           </td>
         </tr>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.type }}
             </hint-tooltip>
             Transaction Type
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             {{ transactionDetails.type }}
           </td>
         </tr>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.keyblockHeight }}
             </hint-tooltip>
             Keyblock Height
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <app-link
               :to="`/keyblocks/${transactionDetails.blockHeight}`">
               {{ transactionDetails.blockHeight }}
             </app-link>
           </td>
         </tr>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.keyblockConfirmations }}
             </hint-tooltip>
             Keyblock Confirmations
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             {{ transactionDetails.confirmations }}
           </td>
         </tr>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.status }}
             </hint-tooltip>
             Status
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <app-chip
               v-if="transactionDetails.isMined"
               variant="success">
@@ -69,66 +69,62 @@
             </app-chip>
           </td>
         </tr>
-        <tr
-          v-if="transactionDetails.blockHash"
-          class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr v-if="transactionDetails.blockHash">
+          <th>
             <hint-tooltip>
               {{ transactionsHints.microblockHash }}
             </hint-tooltip>
             Microblock Hash
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <app-link :to="`/microblocks/${transactionDetails.blockHash}`">
               {{ transactionDetails.blockHash }}
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="transactionDetails.created"
-          class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr v-if="transactionDetails.created">
+          <th>
             <hint-tooltip>
               {{ transactionsHints.createdTime }}
             </hint-tooltip>
             Created
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <timestamp-label
               :timestamp="transactionDetails.created"
               :is-extended="true"/>
           </td>
         </tr>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.fee }}
             </hint-tooltip>
             Fee
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <price-label :price="formatAettosToAe(transactionDetails.fee)"/>
           </td>
         </tr>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.nonce }}
             </hint-tooltip>
             Nonce
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             {{ transactionDetails.nonce }}
           </td>
         </tr>
-        <tr class="transaction-general-panel__row">
-          <th class="transaction-general-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ transactionsHints.apiLinks }}
             </hint-tooltip>
             API Links
           </th>
-          <td class="transaction-general-panel__data">
+          <td>
             <app-link
               :to="transactionNodeUrl"
               class="transaction-general-panel__link">
@@ -175,44 +171,9 @@ const transactionMiddlewareUrl = computed(() => {
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/panel-detail.css");
+
 .transaction-general-panel {
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    white-space: wrap;
-    word-break: break-all;
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;

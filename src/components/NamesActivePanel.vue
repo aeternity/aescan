@@ -17,11 +17,11 @@ const { fetchActiveNames } = useNamesStore()
 const { activeNames } = storeToRefs(useNamesStore())
 
 function loadPrevNames() {
-  return fetchActiveNames(activeNames.value.prev.substring(3))
+  return fetchActiveNames(activeNames.value.prev)
 }
 
 function loadNextNames() {
-  return fetchActiveNames(activeNames.value.next.substring(3))
+  return fetchActiveNames(activeNames.value.next)
 }
 </script>
 

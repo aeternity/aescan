@@ -9,11 +9,11 @@
         </p>
 
         <text-input
-          v-for="(argument, inputIndex) in aciItem.arguments"
+          v-for="(arg, inputIndex) in aciItem.arguments"
           id="id"
           :key="inputIndex"
-          v-model="form[aciItem.name + '-' + argument.name]"
-          :placeholder="argument.type"
+          v-model="form[aciItem.name + '-' + arg.name]"
+          :placeholder="arg.type"
           type="text"
           class="contract-entrypoint-accordion__input"/>
 

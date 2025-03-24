@@ -73,7 +73,11 @@ const {
 <style scoped>
 .dashboard-keyblock-panel {
   width: 100%;
-  padding-bottom: 0;
+  padding: var(--space-4) 0 0 0;
+
+  @media (--desktop) {
+    padding: var(--space-4);
+  }
 
   &__container {
     @media (--desktop) {
@@ -102,7 +106,11 @@ const {
   }
 
   &__dashboard-microblocks-panel {
-    margin: var(--space-1) var(--space-1) 0;
+    margin: 0 var(--space-1) var(--space-1);
+
+    @media (--desktop) {
+      margin: 0;
+    }
   }
 
   &__summary {

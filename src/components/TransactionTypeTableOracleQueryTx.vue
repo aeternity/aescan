@@ -1,86 +1,86 @@
 <template>
-  <table class="transaction-type-panel-oracle-query-tx__table">
+  <table>
     <tbody>
-      <tr class="transaction-type-panel-oracle-query-tx__row">
-        <th class="transaction-type-panel-oracle-query-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.oracleId }}
           </hint-tooltip>
           Oracle
         </th>
-        <td class="transaction-type-panel-oracle-query-tx__data">
+        <td>
           <app-link :to="`/oracles/${transactionData.oracleId}`">
             {{ transactionData.oracleId }}
           </app-link>
         </td>
       </tr>
-      <tr class="transaction-type-panel-oracle-query-tx__row">
-        <th class="transaction-type-panel-oracle-query-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.sender }}
           </hint-tooltip>
           Sender
         </th>
-        <td class="transaction-type-panel-oracle-query-tx__data">
+        <td>
           <app-link :to="`/accounts/${transactionData.senderId}`">
             {{ transactionData.senderId }}
           </app-link>
         </td>
       </tr>
-      <tr class="transaction-type-panel-oracle-query-tx__row">
-        <th class="transaction-type-panel-oracle-query-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.queryId }}
           </hint-tooltip>
           Query ID
         </th>
-        <td class="transaction-type-panel-oracle-query-tx__data">
+        <td>
           {{ formatNullable(transactionData.queryId) }}
         </td>
       </tr>
-      <tr class="transaction-type-panel-oracle-query-tx__row">
-        <th class="transaction-type-panel-oracle-query-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.queryContent }}
           </hint-tooltip>
           Query
         </th>
-        <td class="transaction-type-panel-oracle-query-tx__data">
+        <td>
           {{ formatDecodeBase64(transactionData.query) }}
         </td>
       </tr>
-      <tr class="transaction-type-panel-oracle-query-tx__row">
-        <th class="transaction-type-panel-oracle-query-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.queryFee }}
           </hint-tooltip>
           Query Fee
         </th>
-        <td class="transaction-type-panel-oracle-query-tx__data">
+        <td>
           <price-label :price="formatAettosToAe(transactionData.queryFee)"/>
         </td>
       </tr>
-      <tr class="transaction-type-panel-oracle-query-tx__row">
-        <th class="transaction-type-panel-oracle-query-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.queryTtl }}
           </hint-tooltip>
           Query TTL / Type
         </th>
-        <td class="transaction-type-panel-oracle-query-tx__data">
+        <td>
           {{ transactionData.queryTtl.value }}
           /
           {{ transactionData.queryTtl.type }}
         </td>
       </tr>
-      <tr class="transaction-type-panel-oracle-query-tx__row">
-        <th class="transaction-type-panel-oracle-query-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.responseTtl }}
           </hint-tooltip>
           Response TTL / Type
         </th>
-        <td class="transaction-type-panel-oracle-query-tx__data">
+        <td>
           {{ transactionData.responseTtl.value }}
           /
           {{ transactionData.responseTtl.type }}
@@ -102,46 +102,9 @@ defineProps({
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/panel-detail.css");
+
 .transaction-type-panel-oracle-query-tx {
-  &__table {
-    table-layout: fixed;
-  }
-
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;

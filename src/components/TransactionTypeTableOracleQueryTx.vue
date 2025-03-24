@@ -102,7 +102,7 @@ defineProps({
 </script>
 
 <style scoped>
-@import url("../assets/styles/utilities/panel-detail.css");
+@import url("../assets/styles/utilities/_detail-table.css");
 
 .transaction-type-panel-oracle-query-tx {
   &__link {

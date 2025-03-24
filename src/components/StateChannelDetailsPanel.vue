@@ -194,7 +194,7 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/channels/${props.stateChann
 </script>
 
 <style scoped>
-@import url("../assets/styles/utilities/panel-detail.css");
+@import url("../assets/styles/utilities/_detail-table.css");
 
 .state-channel-details-panel {
   &__link {

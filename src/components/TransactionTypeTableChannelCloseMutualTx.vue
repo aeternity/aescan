@@ -35,7 +35,9 @@
           Initiator Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.initiatorAmountFinal)"
+            is-raw/>
         </td>
       </tr>
       <tr>
@@ -59,7 +61,9 @@
           Responder Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.responderAmountFinal)"
+            is-raw/>
         </td>
       </tr>
       <tr>

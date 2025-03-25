@@ -26,7 +26,6 @@ const {
   transactions,
   transactionsCount,
   isHydrated,
-  pageIndex,
   selectedTxType,
   selectedScope,
 } = storeToRefs(useTransactionsStore())
@@ -36,6 +35,8 @@ const {
   setPageLimit,
 } = useTransactionsStore()
 const route = useRoute()
+
+const pageIndex = ref(1)
 
 if (process.client) {
   if (!isHydrated?.value) {
@@ -49,6 +50,7 @@ if (process.client) {
 
   watch(() => route.fullPath, async() => {
     await loadTransactions()
+    pageIndex.value = 1
   })
 }
 

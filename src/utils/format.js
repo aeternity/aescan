@@ -11,7 +11,7 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-// todo check previous parameters
+// todo check previous usage of  parameters of formatNumber(
 // export function formatNumber(
 //   number,
 //   minimumFractionDigits = 0,
@@ -110,7 +110,6 @@ export function formatAePrice(amount, maxDigits = 6, isRaw = false) {
     return '0'
   }
   if (parseFloat(amount) < 1) {
-    // todo o.1?
     // return amount
     const small = numeral(amount).format(`0.0[${zeros}]`)
     // todo if nan then ~0

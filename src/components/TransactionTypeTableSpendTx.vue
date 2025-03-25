@@ -42,7 +42,10 @@
           Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.amount)"/>
+          <!--          todo raw in similar components-->
+          <price-label
+            :price="formatAettosToAe(transactionData.amount)"
+            is-raw/>
         </td>
       </tr>
       <tr>

@@ -1,12 +1,9 @@
 import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
 import { BigNumber } from 'bignumber.js'
-import {
-  MAXIMUM_FRACTION_DIGITS,
-  MINUTES_PER_BLOCK,
-  NUMBER_FRACTION_THRESHOLD,
-  REVOKED_PERIOD,
-} from '@/utils/constants'
+import numeral from 'numeral'
+
+import { MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
@@ -14,60 +11,61 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-export function formatNumber(
-  number,
-  minimumFractionDigits = 0,
-  maximumFractionDigits = 5,
-  maximumSignificantDigits = null) {
-  if (isNaN(number) || number === null) {
-    return number
-  }
+// todo check previous parameters
+// export function formatNumber(
+//   number,
+//   minimumFractionDigits = 0,
+//   maximumFractionDigits = 5,
+//   maximumSignificantDigits = null) {
+//   if (isNaN(number) || number === null) {
+//     return number
+//   }
+//
+//   if (maximumSignificantDigits !== null) {
+//     return Intl.NumberFormat('en-US', {
+//       maximumSignificantDigits,
+//     }).format(number)
+//   }
+//
+//   return Intl.NumberFormat('en-US', {
+//     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
+//     maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
+//   }).format(number)
+// }
 
-  if (maximumSignificantDigits !== null) {
-    return Intl.NumberFormat('en-US', {
-      maximumSignificantDigits,
-    }).format(number)
-  }
-
-  return Intl.NumberFormat('en-US', {
-    minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
-    maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
-  }).format(number)
-}
-
-export function formatAePrice(price, maxDigits = 8) {
-  if (isNaN(price) || price === null) {
-    return price
-  }
-
-  if (maxDigits === null) {
-    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)}`
-  }
-
-  const truncatedPrice = new BigNumber(price).toFixed(
-    maxDigits,
-    BigNumber.ROUND_DOWN,
-  )
-
-  const priceParts = truncatedPrice.split('.')
-  const integers = priceParts[0]
-  let decimals = priceParts[1]
-
-  decimals = decimals?.replace(/0+$/, '')
-
-  if (!decimals) {
-    if (price === 0) {
-      return '0'
-    }
-    if (integers === '0') {
-      return `~${integers}`
-    } else {
-      return `${formatNumber(integers)}`
-    }
-  }
-
-  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
-}
+// export function formatAePrice(price, maxDigits = 8) {
+//   if (isNaN(price) || price === null) {
+//     return price
+//   }
+//
+//   if (maxDigits === null) {
+//     return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)}`
+//   }
+//
+//   const truncatedPrice = new BigNumber(price).toFixed(
+//     maxDigits,
+//     BigNumber.ROUND_DOWN,
+//   )
+//
+//   const priceParts = truncatedPrice.split('.')
+//   const integers = priceParts[0]
+//   let decimals = priceParts[1]
+//
+//   decimals = decimals?.replace(/0+$/, '')
+//
+//   if (!decimals) {
+//     if (price === 0) {
+//       return '0'
+//     }
+//     if (integers === '0') {
+//       return `~${integers}`
+//     } else {
+//       return `${formatNumber(integers)}`
+//     }
+//   }
+//
+//   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
+// }
 
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
   if (isNaN(tokenAmount) || tokenAmount === null) {
@@ -83,6 +81,40 @@ export function formatAettosToAe(aettosAmount) {
   }
 
   return toAe(aettosAmount)
+}
+
+export function formatPercentage(percentage) {
+  if (percentage >= 0.00001) {
+    return `${formatNumber(percentage)} %`
+  }
+  if (percentage === 0) {
+    return '0 %'
+  }
+  if (percentage < 0.00001) {
+    return '~0 %'
+  }
+}
+
+export function formatNumber(amount) {
+  const shorten = numeral(amount).format('0.[0]a')
+  const aaa = parseFloat(amount) < 0.001 ? amount : shorten
+  return shorten.includes('NaN') ? amount : aaa
+}
+
+// todo raw
+export function formatAePrice(amount, maxDigits = 8, isRaw = false) {
+  const zeros = '0'.repeat(maxDigits)
+
+  if (amount === '0') {
+    return '0'
+  }
+  if (parseFloat(amount) < 0.1) {
+    // return amount
+    return numeral(amount).format(`0.0[${zeros}]`)
+  }
+
+  const formatted = isRaw ? numeral(amount).format('0,0') : numeral(amount).format(`0,0.[${zeros}]a`)
+  return formatted === 'NaN' ? amount : formatted
 }
 
 export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) {
@@ -136,18 +168,6 @@ export function formatIsAuction(name) {
   const auctionLength = 13
   const suffixLength = 6
   return name.length - suffixLength < auctionLength
-}
-
-export function formatPercentage(percentage) {
-  if (percentage >= 0.00001) {
-    return `${formatNumber(percentage)} %`
-  }
-  if (percentage === 0) {
-    return '0 %'
-  }
-  if (percentage < 0.00001) {
-    return '~0 %'
-  }
 }
 
 export function formatTokenLimit(extensions, tokenLimit) {

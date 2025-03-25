@@ -12,8 +12,19 @@
       v-else-if="!hasLink && hasIcon"
       class="price-label__icon"
       :contract-id="contractId"/>
-    <app-tooltip v-if="isPriceRounded">
-      {{ priceRounded }}
+
+    <span v-if="isRaw || !isPriceRounded">
+      beztooltip {{ price }}
+      <app-link
+        v-if="hasLink"
+        :to="`/tokens/${contractId}`">
+        {{ currency }}
+      </app-link>
+      <template v-else>{{ currency }}</template>
+    </span>
+
+    <app-tooltip v-else>
+      ~{{ price }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -23,19 +34,11 @@
         {{ currency }}
       </template>
       <template #tooltip>
-        {{ price }} {{ currency }}
+        <!--        todo isRaw-->
+        <!--        todo tooltip condition just here-->
+        {{ props.price }} {{ currency }}
       </template>
     </app-tooltip>
-
-    <span v-else>
-      {{ price }}
-      <app-link
-        v-if="hasLink"
-        :to="`/tokens/${contractId}`">
-        {{ currency }}
-      </app-link>
-      <template v-else>{{ currency }}</template>
-    </span>
   </div>
 </template>
 
@@ -63,21 +66,33 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  isRaw: {
+    type: Boolean,
+    default: false,
+  },
   contractId: {
     type: String,
     default: () => useRuntimeConfig().public.AE_TOKEN_ID,
   },
 })
 
+// todo is formatted
 const isPriceRounded = computed(() =>
-  priceRounded.value !== price.value,
+  props.price !== price.value,
 )
-const priceRounded = computed(() =>
-  formatNullable(formatAePrice(props.price, props.maxDigits)),
-)
-const price = computed(() =>
-  formatNullable(formatAePrice(props.price, null)),
-)
+const priceRounded = computed(() => {
+  console.log('props.price', props.price)
+  const rrr = formatNullable(formatAePrice(props.price, props.maxDigits))
+  console.log('rrr', rrr)
+  return rrr
+})
+const price = computed(() => {
+  const ppp = props.isRaw
+    ? formatNullable(formatAePrice(props.price, null, true))
+    : formatNullable(formatAePrice(props.price, null, false))
+  console.log('=============')
+  return ppp
+})
 </script>
 
 <style scoped>

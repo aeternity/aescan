@@ -14,7 +14,8 @@
       :contract-id="contractId"/>
 
     <span v-if="isRaw || !isPriceRounded">
-      beztooltip {{ price }}
+      <small>no tooltip</small>
+      {{ priceFormatted }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -24,7 +25,7 @@
     </span>
 
     <app-tooltip v-else>
-      ~{{ price }}
+      {{ props.price < 1000 ? `~${priceFormatted}` : priceFormatted }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -78,19 +79,20 @@ const props = defineProps({
 
 // todo is formatted
 const isPriceRounded = computed(() =>
-  props.price !== price.value,
+  props.price !== priceFormatted.value,
 )
-const priceRounded = computed(() => {
-  console.log('props.price', props.price)
-  const rrr = formatNullable(formatAePrice(props.price, props.maxDigits))
-  console.log('rrr', rrr)
-  return rrr
-})
-const price = computed(() => {
+// const priceRounded = computed(() => {
+//   console.log('props.price', props.price)
+//   const rrr = formatNullable(formatAePrice(props.price, props.maxDigits))
+//   console.log('rrr', rrr)
+//   return rrr
+// })
+const priceFormatted = computed(() => {
   const ppp = props.isRaw
-    ? formatNullable(formatAePrice(props.price, null, true))
-    : formatNullable(formatAePrice(props.price, null, false))
+    ? formatNullable(formatAePrice(props.price, undefined, true))
+    : formatNullable(formatAePrice(props.price, undefined, false))
   console.log('=============')
+
   return ppp
 })
 </script>

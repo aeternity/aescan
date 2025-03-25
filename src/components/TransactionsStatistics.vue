@@ -17,8 +17,9 @@
     </app-panel>
     <app-panel class="transaction-statistics__panel">
       <h5>AVG TRANSACTION FEE (LAST 24H)</h5>
+      <!--      toso format price-->
       <div class="transaction-statistics__value">
-        {{ last24hsAverageTransactionFees }}
+        <price-label :price="last24hsAverageTransactionFees"/>
         <trend-chip
           v-if="feesTrend || feesTrend === 0"
           :delta="feesTrend"/>

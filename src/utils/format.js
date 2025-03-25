@@ -107,18 +107,24 @@ export function formatNumber(amount) {
 }
 
 // todo raw
-export function formatAePrice(amount, maxDigits = 8, isRaw = false) {
-  const zeros = '0'.repeat(maxDigits)
-
+export function formatAePrice(amount, maxDigits = 6, isRaw = false) {
+  const zeros = '0'.repeat(maxDigits - 1)
+  console.log('amount', amount)
+  console.log('maxDigits', maxDigits)
   if (amount === '0') {
     return '0'
   }
-  if (parseFloat(amount) < 0.1) {
+  if (parseFloat(amount) < 1) {
+    // todo o.1?
     // return amount
-    return numeral(amount).format(`0.0[${zeros}]`)
+    const small = numeral(amount).format(`0.0[${zeros}]`)
+    // todo if nan then ~0
+    return small === 'NaN' ? '0' : small
   }
+  // todo raw not needed in function
 
-  const formatted = isRaw ? numeral(amount).format('0,0') : numeral(amount).format(`0,0.[${zeros}]a`)
+  // todo if has grade than show hint and dont show approx
+  const formatted = isRaw ? numeral(amount).format('0,0') : numeral(amount).format('0,0.[0]a')
   return formatted === 'NaN' ? amount : formatted
 }
 

@@ -49,6 +49,7 @@
     "floating-vue": "^5.2.2",
     "luxon": "^3.6.1",
     "memory-cache": "^0.2.0",
+    "numeral": "^2.0.6",
     "pinia": "^3.0.2",
     "swiper": "^11.2.6",
     "unlighthouse": "^0.16.3",

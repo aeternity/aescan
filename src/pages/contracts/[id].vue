@@ -16,11 +16,11 @@
   </page-header>
 
   <template v-if="!isLoading">
-    <contract-details-panel
-      v-if="contractDetails"
-      class="contract-details__panel"
-      :is-verified="isVerified"
-      :contract-details="contractDetails"/>
+    <!--    <contract-details-panel-->
+    <!--      v-if="contractDetails"-->
+    <!--      class="contract-details__panel"-->
+    <!--      :is-verified="isVerified"-->
+    <!--      :contract-details="contractDetails"/>-->
 
     <app-tabs
       v-if="contractDetails"

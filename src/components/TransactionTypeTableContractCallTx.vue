@@ -119,7 +119,8 @@
           Gas Price
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.gasPrice)"/>
         </td>
       </tr>
       <tr>
@@ -141,7 +142,9 @@
           Gas Costs
         </th>
         <td>
-          <price-label :price="formatAettosToAe(gasCosts)"/>
+          {{ formatAettosToAe(gasCosts) }} ||
+          <price-label
+            :price="formatAettosToAe(gasCosts)"/>
         </td>
       </tr>
     </tbody>

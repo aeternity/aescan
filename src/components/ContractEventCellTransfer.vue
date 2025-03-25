@@ -4,10 +4,10 @@
     :link-to="`/accounts/${eventData[0]}`"/>
 
   <transaction-arrow-right-icon/>
-
   <value-hash-ellipsed
     :hash="eventData[1]"
     :link-to="`/accounts/${eventData[1]}`"/>
+  aa {{ contractDetails.tokenDetails }}aa
   <price-label
     v-if="contractDetails.tokenDetails"
     :price="formatAettosToAe(tokenValue)"
@@ -28,8 +28,10 @@ const props = defineProps({
 })
 
 const eventData = computed(() => props.event.data)
+
 const tokenValue = computed(() => {
   if (!props.contractDetails.tokenDetails || props.contractDetails.contractType === 'AEX-141') {
+    console.log('eventData.value[2]', eventData.value[2])
     return eventData.value[2]
   }
 

@@ -65,6 +65,7 @@
           </th>
           <td>
             {{ marketCap }}
+            <!--            todo marketcap ?-->
           </td>
         </tr>
         <tr>
@@ -75,6 +76,7 @@
             Total supply
           </th>
           <td>
+            {{ tokenDetails.totalSupply }}
             <price-label
               :price="tokenDetails.totalSupply"
               :currency="tokenDetails.symbol"

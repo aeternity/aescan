@@ -27,7 +27,10 @@
             Price
           </th>
           <td>
-            $ {{ formatNullable(price) }}
+            <price-label
+              is-raw
+              :price="price"
+              currency="$"/>
             <trend-chip :delta="priceChange"/>
           </td>
         </tr>
@@ -39,7 +42,9 @@
             Total Supply
           </th>
           <td>
-            <price-label :price="MAX_AE_DISTRIBUTION"/>
+            <price-label
+              :price="MAX_AE_DISTRIBUTION"
+              is-raw/>
           </td>
         </tr>
         <tr>
@@ -50,7 +55,9 @@
             Circulating Supply
           </th>
           <td>
-            <price-label :price="totalTokenSupply"/>
+            <price-label
+              :price="totalTokenSupply"
+              is-raw/>
           </td>
         </tr>
         <tr>

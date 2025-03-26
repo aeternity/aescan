@@ -46,7 +46,7 @@
             Keyblock Confirmations
           </th>
           <td>
-            {{ transactionDetails.confirmations }}
+            {{ numeral(transactionDetails.confirmations).format(`0,0.[00000000]`) }}
           </td>
         </tr>
         <tr>
@@ -103,7 +103,9 @@
             Fee
           </th>
           <td>
-            <price-label :price="formatAettosToAe(transactionDetails.fee)"/>
+            <price-label
+              :price="formatAettosToAe(transactionDetails.fee)"
+              is-raw/>
           </td>
         </tr>
         <tr>
@@ -150,6 +152,7 @@
 </template>
 
 <script setup>
+import numeral from 'numeral'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

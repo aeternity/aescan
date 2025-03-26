@@ -17,6 +17,7 @@
 
   <template v-if="!isLoading">
     <state-channel-details-panel
+      v-if="stateChannelDetails"
       class="state-channel-details__state-channel-details-panel"
       :state-channel-details="stateChannelDetails"/>
 
@@ -39,16 +40,8 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const { error } = await useAsyncData(() => fetchStateChannelDetails(route.params.id))
-
-if (error.value) {
-  throw showError({
-    data: {
-      entityId: route.params.id,
-      entityName: 'State Channel',
-    },
-    statusMessage: 'EntityDetailsNotFound',
-  })
+if (process.client) {
+  await fetchStateChannelDetails(route.params.id)
 }
 </script>
 

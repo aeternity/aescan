@@ -9,25 +9,25 @@
     </p>
     <table v-else>
       <tbody>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.keyblockHash }}
             </hint-tooltip>
             Hash
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <copy-chip :label="keyblockDetails.hash"/>
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.height }}
             </hint-tooltip>
             Height
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <div class="keyblock-details-panel__controls">
               <pagination-button
                 class="keyblock-details-panel__button--prev"
@@ -46,84 +46,84 @@
           </td>
         </tr>
 
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.mined }}
             </hint-tooltip>
             Time
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="keyblockDetails.mined"
               :is-extended="true"/>
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.miner }}
             </hint-tooltip>
             Miner
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ keyblockDetails.miner }}
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.beneficiary }}
             </hint-tooltip>
             Beneficiary
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${keyblockDetails.beneficiary}`">
               {{ keyblockDetails.beneficiary }}
             </app-link>
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.beneficiaryReward }}
             </hint-tooltip>
             Reward
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <price-label :price="keyblockDetails.blockReward"/>
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.microblockCount }}
             </hint-tooltip>
             Microblocks Count
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatNumber(keyblockDetails.microBlocksCount) }}
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.transactionsCount }}
             </hint-tooltip>
             Transactions Count
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             {{ formatNumber(keyblockDetails.transactionsCount) }}
           </td>
         </tr>
-        <tr class="keyblock-details-panel__row">
-          <th class="keyblock-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ keyblocksHints.apiLinks }}
             </hint-tooltip>
             API Links
           </th>
-          <td class="keyblock-details-panel__data">
+          <td>
             <app-link
               :to="keyblockNodeUrl"
               class="keyblock-details-panel__link">
@@ -173,44 +173,9 @@ const isNextKeyblockMined = computed(() =>
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/_detail-table.css");
+
 .keyblock-details-panel {
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    white-space: wrap;
-    word-break: break-all;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;

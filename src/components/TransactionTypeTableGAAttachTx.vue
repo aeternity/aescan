@@ -1,67 +1,67 @@
 <template>
-  <table class="transaction-type-panel-ga-attach-tx__table">
+  <table>
     <tbody>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxStatus }}
           </hint-tooltip>
           Status
         </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
+        <td>
           <transaction-type-status-label :status="transactionData.returnType"/>
         </td>
       </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxAccount }}
           </hint-tooltip>
           Account
         </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
+        <td>
           <app-link :to="`/accounts/${transactionData.ownerId}`">
             {{ transactionData.ownerId }}
           </app-link>
         </td>
       </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxSmartContractId }}
           </hint-tooltip>
           Smart Contract ID
         </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
+        <td>
           <app-link :to="`/contracts/${transactionData.contractId}`">
             {{ formatNullable(transactionData.contractId) }}
           </app-link>
         </td>
       </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxAuthFunction }}
           </hint-tooltip>
           Auth Function
         </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
+        <td>
           {{ transactionData.authFunName }}
         </td>
       </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxArguments }}
           </hint-tooltip>
           Arguments
         </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
+        <td>
           {{ formatNullable(transactionData.args) }}
         </td>
       </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasLimit }}
           </hint-tooltip>
@@ -72,7 +72,7 @@
           </hint-tooltip>
           Gas Price
         </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
+        <td>
           <div class="transaction-type-panel-ga-attach-tx__container">
             {{ transactionData.gas }}
             /
@@ -80,8 +80,8 @@
           </div>
         </td>
       </tr>
-      <tr class="transaction-type-panel-ga-attach-tx__row">
-        <th class="transaction-type-panel-ga-attach-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ transactionsHints.gaAttachTxGasUsed }}
           </hint-tooltip>
@@ -94,7 +94,7 @@
           </hint-tooltip>
           Gas Costs
         </th>
-        <td class="transaction-type-panel-ga-attach-tx__data">
+        <td>
           <div class="transaction-type-panel-ga-attach-tx__container">
             {{ transactionData.gasUsed }}
             /
@@ -122,46 +122,9 @@ const gasCosts = computed(() =>
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/_detail-table.css");
+
 .transaction-type-panel-ga-attach-tx {
-  &__table {
-    table-layout: fixed;
-  }
-
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__container {
     display: inline-flex;
     flex-direction: row;

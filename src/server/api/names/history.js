@@ -20,7 +20,7 @@ export function adaptNameHistory(actions) {
   const formattedData = actions.data.map(action => {
     return {
       type: action.type,
-      hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
+      hash: action.payload.sourceTxHash ?? action.payload.callTxHash ?? action.payload.hash,
       createdHeight: action.height,
       payload: action.payload,
       created: action.blockTime,

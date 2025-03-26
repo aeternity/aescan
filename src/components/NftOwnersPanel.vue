@@ -16,11 +16,11 @@ const { nftOwners } = storeToRefs(useNftDetailsStore())
 const { fetchNftOwners } = useNftDetailsStore()
 
 async function loadNextNftowners() {
-  await fetchNftOwners({ queryParameters: nftOwners.value.next.substring(3) })
+  await fetchNftOwners({ queryParameters: nftOwners.value.next })
 }
 
 async function loadPrevNftowners() {
-  await fetchNftOwners({ queryParameters: nftOwners.value.prev.substring(3) })
+  await fetchNftOwners({ queryParameters: nftOwners.value.prev })
 }
 </script>
 

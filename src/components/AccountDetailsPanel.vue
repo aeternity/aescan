@@ -12,102 +12,96 @@
     </template>
     <table v-else>
       <tbody>
-        <tr class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ accountHints.address }}
             </hint-tooltip>
             Address
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <copy-chip :label="accountDetails.id"/>
           </td>
         </tr>
-        <tr class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ accountHints.balance }}
             </hint-tooltip>
             Balance
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <price-label :price="accountDetails.balance"/>
           </td>
         </tr>
 
-        <tr class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ accountHints.value }}
             </hint-tooltip>
             Value
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ sanitizedPrice }}
           </td>
         </tr>
-        <tr class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ accountHints.transactions }}
             </hint-tooltip>
             Transactions
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ formatNumber(accountDetails.totalTransactionsCount) }}
           </td>
         </tr>
-        <tr
-          v-if="accountDetails.isGeneralized"
-          class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr v-if="accountDetails.isGeneralized">
+          <th>
             <hint-tooltip>
               {{ accountHints.generalized }}
             </hint-tooltip>
             Is Generalized
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <app-chip size="sm">
               Generalized
             </app-chip>
           </td>
         </tr>
-        <tr
-          v-if="accountDetails.isGeneralized"
-          class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr v-if="accountDetails.isGeneralized">
+          <th>
             <hint-tooltip>
               {{ accountHints.contractId }}
             </hint-tooltip>
             Contract Id
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <app-link :to="`/contracts/${accountDetails.contractId}`">
               {{ accountDetails.contractId }}
             </app-link>
           </td>
         </tr>
-        <tr
-          v-else
-          class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr v-else>
+          <th>
             <hint-tooltip>
               {{ accountHints.nonce }}
             </hint-tooltip>
             Nonce
           </th>
-          <td class="account-details-panel__data">
+          <td>
             {{ accountDetails.nonce }}
           </td>
         </tr>
-        <tr class="account-details-panel__row">
-          <th class="account-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ accountHints.apiLinks }}
             </hint-tooltip>
             API Links
           </th>
-          <td class="account-details-panel__data">
+          <td>
             <app-link
               :to="accountNodeUrl"
               class="account-details-panel__link">
@@ -147,42 +141,9 @@ const sanitizedPrice = computed(() =>
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/_detail-table.css");
+
 .account-details-panel {
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;

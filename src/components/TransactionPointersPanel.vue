@@ -5,14 +5,14 @@
     </template>
     <table>
       <tbody>
-        <tr class="transaction-pointers-panel__row">
-          <th class="transaction-pointers-panel__table-header">
+        <tr>
+          <th>
             Account
             <hint-tooltip>
               {{ namesHints.accountPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
               v-if="pointers.account_pubkey"
               :to="`/accounts/${pointers.account_pubkey}`">
@@ -28,25 +28,25 @@
             </template>
           </td>
         </tr>
-        <tr class="transaction-pointers-panel__row">
-          <th class="transaction-pointers-panel__table-header">
+        <tr>
+          <th>
             Channel
             <hint-tooltip>
               {{ namesHints.channelPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             {{ formatNullable(pointers.channel) }}
           </td>
         </tr>
-        <tr class="transaction-pointers-panel__row">
-          <th class="transaction-pointers-panel__table-header">
+        <tr>
+          <th>
             Smart Contract
             <hint-tooltip>
               {{ namesHints.contractPointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             <app-link
               v-if="pointers.contract_pubkey"
               :to="`/contracts/${pointers.contract_pubkey}`">
@@ -62,14 +62,14 @@
             </template>
           </td>
         </tr>
-        <tr class="transaction-pointers-panel__row">
-          <th class="transaction-pointers-panel__table-header">
+        <tr>
+          <th>
             Oracle
             <hint-tooltip>
               {{ namesHints.oraclePointer }}
             </hint-tooltip>
           </th>
-          <td class="transaction-pointers-panel__data">
+          <td>
             {{ formatNullable(pointers.oracle_pubkey) }}
           </td>
         </tr>
@@ -99,45 +99,5 @@ const pointers = computed(() => {
 </script>
 
 <style scoped>
-.transaction-pointers-panel {
-  &__table {
-    table-layout: fixed;
-  }
-
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
-}
+@import url("../assets/styles/utilities/_detail-table.css");
 </style>

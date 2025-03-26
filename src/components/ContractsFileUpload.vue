@@ -209,6 +209,7 @@ async function getDataTransferItems(dataTransferItems) {
 
   &__label {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     font-size: 16px;

@@ -19,37 +19,29 @@ export default defineEventHandler(async event => {
 })
 
 async function fetchDetails(id) {
-  const [name, auction] = await Promise.all([
+  const [name, auction] = (await Promise.allSettled([
     fetchName(id),
     fetchAuction(id),
-  ])
-  return name || auction
+  ])).map(result => result.value)
+  return name ?? auction
 }
 
 async function fetchName(id) {
-  try {
-    const url = getUrl({
-      entity: 'names',
-      id,
-    })
-    const { data } = await axios.get(url)
-    return data
-  } catch (e) {
-    return null
-  }
+  const url = getUrl({
+    entity: 'names',
+    id,
+  })
+  const { data } = await axios.get(url)
+  return data
 }
 
 async function fetchAuction(id) {
-  try {
-    const url = getUrl({
-      entity: 'names/auctions',
-      id,
-    })
-    const { data } = await axios.get(url)
-    return data
-  } catch (e) {
-    return null
-  }
+  const url = getUrl({
+    entity: 'names/auctions',
+    id,
+  })
+  const { data } = await axios.get(url)
+  return data
 }
 
 async function fetchLatestKeyblock() {
@@ -62,8 +54,8 @@ async function fetchLatestKeyblock() {
 }
 
 function adaptName(name, blockHeight, blockTime) {
-  const lastBid = name?.lastBid
-  const hash = name.hash || name.lastBid.tx.nameId
+  const lastBid = name.lastBid
+  const hash = name.hash ?? name.lastBid.tx.nameId
   const states = formatNameState(name, blockHeight)
   const endHeight = name.auctionEnd
   const ends = name.approximateExpireTime
@@ -73,14 +65,10 @@ function adaptName(name, blockHeight, blockTime) {
       minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
     }).toMillis()
     : null
-  const customPointers = name.pointers ? adaptCustomPointers(name.pointers) : null
-  const specialPointers = name.pointers?.reduce((acc, pointer) => ({
-    ...acc,
-    ...(pointer.key === 'account_pubkey' && { account: pointer.id }),
-    ...(pointer.key === 'channel' && { channel: pointer.id }),
-    ...(pointer.key === 'contract_pubkey' && { contract: pointer.id }),
-    ...(pointer.key === 'oracle_pubkey' && { oracle: pointer.id }),
-  }), {}) || {}
+  name.pointers ??= []
+
+  const customPointers = adaptCustomPointers(name.pointers)
+  const specialPointers = adaptSpecialPointers(name.pointers)
 
   return {
     states,
@@ -89,8 +77,8 @@ function adaptName(name, blockHeight, blockTime) {
     name: name.name,
     hash,
     active: name.active,
-    owner: name?.ownership?.current,
-    bidder: lastBid?.tx?.accountId,
+    owner: name.ownership?.current,
+    bidder: lastBid?.tx.accountId,
     bid: lastBid?.tx.nameFee ? formatAettosToAe(lastBid.tx.nameFee) : null,
     activatedHeight: states.includes('active') ? name.activeFrom : null,
     activated,
@@ -114,6 +102,18 @@ function getStateString(states) {
     return 'Expired'
   }
   return 'Expires'
+}
+
+function adaptSpecialPointers(pointers) {
+  const specialPointers = {}
+
+  SPECIAL_POINTERS_PRESET_KEYS.forEach(key => {
+    const propertyName = key.includes('_pubkey') ? key.split('_')[0] : key
+    specialPointers[propertyName] = pointers
+      ? pointers.find(pointer => pointer.key === key)?.id || null
+      : null
+  })
+  return specialPointers
 }
 
 function adaptCustomPointers(allPointers) {

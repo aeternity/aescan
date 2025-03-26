@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.21.1](https://github.com/aeternity/aescan/compare/0.21.0...0.21.1) (2025-03-25)
+
+
+### Bug Fixes
+
+* release fixes ([#1118](https://github.com/aeternity/aescan/issues/1118)) ([d49ca03](https://github.com/aeternity/aescan/commit/d49ca03ecaf9ace600cd670a6d13dd69e2f443cd))
+* transactions pagination ([#1121](https://github.com/aeternity/aescan/issues/1121)) ([33ac26b](https://github.com/aeternity/aescan/commit/33ac26b619dfbbca3f11f2338a93f909c3334c85))
+
 ## [0.21.0](https://github.com/aeternity/aescan/compare/0.20.0...0.21.0) (2025-03-11)
 
 

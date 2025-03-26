@@ -48,11 +48,19 @@ defineEmits(['prev-clicked', 'next-clicked'])
 
   &__button {
     &--next {
-      margin-left: var(--space-1);
+      margin-right: var(--space-1);
+
+      @media (--desktop) {
+        margin-right: 0;
+      }
     }
 
     &--previous {
-      margin-right: var(--space-1);
+      margin-left: var(--space-1);
+
+      @media (--desktop) {
+        margin-left: 0;
+      }
     }
   }
 }

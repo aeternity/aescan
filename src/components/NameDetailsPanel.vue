@@ -2,126 +2,116 @@
   <app-panel class="name-details-panel">
     <table>
       <tbody>
-        <tr class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints.nameId }}
             </hint-tooltip>
             Name
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <copy-chip :label="name.name"/>
           </td>
         </tr>
-        <tr
-          v-if="!states.includes('auction')"
-          class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr v-if="!states.includes('auction')">
+          <th>
             <hint-tooltip>
               {{ states.includes('expired') ? namesHints.lastOwner : namesHints.owner }}
             </hint-tooltip>
             {{ states.includes('expired') ? "Last Owner" : "Owner" }}
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${name.owner}`">
               {{ name.owner }}
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="name.bidder"
-          class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr v-if="name.bidder">
+          <th>
             <hint-tooltip>
               {{ namesHints.bidder }}
             </hint-tooltip>
             Highest Bidder
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${name.bidder}`">
               {{ name.bidder }}
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="name.bid"
-          class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr v-if="name.bid">
+          <th>
             <hint-tooltip>
               {{ namesHints.bid }}
             </hint-tooltip>
             Highest Bid
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <price-label :price="name.bid"/>
           </td>
         </tr>
-        <tr
-          v-if="states.includes('active')"
-          class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr v-if="states.includes('active')">
+          <th>
             <hint-tooltip>
               {{ namesHints.ownedSinceHeight }}
             </hint-tooltip>
             Owned Since Height
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link
               :to="`/keyblocks/${name.activatedHeight}`">
               {{ name.activatedHeight }}
             </app-link>
           </td>
         </tr>
-        <tr
-          v-if="states.includes('active')"
-          class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr v-if="states.includes('active')">
+          <th>
             <hint-tooltip>
               {{ namesHints.ownedSinceTime }}
             </hint-tooltip>
             Owned Since
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="name.activated"
               :is-extended="true"/>
           </td>
         </tr>
-        <tr class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints[name.stateString + 'Height'] }}
             </hint-tooltip>
             {{ name.stateLabel }} Height
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <app-link
               :to="`/keyblocks/${name.auctionEndsHeight || name.expirationHeight}`">
               {{ name.auctionEndsHeight || name.expirationHeight }}
             </app-link>
           </td>
         </tr>
-        <tr class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints[name.stateString + 'Time'] }}
             </hint-tooltip>
             {{ name.stateLabel }}
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <timestamp-label
               :timestamp="name.auctionEnds || name.expiration"
               :is-extended="true"/>
           </td>
         </tr>
-        <tr class="name-details-panel__row">
-          <th class="name-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ namesHints.state }}
             </hint-tooltip>
             Status
           </th>
-          <td class="name-details-panel__data">
+          <td>
             <div class="name-details-panel__container">
               <app-chip
                 v-for="state in states"
@@ -171,44 +161,9 @@ function getLabel(state) {
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/_detail-table.css");
+
 .name-details-panel {
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    white-space: wrap;
-    word-break: break-all;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__container {
     display: flex;
     gap: var(--space-1);

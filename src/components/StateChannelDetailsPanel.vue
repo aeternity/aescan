@@ -2,121 +2,121 @@
   <app-panel class="state-channel-details-panel">
     <table>
       <tbody>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.stateChannelId }}
             </hint-tooltip>
             State Channel ID
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <copy-chip :label="stateChannelDetails.id"/>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.status }}
             </hint-tooltip>
             Status
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-chip :variant="stateChannelDetails.isOpen ? 'success' : 'primary'">
               {{ stateChannelDetails.isOpen ? 'Open' : 'Closed' }}
             </app-chip>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.createTransaction }}
             </hint-tooltip>
             Create Transaction
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link :to="`/transactions/${stateChannelDetails.createTransactionHash}`">
               {{ stateChannelDetails.createTransactionHash }}
             </app-link>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.initialAmount }}
             </hint-tooltip>
             Initial Amount
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <price-label :price="stateChannelDetails.initialAmount"/>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.initiator }}
             </hint-tooltip>
             Initiator
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${stateChannelDetails.initiator}`">
               {{ stateChannelDetails.initiator }}
             </app-link>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.responder }}
             </hint-tooltip>
             Responder
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link :to="`/accounts/${stateChannelDetails.responder}`">
               {{ stateChannelDetails.responder }}
             </app-link>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.onChainUpdates }}
             </hint-tooltip>
             On-Chain TXs
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ formatNumber(stateChannelDetails.onChainUpdates) }}
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.lastKnownRound }}
             </hint-tooltip>
             Last Known Round
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ formatNumber(stateChannelDetails.lastKnownRound) }}
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.locked }}
             </hint-tooltip>
             Locked
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <price-label :price="stateChannelDetails.aeLocked"/>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdateHeight }}
             </hint-tooltip>
             Last Update Height
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link
               v-if="stateChannelDetails.lastUpdatedHeight"
               :to="`/keyblocks/${stateChannelDetails.lastUpdatedHeight}`">
@@ -127,14 +127,14 @@
             </template>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.lastUpdate }}
             </hint-tooltip>
             Last Update
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <timestamp-label
               v-if="stateChannelDetails.lastUpdated"
               :timestamp="stateChannelDetails.lastUpdated"
@@ -144,25 +144,25 @@
             </template>
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.lastTxType }}
             </hint-tooltip>
             Last TX Type
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             {{ stateChannelDetails.lastTxType }}
           </td>
         </tr>
-        <tr class="state-channel-details-panel__row">
-          <th class="state-channel-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ stateChannelsHints.apiLinks }}
             </hint-tooltip>
             API Links
           </th>
-          <td class="state-channel-details-panel__data">
+          <td>
             <app-link
               :to="stateChannelMiddlewareUrl"
               class="state-channel-details-panel__link">
@@ -194,44 +194,9 @@ const stateChannelMiddlewareUrl = `${MIDDLEWARE_URL}/channels/${props.stateChann
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/_detail-table.css");
+
 .state-channel-details-panel {
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    white-space: wrap;
-    word-break: break-all;
-    display: block;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
-    }
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;

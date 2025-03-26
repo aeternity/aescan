@@ -1,27 +1,27 @@
 <template>
-  <table class="transaction-type-panel-oracle-extend-tx__table">
+  <table>
     <tbody>
-      <tr class="transaction-type-panel-oracle-extend-tx__row">
-        <th class="transaction-type-panel-oracle-extend-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.oracleId }}
           </hint-tooltip>
           Oracle
         </th>
-        <td class="transaction-type-panel-oracle-extend-tx__data">
+        <td>
           <app-link :to="`/oracles/${transactionData.oracleId}`">
             {{ transactionData.oracleId }}
           </app-link>
         </td>
       </tr>
-      <tr class="transaction-type-panel-oracle-extend-tx__row">
-        <th class="transaction-type-panel-oracle-extend-tx__table-header">
+      <tr>
+        <th>
           <hint-tooltip>
             {{ oraclesHints.oracleTtl }}
           </hint-tooltip>
           Oracle TTL / Type
         </th>
-        <td class="transaction-type-panel-oracle-extend-tx__data">
+        <td>
           {{ transactionData.oracleTtl.value }}
           /
           {{ transactionData.oracleTtl.type }}
@@ -43,44 +43,9 @@ defineProps({
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/_detail-table.css");
+
 .transaction-type-panel-oracle-extend-tx {
-  &__table {
-    table-layout: fixed;
-  }
-
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
-  &__data {
-    display: block;
-    padding-left: 28px;
-
-    @media (--mobile) {
-      display: table-cell;
-    }
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;

@@ -2,14 +2,14 @@
   <app-panel class="token-details-panel">
     <table>
       <tbody>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.tokenSymbol }}
             </hint-tooltip>
             Symbol
           </th>
-          <td class="token-details-panel__data">
+          <td>
             <div class="token-details-panel__link">
               <token-symbol-icon
                 :contract-id="tokenDetails.contractId"
@@ -18,118 +18,112 @@
             </div>
           </td>
         </tr>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.tokenName }}
             </hint-tooltip>
             Name
           </th>
-          <td class="token-details-panel__data">
+          <td>
             {{ tokenDetails.name }}
             <not-available-label v-if="!tokenDetails.name"/>
           </td>
         </tr>
-        <tr
-          v-if="tokenDetails.price"
-          class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr v-if="tokenDetails.price">
+          <th>
             <hint-tooltip>
               {{ tokensHints.price }}
             </hint-tooltip>
             AE Price
           </th>
-          <td class="token-details-panel__data">
+          <td>
             <div class="token-details-panel__container">
               <price-label :price="tokenDetails.price"/>
             </div>
           </td>
         </tr>
-        <tr
-          v-if="tokenDetails.price"
-          class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr v-if="tokenDetails.price">
+          <th>
             <hint-tooltip>
               {{ tokensHints.price }}
             </hint-tooltip>
             Fiat Price
           </th>
-          <td class="token-details-panel__data">
+          <td>
             <div class="token-details-panel__container">
               {{ fiatPrice }}
             </div>
           </td>
         </tr>
-        <tr
-          v-if="tokenDetails.marketCap"
-          class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr v-if="tokenDetails.marketCap">
+          <th>
             <hint-tooltip>
               {{ tokensHints.marketCap }}
             </hint-tooltip>
             Market cap
           </th>
-          <td class="token-details-panel__data">
+          <td>
             {{ marketCap }}
           </td>
         </tr>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.totalSupply }}
             </hint-tooltip>
             Total supply
           </th>
-          <td class="token-details-panel__data">
+          <td>
             <price-label
               :price="tokenDetails.totalSupply"
               :currency="tokenDetails.symbol"
               :contract-id="tokenDetails.contractId"/>
           </td>
         </tr>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.smartContractId }}
             </hint-tooltip>
             Smart Contract ID
           </th>
-          <td class="token-details-panel__data">
+          <td>
             <app-link :to="`/contracts/${tokenDetails.contractId}`">
               {{ tokenDetails.contractId }}
             </app-link>
           </td>
         </tr>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.decimals }}
             </hint-tooltip>
             Decimals
           </th>
-          <td class="token-details-panel__data">
+          <td>
             {{ tokenDetails.decimals }}
           </td>
         </tr>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.holders }}
             </hint-tooltip>
             Token Holders
           </th>
-          <td class="token-details-panel__data">
+          <td>
             {{ tokenHoldersCount }}
           </td>
         </tr>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.extensions }}
             </hint-tooltip>
             Extensions
           </th>
-          <td class="token-details-panel__data">
+          <td>
             <div
               v-if="!!tokenDetails.extensions.length"
               class="token-details-panel__extensions">
@@ -145,14 +139,14 @@
             </template>
           </td>
         </tr>
-        <tr class="token-details-panel__row">
-          <th class="token-details-panel__table-header">
+        <tr>
+          <th>
             <hint-tooltip>
               {{ tokensHints.apiLinks }}
             </hint-tooltip>
             API Links
           </th>
-          <td class="token-details-panel__data">
+          <td>
             <app-link
               v-if="featureFlags.dex && tokenDexUrl"
               :to="tokenDexUrl"
@@ -213,50 +207,15 @@ const fiatPrice = computed(() =>
 </script>
 
 <style scoped>
+@import url("../assets/styles/utilities/_detail-table.css");
+
 .token-details-panel {
-  &__table-header {
-    display: block;
-    padding-bottom: 0;
-
-    @media (--mobile) {
-      padding-bottom: var(--space-1);
-      width: var(--detail-column-width);
-      border-bottom: 1px solid var(--color-midnight-25);
-      display: table-cell;
-    }
-  }
-
-  &__row {
-    display: block;
-
-    @media (--mobile) {
-      display: table-row;
-    }
-  }
-
-  &__row:last-of-type &__table-header {
-    border-bottom: 0;
-  }
-
   &__link {
     display: inline-flex;
     align-items: center;
 
     &:first-child {
       margin-right: var(--space-3);
-    }
-  }
-
-  &__data {
-    display: block;
-    white-space: wrap;
-    word-break: break-all;
-    padding-left: 28px;
-    padding-top: var(--space-0);
-
-    @media (--mobile) {
-      padding-top: var(--space-1);
-      display: table-cell;
     }
   }
 

@@ -1,7 +1,6 @@
 <template>
   <app-panel class="contract-call-transactions-panel">
     <paginated-content
-      v-model:page-index="pageIndex"
       :total-count="contractCallsCount"
       :entities="contractCallTransactions"
       pagination-style="history"
@@ -16,14 +15,13 @@
 const { contractCallTransactions, contractCallsCount } = storeToRefs(useContractDetailsStore())
 const { fetchContractCallTransactions } = useContractDetailsStore()
 
-const pageIndex = ref(1)
-
-const loadPrevTransactions = () => {
+function loadPrevTransactions() {
   fetchContractCallTransactions({
     queryParameters: contractCallTransactions.value.prev.substring(3),
   })
 }
-const loadNextTransactions = () => {
+
+function loadNextTransactions() {
   fetchContractCallTransactions({
     queryParameters: contractCallTransactions.value.next.substring(3),
   })

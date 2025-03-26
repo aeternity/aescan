@@ -1,7 +1,6 @@
 <template>
   <app-panel class="state-channels-panel">
     <paginated-content
-      v-model:page-index="pageIndex"
       :entities="stateChannels"
       pagination-style="history"
       :total-count="stateChannelsCount"
@@ -16,8 +15,6 @@
 const { stateChannels, stateChannelsCount } = storeToRefs(useStateChannelsStore())
 const { fetchStateChannels, fetchStateChannelsCount } = useStateChannelsStore()
 
-const pageIndex = ref(1)
-
 async function loadPrevStateChannels() {
   await fetchStateChannels(stateChannels.value.prev.substring(3))
 }
@@ -28,7 +25,6 @@ async function loadNextStateChannels() {
 
 async function loadStateChannels() {
   await fetchStateChannels()
-  pageIndex.value = 1
 }
 
 await fetchStateChannelsCount()

@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     'nuxt-monaco-editor',
   ],
   plausible: {
-    trackLocalhost: false,
+    ignoredHostnames: ['localhost'],
   },
   appConfig: {
     APP_VERSION: process.env.APP_VERSION,
@@ -91,12 +91,14 @@ export default defineNuxtConfig({
         org: 'sentry',
         project: 'aescan-develop',
         url: 'https://sentry.dev.service.aepps.com/',
+        disable: !process.env.SENTRY_AUTH_TOKEN,
       }),
       sentryVitePlugin({
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: 'sentry',
         project: 'aescan-production',
         url: 'https://sentry.dev.service.aepps.com/',
+        disable: !process.env.SENTRY_AUTH_TOKEN,
       }),
     ],
   },

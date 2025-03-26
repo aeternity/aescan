@@ -17,15 +17,11 @@ const { nftInventory } = storeToRefs(useNftDetailsStore())
 const { fetchNftInventory } = useNftDetailsStore()
 
 async function loadPrevNftInventory() {
-  await fetchNftInventory(nftInventory.value.prev.substring(3))
+  await fetchNftInventory({ queryParameters: nftInventory.value.prev })
 }
 
 async function loadNextNftInventory() {
-  await fetchNftInventory(nftInventory.value.next.substring(3))
-}
-
-if (process.client) {
-  await fetchNftInventory()
+  await fetchNftInventory({ queryParameters: nftInventory.value.next })
 }
 </script>
 

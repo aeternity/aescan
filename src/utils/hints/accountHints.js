@@ -11,7 +11,7 @@ export const accountHints = {
   hash: 'Transaction hash where the account was involved.',
   time: 'Keyblock height and exact date and time when the transaction was executed by inclusion into a microblock.',
   type: 'Type of the transaction where the account was involved.',
-  data: 'The data displayed differs for each tx type.',
+  data: 'The data displayed differs for each transaction type.',
   name: 'Name owned by this account.',
   expires: 'Keyblock height and estimated date and time when the name owned by the account expires.',
   pointsTo: 'The account that points to the name owned by the account.',

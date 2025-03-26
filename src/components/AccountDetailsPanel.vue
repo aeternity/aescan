@@ -31,7 +31,9 @@
             Balance
           </th>
           <td>
-            <price-label :price="accountDetails.balance"/>
+            <price-label
+              :price="accountDetails.balance"
+              is-raw/>
           </td>
         </tr>
 
@@ -43,7 +45,10 @@
             Value
           </th>
           <td>
-            {{ sanitizedPrice }}
+            <price-label
+              :price="sanitizedPrice"
+              currency="$"
+              is-raw/>
           </td>
         </tr>
         <tr>
@@ -54,7 +59,7 @@
             Transactions
           </th>
           <td>
-            {{ formatNumber(accountDetails.totalTransactionsCount) }}
+            {{ numeral(accountDetails.totalTransactionsCount).format(`0,0.[00000000]`) }}
           </td>
         </tr>
         <tr v-if="accountDetails.isGeneralized">
@@ -118,6 +123,7 @@
 </template>
 
 <script setup>
+import numeral from 'numeral'
 import { accountHints } from '@/utils/hints/accountHints'
 
 const { price } = storeToRefs(useMarketStatsStore())

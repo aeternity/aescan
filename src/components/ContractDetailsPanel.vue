@@ -142,7 +142,11 @@
             Smart Contract's Account Balance
           </th>
           <td>
-            <price-label :price="0"/>
+            <!--            todo check printing zero-->
+
+            <price-label
+              :price="formatAettosToAe(contractDetails.contractAccountBalance)"
+              is-raw/>
           </td>
         </tr>
         <tr>
@@ -153,7 +157,7 @@
             Smart Contract Calls
           </th>
           <td>
-            {{ contractDetails.callsCount }}
+            {{ formatNumber(contractDetails.callsCount) }}
           </td>
         </tr>
         <tr>

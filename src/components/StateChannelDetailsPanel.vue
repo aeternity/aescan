@@ -47,7 +47,9 @@
             Initial Amount
           </th>
           <td>
-            <price-label :price="stateChannelDetails.initialAmount"/>
+            <price-label
+              :price="stateChannelDetails.initialAmount"
+              is-raw/>
           </td>
         </tr>
         <tr>
@@ -106,7 +108,9 @@
             Locked
           </th>
           <td>
-            <price-label :price="stateChannelDetails.aeLocked"/>
+            <price-label
+              :price="stateChannelDetails.aeLocked"
+              is-raw/>
           </td>
         </tr>
         <tr>

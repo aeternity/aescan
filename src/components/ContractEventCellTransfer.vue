@@ -7,7 +7,6 @@
   <value-hash-ellipsed
     :hash="eventData[1]"
     :link-to="`/accounts/${eventData[1]}`"/>
-  aa {{ contractDetails.tokenDetails }}aa
   <price-label
     v-if="contractDetails.tokenDetails"
     :price="formatAettosToAe(tokenValue)"

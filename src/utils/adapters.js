@@ -173,7 +173,7 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
       value: tokenAePrice !== null
         ? `$${formatNumber(
           (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber(),
-          null, null, 7)}`
+          7, null, 7)}`
         : 'N/A',
     }
   })

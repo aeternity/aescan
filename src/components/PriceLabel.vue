@@ -1,7 +1,7 @@
 <template>
   <div class="price-label">
     <app-link
-      v-if="hasLink"
+      v-if="hasLink && currency !== '$'"
       :to="`/tokens/${contractId}`">
       <token-symbol-icon
         v-if="hasIcon"
@@ -9,42 +9,48 @@
         :contract-id="contractId"/>
     </app-link>
     <token-symbol-icon
-      v-else-if="!hasLink && hasIcon"
+      v-else-if="!hasLink && hasIcon && currency !== '$'"
       class="price-label__icon"
       :contract-id="contractId"/>
 
     <span v-if="isRaw || !isPriceRounded">
-      <small>no tooltip</small>
-      {{ priceFormatted }}
+      {{ currency === '$' ? currency : null }}
+      {{ isRaw ? numeral(props.price).format(`0,0.[00000000]`) : priceFormatted }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currency }}
+        {{ currency === '$' ? null : currency }}
       </app-link>
-      <template v-else>{{ currency }}</template>
+      <template v-else>{{ currency === '$' ? null : currency }}</template>
     </span>
 
     <app-tooltip v-else>
-      {{ props.price < 1000 ? `~${priceFormatted}` : priceFormatted }}
+      {{ currency === '$' ? currency : null }} {{ `~${priceFormatted}` }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currency }}
+        {{ currency === '$' ? null : currency }}
       </app-link>
       <template v-else>
-        {{ currency }}
+        {{ currency === '$' ? null : currency }}
       </template>
       <template #tooltip>
         <!--        todo isRaw-->
         <!--        todo tooltip condition just here-->
-        {{ props.price }} {{ currency }}
+        <!--        todo format tooltip nicely-->
+        <!--        todo check sientific tokens/ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa?type=trades-->
+        {{ currency === '$' ? currency : null }}
+        {{ props.price < 1000 ? props.price : numeral(props.price).format(`0,0.[00000000]`) }}
+        {{ currency === '$' ? null : currency }}
       </template>
     </app-tooltip>
   </div>
 </template>
 
+<!--todo handle usd-->
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
+import numeral from 'numeral'
 
 const props = defineProps({
   price: {
@@ -79,7 +85,7 @@ const props = defineProps({
 
 // todo is formatted
 const isPriceRounded = computed(() =>
-  props.price !== priceFormatted.value,
+  props.price.toString() !== priceFormatted.value,
 )
 // const priceRounded = computed(() => {
 //   console.log('props.price', props.price)

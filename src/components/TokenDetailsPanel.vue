@@ -74,10 +74,12 @@
               {{ tokensHints.totalSupply }}
             </hint-tooltip>
             Total supply
+            <!--            todo all details raw-->
           </th>
           <td>
             {{ tokenDetails.totalSupply }}
             <price-label
+              is-raw
               :price="tokenDetails.totalSupply"
               :currency="tokenDetails.symbol"
               :contract-id="tokenDetails.contractId"/>
@@ -203,7 +205,7 @@ const tokenDexUrl = computed(() =>
 
 const fiatPrice = computed(() =>
   props.tokenDetails.price && price.value
-    ? `$${formatNumber(price.value * props.tokenDetails.price, null, null, 7)}`
+    ? `$${formatNumber(price.value * props.tokenDetails.price, 9)}`
     : 'N/A',
 )
 </script>

@@ -83,7 +83,7 @@
             Gas Limit
           </th>
           <td>
-            {{ microblockDetails.gas }}
+            {{ numeral(microblockDetails.gas).format(`0,0.[00000000]`) }}
           </td>
         </tr>
         <tr>
@@ -119,6 +119,7 @@
 </template>
 
 <script setup>
+import numeral from 'numeral'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

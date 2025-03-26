@@ -100,8 +100,10 @@ export function formatPercentage(percentage) {
   }
 }
 
-export function formatNumber(amount) {
-  const shorten = numeral(amount).format('0.[0]a')
+export function formatNumber(amount, maxDigits = 2) {
+  const zeros = '0'.repeat(maxDigits - 1)
+
+  const shorten = numeral(amount).format(`0.[${zeros}]a`)
   const aaa = parseFloat(amount) < 0.001 ? amount : shorten
   return shorten.includes('NaN') ? amount : aaa
 }

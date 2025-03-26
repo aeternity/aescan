@@ -74,6 +74,7 @@
             :price="trade.fromAmount"
             :max-digits="4"
             :has-link="true"/>
+          <!--          todo is digits working?-->
         </td>
         <td class="dex-trades-table__data">
           <price-label
@@ -90,7 +91,7 @@
         <td class="dex-trades-table__data">
           <not-available-label v-if="!trade.value"/>
           <template v-else>
-            $ {{ trade.value }}
+            $ {{ formatNumber(trade.value) }}
           </template>
         </td>
       </tr>

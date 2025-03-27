@@ -11,10 +11,11 @@
     v-if="contractDetails.tokenDetails"
     :price="formatAettosToAe(tokenValue)"
     :contract-id="contractDetails.tokenDetails.contractId"
-    :currency="contractDetails.symbol"/>
+    :currency="contractDetails.symbol || contractDetails.tokenDetails.symbol"/>
 </template>
 
 <script setup>
+
 const props = defineProps({
   contractDetails: {
     required: true,
@@ -30,12 +31,9 @@ const eventData = computed(() => props.event.data)
 
 const tokenValue = computed(() => {
   if (!props.contractDetails.tokenDetails || props.contractDetails.contractType === 'AEX-141') {
-    console.log('eventData.value[2]', eventData.value[2])
     return eventData.value[2]
   }
 
-  return formatNumber(
-    formatReduceDecimals(eventData.value[2], props.contractDetails.tokenDetails.decimals),
-  ) + ` ${props.contractDetails.tokenDetails.symbol}`
+  return formatNumber(formatReduceDecimals(eventData.value[2], props.contractDetails.tokenDetails.decimals))
 })
 </script>

@@ -12,7 +12,7 @@
     v-if="contractDetails.tokenDetails"
     :price="formatAettosToAe(tokenValue)"
     :contract-id="contractDetails.tokenDetails.contractId"
-    :currency="contractDetails.symbol"/>
+    :currency="contractDetails.symbol || contractDetails.tokenDetails.symbol"/>
 </template>
 
 <script setup>
@@ -34,7 +34,6 @@ const tokenValue = computed(() => {
   }
 
   return formatNumber(
-    formatReduceDecimals(eventData.value[1], props.contractDetails.tokenDetails.decimals),
-  ) + ` ${props.contractDetails.tokenDetails.symbol}`
+    formatReduceDecimals(eventData.value[1], props.contractDetails.tokenDetails.decimals))
 })
 </script>

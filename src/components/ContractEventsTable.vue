@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th>
-          Call transaction
+          Call Transaction
           <hint-tooltip>
             {{ contractsHints.eventsCallTransaction }}
           </hint-tooltip>

@@ -91,7 +91,9 @@
             Reward
           </th>
           <td>
-            <price-label :price="keyblockDetails.blockReward"/>
+            <price-label
+              :price="keyblockDetails.blockReward"
+              is-raw/>
           </td>
         </tr>
         <tr>

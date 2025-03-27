@@ -21,7 +21,6 @@
         Query Fee
       </dt>
       <dd>
-        {{ event.queryFee }}
         <price-label :price="event.queryFee"/>
       </dd>
 

@@ -12,7 +12,8 @@ export function formatEllipseHash(hash) {
 }
 
 // todo check previous usage of  parameters of formatNumber(
-// export function formatNumber(
+
+// export function formatNumberOld(
 //   number,
 //   minimumFractionDigits = 0,
 //   maximumFractionDigits = 5,
@@ -71,7 +72,6 @@ export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
   if (isNaN(tokenAmount) || tokenAmount === null) {
     return tokenAmount
   }
-
   return (new BigNumber(tokenAmount)).dividedBy(10 ** numberOfDecimals).toNumber()
 }
 

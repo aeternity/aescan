@@ -39,7 +39,7 @@ export function formatEllipseHash(hash) {
 //   }).format(number)
 // }
 
-// export function formatAePrice(price, maxDigits = 8) {
+// export function formatPrice(price, maxDigits = 8) {
 //   if (isNaN(price) || price === null) {
 //     return price
 //   }
@@ -101,6 +101,7 @@ export function formatPercentage(percentage) {
 }
 
 export function formatNumber(amount, maxDigits = 2) {
+  // todo also add tooltip
   const zeros = '0'.repeat(maxDigits - 1)
 
   const shorten = numeral(amount).format(`0.[${zeros}]a`)
@@ -109,7 +110,7 @@ export function formatNumber(amount, maxDigits = 2) {
 }
 
 // todo raw
-export function formatAePrice(amount, maxDigits = 6, isRaw = false) {
+export function formatPrice(amount, maxDigits = 6, isRaw = false) {
   const zeros = '0'.repeat(maxDigits - 1)
   console.log('amount', amount)
   console.log('maxDigits', maxDigits)
@@ -122,6 +123,7 @@ export function formatAePrice(amount, maxDigits = 6, isRaw = false) {
     // todo if nan then ~0
     return small === 'NaN' ? '0' : small
   }
+  // todo refactor claud
   // todo raw not needed in function
 
   // todo if has grade than show hint and dont show approx
@@ -219,24 +221,21 @@ export function formatKnownAddress(hash, isEllipsed = true) {
 
 export function formatTradeRate(action, fromAmount, toAmount) {
   if (action === 'BUY') {
-    return `${formatNumber((fromAmount / toAmount), 4)} WAE`
+    return fromAmount / toAmount
   }
-
   if (action === 'SELL') {
-    return `${formatNumber((toAmount / fromAmount), 4)} WAE`
+    return (toAmount / fromAmount)
   }
   return null
 }
 
 export function formatTradeValue(action, fromAmount, toAmount, price) {
   if (action === 'BUY') {
-    return formatNumber(fromAmount * price)
+    return fromAmount * price
   }
-
   if (action === 'SELL') {
-    return formatNumber(toAmount * price)
+    return toAmount * price
   }
-
   return null
 }
 

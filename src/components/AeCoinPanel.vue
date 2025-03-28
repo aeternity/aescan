@@ -28,6 +28,7 @@
           </th>
           <td>
             <price-label
+              class="ae-coin-panel__price"
               is-raw
               :price="price"
               currency="$"/>
@@ -100,6 +101,10 @@ defineProps({
 @import url("../assets/styles/utilities/_detail-table.css");
 
 .ae-coin-panel {
+  &__price {
+    display: inline;
+  }
+
   &__link {
     display: inline-flex;
     align-items: center;

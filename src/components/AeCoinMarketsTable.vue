@@ -46,7 +46,6 @@
             <price-label
               :price="coinMarkets.gate.volume"
               currency="$"/>
-            <!--            todo fix dollar sign-->
           </td>
         </tr>
         <tr>

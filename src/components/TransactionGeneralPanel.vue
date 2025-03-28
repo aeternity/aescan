@@ -46,6 +46,7 @@
             Keyblock Confirmations
           </th>
           <td>
+            <!--            todo refactor numerals-->
             {{ numeral(transactionDetails.confirmations).format(`0,0.[00000000]`) }}
           </td>
         </tr>

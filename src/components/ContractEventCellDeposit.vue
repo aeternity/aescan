@@ -4,7 +4,6 @@
     :link-to="`/accounts/${eventData[0]}`"/>
 
   <transaction-arrow-right-icon/>
-  <!--todo wae undefined-->
   <value-hash-ellipsed
     :hash="eventData[1]"
     :link-to="`/accounts/${eventData[1]}`"/>

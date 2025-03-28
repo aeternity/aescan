@@ -39,7 +39,9 @@
           </th>
           <td>
             <div class="token-details-panel__container">
-              <price-label :price="tokenDetails.price"/>
+              <price-label
+                :price="tokenDetails.price"
+                is-raw/>
             </div>
           </td>
         </tr>
@@ -52,7 +54,10 @@
           </th>
           <td>
             <div class="token-details-panel__container">
-              {{ fiatPrice }}
+              <price-label
+                :price="fiatPrice"
+                currency="$"
+                is-raw/>
             </div>
           </td>
         </tr>
@@ -74,10 +79,8 @@
               {{ tokensHints.totalSupply }}
             </hint-tooltip>
             Total supply
-            <!--            todo all details raw-->
           </th>
           <td>
-            {{ tokenDetails.totalSupply }}
             <price-label
               is-raw
               :price="tokenDetails.totalSupply"
@@ -205,7 +208,7 @@ const tokenDexUrl = computed(() =>
 
 const fiatPrice = computed(() =>
   props.tokenDetails.price && price.value
-    ? `$${formatNumber(price.value * props.tokenDetails.price, 9)}`
+    ? (price.value * props.tokenDetails.price)
     : 'N/A',
 )
 </script>

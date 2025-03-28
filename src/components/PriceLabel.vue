@@ -15,7 +15,7 @@
 
     <span v-if="isRaw || !isPriceRounded">
       {{ currency === '$' ? currency : null }}
-      {{ isRaw ? numeral(props.price).format(`0,0.[00000000]`) : priceFormatted }}
+      {{ isRaw ? numeral(props.price).format('0,0.[0000000000000]') : priceFormatted }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -84,23 +84,21 @@ const props = defineProps({
 })
 
 // todo is formatted
-const isPriceRounded = computed(() =>
-  props.price.toString() !== priceFormatted.value,
-)
+const isPriceRounded = computed(() => {
+  if (props.price) {
+    return null
+  }
+  return props.price.toString() !== priceFormatted.value
+})
 // const priceRounded = computed(() => {
 //   console.log('props.price', props.price)
-//   const rrr = formatNullable(formatAePrice(props.price, props.maxDigits))
+//   const rrr = formatNullable(formatPrice(props.price, props.maxDigits))
 //   console.log('rrr', rrr)
 //   return rrr
 // })
-const priceFormatted = computed(() => {
-  const ppp = props.isRaw
-    ? formatNullable(formatAePrice(props.price, undefined, true))
-    : formatNullable(formatAePrice(props.price, undefined, false))
-  console.log('=============')
-
-  return ppp
-})
+const priceFormatted = computed(() =>
+  formatNullable(formatPrice(props.price, props.maxDigits, props.isRaw)),
+)
 </script>
 
 <style scoped>

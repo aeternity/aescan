@@ -83,7 +83,9 @@
             Gas Limit
           </th>
           <td>
-            {{ numeral(microblockDetails.gas).format(`0,0.[00000000]`) }}
+            <number-label
+              :price="microblockDetails.gas"
+              is-raw/>
           </td>
         </tr>
         <tr>
@@ -119,7 +121,6 @@
 </template>
 
 <script setup>
-import numeral from 'numeral'
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

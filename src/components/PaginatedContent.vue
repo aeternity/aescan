@@ -13,7 +13,7 @@
               <span class="paginated-content__highlighted">
                 {{ formatNullable(firstVisibleIndex) }}-{{ formatNullable(lastVisibleIndex) }}
                 of
-                {{ formatNullable(numeral(totalCount).format(`0,0.[00000000]`)) }}
+                <number-label :price="totalCount"/>
               </span>
               records
             </template>
@@ -57,7 +57,6 @@
 
 <script setup>
 import { useVModel } from '@vueuse/core'
-import numeral from 'numeral'
 import { PAGINATION_LIMIT } from '@/utils/constants'
 
 const props = defineProps({

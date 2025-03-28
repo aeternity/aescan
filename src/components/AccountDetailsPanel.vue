@@ -59,7 +59,9 @@
             Transactions
           </th>
           <td>
-            {{ numeral(accountDetails.totalTransactionsCount).format(`0,0.[00000000]`) }}
+            <number-label
+              :price="accountDetails.totalTransactionsCount"
+              is-raw/>
           </td>
         </tr>
         <tr v-if="accountDetails.isGeneralized">
@@ -123,7 +125,6 @@
 </template>
 
 <script setup>
-import numeral from 'numeral'
 import { accountHints } from '@/utils/hints/accountHints'
 
 const { price } = storeToRefs(useMarketStatsStore())

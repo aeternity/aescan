@@ -69,7 +69,7 @@
             Market cap
           </th>
           <td>
-            {{ marketCap }}
+            {{ tokenDetails.marketCap }}
             <!--            todo marketcap ?-->
           </td>
         </tr>

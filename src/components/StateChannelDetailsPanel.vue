@@ -86,7 +86,7 @@
             On-Chain TXs
           </th>
           <td>
-            {{ formatNumber(stateChannelDetails.onChainUpdates) }}
+            <number-label :price="stateChannelDetails.onChainUpdates"/>
           </td>
         </tr>
         <tr>
@@ -97,7 +97,7 @@
             Last Known Round
           </th>
           <td>
-            {{ formatNumber(stateChannelDetails.lastKnownRound) }}
+            <number-label :price="stateChannelDetails.lastKnownRound"/>
           </td>
         </tr>
         <tr>

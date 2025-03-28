@@ -3,13 +3,13 @@
     <app-panel class="transaction-statistics__panel">
       <h5>TOTAL TRANSACTIONS</h5>
       <div class="transaction-statistics__value">
-        {{ formatNumber(transactionsCount) }}
+        <number-label :price="transactionsCount"/>
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
       <h5>TRANSACTIONS (LAST 24H)</h5>
       <div class="transaction-statistics__value">
-        {{ formatNumber(last24hsTransactionsCount) }}
+        <number-label :price="last24hsTransactionsCount"/>
         <trend-chip
           v-if="last24hsTransactionsTrend"
           :delta="last24hsTransactionsTrend"/>

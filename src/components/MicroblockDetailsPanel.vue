@@ -72,7 +72,7 @@
             Transactions Count
           </th>
           <td>
-            <number-label :price="microblockDetails.transactionsCount"/>
+            <number-label :number="microblockDetails.transactionsCount"/>
           </td>
         </tr>
         <tr>
@@ -84,7 +84,7 @@
           </th>
           <td>
             <number-label
-              :price="microblockDetails.gas"
+              :number="microblockDetails.gas"
               is-raw/>
           </td>
         </tr>

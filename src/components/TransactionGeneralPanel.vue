@@ -46,8 +46,7 @@
             Keyblock Confirmations
           </th>
           <td>
-            <!--            todo refactor numerals-->
-            {{ numeral(transactionDetails.confirmations).format(`0,0.[00000000]`) }}
+            <number-label :price="transactionDetails.confirmations"/>
           </td>
         </tr>
         <tr>
@@ -153,7 +152,6 @@
 </template>
 
 <script setup>
-import numeral from 'numeral'
 import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public

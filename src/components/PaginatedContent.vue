@@ -13,7 +13,7 @@
               <span class="paginated-content__highlighted">
                 {{ formatNullable(firstVisibleIndex) }}-{{ formatNullable(lastVisibleIndex) }}
                 of
-                <number-label :price="totalCount"/>
+                <number-label :number="totalCount"/>
               </span>
               records
             </template>

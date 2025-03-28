@@ -155,7 +155,7 @@
             Smart Contract Calls
           </th>
           <td>
-            <number-label :price="contractDetails.callsCount"/>
+            <number-label :number="contractDetails.callsCount"/>
           </td>
         </tr>
         <tr>

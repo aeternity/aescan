@@ -104,7 +104,7 @@
             Microblocks Count
           </th>
           <td>
-            <number-label :price="keyblockDetails.microBlocksCount"/>
+            <number-label :number="keyblockDetails.microBlocksCount"/>
           </td>
         </tr>
         <tr>
@@ -115,7 +115,7 @@
             Transactions Count
           </th>
           <td>
-            <number-label :price="keyblockDetails.transactionsCount"/>
+            <number-label :number="keyblockDetails.transactionsCount"/>
           </td>
         </tr>
         <tr>

@@ -46,7 +46,7 @@
             Keyblock Confirmations
           </th>
           <td>
-            <number-label :price="transactionDetails.confirmations"/>
+            <number-label :number="transactionDetails.confirmations"/>
           </td>
         </tr>
         <tr>

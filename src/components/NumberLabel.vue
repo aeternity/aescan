@@ -1,22 +1,22 @@
 <template>
-  <div class="price-label">
+  <div class="number-label">
+    <!--    todo more conditions conditions-->
     <app-tooltip>
-      {{ isRaw ? numeral(props.price).format('0,0.[0000000000000]') : `~${priceFormatted}` }}
+      <!--      todo fix this-->
+      <!--      {{ isNumberRounded ? '~' : '' }}-->
+      {{ isRaw ? numeral(props.number).format('0,0.[0000000000000]') : `${numberFormatted}` }}
       <template #tooltip>
-        {{ props.price < 1000 ? props.price : formatNumber(props.price) }}
+        {{ props.number < 1000 ? props.number : formatNumber(props.number) }}
       </template>
     </app-tooltip>
   </div>
 </template>
 
-<!--todo dont show tooltip when raw v-if="isRaw || !isPriceRounded"-->
-<!--todo wire maxDigits-->
-<!-- todo reuse formatnumber in formatprice-->
 <script setup>
 import numeral from 'numeral'
 
 const props = defineProps({
-  price: {
+  number: {
     type: [String, Number],
     default: null,
   },
@@ -28,16 +28,20 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-
 })
 
-const priceFormatted = computed(() =>
-  formatNullable(formatPrice(props.price, props.maxDigits, props.isRaw)),
+const numberFormatted = computed(() =>
+  formatNullable(formatNumber(props.number, props.maxDigits, props.isRaw)),
 )
+
+const isNumberRounded = computed(() => {
+  return props.number.toString() !== numberFormatted.value
+})
+
 </script>
 
 <style scoped>
-.price-label {
+.number-label {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,3 +53,7 @@ const priceFormatted = computed(() =>
   }
 }
 </style>
+
+<!--todo dont show tooltip when raw v-if="isRaw || !isNumberRounded"-->
+<!--todo wire maxDigits-->
+<!-- todo reuse formatnumber in formatprice-->

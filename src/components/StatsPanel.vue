@@ -8,12 +8,12 @@
       icon-name="transactions">
       <div class="stats-panel__content">
         Max TPS: <span class="stats-panel__value">
-          <number-label :price="maxTps"/>
+          <number-label :number="maxTps"/>
         </span>
       </div>
       <div class="stats-panel__content">
         Total: <span class="stats-panel__value">
-          <number-label :price="transactionsCount"/>
+          <number-label :number="transactionsCount"/>
         </span>
       </div>
       <template #tooltip>
@@ -46,7 +46,7 @@
       <div class="stats-panel__content">
         Transactions:
         <span class="stats-panel__value">
-          <number-label :price="latestKeyblockTransactionsCount"/>
+          <number-label :number="latestKeyblockTransactionsCount"/>
         </span>
       </div>
       <template #tooltip>
@@ -116,7 +116,7 @@
       <div class="stats-panel__content">
         Active:
         <span class="stats-panel__value">
-          <number-label :price="stateChannelsCount"/>
+          <number-label :number="stateChannelsCount"/>
         </span>
       </div>
       <div class="stats-panel__content">
@@ -146,7 +146,7 @@
       <div class="stats-panel__content">
         Total: <span class="stats-panel__value">
           <number-label
-            :price="contractsCount"
+            :number="contractsCount"
             is-raw/>
 
         </span>
@@ -174,12 +174,12 @@
       icon-name="oracles">
       <div class="stats-panel__content">
         Active: <span class="stats-panel__value">
-          <number-label :price="activeOraclesCount"/>
+          <number-label :number="activeOraclesCount"/>
         </span>
       </div>
       <div class="stats-panel__content">
         Total seen: <span class="stats-panel__value">
-          <number-label :price="oraclesCount"/>
+          <number-label :number="oraclesCount"/>
         </span>
       </div>
       <template #tooltip>
@@ -193,12 +193,12 @@
       icon-name="aens-name">
       <div class="stats-panel__content">
         In auction: <span class="stats-panel__value">
-          <number-label :price="namesInAuctionCount"/>
+          <number-label :number="namesInAuctionCount"/>
         </span>
       </div>
       <div class="stats-panel__content">
         Active: <span class="stats-panel__value">
-          <number-label :price="activeNamesCount"/>>
+          <number-label :number="activeNamesCount"/>>
         </span>
       </div>
       <template #tooltip>

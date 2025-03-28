@@ -46,7 +46,7 @@
             Keyblock Confirmations
           </th>
           <td>
-            {{ transactionDetails.confirmations }}
+            <number-label :number="transactionDetails.confirmations"/>
           </td>
         </tr>
         <tr>
@@ -103,7 +103,9 @@
             Fee
           </th>
           <td>
-            <price-label :price="formatAettosToAe(transactionDetails.fee)"/>
+            <price-label
+              :price="formatAettosToAe(transactionDetails.fee)"
+              is-raw/>
           </td>
         </tr>
         <tr>

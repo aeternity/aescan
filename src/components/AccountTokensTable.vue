@@ -39,7 +39,9 @@
             :currency="token.tokenSymbol"/>
         </td>
         <td class="account-tokens-table__data">
-          {{ token.value }}
+          <price-label
+            :price="token.value"
+            currency="$"/>
         </td>
         <td class="account-tokens-table__data">
           <app-link :to="`/tokens/${token.contractId}`">

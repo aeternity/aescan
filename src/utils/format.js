@@ -1,12 +1,9 @@
 import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
 import { BigNumber } from 'bignumber.js'
-import {
-  MAXIMUM_FRACTION_DIGITS,
-  MINUTES_PER_BLOCK,
-  NUMBER_FRACTION_THRESHOLD,
-  REVOKED_PERIOD,
-} from '@/utils/constants'
+import numeral from 'numeral'
+
+import { MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
@@ -14,66 +11,12 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-export function formatNumber(
-  number,
-  minimumFractionDigits = 0,
-  maximumFractionDigits = 5,
-  maximumSignificantDigits = null) {
-  if (isNaN(number) || number === null) {
-    return number
-  }
-
-  if (maximumSignificantDigits !== null) {
-    return Intl.NumberFormat('en-US', {
-      maximumSignificantDigits,
-    }).format(number)
-  }
-
-  return Intl.NumberFormat('en-US', {
-    minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
-    maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
-  }).format(number)
-}
-
-export function formatAePrice(price, maxDigits = 8) {
-  if (isNaN(price) || price === null) {
-    return price
-  }
-
-  if (maxDigits === null) {
-    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)}`
-  }
-
-  const truncatedPrice = new BigNumber(price).toFixed(
-    maxDigits,
-    BigNumber.ROUND_DOWN,
-  )
-
-  const priceParts = truncatedPrice.split('.')
-  const integers = priceParts[0]
-  let decimals = priceParts[1]
-
-  decimals = decimals?.replace(/0+$/, '')
-
-  if (!decimals) {
-    if (price === 0) {
-      return '0'
-    }
-    if (integers === '0') {
-      return `~${integers}`
-    } else {
-      return `${formatNumber(integers)}`
-    }
-  }
-
-  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
-}
+// todo check previous usage of parameters of formatNumber(
 
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
   if (isNaN(tokenAmount) || tokenAmount === null) {
     return tokenAmount
   }
-
   return (new BigNumber(tokenAmount)).dividedBy(10 ** numberOfDecimals).toNumber()
 }
 
@@ -83,6 +26,49 @@ export function formatAettosToAe(aettosAmount) {
   }
 
   return toAe(aettosAmount)
+}
+
+export function formatPercentage(percentage) {
+  if (percentage >= 0.00001) {
+    // todo is it necessary or just use numeral percent
+    return `${formatNumber(percentage)} %`
+  }
+  if (percentage === 0) {
+    return '0 %'
+  }
+  if (percentage < 0.00001) {
+    return '~0 %'
+  }
+}
+
+export function formatNumber(amount, maxDigits = 2) {
+  // todo refactor
+  const zeros = '0'.repeat(maxDigits - 1)
+  const shorten = numeral(amount).format(`0.[${zeros}]a`)
+  const aaa = parseFloat(amount) < 0.001 ? amount : shorten
+  return shorten.includes('NaN') ? amount : aaa
+}
+
+// todo raw
+export function formatPrice(amount, maxDigits = 6, isRaw = false) {
+  const zeros = '0'.repeat(maxDigits - 1)
+  console.log('amount', amount)
+  console.log('maxDigits', maxDigits)
+  if (amount === '0') {
+    return '0'
+  }
+  if (parseFloat(amount) < 1) {
+    // return amount
+    const small = numeral(amount).format(`0.0[${zeros}]`)
+    // todo if nan then ~0
+    return small === 'NaN' ? '0' : small
+  }
+  // todo refactor claud
+  // todo raw not needed in function
+
+  // todo if has grade than show hint and dont show approx
+  const formatted = isRaw ? numeral(amount).format('0,0') : numeral(amount).format('0,0.[0]a')
+  return formatted === 'NaN' ? amount : formatted
 }
 
 export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) {
@@ -138,18 +124,6 @@ export function formatIsAuction(name) {
   return name.length - suffixLength < auctionLength
 }
 
-export function formatPercentage(percentage) {
-  if (percentage >= 0.00001) {
-    return `${formatNumber(percentage)} %`
-  }
-  if (percentage === 0) {
-    return '0 %'
-  }
-  if (percentage < 0.00001) {
-    return '~0 %'
-  }
-}
-
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
     return tokenLimit
@@ -186,24 +160,21 @@ export function formatKnownAddress(hash, isEllipsed = true) {
 
 export function formatTradeRate(action, fromAmount, toAmount) {
   if (action === 'BUY') {
-    return `${formatNumber((fromAmount / toAmount), 4)} WAE`
+    return fromAmount / toAmount
   }
-
   if (action === 'SELL') {
-    return `${formatNumber((toAmount / fromAmount), 4)} WAE`
+    return (toAmount / fromAmount)
   }
   return null
 }
 
 export function formatTradeValue(action, fromAmount, toAmount, price) {
   if (action === 'BUY') {
-    return formatNumber(fromAmount * price)
+    return fromAmount * price
   }
-
   if (action === 'SELL') {
-    return formatNumber(toAmount * price)
+    return toAmount * price
   }
-
   return null
 }
 

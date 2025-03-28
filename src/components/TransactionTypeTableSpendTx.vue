@@ -42,6 +42,7 @@
           Amount
         </th>
         <td>
+          {{ transactionData.amount }}
           <price-label :price="formatAettosToAe(transactionData.amount)"/>
         </td>
       </tr>

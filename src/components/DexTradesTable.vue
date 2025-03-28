@@ -85,13 +85,20 @@
         </td>
         <td class="dex-trades-table__data">
           <not-available-label v-if="!trade.rate"/>
-          {{ trade.rate }}
+          <price-label
+            v-else
+            :max-digits="5"
+            :has-icon="false"
+            currency="WAE"
+            :price="trade.rate"/>
         </td>
         <td class="dex-trades-table__data">
           <not-available-label v-if="!trade.value"/>
-          <template v-else>
-            $ {{ trade.value }}
-          </template>
+          <price-label
+            v-else
+            :max-digits="5"
+            :price="trade.value"
+            currency="$"/>
         </td>
       </tr>
     </tbody>

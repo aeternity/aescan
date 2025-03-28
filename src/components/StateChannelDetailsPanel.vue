@@ -47,7 +47,9 @@
             Initial Amount
           </th>
           <td>
-            <price-label :price="stateChannelDetails.initialAmount"/>
+            <price-label
+              :price="stateChannelDetails.initialAmount"
+              is-raw/>
           </td>
         </tr>
         <tr>
@@ -84,7 +86,7 @@
             On-Chain TXs
           </th>
           <td>
-            {{ formatNumber(stateChannelDetails.onChainUpdates) }}
+            <number-label :number="stateChannelDetails.onChainUpdates"/>
           </td>
         </tr>
         <tr>
@@ -95,7 +97,7 @@
             Last Known Round
           </th>
           <td>
-            {{ formatNumber(stateChannelDetails.lastKnownRound) }}
+            <number-label :number="stateChannelDetails.lastKnownRound"/>
           </td>
         </tr>
         <tr>
@@ -106,7 +108,9 @@
             Locked
           </th>
           <td>
-            <price-label :price="stateChannelDetails.aeLocked"/>
+            <price-label
+              :price="stateChannelDetails.aeLocked"
+              is-raw/>
           </td>
         </tr>
         <tr>

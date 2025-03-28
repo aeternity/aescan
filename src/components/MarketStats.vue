@@ -24,7 +24,6 @@
           Marketcap:
         </div>
         <div class="market-stats__value">
-          <!--          $ {{ formatNullable(formatNumber(marketCap)) }}-->
           <price-label
             currency="$"
             is-raw

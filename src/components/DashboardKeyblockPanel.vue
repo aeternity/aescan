@@ -16,7 +16,7 @@
           <div class="dashboard-keyblock-panel__summary dashboard-keyblock-panel__summary--desktop">
             Total transactions in selected keyblock:
             <span class="dashboard-keyblock-panel__count">
-              {{ selectedKeyblockTransactionsCount }}
+              <number-label :price="selectedKeyblockTransactionsCount"/>
             </span>
           </div>
         </template>
@@ -39,7 +39,8 @@
       <div class="dashboard-keyblock-panel__summary">
         Total transactions in selected keyblock:
         <span class="dashboard-keyblock-panel__count">
-          {{ selectedKeyblockTransactionsCount }}
+          <number-label :price="selectedKeyblockTransactionsCount"/>
+
         </span>
       </div>
 

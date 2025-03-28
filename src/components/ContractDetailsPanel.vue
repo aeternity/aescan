@@ -142,8 +142,6 @@
             Smart Contract's Account Balance
           </th>
           <td>
-            <!--            todo check printing zero-->
-
             <price-label
               :price="formatAettosToAe(contractDetails.contractAccountBalance)"
               is-raw/>

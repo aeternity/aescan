@@ -16,7 +16,11 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-// todo check previous usage of  parameters of formatNumber(
+export function formatNum(number) {
+  return numeral(number).format('0,0.[00000000]')
+}
+
+// todo check previous usage of parameters of formatNumber(
 
 // export function formatNumberOld(
 //   number,

@@ -1,52 +1,15 @@
 <template>
   <div class="price-label">
-    <app-link
-      v-if="hasLink && currency !== '$'"
-      :to="`/tokens/${contractId}`">
-      <token-symbol-icon
-        v-if="hasIcon"
-        class="price-label__icon"
-        :contract-id="contractId"/>
-    </app-link>
-    <token-symbol-icon
-      v-else-if="!hasLink && hasIcon && currency !== '$'"
-      class="price-label__icon"
-      :contract-id="contractId"/>
-
-    <span v-if="isRaw || !isPriceRounded">
-      {{ currency === '$' ? currency : null }}
-      {{ isRaw ? numeral(props.price).format('0,0.[0000000000000]') : priceFormatted }}
-      <app-link
-        v-if="hasLink"
-        :to="`/tokens/${contractId}`">
-        {{ currency === '$' ? null : currency }}
-      </app-link>
-      <template v-else>{{ currency === '$' ? null : currency }}</template>
-    </span>
-
-    <app-tooltip v-else>
-      {{ currency === '$' ? currency : null }} {{ `~${priceFormatted}` }}
-      <app-link
-        v-if="hasLink"
-        :to="`/tokens/${contractId}`">
-        {{ currency === '$' ? null : currency }}
-      </app-link>
-      <template v-else>
-        {{ currency === '$' ? null : currency }}
-      </template>
+    <app-tooltip>
+      {{ isRaw ? numeral(props.price).format('0,0.[0000000000000]') : `~${priceFormatted}` }}
       <template #tooltip>
-        <!--        todo isRaw-->
-        <!--        todo tooltip condition just here-->
-        <!--        todo format tooltip nicely-->
-        {{ currency === '$' ? currency : null }}
         {{ props.price < 1000 ? props.price : formatNum(props.price) }}
-        {{ currency === '$' ? null : currency }}
       </template>
     </app-tooltip>
   </div>
 </template>
 
-<!--todo handle usd-->
+<!--todo dont show tooltip when raw v-if="isRaw || !isPriceRounded"-->
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
 import numeral from 'numeral'

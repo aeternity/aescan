@@ -7,7 +7,10 @@
       title="TRANSACTIONS"
       icon-name="transactions">
       <div class="stats-panel__content">
-        Max TPS: <span class="stats-panel__value">{{ formatNullable(formatNumber(maxTps)) }}</span>
+        Max TPS: <span class="stats-panel__value">
+          <number-label :price="maxTps"/>
+        <!--        {{ formatNullable(formatNumber(maxTps)) }}-->
+        </span>
       </div>
       <div class="stats-panel__content">
         Total: <span class="stats-panel__value">{{ formatNullable(formatNumber(transactionsCount)) }}</span>
@@ -110,7 +113,10 @@
       title="STATE CHANNELS"
       icon-name="state-channel">
       <div class="stats-panel__content">
-        Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(stateChannelsCount)) }}</span>
+        Active:
+        <span class="stats-panel__value">
+          <number-label :price="stateChannelsCount"/>
+        </span>
       </div>
       <div class="stats-panel__content">
         Locked:
@@ -137,7 +143,12 @@
       title="SMART CONTRACTS"
       icon-name="contracts">
       <div class="stats-panel__content">
-        Total: <span class="stats-panel__value">{{ formatNullable(formatNumber(contractsCount)) }}</span>
+        Total: <span class="stats-panel__value">
+          <number-label
+            :price="contractsCount"
+            is-raw/>
+
+        </span>
       </div>
       <template #tooltip>
         æternity Smart Contracts are written in

@@ -60,7 +60,7 @@
           </th>
           <td>
             <number-label
-              :price="accountDetails.totalTransactionsCount"
+              :number="accountDetails.totalTransactionsCount"
               is-raw/>
           </td>
         </tr>

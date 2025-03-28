@@ -3,13 +3,13 @@
     <app-panel class="accounts-statistics__panel">
       <h5>TOTAL ACCOUNTS</h5>
       <div class="accounts-statistics__value">
-        <number-label :price="totalAccountsCount"/>
+        <number-label :number="totalAccountsCount"/>
       </div>
     </app-panel>
     <app-panel class="accounts-statistics__panel">
       <h5>ACTIVE ACCOUNTS (LAST 24H)</h5>
       <div class="accounts-statistics__value">
-        <number-label :price="activeAccountsCount"/>
+        <number-label :number="activeAccountsCount"/>
         <trend-chip
           v-if="activeAccountsDelta"
           :delta="activeAccountsDelta"/>

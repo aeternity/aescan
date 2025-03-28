@@ -31,6 +31,6 @@ const tokenValue = computed(() => {
   if (!props.contractDetails.tokenDetails || props.contractDetails.contractType === 'AEX-141') {
     return eventData.value[2]
   }
-  return formatNumber(formatReduceDecimals(eventData.value[2], props.contractDetails.tokenDetails.decimals))
+  return formatReduceDecimals(eventData.value[2], props.contractDetails.tokenDetails.decimals)
 })
 </script>

@@ -104,7 +104,7 @@
             Microblocks Count
           </th>
           <td>
-            {{ formatNumber(keyblockDetails.microBlocksCount) }}
+            <number-label :price="keyblockDetails.microBlocksCount"/>
           </td>
         </tr>
         <tr>
@@ -115,7 +115,7 @@
             Transactions Count
           </th>
           <td>
-            {{ formatNumber(keyblockDetails.transactionsCount) }}
+            <number-label :price="keyblockDetails.transactionsCount"/>
           </td>
         </tr>
         <tr>

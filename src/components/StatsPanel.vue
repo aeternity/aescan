@@ -9,11 +9,12 @@
       <div class="stats-panel__content">
         Max TPS: <span class="stats-panel__value">
           <number-label :price="maxTps"/>
-        <!--        {{ formatNullable(formatNumber(maxTps)) }}-->
         </span>
       </div>
       <div class="stats-panel__content">
-        Total: <span class="stats-panel__value">{{ formatNullable(formatNumber(transactionsCount)) }}</span>
+        Total: <span class="stats-panel__value">
+          <number-label :price="transactionsCount"/>
+        </span>
       </div>
       <template #tooltip>
         Numbers are counting on-chain transactions only. There can be millions of transactions executed off-chain in
@@ -45,7 +46,7 @@
       <div class="stats-panel__content">
         Transactions:
         <span class="stats-panel__value">
-          {{ formatNullable(formatNumber(latestKeyblockTransactionsCount)) }}
+          <number-label :price="latestKeyblockTransactionsCount"/>
         </span>
       </div>
       <template #tooltip>
@@ -172,10 +173,14 @@
       title="ORACLES"
       icon-name="oracles">
       <div class="stats-panel__content">
-        Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(activeOraclesCount)) }}</span>
+        Active: <span class="stats-panel__value">
+          <number-label :price="activeOraclesCount"/>
+        </span>
       </div>
       <div class="stats-panel__content">
-        Total seen: <span class="stats-panel__value">{{ formatNullable(formatNumber(oraclesCount)) }}</span>
+        Total seen: <span class="stats-panel__value">
+          <number-label :price="oraclesCount"/>
+        </span>
       </div>
       <template #tooltip>
         Oracles are managed by special types of transactions. They can be programmed to request and provide data from
@@ -187,10 +192,14 @@
       title="AENS NAMES"
       icon-name="aens-name">
       <div class="stats-panel__content">
-        In auction: <span class="stats-panel__value">{{ formatNullable(formatNumber(namesInAuctionCount)) }}</span>
+        In auction: <span class="stats-panel__value">
+          <number-label :price="namesInAuctionCount"/>
+        </span>
       </div>
       <div class="stats-panel__content">
-        Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(activeNamesCount)) }}</span>
+        Active: <span class="stats-panel__value">
+          <number-label :price="activeNamesCount"/>>
+        </span>
       </div>
       <template #tooltip>
         Æternity Naming System (ÆNS) uses human-meaningful names instead of cryptic addresses for accounts, making

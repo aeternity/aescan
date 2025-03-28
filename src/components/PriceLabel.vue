@@ -37,16 +37,14 @@
       <template #tooltip>
         <!--        todo isRaw-->
         <!--        todo tooltip condition just here-->
-        <!--        todo format tooltip nicely-->
         {{ currency === '$' ? currency : null }}
-        {{ props.price < 1000 ? props.price : formatNum(props.price) }}
+        {{ props.price < 1000 ? props.price : formatNumber(props.price) }}
         {{ currency === '$' ? null : currency }}
       </template>
     </app-tooltip>
   </div>
 </template>
 
-<!--todo handle usd-->
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
 import numeral from 'numeral'

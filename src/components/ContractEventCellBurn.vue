@@ -24,6 +24,6 @@ const tokenValue = computed(() => {
     return eventData.value[1]
   }
 
-  return formatNumber(formatReduceDecimals(eventData.value[1], props.contractDetails.tokenDetails.decimals))
+  return formatReduceDecimals(eventData.value[1], props.contractDetails.tokenDetails.decimals)
 })
 </script>

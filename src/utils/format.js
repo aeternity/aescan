@@ -16,66 +16,7 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-export function formatNum(number) {
-  return numeral(number).format('0,0.[00000000]')
-}
-
 // todo check previous usage of parameters of formatNumber(
-
-// export function formatNumberOld(
-//   number,
-//   minimumFractionDigits = 0,
-//   maximumFractionDigits = 5,
-//   maximumSignificantDigits = null) {
-//   if (isNaN(number) || number === null) {
-//     return number
-//   }
-//
-//   if (maximumSignificantDigits !== null) {
-//     return Intl.NumberFormat('en-US', {
-//       maximumSignificantDigits,
-//     }).format(number)
-//   }
-//
-//   return Intl.NumberFormat('en-US', {
-//     minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
-//     maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
-//   }).format(number)
-// }
-
-// export function formatPrice(price, maxDigits = 8) {
-//   if (isNaN(price) || price === null) {
-//     return price
-//   }
-//
-//   if (maxDigits === null) {
-//     return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)}`
-//   }
-//
-//   const truncatedPrice = new BigNumber(price).toFixed(
-//     maxDigits,
-//     BigNumber.ROUND_DOWN,
-//   )
-//
-//   const priceParts = truncatedPrice.split('.')
-//   const integers = priceParts[0]
-//   let decimals = priceParts[1]
-//
-//   decimals = decimals?.replace(/0+$/, '')
-//
-//   if (!decimals) {
-//     if (price === 0) {
-//       return '0'
-//     }
-//     if (integers === '0') {
-//       return `~${integers}`
-//     } else {
-//       return `${formatNumber(integers)}`
-//     }
-//   }
-//
-//   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
-// }
 
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
   if (isNaN(tokenAmount) || tokenAmount === null) {
@@ -94,6 +35,7 @@ export function formatAettosToAe(aettosAmount) {
 
 export function formatPercentage(percentage) {
   if (percentage >= 0.00001) {
+    // todo is it necessary or just use numeral percent
     return `${formatNumber(percentage)} %`
   }
   if (percentage === 0) {
@@ -105,9 +47,8 @@ export function formatPercentage(percentage) {
 }
 
 export function formatNumber(amount, maxDigits = 2) {
-  // todo also add tooltip
+  // todo refactor
   const zeros = '0'.repeat(maxDigits - 1)
-
   const shorten = numeral(amount).format(`0.[${zeros}]a`)
   const aaa = parseFloat(amount) < 0.001 ? amount : shorten
   return shorten.includes('NaN') ? amount : aaa

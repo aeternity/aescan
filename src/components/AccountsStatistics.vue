@@ -3,13 +3,13 @@
     <app-panel class="accounts-statistics__panel">
       <h5>TOTAL ACCOUNTS</h5>
       <div class="accounts-statistics__value">
-        {{ formatNumber(totalAccountsCount) }}
+        <number-label :price="totalAccountsCount"/>
       </div>
     </app-panel>
     <app-panel class="accounts-statistics__panel">
       <h5>ACTIVE ACCOUNTS (LAST 24H)</h5>
       <div class="accounts-statistics__value">
-        {{ formatNumber(activeAccountsCount) }}
+        <number-label :price="activeAccountsCount"/>
         <trend-chip
           v-if="activeAccountsDelta"
           :delta="activeAccountsDelta"/>

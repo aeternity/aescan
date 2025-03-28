@@ -72,7 +72,7 @@
             Transactions Count
           </th>
           <td>
-            {{ formatNumber(microblockDetails.transactionsCount) }}
+            <number-label :price="microblockDetails.transactionsCount"/>
           </td>
         </tr>
         <tr>

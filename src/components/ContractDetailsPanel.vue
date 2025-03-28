@@ -155,7 +155,7 @@
             Smart Contract Calls
           </th>
           <td>
-            {{ formatNumber(contractDetails.callsCount) }}
+            <number-label :price="contractDetails.callsCount"/>
           </td>
         </tr>
         <tr>

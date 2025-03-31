@@ -40,7 +40,9 @@
           Name TTL
         </th>
         <td>
-          {{ transactionData.nameTtl }}
+          <number-label
+            :number="transactionData.nameTtl"
+            is-raw/>
         </td>
       </tr>
     </tbody>

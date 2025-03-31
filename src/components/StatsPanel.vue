@@ -145,10 +145,7 @@
       icon-name="contracts">
       <div class="stats-panel__content">
         Total: <span class="stats-panel__value">
-          <number-label
-            :number="contractsCount"
-            is-raw/>
-
+          <number-label :number="contractsCount"/>
         </span>
       </div>
       <template #tooltip>
@@ -198,7 +195,7 @@
       </div>
       <div class="stats-panel__content">
         Active: <span class="stats-panel__value">
-          <number-label :number="activeNamesCount"/>>
+          <number-label :number="activeNamesCount"/>
         </span>
       </div>
       <template #tooltip>

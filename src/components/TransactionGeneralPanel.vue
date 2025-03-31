@@ -46,7 +46,9 @@
             Keyblock Confirmations
           </th>
           <td>
-            <number-label :number="transactionDetails.confirmations"/>
+            <number-label
+              :number="transactionDetails.confirmations"
+              is-raw/>
           </td>
         </tr>
         <tr>

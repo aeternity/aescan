@@ -94,6 +94,7 @@ defineProps({
   }
 
   &__data {
+    width: 25%;
     text-align: right;
 
     @media (--desktop) {

@@ -13,7 +13,10 @@
               <span class="paginated-content__highlighted">
                 {{ formatNullable(firstVisibleIndex) }}-{{ formatNullable(lastVisibleIndex) }}
                 of
-                <number-label :number="totalCount"/>
+                <number-label
+                  class="paginated-content__number-label"
+                  :number="totalCount"
+                  is-raw/>
               </span>
               records
             </template>
@@ -179,6 +182,10 @@ onBeforeUnmount(() => {
     &:empty {
       display: none;
     }
+  }
+
+  &__number-label {
+    display: inline;
   }
 
   &__container {

@@ -40,15 +40,11 @@
         <div class="market-stats__value">
           <div class="market-stats__container">
             <price-label
-              is-raw
-              max-digits="4"
               class="market-stats__price"
               :has-icon="false"
               :price="distribution"/>
             /
             <price-label
-              is-raw
-              max-digits="4"
               class="market-stats__price"
               :has-icon="false"
               :price="MAX_AE_DISTRIBUTION"/>

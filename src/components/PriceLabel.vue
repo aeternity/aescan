@@ -38,7 +38,8 @@
         <!--        todo isRaw-->
         <!--        todo tooltip condition just here-->
         {{ currency === '$' ? currency : null }}
-        {{ props.price < 1000 ? props.price : formatNumber(props.price) }}
+        {{ props.price < 1000 ? props.price : numeral(props.price).format('0,0.[0000000000000]') }}
+        <!--        {{ props.price < 1000 ? props.price : formatNumber(props.price) }}-->
         {{ currency === '$' ? null : currency }}
       </template>
     </app-tooltip>
@@ -82,9 +83,6 @@ const props = defineProps({
 
 // todo is formatted
 const isPriceRounded = computed(() => {
-  if (props.price) {
-    return null
-  }
   return props.price.toString() !== priceFormatted.value
 })
 // const priceRounded = computed(() => {

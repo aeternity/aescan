@@ -3,13 +3,19 @@
     <app-panel class="transaction-statistics__panel">
       <h5>TOTAL TRANSACTIONS</h5>
       <div class="transaction-statistics__value">
-        <number-label :number="transactionsCount"/>
+        <number-label
+          v-if="transactionsCount"
+          :number="transactionsCount"/>
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
       <h5>TRANSACTIONS (LAST 24H)</h5>
       <div class="transaction-statistics__value">
-        <number-label :number="last24hsTransactionsCount"/>
+        <!--        todo revive nullable-->
+        <number-label
+          v-if="last24hsTransactionsCount"
+          :number="last24hsTransactionsCount"
+          is-raw/>
         <trend-chip
           v-if="last24hsTransactionsTrend"
           :delta="last24hsTransactionsTrend"/>

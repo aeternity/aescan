@@ -59,7 +59,7 @@ export function formatPrice(amount, maxDigits = 6, isRaw = false) {
   const zeros = '0'.repeat(maxDigits - 1)
   console.log('amount', amount)
   console.log('maxDigits', maxDigits)
-  if (amount === '0') {
+  if (amount.toString() === '0') {
     return '0'
   }
   if (parseFloat(amount) < 1) {
@@ -128,6 +128,19 @@ export function formatIsAuction(name) {
   const auctionLength = 13
   const suffixLength = 6
   return name.length - suffixLength < auctionLength
+}
+
+export function formatTokenValue(amount, tokenAePrice, aeFiatPrice) {
+  if (tokenAePrice === null) {
+    return null
+  }
+  const bigNumber = (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice)
+  const decimalPlaces = bigNumber.e
+  const digitsCount = bigNumber.c?.[0].toString().length
+  if (decimalPlaces & digitsCount) {
+    return formatNumber(bigNumber.toFixed(digitsCount - decimalPlaces - 1))
+  }
+  return null
 }
 
 export function formatTokenLimit(extensions, tokenLimit) {

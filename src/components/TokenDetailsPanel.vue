@@ -61,18 +61,6 @@
             </div>
           </td>
         </tr>
-        <tr v-if="tokenDetails.marketCap">
-          <th>
-            <hint-tooltip>
-              {{ tokensHints.marketCap }}
-            </hint-tooltip>
-            Market cap
-          </th>
-          <td>
-            {{ tokenDetails.marketCap }}
-            <!--            todo marketcap ?-->
-          </td>
-        </tr>
         <tr>
           <th>
             <hint-tooltip>

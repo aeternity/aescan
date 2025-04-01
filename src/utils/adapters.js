@@ -721,9 +721,20 @@ export function adaptTrades(trades, price) {
   const formattedData = trades.data.map((trade) => {
     const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
     const toAmount = trade.toAmount / 10 ** trade.toDecimals
+
+    const maximumSignificantDigits = 8
+
+    const to = Intl.NumberFormat('en-US', {
+      maximumSignificantDigits,
+    }).format(toAmount)
+
+    const from = Intl.NumberFormat('en-US', {
+      maximumSignificantDigits,
+    }).format(fromAmount)
+
     return {
-      fromAmount,
-      toAmount,
+      fromAmount: from,
+      toAmount: to,
       txHash: trade.txHash,
       fromToken: trade.fromToken,
       toToken: trade.toToken,

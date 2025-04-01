@@ -3,18 +3,14 @@
     <app-panel class="transaction-statistics__panel">
       <h5>TOTAL TRANSACTIONS</h5>
       <div class="transaction-statistics__value">
-        <number-label
-          v-if="transactionsCount"
-          :number="transactionsCount"/>
+        <number-label :number="formatNullable(transactionsCount)"/>
       </div>
     </app-panel>
     <app-panel class="transaction-statistics__panel">
       <h5>TRANSACTIONS (LAST 24H)</h5>
       <div class="transaction-statistics__value">
-        <!--        todo revive nullable-->
         <number-label
-          v-if="last24hsTransactionsCount"
-          :number="last24hsTransactionsCount"
+          :number="formatNullable(last24hsTransactionsCount)"
           is-raw/>
         <trend-chip
           v-if="last24hsTransactionsTrend"
@@ -24,9 +20,7 @@
     <app-panel class="transaction-statistics__panel">
       <h5>AVG TRANSACTION FEE (LAST 24H)</h5>
       <div class="transaction-statistics__value">
-        <price-label
-          v-if="last24hsAverageTransactionFees"
-          :price="last24hsAverageTransactionFees"/>
+        <price-label :price="formatNullable(last24hsAverageTransactionFees)"/>
         <trend-chip
           v-if="feesTrend || feesTrend === 0"
           :delta="feesTrend"/>

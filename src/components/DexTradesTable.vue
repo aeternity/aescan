@@ -72,7 +72,7 @@
             :contract-id="trade.fromContract"
             :currency="trade.fromToken"
             :price="trade.fromAmount"
-            :max-digits="4"
+            :max-digits="6"
             :has-link="true"/>
         </td>
         <td class="dex-trades-table__data">
@@ -80,7 +80,7 @@
             :contract-id="trade.toContract"
             :currency="trade.toToken"
             :price="trade.toAmount"
-            :max-digits="4"
+            :max-digits="6"
             :has-link="true"/>
         </td>
         <td class="dex-trades-table__data">
@@ -96,7 +96,7 @@
           <not-available-label v-if="!trade.value"/>
           <price-label
             v-else
-            :max-digits="5"
+            :max-digits="8"
             :price="trade.value"
             currency="$"/>
         </td>

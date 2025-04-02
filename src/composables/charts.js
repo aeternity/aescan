@@ -11,6 +11,7 @@ export const useChartsStore = defineStore('charts', () => {
   const difficultyStatistics = ref(null)
   const hashrateStatistics = ref(null)
   const accountsStatistics = ref(null)
+  const priceStatistics = ref(null)
 
   async function fetchTransactionsStatistics(intervalBy, limit, scope, txType) {
     transactionsStatistics.value = null
@@ -104,7 +105,21 @@ export const useChartsStore = defineStore('charts', () => {
     accountsStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
+  async function fetchPriceStatistics(intervalBy, limit, scope) {
+    priceStatistics.value = null
+
+    const scopeSlug = scope
+      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
+      : `?interval_by=${intervalBy}&limit=${limit}`
+    // https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&timeFrame=MAX&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa
+    const { data } = await axios.get('https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&timeFrame=MAX&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa')
+    console.log('data', data)
+    // remove last interval from the response not to show current interval that is being built
+    priceStatistics.value = data
+  }
+
   return {
+    priceStatistics,
     keyblocksStatistics,
     transactionsStatistics,
     contractsStatistics,
@@ -112,6 +127,7 @@ export const useChartsStore = defineStore('charts', () => {
     difficultyStatistics,
     hashrateStatistics,
     accountsStatistics,
+    fetchPriceStatistics,
     fetchKeyblocksStatistics,
     fetchTransactionsStatistics,
     fetchContractsStatistics,

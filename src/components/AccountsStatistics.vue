@@ -3,13 +3,13 @@
     <app-panel class="accounts-statistics__panel">
       <h5>TOTAL ACCOUNTS</h5>
       <div class="accounts-statistics__value">
-        <number-label :number="totalAccountsCount"/>
+        <number-label :number="formatNullable(totalAccountsCount)"/>
       </div>
     </app-panel>
     <app-panel class="accounts-statistics__panel">
       <h5>ACTIVE ACCOUNTS (LAST 24H)</h5>
       <div class="accounts-statistics__value">
-        <number-label :number="activeAccountsCount"/>
+        <number-label :number="formatNullable(activeAccountsCount)"/>
         <trend-chip
           v-if="activeAccountsDelta"
           :delta="activeAccountsDelta"/>
@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+
 const { fetchTopAccounts } = useTopAccountsStore()
 const { totalAccountsCount, activeAccountsCount, activeAccountsDelta } = storeToRefs(useTopAccountsStore())
 

@@ -39,6 +39,10 @@ const menuOptions = ref([{
 {
   name: 'Hashrate',
   path: 'hashrate',
+},
+{
+  name: 'Price',
+  path: 'price',
 }])
 </script>
 

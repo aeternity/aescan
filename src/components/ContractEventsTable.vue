@@ -130,11 +130,6 @@ function toggle(id) {
     }
   }
 
-  &__event-data {
-    word-wrap: anywhere;
-    max-width: 450px;
-  }
-
   &__arguments {
     border-top: 0;
 

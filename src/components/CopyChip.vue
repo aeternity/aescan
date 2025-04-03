@@ -67,7 +67,6 @@ function deactivateCopyAnimation() {
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    word-wrap: anywhere;
     white-space: wrap;
     text-align: left;
   }

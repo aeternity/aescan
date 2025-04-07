@@ -37,7 +37,7 @@
         </span>
       </div>
       <div class="dashboard-keyblock-panel__summary">
-        Transactions in this microblock:
+        Total transactions in selected keyblock:
         <span class="dashboard-keyblock-panel__count">
           {{ selectedKeyblockTransactionsCount }}
         </span>

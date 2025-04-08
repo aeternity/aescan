@@ -34,7 +34,7 @@
     "@sentry/tracing": "^7.120.3",
     "@sentry/vite-plugin": "^2.22.7",
     "@sentry/vue": "^8.47.0",
-    "@vuepic/vue-datepicker": "^10.0.0",
+    "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/core": "^12.3.0",
     "@vueuse/head": "^2.0.0",
     "axios": "^1.8.4",

@@ -1,6 +1,5 @@
 <template>
   <!--  todo add test-->
-  <!--  todo fix order-->
   <div class="mining-statistics-grid">
     <app-panel class="mining-statistics-grid__panel--miners">
       <h2 class="h5">
@@ -205,16 +204,8 @@ if (process.client) {
       }
     }
 
-    &--reward {
-      grid-area: 4 / 1 / 5 / 2;
-
-      @media (--desktop) {
-        grid-area: 3 / 3 / 4 / 4;
-      }
-    }
-
     &--difficulty {
-      grid-area: 5 / 1 / 6 / 2;
+      grid-area: 4 / 1 / 5 / 2;
 
       @media (--desktop) {
         grid-area: 2 / 1 / 3 / 2;
@@ -222,7 +213,7 @@ if (process.client) {
     }
 
     &--hashrate {
-      grid-area: 6 / 1 / 7 / 2;
+      grid-area: 5 / 1 / 6 / 2;
 
       @media (--desktop) {
         grid-area: 2 / 2 / 3 / 3;
@@ -230,7 +221,7 @@ if (process.client) {
     }
 
     &--blocks-mined {
-      grid-area: 7 / 1 / 8 / 2;
+      grid-area: 6 / 1 / 7 / 2;
 
       @media (--desktop) {
         grid-area: 2 / 3 / 3 / 4;
@@ -238,7 +229,7 @@ if (process.client) {
     }
 
     &--block-time {
-      grid-area: 8 / 1 / 9 / 2;
+      grid-area: 7 / 1 / 8 / 2;
 
       @media (--desktop) {
         grid-area: 3 / 1 / 4 / 2;
@@ -246,10 +237,18 @@ if (process.client) {
     }
 
     &--max-tps {
-      grid-area: 9 / 1 / 10 / 2;
+      grid-area: 8 / 1 / 9 / 2;
 
       @media (--desktop) {
         grid-area: 3 / 2 / 4 / 3;
+      }
+    }
+
+    &--reward {
+      grid-area: 9 / 1 / 10 / 2;
+
+      @media (--desktop) {
+        grid-area: 3 / 3 / 4 / 4;
       }
     }
 

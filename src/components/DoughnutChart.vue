@@ -47,9 +47,9 @@ const data = {
   datasets: [{
     data: stats.value,
     backgroundColor: [
+      'rgb(245, 39, 78)',
       'rgb(0, 61, 255)',
       'rgb(102, 231, 115)',
-      'rgb(245, 39, 78)',
     ],
     hoverOffset: 4,
   }],

@@ -15,4 +15,3 @@ export const miningHints = {
   minerTotalReward: 'Reward collected by the miner from the creation of the blockchain.',
   miningPoolsChart: 'Distribution of blocks mined by different pols in last 24 hours',
 }
-// todo revise hints

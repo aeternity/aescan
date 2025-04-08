@@ -5,7 +5,7 @@
       <h2 class="h5">
         MINERS
         <hint-tooltip>
-          {{ miningHints.mining }}
+          {{ miningHints.miners }}
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
@@ -35,9 +35,10 @@
       <span class="mining-statistics-grid__value">
         {{ MINERS.length }}
         <!--        todo wut-->
+
       </span>
     </app-panel>
-
+    <!--todo add  hashrate change over tim-->
     <app-panel class="mining-statistics-grid__panel--reward">
       <h2 class="h5">
         REWARD

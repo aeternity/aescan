@@ -4,6 +4,7 @@
   </app-panel>
 </template>
 
+<!--todo is this necessary?-->
 <script setup>
 
 </script>

@@ -40,7 +40,7 @@ const stats = computed(() => {
   return props.topMiners.blocksMined
 })
 const legend = computed(() => {
-  return props.topMiners.miners
+  return props.topMiners.miner
 })
 const data = {
   labels: legend.value,

@@ -33,17 +33,11 @@ async function fetchStatus() {
 
 async function fetchTopMiners() {
   const url = getUrl({
-    entity: 'stats/miners/top',
-    parameters: {
-      interval_by: 'day',
-      min_start_date: '2025-02-11',
-      max_start_date: '2025-02-11',
-      direction: 'forward',
-    },
-  })
+    entity: 'stats/miners/top-24h',
 
+  })
   const { data } = await axios.get(url)
-  return data.data
+  return data
 }
 
 function adaptMiningStatistics(statistics, blockReward, status, topMiners) {

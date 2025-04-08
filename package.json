@@ -43,7 +43,7 @@
     "chart.js": "^4.4.8",
     "compression": "^1.8.0",
     "core-js": "^3.41.0",
-    "express": "^4.21.2",
+    "express": "^5.1.0",
     "floating-vue": "^5.2.2",
     "luxon": "^3.6.1",
     "memory-cache": "^0.2.0",

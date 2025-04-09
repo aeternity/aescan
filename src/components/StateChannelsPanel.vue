@@ -27,7 +27,7 @@ async function loadStateChannels() {
   await fetchStateChannels()
 }
 
-await fetchStateChannelsCount()
+fetchStateChannelsCount()
 
 if (process.client) {
   loadStateChannels()

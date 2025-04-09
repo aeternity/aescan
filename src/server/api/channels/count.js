@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async() => {
   const url = getUrl({
     entity: 'transactions',
     route: 'count',

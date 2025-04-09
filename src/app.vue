@@ -83,7 +83,7 @@ const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const router = useRouter()
 const route = useRoute()
 
-await useAsyncData(() => initializeStores())
+useAsyncData(() => initializeStores())
 
 if (process.client) {
   const { initializeWebSocket } = useWebSocket()

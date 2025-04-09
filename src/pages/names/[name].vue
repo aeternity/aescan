@@ -43,7 +43,7 @@ const route = useRoute()
 const { isLoading } = useLoading()
 
 if (process.client) {
-  await fetchNameDetails(route.params.name)
+  fetchNameDetails(route.params.name)
 }
 
 if (hasNameHistory && process.client) {

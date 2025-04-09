@@ -41,8 +41,8 @@ const {
 } = storeToRefs(useTransactionsStore())
 
 if (process.client) {
-  await fetchTotalTransactionsCount()
-  await fetchLast24hsTransactionsStatistics()
+  fetchTotalTransactionsCount()
+  fetchLast24hsTransactionsStatistics()
 }
 </script>
 

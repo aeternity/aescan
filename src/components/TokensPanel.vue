@@ -40,7 +40,7 @@ const hasTokenSelect = computed(() => {
   return featureFlags.dex && NETWORK_NAME !== 'TESTNET'
 })
 
-await useAsyncData(async() => {
+useAsyncData(async() => {
   await fetchTokensCount()
   return true
 })

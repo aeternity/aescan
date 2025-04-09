@@ -29,7 +29,7 @@ function loadNextEvents() {
 }
 
 if (process.client) {
-  await fetchTokenEvents({
+  fetchTokenEvents({
     contractId: route.params.id,
   })
 }

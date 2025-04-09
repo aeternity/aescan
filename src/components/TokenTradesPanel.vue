@@ -25,7 +25,7 @@ function loadNextTrades() {
 }
 
 if (process.client) {
-  await fetchTokenTrades({
+  fetchTokenTrades({
     contractId: route.params.id,
   })
 }

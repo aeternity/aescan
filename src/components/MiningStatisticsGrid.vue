@@ -68,6 +68,10 @@
       </span>
     </app-panel>
 
+    <app-panel class="mining-statistics-grid__panel--c2">
+      <hashrate-chart-panel/>
+    </app-panel>
+
     <app-panel class="mining-statistics-grid__panel--hashrate">
       <h2 class="h5">
         HASHRATE
@@ -163,7 +167,7 @@ if (process.client) {
 
   @media (--desktop) {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
   }
 
   &__value {
@@ -180,7 +184,6 @@ if (process.client) {
   }
 
   &__panel {
-
     &--miners {
       grid-area: 1 / 1 / 2 / 2;
 
@@ -217,7 +220,15 @@ if (process.client) {
       grid-area: 5 / 1 / 6 / 2;
 
       @media (--desktop) {
-        grid-area: 2 / 2 / 3 / 3;
+        grid-area: 4 / 1 / 5 / 2;
+      }
+    }
+
+    &--c2 {
+      grid-area: 5 / 1 / 6 / 2;
+
+      @media (--desktop) {
+        grid-area: 2 / 2 / 4 / 4;
       }
     }
 
@@ -225,7 +236,7 @@ if (process.client) {
       grid-area: 6 / 1 / 7 / 2;
 
       @media (--desktop) {
-        grid-area: 2 / 3 / 3 / 4;
+        grid-area: 4 / 3 / 5 / 4;
       }
     }
 
@@ -241,7 +252,7 @@ if (process.client) {
       grid-area: 8 / 1 / 9 / 2;
 
       @media (--desktop) {
-        grid-area: 3 / 2 / 4 / 3;
+        grid-area: 4 / 2 / 5 / 3;
       }
     }
 
@@ -249,7 +260,7 @@ if (process.client) {
       grid-area: 9 / 1 / 10 / 2;
 
       @media (--desktop) {
-        grid-area: 3 / 3 / 4 / 4;
+        grid-area: 4 / 4 / 5 / 5;
       }
     }
 

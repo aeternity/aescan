@@ -1,48 +1,48 @@
 <template>
   <div class="price-label">
-    <app-link
-      v-if="hasLink && currency !== '$'"
-      :to="`/tokens/${contractId}`">
+    <template v-if="hasIcon">
+      <app-link
+        v-if="hasLink"
+        :to="`/tokens/${contractId}`">
+        <token-symbol-icon
+          class="price-label__icon"
+          :contract-id="contractId"/>
+      </app-link>
+
       <token-symbol-icon
-        v-if="hasIcon"
         class="price-label__icon"
         :contract-id="contractId"/>
-    </app-link>
-    <token-symbol-icon
-      v-else-if="!hasLink && hasIcon && currency !== '$'"
-      class="price-label__icon"
-      :contract-id="contractId"/>
+    </template>
 
-    <span v-if="isRaw || !isPriceRounded">
-      {{ currency === '$' ? currency : null }}
-      {{ isRaw ? numeral(props.price).format('0,0.[0000000000000]') : priceFormatted }}
+    <app-tooltip v-if="hasTooltip">
+      <span>
+        {{ currencyPrefix }} {{ displayPrice }}
+      </span>
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currency === '$' ? null : currency }}
-      </app-link>
-      <template v-else>{{ currency === '$' ? null : currency }}</template>
-    </span>
-
-    <app-tooltip v-else>
-      {{ currency === '$' ? currency : null }} {{ `~${priceFormatted}` }}
-      <app-link
-        v-if="hasLink"
-        :to="`/tokens/${contractId}`">
-        {{ currency === '$' ? null : currency }}
+        {{ currencySuffix }}
       </app-link>
       <template v-else>
-        {{ currency === '$' ? null : currency }}
+        {{ currencySuffix }}
       </template>
+
       <template #tooltip>
-        <!--        todo isRaw-->
-        <!--        todo tooltip condition just here-->
-        {{ currency === '$' ? currency : null }}
-        {{ props.price < 1000 ? props.price : numeral(props.price).format('0,0.[0000000000000]') }}
-        <!--        {{ props.price < 1000 ? props.price : formatNumber(props.price) }}-->
-        {{ currency === '$' ? null : currency }}
+        {{ currencyPrefix }} {{ tooltipPrice }} {{ currencySuffix }}
       </template>
     </app-tooltip>
+
+    <template v-else>
+      {{ currencyPrefix }} {{ priceFullPrecision }}
+      <app-link
+        v-if="hasLink"
+        :to="`/tokens/${contractId}`">
+        {{ currencySuffix }}
+      </app-link>
+      <template v-else>
+        {{ currencySuffix }}
+      </template>
+    </template>
   </div>
 </template>
 
@@ -55,13 +55,21 @@ const props = defineProps({
     type: [String, Number],
     default: null,
   },
-  maxDigits: {
-    type: Number,
-    default: undefined,
-  },
   currency: {
     type: String,
     default: () => storeToRefs(useConfigStore()).currency.value.symbol,
+  },
+  contractId: {
+    type: String,
+    default: () => useRuntimeConfig().public.AE_TOKEN_ID,
+  },
+  hasFullPrecision: {
+    type: Boolean,
+    default: false,
+  },
+  maxDigits: {
+    type: Number,
+    default: undefined,
   },
   hasIcon: {
     type: Boolean,
@@ -71,29 +79,37 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  isRaw: {
-    type: Boolean,
-    default: false,
-  },
-  contractId: {
-    type: String,
-    default: () => useRuntimeConfig().public.AE_TOKEN_ID,
-  },
+})
+const ABBREVIATION_THRESHOLD = 1000
+
+const tooltipPrice = computed(() => props.price < ABBREVIATION_THRESHOLD ? props.price : priceFormatted.value)
+const priceFullPrecision = computed(() => props.price > 1 ? props.price : priceFractioned.value)
+const displayPrice = computed(() => `${isPriceRounded.value ? '~' : ''}${props.price > 1 ? priceAbbreviated.value : priceFractioned.value}`)
+
+const decimalPlaces = computed(() => {
+  const decimalIndex = props.price.toString().indexOf('.')
+  return decimalIndex >= 0 ? props.price.toString().length - decimalIndex - 1 : 0
+})
+const priceAbbreviated = computed(() => formatPrice(props.price, props.maxDigits, props.hasFullPrecision))
+const priceFormatted = computed(() => formatPrice(props.price, 13, true))
+const priceFractioned = computed(() => {
+  const maximumSignificantDigits = 8
+  return Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(props.price)
 })
 
-// todo is formatted
+// todo ~0
+// todo reuse format function
 const isPriceRounded = computed(() => {
-  return props.price.toString() !== priceFormatted.value
+  const zeros = '0'.repeat(decimalPlaces.value)
+  return props.price.toString() !== numeral(priceAbbreviated.value).format(`0.[${zeros}]`).toString() && props.price > 1
 })
-// const priceRounded = computed(() => {
-//   console.log('props.price', props.price)
-//   const rrr = formatNullable(formatPrice(props.price, props.maxDigits))
-//   console.log('rrr', rrr)
-//   return rrr
-// })
-const priceFormatted = computed(() =>
-  formatNullable(formatPrice(props.price, props.maxDigits, props.isRaw)),
-)
+const isPriceAbbreviated = computed(() => /[a-z]/i.test(priceAbbreviated.value))/* when has letters */
+
+const currencyPrefix = computed(() => props.currency === '$' ? props.currency : null)
+const currencySuffix = computed(() => props.currency === '$' ? null : props.currency)
+
+const hasIcon = computed(() => props.hasIcon && props.currency !== '$')
+const hasTooltip = computed(() => (isPriceAbbreviated.value || isPriceRounded.value) && !props.hasFullPrecision)
 </script>
 
 <style scoped>

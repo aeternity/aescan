@@ -118,7 +118,7 @@
           <td>
             <price-label
               :price="oracleDetails.fee"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>

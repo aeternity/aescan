@@ -16,7 +16,7 @@
                 <number-label
                   class="paginated-content__number-label"
                   :number="totalCount"
-                  is-raw/>
+                  has-full-precision/>
               </span>
               records
             </template>

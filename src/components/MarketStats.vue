@@ -26,7 +26,7 @@
         <div class="market-stats__value">
           <price-label
             currency="$"
-            is-raw
+            has-full-precision
             max-digits="4"
             class="market-stats__price"
             :has-icon="false"

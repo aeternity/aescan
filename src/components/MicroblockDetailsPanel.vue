@@ -85,7 +85,7 @@
           <td>
             <number-label
               :number="microblockDetails.gas"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>

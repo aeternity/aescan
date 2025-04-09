@@ -29,7 +29,7 @@
           <td>
             <price-label
               class="ae-coin-panel__price"
-              is-raw
+              has-full-precision
               :price="price"
               currency="$"/>
             <trend-chip :delta="priceChange"/>
@@ -45,7 +45,7 @@
           <td>
             <price-label
               :price="MAX_AE_DISTRIBUTION"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
           <td>
             <price-label
               :price="totalTokenSupply"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>

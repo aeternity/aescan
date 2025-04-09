@@ -36,7 +36,7 @@ const route = useRoute()
 const { isLoading } = useLoading()
 
 if (process.client) {
-  await fetchMicroblock(route.params.id)
+  fetchMicroblock(route.params.id)
 }
 </script>
 

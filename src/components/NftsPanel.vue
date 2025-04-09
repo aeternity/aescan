@@ -23,6 +23,6 @@ async function loadNextNfts() {
 }
 
 if (process.client) {
-  await fetchNfts()
+  fetchNfts()
 }
 </script>

@@ -22,7 +22,7 @@ const { fetchTopAccounts } = useTopAccountsStore()
 const { totalAccountsCount, activeAccountsCount, activeAccountsDelta } = storeToRefs(useTopAccountsStore())
 
 if (process.client) {
-  await fetchTopAccounts()
+  fetchTopAccounts()
 }
 </script>
 

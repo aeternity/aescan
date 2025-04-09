@@ -42,7 +42,6 @@ const props = defineProps({
     type: Boolean,
   },
   scope: {
-    required: true,
     type: Object,
     default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
@@ -51,7 +50,7 @@ const props = defineProps({
 const selectedScope = ref(props.scope)
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
-await useAsyncData(async() => {
+useAsyncData(async() => {
   await loadTransactionStatistics()
   return true
 })

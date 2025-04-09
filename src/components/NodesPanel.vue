@@ -8,5 +8,5 @@
 const { fetchNodes } = useNodes()
 const { nodes } = storeToRefs(useNodes())
 
-await fetchNodes()
+fetchNodes()
 </script>

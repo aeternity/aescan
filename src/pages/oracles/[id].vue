@@ -40,7 +40,7 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-const { error } = await useAsyncData(() => fetchOracleDetails(route.params.id))
+const { error } = useAsyncData(() => fetchOracleDetails(route.params.id))
 
 if (error.value) {
   throw showError({

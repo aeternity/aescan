@@ -4,7 +4,8 @@
       PRICE
     </template>
     <template #end>
-      <chart-controls
+
+      <price-chart-controls
         v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
@@ -47,13 +48,13 @@ const labels = computed(() => {
   })
 })
 
-await useAsyncData(async() => {
+await useAsyncData(async () => {
   await loadPriceStatistics()
   return true
 })
 
 if (process.client) {
-  watch([selectedScope], async() => {
+  watch([selectedScope], async () => {
     await loadPriceStatistics()
   })
 }
@@ -124,7 +125,7 @@ const chartOptions = {
       //   },
       // },
       grid: {
-        color: function() {
+        color: function () {
           return 'transparent'
         },
       },

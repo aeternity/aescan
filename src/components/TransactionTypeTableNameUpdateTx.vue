@@ -42,7 +42,7 @@
         <td>
           <number-label
             :number="transactionData.nameTtl"
-            is-raw/>
+            has-full-precision/>
         </td>
       </tr>
     </tbody>

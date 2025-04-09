@@ -48,7 +48,7 @@
           <td>
             <number-label
               :number="transactionDetails.confirmations"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -107,7 +107,7 @@
           <td>
             <price-label
               :price="formatAettosToAe(transactionDetails.fee)"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>

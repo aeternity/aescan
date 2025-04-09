@@ -52,6 +52,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`)
       rawVerificationDetails.value = data
     } catch (error) {
+      console.error(error)
       rawVerificationDetails.value = null
     }
   }

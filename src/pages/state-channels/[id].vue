@@ -41,7 +41,7 @@ const route = useRoute()
 const { isLoading } = useLoading()
 
 if (process.client) {
-  await fetchStateChannelDetails(route.params.id)
+  fetchStateChannelDetails(route.params.id)
 }
 </script>
 

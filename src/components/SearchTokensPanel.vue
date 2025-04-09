@@ -15,7 +15,7 @@ const { fetchTokenResults } = useSearchStore()
 
 const route = useRoute()
 
-await fetchTokenResults({ query: route.params.id })
+fetchTokenResults({ query: route.params.id })
 
 async function loadPrevTokens() {
   await fetchTokenResults({ queryParameters: tokensResults.value.prev.substring(3) })

@@ -3,7 +3,7 @@ import camelcaseKeysDeep from 'camelcase-keys-deep'
 
 export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public
-  const { processSocketMessage, updateBlockHeight } = useRecentBlocksStore()
+  const { processSocketMessage } = useRecentBlocksStore()
   const { updateTransactionTypeData } = useTransactionDetailsStore()
 
   const webSocket = shallowRef()

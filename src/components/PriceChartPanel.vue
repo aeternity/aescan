@@ -3,9 +3,16 @@
     <template #title>
       PRICE
     </template>
+    <template #end>
+      <chart-controls
+        v-model="selectedScope"
+        class="u-hidden-mobile"/>
+    </template>
     <!--    {{ priceStatistics }}-->
 
     <Line
+      v-if="priceStatistics"
+
       :options="chartOptions"
       :data="chartData"/>
   </app-panel>
@@ -25,35 +32,38 @@ import {
 } from 'chart.js'
 import { DateTime } from 'luxon'
 
+const selectedScope = ref(PRICE_CHART_SCOPE_PRESETS_OPTIONS[4])
+
 const { priceStatistics } = storeToRefs(useChartsStore())
 const { fetchPriceStatistics } = useChartsStore()
 
-const props = defineProps({
-  hasSelect: {
-    default: true,
-    type: Boolean,
-  },
-  scope: {
-    required: true,
-    type: Object,
-    default: CHART_SCOPE_PRESETS_OPTIONS[4],
-  },
-})
-
 const labels = computed(() => {
   return priceStatistics.value.labels.map(label => {
-    console.log('label', label)
+    // console.log('label', label)
 
     const aaa = DateTime.fromMillis(parseInt(label)).toFormat('yyyy-MM-dd')
-    console.log('aaa', aaa)
+    // console.log('aaa', aaa)
     return aaa
   })
 })
 
 await useAsyncData(async() => {
-  await fetchPriceStatistics()
+  await loadPriceStatistics()
   return true
 })
+
+if (process.client) {
+  watch([selectedScope], async() => {
+    await loadPriceStatistics()
+  })
+}
+
+async function loadPriceStatistics() {
+  console.log('selectedScope.value.intervalBy', selectedScope.value.intervalBy)
+  await fetchPriceStatistics(
+    selectedScope.value.label,
+  )
+}
 
 const chartData = computed(() => {
   return {

@@ -105,14 +105,16 @@ export const useChartsStore = defineStore('charts', () => {
     accountsStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
-  async function fetchPriceStatistics(intervalBy, limit, scope) {
+  async function fetchPriceStatistics(intervalBy) {
+    console.log('intervalBy', intervalBy)
     priceStatistics.value = null
 
-    const scopeSlug = scope
-      ? `?min_start_date=${scope.minStart}&max_start_date=${scope.maxStart}&limit=1000`
-      : `?interval_by=${intervalBy}&limit=${limit}`
+    const scopeSlug = `&timeFrame=${intervalBy || 'MAX'}`
     // https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&timeFrame=MAX&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa
-    const { data } = await axios.get('https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&timeFrame=MAX&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa')
+    console.log('scopeSlug', scopeSlug)
+    const url = `https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa${scopeSlug}`
+
+    const { data } = await axios.get(url)
     console.log('data', data)
     // remove last interval from the response not to show current interval that is being built
     priceStatistics.value = data

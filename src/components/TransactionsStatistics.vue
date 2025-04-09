@@ -11,7 +11,7 @@
       <div class="transaction-statistics__value">
         <number-label
           :number="formatNullable(last24hsTransactionsCount)"
-          is-raw/>
+          has-full-precision/>
         <trend-chip
           v-if="last24hsTransactionsTrend"
           :delta="last24hsTransactionsTrend"/>

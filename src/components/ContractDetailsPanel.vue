@@ -144,7 +144,7 @@
           <td>
             <price-label
               :price="formatAettosToAe(contractDetails.contractAccountBalance)"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>

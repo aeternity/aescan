@@ -1,21 +1,13 @@
 <template>
   <div class="number-label">
-    <!--todo fix duplication of conditions-->
-    <!--    isRaw: {{ isRaw }} <br>-->
-    <!--    isNumberRounded: {{ isNumberRounded }} <br>-->
-    <!--    {{ !isRaw || isNumberRounded }}-->
-    <app-tooltip v-if="!isRaw ?? isNumberRounded">
-      <!--      todo fix condition-->
-      {{ isRaw ? numeral(props.number).format('0,0.[0000000000000]') : `${displayNumber}` }}
+    <app-tooltip v-if="hasTooltip">
+      {{ `${displayNumber}` }}
       <template #tooltip>
-        <!--        {{ props.number < 1000 ? props.number : formatNumber(props.number) }}-->
-        {{ numeral(props.number).format('0,0.[0000000000000]') }}
-        <!--        {{ formatNumber(props.number) }}-->
-        <!--        todo name variable 1000-->
+        {{ formattedRawNumber }}
       </template>
     </app-tooltip>
     <template v-else>
-      {{ isRaw ? numeral(props.number).format('0,0.[0000000000000]') : `${displayNumber}` }}
+      {{ formattedRawNumber }}
     </template>
   </div>
 </template>
@@ -32,19 +24,22 @@ const props = defineProps({
     type: Number,
     default: undefined,
   },
-  isRaw: {
+  hasFullPrecision: {
     // todo hasFullPrecision: {
     type: Boolean,
     default: false,
   },
 })
 
-// todo different naming, flip israw
 // todo dont show tilda when 6200000
 
+const hasTooltip = computed(() => !props.hasFullPrecision && isNumberRounded.value)
+
 const numberFormatted = computed(() =>
-  formatNullable(formatNumber(props.number, props.maxDigits, props.isRaw)),
+  formatNullable(formatNumber(props.number, props.maxDigits, props.hasFullPrecision)),
 )
+
+const formattedRawNumber = computed(() => numeral(props.number).format('0,0.[0000000000000]'))
 
 const isNumberRounded = computed(() =>
   props.number.toString() !== numberFormatted.value,
@@ -70,6 +65,6 @@ const displayNumber = computed(() => {
 }
 </style>
 
-<!--todo dont show tooltip when raw v-if="isRaw || !isNumberRounded"-->
+<!--todo dont show tooltip when raw v-if="hasFullPrecision || !isNumberRounded"-->
 <!--todo wire maxDigits-->
 <!-- todo reuse formatnumber in formatprice-->

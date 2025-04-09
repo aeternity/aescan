@@ -49,7 +49,7 @@
           <td>
             <price-label
               :price="stateChannelDetails.initialAmount"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -110,7 +110,7 @@
           <td>
             <price-label
               :price="stateChannelDetails.aeLocked"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>

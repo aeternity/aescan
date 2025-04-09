@@ -48,7 +48,7 @@
         <td>
           <price-label
             :price="formatAettosToAe(transactionData.amount)"
-            is-raw/>
+            has-full-precision/>
         </td>
       </tr>
     </tbody>

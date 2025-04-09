@@ -33,7 +33,7 @@
           <td>
             <price-label
               :price="accountDetails.balance"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
 
@@ -48,7 +48,7 @@
             <price-label
               :price="sanitizedPrice"
               currency="$"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -61,7 +61,7 @@
           <td>
             <number-label
               :number="accountDetails.totalTransactionsCount"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr v-if="accountDetails.isGeneralized">

@@ -10,27 +10,34 @@ import {
 } from '@/utils/constants'
 import numeral from 'numeral'
 
-export function formatEllipseHash(hash) {
-  const prefix = hash.slice(0, 10)
-  const suffix = hash.slice(hash.length - 2)
-  return `${prefix}...${suffix}`
+import { MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
+
+export function formatNumber(amount, maxDigits = 2) {
+  // todo refactor
+  // todo why 0.001
+  const zeros = '0'.repeat(maxDigits - 1)
+  const abbreviated = numeral(amount).format(`0.[${zeros}]a`)
+  const displayPrice = parseFloat(amount) < 0.001 ? amount : abbreviated
+  return abbreviated.includes('NaN') ? amount : displayPrice
 }
 
-// todo check previous usage of parameters of formatNumber(
+// todo raw
+export function formatPrice(amount, maxDigits = 6, hasFullPrecision = false) {
+  const zeros = '0'.repeat(maxDigits - 1)
 
-export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
-  if (isNaN(tokenAmount) || tokenAmount === null) {
-    return tokenAmount
+  if (parseFloat(amount) === 0) {
+    return '0'
   }
-  return (new BigNumber(tokenAmount)).dividedBy(10 ** numberOfDecimals).toNumber()
-}
-
-export function formatAettosToAe(aettosAmount) {
-  if (isNaN(aettosAmount) || aettosAmount === null) {
-    return aettosAmount
+  if (parseFloat(amount) < 1) {
+    const small = numeral(amount).format(`0.0[${zeros}]`)
+    // todo if nan then ~0
+    return small === 'NaN' ? '0' : small
   }
+  // todo refactor claud
+  // todo raw not needed in function
 
-  return toAe(aettosAmount)
+  const formatted = hasFullPrecision ? numeral(amount).format('0,0') : numeral(amount).format('0,0.[0]a')
+  return formatted === 'NaN' ? amount : formatted
 }
 
 export function formatPercentage(percentage) {
@@ -46,34 +53,25 @@ export function formatPercentage(percentage) {
   }
 }
 
-export function formatNumber(amount, maxDigits = 2) {
-  // todo refactor
-  const zeros = '0'.repeat(maxDigits - 1)
-  const shorten = numeral(amount).format(`0.[${zeros}]a`)
-  const aaa = parseFloat(amount) < 0.001 ? amount : shorten
-  return shorten.includes('NaN') ? amount : aaa
+export function formatEllipseHash(hash) {
+  const prefix = hash.slice(0, 10)
+  const suffix = hash.slice(hash.length - 2)
+  return `${prefix}...${suffix}`
 }
 
-// todo raw
-export function formatPrice(amount, maxDigits = 6, isRaw = false) {
-  const zeros = '0'.repeat(maxDigits - 1)
-  console.log('amount', amount)
-  console.log('maxDigits', maxDigits)
-  if (amount.toString() === '0') {
-    return '0'
+export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
+  if (isNaN(tokenAmount) || tokenAmount === null) {
+    return tokenAmount
   }
-  if (parseFloat(amount) < 1) {
-    // return amount
-    const small = numeral(amount).format(`0.0[${zeros}]`)
-    // todo if nan then ~0
-    return small === 'NaN' ? '0' : small
-  }
-  // todo refactor claud
-  // todo raw not needed in function
+  return (new BigNumber(tokenAmount)).dividedBy(10 ** numberOfDecimals).toNumber()
+}
 
-  // todo if has grade than show hint and dont show approx
-  const formatted = isRaw ? numeral(amount).format('0,0') : numeral(amount).format('0,0.[0]a')
-  return formatted === 'NaN' ? amount : formatted
+export function formatAettosToAe(aettosAmount) {
+  if (isNaN(aettosAmount) || aettosAmount === null) {
+    return aettosAmount
+  }
+
+  return toAe(aettosAmount)
 }
 
 export function formatBlockDiffAsDatetime(expirationHeight, currentBlockHeight) {
@@ -131,9 +129,12 @@ export function formatIsAuction(name) {
 }
 
 export function formatTokenValue(amount, tokenAePrice, aeFiatPrice) {
+  // todo is this necessary?
+  // todo other similar
   if (tokenAePrice === null) {
     return null
   }
+
   const bigNumber = (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice)
   const decimalPlaces = bigNumber.e
   const digitsCount = bigNumber.c?.[0].toString().length

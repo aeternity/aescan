@@ -41,7 +41,7 @@
             <div class="token-details-panel__container">
               <price-label
                 :price="tokenDetails.price"
-                is-raw/>
+                has-full-precision/>
             </div>
           </td>
         </tr>
@@ -57,7 +57,7 @@
               <price-label
                 :price="fiatPrice"
                 currency="$"
-                is-raw/>
+                has-full-precision/>
             </div>
           </td>
         </tr>
@@ -70,7 +70,7 @@
           </th>
           <td>
             <price-label
-              is-raw
+              has-full-precision
               :price="tokenDetails.totalSupply"
               :currency="tokenDetails.symbol"
               :contract-id="tokenDetails.contractId"/>

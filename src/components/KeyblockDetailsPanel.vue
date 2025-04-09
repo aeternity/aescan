@@ -93,7 +93,7 @@
           <td>
             <price-label
               :price="keyblockDetails.blockReward"
-              is-raw/>
+              has-full-precision/>
           </td>
         </tr>
         <tr>

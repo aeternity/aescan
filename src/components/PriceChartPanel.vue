@@ -1,21 +1,26 @@
 <template>
   <app-panel>
     <template #title>
-      PRICE
+      AE PRICE TREND
     </template>
     <template #end>
       <price-chart-controls
         v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
-    <!--todo abstraction-->
-    <!--    todo reuse line chart-->
+    <!-- todo abstraction -->
+    <!-- todo reuse line chart -->
     <div class="line-chart">
       <Line
         v-if="priceStatistics"
         :options="chartOptions"
         :data="chartData"/>
+      <loader-indicator v-else/>
     </div>
+
+    <price-chart-controls
+      v-model="selectedScope"
+      class="hashrate-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 

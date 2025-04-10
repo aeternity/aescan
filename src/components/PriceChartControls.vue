@@ -9,10 +9,6 @@
         @click="selectPreset(option)">
         {{ option.label }}
       </app-chip>
-
-      <scope-picker
-        :is-scope-selected="isCustomScopeSelected"
-        @updated="selectCustomScope"/>
     </div>
   </div>
 </template>
@@ -30,17 +26,6 @@ const props = defineProps({
 })
 
 const selectedScope = useVModel(props, 'modelValue', emit)
-
-const isCustomScopeSelected = computed(() => Object.keys(selectedScope.value).includes('scope'))
-
-function selectCustomScope(scope) {
-  selectedScope.value = {
-    scope: {
-      minStart: scope[0],
-      maxStart: scope[1],
-    },
-  }
-}
 
 function isPresetSelected(option) {
   return selectedScope.value.label === option.label

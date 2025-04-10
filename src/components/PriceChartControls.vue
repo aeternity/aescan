@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="chart-controls__container">
+    <div class="price-chart-controls__container">
       <app-chip
         v-for="option in PRICE_CHART_SCOPE_PRESETS_OPTIONS"
         :key="option.label"
-        class="chart-controls__button"
+        class="price-chart-controls__button"
         :variant="isPresetSelected(option) ? 'error' : 'secondary'"
         @click="selectPreset(option)">
         {{ option.label }}
@@ -38,7 +38,7 @@ function selectPreset(option) {
 </script>
 
 <style scoped>
-.chart-controls {
+.price-chart-controls {
   &__container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

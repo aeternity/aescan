@@ -2,7 +2,9 @@
   <Head>
     <Title>Price</Title>
   </Head>
-
+  <!--todo hints-->
+  <!--todo tests-->
+  <!--  todo loading-->
   <page-header>
     Charts
     <template #tooltip>

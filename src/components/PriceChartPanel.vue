@@ -4,18 +4,20 @@
       PRICE
     </template>
     <template #end>
-
       <price-chart-controls
         v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
     <!--    {{ priceStatistics }}-->
 
-    <Line
-      v-if="priceStatistics"
+    <!--    todo reuse line chart-->
+    <div class="line-chart">
+      <Line
+        v-if="priceStatistics"
 
-      :options="chartOptions"
-      :data="chartData"/>
+        :options="chartOptions"
+        :data="chartData"/>
+    </div>
   </app-panel>
 </template>
 
@@ -41,20 +43,20 @@ const { fetchPriceStatistics } = useChartsStore()
 const labels = computed(() => {
   return priceStatistics.value.labels.map(label => {
     // console.log('label', label)
-
+    // todo dynamic
     const aaa = DateTime.fromMillis(parseInt(label)).toFormat('yyyy-MM-dd')
     // console.log('aaa', aaa)
     return aaa
   })
 })
 
-await useAsyncData(async () => {
+await useAsyncData(async() => {
   await loadPriceStatistics()
   return true
 })
 
 if (process.client) {
-  watch([selectedScope], async () => {
+  watch([selectedScope], async() => {
     await loadPriceStatistics()
   })
 }
@@ -62,7 +64,7 @@ if (process.client) {
 async function loadPriceStatistics() {
   console.log('selectedScope.value.intervalBy', selectedScope.value.intervalBy)
   await fetchPriceStatistics(
-    selectedScope.value.label,
+    selectedScope.value.intervalBy,
   )
 }
 
@@ -125,7 +127,7 @@ const chartOptions = {
       //   },
       // },
       grid: {
-        color: function () {
+        color: function() {
           return 'transparent'
         },
       },
@@ -146,21 +148,16 @@ ChartJS.register(
 </script>
 
 <style scoped>
-.transactions-chart-panel {
-  &__controls {
-    margin-top: var(--space-4);
+.line-chart {
+  height: 250px;
+  position: relative;
 
-    &--desktop {
-      margin-bottom: 0;
-    }
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &__select {
-    margin-top: var(--space-2);
-
-    @media (--desktop) {
-      margin-top: 0;
-    }
+  &__blank-state {
+    width: 100%;
   }
 }
 </style>

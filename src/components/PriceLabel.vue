@@ -10,14 +10,13 @@
       </app-link>
 
       <token-symbol-icon
+        v-else
         class="price-label__icon"
         :contract-id="contractId"/>
     </template>
 
     <app-tooltip v-if="hasTooltip">
-      <span>
-        {{ currencyPrefix }} {{ displayPrice }}
-      </span>
+      {{ currencyPrefix }} {{ displayPrice }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -90,8 +89,8 @@ const decimalPlaces = computed(() => {
   const decimalIndex = props.price.toString().indexOf('.')
   return decimalIndex >= 0 ? props.price.toString().length - decimalIndex - 1 : 0
 })
-const priceAbbreviated = computed(() => formatPrice(props.price, props.maxDigits, props.hasFullPrecision))
-const priceFormatted = computed(() => formatPrice(props.price, 13, true))
+const priceAbbreviated = computed(() => formatNumber(props.price, props.maxDigits, props.hasFullPrecision))
+const priceFormatted = computed(() => formatNumber(props.price, 13, true))
 const priceFractioned = computed(() => {
   const maximumSignificantDigits = 8
   return Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(props.price)

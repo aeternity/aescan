@@ -4,13 +4,15 @@ import { formatAettosToAe, formatKnownAddress, formatNumber } from '~/utils/form
 const axios = useAxios()
 
 export default defineEventHandler(async() => {
-  const [statistics, blockReward, status, topMiners] = await Promise.all([
+  const [statistics, blockReward, status, topMiners, hashrateStatistics] = await Promise.all([
     fetchMiningStats(),
     fetchBlockReward(),
     fetchStatus(),
     fetchTopMiners(),
+    fetchHashrateStatistics(),
   ])
-  return adaptMiningStatistics(statistics, blockReward, status, topMiners)
+
+  return adaptMiningStatistics(statistics, blockReward, status, topMiners, hashrateStatistics)
 })
 
 async function fetchMiningStats() {
@@ -40,7 +42,22 @@ async function fetchTopMiners() {
   return data
 }
 
-function adaptMiningStatistics(statistics, blockReward, status, topMiners) {
+async function fetchHashrateStatistics() {
+  const url = getUrl({
+    entity: 'stats/hashrate',
+    limit: 999,
+    parameters: {
+      interval_by: 'month',
+    },
+  })
+  console.log('url', url)
+  const { data } = await axios.get(url)
+  // const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/hashrate?interval_by=month&limit=999`)
+  console.log('data', data)
+  return data.data.slice(1).reverse()
+}
+
+function adaptMiningStatistics(statistics, blockReward, status, topMiners, hashrateStatistics) {
   return {
     blockReward: formatAettosToAe(blockReward),
     minersCount: statistics.minersCount,
@@ -54,5 +71,6 @@ function adaptMiningStatistics(statistics, blockReward, status, topMiners) {
       miners: topMiners.map(item => formatKnownAddress(item.miner)),
       blocksMined: topMiners.map(item => item.blocksMined),
     },
+    hashrateStatistics,
   }
 }

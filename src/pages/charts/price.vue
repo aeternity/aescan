@@ -2,8 +2,6 @@
   <Head>
     <Title>Price</Title>
   </Head>
-  <!--todo hints-->
-  <!--todo tests-->
   <page-header>
     Charts
     <template #tooltip>
@@ -16,7 +14,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
-      <price-chart-panel :scope="CHART_SCOPE_PRESETS_OPTIONS[4]"/>
+      <price-chart-panel/>
     </template>
   </NuxtLayout>
 </template>

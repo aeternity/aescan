@@ -17,6 +17,7 @@
       <charts-navigation/>
     </template>
     <template #detail>
+      <!--      todo add chart-->
       <price-chart-panel :scope="CHART_SCOPE_PRESETS_OPTIONS[4]"/>
     </template>
   </NuxtLayout>

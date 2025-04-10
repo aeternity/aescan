@@ -106,16 +106,13 @@ export const useChartsStore = defineStore('charts', () => {
   }
 
   async function fetchPriceStatistics(intervalBy) {
-    console.log('intervalBy', intervalBy)
     priceStatistics.value = null
 
     const scopeSlug = `&timeFrame=${intervalBy || 'MAX'}`
     // https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&timeFrame=MAX&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa
-    console.log('scopeSlug', scopeSlug)
     const url = `https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa${scopeSlug}`
 
     const { data } = await axios.get(url)
-    console.log('data', data)
     // remove last interval from the response not to show current interval that is being built
     priceStatistics.value = data
   }

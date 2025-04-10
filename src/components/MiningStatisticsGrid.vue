@@ -69,7 +69,17 @@
     </app-panel>
 
     <app-panel class="mining-statistics-grid__panel--c2">
-      <hashrate-chart-panel/>
+      <h2 class="h5">
+        HASHRATE TREND
+        <hint-tooltip>
+          aaa
+          <!--          todo hint-->
+        </hint-tooltip>
+      </h2>
+      <line-chart
+        :height="190"
+        :data="statistics.hashrateStatistics"
+        interval-by="month"/>
     </app-panel>
 
     <app-panel class="mining-statistics-grid__panel--hashrate">
@@ -212,7 +222,8 @@ if (process.client) {
       grid-area: 4 / 1 / 5 / 2;
 
       @media (--desktop) {
-        grid-area: 2 / 1 / 3 / 2;
+
+        grid-area: 3 / 1 / 4 / 2;
       }
     }
 
@@ -220,7 +231,7 @@ if (process.client) {
       grid-area: 5 / 1 / 6 / 2;
 
       @media (--desktop) {
-        grid-area: 4 / 1 / 5 / 2;
+        grid-area: 2 / 1 / 3 / 2;
       }
     }
 
@@ -236,7 +247,7 @@ if (process.client) {
       grid-area: 6 / 1 / 7 / 2;
 
       @media (--desktop) {
-        grid-area: 4 / 3 / 5 / 4;
+        grid-area: 4 / 2 / 5 / 3;
       }
     }
 
@@ -244,7 +255,7 @@ if (process.client) {
       grid-area: 7 / 1 / 8 / 2;
 
       @media (--desktop) {
-        grid-area: 3 / 1 / 4 / 2;
+        grid-area: 4 / 4 / 5 / 5;
       }
     }
 
@@ -252,7 +263,7 @@ if (process.client) {
       grid-area: 8 / 1 / 9 / 2;
 
       @media (--desktop) {
-        grid-area: 4 / 2 / 5 / 3;
+        grid-area: 4 / 3 / 5 / 4;
       }
     }
 
@@ -260,7 +271,7 @@ if (process.client) {
       grid-area: 9 / 1 / 10 / 2;
 
       @media (--desktop) {
-        grid-area: 4 / 4 / 5 / 5;
+        grid-area: 4 / 1 / 5 / 2;
       }
     }
 

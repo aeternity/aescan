@@ -39,6 +39,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  height: {
+    type: Number,
+    default: 250,
+  },
 })
 
 const stats = computed(() => {
@@ -142,7 +146,7 @@ ChartJS.defaults.font.family = 'Roboto Mono'
 
 <style scoped>
 .line-chart {
-  height: 250px;
+  height: v-bind(height+ 'px');
   position: relative;
 
   display: flex;

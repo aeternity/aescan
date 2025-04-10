@@ -42,11 +42,8 @@ const { fetchPriceStatistics } = useChartsStore()
 
 const labels = computed(() => {
   return priceStatistics.value.labels.map(label => {
-    // console.log('label', label)
-    // todo dynamic
-    const aaa = DateTime.fromMillis(parseInt(label)).toFormat('yyyy-MM-dd')
-    // console.log('aaa', aaa)
-    return aaa
+    const format = selectedScope.value.intervalBy !== '1H' ? 'yyyy-MM-dd' : 'yyyy-MM-dd HH:mm'
+    return DateTime.fromMillis(parseInt(label)).toFormat(format)
   })
 })
 

@@ -59,7 +59,6 @@ if (process.client) {
 }
 
 async function loadPriceStatistics() {
-  console.log('selectedScope.value.intervalBy', selectedScope.value.intervalBy)
   await fetchPriceStatistics(
     selectedScope.value.intervalBy,
   )
@@ -83,7 +82,7 @@ const chartData = computed(() => {
 
 const chartOptions = {
   responsive: true,
-  // maintainAspectRatio: false,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,
@@ -101,6 +100,7 @@ const chartOptions = {
       // },
     },
   },
+  // todo reeanble settings
   scales: {
     y: {
       border: {

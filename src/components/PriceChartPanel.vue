@@ -3,6 +3,7 @@
     <template #title>
       AE PRICE TREND
     </template>
+
     <template #end>
       <price-chart-controls
         v-model="selectedScope"
@@ -129,7 +130,6 @@ ChartJS.register(
 </script>
 
 <style scoped>
-
 .price-chart-panel {
   &__controls {
     margin-top: var(--space-4);
@@ -144,5 +144,4 @@ ChartJS.register(
     justify-content: center;
   }
 }
-
 </style>

@@ -1,7 +1,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useChartsStore = defineStore('charts', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL, NUXT_PUBLIC_DEX_BACKEND_URL, NUXT_PUBLIC_AE_TOKEN_ID } = useRuntimeConfig().public
   const axios = useAxios()
 
   const transactionsStatistics = ref(null)
@@ -108,12 +108,11 @@ export const useChartsStore = defineStore('charts', () => {
   async function fetchPriceStatistics(intervalBy) {
     priceStatistics.value = null
 
-    const scopeSlug = `&timeFrame=${intervalBy || 'MAX'}`
-    // https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&timeFrame=MAX&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa
-    const url = `https://dex-backend-mainnet.prd.service.aepps.com/graph?graphType=Price&tokenAddress=ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa${scopeSlug}`
+    const scopeSlug = `&timeFrame=${intervalBy}`
 
-    const { data } = await axios.get(url)
-    // remove last interval from the response not to show current interval that is being built
+    const { data } = await axios.get(
+      `${NUXT_PUBLIC_DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${NUXT_PUBLIC_AE_TOKEN_ID}${scopeSlug}`,
+    )
     priceStatistics.value = data
   }
 

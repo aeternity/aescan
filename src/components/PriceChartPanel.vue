@@ -8,13 +8,11 @@
         v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
-    <!--    {{ priceStatistics }}-->
-
+    <!--todo abstraction-->
     <!--    todo reuse line chart-->
     <div class="line-chart">
       <Line
         v-if="priceStatistics"
-
         :options="chartOptions"
         :data="chartData"/>
     </div>
@@ -91,13 +89,12 @@ const chartOptions = {
       tooltip: {
         position: 'top',
       },
-      // callbacks: {
-      //   title: function(context) {
-      //     console.log('context', context)
-      //     console.log('DateTime.fromMillis(context.label)',
-      //       DateTime.fromMillis(context))
-      //   },
-      // },
+      callbacks: {
+        label: function(value) {
+          // todo shorten function
+          return `$ ${value.formattedValue}`
+        },
+      },
     },
   },
   // todo reeanble settings
@@ -107,12 +104,11 @@ const chartOptions = {
         display: false,
       },
       min: 0,
-      // ticks: {
-      //   precision: 0.01,
-      //   callback: function(value) {
-      //     return `$${value}`
-      //   },
-      // },
+      ticks: {
+        callback: function(value) {
+          return `$ ${value}`
+        },
+      },
     },
     x: {
       // ticks: {

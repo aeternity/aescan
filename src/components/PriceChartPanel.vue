@@ -8,9 +8,8 @@
         v-model="selectedScope"
         class="u-hidden-mobile"/>
     </template>
-    <!-- todo abstraction -->
-    <!-- todo reuse line chart -->
-    <div class="line-chart">
+
+    <div class="price-chart-panel__line-chart">
       <Line
         v-if="priceStatistics"
         :options="chartOptions"
@@ -20,7 +19,7 @@
 
     <price-chart-controls
       v-model="selectedScope"
-      class="hashrate-chart-panel__controls u-hidden-desktop"/>
+      class="price-chart-panel__controls u-hidden-desktop"/>
   </app-panel>
 </template>
 
@@ -62,9 +61,7 @@ if (process.client) {
 }
 
 async function loadPriceStatistics() {
-  await fetchPriceStatistics(
-    selectedScope.value.intervalBy,
-  )
+  await fetchPriceStatistics(selectedScope.value.intervalBy)
 }
 
 const chartData = computed(() => {
@@ -95,14 +92,10 @@ const chartOptions = {
         position: 'top',
       },
       callbacks: {
-        label: function(value) {
-          // todo shorten function
-          return `$ ${value.formattedValue}`
-        },
+        label: value => `$ ${value.formattedValue}`,
       },
     },
   },
-  // todo reeanble settings
   scales: {
     y: {
       border: {
@@ -110,20 +103,10 @@ const chartOptions = {
       },
       min: 0,
       ticks: {
-        callback: function(value) {
-          return `$ ${value}`
-        },
+        callback: value => `$ ${value}`,
       },
     },
     x: {
-      // ticks: {
-      //   callback: function(context) {
-      //     console.log('context', context)
-      //     // console.log('DateTime.fromMillis(value)', DateTime.fromMillis(value).toFormat('yyyy-MM-dd'))
-      //     // console.log('value', value)
-      //     return context
-      //   },
-      // },
       grid: {
         color: function() {
           return 'transparent'
@@ -146,16 +129,20 @@ ChartJS.register(
 </script>
 
 <style scoped>
-.line-chart {
-  height: 250px;
-  position: relative;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.price-chart-panel {
+  &__controls {
+    margin-top: var(--space-4);
+  }
 
-  &__blank-state {
-    width: 100%;
+  &__line-chart {
+    height: 250px;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
+
 </style>

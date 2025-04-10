@@ -4,7 +4,6 @@ import { BigNumber } from 'bignumber.js'
 import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
-import { formatTokenValue } from '~/utils/format'
 
 export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
   const formattedData = keyblockMicroblocks.data.map((microblock) => {
@@ -171,7 +170,7 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
       tokenName: token.tokenName,
       contractId: token.contractId,
       amount,
-      value: formatTokenValue(amount, tokenAePrice, aeFiatPrice),
+      value: (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber(),
     }
   })
   return {

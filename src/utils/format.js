@@ -12,23 +12,13 @@ import numeral from 'numeral'
 
 import { MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
 
-export function formatNumber(amount, maxDigits = 2) {
-  // todo refactor
-  // todo why 0.001
-  const zeros = '0'.repeat(maxDigits - 1)
-  const abbreviated = numeral(amount).format(`0.[${zeros}]a`)
-  const displayPrice = parseFloat(amount) < 0.001 ? amount : abbreviated
-  return abbreviated.includes('NaN') ? amount : displayPrice
-}
-
 // todo raw
-export function formatPrice(amount, maxDigits = 6, hasFullPrecision = false) {
-  const zeros = '0'.repeat(maxDigits - 1)
-
+export function formatNumber(amount, maxDigits = 6, hasFullPrecision = false) {
   if (parseFloat(amount) === 0) {
     return '0'
   }
   if (parseFloat(amount) < 1) {
+    const zeros = '0'.repeat(maxDigits - 1)
     const small = numeral(amount).format(`0.0[${zeros}]`)
     // todo if nan then ~0
     return small === 'NaN' ? '0' : small
@@ -42,8 +32,8 @@ export function formatPrice(amount, maxDigits = 6, hasFullPrecision = false) {
 
 export function formatPercentage(percentage) {
   if (percentage >= 0.00001) {
-    // todo is it necessary or just use numeral percent
-    return `${formatNumber(percentage)} %`
+    // todo reuse formatNumber
+    return `${numeral(percentage).format('0.0[000]')} %`
   }
   if (percentage === 0) {
     return '0 %'
@@ -128,21 +118,22 @@ export function formatIsAuction(name) {
   return name.length - suffixLength < auctionLength
 }
 
-export function formatTokenValue(amount, tokenAePrice, aeFiatPrice) {
-  // todo is this necessary?
-  // todo other similar
-  if (tokenAePrice === null) {
-    return null
-  }
-
-  const bigNumber = (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice)
-  const decimalPlaces = bigNumber.e
-  const digitsCount = bigNumber.c?.[0].toString().length
-  if (decimalPlaces & digitsCount) {
-    return formatNumber(bigNumber.toFixed(digitsCount - decimalPlaces - 1))
-  }
-  return null
-}
+//
+// export function formatTokenValue(amount, tokenAePrice, aeFiatPrice) {
+//   // todo is this necessary?
+//   // todo other similar
+//   if (tokenAePrice === null) {
+//     return null
+//   }
+//
+//   const bigNumber = (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice)
+//   const decimalPlaces = bigNumber.e
+//   const digitsCount = bigNumber.c?.[0].toString().length
+//   if (decimalPlaces & digitsCount) {
+//     return formatNumber(bigNumber.toFixed(digitsCount - decimalPlaces - 1))
+//   }
+//   return null
+// }
 
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {

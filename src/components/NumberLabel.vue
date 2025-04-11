@@ -69,6 +69,7 @@ const priceFractioned = computed(() => {
 
 // todo ~0
 // todo reuse format function
+// todo unify logix
 const isNumberRounded = computed(() => {
   const zeros = '0'.repeat(decimalPlaces.value)
   return props.number.toString() !== numeral(priceAbbreviated.value).format(`0.[${zeros}]`).toString() && props.number > 1

@@ -90,7 +90,7 @@ const chartOptions = {
         position: 'top',
       },
       callbacks: {
-        title: function (context) {
+        title: function(context) {
           return context.label
         },
       },
@@ -104,15 +104,14 @@ const chartOptions = {
       min: 0,
       ticks: {
         precision: 0,
-        callback: function (value) {
-          // todo use formatnumber instead
+        callback: function(value) {
           return formatNumber(value)
         },
       },
     },
     x: {
       grid: {
-        color: function () {
+        color: function() {
           return 'transparent'
         },
       },

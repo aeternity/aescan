@@ -101,18 +101,21 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+  // todo fix this
+  // eslint: {
+  //   config: {
+  //     stylistic: {
+  //       braceStyle: '1tbs',
+  //       arrowParens: 'as-needed',
+  //     },
+  //   },
+  // },
   monacoEditor: {
     locale: 'en',
     componentName: {
       codeEditor: 'MonacoEditor',
     },
   },
-  // todo fix this
-  // eslint: {
-  //   config: {
-  //     stylistic: true,
-  //   },
-  // },
   plausible: {
     ignoredHostnames: ['localhost'],
   },

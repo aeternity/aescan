@@ -13,7 +13,6 @@ export default defineNuxtConfig({
     routeRules: {
       '/proxy/avatar/**': { proxy: 'https://avatars.z52da5wt.xyz/**', cors: true },
       '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
-      '/proxy/know': { proxy: 'https://www.aeknow.org/api', cors: true },
     },
   },
   modules: [

@@ -38,7 +38,6 @@
 
       </span>
     </app-panel>
-    <!--todo add  hashrate change over tim-->
     <app-panel class="mining-statistics-grid__panel--reward">
       <h2 class="h5">
         REWARD
@@ -72,8 +71,7 @@
       <h2 class="h5">
         HASHRATE TREND
         <hint-tooltip>
-          aaa
-          <!--          todo hint-->
+          {{ miningHints.hashrateTrend }}
         </hint-tooltip>
       </h2>
       <line-chart
@@ -165,7 +163,7 @@ if (process.client) {
 </script>
 
 <style scoped>
-
+/*todo 2 or 3 miners*/
 /*todo how about testnet minig miners count*/
 .mining-statistics-grid {
   display: grid;

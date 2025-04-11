@@ -36,20 +36,17 @@ const props = defineProps({
     required: true,
   },
 })
-const stats = computed(() => {
-  return props.topMiners.blocksMined
-})
-const legend = computed(() => {
-  return props.topMiners.miner
-})
+const stats = computed(() => props.topMiners.blocksMined)
+const legend = computed(() => props.topMiners.miners)
+
 const data = {
   labels: legend.value,
   datasets: [{
     data: stats.value,
     backgroundColor: [
-      'rgb(245, 39, 78)',
       'rgb(0, 61, 255)',
       'rgb(102, 231, 115)',
+      'rgb(245, 39, 78)',
     ],
     hoverOffset: 4,
   }],
@@ -62,15 +59,15 @@ const chartOptions = {
     legend: {
       display: true,
       position: 'bottom',
+      align: 'start',
     },
     tooltip: {
       tooltip: {
         position: 'top',
       },
       callbacks: {
-        title: function(context) {
-          return context.label
-        },
+        title: context => context.formattedValue,
+        label: context => `${context.formattedValue} blocks`,
       },
     },
   },

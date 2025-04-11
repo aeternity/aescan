@@ -35,7 +35,9 @@
           Activation Price
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.nameFee)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.nameFee)"
+            has-full-precision/>
         </td>
       </tr>
     </tbody>

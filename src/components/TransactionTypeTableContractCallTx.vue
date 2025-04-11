@@ -46,7 +46,9 @@
           Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.amount)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.amount)"
+            has-full-precision/>
         </td>
       </tr>
       <tr>
@@ -119,6 +121,7 @@
           Gas Price
         </th>
         <td>
+          {{ formatAettosToAe(transactionData.gasPrice) }}
           <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
         </td>
       </tr>
@@ -141,6 +144,7 @@
           Gas Costs
         </th>
         <td>
+          {{ formatAettosToAe(gasCosts) }} ||
           <price-label :price="formatAettosToAe(gasCosts)"/>
         </td>
       </tr>

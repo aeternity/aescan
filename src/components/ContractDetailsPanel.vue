@@ -142,7 +142,9 @@
             Smart Contract's Account Balance
           </th>
           <td>
-            <price-label :price="0"/>
+            <price-label
+              :price="formatAettosToAe(contractDetails.contractAccountBalance)"
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -153,7 +155,7 @@
             Smart Contract Calls
           </th>
           <td>
-            {{ contractDetails.callsCount }}
+            <number-label :number="contractDetails.callsCount"/>
           </td>
         </tr>
         <tr>

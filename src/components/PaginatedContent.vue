@@ -152,7 +152,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', resetContainerHeight())
 })
-
 </script>
 
 <style scoped>

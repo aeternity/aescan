@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-
 const featureFlags = useFeatureFlags()
 
 const menuOptions = ref([{
@@ -149,7 +148,8 @@ function toggle(name) {
   if (activeItemName.value !== name) {
     closeAll()
     open(name)
-  } else {
+  }
+  else {
     closeAll()
   }
 }

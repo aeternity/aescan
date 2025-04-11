@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-
 const route = useRoute()
 const { fetchAccountTransactions } = useAccountStore()
 const { accountTransactions } = storeToRefs(useAccountStore())

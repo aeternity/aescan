@@ -47,7 +47,7 @@ async function loadTransactions() {
   pageIndex.value = 1
 }
 
-if (process.client) {
+if (import.meta.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
   })

@@ -55,7 +55,7 @@ useAsyncData(async() => {
   return true
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch([selectedScope, selectedTxType], async() => {
     await loadTransactionStatistics()
   })

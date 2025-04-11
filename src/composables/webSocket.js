@@ -17,7 +17,8 @@ export const useWebSocket = defineStore('webSocket', () => {
 
     if (newValue) {
       webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "MicroBlocks"}')
-    } else {
+    }
+    else {
       webSocket.value.send('{"op":"Unsubscribe", "source": "node", "payload": "MicroBlocks"}')
     }
   })
@@ -29,7 +30,8 @@ export const useWebSocket = defineStore('webSocket', () => {
 
     if (newTransactionId) {
       webSocket.value.send(`{"op":"Subscribe", "source": "mdw", "payload": "${newTransactionId}"}`)
-    } else {
+    }
+    else {
       webSocket.value.send(`{"op":"Unsubscribe", "source": "mdw", "payload": "${oldTransactionId}"}`)
     }
   })
@@ -73,7 +75,8 @@ export const useWebSocket = defineStore('webSocket', () => {
 
     if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
       updateTransactionTypeData(parsedData.payload)
-    } else {
+    }
+    else {
       await processSocketMessage(parsedData)
     }
   }

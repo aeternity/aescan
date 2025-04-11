@@ -27,7 +27,7 @@ function loadNextEvents() {
   fetchDexTrades(trades.value.next.substring(3))
 }
 
-if (process.client) {
+if (import.meta.client) {
   fetchDexTrades()
 }
 </script>

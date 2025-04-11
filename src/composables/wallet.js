@@ -60,7 +60,8 @@ export const useWalletStore = defineStore('wallet', () => {
       })
       await connector.subscribeAccounts('subscribe', 'current')
       status.value = 'connected'
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error)
 
       disconnect()
@@ -75,7 +76,8 @@ export const useWalletStore = defineStore('wallet', () => {
     connector.removeAllListeners()
     try {
       connector.disconnect()
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error)
     }
     connector = undefined

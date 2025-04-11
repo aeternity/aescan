@@ -1,5 +1,5 @@
 <template>
-  <app-chip :class="['expand-button', {'expand-button--activated': isExpanded}]">
+  <app-chip :class="['expand-button', { 'expand-button--activated': isExpanded }]">
     <slot/>
     <app-icon
       class="expand-button__icon"

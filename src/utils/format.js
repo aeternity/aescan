@@ -61,7 +61,8 @@ export function formatAePrice(price, maxDigits = 8) {
     }
     if (integers === '0') {
       return `~${integers}`
-    } else {
+    }
+    else {
       return `${formatNumber(integers)}`
     }
   }
@@ -104,10 +105,11 @@ export function formatNullable(value) {
 
 export function formatDecodeBase64(base64String) {
   try {
-    return process.client
+    return import.meta.client
       ? (decodeURIComponent(escape(atob(base64String))) ? decodeURIComponent(escape(atob(base64String))) : null)
       : Buffer.from(base64String, 'base64').toString('utf8')
-  } catch (error) {
+  }
+  catch (error) {
     console.error(error)
     return ''
   }
@@ -121,8 +123,8 @@ export function formatNameState(name, blockHeight) {
   const isActive = name.active === true
   const isInAuction = !!name.auctionEnd
   const isExpired = name.active === false
-  const isRevoked = !name.active &&
-    name.expireHeight + REVOKED_PERIOD > blockHeight
+  const isRevoked = !name.active
+    && name.expireHeight + REVOKED_PERIOD > blockHeight
 
   const labels = Object.keys({
     active: isActive,
@@ -154,11 +156,14 @@ export function formatPercentage(percentage) {
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
     return tokenLimit
-  } else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
+  }
+  else if (extensions.includes('mintable') && !extensions.includes('mintable_limit')) {
     return 'Unlimited'
-  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+  }
+  else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
     return null
-  } else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
+  }
+  else if (extensions.includes('mintable_templates') && !extensions.includes('mintable_templates_limit')) {
     return null
   }
 }
@@ -166,11 +171,14 @@ export function formatTokenLimit(extensions, tokenLimit) {
 export function formatTemplateLimit(extensions, templateLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
     return null
-  } else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
+  }
+  else if (extensions.includes('mintable') || !extensions.includes('mintable_limit')) {
     return null
-  } else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
+  }
+  else if (extensions.includes('mintable_templates') && extensions.includes('mintable_templates_limit')) {
     return templateLimit
-  } else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
+  }
+  else if (extensions.includes('mintable_templates') || !extensions.includes('mintable_templates_limit')) {
     return 'Unlimited'
   }
 }
@@ -178,9 +186,11 @@ export function formatTemplateLimit(extensions, templateLimit) {
 export function formatKnownAddress(hash, isEllipsed = true) {
   if (KNOWN_ADDRESSES.some(address => address.hash === hash)) {
     return KNOWN_ADDRESSES.find(address => address.hash === hash).name
-  } else if (isEllipsed) {
+  }
+  else if (isEllipsed) {
     return formatEllipseHash(hash)
-  } else {
+  }
+  else {
     return hash
   }
 }

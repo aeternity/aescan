@@ -160,7 +160,7 @@ export const LICENSE_OPTIONS = [
   { label: 'Business Source License', key: 'BSL 1.1' },
 ]
 
-export const MINERS = [
+export const MINING_POOLS = [
   { name: '2miners', url: 'https://2miners.com/ae-mining-pool' },
   { name: 'WoolyPooly', url: 'https://woolypooly.com/en/coin/ae' },
 ]

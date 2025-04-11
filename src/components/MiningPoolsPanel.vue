@@ -37,5 +37,5 @@
 
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
-import { MINING_POOLS } from "@/utils/constants";
+import { MINING_POOLS } from '@/utils/constants'
 </script>

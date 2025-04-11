@@ -38,7 +38,7 @@ const route = useRoute()
 
 const pageIndex = ref(1)
 
-if (process.client) {
+if (import.meta.client) {
   if (!isHydrated?.value) {
     setPageLimit(10)
     loadTransactions()
@@ -61,7 +61,6 @@ async function loadPrevTransactions() {
 async function loadNextTransactions() {
   await loadTransactions(transactions.value.next)
 }
-
 </script>
 
 <style scoped>

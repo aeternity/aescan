@@ -117,7 +117,6 @@ onBeforeMount(() => {
 onBeforeUnmount(() => {
   isSubscribedToKeyblockDetails.value = false
 })
-
 </script>
 
 <style scoped>

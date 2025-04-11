@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-
 const { keyblocksStatistics } = storeToRefs(useChartsStore())
 const { fetchKeyblocksStatistics } = useChartsStore()
 
@@ -31,7 +30,7 @@ useAsyncData(async() => {
   return true
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch(selectedScope, async() => {
     await loadKeyblockStatistics()
   })

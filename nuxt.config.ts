@@ -1,28 +1,16 @@
 import fs from 'fs/promises'
-import { compileTemplate } from 'vue/compiler-sfc'
-import { sentryVitePlugin } from '@sentry/vite-plugin'
+import {compileTemplate} from 'vue/compiler-sfc'
+import {sentryVitePlugin} from '@sentry/vite-plugin'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  srcDir: './src',
-  css: ['@/assets/styles/main.css'],
-  devServer: {
-    port: 8080,
-  },
-  nitro: {
-    routeRules: {
-      '/proxy/avatar/**': { proxy: 'https://avatars.z52da5wt.xyz/**', cors: true },
-      '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
-    },
-  },
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
+    '@nuxt/eslint',
   ],
-  plausible: {
-    ignoredHostnames: ['localhost'],
-  },
+  css: ['@/assets/styles/main.css'],
   appConfig: {
     APP_VERSION: process.env.APP_VERSION,
   },
@@ -48,22 +36,22 @@ export default defineNuxtConfig({
       ENABLE_MINING: process.env.ENABLE_MINING,
     },
   },
-  postcss: {
-    plugins: {
-      autoprefixer: {},
-      '@csstools/postcss-global-data': {
-        files: ['src/assets/styles/settings/_variables.css'],
-      },
-      'postcss-custom-media': {},
-      'postcss-import': {},
-      'postcss-nested': {},
+  srcDir: './src',
+  sourcemap: true,
+  devServer: {
+    port: 8080,
+  },
+  compatibilityDate: '2024-07-16',
+  nitro: {
+    routeRules: {
+      '/proxy/avatar/**': {proxy: 'https://avatars.z52da5wt.xyz/**', cors: true},
+      '/proxy/nodes': {proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true},
     },
   },
-  sourcemap: true,
   vite: {
-    build: { target: 'es2020' },
+    build: {target: 'es2020'},
     optimizeDeps: {
-      esbuildOptions: { target: 'es2020' },
+      esbuildOptions: {target: 'es2020'},
     },
     define: {
       __VUE_PROD_DEVTOOLS__: process.env.MODE !== 'production',
@@ -77,7 +65,7 @@ export default defineNuxtConfig({
             return
           }
 
-          const { code } = compileTemplate({
+          const {code} = compileTemplate({
             id: JSON.stringify(path),
             filename: path,
             source: await fs.readFile(path, 'utf-8'),
@@ -103,11 +91,29 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  postcss: {
+    plugins: {
+      'autoprefixer': {},
+      '@csstools/postcss-global-data': {
+        files: ['src/assets/styles/settings/_variables.css'],
+      },
+      'postcss-custom-media': {},
+      'postcss-import': {},
+      'postcss-nested': {},
+    },
+  },
   monacoEditor: {
     locale: 'en',
     componentName: {
       codeEditor: 'MonacoEditor',
     },
   },
-  compatibilityDate: '2024-07-16',
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
+  plausible: {
+    ignoredHostnames: ['localhost'],
+  },
 })

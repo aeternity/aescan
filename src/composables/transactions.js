@@ -111,7 +111,8 @@ export const useTransactionsStore = defineStore('transactions', () => {
       last24hsTransactionsTrend.value = data.transactionsTrend
       last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)
       feesTrend.value = data.feesTrend
-    } catch {
+    }
+    catch {
       last24hsTransactionsCount.value = null
       last24hsTransactionsTrend.value = null
       last24hsAverageTransactionFees.value = null

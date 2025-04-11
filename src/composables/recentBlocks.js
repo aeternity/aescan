@@ -23,8 +23,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     return isBlockFirstInSequence(selectedKeyblock.value, keyblocks.value)
   })
   const isFirstMicroblockSelected = computed(() => {
-    return !rawSelectedMicroblock.value ||
-      isBlockFirstInSequence(rawSelectedMicroblock.value, selectedKeyblockMicroblocks.value)
+    return !rawSelectedMicroblock.value
+      || isBlockFirstInSequence(rawSelectedMicroblock.value, selectedKeyblockMicroblocks.value)
   })
   const selectedMicroblock = computed(() => {
     return rawSelectedMicroblock.value || selectedKeyblockMicroblocks.value?.[0]
@@ -56,7 +56,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   async function selectKeyblock(keyblock) {
     if (isBlockFirstInSequence(keyblock, keyblocks.value)) {
       rawSelectedKeyblock.value = null
-    } else {
+    }
+    else {
       rawSelectedKeyblock.value = keyblock
     }
 
@@ -72,7 +73,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   function selectMicroblock(microblock) {
     if (isBlockFirstInSequence(microblock, selectedKeyblockMicroblocks.value)) {
       rawSelectedMicroblock.value = null
-    } else {
+    }
+    else {
       rawSelectedMicroblock.value = microblock
     }
 
@@ -135,7 +137,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
         if (isFirstMicroblockSelected.value && isFirstKeyblockSelected.value) {
           await fetchSelectedMicroblockTransactions()
         }
-      } catch (error) {
+      }
+      catch (error) {
         // ignore 400 errors when fetching data by a non-existing microblock
         // as they are caused by microforks
         if (error?.response.status !== 400) {

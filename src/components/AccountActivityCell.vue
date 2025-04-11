@@ -47,9 +47,11 @@ const activityDescription = computed(() => {
   case 'ContractCallTxEvent':
     if (SWAP_CONTRACT_CALLS.includes(tx.value.function)) {
       return 'Swapped'
-    } else if (ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
+    }
+    else if (ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
       return 'Added liquidity'
-    } else if (REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
+    }
+    else if (REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)) {
       return 'Removed liquidity'
     }
     return 'Called'

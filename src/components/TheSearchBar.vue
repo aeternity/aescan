@@ -31,23 +31,32 @@ async function search() {
   }
   if (isAccountAddress(query.value)) {
     push(`/accounts/${query.value}`)
-  } else if (isTransactionHash(query.value)) {
+  }
+  else if (isTransactionHash(query.value)) {
     push(`/transactions/${query.value}`)
-  } else if (isContractId(query.value)) {
+  }
+  else if (isContractId(query.value)) {
     push(`/contracts/${query.value}`)
-  } else if (isOracleId(query.value)) {
+  }
+  else if (isOracleId(query.value)) {
     push(`/oracles/${query.value}`)
-  } else if (isStateChannelId(query.value)) {
+  }
+  else if (isStateChannelId(query.value)) {
     push(`/state-channels/${query.value}`)
-  } else if (isMicroblockId(query.value)) {
+  }
+  else if (isMicroblockId(query.value)) {
     push(`/microblocks/${query.value}`)
-  } else if (isNameId(query.value)) {
+  }
+  else if (isNameId(query.value)) {
     push(`/names/${query.value}`)
-  } else if (await isName(query.value)) {
+  }
+  else if (await isName(query.value)) {
     push(`/names/${query.value}`)
-  } else if (await isKeyblockId(query.value)) {
+  }
+  else if (await isKeyblockId(query.value)) {
     push(`/keyblocks/${query.value}`)
-  } else {
+  }
+  else {
     push(`/search/${query.value}`)
   }
   query.value = ''
@@ -80,7 +89,8 @@ function isStateChannelId(query) {
 async function isName(query) {
   if (query.endsWith('.test') || query.endsWith('.chain')) {
     return await isNameClaimed(query)
-  } else {
+  }
+  else {
     return false
   }
 }
@@ -148,5 +158,4 @@ function isMicroblockId(query) {
     }
   }
 }
-
 </style>

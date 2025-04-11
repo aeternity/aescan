@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
   contractDetails: {
     required: true,

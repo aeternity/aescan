@@ -31,17 +31,21 @@
         <tr>
           <td
             class="tokens-event-table__hash"
-            :class="['token-events-table__data',{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="['token-events-table__data', { 'token-events-table__data--expanded': isExpanded.includes(index) }]">
             <value-hash-ellipsed
               :hash="event.hash"
               :link-to="`/transactions/${event.hash}`"/>
           </td>
-          <td :class="['token-events-table__data',{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td
+            :class="['token-events-table__data',
+                     { 'token-events-table__data--expanded': isExpanded.includes(index) }]">
             <block-time-cell
               :height="event.createdHeight"
               :timestamp="event.created"/>
           </td>
-          <td :class="['token-events-table__data',{'token-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td
+            :class="['token-events-table__data',
+                     { 'token-events-table__data--expanded': isExpanded.includes(index) }]">
             {{ event.name }}
           </td>
           <td
@@ -54,7 +58,7 @@
           </td>
           <td
             v-else
-            :class="['token-events-table__data', {'token-events-table__data--expanded': isExpanded.includes(index)}]">
+            :class="['token-events-table__data', { 'token-events-table__data--expanded': isExpanded.includes(index) }]">
             <expand-button
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
@@ -68,7 +72,7 @@
             :class="[
               'token-events-table__data',
               'token-events-table__arguments',
-              {'token-events-table__arguments--expanded': isExpanded.includes(index)}
+              { 'token-events-table__arguments--expanded': isExpanded.includes(index) },
             ]">
             <events-panel :args="event.args"/>
           </td>

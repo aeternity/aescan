@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-
 const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 </script>
 

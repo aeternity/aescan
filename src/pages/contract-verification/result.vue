@@ -119,7 +119,6 @@ function printMessage(message) {
   }
   return message
 }
-
 </script>
 
 <style scoped>

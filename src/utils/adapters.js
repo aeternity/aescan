@@ -124,8 +124,8 @@ export function adaptDashboardStateChannels(stateChannels) {
 export function adaptAccountActivities(activities) {
   const formattedData = activities.data.map(activity => {
     return {
-      hash: activity.payload?.hash || activity.payload?.txHash ||
-        activity.payload?.refTxHash || activity.payload?.callTxHash,
+      hash: activity.payload?.hash || activity.payload?.txHash
+        || activity.payload?.refTxHash || activity.payload?.callTxHash,
       type: activity.type,
       time: activity.payload?.microTime || activity.blockTime,
       height: activity.payload?.blockHeight || activity.height,

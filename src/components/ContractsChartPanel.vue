@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-
 const { contractsStatistics } = storeToRefs(useChartsStore())
 const { fetchContractsStatistics } = useChartsStore()
 
@@ -38,7 +37,7 @@ useAsyncData(async() => {
   return true
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch(selectedScope, async() => {
     await loadContractsStatistics()
   })

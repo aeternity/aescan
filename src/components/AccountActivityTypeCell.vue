@@ -38,10 +38,10 @@ const activityType = computed(() => {
     return 'Smart Contract'
   case 'ContractCallTxEvent':
     if (
-      SWAP_CONTRACT_CALLS.includes(tx.value.function) ||
-        ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
-        REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function) ||
-        SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
+      SWAP_CONTRACT_CALLS.includes(tx.value.function)
+        || ADD_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)
+      || REMOVE_LIQUIDITY_CONTRACT_CALLS.includes(tx.value.function)
+        || SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }
     return 'Smart Contract'
@@ -68,7 +68,8 @@ const activityType = computed(() => {
   case 'InternalTransferEvent':
     if (props.activity.payload.kind === 'reward_block') {
       return currency.value.symbol
-    } else if (
+    }
+    else if (
       SH_DEX_CONTRACTS.includes(props.activity.payload.contractId)) {
       return 'SH-DEX'
     }

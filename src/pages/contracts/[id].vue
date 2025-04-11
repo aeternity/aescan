@@ -108,7 +108,7 @@ if (error.value) {
   })
 }
 
-if (process.client && !error.value) {
+if (import.meta.client && !error.value) {
   useAsyncData(() => fetchContractEvents(
     `/contracts/logs?contract_id=${route.params.id}&limit=10&aexn-args=true`,
   ))
@@ -117,7 +117,6 @@ if (process.client && !error.value) {
     fetchVerificationDetail(route.params.id)
   }
 }
-
 </script>
 
 <style scoped>

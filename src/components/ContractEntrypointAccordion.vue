@@ -2,7 +2,7 @@
   <app-accordion
     :items="entrypoints"
     :is-disabled="isDisabled">
-    <template #content="{content: {item: aciItem, index}}">
+    <template #content="{ content: { item: aciItem, index } }">
       <div class="contract-entrypoint-accordion__container">
         <p>
           return type: <i>{{ aciItem.returns }}</i>
@@ -30,7 +30,7 @@
           v-if="response[index]"
           :class="[
             'contract-entrypoint-accordion__response',
-            {'contract-entrypoint-accordion__response--error': response[index].responseType === 'error' }
+            { 'contract-entrypoint-accordion__response--error': response[index].responseType === 'error' },
           ]">
           {{ response[index].responseType === 'success' ? 'Return value' : 'Error' }}:
           {{ response[index].message }}
@@ -65,7 +65,7 @@ defineProps({
 const emit = defineEmits(['query-clicked'])
 
 function query(aciItem, index) {
-  emit('query-clicked', aciItem, index, form)
+  emit('query-clicked', aciItem, index, form.value)
 }
 </script>
 

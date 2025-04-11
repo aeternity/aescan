@@ -13,7 +13,7 @@
     <div
       :class="[
         'contracts-file-upload__drop-area',
-        {'contracts-file-upload__drop-area--dragover' :isDragging }]"
+        { 'contracts-file-upload__drop-area--dragover': isDragging }]"
       @dragover="dragover"
       @dragleave="dragleave"
       @drop="drop">
@@ -130,7 +130,8 @@ function dragleave() {
 function getFileEntry(entry, files) {
   if (entry.isFile) {
     return getSingleFile(entry, files)
-  } else if (entry.isDirectory) {
+  }
+  else if (entry.isDirectory) {
     return getDirectoryFiles(entry, files)
   }
 }

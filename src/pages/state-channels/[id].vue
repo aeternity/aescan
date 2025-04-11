@@ -40,7 +40,7 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-if (process.client) {
+if (import.meta.client) {
   fetchStateChannelDetails(route.params.id)
 }
 </script>

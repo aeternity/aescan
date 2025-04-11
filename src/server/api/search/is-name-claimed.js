@@ -8,7 +8,8 @@ export default defineEventHandler(async event => {
     const url = getUrl({ entity: 'names', id: name })
     await axios.get(url)
     return true
-  } catch (error) {
+  }
+  catch (error) {
     if (error.response.status === 404) {
       return false
     }

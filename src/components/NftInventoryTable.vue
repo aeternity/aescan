@@ -33,22 +33,22 @@
         v-for="(nft, index) in nftInventory.data"
         :key="nft.templateId ">
         <tr>
-          <td :class="[{'nft-inventory-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'nft-inventory-table__data--expanded': isExpanded.includes(index) }]">
             {{ nft.templateId }}
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'nft-inventory-table__data--expanded': isExpanded.includes(index) }]">
             {{ nft.edition?.supply }}
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'nft-inventory-table__data--expanded': isExpanded.includes(index) }]">
             {{ nft.edition?.limit }}
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'nft-inventory-table__data--expanded': isExpanded.includes(index) }]">
             <value-hash-ellipsed
               v-if="nft.txHash"
               :link-to="`/transactions/${nft.txHash}`"
               :hash="nft.txHash"/>
           </td>
-          <td :class="[{'nft-inventory-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'nft-inventory-table__data--expanded': isExpanded.includes(index) }]">
             <expand-button
               v-if="!!nftOwners.data.length"
               :is-expanded="isExpanded.includes(index)"
@@ -91,7 +91,8 @@ function toggle(id) {
   const index = isExpanded.value.indexOf(id)
   if (index > -1) {
     isExpanded.value.splice(index, 1)
-  } else {
+  }
+  else {
     isExpanded.value.push(id)
   }
 }

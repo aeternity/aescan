@@ -85,7 +85,7 @@ const route = useRoute()
 
 useAsyncData(() => initializeStores())
 
-if (process.client) {
+if (import.meta.client) {
   const { initializeWebSocket } = useWebSocket()
   initializeWebSocket()
 }

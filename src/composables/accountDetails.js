@@ -74,11 +74,13 @@ export const useAccountStore = defineStore('account', () => {
     try {
       const { data } = await axios.get(`${NODE_URL}/accounts/${accountId}`)
       rawAccountDetails.value = data
-    } catch (e) {
+    }
+    catch (e) {
       if ([400, 404].includes(e.response.status)) {
         if (isAddressValid(accountId)) {
           rawAccountDetails.value = { id: accountId, isExistent: false }
-        } else {
+        }
+        else {
           throw showError({
             data: {
               entityId: accountId,

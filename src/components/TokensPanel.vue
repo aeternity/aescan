@@ -40,12 +40,12 @@ const hasTokenSelect = computed(() => {
   return featureFlags.dex && NETWORK_NAME !== 'TESTNET'
 })
 
-await useAsyncData(async() => {
+useAsyncData(async() => {
   await fetchTokensCount()
   return true
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch(selectedTokenName, async() => {
     pageIndex.value = 1
     await fetchTokens('/aex9?by=name&direction=forward&limit=10')
@@ -53,5 +53,4 @@ if (process.client) {
     immediate: true,
   })
 }
-
 </script>

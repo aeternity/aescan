@@ -25,12 +25,12 @@ const { fetchDifficultyStatistics } = useChartsStore()
 
 const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
 
-await useAsyncData(async() => {
+useAsyncData(async() => {
   await loadDifficultytatistics()
   return true
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch([selectedScope], async() => {
     await loadDifficultytatistics()
   })

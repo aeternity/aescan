@@ -12,12 +12,13 @@
     </paginated-content>
   </app-panel>
 </template>
+
 <script setup>
 const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKeyblockDetailsStore())
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()
 
-if (process.client) {
+if (import.meta.client) {
   fetchKeyblockMicroblocks({
     id: route.params.id,
   })

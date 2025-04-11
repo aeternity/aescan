@@ -25,7 +25,6 @@ const { fetchNamesStatistics } = useChartsStore()
 
 const props = defineProps({
   scope: {
-    required: true,
     type: Object,
     default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
@@ -33,12 +32,12 @@ const props = defineProps({
 
 const selectedScope = ref(props.scope)
 
-await useAsyncData(async() => {
+useAsyncData(async() => {
   await loadNamesStatistics()
   return true
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch(selectedScope, async() => {
     await loadNamesStatistics()
   })

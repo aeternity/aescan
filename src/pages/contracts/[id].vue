@@ -96,7 +96,7 @@ const activeTabIndex = computed({
 
 const { isLoading } = useLoading()
 
-const { error } = await useAsyncData(() => fetchContractDetails(route.params.id))
+const { error } = useAsyncData(() => fetchContractDetails(route.params.id))
 
 if (error.value) {
   throw showError({
@@ -108,16 +108,15 @@ if (error.value) {
   })
 }
 
-if (process.client && !error.value) {
-  await useAsyncData(() => fetchContractEvents(
+if (import.meta.client && !error.value) {
+  useAsyncData(() => fetchContractEvents(
     `/contracts/logs?contract_id=${route.params.id}&limit=10&aexn-args=true`,
   ))
 
   if (featureFlags.smartContractVerification) {
-    await fetchVerificationDetail(route.params.id)
+    fetchVerificationDetail(route.params.id)
   }
 }
-
 </script>
 
 <style scoped>

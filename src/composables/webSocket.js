@@ -3,7 +3,7 @@ import camelcaseKeysDeep from 'camelcase-keys-deep'
 
 export const useWebSocket = defineStore('webSocket', () => {
   const { WEBSOCKET_URL } = useRuntimeConfig().public
-  const { processSocketMessage, updateBlockHeight } = useRecentBlocksStore()
+  const { processSocketMessage } = useRecentBlocksStore()
   const { updateTransactionTypeData } = useTransactionDetailsStore()
 
   const webSocket = shallowRef()
@@ -17,7 +17,8 @@ export const useWebSocket = defineStore('webSocket', () => {
 
     if (newValue) {
       webSocket.value.send('{"op":"Subscribe", "source": "node", "payload": "MicroBlocks"}')
-    } else {
+    }
+    else {
       webSocket.value.send('{"op":"Unsubscribe", "source": "node", "payload": "MicroBlocks"}')
     }
   })
@@ -29,7 +30,8 @@ export const useWebSocket = defineStore('webSocket', () => {
 
     if (newTransactionId) {
       webSocket.value.send(`{"op":"Subscribe", "source": "mdw", "payload": "${newTransactionId}"}`)
-    } else {
+    }
+    else {
       webSocket.value.send(`{"op":"Unsubscribe", "source": "mdw", "payload": "${oldTransactionId}"}`)
     }
   })
@@ -73,7 +75,8 @@ export const useWebSocket = defineStore('webSocket', () => {
 
     if (isSpecificEntityMessage && isSubscribedTransactionMessage) {
       updateTransactionTypeData(parsedData.payload)
-    } else {
+    }
+    else {
       await processSocketMessage(parsedData)
     }
   }

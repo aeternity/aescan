@@ -11,7 +11,7 @@
           'keyblock-sequence__cell',
           {
             'keyblock-sequence__cell--empty': keyblock?.microBlocksCount === 0,
-            'keyblock-sequence__cell--active': keyblock.hash === selectedKeyblock.hash
+            'keyblock-sequence__cell--active': keyblock.hash === selectedKeyblock.hash,
           }]"
         @click="selectKeyblock(keyblock)">
         {{ keyblock?.microBlocksCount }}
@@ -20,6 +20,7 @@
     <div class="keyblock-sequence__overlay"/>
   </div>
 </template>
+
 <script setup>
 const { selectKeyblock } = useRecentBlocksStore()
 const { selectedKeyblock } = storeToRefs(useRecentBlocksStore())

@@ -10,7 +10,7 @@
       readOnly: true,
       wordWrap: 'on',
       scrollBeyondLastLine: false,
-      renderLineHighlight: 'none'
+      renderLineHighlight: 'none',
     }"/>
 </template>
 

@@ -41,7 +41,9 @@ export const useContractsStore = defineStore('contracts', () => {
     try {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts?ids=${slug}`)
       return data.contracts.map(contract => contract.contractId)
-    } catch (error) {
+    }
+    catch (error) {
+      console.error(error)
       return null
     }
   }

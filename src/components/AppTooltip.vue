@@ -11,7 +11,7 @@
     </span>
 
     <template #popper>
-      <div :class="{'tooltip--fixed': hasFixedWidth}">
+      <div :class="{ 'tooltip--fixed': hasFixedWidth }">
         <slot name="tooltip"/>
       </div>
     </template>
@@ -48,7 +48,7 @@ defineProps({
       background: var(--color-midnight);
       color: var(--color-white);
       border: none;
-      word-break: break-word;
+      word-break: break-all;
 
       @media (--desktop) {
         word-break: normal;

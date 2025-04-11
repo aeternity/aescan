@@ -36,7 +36,7 @@ defineProps({
 .stats-tile {
   display: flex;
   flex-direction: row;
-  word-break: break-word;
+  word-break: break-all;
   padding: var(--space-1) 0;
 
   &__container {

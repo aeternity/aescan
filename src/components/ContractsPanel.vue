@@ -28,8 +28,7 @@ function loadContracts() {
   fetchContractsCount()
 }
 
-if (process.client) {
+if (import.meta.client) {
   loadContracts()
 }
-
 </script>

@@ -31,34 +31,32 @@ const props = defineProps({
 })
 
 const isActivityCell = computed(() => {
-  if (props.activity.type === 'SpendTxEvent'
-    || props.activity.type === 'ContractCallTxEvent'
-    || props.activity.type === 'ContractCreateTxEvent'
-    || props.activity.type === 'NameClaimTxEvent'
-    || props.activity.type === 'NameUpdateTxEvent'
-    || props.activity.type === 'NameRevokeTxEvent'
-    || props.activity.type === 'NamePreclaimTxEvent'
-    || props.activity.type === 'InternalContractCallEvent'
-    || props.activity.type === 'InternalTransferEvent'
-    || props.activity.type === 'Aex9TransferEvent'
-    || props.activity.type === 'Aex141TransferEvent') {
+  if (props.activity.type === 'SpendTxEvent' ||
+    props.activity.type === 'ContractCallTxEvent' ||
+    props.activity.type === 'ContractCreateTxEvent' ||
+    props.activity.type === 'NameClaimTxEvent' ||
+    props.activity.type === 'NameUpdateTxEvent' ||
+    props.activity.type === 'NameRevokeTxEvent' ||
+    props.activity.type === 'NamePreclaimTxEvent' ||
+    props.activity.type === 'InternalContractCallEvent' ||
+    props.activity.type === 'InternalTransferEvent' ||
+    props.activity.type === 'Aex9TransferEvent' ||
+    props.activity.type === 'Aex141TransferEvent') {
     return true
-  }
-  else {
+  } else {
     return false
   }
 })
 
 const dataCellComponent = computed(() =>
-  defineAsyncComponent(async() => {
-    try {
-      return await import(`@/components/AccountActivityDataCell${props.activity.type}.vue`)
-    }
-    catch {
-      console.error(`Unknown account activity data cell ${props.activity.type}`)
-      return defineComponent(() => () => h('span', 'N/A'))
-    }
-  },
+  defineAsyncComponent(async () => {
+      try {
+        return await import(`@/components/AccountActivityDataCell${props.activity.type}.vue`)
+      } catch {
+        console.error(`Unknown account activity data cell ${props.activity.type}`)
+        return defineComponent(() => () => h('span', 'N/A'))
+      }
+    },
   ),
 )
 </script>

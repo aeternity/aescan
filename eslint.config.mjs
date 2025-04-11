@@ -4,16 +4,17 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt({
+  ignores: ['**/dist', '**/.nuxt', '**/.output'],
   rules: {
+
     // 'import/extensions': ['error', 'never'],
     'import/extensions': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
     'no-console': 'off',
-    quotes: ['error', 'single'],
+    'quotes': ['error', 'single'],
     'no-use-before-define': 'off',
     'no-useless-constructor': 'off',
     'comma-dangle': ['error', 'always-multiline'],
-    indent: ['error', 2],
+    'indent': ['error', 2],
     'space-before-function-paren': ['error', 'never'],
     'arrow-parens': ['error', 'as-needed'],
     'import/no-named-as-default-member': 'off',
@@ -24,7 +25,6 @@ export default withNuxt({
     'no-restricted-imports': ['error', {
       patterns: ['./'],
     }],
-
 
     'vue/html-indent': ['error', 2, {
       attribute: 1,
@@ -67,9 +67,9 @@ export default withNuxt({
 
     'vue/require-v-for-key': 'error',
     'vue/no-v-html': 0,
-    semi: ['error', 'never'],
+    'semi': ['error', 'never'],
 
-    camelcase: ['error', {
+    'camelcase': ['error', {
       properties: 'never',
     }],
 
@@ -81,4 +81,3 @@ export default withNuxt({
     }],
   },
 })
-

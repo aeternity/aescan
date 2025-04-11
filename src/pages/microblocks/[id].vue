@@ -35,7 +35,7 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-if (process.client) {
+if (import.meta.client) {
   fetchMicroblock(route.params.id)
 }
 </script>

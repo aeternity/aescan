@@ -35,7 +35,6 @@ async function getEntrypointResponse(aciItem, index, form) {
   response.value[index] = parseResponse(fetchedResponse)
   loadingIndex.value = null
 }
-
 </script>
 
 <style scoped>

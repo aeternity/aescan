@@ -45,7 +45,8 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
         const { data } = await axios.get(`${MARKET_STATS_COINGECKO_ADDRESS}/simple/price?ids=aeternity&vs_currencies=usd&include_24hr_change=true`)
         cache.put(CACHE_KEY_PRICE_DATA, data.aeternity, MARKET_STATS_CACHE_TTL)
         isMarketCapAvailable.value = true
-      } catch (error) {
+      }
+      catch (error) {
         console.error(error)
         isMarketCapAvailable.value = false
       }

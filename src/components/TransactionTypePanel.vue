@@ -43,7 +43,6 @@
 </template>
 
 <script setup>
-
 const { fetchContractIdByAccountId } = useTransactionDetailsStore()
 const { contractId } = storeToRefs(useTransactionDetailsStore())
 

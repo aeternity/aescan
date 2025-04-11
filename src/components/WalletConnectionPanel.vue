@@ -66,11 +66,14 @@ const isProcessing = computed(() => {
 const title = computed(() => {
   if (status.value === 'not detected') {
     return 'Wallet not detected'
-  } else if (status.value === 'detected') {
+  }
+  else if (status.value === 'detected') {
     return 'Superhero wallet detected'
-  } else if (status.value === 'denied') {
+  }
+  else if (status.value === 'denied') {
     return 'Connection failed'
-  } else {
+  }
+  else {
     return null
   }
 })

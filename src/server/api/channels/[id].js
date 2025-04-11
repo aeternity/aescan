@@ -12,7 +12,8 @@ export default defineEventHandler(async event => {
       fetchStateChannelCreateTx(id),
     ])
     return adaptStateChannelDetails(details, createTx)
-  } catch (error) {
+  }
+  catch (error) {
     if ([400, 404].includes(error.response.status)) {
       return { error: error.response.status }
     }

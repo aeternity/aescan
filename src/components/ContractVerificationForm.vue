@@ -169,7 +169,6 @@ function validate() {
     errors.value.consent = 'Please agree with Terms of Service'
   }
 }
-
 </script>
 
 <style scoped>

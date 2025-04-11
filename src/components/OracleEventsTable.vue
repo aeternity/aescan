@@ -39,29 +39,29 @@
         v-for="(event, index) in oracleEvents.data"
         :key="event.respondTx">
         <tr>
-          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'oracle-events-table__data--expanded': isExpanded.includes(index) }]">
             <value-hash-ellipsed
               :hash="event.queryTx"
               :link-to="`/transactions/${event.queryTx}`"/>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'oracle-events-table__data--expanded': isExpanded.includes(index) }]">
             <expand-button
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
               Response
             </expand-button>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'oracle-events-table__data--expanded': isExpanded.includes(index) }]">
             <block-time-cell
               :height="event.queriedHeight"
               :timestamp="event.queriedAt"/>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'oracle-events-table__data--expanded': isExpanded.includes(index) }]">
             <value-hash-ellipsed
               :hash="event.respondTx"
               :link-to="`/transactions/${event.respondTx}`"/>
           </td>
-          <td :class="[{'oracle-events-table__data--expanded': isExpanded.includes(index)}]">
+          <td :class="[{ 'oracle-events-table__data--expanded': isExpanded.includes(index) }]">
             <block-time-cell
               :height="event.respondedHeight"
               :timestamp="event.respondedAt"/>
@@ -99,7 +99,8 @@ function toggle(id) {
   const index = isExpanded.value.indexOf(id)
   if (index > -1) {
     isExpanded.value.splice(index, 1)
-  } else {
+  }
+  else {
     isExpanded.value.push(id)
   }
 }

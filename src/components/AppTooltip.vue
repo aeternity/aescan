@@ -11,7 +11,7 @@
     </span>
 
     <template #popper>
-      <div :class="{'tooltip--fixed': hasFixedWidth}">
+      <div :class="{ 'tooltip--fixed': hasFixedWidth }">
         <slot name="tooltip"/>
       </div>
     </template>

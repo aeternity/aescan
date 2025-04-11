@@ -15,5 +15,4 @@ useAsyncData(async() => {
   await fetchMarketStats()
   return true
 })
-
 </script>

@@ -172,12 +172,14 @@ function traverseAndFormatInts(data) {
         ...item,
         value: formatInt(item.value),
       }
-    } else if (item.type === 'tuple') {
+    }
+    else if (item.type === 'tuple') {
       return {
         ...item,
         value: traverseAndFormatInts(item.value),
       }
-    } else {
+    }
+    else {
       return item
     }
   })

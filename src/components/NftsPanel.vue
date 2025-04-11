@@ -22,7 +22,7 @@ async function loadNextNfts() {
   await fetchNfts(nfts.value.next)
 }
 
-if (process.client) {
+if (import.meta.client) {
   fetchNfts()
 }
 </script>

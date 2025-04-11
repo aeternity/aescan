@@ -28,7 +28,6 @@
 </template>
 
 <script setup>
-
 const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 const { fetchLast24hsTransactionsStatistics } = useTransactionsStore()
 
@@ -40,7 +39,7 @@ const {
   feesTrend,
 } = storeToRefs(useTransactionsStore())
 
-if (process.client) {
+if (import.meta.client) {
   fetchTotalTransactionsCount()
   fetchLast24hsTransactionsStatistics()
 }

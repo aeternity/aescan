@@ -53,7 +53,7 @@
           <value-hash-ellipsed
             class="dashboard-keyblock-table-condensed__value-hash-ellipsed"
             :hash="keyblock.beneficiary"
-            :link-to="`/accounts/${keyblock.beneficiary }`"/>
+            :link-to="`/accounts/${keyblock.beneficiary}`"/>
         </td>
       </tr>
 

@@ -13,7 +13,7 @@
             <td class="transactions-swiper__data">
               <value-hash-ellipsed
                 :hash="transaction.hash"
-                :link-to="`/transactions/${transaction.hash }`"/>
+                :link-to="`/transactions/${transaction.hash}`"/>
             </td>
           </tr>
           <tr>

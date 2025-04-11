@@ -72,7 +72,8 @@ const activeTabIndex = computed({
 
 try {
   fetchNftDetails(route.params.id)
-} catch (error) {
+}
+catch (error) {
   if ([400, 404].includes(error.response?.status)) {
     throw showError({
       data: {

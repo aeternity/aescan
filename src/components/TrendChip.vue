@@ -26,5 +26,6 @@ const priceChipVariant = computed(() => {
   if (props.delta === 0) {
     return 'primary'
   }
+  return null
 })
 </script>

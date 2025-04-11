@@ -57,6 +57,7 @@
     </tbody>
   </table>
 </template>
+
 <script setup>
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 import { transactionsHints } from '@/utils/hints/transactionsHints'

@@ -93,9 +93,11 @@ onBeforeUnmount(() => {
 function update() {
   if (isPast.value) {
     relativeUpdated.value = DateTime.fromMillis(props.timestamp).toRelative()
-  } else if (isNow.value) {
+  }
+  else if (isNow.value) {
     relativeUpdated.value = 'now'
-  } else {
+  }
+  else {
     relativeUpdated.value = expirationDuration.value.shiftTo(highestUnit.value).toHuman({ maximumFractionDigits: 0 })
   }
 }

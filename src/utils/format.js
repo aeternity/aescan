@@ -20,26 +20,26 @@ export function formatNumber(amount, maxDigits = 6, hasFullPrecision = false) {
   if (parseFloat(amount) < 1) {
     const zeros = '0'.repeat(maxDigits - 1)
     const small = numeral(amount).format(`0.0[${zeros}]`)
-    // todo if nan then ~0
     return small === 'NaN' ? '0' : small
   }
-  // todo refactor claud
-  // todo raw not needed in function
+  // todo if nan then ~0
 
+  // todo raw not needed in function
   const formatted = hasFullPrecision ? numeral(amount).format('0,0') : numeral(amount).format('0,0.[0]a')
   return formatted === 'NaN' ? amount : formatted
 }
 
 export function formatPercentage(percentage) {
   if (percentage >= 0.00001) {
-    // todo reuse formatNumber
-    return `${numeral(percentage).format('0.0[000]')} %`
+    // todo check usage formatpercentage on other places eg tokenholders
+    return `${formatNumber(percentage, 4)} %`
   }
   if (percentage === 0) {
     return '0 %'
   }
   if (percentage < 0.00001) {
     return '~0 %'
+    // todo logic from formatnumber
   }
 }
 

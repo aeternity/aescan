@@ -41,7 +41,7 @@ function selectPreset(option) {
 .price-chart-controls {
   &__container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     column-gap: var(--space-1);
     row-gap: var(--space-1);
 

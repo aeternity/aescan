@@ -131,10 +131,6 @@ ChartJS.register(
 
 <style scoped>
 .price-chart-panel {
-  &__controls {
-    margin-top: var(--space-4);
-  }
-
   &__line-chart {
     height: 250px;
     position: relative;
@@ -143,5 +139,10 @@ ChartJS.register(
     align-items: center;
     justify-content: center;
   }
+
+  &__controls {
+    margin-top: var(--space-4);
+  }
+
 }
 </style>

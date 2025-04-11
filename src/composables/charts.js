@@ -1,7 +1,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useChartsStore = defineStore('charts', () => {
-  const { MIDDLEWARE_URL, NUXT_PUBLIC_DEX_BACKEND_URL, NUXT_PUBLIC_AE_TOKEN_ID } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL, DEX_BACKEND_URL, AE_TOKEN_ID } = useRuntimeConfig().public
   const axios = useAxios()
 
   const transactionsStatistics = ref(null)
@@ -111,7 +111,7 @@ export const useChartsStore = defineStore('charts', () => {
     const scopeSlug = `&timeFrame=${intervalBy}`
 
     const { data } = await axios.get(
-      `${NUXT_PUBLIC_DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${NUXT_PUBLIC_AE_TOKEN_ID}${scopeSlug}`,
+      `${DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${AE_TOKEN_ID}${scopeSlug}`,
     )
     priceStatistics.value = data
   }

@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-
 const featureFlags = useFeatureFlags()
 
 const menuOptions = ref([{
@@ -97,6 +96,10 @@ const menuOptions = ref([{
   isActive: false,
   submenu: [
     {
+      name: 'Price',
+      path: '/charts/price',
+    },
+    {
       name: 'Transactions',
       path: '/charts/transactions',
     },
@@ -123,10 +126,6 @@ const menuOptions = ref([{
     {
       name: 'Hashrate',
       path: '/charts/hashrate',
-    },
-    {
-      name: 'Price',
-      path: '/charts/price',
     },
   ],
 }])

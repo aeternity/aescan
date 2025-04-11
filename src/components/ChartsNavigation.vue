@@ -12,38 +12,39 @@
   </nav>
 </template>
 <script setup>
-const menuOptions = ref([{
-  name: 'Transactions',
-  path: 'transactions',
-},
-{
-  name: 'Keyblocks',
-  path: 'keyblocks',
-},
-{
-  name: 'Smart Contracts',
-  path: 'contracts',
-},
-{
-  name: 'Accounts',
-  path: 'accounts',
-},
-{
-  name: 'Names',
-  path: 'names',
-},
-{
-  name: 'Difficulty',
-  path: 'difficulty',
-},
-{
-  name: 'Hashrate',
-  path: 'hashrate',
-},
-{
-  name: 'Price',
-  path: 'price',
-}])
+const menuOptions = ref([
+  {
+    name: 'Price',
+    path: 'price',
+  },
+  {
+    name: 'Transactions',
+    path: 'transactions',
+  },
+  {
+    name: 'Keyblocks',
+    path: 'keyblocks',
+  },
+  {
+    name: 'Smart Contracts',
+    path: 'contracts',
+  },
+  {
+    name: 'Accounts',
+    path: 'accounts',
+  },
+  {
+    name: 'Names',
+    path: 'names',
+  },
+  {
+    name: 'Difficulty',
+    path: 'difficulty',
+  },
+  {
+    name: 'Hashrate',
+    path: 'hashrate',
+  }])
 </script>
 
 <style scoped>

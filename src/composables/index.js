@@ -11,8 +11,7 @@ export async function initializeStores() {
       fetchStatus(),
       fetchMarketStats(),
     ])
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error)
     return undefined
   }

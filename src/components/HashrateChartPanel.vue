@@ -25,13 +25,13 @@ const { fetchHashrateStatistics } = useChartsStore()
 
 const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
 
-useAsyncData(async() => {
+useAsyncData(async () => {
   await loadHashrateStatistics()
   return true
 })
 
 if (import.meta.client) {
-  watch([selectedScope], async() => {
+  watch([selectedScope], async () => {
     await loadHashrateStatistics()
   })
 }

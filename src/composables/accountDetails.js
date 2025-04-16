@@ -26,11 +26,11 @@ export const useAccountStore = defineStore('account', () => {
   const accountDetails = computed(() =>
     rawAccountDetails.value
       ? {
-        ...rawAccountDetails.value,
-        balance: formatAettosToAe(rawAccountDetails.value.balance),
-        totalTransactionsCount: totalAccountTransactionsCount.value,
-        isGeneralized: rawAccountDetails.value.kind === 'generalized',
-      }
+          ...rawAccountDetails.value,
+          balance: formatAettosToAe(rawAccountDetails.value.balance),
+          totalTransactionsCount: totalAccountTransactionsCount.value,
+          isGeneralized: rawAccountDetails.value.kind === 'generalized',
+        }
       : null,
   )
   const accountActivities = computed(() =>
@@ -74,13 +74,11 @@ export const useAccountStore = defineStore('account', () => {
     try {
       const { data } = await axios.get(`${NODE_URL}/accounts/${accountId}`)
       rawAccountDetails.value = data
-    }
-    catch (e) {
+    } catch (e) {
       if ([400, 404].includes(e.response.status)) {
         if (isAddressValid(accountId)) {
           rawAccountDetails.value = { id: accountId, isExistent: false }
-        }
-        else {
+        } else {
           throw showError({
             data: {
               entityId: accountId,
@@ -126,7 +124,7 @@ export const useAccountStore = defineStore('account', () => {
 
     tokenPrices.value = {}
     await Promise.all(
-      rawAccountTokens.value.data.map(async token => {
+      rawAccountTokens.value.data.map(async (token) => {
         const price = await fetchPrice(token.contractId, token.decimals)
         if (price) {
           tokenPrices.value[token.contractId] = price

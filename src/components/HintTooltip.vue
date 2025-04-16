@@ -16,7 +16,7 @@ defineProps({
   variant: {
     type: String,
     default: 'light',
-    validator: val =>
+    validator: (val) =>
       ['light', 'dark'].includes(val),
   },
 })

@@ -11,7 +11,7 @@ import {
   MARKET_STATS_MEXC_ADDRESS,
 } from '@/utils/constants'
 
-export default defineEventHandler(async() => {
+export default defineEventHandler(async () => {
   const [gate, mexc, hotcoin, coinw] = await Promise.all([
     fetchGate(),
     fetchMexc(),
@@ -76,7 +76,7 @@ function adaptMexc(stats) {
 }
 
 function adaptHotCoin(stats) {
-  const tokenPair = stats.ticker.find(item => item.symbol === 'ae_usdt')
+  const tokenPair = stats.ticker.find((item) => item.symbol === 'ae_usdt')
   return {
     price: tokenPair?.last,
     volume: tokenPair?.vol,

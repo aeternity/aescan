@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { id, queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
 })
 
 export function adaptNameHistory(actions) {
-  const formattedData = actions.data.map(action => {
+  const formattedData = actions.data.map((action) => {
     return {
       type: action.type,
       hash: action.payload.sourceTxHash ?? action.payload.callTxHash ?? action.payload.hash,

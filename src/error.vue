@@ -95,7 +95,7 @@ useHead({
   meta: [
     { name: 'robots', content: 'noindex' },
   ],
-  titleTemplate: pageTitle =>
+  titleTemplate: (pageTitle) =>
     pageTitle
       ? `${APP_TITLE_SHORT} | ${pageTitle}`
       : APP_TITLE,
@@ -103,16 +103,16 @@ useHead({
 
 const error = useError()
 
-const errorComponent = error => {
+const errorComponent = (error) => {
   switch (unref(error)?.statusMessage) {
-  case 'EntityDetailsNotFound':
-    return defineAsyncComponent(() => import('@/errors/EntityDetailsNotFoundError.vue'))
-  case 'SearchNotFound':
-    return defineAsyncComponent(() => import('@/errors/SearchNotFoundError.vue'))
-  case 'PageNotFound':
-    return defineAsyncComponent(() => import('@/errors/PageNotFoundError.vue'))
-  default:
-    return defineAsyncComponent(() => import('@/errors/UnexpectedError.vue'))
+    case 'EntityDetailsNotFound':
+      return defineAsyncComponent(() => import('@/errors/EntityDetailsNotFoundError.vue'))
+    case 'SearchNotFound':
+      return defineAsyncComponent(() => import('@/errors/SearchNotFoundError.vue'))
+    case 'PageNotFound':
+      return defineAsyncComponent(() => import('@/errors/PageNotFoundError.vue'))
+    default:
+      return defineAsyncComponent(() => import('@/errors/UnexpectedError.vue'))
   }
 }
 </script>

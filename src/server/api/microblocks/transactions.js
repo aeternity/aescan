@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { microblockHash, queryParameters, type } = getQuery(event)
 
   const [data, count] = await Promise.all([
@@ -41,7 +41,7 @@ async function fetchTransactionsCount(id, type) {
 }
 
 function adaptTransactions(transactions, count) {
-  const formattedData = transactions.data.map(transaction => {
+  const formattedData = transactions.data.map((transaction) => {
     return {
       hash: transaction.hash,
       createdHeight: transaction.blockHeight,

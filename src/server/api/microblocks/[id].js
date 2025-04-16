@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   try {
     const id = getRouterParam(event, 'id')
 
@@ -12,8 +12,7 @@ export default defineEventHandler(async event => {
     })
     const { data } = await axios.get(url)
     return adaptMicroblock(data)
-  }
-  catch (error) {
+  } catch (error) {
     if ([400, 404].includes(error.response.status)) {
       return { error: error.response.status }
     }

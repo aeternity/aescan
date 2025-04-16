@@ -11,7 +11,7 @@
 const { topAccounts } = storeToRefs(useTopAccountsStore())
 const { fetchTopAccounts } = useTopAccountsStore()
 
-useAsyncData(async() => {
+useAsyncData(async () => {
   await fetchTopAccounts()
   return true
 })

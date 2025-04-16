@@ -48,7 +48,7 @@ if (import.meta.client) {
     changeRoute()
   })
 
-  watch(() => route.fullPath, async() => {
+  watch(() => route.fullPath, async () => {
     await loadTransactions()
     pageIndex.value = 1
   })

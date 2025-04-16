@@ -46,13 +46,13 @@ const props = defineProps({
 })
 
 const stats = computed(() => {
-  return props.data.map(stat => {
+  return props.data.map((stat) => {
     return stat.count
   })
 })
 
 const labels = computed(() => {
-  return props.data.map(stat => {
+  return props.data.map((stat) => {
     return formatDate(stat.startDate)
   })
 })
@@ -102,7 +102,7 @@ const chartOptions = {
         position: 'top',
       },
       callbacks: {
-        title: function(context) {
+        title: function (context) {
           return context.label
         },
       },
@@ -116,14 +116,14 @@ const chartOptions = {
       min: 0,
       ticks: {
         precision: 0,
-        callback: function(value) {
+        callback: function (value) {
           return formatNumberFractions(value)
         },
       },
     },
     x: {
       grid: {
-        color: function() {
+        color: function () {
           return 'transparent'
         },
       },

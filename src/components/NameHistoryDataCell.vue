@@ -24,11 +24,10 @@ const props = defineProps({
 })
 
 const dataCellComponent = computed(() =>
-  defineAsyncComponent(async() => {
+  defineAsyncComponent(async () => {
     try {
       return await import(`@/components/NameHistoryDataCell${props.activity}.vue`)
-    }
-    catch {
+    } catch {
       console.error(`Unknown name history data cell ${props.activity}`)
       return defineComponent(() => () => h('span', 'N/A'))
     }

@@ -137,19 +137,19 @@ const menuOptions = ref([{
 
 const menuOptionsWithSubmenus = computed(() =>
   menuOptions.value
-    .map(menuOption => ({
+    .map((menuOption) => ({
       ...menuOption,
-      submenu: menuOption.submenu.filter(submenu => !submenu.hidden),
+      submenu: menuOption.submenu.filter((submenu) => !submenu.hidden),
     }))
-    .filter(menuOption => menuOption.submenu.length > 0),
+    .filter((menuOption) => menuOption.submenu.length > 0),
 )
 
 function open(name) {
-  menuOptions.value.find(item => item.name === name).isActive = true
+  menuOptions.value.find((item) => item.name === name).isActive = true
 }
 
 const activeItemName = computed(() => {
-  const activeItem = menuOptions.value.find(item => item.isActive)
+  const activeItem = menuOptions.value.find((item) => item.isActive)
   return activeItem ? activeItem.name : null
 })
 
@@ -157,14 +157,13 @@ function toggle(name) {
   if (activeItemName.value !== name) {
     closeAll()
     open(name)
-  }
-  else {
+  } else {
     closeAll()
   }
 }
 
 function closeAll() {
-  menuOptions.value.forEach(item => {
+  menuOptions.value.forEach((item) => {
     item.isActive = false
   })
 }

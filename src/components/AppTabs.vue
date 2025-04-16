@@ -27,7 +27,7 @@ const props = defineProps({
   },
 })
 
-provide('registerTab', tab => tabs.value.push(tab))
+provide('registerTab', (tab) => tabs.value.push(tab))
 
 const emit = defineEmits(['update:modelValue'])
 const tabs = ref([])
@@ -44,7 +44,7 @@ onMounted(() => {
 })
 
 const preselectedTabIndex = computed(() => {
-  const index = tabs.value.findIndex(tab => tab.isPreselected)
+  const index = tabs.value.findIndex((tab) => tab.isPreselected)
   return index === -1 ? null : index
 })
 

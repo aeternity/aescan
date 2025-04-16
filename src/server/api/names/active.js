@@ -3,7 +3,7 @@ import { formatAettosToAe } from '@/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -16,7 +16,7 @@ export default defineEventHandler(async event => {
 })
 
 function adaptActiveNames(names) {
-  const formattedData = names.data.map(name => ({
+  const formattedData = names.data.map((name) => ({
     name: name.name,
     buyer: name.ownership.original,
     owner: name.ownership.current,

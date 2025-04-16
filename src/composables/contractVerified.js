@@ -51,8 +51,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     try {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`)
       rawVerificationDetails.value = data
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
       rawVerificationDetails.value = null
     }
@@ -71,8 +70,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
         responseType: 'success',
         message: formatEntrypointResponse(contractCallResult.decodedResult, aciItem.returns),
       }
-    }
-    catch (error) {
+    } catch (error) {
       return {
         responseType: 'error',
         message: error,
@@ -81,8 +79,8 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   }
 
   function parseArguments(aciItem, form) {
-    const argNames = aciItem.arguments.map(argument => `${aciItem.name}-${argument.name}`)
-    return argNames.map(name => form.value[name])
+    const argNames = aciItem.arguments.map((argument) => `${aciItem.name}-${argument.name}`)
+    return argNames.map((name) => form.value[name])
   }
 
   function parseResponse(object) {
@@ -96,8 +94,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
     for (const key in object) {
       if (typeof object[key] === 'bigint') {
         object[key] = Number(object[key])
-      }
-      else if (typeof object[key] === 'object') {
+      } else if (typeof object[key] === 'object') {
         parseResponse(object[key])
       }
     }

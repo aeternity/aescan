@@ -3,7 +3,7 @@ import { formatAettosToAe } from '@/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
 
 function adaptStateChannels(stateChannels) {
   const formattedData = stateChannels.data
-    .map(channel => {
+    .map((channel) => {
       return {
         id: channel.channel,
         status: channel.active ? 'Open' : 'Closed',

@@ -13,8 +13,7 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
         },
         statusMessage: 'EntityDetailsNotFound',
       })
-    }
-    else {
+    } else {
       keyblockDetails.value = data
     }
   }

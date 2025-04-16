@@ -1,11 +1,11 @@
-export default defineNitroPlugin(nitroApp => {
+export default defineNitroPlugin((nitroApp) => {
   const {
     WEBSOCKET_URL, MIDDLEWARE_URL, NODE_URL, DEX_BACKEND_URL, CONTRACT_VERIFICATION_SERVICE_URL,
   } = useRuntimeConfig().public
 
   const allowHttp = [
     MIDDLEWARE_URL, NODE_URL, DEX_BACKEND_URL, CONTRACT_VERIFICATION_SERVICE_URL,
-  ].some(url => url?.startsWith('http://')) || WEBSOCKET_URL?.startsWith('ws://')
+  ].some((url) => url?.startsWith('http://')) || WEBSOCKET_URL?.startsWith('ws://')
 
   const DEFAULT_HEADERS = {
     'X-Content-Type-Options': 'nosniff',
@@ -31,7 +31,7 @@ export default defineNitroPlugin(nitroApp => {
     ].join('; '),
   }
 
-  nitroApp.hooks.hook('render:response', response => {
+  nitroApp.hooks.hook('render:response', (response) => {
     delete response.headers['x-powered-by']
 
     if (process.env.NODE_ENV !== 'production') {

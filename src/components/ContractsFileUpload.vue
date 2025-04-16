@@ -74,7 +74,7 @@ function addInputFilesToSelectedFiles() {
   const isFirstFilesAddition = !hasSelectedFiles.value
 
   // chrome workaround to manually set webkitRelativePath
-  Array.from(fileInput.value.files).forEach(file => {
+  Array.from(fileInput.value.files).forEach((file) => {
     Object.defineProperty(file, 'webkitRelativePath', {
       value: file.name,
     })
@@ -89,7 +89,7 @@ function addInputFilesToSelectedFiles() {
 
 function addDroppedFilesToSelectedFiles(isFirstFilesAddition) {
   const fileList = new DataTransfer()
-  selectedFiles.value.forEach(file => fileList.items.add(file))
+  selectedFiles.value.forEach((file) => fileList.items.add(file))
   emit('update:selected-files', fileList.files)
 
   if (isFirstFilesAddition) {
@@ -130,15 +130,14 @@ function dragleave() {
 function getFileEntry(entry, files) {
   if (entry.isFile) {
     return getSingleFile(entry, files)
-  }
-  else if (entry.isDirectory) {
+  } else if (entry.isDirectory) {
     return getDirectoryFiles(entry, files)
   }
 }
 
 function getSingleFile(fileEntry, files) {
-  return new Promise(resolve => {
-    fileEntry.file(file => {
+  return new Promise((resolve) => {
+    fileEntry.file((file) => {
       // chrome workaround to manually set webkitRelativePath
       Object.defineProperty(file, 'webkitRelativePath', {
         value: fileEntry.fullPath.substring(1),
@@ -153,8 +152,8 @@ function getSingleFile(fileEntry, files) {
 function getDirectoryFiles(dirEntry, files) {
   const dirReader = dirEntry.createReader()
 
-  return new Promise(resolve => {
-    dirReader.readEntries(entries => {
+  return new Promise((resolve) => {
+    dirReader.readEntries((entries) => {
       const entriesPromises = []
       const subfolder = []
 

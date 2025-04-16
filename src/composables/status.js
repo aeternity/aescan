@@ -12,8 +12,7 @@ export const useStatus = defineStore('status', () => {
     try {
       const { data } = await axios.get(`${MIDDLEWARE_URL}/status`)
       middlewareStatus.value = data
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
       middlewareStatus.value = false
     }
@@ -23,8 +22,7 @@ export const useStatus = defineStore('status', () => {
     try {
       const { data } = await axios.get(`${NODE_URL}/status`)
       nodeStatus.value = data
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
       nodeStatus.value = false
     }

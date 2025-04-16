@@ -13,8 +13,7 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
         },
         statusMessage: 'EntityDetailsNotFound',
       })
-    }
-    else {
+    } else {
       microblockDetails.value = data
     }
   }

@@ -2,7 +2,7 @@
   <nuxt-link
     v-if="isLocalLink(to)"
     :to="to"
-    :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]"
+    :class="['link', { 'link--primary': variant === 'primary' }, { 'link--text-link': isTextLink }]"
     active-class="link--active"
     exact-active-class="link--exact-active">
     <slot/>
@@ -12,7 +12,7 @@
     :rel="isOpenedInNewTab ? 'noopener noreferrer' : false"
     :target="target"
     :href="to"
-    :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]">
+    :class="['link', { 'link--primary': variant === 'primary' }, { 'link--text-link': isTextLink }]">
     <slot/>
   </a>
 </template>
@@ -30,7 +30,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: null,
-    validator: val => ['primary'].includes(val),
+    validator: (val) => ['primary'].includes(val),
   },
   isTextLink: {
     type: Boolean,

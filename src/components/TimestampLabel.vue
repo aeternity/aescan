@@ -70,7 +70,7 @@ const expirationDuration = computed(() => {
 })
 
 const highestUnit = computed(() => {
-  return DATETIME_UNITS.find(unit => expirationDuration.value.get(unit) !== 0) || 'seconds'
+  return DATETIME_UNITS.find((unit) => expirationDuration.value.get(unit) !== 0) || 'seconds'
 })
 
 const isPast = computed(() => {
@@ -93,11 +93,9 @@ onBeforeUnmount(() => {
 function update() {
   if (isPast.value) {
     relativeUpdated.value = DateTime.fromMillis(props.timestamp).toRelative()
-  }
-  else if (isNow.value) {
+  } else if (isNow.value) {
     relativeUpdated.value = 'now'
-  }
-  else {
+  } else {
     relativeUpdated.value = expirationDuration.value.shiftTo(highestUnit.value).toHuman({ maximumFractionDigits: 0 })
   }
 }

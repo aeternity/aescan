@@ -14,8 +14,7 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
         },
         statusMessage: 'EntityDetailsNotFound',
       })
-    }
-    else {
+    } else {
       stateChannelDetails.value = data
     }
   }

@@ -50,13 +50,13 @@ const props = defineProps({
 const selectedScope = ref(props.scope)
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 
-useAsyncData(async() => {
+useAsyncData(async () => {
   await loadTransactionStatistics()
   return true
 })
 
 if (import.meta.client) {
-  watch([selectedScope, selectedTxType], async() => {
+  watch([selectedScope, selectedTxType], async () => {
     await loadTransactionStatistics()
   })
 }

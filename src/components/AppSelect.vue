@@ -66,7 +66,7 @@ const props = defineProps({
   size: {
     type: String,
     default: null,
-    validator: val => ['sm'].includes(val),
+    validator: (val) => ['sm'].includes(val),
   },
   modelValue: undefined,
 })

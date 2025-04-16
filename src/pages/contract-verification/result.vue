@@ -90,11 +90,11 @@ onBeforeUnmount(() => {
   clearInterval(timer.value)
 })
 
-const loadVerificationStatus = async() => {
+const loadVerificationStatus = async () => {
   await fetchVerificationStatus()
 }
 
-watch(verificationStatus, newStatus => {
+watch(verificationStatus, (newStatus) => {
   if (newStatus.status === 'fail' || newStatus.status === 'success') {
     clearInterval(timer.value)
     timer.value = null

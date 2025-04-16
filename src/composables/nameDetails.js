@@ -16,8 +16,7 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
         },
         statusMessage: 'EntityDetailsNotFound',
       })
-    }
-    else {
+    } else {
       name.value = data
     }
   }

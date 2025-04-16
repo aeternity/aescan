@@ -48,8 +48,7 @@ const isSyncing = computed(() => isLoading.value || !transactionTypeData.value)
 
 try {
   fetchTransactionDetails(route.params.id)
-}
-catch (error) {
+} catch (error) {
   if ([400, 404].includes(error.response?.status)) {
     throw showError({
       data: {

@@ -32,13 +32,13 @@ const props = defineProps({
 
 const selectedScope = ref(props.scope)
 
-useAsyncData(async() => {
+useAsyncData(async () => {
   await loadNamesStatistics()
   return true
 })
 
 if (import.meta.client) {
-  watch(selectedScope, async() => {
+  watch(selectedScope, async () => {
     await loadNamesStatistics()
   })
 }

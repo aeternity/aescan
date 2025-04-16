@@ -6,7 +6,7 @@ import { decode, Encoding, isAddressValid } from '@aeternity/aepp-sdk'
 import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constants'
 
 export function adaptKeyblockMicroblocks(keyblockMicroblocks) {
-  const formattedData = keyblockMicroblocks.data.map(microblock => {
+  const formattedData = keyblockMicroblocks.data.map((microblock) => {
     return {
       time: microblock.time,
       transactionsCount: microblock.transactionsCount,
@@ -40,7 +40,7 @@ export function adaptMicroblock(microblock) {
 }
 
 export function adaptSelectedMicroblockTransactions(transactions) {
-  const formattedData = transactions.data.map(transaction => {
+  const formattedData = transactions.data.map((transaction) => {
     return {
       hash: transaction.hash,
       type: transaction.tx.type,
@@ -56,7 +56,7 @@ export function adaptSelectedMicroblockTransactions(transactions) {
 }
 
 export function adaptTransactions(transactions) {
-  const formattedData = transactions.data.map(transaction => {
+  const formattedData = transactions.data.map((transaction) => {
     return {
       hash: transaction.hash,
       createdHeight: transaction.blockHeight,
@@ -74,7 +74,7 @@ export function adaptTransactions(transactions) {
 }
 
 export function adaptContracts(contracts) {
-  const formattedData = contracts.data.map(contract => {
+  const formattedData = contracts.data.map((contract) => {
     return {
       contractId: contract.tx.contractId,
       created: contract.microTime,
@@ -92,7 +92,7 @@ export function adaptContracts(contracts) {
 }
 
 export function adaptNames(names, blockHeight) {
-  return names.map(name => {
+  return names.map((name) => {
     return {
       name: name.name,
       address: name.ownership.current,
@@ -107,7 +107,7 @@ export function adaptNames(names, blockHeight) {
 }
 
 export function adaptDashboardStateChannels(stateChannels) {
-  return stateChannels.map(channel => {
+  return stateChannels.map((channel) => {
     return {
       initiator: channel.initiator,
       responder: channel.responder,
@@ -122,7 +122,7 @@ export function adaptDashboardStateChannels(stateChannels) {
 }
 
 export function adaptAccountActivities(activities) {
-  const formattedData = activities.data.map(activity => {
+  const formattedData = activities.data.map((activity) => {
     return {
       hash: activity.payload?.hash || activity.payload?.txHash
         || activity.payload?.refTxHash || activity.payload?.callTxHash,
@@ -145,12 +145,12 @@ export function adaptAccountActivities(activities) {
 }
 
 export function adaptAccountNames(names) {
-  const formattedData = names.data.map(name => {
+  const formattedData = names.data.map((name) => {
     return {
       name: name.name,
       expirationHeight: name.expireHeight,
       expiration: name.approximateExpireTime,
-      pointers: name.pointers.map(pointer => pointer.id),
+      pointers: name.pointers.map((pointer) => pointer.id),
     }
   })
   return {
@@ -161,7 +161,7 @@ export function adaptAccountNames(names) {
 }
 
 export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
-  const formattedData = tokens.data.map(token => {
+  const formattedData = tokens.data.map((token) => {
     const amount = token.amount / (10 ** token.decimals)
     const tokenAePrice = tokenPrices[token.contractId] || null
 
@@ -186,7 +186,7 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
 
 export function adaptDeltaStats(deltaStats, keyblockHeight) {
   const selectedDeltaStats = deltaStats.find(
-    stat => stat.height === keyblockHeight,
+    (stat) => stat.height === keyblockHeight,
   )
 
   if (!selectedDeltaStats) {
@@ -200,7 +200,7 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
 }
 
 export function adaptActiveNames(names) {
-  const formattedData = names.data.map(name => ({
+  const formattedData = names.data.map((name) => ({
     name: name.name,
     buyer: name.ownership.original,
     owner: name.ownership.current,
@@ -218,7 +218,7 @@ export function adaptActiveNames(names) {
 }
 
 export function adaptInAuctionNames(names) {
-  const formattedData = names.data.map(name => ({
+  const formattedData = names.data.map((name) => ({
     name: name.name,
     highestBidder: name.lastBid.tx.accountId,
     bid: formatAettosToAe(name.lastBid.tx.nameFee),
@@ -234,7 +234,7 @@ export function adaptInAuctionNames(names) {
 }
 
 export function adaptExpiredNames(names) {
-  const formattedData = names.data.map(name => ({
+  const formattedData = names.data.map((name) => ({
     name: name.name,
     expirationHeight: name.expireHeight,
     expiration: name.approximateExpireTime,
@@ -250,16 +250,16 @@ export function adaptExpiredNames(names) {
 }
 
 export function adaptCustomPointers(allPointers) {
-  const customPointers = allPointers.filter(pointer =>
+  const customPointers = allPointers.filter((pointer) =>
     // separate special and custom pointers
     !SPECIAL_POINTERS_PRESET_KEYS.includes(pointer.key),
   )
 
   const hasRawPointers = allPointers
-    ? allPointers.some(pointer => isAddressValid(pointer.id, Encoding.Bytearray))
+    ? allPointers.some((pointer) => isAddressValid(pointer.id, Encoding.Bytearray))
     : null
 
-  return customPointers.map(pointer => {
+  return customPointers.map((pointer) => {
     return {
       key: pointer.key,
       pointer: hasRawPointers ? decode(pointer.id).toString() : pointer.id,
@@ -276,15 +276,15 @@ export function adaptName(name, blockHeight, blockTime) {
   const blockCreatedTime = DateTime.fromMillis(blockTime)
   const activated = states.includes('active')
     ? blockCreatedTime.minus({
-      minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
-    }).toMillis()
+        minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
+      }).toMillis()
     : null
   const customPointers = name.pointers ? adaptCustomPointers(name.pointers) : null
   const specialPointers = {
-    account: name.pointers ? name.pointers.find(name => name.key === 'account_pubkey')?.id : null,
-    channel: name.pointers ? name.pointers.find(name => name.key === 'channel')?.id : null,
-    contract: name.pointers ? name.pointers.find(name => name.key === 'contract_pubkey')?.id : null,
-    oracle: name.pointers ? name.pointers.find(name => name.key === 'oracle_pubkey')?.id : null,
+    account: name.pointers ? name.pointers.find((name) => name.key === 'account_pubkey')?.id : null,
+    channel: name.pointers ? name.pointers.find((name) => name.key === 'channel')?.id : null,
+    contract: name.pointers ? name.pointers.find((name) => name.key === 'contract_pubkey')?.id : null,
+    oracle: name.pointers ? name.pointers.find((name) => name.key === 'oracle_pubkey')?.id : null,
   }
 
   function getStateString(states) {
@@ -321,7 +321,7 @@ export function adaptName(name, blockHeight, blockTime) {
 }
 
 export function adaptNameHistory(actions) {
-  const formattedData = actions.data.map(action => {
+  const formattedData = actions.data.map((action) => {
     return {
       type: action.type,
       hash: action.payload.sourceTxHash || action.payload.callTxHash || action.payload.hash,
@@ -381,7 +381,7 @@ export function adaptContractDetails(
 
 export function adaptContractEvents(events) {
   const formattedData = events.data
-    .map(event => {
+    .map((event) => {
       return {
         created: event.blockTime,
         createdHeight: event.height,
@@ -416,7 +416,7 @@ export function adaptTokenDetails(token, totalSupply = null, price = null) {
 
 export function adaptTokenEvents(events) {
   const formattedData = events.data
-    .map(event => {
+    .map((event) => {
       return {
         hash: event.callTxHash,
         name: event.eventName || 'N/A',
@@ -436,7 +436,7 @@ export function adaptTokenEvents(events) {
 
 export function adaptTokenHolders(tokenHolders, tokenDetails) {
   const formattedData = tokenHolders.data
-    .map(holder => {
+    .map((holder) => {
       const percentage = (new BigNumber(holder.amount)
         .dividedBy(10 ** (tokenDetails.decimals - 2)))
         .dividedBy(tokenDetails.totalSupply).toNumber()
@@ -457,7 +457,7 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
 
 export function adaptListedTokens(tokens) {
   const formattedData = tokens
-    .map(token => {
+    .map((token) => {
       return {
         contractId: token.address,
         name: token.name,
@@ -474,7 +474,7 @@ export function adaptListedTokens(tokens) {
 }
 
 export function adaptOracles(oracles) {
-  const formattedData = oracles.data.map(oracle => {
+  const formattedData = oracles.data.map((oracle) => {
     return {
       id: oracle.oracle,
       registeredHeight: oracle.activeFrom,
@@ -512,7 +512,7 @@ export function adaptOracleDetails(oracle, lastExtendedTx, lastQueryTx) {
 }
 
 export function adaptOracleEvents(events) {
-  const formattedData = events.data.map(event => {
+  const formattedData = events.data.map((event) => {
     return {
       queriedAt: event.query.blockTime,
       queriedHeight: event.query.height,
@@ -554,7 +554,7 @@ export function adaptStateChannelDetails(stateChannel, stateChannelCreateTx) {
 
 export function adaptStateChannels(stateChannels) {
   const formattedData = stateChannels.data
-    .map(channel => {
+    .map((channel) => {
       return {
         id: channel.channel,
         status: channel.active ? 'Open' : 'Closed',
@@ -576,7 +576,7 @@ export function adaptStateChannels(stateChannels) {
 
 export function adaptNftTransfers(transfers) {
   const formattedData = transfers.data
-    .map(transfer => {
+    .map((transfer) => {
       return {
         txHash: transfer.txHash,
         time: transfer.microTime,
@@ -603,7 +603,7 @@ export function adaptNft(nft) {
 
 export function adaptNfts(nfts) {
   const formattedData = nfts.data
-    .map(nft => {
+    .map((nft) => {
       return {
         name: nft.name,
         blockHeight: nft.blockHeight,
@@ -663,7 +663,7 @@ export function adaptMarketStatsMexc(stats) {
 }
 
 export function adaptMarketStatsCoinStore(stats) {
-  const tokenPair = stats.data.find(item => item.symbol === 'AEUSDT')
+  const tokenPair = stats.data.find((item) => item.symbol === 'AEUSDT')
   return {
     price: tokenPair.close,
     volume: tokenPair.volume,
@@ -671,7 +671,7 @@ export function adaptMarketStatsCoinStore(stats) {
 }
 
 export function adaptMarketStatsHotCoin(stats) {
-  const tokenPair = stats.ticker.find(item => item.symbol === 'ae_usdt')
+  const tokenPair = stats.ticker.find((item) => item.symbol === 'ae_usdt')
   return {
     price: tokenPair.last,
     volume: tokenPair.vol,
@@ -701,7 +701,7 @@ export function adaptTopAccounts(topAccounts, distribution) {
 
 export function adaptKeyblocks(keyblocks) {
   const formattedData = keyblocks.data
-    .map(keyblock => {
+    .map((keyblock) => {
       return {
         hash: keyblock.hash,
         block: keyblock.height,
@@ -721,7 +721,7 @@ export function adaptKeyblocks(keyblocks) {
 }
 
 export function adaptTrades(trades, price) {
-  const formattedData = trades.data.map(trade => {
+  const formattedData = trades.data.map((trade) => {
     const fromAmount = trade.fromAmount / 10 ** trade.fromDecimals
     const toAmount = trade.toAmount / 10 ** trade.toDecimals
     return {
@@ -747,8 +747,8 @@ export function adaptTrades(trades, price) {
 }
 
 export function adaptAciObject(verificationDetails) {
-  const aci = JSON.parse(verificationDetails.aci).find(item => item.contract)
-  const filteredFunctions = aci?.contract?.functions?.filter(fn => fn.name !== 'init')
+  const aci = JSON.parse(verificationDetails.aci).find((item) => item.contract)
+  const filteredFunctions = aci?.contract?.functions?.filter((fn) => fn.name !== 'init')
   aci.contract.functions = filteredFunctions
   return aci
 }

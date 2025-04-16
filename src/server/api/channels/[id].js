@@ -3,7 +3,7 @@ import { formatAettosToAe } from '@/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
 
   try {
@@ -12,8 +12,7 @@ export default defineEventHandler(async event => {
       fetchStateChannelCreateTx(id),
     ])
     return adaptStateChannelDetails(details, createTx)
-  }
-  catch (error) {
+  } catch (error) {
     if ([400, 404].includes(error.response.status)) {
       return { error: error.response.status }
     }

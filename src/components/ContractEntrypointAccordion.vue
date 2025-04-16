@@ -7,7 +7,6 @@
         <p>
           return type: <i>{{ aciItem.returns }}</i>
         </p>
-
         <text-input
           v-for="(arg, inputIndex) in aciItem.arguments"
           id="id"

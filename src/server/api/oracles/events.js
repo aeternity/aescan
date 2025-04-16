@@ -3,7 +3,7 @@ import { formatAettosToAe, formatDecodeBase64 } from '@/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { id, queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -18,7 +18,7 @@ export default defineEventHandler(async event => {
 })
 
 function adaptOracleEvents(events) {
-  const formattedData = events.data.map(event => {
+  const formattedData = events.data.map((event) => {
     return {
       queriedAt: event.query.blockTime,
       queriedHeight: event.query.height,

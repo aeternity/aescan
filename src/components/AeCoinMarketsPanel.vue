@@ -11,7 +11,7 @@
 const { fetchMarketStats } = useAeCoinStore()
 const { isLoading, coinMarkets } = storeToRefs(useAeCoinStore())
 
-useAsyncData(async() => {
+useAsyncData(async () => {
   await fetchMarketStats()
   return true
 })

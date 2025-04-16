@@ -43,8 +43,7 @@ export const useTransactionDetailsStore = defineStore('transactionDetails', () =
       }
 
       transactionTypeData.value = transactionData.tx
-    }
-    catch {
+    } catch {
       transactionTypeData.value = null
     }
   }

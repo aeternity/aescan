@@ -6,9 +6,9 @@ import { sentryVitePlugin } from '@sentry/vite-plugin'
 export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
+    '@nuxt/eslint',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
-    '@nuxt/eslint',
   ],
   css: ['@/assets/styles/main.css'],
   appConfig: {
@@ -35,6 +35,7 @@ export default defineNuxtConfig({
       ENABLE_NODES: process.env.ENABLE_NODES,
     },
   },
+
   srcDir: './src',
   sourcemap: true,
   devServer: {
@@ -101,15 +102,20 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+
   // todo fix this
-  // eslint: {
-  //   config: {
-  //     stylistic: {
-  //       braceStyle: '1tbs',
-  //       arrowParens: 'as-needed',
-  //     },
-  //   },
-  // },
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        quotes: 'single',
+        semi: false,
+        commaDangle: 'always-multiline',
+        braceStyle: '1tbs',
+        arrowParens: 'as-needed',
+      },
+    },
+  },
   monacoEditor: {
     locale: 'en',
     componentName: {

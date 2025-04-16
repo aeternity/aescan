@@ -14,7 +14,7 @@
 const { trades } = storeToRefs(useDexTradesStore())
 const { fetchDexTrades } = useDexTradesStore()
 
-useAsyncData(async() => {
+useAsyncData(async () => {
   await fetchDexTrades()
   return true
 })

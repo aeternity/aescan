@@ -3,7 +3,7 @@ import { formatAettosToAe, formatBlockDiffAsDatetime, formatIsAuction } from '@/
 
 const axios = useAxios()
 
-export default defineEventHandler(async() => {
+export default defineEventHandler(async () => {
   const [names, latestKeyblock] = await Promise.all([
     fetchNames(),
     fetchLatestKeyblock(),
@@ -31,7 +31,7 @@ async function fetchNames() {
 }
 
 function adaptNames(names, blockHeight) {
-  return names.map(name => {
+  return names.map((name) => {
     return {
       name: name.name,
       address: name.ownership.current,

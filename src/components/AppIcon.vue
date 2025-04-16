@@ -22,7 +22,7 @@ const props = defineProps({
 
 watch(
   computed(() => props.name),
-  async() => {
+  async () => {
     icon.value = await import(`@/assets/icons/${props.name}.svg`)
   },
   { immediate: true },

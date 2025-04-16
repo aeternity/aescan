@@ -99,8 +99,7 @@ function toggle(id) {
   const index = isExpanded.value.indexOf(id)
   if (index > -1) {
     isExpanded.value.splice(index, 1)
-  }
-  else {
+  } else {
     isExpanded.value.push(id)
   }
 }

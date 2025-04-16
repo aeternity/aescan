@@ -2,7 +2,6 @@ export const MARKET_STATS_COINGECKO_ADDRESS = 'https://api.coingecko.com/api/v3'
 export const MARKET_STATS_GATE_ADDRESS = 'https://api.gateio.ws/api/v4/spot/tickers?currency_pair=AE_USDT'
 export const MARKET_STATS_MEXC_ADDRESS = 'https://api.mexc.com/api/v3/ticker/24hr?symbol=AEUSDT'
 export const MARKET_STATS_COINW_ADDRESS = 'https://api.coinw.com/api/v1/public?command=returnTicker'
-export const MARKET_STATS_COINSTORE_ADDRESS = 'https://api.coinstore.com/api/v1/market/tickers'
 export const MARKET_STATS_HOTCOIN_ADDRESS = 'https://api.hotcoinfin.com/v1/market/ticker'
 
 export const MINUTES_PER_BLOCK = 3
@@ -72,7 +71,6 @@ export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
 export const CACHE_KEY_COINGECKO_MARKET_DATA = 'coingecko-market-data'
 export const CACHE_KEY_GATE_MARKET_DATA = 'gate-market-data'
 export const CACHE_KEY_MEXC_MARKET_DATA = 'mexc-market-data'
-export const CACHE_KEY_COINSTORE_MARKET_DATA = 'coinStore-market-data'
 export const CACHE_KEY_HOTCOIN_MARKET_DATA = 'hotCoin-market-data'
 export const CACHE_KEY_COINW_MARKET_DATA = 'coinW-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'

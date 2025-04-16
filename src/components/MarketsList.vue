@@ -13,12 +13,6 @@
     </li>
 
     <li class="markets-list__item">
-      <app-link to="https://www.coinstore.com/spot/AEUSDT">
-        Coinstore
-      </app-link>
-    </li>
-
-    <li class="markets-list__item">
       <app-link to="https://www.hotcoin.com/trade/ae_usdt">
         Hotcoin
       </app-link>

@@ -108,10 +108,10 @@ export const useChartsStore = defineStore('charts', () => {
   async function fetchPriceStatistics(intervalBy) {
     priceStatistics.value = null
 
-    const scopeSlug = `&timeFrame=${intervalBy}`
+    const slug = `&timeFrame=${intervalBy}`
 
     const { data } = await axios.get(
-      `${DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${AE_TOKEN_ID}${scopeSlug}`,
+      `${DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${AE_TOKEN_ID}${slug}`,
     )
     priceStatistics.value = data
   }

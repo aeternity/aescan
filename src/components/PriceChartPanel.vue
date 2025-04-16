@@ -50,13 +50,13 @@ const labels = computed(() => {
   })
 })
 
-await useAsyncData(async () => {
+await useAsyncData(async() => {
   await loadPriceStatistics()
   return true
 })
 
 if (process.client) {
-  watch([selectedScope], async () => {
+  watch([selectedScope], async() => {
     await loadPriceStatistics()
   })
 }

@@ -33,7 +33,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ MINERS.length }}
+        {{ MINING_POOLS.length }}
         <!--        todo wut-->
 
       </span>
@@ -153,6 +153,7 @@
 </template>
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
+import { MINING_POOLS } from '~/utils/constants'
 
 const { fetchMiningStatistics } = useMiningStore()
 const { statistics } = storeToRefs(useMiningStore())

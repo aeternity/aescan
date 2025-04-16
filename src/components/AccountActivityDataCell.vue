@@ -49,14 +49,14 @@ const isActivityCell = computed(() => {
 })
 
 const dataCellComponent = computed(() =>
-  defineAsyncComponent(async () => {
-      try {
-        return await import(`@/components/AccountActivityDataCell${props.activity.type}.vue`)
-      } catch {
-        console.error(`Unknown account activity data cell ${props.activity.type}`)
-        return defineComponent(() => () => h('span', 'N/A'))
-      }
-    },
+  defineAsyncComponent(async() => {
+    try {
+      return await import(`@/components/AccountActivityDataCell${props.activity.type}.vue`)
+    } catch {
+      console.error(`Unknown account activity data cell ${props.activity.type}`)
+      return defineComponent(() => () => h('span', 'N/A'))
+    }
+  },
   ),
 )
 </script>

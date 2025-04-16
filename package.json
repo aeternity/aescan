@@ -41,7 +41,7 @@
     "axios": "^1.8.4",
     "bignumber.js": "9.2.1",
     "camelcase-keys-deep": "^0.1.0",
-    "chart.js": "^4.4.8",
+    "chart.js": "^4.4.9",
     "compression": "^1.8.0",
     "core-js": "^3.41.0",
     "express": "^5.1.0",

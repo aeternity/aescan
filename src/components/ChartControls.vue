@@ -49,7 +49,6 @@ function isPresetSelected(option) {
 function selectPreset(option) {
   selectedScope.value = option
 }
-
 </script>
 
 <style scoped>

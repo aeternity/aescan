@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { id, queryParameters } = getQuery(event)
   const url = getUrl({
     entity: 'key-blocks',
@@ -15,7 +15,7 @@ export default defineEventHandler(async event => {
 })
 
 function adaptKeyblockMicroblocks(microblocks) {
-  const formattedData = microblocks.data.map(microblock => {
+  const formattedData = microblocks.data.map((microblock) => {
     return {
       time: microblock.time,
       transactionsCount: microblock.transactionsCount,

@@ -94,7 +94,7 @@ definePageMeta({
 
 const isLoading = ref(true)
 
-await useAsyncData(() => Promise.all([
+useAsyncData(() => Promise.all([
   fetchStateChannels(),
   fetchInAuctionNames(),
   fetchRecentlyActivatedNames(),
@@ -103,7 +103,7 @@ await useAsyncData(() => Promise.all([
 ]))
 
 // fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
-await useAsyncData(() => Promise.all([
+useAsyncData(() => Promise.all([
   fetchSelectedMicroblocksInfo(),
   fetchTotalTransactionsCount(),
   fetchDeltaStats(),
@@ -117,7 +117,6 @@ onBeforeMount(() => {
 onBeforeUnmount(() => {
   isSubscribedToKeyblockDetails.value = false
 })
-
 </script>
 
 <style scoped>

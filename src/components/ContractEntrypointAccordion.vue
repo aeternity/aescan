@@ -7,7 +7,6 @@
         <p>
           return type: <i>{{ aciItem.returns }}</i>
         </p>
-
         <text-input
           v-for="(arg, inputIndex) in aciItem.arguments"
           id="id"
@@ -30,7 +29,7 @@
           v-if="response[index]"
           :class="[
             'contract-entrypoint-accordion__response',
-            {'contract-entrypoint-accordion__response--error': response[index].responseType === 'error' }
+            {'contract-entrypoint-accordion__response--error': response[index].responseType === 'error'},
           ]">
           {{ response[index].responseType === 'success' ? 'Return value' : 'Error' }}:
           {{ response[index].message }}
@@ -65,7 +64,7 @@ defineProps({
 const emit = defineEmits(['query-clicked'])
 
 function query(aciItem, index) {
-  emit('query-clicked', aciItem, index, form)
+  emit('query-clicked', aciItem, index, form.value)
 }
 </script>
 

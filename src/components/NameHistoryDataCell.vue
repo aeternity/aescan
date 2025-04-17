@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
   payload: {
     type: Object,
@@ -25,7 +24,7 @@ const props = defineProps({
 })
 
 const dataCellComponent = computed(() =>
-  defineAsyncComponent(async() => {
+  defineAsyncComponent(async () => {
     try {
       return await import(`@/components/NameHistoryDataCell${props.activity}.vue`)
     } catch {

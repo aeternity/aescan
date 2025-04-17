@@ -37,7 +37,7 @@ function loadNextTransactions() {
 
 async function loadTransactions() {
   const { txType } = route.query
-  const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
+  const txTypeOption = TX_TYPES_OPTIONS.find((option) => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
   await fetchMicroblockTransactions({
     limit: 10,
@@ -47,7 +47,7 @@ async function loadTransactions() {
   pageIndex.value = 1
 }
 
-if (process.client) {
+if (import.meta.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
   })

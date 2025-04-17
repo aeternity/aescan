@@ -3,7 +3,7 @@ import { formatAettosToAe } from '@/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
 })
 
 function adaptInAuctionNames(names) {
-  const formattedData = names.data.map(name => ({
+  const formattedData = names.data.map((name) => ({
     name: name.name,
     highestBidder: name.lastBid.tx.accountId,
     bid: formatAettosToAe(name.lastBid.tx.nameFee),

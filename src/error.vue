@@ -72,7 +72,7 @@
     </div>
     <the-footer/>
 
-    <template #error="{ error: innerError }">
+    <template #error="{error: innerError}">
       <the-header/>
       <div class="error">
         <div class="error__parallax">
@@ -95,7 +95,7 @@ useHead({
   meta: [
     { name: 'robots', content: 'noindex' },
   ],
-  titleTemplate: pageTitle =>
+  titleTemplate: (pageTitle) =>
     pageTitle
       ? `${APP_TITLE_SHORT} | ${pageTitle}`
       : APP_TITLE,
@@ -103,16 +103,16 @@ useHead({
 
 const error = useError()
 
-const errorComponent = error => {
+const errorComponent = (error) => {
   switch (unref(error)?.statusMessage) {
-  case 'EntityDetailsNotFound':
-    return defineAsyncComponent(() => import('@/errors/EntityDetailsNotFoundError.vue'))
-  case 'SearchNotFound':
-    return defineAsyncComponent(() => import('@/errors/SearchNotFoundError.vue'))
-  case 'PageNotFound':
-    return defineAsyncComponent(() => import('@/errors/PageNotFoundError.vue'))
-  default:
-    return defineAsyncComponent(() => import('@/errors/UnexpectedError.vue'))
+    case 'EntityDetailsNotFound':
+      return defineAsyncComponent(() => import('@/errors/EntityDetailsNotFoundError'))
+    case 'SearchNotFound':
+      return defineAsyncComponent(() => import('@/errors/SearchNotFoundError'))
+    case 'PageNotFound':
+      return defineAsyncComponent(() => import('@/errors/PageNotFoundError'))
+    default:
+      return defineAsyncComponent(() => import('@/errors/UnexpectedError'))
   }
 }
 </script>

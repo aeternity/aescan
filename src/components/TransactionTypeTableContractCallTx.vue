@@ -166,7 +166,7 @@ const isArgumentsLong = computed(() => JSON.stringify(formattedArguments.value).
 const shortArguments = computed(() => isArgumentsLong.value ? JSON.stringify(formattedArguments.value).substr(0, 300) + '...' : formattedArguments.value)
 
 function traverseAndFormatInts(data) {
-  return data.map(item => {
+  return data.map((item) => {
     if (item.type === 'int') {
       return {
         ...item,

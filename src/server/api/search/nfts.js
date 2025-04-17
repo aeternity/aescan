@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { query, queryParameters } = getQuery(event)
 
   const url = getUrl({

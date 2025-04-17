@@ -4,7 +4,7 @@
     :popper-triggers="['hover']"
     :skidding="skidding"
     data-popper-placement="top-start"
-    :delay="{ show: 300, hide: 0 }"
+    :delay="{show: 300, hide: 0}"
     :auto-hide="true">
     <span>
       <slot/>
@@ -48,7 +48,7 @@ defineProps({
       background: var(--color-midnight);
       color: var(--color-white);
       border: none;
-      word-break: break-word;
+      word-break: break-all;
 
       @media (--desktop) {
         word-break: normal;

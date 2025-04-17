@@ -20,13 +20,11 @@
 </template>
 
 <script setup>
-
 const { contractsStatistics } = storeToRefs(useChartsStore())
 const { fetchContractsStatistics } = useChartsStore()
 
 const props = defineProps({
   scope: {
-    required: true,
     type: Object,
     default: CHART_SCOPE_PRESETS_OPTIONS[4],
   },
@@ -34,13 +32,13 @@ const props = defineProps({
 
 const selectedScope = ref(props.scope)
 
-await useAsyncData(async() => {
+useAsyncData(async () => {
   await loadContractsStatistics()
   return true
 })
 
-if (process.client) {
-  watch(selectedScope, async() => {
+if (import.meta.client) {
+  watch(selectedScope, async () => {
     await loadContractsStatistics()
   })
 }

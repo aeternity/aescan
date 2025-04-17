@@ -69,7 +69,7 @@
     </NuxtLayout>
     <the-footer class="app__footer"/>
 
-    <template #error="{ error }">
+    <template #error="{error}">
       <error :error="error"/>
     </template>
   </NuxtErrorBoundary>
@@ -83,15 +83,15 @@ const { isMobileMenuOpen } = storeToRefs(useUiStore())
 const router = useRouter()
 const route = useRoute()
 
-await useAsyncData(() => initializeStores())
+useAsyncData(() => initializeStores())
 
-if (process.client) {
+if (import.meta.client) {
   const { initializeWebSocket } = useWebSocket()
   initializeWebSocket()
 }
 
 useHead({
-  titleTemplate: pageTitle =>
+  titleTemplate: (pageTitle) =>
     pageTitle
       ? `${pageTitle} ${route.params.id || ''} | ${APP_TITLE_SHORT}`
       : APP_TITLE,

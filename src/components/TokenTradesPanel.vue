@@ -24,8 +24,8 @@ function loadNextTrades() {
   fetchTokenTrades({ queryParameters: tokenTrades.value.next.substring(3) })
 }
 
-if (process.client) {
-  await fetchTokenTrades({
+if (import.meta.client) {
+  fetchTokenTrades({
     contractId: route.params.id,
   })
 }

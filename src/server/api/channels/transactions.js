@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { channel, direction, queryParameters } = getQuery(event)
 
   const [transactions, count] = await Promise.all([
@@ -34,7 +34,7 @@ async function fetchStateChannelTransactionsCount(id) {
 }
 
 function adaptTransactions(transactions, count) {
-  const formattedData = transactions.data.map(transaction => {
+  const formattedData = transactions.data.map((transaction) => {
     return {
       hash: transaction.hash,
       createdHeight: transaction.blockHeight,

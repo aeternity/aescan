@@ -20,11 +20,11 @@ export const useContractVerificationStore = defineStore('useContractVerification
     form.append('license', license)
     form.append('entryFile', entryFile)
 
-    Array.from(sourceFiles).forEach(file => {
+    Array.from(sourceFiles).forEach((file) => {
       form.append('sourceFiles', file, file.webkitRelativePath)
     })
 
-    const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch(error => {
+    const data = await axios.post(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`, form).catch((error) => {
       return error.response
     })
     id.value = contractId
@@ -33,7 +33,7 @@ export const useContractVerificationStore = defineStore('useContractVerification
   }
 
   async function fetchVerificationStatus() {
-    const data = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${id.value}/check/${submissionId.value}`).catch(error => {
+    const data = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${id.value}/check/${submissionId.value}`).catch((error) => {
       return error.response
     })
     verificationStatus.value = data.data

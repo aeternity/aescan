@@ -47,7 +47,7 @@ const { isLoading } = useLoading()
 const isSyncing = computed(() => isLoading.value || !transactionTypeData.value)
 
 try {
-  await fetchTransactionDetails(route.params.id)
+  fetchTransactionDetails(route.params.id)
 } catch (error) {
   if ([400, 404].includes(error.response?.status)) {
     throw showError({
@@ -62,7 +62,7 @@ try {
   throw error
 }
 
-if (process.client && !transactionTypeData.value) {
+if (import.meta.client && !transactionTypeData.value) {
   subscribedTransactionId.value = route.params.id
 
   onBeforeRouteUpdate(

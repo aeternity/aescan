@@ -3,7 +3,7 @@
     :class="[
       'pagination-button',
       $slots.default ? [`pagination-button--${direction}`] : [],
-      {'pagination-button--disabled': disabled}
+      {'pagination-button--disabled': disabled},
     ]"
     @click="!disabled && $emit('click')">
     <app-icon
@@ -24,7 +24,7 @@ defineProps({
   direction: {
     type: String,
     required: true,
-    validator: val => ['left', 'right'].includes(val),
+    validator: (val) => ['left', 'right'].includes(val),
   },
   disabled: {
     type: Boolean,

@@ -50,8 +50,9 @@ const props = defineProps({
 
 const datepicker = ref(null)
 const scope = ref(props.selectedScope)
-const emit = defineEmits(['updated'])
 const today = DateTime.now().toFormat('yyyy-MM-dd')
+
+defineEmits(['updated'])
 
 watch(
   () => props.isScopeSelected,
@@ -177,5 +178,4 @@ const inputClassNames = computed(() => ({
     padding: 6px 7px;
   }
 }
-
 </style>

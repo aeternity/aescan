@@ -25,7 +25,7 @@ const props = defineProps({
 })
 
 const contractEventCellComponent = computed(() =>
-  defineAsyncComponent(async() => {
+  defineAsyncComponent(async () => {
     try {
       return await import(`@/components/ContractEventCell${props.event.eventName}.vue`)
     } catch {

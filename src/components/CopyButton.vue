@@ -4,7 +4,7 @@
       'copy-button',
       size ? `copy-button--${size}` : null,
       variant ? `copy-button--${variant}` : null,
-      { 'copy-button--success': isCopySuccessful },
+      {'copy-button--success': isCopySuccessful},
     ]"
     @click="copyText">
     <app-icon
@@ -26,12 +26,12 @@ const props = defineProps({
   size: {
     type: String,
     default: null,
-    validator: val => ['sm'].includes(val),
+    validator: (val) => ['sm'].includes(val),
   },
   variant: {
     type: String,
     default: null,
-    validator: val => ['light'].includes(val),
+    validator: (val) => ['light'].includes(val),
   },
 })
 const emit = defineEmits(['copy:started', 'copy:ended'])
@@ -75,7 +75,7 @@ function stopCopySuccessAnimation() {
   margin: 0;
   padding: 0;
   text-transform: none;
-  appearance: button;
+  appearance: auto;
 
   &--light {
     color: var(--color-white);

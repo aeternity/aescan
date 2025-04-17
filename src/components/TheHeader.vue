@@ -3,7 +3,7 @@
     <div
       :class="[
         'header__container',
-        { 'header__container--open': isMobileMenuOpen },
+        {'header__container--open': isMobileMenuOpen},
       ]">
       <app-link
         to="/"
@@ -30,13 +30,13 @@
       <the-navigation
         :class="[
           'header__navigation',
-          { 'header__navigation--open': isMobileMenuOpen },
+          {'header__navigation--open': isMobileMenuOpen},
         ]"/>
 
       <network-select
         :class="[
           'header__network-select',
-          { 'header__network-select--open': isMobileMenuOpen }]"/>
+          {'header__network-select--open': isMobileMenuOpen}]"/>
 
       <wallet-account-controls class="u-hidden-mobile"/>
     </div>

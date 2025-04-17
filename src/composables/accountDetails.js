@@ -26,11 +26,11 @@ export const useAccountStore = defineStore('account', () => {
   const accountDetails = computed(() =>
     rawAccountDetails.value
       ? {
-        ...rawAccountDetails.value,
-        balance: formatAettosToAe(rawAccountDetails.value.balance),
-        totalTransactionsCount: totalAccountTransactionsCount.value,
-        isGeneralized: rawAccountDetails.value.kind === 'generalized',
-      }
+          ...rawAccountDetails.value,
+          balance: formatAettosToAe(rawAccountDetails.value.balance),
+          totalTransactionsCount: totalAccountTransactionsCount.value,
+          isGeneralized: rawAccountDetails.value.kind === 'generalized',
+        }
       : null,
   )
   const accountActivities = computed(() =>
@@ -124,7 +124,7 @@ export const useAccountStore = defineStore('account', () => {
 
     tokenPrices.value = {}
     await Promise.all(
-      rawAccountTokens.value.data.map(async token => {
+      rawAccountTokens.value.data.map(async (token) => {
         const price = await fetchPrice(token.contractId, token.decimals)
         if (price) {
           tokenPrices.value[token.contractId] = price

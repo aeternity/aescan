@@ -27,7 +27,7 @@
 const verificationStore = useContractVerificationStore()
 const { fetchCompilerOptions } = verificationStore
 
-await useAsyncData(async() => {
+useAsyncData(async () => {
   await fetchCompilerOptions()
   return true
 })

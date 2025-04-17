@@ -52,6 +52,7 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts/${contractId}`)
       rawVerificationDetails.value = data
     } catch (error) {
+      console.error(error)
       rawVerificationDetails.value = null
     }
   }
@@ -78,8 +79,8 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   }
 
   function parseArguments(aciItem, form) {
-    const argNames = aciItem.arguments.map(argument => `${aciItem.name}-${argument.name}`)
-    return argNames.map(name => form.value[name])
+    const argNames = aciItem.arguments.map((argument) => `${aciItem.name}-${argument.name}`)
+    return argNames.map((name) => form.value[name])
   }
 
   function parseResponse(object) {

@@ -19,7 +19,7 @@ async function loadTransactions() {
   await fetchTransactionsCount({ type: 'spend' })
 }
 
-await useAsyncData(async() => {
+useAsyncData(async () => {
   await loadTransactions()
   return true
 })

@@ -120,6 +120,7 @@ function toggle(id) {
   }
 }
 </script>
+
 <style scoped>
 .contract-events-table {
   &__data {
@@ -128,11 +129,6 @@ function toggle(id) {
     &--expanded {
       border-bottom: 0;
     }
-  }
-
-  &__event-data {
-    word-wrap: anywhere;
-    max-width: 450px;
   }
 
   &__arguments {

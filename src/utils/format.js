@@ -104,10 +104,11 @@ export function formatNullable(value) {
 
 export function formatDecodeBase64(base64String) {
   try {
-    return process.client
+    return import.meta.client
       ? (decodeURIComponent(escape(atob(base64String))) ? decodeURIComponent(escape(atob(base64String))) : null)
       : Buffer.from(base64String, 'base64').toString('utf8')
-  } catch (e) {
+  } catch (error) {
+    console.error(error)
     return ''
   }
 }
@@ -120,15 +121,15 @@ export function formatNameState(name, blockHeight) {
   const isActive = name.active === true
   const isInAuction = !!name.auctionEnd
   const isExpired = name.active === false
-  const isRevoked = !name.active &&
-    name.expireHeight + REVOKED_PERIOD > blockHeight
+  const isRevoked = !name.active
+    && name.expireHeight + REVOKED_PERIOD > blockHeight
 
   const labels = Object.keys({
     active: isActive,
     revoked: isRevoked,
     expired: isExpired,
     auction: isInAuction,
-  }).filter(key => ({ active: isActive, revoked: isRevoked, expired: isExpired, auction: isInAuction })[key])
+  }).filter((key) => ({ active: isActive, revoked: isRevoked, expired: isExpired, auction: isInAuction })[key])
   return labels
 }
 
@@ -175,8 +176,8 @@ export function formatTemplateLimit(extensions, templateLimit) {
 }
 
 export function formatKnownAddress(hash, isEllipsed = true) {
-  if (KNOWN_ADDRESSES.some(address => address.hash === hash)) {
-    return KNOWN_ADDRESSES.find(address => address.hash === hash).name
+  if (KNOWN_ADDRESSES.some((address) => address.hash === hash)) {
+    return KNOWN_ADDRESSES.find((address) => address.hash === hash).name
   } else if (isEllipsed) {
     return formatEllipseHash(hash)
   } else {

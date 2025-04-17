@@ -28,8 +28,8 @@ function loadNextEvents() {
   fetchTokenEvents({ queryParameters: tokenEvents.value.next.substring(3) })
 }
 
-if (process.client) {
-  await fetchTokenEvents({
+if (import.meta.client) {
+  fetchTokenEvents({
     contractId: route.params.id,
   })
 }

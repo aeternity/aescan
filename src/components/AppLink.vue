@@ -30,7 +30,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: null,
-    validator: val => ['primary'].includes(val),
+    validator: (val) => ['primary'].includes(val),
   },
   isTextLink: {
     type: Boolean,
@@ -43,8 +43,7 @@ const isOpenedInNewTab = computed(
 )
 
 function isLocalLink(url) {
-  return typeof url === 'object' ||
-    url.charAt(0) === '/'
+  return typeof url === 'object' || url.charAt(0) === '/'
 }
 </script>
 

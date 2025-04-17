@@ -10,7 +10,7 @@
     :searchable="searchable"
     :hide-selected="hideSelected"
     :preselect-first="preselectFirst"
-    :class="[ size ? `multiselect--${size}` : null]">
+    :class="[size ? `multiselect--${size}` : null]">
     <template
       v-for="(_, slot) of $slots"
       #[slot]="scope">
@@ -66,7 +66,7 @@ const props = defineProps({
   size: {
     type: String,
     default: null,
-    validator: val => ['sm'].includes(val),
+    validator: (val) => ['sm'].includes(val),
   },
   modelValue: undefined,
 })
@@ -75,6 +75,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
+
 <style>
 .multiselect {
   width: 100%;

@@ -14,7 +14,7 @@
 const { trades } = storeToRefs(useDexTradesStore())
 const { fetchDexTrades } = useDexTradesStore()
 
-await useAsyncData(async() => {
+useAsyncData(async () => {
   await fetchDexTrades()
   return true
 })
@@ -27,7 +27,7 @@ function loadNextEvents() {
   fetchDexTrades(trades.value.next.substring(3))
 }
 
-if (process.client) {
-  await fetchDexTrades()
+if (import.meta.client) {
+  fetchDexTrades()
 }
 </script>

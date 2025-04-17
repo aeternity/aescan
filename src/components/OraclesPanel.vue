@@ -33,7 +33,7 @@ function loadNextOracles() {
 
 async function loadOracles() {
   const { state } = route.query
-  const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
+  const oracleStateOption = ORACLE_STATES_OPTIONS.find((option) => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
   await Promise.all([
     await fetchOracles({ limit: 10, state: selectedOracleState.value.stateQuery }),
@@ -48,7 +48,7 @@ const selectedOracleState = computed({
     if (state === undefined) {
       return ORACLE_STATES_OPTIONS[0]
     }
-    return ORACLE_STATES_OPTIONS.find(oracleState => oracleState.stateQuery === state)
+    return ORACLE_STATES_OPTIONS.find((oracleState) => oracleState.stateQuery === state)
   },
   set(index) {
     const newRoute = {
@@ -65,7 +65,7 @@ const selectedOracleState = computed({
   },
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch(() => route.fullPath, () => {
     loadOracles()
   })

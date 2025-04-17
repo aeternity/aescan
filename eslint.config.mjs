@@ -26,7 +26,7 @@ export default withNuxt({
       properties: 'never',
     }],
 
-``    'import/extensions': ['error', 'never'],
+    'import/extensions': ['error', 'never'],
     'import/no-named-as-default-member': 'off',
     'import/named': 'off',
     'import/no-named-as-default': 'off',
@@ -35,6 +35,9 @@ export default withNuxt({
     'vue/require-v-for-key': 'error',
     'vue/no-v-html': 0,
     'vue/object-curly-spacing': ['error', 'never'],
+
+    // 'vue/operator-linebreak': ['error', 'after'],
+
     'vue/multi-word-component-names': 'off',
     'vue/mustache-interpolation-spacing': ['error', 'always'],
     'vue/no-multiple-template-root': 'off',

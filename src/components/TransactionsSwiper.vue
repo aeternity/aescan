@@ -1,6 +1,6 @@
 <template>
   <app-swiper :slides="transactions.data">
-    <template #slide="{ slideData: transaction }">
+    <template #slide="{slideData: transaction}">
       <table>
         <tbody>
           <tr>

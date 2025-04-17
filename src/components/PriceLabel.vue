@@ -32,7 +32,7 @@
     </app-tooltip>
 
     <template v-else>
-      {{ currencyPrefix }} {{ priceFullPrecision }}
+      {{ currencyPrefix }} {{ displayPrice }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -83,7 +83,13 @@ const ABBREVIATION_THRESHOLD = 1000
 
 const tooltipPrice = computed(() => props.price < ABBREVIATION_THRESHOLD ? props.price : priceFormatted.value)
 const priceFullPrecision = computed(() => props.price > 1 ? props.price : priceFractioned.value)
-const displayPrice = computed(() => `${isPriceRounded.value ? '~' : ''}${props.price > 1 ? priceAbbreviated.value : priceFractioned.value}`)
+const displayPrice = computed(() => {
+  if (hasTooltip.value) {
+    return `${isPriceRounded.value ? '~' : ''}${props.price > 1 ? priceAbbreviated.value : priceFractioned.value}`
+  } else {
+    return priceFullPrecision.value
+  }
+})
 
 const decimalPlaces = computed(() => {
   const decimalIndex = props.price.toString().indexOf('.')
@@ -92,10 +98,10 @@ const decimalPlaces = computed(() => {
 const priceAbbreviated = computed(() => formatNumber(props.price, props.maxDigits, props.hasFullPrecision))
 const priceFormatted = computed(() => formatNumber(props.price, 13, true))
 const priceFractioned = computed(() => {
+// todo move this to formatNUmber
   const maximumSignificantDigits = 8
   return Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(props.price)
 })
-
 // todo ~0
 // todo reuse format function
 const isPriceRounded = computed(() => {

@@ -62,14 +62,6 @@ function formatDate(label) {
   return date.toFormat('MM/dd')
 }
 
-function formatNumberFractions(number) {
-  return number.toLocaleString('en-US', {
-    maximumFractionDigits: 2,
-    notation: 'compact',
-    compactDisplay: 'short',
-  })
-}
-
 const chartData = computed(() => {
   return {
     labels: labels.value,
@@ -113,7 +105,7 @@ const chartOptions = {
       ticks: {
         precision: 0,
         callback: function(value) {
-          return formatNumberFractions(value)
+          return formatNumber(value)
         },
       },
     },

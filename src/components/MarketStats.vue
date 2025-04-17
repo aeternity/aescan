@@ -24,7 +24,13 @@
           Marketcap:
         </div>
         <div class="market-stats__value">
-          $ {{ formatNullable(formatNumber(marketCap)) }}
+          <price-label
+            currency="$"
+            has-full-precision
+            max-digits="4"
+            class="market-stats__price"
+            :has-icon="false"
+            :price="marketCap"/>
         </div>
       </li>
       <li class="market-stats__item">

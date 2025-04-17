@@ -129,7 +129,7 @@ export function formatNameState(name, blockHeight) {
     revoked: isRevoked,
     expired: isExpired,
     auction: isInAuction,
-  }).filter((key) => ({ active: isActive, revoked: isRevoked, expired: isExpired, auction: isInAuction })[key])
+  }).filter(key => ({ active: isActive, revoked: isRevoked, expired: isExpired, auction: isInAuction })[key])
   return labels
 }
 
@@ -176,8 +176,8 @@ export function formatTemplateLimit(extensions, templateLimit) {
 }
 
 export function formatKnownAddress(hash, isEllipsed = true) {
-  if (KNOWN_ADDRESSES.some((address) => address.hash === hash)) {
-    return KNOWN_ADDRESSES.find((address) => address.hash === hash).name
+  if (KNOWN_ADDRESSES.some(address => address.hash === hash)) {
+    return KNOWN_ADDRESSES.find(address => address.hash === hash).name
   } else if (isEllipsed) {
     return formatEllipseHash(hash)
   } else {

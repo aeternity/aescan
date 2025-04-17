@@ -26,7 +26,7 @@ export const useWalletStore = defineStore('wallet', () => {
           },
         )
       }),
-      new Promise((resolve) => setTimeout(() => resolve(undefined), 10000)),
+      new Promise(resolve => setTimeout(() => resolve(undefined), 10000)),
     ])
 
     if (wallet == null) {

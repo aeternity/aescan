@@ -95,7 +95,7 @@ useHead({
   meta: [
     { name: 'robots', content: 'noindex' },
   ],
-  titleTemplate: (pageTitle) =>
+  titleTemplate: pageTitle =>
     pageTitle
       ? `${APP_TITLE_SHORT} | ${pageTitle}`
       : APP_TITLE,

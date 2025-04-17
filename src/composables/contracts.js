@@ -20,7 +20,7 @@ export const useContractsStore = defineStore('contracts', () => {
     const verifiedContracts = await fetchVerifiedContracts(data)
     if (verifiedContracts) {
       data.data.forEach((contract) => {
-        contract.isVerified = !!verifiedContracts.find((verifiedContract) => verifiedContract === contract.tx.contractId)
+        contract.isVerified = !!verifiedContracts.find(verifiedContract => verifiedContract === contract.tx.contractId)
       })
     }
     rawContracts.value = data
@@ -37,10 +37,10 @@ export const useContractsStore = defineStore('contracts', () => {
       return
     }
 
-    const slug = contracts.data.map((contract) => contract.tx.contractId).join('&ids=')
+    const slug = contracts.data.map(contract => contract.tx.contractId).join('&ids=')
     try {
       const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/contracts?ids=${slug}`)
-      return data.contracts.map((contract) => contract.contractId)
+      return data.contracts.map(contract => contract.contractId)
     } catch (error) {
       console.error(error)
       return null

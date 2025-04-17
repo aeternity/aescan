@@ -112,7 +112,7 @@ export default defineNuxtConfig({
         semi: false,
         commaDangle: 'always-multiline',
         braceStyle: '1tbs',
-        arrowParens: 'as-needed',
+        // arrowParens: 'as-needed',
       },
     },
   },

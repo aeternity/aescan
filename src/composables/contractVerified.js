@@ -79,8 +79,8 @@ export const useContractVerifiedStore = defineStore('contractVerified', () => {
   }
 
   function parseArguments(aciItem, form) {
-    const argNames = aciItem.arguments.map((argument) => `${aciItem.name}-${argument.name}`)
-    return argNames.map((name) => form.value[name])
+    const argNames = aciItem.arguments.map(argument => `${aciItem.name}-${argument.name}`)
+    return argNames.map(name => form.value[name])
   }
 
   function parseResponse(object) {

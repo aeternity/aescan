@@ -51,12 +51,12 @@ defineProps({
   size: {
     type: String,
     default: null,
-    validator: (val) => ['lg', 'sm'].includes(val),
+    validator: val => ['lg', 'sm'].includes(val),
   },
   variant: {
     type: String,
     default: 'primary',
-    validator: (val) => [
+    validator: val => [
       'link',
       'link-error',
       'primary',

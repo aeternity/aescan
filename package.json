@@ -23,6 +23,7 @@
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix",
     "lint:js": "eslint src",
     "lint:style": "stylelint \"./src/**/*.vue\" \"src/**/*.css\"",
+    "lint:inspect": "sudo npx @eslint/config-inspector@latest",
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn install",
     "reset": "yarn reinstall && yarn dev",
     "e2e:run": "cypress run",

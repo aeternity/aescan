@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.21.3](https://github.com/aeternity/aescan/compare/0.21.0...0.21.3) (2025-04-17)
+
+
+### Bug Fixes
+
+* release fixes ([#1118](https://github.com/aeternity/aescan/issues/1118)) ([9ac27eb](https://github.com/aeternity/aescan/commit/9ac27eb2c36343f5e5294a27129a7718c5db2845))
+* remove delisted coinstore from app ([#1131](https://github.com/aeternity/aescan/issues/1131)) ([e370454](https://github.com/aeternity/aescan/commit/e370454e4b573d8c859c96ffad1a5ecc9ab37c2e))
+* state channels pagination pagination ([#1133](https://github.com/aeternity/aescan/issues/1133)) ([944e7fe](https://github.com/aeternity/aescan/commit/944e7fe8509583c840f1b0189183d43ca39c8a51))
+* text content change ([#1126](https://github.com/aeternity/aescan/issues/1126)) ([0471476](https://github.com/aeternity/aescan/commit/04714766929c6cb402f73f24716ef748f9c34aeb))
+* transactions pagination ([#1121](https://github.com/aeternity/aescan/issues/1121)) ([0384e99](https://github.com/aeternity/aescan/commit/0384e99ae71912e76eb1e44980c442b499c21b4f))
+
 ## [0.21.1](https://github.com/aeternity/aescan/compare/0.21.0...0.21.1) (2025-03-25)
 
 

@@ -74,20 +74,6 @@
         </tr>
         <tr>
           <td class="ae-coin-markets-table__data">
-            CoinStore
-          </td>
-          <td class="ae-coin-markets-table__data">
-            AE / USDT
-          </td>
-          <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.coinstore.price)) }}
-          </td>
-          <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.coinstore.volume)) }}
-          </td>
-        </tr>
-        <tr>
-          <td class="ae-coin-markets-table__data">
             CoinW
           </td>
           <td class="ae-coin-markets-table__data">

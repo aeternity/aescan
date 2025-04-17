@@ -14,13 +14,13 @@ defineProps({
   variant: {
     type: String,
     default: 'primary',
-    validator: (val) =>
+    validator: val =>
       ['primary', 'secondary', 'success', 'error', 'dark'].includes(val),
   },
   size: {
     type: String,
     default: null,
-    validator: (val) => ['sm'].includes(val),
+    validator: val => ['sm'].includes(val),
   },
 })
 </script>

@@ -91,7 +91,7 @@ if (import.meta.client) {
 }
 
 useHead({
-  titleTemplate: (pageTitle) =>
+  titleTemplate: pageTitle =>
     pageTitle
       ? `${pageTitle} ${route.params.id || ''} | ${APP_TITLE_SHORT}`
       : APP_TITLE,

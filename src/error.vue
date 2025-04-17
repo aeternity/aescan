@@ -106,13 +106,13 @@ const error = useError()
 const errorComponent = (error) => {
   switch (unref(error)?.statusMessage) {
     case 'EntityDetailsNotFound':
-      return defineAsyncComponent(() => import('@/errors/EntityDetailsNotFoundError.vue'))
+      return defineAsyncComponent(() => import('@/errors/EntityDetailsNotFoundError'))
     case 'SearchNotFound':
-      return defineAsyncComponent(() => import('@/errors/SearchNotFoundError.vue'))
+      return defineAsyncComponent(() => import('@/errors/SearchNotFoundError'))
     case 'PageNotFound':
-      return defineAsyncComponent(() => import('@/errors/PageNotFoundError.vue'))
+      return defineAsyncComponent(() => import('@/errors/PageNotFoundError'))
     default:
-      return defineAsyncComponent(() => import('@/errors/UnexpectedError.vue'))
+      return defineAsyncComponent(() => import('@/errors/UnexpectedError'))
   }
 }
 </script>

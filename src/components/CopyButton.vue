@@ -26,12 +26,12 @@ const props = defineProps({
   size: {
     type: String,
     default: null,
-    validator: val => ['sm'].includes(val),
+    validator: (val) => ['sm'].includes(val),
   },
   variant: {
     type: String,
     default: null,
-    validator: val => ['light'].includes(val),
+    validator: (val) => ['light'].includes(val),
   },
 })
 const emit = defineEmits(['copy:started', 'copy:ended'])

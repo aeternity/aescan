@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 })
 
 function adaptActiveNames(names) {
-  const formattedData = names.data.map(name => ({
+  const formattedData = names.data.map((name) => ({
     name: name.name,
     buyer: name.ownership.original,
     owner: name.ownership.current,

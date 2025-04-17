@@ -5,7 +5,7 @@ export default defineNitroPlugin((nitroApp) => {
 
   const allowHttp = [
     MIDDLEWARE_URL, NODE_URL, DEX_BACKEND_URL, CONTRACT_VERIFICATION_SERVICE_URL,
-  ].some(url => url?.startsWith('http://')) || WEBSOCKET_URL?.startsWith('ws://')
+  ].some((url) => url?.startsWith('http://')) || WEBSOCKET_URL?.startsWith('ws://')
 
   const DEFAULT_HEADERS = {
     'X-Content-Type-Options': 'nosniff',

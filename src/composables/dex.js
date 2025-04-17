@@ -31,7 +31,7 @@ export const useDexStore = defineStore('dex', () => {
 
   function convertTokenPairRouteAsRatio(route) {
     return route
-      .map(step => [
+      .map((step) => [
         step.liquidityInfo.reserve0,
         step.liquidityInfo.reserve1,
       ])

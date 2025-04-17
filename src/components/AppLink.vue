@@ -30,7 +30,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: null,
-    validator: val => ['primary'].includes(val),
+    validator: (val) => ['primary'].includes(val),
   },
   isTextLink: {
     type: Boolean,

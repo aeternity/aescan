@@ -40,6 +40,14 @@ export const CHART_SCOPE_PRESETS_OPTIONS = [
   { intervalBy: 'month', limit: '12', label: '1Y' },
   { intervalBy: 'month', limit: '999', label: 'ALL' },
 ]
+export const PRICE_CHART_SCOPE_PRESETS_OPTIONS = [
+  { intervalBy: '1H', label: '1H' },
+  { intervalBy: '1D', label: '1D' },
+  { intervalBy: '1W', label: '1W' },
+  { intervalBy: '1M', label: '1M' },
+  { intervalBy: '1Y', label: '1Y' },
+  { intervalBy: 'MAX', label: 'ALL' },
+]
 export const ORACLE_STATES_OPTIONS = [
   { stateQuery: 'active', label: 'Active' },
   { stateQuery: 'inactive', label: 'Inactive' },

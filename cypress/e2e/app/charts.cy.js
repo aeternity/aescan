@@ -28,4 +28,8 @@ describe('charts', () => {
     cy.visit('/charts/hashrate')
     cy.get('.line-chart canvas').should('be.visible')
   })
+  it('should display price', () => {
+    cy.visit('/charts/price')
+    cy.get('.price-chart-panel__line-chart canvas').should('be.visible')
+  })
 })

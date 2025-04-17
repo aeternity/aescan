@@ -1,7 +1,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useChartsStore = defineStore('charts', () => {
-  const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL, DEX_BACKEND_URL, AE_TOKEN_ID } = useRuntimeConfig().public
   const axios = useAxios()
 
   const transactionsStatistics = ref(null)
@@ -11,6 +11,7 @@ export const useChartsStore = defineStore('charts', () => {
   const difficultyStatistics = ref(null)
   const hashrateStatistics = ref(null)
   const accountsStatistics = ref(null)
+  const priceStatistics = ref(null)
 
   async function fetchTransactionsStatistics(intervalBy, limit, scope, txType) {
     transactionsStatistics.value = null
@@ -104,7 +105,19 @@ export const useChartsStore = defineStore('charts', () => {
     accountsStatistics.value = scope ? data.data.reverse() : data.data.slice(1).reverse()
   }
 
+  async function fetchPriceStatistics(intervalBy) {
+    priceStatistics.value = null
+
+    const slug = `&timeFrame=${intervalBy}`
+
+    const { data } = await axios.get(
+      `${DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${AE_TOKEN_ID}${slug}`,
+    )
+    priceStatistics.value = data
+  }
+
   return {
+    priceStatistics,
     keyblocksStatistics,
     transactionsStatistics,
     contractsStatistics,
@@ -112,6 +125,7 @@ export const useChartsStore = defineStore('charts', () => {
     difficultyStatistics,
     hashrateStatistics,
     accountsStatistics,
+    fetchPriceStatistics,
     fetchKeyblocksStatistics,
     fetchTransactionsStatistics,
     fetchContractsStatistics,

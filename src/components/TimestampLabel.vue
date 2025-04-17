@@ -70,7 +70,7 @@ const expirationDuration = computed(() => {
 })
 
 const highestUnit = computed(() => {
-  return DATETIME_UNITS.find(unit => expirationDuration.value.get(unit) !== 0) || 'seconds'
+  return DATETIME_UNITS.find((unit) => expirationDuration.value.get(unit) !== 0) || 'seconds'
 })
 
 const isPast = computed(() => {

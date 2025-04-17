@@ -36,7 +36,7 @@ defineProps({
   level: {
     type: String,
     required: true,
-    validator: val => ['h2', 'h3', 'h4', 'h5'].includes(val),
+    validator: (val) => ['h2', 'h3', 'h4', 'h5'].includes(val),
   },
   iconName: {
     type: String,

@@ -24,7 +24,7 @@ defineProps({
   direction: {
     type: String,
     required: true,
-    validator: val => ['left', 'right'].includes(val),
+    validator: (val) => ['left', 'right'].includes(val),
   },
   disabled: {
     type: Boolean,

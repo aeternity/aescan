@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
 })
 
 function adaptExpiredNames(names) {
-  const formattedData = names.data.map(name => ({
+  const formattedData = names.data.map((name) => ({
     name: name.name,
     expirationHeight: name.expireHeight,
     expiration: name.approximateExpireTime,

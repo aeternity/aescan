@@ -42,7 +42,7 @@ const props = defineProps({
   },
 })
 
-const accordionItems = ref(props.items.map(item => ({ ...item, isExpanded: false })))
+const accordionItems = ref(props.items.map((item) => ({ ...item, isExpanded: false })))
 
 function toggle(index) {
   accordionItems.value[index].isExpanded = !accordionItems.value[index].isExpanded

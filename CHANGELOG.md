@@ -9,6 +9,7 @@
 * text content change ([#1126](https://github.com/aeternity/aescan/issues/1126)) ([0471476](https://github.com/aeternity/aescan/commit/04714766929c6cb402f73f24716ef748f9c34aeb))
 * transactions pagination ([#1121](https://github.com/aeternity/aescan/issues/1121)) ([0384e99](https://github.com/aeternity/aescan/commit/0384e99ae71912e76eb1e44980c442b499c21b4f))
 
+
 ## [0.21.1](https://github.com/aeternity/aescan/compare/0.21.0...0.21.1) (2025-03-25)
 
 

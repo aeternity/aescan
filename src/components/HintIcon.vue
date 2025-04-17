@@ -2,7 +2,7 @@
   <app-icon
     name="question"
     :size="17"
-    :class="['hint-icon', { 'hint-icon--dark': variant === 'dark' }]"/>
+    :class="['hint-icon', {'hint-icon--dark': variant === 'dark'}]"/>
 </template>
 
 <script setup>

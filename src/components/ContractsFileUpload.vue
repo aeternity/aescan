@@ -13,7 +13,7 @@
     <div
       :class="[
         'contracts-file-upload__drop-area',
-        { 'contracts-file-upload__drop-area--dragover': isDragging }]"
+        {'contracts-file-upload__drop-area--dragover': isDragging}]"
       @dragover="dragover"
       @dragleave="dragleave"
       @drop="drop">

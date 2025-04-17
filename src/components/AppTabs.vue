@@ -6,7 +6,7 @@
         :key="index"
         :class="[
           'tabs__item',
-          { 'tabs__item--active': activeTabIndex === index },
+          {'tabs__item--active': activeTabIndex === index},
         ]"
         @click="selectTab(index)">
         {{ tab.title }}

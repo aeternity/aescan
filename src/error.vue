@@ -72,7 +72,7 @@
     </div>
     <the-footer/>
 
-    <template #error="{ error: innerError }">
+    <template #error="{error: innerError}">
       <the-header/>
       <div class="error">
         <div class="error__parallax">

@@ -4,14 +4,14 @@
     :popper-triggers="['hover']"
     :skidding="skidding"
     data-popper-placement="top-start"
-    :delay="{ show: 300, hide: 0 }"
+    :delay="{show: 300, hide: 0}"
     :auto-hide="true">
     <span>
       <slot/>
     </span>
 
     <template #popper>
-      <div :class="{ 'tooltip--fixed': hasFixedWidth }">
+      <div :class="{'tooltip--fixed': hasFixedWidth}">
         <slot name="tooltip"/>
       </div>
     </template>

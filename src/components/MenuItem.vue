@@ -3,7 +3,7 @@
     <header class="menu-item__header ">
       {{ menu.name }}
       <app-icon
-        :class="['menu-item__icon', { 'menu-item__icon--active': menu.isActive }]"
+        :class="['menu-item__icon', {'menu-item__icon--active': menu.isActive}]"
         name="caret-down"/>
     </header>
     <ul
@@ -17,7 +17,7 @@
           :to="submenu.path"
           :class="[
             'menu-item__link',
-            { 'menu-item__link--disabled': submenu.isDisabled }]">
+            {'menu-item__link--disabled': submenu.isDisabled}]">
           {{ submenu.name }}
         </app-link>
 
@@ -26,7 +26,7 @@
             :to="submenu.path"
             :class="[
               'menu-item__link',
-              { 'menu-item__link--disabled': submenu.isDisabled }]">
+              {'menu-item__link--disabled': submenu.isDisabled}]">
             {{ submenu.name }}
           </app-link>
         </coming-soon-tooltip>

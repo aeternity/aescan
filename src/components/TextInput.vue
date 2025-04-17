@@ -1,7 +1,7 @@
 <template>
   <input
     :value="modelValue"
-    v-bind="{ ...attributes }"
+    v-bind="{...attributes}"
     class="text-input"
     @input="$emit('update:modelValue', $event.target.value)">
 </template>

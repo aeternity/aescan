@@ -4,7 +4,7 @@
       'copy-button',
       size ? `copy-button--${size}` : null,
       variant ? `copy-button--${variant}` : null,
-      { 'copy-button--success': isCopySuccessful },
+      {'copy-button--success': isCopySuccessful},
     ]"
     @click="copyText">
     <app-icon

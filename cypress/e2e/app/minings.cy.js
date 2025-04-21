@@ -1,6 +1,6 @@
 describe('mining', () => {
   it('should display mining UI elements', () => {
-    cy.visit('/charts/mining')
+    cy.visit('/mining')
     cy.get('.mining-statistics-grid .panel').should('have.length', 11)
     cy.get('.mining-statistics-grid canvas').should('have.length', 2)
 

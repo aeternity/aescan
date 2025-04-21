@@ -61,6 +61,7 @@ const menuOptions = ref([{
     {
       name: 'Mining',
       path: '/mining',
+      hidden: !featureFlags.mining,
     },
   ],
 },

@@ -33,9 +33,10 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ MINING_POOLS.length }}
-        <!--        todo wut-->
-
+        <template v-if="NETWORK_NAME !== 'TESTNET'">
+          {{ MINING_POOLS.length }}
+        </template>
+        <not-available-label v-else/>
       </span>
     </app-panel>
     <app-panel class="mining-statistics-grid__panel--reward">
@@ -154,6 +155,8 @@
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
 import { MINING_POOLS } from '~/utils/constants'
+
+const { NETWORK_NAME } = useRuntimeConfig().public
 
 const { fetchMiningStatistics } = useMiningStore()
 const { statistics } = storeToRefs(useMiningStore())

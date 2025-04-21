@@ -13,7 +13,9 @@
   <template v-if="!isLoading">
     <mining-statistics-grid/>
     <app-tabs v-model="activeTabIndex">
-      <app-tab title="Mining Pools">
+      <app-tab
+        v-if="NETWORK_NAME !== 'TESTNET'"
+        title="Mining Pools">
         <mining-pools-panel/>
       </app-tab>
       <app-tab title="Miners">
@@ -34,7 +36,10 @@ import MiningStatisticsGrid from '~/components/MiningStatisticsGrid.vue'
 const route = useRoute()
 const { push, replace } = useRouter()
 
-const TAB_KEYS = ['mining-pools', 'miners', 'latest-keyblocks']
+const { NETWORK_NAME } = useRuntimeConfig().public
+const TAB_KEYS = NETWORK_NAME !== 'TESTNET'
+  ? ['mining-pools', 'miners', 'latest-keyblocks']
+  : ['miners', 'latest-keyblocks']
 
 const activeTabIndex = computed({
   get() {

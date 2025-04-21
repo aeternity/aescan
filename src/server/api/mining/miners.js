@@ -9,6 +9,7 @@ export default defineEventHandler(async event => {
   const url = getUrl({
     entity: 'stats/miners',
     limit: limit ?? 10,
+    parameters: { direction: 'backward' },
     queryParameters,
   })
 

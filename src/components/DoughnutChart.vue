@@ -23,9 +23,6 @@ import {
 } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
 
-const isLoading = computed(() => props.data === null)
-// todo try loading separately
-
 const props = defineProps({
   interval: {
     type: String,
@@ -36,13 +33,11 @@ const props = defineProps({
     required: true,
   },
 })
-const stats = computed(() => props.topMiners.blocksMined)
-const legend = computed(() => props.topMiners.miners)
 
 const data = {
-  labels: legend.value,
+  labels: props.topMiners.miners,
   datasets: [{
-    data: stats.value,
+    data: props.topMiners.blocksMined,
     backgroundColor: [
       'rgb(0, 61, 255)',
       'rgb(102, 231, 115)',

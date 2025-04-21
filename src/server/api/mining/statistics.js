@@ -36,7 +36,6 @@ async function fetchStatus() {
 async function fetchTopMiners() {
   const url = getUrl({
     entity: 'stats/miners/top-24h',
-
   })
   const { data } = await axios.get(url)
   return data
@@ -50,10 +49,7 @@ async function fetchHashrateStatistics() {
       interval_by: 'month',
     },
   })
-  console.log('url', url)
   const { data } = await axios.get(url)
-  // const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/hashrate?interval_by=month&limit=999`)
-  console.log('data', data)
   return data.data.slice(1).reverse()
 }
 

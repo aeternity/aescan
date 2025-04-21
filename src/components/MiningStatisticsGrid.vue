@@ -221,7 +221,6 @@ if (process.client) {
       grid-area: 4 / 1 / 5 / 2;
 
       @media (--desktop) {
-
         grid-area: 3 / 1 / 4 / 2;
       }
     }

@@ -13,6 +13,43 @@ import numeral from 'numeral'
 import { MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
 
 // todo raw
+// todo rename
+export function formatNumber2(number, maxDigits, hasFullPrecision) {
+  const ABBREVIATION_THRESHOLD = 1000
+  const numberFullPrecision = computed(() => number > 1 ? number : numberFractioned.value)
+
+  const decimalPlaces = computed(() => {
+    const decimalIndex = number.toString().indexOf('.')
+    return decimalIndex >= 0 ? number.toString().length - decimalIndex - 1 : 0
+  })
+  const numberAbbreviated = computed(() => formatNumber(number, maxDigits, hasFullPrecision))
+  const numberFormatted = computed(() => formatNumber(number, 13, true))
+  const numberFractioned = computed(() => {
+    // todo move this to formatNUmber
+    const maximumSignificantDigits = 8
+    return Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(number)
+  })
+  // todo ~0
+  // todo reuse format function
+  const isPriceRounded = computed(() => {
+    const zeros = '0'.repeat(decimalPlaces.value)
+    return number.toString() !== numeral(numberAbbreviated.value).format(`0.[${zeros}]`).toString() && number > 1
+  })
+  const isPriceAbbreviated = computed(() => /[a-z]/i.test(numberAbbreviated.value))/* when has letters */
+  const hasTooltip = computed(() => (isPriceAbbreviated.value || isPriceRounded.value) && !hasFullPrecision)
+
+  const tooltipPrice = computed(() => number < ABBREVIATION_THRESHOLD ? number : numberFormatted.value)
+  const displayPrice = computed(() => {
+    if (hasTooltip.value) {
+      return `${isPriceRounded.value ? '~' : ''}${number > 1 ? numberAbbreviated.value : numberFractioned.value}`
+    } else {
+      return numberFullPrecision.value
+    }
+  })
+
+  return { displayPrice, tooltipPrice, hasTooltip: hasTooltip.value }
+}
+
 export function formatNumber(amount, maxDigits = 6, hasFullPrecision = false) {
   if (parseFloat(amount) === 0) {
     return '0'

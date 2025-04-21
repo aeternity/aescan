@@ -1,5 +1,4 @@
 import useAxios from '@/composables/useAxios'
-import { formatAettosToAe, formatKnownAddress, formatNumber } from '~/utils/format'
 
 const axios = useAxios()
 

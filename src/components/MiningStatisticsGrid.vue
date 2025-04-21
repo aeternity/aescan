@@ -153,7 +153,6 @@
 </template>
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
-import { MINING_POOLS } from '~/utils/constants'
 
 const { NETWORK_NAME } = useRuntimeConfig().public
 

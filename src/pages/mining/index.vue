@@ -31,7 +31,6 @@
 
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
-import MiningStatisticsGrid from '~/components/MiningStatisticsGrid.vue'
 
 const route = useRoute()
 const { push, replace } = useRouter()

@@ -1,5 +1,4 @@
 <template>
-  <!--  todo add test-->
   <div class="mining-statistics-grid">
     <app-panel class="mining-statistics-grid__panel--miners">
       <h2 class="h5">
@@ -142,7 +141,7 @@
 
     <app-panel class="mining-statistics-grid__panel--chart">
       <h2 class="h5">
-        MINING POOLS IN LAST 24 HOURS
+        TOP MINERS IN LAST 24 HOURS
         <hint-tooltip>
           {{ miningHints.miningPoolsChart }}
         </hint-tooltip>
@@ -167,8 +166,6 @@ if (process.client) {
 </script>
 
 <style scoped>
-/*todo 2 or 3 miners*/
-/*todo how about testnet minig miners count*/
 .mining-statistics-grid {
   display: grid;
   grid-template-columns: 1fr;

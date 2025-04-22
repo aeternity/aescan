@@ -1,5 +1,6 @@
 # Changelog
 
+
 ## [0.21.2](https://github.com/aeternity/aescan/compare/0.21.0...0.21.2) (2025-04-07)
 
 

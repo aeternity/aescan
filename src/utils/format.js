@@ -59,7 +59,6 @@ export function formatNumber(amount, maxDigits = 6, hasFullPrecision = false) {
     return small === 'NaN' ? '0' : small
   }
   // todo if nan then ~0
-
   // todo raw not needed in function
   const formatted = hasFullPrecision ? numeral(amount).format('0,0') : numeral(amount).format('0,0.[0]a')
   return formatted === 'NaN' ? amount : formatted

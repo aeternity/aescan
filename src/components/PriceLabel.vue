@@ -36,7 +36,7 @@
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currencySuffix }}
+        &nbsp;{{ currencySuffix }}
       </app-link>
       <template v-else>
         {{ currencySuffix }}
@@ -47,14 +47,12 @@
 
 <script setup>
 import { useRuntimeConfig } from 'nuxt/app'
-import { formatNumber2 } from '~/utils/format'
 
 const props = defineProps({
   price: {
     type: [String, Number],
     default: null,
   },
-
   hasFullPrecision: {
     type: Boolean,
     default: false,
@@ -82,6 +80,7 @@ const props = defineProps({
 })
 
 const formattedPrice = computed(() => formatNumber2(props.price, props.maxDigits, props.hasFullPrecision))
+// todo explode
 
 const currencyPrefix = computed(() => props.currency === '$' ? props.currency : null)
 const currencySuffix = computed(() => props.currency === '$' ? null : props.currency)

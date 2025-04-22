@@ -1,5 +1,20 @@
 # Changelog
 
+
+## [0.22.0](https://github.com/aeternity/aescan/compare/0.21.1...0.22.0) (2025-04-22)
+
+
+### Features
+
+* Advanced AE price history chart ([#1124](https://github.com/aeternity/aescan/issues/1124)) ([f2152af](https://github.com/aeternity/aescan/commit/f2152afdc0687be8905d69fd15eba89ddb931fbe))
+
+
+### Bug Fixes
+
+* remove delisted coinstore from app ([#1131](https://github.com/aeternity/aescan/issues/1131)) ([9e30415](https://github.com/aeternity/aescan/commit/9e30415f62da02a16812704e1e5c3203e4b0f680))
+* state channels pagination pagination ([#1133](https://github.com/aeternity/aescan/issues/1133)) ([cfc0f9f](https://github.com/aeternity/aescan/commit/cfc0f9f62a6e5566e0ac0bbbf3967748c886b2fd))
+* text content change ([#1126](https://github.com/aeternity/aescan/issues/1126)) ([3e4a821](https://github.com/aeternity/aescan/commit/3e4a821c38df21b2b2fa6968f068da5d4a494f9e))
+
 ## [0.21.2](https://github.com/aeternity/aescan/compare/0.21.0...0.21.2) (2025-04-07)
 
 

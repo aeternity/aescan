@@ -22,6 +22,9 @@
   </page-header>
 
   <template v-if="!isLoading">
+    <price-chart-panel
+      :scope="CHART_SCOPE_PRESETS_OPTIONS[4]"
+      class="ae-coin__panel"/>
     <ae-coin-panel
       class="ae-coin__panel"
       :price="price"

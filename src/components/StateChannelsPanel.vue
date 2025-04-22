@@ -16,11 +16,11 @@ const { stateChannels, stateChannelsCount } = storeToRefs(useStateChannelsStore(
 const { fetchStateChannels, fetchStateChannelsCount } = useStateChannelsStore()
 
 async function loadPrevStateChannels() {
-  await fetchStateChannels(stateChannels.value.prev.substring(3))
+  await fetchStateChannels(stateChannels.value.prev)
 }
 
 async function loadNextStateChannels() {
-  await fetchStateChannels(stateChannels.value.next.substring(3))
+  await fetchStateChannels(stateChannels.value.next)
 }
 
 async function loadStateChannels() {

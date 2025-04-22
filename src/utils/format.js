@@ -12,7 +12,6 @@ import numeral from 'numeral'
 
 import { MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
 
-// todo raw
 // todo rename
 export function formatNumber2(number, maxDigits, hasFullPrecision) {
   const ABBREVIATION_THRESHOLD = 1000
@@ -154,23 +153,6 @@ export function formatIsAuction(name) {
   const suffixLength = 6
   return name.length - suffixLength < auctionLength
 }
-
-//
-// export function formatTokenValue(amount, tokenAePrice, aeFiatPrice) {
-//   // todo is this necessary?
-//   // todo other similar
-//   if (tokenAePrice === null) {
-//     return null
-//   }
-//
-//   const bigNumber = (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice)
-//   const decimalPlaces = bigNumber.e
-//   const digitsCount = bigNumber.c?.[0].toString().length
-//   if (decimalPlaces & digitsCount) {
-//     return formatNumber(bigNumber.toFixed(digitsCount - decimalPlaces - 1))
-//   }
-//   return null
-// }
 
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {

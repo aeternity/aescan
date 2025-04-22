@@ -2,9 +2,7 @@ export const useMiningStore = defineStore('mining', () => {
   const miners = ref(null)
   const statistics = ref(null)
 
-  const minersCount = computed(() => {
-    return statistics.value?.minersCount
-  })
+  const minersCount = computed(() => statistics.value?.minersCount)
 
   async function fetchMiningStatistics() {
     statistics.value = null

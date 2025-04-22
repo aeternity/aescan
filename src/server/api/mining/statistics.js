@@ -1,4 +1,5 @@
 import useAxios from '@/composables/useAxios'
+import { formatAettosToAe, formatKnownAddress, formatNumber } from '@/utils/format'
 
 const axios = useAxios()
 
@@ -10,7 +11,6 @@ export default defineEventHandler(async() => {
     fetchTopMiners(),
     fetchHashrateStatistics(),
   ])
-
   return adaptMiningStatistics(statistics, blockReward, status, topMiners, hashrateStatistics)
 })
 

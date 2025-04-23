@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="pie-chart"
-    style="position:relative">
+  <div class="doughnut-chart">
     <Doughnut
       :options="chartOptions"
       :data="data"/>
@@ -9,7 +7,6 @@
 </template>
 
 <script setup>
-
 import {
   ArcElement,
   CategoryScale,
@@ -21,6 +18,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
+
 import { Doughnut } from 'vue-chartjs'
 
 const props = defineProps({
@@ -81,3 +79,13 @@ ChartJS.register(
 
 ChartJS.defaults.font.family = 'Roboto Mono'
 </script>
+
+<style scoped>
+.doughnut-chart {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

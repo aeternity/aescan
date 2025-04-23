@@ -23,8 +23,8 @@ import {
   Tooltip,
 } from 'chart.js'
 
-import { DateTime } from 'luxon'
 import { Line } from 'vue-chartjs'
+import { DateTime } from 'luxon'
 
 const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)

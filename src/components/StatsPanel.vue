@@ -55,7 +55,7 @@
       title="KEYBLOCK REWARD"
       icon-name="keyblock-reward">
       <div class="stats-panel__content">
-        Beneficiary:
+        Reward:
         <price-label
           class="stats-panel__value"
           :price="latestReward"

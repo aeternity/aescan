@@ -54,6 +54,11 @@ const menuOptions = ref([{
       name: 'State Channels',
       path: '/state-channels',
     },
+    {
+      name: 'Mining',
+      path: '/mining',
+      hidden: !featureFlags.mining,
+    },
   ],
 },
 {

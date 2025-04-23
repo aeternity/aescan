@@ -4,11 +4,10 @@ import { formatAettosToAe } from '@/utils/format'
 const axios = useAxios()
 
 export default defineEventHandler(async event => {
-  const { limit, queryParameters } = getQuery(event)
+  const { queryParameters } = getQuery(event)
 
   const url = getUrl({
     entity: 'stats/miners',
-    limit: limit ?? 10,
     parameters: { direction: 'backward' },
     queryParameters,
   })

@@ -18,11 +18,11 @@ const { miners, minersCount } = storeToRefs(useMiningStore())
 const { fetchMiners } = useMiningStore()
 
 function loadPrevMiners() {
-  fetchMiners({ queryParameters: miners.value.prev })
+  fetchMiners(miners.value.prev)
 }
 
 function loadNextMiners() {
-  fetchMiners({ queryParameters: miners.value.next })
+  fetchMiners(miners.value.next)
 }
 
 if (process.client) {

@@ -9,10 +9,10 @@ export const useMiningStore = defineStore('mining', () => {
     statistics.value = await $fetch('/api/mining/statistics')
   }
 
-  async function fetchMiners({ queryParameters, limit } = {}) {
+  async function fetchMiners(queryParameters) {
     miners.value = null
     miners.value = await $fetch('/api/mining/miners', {
-      params: { queryParameters, limit },
+      params: { queryParameters },
     })
   }
 

@@ -1,12 +1,9 @@
-// eslint-disable-next-line no-restricted-imports
+// eslint-disable-next-line no-restricted-imports,import/extensions
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt({
   ignores: ['**/dist', '**/.nuxt', '**/.output'],
   rules: {
-    // 'space-before-function-paren': ['error', 'never'],
-    // 'arrow-parens': ['error', 'as-needed'],
-    //
     'max-len': ['error', {
       code: 120,
       ignoreUrls: true,

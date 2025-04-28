@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.1](https://github.com/aeternity/aescan/compare/0.23.0...0.23.1) (2025-04-28)
+
+
+### Bug Fixes
+
+* Mining pool dashboard fixes ([#1144](https://github.com/aeternity/aescan/issues/1144)) ([89a422d](https://github.com/aeternity/aescan/commit/89a422d8fde6a26a9792c099a1cfcc20b5ad09ef))
+
 ## [0.23.0](https://github.com/aeternity/aescan/compare/0.22.0...0.23.0) (2025-04-28)
 
 ### Features

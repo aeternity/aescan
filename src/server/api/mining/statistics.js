@@ -33,9 +33,7 @@ async function fetchStatus() {
 }
 
 async function fetchTopMiners() {
-  const url = getUrl({
-    entity: 'stats/miners/top-24h',
-  })
+  const url = getUrl({ entity: 'stats/miners/top-24h' })
   const { data } = await axios.get(url)
   return data
 }

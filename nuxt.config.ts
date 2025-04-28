@@ -104,7 +104,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // todo fix this
   eslint: {
     config: {
       stylistic: {
@@ -113,9 +112,6 @@ export default defineNuxtConfig({
         semi: false,
         commaDangle: 'always-multiline',
         braceStyle: '1tbs',
-        // operatorLinebreak: 'after',
-        // objectCurlySpacing: 'never',
-
       },
     },
   },

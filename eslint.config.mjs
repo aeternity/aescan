@@ -1,4 +1,4 @@
-// todo here
+// eslint-disable-next-line no-restricted-imports
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt({

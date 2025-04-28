@@ -44,19 +44,19 @@ const { priceStatistics } = storeToRefs(useChartsStore())
 const { fetchPriceStatistics } = useChartsStore()
 
 const labels = computed(() => {
-  return priceStatistics.value.labels.map(label => {
+  return priceStatistics.value.labels.map((label) => {
     const format = selectedScope.value.intervalBy !== '1H' ? 'yyyy-MM-dd' : 'yyyy-MM-dd HH:mm'
     return DateTime.fromMillis(parseInt(label)).toFormat(format)
   })
 })
 
-await useAsyncData(async() => {
+await useAsyncData(async () => {
   await loadPriceStatistics()
   return true
 })
 
-if (process.client) {
-  watch([selectedScope], async() => {
+if (import.meta.client) {
+  watch([selectedScope], async () => {
     await loadPriceStatistics()
   })
 }
@@ -93,7 +93,7 @@ const chartOptions = {
         position: 'top',
       },
       callbacks: {
-        label: value => `$ ${value.formattedValue}`,
+        label: (value) => `$ ${value.formattedValue}`,
       },
     },
   },
@@ -104,7 +104,7 @@ const chartOptions = {
       },
       min: 0,
       ticks: {
-        callback: value => `$ ${value}`,
+        callback: (value) => `$ ${value}`,
       },
     },
     x: {
@@ -124,7 +124,6 @@ ChartJS.register(
   Tooltip,
   Legend,
 )
-
 </script>
 
 <style scoped>

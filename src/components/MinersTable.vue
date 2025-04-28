@@ -23,7 +23,7 @@
         <td>
           <value-hash-ellipsed
             :link-to="`/accounts/${miner.miner}`"
-            :hash="miner.miner "/>
+            :hash="miner.miner"/>
         </td>
         <td>
           <price-label :price="miner.totalReward"/>

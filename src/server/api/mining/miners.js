@@ -13,7 +13,6 @@ export default defineEventHandler(async event => {
   })
 
   const { data } = await axios.get(url)
-
   return adaptMiners(data)
 })
 

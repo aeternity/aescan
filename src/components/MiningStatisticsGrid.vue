@@ -67,7 +67,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics-grid__panel--c2">
+    <app-panel class="mining-statistics-grid__panel--hashrate-trend">
       <h2 class="h5">
         HASHRATE TREND
         <hint-tooltip>
@@ -139,7 +139,7 @@
       </span>
     </app-panel>
 
-    <app-panel class="mining-statistics-grid__panel--chart">
+    <app-panel class="mining-statistics-grid__panel--top-miners">
       <h2 class="h5">
         TOP MINERS IN LAST 24 HOURS
         <hint-tooltip>
@@ -232,8 +232,11 @@ if (process.client) {
       }
     }
 
-    &--c2 {
-      grid-area: 5 / 1 / 6 / 2;
+    &--hashrate-trend {
+      min-width: 0;
+      /* chart resizing fix*/
+
+      grid-area: 6 / 1 / 7 / 2;
 
       @media (--desktop) {
         grid-area: 2 / 2 / 4 / 4;
@@ -241,7 +244,7 @@ if (process.client) {
     }
 
     &--blocks-mined {
-      grid-area: 6 / 1 / 7 / 2;
+      grid-area: 7 / 1 / 8 / 2;
 
       @media (--desktop) {
         grid-area: 4 / 2 / 5 / 3;
@@ -249,7 +252,7 @@ if (process.client) {
     }
 
     &--block-time {
-      grid-area: 7 / 1 / 8 / 2;
+      grid-area: 8 / 1 / 9 / 2;
 
       @media (--desktop) {
         grid-area: 4 / 4 / 5 / 5;
@@ -257,7 +260,7 @@ if (process.client) {
     }
 
     &--max-tps {
-      grid-area: 8 / 1 / 9 / 2;
+      grid-area: 9 / 1 / 10 / 2;
 
       @media (--desktop) {
         grid-area: 4 / 3 / 5 / 4;
@@ -265,18 +268,18 @@ if (process.client) {
     }
 
     &--reward {
-      grid-area: 9 / 1 / 10 / 2;
+      grid-area: 10 / 1 / 11 / 2;
 
       @media (--desktop) {
         grid-area: 4 / 1 / 5 / 2;
       }
     }
 
-    &--chart {
+    &--top-miners {
       min-width: 0;
       /* chart resizing fix*/
 
-      grid-area: 10 / 1 / 11 / 2;
+      grid-area: 11 / 1 / 12 / 2;
 
       @media (--desktop) {
         grid-area: 1 / 4 / 4 / 5;

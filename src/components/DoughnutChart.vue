@@ -22,10 +22,6 @@ import {
 import { Doughnut } from 'vue-chartjs'
 
 const props = defineProps({
-  interval: {
-    type: String,
-    required: true,
-  },
   topMiners: {
     type: Array,
     required: true,

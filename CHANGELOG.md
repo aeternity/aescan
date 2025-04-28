@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.23.0](https://github.com/aeternity/aescan/compare/0.22.0...0.23.0) (2025-04-28)
+
+
+### Features
+
+* Mining Pools Listing 2 ([#1090](https://github.com/aeternity/aescan/issues/1090)) ([7630242](https://github.com/aeternity/aescan/commit/76302420ff0c7dff2f33686b5b2143764fec8e8d))
+
 ## [0.22.0](https://github.com/aeternity/aescan/compare/0.21.1...0.22.0) (2025-04-22)
 
 

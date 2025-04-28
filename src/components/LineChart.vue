@@ -23,8 +23,8 @@ import {
   Tooltip,
 } from 'chart.js'
 
-import { DateTime } from 'luxon'
 import { Line } from 'vue-chartjs'
+import { DateTime } from 'luxon'
 
 const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)
@@ -38,6 +38,10 @@ const props = defineProps({
   intervalBy: {
     type: String,
     required: true,
+  },
+  height: {
+    type: Number,
+    default: 250,
   },
 })
 
@@ -142,7 +146,7 @@ ChartJS.defaults.font.family = 'Roboto Mono'
 
 <style scoped>
 .line-chart {
-  height: 250px;
+  height: v-bind(height+ 'px');
   position: relative;
 
   display: flex;

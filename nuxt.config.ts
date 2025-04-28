@@ -45,6 +45,7 @@ export default defineNuxtConfig({
       SH_DEX_CONTRACTS: process.env.SH_DEX_CONTRACTS?.split(';'),
       ENABLE_MARKET_STATS: process.env.ENABLE_MARKET_STATS,
       ENABLE_NODES: process.env.ENABLE_NODES,
+      ENABLE_MINING: process.env.ENABLE_MINING,
     },
   },
   postcss: {

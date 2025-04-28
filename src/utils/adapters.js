@@ -150,7 +150,7 @@ export function adaptAccountNames(names) {
       name: name.name,
       expirationHeight: name.expireHeight,
       expiration: name.approximateExpireTime,
-      pointers: name.pointers.map((pointer) => pointer.id),
+      pointers: name.pointers.map(pointer => pointer.id),
     }
   })
   return {
@@ -186,7 +186,7 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
 
 export function adaptDeltaStats(deltaStats, keyblockHeight) {
   const selectedDeltaStats = deltaStats.find(
-    (stat) => stat.height === keyblockHeight,
+    stat => stat.height === keyblockHeight,
   )
 
   if (!selectedDeltaStats) {
@@ -200,7 +200,7 @@ export function adaptDeltaStats(deltaStats, keyblockHeight) {
 }
 
 export function adaptActiveNames(names) {
-  const formattedData = names.data.map((name) => ({
+  const formattedData = names.data.map(name => ({
     name: name.name,
     buyer: name.ownership.original,
     owner: name.ownership.current,
@@ -218,7 +218,7 @@ export function adaptActiveNames(names) {
 }
 
 export function adaptInAuctionNames(names) {
-  const formattedData = names.data.map((name) => ({
+  const formattedData = names.data.map(name => ({
     name: name.name,
     highestBidder: name.lastBid.tx.accountId,
     bid: formatAettosToAe(name.lastBid.tx.nameFee),
@@ -234,7 +234,7 @@ export function adaptInAuctionNames(names) {
 }
 
 export function adaptExpiredNames(names) {
-  const formattedData = names.data.map((name) => ({
+  const formattedData = names.data.map(name => ({
     name: name.name,
     expirationHeight: name.expireHeight,
     expiration: name.approximateExpireTime,
@@ -250,13 +250,13 @@ export function adaptExpiredNames(names) {
 }
 
 export function adaptCustomPointers(allPointers) {
-  const customPointers = allPointers.filter((pointer) =>
+  const customPointers = allPointers.filter(pointer =>
     // separate special and custom pointers
     !SPECIAL_POINTERS_PRESET_KEYS.includes(pointer.key),
   )
 
   const hasRawPointers = allPointers
-    ? allPointers.some((pointer) => isAddressValid(pointer.id, Encoding.Bytearray))
+    ? allPointers.some(pointer => isAddressValid(pointer.id, Encoding.Bytearray))
     : null
 
   return customPointers.map((pointer) => {
@@ -281,10 +281,10 @@ export function adaptName(name, blockHeight, blockTime) {
     : null
   const customPointers = name.pointers ? adaptCustomPointers(name.pointers) : null
   const specialPointers = {
-    account: name.pointers ? name.pointers.find((name) => name.key === 'account_pubkey')?.id : null,
-    channel: name.pointers ? name.pointers.find((name) => name.key === 'channel')?.id : null,
-    contract: name.pointers ? name.pointers.find((name) => name.key === 'contract_pubkey')?.id : null,
-    oracle: name.pointers ? name.pointers.find((name) => name.key === 'oracle_pubkey')?.id : null,
+    account: name.pointers ? name.pointers.find(name => name.key === 'account_pubkey')?.id : null,
+    channel: name.pointers ? name.pointers.find(name => name.key === 'channel')?.id : null,
+    contract: name.pointers ? name.pointers.find(name => name.key === 'contract_pubkey')?.id : null,
+    oracle: name.pointers ? name.pointers.find(name => name.key === 'oracle_pubkey')?.id : null,
   }
 
   function getStateString(states) {
@@ -663,7 +663,7 @@ export function adaptMarketStatsMexc(stats) {
 }
 
 export function adaptMarketStatsCoinStore(stats) {
-  const tokenPair = stats.data.find((item) => item.symbol === 'AEUSDT')
+  const tokenPair = stats.data.find(item => item.symbol === 'AEUSDT')
   return {
     price: tokenPair.close,
     volume: tokenPair.volume,
@@ -671,7 +671,7 @@ export function adaptMarketStatsCoinStore(stats) {
 }
 
 export function adaptMarketStatsHotCoin(stats) {
-  const tokenPair = stats.ticker.find((item) => item.symbol === 'ae_usdt')
+  const tokenPair = stats.ticker.find(item => item.symbol === 'ae_usdt')
   return {
     price: tokenPair.last,
     volume: tokenPair.vol,
@@ -747,8 +747,8 @@ export function adaptTrades(trades, price) {
 }
 
 export function adaptAciObject(verificationDetails) {
-  const aci = JSON.parse(verificationDetails.aci).find((item) => item.contract)
-  const filteredFunctions = aci?.contract?.functions?.filter((fn) => fn.name !== 'init')
+  const aci = JSON.parse(verificationDetails.aci).find(item => item.contract)
+  const filteredFunctions = aci?.contract?.functions?.filter(fn => fn.name !== 'init')
   aci.contract.functions = filteredFunctions
   return aci
 }

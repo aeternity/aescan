@@ -93,7 +93,7 @@ const chartOptions = {
         position: 'top',
       },
       callbacks: {
-        label: (value) => `$ ${value.formattedValue}`,
+        label: value => `$ ${value.formattedValue}`,
       },
     },
   },
@@ -104,7 +104,7 @@ const chartOptions = {
       },
       min: 0,
       ticks: {
-        callback: (value) => `$ ${value}`,
+        callback: value => `$ ${value}`,
       },
     },
     x: {

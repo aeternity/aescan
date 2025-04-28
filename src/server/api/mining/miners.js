@@ -3,7 +3,7 @@ import { formatAettosToAe } from '@/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
 })
 
 function adaptMiners(miners) {
-  const formattedData = miners.data.map(miner => {
+  const formattedData = miners.data.map((miner) => {
     return {
       miner: miner.miner,
       totalReward: formatAettosToAe(miner.totalReward),

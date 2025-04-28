@@ -36,7 +36,7 @@ const networks = ref([
 ])
 
 const hasAlternativeNetwork = computed(() => !!ALTERNATIVE_NETWORK_URL)
-const navigate = (selectedOption) => window.location.replace(selectedOption.url)
+const navigate = selectedOption => window.location.replace(selectedOption.url)
 </script>
 
 <style scoped>

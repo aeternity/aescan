@@ -7,12 +7,12 @@ export default withNuxt({
     // 'space-before-function-paren': ['error', 'never'],
     // 'arrow-parens': ['error', 'as-needed'],
     //
-    // 'max-len': ["error", {
-    //         code: 120,
-    //         ignoreUrls: true,
-    //         ignoreStrings: true,
-    //         ignoreTemplateLiterals: true,
-    // }],
+    'max-len': ['error', {
+      code: 120,
+      ignoreUrls: true,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
+    }],
 
     'no-console': 'off',
     'no-use-before-define': 'off',

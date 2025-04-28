@@ -115,7 +115,7 @@ export default defineNuxtConfig({
         braceStyle: '1tbs',
         // operatorLinebreak: 'after',
         // objectCurlySpacing: 'never',
-        // arrowParens: 'as-needed',
+
       },
     },
   },

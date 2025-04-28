@@ -22,7 +22,7 @@ async function fetchDetails(id) {
   const [name, auction] = (await Promise.allSettled([
     fetchName(id),
     fetchAuction(id),
-  ])).map((result) => result.value)
+  ])).map(result => result.value)
   return name ?? auction
 }
 
@@ -110,20 +110,20 @@ function adaptSpecialPointers(pointers) {
   SPECIAL_POINTERS_PRESET_KEYS.forEach((key) => {
     const propertyName = key.includes('_pubkey') ? key.split('_')[0] : key
     specialPointers[propertyName] = pointers
-      ? pointers.find((pointer) => pointer.key === key)?.id || null
+      ? pointers.find(pointer => pointer.key === key)?.id || null
       : null
   })
   return specialPointers
 }
 
 function adaptCustomPointers(allPointers) {
-  const customPointers = allPointers.filter((pointer) =>
+  const customPointers = allPointers.filter(pointer =>
     // separate special and custom pointers
     !SPECIAL_POINTERS_PRESET_KEYS.includes(pointer.key),
   )
 
   const hasRawPointers = allPointers
-    ? allPointers.some((pointer) => isAddressValid(pointer.id, Encoding.Bytearray))
+    ? allPointers.some(pointer => isAddressValid(pointer.id, Encoding.Bytearray))
     : null
 
   return customPointers.map((pointer) => {

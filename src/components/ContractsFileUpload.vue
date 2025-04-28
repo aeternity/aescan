@@ -89,7 +89,7 @@ function addInputFilesToSelectedFiles() {
 
 function addDroppedFilesToSelectedFiles(isFirstFilesAddition) {
   const fileList = new DataTransfer()
-  selectedFiles.value.forEach((file) => fileList.items.add(file))
+  selectedFiles.value.forEach(file => fileList.items.add(file))
   emit('update:selected-files', fileList.files)
 
   if (isFirstFilesAddition) {

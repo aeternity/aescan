@@ -147,7 +147,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
   function formatUrlToTypeObject(txType) {
     return txType
-      ? TX_TYPES_OPTIONS.find((option) => option.typeQuery === txType)
+      ? TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
       : TX_TYPES_OPTIONS[0]
   }
 

@@ -14,7 +14,6 @@ export default withNuxt({
     'no-console': 'off',
     'no-use-before-define': 'off',
     'no-useless-constructor': 'off',
-
     'no-restricted-imports': ['error', {
       patterns: ['./'],
     }],
@@ -32,9 +31,6 @@ export default withNuxt({
     'vue/require-v-for-key': 'error',
     'vue/no-v-html': 0,
     'vue/object-curly-spacing': ['error', 'never'],
-
-    // 'vue/operator-linebreak': ['error', 'after'],
-
     'vue/multi-word-component-names': 'off',
     'vue/mustache-interpolation-spacing': ['error', 'always'],
     'vue/no-multiple-template-root': 'off',

@@ -76,7 +76,7 @@ const { contractDetails } = storeToRefs(useContractDetailsStore())
 
 const route = useRoute()
 if (isVerified.value) {
-  fetchContractCode(route.params.id)
+  await fetchContractCode(route.params.id)
 }
 
 function downloadFile(content) {

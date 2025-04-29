@@ -114,7 +114,7 @@ if (import.meta.client && !error.value) {
   ))
 
   if (featureFlags.smartContractVerification) {
-    fetchVerificationDetail(route.params.id)
+    await fetchVerificationDetail(route.params.id)
   }
 }
 </script>

@@ -90,7 +90,7 @@ const activeTabIndex = computed({
 })
 
 if (import.meta.client) {
-  fetchAccount(route.params.id)
+  await fetchAccount(route.params.id)
 }
 </script>
 

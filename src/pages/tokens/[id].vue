@@ -76,7 +76,7 @@ const activeTabIndex = computed({
 })
 
 try {
-  fetchTokenDetails(route.params.id)
+  await fetchTokenDetails(route.params.id)
 } catch (error) {
   if ([400, 404].includes(error.response?.status)) {
     throw showError({

@@ -97,6 +97,8 @@ const activityDescription = computed(() => {
       return 'Transferred to'
     case 'Aex141TransferEvent':
       return 'Transferred to'
+    case 'DexSwapEvent':
+      return 'Swapped'
     case 'InternalContractCallEvent':
       return 'Internal call'
     default:

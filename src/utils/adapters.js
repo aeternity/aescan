@@ -131,8 +131,8 @@ export function adaptAccountActivities(activities) {
       height: activity.payload?.blockHeight || activity.height,
       payload: activity.payload,
       hintKey:
-        activity.payload?.tx
-          ? activity.payload.tx.type.charAt(0).toLowerCase() + activity.payload.tx.type.slice(1)
+        activity.payload?.internalTx
+          ? activity.payload.internalTx.type.charAt(0).toLowerCase() + activity.payload.internalTx.type.slice(1)
           : null,
     }
   })

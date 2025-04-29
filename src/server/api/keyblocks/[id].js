@@ -4,7 +4,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   const keyblockDetails = await fetchKeblockDetails(id)
   let keyblockDeltaStats = null

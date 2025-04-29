@@ -119,10 +119,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     }
   }
 
-  function setPageIndex(index) {
-    pageIndex.value = index
-  }
-
   function setPageLimit(value) {
     pageLimit.value = value
   }

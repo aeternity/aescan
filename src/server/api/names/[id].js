@@ -6,7 +6,7 @@ import { MINUTES_PER_BLOCK, SPECIAL_POINTERS_PRESET_KEYS } from '@/utils/constan
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   const [nameDetails, latestKeyblock] = await Promise.all([
     fetchDetails(id),
@@ -62,8 +62,8 @@ function adaptName(name, blockHeight, blockTime) {
   const blockCreatedTime = DateTime.fromMillis(blockTime)
   const activated = states.includes('active')
     ? blockCreatedTime.minus({
-      minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
-    }).toMillis()
+        minutes: blockHeight - name.activeFrom * MINUTES_PER_BLOCK,
+      }).toMillis()
     : null
   name.pointers ??= []
 
@@ -107,7 +107,7 @@ function getStateString(states) {
 function adaptSpecialPointers(pointers) {
   const specialPointers = {}
 
-  SPECIAL_POINTERS_PRESET_KEYS.forEach(key => {
+  SPECIAL_POINTERS_PRESET_KEYS.forEach((key) => {
     const propertyName = key.includes('_pubkey') ? key.split('_')[0] : key
     specialPointers[propertyName] = pointers
       ? pointers.find(pointer => pointer.key === key)?.id || null
@@ -126,7 +126,7 @@ function adaptCustomPointers(allPointers) {
     ? allPointers.some(pointer => isAddressValid(pointer.id, Encoding.Bytearray))
     : null
 
-  return customPointers.map(pointer => {
+  return customPointers.map((pointer) => {
     return {
       key: pointer.key,
       pointer: hasRawPointers ? decode(pointer.id).toString() : pointer.id,

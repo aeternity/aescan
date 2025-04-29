@@ -17,7 +17,7 @@ export const useWalletStore = defineStore('wallet', () => {
     status.value = 'detecting'
 
     wallet = await Promise.race([
-      new Promise(resolve => {
+      new Promise((resolve) => {
         const stopScan = walletDetector(
           new BrowserWindowMessageConnection(),
           ({ newWallet }) => {
@@ -41,14 +41,14 @@ export const useWalletStore = defineStore('wallet', () => {
     status.value = 'connecting'
     try {
       connector = await WalletConnectorFrame.connect('æScan', wallet.getConnection())
-      connector.addListener('accountsChange', accounts => {
+      connector.addListener('accountsChange', (accounts) => {
         if (aeSdk.addresses().length) {
           aeSdk.removeAccount(aeSdk.address)
         }
         aeSdk.addAccount(accounts[0], { select: true })
         address.value = aeSdk.address
       })
-      connector.addListener('networkIdChange', networkId => {
+      connector.addListener('networkIdChange', (networkId) => {
         if (networkId !== NETWORK_ID) {
           disconnect()
           scanWallets()
@@ -61,6 +61,8 @@ export const useWalletStore = defineStore('wallet', () => {
       await connector.subscribeAccounts('subscribe', 'current')
       status.value = 'connected'
     } catch (error) {
+      console.error(error)
+
       disconnect()
       status.value = 'denied'
     }
@@ -73,7 +75,8 @@ export const useWalletStore = defineStore('wallet', () => {
     connector.removeAllListeners()
     try {
       connector.disconnect()
-    } catch {
+    } catch (error) {
+      console.error(error)
     }
     connector = undefined
   }

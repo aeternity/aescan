@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { id, queryParameters } = getQuery(event)
 
   const url = getUrl({
@@ -18,7 +18,7 @@ export default defineEventHandler(async event => {
 
 function adaptNftTransfers(transfers) {
   const formattedData = transfers.data
-    .map(transfer => {
+    .map((transfer) => {
       return {
         txHash: transfer.txHash,
         time: transfer.microTime,

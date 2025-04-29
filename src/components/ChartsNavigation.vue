@@ -11,6 +11,7 @@
     </app-panel>
   </nav>
 </template>
+
 <script setup>
 const menuOptions = ref([
   {

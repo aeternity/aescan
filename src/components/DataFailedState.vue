@@ -16,5 +16,4 @@
   color: var(--color-midnight);
   background: var(--color-snow);
 }
-
 </style>

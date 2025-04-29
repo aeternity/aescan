@@ -1,6 +1,6 @@
 <template>
   <app-swiper :slides="stateChannels">
-    <template #slide="{ slideData: channel }">
+    <template #slide="{slideData: channel}">
       <table>
         <tbody>
           <tr>

@@ -151,6 +151,7 @@
     </app-panel>
   </div>
 </template>
+
 <script setup>
 import { miningHints } from '@/utils/hints/miningHints'
 
@@ -159,7 +160,7 @@ const { NETWORK_NAME } = useRuntimeConfig().public
 const { fetchMiningStatistics } = useMiningStore()
 const { statistics } = storeToRefs(useMiningStore())
 
-if (process.client) {
+if (import.meta.client) {
   await fetchMiningStatistics()
 }
 </script>

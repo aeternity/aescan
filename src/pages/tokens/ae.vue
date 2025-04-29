@@ -85,7 +85,7 @@ const activeTabIndex = computed({
   },
 })
 
-await useAsyncData(() => Promise.allSettled([
+useAsyncData(() => Promise.allSettled([
   fetchTotalStats(),
   fetchMarketStats(),
 ]))

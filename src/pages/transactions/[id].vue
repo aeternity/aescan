@@ -62,7 +62,7 @@ try {
   throw error
 }
 
-if (process.client && !transactionTypeData.value) {
+if (import.meta.client && !transactionTypeData.value) {
   subscribedTransactionId.value = route.params.id
 
   onBeforeRouteUpdate(

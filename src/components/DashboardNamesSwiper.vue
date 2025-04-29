@@ -1,6 +1,6 @@
 <template>
   <app-swiper :slides="recentlyActivatedNames">
-    <template #slide="{ slideData: name }">
+    <template #slide="{slideData: name}">
       <table>
         <tbody>
           <tr>

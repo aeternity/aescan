@@ -4,7 +4,7 @@
       'copy-button',
       size ? `copy-button--${size}` : null,
       variant ? `copy-button--${variant}` : null,
-      { 'copy-button--success': isCopySuccessful },
+      {'copy-button--success': isCopySuccessful},
     ]"
     @click="copyText">
     <app-icon
@@ -75,7 +75,7 @@ function stopCopySuccessAnimation() {
   margin: 0;
   padding: 0;
   text-transform: none;
-  appearance: button;
+  appearance: auto;
 
   &--light {
     color: var(--color-white);

@@ -2,7 +2,7 @@ import useAxios from '@/composables/useAxios'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { queryParameters } = getQuery(event)
   const [nfts, count] = await Promise.all([
     fetchNftsList(queryParameters),
@@ -33,7 +33,7 @@ async function fetchNftsCount() {
 
 function adaptNfts(nfts, count) {
   const formattedData = nfts.data
-    .map(nft => {
+    .map((nft) => {
       return {
         name: nft.name,
         blockHeight: nft.blockHeight,

@@ -22,7 +22,7 @@ async function loadNextKeyblocks() {
   await fetchKeyblocks(keyblocks.value.next)
 }
 
-if (process.client) {
+if (import.meta.client) {
   fetchKeyblocks()
 }
 </script>

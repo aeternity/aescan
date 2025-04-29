@@ -27,7 +27,7 @@ function loadNextTransactions() {
   fetchStateChannelTransactions(stateChannelTransactions.value.next)
 }
 
-if (process.client) {
+if (import.meta.client) {
   fetchStateChannelTransactions({ id: route.params.id })
 }
 </script>

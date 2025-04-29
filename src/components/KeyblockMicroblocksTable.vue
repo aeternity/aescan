@@ -41,6 +41,7 @@
     </tbody>
   </table>
 </template>
+
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
 

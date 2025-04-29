@@ -26,7 +26,7 @@ function loadNextEvents() {
   fetchOracleEvents({ queryParameters: oracleEvents.value.next })
 }
 
-if (process.client) {
+if (import.meta.client) {
   fetchOracleEvents({ limit: 10, id: route.params.id })
 }
 </script>

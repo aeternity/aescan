@@ -43,8 +43,7 @@ const isOpenedInNewTab = computed(
 )
 
 function isLocalLink(url) {
-  return typeof url === 'object' ||
-    url.charAt(0) === '/'
+  return typeof url === 'object' || url.charAt(0) === '/'
 }
 </script>
 

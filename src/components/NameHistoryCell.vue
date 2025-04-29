@@ -20,31 +20,31 @@ const isAuction = computed(() => {
 
 const activityDescription = computed(() => {
   switch (props.activity) {
-  case 'NameUpdateTxEvent':
-    return 'Updated'
-  case 'NameTransferTxEvent':
-    return 'Transferred'
-  case 'NamePreclaimEvent':
-    return 'Name commitment initialized'
-  case 'NameClaimEvent':
-    if (isAuction.value) {
-      return 'Bid placed'
-    }
-    return 'Activated'
+    case 'NameUpdateTxEvent':
+      return 'Updated'
+    case 'NameTransferTxEvent':
+      return 'Transferred'
+    case 'NamePreclaimEvent':
+      return 'Name commitment initialized'
+    case 'NameClaimEvent':
+      if (isAuction.value) {
+        return 'Bid placed'
+      }
+      return 'Activated'
 
-  case 'NameRevokeTxEvent':
-    return 'Revoked'
+    case 'NameRevokeTxEvent':
+      return 'Revoked'
 
-  case 'NameExpiredEvent':
-    return 'Expired'
+    case 'NameExpiredEvent':
+      return 'Expired'
 
-  case 'InternalContractCallEvent':
-    return 'Internal Contract Call'
-  case 'SpendTxEvent':
-    return 'Spend'
+    case 'InternalContractCallEvent':
+      return 'Internal Contract Call'
+    case 'SpendTxEvent':
+      return 'Spend'
 
-  default:
-    return 'N/A'
+    default:
+      return 'N/A'
   }
 })
 </script>

@@ -38,17 +38,17 @@ const route = useRoute()
 
 const pageIndex = ref(1)
 
-if (process.client) {
+if (import.meta.client) {
   if (!isHydrated?.value) {
     setPageLimit(10)
-    await loadTransactions()
+    loadTransactions()
   }
 
   watch([selectedTxType, selectedScope], () => {
     changeRoute()
   })
 
-  watch(() => route.fullPath, async() => {
+  watch(() => route.fullPath, async () => {
     await loadTransactions()
     pageIndex.value = 1
   })
@@ -61,7 +61,6 @@ async function loadPrevTransactions() {
 async function loadNextTransactions() {
   await loadTransactions(transactions.value.next)
 }
-
 </script>
 
 <style scoped>

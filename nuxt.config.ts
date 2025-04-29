@@ -4,25 +4,13 @@ import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  srcDir: './src',
-  css: ['@/assets/styles/main.css'],
-  devServer: {
-    port: 8080,
-  },
-  nitro: {
-    routeRules: {
-      '/proxy/avatar/**': { proxy: 'https://avatars.z52da5wt.xyz/**', cors: true },
-      '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
-    },
-  },
   modules: [
     '@pinia/nuxt',
+    '@nuxt/eslint',
     '@nuxtjs/plausible',
     'nuxt-monaco-editor',
   ],
-  plausible: {
-    ignoredHostnames: ['localhost'],
-  },
+  css: ['@/assets/styles/main.css'],
   appConfig: {
     APP_VERSION: process.env.APP_VERSION,
   },
@@ -48,18 +36,19 @@ export default defineNuxtConfig({
       ENABLE_MINING: process.env.ENABLE_MINING,
     },
   },
-  postcss: {
-    plugins: {
-      autoprefixer: {},
-      '@csstools/postcss-global-data': {
-        files: ['src/assets/styles/settings/_variables.css'],
-      },
-      'postcss-custom-media': {},
-      'postcss-import': {},
-      'postcss-nested': {},
+
+  srcDir: './src',
+  sourcemap: true,
+  devServer: {
+    port: 8080,
+  },
+  compatibilityDate: '2024-07-16',
+  nitro: {
+    routeRules: {
+      '/proxy/avatar/**': { proxy: 'https://avatars.z52da5wt.xyz/**', cors: true },
+      '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
     },
   },
-  sourcemap: true,
   vite: {
     build: { target: 'es2020' },
     optimizeDeps: {
@@ -103,11 +92,36 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  postcss: {
+    plugins: {
+      'autoprefixer': {},
+      '@csstools/postcss-global-data': {
+        files: ['src/assets/styles/settings/_variables.css'],
+      },
+      'postcss-custom-media': {},
+      'postcss-import': {},
+      'postcss-nested': {},
+    },
+  },
+
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        quotes: 'single',
+        semi: false,
+        commaDangle: 'always-multiline',
+        braceStyle: '1tbs',
+      },
+    },
+  },
   monacoEditor: {
     locale: 'en',
     componentName: {
       codeEditor: 'MonacoEditor',
     },
   },
-  compatibilityDate: '2024-07-16',
+  plausible: {
+    ignoredHostnames: ['localhost'],
+  },
 })

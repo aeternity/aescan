@@ -27,9 +27,9 @@ async function loadStateChannels() {
   await fetchStateChannels()
 }
 
-await fetchStateChannelsCount()
+fetchStateChannelsCount()
 
-if (process.client) {
+if (import.meta.client) {
   loadStateChannels()
 }
 </script>

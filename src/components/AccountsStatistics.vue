@@ -17,12 +17,13 @@
     </app-panel>
   </div>
 </template>
+
 <script setup>
 const { fetchTopAccounts } = useTopAccountsStore()
 const { totalAccountsCount, activeAccountsCount, activeAccountsDelta } = storeToRefs(useTopAccountsStore())
 
-if (process.client) {
-  await fetchTopAccounts()
+if (import.meta.client) {
+  fetchTopAccounts()
 }
 </script>
 

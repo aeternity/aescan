@@ -84,5 +84,4 @@ defineProps({
     justify-content: space-between;
   }
 }
-
 </style>

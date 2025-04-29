@@ -10,7 +10,7 @@
         :key="microblock.hash + microblock.prevKeyHash"
         :class="[
           'microblocks-sequence__cell',
-          {'microblocks-sequence__cell--active': microblock.hash === selectedMicroblock.hash }]"
+          {'microblocks-sequence__cell--active': microblock.hash === selectedMicroblock.hash}]"
         @click="selectMicroblock(microblock)">
         {{ microblock.transactionsCount }}
       </div>

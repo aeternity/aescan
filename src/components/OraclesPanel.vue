@@ -65,7 +65,7 @@ const selectedOracleState = computed({
   },
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch(() => route.fullPath, () => {
     loadOracles()
   })

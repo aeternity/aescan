@@ -1,4 +1,4 @@
-export default defineNitroPlugin(nitroApp => {
+export default defineNitroPlugin((nitroApp) => {
   const {
     WEBSOCKET_URL, MIDDLEWARE_URL, NODE_URL, DEX_BACKEND_URL, CONTRACT_VERIFICATION_SERVICE_URL,
   } = useRuntimeConfig().public
@@ -31,7 +31,7 @@ export default defineNitroPlugin(nitroApp => {
     ].join('; '),
   }
 
-  nitroApp.hooks.hook('render:response', response => {
+  nitroApp.hooks.hook('render:response', (response) => {
     delete response.headers['x-powered-by']
 
     if (process.env.NODE_ENV !== 'production') {

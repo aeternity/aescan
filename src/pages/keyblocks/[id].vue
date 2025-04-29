@@ -37,10 +37,9 @@ const { isLoading } = useLoading()
 
 const isKeyblockExistent = computed(() => keyblockDetails.value && keyblockDetails.value.isExistent !== false)
 
-if (process.client) {
-  await fetchKeyblock(route.params.id)
+if (import.meta.client) {
+  fetchKeyblock(route.params.id)
 }
-
 </script>
 
 <style scoped>

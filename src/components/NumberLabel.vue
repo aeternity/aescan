@@ -32,7 +32,6 @@ const props = defineProps({
   },
 })
 const formattedNumber = computed(() => formatNumber2(props.price, props.maxDigits, props.hasFullPrecision))
-
 </script>
 
 <style scoped>

@@ -15,8 +15,8 @@
         :contract-id="contractId"/>
     </template>
 
-    <app-tooltip v-if="formattedPrice.hasTooltip">
-      {{ currencyPrefix }} {{ formattedPrice.displayPrice }}
+    <app-tooltip v-if="hasTooltip">
+      {{ currencyPrefix }} {{ displayNumber }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -27,12 +27,12 @@
       </template>
 
       <template #tooltip>
-        {{ currencyPrefix }} {{ formattedPrice.tooltipPrice }} {{ currencySuffix }}
+        {{ currencyPrefix }} {{ tooltipNumber }} {{ currencySuffix }}
       </template>
     </app-tooltip>
 
     <template v-else>
-      {{ currencyPrefix }} {{ formattedPrice.displayPrice }}
+      {{ currencyPrefix }} {{ displayNumber }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -57,6 +57,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  // todo default
   maxDigits: {
     type: Number,
     default: undefined,
@@ -79,13 +80,13 @@ const props = defineProps({
   },
 })
 
-const formattedPrice = computed(() => formatNumber2(props.price, props.maxDigits, props.hasFullPrecision))
-// todo explode
+// const { displayNumber, tooltipNumber, hasTooltip } = formatNumber2(props.price, props.maxDigits, props.hasFullPrecision)
+const { displayNumber, tooltipNumber, hasTooltip } = formatNumber3(props.price, props.maxDigits, props.hasFullPrecision)
 
-const currencyPrefix = computed(() => props.currency === '$' ? props.currency : null)
-const currencySuffix = computed(() => props.currency === '$' ? null : props.currency)
+const currencyPrefix = props.currency === '$' ? props.currency : null
+const currencySuffix = props.currency === '$' ? null : props.currency
 
-const hasIcon = computed(() => props.hasIcon && props.currency !== '$')
+const hasIcon = props.hasIcon && props.currency !== '$'
 </script>
 
 <style scoped>

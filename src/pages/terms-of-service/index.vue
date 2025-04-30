@@ -4,6 +4,7 @@
   <price-label :price="0.000000000000001"/>
   <price-label :price="0.0000001"/>
   <price-label :price="0.0001"/>
+  <price-label :price="0.0055"/>
   <price-label :price="0.1"/>
   <price-label :price="1"/>
   <price-label :price="23"/>
@@ -17,60 +18,77 @@
   <price-label :price="1000"/>
   <price-label :price="1001"/>
   <price-label :price="10001"/>
+  <price-label :price="770000.000006"/>
   <price-label :price="92000000"/>
   <price-label :price="92000001"/>
   <hr>
-  <price-label
-    has-full-precision
-    :price="0"/>
-  <price-label
-    has-full-precision
-    :price="0.00000000000000000001"/>
-  <price-label
-    has-full-precision
-    :price="0.0000001"/>
-  <price-label
-    has-full-precision
-    :price="0.0001"/>
-  <price-label
-    has-full-precision
-    :price="0.1"/>
-  <price-label
-    has-full-precision
-    :price="1"/>
-  <price-label
-    has-full-precision
-    :price="23"/>
-  <price-label
-    has-full-precision
-    :price="24.6"/>
-  <price-label
-    has-full-precision
-    :price="25.06"/>
-  <price-label
-    has-full-precision
-    :price="28.000000000006"/>
-  <price-label
-    has-full-precision
-    :price="888"/>
-  <price-label
-    has-full-precision
-    :price="999.003"/>
-  <price-label
-    has-full-precision
-    :price="1000"/>
-  <price-label
-    has-full-precision
-    :price="1001"/>
-  <price-label
-    has-full-precision
-    :price="10001"/>
-  <price-label
-    has-full-precision
-    :price="92000000"/>
-  <price-label
-    has-full-precision
-    :price="92000001"/>
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="0"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="0.00000000000000000001"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="0.000000000000001"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="0.0000001"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="0.0001"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="0.0055"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="0.1"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="1"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="23"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="24.6"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="25.06"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="28.000000000006"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="666"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="777.1"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="888.07"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="999.003"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="1000"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="1001"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="10001"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="770000.000006"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="92000000"/> -->
+  <!--  <price-label -->
+  <!--    has-full-precision -->
+  <!--    :price="92000001"/> -->
+
   <hr>
   <Head>
     <Title>Terms of Service</Title>

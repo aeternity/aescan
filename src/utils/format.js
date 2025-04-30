@@ -4,42 +4,101 @@ import { BigNumber } from 'bignumber.js'
 import numeral from 'numeral'
 import { KNOWN_ADDRESSES, MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
 
-// todo rename
 export function formatNumber2(number, maxDigits, hasFullPrecision) {
   const ABBREVIATION_THRESHOLD = 1000
-  const numberFullPrecision = computed(() => number > 1 ? number : numberFractioned.value)
-
-  const decimalPlaces = computed(() => {
-    const decimalIndex = number.toString().indexOf('.')
-    return decimalIndex >= 0 ? number.toString().length - decimalIndex - 1 : 0
-  })
-  const numberAbbreviated = computed(() => formatNumber(number, maxDigits, hasFullPrecision))
-  const numberFormatted = computed(() => formatNumber(number, 13, true))
   const numberFractioned = computed(() => {
     // todo move this to formatNUmber
     const maximumSignificantDigits = 8
     return Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(number)
   })
-  // todo ~0
-  // todo reuse format function
+  const numberFullPrecision = computed(() => number > 1 ? number : numberFractioned.value)
+
+  const decimalPlaces = computed(() => {
+    const decimalIndex = numberFullPrecision.value.toString().indexOf('.')
+    return decimalIndex >= 0 ? numberFullPrecision.value.toString().length - decimalIndex - 1 : 0
+  })
+  const numberAbbreviated = computed(() => formatNumber(numberFullPrecision.value, maxDigits, hasFullPrecision))
+  const numberFormatted = computed(() => formatNumber(numberFullPrecision.value, 13, true))
+
   const isPriceRounded = computed(() => {
     const zeros = '0'.repeat(decimalPlaces.value)
-    return number.toString() !== numeral(numberAbbreviated.value).format(`0.[${zeros}]`).toString() && number > 1
+    return numberFullPrecision.value.toString() !== numeral(numberAbbreviated.value).format(`0.[${zeros}]`).toString() && numberFullPrecision.value > 1
   })
   const isPriceAbbreviated = computed(() => /[a-z]/i.test(numberAbbreviated.value))/* when has letters */
   const hasTooltip = computed(() => (isPriceAbbreviated.value || isPriceRounded.value) && !hasFullPrecision)
 
-  const tooltipPrice = computed(() => number < ABBREVIATION_THRESHOLD ? number : numberFormatted.value)
-  const displayPrice = computed(() => {
+  const tooltipNumber = computed(() => numberFullPrecision.value < ABBREVIATION_THRESHOLD
+    ? numberFullPrecision.value
+    : numberFormatted.value)
+  const displayNumber = computed(() => {
     if (hasTooltip.value) {
-      return `${isPriceRounded.value ? '~' : ''}${number > 1 ? numberAbbreviated.value : numberFractioned.value}`
+      return `${isPriceRounded.value ? '~' : ''}${numberFullPrecision.value > 1 ? numberAbbreviated.value : numberFractioned.value}`
     } else {
       return numberFullPrecision.value
     }
   })
 
-  return { displayPrice, tooltipPrice, hasTooltip: hasTooltip.value }
+  return { displayNumber, tooltipNumber, hasTooltip: hasTooltip.value }
 }
+
+export function formatNumber3(number, decimalDigits = 8, hasFullPrecision) {
+  console.log('--------------------')
+  // todo move conditions <1 below
+  const cleanNumber = number > 1 ? number : Intl.NumberFormat('en-US', { maximumSignificantDigits: 20 }).format(number)
+  const abbreviated = numeral(number).format('0,0.[0]a')
+  const numberWithCommas = numeral(number).format('0,0')
+
+  const zeros = '0'.repeat(decimalDigits)
+  const nearZeroThreshold = `0.${zeros}1`
+
+  const isNumberRounded = cleanNumber.toString() !== numeral(abbreviated).format(`0.[${zeros}]`).toString()
+
+  if (hasFullPrecision) {
+    const formatted = cleanNumber < 1000 ? cleanNumber : numberWithCommas
+    return { displayNumber: formatted, tooltipNumber: formatted, hasTooltip: false }
+  }
+
+  if (parseFloat(cleanNumber) === 0) {
+    // console.log('nulla')
+    return { displayNumber: 0, tooltipNumber: 0, hasTooltip: false }
+  }
+
+  if (parseFloat(cleanNumber) < parseFloat(nearZeroThreshold)) {
+    // console.log('0 - 0.000000000001')
+    return { displayNumber: `~0`, tooltipNumber: cleanNumber, hasTooltip: true }
+  }
+
+  if (parseFloat(cleanNumber) < 1) {
+    // console.log('0.000000000001-1')
+    return { displayNumber: cleanNumber, tooltipNumber: cleanNumber, hasTooltip: false }
+  }
+
+  if (cleanNumber < 1000) {
+    // console.log('1-1000')
+    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviated}`
+    return { displayNumber, tooltipNumber: cleanNumber, hasTooltip: isNumberRounded }
+  } else {
+    // console.log('1001+')
+    // todo 770000.000006
+    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviated}`
+    return { displayNumber, tooltipNumber: numberWithCommas, hasTooltip: true }
+  }
+}
+
+// todo const ABBREVIATION_THRESHOLD = 1000
+// todo refactor computed
+// todo hastooltip by comparison
+// todo try to fixed instead of intl
+// todo operators fix
+// todo check usage .toString() and parseFloat
+
+// const decimalPlaces = computed(() => {
+//   const decimalIndex = cleanNumber.toString().indexOf('.')
+//   return decimalIndex >= 0 ? cleanNumber.toString().length - decimalIndex - 1 : 0
+// })
+//
+// console.log('decimalPlaces', decimalPlaces.value)
+// console.log('cleanNumber', cleanNumber)
 
 export function formatNumber(amount, maxDigits = 6, hasFullPrecision = false) {
   if (parseFloat(amount) === 0) {
@@ -50,9 +109,9 @@ export function formatNumber(amount, maxDigits = 6, hasFullPrecision = false) {
     const small = numeral(amount).format(`0.0[${zeros}]`)
     return small === 'NaN' ? '0' : small
   }
-  // todo if nan then ~0
-  // todo raw not needed in function
+
   const formatted = hasFullPrecision ? numeral(amount).format('0,0') : numeral(amount).format('0,0.[0]a')
+  console.log('formatted', formatted)
   return formatted === 'NaN' ? amount : formatted
 }
 

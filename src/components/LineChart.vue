@@ -25,7 +25,7 @@ import {
 
 import { Line } from 'vue-chartjs'
 import { DateTime } from 'luxon'
-import { formatNumber3 } from '~/utils/format'
+import { formatNumber } from '~/utils/format'
 
 const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)
@@ -95,7 +95,7 @@ const chartOptions = {
       min: 0,
       ticks: {
         precision: 0,
-        callback: value => formatNumber3(value).displayNumber,
+        callback: value => formatNumber(value).displayNumber,
       },
     },
     x: {

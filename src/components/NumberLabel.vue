@@ -24,14 +24,21 @@ const props = defineProps({
   },
   hasFullPrecision: {
     type: Boolean,
-    default: false,
+    default: undefined,
   },
-  maxDigits: {
+  roundingIndex: {
     type: Number,
     default: undefined,
   },
+  zeroingIndex: {
+    type: Number,
+    default: undefined,
+  },
+  // todo rename props
 })
-const formattedNumber = computed(() => formatNumber2(props.price, props.maxDigits, props.hasFullPrecision))
+console.log('props.price', props.price)
+const formattedNumber = computed(() => formatNumber(props.number, props.roundingIndex, props.zeroingIndex, props.hasFullPrecision))
+console.log('formattedNumber', formattedNumber.value)
 </script>
 
 <style scoped>

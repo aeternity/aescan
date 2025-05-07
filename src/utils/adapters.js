@@ -440,7 +440,7 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
         address: holder.accountId,
         contractId: holder.contractId,
         amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
-        percentage: formatPercentage(percentage),
+        percentage,
       }
     })
 

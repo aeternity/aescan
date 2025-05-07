@@ -49,7 +49,9 @@
               :has-icon="false"
               :price="MAX_AE_DISTRIBUTION"/>
             <div>
-              ({{ formatNullable(distributionPercentage) }}%)
+              (
+              <number-label :number="distributionPercentage"/>
+              %)
             </div>
           </div>
         </div>

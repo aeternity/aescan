@@ -15,8 +15,8 @@
         :contract-id="contractId"/>
     </template>
 
-    <app-tooltip v-if="hasTooltip">
-      {{ currencyPrefix }} {{ displayNumber }}
+    <app-tooltip v-if="aaa.hasTooltip">
+      {{ currencyPrefix }} {{ aaa.displayNumber }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -27,12 +27,12 @@
       </template>
 
       <template #tooltip>
-        {{ currencyPrefix }} {{ tooltipNumber }} {{ currencySuffix }}
+        {{ currencyPrefix }} {{ aaa.tooltipNumber }} {{ currencySuffix }}
       </template>
     </app-tooltip>
 
     <template v-else>
-      {{ currencyPrefix }} {{ displayNumber }}
+      {{ currencyPrefix }} {{ aaa.displayNumber }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -55,10 +55,13 @@ const props = defineProps({
   },
   hasFullPrecision: {
     type: Boolean,
-    default: false,
+    default: undefined,
   },
-  // todo default
-  maxDigits: {
+  roundingIndex: {
+    type: Number,
+    default: undefined,
+  },
+  zeroingIndex: {
     type: Number,
     default: undefined,
   },
@@ -80,9 +83,9 @@ const props = defineProps({
   },
 })
 
-// const { displayNumber, tooltipNumber, hasTooltip } = formatNumber2(props.price, props.maxDigits, props.hasFullPrecision)
-const { displayNumber, tooltipNumber, hasTooltip } = formatNumber3(props.price, props.maxDigits, props.hasFullPrecision)
-
+// const { displayNumber, tooltipNumber, hasTooltip } = formatNumber2(props.price, props.roundingIndex, props.hasFullPrecision)
+const aaa = computed(() => formatNumber(props.price, props.roundingIndex, props.zeroingIndex, props.hasFullPrecision))
+// console.log('displayNumber', displayNumber)
 const currencyPrefix = props.currency === '$' ? props.currency : null
 const currencySuffix = props.currency === '$' ? null : props.currency
 

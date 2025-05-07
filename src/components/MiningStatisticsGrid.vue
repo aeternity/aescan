@@ -8,7 +8,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ statistics.minersCount }}
+        <number-label :number="statistics.minersCount"/>
       </span>
     </app-panel>
 
@@ -20,7 +20,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ statistics.peerCount }}
+        <number-label :number="statistics.peerCount"/>
       </span>
     </app-panel>
 
@@ -48,7 +48,7 @@
       <span class="mining-statistics-grid__value">
         <price-label
           :price="statistics.blockReward"
-          :max-digits="2"/>
+          :rounding-index="2"/>
       </span>
     </app-panel>
 
@@ -60,7 +60,9 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ statistics.difficulty }}
+        <number-label
+          :number="statistics.difficulty"
+          has-full-precision/>
       </span>
       <span class="mining-statistics-grid__unit">
         KG/s
@@ -88,7 +90,8 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ statistics.hashrate }}
+        <!--        todo attach class -->
+        <number-label :number="statistics.hashrate"/>
       </span>
       <span class="mining-statistics-grid__unit">
         KG/s
@@ -103,7 +106,9 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ statistics.topBlockHeight }}
+        <number-label
+          has-full-precision
+          :number="statistics.topBlockHeight"/>
       </span>
     </app-panel>
 
@@ -115,7 +120,10 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ statistics.blocksPerMinute }}
+        <!--        todo more precision -->
+        <number-label
+          :number="statistics.blocksPerMinute"
+          :rounding-index="2"/>
       </span>
 
       <span class="mining-statistics-grid__unit">
@@ -131,7 +139,7 @@
         </hint-tooltip>
       </h2>
       <span class="mining-statistics-grid__value">
-        {{ statistics.maxTPS }}
+        <number-label :number="statistics.maxTPS"/>
       </span>
 
       <span class="mining-statistics-grid__unit">

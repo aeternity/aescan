@@ -83,7 +83,8 @@ const props = defineProps({
   },
 })
 
-// const { displayNumber, tooltipNumber, hasTooltip } = formatNumber2(props.price, props.roundingIndex, props.hasFullPrecision)
+// const { displayNumber, tooltipNumber, hasTooltip } =
+// formatNumber2(props.price, props.roundingIndex, props.hasFullPrecision)
 const aaa = computed(() => formatNumber(props.price, props.roundingIndex, props.zeroingIndex, props.hasFullPrecision))
 // console.log('displayNumber', displayNumber)
 const currencyPrefix = props.currency === '$' ? props.currency : null

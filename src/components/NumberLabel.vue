@@ -2,16 +2,16 @@
   <div class="number-label">
     <app-tooltip v-if="formattedNumber.hasTooltip">
       <span>
-        {{ formattedNumber.displayNumber }}
+        {{ formattedNumber.displayNumber }} {{ props.isPercentage ? '%' : '' }}
       </span>
 
       <template #tooltip>
-        {{ formattedNumber.tooltipNumber }}
+        {{ formattedNumber.tooltipNumber }} {{ props.isPercentage ? '%' : '' }}
       </template>
     </app-tooltip>
 
     <template v-else>
-      {{ formattedNumber.displayNumber }}
+      {{ formattedNumber.displayNumber }} {{ props.isPercentage ? '%' : '' }}
     </template>
   </div>
 </template>
@@ -34,11 +34,14 @@ const props = defineProps({
     type: Number,
     default: undefined,
   },
+  isPercentage: {
+    type: Boolean,
+    default: false,
+  },
   // todo rename props
 })
-console.log('props.price', props.price)
-const formattedNumber = computed(() => formatNumber(props.number, props.roundingIndex, props.zeroingIndex, props.hasFullPrecision))
-console.log('formattedNumber', formattedNumber.value)
+const formattedNumber = computed(() =>
+  formatNumber(props.number, props.roundingIndex, props.zeroingIndex, props.hasFullPrecision))
 </script>
 
 <style scoped>

@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <template
-        v-for="(event, index) in contractEvents.data"
+        v-for="(event, index) in contractEvents.data.slice(0, 2)"
         :key="event.callTxHash">
         <tr>
           <td

@@ -38,8 +38,10 @@
             :contract-id="holder.contractId"/>
         </td>
         <td class="token-holders-table__data">
-          <number-label :number="holder.percentage"/>
-          %
+          <number-label
+            :number="holder.percentage"
+            is-percentage/>
+          <!--          todo extend percentage -->
         </td>
       </tr>
     </tbody>

@@ -70,7 +70,9 @@
           Gas Limit
         </th>
         <td>
-          {{ transactionData.gas }}
+          <number-label
+            :number="transactionData.gas"
+            has-full-precision/>
         </td>
       </tr>
       <tr>
@@ -92,7 +94,9 @@
           Gas Used
         </th>
         <td>
-          {{ transactionData.gasUsed }}
+          <number-label
+            :number="transactionData.gasUsed"
+            has-full-precision/>
         </td>
       </tr>
       <tr>

@@ -14,14 +14,12 @@ export function formatNumber(number, maxDecimalDigits = 6, hasFullPrecision = fa
 
   const fullPrecisionNumber = number > 1 ? number : Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(number)
   const separatedNumber = numeral(number).format(`0,0.[0000000000000000000]`)
-  const roundedNumber = numeral(number).format(`0,0.[${zeros}]`)
   const abbreviatedNumber = numeral(number).format('0,0.[0]a')
+  const roundedNumber = numeral(number).format(`0,0.[${zeros}]`)
 
   const isNumberRounded = number.toString() !== numeral(abbreviatedNumber).format(`0.[${zeros}]`).toString()
   const isDecimalRounded = fullPrecisionNumber.toString() !== roundedNumber.toString()
-  // const decimalZeros = (number < 1 && fullPrecisionNumber.includes('.')) ?
-  // fullPrecisionNumber.split('.')[1].match(/^0*/)[0].length : 0
-  const decimalZeros = fullPrecisionNumber.includes('.') ? fullPrecisionNumber.split('.')[1].match(/^0*/)[0].length : 0
+  const decimalZeros = (number < 1 && fullPrecisionNumber.includes('.')) ? fullPrecisionNumber.split('.')[1].match(/^0*/)[0].length : 0
 
   if (hasFullPrecision) {
     const formatted = fullPrecisionNumber < 1000 ? fullPrecisionNumber : separatedNumber
@@ -37,13 +35,13 @@ export function formatNumber(number, maxDecimalDigits = 6, hasFullPrecision = fa
     return { displayNumber: `~0`, tooltipNumber: fullPrecisionNumber, hasTooltip: true }
   }
 
-  if (fullPrecisionNumber < 1000 && maxDecimalDigits + 1 > decimalZeros) {
+  if (number < 1000 && maxDecimalDigits + 1 > decimalZeros) {
     console.info('0.000000000001-1')
     const displayNumber = `${isDecimalRounded ? '~' : ''}${roundedNumber}`
     return { displayNumber, tooltipNumber: fullPrecisionNumber, hasTooltip: isDecimalRounded }
   }
 
-  if (fullPrecisionNumber < 1000) {
+  if (number < 1000) {
     console.log('1-1000')
     const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviatedNumber}`
     return { displayNumber, tooltipNumber: separatedNumber, hasTooltip: isNumberRounded }

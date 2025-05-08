@@ -4,23 +4,27 @@ import { BigNumber } from 'bignumber.js'
 import numeral from 'numeral'
 import { KNOWN_ADDRESSES, MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
 
-// todo remove computed
-export function formatNumber(number, roundingIndex = 6, zeroingIndex, hasFullPrecision = false) {
-  console.log('--------------------')
-  console.log('number', number)
+// todo shift indexes
+// todo check falling to correct boxes
+// todo mozna je problem v else
+export function formatNumber(number, maxDecimalDigits = 6, hasFullPrecision = false) {
+  const maximumSignificantDigits = 20
+  const closeToZeroIndex = parseInt(maxDecimalDigits) + 1
+  const zeros = '0'.repeat(maxDecimalDigits)
 
-  const zeroing = zeroingIndex ? zeroingIndex : parseInt(roundingIndex) + 1
-  const zeros = '0'.repeat(roundingIndex)
-  const fullPrecisionNumber = number > 1 ? number : Intl.NumberFormat('en-US', { maximumSignificantDigits: 20 }).format(number)
-  const decimalZeros = number < 1 && (!!fullPrecisionNumber.toString().substring(1) && !!fullPrecisionNumber.toString().substring(2)) ? fullPrecisionNumber.toString().substring(2).split('0').length - 1 : 0
-  // todo strange condition
-  // todo maximumSignificantDigits = max resolution
-  const abbreviated = numeral(number).format('0,0.[0]a')
+  const fullPrecisionNumber = number > 1 ? number : Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(number)
+  const separatedNumber = numeral(number).format(`0,0.[0000000000000000000]`)
   const roundedNumber = numeral(number).format(`0,0.[${zeros}]`)
-  const numberWithCommas = numeral(fullPrecisionNumber).format(`0,0.[0000000000000000000]`)
-  const isNumberRounded = number.toString() !== numeral(abbreviated).format(`0.[${zeros}]`).toString()
+  const abbreviatedNumber = numeral(number).format('0,0.[0]a')
+
+  const isNumberRounded = number.toString() !== numeral(abbreviatedNumber).format(`0.[${zeros}]`).toString()
+  const isDecimalRounded = fullPrecisionNumber.toString() !== roundedNumber.toString()
+  // const decimalZeros = (number < 1 && fullPrecisionNumber.includes('.')) ?
+  // fullPrecisionNumber.split('.')[1].match(/^0*/)[0].length : 0
+  const decimalZeros = fullPrecisionNumber.includes('.') ? fullPrecisionNumber.split('.')[1].match(/^0*/)[0].length : 0
+
   if (hasFullPrecision) {
-    const formatted = fullPrecisionNumber < 1000 ? fullPrecisionNumber : numberWithCommas
+    const formatted = fullPrecisionNumber < 1000 ? fullPrecisionNumber : separatedNumber
     return { displayNumber: formatted, tooltipNumber: formatted, hasTooltip: false }
   }
 
@@ -28,41 +32,27 @@ export function formatNumber(number, roundingIndex = 6, zeroingIndex, hasFullPre
     return { displayNumber: 0, tooltipNumber: 0, hasTooltip: false }
   }
 
-  if (zeroing + 1 <= decimalZeros) {
+  if (closeToZeroIndex + 1 <= decimalZeros) {
     console.info('0 - 0.000000000001')
     return { displayNumber: `~0`, tooltipNumber: fullPrecisionNumber, hasTooltip: true }
   }
 
-  if (fullPrecisionNumber < 1000 && roundingIndex + 1 > decimalZeros) {
+  if (fullPrecisionNumber < 1000 && maxDecimalDigits + 1 > decimalZeros) {
     console.info('0.000000000001-1')
-    // todo is naming numberWithCommas correct?
-    // todo shift indexes
-    // todo check falling to correct boxes
-    const isrounded = roundedNumber.toString() !== fullPrecisionNumber.toString()
-    const displayNumber = `${isrounded ? '~' : ''}${roundedNumber}`
-    return { displayNumber, tooltipNumber: fullPrecisionNumber, hasTooltip: isrounded }
+    const displayNumber = `${isDecimalRounded ? '~' : ''}${roundedNumber}`
+    return { displayNumber, tooltipNumber: fullPrecisionNumber, hasTooltip: isDecimalRounded }
   }
 
   if (fullPrecisionNumber < 1000) {
     console.log('1-1000')
-    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviated}`
-    return { displayNumber, tooltipNumber: fullPrecisionNumber, hasTooltip: isNumberRounded }
+    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviatedNumber}`
+    return { displayNumber, tooltipNumber: separatedNumber, hasTooltip: isNumberRounded }
   } else {
     console.log('1001+')
-    // todo is naming numberWithCommas correct?
-    // todo chech 770
-    // todo remove zeroingIndex completely
-    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviated}`
-    return { displayNumber, tooltipNumber: numberWithCommas, hasTooltip: true }
+    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviatedNumber}`
+    return { displayNumber, tooltipNumber: separatedNumber, hasTooltip: true }
   }
 }
-
-// todo const ABBREVIATION_THRESHOLD = 1000
-// todo refactor computed
-// todo hastooltip by comparison
-// todo try to fixed instead of intl
-// todo operators fix
-// todo check usage .toString() and parseFloat
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)

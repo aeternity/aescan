@@ -45,8 +45,9 @@
             <price-label :price=" account.balance "/>
           </td>
           <td class="top-accounts-table__data">
-            <number-label :number=" account.percentage"/>
-            %
+            <number-label
+              :number=" account.percentage"
+              is-percentage/>
           </td>
         </tr>
       </tbody>

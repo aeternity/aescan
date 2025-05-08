@@ -7,9 +7,9 @@
           {{ miningHints.miners }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <number-label :number="statistics.minersCount"/>
-      </span>
+      <number-label
+        :number="statistics.minersCount"
+        class="mining-statistics-grid__value"/>
     </app-panel>
 
     <app-panel class="mining-statistics-grid__panel--peers">
@@ -19,9 +19,9 @@
           {{ miningHints.peers }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <number-label :number="statistics.peerCount"/>
-      </span>
+      <number-label
+        :number="statistics.peerCount"
+        class="mining-statistics-grid__value"/>
     </app-panel>
 
     <app-panel class="mining-statistics-grid__panel--pools">
@@ -45,11 +45,10 @@
           {{ miningHints.reward }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <price-label
-          :price="statistics.blockReward"
-          :rounding-index="2"/>
-      </span>
+      <price-label
+        class="mining-statistics-grid__value"
+        :price="statistics.blockReward"
+        :rounding-index="2"/>
     </app-panel>
 
     <app-panel class="mining-statistics-grid__panel--difficulty">
@@ -59,11 +58,10 @@
           {{ miningHints.difficulty }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <number-label
-          :number="statistics.difficulty"
-          has-full-precision/>
-      </span>
+      <number-label
+        class="mining-statistics-grid__value"
+        :number="statistics.difficulty"
+        :rounding-index="1"/>
       <span class="mining-statistics-grid__unit">
         KG/s
       </span>
@@ -89,10 +87,9 @@
           {{ miningHints.hashrate }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <!--        todo attach class -->
-        <number-label :number="statistics.hashrate"/>
-      </span>
+      <number-label
+        :number="statistics.hashrate"
+        class="mining-statistics-grid__value"/>
       <span class="mining-statistics-grid__unit">
         KG/s
       </span>
@@ -105,11 +102,10 @@
           {{ miningHints.blocksMined }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <number-label
-          has-full-precision
-          :number="statistics.topBlockHeight"/>
-      </span>
+      <number-label
+        class="mining-statistics-grid__value"
+        has-full-precision
+        :number="statistics.topBlockHeight"/>
     </app-panel>
 
     <app-panel class="mining-statistics-grid__panel--block-time">
@@ -119,12 +115,11 @@
           {{ miningHints.blockTime }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <!--        todo more precision -->
-        <number-label
-          :number="statistics.blocksPerMinute"
-          :rounding-index="2"/>
-      </span>
+
+      <number-label
+        class="mining-statistics-grid__value"
+        :number="statistics.blocksPerMinute"
+        :rounding-index="0"/>
 
       <span class="mining-statistics-grid__unit">
         min/block
@@ -138,9 +133,9 @@
           {{ miningHints.maxTPS }}
         </hint-tooltip>
       </h2>
-      <span class="mining-statistics-grid__value">
-        <number-label :number="statistics.maxTPS"/>
-      </span>
+      <number-label
+        :number="statistics.maxTPS"
+        class="mining-statistics-grid__value"/>
 
       <span class="mining-statistics-grid__unit">
         tx/s

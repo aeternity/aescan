@@ -41,7 +41,6 @@
           <number-label
             :number="holder.percentage"
             is-percentage/>
-          <!--          todo extend percentage -->
         </td>
       </tr>
     </tbody>

@@ -51,15 +51,13 @@ async function fetchHashrateStatistics() {
 }
 
 function adaptMiningStatistics(statistics, blockReward, status, topMiners, hashrateStatistics) {
-  // todo not round here.
-  // todo search for rounding
   return {
     blockReward: formatAettosToAe(blockReward),
     minersCount: statistics.minersCount,
     maxTPS: statistics.maxTransactionsPerSecond,
     peerCount: status.peerCount,
-    difficulty: Math.round(status.difficulty / 1000000000),
-    hashrate: Math.round(status.hashrate / 1000),
+    difficulty: status.difficulty / 1000000000,
+    hashrate: status.hashrate / 1000,
     topBlockHeight: status.topBlockHeight,
     blocksPerMinute: statistics.millisecondsPerBlock / 1000 / 60,
     topMiners: {

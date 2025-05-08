@@ -43,6 +43,7 @@
               class="market-stats__price"
               :has-icon="false"
               :price="distribution"/>
+
             /
             <price-label
               class="market-stats__price"
@@ -50,8 +51,11 @@
               :price="MAX_AE_DISTRIBUTION"/>
             <div>
               (
-              <number-label :number="distributionPercentage"/>
-              %)
+              <number-label
+                :number="distributionPercentage"
+                class="market-stats__price"
+                is-percentage/>
+              )
             </div>
           </div>
         </div>
@@ -150,6 +154,7 @@ const {
   }
 
   &__price {
+    display: inline;
     white-space: nowrap;
   }
 }

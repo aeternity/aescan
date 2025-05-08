@@ -26,11 +26,7 @@ const props = defineProps({
     type: Boolean,
     default: undefined,
   },
-  roundingIndex: {
-    type: Number,
-    default: undefined,
-  },
-  zeroingIndex: {
+  maxDecimalDigits: {
     type: Number,
     default: undefined,
   },
@@ -38,10 +34,8 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  // todo rename props
 })
-const formattedNumber = computed(() =>
-  formatNumber(props.number, props.roundingIndex, props.zeroingIndex, props.hasFullPrecision))
+const formattedNumber = computed(() => formatNumber(props.number, props.maxDecimalDigits, props.hasFullPrecision))
 </script>
 
 <style scoped>

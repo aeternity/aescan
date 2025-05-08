@@ -74,7 +74,9 @@
         </th>
         <td>
           <div class="transaction-type-panel-ga-attach-tx__container">
-            {{ transactionData.gas }}
+            <number-label
+              :number="transactionData.gas"
+              has-full-precision/>
             /
             <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
           </div>
@@ -96,7 +98,9 @@
         </th>
         <td>
           <div class="transaction-type-panel-ga-attach-tx__container">
-            {{ transactionData.gasUsed }}
+            <number-label
+              :number="transactionData.gasUsed"
+              has-full-precision/>
             /
             <price-label :price="formatAettosToAe(gasCosts)"/>
           </div>

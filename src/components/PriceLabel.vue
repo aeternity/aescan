@@ -1,41 +1,47 @@
 <template>
   <div class="price-label">
-    <app-link
-      v-if="hasLink"
-      :to="`/tokens/${contractId}`">
-      <token-symbol-icon
-        v-if="hasIcon"
-        class="price-label__icon"
-        :contract-id="contractId"/>
-    </app-link>
-    <token-symbol-icon
-      v-else-if="!hasLink && hasIcon"
-      class="price-label__icon"
-      :contract-id="contractId"/>
-    <app-tooltip v-if="isPriceRounded">
-      {{ priceRounded }}
+    <template v-if="hasIcon">
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currency }}
+        <token-symbol-icon
+          class="price-label__icon"
+          :contract-id="contractId"/>
+      </app-link>
+
+      <token-symbol-icon
+        v-else
+        class="price-label__icon"
+        :contract-id="contractId"/>
+    </template>
+
+    <app-tooltip v-if="formattedPrice.hasTooltip">
+      {{ currencyPrefix }} {{ formattedPrice.displayNumber }}
+      <app-link
+        v-if="hasLink"
+        :to="`/tokens/${contractId}`">
+        {{ currencySuffix }}
       </app-link>
       <template v-else>
-        {{ currency }}
+        {{ currencySuffix }}
       </template>
+
       <template #tooltip>
-        {{ price }} {{ currency }}
+        {{ currencyPrefix }} {{ formattedPrice.tooltipNumber }} {{ currencySuffix }}
       </template>
     </app-tooltip>
 
-    <span v-else>
-      {{ price }}
+    <template v-else>
+      {{ currencyPrefix }} {{ formattedPrice.displayNumber }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currency }}
+        &nbsp;{{ currencySuffix }}
       </app-link>
-      <template v-else>{{ currency }}</template>
-    </span>
+      <template v-else>
+        {{ currencySuffix }}
+      </template>
+    </template>
   </div>
 </template>
 
@@ -47,13 +53,21 @@ const props = defineProps({
     type: [String, Number],
     default: null,
   },
-  maxDigits: {
+  hasFullPrecision: {
+    type: Boolean,
+    default: undefined,
+  },
+  maxDecimalDigits: {
     type: Number,
     default: undefined,
   },
   currency: {
     type: String,
     default: () => storeToRefs(useConfigStore()).currency.value.symbol,
+  },
+  contractId: {
+    type: String,
+    default: () => useRuntimeConfig().public.AE_TOKEN_ID,
   },
   hasIcon: {
     type: Boolean,
@@ -63,21 +77,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  contractId: {
-    type: String,
-    default: () => useRuntimeConfig().public.AE_TOKEN_ID,
-  },
 })
 
-const isPriceRounded = computed(() =>
-  priceRounded.value !== price.value,
-)
-const priceRounded = computed(() =>
-  formatNullable(formatAePrice(props.price, props.maxDigits)),
-)
-const price = computed(() =>
-  formatNullable(formatAePrice(props.price, null)),
-)
+const formattedPrice = computed(() => formatNumber(props.price, props.maxDecimalDigits, props.hasFullPrecision))
+
+const currencyPrefix = props.currency === '$' ? props.currency : null
+const currencySuffix = props.currency === '$' ? null : props.currency
+
+const hasIcon = props.hasIcon && props.currency !== '$'
 </script>
 
 <style scoped>

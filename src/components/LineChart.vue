@@ -25,6 +25,7 @@ import {
 
 import { Line } from 'vue-chartjs'
 import { DateTime } from 'luxon'
+import { formatNumber } from '~/utils/format'
 
 const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)
@@ -54,14 +55,6 @@ function formatDate(label) {
     return date.toFormat('yyyy/MM')
   }
   return date.toFormat('MM/dd')
-}
-
-function formatNumberFractions(number) {
-  return number.toLocaleString('en-US', {
-    maximumFractionDigits: 2,
-    notation: 'compact',
-    compactDisplay: 'short',
-  })
 }
 
 const chartData = computed(() => ({
@@ -102,7 +95,7 @@ const chartOptions = {
       min: 0,
       ticks: {
         precision: 0,
-        callback: value => formatNumberFractions(value),
+        callback: value => formatNumber(value).displayNumber,
       },
     },
     x: {

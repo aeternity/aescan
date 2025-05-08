@@ -170,11 +170,7 @@ export function adaptAccountTokens(tokens, tokenPrices, aeFiatPrice) {
       tokenName: token.tokenName,
       contractId: token.contractId,
       amount,
-      value: tokenAePrice !== null
-        ? `$${formatNumber(
-          (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber(),
-          null, null, 7)}`
-        : 'N/A',
+      value: (new BigNumber(amount)).multipliedBy(tokenAePrice).multipliedBy(aeFiatPrice).toNumber(),
     }
   })
   return {
@@ -444,7 +440,7 @@ export function adaptTokenHolders(tokenHolders, tokenDetails) {
         address: holder.accountId,
         contractId: holder.contractId,
         amount: (new BigNumber(holder.amount)).dividedBy(10 ** tokenDetails.decimals).toNumber(),
-        percentage: formatPercentage(percentage),
+        percentage,
       }
     })
 

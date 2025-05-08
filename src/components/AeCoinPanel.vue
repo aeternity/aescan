@@ -27,7 +27,11 @@
             Price
           </th>
           <td>
-            $ {{ formatNullable(price) }}
+            <price-label
+              class="ae-coin-panel__price"
+              has-full-precision
+              :price="price"
+              currency="$"/>
             <trend-chip :delta="priceChange"/>
           </td>
         </tr>
@@ -39,7 +43,9 @@
             Total Supply
           </th>
           <td>
-            <price-label :price="MAX_AE_DISTRIBUTION"/>
+            <price-label
+              :price="MAX_AE_DISTRIBUTION"
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -50,7 +56,9 @@
             Circulating Supply
           </th>
           <td>
-            <price-label :price="totalTokenSupply"/>
+            <price-label
+              :price="totalTokenSupply"
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -93,6 +101,10 @@ defineProps({
 @import url("../assets/styles/utilities/_detail-table.css");
 
 .ae-coin-panel {
+  &__price {
+    display: inline;
+  }
+
   &__link {
     display: inline-flex;
     align-items: center;

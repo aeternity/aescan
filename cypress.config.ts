@@ -25,7 +25,7 @@ export default defineConfig({
     experimentalRunAllSpecs: true,
   },
   retries: {
-    runMode: 5,
+    runMode: 3,
     openMode: 1,
   },
   viewportWidth: 1280,

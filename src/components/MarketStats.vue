@@ -24,7 +24,13 @@
           Marketcap:
         </div>
         <div class="market-stats__value">
-          $ {{ formatNullable(formatNumber(marketCap)) }}
+          <price-label
+            currency="$"
+            has-full-precision
+            max-digits="4"
+            class="market-stats__price"
+            :has-icon="false"
+            :price="marketCap"/>
         </div>
       </li>
       <li class="market-stats__item">
@@ -37,13 +43,19 @@
               class="market-stats__price"
               :has-icon="false"
               :price="distribution"/>
+
             /
             <price-label
               class="market-stats__price"
               :has-icon="false"
               :price="MAX_AE_DISTRIBUTION"/>
             <div>
-              ({{ formatNullable(distributionPercentage) }}%)
+              (
+              <number-label
+                :number="distributionPercentage"
+                class="market-stats__price"
+                is-percentage/>
+              )
             </div>
           </div>
         </div>
@@ -142,6 +154,7 @@ const {
   }
 
   &__price {
+    display: inline;
     white-space: nowrap;
   }
 }

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.24.0](https://github.com/aeternity/aescan/compare/0.23.1...0.24.0) (2025-07-25)
+
+
+### Features
+
+* upgrade dependencies ([#1125](https://github.com/aeternity/aescan/issues/1125)) ([739ceca](https://github.com/aeternity/aescan/commit/739ceca32f1827b774c156340ea4ddc914a6e1db))
+
+
+### Bug Fixes
+
+* **micro-blocks:** be able to load older/newer transactions ([#1147](https://github.com/aeternity/aescan/issues/1147)) ([e54c374](https://github.com/aeternity/aescan/commit/e54c374403f315d6e11adfc01a1b0c4efa09c9f1))
+
 ## [0.23.1](https://github.com/aeternity/aescan/compare/0.23.0...0.23.1) (2025-04-28)
 
 

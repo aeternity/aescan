@@ -27,7 +27,7 @@ function loadNextTransactions() {
   })
 }
 
-if (process.client) {
+if (import.meta.client) {
   fetchContractCallTransactions()
 }
 </script>

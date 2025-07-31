@@ -3,7 +3,7 @@ import { formatAettosToAe } from '@/utils/format'
 
 const axios = useAxios()
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const { queryParameters, state } = getQuery(event)
 
   const url = getUrl({
@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
 })
 
 function adaptOracles(oracles) {
-  const formattedData = oracles.data.map(oracle => {
+  const formattedData = oracles.data.map((oracle) => {
     return {
       id: oracle.oracle,
       registeredHeight: oracle.activeFrom,

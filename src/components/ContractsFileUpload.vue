@@ -13,7 +13,7 @@
     <div
       :class="[
         'contracts-file-upload__drop-area',
-        {'contracts-file-upload__drop-area--dragover' :isDragging }]"
+        {'contracts-file-upload__drop-area--dragover': isDragging}]"
       @dragover="dragover"
       @dragleave="dragleave"
       @drop="drop">
@@ -74,7 +74,7 @@ function addInputFilesToSelectedFiles() {
   const isFirstFilesAddition = !hasSelectedFiles.value
 
   // chrome workaround to manually set webkitRelativePath
-  Array.from(fileInput.value.files).forEach(file => {
+  Array.from(fileInput.value.files).forEach((file) => {
     Object.defineProperty(file, 'webkitRelativePath', {
       value: file.name,
     })
@@ -136,8 +136,8 @@ function getFileEntry(entry, files) {
 }
 
 function getSingleFile(fileEntry, files) {
-  return new Promise(resolve => {
-    fileEntry.file(file => {
+  return new Promise((resolve) => {
+    fileEntry.file((file) => {
       // chrome workaround to manually set webkitRelativePath
       Object.defineProperty(file, 'webkitRelativePath', {
         value: fileEntry.fullPath.substring(1),
@@ -152,8 +152,8 @@ function getSingleFile(fileEntry, files) {
 function getDirectoryFiles(dirEntry, files) {
   const dirReader = dirEntry.createReader()
 
-  return new Promise(resolve => {
-    dirReader.readEntries(entries => {
+  return new Promise((resolve) => {
+    dirReader.readEntries((entries) => {
       const entriesPromises = []
       const subfolder = []
 

@@ -37,13 +37,13 @@ const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
 const { push, replace } = useRouter()
 const route = useRoute()
 
-const isTabsVisible = computed(() => process.client &&
-  ((accountDetails.value && !accountDetails.value?.notExistent) ||
-    !!accountTokens.value?.data.length))
+const isTabsVisible = computed(() => import.meta.client
+  && ((accountDetails.value && !accountDetails.value?.notExistent)
+    || !!accountTokens.value?.data.length))
 
-const isTokensTabSelected = computed(() => process.client &&
-  accountDetails.value?.notExistent &&
-  !!accountTokens.value?.data.length)
+const isTokensTabSelected = computed(() => import.meta.client
+  && accountDetails.value?.notExistent
+  && !!accountTokens.value?.data.length)
 
 const activeTabIndex = computed({
   get() {
@@ -71,7 +71,7 @@ const activeTabIndex = computed({
   },
 })
 
-if (process.client) {
+if (import.meta.client) {
   watch(address, () => fetchAccount(address.value), { immediate: true })
 }
 </script>

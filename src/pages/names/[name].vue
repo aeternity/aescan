@@ -42,12 +42,12 @@ const route = useRoute()
 
 const { isLoading } = useLoading()
 
-if (process.client) {
+if (import.meta.client) {
   await fetchNameDetails(route.params.name)
 }
 
-if (hasNameHistory && process.client) {
-  fetchNameHistory({ nameHash: name.value.hash })
+if (hasNameHistory && import.meta.client) {
+  await fetchNameHistory({ nameHash: name.value.hash })
 }
 </script>
 

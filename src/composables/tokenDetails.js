@@ -22,19 +22,19 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
 
   const tokenDetails = computed(() => rawToken.value
     ? adaptTokenDetails(
-      rawToken.value,
-      rawTotalSupply.value,
-      price.value,
-    )
+        rawToken.value,
+        rawTotalSupply.value,
+        price.value,
+      )
     : null,
   )
 
   const tokenHolders = computed(() =>
     tokenDetails.value && rawTokenHolders.value
       ? adaptTokenHolders(
-        rawTokenHolders.value,
-        tokenDetails.value,
-      )
+          rawTokenHolders.value,
+          tokenDetails.value,
+        )
       : null,
   )
 

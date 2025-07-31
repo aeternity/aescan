@@ -105,10 +105,11 @@ export function formatNullable(value) {
 
 export function formatDecodeBase64(base64String) {
   try {
-    return process.client
+    return import.meta.client
       ? (decodeURIComponent(escape(atob(base64String))) ? decodeURIComponent(escape(atob(base64String))) : null)
       : Buffer.from(base64String, 'base64').toString('utf8')
-  } catch (e) {
+  } catch (error) {
+    console.error(error)
     return ''
   }
 }
@@ -121,8 +122,8 @@ export function formatNameState(name, blockHeight) {
   const isActive = name.active === true
   const isInAuction = !!name.auctionEnd
   const isExpired = name.active === false
-  const isRevoked = !name.active &&
-    name.expireHeight + REVOKED_PERIOD > blockHeight
+  const isRevoked = !name.active
+    && name.expireHeight + REVOKED_PERIOD > blockHeight
 
   const labels = Object.keys({
     active: isActive,

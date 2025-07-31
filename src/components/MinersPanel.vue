@@ -25,7 +25,7 @@ function loadNextMiners() {
   fetchMiners(miners.value.next)
 }
 
-if (process.client) {
+if (import.meta.client) {
   await fetchMiners()
 }
 </script>

@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   menu: {
     type: Object,
     required: true,

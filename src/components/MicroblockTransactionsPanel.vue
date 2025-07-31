@@ -28,11 +28,11 @@ const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const pageIndex = ref(1)
 
 function loadPrevTransactions() {
-  fetchMicroblockTransactions({ queryParameters: transactions.value.prev.substring(3) })
+  fetchMicroblockTransactions({ queryParameters: transactions.value.prev })
 }
 
 function loadNextTransactions() {
-  fetchMicroblockTransactions({ queryParameters: transactions.value.next.substring(3) })
+  fetchMicroblockTransactions({ queryParameters: transactions.value.next })
 }
 
 async function loadTransactions() {
@@ -47,7 +47,7 @@ async function loadTransactions() {
   pageIndex.value = 1
 }
 
-if (process.client) {
+if (import.meta.client) {
   watch(() => route.fullPath, () => {
     loadTransactions()
   })

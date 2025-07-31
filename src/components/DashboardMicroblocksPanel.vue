@@ -43,8 +43,10 @@
 <script setup>
 import { microblocksHints } from '@/utils/hints/microblocksHints'
 
-const { selectedKeyblockMicroblocks, selectedMicroblockTransactionsCount } =
-  storeToRefs(useRecentBlocksStore())
+const {
+  selectedKeyblockMicroblocks,
+  selectedMicroblockTransactionsCount,
+} = storeToRefs(useRecentBlocksStore())
 </script>
 
 <style scoped>

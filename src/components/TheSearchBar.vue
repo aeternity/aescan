@@ -148,5 +148,4 @@ function isMicroblockId(query) {
     }
   }
 }
-
 </style>

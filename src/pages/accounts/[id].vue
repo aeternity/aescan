@@ -40,7 +40,6 @@
 </template>
 
 <script setup>
-
 import { accountHints } from '@/utils/hints/accountHints'
 
 const TAB_KEYS = ['activities', 'transactions', 'aens-names', 'tokens']
@@ -56,12 +55,12 @@ const isAccountExistent = computed(() => {
   return accountDetails.value && accountDetails.value.isExistent !== false
 })
 
-const isTabsVisible = computed(() => process.client &&
-  (isAccountExistent.value || !!accountTokens.value?.data.length),
+const isTabsVisible = computed(() => import.meta.client
+  && (isAccountExistent.value || !!accountTokens.value?.data.length),
 )
 
-const isTokensTabPreselected = computed(() => process.client &&
-  !isAccountExistent.value && !!accountTokens.value?.data.length,
+const isTokensTabPreselected = computed(() => import.meta.client
+  && !isAccountExistent.value && !!accountTokens.value?.data.length,
 )
 
 const activeTabIndex = computed({
@@ -90,7 +89,7 @@ const activeTabIndex = computed({
   },
 })
 
-if (process.client) {
+if (import.meta.client) {
   await fetchAccount(route.params.id)
 }
 </script>

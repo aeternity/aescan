@@ -44,8 +44,7 @@ const textToDisplay = computed(() =>
 
 function activateCopyAnimation() {
   isCopyAnimationActive.value = true
-  copyChip.value.$el.style.width =
-    `${Math.max(copyChip.value.$el.clientWidth, 72)}px`
+  copyChip.value.$el.style.width = `${Math.max(copyChip.value.$el.clientWidth, 72)}px`
 }
 
 function deactivateCopyAnimation() {
@@ -67,7 +66,6 @@ function deactivateCopyAnimation() {
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    word-wrap: anywhere;
     white-space: wrap;
     text-align: left;
   }

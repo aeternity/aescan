@@ -25,7 +25,7 @@ function loadNextHolders() {
   fetchTokenHolders(tokenHolders.value.next.substring(3))
 }
 
-if (process.client) {
+if (import.meta.client) {
   fetchTokenHolders()
   fetchTokenHoldersCount()
 }

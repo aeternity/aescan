@@ -14,7 +14,7 @@
       <template v-if="transactionData.type === 'PayingForTx'">
         <div>
           <copy-chip
-            class="transaction-type-panel__chip--paying"
+            class="transaction-type-panel__payer"
             :label="transactionData.payerId"/>
 
           <app-chip
@@ -43,7 +43,6 @@
 </template>
 
 <script setup>
-
 const { fetchContractIdByAccountId } = useTransactionDetailsStore()
 const { contractId } = storeToRefs(useTransactionDetailsStore())
 
@@ -80,13 +79,7 @@ watch(props.transactionData, () => {
 
 <style scoped>
 .transaction-type-panel {
-
   &__payer {
-    word-wrap: anywhere;
-    max-width: 100%;
-  }
-
-  &__chip--paying {
     margin-bottom: var(--space-2);
 
     @media (--mobile) {

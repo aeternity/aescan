@@ -163,7 +163,7 @@ function toggle(name) {
 }
 
 function closeAll() {
-  menuOptions.value.forEach(item => {
+  menuOptions.value.forEach((item) => {
     item.isActive = false
   })
 }

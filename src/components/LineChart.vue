@@ -44,25 +44,15 @@ const props = defineProps({
     default: 250,
   },
 })
+const stats = computed(() => props.data.map(stat => stat.count))
 
-const stats = computed(() => {
-  return props.data.map(stat => {
-    return stat.count
-  })
-})
-
-const labels = computed(() => {
-  return props.data.map(stat => {
-    return formatDate(stat.startDate)
-  })
-})
+const labels = computed(() => props.data.map(stat => formatDate(stat.startDate)))
 
 function formatDate(label) {
   const date = DateTime.fromISO(label)
   if (props.intervalBy === 'month') {
     return date.toFormat('yyyy/MM')
   }
-
   return date.toFormat('MM/dd')
 }
 
@@ -74,21 +64,19 @@ function formatNumberFractions(number) {
   })
 }
 
-const chartData = computed(() => {
-  return {
-    labels: labels.value,
-    datasets: [{
-      data: stats.value,
-      label: null,
-      cubicInterpolationMode: 'monotone',
-      tension: 0.4,
-      borderColor: '#f5274e',
-      backgroundColor: '#f5274e',
-      pointRadius: 3,
-      pointHitRadius: 20,
-    }],
-  }
-})
+const chartData = computed(() => ({
+  labels: labels.value,
+  datasets: [{
+    data: stats.value,
+    label: null,
+    cubicInterpolationMode: 'monotone',
+    tension: 0.4,
+    borderColor: '#f5274e',
+    backgroundColor: '#f5274e',
+    pointRadius: 3,
+    pointHitRadius: 20,
+  }],
+}))
 
 const chartOptions = {
   responsive: true,
@@ -102,9 +90,7 @@ const chartOptions = {
         position: 'top',
       },
       callbacks: {
-        title: function(context) {
-          return context.label
-        },
+        title: context => context.label,
       },
     },
   },
@@ -116,16 +102,12 @@ const chartOptions = {
       min: 0,
       ticks: {
         precision: 0,
-        callback: function(value) {
-          return formatNumberFractions(value)
-        },
+        callback: value => formatNumberFractions(value),
       },
     },
     x: {
       grid: {
-        color: function() {
-          return 'transparent'
-        },
+        color: () => 'transparent',
       },
     },
   },

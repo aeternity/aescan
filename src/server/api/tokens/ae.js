@@ -11,7 +11,7 @@ import {
   MARKET_STATS_MEXC_ADDRESS,
 } from '@/utils/constants'
 
-export default defineEventHandler(async() => {
+export default defineEventHandler(async () => {
   const [gate, mexc, hotcoin, coinw] = await Promise.all([
     fetchGate(),
     fetchMexc(),

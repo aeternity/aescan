@@ -26,13 +26,13 @@ const { push } = useRouter()
 
 const { isLoading } = useLoading()
 
-onBeforeMount(async() => {
+onBeforeMount(async () => {
   if (status.value !== 'connected') {
     await scanWallets()
   }
 })
 
-watch(status, newStatus => {
+watch(status, (newStatus) => {
   if (newStatus === 'connected' && backLink.value) {
     push(backLink.value)
     setBackLink(null)

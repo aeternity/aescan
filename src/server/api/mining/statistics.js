@@ -3,7 +3,7 @@ import { formatAettosToAe, formatKnownAddress, formatNumber } from '@/utils/form
 
 const axios = useAxios()
 
-export default defineEventHandler(async() => {
+export default defineEventHandler(async () => {
   const [statistics, blockReward, status, topMiners, hashrateStatistics] = await Promise.all([
     fetchMiningStats(),
     fetchBlockReward(),

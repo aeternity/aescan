@@ -34,7 +34,6 @@
 </template>
 
 <script setup>
-
 import { namesHints } from '@/utils/hints/namesHints'
 
 const TAB_KEYS = ['active', 'in-auction', 'expired']
@@ -72,7 +71,7 @@ const activeTabIndex = computed({
 
 const { isLoading } = useLoading()
 
-if (process.client) {
+if (import.meta.client) {
   fetchNames()
 }
 </script>

@@ -15,7 +15,7 @@ const { fetchNamesResults } = useSearchStore()
 
 const route = useRoute()
 
-await fetchNamesResults({ query: route.params.id })
+fetchNamesResults({ query: route.params.id })
 
 async function loadPrevNames() {
   await fetchNamesResults({ queryParameters: namesResults.value.prev.substring(3) })

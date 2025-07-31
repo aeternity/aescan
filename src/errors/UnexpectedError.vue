@@ -52,7 +52,7 @@ setResponseStatus(500, 'Unexpected Error')
 
   &__query {
     font-weight: 700;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &__container {

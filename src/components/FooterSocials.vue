@@ -51,7 +51,7 @@ const socials = [
 .footer-socials {
   display: grid;
   grid-template-columns: repeat(4, 30px);
-  grid-row-gap: var(--space-4);
+  row-gap: var(--space-4);
   justify-content: space-between;
   min-height: 105px;
 

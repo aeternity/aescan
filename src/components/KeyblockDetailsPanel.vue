@@ -91,7 +91,9 @@
             Reward
           </th>
           <td>
-            <price-label :price="keyblockDetails.blockReward"/>
+            <price-label
+              :price="keyblockDetails.blockReward"
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -102,7 +104,7 @@
             Microblocks Count
           </th>
           <td>
-            {{ formatNumber(keyblockDetails.microBlocksCount) }}
+            <number-label :number="keyblockDetails.microBlocksCount"/>
           </td>
         </tr>
         <tr>
@@ -113,7 +115,7 @@
             Transactions Count
           </th>
           <td>
-            {{ formatNumber(keyblockDetails.transactionsCount) }}
+            <number-label :number="keyblockDetails.transactionsCount"/>
           </td>
         </tr>
         <tr>

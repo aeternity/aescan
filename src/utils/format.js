@@ -1,13 +1,56 @@
 import { DateTime } from 'luxon'
 import { toAe } from '@aeternity/aepp-sdk'
 import { BigNumber } from 'bignumber.js'
-import {
-  KNOWN_ADDRESSES,
-  MAXIMUM_FRACTION_DIGITS,
-  MINUTES_PER_BLOCK,
-  NUMBER_FRACTION_THRESHOLD,
-  REVOKED_PERIOD,
-} from '@/utils/constants'
+import numeral from 'numeral'
+import { KNOWN_ADDRESSES, MINUTES_PER_BLOCK, REVOKED_PERIOD } from '@/utils/constants'
+
+// todo shift indexes
+// todo check falling to correct boxes
+// todo mozna je problem v else
+export function formatNumber(number, maxDecimalDigits = 6, hasFullPrecision = false) {
+  const maximumSignificantDigits = 20
+  const closeToZeroIndex = parseInt(maxDecimalDigits) + 1
+  const zeros = '0'.repeat(maxDecimalDigits)
+
+  const fullPrecisionNumber = number > 1 ? number : Intl.NumberFormat('en-US', { maximumSignificantDigits }).format(number)
+  const separatedNumber = numeral(number).format(`0,0.[0000000000000000000]`)
+  const abbreviatedNumber = numeral(number).format('0,0.[0]a')
+  const roundedNumber = numeral(number).format(`0,0.[${zeros}]`)
+
+  const isNumberRounded = number.toString() !== numeral(abbreviatedNumber).format(`0.[${zeros}]`).toString()
+  const isDecimalRounded = fullPrecisionNumber.toString() !== roundedNumber.toString()
+  const decimalZeros = (number < 1 && fullPrecisionNumber.includes('.')) ? fullPrecisionNumber.split('.')[1].match(/^0*/)[0].length : 0
+
+  if (hasFullPrecision) {
+    const formatted = fullPrecisionNumber < 1000 ? fullPrecisionNumber : separatedNumber
+    return { displayNumber: formatted, tooltipNumber: formatted, hasTooltip: false }
+  }
+
+  if (parseFloat(number) === 0) {
+    return { displayNumber: 0, tooltipNumber: 0, hasTooltip: false }
+  }
+
+  if (closeToZeroIndex + 1 <= decimalZeros) {
+    console.info('0 - 0.000000000001')
+    return { displayNumber: `~0`, tooltipNumber: fullPrecisionNumber, hasTooltip: true }
+  }
+
+  if (number < 1000 && maxDecimalDigits + 1 > decimalZeros) {
+    console.info('0.000000000001-1')
+    const displayNumber = `${isDecimalRounded ? '~' : ''}${roundedNumber}`
+    return { displayNumber, tooltipNumber: fullPrecisionNumber, hasTooltip: isDecimalRounded }
+  }
+
+  if (number < 1000) {
+    console.log('1-1000')
+    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviatedNumber}`
+    return { displayNumber, tooltipNumber: separatedNumber, hasTooltip: isNumberRounded }
+  } else {
+    console.log('1001+')
+    const displayNumber = `${isNumberRounded ? '~' : ''}${abbreviatedNumber}`
+    return { displayNumber, tooltipNumber: separatedNumber, hasTooltip: true }
+  }
+}
 
 export function formatEllipseHash(hash) {
   const prefix = hash.slice(0, 10)
@@ -15,66 +58,10 @@ export function formatEllipseHash(hash) {
   return `${prefix}...${suffix}`
 }
 
-export function formatNumber(
-  number,
-  minimumFractionDigits = 0,
-  maximumFractionDigits = 5,
-  maximumSignificantDigits = null) {
-  if (isNaN(number) || number === null) {
-    return number
-  }
-
-  if (maximumSignificantDigits !== null) {
-    return Intl.NumberFormat('en-US', {
-      maximumSignificantDigits,
-    }).format(number)
-  }
-
-  return Intl.NumberFormat('en-US', {
-    minimumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : minimumFractionDigits,
-    maximumFractionDigits: number >= NUMBER_FRACTION_THRESHOLD ? 0 : maximumFractionDigits,
-  }).format(number)
-}
-
-export function formatAePrice(price, maxDigits = 8) {
-  if (isNaN(price) || price === null) {
-    return price
-  }
-
-  if (maxDigits === null) {
-    return `${formatNumber(price, 0, MAXIMUM_FRACTION_DIGITS)}`
-  }
-
-  const truncatedPrice = new BigNumber(price).toFixed(
-    maxDigits,
-    BigNumber.ROUND_DOWN,
-  )
-
-  const priceParts = truncatedPrice.split('.')
-  const integers = priceParts[0]
-  let decimals = priceParts[1]
-
-  decimals = decimals?.replace(/0+$/, '')
-
-  if (!decimals) {
-    if (price === 0) {
-      return '0'
-    }
-    if (integers === '0') {
-      return `~${integers}`
-    } else {
-      return `${formatNumber(integers)}`
-    }
-  }
-
-  return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
-}
-
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
   if (isNaN(tokenAmount) || tokenAmount === null) {
     return tokenAmount
   }
-
   return (new BigNumber(tokenAmount)).dividedBy(10 ** numberOfDecimals).toNumber()
 }
 
@@ -140,18 +127,6 @@ export function formatIsAuction(name) {
   return name.length - suffixLength < auctionLength
 }
 
-export function formatPercentage(percentage) {
-  if (percentage >= 0.00001) {
-    return `${formatNumber(percentage)} %`
-  }
-  if (percentage === 0) {
-    return '0 %'
-  }
-  if (percentage < 0.00001) {
-    return '~0 %'
-  }
-}
-
 export function formatTokenLimit(extensions, tokenLimit) {
   if (extensions.includes('mintable') && extensions.includes('mintable_limit')) {
     return tokenLimit
@@ -188,24 +163,21 @@ export function formatKnownAddress(hash, isEllipsed = true) {
 
 export function formatTradeRate(action, fromAmount, toAmount) {
   if (action === 'BUY') {
-    return `${formatNumber((fromAmount / toAmount), 4)} WAE`
+    return fromAmount / toAmount
   }
-
   if (action === 'SELL') {
-    return `${formatNumber((toAmount / fromAmount), 4)} WAE`
+    return (toAmount / fromAmount)
   }
   return null
 }
 
 export function formatTradeValue(action, fromAmount, toAmount, price) {
   if (action === 'BUY') {
-    return formatNumber(fromAmount * price)
+    return fromAmount * price
   }
-
   if (action === 'SELL') {
-    return formatNumber(toAmount * price)
+    return toAmount * price
   }
-
   return null
 }
 

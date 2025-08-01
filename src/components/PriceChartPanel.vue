@@ -140,6 +140,5 @@ ChartJS.register(
   &__controls {
     margin-top: var(--space-4);
   }
-
 }
 </style>

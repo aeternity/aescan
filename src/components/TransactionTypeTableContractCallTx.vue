@@ -46,7 +46,9 @@
           Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.amount)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.amount)"
+            has-full-precision/>
         </td>
       </tr>
       <tr>
@@ -108,7 +110,9 @@
           Gas Limit
         </th>
         <td>
-          {{ transactionData.gas }}
+          <number-label
+            :number="transactionData.gas"
+            has-full-precision/>
         </td>
       </tr>
       <tr>
@@ -119,7 +123,9 @@
           Gas Price
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.gasPrice)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.gasPrice)"
+            has-full-precision/>
         </td>
       </tr>
       <tr>
@@ -130,7 +136,9 @@
           Gas Used
         </th>
         <td>
-          {{ transactionData.gasUsed }}
+          <number-label
+            :number="transactionData.gasUsed"
+            has-full-precision/>
         </td>
       </tr>
       <tr>
@@ -141,7 +149,9 @@
           Gas Costs
         </th>
         <td>
-          <price-label :price="formatAettosToAe(gasCosts)"/>
+          <price-label
+            :price="formatAettosToAe(gasCosts)"
+            has-full-precision/>
         </td>
       </tr>
     </tbody>

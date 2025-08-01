@@ -38,7 +38,9 @@
             :contract-id="holder.contractId"/>
         </td>
         <td class="token-holders-table__data">
-          {{ holder.percentage }}
+          <number-label
+            :number="holder.percentage"
+            is-percentage/>
         </td>
       </tr>
     </tbody>

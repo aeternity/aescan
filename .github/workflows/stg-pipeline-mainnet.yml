@@ -5,7 +5,7 @@ on:
     branches:
       - develop
       - release/*
-    types: [ opened, synchronize, closed ]
+    types: [ opened, synchronize, reopened, closed ]
 
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -99,10 +99,12 @@ jobs:
           fetch-depth: 0
 
       - name: Chekc the initial PR deployment status before make a PR Sync.
-        if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
-        uses: aeternity/ae-github-actions/deploy-status@v7.2.0
+        continue-on-error: true
+        if: github.event_name == 'pull_request' || github.event.action != 'synchronize' || github.event.action == 'opened' || github.event.action == 'reopened'
+        uses: aeternity/ae-github-actions/deploy-status@v7.4.0
         with:
           url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
+          timeout: 10
 
       - name: Staging PR Sync
         if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
@@ -114,7 +116,7 @@ jobs:
           app: ${{ env.APP }}
 
       - name: Staging deploy
-        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'reopened'
         uses: aeternity/ae-github-actions/argocd-deploy@v5
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}
@@ -122,7 +124,7 @@ jobs:
           app: ${{ env.APP }}
 
       - name: Staging undeploy
-        if: github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true
+        if: ((github.event_name == 'pull_request' && github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true) || (github.event_name == 'delete' && github.event.ref_type == 'branch'))
         uses: aeternity/ae-github-actions/argocd-undeploy@v5
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}

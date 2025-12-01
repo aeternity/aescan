@@ -2,18 +2,38 @@ const { MIDDLEWARE_URL, NODE_URL, PAGINATION_LIMIT } = useRuntimeConfig().public
 
 export function getUrl({ entity, id, route, parameters, limit = PAGINATION_LIMIT, queryParameters, node }) {
   const domain = node ? NODE_URL : MIDDLEWARE_URL
+  const domainUrl = new URL(domain)
   if (queryParameters) {
-    // decode params if encoded
-    queryParameters = decodeURIComponent(queryParameters)
-    // extract the path from domain
-    const path = new URL(domain).pathname
-    // if path is in queryParameters, remove it
-    if (queryParameters.includes(path)) {
-      queryParameters = queryParameters.replace(path, '')
+    const decodedQueryParameters = decodeURIComponent(queryParameters)
+    const questionIndex = decodedQueryParameters.indexOf('?')
+    let pathSegment = decodedQueryParameters
+    let searchSegment = ''
+    if (questionIndex >= 0) {
+      pathSegment = decodedQueryParameters.slice(0, questionIndex)
+      searchSegment = decodedQueryParameters.slice(questionIndex + 1)
     }
-    // strip leading '/' if present
-    queryParameters = queryParameters.replace(/^\//, '').replace(/^\?/, '')
-    return new URL(`${domain}/${queryParameters}`)
+
+    const origin = domainUrl.origin
+    const domainPath = domainUrl.pathname.replace(/\/$/, '')
+
+    if (pathSegment.startsWith(origin)) {
+      pathSegment = pathSegment.slice(origin.length)
+    }
+    pathSegment = pathSegment.replace(/^https?:\/\/[^/]+/, '')
+    if (domainPath && pathSegment.startsWith(domainPath)) {
+      pathSegment = pathSegment.slice(domainPath.length)
+    }
+    pathSegment = pathSegment.replace(/^\/+/, '')
+
+    const normalizedDomain = domain.replace(/\/$/, '')
+    const url = new URL(normalizedDomain)
+    if (pathSegment) {
+      url.pathname = `${url.pathname.replace(/\/$/, '')}/${pathSegment}`
+    }
+    if (searchSegment) {
+      url.search = searchSegment
+    }
+    return url
   } else {
     const slug = `/${entity}${id ? `/${id}` : ''}${route ? `/${route}` : ''}`
     const url = new URL(`${domain}${slug}`)

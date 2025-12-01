@@ -11,7 +11,7 @@
         name. The shorter the name, the longer the auction lives.
       </template>
     </dashboard-panel-header>
-    <template v-if="!!auctionsEndingSoon.length">
+    <template v-if="!!auctionsEndingSoon?.length">
       <dashboard-auctions-table class="u-hidden-mobile"/>
       <dashboard-auctions-swiper class="u-hidden-desktop"/>
     </template>

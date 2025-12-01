@@ -30,11 +30,11 @@
       </div>
     </div>
     <microblocks-sequence
-      v-if="selectedKeyblockMicroblocks.length > 0"
+      v-if="selectedKeyblockMicroblocks?.length > 0"
       class="dashboard-microblocks-panel__microblock-sequence"
       :microblocks="selectedKeyblockMicroblocks"/>
     <dashboard-transaction-panel
-      v-if="selectedKeyblockMicroblocks.length > 0"
+      v-if="selectedKeyblockMicroblocks?.length > 0"
       class="dashboard-microblocks-panel__dasboard-transaction-panel"/>
     <blank-state v-else/>
   </app-panel>

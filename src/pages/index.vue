@@ -25,12 +25,9 @@
         </div>
       </div>
       <div class="dashboard__row">
-        <client-only v-if="!isLoading">
+        <client-only>
           <dashboard-keyblock-panel/>
         </client-only>
-        <loader-panel
-          v-else
-          class="dashboard__loader-panel"/>
       </div>
 
       <div class="dashboard__row">

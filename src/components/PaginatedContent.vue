@@ -31,7 +31,7 @@
         </div>
       </header>
       <div
-        v-if="!!entities?.data.length"
+        v-if="!!entities?.data?.length"
         class="paginated-content__container">
         <slot/>
       </div>

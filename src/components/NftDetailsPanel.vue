@@ -62,7 +62,7 @@
           </th>
           <td>
             <div
-              v-if="!!nftDetails.extensions.length"
+              v-if="!!nftDetails.extensions?.length"
               class="nft-details-panel__extensions">
               <app-chip
                 v-for="extension in nftDetails.extensions"

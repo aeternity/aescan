@@ -10,7 +10,7 @@
         through an expired auction (name length &lt;= 12).
       </template>
     </dashboard-panel-header>
-    <template v-if="!!recentlyActivatedNames.length">
+    <template v-if="!!recentlyActivatedNames?.length">
       <dashboard-names-table class="u-hidden-mobile"/>
       <dashboard-names-swiper class="u-hidden-desktop"/>
     </template>

@@ -50,7 +50,7 @@
           </td>
           <td :class="[{'nft-inventory-table__data--expanded': isExpanded.includes(index)}]">
             <expand-button
-              v-if="!!nftOwners.data.length"
+              v-if="!!nftOwners?.data?.length"
               :is-expanded="isExpanded.includes(index)"
               @click="toggle(index)">
               {{ isExpanded.includes(index) ? 'Collapse' : 'Expand' }}

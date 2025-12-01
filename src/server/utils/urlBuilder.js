@@ -23,7 +23,6 @@ export function getUrl({ entity, id, route, parameters, limit = PAGINATION_LIMIT
       }
     }
     normalizedPath = normalizedPath.replace(/^\/+/, '')
-    console.log('Normalized Path:', normalizedPath)
     if (normalizedPath.startsWith('v3/')) {
       normalizedPath = normalizedPath.slice(3)
     } else if (normalizedPath === 'v3') {

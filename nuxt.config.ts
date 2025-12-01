@@ -45,8 +45,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-07-16',
   nitro: {
     routeRules: {
-      '/proxy/avatar/**': { proxy: 'https://avatars.z52da5wt.xyz/**', cors: true },
-      '/proxy/nodes': { proxy: 'http://138.68.22.27:3113/v2/debug/network', cors: true },
+      '/proxy/avatar/**': { proxy: 'https://avatars.superherowallet.com/**', cors: true },
+      '/proxy/nodes': { proxy: 'https://mdw.mainnet.aeternity.io/v3/debug/network', cors: true },
     },
   },
   vite: {

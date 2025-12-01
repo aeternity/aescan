@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.1](https://github.com/aeternity/aescan/compare/0.24.0...0.24.1) (2025-12-01)
+
+
+### Bug Fixes
+
+* proper prefix strips in url builder ([50b374f](https://github.com/aeternity/aescan/commit/50b374ffc28f0ace0068f05e9426dc96ae26fddb))
+
 ## [0.24.0](https://github.com/aeternity/aescan/compare/0.23.1...0.24.0) (2025-07-25)
 
 

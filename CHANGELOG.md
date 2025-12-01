@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.24.2](https://github.com/aeternity/aescan/compare/0.24.1...0.24.2) (2025-12-01)
+
+
+### Bug Fixes
+
+* cleanup ([3438703](https://github.com/aeternity/aescan/commit/3438703362b84adeee337c40506c2474f5f8dc89))
+* simplify ([5dc279f](https://github.com/aeternity/aescan/commit/5dc279f2e855216be1f36b8753386e2c3a48af9d))
+* url builder ([15d4f40](https://github.com/aeternity/aescan/commit/15d4f40bd600fc00c51ce01758f004d99ad328a2))
+
 ## [0.24.1](https://github.com/aeternity/aescan/compare/0.24.0...0.24.1) (2025-12-01)
 
 

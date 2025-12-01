@@ -71,7 +71,7 @@
               :link-to="`/accounts/${name.owner}`"/>
           </td>
           <td class="names-active-table__data">
-            <template v-if="name.pointers.length > 0">
+            <template v-if="name.pointers?.length > 0">
               <value-hash-ellipsed
                 v-for="pointer in name.pointers"
                 :key="pointer.id"

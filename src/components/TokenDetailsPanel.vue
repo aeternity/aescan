@@ -125,7 +125,7 @@
           </th>
           <td>
             <div
-              v-if="!!tokenDetails.extensions.length"
+              v-if="!!tokenDetails?.extensions?.length"
               class="token-details-panel__extensions">
               <app-chip
                 v-for="extension in tokenDetails.extensions"

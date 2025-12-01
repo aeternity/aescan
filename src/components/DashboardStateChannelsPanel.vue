@@ -9,7 +9,7 @@
         {{ stateChannelsHints.stateChannel }}
       </template>
     </dashboard-panel-header>
-    <template v-if="!!stateChannels.length">
+    <template v-if="!!stateChannels?.length">
       <dashboard-state-channels-table class="u-hidden-mobile"/>
       <dashboard-state-channels-swiper class="u-hidden-desktop"/>
     </template>

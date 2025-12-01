@@ -57,13 +57,6 @@ jobs:
           tags: |
             type=ref,event=pr
 
-      - name: Get commit sha on PR Sync
-        if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
-        id: git-sha
-        shell: bash
-        run: |
-          echo GIT_SHA=$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
-
       - name: Create dotenv
         run: |
           echo APP_VERSION=$(git describe --tags)-preview >> .env
@@ -98,34 +91,34 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Chekc the initial PR deployment status before make a PR Sync.
+      - name: Check the initial PR deployment status before make a PR Sync.
         continue-on-error: true
-        if: github.event_name == 'pull_request' || github.event.action != 'synchronize' || github.event.action == 'opened' || github.event.action == 'reopened'
+        if: github.event.action == 'synchronize' || github.event.action == 'opened' || github.event.action == 'reopened'
         uses: aeternity/ae-github-actions/deploy-status@v7.4.0
         with:
           url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
           timeout: 10
 
-      - name: Staging PR Sync
-        if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
-        uses: aeternity/ae-github-actions/argocd-pr-sync@v5
+      - name: Staging deploy
+        if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'reopened'
+        uses: aeternity/ae-github-actions/argocd-deploy@v7.4.0
         with:
-          git-sha: ${{ steps.git-sha.outputs.GIT_SHA }}
           url-prefix: pr-${{ env.PR_NUMBER }}
           env: ${{ env.ENV }}
           app: ${{ env.APP }}
 
-      - name: Staging deploy
-        if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'reopened'
-        uses: aeternity/ae-github-actions/argocd-deploy@v5
+      - name: Staging PR Sync
+        if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
+        uses: aeternity/ae-github-actions/argocd-pr-sync@v7.4.0
         with:
+          git-sha: ${{ github.sha }}
           url-prefix: pr-${{ env.PR_NUMBER }}
           env: ${{ env.ENV }}
           app: ${{ env.APP }}
 
       - name: Staging undeploy
         if: ((github.event_name == 'pull_request' && github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true) || (github.event_name == 'delete' && github.event.ref_type == 'branch'))
-        uses: aeternity/ae-github-actions/argocd-undeploy@v5
+        uses: aeternity/ae-github-actions/argocd-undeploy@v7.4.0
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}
           env: ${{ env.ENV }}

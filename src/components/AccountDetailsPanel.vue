@@ -31,7 +31,9 @@
             Balance
           </th>
           <td>
-            <price-label :price="accountDetails.balance"/>
+            <price-label
+              :price="accountDetails.balance"
+              has-full-precision/>
           </td>
         </tr>
 
@@ -43,7 +45,10 @@
             Value
           </th>
           <td>
-            {{ sanitizedPrice }}
+            <price-label
+              :price="sanitizedPrice"
+              currency="$"
+              has-full-precision/>
           </td>
         </tr>
         <tr>
@@ -54,7 +59,9 @@
             Transactions
           </th>
           <td>
-            {{ formatNumber(accountDetails.totalTransactionsCount) }}
+            <number-label
+              :number="accountDetails.totalTransactionsCount"
+              has-full-precision/>
           </td>
         </tr>
         <tr v-if="accountDetails.isGeneralized">
@@ -135,7 +142,7 @@ const accountNodeUrl = computed(() =>
 )
 const sanitizedPrice = computed(() =>
   price.value
-    ? `$${formatNumber(props.accountDetails.balance * price.value, 2, 2)}`
+    ? props.accountDetails.balance * price.value
     : 'N/A',
 )
 </script>

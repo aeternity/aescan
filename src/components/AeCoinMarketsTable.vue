@@ -38,10 +38,14 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.gate.price)) }}
+            <price-label
+              :price="coinMarkets.gate.price"
+              currency="$"/>
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.gate.volume)) }}
+            <price-label
+              :price="coinMarkets.gate.volume"
+              currency="$"/>
           </td>
         </tr>
         <tr>
@@ -52,10 +56,14 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.mexc.price)) }}
+            <price-label
+              :price="coinMarkets.mexc.price"
+              currency="$"/>
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.mexc.volume)) }}
+            <price-label
+              :price="coinMarkets.mexc.volume"
+              currency="$"/>
           </td>
         </tr>
         <tr>
@@ -66,10 +74,14 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin.price)) }}
+            <price-label
+              :price="coinMarkets.hotcoin.price"
+              currency="$"/>
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin.volume)) }}
+            <price-label
+              :price="coinMarkets.hotcoin.volume"
+              currency="$"/>
           </td>
         </tr>
         <tr>
@@ -80,10 +92,14 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.coinw.price)) }}
+            <price-label
+              :price="coinMarkets.coinw.price"
+              currency="$"/>
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.coinw.volume)) }}
+            <price-label
+              :price="coinMarkets.coinw.volume"
+              currency="$"/>
           </td>
         </tr>
       </tbody>

@@ -30,7 +30,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     return rawSelectedMicroblock.value || selectedKeyblockMicroblocks.value?.[0]
   })
   const selectedKeyblockTransactionsCount = computed(() => {
-    return selectedKeyblock.value ? formatNullable(formatNumber(selectedKeyblock.value.transactionsCount)) : ''
+    return selectedKeyblock.value ? formatNullable(selectedKeyblock.value.transactionsCount) : ''
   })
   const selectedMicroblockTransactions = computed(() => {
     return rawSelectedMicroblockTransactions.value

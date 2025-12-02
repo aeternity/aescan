@@ -72,7 +72,7 @@
             :contract-id="trade.fromContract"
             :currency="trade.fromToken"
             :price="trade.fromAmount"
-            :max-digits="4"
+            :rounding-index="5"
             :has-link="true"/>
         </td>
         <td class="dex-trades-table__data">
@@ -80,18 +80,25 @@
             :contract-id="trade.toContract"
             :currency="trade.toToken"
             :price="trade.toAmount"
-            :max-digits="4"
+            :rounding-index="5"
             :has-link="true"/>
         </td>
         <td class="dex-trades-table__data">
           <not-available-label v-if="!trade.rate"/>
-          {{ trade.rate }}
+          <price-label
+            v-else
+            :rounding-index="4"
+            :has-icon="false"
+            currency="WAE"
+            :price="trade.rate"/>
         </td>
         <td class="dex-trades-table__data">
           <not-available-label v-if="!trade.value"/>
-          <template v-else>
-            $ {{ trade.value }}
-          </template>
+          <price-label
+            v-else
+            :rounding-index="4"
+            :price="trade.value"
+            currency="$"/>
         </td>
       </tr>
     </tbody>

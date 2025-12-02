@@ -40,7 +40,9 @@
           Name TTL
         </th>
         <td>
-          {{ transactionData.nameTtl }}
+          <number-label
+            :number="transactionData.nameTtl"
+            has-full-precision/>
         </td>
       </tr>
     </tbody>

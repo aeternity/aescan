@@ -39,7 +39,11 @@
             :currency="token.tokenSymbol"/>
         </td>
         <td class="account-tokens-table__data">
-          {{ token.value }}
+          <price-label
+            v-if="token.value !== null"
+            :price="token.value"
+            currency="$"/>
+          <not-available-label v-else/>
         </td>
         <td class="account-tokens-table__data">
           <app-link :to="`/tokens/${token.contractId}`">

@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { DateTime } from 'luxon'
 import useAxios from '@/composables/useAxios'
 import { adaptTransactions } from '@/utils/adapters'
-import { formatAePrice, formatAettosToAe } from '@/utils/format'
+import { formatAettosToAe } from '@/utils/format'
 import { TX_TYPES_OPTIONS } from '@/utils/constants'
 
 export const useTransactionsStore = defineStore('transactions', () => {
@@ -109,7 +109,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
       const { data } = await axios.get(`${MIDDLEWARE_URL}/stats`)
       last24hsTransactionsCount.value = data.last24hsTransactions
       last24hsTransactionsTrend.value = data.transactionsTrend
-      last24hsAverageTransactionFees.value = formatAePrice(formatAettosToAe(data.last24hsAverageTransactionFees), 6)
+      last24hsAverageTransactionFees.value = formatAettosToAe(data.last24hsAverageTransactionFees)
       feesTrend.value = data.feesTrend
     } catch {
       last24hsTransactionsCount.value = null

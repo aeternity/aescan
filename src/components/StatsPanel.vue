@@ -7,10 +7,14 @@
       title="TRANSACTIONS"
       icon-name="transactions">
       <div class="stats-panel__content">
-        Max TPS: <span class="stats-panel__value">{{ formatNullable(formatNumber(maxTps)) }}</span>
+        Max TPS: <span class="stats-panel__value">
+          <number-label :number="maxTps"/>
+        </span>
       </div>
       <div class="stats-panel__content">
-        Total: <span class="stats-panel__value">{{ formatNullable(formatNumber(transactionsCount)) }}</span>
+        Total: <span class="stats-panel__value">
+          <number-label :number="transactionsCount"/>
+        </span>
       </div>
       <template #tooltip>
         Numbers are counting on-chain transactions only. There can be millions of transactions executed off-chain in
@@ -42,7 +46,7 @@
       <div class="stats-panel__content">
         Transactions:
         <span class="stats-panel__value">
-          {{ formatNullable(formatNumber(latestKeyblockTransactionsCount)) }}
+          <number-label :number="latestKeyblockTransactionsCount"/>
         </span>
       </div>
       <template #tooltip>
@@ -110,7 +114,10 @@
       title="STATE CHANNELS"
       icon-name="state-channel">
       <div class="stats-panel__content">
-        Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(stateChannelsCount)) }}</span>
+        Active:
+        <span class="stats-panel__value">
+          <number-label :number="stateChannelsCount"/>
+        </span>
       </div>
       <div class="stats-panel__content">
         Locked:
@@ -137,7 +144,9 @@
       title="SMART CONTRACTS"
       icon-name="contracts">
       <div class="stats-panel__content">
-        Total: <span class="stats-panel__value">{{ formatNullable(formatNumber(contractsCount)) }}</span>
+        Total: <span class="stats-panel__value">
+          <number-label :number="contractsCount"/>
+        </span>
       </div>
       <template #tooltip>
         æternity Smart Contracts are written in
@@ -161,10 +170,14 @@
       title="ORACLES"
       icon-name="oracles">
       <div class="stats-panel__content">
-        Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(activeOraclesCount)) }}</span>
+        Active: <span class="stats-panel__value">
+          <number-label :number="activeOraclesCount"/>
+        </span>
       </div>
       <div class="stats-panel__content">
-        Total seen: <span class="stats-panel__value">{{ formatNullable(formatNumber(oraclesCount)) }}</span>
+        Total seen: <span class="stats-panel__value">
+          <number-label :number="oraclesCount"/>
+        </span>
       </div>
       <template #tooltip>
         Oracles are managed by special types of transactions. They can be programmed to request and provide data from
@@ -176,10 +189,14 @@
       title="AENS NAMES"
       icon-name="aens-name">
       <div class="stats-panel__content">
-        In auction: <span class="stats-panel__value">{{ formatNullable(formatNumber(namesInAuctionCount)) }}</span>
+        In auction: <span class="stats-panel__value">
+          <number-label :number="namesInAuctionCount"/>
+        </span>
       </div>
       <div class="stats-panel__content">
-        Active: <span class="stats-panel__value">{{ formatNullable(formatNumber(activeNamesCount)) }}</span>
+        Active: <span class="stats-panel__value">
+          <number-label :number="activeNamesCount"/>
+        </span>
       </div>
       <template #tooltip>
         Æternity Naming System (ÆNS) uses human-meaningful names instead of cryptic addresses for accounts, making

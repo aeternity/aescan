@@ -72,7 +72,7 @@
             Transactions Count
           </th>
           <td>
-            {{ formatNumber(microblockDetails.transactionsCount) }}
+            <number-label :number="microblockDetails.transactionsCount"/>
           </td>
         </tr>
         <tr>
@@ -83,7 +83,9 @@
             Gas Limit
           </th>
           <td>
-            {{ microblockDetails.gas }}
+            <number-label
+              :number="microblockDetails.gas"
+              has-full-precision/>
           </td>
         </tr>
         <tr>

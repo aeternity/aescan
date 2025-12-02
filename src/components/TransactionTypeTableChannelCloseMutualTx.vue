@@ -35,7 +35,9 @@
           Initiator Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.initiatorAmountFinal)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.initiatorAmountFinal)"
+            has-full-precision/>
         </td>
       </tr>
       <tr>
@@ -59,7 +61,9 @@
           Responder Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(transactionData.responderAmountFinal)"/>
+          <price-label
+            :price="formatAettosToAe(transactionData.responderAmountFinal)"
+            has-full-precision/>
         </td>
       </tr>
       <tr>

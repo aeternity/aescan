@@ -35,7 +35,9 @@
           Amount
         </th>
         <td>
-          <price-label :price="formatAettosToAe(innerTransactionDetails.amount)"/>
+          <price-label
+            :price="formatAettosToAe(innerTransactionDetails.amount)"
+            has-full-precision/>
         </td>
       </tr>
       <tr>

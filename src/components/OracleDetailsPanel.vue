@@ -116,7 +116,9 @@
             Query Fee
           </th>
           <td>
-            <price-label :price="oracleDetails.fee"/>
+            <price-label
+              :price="oracleDetails.fee"
+              has-full-precision/>
           </td>
         </tr>
         <tr>

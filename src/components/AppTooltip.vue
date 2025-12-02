@@ -4,7 +4,7 @@
     :popper-triggers="['hover']"
     :skidding="skidding"
     data-popper-placement="top-start"
-    :delay="{show: 300, hide: 0}"
+    :delay="{show: 100, hide: 0}"
     :auto-hide="true">
     <span>
       <slot/>

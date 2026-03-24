@@ -3,11 +3,14 @@ import { VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/con
 
 export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
+  const MIDDLEWARE_BASE_URL = MIDDLEWARE_URL.replace(/\/v\d+$/, '')
   const axios = useAxios()
   const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 
   const deltaStats = ref(null)
   const keyblocks = ref(null)
+  const keyblocksNextPage = ref(null)
+  const isLoadingMoreKeyblocks = ref(false)
   const selectedKeyblockMicroblocks = ref(null)
   const rawSelectedMicroblockTransactions = ref(null)
   const rawSelectedKeyblock = ref(null)
@@ -60,6 +63,12 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       rawSelectedKeyblock.value = keyblock
     }
 
+    // When clicking near the end of the loaded list, fetch more keyblocks in background
+    const idx = keyblocks.value.findIndex(k => k.hash === keyblock.hash)
+    if (idx >= keyblocks.value.length - 6) {
+      fetchMoreKeyblocks()
+    }
+
     if (keyblock?.microBlocksCount === 0) {
       clearSelectedMicroblocks()
       return
@@ -83,8 +92,32 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
 
   async function fetchKeyblocks() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/key-blocks?limit=${VISIBLE_KEYBLOCKS_LIMIT}`)
-    keyblocks.value = data.data
-    blockHeight.value = data.data[0].height
+    const freshBlocks = data.data
+    blockHeight.value = freshBlocks[0].height
+
+    if (keyblocks.value && keyblocks.value.length > freshBlocks.length) {
+      // Preserve extended tail when user has loaded more blocks
+      const lastFreshHash = freshBlocks[freshBlocks.length - 1].hash
+      const tailIndex = keyblocks.value.findIndex(k => k.hash === lastFreshHash)
+      if (tailIndex !== -1) {
+        keyblocks.value = [...freshBlocks, ...keyblocks.value.slice(tailIndex + 1)]
+        return
+      }
+    }
+    keyblocks.value = freshBlocks
+    keyblocksNextPage.value = data.next || null
+  }
+
+  async function fetchMoreKeyblocks() {
+    if (!keyblocksNextPage.value || isLoadingMoreKeyblocks.value) return
+    isLoadingMoreKeyblocks.value = true
+    try {
+      const { data } = await axios.get(`${MIDDLEWARE_BASE_URL}${keyblocksNextPage.value}`)
+      keyblocks.value = [...keyblocks.value, ...data.data]
+      keyblocksNextPage.value = data.next || null
+    } finally {
+      isLoadingMoreKeyblocks.value = false
+    }
   }
 
   function updateBlockHeight(websocketMessage) {
@@ -103,7 +136,7 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     while (nextUrl) {
       const { data } = await axios.get(nextUrl)
       allMicroblocks.push(...data.data)
-      nextUrl = data.next ? `${MIDDLEWARE_URL}${data.next}` : null
+      nextUrl = data.next ? `${MIDDLEWARE_BASE_URL}${data.next}` : null
     }
     selectedKeyblockMicroblocks.value = allMicroblocks
   }
@@ -183,7 +216,10 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     selectKeyblock,
     selectMicroblock,
     blockHeight,
+    isFirstKeyblockSelected,
+    isLoadingMoreKeyblocks,
     keyblocks,
+    keyblocksNextPage,
     latestKeyblockTransactionsCount,
     latestReward,
     selectedKeyblock,

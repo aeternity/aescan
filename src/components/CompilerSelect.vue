@@ -1,7 +1,7 @@
 <template>
   <app-select
     v-model="selectedVersion"
-    :options="compilerOptions"
+    :options="compilerOptions ?? []"
     track-by="key"
     label="value"
     placeholder="Select Compiler version"

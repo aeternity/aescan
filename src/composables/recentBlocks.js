@@ -146,8 +146,16 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
       return
     }
 
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/micro-blocks/${selectedMicroblock.value.hash}/transactions?limit=${VISIBLE_TRANSACTIONS_LIMIT}`)
-    rawSelectedMicroblockTransactions.value = data
+    try {
+      const { data } = await axios.get(`${MIDDLEWARE_URL}/micro-blocks/${selectedMicroblock.value.hash}/transactions?limit=${VISIBLE_TRANSACTIONS_LIMIT}`)
+      rawSelectedMicroblockTransactions.value = data
+    } catch (error) {
+      if (error?.response?.status === 404) {
+        rawSelectedMicroblockTransactions.value = { data: [], next: null, prev: null }
+      } else {
+        throw error
+      }
+    }
   }
 
   async function fetchDeltaStats() {

@@ -85,10 +85,13 @@ const activeTabIndex = computed({
   },
 })
 
-useAsyncData(() => Promise.allSettled([
-  fetchTotalStats(),
-  fetchMarketStats(),
-]))
+await useAsyncData(
+  'ae-coin-stats',
+  () => Promise.allSettled([
+    fetchTotalStats(),
+    fetchMarketStats(),
+  ]),
+)
 </script>
 
 <style scoped>

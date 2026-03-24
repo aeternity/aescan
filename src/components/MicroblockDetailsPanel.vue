@@ -1,6 +1,6 @@
 <template>
   <app-panel class="microblock-details-panel">
-    <table>
+    <table v-if="microblockDetails">
       <tbody>
         <tr>
           <th>

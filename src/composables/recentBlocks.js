@@ -1,5 +1,5 @@
 import { useRuntimeConfig } from 'nuxt/app'
-import { VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_MICROBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'
+import { VISIBLE_KEYBLOCKS_LIMIT, VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'
 
 export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const { MIDDLEWARE_URL } = useRuntimeConfig().public
@@ -98,8 +98,14 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   }
 
   async function fetchSelectedKeyblockMicroblocks(hash) {
-    const { data } = await axios.get(`${MIDDLEWARE_URL}/key-blocks/${hash}/micro-blocks?limit=${VISIBLE_MICROBLOCKS_LIMIT}`)
-    selectedKeyblockMicroblocks.value = data.data
+    const allMicroblocks = []
+    let nextUrl = `${MIDDLEWARE_URL}/key-blocks/${hash}/micro-blocks?limit=100`
+    while (nextUrl) {
+      const { data } = await axios.get(nextUrl)
+      allMicroblocks.push(...data.data)
+      nextUrl = data.next ? `${MIDDLEWARE_URL}${data.next}` : null
+    }
+    selectedKeyblockMicroblocks.value = allMicroblocks
   }
 
   async function fetchSelectedMicroblockTransactions() {
@@ -136,8 +142,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
             await fetchSelectedMicroblockTransactions()
           }
         } catch (error) {
-        // ignore 400 errors when fetching data by a non-existing microblock
-        // as they are caused by microforks
+          // ignore 400 errors when fetching data by a non-existing microblock
+          // as they are caused by microforks
           if (error?.response.status !== 400) {
             throw error
           }

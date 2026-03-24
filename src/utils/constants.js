@@ -83,7 +83,6 @@ export const CACHE_KEY_HOTCOIN_MARKET_DATA = 'hotCoin-market-data'
 export const CACHE_KEY_COINW_MARKET_DATA = 'coinW-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
 export const VISIBLE_KEYBLOCKS_LIMIT = 20
-export const VISIBLE_MICROBLOCKS_LIMIT = 30
 export const VISIBLE_TRANSACTIONS_LIMIT = 4
 export const MENU_HASH = '#menu-open'
 

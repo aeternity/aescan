@@ -134,6 +134,7 @@ export const KNOWN_ADDRESSES = [
   { hash: 'ak_9MsbDuBTtKegKpj5uSxfPwmJ4YiN6bBdtXici682DgPk8ycpM', name: '2miners.solo' },
   { hash: 'ak_2KAcA2Pp1nrR8Wkt3FtCkReGzAi8vJ9Snxa4PcmrthVx8AhPe8', name: 'BRI' },
   { hash: 'ak_wTPFpksUJFjjntonTvwK4LJvDw11DPma7kZBneKbumb8yPeFq', name: 'Monitor' },
+  { hash: 'ct_2Hyt9ZxzXra5NAzhePkRsDPDWppoatVD7CtHnUoHVbuehwR8Nb', name: 'Superhero' },
   { hash: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa', name: 'Superhero DEX' },
   { hash: 'ct_azbNZ1XrPjXfqBqbAh1ffLNTQ1sbnuUDFvJrXjYz7JQA1saQ3', name: 'Superhero DEX' },
   { hash: 'ct_2mfj3FoZxnhkSw5RZMcP8BfPoB1QR4QiYGNCdkAvLZ1zfF6paW', name: 'Superhero DEX' },

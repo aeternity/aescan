@@ -1,6 +1,8 @@
 <template>
   <app-panel>
-    <nodes-table :nodes="nodes"/>
+    <nodes-table
+      v-if="nodes"
+      :nodes="nodes"/>
   </app-panel>
 </template>
 

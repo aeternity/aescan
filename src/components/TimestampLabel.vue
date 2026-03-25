@@ -12,7 +12,7 @@
       <template v-else>
         <app-tooltip>
           <span class="timestamp-label__label">
-            {{ labelTime }} ({{ absolute }})
+            {{ labelTime }}
           </span>
           <template #tooltip>
             {{ tooltipTime }}
@@ -50,7 +50,7 @@ const absolute = computed(() => {
 const labelTime = computed(() => {
   return timeFormat.value === 'absolute'
     ? absolute.value
-    : relativeUpdated.value
+    : `${relativeUpdated.value} (${absolute.value})`
 })
 
 const tooltipTime = computed(() => {

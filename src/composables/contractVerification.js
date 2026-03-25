@@ -41,11 +41,16 @@ export const useContractVerificationStore = defineStore('useContractVerification
 
   async function fetchCompilerOptions() {
     compilerOptions.value = null
-    const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/compilers`)
-    const compilersObject = data.compilers.map((item, index) => {
-      return { key: index, value: item }
-    })
-    compilerOptions.value = compilersObject
+    try {
+      const { data } = await axios.get(`${CONTRACT_VERIFICATION_SERVICE_URL}/compilers`)
+      const compilersObject = data.compilers.map((item, index) => {
+        return { key: index, value: item }
+      })
+      compilerOptions.value = compilersObject
+    } catch (error) {
+      console.error(error)
+      compilerOptions.value = []
+    }
   }
 
   return {

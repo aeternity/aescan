@@ -48,7 +48,7 @@ useAsyncData(async () => {
 if (import.meta.client) {
   watch(selectedTokenName, async () => {
     pageIndex.value = 1
-    await fetchTokens('/aex9?by=name&direction=forward&limit=10')
+    await fetchTokens('/aex9?by=creation&direction=backward&limit=10')
   }, {
     immediate: true,
   })

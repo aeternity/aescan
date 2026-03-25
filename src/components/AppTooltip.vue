@@ -1,21 +1,26 @@
 <template>
-  <VTooltip
-    :triggers="['hover', 'click']"
-    :popper-triggers="['hover']"
-    :skidding="skidding"
-    data-popper-placement="top-start"
-    :delay="{show: 300, hide: 0}"
-    :auto-hide="true">
-    <span>
-      <slot/>
-    </span>
+  <client-only>
+    <VTooltip
+      :triggers="['hover', 'click']"
+      :popper-triggers="['hover']"
+      :skidding="skidding"
+      data-popper-placement="top-start"
+      :delay="{show: 300, hide: 0}"
+      :auto-hide="true">
+      <span>
+        <slot/>
+      </span>
 
-    <template #popper>
-      <div :class="{'tooltip--fixed': hasFixedWidth}">
-        <slot name="tooltip"/>
-      </div>
+      <template #popper>
+        <div :class="{'tooltip--fixed': hasFixedWidth}">
+          <slot name="tooltip"/>
+        </div>
+      </template>
+    </VTooltip>
+    <template #fallback>
+      <span><slot/></span>
     </template>
-  </VTooltip>
+  </client-only>
 </template>
 
 <script setup>

@@ -140,17 +140,19 @@ function setFixedContainerHeight() {
 }
 
 function resetContainerHeight() {
-  paginatedContent.value.style.height = ''
+  if (paginatedContent.value) {
+    paginatedContent.value.style.height = ''
+  }
 }
 
 const paginatedContent = ref()
 
 onMounted(() => {
-  window.addEventListener('resize', resetContainerHeight())
+  window.addEventListener('resize', resetContainerHeight)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', resetContainerHeight())
+  window.removeEventListener('resize', resetContainerHeight)
 })
 </script>
 

@@ -12,16 +12,20 @@
       <template #header>
         <div class="dashboard-transactions-panel__summary dashboard-transactions-panel__summary--desktop">
           Displaying
-          {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
-          transactions of selected microblock
+          {{ selectedMicroblockTransactionsCount > VISIBLE_TRANSACTIONS_LIMIT
+            ? `first ${VISIBLE_TRANSACTIONS_LIMIT}`
+            : 'all' }}
+          transactions of the selected microblock
         </div>
       </template>
     </dashboard-panel-header>
 
     <div class="dashboard-transactions-panel__summary">
       Displaying
-      {{ selectedMicroblockTransactionsCount > 4 ? 'first 4' : '' }}
-      transactions of selected microblock
+      {{ selectedMicroblockTransactionsCount > VISIBLE_TRANSACTIONS_LIMIT
+        ? `first ${VISIBLE_TRANSACTIONS_LIMIT}`
+        : 'all' }}
+      transactions of the selected microblock
     </div>
 
     <dashboard-microblock-transactions-table
@@ -38,6 +42,7 @@
 
 <script setup>
 import { transactionsHints } from '@/utils/hints/transactionsHints'
+import { VISIBLE_TRANSACTIONS_LIMIT } from '@/utils/constants'
 
 const {
   selectedMicroblockTransactions,

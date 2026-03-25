@@ -83,8 +83,7 @@ export const CACHE_KEY_HOTCOIN_MARKET_DATA = 'hotCoin-market-data'
 export const CACHE_KEY_COINW_MARKET_DATA = 'coinW-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
 export const VISIBLE_KEYBLOCKS_LIMIT = 20
-export const VISIBLE_MICROBLOCKS_LIMIT = 30
-export const VISIBLE_TRANSACTIONS_LIMIT = 4
+export const VISIBLE_TRANSACTIONS_LIMIT = 10
 export const MENU_HASH = '#menu-open'
 
 export const TOKEN_SUPPLY_ACI = [
@@ -134,9 +133,13 @@ export const KNOWN_ADDRESSES = [
   { hash: 'ak_dArxCkAsk1mZB1L9CX3cdz1GDN4hN84L3Q8dMLHN4v8cU85TF', name: '2miners' },
   { hash: 'ak_9MsbDuBTtKegKpj5uSxfPwmJ4YiN6bBdtXici682DgPk8ycpM', name: '2miners.solo' },
   { hash: 'ak_2KAcA2Pp1nrR8Wkt3FtCkReGzAi8vJ9Snxa4PcmrthVx8AhPe8', name: 'BRI' },
+  { hash: 'ak_wTPFpksUJFjjntonTvwK4LJvDw11DPma7kZBneKbumb8yPeFq', name: 'Monitor' },
+  { hash: 'ct_2Hyt9ZxzXra5NAzhePkRsDPDWppoatVD7CtHnUoHVbuehwR8Nb', name: 'Superhero' },
   { hash: 'ct_J3zBY8xxjsRr3QojETNw48Eb38fjvEuJKkQ6KzECvubvEcvCa', name: 'Superhero DEX' },
   { hash: 'ct_azbNZ1XrPjXfqBqbAh1ffLNTQ1sbnuUDFvJrXjYz7JQA1saQ3', name: 'Superhero DEX' },
   { hash: 'ct_2mfj3FoZxnhkSw5RZMcP8BfPoB1QR4QiYGNCdkAvLZ1zfF6paW', name: 'Superhero DEX' },
+  { hash: 'ct_2mfj3FoZxnhkSw5RZMcP8BfPoB1QR4QiYGNCdkAvLZ1zfF6paW', name: 'Superhero DEX' },
+  { hash: 'ct_25cqTw85wkF5cbcozmHHUCuybnfH9WaRZXSgEcNNXG9LsCJWTN', name: 'BCTSL' },
 ]
 export const REVOKED_PERIOD = 2016
 

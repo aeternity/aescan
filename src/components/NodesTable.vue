@@ -97,7 +97,7 @@ import { nodesHints } from '@/utils/hints/nodesHints'
 
 defineProps({
   nodes: {
-    type: Array,
+    type: Object,
     required: true,
   },
 })

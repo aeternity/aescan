@@ -44,13 +44,13 @@ const props = defineProps({
 })
 
 const absolute = computed(() => {
-  return DateTime.fromMillis(props.timestamp).toLocaleString(DateTime.DATETIME_SHORT)
+  return DateTime.fromMillis(props.timestamp).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS)
 })
 
 const labelTime = computed(() => {
   return timeFormat.value === 'absolute'
     ? absolute.value
-    : relativeUpdated.value
+    : `${relativeUpdated.value} (${absolute.value})`
 })
 
 const tooltipTime = computed(() => {
@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
 
 function update() {
   if (isPast.value) {
-    relativeUpdated.value = DateTime.fromMillis(props.timestamp).toRelative()
+    relativeUpdated.value = DateTime.fromMillis(props.timestamp).toRelative({ style: 'short' })
   } else if (isNow.value) {
     relativeUpdated.value = 'now'
   } else {

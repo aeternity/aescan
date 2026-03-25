@@ -20,6 +20,12 @@
             {{ tokensHints.smartContractId }}
           </hint-tooltip>
         </th>
+        <th>
+          Holders
+          <hint-tooltip>
+            {{ tokensHints.holders }}
+          </hint-tooltip>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -45,6 +51,9 @@
           <value-hash-ellipsed
             :link-to="`/contracts/${token.contractId}`"
             :hash="token.contractId "/>
+        </td>
+        <td class="tokens-table__data">
+          {{ formatNullable(formatNumber(token.holders)) }}
         </td>
       </tr>
     </tbody>

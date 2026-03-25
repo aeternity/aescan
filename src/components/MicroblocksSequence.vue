@@ -23,7 +23,7 @@
 const { selectMicroblock } = useRecentBlocksStore()
 const { selectedMicroblock } = storeToRefs(useRecentBlocksStore())
 
-defineProps({
+const props = defineProps({
   microblocks: {
     required: true,
     type: Array,
@@ -33,10 +33,33 @@ defineProps({
 const microblocksSequence = ref(null)
 
 watch(
+  () => props.microblocks?.length,
+  async (newLen, oldLen) => {
+    if (!oldLen || newLen <= oldLen) return
+    await nextTick()
+    const el = microblocksSequence.value.$el
+    if (el.scrollLeft > 0) {
+      const firstCell = el.querySelector('.microblocks-sequence__cell')
+      if (firstCell) {
+        const marginRight = parseFloat(window.getComputedStyle(firstCell).marginRight) || 0
+        el.scrollLeft += firstCell.offsetWidth + marginRight
+      }
+    }
+  })
+
+watch(
   selectedMicroblock,
-  (newBlock, oldBlock) => {
+  async (newBlock, oldBlock) => {
+    const el = microblocksSequence.value.$el
     if (newBlock?.height !== oldBlock?.height) {
-      microblocksSequence.value.$el.scrollLeft = 0
+      el.scrollLeft = 0
+    } else {
+      await nextTick()
+      const activeCell = el.querySelector('.microblocks-sequence__cell--active')
+      if (activeCell) {
+        const targetScroll = activeCell.offsetLeft - (el.offsetWidth / 2) + (activeCell.offsetWidth / 2)
+        el.scrollTo({ left: targetScroll, behavior: 'smooth' })
+      }
     }
   })
 </script>
@@ -85,6 +108,7 @@ watch(
     position: absolute;
     right: 0;
     top: 0;
+    pointer-events: none;
     background-image: linear-gradient(90deg, rgb(247 247 247 / 0%) 0, rgb(247 247 247 / 100%) 100%);
 
     @media (--desktop) {

@@ -91,22 +91,27 @@ definePageMeta({
 
 const isLoading = ref(true)
 
-useAsyncData(() => Promise.all([
-  fetchStateChannels(),
-  fetchInAuctionNames(),
-  fetchRecentlyActivatedNames(),
-  fetchTotalStats(),
-  fetchMaxTps(),
-]))
+await useAsyncData(
+  'dashboard-static',
+  () => Promise.all([
+    fetchStateChannels(),
+    fetchInAuctionNames(),
+    fetchRecentlyActivatedNames(),
+    fetchTotalStats(),
+    fetchMaxTps(),
+  ]),
+)
 
 // fetch client-side only due to very dynamic nature of the data and limit difference depending on desktop/mobile view
-useAsyncData(() => Promise.all([
-  fetchSelectedMicroblocksInfo(),
-  fetchTotalTransactionsCount(),
-  fetchDeltaStats(),
-]).then(() => {
+// use onMounted instead of useAsyncData to ensure re-fetch on every navigation (useAsyncData caches results)
+onMounted(async () => {
+  await Promise.all([
+    fetchSelectedMicroblocksInfo(),
+    fetchTotalTransactionsCount(),
+    fetchDeltaStats(),
+  ])
   isLoading.value = false
-}), { server: false })
+})
 
 onBeforeMount(() => {
   isSubscribedToKeyblockDetails.value = true

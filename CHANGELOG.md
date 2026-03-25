@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.24.3](https://github.com/aeternity/aescan/compare/0.24.2...0.24.3) (2026-03-25)
+
+
+### Features
+
+* home dashboard improvements ([#1159](https://github.com/aeternity/aescan/issues/1159)) ([9bd3cac](https://github.com/aeternity/aescan/commit/9bd3cac828541cd1bc78e8e205c48b23357a3444))
+
+
+### Bug Fixes
+
+* update timestamp formatting to include seconds and improve relat… ([#1158](https://github.com/aeternity/aescan/issues/1158)) ([6e07afd](https://github.com/aeternity/aescan/commit/6e07afdbf7f2bfe7533dca4f2f95e4c9fa4e4654))
+
 ## [0.24.2](https://github.com/aeternity/aescan/compare/0.24.1...0.24.2) (2025-12-01)
 
 

@@ -114,13 +114,21 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
   }
 
   async function fetchIsContractAex9() {
-    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/aex9/${contractId.value}`)).data
-    contractType.value = 'AEX-9'
+    try {
+      tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/aex9/${contractId.value}`)).data
+      contractType.value = 'AEX-9'
+    } catch (error) {
+      if (error.response?.status !== 404) console.log(`non-AEX-9 contract ${contractId.value}`)
+    }
   }
 
   async function fetchIsContractAex141() {
-    tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/aex141/${contractId.value}`)).data
-    contractType.value = 'AEX-141'
+    try {
+      tokenDetails.value = (await axios.get(`${MIDDLEWARE_URL}/aex141/${contractId.value}`)).data
+      contractType.value = 'AEX-141'
+    } catch (error) {
+      if (error.response?.status !== 404) console.log(`non-AEX-141 contract ${contractId.value}`)
+    }
   }
 
   return {

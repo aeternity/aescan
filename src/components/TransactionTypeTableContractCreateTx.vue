@@ -21,7 +21,7 @@
         </th>
         <td>
           <app-link :to="`/contracts/${transactionData.contractId}`">
-            {{ formatNullable(transactionData.contractId) }}
+            {{ formatNullable(formatKnownAddress(transactionData.contractId)) }}
           </app-link>
         </td>
       </tr>

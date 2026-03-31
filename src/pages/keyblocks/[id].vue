@@ -20,6 +20,9 @@
       <app-tab title="Microblocks">
         <keyblock-microblocks-panel/>
       </app-tab>
+      <app-tab title="Transactions">
+        <keyblock-transactions-panel/>
+      </app-tab>
     </app-tabs>
   </template>
   <loader-panel v-else/>

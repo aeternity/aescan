@@ -3,8 +3,8 @@
     v-if="isLocalLink(to)"
     :to="to"
     :class="['link', {'link--primary': variant === 'primary'}, {'link--text-link': isTextLink}]"
-    active-class="link--active"
-    exact-active-class="link--exact-active">
+    active-class=""
+    exact-active-class="">
     <slot/>
   </nuxt-link>
   <a

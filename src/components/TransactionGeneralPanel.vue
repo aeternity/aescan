@@ -15,13 +15,15 @@
                 class="transaction-general-panel__button--prev"
                 direction="left"
                 :disabled="!adjacentTransactions?.prevHash"
-                @click="adjacentTransactions?.prevHash && $router.push(`/transactions/${adjacentTransactions.prevHash}`)"/>
+                @click="adjacentTransactions?.prevHash
+                  && $router.push(`/transactions/${adjacentTransactions.prevHash}`)"/>
               <copy-chip :label="transactionDetails.hash"/>
               <pagination-button
                 class="transaction-general-panel__button--next"
                 direction="right"
                 :disabled="!adjacentTransactions?.nextHash"
-                @click="adjacentTransactions?.nextHash && $router.push(`/transactions/${adjacentTransactions.nextHash}`)"/>
+                @click="adjacentTransactions?.nextHash
+                  && $router.push(`/transactions/${adjacentTransactions.nextHash}`)"/>
             </div>
           </td>
         </tr>

@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.25.0](https://github.com/aeternity/aescan/compare/0.24.3...0.25.0) (2026-04-02)
+
+
+### Features
+
+* Enhance transaction details and keyblock mining display ([#1162](https://github.com/aeternity/aescan/issues/1162)) ([80763ef](https://github.com/aeternity/aescan/commit/80763ef840eec7ce54def3a8f0c2ddcad0249d9a))
+* single page with charts ([#1163](https://github.com/aeternity/aescan/issues/1163)) ([3779e95](https://github.com/aeternity/aescan/commit/3779e959f773c10b8966303f9c7ed7d08173bdf6))
+
+
+### Bug Fixes
+
+* deps update ([8e8366f](https://github.com/aeternity/aescan/commit/8e8366f37b2209c5d9d1654e330ac1ca21c2cace))
+* remove mining time border ([0bf0ea5](https://github.com/aeternity/aescan/commit/0bf0ea5dd81a280e37b25da38adc541d9c2a1507))
+
 ## [0.24.3](https://github.com/aeternity/aescan/compare/0.24.2...0.24.3) (2026-03-25)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "aescan",
-  "version": "0.24.3",
+  "version": "0.25.0",
   "packageManager": "yarn@1.22.22",
   "private": true,
   "author": "æternity",
@@ -39,7 +39,6 @@
     "@sentry/vue": "^9.14.0",
     "@vuepic/vue-datepicker": "^11.0.2",
     "@vueuse/core": "^13.1.0",
-
     "axios": "^1.9.0",
     "bignumber.js": "9.3.0",
     "camelcase-keys-deep": "^0.1.0",

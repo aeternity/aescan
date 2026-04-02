@@ -64,7 +64,7 @@
           <timestamp-label :timestamp="keyblock.mined"/>
         </td>
         <template v-if="miningTime != null">
-          <th class="dashboard-keyblock-table__header dashboard-keyblock-table__column-end">
+          <th class="dashboard-keyblock-table__column-end">
             <hint-tooltip class="dashboard-keyblock-table__tooltip">
               {{ keyblocksHints.miningTime }}
             </hint-tooltip>

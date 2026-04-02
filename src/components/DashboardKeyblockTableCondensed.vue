@@ -58,7 +58,7 @@
       </tr>
 
       <tr>
-        <th class="dashboard-keyblock-table-condensed__column-start">
+        <th class="dashboard-keyblock-table-condensed__header">
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
@@ -72,7 +72,7 @@
       </tr>
 
       <tr v-if="miningTime != null">
-        <th class="dashboard-keyblock-table-condensed__header">
+        <th>
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.miningTime }}
           </hint-tooltip>

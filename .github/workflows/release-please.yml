@@ -12,7 +12,7 @@ jobs:
     outputs:
       release_created: ${{ steps.release-please.outputs.release_created }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
       - name: Get tags

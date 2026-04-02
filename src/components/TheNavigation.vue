@@ -102,35 +102,35 @@ const menuOptions = ref([{
   submenu: [
     {
       name: 'Price',
-      path: '/charts/price',
+      path: '/charts#price',
     },
     {
       name: 'Transactions',
-      path: '/charts/transactions',
+      path: '/charts#transactions',
     },
     {
       name: 'Keyblocks',
-      path: '/charts/keyblocks',
+      path: '/charts#keyblocks',
     },
     {
       name: 'Smart Contracts',
-      path: '/charts/contracts',
+      path: '/charts#contracts',
     },
     {
       name: 'Accounts',
-      path: '/charts/accounts',
+      path: '/charts#accounts',
     },
     {
       name: 'Names',
-      path: '/charts/names',
+      path: '/charts#names',
     },
     {
       name: 'Difficulty',
-      path: '/charts/difficulty',
+      path: '/charts#difficulty',
     },
     {
       name: 'Hashrate',
-      path: '/charts/hashrate',
+      path: '/charts#hashrate',
     },
   ],
 }])

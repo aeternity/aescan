@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel :title-to="props.titleTo">
     <template #title>
       KEYBLOCKS MINED
     </template>
@@ -20,10 +20,17 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  titleTo: {
+    type: String,
+    default: null,
+  },
+})
+
 const { keyblocksStatistics } = storeToRefs(useChartsStore())
 const { fetchKeyblocksStatistics } = useChartsStore()
 
-const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
+const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[0])
 
 useAsyncData(async () => {
   await loadKeyblockStatistics()

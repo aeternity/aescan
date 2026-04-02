@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel :title-to="props.titleTo">
     <template #title>
       DIFFICULTY
     </template>
@@ -20,10 +20,17 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  titleTo: {
+    type: String,
+    default: null,
+  },
+})
+
 const { difficultyStatistics } = storeToRefs(useChartsStore())
 const { fetchDifficultyStatistics } = useChartsStore()
 
-const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[4])
+const selectedScope = ref(CHART_SCOPE_PRESETS_OPTIONS[0])
 
 useAsyncData(async () => {
   await loadDifficultytatistics()

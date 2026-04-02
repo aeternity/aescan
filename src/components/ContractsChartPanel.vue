@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel :title-to="props.titleTo">
     <template #title>
       SMART CONTRACT CALLS
     </template>
@@ -24,9 +24,13 @@ const { contractsStatistics } = storeToRefs(useChartsStore())
 const { fetchContractsStatistics } = useChartsStore()
 
 const props = defineProps({
+  titleTo: {
+    type: String,
+    default: null,
+  },
   scope: {
     type: Object,
-    default: CHART_SCOPE_PRESETS_OPTIONS[4],
+    default: CHART_SCOPE_PRESETS_OPTIONS[0],
   },
 })
 

@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel :title-to="props.titleTo">
     <template #title>
       TRANSACTIONS
     </template>
@@ -41,9 +41,13 @@ const props = defineProps({
     default: true,
     type: Boolean,
   },
+  titleTo: {
+    type: String,
+    default: null,
+  },
   scope: {
     type: Object,
-    default: CHART_SCOPE_PRESETS_OPTIONS[4],
+    default: CHART_SCOPE_PRESETS_OPTIONS[0],
   },
 })
 

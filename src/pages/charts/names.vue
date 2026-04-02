@@ -12,10 +12,10 @@
 
   <NuxtLayout name="master-detail">
     <template #master>
-      <charts-navigation/>
+      <chart-detail-navigation/>
     </template>
     <template #detail>
-      <names-chart-panel :scope="CHART_SCOPE_PRESETS_OPTIONS[4]"/>
+      <names-chart-panel/>
     </template>
   </NuxtLayout>
 </template>

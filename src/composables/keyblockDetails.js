@@ -1,5 +1,6 @@
 export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
   const keyblockMicroblocks = ref(null)
+  const keyblockTransactions = ref(null)
   const keyblockDetails = ref(null)
 
   async function fetchKeyblock(id) {
@@ -25,10 +26,19 @@ export const useKeyblockDetailsStore = defineStore('keyblockDetails', () => {
     })
   }
 
+  async function fetchKeyblockTransactions({ queryParameters, height, type } = {}) {
+    keyblockTransactions.value = null
+    keyblockTransactions.value = await $fetch('/api/keyblocks/transactions', {
+      params: { height, queryParameters, type },
+    })
+  }
+
   return {
     keyblockDetails,
     keyblockMicroblocks,
+    keyblockTransactions,
     fetchKeyblock,
     fetchKeyblockMicroblocks,
+    fetchKeyblockTransactions,
   }
 })

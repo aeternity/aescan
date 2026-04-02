@@ -10,7 +10,21 @@
             Transaction ID
           </th>
           <td>
-            <copy-chip :label="transactionDetails.hash"/>
+            <div class="transaction-general-panel__id-controls">
+              <pagination-button
+                class="transaction-general-panel__button--prev"
+                direction="left"
+                :disabled="!adjacentTransactions?.prevHash"
+                @click="adjacentTransactions?.prevHash
+                  && $router.push(`/transactions/${adjacentTransactions.prevHash}`)"/>
+              <copy-chip :label="transactionDetails.hash"/>
+              <pagination-button
+                class="transaction-general-panel__button--next"
+                direction="right"
+                :disabled="!adjacentTransactions?.nextHash"
+                @click="adjacentTransactions?.nextHash
+                  && $router.push(`/transactions/${adjacentTransactions.nextHash}`)"/>
+            </div>
           </td>
         </tr>
         <tr>
@@ -154,6 +168,9 @@ import { transactionsHints } from '@/utils/hints/transactionsHints'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 
+const { adjacentTransactions } = storeToRefs(useTransactionDetailsStore())
+const { fetchAdjacentTransactions } = useTransactionDetailsStore()
+
 const props = defineProps({
   transactionDetails: {
     type: Object,
@@ -168,6 +185,12 @@ const transactionNodeUrl = computed(() => {
 const transactionMiddlewareUrl = computed(() => {
   return `${MIDDLEWARE_URL}/transactions/${props.transactionDetails.hash}`
 })
+
+if (import.meta.client) {
+  onMounted(() => {
+    fetchAdjacentTransactions()
+  })
+}
 </script>
 
 <style scoped>
@@ -180,6 +203,29 @@ const transactionMiddlewareUrl = computed(() => {
 
     &:first-child {
       margin-right: var(--space-3);
+    }
+  }
+
+  &__id-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  &__button {
+    &--prev {
+      margin-right: var(--space-1);
+
+      @media (--desktop) {
+        margin-right: var(--space-3);
+      }
+    }
+
+    &--next {
+      margin-left: var(--space-1);
+
+      @media (--desktop) {
+        margin-left: var(--space-3);
+      }
     }
   }
 }

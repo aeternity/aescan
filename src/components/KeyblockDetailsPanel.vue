@@ -59,6 +59,17 @@
               :is-extended="true"/>
           </td>
         </tr>
+        <tr v-if="keyblockDetails.miningTime != null">
+          <th>
+            <hint-tooltip>
+              {{ keyblocksHints.miningTime }}
+            </hint-tooltip>
+            Mining Time
+          </th>
+          <td>
+            {{ formatMiningTime(keyblockDetails.miningTime) }}
+          </td>
+        </tr>
         <tr>
           <th>
             <hint-tooltip>
@@ -150,6 +161,7 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
+import { formatMiningTime } from '@/utils/format'
 
 const { NODE_URL, MIDDLEWARE_URL } = useRuntimeConfig().public
 const { blockHeight: latestBlockHeight } = storeToRefs(useRecentBlocksStore())

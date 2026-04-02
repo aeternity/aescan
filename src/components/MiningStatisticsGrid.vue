@@ -170,8 +170,8 @@ if (import.meta.client) {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(10, auto);
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  column-gap: 16px;
+  row-gap: 16px;
   margin-bottom: var(--space-4);
 
   @media (--desktop) {

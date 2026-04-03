@@ -8,10 +8,14 @@ export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   const keyblockDetails = await fetchKeblockDetails(id)
   let keyblockDeltaStats = null
+  let prevKeyblockTime = null
   if (keyblockDetails.height) {
-    keyblockDeltaStats = await fetchKeyblockDeltaStats(keyblockDetails.height)
+    ;[keyblockDeltaStats, prevKeyblockTime] = await Promise.all([
+      fetchKeyblockDeltaStats(keyblockDetails.height),
+      fetchPrevKeyblockTime(keyblockDetails.height),
+    ])
   }
-  return adaptKeyblock(keyblockDetails, keyblockDeltaStats)
+  return adaptKeyblock(keyblockDetails, keyblockDeltaStats, prevKeyblockTime)
 })
 
 async function fetchKeblockDetails(id) {
@@ -45,11 +49,23 @@ async function fetchKeyblockDeltaStats(keyblockHeight) {
   return data?.data?.[0]
 }
 
-function adaptKeyblock(keyblock, keyblockDeltaStats = null) {
+async function fetchPrevKeyblockTime(height) {
+  if (height <= 0) return null
+  try {
+    const url = getUrl({ entity: 'key-blocks', id: height - 1 })
+    const { data } = await axios.get(url)
+    return data.time ?? null
+  } catch {
+    return null
+  }
+}
+
+function adaptKeyblock(keyblock, keyblockDeltaStats = null, prevKeyblockTime = null) {
   return {
     ...keyblock,
     mined: keyblock.time,
     blockReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.blockReward) : null,
     devReward: keyblockDeltaStats ? formatAettosToAe(keyblockDeltaStats.devReward) : null,
+    miningTime: (prevKeyblockTime != null && keyblock.time != null) ? keyblock.time - prevKeyblockTime : null,
   }
 }

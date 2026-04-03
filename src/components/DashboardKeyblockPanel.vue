@@ -47,13 +47,15 @@
         v-if="selectedKeyblock"
         class="dashboard-keyblock-panel__dashboard-keyblock-table u-hidden-mobile"
         :keyblock="selectedKeyblock"
-        :stats="selectedDeltaStats"/>
+        :stats="selectedDeltaStats"
+        :mining-time="selectedKeyblockMiningTime"/>
 
       <dashboard-keyblock-table-condensed
         v-if="selectedKeyblock"
         class="dashboard-keyblock-panel__dashboard-keyblock-table  u-hidden-desktop"
         :keyblock="selectedKeyblock"
-        :stats="selectedDeltaStats"/>
+        :stats="selectedDeltaStats"
+        :mining-time="selectedKeyblockMiningTime"/>
     </div>
     <dashboard-microblocks-panel class="dashboard-keyblock-panel__dashboard-microblocks-panel"/>
   </app-panel>
@@ -68,6 +70,14 @@ const {
   selectedDeltaStats,
   selectedKeyblockTransactionsCount,
 } = storeToRefs(useRecentBlocksStore())
+
+const selectedKeyblockMiningTime = computed(() => {
+  if (!selectedKeyblock.value?.hash || !keyblocks.value?.length) return null
+  const idx = keyblocks.value.findIndex(k => k.hash === selectedKeyblock.value.hash)
+  if (idx === -1 || idx >= keyblocks.value.length - 1) return null
+  const diffMs = selectedKeyblock.value.time - keyblocks.value[idx + 1].time
+  return diffMs > 0 ? diffMs : null
+})
 </script>
 
 <style scoped>

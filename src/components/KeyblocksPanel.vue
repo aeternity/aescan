@@ -3,6 +3,7 @@
     <paginated-content
       :entities="keyblocks"
       :total-count="keyblocksCount"
+      pagination-style="history"
       @prev-clicked="loadPrevKeyblocks"
       @next-clicked="loadNextKeyblocks">
       <keyblocks-table :keyblocks="keyblocks"/>

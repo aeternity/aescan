@@ -58,7 +58,7 @@
       </tr>
 
       <tr>
-        <th class="dashboard-keyblock-table-condensed__column-start">
+        <th class="dashboard-keyblock-table-condensed__header">
           <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
             {{ keyblocksHints.briReward }}
           </hint-tooltip>
@@ -70,12 +70,25 @@
             class="dashboard-keyblock-table-condensed__price"/>
         </td>
       </tr>
+
+      <tr v-if="miningTime != null">
+        <th>
+          <hint-tooltip class="dashboard-keyblock-table-condensed__tooltip">
+            {{ keyblocksHints.miningTime }}
+          </hint-tooltip>
+          Mining Time
+        </th>
+        <td class="dashboard-keyblock-table-condensed__data">
+          {{ formatMiningTime(miningTime) }}
+        </td>
+      </tr>
     </tbody>
   </table>
 </template>
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
+import { formatMiningTime } from '@/utils/format'
 
 defineProps({
   keyblock: {
@@ -84,6 +97,10 @@ defineProps({
   },
   stats: {
     type: Object,
+    default: null,
+  },
+  miningTime: {
+    type: Number,
     default: null,
   },
 })

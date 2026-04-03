@@ -5,7 +5,7 @@
         v-for="option in menuOptions"
         :key="option.name"
         :class="['charts-navigation__link', {'charts-navigation__link--active': option.path === activeSection}]"
-        :to="`/charts#${option.path}`">
+        :to="`/charts/${option.path}`">
         {{ option.name }}
       </app-link>
     </app-panel>
@@ -14,9 +14,8 @@
 
 <script setup>
 const route = useRoute()
-const activeHash = ref('price')
 
-const menuOptions = ref([
+const menuOptions = [
   {
     name: 'Price',
     path: 'price',
@@ -48,21 +47,10 @@ const menuOptions = ref([
   {
     name: 'Hashrate',
     path: 'hashrate',
-  }])
+  },
+]
 
-function syncActiveHash(hash) {
-  activeHash.value = hash.replace('#', '') || 'price'
-}
-
-onMounted(() => {
-  syncActiveHash(window.location.hash || route.hash)
-})
-
-watch(() => route.hash, (hash) => {
-  syncActiveHash(hash)
-})
-
-const activeSection = computed(() => activeHash.value)
+const activeSection = computed(() => route.path.split('/').pop())
 </script>
 
 <style scoped>

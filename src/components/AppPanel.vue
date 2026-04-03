@@ -4,7 +4,15 @@
       v-if="$slots.title"
       class="panel__header">
       <h2 class="panel__heading h3">
-        <slot name="title"/>
+        <app-link
+          v-if="titleTo"
+          :to="titleTo"
+          class="panel__title-link">
+          <slot name="title"/>
+        </app-link>
+        <slot
+          v-else
+          name="title"/>
       </h2>
       <div class="panel__end">
         <slot name="end"/>
@@ -13,6 +21,15 @@
     <slot/>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  titleTo: {
+    type: String,
+    default: null,
+  },
+})
+</script>
 
 <style scoped>
 .panel {
@@ -46,6 +63,12 @@
 
   &__heading {
     margin-bottom: var(--space-1);
+  }
+
+  &__title-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
   }
 
   &__end {

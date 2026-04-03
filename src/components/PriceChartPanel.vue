@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel :title-to="props.titleTo">
     <template #title>
       AE PRICE TREND
     </template>
@@ -38,7 +38,14 @@ import {
 } from 'chart.js'
 import { DateTime } from 'luxon'
 
-const selectedScope = ref(PRICE_CHART_SCOPE_PRESETS_OPTIONS[4])
+const props = defineProps({
+  titleTo: {
+    type: String,
+    default: null,
+  },
+})
+
+const selectedScope = ref(PRICE_CHART_SCOPE_PRESETS_OPTIONS[2])
 
 const { priceStatistics } = storeToRefs(useChartsStore())
 const { fetchPriceStatistics } = useChartsStore()

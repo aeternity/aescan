@@ -12,7 +12,7 @@
 
   <NuxtLayout name="master-detail">
     <template #master>
-      <charts-navigation/>
+      <chart-detail-navigation/>
     </template>
     <template #detail>
       <keyblocks-chart-panel/>

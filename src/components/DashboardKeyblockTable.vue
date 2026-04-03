@@ -63,6 +63,17 @@
         <td class="dashboard-keyblock-table__data">
           <timestamp-label :timestamp="keyblock.mined"/>
         </td>
+        <template v-if="miningTime != null">
+          <th class="dashboard-keyblock-table__column-end">
+            <hint-tooltip class="dashboard-keyblock-table__tooltip">
+              {{ keyblocksHints.miningTime }}
+            </hint-tooltip>
+            Mining Time
+          </th>
+          <td class="dashboard-keyblock-table__data">
+            {{ formatMiningTime(miningTime) }}
+          </td>
+        </template>
       </tr>
     </tbody>
   </table>
@@ -70,6 +81,7 @@
 
 <script setup>
 import { keyblocksHints } from '@/utils/hints/keyblocksHints'
+import { formatMiningTime } from '@/utils/format'
 
 defineProps({
   keyblock: {
@@ -78,6 +90,10 @@ defineProps({
   },
   stats: {
     type: Object,
+    default: null,
+  },
+  miningTime: {
+    type: Number,
     default: null,
   },
 })

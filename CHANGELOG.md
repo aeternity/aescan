@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0](https://github.com/aeternity/aescan/compare/0.25.0...0.26.0) (2026-04-09)
+
+
+### Features
+
+* add per page selector ([#1165](https://github.com/aeternity/aescan/issues/1165)) ([78ba1b2](https://github.com/aeternity/aescan/commit/78ba1b27a8a9a12575d2d4599f079f26f2a42d8c))
+
 ## [0.25.0](https://github.com/aeternity/aescan/compare/0.24.3...0.25.0) (2026-04-02)
 
 

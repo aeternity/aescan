@@ -8,12 +8,12 @@
         class="paginated-content__header">
         <div class="paginated-content__counter">
           <span v-if="hasCounter">
-            <template v-if="totalCount > 0">
+            <template v-if="effectiveTotalCount > 0">
               Displaying
               <span class="paginated-content__highlighted">
                 {{ formatNullable(firstVisibleIndex) }}-{{ formatNullable(lastVisibleIndex) }}
                 of
-                {{ formatNullable(totalCount) }}
+                {{ formatNullable(effectiveTotalCount) }}
               </span>
               records
             </template>
@@ -112,13 +112,17 @@ const firstVisibleIndex = computed(
   () => (pageIndex.value - 1) * limitModel.value + 1,
 )
 const lastVisibleIndex = computed(
-  () => firstVisibleIndex.value + props.entities?.data.length - 1,
+  () => firstVisibleIndex.value + (props.entities?.data?.length ?? 0) - 1,
 )
+const effectiveTotalCount = computed(() => {
+  if (props.totalCount === null) return null
+  return Math.max(props.totalCount, lastVisibleIndex.value)
+})
 
 const isPrevDisabled = computed(() => !props.entities.prev || pageIndex.value === 1)
 const isNextDisabled = computed(() => !props.entities.next)
 const hasPagination = computed(() => !!props.entities.data.length && (props.entities.prev || props.entities.next))
-const hasCounter = computed(() => props.totalCount !== null && props.totalCount > 0)
+const hasCounter = computed(() => effectiveTotalCount.value !== null && effectiveTotalCount.value > 0)
 const hasLimitSelector = computed(() => !!props.entities?.data?.length)
 const prevLabel = computed(() => {
   if (props.paginationStyle === 'history') {

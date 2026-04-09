@@ -36,7 +36,7 @@ async function fetchTransactionsCount(height) {
     },
   })
   const { data } = await axios.get(url)
-  return data.data
+  return data
 }
 
 function adaptTransactions(transactions, count) {

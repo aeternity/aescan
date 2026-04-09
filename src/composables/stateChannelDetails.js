@@ -19,10 +19,10 @@ export const useStateChannelDetailsStore = defineStore('stateChannelDetails', ()
     }
   }
 
-  async function fetchStateChannelTransactions({ id, queryParameters } = {}) {
+  async function fetchStateChannelTransactions({ id, queryParameters, limit } = {}) {
     stateChannelTransactions.value = null
     stateChannelTransactions.value = await $fetch('/api/channels/transactions', {
-      params: { queryParameters, direction: 'backward', channel: id },
+      params: { queryParameters, direction: 'backward', channel: id, limit },
     })
   }
 

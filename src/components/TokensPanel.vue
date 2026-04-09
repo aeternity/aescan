@@ -1,6 +1,7 @@
 <template>
   <app-panel class="tokens-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       v-model:page-index="pageIndex"
       :entities="selectedTokens"
       :total-count="selectedTokensCount"
@@ -27,13 +28,14 @@ const { fetchTokens, fetchTokensCount } = useTokensStore()
 const featureFlags = useFeatureFlags()
 
 const pageIndex = ref(1)
+const pageLimit = usePageLimit('tokens')
 
 async function loadPrevTokens() {
-  await fetchTokens(selectedTokens.value.prev.substring(3))
+  await fetchTokens({ queryParameters: selectedTokens.value.prev.substring(3) })
 }
 
 async function loadNextTokens() {
-  await fetchTokens(selectedTokens.value.next.substring(3))
+  await fetchTokens({ queryParameters: selectedTokens.value.next.substring(3) })
 }
 
 const hasTokenSelect = computed(() => {
@@ -48,9 +50,13 @@ useAsyncData(async () => {
 if (import.meta.client) {
   watch(selectedTokenName, async () => {
     pageIndex.value = 1
-    await fetchTokens('/aex9?by=creation&direction=backward&limit=10')
+    await fetchTokens({ queryParameters: `/aex9?by=creation&direction=backward&limit=${pageLimit.value}` })
   }, {
     immediate: true,
+  })
+  watch(pageLimit, async () => {
+    pageIndex.value = 1
+    await fetchTokens({ queryParameters: `/aex9?by=creation&direction=backward&limit=${pageLimit.value}` })
   })
 }
 </script>

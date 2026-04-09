@@ -1,6 +1,7 @@
 <template>
   <app-panel class="names-in-auction-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="inAuctionNames"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
@@ -16,12 +17,18 @@
 const { fetchInAuctionNames } = useNamesStore()
 const { inAuctionNames } = storeToRefs(useNamesStore())
 
+const pageLimit = usePageLimit('names-in-auction')
+
+watch(pageLimit, () => {
+  fetchInAuctionNames({ limit: pageLimit.value })
+})
+
 function loadPrevNames() {
-  fetchInAuctionNames(inAuctionNames.value.prev)
+  fetchInAuctionNames({ queryParameters: inAuctionNames.value.prev })
 }
 
 function loadNextNames() {
-  fetchInAuctionNames(inAuctionNames.value.next)
+  fetchInAuctionNames({ queryParameters: inAuctionNames.value.next })
 }
 </script>
 

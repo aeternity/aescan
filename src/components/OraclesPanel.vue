@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       v-model:page-index="pageIndex"
       :entities="oracles"
       :total-count="oraclesCount"
@@ -22,6 +23,7 @@ const { fetchOracles, fetchOraclesCount } = useOraclesStore()
 const { oracles, oraclesCount } = storeToRefs(useOraclesStore())
 
 const pageIndex = ref(1)
+const pageLimit = usePageLimit('oracles')
 
 function loadPrevOracles() {
   fetchOracles({ queryParameters: oracles.value.prev })
@@ -36,7 +38,7 @@ async function loadOracles() {
   const oracleStateOption = ORACLE_STATES_OPTIONS.find(option => option.stateQuery === state)
   selectedOracleState.value = oracleStateOption || ORACLE_STATES_OPTIONS[0]
   await Promise.all([
-    await fetchOracles({ limit: 10, state: selectedOracleState.value.stateQuery }),
+    await fetchOracles({ limit: pageLimit.value, state: selectedOracleState.value.stateQuery }),
     await fetchOraclesCount(selectedOracleState.value.stateQuery),
   ])
   pageIndex.value = 1
@@ -67,6 +69,9 @@ const selectedOracleState = computed({
 
 if (import.meta.client) {
   watch(() => route.fullPath, () => {
+    loadOracles()
+  })
+  watch(pageLimit, () => {
     loadOracles()
   })
 

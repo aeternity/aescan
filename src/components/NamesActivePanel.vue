@@ -1,6 +1,7 @@
 <template>
   <app-panel class="names-active-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="activeNames"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
@@ -16,12 +17,18 @@
 const { fetchActiveNames } = useNamesStore()
 const { activeNames } = storeToRefs(useNamesStore())
 
+const pageLimit = usePageLimit('names-active')
+
+watch(pageLimit, () => {
+  fetchActiveNames({ limit: pageLimit.value })
+})
+
 function loadPrevNames() {
-  return fetchActiveNames(activeNames.value.prev)
+  return fetchActiveNames({ queryParameters: activeNames.value.prev })
 }
 
 function loadNextNames() {
-  return fetchActiveNames(activeNames.value.next)
+  return fetchActiveNames({ queryParameters: activeNames.value.next })
 }
 </script>
 

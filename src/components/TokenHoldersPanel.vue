@@ -1,6 +1,7 @@
 <template>
   <app-panel class="token-holders-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="tokenHolders"
       :total-count="tokenHoldersCount"
       @prev-clicked="loadPrevHolders"
@@ -17,16 +18,22 @@
 const { fetchTokenHolders, fetchTokenHoldersCount } = useTokenDetailsStore()
 const { tokenHolders, tokenDetails, tokenHoldersCount } = storeToRefs(useTokenDetailsStore())
 
+const pageLimit = usePageLimit('token-holders')
+
+watch(pageLimit, () => {
+  fetchTokenHolders({ limit: pageLimit.value })
+})
+
 function loadPrevHolders() {
-  fetchTokenHolders(tokenHolders.value.prev.substring(3))
+  fetchTokenHolders({ queryParameters: tokenHolders.value.prev.substring(3) })
 }
 
 function loadNextHolders() {
-  fetchTokenHolders(tokenHolders.value.next.substring(3))
+  fetchTokenHolders({ queryParameters: tokenHolders.value.next.substring(3) })
 }
 
 if (import.meta.client) {
-  fetchTokenHolders()
+  fetchTokenHolders({ limit: pageLimit.value })
   fetchTokenHoldersCount()
 }
 </script>

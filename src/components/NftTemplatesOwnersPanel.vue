@@ -1,6 +1,7 @@
 <template>
   <app-panel class="nft-templates-owners-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="nftOwners"
       @next-clicked="loadNextNftowners"
       @prev-clicked="loadPrevNftowners">
@@ -12,8 +13,15 @@
 </template>
 
 <script setup>
+const route = useRoute()
 const { nftOwners } = storeToRefs(useNftDetailsStore())
 const { fetchNftOwners } = useNftDetailsStore()
+
+const pageLimit = usePageLimit('nft-templates-owners')
+
+watch(pageLimit, () => {
+  fetchNftOwners({ id: route.params.id, limit: pageLimit.value })
+})
 
 async function loadNextNftowners() {
   await fetchNftOwners({ queryParameters: nftOwners.value.next })

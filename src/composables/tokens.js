@@ -30,16 +30,18 @@ export const useTokensStore = defineStore('tokens', () => {
       : null,
   )
 
-  function fetchTokens(queryParameters) {
+  function fetchTokens({ queryParameters, limit } = {}) {
     return Promise.allSettled([
-      fetchAllTokens(queryParameters),
+      fetchAllTokens({ queryParameters, limit }),
       fetchListedTokens(),
     ])
   }
 
-  async function fetchAllTokens(queryParameters = null) {
+  async function fetchAllTokens({ queryParameters, limit } = {}) {
     allTokens.value = null
-    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || '/aex9?by=name&direction=forward'}`)
+    const effectiveLimit = limit || 10
+    const defaultPath = `/aex9?by=name&direction=forward&limit=${effectiveLimit}`
+    const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultPath}`)
     allTokens.value = data
   }
 

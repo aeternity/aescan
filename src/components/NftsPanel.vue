@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="nfts"
       :total-count="nfts?.count"
       @prev-clicked="loadPrevNfts"
@@ -14,15 +15,21 @@
 const { nfts } = storeToRefs(useNftsStore())
 const { fetchNfts } = useNftsStore()
 
+const pageLimit = usePageLimit('nfts')
+
+watch(pageLimit, () => {
+  fetchNfts({ limit: pageLimit.value })
+})
+
 async function loadPrevNfts() {
-  await fetchNfts(nfts.value.prev)
+  await fetchNfts({ queryParameters: nfts.value.prev })
 }
 
 async function loadNextNfts() {
-  await fetchNfts(nfts.value.next)
+  await fetchNfts({ queryParameters: nfts.value.next })
 }
 
 if (import.meta.client) {
-  fetchNfts()
+  fetchNfts({ limit: pageLimit.value })
 }
 </script>

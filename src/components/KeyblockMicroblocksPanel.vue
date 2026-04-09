@@ -1,6 +1,7 @@
 <template>
   <app-panel class="keyblock-microblock-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       pagination-style="history"
       :entities="microblocks"
       :total-count="keyblockDetails.microBlocksCount"
@@ -18,9 +19,16 @@ const { keyblockMicroblocks: microblocks, keyblockDetails } = storeToRefs(useKey
 const { fetchKeyblockMicroblocks } = useKeyblockDetailsStore()
 const route = useRoute()
 
+const pageLimit = usePageLimit('keyblock-microblocks')
+
+watch(pageLimit, () => {
+  fetchKeyblockMicroblocks({ id: route.params.id, limit: pageLimit.value })
+})
+
 if (import.meta.client) {
   fetchKeyblockMicroblocks({
     id: route.params.id,
+    limit: pageLimit.value,
   })
 }
 

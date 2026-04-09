@@ -1,6 +1,7 @@
 <template>
   <app-panel class="account-activities-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="accountActivities"
       pagination-style="history"
       @prev-clicked="loadPrevActivities"
@@ -14,8 +15,15 @@
 </template>
 
 <script setup>
+const route = useRoute()
 const { fetchAccountActivities } = useAccountStore()
 const { accountActivities, accountDetails } = storeToRefs(useAccountStore())
+
+const pageLimit = usePageLimit('account-activities')
+
+watch(pageLimit, () => {
+  fetchAccountActivities({ accountId: route.params.id, limit: pageLimit.value })
+})
 
 function loadPrevActivities() {
   return fetchAccountActivities({

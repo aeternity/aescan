@@ -48,18 +48,14 @@ const isSyncing = computed(() => isLoading.value || !transactionTypeData.value)
 
 try {
   await fetchTransactionDetails(route.params.id)
-} catch (error) {
-  if ([400, 404].includes(error.response?.status)) {
-    throw showError({
-      data: {
-        entityId: route.params.id,
-        entityName: 'Transaction',
-      },
-      statusMessage: 'EntityDetailsNotFound',
-    })
-  }
-
-  throw error
+} catch {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'Transaction',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
 }
 
 if (import.meta.client && !transactionTypeData.value) {

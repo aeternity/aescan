@@ -1,6 +1,7 @@
 <template>
   <app-panel class="ae-coin-transactions-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="transactions"
       :total-count="transactionsCount"
       @prev-clicked="loadPrevTransactions"
@@ -14,8 +15,14 @@
 const { fetchTransactions, fetchTransactionsCount } = useTransactionsStore()
 const { transactions, transactionsCount } = storeToRefs(useTransactionsStore())
 
+const pageLimit = usePageLimit('ae-coin-transactions')
+
+watch(pageLimit, () => {
+  loadTransactions()
+})
+
 async function loadTransactions() {
-  await fetchTransactions({ type: 'spend', limit: 10 })
+  await fetchTransactions({ type: 'spend', limit: pageLimit.value })
   await fetchTransactionsCount({ type: 'spend' })
 }
 

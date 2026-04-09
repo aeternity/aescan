@@ -99,16 +99,18 @@ export const useAccountStore = defineStore('account', () => {
     totalAccountTransactionsCount.value = data
   }
 
-  async function fetchAccountNames({ accountId, queryParameters } = {}) {
+  async function fetchAccountNames({ accountId, queryParameters, limit } = {}) {
     rawAccountNames.value = null
-    const defaultParameters = `/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=10`
+    const effectiveLimit = limit || 10
+    const defaultParameters = `/names?owned_by=${accountId}&by=name&direction=forward&state=active&limit=${effectiveLimit}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountNames.value = data
   }
 
-  async function fetchAccountTokens({ accountId, queryParameters } = {}) {
+  async function fetchAccountTokens({ accountId, queryParameters, limit } = {}) {
     rawAccountTokens.value = null
-    const defaultParameters = `/accounts/${accountId}/aex9/balances?limit=10`
+    const effectiveLimit = limit || 10
+    const defaultParameters = `/accounts/${accountId}/aex9/balances?limit=${effectiveLimit}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountTokens.value = data
 
@@ -133,14 +135,15 @@ export const useAccountStore = defineStore('account', () => {
     )
   }
 
-  async function fetchAccountActivities({ accountId, queryParameters } = {}) {
+  async function fetchAccountActivities({ accountId, queryParameters, limit } = {}) {
     rawAccountActivities.value = null
-    const defaultParameters = `/accounts/${accountId}/activities?limit=10`
+    const effectiveLimit = limit || 10
+    const defaultParameters = `/accounts/${accountId}/activities?limit=${effectiveLimit}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountActivities.value = data
   }
 
-  async function fetchAccountTransactions({ accountId, type, queryParameters } = {}) {
+  async function fetchAccountTransactions({ accountId, type, queryParameters, limit } = {}) {
     rawAccountTransactions.value = null
 
     if (queryParameters) {
@@ -151,7 +154,7 @@ export const useAccountStore = defineStore('account', () => {
 
     const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
-    transactionsUrl.searchParams.append('limit', 10)
+    transactionsUrl.searchParams.append('limit', limit || 10)
 
     if (accountId) {
       transactionsUrl.searchParams.append('sender_id', accountId)

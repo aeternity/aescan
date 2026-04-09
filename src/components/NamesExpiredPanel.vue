@@ -1,6 +1,7 @@
 <template>
   <app-panel class="names-expired-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="expiredNames"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
@@ -16,12 +17,18 @@
 const { fetchExpiredNames } = useNamesStore()
 const { expiredNames } = storeToRefs(useNamesStore())
 
+const pageLimit = usePageLimit('names-expired')
+
+watch(pageLimit, () => {
+  fetchExpiredNames({ limit: pageLimit.value })
+})
+
 function loadPrevNames() {
-  fetchExpiredNames(expiredNames.value.prev)
+  fetchExpiredNames({ queryParameters: expiredNames.value.prev })
 }
 
 function loadNextNames() {
-  fetchExpiredNames(expiredNames.value.next)
+  fetchExpiredNames({ queryParameters: expiredNames.value.next })
 }
 </script>
 

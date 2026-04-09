@@ -3,21 +3,22 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async (event) => {
-  const { channel, direction, queryParameters } = getQuery(event)
+  const { channel, direction, queryParameters, limit } = getQuery(event)
 
   const [transactions, count] = await Promise.all([
-    fetchStateChannelTransactions(channel, direction, queryParameters),
+    fetchStateChannelTransactions(channel, direction, queryParameters, limit),
     fetchStateChannelTransactionsCount(channel),
   ])
 
   return adaptTransactions(transactions, count)
 })
 
-async function fetchStateChannelTransactions(channel, direction, queryParameters) {
+async function fetchStateChannelTransactions(channel, direction, queryParameters, limit) {
   const url = getUrl({
     entity: 'transactions',
     parameters: { channel, direction },
     queryParameters,
+    limit,
   })
   const { data } = await axios.get(url)
   return data

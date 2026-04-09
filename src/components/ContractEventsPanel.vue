@@ -1,6 +1,7 @@
 <template>
   <app-panel class="contract-events-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="contractEvents"
       pagination-style="history"
       @prev-clicked="loadPrevEvents"
@@ -17,11 +18,17 @@
 const { fetchContractEvents } = useContractDetailsStore()
 const { contractEvents, contractDetails } = storeToRefs(useContractDetailsStore())
 
+const pageLimit = usePageLimit('contract-events')
+
+watch(pageLimit, () => {
+  fetchContractEvents({ limit: pageLimit.value })
+})
+
 function loadPrevEvents() {
-  fetchContractEvents(contractEvents.value.prev.substring(3))
+  fetchContractEvents({ queryParameters: contractEvents.value.prev.substring(3) })
 }
 
 function loadNextEvents() {
-  fetchContractEvents(contractEvents.value.next.substring(3))
+  fetchContractEvents({ queryParameters: contractEvents.value.next.substring(3) })
 }
 </script>

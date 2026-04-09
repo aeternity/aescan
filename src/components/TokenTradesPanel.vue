@@ -1,6 +1,7 @@
 <template>
   <app-panel class="token-trades-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="tokenTrades"
       pagination-style="history"
       @prev-clicked="loadPrevTrades"
@@ -16,6 +17,12 @@ const { fetchTokenTrades } = useTokenDetailsStore()
 
 const route = useRoute()
 
+const pageLimit = usePageLimit('token-trades')
+
+watch(pageLimit, () => {
+  fetchTokenTrades({ contractId: route.params.id, limit: pageLimit.value })
+})
+
 function loadPrevTrades() {
   fetchTokenTrades({ queryParameters: tokenTrades.value.prev.substring(3) })
 }
@@ -27,6 +34,7 @@ function loadNextTrades() {
 if (import.meta.client) {
   fetchTokenTrades({
     contractId: route.params.id,
+    limit: pageLimit.value,
   })
 }
 </script>

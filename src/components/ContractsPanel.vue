@@ -1,6 +1,7 @@
 <template>
   <app-panel class="contracts-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="contracts"
       :total-count="contractsCount"
       pagination-style="history"
@@ -15,16 +16,22 @@
 const { contracts, contractsCount } = storeToRefs(useContractsStore())
 const { fetchContracts, fetchContractsCount } = useContractsStore()
 
+const pageLimit = usePageLimit('contracts')
+
+watch(pageLimit, () => {
+  loadContracts()
+})
+
 function loadPrevContracts() {
-  fetchContracts(contracts.value.prev)
+  fetchContracts({ queryParameters: contracts.value.prev })
 }
 
 function loadNextContracts() {
-  fetchContracts(contracts.value.next)
+  fetchContracts({ queryParameters: contracts.value.next })
 }
 
 function loadContracts() {
-  fetchContracts('/v3/transactions?type=contract_create&limit=10')
+  fetchContracts({ limit: pageLimit.value })
   fetchContractsCount()
 }
 

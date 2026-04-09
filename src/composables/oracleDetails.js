@@ -3,16 +3,21 @@ export const useOracleDetailsStore = defineStore('oracleDetails', () => {
   const oracleEvents = ref(null)
 
   async function fetchOracleDetails(id) {
-    oracleDetails.value = await $fetch(`/api/oracles/${id}`)
+    const data = await $fetch(`/api/oracles/${id}`)
+    if (data.error) {
+      throw createError({ statusCode: data.error })
+    }
+    oracleDetails.value = data
     return true
   }
 
-  async function fetchOracleEvents({ id, queryParameters = null }) {
+  async function fetchOracleEvents({ id, queryParameters = null, limit = null } = {}) {
     oracleEvents.value = null
     oracleEvents.value = await $fetch('/api/oracles/events', {
       params: {
         queryParameters,
         id,
+        limit,
       },
     })
   }

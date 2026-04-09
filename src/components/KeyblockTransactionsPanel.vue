@@ -1,6 +1,7 @@
 <template>
   <app-panel class="keyblock-transactions-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       v-model:page-index="pageIndex"
       :entities="transactions"
       :total-count="transactions?.count"
@@ -28,6 +29,7 @@ const { push } = useRouter()
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const pageIndex = ref(1)
+const pageLimit = usePageLimit('keyblock-transactions')
 
 function loadPrevTransactions() {
   fetchKeyblockTransactions({
@@ -52,6 +54,7 @@ async function loadTransactions() {
   await fetchKeyblockTransactions({
     height: keyblockDetails.value?.height,
     type: selectedTxType.value?.typeQuery,
+    limit: pageLimit.value,
   })
   pageIndex.value = 1
 }
@@ -64,6 +67,9 @@ if (import.meta.client) {
     const typeQuery = selectedTxType.value?.typeQuery
     const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
     push(`/keyblocks/${route.params.id}${slug}`)
+  })
+  watch(pageLimit, () => {
+    loadTransactions()
   })
 
   loadTransactions()

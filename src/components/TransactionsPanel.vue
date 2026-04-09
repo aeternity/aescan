@@ -1,6 +1,7 @@
 <template>
   <app-panel class="transactions-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       v-model:page-index="pageIndex"
       pagination-style="history"
       :entities="transactions"
@@ -37,10 +38,11 @@ const {
 const route = useRoute()
 
 const pageIndex = ref(1)
+const pageLimit = usePageLimit('transactions')
 
 if (import.meta.client) {
   if (!isHydrated?.value) {
-    setPageLimit(10)
+    setPageLimit(pageLimit.value)
     loadTransactions()
   }
 
@@ -50,6 +52,12 @@ if (import.meta.client) {
 
   watch(() => route.fullPath, async () => {
     await loadTransactions()
+    pageIndex.value = 1
+  })
+
+  watch(pageLimit, () => {
+    setPageLimit(pageLimit.value)
+    loadTransactions()
     pageIndex.value = 1
   })
 }

@@ -6,13 +6,20 @@ const axios = useAxios()
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
 
-  const [rawOracle, lastExtendedTx, lastOracleEvent] = await Promise.all([
-    fetchOracle(id),
-    fetchLastExtendedTx(id),
-    fetchLastQueriedTx(id),
-  ])
+  try {
+    const [rawOracle, lastExtendedTx, lastOracleEvent] = await Promise.all([
+      fetchOracle(id),
+      fetchLastExtendedTx(id),
+      fetchLastQueriedTx(id),
+    ])
 
-  return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
+    return adaptOracleDetails(rawOracle, lastExtendedTx, lastOracleEvent)
+  } catch (error) {
+    if ([400, 404].includes(error.response?.status)) {
+      return { error: error.response.status }
+    }
+    throw error
+  }
 })
 
 async function fetchOracle(id) {

@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="keyblocks"
       :total-count="keyblocksCount"
       pagination-style="history"
@@ -15,15 +16,21 @@
 const { fetchKeyblocks } = useKeyblockStore()
 const { keyblocks, keyblocksCount } = storeToRefs(useKeyblockStore())
 
+const pageLimit = usePageLimit('keyblocks')
+
+watch(pageLimit, () => {
+  fetchKeyblocks({ limit: pageLimit.value })
+})
+
 async function loadPrevKeyblocks() {
-  await fetchKeyblocks(keyblocks.value.prev)
+  await fetchKeyblocks({ queryParameters: keyblocks.value.prev })
 }
 
 async function loadNextKeyblocks() {
-  await fetchKeyblocks(keyblocks.value.next)
+  await fetchKeyblocks({ queryParameters: keyblocks.value.next })
 }
 
 if (import.meta.client) {
-  fetchKeyblocks()
+  fetchKeyblocks({ limit: pageLimit.value })
 }
 </script>

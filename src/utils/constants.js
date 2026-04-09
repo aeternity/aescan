@@ -84,6 +84,7 @@ export const CACHE_KEY_COINW_MARKET_DATA = 'coinW-market-data'
 export const CACHE_KEY_PRICE_DATA = 'aeternity-price-data'
 export const VISIBLE_KEYBLOCKS_LIMIT = 20
 export const VISIBLE_TRANSACTIONS_LIMIT = 10
+export const PAGINATION_LIMIT_OPTIONS = [10, 20, 50, 100]
 export const MENU_HASH = '#menu-open'
 
 export const TOKEN_SUPPLY_ACI = [

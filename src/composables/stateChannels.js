@@ -2,10 +2,10 @@ export const useStateChannelsStore = defineStore('stateChannels', () => {
   const stateChannels = ref(null)
   const stateChannelsCount = ref(null)
 
-  async function fetchStateChannels(queryParameters) {
+  async function fetchStateChannels({ queryParameters, limit } = {}) {
     stateChannels.value = null
     stateChannels.value = await $fetch('/api/channels', {
-      params: { queryParameters },
+      params: { queryParameters, limit },
     })
   }
 

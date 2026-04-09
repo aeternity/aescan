@@ -3,17 +3,17 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async (event) => {
-  const { height, queryParameters, type } = getQuery(event)
+  const { height, queryParameters, type, limit } = getQuery(event)
 
   const [data, count] = await Promise.all([
-    fetchTransactions(height, queryParameters, type),
+    fetchTransactions(height, queryParameters, type, limit),
     fetchTransactionsCount(height),
   ])
 
   return adaptTransactions(data, count)
 })
 
-async function fetchTransactions(height, queryParameters, type) {
+async function fetchTransactions(height, queryParameters, type, limit) {
   const url = getUrl({
     entity: 'transactions',
     parameters: {
@@ -21,6 +21,7 @@ async function fetchTransactions(height, queryParameters, type) {
       scope: `gen:${height}-${height}`,
     },
     queryParameters,
+    limit,
   })
   const { data } = await axios.get(url)
   return data

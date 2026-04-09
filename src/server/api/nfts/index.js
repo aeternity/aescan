@@ -3,20 +3,21 @@ import useAxios from '@/composables/useAxios'
 const axios = useAxios()
 
 export default defineEventHandler(async (event) => {
-  const { queryParameters } = getQuery(event)
+  const { queryParameters, limit } = getQuery(event)
   const [nfts, count] = await Promise.all([
-    fetchNftsList(queryParameters),
+    fetchNftsList(queryParameters, limit),
     fetchNftsCount(),
   ])
 
   return adaptNfts(nfts, count)
 })
 
-async function fetchNftsList(queryParameters) {
+async function fetchNftsList(queryParameters, limit) {
   const url = getUrl({
     entity: 'aex141',
     parameters: { by: 'creation', direction: 'backward' },
     queryParameters,
+    limit,
   })
   const { data } = await axios.get(url)
   return data

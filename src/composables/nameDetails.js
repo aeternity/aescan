@@ -21,12 +21,13 @@ export const useNameDetailsStore = defineStore('nameDetails', () => {
     }
   }
 
-  async function fetchNameHistory({ nameHash, queryParameters }) {
+  async function fetchNameHistory({ nameHash, queryParameters, limit } = {}) {
     nameHistory.value = null
     nameHistory.value = await $fetch('/api/names/history', {
       params: {
         queryParameters,
         id: nameHash,
+        limit,
       },
     })
   }

@@ -1,6 +1,7 @@
 <template>
   <app-panel class="state-channels-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="stateChannels"
       pagination-style="history"
       :total-count="stateChannelsCount"
@@ -15,16 +16,22 @@
 const { stateChannels, stateChannelsCount } = storeToRefs(useStateChannelsStore())
 const { fetchStateChannels, fetchStateChannelsCount } = useStateChannelsStore()
 
+const pageLimit = usePageLimit('state-channels')
+
+watch(pageLimit, () => {
+  loadStateChannels()
+})
+
 async function loadPrevStateChannels() {
-  await fetchStateChannels(stateChannels.value.prev)
+  await fetchStateChannels({ queryParameters: stateChannels.value.prev })
 }
 
 async function loadNextStateChannels() {
-  await fetchStateChannels(stateChannels.value.next)
+  await fetchStateChannels({ queryParameters: stateChannels.value.next })
 }
 
 async function loadStateChannels() {
-  await fetchStateChannels()
+  await fetchStateChannels({ limit: pageLimit.value })
 }
 
 fetchStateChannelsCount()

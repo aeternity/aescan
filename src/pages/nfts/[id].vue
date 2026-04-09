@@ -72,16 +72,14 @@ const activeTabIndex = computed({
 
 try {
   await fetchNftDetails(route.params.id)
-} catch (error) {
-  if ([400, 404].includes(error.response?.status)) {
-    throw showError({
-      data: {
-        entityId: route.params.id,
-        entityName: 'NFT',
-      },
-      statusMessage: 'EntityDetailsNotFound',
-    })
-  }
+} catch {
+  throw showError({
+    data: {
+      entityId: route.params.id,
+      entityName: 'NFT',
+    },
+    statusMessage: 'EntityDetailsNotFound',
+  })
 }
 </script>
 

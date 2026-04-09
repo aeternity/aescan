@@ -4,11 +4,12 @@ import { formatAettosToAe } from '@/utils/format'
 const axios = useAxios()
 
 export default defineEventHandler(async (event) => {
-  const { queryParameters } = getQuery(event)
+  const { queryParameters, limit } = getQuery(event)
 
   const url = getUrl({
     entity: 'key-blocks',
     queryParameters,
+    limit,
   })
   const { data } = await axios.get(url)
   return adaptKeyblocks(data)

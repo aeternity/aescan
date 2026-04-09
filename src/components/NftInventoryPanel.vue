@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       pagination-style="history"
       :entities="nftInventory"
       @next-clicked="loadNextNftInventory"
@@ -13,8 +14,15 @@
 </template>
 
 <script setup>
+const route = useRoute()
 const { nftInventory } = storeToRefs(useNftDetailsStore())
 const { fetchNftInventory } = useNftDetailsStore()
+
+const pageLimit = usePageLimit('nft-inventory')
+
+watch(pageLimit, () => {
+  fetchNftInventory({ id: route.params.id, limit: pageLimit.value })
+})
 
 async function loadPrevNftInventory() {
   await fetchNftInventory({ queryParameters: nftInventory.value.prev })

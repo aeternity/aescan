@@ -1,6 +1,7 @@
 <template>
   <app-panel class="contract-call-transactions-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :total-count="contractCallsCount"
       :entities="contractCallTransactions"
       pagination-style="history"
@@ -15,6 +16,12 @@
 const { contractCallTransactions, contractCallsCount } = storeToRefs(useContractDetailsStore())
 const { fetchContractCallTransactions } = useContractDetailsStore()
 
+const pageLimit = usePageLimit('contract-call-transactions')
+
+watch(pageLimit, () => {
+  fetchContractCallTransactions({ limit: pageLimit.value })
+})
+
 function loadPrevTransactions() {
   fetchContractCallTransactions({
     queryParameters: contractCallTransactions.value.prev.substring(3),
@@ -28,6 +35,6 @@ function loadNextTransactions() {
 }
 
 if (import.meta.client) {
-  fetchContractCallTransactions()
+  fetchContractCallTransactions({ limit: pageLimit.value })
 }
 </script>

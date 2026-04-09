@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="nftsResults"
       @prev-clicked="loadPrevNfts"
       @next-clicked="loadNextNfts">
@@ -14,6 +15,12 @@ const { nftsResults } = storeToRefs(useSearchStore())
 const { fetchNftsResults } = useSearchStore()
 
 const route = useRoute()
+
+const pageLimit = usePageLimit('search-nfts')
+
+watch(pageLimit, () => {
+  fetchNftsResults({ query: route.params.id, limit: pageLimit.value })
+})
 
 fetchNftsResults({ query: route.params.id })
 

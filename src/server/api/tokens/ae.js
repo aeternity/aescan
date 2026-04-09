@@ -24,9 +24,13 @@ export default defineEventHandler(async () => {
 async function fetchGate() {
   let marketData = cache.get(CACHE_KEY_GATE_MARKET_DATA)
   if (!marketData) {
-    const response = await $fetch(MARKET_STATS_GATE_ADDRESS)
-    marketData = adaptGate(response)
-    cache.put(CACHE_KEY_GATE_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    try {
+      const response = await $fetch(MARKET_STATS_GATE_ADDRESS)
+      marketData = adaptGate(response)
+      cache.put(CACHE_KEY_GATE_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    } catch {
+      return null
+    }
   }
   return marketData
 }
@@ -34,9 +38,13 @@ async function fetchGate() {
 async function fetchMexc() {
   let marketData = cache.get(CACHE_KEY_MEXC_MARKET_DATA)
   if (!marketData) {
-    const response = await $fetch(MARKET_STATS_MEXC_ADDRESS)
-    marketData = adaptMexc(response)
-    cache.put(CACHE_KEY_MEXC_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    try {
+      const response = await $fetch(MARKET_STATS_MEXC_ADDRESS)
+      marketData = adaptMexc(response)
+      cache.put(CACHE_KEY_MEXC_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    } catch {
+      return null
+    }
   }
   return marketData
 }
@@ -44,9 +52,13 @@ async function fetchMexc() {
 async function fetchHotcoin() {
   let marketData = cache.get(CACHE_KEY_HOTCOIN_MARKET_DATA)
   if (!marketData) {
-    const response = await $fetch(MARKET_STATS_HOTCOIN_ADDRESS)
-    marketData = adaptHotCoin(response)
-    cache.put(CACHE_KEY_HOTCOIN_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    try {
+      const response = await $fetch(MARKET_STATS_HOTCOIN_ADDRESS)
+      marketData = adaptHotCoin(response)
+      cache.put(CACHE_KEY_HOTCOIN_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    } catch {
+      return null
+    }
   }
   return marketData
 }
@@ -54,9 +66,13 @@ async function fetchHotcoin() {
 async function fetchCoinw() {
   let marketData = cache.get(CACHE_KEY_COINW_MARKET_DATA)
   if (!marketData) {
-    const response = await $fetch(MARKET_STATS_COINW_ADDRESS)
-    marketData = adaptCoinW(response)
-    cache.put(CACHE_KEY_COINW_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    try {
+      const response = await $fetch(MARKET_STATS_COINW_ADDRESS)
+      marketData = adaptCoinW(response)
+      cache.put(CACHE_KEY_COINW_MARKET_DATA, marketData, MARKET_STATS_CACHE_TTL)
+    } catch {
+      return null
+    }
   }
   return marketData
 }

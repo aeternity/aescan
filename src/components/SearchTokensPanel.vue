@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="tokensResults"
       @prev-clicked="loadPrevTokens"
       @next-clicked="loadNextTokens">
@@ -14,6 +15,12 @@ const { tokensResults } = storeToRefs(useSearchStore())
 const { fetchTokenResults } = useSearchStore()
 
 const route = useRoute()
+
+const pageLimit = usePageLimit('search-tokens')
+
+watch(pageLimit, () => {
+  fetchTokenResults({ query: route.params.id, limit: pageLimit.value })
+})
 
 fetchTokenResults({ query: route.params.id })
 

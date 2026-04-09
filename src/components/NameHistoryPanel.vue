@@ -1,6 +1,7 @@
 <template>
   <app-panel class="name-history-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="nameHistory"
       pagination-style="history"
       @prev-clicked="loadPrevActions"
@@ -14,8 +15,15 @@
 </template>
 
 <script setup>
+const route = useRoute()
 const { fetchNameHistory } = useNameDetailsStore()
 const { nameHistory } = storeToRefs(useNameDetailsStore())
+
+const pageLimit = usePageLimit('name-history')
+
+watch(pageLimit, () => {
+  fetchNameHistory({ nameHash: route.params.id, limit: pageLimit.value })
+})
 
 function loadPrevActions() {
   return fetchNameHistory({ queryParameters: nameHistory.value.prev.substring(3) })

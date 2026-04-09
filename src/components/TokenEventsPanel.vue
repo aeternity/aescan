@@ -1,6 +1,7 @@
 <template>
   <app-panel class="token-events-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="tokenEvents"
       pagination-style="history"
       :total-count="tokenEventsCount"
@@ -20,6 +21,12 @@ const { fetchTokenEvents } = useTokenDetailsStore()
 
 const route = useRoute()
 
+const pageLimit = usePageLimit('token-events')
+
+watch(pageLimit, () => {
+  fetchTokenEvents({ contractId: route.params.id, limit: pageLimit.value })
+})
+
 function loadPrevEvents() {
   fetchTokenEvents({ queryParameters: tokenEvents.value.prev.substring(3) })
 }
@@ -31,6 +38,7 @@ function loadNextEvents() {
 if (import.meta.client) {
   fetchTokenEvents({
     contractId: route.params.id,
+    limit: pageLimit.value,
   })
 }
 </script>

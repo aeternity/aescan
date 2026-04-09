@@ -18,11 +18,11 @@ export const useMicroblockDetailsStore = defineStore('microblockDetails', () => 
     }
   }
 
-  async function fetchMicroblockTransactions({ queryParameters, microblockHash, type } = {}) {
+  async function fetchMicroblockTransactions({ queryParameters, microblockHash, type, limit } = {}) {
     microblockTransactions.value = null
     try {
       microblockTransactions.value = await $fetch('/api/microblocks/transactions', {
-        params: { microblockHash, queryParameters, type },
+        params: { microblockHash, queryParameters, type, limit },
       })
     } catch (error) {
       if (error?.statusCode === 404 || error?.status === 404) {

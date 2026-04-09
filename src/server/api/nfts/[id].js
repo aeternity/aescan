@@ -6,13 +6,20 @@ const axios = useAxios()
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
 
-  const url = getUrl({
-    entity: 'aex141',
-    id,
-  })
+  try {
+    const url = getUrl({
+      entity: 'aex141',
+      id,
+    })
 
-  const { data } = await axios.get(url)
-  return adaptNft(data)
+    const { data } = await axios.get(url)
+    return adaptNft(data)
+  } catch (error) {
+    if ([400, 404].includes(error.response?.status)) {
+      return { error: error.response.status }
+    }
+    throw error
+  }
 })
 
 function adaptNft(nft) {

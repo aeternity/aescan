@@ -1,6 +1,6 @@
 {
   "name": "aescan",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "packageManager": "yarn@1.22.22",
   "private": true,
   "author": "æternity",

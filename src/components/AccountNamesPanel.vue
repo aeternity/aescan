@@ -1,6 +1,7 @@
 <template>
   <app-panel class="account-names-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="accountNames"
       @prev-clicked="loadPrevAccountNames"
       @next-clicked="loadNextAccountNames">
@@ -12,8 +13,15 @@
 </template>
 
 <script setup>
+const route = useRoute()
 const { fetchAccountNames } = useAccountStore()
 const { accountNames } = storeToRefs(useAccountStore())
+
+const pageLimit = usePageLimit('account-names')
+
+watch(pageLimit, () => {
+  fetchAccountNames({ accountId: route.params.id, limit: pageLimit.value })
+})
 
 async function loadPrevAccountNames() {
   await fetchAccountNames({ queryParameters: accountNames.value.prev.substring(3) })

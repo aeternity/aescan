@@ -4,12 +4,13 @@ import { formatAettosToAe } from '@/utils/format'
 const axios = useAxios()
 
 export default defineEventHandler(async (event) => {
-  const { queryParameters } = getQuery(event)
+  const { queryParameters, limit } = getQuery(event)
 
   const url = getUrl({
     entity: 'names',
     parameters: { state: 'active', by: 'deactivation', direction: 'forward' },
     queryParameters,
+    limit,
   })
   const { data } = await axios.get(url)
   return adaptActiveNames(data)

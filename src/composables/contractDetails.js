@@ -87,14 +87,15 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
     contractAccountBalance.value = data.balance
   }
 
-  async function fetchContractEvents(queryParameters) {
+  async function fetchContractEvents({ queryParameters, limit } = {}) {
     rawContractEvents.value = null
-    const defaultParameters = `/contracts/logs?contract_id=${contractId.value}&aexn-args=true`
+    const effectiveLimit = limit || 10
+    const defaultParameters = `/contracts/logs?contract_id=${contractId.value}&aexn-args=true&limit=${effectiveLimit}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawContractEvents.value = data
   }
 
-  async function fetchContractCallTransactions({ queryParameters } = {}) {
+  async function fetchContractCallTransactions({ queryParameters, limit } = {}) {
     rawContractCallTransactions.value = null
 
     if (queryParameters) {
@@ -105,7 +106,7 @@ export const useContractDetailsStore = defineStore('contractDetails', () => {
 
     const transactionsUrl = new URL(`${MIDDLEWARE_URL}/transactions`)
     transactionsUrl.searchParams.append('direction', 'backward')
-    transactionsUrl.searchParams.append('limit', 10)
+    transactionsUrl.searchParams.append('limit', limit || 10)
     transactionsUrl.searchParams.append('type', 'contract_call')
     transactionsUrl.searchParams.append('contract', contractId.value)
 

@@ -1,6 +1,7 @@
 <template>
   <app-panel class="account-transactions-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       v-model:page-index="pageIndex"
       :entities="accountTransactions"
       pagination-style="history"
@@ -23,11 +24,22 @@ const { accountTransactions } = storeToRefs(useAccountStore())
 
 const selectedTxType = ref({ typeQuery: null, label: 'All types' })
 const pageIndex = ref(1)
+const pageLimit = usePageLimit('account-transactions')
 
 watch(selectedTxType, () => {
   fetchAccountTransactions({
     accountId: route.params.id,
     type: selectedTxType.value.typeQuery,
+    limit: pageLimit.value,
+  })
+  pageIndex.value = 1
+})
+
+watch(pageLimit, () => {
+  fetchAccountTransactions({
+    accountId: route.params.id,
+    type: selectedTxType.value.typeQuery,
+    limit: pageLimit.value,
   })
   pageIndex.value = 1
 })

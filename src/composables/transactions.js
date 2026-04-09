@@ -70,7 +70,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
 
     const url = new URL(`${MIDDLEWARE_URL}/transactions`)
 
-    url.searchParams.append('limit', limit.value ?? 10)
+    url.searchParams.append('limit', limit ?? 10)
 
     if (scope) {
       url.searchParams.append('scope', scope)

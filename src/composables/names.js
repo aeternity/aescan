@@ -14,24 +14,24 @@ export const useNamesStore = defineStore('names', () => {
     ])
   }
 
-  async function fetchActiveNames(queryParameters) {
+  async function fetchActiveNames({ queryParameters, limit } = {}) {
     activeNames.value = null
     activeNames.value = await $fetch('/api/names/active', {
-      params: { queryParameters },
+      params: { queryParameters, limit },
     })
   }
 
-  async function fetchInAuctionNames(queryParameters) {
+  async function fetchInAuctionNames({ queryParameters, limit } = {}) {
     inAuctionNames.value = null
     inAuctionNames.value = await $fetch('/api/names/auctions', {
-      params: { queryParameters },
+      params: { queryParameters, limit },
     })
   }
 
-  async function fetchExpiredNames(queryParameters) {
+  async function fetchExpiredNames({ queryParameters, limit } = {}) {
     expiredNames.value = null
     expiredNames.value = await $fetch('/api/names/expired', {
-      params: { queryParameters },
+      params: { queryParameters, limit },
     })
   }
 

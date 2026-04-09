@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="trades"
       pagination-style="history"
       @prev-clicked="loadPrevEvents"
@@ -14,20 +15,26 @@
 const { trades } = storeToRefs(useDexTradesStore())
 const { fetchDexTrades } = useDexTradesStore()
 
+const pageLimit = usePageLimit('dex-trades')
+
+watch(pageLimit, () => {
+  fetchDexTrades({ limit: pageLimit.value })
+})
+
 useAsyncData(async () => {
-  await fetchDexTrades()
+  await fetchDexTrades({ limit: pageLimit.value })
   return true
 })
 
 function loadPrevEvents() {
-  fetchDexTrades(trades.value.prev.substring(3))
+  fetchDexTrades({ queryParameters: trades.value.prev.substring(3) })
 }
 
 function loadNextEvents() {
-  fetchDexTrades(trades.value.next.substring(3))
+  fetchDexTrades({ queryParameters: trades.value.next.substring(3) })
 }
 
 if (import.meta.client) {
-  fetchDexTrades()
+  fetchDexTrades({ limit: pageLimit.value })
 }
 </script>

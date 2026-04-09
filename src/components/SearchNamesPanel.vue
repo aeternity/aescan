@@ -1,6 +1,7 @@
 <template>
   <app-panel>
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="namesResults"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
@@ -14,6 +15,12 @@ const { namesResults } = storeToRefs(useSearchStore())
 const { fetchNamesResults } = useSearchStore()
 
 const route = useRoute()
+
+const pageLimit = usePageLimit('search-names')
+
+watch(pageLimit, () => {
+  fetchNamesResults({ query: route.params.id, limit: pageLimit.value })
+})
 
 fetchNamesResults({ query: route.params.id })
 

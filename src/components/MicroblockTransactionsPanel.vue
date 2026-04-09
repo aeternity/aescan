@@ -1,6 +1,7 @@
 <template>
   <app-panel class="microblock-transactions-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       v-model:page-index="pageIndex"
       :entities="transactions"
       :total-count="transactions?.count"
@@ -26,6 +27,7 @@ const { push } = useRouter()
 
 const selectedTxType = ref(TX_TYPES_OPTIONS[0])
 const pageIndex = ref(1)
+const pageLimit = usePageLimit('microblock-transactions')
 
 function loadPrevTransactions() {
   fetchMicroblockTransactions({ queryParameters: transactions.value.prev })
@@ -40,7 +42,7 @@ async function loadTransactions() {
   const txTypeOption = TX_TYPES_OPTIONS.find(option => option.typeQuery === txType)
   selectedTxType.value = txTypeOption || TX_TYPES_OPTIONS[0]
   await fetchMicroblockTransactions({
-    limit: 10,
+    limit: pageLimit.value,
     microblockHash: route.params.id,
     type: selectedTxType.value?.typeQuery,
   })
@@ -55,6 +57,9 @@ if (import.meta.client) {
     const typeQuery = selectedTxType.value?.typeQuery
     const slug = `${typeQuery ? '?txType=' + typeQuery : ''}`
     push(`/microblocks/${route.params.id}${slug}`)
+  })
+  watch(pageLimit, () => {
+    loadTransactions()
   })
 
   loadTransactions()

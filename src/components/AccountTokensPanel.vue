@@ -1,6 +1,7 @@
 <template>
   <app-panel class="account-tokens-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="accountTokens"
       @prev-clicked="loadPrevAccountTokens"
       @next-clicked="loadNextAccountTokens">
@@ -10,8 +11,15 @@
 </template>
 
 <script setup>
+const route = useRoute()
 const { fetchAccountTokens } = useAccountStore()
 const { accountTokens } = storeToRefs(useAccountStore())
+
+const pageLimit = usePageLimit('account-tokens')
+
+watch(pageLimit, () => {
+  fetchAccountTokens({ accountId: route.params.id, limit: pageLimit.value })
+})
 
 async function loadPrevAccountTokens() {
   await fetchAccountTokens({ queryParameters: accountTokens.value.prev.substring(3) })

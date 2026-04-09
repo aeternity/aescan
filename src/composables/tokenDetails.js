@@ -87,16 +87,18 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     rawTotalSupply.value = contractCallResult?.decodedResult
   }
 
-  async function fetchTokenEvents({ queryParameters, contractId } = {}) {
+  async function fetchTokenEvents({ queryParameters, contractId, limit } = {}) {
     rawTokenEvents.value = null
-    const defaultParameters = `/contracts/logs?contract=${contractId}&aexn-args=true&limit=10`
+    const effectiveLimit = limit || 10
+    const defaultParameters = `/contracts/logs?contract=${contractId}&aexn-args=true&limit=${effectiveLimit}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenEvents.value = data
   }
 
-  async function fetchTokenHolders(queryParameters) {
+  async function fetchTokenHolders({ queryParameters, limit } = {}) {
     rawTokenHolders.value = null
-    const defaultParameters = `/aex9/${tokenId.value}/balances?by=amount&limit=10`
+    const effectiveLimit = limit || 10
+    const defaultParameters = `/aex9/${tokenId.value}/balances?by=amount&limit=${effectiveLimit}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenHolders.value = data
   }
@@ -107,9 +109,10 @@ export const useTokenDetailsStore = defineStore('tokenDetails', () => {
     tokenHoldersCount.value = data.holders
   }
 
-  async function fetchTokenTrades({ queryParameters, contractId } = {}) {
+  async function fetchTokenTrades({ queryParameters, contractId, limit } = {}) {
     rawTokenTrades.value = null
-    const defaultParameters = `/dex/${contractId}/swaps?limit=10`
+    const effectiveLimit = limit || 10
+    const defaultParameters = `/dex/${contractId}/swaps?limit=${effectiveLimit}`
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawTokenTrades.value = data
   }

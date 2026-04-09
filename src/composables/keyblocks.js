@@ -2,10 +2,10 @@ export const useKeyblockStore = defineStore('keyblocks', () => {
   const keyblocks = ref(null)
   const keyblocksCount = ref(null)
 
-  async function fetchKeyblocks(queryParameters) {
+  async function fetchKeyblocks({ queryParameters, limit } = {}) {
     keyblocks.value = null
     const data = await $fetch('/api/keyblocks', {
-      params: { queryParameters },
+      params: { queryParameters, limit },
     })
     keyblocks.value = data
     keyblocksCount.value = data.data[0].block

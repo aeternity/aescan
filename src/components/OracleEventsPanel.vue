@@ -1,6 +1,7 @@
 <template>
   <app-panel class="oracle-events-panel">
     <paginated-content
+      v-model:limit="pageLimit"
       :entities="oracleEvents"
       pagination-style="history"
       @prev-clicked="loadPrevEvents"
@@ -18,6 +19,12 @@ const { fetchOracleEvents } = useOracleDetailsStore()
 
 const route = useRoute()
 
+const pageLimit = usePageLimit('oracle-events')
+
+watch(pageLimit, () => {
+  fetchOracleEvents({ id: route.params.id, limit: pageLimit.value })
+})
+
 function loadPrevEvents() {
   fetchOracleEvents({ queryParameters: oracleEvents.value.prev })
 }
@@ -27,7 +34,7 @@ function loadNextEvents() {
 }
 
 if (import.meta.client) {
-  fetchOracleEvents({ limit: 10, id: route.params.id })
+  fetchOracleEvents({ id: route.params.id, limit: pageLimit.value })
 }
 </script>
 

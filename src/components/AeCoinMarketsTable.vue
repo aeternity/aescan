@@ -38,10 +38,10 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.gate.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.gate?.price)) }}
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.gate.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.gate?.volume)) }}
           </td>
         </tr>
         <tr>
@@ -52,10 +52,10 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.mexc.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.mexc?.price)) }}
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.mexc.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.mexc?.volume)) }}
           </td>
         </tr>
         <tr>
@@ -66,10 +66,10 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin?.price)) }}
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.hotcoin?.volume)) }}
           </td>
         </tr>
         <tr>
@@ -80,10 +80,10 @@
             AE / USDT
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.coinw.price)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.coinw?.price)) }}
           </td>
           <td class="ae-coin-markets-table__data">
-            $ {{ formatNullable(formatNumber(coinMarkets.coinw.volume)) }}
+            $ {{ formatNullable(formatNumber(coinMarkets.coinw?.volume)) }}
           </td>
         </tr>
       </tbody>

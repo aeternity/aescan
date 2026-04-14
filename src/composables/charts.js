@@ -13,6 +13,8 @@ export const useChartsStore = defineStore('charts', () => {
   const accountsStatistics = ref(null)
   const priceStatistics = ref(null)
   const dexPriceStatistics = ref(null)
+  const dexTvlStatistics = ref(null)
+  const dexVolumeStatistics = ref(null)
 
   async function fetchTransactionsStatistics(intervalBy, limit, scope, txType) {
     transactionsStatistics.value = null
@@ -120,9 +122,25 @@ export const useChartsStore = defineStore('charts', () => {
     dexPriceStatistics.value = data
   }
 
+  async function fetchDexTvlStatistics(intervalBy) {
+    dexTvlStatistics.value = null
+
+    const { data } = await axios.get(`/api/tokens/ae/dex-tvl-chart?timeFrame=${intervalBy}`)
+    dexTvlStatistics.value = data
+  }
+
+  async function fetchDexVolumeStatistics(intervalBy) {
+    dexVolumeStatistics.value = null
+
+    const { data } = await axios.get(`/api/tokens/ae/dex-volume-chart?timeFrame=${intervalBy}`)
+    dexVolumeStatistics.value = data
+  }
+
   return {
     priceStatistics,
     dexPriceStatistics,
+    dexTvlStatistics,
+    dexVolumeStatistics,
     keyblocksStatistics,
     transactionsStatistics,
     contractsStatistics,
@@ -132,6 +150,8 @@ export const useChartsStore = defineStore('charts', () => {
     accountsStatistics,
     fetchPriceStatistics,
     fetchDexPriceStatistics,
+    fetchDexTvlStatistics,
+    fetchDexVolumeStatistics,
     fetchKeyblocksStatistics,
     fetchTransactionsStatistics,
     fetchContractsStatistics,

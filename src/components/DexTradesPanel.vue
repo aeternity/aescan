@@ -1,5 +1,8 @@
 <template>
   <app-panel>
+    <template #title>
+      DEX SWAPS
+    </template>
     <paginated-content
       v-model:limit="pageLimit"
       :entities="trades"

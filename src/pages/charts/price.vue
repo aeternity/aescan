@@ -15,6 +15,7 @@
     </template>
     <template #detail>
       <price-chart-panel/>
+      <dex-price-chart-panel/>
     </template>
   </NuxtLayout>
 </template>

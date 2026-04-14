@@ -12,6 +12,7 @@ export const useChartsStore = defineStore('charts', () => {
   const hashrateStatistics = ref(null)
   const accountsStatistics = ref(null)
   const priceStatistics = ref(null)
+  const dexPriceStatistics = ref(null)
 
   async function fetchTransactionsStatistics(intervalBy, limit, scope, txType) {
     transactionsStatistics.value = null
@@ -112,8 +113,16 @@ export const useChartsStore = defineStore('charts', () => {
     priceStatistics.value = data
   }
 
+  async function fetchDexPriceStatistics(intervalBy) {
+    dexPriceStatistics.value = null
+
+    const { data } = await axios.get(`/api/tokens/ae/dex-price-chart?timeFrame=${intervalBy}`)
+    dexPriceStatistics.value = data
+  }
+
   return {
     priceStatistics,
+    dexPriceStatistics,
     keyblocksStatistics,
     transactionsStatistics,
     contractsStatistics,
@@ -122,6 +131,7 @@ export const useChartsStore = defineStore('charts', () => {
     hashrateStatistics,
     accountsStatistics,
     fetchPriceStatistics,
+    fetchDexPriceStatistics,
     fetchKeyblocksStatistics,
     fetchTransactionsStatistics,
     fetchContractsStatistics,

@@ -90,9 +90,7 @@ const chartOptions = {
       display: false,
     },
     tooltip: {
-      tooltip: {
-        position: 'top',
-      },
+      position: 'nearest',
       callbacks: {
         label: value => `$ ${value.formattedValue}`,
       },

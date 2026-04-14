@@ -6,6 +6,7 @@ on:
       - develop
       - release/*
     types: [ opened, synchronize, reopened, closed ]
+  delete:
 
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -18,6 +19,7 @@ jobs:
   main:
     runs-on: ubuntu-latest
     name: build
+    if: github.event.action == 'opened' || github.event.action == 'synchronize' || github.event.action == 'reopened'
     steps:
       - uses: actions/checkout@v5
         with:
@@ -46,7 +48,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASS }}
 
       - name: Extract metadata for docker
-        if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'synchronize'
         id: meta
         uses: docker/metadata-action@v5.5.1
         with:
@@ -59,7 +60,6 @@ jobs:
           echo APP_VERSION=$(git describe --tags)-preview >> .env
 
       - name: Build and push docker image
-        if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'synchronize'
         uses: docker/build-push-action@v6.9.0
         with:
           context: .
@@ -72,11 +72,16 @@ jobs:
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
 
       - name: Move cache
-        if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'synchronize'
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
+  stg_deploy:
+    runs-on: ubuntu-latest
+    name: PR deploy
+    needs: main
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    steps:
       - uses: actions/checkout@v5
         with:
           repository: aeternity/gitops-apps-aelabs.git
@@ -85,16 +90,16 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Check the initial PR deployment status before make a PR Sync.
+      - name: Check the initial PR deployment status
         continue-on-error: true
-        if: github.event.action == 'synchronize' || github.event.action == 'opened' || github.event.action == 'reopened'
+        id: status
         uses: aeternity/ae-github-actions/deploy-status@v7.4.0
         with:
           url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
           timeout: 10
 
       - name: Staging deploy
-        if: github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'reopened'
+        if: github.event.action == 'opened' || github.event.action == 'reopened' || steps.status.outputs.status_code != '200'
         uses: aeternity/ae-github-actions/argocd-deploy@v7.4.0
         with:
           url-prefix: pr-${{ env.PR_NUMBER }}
@@ -102,7 +107,7 @@ jobs:
           app: ${{ env.APP }}
 
       - name: Staging PR Sync
-        if: github.event_name == 'pull_request' && github.event.action == 'synchronize'
+        if: github.event.action == 'synchronize'
         uses: aeternity/ae-github-actions/argocd-pr-sync@v7.4.0
         with:
           git-sha: ${{ github.sha }}
@@ -110,17 +115,23 @@ jobs:
           env: ${{ env.ENV }}
           app: ${{ env.APP }}
 
-      - name: Staging undeploy
-        if: ((github.event_name == 'pull_request' && github.event.action == 'closed' && startsWith(github.head_ref, 'release') != true) || (github.event_name == 'delete' && github.event.ref_type == 'branch'))
-        uses: aeternity/ae-github-actions/argocd-undeploy@v7.4.0
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          url-prefix: pr-${{ env.PR_NUMBER }}
-          env: ${{ env.ENV }}
-          app: ${{ env.APP }}
+          repository: aeternity/gitops-apps-aelabs
+          github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          branch: stg
+
+      - name: Wait for the deployment to go live
+        uses: aeternity/ae-github-actions/deploy-status@v7.4.0
+        with:
+          url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
+          timeout: 300
+          interval: 5
 
       - name: Print PR url
         uses: unsplash/comment-on-pr@v1.3.0
-        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        if: github.event.action == 'opened'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -130,32 +141,61 @@ jobs:
             Testnet: https://pr-${{ env.PR_NUMBER }}-aescan-testnet.${{ env.ENV }}.service.aepps.com
           check_for_duplicate_msg: true
 
+  stg_undeploy:
+    runs-on: ubuntu-latest
+    name: PR undeploy on close or branch delete
+    if: (github.event_name == 'pull_request' && github.event.action == 'closed') || (github.event_name == 'delete' && github.event.ref_type == 'branch')
+    steps:
+      - name: Extract PR number from branch on delete
+        if: github.event_name == 'delete'
+        id: extract-pr
+        shell: bash
+        run: |
+          BRANCH_NAME="${{ github.event.ref }}"
+          echo "Deleted branch: $BRANCH_NAME"
+          PR_NUMBER=$(curl -s \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ github.repository_owner }}:$BRANCH_NAME&state=all" \
+            | jq -r '.[0].number // empty')
+          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ]; then
+            echo "Found PR number: $PR_NUMBER"
+            echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+          else
+            echo "No PR number found for branch $BRANCH_NAME"
+            echo "PR_NUMBER=" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/checkout@v5
+        with:
+          repository: aeternity/gitops-apps-aelabs.git
+          ref: stg
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Staging undeploy
+        if: (startsWith(github.head_ref, 'release') != true) && ((github.event_name == 'pull_request') || (github.event_name == 'delete' && steps.extract-pr.outputs.PR_NUMBER != ''))
+        uses: aeternity/ae-github-actions/argocd-undeploy@v7.4.0
+        with:
+          url-prefix: pr-${{ github.event_name == 'delete' && steps.extract-pr.outputs.PR_NUMBER || env.PR_NUMBER }}
+          env: ${{ env.ENV }}
+          app: ${{ env.APP }}
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           repository: aeternity/gitops-apps-aelabs
           github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
           branch: stg
-      
-      - name: Final Message
-        if: env.DEPLOYMENT_STATUS == 'failure'
-        run: |
-          echo -e "\n\033[1;31mPipeline completed, but the initial deployment check failed.\033[0m"
-          echo -e "\033[1;31mPlease fix the build and rerun the pipeline.\033[0m"
 
   end-to-end-tests:
-    needs: main
+    needs: stg_deploy
     runs-on: ubuntu-22.04
     name: E2E Tests
     timeout-minutes: 20
     if: github.event.action == 'opened' || github.event.action == 'synchronize'
     steps:
-      - name: Check the PR deployment status before run E2E tests.
-        uses: aeternity/ae-github-actions/deploy-status@v7.4.0
-        with:
-          url: https://pr-${{ env.PR_NUMBER }}-${{ env.APP }}.${{ env.ENV }}.service.aepps.com
-          timeout: 300
-          interval: 5
       - name: Checkout
         uses: actions/checkout@v5
       - name: Setup Node.js

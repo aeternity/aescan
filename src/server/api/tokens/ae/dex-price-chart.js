@@ -6,8 +6,11 @@ import {
 
 const CACHE_KEY = `${CACHE_KEY_PRICE_DATA}-dex`
 
+const SUPPORTED_TIMEFRAMES = new Set(['1H', '1D', '1W', '1M', '1Y', 'MAX'])
+
 export default defineEventHandler(async (event) => {
-  const { timeFrame = 'MAX' } = getQuery(event)
+  const { timeFrame: rawTimeFrame = 'MAX' } = getQuery(event)
+  const timeFrame = SUPPORTED_TIMEFRAMES.has(rawTimeFrame) ? rawTimeFrame : 'MAX'
   const { DEX_BACKEND_URL, AE_TOKEN_ID } = useRuntimeConfig().public
   const cacheKey = `${CACHE_KEY}-${timeFrame}`
 
@@ -18,9 +21,11 @@ export default defineEventHandler(async (event) => {
   let result = cache.get(cacheKey)
   if (!result) {
     try {
-      const response = await $fetch(
-        `${DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${AE_TOKEN_ID}&timeFrame=${timeFrame}`,
-      )
+      const url = new URL(`${DEX_BACKEND_URL}/graph`)
+      url.searchParams.set('graphType', 'Price')
+      url.searchParams.set('tokenAddress', AE_TOKEN_ID)
+      url.searchParams.set('timeFrame', timeFrame)
+      const response = await $fetch(url.toString())
       result = {
         labels: response.labels ?? [],
         data: (response.data ?? []).map(Number),

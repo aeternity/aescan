@@ -110,30 +110,22 @@ export const useChartsStore = defineStore('charts', () => {
 
   async function fetchPriceStatistics(intervalBy) {
     priceStatistics.value = null
-
-    const { data } = await axios.get(`/api/tokens/ae/price-chart?timeFrame=${intervalBy}`)
-    priceStatistics.value = data
+    priceStatistics.value = await $fetch(`/api/tokens/ae/price-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
   }
 
   async function fetchDexPriceStatistics(intervalBy) {
     dexPriceStatistics.value = null
-
-    const { data } = await axios.get(`/api/tokens/ae/dex-price-chart?timeFrame=${intervalBy}`)
-    dexPriceStatistics.value = data
+    dexPriceStatistics.value = await $fetch(`/api/tokens/ae/dex-price-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
   }
 
   async function fetchDexTvlStatistics(intervalBy) {
     dexTvlStatistics.value = null
-
-    const { data } = await axios.get(`/api/tokens/ae/dex-tvl-chart?timeFrame=${intervalBy}`)
-    dexTvlStatistics.value = data
+    dexTvlStatistics.value = await $fetch(`/api/tokens/ae/dex-tvl-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
   }
 
   async function fetchDexVolumeStatistics(intervalBy) {
     dexVolumeStatistics.value = null
-
-    const { data } = await axios.get(`/api/tokens/ae/dex-volume-chart?timeFrame=${intervalBy}`)
-    dexVolumeStatistics.value = data
+    dexVolumeStatistics.value = await $fetch(`/api/tokens/ae/dex-volume-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
   }
 
   return {

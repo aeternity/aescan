@@ -25,17 +25,22 @@ export default defineEventHandler(async (event) => {
 
   let result = cache.get(cacheKey)
   if (!result) {
-    const allPrices = await $fetch(
-      `${SUPERHERO_API_URL}/coins/aeternity/history?currency=usd&days=${days}`,
-    )
+    try {
+      const url = new URL(`${SUPERHERO_API_URL}/coins/aeternity/history`)
+      url.searchParams.set('currency', 'usd')
+      url.searchParams.set('days', days)
+      const allPrices = await $fetch(url.toString())
 
-    const prices = timeFrame === '1H'
-      ? allPrices.filter(([ts]) => ts >= Date.now() - 60 * 60 * 1000)
-      : allPrices
+      const prices = timeFrame === '1H'
+        ? allPrices.filter(([ts]) => ts >= Date.now() - 60 * 60 * 1000)
+        : allPrices
 
-    result = {
-      labels: prices.map(([ts]) => String(ts)),
-      data: prices.map(([, price]) => price),
+      result = {
+        labels: prices.map(([ts]) => String(ts)),
+        data: prices.map(([, price]) => price),
+      }
+    } catch {
+      result = { labels: [], data: [] }
     }
     cache.put(cacheKey, result, MARKET_STATS_CACHE_TTL)
   }

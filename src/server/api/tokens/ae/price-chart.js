@@ -16,8 +16,11 @@ const TIMEFRAME_TO_DAYS = {
 }
 
 export default defineEventHandler(async (event) => {
-  const { timeFrame = 'MAX' } = getQuery(event)
-  const days = TIMEFRAME_TO_DAYS[timeFrame] ?? 'max'
+  const { timeFrame: rawTimeFrame = 'MAX' } = getQuery(event)
+  const timeFrame = Object.prototype.hasOwnProperty.call(TIMEFRAME_TO_DAYS, rawTimeFrame)
+    ? rawTimeFrame
+    : 'MAX'
+  const days = TIMEFRAME_TO_DAYS[timeFrame]
   const cacheKey = `${CACHE_KEY_PRICE_DATA}-${timeFrame}`
 
   let result = cache.get(cacheKey)

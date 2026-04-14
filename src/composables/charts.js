@@ -1,7 +1,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 
 export const useChartsStore = defineStore('charts', () => {
-  const { MIDDLEWARE_URL, DEX_BACKEND_URL, AE_TOKEN_ID } = useRuntimeConfig().public
+  const { MIDDLEWARE_URL } = useRuntimeConfig().public
   const axios = useAxios()
 
   const transactionsStatistics = ref(null)
@@ -12,6 +12,9 @@ export const useChartsStore = defineStore('charts', () => {
   const hashrateStatistics = ref(null)
   const accountsStatistics = ref(null)
   const priceStatistics = ref(null)
+  const dexPriceStatistics = ref(null)
+  const dexTvlStatistics = ref(null)
+  const dexVolumeStatistics = ref(null)
 
   async function fetchTransactionsStatistics(intervalBy, limit, scope, txType) {
     transactionsStatistics.value = null
@@ -107,17 +110,29 @@ export const useChartsStore = defineStore('charts', () => {
 
   async function fetchPriceStatistics(intervalBy) {
     priceStatistics.value = null
+    priceStatistics.value = await $fetch(`/api/tokens/ae/price-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
+  }
 
-    const slug = `&timeFrame=${intervalBy}`
+  async function fetchDexPriceStatistics(intervalBy) {
+    dexPriceStatistics.value = null
+    dexPriceStatistics.value = await $fetch(`/api/tokens/ae/dex-price-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
+  }
 
-    const { data } = await axios.get(
-      `${DEX_BACKEND_URL}/graph?graphType=Price&tokenAddress=${AE_TOKEN_ID}${slug}`,
-    )
-    priceStatistics.value = data
+  async function fetchDexTvlStatistics(intervalBy) {
+    dexTvlStatistics.value = null
+    dexTvlStatistics.value = await $fetch(`/api/tokens/ae/dex-tvl-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
+  }
+
+  async function fetchDexVolumeStatistics(intervalBy) {
+    dexVolumeStatistics.value = null
+    dexVolumeStatistics.value = await $fetch(`/api/tokens/ae/dex-volume-chart?timeFrame=${encodeURIComponent(intervalBy)}`)
   }
 
   return {
     priceStatistics,
+    dexPriceStatistics,
+    dexTvlStatistics,
+    dexVolumeStatistics,
     keyblocksStatistics,
     transactionsStatistics,
     contractsStatistics,
@@ -126,6 +141,9 @@ export const useChartsStore = defineStore('charts', () => {
     hashrateStatistics,
     accountsStatistics,
     fetchPriceStatistics,
+    fetchDexPriceStatistics,
+    fetchDexTvlStatistics,
+    fetchDexVolumeStatistics,
     fetchKeyblocksStatistics,
     fetchTransactionsStatistics,
     fetchContractsStatistics,

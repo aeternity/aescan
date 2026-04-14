@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.27.0](https://github.com/aeternity/aescan/compare/0.26.0...0.27.0) (2026-04-14)
+
+
+### Features
+
+* Add price charts to DEX trades page and update price source ([#1167](https://github.com/aeternity/aescan/issues/1167)) ([78462a4](https://github.com/aeternity/aescan/commit/78462a4d62d2641536c9ccb0c52518e68fb85d6e))
+
 ## [0.26.0](https://github.com/aeternity/aescan/compare/0.25.0...0.26.0) (2026-04-09)
 
 

@@ -80,7 +80,7 @@ function selectTab(tabIndex) {
     line-height: 22px;
     cursor: pointer;
     padding: var(--space-1);
-    background: #dededeA5;
+    background: var(--color-tab-inactive);
     color: var(--color-midnight-55);
     border-radius: 4px 4px 0 0;
     letter-spacing: 0.003em;
@@ -94,7 +94,7 @@ function selectTab(tabIndex) {
 
     &--active {
       color: var(--color-midnight);
-      background: var(--color-white);
+      background: var(--color-surface);
     }
   }
 }

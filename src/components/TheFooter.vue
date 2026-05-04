@@ -4,10 +4,14 @@
       <div class="footer__body">
         <div class="footer__column">
           <img
+            class="footer__logo-aescan-img"
             width="134"
-            class="footer__logo-aescan"
+            height="50"
             alt="æScan logo"
-            src="@/assets/logo.svg">
+            src="/logo-light.svg">
+          <div
+            class="footer__logo-aescan"
+            aria-hidden="true"/>
           <header class="footer__header">
             <app-tooltip>
               <div class="footer__powered-by">
@@ -15,10 +19,14 @@
               </div>
               <app-link to="https://aeternity.com/">
                 <img
+                  class="footer__logo-aeternity-img"
+                  alt="æternity logo"
+                  src="/logo-footer-light.svg"
+                  width="100"
+                  height="16">
+                <div
                   class="footer__logo-aeternity"
-                  alt="æScan logo"
-                  src="@/assets/logo-footer.svg"
-                  width="100">
+                  aria-hidden="true"/>
               </app-link>
 
               <template #tooltip>
@@ -116,7 +124,7 @@ const links = {
 
 <style scoped>
 .footer {
-  background: var(--color-white);
+  background: var(--color-surface);
 
   &__container {
     margin: 0 auto;
@@ -193,13 +201,31 @@ const links = {
     margin-bottom: var(--space-1);
   }
 
+  &__logo-aescan-img {
+    display: none;
+  }
+
   &__logo-aescan {
+    width: 134px;
+    height: 50px;
     margin-bottom: 56px;
+    background-image: var(--logo-url);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__logo-aeternity-img {
+    display: none;
   }
 
   &__logo-aeternity {
+    width: 100px;
+    height: 16px;
     margin-right: var(--space-2);
     margin-bottom: 56px;
+    background-image: var(--logo-footer-url);
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   &__header {

@@ -1,16 +1,31 @@
 :root {
+  /* Invariant colors */
   --color-fire: #f5274e;
-  --color-blue: #003dff;
-  --color-success: #66e773;
   --color-error: #dc0000;
   --color-white: #fff;
+/* Light theme (default) */
+  --color-blue: #003dff;
+  --color-success: #66e773;
   --color-snow: #f7f7f7;
   --color-midnight-15: #dedede;
-  --color-midnight-25: #C8C8C8;
+  --color-midnight-25: #c8c8c8;
   --color-midnight-35: #b2b2b2;
   --color-midnight-55: #868686;
   --color-midnight: #242424;
   --color-gray: #757581;
+  --color-surface: #fff;
+  --color-surface-raised: #242424;
+  --color-tab-inactive: #dededea5;
+  --shadow-dropdown: 2px 2px 14px 5px rgb(78 78 86 / 20%);
+  --color-pulse-rgb: 178 178 178;
+  --color-surface-rgb: 255 255 255;
+  --opacity-disabled: 0.5;
+  --bg-image: url('/background-light.svg');
+  --bg-hero-image: url('/background-hero-light.svg');
+  --logo-url: url('/logo-light.svg');
+    --logo-footer-url: url('/logo-footer-light.svg');
+
+  /* Spacing */
   --space-0: 4px;
   --space-1: 8px;
   --space-2: 12px;
@@ -23,6 +38,56 @@
   --font-monospaced: 'Roboto Mono', monospaced, sans-serif;
   --container-width: 1280px;
   --detail-column-width: 380px;
+}
+
+/* Dark theme values — applied when data-theme="dark" is set on <html> */
+[data-theme='dark'] {
+  --color-blue: #69f;
+  --color-success: #3db84a;
+  --color-snow: #1a1a1a;
+  --color-midnight-15: #2d2d2d;
+  --color-midnight-25: #383838;
+  --color-midnight-35: #4a4a4a;
+  --color-midnight-55: #707070;
+  --color-midnight: #e0e0e0;
+  --color-gray: #9090a0;
+  --color-surface: #252525;
+  --color-surface-raised: #333;
+  --color-tab-inactive: #2d2d2d;
+  --shadow-dropdown: 2px 2px 14px 5px rgb(0 0 0 / 50%);
+  --color-pulse-rgb: 74 74 74;
+  --color-surface-rgb: 37 37 37;
+  --opacity-disabled: 0.35;
+  --bg-image: url('/background-dark.svg');
+  --bg-hero-image: url('/background-hero-dark.svg');
+  --logo-url: url('/logo-dark.svg');
+    --logo-footer-url: url('/logo-footer-dark.svg');
+}
+
+/* Dark theme via OS preference — only when no explicit theme is set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-blue: #69f;
+    --color-success: #3db84a;
+    --color-snow: #1a1a1a;
+    --color-midnight-15: #2d2d2d;
+    --color-midnight-25: #383838;
+    --color-midnight-35: #4a4a4a;
+    --color-midnight-55: #707070;
+    --color-midnight: #e0e0e0;
+    --color-gray: #9090a0;
+    --color-surface: #252525;
+    --color-surface-raised: #333;
+    --color-tab-inactive: #2d2d2d;
+    --shadow-dropdown: 2px 2px 14px 5px rgb(0 0 0 / 50%);
+    --color-pulse-rgb: 74 74 74;
+    --color-surface-rgb: 37 37 37;
+    --opacity-disabled: 0.35;
+    --bg-image: url('/background-dark.svg');
+    --bg-hero-image: url('/background-hero-dark.svg');
+    --logo-url: url('/logo-dark.svg');
+      --logo-footer-url: url('/logo-footer-dark.svg');
+  }
 }
 
 @custom-media --desktop (min-width: 1280px);

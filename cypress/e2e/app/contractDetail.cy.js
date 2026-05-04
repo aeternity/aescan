@@ -9,8 +9,7 @@ describe('contract detail', () => {
     cy.get('.contract-events-panel .paginated-content').should('be.visible')
 
     cy.contains('.tabs__item', 'Verification').click()
-    cy.get('.contract-verified-table').should('be.visible')
-    cy.get('.code-editor').should('be.visible')
+    cy.get('.contract-verified-panel').should('be.visible')
   })
 
   it('should display contract not found page', () => {

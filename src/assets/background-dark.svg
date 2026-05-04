@@ -1,0 +1,26 @@
+<svg width="1440" height="1622" viewBox="0 0 1440 1622" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6942_56220)">
+<rect width="1440" height="1621" transform="translate(0 0.601562)" fill="#1a1a1a"/>
+<g opacity="0.5">
+<rect width="331.201" height="1476.36" transform="matrix(0.499988 -0.866032 0.866018 0.500012 875.703 -321.018)" fill="#333333"/>
+<rect width="331.201" height="1035" transform="matrix(0.499988 -0.866032 -0.866018 -0.500012 1002.74 186.324)" fill="#333333"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 -0.866018 -0.500013 1146.16 269.125)" fill="#2d2d2d"/>
+<rect width="331.201" height="1476.36" transform="matrix(0.499988 -0.866032 0.866018 0.500012 322.102 227.17)" fill="#333333"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 0.866018 0.500013 178.688 144.369)" fill="#2d2d2d"/>
+<rect width="331.201" height="1510.98" transform="matrix(0.499988 -0.866032 -0.866018 -0.500012 804.953 939.623)" fill="#333333"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 -0.866018 -0.500013 948.365 1022.42)" fill="#2d2d2d"/>
+<rect width="331.201" height="1476.36" transform="matrix(0.499988 -0.866032 0.866018 0.500012 124.311 980.469)" fill="#333333"/>
+<ellipse cx="165.601" cy="165.601" rx="165.601" ry="165.601" transform="matrix(0.499987 -0.866033 0.866018 0.500013 -19.1035 897.668)" fill="#2d2d2d"/>
+</g>
+<rect y="678.717" width="1440" height="942.885" fill="url(#paint0_linear_6942_56220)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_6942_56220" x1="720" y1="678.717" x2="720" y2="1621.6" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1a1a1a" stop-opacity="0"/>
+<stop offset="0.390625" stop-color="#1a1a1a"/>
+</linearGradient>
+<clipPath id="clip0_6942_56220">
+<rect width="1440" height="1621" fill="#1a1a1a" transform="translate(0 0.601562)"/>
+</clipPath>
+</defs>
+</svg>

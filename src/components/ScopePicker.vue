@@ -88,7 +88,7 @@ const inputClassNames = computed(() => ({
   grid-column: span 5;
 
   &__input {
-    background: var(--color-snow);
+    background: var(--color-surface);
     color: var(--color-midnight);
     width: 100%;
     height: 28px;

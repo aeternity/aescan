@@ -47,7 +47,7 @@ defineProps({
   }
 
   &--secondary {
-    background: var(--color-snow);
+    background: var(--color-surface);
     color: var(--color-midnight);
   }
 

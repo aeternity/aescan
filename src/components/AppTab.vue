@@ -36,6 +36,6 @@ registerTab({
 <style scoped>
 .tab {
   border-radius: 0 8px 8px;
-  background: var(--color-white);
+  background: var(--color-surface);
 }
 </style>

@@ -63,7 +63,7 @@ function toggle(index) {
   }
 
   &__header {
-    background: var(--color-snow);
+    background: var(--color-surface);
     padding: var(--space-1);
     border-radius: 8px;
     cursor: pointer;

@@ -5,18 +5,17 @@
 @keyframes pulse {
   0% {
     transform: scale(0.95);
-    /*--color-midnight-35 in rgb*/
-    box-shadow: 0 0 0 0 rgb(178 178 178 / 80%);
+    box-shadow: 0 0 0 0 rgb(var(--color-pulse-rgb) / 80%);
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 var(--space-1) rgb(178 178 178 / 0%);
+    box-shadow: 0 0 0 var(--space-1) rgb(var(--color-pulse-rgb) / 0%);
   }
 
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgb(178 178 178 / 0%);
+    box-shadow: 0 0 0 0 rgb(var(--color-pulse-rgb) / 0%);
   }
 }
 

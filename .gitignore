@@ -7,7 +7,7 @@ node_modules
 .cache
 .output
 /dist
-
+cypress/screenshots
 
 # local env files
 .env

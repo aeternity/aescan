@@ -109,7 +109,11 @@ watch(
     right: 0;
     top: 0;
     pointer-events: none;
-    background-image: linear-gradient(90deg, rgb(247 247 247 / 0%) 0, rgb(247 247 247 / 100%) 100%);
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--color-surface-rgb) / 0%) 0,
+      rgb(var(--color-surface-rgb) / 100%) 100%
+    );
 
     @media (--desktop) {
       width: 200px;

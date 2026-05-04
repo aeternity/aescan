@@ -51,7 +51,7 @@ const {
 
 <style scoped>
 .dashboard-microblocks-panel {
-  background: var(--color-snow);
+  background: var(--color-surface);
   padding: var(--space-3) var(--space-1) var(--space-1);
 
   @media (--desktop) {

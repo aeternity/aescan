@@ -43,7 +43,7 @@ const modules = [Pagination]
   }
 
   &-bullet-active {
-    background: var(--color-midnight);
+    background: var(--color-fire);
   }
 
   &__blank-state {

@@ -157,8 +157,8 @@ watch(
     &:before {
       content: '←';
       position: absolute;
-      left: -12px;
-      color: var(--color-midnight);
+      left: -16px;
+      color: var(--color-midnight-55);
 
       @media (--desktop) {
         left: -16px;

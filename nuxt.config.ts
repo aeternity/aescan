@@ -54,6 +54,9 @@ export default defineNuxtConfig({
     optimizeDeps: {
       esbuildOptions: { target: 'es2020' },
     },
+    server: {
+      allowedHosts: ['host.docker.internal'],
+    },
     define: {
       __VUE_PROD_DEVTOOLS__: process.env.MODE !== 'production',
     },

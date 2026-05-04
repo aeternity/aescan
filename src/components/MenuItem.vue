@@ -73,7 +73,7 @@ defineProps({
   }
 
   &__list {
-    background: var(--color-white);
+    background: var(--color-surface);
     padding: 0 0 var(--space-2) var(--space-1);
     animation: fade-in-up .2s ease;
 

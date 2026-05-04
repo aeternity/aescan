@@ -80,10 +80,12 @@ import Error from '@/error'
 import { APP_CREATOR, APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE, APP_URL } from '@/utils/constants'
 
 const { isMobileMenuOpen } = storeToRefs(useUiStore())
+const { init: initTheme } = useThemeStore()
 const router = useRouter()
 const route = useRoute()
 
 useAsyncData(() => initializeStores())
+initTheme()
 
 if (import.meta.client) {
   const { initializeWebSocket } = useWebSocket()

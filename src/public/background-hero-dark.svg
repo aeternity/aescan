@@ -1,0 +1,20 @@
+<svg width="1512" height="982" viewBox="0 0 1512 982" fill="none" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+      <rect width="1512" height="982" fill="#2d2d2d"/>
+      <g opacity="0.3">
+            <rect x="919.487" y="-337.689" width="347.757" height="1550.16" transform="rotate(-60 919.487 -337.689)"
+                  fill="#1a1a1a"/>
+            <rect width="347.757" height="1086.74" transform="matrix(0.5 -0.866025 -0.866025 -0.5 1052.88 195.002)"
+                  fill="#1a1a1a"/>
+            <circle r="173.879" transform="matrix(0.5 -0.866025 -0.866025 -0.5 1139.82 44.4187)" fill="#4a4a4a"/>
+            <rect x="338.206" y="237.891" width="347.757" height="1550.16" transform="rotate(-60 338.206 237.891)"
+                  fill="#1a1a1a"/>
+            <circle cx="425.145" cy="87.3072" r="173.879" transform="rotate(-60 425.145 87.3072)" fill="#4a4a4a"/>
+            <rect width="347.757" height="1586.51" transform="matrix(0.5 -0.866025 -0.866025 -0.5 845.197 985.943)"
+                  fill="#1a1a1a"/>
+            <circle r="173.879" transform="matrix(0.5 -0.866025 -0.866025 -0.5 932.136 835.36)" fill="#4a4a4a"/>
+            <rect x="130.525" y="1028.83" width="347.757" height="1550.16" transform="rotate(-60 130.525 1028.83)"
+                  fill="#1a1a1a"/>
+            <circle cx="217.464" cy="878.25" r="173.879" transform="rotate(-60 217.464 878.25)" fill="#4a4a4a"/>
+      </g>
+</svg>

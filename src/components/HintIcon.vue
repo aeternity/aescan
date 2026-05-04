@@ -20,7 +20,7 @@ defineProps({
 .hint-icon {
   position: relative;
   margin-bottom: 3px;
-  color: var(--color-midnight-25);
+  color: var(--color-midnight-55);
 
   &--dark {
     color: var(--color-midnight);

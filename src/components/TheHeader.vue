@@ -9,22 +9,33 @@
         to="/"
         @click="closeNavigation">
         <img
+          class="header__logo-img"
           width="134"
+          height="50"
           alt="æScan logo"
-          src="@/assets/logo.svg">
+          src="/logo-light.svg">
+        <div
+          class="header__logo-bg"
+          aria-hidden="true"/>
       </app-link>
 
-      <div
-        class="header__hamburger"
-        @click="toggleNavigation">
-        <app-icon
-          v-if="isMobileMenuOpen"
-          name="cross"
-          :size="34"/>
-        <app-icon
-          v-else
-          name="menu"
-          :size="24"/>
+      <div class="header__right-controls">
+        <div class="header__toggle-mobile">
+          <theme-toggle/>
+        </div>
+
+        <div
+          class="header__hamburger"
+          @click="toggleNavigation">
+          <app-icon
+            v-if="isMobileMenuOpen"
+            name="cross"
+            :size="34"/>
+          <app-icon
+            v-else
+            name="menu"
+            :size="24"/>
+        </div>
       </div>
 
       <the-navigation
@@ -32,6 +43,10 @@
           'header__navigation',
           {'header__navigation--open': isMobileMenuOpen},
         ]"/>
+
+      <div class="header__toggle-desktop">
+        <theme-toggle/>
+      </div>
 
       <network-select
         :class="[
@@ -114,7 +129,7 @@ function closeNavigation() {
 
 <style scoped>
 .header {
-  background: var(--color-white);
+  background: var(--color-surface);
   display: flex;
   flex-direction: column;
 
@@ -174,9 +189,35 @@ function closeNavigation() {
     }
   }
 
+  &__right-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-left: auto;
+
+    @media (--desktop) {
+      display: none;
+    }
+  }
+
+  &__toggle-mobile {
+    display: flex;
+
+    @media (--desktop) {
+      display: none;
+    }
+  }
+
+  &__toggle-desktop {
+    display: none;
+
+    @media (--desktop) {
+      display: flex;
+    }
+  }
+
   &__hamburger {
     display: flex;
-    margin-left: auto;
     cursor: pointer;
     color: var(--color-midnight);
 
@@ -200,6 +241,18 @@ function closeNavigation() {
     font-size: 11px;
     line-height: 16px;
     letter-spacing: 0.0015em;
+  }
+
+  &__logo-img {
+    display: none;
+  }
+
+  &__logo-bg {
+    width: 134px;
+    height: 50px;
+    background-image: var(--logo-url);
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 </style>

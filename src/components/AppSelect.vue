@@ -92,6 +92,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     border-color: var(--color-midnight-55);
     border-width: 1px;
     cursor: pointer;
+    background: var(--color-surface);
   }
 
   &__single {
@@ -99,12 +100,15 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     font-size: 14px;
     line-height: 20px;
     padding-left: var(--space-0);
+    background: var(--color-surface);
   }
 
   &__content-wrapper {
-    box-shadow: 2px 2px 14px 5px rgb(78 78 86 / 20%);
+    box-shadow: var(--shadow-dropdown);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    background: var(--color-surface);
+    border-color: var(--color-midnight-35);
   }
 
   &--above &__content-wrapper {
@@ -117,7 +121,8 @@ const selectedValue = useVModel(props, 'modelValue', emit)
     align-items: center;
     border: solid var(--color-midnight-35);
     border-width: 1px 0;
-    color: solid var(--color-midnight);
+    color: var(--color-midnight);
+    background: var(--color-surface);
     font-size: 14px;
     line-height: 20px;
 
@@ -142,6 +147,8 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   &__input {
     font-size: 14px;
     line-height: 20px;
+    background: var(--color-surface);
+    color: var(--color-midnight);
   }
 
   &__select {
@@ -157,14 +164,14 @@ const selectedValue = useVModel(props, 'modelValue', emit)
 
   &--active {
     .multiselect__tags {
-      box-shadow: 2px 2px 14px 5px rgb(78 78 86 / 20%);
+      box-shadow: var(--shadow-dropdown);
       border-radius: 8px;
     }
   }
 
   &--disabled {
     background: transparent;
-    opacity: 0.5;
+    opacity: var(--opacity-disabled);
 
     .multiselect__select {
       background: transparent;
@@ -172,7 +179,7 @@ const selectedValue = useVModel(props, 'modelValue', emit)
   }
 
   &__placeholder {
-    color: var(--color-midnight-35);
+    color: var(--color-midnight-55);
     font-size: 14px;
     line-height: 20px;
     padding-left: var(--space-0);

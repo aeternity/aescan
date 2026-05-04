@@ -10,6 +10,6 @@
   text-align: center;
   padding: var(--space-2);
   color: var(--color-midnight);
-  background: var(--color-snow);
+  background: var(--color-surface);
 }
 </style>

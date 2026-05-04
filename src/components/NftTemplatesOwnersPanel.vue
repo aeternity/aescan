@@ -34,7 +34,7 @@ async function loadPrevNftowners() {
 
 <style scoped>
 .nft-templates-owners-panel {
-  background: var(--color-snow);
+  background: var(--color-surface);
   font-size: 11px;
   line-height: 16px;
 

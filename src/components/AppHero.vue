@@ -31,12 +31,12 @@ const featureFlags = useFeatureFlags()
   width: 100%;
   padding: 120px 0 var(--space-6);
 
-  background-image: url("@/assets/background-hero.svg");
+  background-image: var(--bg-hero-image);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
   background-attachment: scroll;
-  background-color: var(--color-midnight-35);
+  background-color: var(--color-surface);
 
   @media (--desktop) {
     padding: 120px 0;

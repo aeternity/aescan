@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.2](https://github.com/aeternity/aescan/compare/0.28.1...0.28.2) (2026-05-04)
+
+
+### Bug Fixes
+
+* align arrow desktop ([4cc40b4](https://github.com/aeternity/aescan/commit/4cc40b4e0994335f785325b1515e686433137889))
+
 ## [0.28.1](https://github.com/aeternity/aescan/compare/0.28.0...0.28.1) (2026-05-04)
 
 

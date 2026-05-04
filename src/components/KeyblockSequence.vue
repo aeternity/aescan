@@ -161,7 +161,7 @@ watch(
       color: var(--color-midnight-55);
 
       @media (--desktop) {
-        left: -16px;
+        left: -20px;
       }
     }
 

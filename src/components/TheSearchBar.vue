@@ -106,7 +106,7 @@ function isMicroblockId(query) {
   display: flex;
   align-items: center;
   height: 40px;
-  background: var(--color-white);
+  background: var(--color-surface);
   border: 1px solid var(--color-midnight-55);
   border-radius: 8px;
 
@@ -121,14 +121,15 @@ function isMicroblockId(query) {
     padding: 0;
     border: none;
     cursor: pointer;
-    background: var(--color-midnight);
+    background: var(--color-surface-raised);
     color: var(--color-white);
   }
 
   &__input {
     width: 100%;
     border: none;
-    background-color: var(--color-white);
+    background-color: var(--color-surface);
+    color: var(--color-midnight);
     margin-right: var(--space-1);
     font-size: 16px;
     appearance: none;
@@ -143,7 +144,7 @@ function isMicroblockId(query) {
     }
 
     &::placeholder {
-      color: var(--color-midnight-35);
+      color: var(--color-midnight-55);
       opacity: 1;
     }
   }

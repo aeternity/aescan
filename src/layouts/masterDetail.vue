@@ -13,8 +13,8 @@
 
 <style scoped>
 .master-detail {
-  background-image: url("@/assets/background.svg");
-  background-color: var(--color-midnight-35);
+  background-image: var(--bg-image);
+  background-color: var(--color-snow);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;

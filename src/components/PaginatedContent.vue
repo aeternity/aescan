@@ -267,7 +267,7 @@ onBeforeUnmount(() => {
   &__per-page-label {
     font-family: var(--font-monospaced);
     font-size: 12px;
-    color: var(--color-midnight-35);
+    color: var(--color-midnight);
     white-space: nowrap;
   }
 
@@ -275,10 +275,10 @@ onBeforeUnmount(() => {
     font-family: var(--font-monospaced);
     font-size: 12px;
     padding: 2px 8px;
-    border: 1px solid var(--color-midnight-25);
+    border: 1px solid var(--color-midnight-55);
     border-radius: 4px;
     background: transparent;
-    color: var(--color-midnight-35);
+    color: var(--color-midnight);
     cursor: pointer;
     line-height: 1.5;
 

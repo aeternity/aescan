@@ -14,7 +14,7 @@
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: var(--color-midnight);
+  background: var(--color-surface-raised);
   border-radius: 8px;
   color: var(--color-white);
 }

@@ -66,3 +66,20 @@ const socials = [
   }
 }
 </style>
+
+<!-- Non-scoped: override hardcoded white fills inside inline SVG icons in dark mode -->
+<style>
+[data-theme='dark'] .footer-socials__icon [fill='white'],
+[data-theme='dark'] .footer-socials__icon [fill='#FFFFFF'],
+[data-theme='dark'] .footer-socials__icon [fill='#FAFAFA'] {
+  fill: #1a1a1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .footer-socials__icon [fill='white'],
+  :root:not([data-theme='light']) .footer-socials__icon [fill='#FFFFFF'],
+  :root:not([data-theme='light']) .footer-socials__icon [fill='#FAFAFA'] {
+    fill: #1a1a1a;
+  }
+}
+</style>

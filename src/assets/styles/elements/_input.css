@@ -1,8 +1,12 @@
-input[type='text'] {
+input[type='text'],
+input[type='search'],
+input[type='number'] {
   border-radius: 8px;
   line-height: 20px;
   border-color: var(--color-midnight-55);
   border-width: 1px;
+  background: var(--color-surface);
+    color: var(--color-midnight);
 
   font-size: 16px;
   font-family: var(--font-monospaced);
@@ -12,7 +16,7 @@ input[type='text'] {
   }
 
   &::placeholder {
-    color: var(--color-midnight-35);
+    color: var(--color-midnight-55);
     opacity: 1;
   }
 }

@@ -155,7 +155,7 @@ watch(
     cursor: pointer;
 
     &:before {
-      content: '=';
+      content: '←';
       position: absolute;
       left: -12px;
       color: var(--color-midnight);
@@ -185,7 +185,7 @@ watch(
       animation: shimmer 1.2s ease-in-out infinite;
 
       &:first-child:before {
-        content: '=';
+        content: '←';
       }
     }
 
@@ -221,7 +221,11 @@ watch(
     right: 0;
     top: 0;
     pointer-events: none;
-    background-image: linear-gradient(90deg, rgb(255 255 255 / 0%) 0, rgb(255 255 255 / 100%) 100%);
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--color-surface-rgb) / 0%) 0,
+      rgb(var(--color-surface-rgb) / 100%) 100%
+    );
 
     @media (--desktop) {
       width: 200px;

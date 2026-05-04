@@ -110,7 +110,7 @@ defineProps({
   }
 
   &--light {
-    background: var(--color-white);
+    background: var(--color-surface);
     color: var(--color-midnight);
     border: 1px solid var(--color-midnight-55);
   }

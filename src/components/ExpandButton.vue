@@ -28,7 +28,7 @@ defineProps({
 
   &--activated {
     color: var(--color-midnight);
-    background-color: var(--color-snow);
+    background-color: var(--color-surface);
   }
 }
 </style>

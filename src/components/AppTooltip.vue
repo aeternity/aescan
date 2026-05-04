@@ -50,14 +50,22 @@ defineProps({
     .v-popper__inner {
       margin: 0 var(--space-2);
       padding: var(--space-3);
-      background: var(--color-midnight);
+      background: var(--color-surface-raised);
       color: var(--color-white);
-      border: none;
+      border: 1px solid var(--color-midnight-35);
       word-break: break-all;
 
       @media (--desktop) {
         word-break: normal;
       }
+    }
+
+    .v-popper__arrow-inner {
+      border-color: var(--color-surface-raised);
+    }
+
+    .v-popper__arrow-outer {
+      border-color: var(--color-midnight-35);
     }
   }
 }

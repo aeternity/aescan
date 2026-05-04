@@ -34,7 +34,7 @@ defineProps({
 <style scoped>
 .panel {
   max-width: 100%;
-  background: var(--color-white);
+  background: var(--color-surface);
   border-radius: 8px;
   padding: var(--space-4) var(--space-1);
 

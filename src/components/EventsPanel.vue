@@ -73,7 +73,7 @@ async function decode() {
 
 <style scoped>
 .event-panel {
-  background: var(--color-snow);
+  background: var(--color-surface);
 
   @media (--desktop) {
     padding: var(--space-3) var(--space-4);

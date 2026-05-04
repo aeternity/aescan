@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.0](https://github.com/aeternity/aescan/compare/0.27.0...0.28.0) (2026-05-04)
+
+
+### Features
+
+* dark theme ([#1169](https://github.com/aeternity/aescan/issues/1169)) ([581f229](https://github.com/aeternity/aescan/commit/581f229c10cb9511f5764d7c7670ea032cf1c3e3))
+
 ## [0.27.0](https://github.com/aeternity/aescan/compare/0.26.0...0.27.0) (2026-04-14)
 
 

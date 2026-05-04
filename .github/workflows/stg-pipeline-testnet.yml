@@ -13,7 +13,7 @@ env:
   ENV: "stg"
   APP: "aescan-testnet"
 
-concurrency: aescan_staging_environment-${{ github.ref }}
+concurrency: aescan_staging_testnet-${{ github.ref }}
 
 jobs:
   main:
@@ -173,6 +173,11 @@ jobs:
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
           persist-credentials: false
           fetch-depth: 0
+
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
 
       - name: Staging undeploy
         if: (startsWith(github.head_ref, 'release') != true) && ((github.event_name == 'pull_request') || (github.event_name == 'delete' && steps.extract-pr.outputs.PR_NUMBER != ''))

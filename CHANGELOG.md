@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.1](https://github.com/aeternity/aescan/compare/0.28.0...0.28.1) (2026-05-04)
+
+
+### Bug Fixes
+
+* align arrow ([cc87e9d](https://github.com/aeternity/aescan/commit/cc87e9d20dfccc374af1ce4e5721d55aa55a5d93))
+
 ## [0.28.0](https://github.com/aeternity/aescan/compare/0.27.0...0.28.0) (2026-05-04)
 
 

@@ -7,17 +7,19 @@
         title="KEYBLOCKS"
         icon-name="latest-keyblock">
         <template #header>
-          <div class="dashboard-keyblock-panel__summary dashboard-keyblock-panel__summary--desktop">
-            Microblocks in selected keyblock:
-            <span class="dashboard-keyblock-panel__count">
-              {{ selectedKeyblock?.microBlocksCount }}
-            </span>
-          </div>
-          <div class="dashboard-keyblock-panel__summary dashboard-keyblock-panel__summary--desktop">
-            Total transactions in selected keyblock:
-            <span class="dashboard-keyblock-panel__count">
-              {{ selectedKeyblockTransactionsCount }}
-            </span>
+          <div class="dashboard-keyblock-panel__summaries">
+            <div class="dashboard-keyblock-panel__summary dashboard-keyblock-panel__summary--desktop">
+              Microblocks in selected keyblock:
+              <span class="dashboard-keyblock-panel__count">
+                {{ selectedKeyblock?.microBlocksCount }}
+              </span>
+            </div>
+            <div class="dashboard-keyblock-panel__summary dashboard-keyblock-panel__summary--desktop">
+              Total transactions in selected keyblock:
+              <span class="dashboard-keyblock-panel__count">
+                {{ selectedKeyblockTransactionsCount }}
+              </span>
+            </div>
           </div>
         </template>
         <template #tooltip>
@@ -43,12 +45,14 @@
         </span>
       </div>
 
-      <dashboard-keyblock-table
-        v-if="selectedKeyblock"
-        class="dashboard-keyblock-panel__dashboard-keyblock-table u-hidden-mobile"
-        :keyblock="selectedKeyblock"
-        :stats="selectedDeltaStats"
-        :mining-time="selectedKeyblockMiningTime"/>
+      <div class="dashboard-keyblock-panel__detail-wrap">
+        <dashboard-keyblock-table
+          v-if="selectedKeyblock"
+          class="dashboard-keyblock-panel__dashboard-keyblock-table u-hidden-mobile"
+          :keyblock="selectedKeyblock"
+          :stats="selectedDeltaStats"
+          :mining-time="selectedKeyblockMiningTime"/>
+      </div>
 
       <dashboard-keyblock-table-condensed
         v-if="selectedKeyblock"
@@ -91,7 +95,7 @@ const selectedKeyblockMiningTime = computed(() => {
 
   &__container {
     @media (--desktop) {
-      padding-bottom: var(--space-3);
+      padding-bottom: 0;
     }
   }
 
@@ -99,7 +103,7 @@ const selectedKeyblockMiningTime = computed(() => {
     margin: 0 var(--space-1) var(--space-0) var(--space-1);
 
     @media (--desktop) {
-      margin: 0 0 var(--space-4) 0;
+      margin: 0 0 16px;
     }
   }
 
@@ -107,11 +111,17 @@ const selectedKeyblockMiningTime = computed(() => {
     margin-bottom: var(--space-2);
   }
 
+  &__detail-wrap {
+    @media (--desktop) {
+      margin: 0 0 26px 52px;
+    }
+  }
+
   &__keyblock-sequence {
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
 
     @media (--desktop) {
-      margin-bottom: var(--space-4);
+      margin-bottom: 12px;
     }
   }
 
@@ -137,9 +147,22 @@ const selectedKeyblockMiningTime = computed(() => {
     }
   }
 
+  &__summaries {
+    display: none;
+
+    @media (--desktop) {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+  }
+
   &__summary--desktop {
     display: none;
-    font-size: 14px;
+    font-size: 12.5px;
+    font-family: var(--font-primary);
+    color: var(--text-dim);
+    margin: 0;
 
     @media (--desktop) {
       display: block;
@@ -147,7 +170,9 @@ const selectedKeyblockMiningTime = computed(() => {
   }
 
   &__count {
-    font-weight: 700;
+    font-family: var(--font-monospaced);
+    font-weight: 600;
+    color: var(--text);
   }
 }
 </style>

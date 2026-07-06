@@ -28,10 +28,11 @@
       transactions of the selected microblock
     </div>
 
-    <dashboard-microblock-transactions-table
-      v-if="selectedMicroblockTransactions"
-      class="u-hidden-mobile"
-      :transactions="selectedMicroblockTransactions"/>
+    <div class="dashboard-transactions-panel__table-wrap u-hidden-mobile">
+      <dashboard-microblock-transactions-table
+        v-if="selectedMicroblockTransactions"
+        :transactions="selectedMicroblockTransactions"/>
+    </div>
 
     <transactions-swiper
       v-if="selectedMicroblockTransactions"
@@ -55,17 +56,18 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
 
 <style scoped>
 .dashboard-transactions-panel {
-  padding: var(--space-3) 0;
-
-  @media (--desktop) {
-    padding: var(--space-3);
-  }
+  /* Flat within the parent keyblock panel — no extra card bg/border.
+     The transactions table itself has its own container styling. */
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
 
   &__dashboard-panel-header {
     margin: 0 var(--space-1) var(--space-2);
 
     @media (--desktop) {
-      margin: 0 0 var(--space-4) 0;
+      margin: 0 0 var(--space-2) 0;
     }
   }
 
@@ -73,8 +75,9 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
     display: block;
     margin: 0 var(--space-1) var(--space-2) var(--space-1);
     font-family: var(--font-monospaced);
-    font-size: 14px;
+    font-size: 12.5px;
     line-height: 20px;
+    color: var(--text-dim);
 
     @media (--desktop) {
       margin-bottom: 0;
@@ -89,6 +92,13 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
     @media (--desktop) {
       display: block;
     }
+  }
+
+  /* Bordered container for the transactions table — matches reference design */
+  &__table-wrap {
+    border: 1px solid var(--border);
+    border-radius: var(--r-tile);
+    overflow: hidden;
   }
 }
 </style>

@@ -41,3 +41,18 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+/* Created Age column: dim + slightly smaller, sans-serif (no mono for timestamps) */
+td:nth-child(2) {
+  color: var(--text-dim);
+  font-size: 12.5px;
+  font-family: var(--font-primary);
+}
+
+/* Type column: slightly smaller, sans-serif (transaction type names are not mono) */
+td:nth-child(3) {
+  font-size: 12.5px;
+  font-family: var(--font-primary);
+}
+</style>

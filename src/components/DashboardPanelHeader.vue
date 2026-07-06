@@ -5,7 +5,7 @@
       class="dashboard-panel-header__badge">
       <app-icon
         :name="iconName"
-        :size="32"/>
+        :size="20"/>
     </app-badge>
     <div class="dashboard-panel-header__body">
       <div class="dashboard-panel-header__container">
@@ -60,7 +60,8 @@ defineProps({
   margin: 0 var(--space-2) var(--space-2);
 
   @media (--desktop) {
-    margin: 0 0 var(--space-4) 0;
+    /* 16px matches the reference design's section-header→rail gap */
+    margin: 0 0 16px;
   }
 
   &__body {
@@ -84,7 +85,7 @@ defineProps({
   }
 
   &__badge {
-    margin-right: var(--space-3);
+    margin-right: var(--space-2);
   }
 
   &__hint {
@@ -107,6 +108,11 @@ defineProps({
   &__heading {
     display: flex;
     gap: var(--space-0);
+    align-items: center;
+    /* Reference design: 15px/700/.05em — override h3 global (20px) */
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     font-style: normal;
   }
 }

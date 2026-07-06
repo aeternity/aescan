@@ -24,8 +24,12 @@ defineProps({
 
 <style scoped>
 .hint-tooltip__icon {
-  line-height: 0;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   vertical-align: middle;
+  /* Gap between the ? icon and the following label/text */
+  margin-right: var(--space-0);
+  /* Compensate the ~1px vertical offset from vertical-align:middle */
+  transform: translateY(-1px);
 }
 </style>

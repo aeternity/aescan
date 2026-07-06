@@ -1,5 +1,5 @@
 <template>
-  <app-panel
+  <div
     v-if="!isLoading"
     class="stats-panel">
     <stats-tile
@@ -194,7 +194,7 @@
         .
       </template>
     </stats-tile>
-  </app-panel>
+  </div>
 
   <loader-panel
     v-else
@@ -230,34 +230,24 @@ const isLoading = computed(() => {
 <style scoped>
 .stats-panel {
   display: grid;
-  grid-template-columns:4fr;
-  gap: var(--space-1);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
   width: 100%;
   box-sizing: border-box;
-  padding: var(--space-5) var(--space-1);
 
   @media (--desktop) {
-    gap: var(--space-5) var(--space-3);
+    gap: var(--space-2);
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 68px 1fr;
-    padding: var(--space-6);
   }
 
   &__stats-tile {
-    margin-bottom: var(--space-2);
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
+    margin-bottom: 0;
   }
 
   &__value {
     font-weight: 700;
     margin-left: var(--space-0);
+    color: var(--text);
   }
 
   &__content {

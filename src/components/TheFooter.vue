@@ -107,7 +107,6 @@ const MDW_RELEASES_URL = 'https://github.com/aeternity/ae_mdw/releases'
 const links = {
   about: [
     { label: 'æternity Blockchain Website', url: 'https://aeternity.com' },
-    { label: 'Aeternity Foundation', url: 'https://aeternity.foundation' },
     { label: 'Blog', url: 'https://blog.aeternity.com' },
     { label: 'Terms of Service', url: '/terms-of-service' },
     { label: 'Privacy Policy', url: '/privacy-policy' },
@@ -115,7 +114,7 @@ const links = {
   ],
   developers: [
     { label: 'Node API documentation', url: 'https://api-docs.aeternity.io' },
-    { label: 'Middleware API documentation', url: `${MIDDLEWARE_URL}/swagger` },
+    { label: 'Middleware API documentation', url: `${MIDDLEWARE_URL.replace('/v3', '')}/swagger/` },
     { label: 'Contribute on Github', url: 'https://github.com/aeternity/aescan' },
     { label: 'Join the Forum', url: 'https://forum.aeternity.com' },
   ],
@@ -124,7 +123,8 @@ const links = {
 
 <style scoped>
 .footer {
-  background: var(--color-surface);
+  background: var(--bg-elev);
+  border-top: 1px solid var(--border);
 
   &__container {
     margin: 0 auto;
@@ -133,7 +133,7 @@ const links = {
     @media (--desktop) {
       width: 100%;
       max-width: var(--container-width);
-      padding: 120px 0;
+      padding: 120px var(--space-4);
     }
   }
 

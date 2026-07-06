@@ -18,12 +18,50 @@
   --color-tab-inactive: #dededea5;
   --shadow-dropdown: 2px 2px 14px 5px rgb(78 78 86 / 20%);
   --color-pulse-rgb: 178 178 178;
-  --color-surface-rgb: 255 255 255;
   --opacity-disabled: 0.5;
   --bg-image: url('/background-light.svg');
   --bg-hero-image: url('/background-hero-light.svg');
   --logo-url: url('/logo-light.svg');
     --logo-footer-url: url('/logo-footer-light.svg');
+
+  /* Redesign design tokens — light theme (default).
+     Dark overrides live in [data-theme='dark'] and the prefers-color-scheme block.
+     Sourced from the aeScan design system (tokens/colors.css). */
+  --bg: #f5f5f7;
+  --bg-elev: #fff;
+  --bg-elev2: #fafafa;
+  --bg-hover: #f2f2f4;
+  --border: #e7e7ea;
+  --border-soft: #eeeef0;
+  --text: #18181b;
+  --text-dim: #5b5b63;
+  --text-faint: #9a9aa3;
+  --brand: #f5274e;
+  --brand-2: #d81d42;
+  --brand-soft: rgb(245 39 78 / 8%);
+  --brand-line: rgb(245 39 78 / 25%);
+  --up: #0fa968;
+  --up-soft: rgb(15 169 104 / 10%);
+  --down: #e23b4e;
+  --down-soft: rgb(226 59 78 / 10%);
+  --c-teal: #149aa1;
+  --c-amber: #cf8f12;
+  --c-violet: #7c54e0;
+  --c-blue: #3a6fd6;
+  --grid: rgb(0 0 0 / 6%);
+  --shadow: 0 1px 2px rgb(20 20 30 / 5%), 0 10px 30px rgb(20 20 40 / 6%);
+
+  /* Radii + motion (theme-independent) */
+  --r-control: 8px;
+  --r-tile: 12px;
+  --r-panel: 15px;
+  --r-pill: 999px;
+  --dur: 0.16s;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Font aliases for redesigned components (bridge to existing --font-* below) */
+  --font-sans: 'Space Grotesk', -apple-system, blinkmacsystemfont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, sfmono-regular, menlo, monospace;
 
   /* Spacing */
   --space-0: 4px;
@@ -34,10 +72,10 @@
   --space-5: 32px;
   --space-6: 40px;
   --space-7: 60px;
-  --font-primary: clashdisplay, arial, sans-serif;
-  --font-monospaced: 'Roboto Mono', monospaced, sans-serif;
-  --container-width: 1280px;
-  --detail-column-width: 380px;
+  --font-primary: 'Space Grotesk', arial, sans-serif;
+  --font-monospaced: 'JetBrains Mono', monospaced, sans-serif;
+  --container-width: 1340px;
+  --detail-column-width: 240px;
 }
 
 /* Dark theme values — applied when data-theme="dark" is set on <html> */
@@ -56,12 +94,35 @@
   --color-tab-inactive: #2d2d2d;
   --shadow-dropdown: 2px 2px 14px 5px rgb(0 0 0 / 50%);
   --color-pulse-rgb: 74 74 74;
-  --color-surface-rgb: 37 37 37;
   --opacity-disabled: 0.35;
   --bg-image: url('/background-dark.svg');
   --bg-hero-image: url('/background-hero-dark.svg');
   --logo-url: url('/logo-dark.svg');
     --logo-footer-url: url('/logo-footer-dark.svg');
+
+  /* Redesign design tokens — dark overrides */
+  --bg: #18181b;
+  --bg-elev: #242427;
+  --bg-elev2: #2f2f33;
+  --bg-hover: #37373c;
+  --border: #3d3d44;
+  --border-soft: #2c2c31;
+  --text: #f4f4f5;
+  --text-dim: #a1a1aa;
+  --text-faint: #7d7d87;
+  --brand-2: #ff5a78;
+  --brand-soft: rgb(245 39 78 / 13%);
+  --brand-line: rgb(245 39 78 / 32%);
+  --up: #22c58b;
+  --up-soft: rgb(34 197 139 / 13%);
+  --down: #fb5b6b;
+  --down-soft: rgb(251 91 107 / 13%);
+  --c-teal: #37c2c9;
+  --c-amber: #f0b341;
+  --c-violet: #9d7bf5;
+  --c-blue: #5b8def;
+  --grid: rgb(255 255 255 / 5.5%);
+  --shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 30px rgb(0 0 0 / 28%);
 }
 
 /* Dark theme via OS preference — only when no explicit theme is set */
@@ -81,15 +142,41 @@
     --color-tab-inactive: #2d2d2d;
     --shadow-dropdown: 2px 2px 14px 5px rgb(0 0 0 / 50%);
     --color-pulse-rgb: 74 74 74;
-    --color-surface-rgb: 37 37 37;
     --opacity-disabled: 0.35;
     --bg-image: url('/background-dark.svg');
     --bg-hero-image: url('/background-hero-dark.svg');
     --logo-url: url('/logo-dark.svg');
       --logo-footer-url: url('/logo-footer-dark.svg');
+
+    /* Redesign design tokens — dark overrides */
+    --bg: #18181b;
+    --bg-elev: #242427;
+    --bg-elev2: #2f2f33;
+    --bg-hover: #37373c;
+    --border: #3d3d44;
+    --border-soft: #2c2c31;
+    --text: #f4f4f5;
+    --text-dim: #a1a1aa;
+    --text-faint: #7d7d87;
+    --brand-2: #ff5a78;
+    --brand-soft: rgb(245 39 78 / 13%);
+    --brand-line: rgb(245 39 78 / 32%);
+    --up: #22c58b;
+    --up-soft: rgb(34 197 139 / 13%);
+    --down: #fb5b6b;
+    --down-soft: rgb(251 91 107 / 13%);
+    --c-teal: #37c2c9;
+    --c-amber: #f0b341;
+    --c-violet: #9d7bf5;
+    --c-blue: #5b8def;
+    --grid: rgb(255 255 255 / 5.5%);
+    --shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 30px rgb(0 0 0 / 28%);
   }
 }
 
-@custom-media --desktop (min-width: 1280px);
+/* Tablet breakpoint temporarily collapsed into desktop.
+   To restore tablet view, re-enable the 1280px line below:
+   @custom-media --desktop (min-width: 1280px); */
+@custom-media --desktop (min-width: 640px);
 @custom-media --mobile (min-width: 640px);
 

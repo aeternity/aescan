@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
     padding: var(--space-3) var(--space-1) var(--space-3) var(--space-1);
 
     @media (--desktop) {
-      padding: 0;
+      padding: 0 var(--space-4);
       margin-bottom: 80px;
     }
   }

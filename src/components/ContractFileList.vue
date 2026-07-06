@@ -64,7 +64,7 @@ function selectEntryFile(file, index) {
     font-weight: 400;
     font-size: 16px;
     padding: var(--space-1) 0;
-    border-bottom: 1px solid var(--color-midnight-25);
+    border-bottom: 1px solid var(--border-soft);
     cursor: pointer;
 
     &:last-child {

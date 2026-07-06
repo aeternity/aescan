@@ -29,17 +29,11 @@ const featureFlags = useFeatureFlags()
 <style scoped>
 .hero {
   width: 100%;
-  padding: 120px 0 var(--space-6);
-
-  background-image: var(--bg-hero-image);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-attachment: scroll;
-  background-color: var(--color-surface);
+  padding: var(--space-5) 0 var(--space-4);
+  background-color: var(--bg);
 
   @media (--desktop) {
-    padding: 120px 0;
+    padding: var(--space-5) 0 var(--space-4);
     margin-bottom: var(--space-5);
   }
 
@@ -49,12 +43,12 @@ const featureFlags = useFeatureFlags()
     padding: 0 var(--space-3) 0;
 
     @media (--desktop) {
-      padding: 0;
+      padding: 0 var(--space-4);
     }
   }
 
   &__heading {
-    color: var(--color-white);
+    color: var(--text);
     margin-bottom: var(--space-2);
 
     @media (--desktop) {
@@ -63,7 +57,7 @@ const featureFlags = useFeatureFlags()
   }
 
   &__subheading {
-    color: var(--color-white);
+    color: var(--text-dim);
     font-size: 14px;
     line-height: 20px;
     font-family: var(--font-monospaced);

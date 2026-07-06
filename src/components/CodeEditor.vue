@@ -5,7 +5,7 @@
     :lang="lang"
     :options="{
       lineHeight: 20,
-      fontFamily: 'Roboto Mono',
+      fontFamily: 'JetBrains Mono',
       fontSize: 14,
       readOnly: true,
       wordWrap: 'on',

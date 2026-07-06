@@ -101,20 +101,41 @@ defineProps({
 
 <style scoped>
 .dashboard-keyblock-table {
-  &__header {
-    border-bottom: 1px solid var(--color-midnight-25);
+  /* Override global th sizes — these are detail-table labels, not list headers */
+  th {
+    /* width:1% collapses each label column to its min-content, leaving both
+       value (td) columns to share the remaining space equally. */
+    width: 1%;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-dim);
+    padding: 11px 0;
+    white-space: nowrap;
+    text-align: left;
+  }
 
-    @media (--desktop) {
-      padding: var(--space-2) 0 var(--space-1);
-    }
+  td {
+    /* width:50% makes both value columns compete for equal halves of
+       the table, with label columns collapsing to min-content. */
+    width: 50%;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 11px 0;
+    text-align: right;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+  &__header {
+    border-bottom: 1px solid var(--border-soft);
   }
 
   &__data {
     text-align: right;
-
-    @media (--desktop) {
-      padding: var(--space-2) 0 var(--space-1);
-    }
   }
 
   &__value-hash-ellipsed {
@@ -122,29 +143,20 @@ defineProps({
   }
 
   &__column-start {
-    padding-right: 0;
+    padding-right: var(--space-2);
   }
 
+  /* Gap between the two halves of the detail table.
+     !important needed: th { padding:11px 0 } sets padding-left:0 for all th;
+     this class selector should win on specificity but browsers may disagree. */
   &__column-end {
-    padding-left: 8%;
-  }
-
-  &__table-responsive {
     @media (--desktop) {
-      display: none;
-    }
-  }
-
-  &__table {
-    display: none;
-
-    @media (--desktop) {
-      display: block;
+      padding-left: var(--space-6) !important;
     }
   }
 
   &__tooltip {
-    margin-left: var(--space-0);
+    /* placeholder — gap + alignment handled in HintTooltip.vue directly */
   }
 
   &__price {

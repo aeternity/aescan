@@ -20,57 +20,48 @@ th {
   }
 }
 
+thead tr {
+  /* List-table header background — matches reference bg-elev2 header row */
+  background: var(--bg-elev2);
+}
+thead th {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  /* 11px vertical + 16px horizontal matches reference (prevents content
+       from touching border-radius corners in bordered table containers) */
+    padding: 11px 16px;
+}
+
 td {
   font-family: var(--font-monospaced);
+  font-size: 13px;
   font-weight: 400;
   text-align: left;
-  border-bottom: 1px solid var(--color-midnight-25);
+  border-bottom: 1px solid var(--border-soft);
   vertical-align: middle;
-  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-1);
+  /* 13px vertical + 16px horizontal matches reference row padding.
+       Detail tables (DashboardKeyblockTable, _detail-table.css) override this
+       via scoped CSS which has higher specificity. */
+    padding: 13px 16px;
   white-space: wrap;
   word-wrap: break-word;
-
-  @media (--desktop) {
-    padding: var(--space-1);
-  }
 }
 
-th:first-of-type {
-  padding-left: var(--space-1);
-
-  @media (--desktop) {
-    padding-left: 0;
-  }
-}
-
-td:first-of-type {
-  padding-left: var(--space-1);
-
-  @media (--desktop) {
-    padding-left: 0;
-  }
-}
-
-td:last-of-type {
-  padding-right: var(--space-1);
-
-  @media (--desktop) {
-    padding-right: 0;
-  }
-}
-
-thead tr:first-of-type th {
-  padding-bottom: 0;
-}
+/* No desktop overrides that zero out horizontal padding — content should
+   always have 16px from the container edges to avoid border-radius clipping. */
 
 tr:last-of-type td {
   border-bottom: 0;
 }
 
 tbody tr:hover td {
-  background: var(--color-snow);
+  background: var(--bg-elev2);
 }
 
 tbody tr:hover th {
-  background: var(--color-snow);
+  background: var(--bg-elev2);
 }

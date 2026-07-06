@@ -1,31 +1,58 @@
-@font-face {
-  font-family: ClashDisplay;
-  src: url("~/assets/fonts/ClashDisplay-Variable.woff2") format("woff2");
-  font-weight: 200 700;
-  font-display: swap;
-  font-style: normal;
-}
+/* Webfonts — self-hosted (SIL OFL-1.1, see *-OFL.txt in assets/fonts).
+   Space Grotesk = UI/headings, JetBrains Mono = numerals/hashes/code. */
 
 @font-face {
-  font-family: 'Roboto Mono';
-  src: url("~/assets/fonts/RobotoMono-Regular.woff2") format("woff2");
+  font-family: 'Space Grotesk';
+  src: url("~/assets/fonts/SpaceGrotesk-400.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Roboto Mono';
-  src: url("~/assets/fonts/RobotoMono-Medium.woff2") format("woff2");
+  font-family: 'Space Grotesk';
+  src: url("~/assets/fonts/SpaceGrotesk-500.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Roboto Mono';
-  src: url("~/assets/fonts/RobotoMono-Bold.woff2") format("woff2");
+  font-family: 'Space Grotesk';
+  src: url("~/assets/fonts/SpaceGrotesk-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url("~/assets/fonts/SpaceGrotesk-700.woff2") format("woff2");
   font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url("~/assets/fonts/JetBrainsMono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url("~/assets/fonts/JetBrainsMono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url("~/assets/fonts/JetBrainsMono-600.woff2") format("woff2");
+  font-weight: 600;
   font-display: swap;
   font-style: normal;
 }

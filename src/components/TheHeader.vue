@@ -129,7 +129,12 @@ function closeNavigation() {
 
 <style scoped>
 .header {
-  background: var(--color-surface);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
   display: flex;
   flex-direction: column;
 
@@ -151,7 +156,7 @@ function closeNavigation() {
     }
 
     @media (--desktop) {
-      padding: var(--space-3) 0;
+      padding: var(--space-3) var(--space-4);
       max-width: var(--container-width);
     }
   }

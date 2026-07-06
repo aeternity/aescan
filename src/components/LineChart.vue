@@ -123,7 +123,7 @@ ChartJS.register(
   Legend,
 )
 
-ChartJS.defaults.font.family = 'Roboto Mono'
+ChartJS.defaults.font.family = 'JetBrains Mono'
 </script>
 
 <style scoped>

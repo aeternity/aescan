@@ -1,6 +1,9 @@
 <template>
   <app-panel class="dashboard-microblocks-panel">
-    <div class="dashboard-microblocks-panel__container">
+    <div
+      class="dashboard-microblocks-panel__connector"
+      aria-hidden="true"/>
+    <div class="ae-kbsub dashboard-microblocks-panel__sub">
       <dashboard-panel-header
         level="h4"
         class="dashboard-microblocks-panel__dashboard-panel-header"
@@ -51,18 +54,61 @@ const {
 
 <style scoped>
 .dashboard-microblocks-panel {
-  background: var(--color-surface);
-  padding: var(--space-3) var(--space-1) var(--space-1);
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  /* Flush sub-section — override AppPanel's higher-specificity :has(table) padding
+     so the microblocks content aligns with the keyblock content above it. */
+  padding: var(--space-3) 0 var(--space-1) !important;
 
   @media (--desktop) {
-    padding: var(--space-3) var(--space-3) var(--space-3);
+    padding: 0 !important;
+  }
+
+  /* Animated dashed connector linking the keyblock section to the microblocks
+     "building" icon-box (aligned with the badge column). Desktop-only — the
+     stacked mobile/tablet layout has a variable detail height. */
+  &__connector {
+    display: none;
+    position: absolute;
+    width: 2px;
+    pointer-events: none;
+    z-index: 0;
+    background-image: repeating-linear-gradient(
+      var(--border) 0,
+      var(--border) 5px,
+      transparent 5px,
+      transparent 9px
+    );
+    background-size: 2px 14px;
+    animation: ae-dash-flow 0.7s linear infinite;
+
+    @media (--desktop) {
+      display: block;
+      left: 27px;
+      top: -175px;
+      height: 195px;
+    }
+  }
+
+  /* "Building" indicator — dashed icon-box on the microblocks header */
+  :deep(.badge) {
+    border-width: 2px;
+    border-style: dashed;
+  }
+
+  /* Slight indent for MICROBLOCKS header matching the reference (ae-kbsub margin-left:8px) */
+  &__sub {
+    margin-left: 8px;
   }
 
   &__dashboard-panel-header {
     margin: 0 var(--space-1) var(--space-2);
 
     @media (--desktop) {
-      margin: 0 0 var(--space-4) 0;
+      margin: 0 0 14px;
     }
   }
 
@@ -85,9 +131,9 @@ const {
   &__summary {
     display: block;
     margin: 0 var(--space-1) var(--space-3);
-    font-family: var(--font-monospaced);
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
+    color: var(--text-dim);
 
     @media (--desktop) {
       margin-bottom: 0;
@@ -97,6 +143,9 @@ const {
 
   &__summary--desktop {
     display: none;
+    font-size: 12.5px;
+    font-family: var(--font-primary);
+    color: var(--text-dim);
 
     @media (--desktop) {
       display: block;
@@ -104,7 +153,9 @@ const {
   }
 
   &__count {
-    font-weight: 700;
+    font-family: var(--font-monospaced);
+    font-weight: 600;
+    color: var(--text);
   }
 }
 </style>

@@ -20,14 +20,11 @@ const suffix = computed(() => {
 <style setup>
 .time-toggle-button {
   display: contents !important;
-  font-weight: 500 !important;
 
-  font-size: 14px !important;
-  line-height: 22px !important;
-
-  @media (--desktop) {
-    font-size: 16px !important;
-    line-height: 18px !important;
-  }
+  /* Inherit the surrounding header / label typography so age toggles match sibling columns */
+  font: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: inherit !important;
+  color: inherit !important;
 }
 </style>

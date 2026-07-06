@@ -75,7 +75,7 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 <style scoped>
 .dashboard-auctions-swiper {
   &__header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    border-bottom: 1px solid var(--border-soft);
   }
 
   &__data {

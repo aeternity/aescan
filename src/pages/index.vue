@@ -13,24 +13,7 @@
 
       <div class="dashboard__row">
         <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            .chain names
-          </h2>
-          <p class="dashboard__paragraph">
-            The æternity blockchain supports protocol-level .chain Names via the
-            æternity naming system (AENS).
-          </p>
           <dashboard-names-panel/>
-        </div>
-        <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            .chain Name Auctions
-          </h2>
-          <p class="dashboard__paragraph">
-            .chain Names can be obtained either immediately or via an auction
-            process, if shorter than 13 characters.
-          </p>
-          <dashboard-auctions-panel>Auctions ending soon</dashboard-auctions-panel>
         </div>
       </div>
 

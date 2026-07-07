@@ -1,24 +1,33 @@
 <template>
-  <table>
+  <table class="dashboard-auctions-table">
     <thead>
       <tr>
         <th>
-          Data
+          Name
           <hint-tooltip>
-            {{ namesHints.nameAndHighestBidder }}
+            {{ namesHints.nameId }}
           </hint-tooltip>
         </th>
         <th>
-          Highest Bid
+          Top Bidder
+          <hint-tooltip>
+            {{ namesHints.highestBidder }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Current Bid
           <hint-tooltip>
             {{ namesHints.bid }}
           </hint-tooltip>
         </th>
         <th>
-          <time-toggle-button>Expires</time-toggle-button>
+          <time-toggle-button>Ends</time-toggle-button>
           <hint-tooltip>
             {{ namesHints.ends }}
           </hint-tooltip>
+        </th>
+        <th>
+          Block
         </th>
       </tr>
     </thead>
@@ -26,31 +35,28 @@
       <tr
         v-for="auction in auctionsEndingSoon"
         :key="auction.name">
-        <td>
-          <div>
-            <span class="dashboard-auctions-table__label">Name:</span>
-            <app-link
-              :to="`/names/${auction.name}`"
-              class="dashboard-auctions-table__chain-name u-ellipsis">
-              {{ auction.name }}
-            </app-link>
-          </div>
-          <div>
-            <span class="dashboard-auctions-table__label">Highest Bidder: </span>
-            <value-hash-ellipsed
-              :link-to="`/accounts/${auction.highestBidder}`"
-              :hash="auction.highestBidder"/>
-          </div>
+        <td class="dashboard-auctions-table__data">
+          <app-link
+            :to="`/names/${auction.name}`"
+            class="dashboard-auctions-table__chain-name u-ellipsis">
+            {{ auction.name }}
+          </app-link>
         </td>
-        <td>
+        <td class="dashboard-auctions-table__data">
+          <value-hash-ellipsed
+            :link-to="`/accounts/${auction.highestBidder}`"
+            :hash="auction.highestBidder"/>
+        </td>
+        <td class="dashboard-auctions-table__data">
           <price-label :price="auction.bid"/>
         </td>
-        <td>
-          <div class="dashboard-auctions-table__blocks">
-            <block-time-cell
-              :height="auction.expirationHeight"
-              :timestamp="auction.expiration"/>
-          </div>
+        <td class="dashboard-auctions-table__data">
+          <timestamp-label :timestamp="auction.expiration"/>
+        </td>
+        <td class="dashboard-auctions-table__data">
+          <app-link :to="`/keyblocks/${auction.expirationHeight}`">
+            {{ auction.expirationHeight }}
+          </app-link>
         </td>
       </tr>
     </tbody>
@@ -67,16 +73,11 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 .dashboard-auctions-table {
   &__chain-name {
     display: inline-block;
-    width: 160px;
+    max-width: 160px;
   }
 
-  &__label {
-    display: inline-block;
-    margin: 0 var(--space-0) var(--space-0) 0;
-  }
-
-  &__blocks {
-    margin-bottom: var(--space-0);
+  &__data {
+    white-space: nowrap;
   }
 }
 </style>

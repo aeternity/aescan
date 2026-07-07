@@ -4,18 +4,16 @@ describe('homepage', () => {
 
     cy.get('.stats-panel').should('be.visible')
     cy.get('.dashboard-state-channels-panel table').should('be.visible')
-    cy.get('.dashboard-auctions-panel')
-
-      .should('satisfy', elements => {
-        return Array.from(elements[0].childNodes).some(element => {
-          if (element.localName === 'table' || element.className === 'blank-state') {
-            return true
-          } else {
-            return false
-          }
-        })
-      })
     cy.get('.dashboard-names-panel table').should('be.visible')
+
+    cy.get('.dashboard-names-panel')
+      .contains('Ending Soon')
+      .click()
+    cy.get('.dashboard-names-panel')
+      .should('satisfy', elements => {
+        return Array.from(elements[0].querySelectorAll('table, .blank-state')).length > 0
+      })
+
     cy.get('.dashboard-keyblock-panel table').should('be.visible')
     cy.get('.search-bar').should('be.visible')
   })

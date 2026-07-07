@@ -88,14 +88,16 @@
         <price-label
           class="stats-panel__value"
           :price="burnedCount"
-          :has-icon="false"/>
+          :has-icon="false"
+          compact/>
       </div>
       <div class="stats-panel__content">
         Circulating:
         <price-label
           class="stats-panel__value"
           :price="totalTokenSupply"
-          :has-icon="false"/>
+          :has-icon="false"
+          compact/>
       </div>
       <template #tooltip>
         Circulating supply is the distributed amount of Æ minus the burned amount of Æ. The protocol automatically burns
@@ -251,10 +253,16 @@ const isLoading = computed(() => {
     font-weight: 700;
     margin-left: var(--space-0);
     color: var(--text);
+    /* Keep the number and its unit (e.g. "165,494,217 AE") together as one
+           unit — if it doesn't fit next to the label it wraps as a whole to the
+           next line instead of breaking mid-value. */
+      white-space: nowrap;
   }
 
   &__content {
     display: flex;
+    flex-wrap: wrap;
+      column-gap: var(--space-0);
   }
 
   &__loader-panel {

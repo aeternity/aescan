@@ -86,6 +86,9 @@ defineProps({
     font-size: 11px;
     line-height: 1.45;
     color: var(--text-dim);
+    /* Reserve height for 2 lines so 1-line tiles (e.g. "SMART CONTRACTS")
+       match the shape/height of 2-line tiles instead of shrinking. */
+    min-height: calc(1.45em * 2);
   }
 }
 </style>

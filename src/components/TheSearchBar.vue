@@ -25,9 +25,6 @@
       placeholder="Search address, tx, block, token or name…"
       type="search"
       @keyup.enter="search">
-    <span
-      class="search-bar__shortcut"
-      aria-hidden="true">/</span>
   </div>
 </template>
 
@@ -163,19 +160,6 @@ function isMicroblockId(query) {
     &::-webkit-search-cancel-button {
       display: none;
     }
-  }
-
-  &__shortcut {
-    flex-shrink: 0;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text-faint);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    padding: 2px 6px;
-    line-height: 1.4;
-    pointer-events: none;
-    user-select: none;
   }
 }
 </style>

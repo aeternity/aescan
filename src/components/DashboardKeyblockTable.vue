@@ -9,7 +9,9 @@
           Height
         </th>
         <td class="dashboard-keyblock-table__data">
-          <app-link :to="`/keyblocks/${keyblock.height}`">
+          <app-link
+            class="dashboard-keyblock-table__height"
+            :to="`/keyblocks/${keyblock.height}`">
             {{ keyblock.height }}
           </app-link>
         </td>
@@ -140,6 +142,10 @@ defineProps({
 
   &__value-hash-ellipsed {
     font-weight: 400;
+  }
+
+  &__height {
+    font-family: var(--font-monospaced);
   }
 
   &__column-start {

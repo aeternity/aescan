@@ -198,6 +198,10 @@ function closeNavigation() {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left center;
+    /* Optical alignment: the logo is a solid inked image while nav text
+       has descender whitespace baked into its line-height, so a
+       mathematically-centered logo reads as sitting slightly low. */
+    transform: translateY(-2px);
   }
 
   /* Desktop nav — flex row, hidden on mobile */

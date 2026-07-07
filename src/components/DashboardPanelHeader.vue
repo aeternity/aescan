@@ -93,16 +93,14 @@ defineProps({
   }
 
   &__link {
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 500;
-    white-space: nowrap;
+      font-size: 12.5px;
+      line-height: 20px;
+      font-weight: 600;
+      white-space: nowrap;
 
-    @media (--desktop) {
-      font-size: 16px;
-      line-height: 24px;
-      margin-left: auto;
-    }
+      @media (--desktop) {
+        margin-left: auto;
+      }
   }
 
   &__heading {

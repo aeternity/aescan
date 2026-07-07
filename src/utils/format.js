@@ -70,6 +70,23 @@ export function formatAePrice(price, maxDigits = 8) {
   return `${formatNumber(truncatedPrice, decimals.length, maxDigits)}`
 }
 
+/**
+ * Collapses large numbers into a compact form, e.g. 165494217 -> "165.49M".
+ * Used for large AE amounts (supply, locked value) where showing the exact
+ * figure inline would be too wide; the exact value is shown in a tooltip.
+ */
+export function formatCompactNumber(number) {
+  if (isNaN(number) || number === null) {
+    return number
+  }
+
+  return Intl.NumberFormat('en-US', {
+    notation: 'compact',
+    compactDisplay: 'short',
+    maximumFractionDigits: 2,
+  }).format(number)
+}
+
 export function formatReduceDecimals(tokenAmount, numberOfDecimals) {
   if (isNaN(tokenAmount) || tokenAmount === null) {
     return tokenAmount

@@ -3,15 +3,15 @@
     <app-badge>
       <app-icon
         :name="iconName"
-        :size="20"/>
+        :size="16"/>
     </app-badge>
     <div class="stats-tile__container">
-      <h3 class="stats-tile__title h5">
+      <div class="stats-tile__title">
         {{ title }}
         <hint-tooltip class="stats-tile__tooltip">
           <slot name="tooltip"/>
         </hint-tooltip>
-      </h3>
+      </div>
       <div class="stats-tile__slot">
         <slot/>
       </div>
@@ -37,47 +37,54 @@ defineProps({
   display: flex;
   flex-direction: row;
   align-items: center;
-  word-break: break-all;
   background: var(--bg-elev);
   border: 1px solid var(--border);
   border-radius: var(--r-tile);
-  padding: var(--space-2);
+  padding: 9px 11px;
+  gap: 9px;
   transition: border-color var(--dur) var(--ease);
 
   &:hover {
     border-color: var(--brand-line);
   }
 
+  :deep(.badge) {
+    /* Override AppBadge to the reference spec: 34×34, radius 9px */
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    flex-shrink: 0;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin-left: var(--space-2);
+    min-width: 0;
   }
 
   &__title {
     display: flex;
     align-items: center;
-    font-size: 11.5px;
+    gap: 4px;
+    font-size: 10.5px;
     font-weight: 700;
-    line-height: 16px;
+    line-height: 15px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--text);
-
-    @media (--desktop) {
-      margin-bottom: var(--space-0);
-    }
+    margin-bottom: 3px;
+    white-space: nowrap;
   }
 
   &__tooltip {
-    margin-left: var(--space-0);
+    /* gap: 4px on __title flex handles spacing; no extra margin needed */
   }
 
   &__slot {
-    font-family: var(--font-monospaced);
-    font-size: 12px;
-    line-height: 18px;
+    /* Labels inherit sans-serif from body; only values (stats-panel__value) are mono */
+    font-size: 11px;
+    line-height: 1.45;
     color: var(--text-dim);
   }
 }

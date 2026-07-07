@@ -44,6 +44,8 @@
           {'header__navigation--open': isMobileMenuOpen},
         ]"/>
 
+      <the-search-bar class="header__search u-hidden-mobile"/>
+
       <div class="header__toggle-desktop">
         <theme-toggle/>
       </div>
@@ -178,6 +180,11 @@ function closeNavigation() {
       justify-content: flex-start;
       align-items: center;
     }
+  }
+
+  &__search {
+    flex: 1;
+    max-width: 440px;
   }
 
   &__network-select {

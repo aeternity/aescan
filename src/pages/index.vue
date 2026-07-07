@@ -1,29 +1,10 @@
 <template>
   <div class="dashboard">
-    <div class="dashboard__row">
+    <div class="dashboard__row dashboard__hero-row">
       <app-hero/>
     </div>
 
     <div class="dashboard__container">
-      <div class="dashboard__row">
-        <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            æternity by the block
-          </h2>
-        </div>
-        <div class="dashboard__column">
-          <p class="dashboard__paragraph dashboard__paragraph--horizontal">
-            Discover and navigate through the æternity blockchain, powered by
-            Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
-            <app-link
-              class="dashboard__link"
-              to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b"
-              is-text-link>
-              Learn more
-            </app-link>
-          </p>
-        </div>
-      </div>
       <div class="dashboard__row">
         <client-only>
           <dashboard-keyblock-panel/>
@@ -146,6 +127,13 @@ onBeforeUnmount(() => {
       &:last-of-type {
         margin-bottom: 0;
       }
+    }
+  }
+
+  /* Hero wrapper row: much smaller gap to the keyblocks section below */
+  &__hero-row {
+    @media (--desktop) {
+      margin-bottom: var(--space-2);
     }
   }
 

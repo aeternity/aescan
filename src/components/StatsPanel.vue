@@ -238,6 +238,7 @@ const isLoading = computed(() => {
   @media (--desktop) {
     gap: var(--space-2);
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;  /* equal tile heights across all rows */
   }
 
   &__stats-tile {
@@ -245,6 +246,8 @@ const isLoading = computed(() => {
   }
 
   &__value {
+    /* Numbers/amounts must be monospace. Labels ("Total:", "Active:") are sans. */
+    font-family: var(--font-monospaced);
     font-weight: 700;
     margin-left: var(--space-0);
     color: var(--text);

@@ -37,7 +37,6 @@ thead th {
 }
 
 td {
-  font-family: var(--font-monospaced);
   font-size: 13px;
   font-weight: 400;
   text-align: left;

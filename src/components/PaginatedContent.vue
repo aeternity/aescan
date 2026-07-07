@@ -264,8 +264,7 @@ onBeforeUnmount(() => {
     flex-wrap: wrap;
   }
 
-  &__per-page-label {
-    font-family: var(--font-monospaced);
+    &__per-page-label {
     font-size: 12px;
     color: var(--color-midnight);
     white-space: nowrap;

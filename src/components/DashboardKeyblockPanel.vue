@@ -133,8 +133,7 @@ const selectedKeyblockMiningTime = computed(() => {
     }
   }
 
-  &__summary {
-    font-family: var(--font-monospaced);
+    &__summary {
     font-size: 12px;
     line-height: 20px;
     display: block;

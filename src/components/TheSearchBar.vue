@@ -133,17 +133,23 @@ function isMicroblockId(query) {
   &__icon {
     flex-shrink: 0;
     color: var(--text-faint);
+    display: block;
   }
 
   &__input {
     flex: 1;
     min-width: 0;
     border: none;
+    border-radius: 0;
     background: transparent;
     color: var(--text);
     font-family: var(--font-sans);
     font-size: 13px;
-    line-height: 1;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+    /* Do NOT set height — let flex align-items: center handle it naturally.
+       An explicit height causes Chrome to misalign the text inside inputs. */
     appearance: none;
 
     &:focus {
@@ -154,7 +160,6 @@ function isMicroblockId(query) {
       color: var(--text-faint);
     }
 
-    /* Remove the browser's native clear button */
     &::-webkit-search-cancel-button {
       display: none;
     }

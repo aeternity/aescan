@@ -23,7 +23,6 @@ defineProps({
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--font-monospaced);
   text-transform: capitalize;
 
   &__image {

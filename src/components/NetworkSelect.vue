@@ -116,7 +116,7 @@ function navigate(network) {
   }
 
   &__label {
-    line-height: 1;
+    line-height: normal;
   }
 
   &__chevron {

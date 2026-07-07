@@ -27,10 +27,10 @@
         aria-hidden="true"
         @click="closeNavigation"/>
 
-      <the-search-bar class="header__search u-hidden-mobile"/>
+      <the-search-bar class="header__search"/>
 
       <div class="header__controls">
-        <network-select class="header__network-select u-hidden-mobile"/>
+        <network-select class="header__network-select"/>
 
         <theme-toggle/>
 
@@ -188,6 +188,7 @@ function closeNavigation() {
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    line-height: 0;
   }
 
   &__logo-bg {
@@ -227,9 +228,14 @@ function closeNavigation() {
     }  }
 
   &__search {
+    display: none;
     flex: 1;
     max-width: 440px;
     margin: 0 auto;
+
+    @media (--desktop) {
+      display: flex;
+    }
   }
 
   /* Right-side controls cluster */
@@ -247,7 +253,11 @@ function closeNavigation() {
   }
 
   &__network-select {
-    /* visible only on desktop via u-hidden-mobile */
+    display: none;
+
+    @media (--desktop) {
+      display: flex;
+    }
   }
 
   &__backdrop {

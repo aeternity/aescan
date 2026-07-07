@@ -74,7 +74,6 @@ const microblockDetailsLink = computed(() => `/microblocks/${selectedMicroblock.
   &__summary {
     display: block;
     margin: 0 var(--space-1) var(--space-2) var(--space-1);
-    font-family: var(--font-monospaced);
     font-size: 12.5px;
     line-height: 20px;
     color: var(--text-dim);

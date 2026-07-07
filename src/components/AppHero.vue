@@ -127,7 +127,6 @@
   &__chart-placeholder-label {
     font-size: 12px;
     color: var(--text-faint);
-    font-family: var(--font-mono);
   }
 
   &__stats-panel {

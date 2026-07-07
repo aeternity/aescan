@@ -10,7 +10,6 @@
 
 <style scoped>
 .data-failed {
-  font-family: var(--font-monospaced);
   text-align: center;
   padding: var(--space-2);
   color: var(--color-midnight);

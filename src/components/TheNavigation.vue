@@ -189,21 +189,22 @@ function updateIsDesktopResolution() {
   &__list {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    cursor: pointer;
-    margin-bottom: var(--space-4);
+    gap: 3px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
     @media (--desktop) {
       flex-direction: row;
       align-items: center;
-      margin-bottom: 0;
+      gap: 2px;
     }
   }
 
   &__item {
-    height: 100%;
     display: flex;
     align-items: center;
+    position: relative;
   }
 }
 </style>

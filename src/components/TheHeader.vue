@@ -6,37 +6,13 @@
         {'header__container--open': isMobileMenuOpen},
       ]">
       <app-link
+        class="header__logo"
         to="/"
         @click="closeNavigation">
-        <img
-          class="header__logo-img"
-          width="134"
-          height="50"
-          alt="æScan logo"
-          src="/logo-light.svg">
         <div
           class="header__logo-bg"
           aria-hidden="true"/>
       </app-link>
-
-      <div class="header__right-controls">
-        <div class="header__toggle-mobile">
-          <theme-toggle/>
-        </div>
-
-        <div
-          class="header__hamburger"
-          @click="toggleNavigation">
-          <app-icon
-            v-if="isMobileMenuOpen"
-            name="cross"
-            :size="34"/>
-          <app-icon
-            v-else
-            name="menu"
-            :size="24"/>
-        </div>
-      </div>
 
       <the-navigation
         :class="[
@@ -44,18 +20,71 @@
           {'header__navigation--open': isMobileMenuOpen},
         ]"/>
 
+      <!-- Mobile drawer backdrop -->
+      <div
+        v-if="isMobileMenuOpen"
+        class="header__backdrop"
+        aria-hidden="true"
+        @click="closeNavigation"/>
+
       <the-search-bar class="header__search u-hidden-mobile"/>
 
-      <div class="header__toggle-desktop">
+      <div class="header__controls">
+        <network-select class="header__network-select u-hidden-mobile"/>
+
         <theme-toggle/>
+
+        <button
+          class="header__hamburger"
+          aria-label="Toggle navigation"
+          @click="toggleNavigation">
+          <svg
+            v-if="isMobileMenuOpen"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.3"
+            stroke-linecap="round">
+            <line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"/>
+            <line
+              x1="18"
+              y1="6"
+              x2="6"
+              y2="18"/>
+          </svg>
+          <svg
+            v-else
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round">
+            <line
+              x1="3"
+              y1="6"
+              x2="21"
+              y2="6"/>
+            <line
+              x1="3"
+              y1="12"
+              x2="21"
+              y2="12"/>
+            <line
+              x1="3"
+              y1="18"
+              x2="21"
+              y2="18"/>
+          </svg>
+        </button>
       </div>
-
-      <network-select
-        :class="[
-          'header__network-select',
-          {'header__network-select--open': isMobileMenuOpen}]"/>
-
-      <wallet-account-controls class="u-hidden-mobile"/>
     </div>
     <div
       v-if="isSyncing"
@@ -141,130 +170,129 @@ function closeNavigation() {
   flex-direction: column;
 
   &__container {
-    height: 100%;
-    width: 100%;
-
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
-
+    gap: 20px;
+    height: 60px;
+    width: 100%;
+    max-width: var(--container-width);
     margin: 0 auto;
-    padding: var(--space-2) var(--space-3);
-    column-gap: var(--space-5);
-
-    &--open {
-      padding-bottom: var(--space-6);
-    }
+    padding: 0 var(--space-3);
 
     @media (--desktop) {
-      padding: var(--space-3) var(--space-4);
-      max-width: var(--container-width);
+      padding: 0 var(--space-4);
     }
   }
 
+  &__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &__logo-bg {
+    width: 107px;
+    height: 40px;
+    background-image: var(--logo-url);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+  }
+
+  /* Desktop nav — flex row, hidden on mobile */
   &__navigation {
     display: none;
-    flex-basis: 100%;
-    flex-grow: 1;
-
-    &--open {
-      margin: var(--space-6) 0 0;
-      display: block;
-    }
 
     @media (--desktop) {
-      height: 100%;
-      flex-basis: auto;
       display: flex;
-      justify-content: flex-start;
       align-items: center;
+      flex-shrink: 0;
     }
-  }
+
+    /* Mobile: slide-in drawer overlay */
+    &--open {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 81;
+      width: 290px;
+      max-width: 86vw;
+      background: var(--bg-elev);
+      border-left: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow-y: auto;
+      padding: 60px 12px 22px;
+    }  }
 
   &__search {
     flex: 1;
     max-width: 440px;
+    margin: 0 auto;
   }
 
-  &__network-select {
-    display: none;
-    margin: var(--space-2) auto var(--space-5);
-
-    &--open {
-      display: block;
-    }
-
-    @media (--desktop) {
-      margin: 0;
-      display: block;
-    }
-  }
-
-  &__right-controls {
+  /* Right-side controls cluster */
+  &__controls {
     display: flex;
     align-items: center;
     gap: var(--space-1);
     margin-left: auto;
+    flex-shrink: 0;
 
     @media (--desktop) {
-      display: none;
+      margin-left: 0;
+      gap: 10px;
     }
   }
 
-  &__toggle-mobile {
-    display: flex;
-
-    @media (--desktop) {
-      display: none;
-    }
+  &__network-select {
+    /* visible only on desktop via u-hidden-mobile */
   }
 
-  &__toggle-desktop {
-    display: none;
-
-    @media (--desktop) {
-      display: flex;
-    }
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    background: rgb(0 0 0 / 55%);
   }
 
   &__hamburger {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text-dim);
     cursor: pointer;
-    color: var(--color-midnight);
+    flex-shrink: 0;
+    transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+
+    &:hover {
+      color: var(--text);
+      border-color: var(--brand-line);
+    }
 
     @media (--desktop) {
       display: none;
     }
-  }
-
-  &__icon {
-    margin-left: var(--space-1);
   }
 
   &__warning {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-fire);
+    background: var(--brand);
     color: var(--color-white);
-    font-family: var(--font-monospaced);
+    font-family: var(--font-mono);
     padding: var(--space-0) var(--space-3);
     font-size: 11px;
     line-height: 16px;
     letter-spacing: 0.0015em;
-  }
-
-  &__logo-img {
-    display: none;
-  }
-
-  &__logo-bg {
-    width: 134px;
-    height: 50px;
-    background-image: var(--logo-url);
-    background-size: contain;
-    background-repeat: no-repeat;
   }
 }
 </style>

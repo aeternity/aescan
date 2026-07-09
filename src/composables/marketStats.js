@@ -52,17 +52,27 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     }
 
     const cachedAeternityPriceData = cache.get(CACHE_KEY_PRICE_DATA)
+    if (!cachedAeternityPriceData) {
+      return
+    }
     price.value = cachedAeternityPriceData.usd
     priceChange.value = cachedAeternityPriceData.usd24hChange.toFixed(2)
   }
 
   async function fetchCoinStats() {
     if (!cache.get(CACHE_KEY_COINGECKO_MARKET_DATA)) {
-      const { data } = await axios.get(`${MARKET_STATS_COINGECKO_ADDRESS}/coins/aeternity`)
-      cache.put(CACHE_KEY_COINGECKO_MARKET_DATA, data.marketData, MARKET_STATS_CACHE_TTL)
+      try {
+        const { data } = await axios.get(`${MARKET_STATS_COINGECKO_ADDRESS}/coins/aeternity`)
+        cache.put(CACHE_KEY_COINGECKO_MARKET_DATA, data.marketData, MARKET_STATS_CACHE_TTL)
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     const cachedAeternityMarketData = cache.get(CACHE_KEY_COINGECKO_MARKET_DATA)
+    if (!cachedAeternityMarketData) {
+      return
+    }
     marketCap.value = cachedAeternityMarketData.marketCap.usd
   }
 

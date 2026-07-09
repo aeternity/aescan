@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.3](https://github.com/aeternity/aescan/compare/0.28.2...0.28.3) (2026-07-09)
+
+
+### Bug Fixes
+
+* prevent SSR crash when CoinGecko market stats fetch fails ([#1173](https://github.com/aeternity/aescan/issues/1173)) ([ec854f8](https://github.com/aeternity/aescan/commit/ec854f817ded5aaef366037bffbe4f45987929ab))
+
 ## [0.28.2](https://github.com/aeternity/aescan/compare/0.28.1...0.28.2) (2026-05-04)
 
 

@@ -15,6 +15,10 @@ export default defineNuxtConfig({
     APP_VERSION: process.env.APP_VERSION,
   },
   runtimeConfig: {
+    // Server-only (never exposed to the client). Optional: when set, sent as
+    // the `x-cg-demo-api-key` header on CoinGecko requests to use a paid/demo
+    // API key instead of the public, aggressively rate-limited tier.
+    COINGECKO_API_KEY: process.env.COINGECKO_API_KEY,
     public: {
       SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
       SENTRY_DSN: process.env.SENTRY_DSN,

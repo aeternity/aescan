@@ -17,13 +17,13 @@
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currency }}
+        {{ currencySymbol }}
       </app-link>
       <template v-else>
-        {{ currency }}
+        {{ currencySymbol }}
       </template>
       <template #tooltip>
-        {{ price }} {{ currency }}
+        {{ price }} {{ currencySymbol }}
       </template>
     </app-tooltip>
 
@@ -32,9 +32,9 @@
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
-        {{ currency }}
+        {{ currencySymbol }}
       </app-link>
-      <template v-else>{{ currency }}</template>
+      <template v-else>{{ currencySymbol }}</template>
     </span>
   </div>
 </template>
@@ -53,7 +53,7 @@ const props = defineProps({
   },
   currency: {
     type: String,
-    default: () => storeToRefs(useConfigStore()).currency.value.symbol,
+    default: undefined,
   },
   hasIcon: {
     type: Boolean,
@@ -69,6 +69,14 @@ const props = defineProps({
   },
 })
 
+const { currency: nativeCurrency } = storeToRefs(useConfigStore())
+
+// the config store may not be populated yet (e.g. when the app mounts after
+// recovering from an error page), so fall back reactively rather than in a
+// prop default, which Vue evaluates only once
+const currencySymbol = computed(() =>
+  props.currency === undefined ? nativeCurrency.value?.symbol : props.currency,
+)
 const isPriceRounded = computed(() =>
   priceRounded.value !== price.value,
 )

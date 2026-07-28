@@ -1,5 +1,5 @@
 <template>
-  <app-panel>
+  <app-panel class="contract-verified-panel">
     <template
       v-if="isVerified"
       #title>

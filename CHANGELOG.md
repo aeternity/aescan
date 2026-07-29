@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.4](https://github.com/aeternity/aescan/compare/0.28.3...0.28.4) (2026-07-28)
+
+
+### Bug Fixes
+
+* be able to open home page after opening error page ([#1175](https://github.com/aeternity/aescan/issues/1175)) ([0c4fbbb](https://github.com/aeternity/aescan/commit/0c4fbbbcaa79413412ba05f270bc9f09dcc56246))
+
 ## [0.28.3](https://github.com/aeternity/aescan/compare/0.28.2...0.28.3) (2026-07-09)
 
 

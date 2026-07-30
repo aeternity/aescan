@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.28.5](https://github.com/aeternity/aescan/compare/0.28.4...0.28.5) (2026-07-30)
+
+
+### Bug Fixes
+
+* null-ref crashes when backend fetch fails ([#1177](https://github.com/aeternity/aescan/issues/1177)) ([0fea92c](https://github.com/aeternity/aescan/commit/0fea92c4c2afa177f7ece69ff99754f13f06aba2))
+
 ## [0.28.4](https://github.com/aeternity/aescan/compare/0.28.3...0.28.4) (2026-07-28)
 
 

@@ -57,6 +57,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   /* USER INTERACTION */
 
   async function selectKeyblock(keyblock) {
+    if (!keyblocks.value) return
+
     if (isBlockFirstInSequence(keyblock, keyblocks.value)) {
       rawSelectedKeyblock.value = null
     } else {

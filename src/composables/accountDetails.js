@@ -114,7 +114,7 @@ export const useAccountStore = defineStore('account', () => {
     const { data } = await axios.get(`${MIDDLEWARE_URL}${queryParameters || defaultParameters}`)
     rawAccountTokens.value = data
 
-    if (rawAccountTokens.value?.data.length) {
+    if (rawAccountTokens.value?.data?.length) {
       await fetchAccountTokensPrices()
     }
   }

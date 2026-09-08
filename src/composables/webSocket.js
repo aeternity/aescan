@@ -55,7 +55,7 @@ export const useWebSocket = defineStore('webSocket', () => {
     }
 
     if (subscribedTransactionId.value) {
-      webSocket.value.send(`{"op":"Subscribe", "source": "node", "payload": "${subscribedTransactionId.value}"}`)
+      webSocket.value.send(`{"op":"Subscribe", "source": "mdw", "payload": "${subscribedTransactionId.value}"}`)
     }
 
     webSocket.value.onmessage = (event) => {

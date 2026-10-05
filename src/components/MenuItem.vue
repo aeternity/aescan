@@ -115,6 +115,16 @@ defineProps({
       border: 1px solid var(--border);
       border-radius: 11px;
       box-shadow: var(--shadow);
+
+      /* Transparent bridge over the gap below the header, so the pointer stays inside the hovered item */
+      &:before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 0;
+        right: 0;
+        height: 4px;
+      }
     }
   }
 

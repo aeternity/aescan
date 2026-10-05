@@ -9,8 +9,11 @@
         &mdash; blocks, transactions, contracts, AEX-9 tokens, names &amp; oracles.
       </p>
       <div class="hero__grid">
-        <!-- Chart card: placeholder until weekly blockchain-activity chart is implemented -->
-        <div class="hero__chart-card">
+        <hero-price-card v-if="price !== null"/>
+        <!-- Placeholder when market data is unavailable (feature flag off, testnet or API failure) -->
+        <div
+          v-else
+          class="hero__chart-card">
           <div class="hero__chart-card-header">
             <span
               class="hero__chart-icon"
@@ -28,7 +31,7 @@
 </template>
 
 <script setup>
-// Chart component and featureFlags hook will be added here when the activity chart is implemented
+const { price } = storeToRefs(useMarketStatsStore())
 </script>
 
 <style scoped>

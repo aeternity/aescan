@@ -79,5 +79,10 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
   &__data {
     white-space: nowrap;
   }
+
+  /* Allow "relative (absolute)" timestamps to wrap so the table fits narrower desktop widths */
+  :deep(.timestamp-label__label) {
+    white-space: normal;
+  }
 }
 </style>

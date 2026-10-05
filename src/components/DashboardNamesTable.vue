@@ -83,12 +83,22 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
     white-space: nowrap;
   }
 
+  /* Allow "relative (absolute)" timestamps to wrap so the table fits narrower desktop widths */
+  :deep(.timestamp-label__label) {
+    white-space: normal;
+  }
+
   &__price-type {
     display: block;
+    width: fit-content;
+    padding: 2px 7px;
     font-size: 10.5px;
     font-weight: 600;
     color: var(--text-faint);
-    margin-bottom: var(--space-0);
+    background: var(--bg-elev2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 2px;
   }
 }
 </style>

@@ -1,18 +1,16 @@
 <template>
-  <div class="top-accounts-panel">
-    <header class="top-accounts-panel__header">
-      <h2 class="top-accounts-panel__title">
-        Account Leaderboard
-      </h2>
-      <div class="top-accounts-panel__controls">
-        <span class="top-accounts-panel__summary">
-          {{ summary }}
-        </span>
-        <app-segmented-control
-          v-model="activeTab"
-          :options="tabOptions"/>
-      </div>
-    </header>
+  <list-card>
+    <template #title>
+      Account Leaderboard
+    </template>
+    <template #controls>
+      <span class="top-accounts-panel__summary">
+        {{ summary }}
+      </span>
+      <app-segmented-control
+        v-model="activeTab"
+        :options="tabOptions"/>
+    </template>
 
     <template v-if="activeTab === 'top'">
       <top-accounts-table
@@ -29,7 +27,7 @@
         class="top-accounts-panel__loader"/>
       <blank-state v-else/>
     </template>
-  </div>
+  </list-card>
 </template>
 
 <script setup>
@@ -76,36 +74,6 @@ watch(activeTab, (tab) => {
 
 <style scoped>
 .top-accounts-panel {
-  max-width: 100%;
-  overflow: hidden;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: var(--r-panel);
-
-  &__header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-1);
-    padding: 16px 22px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  &__title {
-    font-size: 15px;
-    line-height: 24px;
-    font-weight: 600;
-    letter-spacing: 0;
-  }
-
-  &__controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 14px;
-  }
-
   &__summary {
     font-size: 12px;
     color: var(--text-faint);

@@ -1,7 +1,7 @@
 <template>
   <app-panel :title-to="props.titleTo">
     <template #title>
-      NAMES ACTIVATED
+      {{ title }}
     </template>
     <template #end>
       <chart-controls
@@ -11,6 +11,7 @@
 
     <line-chart
       :data="namesStatistics"
+      :height="height"
       :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
@@ -31,6 +32,14 @@ const props = defineProps({
   scope: {
     type: Object,
     default: CHART_SCOPE_PRESETS_OPTIONS[0],
+  },
+  title: {
+    type: String,
+    default: 'NAMES ACTIVATED',
+  },
+  height: {
+    type: Number,
+    default: 250,
   },
 })
 

@@ -1,21 +1,24 @@
 <template>
-  <app-panel class="names-active-panel">
+  <div class="names-active-panel">
     <paginated-content
       v-model:limit="pageLimit"
+      card
       :entities="activeNames"
+      :total-count="activeNamesCount"
       @prev-clicked="loadPrevNames"
       @next-clicked="loadNextNames">
       <names-active-table
         v-if="activeNames"
-        class="names-active-panel__names-active-table"
         :names="activeNames"/>
     </paginated-content>
-  </app-panel>
+  </div>
 </template>
 
 <script setup>
 const { fetchActiveNames } = useNamesStore()
 const { activeNames } = storeToRefs(useNamesStore())
+
+const { activeNamesCount } = storeToRefs(useBlockchainStatsStore())
 
 const pageLimit = usePageLimit('names-active')
 
@@ -31,11 +34,3 @@ function loadNextNames() {
   return fetchActiveNames({ queryParameters: activeNames.value.next })
 }
 </script>
-
-<style scoped>
-.names-active-panel__names-active-table {
-  @media (--desktop) {
-    margin-bottom: var(--space-4);
-  }
-}
-</style>

@@ -1,7 +1,7 @@
 <template>
   <div
     ref="paginatedContent"
-    class="paginated-content">
+    :class="['paginated-content', {'paginated-content--card': card}]">
     <template v-if="entities">
       <header
         v-if="hasCounter || hasLimitSelector || $slots.header"
@@ -91,6 +91,11 @@ const props = defineProps({
   totalCount: {
     type: [Number, null],
     default: null,
+  },
+  // Edge-to-edge layout for use inside a ListCard
+  card: {
+    type: Boolean,
+    default: false,
   },
   paginationStyle: {
     type: String,
@@ -295,6 +300,54 @@ onBeforeUnmount(() => {
 
   &__blank-state {
     width: 100%;
+  }
+
+  &--card {
+    align-items: stretch;
+
+    .paginated-content__header {
+      padding: 12px 22px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .paginated-content__counter {
+      font-family: var(--font-primary);
+      font-size: 12.5px;
+      color: var(--text-faint);
+    }
+
+    .paginated-content__highlighted {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .paginated-content__per-page-label {
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+
+    .paginated-content__per-page-option {
+      border-color: var(--border);
+      border-radius: 6px;
+      color: var(--text-faint);
+
+      &:hover,
+      &--active {
+        color: var(--brand);
+        border-color: var(--brand-line);
+      }
+    }
+
+    .paginated-content__footer {
+      margin-top: 0;
+      padding: 14px 22px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .paginated-content__pagination {
+      justify-content: flex-end;
+      gap: 8px;
+    }
   }
 }
 </style>

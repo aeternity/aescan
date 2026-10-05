@@ -132,21 +132,5 @@ defineProps({
     background: var(--up-soft);
     border-radius: 6px;
   }
-
-  th,
-  td {
-    padding-right: 22px;
-    padding-left: 22px;
-  }
-
-  th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-
-  thead tr {
-    background: transparent;
-    border-bottom: 1px solid var(--border);
-  }
 }
 </style>

@@ -40,36 +40,39 @@ defineEmits(['click'])
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--space-0);
-  height: 28px;
-  color: var(--color-midnight);
-  background: transparent;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  gap: 4px;
+  padding: 7px 15px;
+  color: var(--text);
+  background: var(--bg-elev);
+  font-size: 12.5px;
+  line-height: 18px;
+  font-weight: 600;
   font-family: var(--font-primary);
-  border: 1px solid var(--color-midnight-55);
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   cursor: pointer;
   user-select: none;
 
-  &:active {
-    color: var(--color-blue);
+  &:hover {
+    color: var(--brand);
+    border-color: var(--brand-line);
   }
 
   &--left {
-    padding: var(--space-0) var(--space-1) var(--space-0) var(--space-0);
+    padding-left: 11px;
   }
 
   &--right {
-    padding: var(--space-0) var(--space-0) var(--space-0) var(--space-1);
+    padding-right: 11px;
   }
 
-  &--disabled {
+  &--disabled,
+  &--disabled:hover {
     pointer-events: none;
     cursor: not-allowed;
-    border-color: var(--color-midnight-35);
-    color: var(--color-midnight-35);
+    color: var(--text-faint);
+    background: var(--bg-elev2);
+    border-color: var(--border);
   }
 }
 </style>

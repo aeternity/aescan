@@ -96,6 +96,11 @@ defineProps({
     width: 52px;
   }
 
+  td.top-accounts-table__rank {
+    font-family: var(--font-monospaced);
+    color: var(--text-faint);
+  }
+
   &__numeric {
     text-align: right;
 
@@ -131,27 +136,6 @@ defineProps({
       font-weight: 400;
       color: var(--text);
     }
-  }
-
-  th,
-  td {
-    padding-right: 22px;
-    padding-left: 22px;
-  }
-
-  th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-
-  thead tr {
-    background: transparent;
-    border-bottom: 1px solid var(--border);
-  }
-
-  td.top-accounts-table__rank {
-    font-family: var(--font-monospaced);
-    color: var(--text-faint);
   }
 }
 </style>

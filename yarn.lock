@@ -13,10 +13,10 @@
     safe-buffer "^5.2.1"
     sha.js "^2.4.11"
 
-"@aeternity/aepp-sdk@15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@aeternity/aepp-sdk/-/aepp-sdk-15.0.0.tgz#e16657130e5417a29916cec8a5dd53185b783f05"
-  integrity sha512-yi4RmB1Lron6AAVlzZkHeHlpw/NCXjXLYMoadnRxI4Gd9cnB/72yEAFnHRJRIecV47rVDrB93ey/Y1HiEdFWPQ==
+"@aeternity/aepp-sdk@15.0.1":
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/@aeternity/aepp-sdk/-/aepp-sdk-15.0.1.tgz#a41b57b6b75c05bdbba807420d8067814ae64ce4"
+  integrity sha512-oGWJrn73MqNjSDuqT1eylsyrWas8+rX+NG2czVB3nwF0F9D4ew6trEM8y0cwSYw4HmFTc3207hPvo/zKWzjJpw==
   dependencies:
     "@aeternity/aepp-calldata" "^1.9.1"
     "@azure/core-client" "^1.9.3"

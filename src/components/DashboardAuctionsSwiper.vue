@@ -52,10 +52,7 @@
               </time-toggle-button>
             </th>
             <td class="dashboard-auctions-swiper__data">
-              <app-link
-                :to="`/keyblocks/${auction.expirationHeight}`">
-                {{ auction.expirationHeight }}
-              </app-link>
+              <block-height-link :height="auction.expirationHeight"/>
               -
               <timestamp-label :timestamp="auction.expiration"/>
             </td>

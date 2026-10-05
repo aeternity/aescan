@@ -54,9 +54,7 @@
           <timestamp-label :timestamp="auction.expiration"/>
         </td>
         <td class="dashboard-auctions-table__data">
-          <app-link :to="`/keyblocks/${auction.expirationHeight}`">
-            {{ auction.expirationHeight }}
-          </app-link>
+          <block-height-link :height="auction.expirationHeight"/>
         </td>
       </tr>
     </tbody>

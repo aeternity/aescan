@@ -55,10 +55,7 @@
               </time-toggle-button>
             </th>
             <td class="dashboard-names-swiper__data">
-              <app-link
-                :to="`/keyblocks/${name.activatedHeight}`">
-                {{ name.activatedHeight }}
-              </app-link>
+              <block-height-link :height="name.activatedHeight"/>
               -
               <timestamp-label :timestamp="name.activated"/>
             </td>

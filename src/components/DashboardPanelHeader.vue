@@ -73,6 +73,8 @@ defineProps({
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      /* Reference design: 14px between header controls (e.g. tabs) and "Show all" */
+      column-gap: 14px;
     }
   }
 

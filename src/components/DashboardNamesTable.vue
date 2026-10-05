@@ -57,9 +57,7 @@
           <timestamp-label :timestamp="name.activated"/>
         </td>
         <td class="dashboard-names-table__data">
-          <app-link :to="`/keyblocks/${name.activatedHeight}`">
-            {{ name.activatedHeight }}
-          </app-link>
+          <block-height-link :height="name.activatedHeight"/>
         </td>
       </tr>
     </tbody>

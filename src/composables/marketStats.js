@@ -21,6 +21,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
   const price = ref(null)
   const priceChange = ref(null)
   const marketCap = ref(null)
+  const volume24h = ref(null)
   const isPriceAvailable = ref(null)
   const isMarketCapDataAvailable = ref(null)
   const isMarketCapAvailable = computed(() => {
@@ -97,6 +98,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
       return
     }
     marketCap.value = cachedAeternityMarketData.marketCap.usd
+    volume24h.value = cachedAeternityMarketData.totalVolume?.usd ?? null
   }
 
   return {
@@ -104,6 +106,7 @@ export const useMarketStatsStore = defineStore('marketStats', () => {
     price,
     priceChange,
     marketCap,
+    volume24h,
     distribution,
     distributionPercentage,
     isMarketCapAvailable,

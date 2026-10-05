@@ -15,6 +15,7 @@
 import {
   CategoryScale,
   Chart as ChartJS,
+  Filler,
   Legend,
   LinearScale,
   LineElement,
@@ -25,6 +26,8 @@ import {
 
 import { Line } from 'vue-chartjs'
 import { DateTime } from 'luxon'
+
+const MAX_POINTS_WITH_MARKERS = 14
 
 const hasChart = computed(() => props.data?.length > 0)
 const isEmpty = computed(() => props.data?.length === 0)
@@ -64,21 +67,49 @@ function formatNumberFractions(number) {
   })
 }
 
+// Chart.js can't resolve CSS variables, so theme colors are read from the document
+// and re-read whenever the theme changes
+const themeVersion = ref(0)
+let themeObserver = null
+
+onMounted(() => {
+  themeObserver = new MutationObserver(() => themeVersion.value++)
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+})
+
+onBeforeUnmount(() => themeObserver?.disconnect())
+
+function themeColor(name, fallback) {
+  // Reading themeVersion makes the surrounding computed re-evaluate on theme change
+  if (!import.meta.client || themeVersion.value < 0) {
+    return fallback
+  }
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback
+}
+
+const hasFewPoints = computed(() => props.data?.length <= MAX_POINTS_WITH_MARKERS)
+
 const chartData = computed(() => ({
   labels: labels.value,
   datasets: [{
     data: stats.value,
     label: null,
-    cubicInterpolationMode: 'monotone',
-    tension: 0.4,
-    borderColor: '#f5274e',
-    backgroundColor: '#f5274e',
-    pointRadius: 3,
+    fill: 'origin',
+    tension: 0,
+    borderWidth: 2.5,
+    borderJoinStyle: 'round',
+    borderColor: themeColor('--brand', '#f5274e'),
+    backgroundColor: themeColor('--brand-soft', 'rgb(245 39 78 / 10%)'),
+    pointRadius: hasFewPoints.value ? 4.5 : 0,
+    pointHoverRadius: 5,
     pointHitRadius: 20,
+    pointBorderWidth: 2.5,
+    pointBorderColor: themeColor('--brand', '#f5274e'),
+    pointBackgroundColor: themeColor('--bg-elev', '#fff'),
   }],
 }))
 
-const chartOptions = {
+const chartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -99,31 +130,46 @@ const chartOptions = {
       border: {
         display: false,
       },
+      grid: {
+        color: themeColor('--grid', 'rgb(0 0 0 / 6%)'),
+        drawTicks: false,
+      },
       min: 0,
       ticks: {
         precision: 0,
+        padding: 8,
+        color: themeColor('--text-faint', '#888'),
+        font: { size: 10.5 },
         callback: value => formatNumberFractions(value),
       },
     },
     x: {
+      border: {
+        display: false,
+      },
       grid: {
         color: () => 'transparent',
       },
+      ticks: {
+        color: themeColor('--text-faint', '#888'),
+        font: { size: 10.5 },
+      },
     },
   },
-}
+}))
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
+  Filler,
   Title,
   Tooltip,
   Legend,
 )
 
-ChartJS.defaults.font.family = 'Roboto Mono'
+ChartJS.defaults.font.family = 'JetBrains Mono'
 </script>
 
 <style scoped>

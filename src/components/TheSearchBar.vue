@@ -1,19 +1,36 @@
 <template>
   <div class="search-bar">
+    <button
+      type="button"
+      class="search-bar__submit"
+      aria-label="Search"
+      @click="search">
+      <svg
+        class="search-bar__icon"
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        aria-hidden="true">
+        <circle
+          cx="11"
+          cy="11"
+          r="7"/>
+        <line
+          x1="21"
+          y1="21"
+          x2="16.5"
+          y2="16.5"/>
+      </svg>
+    </button>
     <input
       v-model="query"
       class="search-bar__input"
-      placeholder="Search anything on aeScan"
+      placeholder="Search address, tx, block, token or name…"
       type="search"
-      autofocus
       @keyup.enter="search">
-    <button
-      class="search-bar__submit"
-      @click="search">
-      <app-icon
-        name="magnifying-glass"
-        :size="18"/>
-    </button>
   </div>
 </template>
 
@@ -102,50 +119,66 @@ function isMicroblockId(query) {
 
 <style scoped>
 .search-bar {
-  padding: 6px var(--space-0) 6px var(--space-3);
   display: flex;
   align-items: center;
-  height: 40px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-midnight-55);
-  border-radius: 8px;
+  gap: 9px;
+  height: 38px;
+  padding: 0 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color var(--dur) var(--ease);
 
+  &:focus-within {
+    border-color: var(--brand-line);
+  }
+
+  /* The magnifier doubles as the submit button (Enter works as well) */
   &__submit {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 100%;
-    border-radius: 4px;
-    margin: auto;
     padding: 0;
-    border: none;
+    color: var(--text-faint);
     cursor: pointer;
-    background: var(--color-surface-raised);
-    color: var(--color-white);
+    background: transparent;
+    border: 0;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  &__icon {
+    display: block;
   }
 
   &__input {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     border: none;
-    background-color: var(--color-surface);
-    color: var(--color-midnight);
-    margin-right: var(--space-1);
-    font-size: 16px;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+    /* Do NOT set height — let flex align-items: center handle it naturally.
+       An explicit height causes Chrome to misalign the text inside inputs. */
     appearance: none;
-    font-family: var(--font-monospaced);
-
-    @media (--desktop) {
-      font-size: 14px;
-    }
 
     &:focus {
       outline: none;
     }
 
     &::placeholder {
-      color: var(--color-midnight-55);
-      opacity: 1;
+      color: var(--text-faint);
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
     }
   }
 }

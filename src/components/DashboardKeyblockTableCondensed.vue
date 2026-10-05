@@ -116,8 +116,21 @@ defineProps({
     text-align: right;
   }
 
+  /* Override global th size for detail labels */
+  th {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dim);
+    padding: var(--space-1) var(--space-1) var(--space-1) 0;
+  }
+
+  td {
+    font-size: 13px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
   &__header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    border-bottom: 1px solid var(--border-soft);
   }
 }
 </style>

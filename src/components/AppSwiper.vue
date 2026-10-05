@@ -3,7 +3,7 @@
     v-if="slides?.length"
     :modules="modules"
     :loop="slides?.length > 1"
-    :pagination="true"
+    :pagination="{clickable: true}"
     :space-between="48">
     <swiper-slide
       v-for="(slide, index) in slides"
@@ -35,6 +35,15 @@ const modules = [Pagination]
 </script>
 
 <style>
+.swiper {
+  /* Themed pagination bullets — visible in both light and dark */
+  --swiper-pagination-color: var(--brand);
+  --swiper-pagination-bullet-inactive-color: var(--text-faint);
+  --swiper-pagination-bullet-inactive-opacity: 0.6;
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bullet-horizontal-gap: 5px;
+}
+
 .swiper-pagination {
   position: static;
 

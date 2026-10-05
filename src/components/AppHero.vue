@@ -1,112 +1,140 @@
 <template>
   <div class="hero">
     <div class="hero__container">
-      <div class="hero__row">
-        <div class="hero__column">
-          <h1 class="hero__heading">
-            æternity at a glance
-          </h1>
-          <div class="hero__subheading">
-            Welcome to æScan, the æternity blockchain explorer
+      <h1 class="hero__heading">
+        æternity Blockchain Explorer
+      </h1>
+      <p class="hero__subtitle">
+        Real-time data across the æternity mainnet
+        &mdash; blocks, transactions, contracts, AEX-9 tokens, names &amp; oracles.
+      </p>
+      <div class="hero__grid">
+        <hero-price-card v-if="price !== null"/>
+        <!-- Placeholder when market data is unavailable (feature flag off, testnet or API failure) -->
+        <div
+          v-else
+          class="hero__chart-card">
+          <div class="hero__chart-card-header">
+            <span
+              class="hero__chart-icon"
+              aria-hidden="true"/>
+            <span class="hero__chart-title">AE Blockchain Activity</span>
+          </div>
+          <div class="hero__chart-placeholder">
+            <span class="hero__chart-placeholder-label">Chart coming soon</span>
           </div>
         </div>
-        <div class="hero__column hero__search-column">
-          <the-search-bar class="hero__search-bar"/>
-        </div>
+        <stats-panel class="hero__stats-panel"/>
       </div>
-      <market-stats
-        v-if="featureFlags.marketStats"
-        class="hero__market-stats"/>
-      <stats-panel/>
     </div>
   </div>
 </template>
 
 <script setup>
-const featureFlags = useFeatureFlags()
+const { price } = storeToRefs(useMarketStatsStore())
 </script>
 
 <style scoped>
 .hero {
   width: 100%;
-  padding: 120px 0 var(--space-6);
-
-  background-image: var(--bg-hero-image);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-  background-attachment: scroll;
-  background-color: var(--color-surface);
+  background-color: var(--bg);
 
   @media (--desktop) {
-    padding: 120px 0;
-    margin-bottom: var(--space-5);
+    padding: var(--space-5) 0 var(--space-4);
   }
 
   &__container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 var(--space-3) 0;
+    padding: 0 var(--space-3);
 
     @media (--desktop) {
-      padding: 0;
+      padding: 0 var(--space-4);
     }
   }
 
   &__heading {
-    color: var(--color-white);
-    margin-bottom: var(--space-2);
-
-    @media (--desktop) {
-      margin-bottom: var(--space-3);
-    }
-  }
-
-  &__subheading {
-    color: var(--color-white);
-    font-size: 14px;
-    line-height: 20px;
-    font-family: var(--font-monospaced);
-    letter-spacing: 0.0015em;
-  }
-
-  &__search-column {
-    display: flex;
-    align-items: flex-end;
-  }
-
-  &__search-bar {
-    margin-bottom: var(--space-4);
+    /* Reference spec: 26px/700/-0.02em, full-width block */
+    display: block;
     width: 100%;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: var(--space-2);
+  }
 
-    @media (--desktop) {
-      margin-bottom: 0;
+  &__subtitle {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin: 0 0 var(--space-4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Two-column layout: chart card (left, fixed) + KPI tiles (right, fills) */
+  &__grid {
+    display: grid;
+    gap: var(--space-2);
+    grid-template-columns: minmax(0, 1fr);
+
+    @media (width >= 960px) {
+      grid-template-columns: 320px minmax(0, 1fr);
     }
   }
 
-  &__market-stats {
-    margin-bottom: var(--space-6);
-
-    @media (--desktop) {
-      margin-bottom: var(--space-4);
-    }
-  }
-
-  &__row {
+  /* AE Price / chart card — brand-tinted, same style as reference home-price-card */
+  &__chart-card {
+    background: linear-gradient(150deg, var(--brand-soft), transparent 70%), var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--r-panel);
+    padding: 13px 16px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
-
-    @media (--desktop) {
-      flex-direction: row;
-      margin-bottom: var(--space-6);
-    }
+    gap: var(--space-2);
   }
 
-  &__column {
-    @media (--desktop) {
-      width: 50%;
-    }
+  &__chart-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  &__chart-icon {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+    flex-shrink: 0;
+  }
+
+  &__chart-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  &__chart-placeholder {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--border);
+    border-radius: var(--r-tile);
+    min-height: 80px;
+  }
+
+  &__chart-placeholder-label {
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  &__stats-panel {
+    /* KPI tiles fill the remaining grid column and match the price card height */
+    align-self: stretch;
   }
 }
 </style>

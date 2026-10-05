@@ -1,26 +1,25 @@
 <template>
-  <div class="accounts-statistics">
-    <app-panel class="accounts-statistics__panel">
-      <h5>TOTAL ACCOUNTS</h5>
-      <div class="accounts-statistics__value">
-        {{ formatNumber(totalAccountsCount) }}
-      </div>
-    </app-panel>
-    <app-panel class="accounts-statistics__panel">
-      <h5>ACTIVE ACCOUNTS (LAST 24H)</h5>
-      <div class="accounts-statistics__value">
-        {{ formatNumber(activeAccountsCount) }}
-        <trend-chip
-          v-if="activeAccountsDelta"
-          :delta="activeAccountsDelta"/>
-      </div>
-    </app-panel>
-  </div>
+  <overview-tile label="Total Accounts">
+    {{ formatNullable(formatNumber(totalAccountsCount)) }}
+  </overview-tile>
+  <overview-tile label="Active Accounts (24h)">
+    {{ formatNullable(formatNumber(activeAccountsCount)) }}
+    <span
+      v-if="activeAccountsDelta"
+      :class="[
+        'accounts-statistics__delta',
+        {'accounts-statistics__delta--down': isDeltaNegative},
+      ]">
+      {{ isDeltaNegative ? '↓' : '↑' }} {{ Math.abs(activeAccountsDelta) }}%
+    </span>
+  </overview-tile>
 </template>
 
 <script setup>
 const { fetchTopAccounts } = useTopAccountsStore()
 const { totalAccountsCount, activeAccountsCount, activeAccountsDelta } = storeToRefs(useTopAccountsStore())
+
+const isDeltaNegative = computed(() => Number(activeAccountsDelta.value) < 0)
 
 if (import.meta.client) {
   fetchTopAccounts()
@@ -29,33 +28,20 @@ if (import.meta.client) {
 
 <style scoped>
 .accounts-statistics {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  width: 100%;
-  margin-bottom: var(--space-2);
+  &__delta {
+    padding: 3px 8px;
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--up);
+    background: var(--up-soft);
+    border-radius: 6px;
 
-  @media (--desktop) {
-    flex-direction: row;
-  }
-
-  &__panel {
-    padding: var(--space-4);
-    width: 100%;
-
-    @media (--desktop) {
-      width: 50%;
+    &--down {
+      color: var(--down);
+      background: var(--down-soft);
     }
-  }
-
-  &__value {
-    display: inline-flex;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 36px;
-    font-family: var(--font-monospaced);
-    font-weight: 400;
-    margin-top: var(--space-3);
   }
 }
 </style>

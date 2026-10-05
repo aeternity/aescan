@@ -75,6 +75,11 @@ export const APP_DESCRIPTION = 'æScan is a blockchain explorer, analytics platf
 export const APP_KEYWORDS = 'aescan, aeternity, blockchain, explorer, search, crypto, currency'
 export const APP_URL = 'https://aescan.io'
 export const APP_CREATOR = '@aeternity'
+export const RECENT_ACCOUNTS_CACHE_TTL = 2 /* m */ * 60 /* s */ * 1000 /* ms */
+export const CACHE_KEY_RECENT_ACCOUNTS = 'recent-accounts'
+export const RECENT_ACCOUNTS_WINDOW = 24 /* h */ * 60 /* m */ * 60 /* s */ * 1000 /* ms */
+export const RECENT_ACCOUNTS_MAX_ACCOUNTS = 100
+
 export const MARKET_STATS_CACHE_TTL = 5 /* m */ * 60 /* s */ * 1000 /* ms */
 export const MARKET_STATS_FAILURE_BACKOFF_TTL = 1 /* m */ * 60 /* s */ * 1000 /* ms */
 export const CACHE_KEY_COINGECKO_MARKET_DATA = 'coingecko-market-data'

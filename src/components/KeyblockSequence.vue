@@ -104,26 +104,19 @@ watch(
 <style scoped>
 .keyblock-sequence {
   position: relative;
-  padding: 0 var(--space-1);
-
-  @media (--desktop) {
-    padding: 0 var(--space-1);
-  }
 
   &__sequence {
     display: flex;
-    height: calc(40px + 16px);
+    align-items: center;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
 
-    /*animation overflow workaround*/
-    margin-left: -8px;
-    padding: var(--space-1);
-
-    @media (--desktop) {
-      padding: var(--space-1) 0;
-    }
+    /* 12px padding on all sides: matches reference design (padding:12px on chip scroller).
+       Arrow ::before is position:absolute; left:-16px. When scrolled right, the arrow at
+       the leftmost visible chip will partially clip at the scroller’s left edge — same
+       behavior as the reference where arrows are separate DOM elements. */
+    padding: 12px;
 
     &::-webkit-scrollbar {
       display: none;
@@ -133,7 +126,7 @@ watch(
   &__items,
   &__placeholders {
     display: flex;
-    align-items: stretch;
+    align-items: center;
   }
 
   &__cell {
@@ -141,35 +134,41 @@ watch(
     align-items: center;
     justify-content: center;
     position: relative;
+    box-sizing: border-box;
 
-    min-width: 40px;
-    height: 100%;
+    min-width: 32px;
+    height: 30px;
+    padding: 5px 8px;
 
-    border-radius: 4px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
     margin-right: var(--space-3);
-    background: var(--color-midnight-35);
+    background: var(--bg-elev2);
 
-    color: var(--color-white);
+    color: var(--text);
     font-family: var(--font-monospaced);
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
 
     &:before {
       content: '←';
       position: absolute;
-      left: -16px;
-      color: var(--color-midnight-55);
+      left: calc(-1 * var(--space-3));
+      width: var(--space-3);
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 16px;
+      line-height: 1;
 
       @media (--desktop) {
-        left: -20px;
+        left: calc(-1 * var(--space-4));
+        width: var(--space-4);
       }
     }
 
     &:first-child:not(.keyblock-sequence__cell--placeholder) {
-      box-shadow: 0 0 0 0 var(--color-midnight-35);
-      transform: scale(1);
-      animation: pulse 2s infinite;
-
       &:before {
         content: '';
       }
@@ -180,7 +179,7 @@ watch(
     }
 
     &--placeholder {
-      background: var(--color-midnight-15);
+      background: var(--bg-elev2);
       cursor: default;
       animation: shimmer 1.2s ease-in-out infinite;
 
@@ -190,18 +189,16 @@ watch(
     }
 
     &--empty {
-      background: var(--color-midnight-15);
-      color: var(--color-midnight);
+      background: var(--bg);
+      color: var(--text-faint);
+      border-color: var(--border-soft);
     }
 
     &--active {
       background: var(--color-fire);
-
-      &:first-child:not(.keyblock-sequence__cell--placeholder) {
-        box-shadow: 0 0 0 0 var(--color-fire);
-        transform: scale(1);
-        animation: pulse-active 2s infinite;
-      }
+      border-color: var(--color-fire);
+      color: var(--color-white);
+      animation: ae-chip-pulse 1.3s ease-out infinite;
     }
   }
 
@@ -223,8 +220,8 @@ watch(
     pointer-events: none;
     background-image: linear-gradient(
       90deg,
-      rgb(var(--color-surface-rgb) / 0%) 0,
-      rgb(var(--color-surface-rgb) / 100%) 100%
+      transparent 0,
+      var(--bg-elev) 100%
     );
 
     @media (--desktop) {

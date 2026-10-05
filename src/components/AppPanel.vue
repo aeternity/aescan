@@ -34,8 +34,9 @@ defineProps({
 <style scoped>
 .panel {
   max-width: 100%;
-  background: var(--color-surface);
-  border-radius: 8px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--r-panel);
   padding: var(--space-4) var(--space-1);
 
   &:has(table) {

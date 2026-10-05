@@ -1,5 +1,5 @@
 <template>
-  <app-panel
+  <div
     v-if="!isLoading"
     class="stats-panel">
     <stats-tile
@@ -88,14 +88,16 @@
         <price-label
           class="stats-panel__value"
           :price="burnedCount"
-          :has-icon="false"/>
+          :has-icon="false"
+          compact/>
       </div>
       <div class="stats-panel__content">
         Circulating:
         <price-label
           class="stats-panel__value"
           :price="totalTokenSupply"
-          :has-icon="false"/>
+          :has-icon="false"
+          compact/>
       </div>
       <template #tooltip>
         Circulating supply is the distributed amount of Æ minus the burned amount of Æ. The protocol automatically burns
@@ -194,7 +196,7 @@
         .
       </template>
     </stats-tile>
-  </app-panel>
+  </div>
 
   <loader-panel
     v-else
@@ -230,38 +232,40 @@ const isLoading = computed(() => {
 <style scoped>
 .stats-panel {
   display: grid;
-  grid-template-columns:4fr;
-  gap: var(--space-1);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr; /* equal tile heights across all rows */
+  gap: var(--space-2);
   width: 100%;
   box-sizing: border-box;
-  padding: var(--space-5) var(--space-1);
 
-  @media (--desktop) {
-    gap: var(--space-5) var(--space-3);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 68px 1fr;
-    padding: var(--space-6);
+  @media (width >= 640px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (width >= 1300px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   &__stats-tile {
-    margin-bottom: var(--space-2);
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-
-    @media (--desktop) {
-      margin-bottom: 0;
-    }
+    margin-bottom: 0;
   }
 
   &__value {
+    /* Numbers/amounts must be monospace. Labels ("Total:", "Active:") are sans. */
+    font-family: var(--font-monospaced);
     font-weight: 700;
     margin-left: var(--space-0);
+    color: var(--text);
+    /* Keep the number and its unit (e.g. "165,494,217 AE") together as one
+           unit — if it doesn't fit next to the label it wraps as a whole to the
+           next line instead of breaking mid-value. */
+      white-space: nowrap;
   }
 
   &__content {
     display: flex;
+    flex-wrap: wrap;
+      column-gap: var(--space-0);
   }
 
   &__loader-panel {
@@ -274,7 +278,7 @@ const isLoading = computed(() => {
 
     @media (--desktop) {
       /*hardcoded height to prevent content jumping*/
-      height: 264px;
+      height: 200px;
     }
   }
 }

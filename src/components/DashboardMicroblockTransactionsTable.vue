@@ -41,3 +41,16 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+/* Created Age column: dim + slightly smaller */
+td:nth-child(2) {
+  color: var(--text-dim);
+  font-size: 12.5px;
+}
+
+/* Type column: slightly smaller */
+td:nth-child(3) {
+  font-size: 12.5px;
+}
+</style>

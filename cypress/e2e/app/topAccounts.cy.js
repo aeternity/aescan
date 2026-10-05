@@ -4,6 +4,6 @@ describe('top accounts', () => {
 
     cy.get('.line-chart').should('be.visible')
     cy.get('.top-accounts-table').should('be.visible')
-    cy.get('.accounts-statistics__value').should('have.length', 2)
+    cy.get('.overview-tile__value').should('have.length', 2)
   })
 })

@@ -7,8 +7,8 @@
         <svg
           class="theme-toggle__icon"
           viewBox="0 0 24 24"
-          width="20"
-          height="20"
+          width="16"
+          height="16"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
@@ -75,21 +75,27 @@ const label = computed(() => ({
 .theme-toggle {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
   padding: 0;
-  border: none;
-  background: transparent;
-  color: var(--color-midnight);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--bg-elev);
+  color: var(--text-dim);
   cursor: pointer;
-  line-height: 0;
+  flex-shrink: 0;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 
   &:hover {
-    opacity: 0.7;
+    color: var(--text);
+    border-color: var(--brand-line);
   }
 
   &__placeholder {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
 }
 </style>

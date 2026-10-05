@@ -70,10 +70,13 @@ watch(
 
   &__sequence {
     display: flex;
-    height: 24px;
+    align-items: center;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
+
+    /* 12px padding all sides — matches reference chip scroller. */
+    padding: 12px;
 
     &::-webkit-scrollbar {
       display: none;
@@ -84,21 +87,27 @@ watch(
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 
-    min-width: 40px;
-    height: 100%;
+    min-width: 32px;
+    height: 30px;
+    padding: 5px 8px;
 
-    border-radius: 4px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
     margin-right: var(--space-1);
-    background: var(--color-midnight-35);
+    background: var(--bg-elev2);
 
-    color: var(--color-white);
+    color: var(--text);
     font-family: var(--font-monospaced);
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
 
     &--active {
       background: var(--color-fire);
+      border-color: var(--color-fire);
+      color: var(--color-white);
+      animation: ae-chip-pulse 1.3s ease-out infinite;
     }
   }
 
@@ -111,8 +120,8 @@ watch(
     pointer-events: none;
     background-image: linear-gradient(
       90deg,
-      rgb(var(--color-surface-rgb) / 0%) 0,
-      rgb(var(--color-surface-rgb) / 100%) 100%
+      transparent 0,
+      var(--bg-elev) 100%
     );
 
     @media (--desktop) {

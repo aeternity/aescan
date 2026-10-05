@@ -52,10 +52,7 @@
               </time-toggle-button>
             </th>
             <td class="dashboard-auctions-swiper__data">
-              <app-link
-                :to="`/keyblocks/${auction.expirationHeight}`">
-                {{ auction.expirationHeight }}
-              </app-link>
+              <block-height-link :height="auction.expirationHeight"/>
               -
               <timestamp-label :timestamp="auction.expiration"/>
             </td>
@@ -75,7 +72,7 @@ const { auctionsEndingSoon } = storeToRefs(useNamesStore())
 <style scoped>
 .dashboard-auctions-swiper {
   &__header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    border-bottom: 1px solid var(--border-soft);
   }
 
   &__data {

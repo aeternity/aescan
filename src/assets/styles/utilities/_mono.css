@@ -1,0 +1,4 @@
+/* Monospace helper — apply to any numeral, hash, address, ticker or code. */
+.mono {
+  font-family: var(--font-mono);
+}

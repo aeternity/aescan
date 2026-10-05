@@ -4,12 +4,13 @@
       v-for="social in socials"
       :key="social.name"
       :title="social.name"
+      class="footer-socials__link"
       :to="social.url">
       <app-icon
         :alt="social.name"
         :name="`${social.name.toLowerCase()}-logo`"
         class="footer-socials__icon"
-        :size="34"/>
+        :size="20"/>
     </app-link>
   </div>
 </template>
@@ -49,16 +50,29 @@ const socials = [
 
 <style scoped>
 .footer-socials {
-  display: grid;
-  grid-template-columns: repeat(4, 30px);
-  row-gap: var(--space-4);
-  justify-content: space-between;
-  min-height: 105px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-0);
+  min-height: 40px;
 
   @media (--desktop) {
-    grid-auto-flow: column;
-    grid-template-columns: revert;
-    min-height: 40px;
+    gap: var(--space-2);
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    background: var(--bg-elev2);
+    transition: border-color var(--dur) var(--ease);
+
+    &:hover {
+      border-color: var(--brand-line);
+    }
   }
 
   &__icon {

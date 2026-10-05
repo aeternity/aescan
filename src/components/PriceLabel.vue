@@ -13,7 +13,7 @@
       class="price-label__icon"
       :contract-id="contractId"/>
     <app-tooltip v-if="isPriceRounded">
-      {{ priceRounded }}
+      {{ displayPrice }}
       <app-link
         v-if="hasLink"
         :to="`/tokens/${contractId}`">
@@ -67,6 +67,10 @@ const props = defineProps({
     type: String,
     default: () => useRuntimeConfig().public.AE_TOKEN_ID,
   },
+  compact: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const { currency: nativeCurrency } = storeToRefs(useConfigStore())
@@ -78,13 +82,16 @@ const currencySymbol = computed(() =>
   props.currency === undefined ? nativeCurrency.value?.symbol : props.currency,
 )
 const isPriceRounded = computed(() =>
-  priceRounded.value !== price.value,
+  props.compact || priceRounded.value !== price.value,
 )
 const priceRounded = computed(() =>
   formatNullable(formatAePrice(props.price, props.maxDigits)),
 )
 const price = computed(() =>
   formatNullable(formatAePrice(props.price, null)),
+)
+const displayPrice = computed(() =>
+  props.compact ? formatNullable(formatCompactNumber(props.price)) : priceRounded.value,
 )
 </script>
 
@@ -93,6 +100,9 @@ const price = computed(() =>
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* This component only ever renders numeric AE amounts, so it must always
+     be monospace regardless of the surrounding context's font. */
+  font-family: var(--font-monospaced);
 
   &__icon {
     max-width: 20px;

@@ -76,7 +76,7 @@ const {
 <style scoped>
 .market-stats {
   &__heading {
-    color: var(--color-white);
+    color: var(--text);
     margin-bottom: var(--space-3);
     display: none;
 
@@ -89,7 +89,7 @@ const {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    color: var(--color-white);
+    color: var(--text);
     font-size: 16px;
     line-height: 20px;
     font-weight: 500;

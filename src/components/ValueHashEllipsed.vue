@@ -46,3 +46,10 @@ defineProps({
   },
 })
 </script>
+
+<style scoped>
+/* Hashes and addresses are alphanumeric data — always monospace */
+span {
+  font-family: var(--font-monospaced);
+}
+</style>

@@ -1,11 +1,17 @@
 <template>
-  <table>
+  <table class="dashboard-names-table">
     <thead>
       <tr>
         <th>
-          Data
+          Name
           <hint-tooltip>
-            {{ namesHints.recentlyActivatedData }}
+            {{ namesHints.nameId }}
+          </hint-tooltip>
+        </th>
+        <th>
+          Claimed By
+          <hint-tooltip>
+            {{ namesHints.owner }}
           </hint-tooltip>
         </th>
         <th>
@@ -20,42 +26,38 @@
             {{ namesHints.activationTime }}
           </hint-tooltip>
         </th>
+        <th>
+          Block
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr
         v-for="name in recentlyActivatedNames"
         :key="name.name">
-        <td>
-          <div>
-            <span class="dashboard-names-table__label">Name:</span>
-            <app-link
-              :to="`/names/${name.name}`"
-              class="dashboard-names-table__chain-name u-ellipsis">
-              {{ name.name }}
-            </app-link>
-          </div>
-          <div>
-            <span class="dashboard-names-table__label">Claimed by: </span>
-            <value-hash-ellipsed
-              :link-to="`/accounts/${name.address}`"
-              :hash="name.address"/>
-          </div>
+        <td class="dashboard-names-table__data">
+          <app-link
+            :to="`/names/${name.name}`"
+            class="dashboard-names-table__chain-name u-ellipsis">
+            {{ name.name }}
+          </app-link>
         </td>
-        <td>
-          <div class="dashboard-names-table__label">
-            {{ name.isAuction ? 'Auction' : 'Fixed price' }}
-          </div>
-          <div>
-            <price-label :price="name.price"/>
-          </div>
+        <td class="dashboard-names-table__data">
+          <value-hash-ellipsed
+            :link-to="`/accounts/${name.address}`"
+            :hash="name.address"/>
         </td>
-        <td>
-          <div class="dashboard-names-table__blocks">
-            <block-time-cell
-              :height="name.activatedHeight"
-              :timestamp="name.activated"/>
-          </div>
+        <td class="dashboard-names-table__data">
+          <span class="dashboard-names-table__price-type">
+            {{ name.isAuction ? 'Auction' : 'Instant' }}
+          </span>
+          <price-label :price="name.price"/>
+        </td>
+        <td class="dashboard-names-table__data">
+          <timestamp-label :timestamp="name.activated"/>
+        </td>
+        <td class="dashboard-names-table__data">
+          <block-height-link :height="name.activatedHeight"/>
         </td>
       </tr>
     </tbody>
@@ -72,16 +74,29 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 .dashboard-names-table {
   &__chain-name {
     display: inline-block;
-    width: 160px;
+    max-width: 160px;
   }
 
-  &__label {
-    display: inline-block;
-    margin: 0 var(--space-0) var(--space-0) 0;
+  &__data {
+    white-space: nowrap;
   }
 
-  &__blocks {
-    margin-bottom: var(--space-0);
+  /* Allow "relative (absolute)" timestamps to wrap so the table fits narrower desktop widths */
+  :deep(.timestamp-label__label) {
+    white-space: normal;
+  }
+
+  &__price-type {
+    display: block;
+    width: fit-content;
+    padding: 2px 7px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--text-faint);
+    background: var(--bg-elev2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 2px;
   }
 }
 </style>

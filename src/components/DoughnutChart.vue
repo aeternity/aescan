@@ -73,7 +73,7 @@ ChartJS.register(
   ArcElement,
 )
 
-ChartJS.defaults.font.family = 'Roboto Mono'
+ChartJS.defaults.font.family = 'JetBrains Mono'
 </script>
 
 <style scoped>

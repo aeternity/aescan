@@ -1,7 +1,10 @@
 <template>
-  <table>
+  <table class="dashboard-state-channels-table">
     <thead>
       <tr>
+        <th>
+          Status
+        </th>
         <th>
           State Channel ID
           <hint-tooltip>
@@ -45,13 +48,22 @@
         v-for="channel in stateChannels"
         :key="channel.channel">
         <td>
+          <span
+            :class="[
+              'dashboard-state-channels-table__status',
+              {'dashboard-state-channels-table__status--closed': !channel.isActive},
+            ]">
+            {{ channel.isActive ? 'Open' : 'Closed' }}
+          </span>
+        </td>
+        <td>
           <value-hash-ellipsed
             :link-to="`/state-channels/${channel.channel}`"
             :hash="channel.channel"/>
         </td>
         <td>
           <div>
-            <span class="dashbaord-state-channels-table__label">
+            <span class="dashboard-state-channels-table__label">
               Initiator:
             </span>
 
@@ -60,7 +72,7 @@
               :hash="channel.initiator"/>
           </div>
           <div>
-            <span class="dashbaord-state-channels-table__label">
+            <span class="dashboard-state-channels-table__label">
               Responder:
             </span>
             <value-hash-ellipsed
@@ -79,7 +91,11 @@
             :height="channel.updatedHeight"
             :timestamp="channel.updated"/>
         </td>
-        <td>{{ channel.lastTxType }}</td>
+        <td>
+          <span class="dashboard-state-channels-table__tx-type">
+            {{ channel.lastTxType }}
+          </span>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -92,10 +108,48 @@ const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 </script>
 
 <style scoped>
-.dashbaord-state-channels-table {
+.dashboard-state-channels-table {
   &__label {
     display: inline-block;
     margin: 0 var(--space-0) var(--space-0) 0;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--up);
+
+    &:before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentcolor;
+      box-shadow: 0 0 0 3px var(--up-soft);
+    }
+
+    &--closed {
+      color: var(--text-faint);
+
+      &:before {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__tx-type {
+    display: inline-block;
+    padding: 3px 9px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--c-teal);
+    background: var(--up-soft);
+    border-radius: 6px;
   }
 }
 </style>

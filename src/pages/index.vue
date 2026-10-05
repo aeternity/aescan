@@ -1,29 +1,10 @@
 <template>
   <div class="dashboard">
-    <div class="dashboard__row">
+    <div class="dashboard__row dashboard__hero-row">
       <app-hero/>
     </div>
 
     <div class="dashboard__container">
-      <div class="dashboard__row">
-        <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            æternity by the block
-          </h2>
-        </div>
-        <div class="dashboard__column">
-          <p class="dashboard__paragraph dashboard__paragraph--horizontal">
-            Discover and navigate through the æternity blockchain, powered by
-            Next-Generation-Nakamoto-Consensus (Bitcoin-NG).
-            <app-link
-              class="dashboard__link"
-              to="https://medium.com/aeternity-crypto-foundation/aeternity-bitcoin-ng-the-way-it-was-meant-to-be-df7bb1d65a4b"
-              is-text-link>
-              Learn more
-            </app-link>
-          </p>
-        </div>
-      </div>
       <div class="dashboard__row">
         <client-only>
           <dashboard-keyblock-panel/>
@@ -32,42 +13,12 @@
 
       <div class="dashboard__row">
         <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            .chain names
-          </h2>
-          <p class="dashboard__paragraph">
-            The æternity blockchain supports protocol-level .chain Names via the
-            æternity naming system (AENS).
-          </p>
           <dashboard-names-panel/>
-        </div>
-        <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            .chain Name Auctions
-          </h2>
-          <p class="dashboard__paragraph">
-            .chain Names can be obtained either immediately or via an auction
-            process, if shorter than 13 characters.
-          </p>
-          <dashboard-auctions-panel>Auctions ending soon</dashboard-auctions-panel>
         </div>
       </div>
 
       <div class="dashboard__row">
         <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            State Channels
-          </h2>
-          <p class="dashboard__paragraph">
-            State Channels allow the gas-free execution of smart contracts and
-            transactions, privately and with the speed of light, while still
-            being able to escalate on-chain in case of disagreement.
-            <app-link
-              class="dashboard__link"
-              to="https://aeternity.com/state-channels">
-              Learn more
-            </app-link>
-          </p>
           <dashboard-state-channels-panel/>
         </div>
       </div>
@@ -129,7 +80,7 @@ onBeforeUnmount(() => {
     padding: var(--space-3) var(--space-1) var(--space-3) var(--space-1);
 
     @media (--desktop) {
-      padding: 0;
+      padding: 0 var(--space-4);
       margin-bottom: 80px;
     }
   }
@@ -149,38 +100,15 @@ onBeforeUnmount(() => {
     }
   }
 
+  /* Hero wrapper row: much smaller gap to the keyblocks section below */
+  &__hero-row {
+    @media (--desktop) {
+      margin-bottom: var(--space-2);
+    }
+  }
+
   &__column {
     flex: 1 1 0;
-  }
-
-  &__heading {
-    margin: 0 var(--space-1);
-
-    @media (--desktop) {
-      margin: 0;
-    }
-  }
-
-  &__paragraph {
-    margin: var(--space-3) var(--space-1) var(--space-4);
-
-    @media (--desktop) {
-      margin: var(--space-3) 0 var(--space-6);
-    }
-
-    &--horizontal {
-      margin: 0 var(--space-1);
-
-      @media (--desktop) {
-        margin: 0;
-      }
-    }
-  }
-
-  &__link {
-    font-size: 14px;
-    line-height: 20px;
-    font-family: var(--font-monospaced);
   }
 
   &__loader-panel {

@@ -137,7 +137,9 @@ router.beforeEach((_to, from, next, abort) => {
 <style>
 /* stylelint-disable selector-id-pattern*/
 #__nuxt {
-  height: 100%;
+  /* min-height (not height) so the container grows with the page; otherwise the sticky header
+     only sticks within the first viewport height */
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }

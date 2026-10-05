@@ -125,7 +125,7 @@ defineProps({
   }
 
   &--link {
-    color: var(--color-blue);
+    color: var(--brand);
     text-align: left;
     text-decoration: none;
     font-weight: 400;

@@ -50,22 +50,42 @@ defineProps({
 
   &__header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 5px;
 
-    padding: 0 var(--space-4) var(--space-1) var(--space-4);
+    /* Mobile */
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text);
+    cursor: pointer;
+    transition: background var(--dur) var(--ease);
 
-    font-size: 20px;
-    line-height: 28px;
+    &:hover {
+      background: var(--bg-hover);
+    }
 
     @media (--desktop) {
-      padding: 0 var(--space-3);
-      font-size: 16px;
-      line-height: 24px;
+      padding: 7px 11px;
+      font-size: 13.5px;
+      font-weight: 500;
+      border-radius: 8px;
+      color: var(--text-dim);
+
+      &:hover {
+        background: var(--bg-hover);
+        color: var(--text);
+      }
     }
   }
 
   &__icon {
-    margin: 3px 0 0 var(--space-0);
+    flex-shrink: 0;
+    transition: transform var(--dur) var(--ease);
+    color: var(--text-faint);
 
     &--active {
       transform: rotate(180deg);
@@ -73,47 +93,82 @@ defineProps({
   }
 
   &__list {
-    background: var(--color-surface);
-    padding: 0 0 var(--space-2) var(--space-1);
-    animation: fade-in-up .2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    /* Mobile: indented sub-list */
+    margin: 1px 0 5px 22px;
+    padding-left: 11px;
+    border-left: 1.5px solid var(--border);
+    animation: fade-in-up 0.15s ease;
 
     @media (--desktop) {
       position: absolute;
-      top: 60px;
-      z-index: 2;
+      top: calc(100% + 4px);
+      left: 0;
+      z-index: 60;
+      margin: 0;
+      padding: 6px;
+      border-left: none;
+      min-width: 210px;
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      box-shadow: var(--shadow);
 
-      border-radius: 8px;
-      border: 1px solid var(--color-midnight-15);
-      box-shadow: 0 6px 30px #0000001a;
-      padding: var(--space-0);
-      min-width: 220px;
+      /* Transparent bridge over the gap below the header, so the pointer stays inside the hovered item */
+      &:before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 0;
+        right: 0;
+        height: 4px;
+      }
     }
   }
 
   &__link {
-    display: inline-block;
+    display: block;
     width: 100%;
-    padding: var(--space-0) var(--space-3) var(--space-0) var(--space-4);
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.002em;
-    color: var(--color-midnight);
+    padding: 9px 11px;
+    font-size: 13.5px;
+    line-height: 1.4;
+    border-radius: 8px;
+    color: var(--text-dim);
     cursor: pointer;
-
-    @media (--desktop) {
-      padding: var(--space-2) var(--space-1);
-    }
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 
     &:hover {
-      text-decoration: underline;
+      background: var(--bg-hover);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    @media (--desktop) {
+      padding: 8px 11px;
+      font-size: 13px;
+      border-radius: 7px;
+    }
+
+    &.router-link-active {
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-weight: 500;
+
+      &:hover {
+        background: var(--brand-soft);
+        color: var(--brand);
+      }
     }
 
     &--disabled {
-      color: var(--color-midnight-35);
+      color: var(--text-faint);
       cursor: default;
       pointer-events: none;
 
       &:hover {
+        background: transparent;
         text-decoration: none;
       }
     }

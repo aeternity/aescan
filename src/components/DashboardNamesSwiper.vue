@@ -55,10 +55,7 @@
               </time-toggle-button>
             </th>
             <td class="dashboard-names-swiper__data">
-              <app-link
-                :to="`/keyblocks/${name.activatedHeight}`">
-                {{ name.activatedHeight }}
-              </app-link>
+              <block-height-link :height="name.activatedHeight"/>
               -
               <timestamp-label :timestamp="name.activated"/>
             </td>
@@ -78,7 +75,7 @@ const { recentlyActivatedNames } = storeToRefs(useNamesStore())
 <style scoped>
 .dashboard-names-swiper {
   &__header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    border-bottom: 1px solid var(--border-soft);
   }
 
   &__data {

@@ -106,6 +106,8 @@ function update() {
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
+  /* Reference design uses --text-dim for all age/time values */
+  color: var(--text-dim);
 
   &__label {
     white-space: nowrap;

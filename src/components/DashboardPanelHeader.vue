@@ -5,7 +5,7 @@
       class="dashboard-panel-header__badge">
       <app-icon
         :name="iconName"
-        :size="32"/>
+        :size="20"/>
     </app-badge>
     <div class="dashboard-panel-header__body">
       <div class="dashboard-panel-header__container">
@@ -60,7 +60,8 @@ defineProps({
   margin: 0 var(--space-2) var(--space-2);
 
   @media (--desktop) {
-    margin: 0 0 var(--space-4) 0;
+    /* 16px matches the reference design's section-header→rail gap */
+    margin: 0 0 16px;
   }
 
   &__body {
@@ -72,6 +73,8 @@ defineProps({
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      /* Reference design: 14px between header controls (e.g. tabs) and "Show all" */
+      column-gap: 14px;
     }
   }
 
@@ -84,7 +87,7 @@ defineProps({
   }
 
   &__badge {
-    margin-right: var(--space-3);
+    margin-right: var(--space-2);
   }
 
   &__hint {
@@ -92,21 +95,24 @@ defineProps({
   }
 
   &__link {
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 500;
-    white-space: nowrap;
+      font-size: 12.5px;
+      line-height: 20px;
+      font-weight: 600;
+      white-space: nowrap;
 
-    @media (--desktop) {
-      font-size: 16px;
-      line-height: 24px;
-      margin-left: auto;
-    }
+      @media (--desktop) {
+        margin-left: auto;
+      }
   }
 
   &__heading {
     display: flex;
     gap: var(--space-0);
+    align-items: center;
+    /* Reference design: 15px/700/.05em — override h3 global (20px) */
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     font-style: normal;
   }
 }

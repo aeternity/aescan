@@ -3,15 +3,15 @@
     <app-badge>
       <app-icon
         :name="iconName"
-        :size="32"/>
+        :size="16"/>
     </app-badge>
     <div class="stats-tile__container">
-      <h3 class="stats-tile__title h5">
+      <div class="stats-tile__title">
         {{ title }}
         <hint-tooltip class="stats-tile__tooltip">
           <slot name="tooltip"/>
         </hint-tooltip>
-      </h3>
+      </div>
       <div class="stats-tile__slot">
         <slot/>
       </div>
@@ -36,35 +36,64 @@ defineProps({
 .stats-tile {
   display: flex;
   flex-direction: row;
-  word-break: break-all;
-  padding: var(--space-1) 0;
+  align-items: center;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--r-tile);
+  padding: 9px 11px;
+  gap: 9px;
+  transition: border-color var(--dur) var(--ease);
+
+  &:hover {
+    border-color: var(--brand-line);
+  }
+
+  :deep(.badge) {
+    /* Override AppBadge to the reference spec: 34×34, radius 9px */
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    flex-shrink: 0;
+  }
 
   &__container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin-left: var(--space-3);
-
-    @media (--desktop) {
-      margin-left: var(--space-2);
-    }
+    min-width: 0;
   }
 
   &__title {
     display: flex;
     align-items: center;
+    gap: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 3px;
+    flex-wrap: wrap;
 
-    @media (--desktop) {
-      margin-bottom: var(--space-0);
+    @media (width >= 640px) {
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
   }
 
   &__tooltip {
-    margin-left: var(--space-0);
+    /* gap: 4px on __title flex handles spacing; no extra margin needed */
   }
 
   &__slot {
-    font-family: var(--font-monospaced);
+    /* Labels inherit sans-serif from body; only values (stats-panel__value) are mono */
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--text-dim);
+    /* Reserve height for 2 lines so 1-line tiles (e.g. "SMART CONTRACTS")
+       match the shape/height of 2-line tiles instead of shrinking. */
+    min-height: calc(1.45em * 2);
   }
 }
 </style>

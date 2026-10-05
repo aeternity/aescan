@@ -44,9 +44,10 @@
           </app-link>
         </td>
         <td class="names-in-auction-table__data">
-          <block-time-cell
-            :height="name.expirationHeight"
-            :timestamp="name.expiration"/>
+          <div>
+            <block-height-link :height="name.expirationHeight"/>
+          </div>
+          <timestamp-label :timestamp="name.expiration"/>
         </td>
         <td class="names-in-auction-table__data">
           <price-label

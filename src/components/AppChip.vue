@@ -29,7 +29,6 @@ defineProps({
 .chip {
   display: inline-flex;
   border-radius: 4px;
-  font-family: var(--font-monospaced);
   align-items: center;
   text-align: center;
   font-size: 12px;

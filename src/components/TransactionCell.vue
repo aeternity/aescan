@@ -47,8 +47,13 @@ const transactionCellComponent = computed(() => {
 <style scoped>
 .transaction-cell {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: var(--space-1);
+/* Only the trailing price/fee value (if present) should be pushed to the
+     cell's far right; addresses + the arrow between them stay grouped
+     together on the left instead of being spread apart by space-between. */
+  :deep(.price-label:last-child) {
+    margin-left: auto;
+  }
 }
 </style>

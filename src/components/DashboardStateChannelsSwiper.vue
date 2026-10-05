@@ -110,7 +110,7 @@ const { stateChannels } = storeToRefs(useDashboardStateChannelsStore())
 <style scoped>
 .dashboard-state-channels-swiper {
   &__header {
-    border-bottom: 1px solid var(--color-midnight-25);
+    border-bottom: 1px solid var(--border-soft);
   }
 
   &__price {

@@ -1,51 +1,48 @@
 <template>
-  <div class="top-accounts-table__container">
-    <table class="top-accounts-table">
+  <div class="recent-accounts-table__container">
+    <table class="recent-accounts-table">
       <thead>
         <tr>
-          <th class="top-accounts-table__rank">
-            Rank
-            <hint-tooltip>
-              {{ topAccountsHints.rank }}
-            </hint-tooltip>
-          </th>
           <th>
             Account
             <hint-tooltip>
               {{ topAccountsHints.account }}
             </hint-tooltip>
           </th>
-          <th class="top-accounts-table__numeric">
-            Balance
+          <th>
+            Last Transaction
             <hint-tooltip>
-              {{ topAccountsHints.balance }}
+              {{ topAccountsHints.lastTransaction }}
             </hint-tooltip>
           </th>
-          <th class="top-accounts-table__numeric">
-            % Of Circulating
+          <th>
+            Type
+          </th>
+          <th>
+            <time-toggle-button>Last Active</time-toggle-button>
             <hint-tooltip>
-              {{ topAccountsHints.percentage }}
+              {{ topAccountsHints.lastActive }}
             </hint-tooltip>
+          </th>
+          <th>
+            Block
           </th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="account in topAccounts"
+          v-for="account in recentAccounts"
           :key="account.account">
-          <td class="top-accounts-table__data top-accounts-table__rank">
-            {{ account.rank }}
-          </td>
-          <td class="top-accounts-table__data">
-            <div class="top-accounts-table__account">
+          <td class="recent-accounts-table__data">
+            <div class="recent-accounts-table__account">
               <span
-                class="top-accounts-table__avatar"
+                class="recent-accounts-table__avatar"
                 :style="{background: formatAvatarColor(account.account)}"/>
               <app-link
                 :to="`/accounts/${account.account}`"
                 :class="[
-                  'top-accounts-table__link',
-                  {'top-accounts-table__link--address': account.label === formatEllipseHash(account.account)},
+                  'recent-accounts-table__link',
+                  {'recent-accounts-table__link--address': account.label === formatEllipseHash(account.account)},
                 ]">
                 {{ account.label }}
               </app-link>
@@ -54,13 +51,23 @@
                 :clipboard-text="account.account"/>
             </div>
           </td>
-          <td class="top-accounts-table__data top-accounts-table__numeric">
-            <price-label
-              :price="account.balance"
-              :has-icon="false"/>
+          <td class="recent-accounts-table__data">
+            <value-hash-ellipsed
+              :link-to="`/transactions/${account.lastTxHash}`"
+              :hash="account.lastTxHash"/>
           </td>
-          <td class="top-accounts-table__data top-accounts-table__numeric top-accounts-table__percentage">
-            {{ account.percentage }}%
+          <td class="recent-accounts-table__data">
+            <span class="recent-accounts-table__type">
+              {{ account.lastTxType }}
+            </span>
+          </td>
+          <td class="recent-accounts-table__data">
+            <timestamp-label :timestamp="account.lastActive"/>
+          </td>
+          <td class="recent-accounts-table__data">
+            <app-link :to="`/keyblocks/${account.lastActiveHeight}`">
+              {{ account.lastActiveHeight }}
+            </app-link>
           </td>
         </tr>
       </tbody>
@@ -72,7 +79,7 @@
 import { topAccountsHints } from '@/utils/hints/topAccountsHints'
 
 defineProps({
-  topAccounts: {
+  recentAccounts: {
     type: Array,
     required: true,
   },
@@ -80,7 +87,7 @@ defineProps({
 </script>
 
 <style scoped>
-.top-accounts-table {
+.recent-accounts-table {
   margin-bottom: 0;
   white-space: nowrap;
 
@@ -90,23 +97,6 @@ defineProps({
 
   &__data {
     white-space: nowrap;
-  }
-
-  &__rank {
-    width: 52px;
-  }
-
-  &__numeric {
-    text-align: right;
-
-    :deep(.price-label) {
-      justify-content: flex-end;
-    }
-  }
-
-  &__percentage {
-    font-family: var(--font-monospaced);
-    color: var(--text-dim);
   }
 
   &__account {
@@ -133,6 +123,16 @@ defineProps({
     }
   }
 
+  &__type {
+    display: inline-block;
+    padding: 3px 9px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--c-teal);
+    background: var(--up-soft);
+    border-radius: 6px;
+  }
+
   th,
   td {
     padding-right: 22px;
@@ -147,11 +147,6 @@ defineProps({
   thead tr {
     background: transparent;
     border-bottom: 1px solid var(--border);
-  }
-
-  td.top-accounts-table__rank {
-    font-family: var(--font-monospaced);
-    color: var(--text-faint);
   }
 }
 </style>

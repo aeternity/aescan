@@ -1,7 +1,7 @@
 <template>
   <app-panel :title-to="props.titleTo">
     <template #title>
-      ACTIVE ACCOUNTS
+      {{ title }}
       <hint-tooltip>
         {{ chartsHints.accountsChart }}
       </hint-tooltip>
@@ -14,6 +14,7 @@
 
     <line-chart
       :data="accountsStatistics"
+      :height="height"
       :interval-by="selectedScope.intervalBy"/>
 
     <chart-controls
@@ -36,6 +37,14 @@ const props = defineProps({
   scope: {
     type: Object,
     default: CHART_SCOPE_PRESETS_OPTIONS[0],
+  },
+  title: {
+    type: String,
+    default: 'ACTIVE ACCOUNTS',
+  },
+  height: {
+    type: Number,
+    default: 250,
   },
 })
 

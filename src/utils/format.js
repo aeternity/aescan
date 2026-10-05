@@ -215,6 +215,14 @@ export function formatKnownAddress(hash, isEllipsed = true) {
   }
 }
 
+const AVATAR_COLORS = ['--brand', '--c-teal', '--c-violet', '--c-amber', '--c-blue']
+
+// Stable per-address color, so the same account always gets the same avatar
+export function formatAvatarColor(address) {
+  const hash = [...address].reduce((sum, char) => sum + char.charCodeAt(0), 0)
+  return `var(${AVATAR_COLORS[hash % AVATAR_COLORS.length]})`
+}
+
 export function formatTradeRate(action, fromAmount, toAmount) {
   if (action === 'BUY') {
     return `${formatNumber((fromAmount / toAmount), 4)} WAE`

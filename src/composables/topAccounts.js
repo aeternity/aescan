@@ -1,6 +1,7 @@
 export const useTopAccountsStore = defineStore('topAccounts', () => {
   const axios = useAxios()
   const rawTopAccounts = ref(null)
+  const rawRecentAccounts = ref(null)
   const activeAccountsCount = ref(null)
   const totalAccountsCount = ref(null)
   const activeAccountsDelta = ref(null)
@@ -11,6 +12,12 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
   const topAccounts = computed(() =>
     rawTopAccounts.value && blockchainStatsStore.totalTokenSupply
       ? adaptTopAccounts(rawTopAccounts.value, blockchainStatsStore.totalTokenSupply)
+      : null,
+  )
+
+  const recentAccounts = computed(() =>
+    rawRecentAccounts.value
+      ? rawRecentAccounts.value.map(account => ({ ...account, label: formatKnownAddress(account.account) }))
       : null,
   )
 
@@ -37,6 +44,11 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
     activeAccountsDelta.value = (100 - (prevTotalAccountCount * 100 / activeAccountsCount.value)).toFixed(2)
   }
 
+  async function fetchRecentAccounts() {
+    rawRecentAccounts.value = null
+    rawRecentAccounts.value = await $fetch('/api/accounts/recent')
+  }
+
   async function fetchTotalAccountsCount() {
     totalAccountsCount.value = null
     const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/total-accounts?interval_by=month&limit=1000`)
@@ -45,7 +57,9 @@ export const useTopAccountsStore = defineStore('topAccounts', () => {
 
   return {
     fetchTopAccounts,
+    fetchRecentAccounts,
     topAccounts,
+    recentAccounts,
     activeAccountsCount,
     totalAccountsCount,
     activeAccountsDelta,

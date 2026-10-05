@@ -1,24 +1,30 @@
 <template>
   <div class="search-bar">
-    <svg
-      class="search-bar__icon"
-      width="15"
-      height="15"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2.2"
-      aria-hidden="true">
-      <circle
-        cx="11"
-        cy="11"
-        r="7"/>
-      <line
-        x1="21"
-        y1="21"
-        x2="16.5"
-        y2="16.5"/>
-    </svg>
+    <button
+      type="button"
+      class="search-bar__submit"
+      aria-label="Search"
+      @click="search">
+      <svg
+        class="search-bar__icon"
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        aria-hidden="true">
+        <circle
+          cx="11"
+          cy="11"
+          r="7"/>
+        <line
+          x1="21"
+          y1="21"
+          x2="16.5"
+          y2="16.5"/>
+      </svg>
+    </button>
     <input
       v-model="query"
       class="search-bar__input"
@@ -127,9 +133,23 @@ function isMicroblockId(query) {
     border-color: var(--brand-line);
   }
 
-  &__icon {
+  /* The magnifier doubles as the submit button (Enter works as well) */
+  &__submit {
+    display: flex;
     flex-shrink: 0;
+    align-items: center;
+    padding: 0;
     color: var(--text-faint);
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  &__icon {
     display: block;
   }
 

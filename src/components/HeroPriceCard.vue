@@ -137,6 +137,7 @@ function formatUsd(value) {
   &__header {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: var(--space-1);
     margin-bottom: 10px;
@@ -193,9 +194,9 @@ function formatUsd(value) {
   }
 
   &__chart {
-    flex: 1;
+    flex: 1 1 60px;
     width: 100%;
-    min-height: 38px;
+    height: 60px;
     margin-top: 6px;
     overflow: visible;
   }

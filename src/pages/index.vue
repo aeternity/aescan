@@ -19,19 +19,6 @@
 
       <div class="dashboard__row">
         <div class="dashboard__column">
-          <h2 class="dashboard__heading">
-            State Channels
-          </h2>
-          <p class="dashboard__paragraph">
-            State Channels allow the gas-free execution of smart contracts and
-            transactions, privately and with the speed of light, while still
-            being able to escalate on-chain in case of disagreement.
-            <app-link
-              class="dashboard__link"
-              to="https://aeternity.com/state-channels">
-              Learn more
-            </app-link>
-          </p>
           <dashboard-state-channels-panel/>
         </div>
       </div>
@@ -122,36 +109,6 @@ onBeforeUnmount(() => {
 
   &__column {
     flex: 1 1 0;
-  }
-
-  &__heading {
-    margin: 0 var(--space-1);
-
-    @media (--desktop) {
-      margin: 0;
-    }
-  }
-
-  &__paragraph {
-    margin: var(--space-3) var(--space-1) var(--space-4);
-
-    @media (--desktop) {
-      margin: var(--space-3) 0 var(--space-6);
-    }
-
-    &--horizontal {
-      margin: 0 var(--space-1);
-
-      @media (--desktop) {
-        margin: 0;
-      }
-    }
-  }
-
-  &__link {
-    font-size: 14px;
-    line-height: 20px;
-    font-family: var(--font-monospaced);
   }
 
   &__loader-panel {

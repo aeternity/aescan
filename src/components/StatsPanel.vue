@@ -232,15 +232,18 @@ const isLoading = computed(() => {
 <style scoped>
 .stats-panel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr; /* equal tile heights across all rows */
   gap: var(--space-2);
   width: 100%;
   box-sizing: border-box;
 
-  @media (--desktop) {
-    gap: var(--space-2);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-auto-rows: 1fr;  /* equal tile heights across all rows */
+  @media (width >= 640px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (width >= 1300px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   &__stats-tile {
@@ -275,7 +278,7 @@ const isLoading = computed(() => {
 
     @media (--desktop) {
       /*hardcoded height to prevent content jumping*/
-      height: 264px;
+      height: 200px;
     }
   }
 }

@@ -74,7 +74,12 @@ defineProps({
     text-transform: uppercase;
     color: var(--text);
     margin-bottom: 3px;
-    white-space: nowrap;
+    flex-wrap: wrap;
+
+    @media (width >= 640px) {
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
   }
 
   &__tooltip {

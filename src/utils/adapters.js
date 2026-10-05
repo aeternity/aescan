@@ -112,6 +112,7 @@ export function adaptDashboardStateChannels(stateChannels) {
       initiator: channel.initiator,
       responder: channel.responder,
       channel: channel.channel,
+      isActive: channel.active,
       updateCount: channel.updatesCount,
       amount: formatAettosToAe(channel.amount),
       updatedHeight: channel.lastUpdatedHeight,

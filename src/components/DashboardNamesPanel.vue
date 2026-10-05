@@ -2,7 +2,7 @@
   <app-panel class="dashboard-names-panel">
     <dashboard-panel-header
       level="h3"
-      :title="isAuctionsTab ? 'AUCTIONS ENDING SOON' : 'NAMES RECENTLY ACTIVATED'"
+      title=".CHAIN NAMES"
       icon-name="aens-name"
       :show-all-link="isAuctionsTab ? '/names/?type=in-auction' : '/names/?type=active'">
       <template #tooltip>
@@ -25,14 +25,8 @@
     </dashboard-panel-header>
 
     <p class="dashboard-names-panel__description">
-      <template v-if="isAuctionsTab">
-        .chain Names can be obtained either immediately or via an auction
-        process, if shorter than 13 characters.
-      </template>
-      <template v-else>
-        The æternity blockchain supports protocol-level .chain Names via the
-        æternity naming system (AENS).
-      </template>
+      Protocol-level <strong>.chain</strong> names via the æternity naming system (AENS) &mdash;
+      obtained instantly, or via auction when shorter than 13 characters.
     </p>
 
     <template v-if="isAuctionsTab">
@@ -91,6 +85,11 @@ const isAuctionsTab = computed(() => activeTab.value === 'auctions')
     font-size: 12.5px;
     line-height: 20px;
     color: var(--text-dim);
+
+    strong {
+      font-weight: 600;
+      color: var(--text);
+    }
   }
 }
 </style>

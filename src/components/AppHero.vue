@@ -78,10 +78,10 @@ const { price } = storeToRefs(useMarketStatsStore())
   &__grid {
     display: grid;
     gap: var(--space-2);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
 
-    @media (width >= 900px) {
-      grid-template-columns: 320px 1fr;
+    @media (width >= 960px) {
+      grid-template-columns: 320px minmax(0, 1fr);
     }
   }
 
@@ -133,8 +133,8 @@ const { price } = storeToRefs(useMarketStatsStore())
   }
 
   &__stats-panel {
-    /* KPI tiles fill the remaining grid column */
-    align-self: start;
+    /* KPI tiles fill the remaining grid column and match the price card height */
+    align-self: stretch;
   }
 }
 </style>

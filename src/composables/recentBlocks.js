@@ -8,6 +8,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   const { fetchTotalTransactionsCount } = useBlockchainStatsStore()
 
   const deltaStats = ref(null)
+  // delta stats of the selected keyblocks that are older than the ones loaded with the latest
+  const olderDeltaStats = ref({})
   const keyblocks = ref(null)
   const keyblocksNextPage = ref(null)
   const isLoadingMoreKeyblocks = ref(false)
@@ -45,7 +47,9 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   })
   const selectedDeltaStats = computed(() => {
     const selectedKeyblockHeight = selectedKeyblock.value?.height || blockHeight.value
-    return deltaStats.value ? adaptDeltaStats(deltaStats.value, selectedKeyblockHeight) : null
+    return deltaStats.value
+      ? adaptDeltaStats([...deltaStats.value, ...Object.values(olderDeltaStats.value)], selectedKeyblockHeight)
+      : null
   })
   const latestReward = computed(() => {
     return deltaStats.value ? formatAettosToAe(deltaStats.value[0].blockReward) : null
@@ -64,6 +68,8 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
     } else {
       rawSelectedKeyblock.value = keyblock
     }
+
+    fetchOlderDeltaStats(keyblock.height)
 
     // When clicking near the end of the loaded list, fetch more keyblocks in background
     const idx = keyblocks.value.findIndex(k => k.hash === keyblock.hash)
@@ -163,6 +169,19 @@ export const useRecentBlocksStore = defineStore('recentBlocks', () => {
   async function fetchDeltaStats() {
     const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?limit=20`)
     deltaStats.value = data.data
+  }
+
+  // the latest delta stats cover only the newest keyblocks, the older ones are loaded when selected
+  async function fetchOlderDeltaStats(keyblockHeight) {
+    const isLoaded = deltaStats.value?.some(stat => stat.height === keyblockHeight)
+      || olderDeltaStats.value[keyblockHeight]
+    if (isLoaded) return
+
+    const { data } = await axios.get(`${MIDDLEWARE_URL}/stats/delta?scope=gen:${keyblockHeight}`)
+    const keyblockDeltaStats = data.data[0]
+    if (keyblockDeltaStats) {
+      olderDeltaStats.value = { ...olderDeltaStats.value, [keyblockDeltaStats.height]: keyblockDeltaStats }
+    }
   }
 
   /* HANDLING COMMUNICATION OVER WEBSOCKET */
